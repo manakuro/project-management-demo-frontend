@@ -1,0 +1,17 @@
+{
+	"name":				"",
+	"short_name":		"",
+	"description":		"",
+	"start_url":		"/",
+	"display":			"standalone",
+	"orientation":		"any",
+	"background_color":	"#fff",
+	"theme_color":		"#fff",
+	"icons": [
+		{
+			"src": "/android-chrome-128x128.png",
+			"sizes": "128x128",
+			"type": "image/png"
+		}
+	]
+}

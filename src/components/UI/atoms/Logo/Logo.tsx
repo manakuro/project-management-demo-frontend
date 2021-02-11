@@ -24,5 +24,5 @@ const LogoIcon = createIcon({
 type Props = IconProps
 
 export const Logo: React.VFC<Props> = (props) => {
-  return <LogoIcon color="whiteAlpha" w="auto" h="1.5em" ml="-5px" {...props} />
+  return <LogoIcon color="whiteAlpha" w="auto" h="1.5em" ml="-2px" {...props} />
 }

@@ -13,6 +13,10 @@ import {
   BiRocket,
   BiIdCard,
   BiHelpCircle,
+  BiUserPlus,
+  BiTrashAlt,
+  BiGridAlt,
+  BiTask,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon } from 'react-icons/fa'
 import { Medium } from './icons'
@@ -38,6 +42,10 @@ const icons = {
   rocket: BiRocket,
   idCard: BiIdCard,
   help: BiHelpCircle,
+  userPlus: BiUserPlus,
+  trashAlt: BiTrashAlt,
+  gridAlt: BiGridAlt,
+  task: BiTask,
 } as const
 
 export type IconType = keyof typeof icons

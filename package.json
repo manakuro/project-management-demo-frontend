@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "preinstall": "typesync || :",
-    "dev": "next dev -p 3002",
+    "dev": "next dev -p 4001",
     "build": "next build",
     "start": "next start",
     "start:local": "yarn build && yarn start",

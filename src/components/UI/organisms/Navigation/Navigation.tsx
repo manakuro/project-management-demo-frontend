@@ -9,10 +9,10 @@ import {
   NextLink,
   Icon,
   IconBg,
-  Divider,
 } from 'src/components/UI/atoms'
 import { useRouter } from 'next/router'
 import { NavigationFooter } from './NavigationFooter'
+import { NavigationMain } from './NavigationMain'
 
 const navigations = [
   {
@@ -88,7 +88,7 @@ export const Navigation: React.VFC = () => {
           <Icon icon="menu" />
         </IconBg>
       </Flex>
-      <List w={MAX_WIDTH}>
+      <List w={MAX_WIDTH} mb={2}>
         {navigations.map((n, i) => (
           <ListItem key={i}>
             <NextLink href={n.href} passHref>
@@ -112,28 +112,7 @@ export const Navigation: React.VFC = () => {
         ))}
       </List>
 
-      <Divider color="gray.400" opacity={0.15} />
-
-      <Flex flex={1} w={MAX_WIDTH} flexDirection="column">
-        <Text fontSize="sm" color="text.muted" fontWeight="bold">
-          Favorites
-        </Text>
-        <List>
-          <ListItem
-            display="flex"
-            alignItems="center"
-            px={PADDING_X}
-            py={2}
-            _hover={{
-              bg: 'navigation.hover',
-            }}
-            cursor="pointer"
-          >
-            <Icon icon="idCard" mr={PADDING_X} mt="-2px" />
-            <Text fontSize="sm">Engineering</Text>
-          </ListItem>
-        </List>
-      </Flex>
+      <NavigationMain isExpanded={isExpanded} />
 
       <NavigationFooter />
     </Flex>

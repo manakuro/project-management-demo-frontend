@@ -1,11 +1,13 @@
 import React from 'react'
-import { Text, List, ListItem, Icon, Divider } from 'src/components/UI/atoms'
+import { Text, List, ListItem, Icon } from 'src/components/UI/atoms'
 import { MAX_WIDTH, PADDING_X } from './Navigation'
+import { Divider } from './Divider'
+import { transitions } from 'src/styles'
 
 export const NavigationFooter: React.VFC = () => {
   return (
     <List w={MAX_WIDTH}>
-      <Divider color="gray.400" opacity={0.15} />
+      <Divider />
       <ListItem
         display="flex"
         alignItems="center"
@@ -14,12 +16,13 @@ export const NavigationFooter: React.VFC = () => {
         _hover={{
           bg: 'navigation.hover',
         }}
+        transition={transitions.base}
         cursor="pointer"
       >
-        <Icon icon="idCard" color="primary" mr={PADDING_X} mt="-2px" />
+        <Icon icon="userPlus" color="primary" mr={PADDING_X} mt="-2px" />
         <Text fontSize="sm">Invite teammates</Text>
       </ListItem>
-      <Divider color="gray.400" opacity={0.15} />
+      <Divider />
       <ListItem
         display="flex"
         alignItems="center"
@@ -28,6 +31,7 @@ export const NavigationFooter: React.VFC = () => {
         _hover={{
           bg: 'navigation.hover',
         }}
+        transition={transitions.base}
         cursor="pointer"
       >
         <Icon icon="help" color="primary" mr={PADDING_X} mt="-2px" />

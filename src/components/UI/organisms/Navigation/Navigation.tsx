@@ -8,7 +8,7 @@ import {
   Link,
   NextLink,
   Icon,
-  Box,
+  IconBg,
 } from 'src/components/UI/atoms'
 import { useRouter } from 'next/router'
 
@@ -64,18 +64,25 @@ export const Navigation: React.VFC = () => {
       flexDirection="column"
       color="white"
       transition="width .25s cubic-bezier(0.820, 0.085, 0.395, 0.895)"
+      overflowX="hidden"
     >
-      <Flex w="full" h="72px" alignItems="center" px={PADDING_X}>
+      <Flex
+        w="full"
+        h="72px"
+        alignItems="center"
+        px={PADDING_X}
+        justifyContent="flex-end"
+      >
         {isExpanded && (
           <NextLink href="home" passHref>
-            <Link>
+            <Link mr="auto">
               <Logo />
             </Link>
           </NextLink>
         )}
-        <Box onClick={toggleMenu} ml={isExpanded ? 'auto' : 0}>
-          <Icon icon="menu" color="white" cursor="pointer" mb="-2px" />
-        </Box>
+        <IconBg mr={-2} onClick={toggleMenu}>
+          <Icon icon="menu" />
+        </IconBg>
       </Flex>
       <List w={MAX_WIDTH}>
         {navigations.map((n, i) => (
@@ -87,10 +94,10 @@ export const Navigation: React.VFC = () => {
                 px={PADDING_X}
                 py={2}
                 _hover={{
-                  bg: 'rgba(255,255,255,.08)',
+                  bg: 'navigation.hover',
                 }}
                 {...(n.pathname === router.pathname
-                  ? { bg: 'rgba(255,255,255,.16)' }
+                  ? { bg: 'navigation.selected' }
                   : {})}
               >
                 <Icon icon={n.icon} mr={PADDING_X} mt="-2px" />

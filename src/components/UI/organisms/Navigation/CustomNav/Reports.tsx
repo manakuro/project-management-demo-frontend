@@ -17,9 +17,9 @@ export const Reports: React.VFC<Props> = (props) => {
         listItems: [
           {
             name: "Tasks I've changed",
-            href: 'home',
+            href: 'reports/tasks-ive-changed',
             icon: 'idCard',
-            pathname: '/',
+            pathname: '/reports/tasks-ive-changed',
           },
         ],
       }}

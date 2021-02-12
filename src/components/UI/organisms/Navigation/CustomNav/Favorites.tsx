@@ -23,15 +23,15 @@ export const Favorites: React.VFC<Props> = (props) => {
           },
           {
             name: 'All Items',
-            href: 'home',
+            href: 'favorites/all-items',
             icon: 'gridAlt',
-            pathname: '/',
+            pathname: '/favorites/all-items',
           },
           {
             name: 'Deleted Items',
-            href: 'home',
+            href: 'favorites/deleted-items',
             icon: 'trashAlt',
-            pathname: '/',
+            pathname: '/favorites/deleted-items',
           },
         ],
       }}

@@ -1,13 +1,5 @@
 import React from 'react'
-import {
-  Flex,
-  Text,
-  List,
-  ListItem as AtomsListItem,
-  Icon,
-  Heading,
-  Link,
-} from 'src/components/UI/atoms'
+import { Flex, List, Heading } from 'src/components/UI/atoms'
 import { PADDING_X } from '../Navigation'
 import { Divider } from '../Divider'
 import {
@@ -17,14 +9,15 @@ import {
   AccordionButton,
   AccordionIcon,
 } from '@chakra-ui/react'
-import { NavListItem } from '../type'
+import { NavListItem as TNavListItem } from '../type'
+import { NavListItem } from '../NavListItem'
 
 type Item = {
   title: {
     expanded: string
     shorten: string
   }
-  listItems: NavListItem[]
+  listItems: TNavListItem[]
 }
 
 type Props = {
@@ -54,21 +47,7 @@ export const CustomNavList: React.VFC<Props> = ({ item, isExpanded }) => {
             <AccordionPanel p={0}>
               <List mb={2}>
                 {item.listItems.map((listItem, i) => (
-                  <AtomsListItem key={`${i}`}>
-                    <Link
-                      display="flex"
-                      alignItems="center"
-                      px={PADDING_X}
-                      py={2}
-                      _hover={{
-                        bg: 'navigation.hover',
-                      }}
-                      cursor="pointer"
-                    >
-                      <Icon icon={listItem.icon} mr={PADDING_X} mt="-2px" />
-                      <Text fontSize="sm">{listItem.name}</Text>
-                    </Link>
-                  </AtomsListItem>
+                  <NavListItem item={listItem} key={i} />
                 ))}
               </List>
             </AccordionPanel>

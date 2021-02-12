@@ -29,6 +29,24 @@ export const routes = [
       pathname: '/goals',
     },
   },
+  {
+    name: 'favorites/all-items',
+    href: {
+      pathname: '/favorites/all-items',
+    },
+  },
+  {
+    name: 'favorites/deleted-items',
+    href: {
+      pathname: '/favorites/deleted-items',
+    },
+  },
+  {
+    name: 'reports/tasks-ive-changed',
+    href: {
+      pathname: '/reports/tasks-ive-changed',
+    },
+  },
 ] as const
 
 export type Routes = typeof routes[number]['name']

@@ -9,8 +9,10 @@ import {
   NextLink,
   Icon,
   IconBg,
+  Divider,
 } from 'src/components/UI/atoms'
 import { useRouter } from 'next/router'
+import { NavigationFooter } from './NavigationFooter'
 
 const navigations = [
   {
@@ -45,9 +47,9 @@ const navigations = [
   },
 ] as const
 
-const PADDING_X = 4
-const MAX_WIDTH = '240px'
-const MIN_WIDTH = '53px'
+export const PADDING_X = 4
+export const MAX_WIDTH = '240px'
+export const MIN_WIDTH = '53px'
 export const Navigation: React.VFC = () => {
   const router = useRouter()
   const [isExpanded, setIsExpanded] = useState(true)
@@ -65,6 +67,8 @@ export const Navigation: React.VFC = () => {
       color="white"
       transition="width .25s cubic-bezier(0.820, 0.085, 0.395, 0.895)"
       overflowX="hidden"
+      position="fixed"
+      h="100vh"
     >
       <Flex
         w="full"
@@ -107,6 +111,31 @@ export const Navigation: React.VFC = () => {
           </ListItem>
         ))}
       </List>
+
+      <Divider color="gray.400" opacity={0.15} />
+
+      <Flex flex={1} w={MAX_WIDTH} flexDirection="column">
+        <Text fontSize="sm" color="text.muted" fontWeight="bold">
+          Favorites
+        </Text>
+        <List>
+          <ListItem
+            display="flex"
+            alignItems="center"
+            px={PADDING_X}
+            py={2}
+            _hover={{
+              bg: 'navigation.hover',
+            }}
+            cursor="pointer"
+          >
+            <Icon icon="idCard" mr={PADDING_X} mt="-2px" />
+            <Text fontSize="sm">Engineering</Text>
+          </ListItem>
+        </List>
+      </Flex>
+
+      <NavigationFooter />
     </Flex>
   )
 }

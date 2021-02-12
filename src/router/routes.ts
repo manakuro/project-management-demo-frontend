@@ -32,3 +32,4 @@ export const routes = [
 ] as const
 
 export type Routes = typeof routes[number]['name']
+export type Pathname = typeof routes[number]['href']['pathname']

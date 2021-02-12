@@ -11,8 +11,8 @@ import {
   IconBg,
 } from 'src/components/UI/atoms'
 import { useRouter } from 'next/router'
-import { NavigationFooter } from './NavigationFooter'
-import { NavigationMain } from './NavigationMain'
+import { Main } from './Main'
+import { Footer } from './Footer'
 
 const navigations = [
   {
@@ -112,9 +112,9 @@ export const Navigation: React.VFC = () => {
         ))}
       </List>
 
-      <NavigationMain isExpanded={isExpanded} />
+      <Main isExpanded={isExpanded} />
 
-      <NavigationFooter />
+      <Footer />
     </Flex>
   )
 }

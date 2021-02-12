@@ -1,10 +1,10 @@
 import React from 'react'
 import { Text, List, ListItem, Icon } from 'src/components/UI/atoms'
-import { MAX_WIDTH, PADDING_X } from './Navigation'
-import { Divider } from './Divider'
+import { MAX_WIDTH, PADDING_X } from '../Navigation'
+import { Divider } from '../Divider'
 import { transitions } from 'src/styles'
 
-export const NavigationFooter: React.VFC = () => {
+export const Footer: React.VFC = () => {
   return (
     <List w={MAX_WIDTH}>
       <Divider />

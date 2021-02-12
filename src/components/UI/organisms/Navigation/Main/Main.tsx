@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from 'src/components/UI/atoms'
-import { MAX_WIDTH } from '../Navigation'
+import { MAX_WIDTH } from 'src/components/UI/organisms/Navigation'
 import { Favorites } from './Favorites'
 import { Reports } from './Reports'
 

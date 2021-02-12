@@ -9,8 +9,8 @@ import {
   Link,
   IconType,
 } from 'src/components/UI/atoms'
-import { PADDING_X } from '../Navigation'
-import { Divider } from '../Divider'
+import { PADDING_X } from 'src/components/UI/organisms/Navigation'
+import { Divider } from 'src/components/UI/organisms/Navigation/Divider'
 import {
   Accordion,
   AccordionItem,

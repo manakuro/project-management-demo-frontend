@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, List, ListItem, Icon } from 'src/components/UI/atoms'
 import { MAX_WIDTH, PADDING_X } from '../Navigation'
-import { Divider } from '../Divider'
+import { Divider } from 'src/components/UI/organisms/Navigation/Divider'
 import { transitions } from 'src/styles'
 
 export const Footer: React.VFC = () => {

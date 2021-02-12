@@ -4,15 +4,14 @@ import {
   Text,
   List,
   ListItem,
-  Logo,
   Link,
   NextLink,
   Icon,
-  IconBg,
 } from 'src/components/UI/atoms'
 import { useRouter } from 'next/router'
 import { Main } from './Main'
 import { Footer } from './Footer'
+import { Header } from './Header'
 
 const navigations = [
   {
@@ -70,24 +69,7 @@ export const Navigation: React.VFC = () => {
       position="fixed"
       h="100vh"
     >
-      <Flex
-        w="full"
-        h="72px"
-        alignItems="center"
-        px={PADDING_X}
-        justifyContent="flex-end"
-      >
-        {isExpanded && (
-          <NextLink href="home" passHref>
-            <Link mr="auto">
-              <Logo />
-            </Link>
-          </NextLink>
-        )}
-        <IconBg mr={-2} onClick={toggleMenu}>
-          <Icon icon="menu" />
-        </IconBg>
-      </Flex>
+      <Header isExpanded={isExpanded} toggleMenu={toggleMenu} />
       <List w={MAX_WIDTH} mb={2}>
         {navigations.map((n, i) => (
           <ListItem key={i}>

@@ -8,7 +8,7 @@ type Props = {
   isExpanded: boolean
 }
 
-export const Main: React.VFC<Props> = (props) => {
+export const CustomNav: React.VFC<Props> = (props) => {
   return (
     <Box overflow="scroll" flex={1} w={MAX_WIDTH}>
       <Favorites isExpanded={props.isExpanded} />

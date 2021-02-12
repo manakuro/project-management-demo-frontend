@@ -7,10 +7,9 @@ import {
   Icon,
   Heading,
   Link,
-  IconType,
 } from 'src/components/UI/atoms'
-import { PADDING_X } from 'src/components/UI/organisms/Navigation'
-import { Divider } from 'src/components/UI/organisms/Navigation/Divider'
+import { PADDING_X } from '../Navigation'
+import { Divider } from '../Divider'
 import {
   Accordion,
   AccordionItem,
@@ -18,20 +17,14 @@ import {
   AccordionButton,
   AccordionIcon,
 } from '@chakra-ui/react'
-import { Routes, Pathname } from 'src/router'
+import { NavListItem } from '../type'
 
 type Item = {
   title: {
     expanded: string
     shorten: string
   }
-  listItems: ListItem[]
-}
-type ListItem = {
-  name: string
-  href: Routes
-  icon: IconType
-  pathname: Pathname
+  listItems: NavListItem[]
 }
 
 type Props = {
@@ -39,7 +32,7 @@ type Props = {
   isExpanded: boolean
 }
 
-export const MainList: React.VFC<Props> = ({ item, isExpanded }) => {
+export const CustomNavList: React.VFC<Props> = ({ item, isExpanded }) => {
   return (
     <>
       <Divider />

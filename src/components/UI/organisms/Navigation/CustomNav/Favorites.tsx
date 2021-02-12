@@ -1,5 +1,5 @@
 import React from 'react'
-import { MainList } from './MainList'
+import { CustomNavList } from './CustomNavList'
 
 type Props = {
   isExpanded: boolean
@@ -7,7 +7,7 @@ type Props = {
 
 export const Favorites: React.VFC<Props> = (props) => {
   return (
-    <MainList
+    <CustomNavList
       isExpanded={props.isExpanded}
       item={{
         title: {

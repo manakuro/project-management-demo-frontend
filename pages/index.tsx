@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container } from 'src/components/Home'
+import { Container } from 'src/pages/Home'
 
 const Home: React.VFC = () => {
   return <Container />

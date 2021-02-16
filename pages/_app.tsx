@@ -3,7 +3,7 @@ import { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
 import { ChakraProvider } from '@chakra-ui/react'
 import { theme } from 'src/styles'
-import { Modals } from 'src/components/UI/organisms'
+import { Modals } from 'src/components/organisms'
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (

@@ -1,30 +1,14 @@
 import React from 'react'
-import { Text, List, ListItem, Icon } from 'src/components/UI/atoms'
-import { MAX_WIDTH, PADDING_X } from '../Navigation'
-import { Divider } from 'src/components/UI/organisms/Navigation/Divider'
-import { transitions } from 'src/styles'
+import { List } from 'src/components/UI/atoms'
+import { MAX_WIDTH } from '../Navigation'
 import { InviteTeammates } from './InviteTeammates'
+import { Help } from './Help'
 
 export const Footer: React.VFC = () => {
   return (
     <List w={MAX_WIDTH}>
       <InviteTeammates />
-
-      <Divider />
-      <ListItem
-        display="flex"
-        alignItems="center"
-        px={PADDING_X}
-        py={4}
-        _hover={{
-          bg: 'navigation.hover',
-        }}
-        transition={transitions.base}
-        cursor="pointer"
-      >
-        <Icon icon="help" color="primary" mr={PADDING_X} mt="-2px" />
-        <Text fontSize="sm">Help & getting started</Text>
-      </ListItem>
+      <Help />
     </List>
   )
 }

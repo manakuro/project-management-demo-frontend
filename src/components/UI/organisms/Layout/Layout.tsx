@@ -1,6 +1,6 @@
 import React from 'react'
 import { Flex } from 'src/components/UI/atoms'
-import { Modals, Navigation } from 'src/components/UI/organisms'
+import { Navigation } from 'src/components/UI/organisms'
 
 export const Layout: React.FC = (props) => {
   return (
@@ -19,7 +19,6 @@ export const Layout: React.FC = (props) => {
           {props.children}
         </Flex>
       </Flex>
-      <Modals />
     </Flex>
   )
 }

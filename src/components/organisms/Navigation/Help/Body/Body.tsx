@@ -7,10 +7,11 @@ import {
 
 const items: Item[] = [
   {
+    number: 1,
     title: 'The right way to start',
     src: '',
     description:
-      'From tiny tasks to big goals, we organizes work so teams are clear on ',
+      'From tiny tasks to big goals, we organizes work so teams are clear on what to do, why it matters, and how to get it done.',
     icon: {
       name: 'checkCircle',
       color: 'white',
@@ -20,8 +21,10 @@ const items: Item[] = [
       color: 'teal.200',
     },
     done: true,
+    time: '2 min read',
   },
   {
+    number: 2,
     title: 'Tips for tasks and projects',
     src: '',
     description:
@@ -35,8 +38,10 @@ const items: Item[] = [
       color: 'teal.200',
     },
     done: false,
+    time: '3 min read',
   },
   {
+    number: 3,
     title: 'A better daily routine',
     src: '',
     description:
@@ -50,8 +55,10 @@ const items: Item[] = [
       color: 'teal.200',
     },
     done: false,
+    time: '3 min read',
   },
   {
+    number: 4,
     title: 'Additional resources',
     src: '',
     description:
@@ -65,12 +72,13 @@ const items: Item[] = [
       color: 'white',
     },
     done: false,
+    time: '2 min read',
   },
 ]
 
 export const Body: React.VFC = () => {
   return (
-    <Stack w="full" spacing={4}>
+    <Stack w="full" spacing={4} mb={80}>
       {items.map((n, i) => (
         <GuideListItem key={i} item={n} />
       ))}

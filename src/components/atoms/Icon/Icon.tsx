@@ -24,9 +24,11 @@ import {
   BiChevronRight,
   BiCopyAlt,
   BiX,
+  BiChevronDown,
+  BiChevronLeft,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon } from 'react-icons/fa'
-import { AiFillCheckCircle } from 'react-icons/ai'
+import { AiFillCheckCircle, AiFillPlayCircle } from 'react-icons/ai'
 import { Medium } from './icons'
 
 type Props = IconProps & {
@@ -60,7 +62,10 @@ const icons = {
   layerPlus: BiLayerPlus,
   mobile: BiMobile,
   chevronRight: BiChevronRight,
+  chevronDown: BiChevronDown,
+  chevronLeft: BiChevronLeft,
   copyAlt: BiCopyAlt,
+  play: AiFillPlayCircle,
   x: BiX,
 } as const
 

@@ -41,9 +41,15 @@ export const theme = extendTheme({
     text: {
       muted: defaultTheme.colors.gray['400'],
     },
+    link: defaultTheme.colors.cyan['400'],
     navigation: {
       hover: 'rgba(255,255,255,.08)',
       selected: 'rgba(255,255,255,.16)',
+    },
+    help: {
+      guide: {
+        bg: '#f6f8f9',
+      },
     },
   },
 })

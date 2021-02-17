@@ -21,8 +21,12 @@ import {
   BiLayerPlus,
   BiMobile,
   BiGridHorizontal,
+  BiChevronRight,
+  BiCopyAlt,
+  BiX,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon } from 'react-icons/fa'
+import { AiFillCheckCircle } from 'react-icons/ai'
 import { Medium } from './icons'
 
 type Props = IconProps & {
@@ -40,6 +44,7 @@ const icons = {
   compass: BiCompass,
   codeAlt: BiCodeAlt,
   checkCircle: BiCheckCircle,
+  checkCircleFilled: AiFillCheckCircle,
   bell: BiBell,
   notification: BiNotification,
   barChart: BiBarChart,
@@ -54,6 +59,9 @@ const icons = {
   bookOpen: BiBookOpen,
   layerPlus: BiLayerPlus,
   mobile: BiMobile,
+  chevronRight: BiChevronRight,
+  copyAlt: BiCopyAlt,
+  x: BiX,
 } as const
 
 export type IconType = keyof typeof icons

@@ -10,18 +10,23 @@ import {
 import { useRouter } from 'next/router'
 import { PADDING_X } from './Navigation'
 import { NavListItem as TNavListItem } from './type'
+import { Routes } from 'src/router'
 
 type Props = {
   item: TNavListItem
+  selectedStyle: boolean
 } & ListItemProps
 
-export const NavListItem: React.VFC<Props> = ({ item, ...rest }) => {
+export const NavListItem: React.VFC<Props> = (props) => {
+  const { item, selectedStyle, ...rest } = props
   const router = useRouter()
 
   return (
     <ListItem {...rest}>
-      <NextLink href={item.href} passHref>
+      <WithNextLink {...props}>
         <Link
+          href={item.href}
+          isExternal={item.isExternal ?? false}
           display="flex"
           alignItems="center"
           px={PADDING_X}
@@ -29,14 +34,24 @@ export const NavListItem: React.VFC<Props> = ({ item, ...rest }) => {
           _hover={{
             bg: 'navigation.hover',
           }}
-          {...(item.pathname === router.pathname
+          {...(selectedStyle && item.pathname === router.pathname
             ? { bg: 'navigation.selected' }
             : {})}
         >
           <Icon icon={item.icon} mr={PADDING_X} mt="-2px" />
           <Text fontSize="sm">{item.name}</Text>
         </Link>
-      </NextLink>
+      </WithNextLink>
     </ListItem>
+  )
+}
+
+const WithNextLink: React.FC<Props> = (props) => {
+  return props.item.isExternal ? (
+    <>{props.children}</>
+  ) : (
+    <NextLink href={props.item.href as Routes} passHref>
+      {props.children}
+    </NextLink>
   )
 }

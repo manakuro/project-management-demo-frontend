@@ -17,6 +17,10 @@ import {
   BiTrashAlt,
   BiGridAlt,
   BiTask,
+  BiBookOpen,
+  BiLayerPlus,
+  BiMobile,
+  BiGridHorizontal,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon } from 'react-icons/fa'
 import { Medium } from './icons'
@@ -45,7 +49,11 @@ const icons = {
   userPlus: BiUserPlus,
   trashAlt: BiTrashAlt,
   gridAlt: BiGridAlt,
+  gridHorizontal: BiGridHorizontal,
   task: BiTask,
+  bookOpen: BiBookOpen,
+  layerPlus: BiLayerPlus,
+  mobile: BiMobile,
 } as const
 
 export type IconType = keyof typeof icons

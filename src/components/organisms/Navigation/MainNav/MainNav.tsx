@@ -41,7 +41,7 @@ export const MainNav: React.VFC = () => {
   return (
     <List w={MAX_WIDTH} mb={2}>
       {items.map((n, i) => (
-        <NavListItem key={i} item={n} />
+        <NavListItem key={i} item={n} selectedStyle />
       ))}
     </List>
   )

@@ -26,6 +26,8 @@ import {
   BiX,
   BiChevronDown,
   BiChevronLeft,
+  BiPlay,
+  BiPause,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon } from 'react-icons/fa'
 import { AiFillCheckCircle, AiFillPlayCircle } from 'react-icons/ai'
@@ -65,7 +67,9 @@ const icons = {
   chevronDown: BiChevronDown,
   chevronLeft: BiChevronLeft,
   copyAlt: BiCopyAlt,
-  play: AiFillPlayCircle,
+  playCircle: AiFillPlayCircle,
+  play: BiPlay,
+  pause: BiPause,
   x: BiX,
 } as const
 

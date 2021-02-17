@@ -57,7 +57,7 @@ export const ListItemDetail: React.VFC<Props> = (props) => {
           justifyContent="center"
           alignItems="center"
         >
-          <Icon icon="play" w={16} h={16} />
+          <Icon icon="playCircle" w={16} h={16} />
         </Flex>
       </AspectRatio>
       <Flex p={PADDING_X} flexDirection="column">

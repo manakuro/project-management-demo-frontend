@@ -10,11 +10,12 @@ type Props = {
 
 export const ListItemDetail: React.VFC<Props> = (props) => {
   const { item, onToggle } = props
-  const { setIsOpen } = useVideoPlayer()
+  const { setIsOpen, setSrc } = useVideoPlayer()
 
   const openVideoPlayer = useCallback(() => {
+    setSrc(item.src)
     setIsOpen(true)
-  }, [setIsOpen])
+  }, [item.src, setIsOpen, setSrc])
 
   return (
     <Flex

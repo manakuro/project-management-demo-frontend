@@ -1,10 +1,16 @@
 import { atom, useRecoilState } from 'recoil'
 import { useCallback } from 'react'
 
-const atomState = atom({
+type State = {
+  isOpen: boolean
+  src: string
+}
+
+const atomState = atom<State>({
   key: 'videoPlayerState',
   default: {
     isOpen: false,
+    src: '',
   },
 })
 
@@ -22,9 +28,17 @@ export const useVideoPlayer = () => {
     [setState],
   )
 
+  const setSrc = useCallback(
+    (val: string) => {
+      setState((s) => ({ ...s, src: val }))
+    },
+    [setState],
+  )
+
   return {
     state,
     setIsOpen,
+    setSrc,
     onClose,
   }
 }

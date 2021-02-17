@@ -9,7 +9,7 @@ const items: Item[] = [
   {
     number: 1,
     title: 'The right way to start',
-    src: 'https://www.dailymotion.com/video/x5e9eog',
+    src: 'https://www.youtube.com/watch?v=ysz5S6PUM-U',
     description:
       'From tiny tasks to big goals, we organizes work so teams are clear on what to do, why it matters, and how to get it done.',
     icon: {
@@ -26,7 +26,7 @@ const items: Item[] = [
   {
     number: 2,
     title: 'Tips for tasks and projects',
-    src: 'https://www.youtube.com/watch?v=oUFJJNQGwhk',
+    src: 'https://www.dailymotion.com/video/x5e9eog',
     description:
       'From tiny tasks to big goals, we organizes work so teams are clear on ',
     icon: {

@@ -1,12 +1,12 @@
 import React from 'react'
-import { InviteModal } from 'src/components/organisms'
-import { Help } from 'src/components/organisms/Navigation/Help/Help'
+import { InviteModal, VideoPlayer, Help } from 'src/components/organisms'
 
 export const Modals: React.VFC = () => {
   return (
     <>
       <InviteModal />
       <Help />
+      <VideoPlayer />
     </>
   )
 }

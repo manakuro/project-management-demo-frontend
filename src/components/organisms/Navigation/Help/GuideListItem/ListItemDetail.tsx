@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { AspectRatio, Box, Flex, Icon, Text } from 'src/components/atoms'
 import { PADDING_X, Item } from './GuideListItem'
+import { useVideoPlayer } from 'src/components/organisms/VideoPlayer'
 
 type Props = {
   item: Item
@@ -9,6 +10,11 @@ type Props = {
 
 export const ListItemDetail: React.VFC<Props> = (props) => {
   const { item, onToggle } = props
+  const { setIsOpen } = useVideoPlayer()
+
+  const openVideoPlayer = useCallback(() => {
+    setIsOpen(true)
+  }, [setIsOpen])
 
   return (
     <Flex
@@ -38,7 +44,12 @@ export const ListItemDetail: React.VFC<Props> = (props) => {
         </Text>
         <Icon icon="chevronDown" />
       </Flex>
-      <AspectRatio ratio={4 / 3} w="full" cursor="pointer">
+      <AspectRatio
+        ratio={4 / 3}
+        w="full"
+        cursor="pointer"
+        onClick={openVideoPlayer}
+      >
         <Flex
           bg="gray.200"
           w="full"

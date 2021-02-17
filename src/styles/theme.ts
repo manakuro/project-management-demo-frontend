@@ -18,7 +18,7 @@ export const theme = extendTheme({
         overflow: 'hidden',
         color:
           props.colorMode === 'light'
-            ? (defaultTheme.colors as any).gray['700']
+            ? defaultTheme.colors.gray['700']
             : defaultTheme.colors.whiteAlpha,
       },
       a: {
@@ -35,11 +35,11 @@ export const theme = extendTheme({
   },
 
   colors: {
-    primary: (defaultTheme.colors as any).teal['400'],
-    alert: (defaultTheme.colors as any).red['400'],
+    primary: defaultTheme.colors.teal['400'],
+    alert: defaultTheme.colors.red['400'],
 
     text: {
-      muted: (defaultTheme.colors as any).gray['400'],
+      muted: defaultTheme.colors.gray['400'],
     },
     navigation: {
       hover: 'rgba(255,255,255,.08)',

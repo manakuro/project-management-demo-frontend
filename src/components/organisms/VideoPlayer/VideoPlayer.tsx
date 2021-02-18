@@ -8,15 +8,21 @@ import {
 } from 'src/components/organisms'
 import { AspectRatio, Box, Flex, Icon, IconBg } from 'src/components/atoms'
 import { useVideoPlayer } from './useVideoPlayer'
+import { Duration } from './Duration'
 import ReactPlayer from 'react-player'
+import { DurationBar } from 'src/components/organisms/VideoPlayer/DurationBar'
 
-type State = {
+export type State = {
   played: number
   playing: boolean
+  duration: number
+  seeking: boolean
 }
 const initialState = (): State => ({
   played: 0,
   playing: false,
+  duration: 0,
+  seeking: false,
 })
 
 export const VideoPlayer: React.VFC = () => {
@@ -24,15 +30,33 @@ export const VideoPlayer: React.VFC = () => {
   const [videoState, setVideoState] = useState<State>(initialState())
   const ref = useRef<ReactPlayer>(null)
 
-  const handleSeek = useCallback((e) => {
-    setVideoState((s) => ({ ...s, played: parseFloat(e.target.value) }))
-  }, [])
-
   const handlePlay = useCallback(() => {
     setVideoState((s) => ({ ...s, playing: !videoState.playing }))
   }, [videoState.playing])
 
-  console.log('videoState: ', videoState)
+  const handleProgress = useCallback(
+    (state: {
+      played: number
+      playedSeconds: number
+      loaded: number
+      loadedSeconds: number
+    }) => {
+      if (videoState.seeking) return
+      setVideoState((s) => ({ ...s, played: state.played }))
+    },
+    [videoState.seeking],
+  )
+
+  const handleDuration = useCallback((duration) => {
+    setVideoState((s) => ({ ...s, duration }))
+  }, [])
+
+  const seekTo = useCallback(
+    (amount: number, type?: 'seconds' | 'fraction') => {
+      ref.current?.seekTo(amount, type)
+    },
+    [ref],
+  )
 
   return (
     <Modal isOpen={state.isOpen} onClose={onClose} size="2xl">
@@ -46,14 +70,15 @@ export const VideoPlayer: React.VFC = () => {
                 url={state.src}
                 width="100%"
                 height="100%"
-                onSeek={handleSeek}
                 playing={videoState.playing}
+                onProgress={handleProgress}
+                onDuration={handleDuration}
               />
             </Box>
           </AspectRatio>
         </ModalBody>
         <ModalFooter px={4} py={2} justifyContent="flex-start">
-          <Flex>
+          <Flex flex={1}>
             <IconBg
               borderRadius="50%"
               bg="gray.100"
@@ -62,6 +87,7 @@ export const VideoPlayer: React.VFC = () => {
               _hover={{
                 bg: 'gray.200',
               }}
+              mr={4}
               onClick={handlePlay}
             >
               <Icon
@@ -69,6 +95,16 @@ export const VideoPlayer: React.VFC = () => {
                 mr={videoState.playing ? 0 : -1}
               />
             </IconBg>
+
+            <Duration seconds={videoState.duration * videoState.played} />
+
+            <Flex flex={1}>
+              <DurationBar
+                played={videoState.played}
+                seekTo={seekTo}
+                setVideoState={setVideoState}
+              />
+            </Flex>
           </Flex>
         </ModalFooter>
       </ModalContent>

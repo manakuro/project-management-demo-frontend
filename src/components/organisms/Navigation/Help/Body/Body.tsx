@@ -9,7 +9,7 @@ const items: Item[] = [
   {
     number: 1,
     title: 'The right way to start',
-    src: 'https://www.youtube.com/watch?v=ysz5S6PUM-U',
+    src: 'https://www.youtube.com/watch?v=6lt2JfJdGSY',
     description:
       'From tiny tasks to big goals, we organizes work so teams are clear on what to do, why it matters, and how to get it done.',
     icon: {

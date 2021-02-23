@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { chakra, ChakraProps } from '@chakra-ui/react'
 
 type Props = {
   seconds: number
-}
+} & ChakraProps
 export const Duration: React.VFC<Props> = (props) => {
   return (
-    <Time dateTime={`P${Math.round(props.seconds)}S`}>
+    <Time {...props} dateTime={`P${Math.round(props.seconds)}S`}>
       {format(props.seconds)}
     </Time>
   )
@@ -25,10 +26,15 @@ const format = (seconds: number) => {
 
 const pad = (str: number) => ('0' + str).slice(-2)
 
-const Time = styled.time`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-  margin-right: 1rem;
-`
+const Time = chakra(
+  styled.time`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `,
+  {
+    baseStyle: {
+      fontSize: 'xs',
+    },
+  },
+)

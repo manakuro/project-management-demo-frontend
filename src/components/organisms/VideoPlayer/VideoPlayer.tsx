@@ -96,15 +96,20 @@ export const VideoPlayer: React.VFC = () => {
               />
             </IconBg>
 
-            <Duration seconds={videoState.duration * videoState.played} />
+            <Duration
+              mr={3}
+              seconds={videoState.duration * videoState.played}
+            />
 
-            <Flex flex={1}>
+            <Flex flex={1} mr={3}>
               <DurationBar
                 played={videoState.played}
                 seekTo={seekTo}
                 setVideoState={setVideoState}
               />
             </Flex>
+
+            <Duration seconds={videoState.duration * (1 - videoState.played)} />
           </Flex>
         </ModalFooter>
       </ModalContent>

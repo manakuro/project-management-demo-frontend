@@ -54,6 +54,8 @@ type InputRangeProps = {
 }
 const InputRange = styled.input<InputRangeProps>`
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   width: 100%;
 
   &:focus {
@@ -78,9 +80,6 @@ const InputRange = styled.input<InputRangeProps>`
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -7px;
-  }
-  &:focus::-webkit-slider-runnable-track {
-    background: #edf2f7;
   }
   &::-moz-range-track {
     width: 100%;

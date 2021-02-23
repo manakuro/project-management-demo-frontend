@@ -20,7 +20,7 @@ export type State = {
 }
 const initialState = (): State => ({
   played: 0,
-  playing: false,
+  playing: true,
   duration: 0,
   seeking: false,
 })
@@ -29,6 +29,11 @@ export const VideoPlayer: React.VFC = () => {
   const { state, onClose } = useVideoPlayer()
   const [videoState, setVideoState] = useState<State>(initialState())
   const ref = useRef<ReactPlayer>(null)
+
+  const handleClose = useCallback(() => {
+    setVideoState(initialState())
+    onClose()
+  }, [onClose])
 
   const handlePlay = useCallback(() => {
     setVideoState((s) => ({ ...s, playing: !videoState.playing }))
@@ -59,7 +64,13 @@ export const VideoPlayer: React.VFC = () => {
   )
 
   return (
-    <Modal isOpen={state.isOpen} onClose={onClose} size="2xl">
+    <Modal
+      isOpen={state.isOpen}
+      onClose={handleClose}
+      onEsc={handleClose}
+      onOverlayClick={handleClose}
+      size="2xl"
+    >
       <ModalOverlay />
       <ModalContent>
         <ModalBody p={0}>

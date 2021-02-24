@@ -9,23 +9,25 @@ import { useDisclosure } from '@chakra-ui/react'
 type Props = {
   item: Item
   onToggle: (id: number) => void
-  detailComponent: React.ReactNode
+  seeMoreComponent: React.ReactNode
   nextItem?: Item
 }
 
 export const Detail: React.VFC<Props> = (props) => {
-  const { item, onToggle, nextItem, detailComponent } = props
+  const { item, onToggle, nextItem, seeMoreComponent } = props
   const disclosure = useDisclosure()
 
   const handleContinue = useCallback(() => {
     onToggle(nextItem!.id)
   }, [nextItem, onToggle])
 
+  if (item.detailComponent) return <>{item.detailComponent}</>
+
   return (
     <Flex p={PADDING_X} flexDirection="column">
       {disclosure.isOpen ? (
         <>
-          {detailComponent}
+          {seeMoreComponent}
           {nextItem && (
             <>
               <Text fontSize="sm" fontWeight="bold" mt={3}>

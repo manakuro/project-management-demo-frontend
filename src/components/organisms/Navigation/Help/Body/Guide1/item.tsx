@@ -18,5 +18,5 @@ export const guide1Item: Item = {
   },
   done: true,
   time: '2 min read',
-  detailComponent: <Detail />,
+  seeMoreComponent: <Detail />,
 }

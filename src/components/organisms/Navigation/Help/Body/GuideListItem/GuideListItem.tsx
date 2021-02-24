@@ -19,7 +19,8 @@ export type Item = {
   }
   done: boolean
   time: string
-  detailComponent: React.ReactNode
+  seeMoreComponent?: React.ReactNode
+  detailComponent?: React.ReactNode
 }
 type Props = {
   item: Item
@@ -39,7 +40,7 @@ export const GuideListItem: React.VFC<Props> = (props) => {
           item={item}
           nextItem={nextItem}
           onToggle={onToggle}
-          detailComponent={item.detailComponent}
+          seeMoreComponent={item.seeMoreComponent}
         />
       ) : (
         <ListItem item={item} onToggle={onToggle} />

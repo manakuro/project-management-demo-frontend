@@ -3,46 +3,31 @@ import { Stack } from 'src/components/atoms'
 import { GuideListItem, Item } from './GuideListItem'
 import { guide1Item } from './Guide1'
 import { guide2Item } from './Guide2'
+import { guide3Item } from './Guide3'
 
 const items: Item[] = [
   guide1Item,
   guide2Item,
-  // {
-  //   id: 3,
-  //   number: 3,
-  //   title: 'A better daily routine',
-  //   src: 'https://vimeo.com/169599296',
-  //   description:
-  //     'From tiny tasks to big goals, we organizes work so teams are clear on ',
-  //   icon: {
-  //     name: 'checkCircle',
-  //     color: 'white',
-  //   },
-  //   iconDone: {
-  //     name: 'checkCircleFilled',
-  //     color: 'teal.200',
-  //   },
-  //   done: false,
-  //   time: '3 min read',
-  // },
-  // {
-  //   id: 4,
-  //   number: 4,
-  //   title: 'Additional resources',
-  //   src: '',
-  //   description:
-  //     'From tiny tasks to big goals, we organizes work so teams are clear on ',
-  //   icon: {
-  //     name: 'copyAlt',
-  //     color: 'white',
-  //   },
-  //   iconDone: {
-  //     name: 'copyAlt',
-  //     color: 'white',
-  //   },
-  //   done: false,
-  //   time: '2 min read',
-  // },
+  guide3Item,
+  {
+    id: 4,
+    number: 4,
+    title: 'Additional resources',
+    src: '',
+    description:
+      'From tiny tasks to big goals, we organizes work so teams are clear on ',
+    icon: {
+      name: 'copyAlt',
+      color: 'white',
+    },
+    iconDone: {
+      name: 'copyAlt',
+      color: 'white',
+    },
+    done: false,
+    time: '2 min read',
+    detailComponent: <div>hey</div>,
+  },
 ]
 
 export const Body: React.VFC = () => {

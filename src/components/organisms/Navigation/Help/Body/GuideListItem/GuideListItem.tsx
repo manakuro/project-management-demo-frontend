@@ -19,21 +19,28 @@ export type Item = {
   }
   done: boolean
   time: string
+  detailComponent: React.ReactNode
 }
 type Props = {
   item: Item
   isOpen: boolean
   onToggle: (id: number) => void
+  nextItem?: Item
 }
 
 export const PADDING_X = 4
 export const GuideListItem: React.VFC<Props> = (props) => {
-  const { item, isOpen, onToggle } = props
+  const { item, isOpen, onToggle, nextItem } = props
 
   return (
     <>
       {isOpen ? (
-        <ListItemDetail item={item} onToggle={onToggle} />
+        <ListItemDetail
+          item={item}
+          nextItem={nextItem}
+          onToggle={onToggle}
+          detailComponent={item.detailComponent}
+        />
       ) : (
         <ListItem item={item} onToggle={onToggle} />
       )}

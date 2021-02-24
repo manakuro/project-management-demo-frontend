@@ -5,17 +5,21 @@ import { useVideoPlayer } from 'src/components/organisms/VideoPlayer'
 
 type Props = {
   item: Item
-  onToggle: () => void
+  onToggle: (id: number) => void
 }
 
 export const ListItemDetail: React.VFC<Props> = (props) => {
   const { item, onToggle } = props
   const { setIsOpen, setSrc } = useVideoPlayer()
 
-  const openVideoPlayer = useCallback(() => {
+  const handleOpenVideoPlayer = useCallback(() => {
     setSrc(item.src)
     setIsOpen(true)
   }, [item.src, setIsOpen, setSrc])
+
+  const handleToggle = useCallback(() => {
+    onToggle(item.id)
+  }, [item.id, onToggle])
 
   return (
     <Flex
@@ -25,7 +29,13 @@ export const ListItemDetail: React.VFC<Props> = (props) => {
       color="gray.700"
       bg="help.guide.bg"
     >
-      <Flex w="full" px={PADDING_X} py={2} onClick={onToggle} cursor="pointer">
+      <Flex
+        w="full"
+        px={PADDING_X}
+        py={2}
+        onClick={handleToggle}
+        cursor="pointer"
+      >
         <Flex
           borderRadius="50%"
           bg="gray.800"
@@ -49,7 +59,7 @@ export const ListItemDetail: React.VFC<Props> = (props) => {
         ratio={4 / 3}
         w="full"
         cursor="pointer"
-        onClick={openVideoPlayer}
+        onClick={handleOpenVideoPlayer}
       >
         <Flex
           bg="gray.200"

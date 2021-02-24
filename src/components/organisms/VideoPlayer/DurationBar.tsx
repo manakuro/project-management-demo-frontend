@@ -1,12 +1,13 @@
 import React, { useCallback, useMemo } from 'react'
 import styled from '@emotion/styled'
 import { State } from './VideoPlayer'
+import { chakra, ChakraProps } from '@chakra-ui/react'
 
 type Props = {
   played: number
   setVideoState: React.Dispatch<React.SetStateAction<State>>
   seekTo: (amount: number, type?: 'seconds' | 'fraction') => void
-}
+} & ChakraProps
 
 const MIN = 0
 const MAX = 0.999999
@@ -52,7 +53,7 @@ export const DurationBar: React.VFC<Props> = (props) => {
 type InputRangeProps = {
   percent: number
 }
-const InputRange = styled.input<InputRangeProps>`
+const InputRange = chakra(styled.input<InputRangeProps>`
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -131,4 +132,4 @@ const InputRange = styled.input<InputRangeProps>`
   &:focus::-ms-fill-upper {
     background: #edf2f7;
   }
-`
+`)

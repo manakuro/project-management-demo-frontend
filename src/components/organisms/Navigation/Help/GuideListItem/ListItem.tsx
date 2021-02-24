@@ -1,16 +1,20 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Flex, Icon, Text } from 'src/components/atoms'
 import { transitions } from 'src/styles'
 import { Item, PADDING_X } from './GuideListItem'
 
 type Props = {
   item: Item
-  onToggle: () => void
+  onToggle: (id: number) => void
 }
 
 export const ListItem: React.VFC<Props> = (props) => {
   const { item, onToggle } = props
   const icon = item.done ? item.iconDone : item.icon
+
+  const handleToggle = useCallback(() => {
+    onToggle(item.id)
+  }, [item.id, onToggle])
 
   return (
     <Flex
@@ -28,7 +32,7 @@ export const ListItem: React.VFC<Props> = (props) => {
       transition={transitions.base}
       transitionProperty="background"
       height="40px"
-      onClick={onToggle}
+      onClick={handleToggle}
     >
       <Icon icon={icon.name} color={icon.color} mr={PADDING_X} />
       <Text fontSize="sm" fontWeight="bold" flex={1}>

@@ -1,10 +1,10 @@
 import React from 'react'
 import { IconType } from 'src/components/atoms'
-import { useDisclosure } from '@chakra-ui/react'
 import { ListItem } from './ListItem'
 import { ListItemDetail } from './ListItemDetail'
 
 export type Item = {
+  id: number
   number: number
   title: string
   src: string
@@ -22,12 +22,13 @@ export type Item = {
 }
 type Props = {
   item: Item
+  isOpen: boolean
+  onToggle: (id: number) => void
 }
 
 export const PADDING_X = 4
 export const GuideListItem: React.VFC<Props> = (props) => {
-  const { isOpen, onToggle } = useDisclosure()
-  const { item } = props
+  const { item, isOpen, onToggle } = props
 
   return (
     <>

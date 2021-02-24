@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { Stack } from 'src/components/atoms'
 import {
   GuideListItem,
@@ -7,6 +7,7 @@ import {
 
 const items: Item[] = [
   {
+    id: 1,
     number: 1,
     title: 'The right way to start',
     src: 'https://www.youtube.com/watch?v=6lt2JfJdGSY',
@@ -24,6 +25,7 @@ const items: Item[] = [
     time: '2 min read',
   },
   {
+    id: 2,
     number: 2,
     title: 'Tips for tasks and projects',
     src: 'https://www.dailymotion.com/video/x5e9eog',
@@ -41,6 +43,7 @@ const items: Item[] = [
     time: '3 min read',
   },
   {
+    id: 3,
     number: 3,
     title: 'A better daily routine',
     src: 'https://vimeo.com/169599296',
@@ -58,6 +61,7 @@ const items: Item[] = [
     time: '3 min read',
   },
   {
+    id: 4,
     number: 4,
     title: 'Additional resources',
     src: '',
@@ -77,10 +81,29 @@ const items: Item[] = [
 ]
 
 export const Body: React.VFC = () => {
+  const [state, setState] = useState<{ id: number; isOpen: boolean }[]>(
+    items.map((i) => ({ id: i.id, isOpen: false })),
+  )
+  const handleToggle = useCallback((id: number) => {
+    setState((prev) => {
+      const current = prev.find((p) => p.isOpen)
+      // Close the list item that is opened.
+      if (current?.isOpen && current?.id === id)
+        return prev.map((p) => ({ ...p, isOpen: false }))
+
+      return prev.map((p) => ({ ...p, isOpen: p.id === id }))
+    })
+  }, [])
+
   return (
     <Stack w="full" spacing={4} mb={80}>
-      {items.map((n, i) => (
-        <GuideListItem key={i} item={n} />
+      {items.map((item, i) => (
+        <GuideListItem
+          key={i}
+          item={item}
+          isOpen={state.find((s) => s.id === item.id)!.isOpen}
+          onToggle={handleToggle}
+        />
       ))}
     </Stack>
   )

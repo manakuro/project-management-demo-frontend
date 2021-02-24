@@ -2,27 +2,11 @@ import React, { useCallback, useState } from 'react'
 import { Stack } from 'src/components/atoms'
 import { GuideListItem, Item } from './GuideListItem'
 import { guide1Item } from './Guide1'
+import { guide2Item } from './Guide2'
 
 const items: Item[] = [
   guide1Item,
-  // {
-  //   id: 2,
-  //   number: 2,
-  //   title: 'Tips for tasks and projects',
-  //   src: 'https://www.dailymotion.com/video/x5e9eog',
-  //   description:
-  //     'From tiny tasks to big goals, we organizes work so teams are clear on ',
-  //   icon: {
-  //     name: 'checkCircle',
-  //     color: 'white',
-  //   },
-  //   iconDone: {
-  //     name: 'checkCircleFilled',
-  //     color: 'teal.200',
-  //   },
-  //   done: false,
-  //   time: '3 min read',
-  // },
+  guide2Item,
   // {
   //   id: 3,
   //   number: 3,

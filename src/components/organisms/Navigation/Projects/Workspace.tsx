@@ -1,19 +1,14 @@
 import React, { useCallback } from 'react'
+import { Flex, Link, NextLink, Text, Icon, Portal } from 'src/components/atoms'
 import {
-  Flex,
-  Link,
-  NextLink,
-  Text,
-  Icon,
   MenuList,
   MenuItem as AtomsMenuItem,
   Menu,
   MenuButton,
-  MenuGroup,
   MenuDivider,
-  Portal,
   MenuItemProps,
-} from 'src/components/atoms'
+  MenuGroup,
+} from 'src/components/organisms'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { useLinkHover, useClickableHover } from 'src/hooks'
 import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'

@@ -5,16 +5,18 @@ import {
   NextLink,
   Text,
   Icon,
+  Box,
+  Portal,
+  BoxProps,
+} from 'src/components/atoms'
+import {
   MenuList,
   MenuItem as AtomsMenuItem,
   Menu,
   MenuButton,
-  Box,
   MenuDivider,
-  Portal,
   MenuItemProps,
-  BoxProps,
-} from 'src/components/atoms'
+} from 'src/components/organisms'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { useLinkHover, useClickableHover } from 'src/hooks'
 import { Project } from './types'

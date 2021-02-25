@@ -12,6 +12,7 @@ import { useRouter } from 'next/router'
 import { PADDING_X } from './Navigation'
 import { NavListItem as TNavListItem } from './type'
 import { Routes } from 'src/router'
+import { useLinkHover } from 'src/hooks/useLinkHover'
 
 type Props = {
   item: TNavListItem
@@ -23,7 +24,7 @@ type Props = {
 export const NavListItem: React.VFC<Props> = (props) => {
   const { item, selectedStyle, linkStyle, light, ...rest } = props
   const router = useRouter()
-  const hoverBg = light ? 'navigation.hover.light' : 'navigation.hover.dark'
+  const { _hover, selected } = useLinkHover()
 
   return (
     <ListItem {...rest}>
@@ -35,11 +36,9 @@ export const NavListItem: React.VFC<Props> = (props) => {
           alignItems="center"
           px={PADDING_X}
           py={2}
-          _hover={{
-            bg: hoverBg,
-          }}
+          _hover={_hover}
           {...(selectedStyle && item.pathname === router.pathname
-            ? { bg: 'navigation.selected' }
+            ? selected
             : {})}
           {...linkStyle}
         >

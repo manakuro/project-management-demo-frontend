@@ -31,6 +31,7 @@ import {
   BiPlayCircle,
   BiMovie,
   BiShapePolygon,
+  BiPlus,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon } from 'react-icons/fa'
 import { AiFillCheckCircle, AiFillPlayCircle } from 'react-icons/ai'
@@ -77,6 +78,7 @@ const icons = {
   x: BiX,
   movie: BiMovie,
   shapePolygon: BiShapePolygon,
+  plus: BiPlus,
 } as const
 
 export type IconType = keyof typeof icons

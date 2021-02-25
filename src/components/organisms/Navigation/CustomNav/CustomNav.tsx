@@ -10,7 +10,7 @@ type Props = {
 
 export const CustomNav: React.VFC<Props> = (props) => {
   return (
-    <Box overflow="scroll" flex={1} w={MAX_WIDTH}>
+    <Box overflow="scroll" w={MAX_WIDTH}>
       <Favorites isExpanded={props.isExpanded} />
       <Reports isExpanded={props.isExpanded} />
     </Box>

@@ -4,6 +4,7 @@ import { CustomNav } from './CustomNav'
 import { Footer } from './Footer'
 import { Header } from './Header'
 import { MainNav } from './MainNav'
+import { Projects } from './Projects'
 
 export const PADDING_X = 4
 export const MAX_WIDTH = '240px'
@@ -30,6 +31,7 @@ export const Navigation: React.VFC = () => {
       <Header isExpanded={isExpanded} toggleMenu={toggleMenu} />
       <MainNav />
       <CustomNav isExpanded={isExpanded} />
+      <Projects />
       <Footer />
     </Flex>
   )

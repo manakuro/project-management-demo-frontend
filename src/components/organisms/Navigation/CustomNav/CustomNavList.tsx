@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex, List, Heading } from 'src/components/atoms'
-import { PADDING_X } from '../Navigation'
-import { Divider } from '../Divider'
+import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
+import { Divider } from 'src/components/organisms/Navigation/Divider'
 import {
   Accordion,
   AccordionItem,
@@ -9,8 +9,8 @@ import {
   AccordionButton,
   AccordionIcon,
 } from '@chakra-ui/react'
-import { NavListItem as TNavListItem } from '../type'
-import { NavListItem } from '../NavListItem'
+import { NavListItem as TNavListItem } from 'src/components/organisms/Navigation/type'
+import { NavListItem } from 'src/components/organisms/Navigation/NavListItem'
 
 type Item = {
   title: {

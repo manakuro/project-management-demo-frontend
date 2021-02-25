@@ -21,11 +21,9 @@ type Props = {
 } & ListItemProps
 
 export const NavListItem: React.VFC<Props> = (props) => {
-  const { item, selectedStyle, linkStyle, ...rest } = props
+  const { item, selectedStyle, linkStyle, light, ...rest } = props
   const router = useRouter()
-  const hoverBg = props.light
-    ? 'navigation.hover.light'
-    : 'navigation.hover.dark'
+  const hoverBg = light ? 'navigation.hover.light' : 'navigation.hover.dark'
 
   return (
     <ListItem {...rest}>

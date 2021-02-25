@@ -1,5 +1,5 @@
 import { Item } from 'src/components/organisms/Navigation/Help/Body/GuideListItem'
-import { Detail } from './Detail'
+import { SeeMore } from './SeeMore'
 
 export const guide2Item: Item = {
   id: 2,
@@ -18,5 +18,5 @@ export const guide2Item: Item = {
   },
   done: false,
   time: '3 min read',
-  seeMoreComponent: <Detail />,
+  seeMoreComponent: <SeeMore />,
 }

@@ -3,6 +3,7 @@ import { Flex } from 'src/components/atoms'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
 import { Workspace } from './Workspace'
 import { Teammates } from './Teammates'
+import { ProjectList } from './ProjectList'
 
 type Props = {}
 
@@ -19,6 +20,7 @@ export const Projects: React.VFC<Props> = () => {
             { name: 'Kent Dodds', image: 'https://bit.ly/kent-c-dodds' },
           ]}
         />
+        <ProjectList />
       </Flex>
     </>
   )

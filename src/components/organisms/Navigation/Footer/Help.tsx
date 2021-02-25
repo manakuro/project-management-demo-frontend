@@ -21,7 +21,7 @@ export const Help: React.VFC = () => {
         px={PADDING_X}
         py={4}
         _hover={{
-          bg: 'navigation.hover',
+          bg: 'navigation.hover.dark',
         }}
         transition={transitions.base}
         cursor="pointer"

@@ -13,7 +13,7 @@ export const IconBg: React.FC<Props> = (props) => {
       cursor="pointer"
       p={2}
       _hover={{
-        bg: 'navigation.hover',
+        bg: 'navigation.hover.dark',
       }}
       transition={transitions.base}
       {...props}

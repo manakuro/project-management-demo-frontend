@@ -28,6 +28,9 @@ import {
   BiChevronLeft,
   BiPlay,
   BiPause,
+  BiPlayCircle,
+  BiMovie,
+  BiShapePolygon,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon } from 'react-icons/fa'
 import { AiFillCheckCircle, AiFillPlayCircle } from 'react-icons/ai'
@@ -68,9 +71,12 @@ const icons = {
   chevronLeft: BiChevronLeft,
   copyAlt: BiCopyAlt,
   playCircle: AiFillPlayCircle,
+  playCircleOutline: BiPlayCircle,
   play: BiPlay,
   pause: BiPause,
   x: BiX,
+  movie: BiMovie,
+  shapePolygon: BiShapePolygon,
 } as const
 
 export type IconType = keyof typeof icons

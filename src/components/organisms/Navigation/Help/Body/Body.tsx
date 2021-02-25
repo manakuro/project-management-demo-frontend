@@ -4,31 +4,9 @@ import { GuideListItem, Item } from './GuideListItem'
 import { guide1Item } from './Guide1'
 import { guide2Item } from './Guide2'
 import { guide3Item } from './Guide3'
+import { guide4Item } from './Guide4'
 
-const items: Item[] = [
-  guide1Item,
-  guide2Item,
-  guide3Item,
-  {
-    id: 4,
-    number: 4,
-    title: 'Additional resources',
-    src: '',
-    description:
-      'From tiny tasks to big goals, we organizes work so teams are clear on ',
-    icon: {
-      name: 'copyAlt',
-      color: 'white',
-    },
-    iconDone: {
-      name: 'copyAlt',
-      color: 'white',
-    },
-    done: false,
-    time: '2 min read',
-    detailComponent: <div>hey</div>,
-  },
-]
+const items: Item[] = [guide1Item, guide2Item, guide3Item, guide4Item]
 
 export const Body: React.VFC = () => {
   const [state, setState] = useState<{ id: number; isOpen: boolean }[]>(

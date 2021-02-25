@@ -6,6 +6,7 @@ import {
   NextLink,
   Icon,
   ListItemProps,
+  LinkProps,
 } from 'src/components/atoms'
 import { useRouter } from 'next/router'
 import { PADDING_X } from './Navigation'
@@ -15,11 +16,16 @@ import { Routes } from 'src/router'
 type Props = {
   item: TNavListItem
   selectedStyle: boolean
+  light?: boolean
+  linkStyle?: LinkProps
 } & ListItemProps
 
 export const NavListItem: React.VFC<Props> = (props) => {
-  const { item, selectedStyle, ...rest } = props
+  const { item, selectedStyle, linkStyle, ...rest } = props
   const router = useRouter()
+  const hoverBg = props.light
+    ? 'navigation.hover.light'
+    : 'navigation.hover.dark'
 
   return (
     <ListItem {...rest}>
@@ -32,11 +38,12 @@ export const NavListItem: React.VFC<Props> = (props) => {
           px={PADDING_X}
           py={2}
           _hover={{
-            bg: 'navigation.hover',
+            bg: hoverBg,
           }}
           {...(selectedStyle && item.pathname === router.pathname
             ? { bg: 'navigation.selected' }
             : {})}
+          {...linkStyle}
         >
           <Icon icon={item.icon} mr={PADDING_X} mt="-2px" />
           <Text fontSize="sm">{item.name}</Text>

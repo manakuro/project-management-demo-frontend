@@ -43,7 +43,10 @@ export const theme = extendTheme({
     },
     link: defaultTheme.colors.cyan['400'],
     navigation: {
-      hover: 'rgba(255,255,255,.08)',
+      hover: {
+        dark: 'rgba(255,255,255,.08)',
+        light: '#e8ecee',
+      },
       selected: 'rgba(255,255,255,.16)',
     },
     help: {

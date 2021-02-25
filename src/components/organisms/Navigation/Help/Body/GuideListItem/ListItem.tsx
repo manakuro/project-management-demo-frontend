@@ -23,11 +23,11 @@ export const ListItem: React.VFC<Props> = (props) => {
       cursor="pointer"
       bg="rgba(255,255,255,.04)"
       border="1px"
-      borderColor="navigation.hover"
+      borderColor="navigation.hover.dark"
       borderRadius="md"
       alignItems="center"
       _hover={{
-        bg: 'navigation.hover',
+        bg: 'navigation.hover.dark',
       }}
       transition={transitions.base}
       transitionProperty="background"

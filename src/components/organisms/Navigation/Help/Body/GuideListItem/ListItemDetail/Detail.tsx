@@ -21,7 +21,12 @@ export const Detail: React.VFC<Props> = (props) => {
     onToggle(nextItem!.id)
   }, [nextItem, onToggle])
 
-  if (item.detailComponent) return <>{item.detailComponent}</>
+  if (item.detailComponent)
+    return (
+      <Flex p={PADDING_X} flexDirection="column">
+        {item.detailComponent}
+      </Flex>
+    )
 
   return (
     <Flex p={PADDING_X} flexDirection="column">

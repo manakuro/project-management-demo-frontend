@@ -33,7 +33,7 @@ export const ListItem: React.VFC<Props> = (props) => {
         <NextLink href={props.project.href} passHref>
           <Link p={2} px={PADDING_X} _hover={_hover}>
             <Flex alignItems="center">
-              <ColorBox w={2} h={2} color={props.project.color} />
+              <ColorBox w={2} h={2} bg={props.project.color} />
               <Text fontSize="sm" flex={1} ml={3}>
                 {props.project.name}
               </Text>
@@ -46,9 +46,7 @@ export const ListItem: React.VFC<Props> = (props) => {
         <Portal>
           <MenuList color="text.base">
             <MenuItem
-              icon={
-                <ColorBox w={4} h={4} color={props.project.color} mt="-1px" />
-              }
+              icon={<ColorBox w={4} h={4} bg={props.project.color} mt="-1px" />}
             >
               <Flex>
                 <Text fontSize="sm" flex={1}>
@@ -73,6 +71,6 @@ const MenuItem: React.FC<MenuItemProps> = (props) => (
   <AtomsMenuItem fontSize="sm" iconSpacing={3} {...props} />
 )
 
-const ColorBox: React.FC<{ color: string } & BoxProps> = (props) => (
-  <Box bg={props.color} borderRadius="sm" {...props} />
+const ColorBox: React.FC<BoxProps> = (props) => (
+  <Box borderRadius="sm" {...props} />
 )

@@ -39,6 +39,7 @@ export const theme = extendTheme({
     alert: defaultTheme.colors.red['400'],
 
     text: {
+      base: defaultTheme.colors.gray['700'],
       muted: defaultTheme.colors.gray['400'],
     },
     link: defaultTheme.colors.cyan['400'],

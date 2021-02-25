@@ -23,8 +23,8 @@ export const Teammates: React.VFC<Props> = (props) => {
 
   return (
     <Wrap p={2} px={PADDING_X}>
-      {props.teammates.map((t) => (
-        <WrapItem>
+      {props.teammates.map((t, k) => (
+        <WrapItem key={k}>
           <Avatar
             name={t.name}
             src={t.image}

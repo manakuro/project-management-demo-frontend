@@ -5,10 +5,14 @@ import { guide1Item } from './Guide1'
 import { guide2Item } from './Guide2'
 import { guide3Item } from './Guide3'
 import { guide4Item } from './Guide4'
+import { HELP_CONTAINER_PADDING } from 'src/components/organisms/Navigation/Help'
+import { chakra, ChakraProps } from '@chakra-ui/react'
 
 const items: Item[] = [guide1Item, guide2Item, guide3Item, guide4Item]
 
-export const Body: React.VFC = () => {
+type Props = ChakraProps
+
+export const Body: React.VFC<Props> = chakra((props) => {
   const [state, setState] = useState<{ id: number; isOpen: boolean }[]>(
     items.map((i) => ({ id: i.id, isOpen: false })),
   )
@@ -24,7 +28,14 @@ export const Body: React.VFC = () => {
   }, [])
 
   return (
-    <Stack w="full" spacing={4} mb={80}>
+    <Stack
+      w="full"
+      spacing={4}
+      mb={40}
+      flex={1}
+      p={HELP_CONTAINER_PADDING}
+      {...props}
+    >
       {items.map((item, i) => (
         <GuideListItem
           key={i}
@@ -36,4 +47,4 @@ export const Body: React.VFC = () => {
       ))}
     </Stack>
   )
-}
+})

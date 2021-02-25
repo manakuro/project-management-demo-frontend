@@ -4,7 +4,6 @@ import {
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
-  DrawerFooter,
   DrawerHeader,
 } from 'src/components/organisms'
 import { useHelp } from './useHelp'
@@ -13,7 +12,7 @@ import { Footer } from './Footer'
 import { Body } from './Body'
 import { Flex } from 'src/components/atoms'
 
-const PADDING_X = 4
+export const HELP_CONTAINER_PADDING = 4
 export const Help: React.VFC = () => {
   const { isOpen, onClose } = useHelp()
 
@@ -27,19 +26,16 @@ export const Help: React.VFC = () => {
     >
       <DrawerContent bg="gray.700" color="white">
         <DrawerCloseButton top="1.25rem" />
-        <DrawerHeader fontSize="md" py={6} px={PADDING_X}>
+        <DrawerHeader fontSize="md" py={6} px={HELP_CONTAINER_PADDING}>
           Getting started guide
         </DrawerHeader>
         <Divider />
 
         <Flex flexDirection="column" h="full" overflowY="scroll">
-          <DrawerBody p={PADDING_X} flex={1}>
+          <DrawerBody flex={1} display="flex" flexDirection="column" p={0}>
             <Body />
-          </DrawerBody>
-
-          <DrawerFooter p={0}>
             <Footer />
-          </DrawerFooter>
+          </DrawerBody>
         </Flex>
       </DrawerContent>
     </Drawer>

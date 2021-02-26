@@ -1,9 +1,12 @@
 import React from 'react'
-import NextImage, { ImageProps } from 'next/image'
-// import { Fade } from '@chakra-ui/transition'
+import {
+  Image as ChakraImage,
+  ImageProps as ChakraImageProps,
+} from '@chakra-ui/react'
 
-type Props = ImageProps
+type Props = ChakraImageProps
+export type ImageProps = Props
 
 export const Image: React.FC<Props> = (props) => {
-  return <NextImage {...props} />
+  return <ChakraImage {...props} />
 }

@@ -15,9 +15,21 @@ export const Projects: React.VFC<Props> = () => {
         <Workspace />
         <Teammates
           teammates={[
-            { name: 'Manato Kuroda', image: '/images/cat_img.png' },
-            { name: 'Dan Abrahmov', image: 'https://bit.ly/dan-abramov' },
-            { name: 'Kent Dodds', image: 'https://bit.ly/kent-c-dodds' },
+            {
+              name: 'Manato Kuroda',
+              image: '/images/cat_img.png',
+              email: 'manato.kuroda@gmail.com',
+            },
+            {
+              name: 'Dan Abrahmov',
+              image: 'https://bit.ly/dan-abramov',
+              email: 'dan.abrahmov@gmail.com',
+            },
+            {
+              name: 'Kent Dodds',
+              image: 'https://bit.ly/kent-c-dodds',
+              email: 'kent.dodds@gmail.com',
+            },
           ]}
         />
         <ProjectList />

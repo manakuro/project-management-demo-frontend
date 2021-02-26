@@ -36,8 +36,10 @@ import {
   BiFileBlank,
   BiLayout,
   BiDotsHorizontalRounded,
+  BiMessageRoundedDots,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon } from 'react-icons/fa'
+import { HiOutlineMail } from 'react-icons/hi'
 import { AiFillCheckCircle, AiFillPlayCircle } from 'react-icons/ai'
 import { Medium } from './icons'
 
@@ -87,6 +89,8 @@ const icons = {
   fileBlank: BiFileBlank,
   layout: BiLayout,
   dotsHorizontalRounded: BiDotsHorizontalRounded,
+  mailOutline: HiOutlineMail,
+  messageRoundedDots: BiMessageRoundedDots,
 } as const
 
 export type IconType = keyof typeof icons

@@ -7,7 +7,8 @@ import {
   PopoverProps,
 } from 'src/components/organisms'
 import { Divider, Portal, Link } from 'src/components/atoms'
-import { ColorPicker } from 'src/components/organisms/PopoverSetColorAndIcon/ColorPicker'
+import { ColorPicker } from './ColorPicker'
+import { IconPicker } from './IconPicker'
 
 type Props = {
   project: {
@@ -18,7 +19,6 @@ type Props = {
     }
     icon: {
       id: number
-      name: string
     }
   }
 } & PopoverProps
@@ -43,6 +43,7 @@ export const PopoverSetColorAndIcon: React.FC<Props> = (props) => {
           <PopoverBody p={0}>
             <ColorPicker currentId={props.project.color.id} />
             <Divider />
+            <IconPicker currentId={props.project.icon.id} />
           </PopoverBody>
         </PopoverContent>
       </Portal>

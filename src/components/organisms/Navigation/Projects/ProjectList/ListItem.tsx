@@ -71,7 +71,6 @@ export const ListItem: React.VFC<Props> = (props) => {
                   },
                   icon: {
                     id: 1,
-                    name: 'rocket',
                   },
                 }}
                 isOpen={isOpen}

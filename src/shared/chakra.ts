@@ -1,17 +1,12 @@
 import {
   chakra as ChakraUIChakra,
   ChakraProps as ChakraUIChakraProps,
+  forwardRef as ChakraForwardRef,
 } from '@chakra-ui/react'
 import { Token } from '@chakra-ui/styled-system/dist/types/utils'
 import * as CSS from 'csstype'
 
 export type ChakraProps = ChakraUIChakraProps
-
-export const chakra = (
-  component: Parameters<typeof ChakraUIChakra>[0],
-  options?: Parameters<typeof ChakraUIChakra>[1],
-) => {
-  return ChakraUIChakra(component, options)
-}
-
+export const chakra = ChakraUIChakra
+export const forwardRef = ChakraForwardRef
 export type Colors = Token<CSS.Property.Color, 'colors'>

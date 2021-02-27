@@ -61,7 +61,7 @@ export const ListItem: React.VFC<Props> = (props) => {
             <MenuItem>Add to Favorites</MenuItem>
             <MenuItem>Duplicate Project</MenuItem>
             <MenuItem>Archive Project</MenuItem>
-            <MenuItem>Delete Project</MenuItem>
+            <MenuItem color="alert">Delete Project</MenuItem>
           </MenuList>
         </Portal>
       </Menu>

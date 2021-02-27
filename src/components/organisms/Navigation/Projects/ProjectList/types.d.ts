@@ -1,5 +1,5 @@
 import { Routes } from 'src/router'
-import { Colors } from 'src/modules/chakra'
+import { Colors } from 'src/shared/chakra'
 
 export type Project = {
   name: string

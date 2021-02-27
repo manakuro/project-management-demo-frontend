@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { chakra, ChakraProps } from '@chakra-ui/react'
+import { chakra, ChakraProps } from 'src/shared/chakra'
 
 type Props = {
   seconds: number

@@ -3,7 +3,7 @@ import {
   Link as ChakraLink,
   LinkProps as ChakraLinkProps,
 } from '@chakra-ui/react'
-import { forwardRef } from '@chakra-ui/system'
+import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraLinkProps
 export type LinkProps = ChakraLinkProps

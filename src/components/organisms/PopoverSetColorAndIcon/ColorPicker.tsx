@@ -66,7 +66,7 @@ const colors = [
   },
 ]
 
-export const ColorPicker: React.FC<Props> = (props) => {
+export const ColorPicker: React.VFC<Props> = (props) => {
   return (
     <Wrap p={6} spacing={1}>
       {colors.map((c) => (

@@ -42,7 +42,7 @@ export const ListItem: React.VFC<Props> = (props) => {
 
   return (
     <>
-      <Menu placement="bottom-end" onClose={handleClose}>
+      <Menu placement="bottom-end" onClose={handleClose} isLazy>
         <NextLink href={props.project.href} passHref>
           <Link p={2} px={PADDING_X} _hover={_hover}>
             <Flex alignItems="center">

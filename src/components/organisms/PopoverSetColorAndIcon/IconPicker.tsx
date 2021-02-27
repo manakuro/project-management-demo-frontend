@@ -108,7 +108,7 @@ const icons: Icon[] = [
   },
 ]
 
-export const IconPicker: React.FC<Props> = (props) => {
+export const IconPicker: React.VFC<Props> = (props) => {
   const { _hover, transition } = useLinkHover({ color: 'pink.200' })
 
   return (

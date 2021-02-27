@@ -9,6 +9,7 @@ import {
 import { Divider, Portal, Link } from 'src/components/atoms'
 import { ColorPicker } from './ColorPicker'
 import { IconPicker } from './IconPicker'
+import { Setting } from './Setting'
 
 type Props = {
   project: {
@@ -44,6 +45,8 @@ export const PopoverSetColorAndIcon: React.FC<Props> = (props) => {
             <ColorPicker currentId={props.project.color.id} />
             <Divider />
             <IconPicker currentId={props.project.icon.id} />
+            <Divider />
+            <Setting isSetForEveryone />
           </PopoverBody>
         </PopoverContent>
       </Portal>

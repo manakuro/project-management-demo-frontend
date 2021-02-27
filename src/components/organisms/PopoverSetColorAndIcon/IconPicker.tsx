@@ -8,9 +8,11 @@ import {
   IconType,
 } from 'src/components/atoms'
 import { useLinkHover } from 'src/hooks'
+import { useColorPicker } from 'src/hooks/useColorPicker'
 
 type Props = {
-  currentId: number
+  currentIconId: number
+  currentColorId: number
 }
 type Icon = {
   id: number
@@ -109,14 +111,18 @@ const icons: Icon[] = [
 ]
 
 export const IconPicker: React.VFC<Props> = (props) => {
-  const { _hover, transition } = useLinkHover({ color: 'pink.200' })
+  const { findColor } = useColorPicker()
+  const currentColor = findColor(props.currentColorId)
+  const { _hover, transition } = useLinkHover({ color: currentColor.light })
 
   return (
     <Wrap p={6} spacing={1} overflowY="scroll" maxH={60}>
       {icons.map((c) => (
         <WrapItem key={c.id}>
           <IconBox
-            bg={props.currentId === c.id ? 'pink.400' : 'transparent'}
+            bg={
+              props.currentIconId === c.id ? currentColor.base : 'transparent'
+            }
             _hover={_hover}
             transition={transition}
           >

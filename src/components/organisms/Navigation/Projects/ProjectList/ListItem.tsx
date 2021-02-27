@@ -37,12 +37,13 @@ export const ListItem: React.VFC<Props> = (props) => {
   }, [onOpen])
 
   const handleClose = useCallback(() => {
+    console.log('handleClose!')
     onClose()
   }, [onClose])
 
   return (
     <>
-      <Menu placement="bottom-end" onClose={handleClose} isLazy>
+      <Menu placement="bottom-end">
         <NextLink href={props.project.href} passHref>
           <Link p={2} px={PADDING_X} _hover={_hover}>
             <Flex alignItems="center">
@@ -65,9 +66,9 @@ export const ListItem: React.VFC<Props> = (props) => {
               <PopoverSetColorAndIcon
                 project={{
                   color: {
-                    id: 1,
-                    name: 'gray',
-                    color: 'gray.400',
+                    id: 10,
+                    name: 'pink',
+                    color: 'pink.400',
                   },
                   icon: {
                     id: 1,

@@ -35,7 +35,12 @@ const WIDTH = `${
 }px`
 export const PopoverSetColorAndIcon: React.FC<Props> = (props) => {
   return (
-    <Popover isOpen={props.isOpen} isLazy placement={props.placement}>
+    <Popover
+      isOpen={props.isOpen}
+      isLazy
+      placement={props.placement}
+      closeOnBlur={false}
+    >
       <PopoverTrigger>
         <Link>{props.children}</Link>
       </PopoverTrigger>
@@ -44,7 +49,10 @@ export const PopoverSetColorAndIcon: React.FC<Props> = (props) => {
           <PopoverBody p={0}>
             <ColorPicker currentId={props.project.color.id} />
             <Divider />
-            <IconPicker currentId={props.project.icon.id} />
+            <IconPicker
+              currentIconId={props.project.icon.id}
+              currentColorId={props.project.color.id}
+            />
             <Divider />
             <Setting isSetForEveryone />
           </PopoverBody>

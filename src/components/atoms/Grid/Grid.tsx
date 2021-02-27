@@ -1,7 +1,11 @@
 import React from 'react'
-import { Grid as ChakraGrid } from '@chakra-ui/react'
+import {
+  Grid as ChakraGrid,
+  GridProps as ChakraGridProps,
+} from '@chakra-ui/react'
 
-type Props = React.ComponentProps<typeof ChakraGrid>
+type Props = ChakraGridProps
+export type GridProps = Props
 
 export const Grid: React.FC<Props> = (props) => {
   return (

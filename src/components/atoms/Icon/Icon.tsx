@@ -37,6 +37,7 @@ import {
   BiLayout,
   BiDotsHorizontalRounded,
   BiMessageRoundedDots,
+  BiCheck,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon } from 'react-icons/fa'
 import { HiOutlineMail } from 'react-icons/hi'
@@ -59,6 +60,7 @@ const icons = {
   codeAlt: BiCodeAlt,
   checkCircle: BiCheckCircle,
   checkCircleFilled: AiFillCheckCircle,
+  check: BiCheck,
   bell: BiBell,
   notification: BiNotification,
   barChart: BiBarChart,

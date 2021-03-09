@@ -4,7 +4,9 @@ import {
   PortalProps as ChakraPortalProps,
 } from '@chakra-ui/react'
 
-type Props = ChakraPortalProps
+type Props = ChakraPortalProps & {
+  ref?: React.MutableRefObject<any>
+}
 export type PortalProps = ChakraPortalProps
 
 export const Portal: React.FC<Props> = (props) => {

@@ -6,7 +6,7 @@ import {
   PopoverTrigger,
   PopoverProps,
 } from 'src/components/organisms'
-import { Divider, Portal, Link } from 'src/components/atoms'
+import { Divider, Link } from 'src/components/atoms'
 import { ColorPicker } from './ColorPicker'
 import { IconPicker } from './IconPicker'
 import { Setting } from './Setting'
@@ -44,20 +44,18 @@ export const PopoverSetColorAndIcon: React.FC<Props> = (props) => {
       <PopoverTrigger>
         <Link>{props.children}</Link>
       </PopoverTrigger>
-      <Portal>
-        <PopoverContent w={WIDTH} ml="5px">
-          <PopoverBody p={0}>
-            <ColorPicker currentId={props.project.color.id} />
-            <Divider />
-            <IconPicker
-              currentIconId={props.project.icon.id}
-              currentColorId={props.project.color.id}
-            />
-            <Divider />
-            <Setting isSetForEveryone />
-          </PopoverBody>
-        </PopoverContent>
-      </Portal>
+      <PopoverContent w={WIDTH} ml="5px" pointerEvents="auto">
+        <PopoverBody p={0}>
+          <ColorPicker currentId={props.project.color.id} />
+          <Divider />
+          <IconPicker
+            currentIconId={props.project.icon.id}
+            currentColorId={props.project.color.id}
+          />
+          <Divider />
+          <Setting isSetForEveryone />
+        </PopoverBody>
+      </PopoverContent>
     </Popover>
   )
 }

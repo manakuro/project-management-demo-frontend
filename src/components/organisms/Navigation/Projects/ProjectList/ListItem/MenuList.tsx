@@ -7,7 +7,7 @@ import {
   MenuItemProps,
   PopoverSetColorAndIcon,
 } from 'src/components/organisms'
-import { Project } from '../types'
+import { Project } from 'src/store/projects'
 import { useDisclosure } from 'src/shared/chakra'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 
@@ -39,20 +39,13 @@ export const MenuList: React.VFC<Props> = (props) => {
     <Portal>
       <AtomsMenuList color="text.base" ref={ref}>
         <MenuItem
-          icon={<ColorBox w={4} h={4} bg={props.project.color} mt="-1px" />}
+          icon={
+            <ColorBox w={4} h={4} bg={props.project.color.color} mt="-1px" />
+          }
           onMouseEnter={handleOpen}
         >
           <PopoverSetColorAndIcon
-            project={{
-              color: {
-                id: 10,
-                name: 'pink',
-                color: 'pink.400',
-              },
-              icon: {
-                id: 1,
-              },
-            }}
+            project={props.project}
             isOpen={isOpen}
             placement="right-end"
           >

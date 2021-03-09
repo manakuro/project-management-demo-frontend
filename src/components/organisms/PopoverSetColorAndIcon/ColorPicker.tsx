@@ -1,19 +1,29 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Icon, BoxProps, Wrap, WrapItem, Center } from 'src/components/atoms'
 import { useColorPicker } from 'src/hooks/useColorPicker'
+import { useProjects } from 'src/store/projects'
 
 type Props = {
-  currentId: number
+  currentId: string
+  projectId: string
 }
 
 export const ColorPicker: React.VFC<Props> = (props) => {
   const { colors } = useColorPicker()
+  const { setColor } = useProjects()
+
+  const handlePickColor = useCallback(
+    (id: string) => {
+      setColor(props.projectId, id)
+    },
+    [props.projectId, setColor],
+  )
 
   return (
     <Wrap p={6} spacing={1}>
       {colors.map((c) => (
         <WrapItem key={c.id}>
-          <ColorBox bg={c.base}>
+          <ColorBox bg={c.base} onClick={() => handlePickColor(c.id)}>
             {props.currentId === c.id && <Icon icon="check" color="white" />}
           </ColorBox>
         </WrapItem>

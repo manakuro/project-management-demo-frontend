@@ -11,7 +11,7 @@ import {
 import { Menu, MenuButton } from 'src/components/organisms'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { useLinkHover, useClickableHover } from 'src/hooks'
-import { Project } from '../types'
+import { Project } from 'src/store/projects'
 import { useDisclosure } from 'src/shared/chakra'
 import { MenuList } from './MenuList'
 
@@ -37,10 +37,10 @@ export const ListItem: React.VFC<Props> = (props) => {
         isOpen={isOpen}
         isLazy
       >
-        <NextLink href={props.project.href} passHref>
+        <NextLink href="home" passHref>
           <Link p={2} px={PADDING_X} _hover={_hover}>
             <Flex alignItems="center">
-              <ColorBox w={2} h={2} bg={props.project.color} />
+              <ColorBox w={2} h={2} bg={props.project.color.color} />
               <Text fontSize="sm" flex={1} ml={3}>
                 {props.project.name}
               </Text>

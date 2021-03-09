@@ -11,101 +11,101 @@ import { useLinkHover } from 'src/hooks'
 import { useColorPicker } from 'src/hooks/useColorPicker'
 
 type Props = {
-  currentIconId: number
-  currentColorId: number
+  currentIconId: string
+  currentColorId: string
 }
 type Icon = {
-  id: number
+  id: string
   icon: IconType
 }
 
 const icons: Icon[] = [
   {
-    id: 1,
+    id: '1',
     icon: 'play',
   },
 
   {
-    id: 2,
+    id: '2',
     icon: 'home',
   },
 
   {
-    id: 3,
+    id: '3',
     icon: 'moon',
   },
 
   {
-    id: 4,
+    id: '4',
     icon: 'sun',
   },
 
   {
-    id: 5,
+    id: '5',
     icon: 'menu',
   },
 
   {
-    id: 6,
+    id: '6',
     icon: 'codeAlt',
   },
 
   {
-    id: 7,
+    id: '7',
     icon: 'rocket',
   },
 
   {
-    id: 8,
+    id: '8',
     icon: 'idCard',
   },
 
   {
-    id: 9,
+    id: '9',
     icon: 'trashAlt',
   },
   {
-    id: 10,
+    id: '10',
     icon: 'task',
   },
   {
-    id: 11,
+    id: '11',
     icon: 'bell',
   },
   {
-    id: 12,
+    id: '12',
     icon: 'notification',
   },
   {
-    id: 13,
+    id: '13',
     icon: 'barChart',
   },
   {
-    id: 14,
+    id: '14',
     icon: 'bookOpen',
   },
   {
-    id: 15,
+    id: '15',
     icon: 'layerPlus',
   },
   {
-    id: 16,
+    id: '16',
     icon: 'mobile',
   },
   {
-    id: 17,
+    id: '17',
     icon: 'movie',
   },
   {
-    id: 18,
+    id: '18',
     icon: 'shapePolygon',
   },
   {
-    id: 19,
+    id: '19',
     icon: 'spreadsheet',
   },
   {
-    id: 20,
+    id: '20',
     icon: 'layout',
   },
 ]

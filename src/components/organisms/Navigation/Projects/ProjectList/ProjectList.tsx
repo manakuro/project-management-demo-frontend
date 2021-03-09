@@ -1,18 +1,12 @@
 import React from 'react'
 import { ListItem } from './ListItem'
-import { Project } from './types'
+import { useProjects } from 'src/store/projects'
 
 type Props = {}
 
-const projects: Project[] = [
-  {
-    name: 'Asana',
-    color: 'pink.400',
-    href: 'home',
-  },
-]
-
 export const ProjectList: React.VFC<Props> = () => {
+  const { projects } = useProjects()
+
   return (
     <>
       {projects.map((p, k) => (

@@ -25,7 +25,6 @@ export const Navigation: React.VFC = () => {
       color="white"
       transition="width .25s cubic-bezier(0.820, 0.085, 0.395, 0.895)"
       overflowX="hidden"
-      position="fixed"
       h="100vh"
     >
       <Header isExpanded={isExpanded} toggleMenu={toggleMenu} />

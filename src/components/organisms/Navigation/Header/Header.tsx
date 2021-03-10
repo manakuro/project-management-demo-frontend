@@ -1,13 +1,12 @@
 import React from 'react'
 import { Logo, Link, NextLink, Icon, IconBg, Flex } from 'src/components/atoms'
-import { PADDING_X } from 'src/components/organisms/Navigation'
+import { PADDING_X, useNavigation } from 'src/components/organisms/Navigation'
 
-type Props = {
-  isExpanded: boolean
-  toggleMenu: () => void
-}
+type Props = {}
 
-export const Header: React.VFC<Props> = ({ isExpanded, toggleMenu }) => {
+export const Header: React.VFC<Props> = () => {
+  const { isExpanded, toggleMenu } = useNavigation()
+
   return (
     <Flex
       w="full"

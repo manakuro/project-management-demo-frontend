@@ -1,14 +1,11 @@
 import React from 'react'
 import { CustomNavList } from './CustomNavList'
 
-type Props = {
-  isExpanded: boolean
-}
+type Props = {}
 
-export const Favorites: React.VFC<Props> = (props) => {
+export const Favorites: React.VFC<Props> = () => {
   return (
     <CustomNavList
-      isExpanded={props.isExpanded}
       item={{
         title: {
           expanded: 'Favorites',

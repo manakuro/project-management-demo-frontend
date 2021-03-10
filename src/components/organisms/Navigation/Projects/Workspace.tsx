@@ -8,6 +8,7 @@ import {
   MenuDivider,
   MenuItemProps,
   MenuGroup,
+  useNavigation,
 } from 'src/components/organisms'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { useLinkHover, useClickableHover } from 'src/hooks'
@@ -16,6 +17,7 @@ import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useI
 type Props = {}
 
 export const Workspace: React.VFC<Props> = () => {
+  const { isExpanded } = useNavigation()
   const { _hover } = useLinkHover()
   const clickableStyle = useClickableHover()
 
@@ -31,9 +33,11 @@ export const Workspace: React.VFC<Props> = () => {
         <NextLink href="home" passHref>
           <Link p={2} px={PADDING_X} _hover={_hover}>
             <Flex alignItems="center">
-              <Text fontSize="sm" flex={1}>
-                Workspace
-              </Text>
+              {isExpanded && (
+                <Text fontSize="sm" flex={1}>
+                  Workspace
+                </Text>
+              )}
               <MenuButton {...clickableStyle}>
                 <Icon icon="plus" />
               </MenuButton>

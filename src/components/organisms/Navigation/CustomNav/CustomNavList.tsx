@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { NavListItem as TNavListItem } from 'src/components/organisms/Navigation/type'
 import { NavListItem } from 'src/components/organisms/Navigation/NavListItem'
+import { useNavigation } from 'src/components/organisms'
 
 type Item = {
   title: {
@@ -22,10 +23,11 @@ type Item = {
 
 type Props = {
   item: Item
-  isExpanded: boolean
 }
 
-export const CustomNavList: React.VFC<Props> = ({ item, isExpanded }) => {
+export const CustomNavList: React.VFC<Props> = ({ item }) => {
+  const { isExpanded } = useNavigation()
+
   return (
     <>
       <Divider />

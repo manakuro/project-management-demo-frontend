@@ -11,15 +11,16 @@ import {
 import { Menu, MenuButton } from 'src/components/organisms'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { useLinkHover, useClickableHover } from 'src/hooks'
-import { Project } from 'src/store/projects'
 import { useDisclosure } from 'src/shared/chakra'
 import { MenuList } from './MenuList'
+import { useProject } from 'src/store/projects'
 
 type Props = {
-  project: Project
+  projectId: string
 }
 
 export const ListItem: React.VFC<Props> = (props) => {
+  const { project } = useProject(props.projectId)
   const { _hover } = useLinkHover()
   const clickableStyle = useClickableHover()
   const { onClose, onOpen, isOpen } = useDisclosure()
@@ -40,9 +41,9 @@ export const ListItem: React.VFC<Props> = (props) => {
         <NextLink href="home" passHref>
           <Link p={2} px={PADDING_X} _hover={_hover}>
             <Flex alignItems="center">
-              <ColorBox w={2} h={2} bg={props.project.color.color} />
+              <ColorBox w={2} h={2} bg={project.color.color} />
               <Text fontSize="sm" flex={1} ml={3}>
-                {props.project.name}
+                {project.name}
               </Text>
               <MenuButton {...clickableStyle} onClick={handleOpen}>
                 <Icon icon="dotsHorizontalRounded" />
@@ -50,7 +51,7 @@ export const ListItem: React.VFC<Props> = (props) => {
             </Flex>
           </Link>
         </NextLink>
-        {isOpen && <MenuList project={props.project} onCloseMenu={onClose} />}
+        {isOpen && <MenuList project={project} onCloseMenu={onClose} />}
       </Menu>
     </>
   )

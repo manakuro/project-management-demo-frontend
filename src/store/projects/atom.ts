@@ -4,7 +4,6 @@ import {
   useRecoilCallback,
   DefaultValue,
   atom,
-  selector,
   useRecoilValue,
 } from 'recoil'
 import { Project } from './type'
@@ -48,16 +47,8 @@ export const projectSelector = selectorFamily<Project, string>({
   },
 })
 
-export const projectsSelector = selector<Project[]>({
-  key: 'projectsSelector',
-  get: ({ get }) => {
-    const projectIds = get(projectIdsState)
-    return projectIds.map((id) => get(projectState(id)))
-  },
-})
-
 export const useProjects = () => {
-  const projects = useRecoilValue(projectsSelector)
+  const projectIds = useRecoilValue(projectIdsState)
 
   const setProjects = useRecoilCallback(
     ({ set }) => (projects: Project[]) => {
@@ -67,6 +58,15 @@ export const useProjects = () => {
     },
     [],
   )
+
+  return {
+    projectIds,
+    setProjects,
+  }
+}
+
+export const useProject = (projectId: string) => {
+  const project = useRecoilValue(projectSelector(projectId))
 
   const upsertProject = useRecoilCallback(
     ({ set }) => (project: Project) => {
@@ -89,8 +89,7 @@ export const useProjects = () => {
   )
 
   return {
-    projects,
-    setProjects,
+    project,
     setColor,
   }
 }

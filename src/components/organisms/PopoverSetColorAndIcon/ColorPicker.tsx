@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { Icon, BoxProps, Wrap, WrapItem, Center } from 'src/components/atoms'
 import { useColorPicker } from 'src/hooks/useColorPicker'
-import { useProjects } from 'src/store/projects'
+import { useProject } from 'src/store/projects'
 
 type Props = {
   currentId: string
@@ -10,7 +10,7 @@ type Props = {
 
 export const ColorPicker: React.VFC<Props> = (props) => {
   const { colors } = useColorPicker()
-  const { setColor } = useProjects()
+  const { setColor } = useProject(props.projectId)
 
   const handlePickColor = useCallback(
     async (id: string) => {

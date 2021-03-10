@@ -38,7 +38,7 @@ const fetchProjects = (): Promise<Project[]> => {
 }
 
 export const ProjectList: React.VFC<Props> = () => {
-  const { projects, setProjects } = useProjects()
+  const { projectIds, setProjects } = useProjects()
 
   useEffect(() => {
     ;(async () => {
@@ -46,12 +46,11 @@ export const ProjectList: React.VFC<Props> = () => {
       setProjects(res)
     })()
   }, [setProjects])
-  console.log('projects: ', projects)
 
   return (
     <>
-      {projects.map((p, k) => (
-        <ListItem project={p} key={k} />
+      {projectIds.map((id) => (
+        <ListItem projectId={id} key={id} />
       ))}
     </>
   )

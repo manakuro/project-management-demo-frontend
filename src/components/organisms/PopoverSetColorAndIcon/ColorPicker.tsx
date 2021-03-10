@@ -13,8 +13,8 @@ export const ColorPicker: React.VFC<Props> = (props) => {
   const { setColor } = useProjects()
 
   const handlePickColor = useCallback(
-    (id: string) => {
-      setColor(props.projectId, id)
+    async (id: string) => {
+      await setColor(props.projectId, id)
     },
     [props.projectId, setColor],
   )

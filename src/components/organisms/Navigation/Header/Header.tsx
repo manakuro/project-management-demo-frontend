@@ -11,6 +11,7 @@ export const Header: React.VFC<Props> = () => {
     <Flex
       w="full"
       h="72px"
+      minH="72px"
       alignItems="center"
       px={PADDING_X}
       justifyContent="flex-end"

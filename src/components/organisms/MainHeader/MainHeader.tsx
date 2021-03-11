@@ -1,6 +1,8 @@
 import React from 'react'
-import { Avatar, Flex, Icon, IconButton, Stack } from 'src/components/atoms'
-import { InputWithIcon } from 'src/components/molecules'
+import { Flex, Stack } from 'src/components/atoms'
+import { SearchInput } from './SearchInput'
+import { AddButton } from './AddButton'
+import { MyAccountAvatar } from './MyAccountAvatar'
 
 export const MainHeader: React.FC = (props) => {
   return (
@@ -16,25 +18,9 @@ export const MainHeader: React.FC = (props) => {
           alignItems="center"
           justifyContent="flex-end"
         >
-          <InputWithIcon
-            icon="search"
-            placeholder="Search"
-            borderRadius="full"
-            size="sm"
-          />
-          <IconButton
-            aria-label="Add tasks"
-            borderRadius="full"
-            size="sm"
-            icon={<Icon icon="listPlus" />}
-          />
-          <Avatar
-            name="Manato Kuroda"
-            src="/images/cat_img.png"
-            size="sm"
-            cursor="pointer"
-            bg="teal.200"
-          />
+          <SearchInput />
+          <AddButton />
+          <MyAccountAvatar />
         </Stack>
       </Flex>
     </Flex>

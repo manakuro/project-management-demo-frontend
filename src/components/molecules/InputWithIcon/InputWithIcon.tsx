@@ -43,7 +43,7 @@ export const InputWithIcon: React.FC<Props> = (props) => {
         pointerEvents="none"
         children={<Icon icon={icon} color="gray.300" {...iconSize} />}
       />
-      <Input placeholder="Search" {...inputProps} />
+      <Input focusBorderColor="primary" placeholder="Search" {...inputProps} />
     </InputGroup>
   )
 }

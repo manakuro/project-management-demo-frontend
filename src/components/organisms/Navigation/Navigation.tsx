@@ -27,7 +27,7 @@ export const Navigation: React.VFC = () => {
     >
       <Header />
       <MainNav />
-      <Box overflow="scroll" w={MAX_WIDTH} pb={40}>
+      <Box overflow="scroll" w={MAX_WIDTH} pb={40} flex="1">
         <CustomNav />
         <Projects />
       </Box>

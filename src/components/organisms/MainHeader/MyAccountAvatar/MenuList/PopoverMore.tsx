@@ -40,7 +40,7 @@ export const PopoverMore: React.FC<Props> = (props) => {
   )
 }
 
-// NOTE: Use custom component instead of `Box` because of styling issue
+// NOTE: Use custom component instead of `Box` because of styling issue with positioning menu item
 const MenuButtonAs = chakra('div', {
   baseStyle: {
     w: 'full',

@@ -29,5 +29,5 @@ export const MenuItem: React.FC<Props> = (props) => {
     )
   }
 
-  return <ChakraMenuItem {...rest} />
+  return <ChakraMenuItem fontSize="sm" {...rest} />
 }

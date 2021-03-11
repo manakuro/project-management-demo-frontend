@@ -4,7 +4,8 @@ import {
   MenuButtonProps as ChakraMenuButtonProps,
 } from '@chakra-ui/react'
 
-type Props = ChakraMenuButtonProps
+type Props = ChakraMenuButtonProps &
+  React.ComponentProps<typeof ChakraMenuButton>
 export type MenuButtonProps = Props
 
 export const MenuButton: React.FC<Props> = (props) => {

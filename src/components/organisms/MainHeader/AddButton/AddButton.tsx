@@ -20,14 +20,12 @@ export const AddButton: React.FC = () => {
 
   return (
     <Menu placement="bottom-end" isLazy>
-      <MenuButton>
-        <IconButton
-          aria-label="Add button"
-          borderRadius="full"
-          size="sm"
-          icon={<Icon icon="listPlus" />}
-        />
-      </MenuButton>
+      <MenuButton
+        aria-label="Add button"
+        borderRadius="full"
+        as={IconButton}
+        icon={<Icon icon="listPlus" />}
+      />
       <Portal>
         <MenuList>
           <MenuItem>

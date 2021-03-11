@@ -23,7 +23,7 @@ export const Navigation: React.VFC = () => {
       transition="width .25s cubic-bezier(0.820, 0.085, 0.395, 0.895)"
       overflowX="hidden"
       h="100vh"
-      position="fixed"
+      flex="0 0 auto"
     >
       <Header />
       <MainNav />

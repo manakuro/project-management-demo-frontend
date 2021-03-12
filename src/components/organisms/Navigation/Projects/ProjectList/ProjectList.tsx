@@ -26,7 +26,7 @@ const fetchProjects = (): Promise<Project[]> => {
           color: {
             id: '10',
             name: 'pink',
-            color: 'pink.400',
+            color: 'teal.400',
           },
           icon: {
             id: '1',

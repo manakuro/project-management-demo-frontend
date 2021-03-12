@@ -1,5 +1,8 @@
 import React from 'react'
-import { Icon as ChakraIcon, IconProps } from '@chakra-ui/react'
+import {
+  Icon as ChakraIcon,
+  IconProps as ChakraIconProps,
+} from '@chakra-ui/react'
 import {
   BiHome,
   BiSun,
@@ -49,11 +52,13 @@ import {
   AiOutlineProject,
 } from 'react-icons/ai'
 import { Medium } from './icons'
+import { forwardRef } from 'src/shared/chakra'
 
-type Props = IconProps & {
+type Props = ChakraIconProps & {
   icon: IconType
   size?: Sizes
 }
+export type IconProps = Props
 
 const icons = {
   home: BiHome,
@@ -123,9 +128,22 @@ const sizes = {
 } as const
 type Sizes = keyof typeof sizes
 
-export const Icon: React.FC<Props> = (props) => {
-  const icon = icons[props.icon]
-  const size = sizes[props.size ?? 'md']
+export const Icon: React.FC<Props> & { id?: string } = forwardRef<Props, 'svg'>(
+  (props, ref) => {
+    const { size, icon, ...iconProps } = props
+    const iconComponent = icons[icon]
+    const sizeStyle = sizes[size ?? 'md']
 
-  return <ChakraIcon as={icon} color="whiteAlpha" {...size} {...props} />
-}
+    return (
+      <ChakraIcon
+        ref={ref}
+        as={iconComponent}
+        color="whiteAlpha"
+        {...sizeStyle}
+        {...iconProps}
+      />
+    )
+  },
+)
+
+Icon.id = 'Icon'

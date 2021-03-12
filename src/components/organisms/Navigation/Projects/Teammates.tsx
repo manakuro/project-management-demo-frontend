@@ -16,7 +16,7 @@ type Props = {
 }
 
 export const Teammates: React.VFC<Props> = (props) => {
-  const clickableStyle = useClickableHover()
+  const { clickableHoverLightStyle } = useClickableHover()
   const inviteModal = useInviteModal()
 
   const handleInvitePeople = useCallback(() => {
@@ -41,9 +41,8 @@ export const Teammates: React.VFC<Props> = (props) => {
       <WrapItem>
         <Avatar
           size="xs"
-          cursor="pointer"
           bg="teal.200"
-          {...clickableStyle}
+          {...clickableHoverLightStyle}
           onClick={handleInvitePeople}
         />
       </WrapItem>

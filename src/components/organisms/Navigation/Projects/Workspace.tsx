@@ -19,7 +19,7 @@ type Props = {}
 export const Workspace: React.VFC<Props> = () => {
   const { isExpanded } = useNavigation()
   const { _hover } = useLinkHover()
-  const clickableStyle = useClickableHover()
+  const { clickableHoverLightStyle } = useClickableHover()
 
   const { setIsOpen } = useInviteModal()
 
@@ -38,7 +38,7 @@ export const Workspace: React.VFC<Props> = () => {
                   Workspace
                 </Text>
               )}
-              <MenuButton {...clickableStyle}>
+              <MenuButton {...clickableHoverLightStyle}>
                 <Icon icon="plus" />
               </MenuButton>
             </Flex>

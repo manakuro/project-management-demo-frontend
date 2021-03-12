@@ -52,6 +52,7 @@ import { Medium } from './icons'
 
 type Props = IconProps & {
   icon: IconType
+  size?: Sizes
 }
 
 const icons = {
@@ -106,10 +107,25 @@ const icons = {
 
 export type IconType = keyof typeof icons
 
+const sizes = {
+  md: {
+    w: '1.25em',
+    h: '1.25em',
+  },
+  sm: {
+    w: '1.15em',
+    h: '1.15em',
+  },
+  xs: {
+    w: '1em',
+    h: '1em',
+  },
+} as const
+type Sizes = keyof typeof sizes
+
 export const Icon: React.FC<Props> = (props) => {
   const icon = icons[props.icon]
+  const size = sizes[props.size ?? 'md']
 
-  return (
-    <ChakraIcon as={icon} color="whiteAlpha" w="1.25em" h="1.25em" {...props} />
-  )
+  return <ChakraIcon as={icon} color="whiteAlpha" {...size} {...props} />
 }

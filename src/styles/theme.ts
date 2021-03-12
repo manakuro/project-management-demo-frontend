@@ -40,7 +40,7 @@ export const theme = extendTheme({
 
     text: {
       base: defaultTheme.colors.gray['700'],
-      muted: defaultTheme.colors.gray['400'],
+      muted: defaultTheme.colors.gray['500'],
     },
     link: defaultTheme.colors.cyan['400'],
     navigation: {

@@ -23,7 +23,7 @@ export const ListItem: React.VFC<Props> = (props) => {
   const { isExpanded } = useNavigation()
   const { project } = useProject(props.projectId)
   const { _hover } = useLinkHover()
-  const clickableStyle = useClickableHover()
+  const { clickableHoverLightStyle } = useClickableHover()
   const { onClose, onOpen, isOpen } = useDisclosure()
 
   const handleOpen = useCallback(() => {
@@ -47,7 +47,7 @@ export const ListItem: React.VFC<Props> = (props) => {
                 <Text fontSize="sm" flex={1} ml={3}>
                   {project.name}
                 </Text>
-                <MenuButton {...clickableStyle} onClick={handleOpen}>
+                <MenuButton {...clickableHoverLightStyle} onClick={handleOpen}>
                   <Icon icon="dotsHorizontalRounded" />
                 </MenuButton>
               </Flex>

@@ -2,16 +2,16 @@ import React from 'react'
 import { Flex, List, Heading } from 'src/components/atoms'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
+import { NavListItem as TNavListItem } from 'src/components/organisms/Navigation/type'
+import { NavListItem } from 'src/components/organisms/Navigation/NavListItem'
+import { useNavigation } from 'src/components/organisms/Navigation'
 import {
   Accordion,
   AccordionItem,
   AccordionPanel,
   AccordionButton,
   AccordionIcon,
-} from '@chakra-ui/react'
-import { NavListItem as TNavListItem } from 'src/components/organisms/Navigation/type'
-import { NavListItem } from 'src/components/organisms/Navigation/NavListItem'
-import { useNavigation } from 'src/components/organisms'
+} from 'src/components/organisms'
 
 type Item = {
   title: {

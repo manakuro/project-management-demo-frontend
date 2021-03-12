@@ -1,4 +1,3 @@
-// TODO: Something wrong with padding when wrapping Input component
 import React from 'react'
 import {
   Input as ChakraInput,

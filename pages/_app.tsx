@@ -4,21 +4,27 @@ import { RecoilRoot } from 'recoil'
 import { ChakraProvider } from '@chakra-ui/react'
 import { theme } from 'src/styles'
 import { Modals } from 'src/components/organisms'
-import { MuiPickersUtilsProvider } from '@material-ui/pickers'
-import DateFnsUtils from '@date-io/date-fns'
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns'
 import enLocale from 'date-fns/locale/en-US'
+import {
+  muiTheme,
+  MuiThemeProvider,
+  LocalizationProvider,
+} from 'src/shared/material-ui'
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <RecoilRoot>
-      <ChakraProvider theme={theme} resetCSS>
-        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={enLocale}>
-          <>
-            <Component {...pageProps} />
-            <Modals />
-          </>
-        </MuiPickersUtilsProvider>
-      </ChakraProvider>
+      <MuiThemeProvider theme={muiTheme}>
+        <ChakraProvider theme={theme} resetCSS>
+          <LocalizationProvider dateAdapter={AdapterDateFns} locale={enLocale}>
+            <>
+              <Component {...pageProps} />
+              <Modals />
+            </>
+          </LocalizationProvider>
+        </ChakraProvider>
+      </MuiThemeProvider>
     </RecoilRoot>
   )
 }

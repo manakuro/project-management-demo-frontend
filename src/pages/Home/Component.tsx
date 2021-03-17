@@ -1,24 +1,13 @@
-import React, { memo, useCallback, useState } from 'react'
+import React, { memo } from 'react'
 import { Layout, MainHeader } from 'src/components/organisms'
 import { Head } from 'src/components/atoms/Head'
 import { Heading, Box, Stack } from 'src/components/atoms'
 import { TasksDueSoon } from './TasksDueSoon'
-import DateFnsUtils from '@date-io/date-fns'
-import { Calendar, DatePicker } from '@material-ui/pickers'
-import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date'
+import { DatePicker } from 'src/components/organisms'
 
 type Props = {}
 
-const dateFns = new DateFnsUtils()
 export const Component: React.VFC<Props> = memo<Props>((props) => {
-  const [
-    selectedDate,
-    setSelectedDate,
-  ] = useState<MaterialUiPickersDate | null>(dateFns.date())
-  const handleDateChange = useCallback((date: MaterialUiPickersDate) => {
-    setSelectedDate(date)
-  }, [])
-
   return (
     <Layout>
       <Head title="Home" />
@@ -30,11 +19,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
       <Box w="840px" mx="auto" py={10}>
         <Stack spacing={10}>
           <TasksDueSoon />
-          <Calendar
-            date={selectedDate}
-            onChange={handleDateChange}
-            disablePast
-          />
+          <DatePicker />
         </Stack>
       </Box>
     </Layout>

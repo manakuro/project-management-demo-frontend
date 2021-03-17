@@ -3,6 +3,7 @@ import { Badge, Flex, Icon, Text, IconProps } from 'src/components/atoms'
 import { useClickableHover } from 'src/hooks'
 import { TaskDueSoon } from './types'
 import { useProject } from 'src/store/projects'
+import { PopoverDueDatePicker } from 'src/components/organisms'
 
 type Props = {
   task: TaskDueSoon
@@ -40,9 +41,17 @@ export const ListItem: React.VFC<Props> = (props) => {
         <Badge variant="solid" bg={project.color.color} textAlign="center">
           {project.name}
         </Badge>
-        <Text w={14} ml={2} fontSize="xs" color="text.muted" textAlign="right">
-          {props.task.dueDate}
-        </Text>
+        <PopoverDueDatePicker>
+          <Text
+            w={14}
+            ml={2}
+            fontSize="xs"
+            color="text.muted"
+            textAlign="right"
+          >
+            {props.task.dueDate}
+          </Text>
+        </PopoverDueDatePicker>
       </Flex>
     </Flex>
   )

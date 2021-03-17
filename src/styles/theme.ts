@@ -1,4 +1,5 @@
 import { extendTheme, theme as defaultTheme } from '@chakra-ui/react'
+import { dueDatePickerCustomStyle } from 'src/components/organisms'
 
 // Disabling border for non-keyboard interactions
 // @see https://github.com/chakra-ui/chakra-ui/blob/develop/packages/css-reset/README.md
@@ -26,6 +27,7 @@ export const theme = extendTheme({
           textDecoration: 'none !important',
         },
       },
+      ...dueDatePickerCustomStyle(),
     }),
   },
 

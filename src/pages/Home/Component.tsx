@@ -3,7 +3,6 @@ import { Layout, MainHeader } from 'src/components/organisms'
 import { Head } from 'src/components/atoms/Head'
 import { Heading, Box, Stack } from 'src/components/atoms'
 import { TasksDueSoon } from './TasksDueSoon'
-import { DatePicker } from 'src/components/organisms'
 
 type Props = {}
 
@@ -19,7 +18,6 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
       <Box w="840px" mx="auto" py={10}>
         <Stack spacing={10}>
           <TasksDueSoon />
-          <DatePicker />
         </Stack>
       </Box>
     </Layout>

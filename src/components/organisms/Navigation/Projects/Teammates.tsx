@@ -3,7 +3,7 @@ import { Avatar, Wrap, WrapItem } from 'src/components/atoms'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { useClickableHover } from 'src/hooks'
 import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
-import { PopoverProfile } from 'src/components/organisms/PopoverProfile'
+import { PopoverProfile } from 'src/components/organisms/Popovers/PopoverProfile'
 
 type Teammate = {
   name: string

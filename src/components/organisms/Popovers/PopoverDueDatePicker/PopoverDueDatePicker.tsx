@@ -6,43 +6,10 @@ import {
   PopoverTrigger,
   PopoverProps,
 } from 'src/components/organisms'
-import { Divider, Flex, Link } from 'src/components/atoms'
+import { Button, Divider, Flex, Icon, IconBg, Link } from 'src/components/atoms'
 import { DatePicker } from 'src/components/organisms'
 
 type Props = {} & PopoverProps
-
-export const dueDatePickerCustomStyle = () => ({
-  '.PopoverDueDatePicker .MuiPickersStaticWrapper-root': {
-    width: '100%',
-    minWidth: '100% !important',
-    minHeight: '236px',
-  },
-  '.PopoverDueDatePicker .MuiPickerView-root': {
-    width: '100% !important',
-  },
-  '.PopoverDueDatePicker .MuiPickersCalendar-root': {
-    minHeight: '160px !important',
-  },
-  '.PopoverDueDatePicker .MuiPickersDay-root': {
-    width: '30px !important',
-    height: '30px !important',
-  },
-  '.PopoverDueDatePicker .MuiPickersCalendarHeader-root': {
-    marginTop: '0 !important',
-    paddingLeft: '21px !important',
-  },
-  '.PopoverDueDatePicker .MuiPickersCalendar-weekDayLabel': {
-    width: '30px !important',
-    height: '30px !important',
-  },
-  '.PopoverDueDatePicker .MuiPickersCalendarHeader-label': {
-    fontSize: 'sm',
-  },
-  '.PopoverDueDatePicker .MuiPickersYear-yearButton': {
-    fontSize: 'sm',
-    height: '26px !important',
-  },
-})
 
 export const PopoverDueDatePicker: React.FC<Props> = (props) => {
   return (
@@ -63,7 +30,14 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
         <PopoverBody p={4}>
           <DatePicker />
           <Divider />
-          <Flex>hey</Flex>
+          <Flex mt={2}>
+            <IconBg>
+              <Icon icon="time" color="text.muted" />
+            </IconBg>
+            <Button variant="ghost" size="sm" ml="auto">
+              Clear
+            </Button>
+          </Flex>
         </PopoverBody>
       </PopoverContent>
     </Popover>

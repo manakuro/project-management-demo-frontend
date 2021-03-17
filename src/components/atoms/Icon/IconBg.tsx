@@ -2,11 +2,18 @@ import React from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { transitions } from 'src/styles'
 import { useLinkHover } from 'src/hooks/useLinkHover'
+import { useClickableHover } from 'src/hooks'
 
-type Props = FlexProps
+type Props = FlexProps & {
+  dark?: boolean
+}
 
 export const IconBg: React.FC<Props> = (props) => {
+  const { clickableHoverStyle } = useClickableHover()
   const { _hover } = useLinkHover()
+  const style = props.dark
+    ? { _hover }
+    : { ...clickableHoverStyle, _hover: { bg: 'gray.100' } }
 
   return (
     <Flex
@@ -15,8 +22,8 @@ export const IconBg: React.FC<Props> = (props) => {
       borderRadius="md"
       cursor="pointer"
       p={2}
-      _hover={_hover}
       transition={transitions.base}
+      {...style}
       {...props}
     />
   )

@@ -23,7 +23,7 @@ export const Header: React.VFC<Props> = () => {
           </Link>
         </NextLink>
       )}
-      <IconBg mr={-2} onClick={toggleMenu}>
+      <IconBg mr={-2} onClick={toggleMenu} dark>
         <Icon icon="menu" />
       </IconBg>
     </Flex>

@@ -6,9 +6,10 @@ import {
   PopoverTrigger,
   PopoverProps,
 } from 'src/components/organisms'
-import { Button, Divider, Flex, Icon, IconBg, Link } from 'src/components/atoms'
+import { Button, Divider, Flex, Link } from 'src/components/atoms'
 import { DatePicker } from 'src/components/organisms'
 import { dateFns } from 'src/shared/dateFns'
+import { DueTime } from './DueTime'
 
 type Props = {
   date: string
@@ -50,9 +51,7 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
           />
           <Divider />
           <Flex mt={2}>
-            <IconBg>
-              <Icon icon="time" color="text.muted" />
-            </IconBg>
+            <DueTime />
             <Button variant="ghost" size="sm" ml="auto">
               Clear
             </Button>

@@ -11,6 +11,13 @@ export const useClickOutside = () => {
       if (ref.current.contains(e.target as Node)) {
         setState({ hasClickedOutside: false })
       } else {
+        // Ignore when click menu list inside popover modal
+        const isContainInMenuList = Array.from(
+          document.querySelectorAll("[aria-label='menu-list']"),
+        ).some((q) => q.contains(e.target as Node))
+
+        if (isContainInMenuList) return
+
         setState({ hasClickedOutside: true })
       }
     }
@@ -23,6 +30,7 @@ export const useClickOutside = () => {
       document.addEventListener('mousedown', handleEvent)
       document.addEventListener('touchstart', handleEvent)
     }
+    console.log('Subscribe!!')
 
     return () => {
       console.log('Unsubscribe!!')

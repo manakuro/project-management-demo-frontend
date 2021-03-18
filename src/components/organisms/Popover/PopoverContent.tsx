@@ -4,9 +4,13 @@ import {
   PopoverContentProps as ChakraPopoverContentProps,
 } from '@chakra-ui/react'
 
-type Props = ChakraPopoverContentProps
+import { forwardRef } from 'src/shared/chakra'
+
+type Props = ChakraPopoverContentProps & {
+  ref?: React.MutableRefObject<any>
+}
 export type PopoverContentProps = Props
 
-export const PopoverContent: React.FC<Props> = (props) => {
-  return <ChakraPopoverContent {...props} />
-}
+export const PopoverContent: React.FC<Props> = forwardRef<Props, 'div'>(
+  (props, ref) => <ChakraPopoverContent {...props} ref={ref} />,
+)

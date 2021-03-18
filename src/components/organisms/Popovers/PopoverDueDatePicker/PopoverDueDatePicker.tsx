@@ -12,13 +12,10 @@ import { DatePicker } from 'src/components/organisms'
 type Props = {} & PopoverProps
 
 export const PopoverDueDatePicker: React.FC<Props> = (props) => {
+  const [value, setValue] = React.useState<Date | null>(new Date())
+
   return (
-    <Popover
-      isOpen={props.isOpen}
-      isLazy
-      placement={props.placement}
-      closeOnBlur={false}
-    >
+    <Popover isOpen={props.isOpen} isLazy placement={props.placement}>
       <PopoverTrigger>
         <Link>{props.children}</Link>
       </PopoverTrigger>
@@ -28,7 +25,14 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
         pointerEvents="auto"
       >
         <PopoverBody p={4}>
-          <DatePicker />
+          <DatePicker
+            value={value}
+            onChange={(newValue) => {
+              setValue(newValue as Date)
+            }}
+            minDate={new Date()}
+            maxDate={new Date('2022/3/12')}
+          />
           <Divider />
           <Flex mt={2}>
             <IconBg>

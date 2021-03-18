@@ -9,9 +9,10 @@ type Props = FlexProps & {
 }
 
 export const IconBg: React.FC<Props> = (props) => {
+  const { dark, ...rest } = props
   const { clickableHoverStyle } = useClickableHover()
   const { _hover } = useLinkHover()
-  const style = props.dark
+  const style = dark
     ? { _hover }
     : { ...clickableHoverStyle, _hover: { bg: 'gray.100' } }
 
@@ -24,7 +25,7 @@ export const IconBg: React.FC<Props> = (props) => {
       p={2}
       transition={transitions.base}
       {...style}
-      {...props}
+      {...rest}
     />
   )
 }

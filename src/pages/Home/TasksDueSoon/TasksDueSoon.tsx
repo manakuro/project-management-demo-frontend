@@ -9,6 +9,7 @@ import {
 import { ListItem } from './/ListItem'
 import { TaskDueSoon } from './types'
 import { Tooltip } from 'src/components/molecules'
+import { dateFns } from 'src/shared/dateFns'
 
 type Props = {}
 
@@ -20,21 +21,28 @@ const fetchTasksDueSoon = (): Promise<TaskDueSoon[]> => {
           id: '1',
           projectId: '1',
           name: 'Implement home page',
-          dueDate: 'Today',
+          dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
           isDone: true,
         },
         {
           id: '2',
           projectId: '1',
           name: 'Implement Task Due Soon',
-          dueDate: 'Monday',
+          dueDate: new Date(dateFns.addDays(new Date(), 4)).toISOString(),
           isDone: false,
         },
         {
           id: '3',
           projectId: '2',
           name: 'Implement Recent Projects',
-          dueDate: 'Tuesday',
+          dueDate: new Date(dateFns.addDays(new Date(), 5)).toISOString(),
+          isDone: false,
+        },
+        {
+          id: '4',
+          projectId: '1',
+          name: 'Implement Date picker',
+          dueDate: new Date(dateFns.addDays(new Date(), 6)).toISOString(),
           isDone: false,
         },
       ])

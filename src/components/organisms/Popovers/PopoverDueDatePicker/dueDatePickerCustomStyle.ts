@@ -16,7 +16,8 @@ export const dueDatePickerCustomStyle = () => ({
   },
   '.PopoverDueDatePicker .MuiPickersCalendarHeader-root': {
     marginTop: '0 !important',
-    paddingLeft: '21px !important',
+    paddingLeft: '13px !important',
+    paddingRight: '4px !important',
   },
   '.PopoverDueDatePicker .MuiPickersCalendar-weekDayLabel': {
     width: '30px !important',

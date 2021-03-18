@@ -22,6 +22,7 @@ const fetchTasksDueSoon = (): Promise<TaskDueSoon[]> => {
           projectId: '1',
           name: 'Implement home page',
           dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
+          dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
           isDone: true,
         },
         {

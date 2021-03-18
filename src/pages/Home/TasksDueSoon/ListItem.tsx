@@ -4,7 +4,7 @@ import { useClickableHover } from 'src/hooks'
 import { TaskDueSoon } from './types'
 import { useProject } from 'src/store/projects'
 import { PopoverDueDatePicker } from 'src/components/organisms'
-import { formatDueDate } from 'src/shared/formatDate'
+import { formatDueDate, formatDueTime } from 'src/shared/formatDate'
 
 type Props = {
   task: TaskDueSoon
@@ -44,13 +44,18 @@ export const ListItem: React.VFC<Props> = (props) => {
         </Badge>
         <PopoverDueDatePicker>
           <Text
-            w={16}
+            w={24}
             ml={2}
             fontSize="xs"
             color="text.muted"
             textAlign="right"
           >
             {formatDueDate(props.task.dueDate)}
+            {props.task.dueTime && (
+              <Text as="span" fontSize="xs" color="text.muted" ml={1}>
+                {formatDueTime(props.task.dueTime)}
+              </Text>
+            )}
           </Text>
         </PopoverDueDatePicker>
       </Flex>

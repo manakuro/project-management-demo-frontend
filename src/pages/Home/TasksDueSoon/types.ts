@@ -4,4 +4,5 @@ export type TaskDueSoon = {
   name: string
   dueDate: string
   isDone: boolean
+  dueTime?: string
 }

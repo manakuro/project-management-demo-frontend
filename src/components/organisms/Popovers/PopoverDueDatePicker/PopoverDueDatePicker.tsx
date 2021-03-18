@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import {
   Popover,
   PopoverBody,
@@ -9,13 +9,23 @@ import {
 import { Button, Divider, Flex, Icon, IconBg, Link } from 'src/components/atoms'
 import { DatePicker } from 'src/components/organisms'
 
-type Props = {} & PopoverProps
+type Props = {
+  date: string
+  onChange: (date: Date) => void
+} & PopoverProps
 
 export const PopoverDueDatePicker: React.FC<Props> = (props) => {
-  const [value, setValue] = React.useState<Date | null>(new Date())
+  const [value, setValue] = React.useState<Date | null>(new Date(props.date))
+
+  const handleAccept = useCallback(
+    (newValue) => {
+      props.onChange(newValue as Date)
+    },
+    [props],
+  )
 
   return (
-    <Popover isOpen={props.isOpen} isLazy placement={props.placement}>
+    <Popover isLazy>
       <PopoverTrigger>
         <Link>{props.children}</Link>
       </PopoverTrigger>
@@ -30,6 +40,7 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
             onChange={(newValue) => {
               setValue(newValue as Date)
             }}
+            onAccept={handleAccept}
             minDate={new Date()}
             maxDate={new Date('2022/3/12')}
           />

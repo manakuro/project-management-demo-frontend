@@ -42,7 +42,10 @@ export const ListItem: React.VFC<Props> = (props) => {
         <Badge variant="solid" bg={project.color.color} textAlign="center">
           {project.name}
         </Badge>
-        <PopoverDueDatePicker>
+        <PopoverDueDatePicker
+          date={props.task.dueDate}
+          onChange={(date) => console.log(date)}
+        >
           <Text
             w={24}
             ml={2}

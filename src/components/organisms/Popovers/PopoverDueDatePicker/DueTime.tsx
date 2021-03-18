@@ -1,5 +1,12 @@
 import React from 'react'
-import { Flex, Icon, IconBg, Option, Select, Text } from 'src/components/atoms'
+import {
+  Flex,
+  Icon,
+  IconButton,
+  Option,
+  Select,
+  Text,
+} from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { formatDueTime } from 'src/shared/formatDate'
 import { useClickableHover } from 'src/hooks'
@@ -29,9 +36,12 @@ export const DueTime: React.FC<Props> = (props) => {
         size="sm"
         fontSize="xs"
       >
-        <IconBg onClick={props.onClick}>
-          <Icon icon="time" color="text.muted" />
-        </IconBg>
+        <IconButton
+          aria-label="due time"
+          onClick={props.onClick}
+          icon={<Icon icon="time" color="text.muted" />}
+          variant="ghost"
+        />
       </Tooltip>
     )
   }

@@ -44,6 +44,7 @@ import {
   BiSearch,
   BiListPlus,
   BiTime,
+  BiTable,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon } from 'react-icons/fa'
 import { HiOutlineMail } from 'react-icons/hi'
@@ -110,6 +111,7 @@ const icons = {
   listPlus: BiListPlus,
   outlineProject: AiOutlineProject,
   time: BiTime,
+  table: BiTable,
 } as const
 
 export type IconType = keyof typeof icons

@@ -1,5 +1,12 @@
 import React from 'react'
-import { Logo, Link, NextLink, Icon, IconBg, Flex } from 'src/components/atoms'
+import {
+  Logo,
+  Link,
+  NextLink,
+  Icon,
+  Flex,
+  IconButton,
+} from 'src/components/atoms'
 import { PADDING_X, useNavigation } from 'src/components/organisms/Navigation'
 
 type Props = {}
@@ -23,9 +30,14 @@ export const Header: React.VFC<Props> = () => {
           </Link>
         </NextLink>
       )}
-      <IconBg mr={-2} onClick={toggleMenu} dark>
-        <Icon icon="menu" />
-      </IconBg>
+      <IconButton
+        mr={-2}
+        onClick={toggleMenu}
+        aria-label="expand button"
+        icon={<Icon icon="menu" />}
+        variant="ghost"
+        light
+      />
     </Flex>
   )
 }

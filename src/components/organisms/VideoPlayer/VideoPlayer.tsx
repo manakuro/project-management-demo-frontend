@@ -6,7 +6,7 @@ import {
   ModalFooter,
   ModalOverlay,
 } from 'src/components/organisms'
-import { AspectRatio, Box, Flex, Icon, IconBg } from 'src/components/atoms'
+import { AspectRatio, Box, Flex, Icon, IconButton } from 'src/components/atoms'
 import { useVideoPlayer } from './useVideoPlayer'
 import { Duration } from './Duration'
 import ReactPlayer from 'react-player'
@@ -90,23 +90,18 @@ export const VideoPlayer: React.VFC = () => {
         </ModalBody>
         <ModalFooter px={4} py={2} justifyContent="flex-start">
           <Flex flex={1}>
-            <IconBg
-              borderRadius="50%"
-              bg="gray.100"
-              w={10}
-              h={10}
-              _hover={{
-                bg: 'gray.200',
-              }}
+            <IconButton
+              borderRadius="full"
+              aria-label="play button"
+              icon={
+                <Icon
+                  icon={videoState.playing ? 'pause' : 'play'}
+                  mr={videoState.playing ? 0 : -1}
+                />
+              }
               mr={4}
               onClick={handlePlay}
-            >
-              <Icon
-                icon={videoState.playing ? 'pause' : 'play'}
-                mr={videoState.playing ? 0 : -1}
-              />
-            </IconBg>
-
+            />
             <Duration
               mr={3}
               seconds={videoState.duration * videoState.played}

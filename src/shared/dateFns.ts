@@ -2,6 +2,7 @@ import isToday from 'date-fns/isToday'
 import isYesterday from 'date-fns/isYesterday'
 import isThisYear from 'date-fns/isThisYear'
 import isThisWeek from 'date-fns/isThisWeek'
+import addYears from 'date-fns/addYears'
 import getWeek from 'date-fns/getWeek'
 import DateIODateFnsAdapter from '@date-io/date-fns'
 
@@ -23,6 +24,12 @@ class DateFnsAdapter extends DateIODateFnsAdapter {
     options: Parameters<typeof getWeek>[1],
   ) {
     return getWeek(date, options)
+  }
+  addYears(
+    date: Parameters<typeof addYears>[0],
+    amount: Parameters<typeof addYears>[1],
+  ) {
+    return addYears(date, amount)
   }
 }
 

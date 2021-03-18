@@ -8,11 +8,15 @@ import {
 } from 'src/components/organisms'
 import { Button, Divider, Flex, Icon, IconBg, Link } from 'src/components/atoms'
 import { DatePicker } from 'src/components/organisms'
+import { dateFns } from 'src/shared/dateFns'
 
 type Props = {
   date: string
   onChange: (date: Date) => void
 } & PopoverProps
+
+const MIN_DATE = new Date()
+const MAX_DATE = dateFns.addYears(new Date(), 1)
 
 export const PopoverDueDatePicker: React.FC<Props> = (props) => {
   const [value, setValue] = React.useState<Date | null>(new Date(props.date))
@@ -41,8 +45,8 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
               setValue(newValue as Date)
             }}
             onAccept={handleAccept}
-            minDate={new Date()}
-            maxDate={new Date('2022/3/12')}
+            minDate={MIN_DATE}
+            maxDate={MAX_DATE}
           />
           <Divider />
           <Flex mt={2}>

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 import { PopoverBody, PopoverProps } from 'src/components/organisms'
-import { Box, Button, Divider, Flex, FlexProps } from 'src/components/atoms'
+import { Button, Divider, Flex, FlexProps } from 'src/components/atoms'
 import { DatePicker } from 'src/components/organisms'
 import { dateFns } from 'src/shared/dateFns'
 import { DueTime } from './DueTime'
@@ -47,17 +47,15 @@ export const Body: React.FC<Props> = (props) => {
 
   return (
     <PopoverBody p={4} ref={ref}>
-      <Box minH="236px">
-        <DatePicker
-          value={value}
-          onChange={(newValue) => {
-            setValue(newValue as Date)
-          }}
-          onAccept={handleAccept}
-          minDate={MIN_DATE}
-          maxDate={MAX_DATE}
-        />
-      </Box>
+      <DatePicker
+        value={value}
+        onChange={(newValue) => {
+          setValue(newValue as Date)
+        }}
+        onAccept={handleAccept}
+        minDate={MIN_DATE}
+        maxDate={MAX_DATE}
+      />
       <Divider />
       <Flex mt={2} {...optionContainerStyle} cursor="auto">
         <DueTime

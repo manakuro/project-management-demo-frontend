@@ -48,7 +48,6 @@ export const ListItemList: React.VFC<Props> = (props) => {
           <IconButton
             aria-label="favorite button"
             icon={<Icon icon="starOutline" size="xs" color="text.muted" />}
-            light
             variant="ghost"
             {...clickableHoverLightStyle}
           />
@@ -69,10 +68,8 @@ export const ListItemList: React.VFC<Props> = (props) => {
         <IconButton
           aria-label="menu button"
           icon={<Icon icon="menu" size="xs" color="text.muted" />}
-          light
           variant="ghost"
           ml={2}
-          {...clickableHoverLightStyle}
         />
       </Flex>
     </Flex>

@@ -12,6 +12,7 @@ import { useProject } from 'src/store/projects'
 import { transitions } from 'src/styles'
 import { useHover } from 'src/hooks/useHover'
 import { findProjectIcon } from 'src/store/projects/projectIcons'
+import { useClickableHover } from 'src/hooks'
 
 type Props = {
   projectId: string
@@ -21,6 +22,7 @@ export const ListItemTiles: React.VFC<Props> = (props) => {
   const { project } = useProject(props.projectId)
   const ref = useRef(null)
   const isHovering = useHover(ref)
+  const { clickableHoverLightStyle } = useClickableHover()
 
   return (
     <Flex
@@ -52,8 +54,8 @@ export const ListItemTiles: React.VFC<Props> = (props) => {
             <IconButton
               aria-label="favorite button"
               icon={<Icon icon="starOutline" size="xs" />}
-              light
               variant="ghost"
+              {...clickableHoverLightStyle}
             />
           </Fade>
         </Flex>

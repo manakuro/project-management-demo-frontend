@@ -61,7 +61,7 @@ export const ListItemTiles: React.VFC<Props> = (props) => {
         <Flex position="absolute" top={2} right={2}>
           <Fade in={isHovering}>
             <IconButton
-              aria-label="favorite button"
+              aria-label="menu button"
               icon={<Icon icon="menu" size="xs" />}
               light
               variant="ghost"

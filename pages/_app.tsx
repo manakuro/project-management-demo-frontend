@@ -11,6 +11,7 @@ import {
   LocalizationProvider,
   AdapterDateFns,
 } from 'src/shared/material-ui'
+import { BeforeAppMount } from 'src/shared/beforeAppMount'
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -18,10 +19,12 @@ const App = ({ Component, pageProps }: AppProps) => {
       <MuiThemeProvider theme={muiTheme}>
         <ChakraProvider theme={theme} resetCSS>
           <LocalizationProvider dateAdapter={AdapterDateFns} locale={enLocale}>
-            <>
-              <Component {...pageProps} />
-              <Modals />
-            </>
+            <BeforeAppMount>
+              <>
+                <Component {...pageProps} />
+                <Modals />
+              </>
+            </BeforeAppMount>
           </LocalizationProvider>
         </ChakraProvider>
       </MuiThemeProvider>

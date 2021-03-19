@@ -6,6 +6,7 @@ import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useI
 import { PopoverProfile } from 'src/components/organisms/Popovers/PopoverProfile'
 
 type Teammate = {
+  id: string
   name: string
   image: string
   email: string

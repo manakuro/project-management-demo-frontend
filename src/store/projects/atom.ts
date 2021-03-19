@@ -27,6 +27,7 @@ const projectState = atomFamily<Project, string>({
     icon: {
       id: '',
     },
+    teammates: [],
   },
 })
 

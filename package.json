@@ -24,6 +24,7 @@
     "@emotion/styled": "^11.1.5",
     "@material-ui/core": "^5.0.0-alpha.27",
     "@material-ui/lab": "^5.0.0-alpha.27",
+    "@react-hook/hover": "^4.0.0",
     "date-fns": "^2.19.0",
     "emotion-theming": "^11.0.0",
     "focus-visible": "^5.2.0",

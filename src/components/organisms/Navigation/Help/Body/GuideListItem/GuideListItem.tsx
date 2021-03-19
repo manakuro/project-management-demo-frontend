@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconType } from 'src/components/atoms'
+import { IconType } from 'src/shared/icons'
 import { ListItem } from './ListItem'
 import { ListItemDetail } from './ListItemDetail'
 

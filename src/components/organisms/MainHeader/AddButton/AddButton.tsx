@@ -5,9 +5,9 @@ import {
   Portal,
   Flex,
   Text,
-  IconType,
   FlexProps,
 } from 'src/components/atoms'
+import { IconType } from 'src/shared/icons'
 import { Menu, MenuButton, MenuList, MenuItem } from 'src/components/organisms'
 import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
 

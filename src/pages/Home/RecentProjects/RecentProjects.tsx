@@ -1,31 +1,18 @@
 import React, { memo } from 'react'
-import { Box, Heading, Icon, IconButton } from 'src/components/atoms'
+import { Box, Heading, Icon, IconButton, Stack } from 'src/components/atoms'
 import {
   Accordion,
   AccordionItem,
   AccordionPanel,
   AccordionButton,
 } from 'src/components/organisms'
+import { useProjects } from 'src/store/projects'
+import { ListItem } from './ListItem'
 
 type Props = {}
 
-// const useTasksDueSoonQuery = () => {
-//   const [tasks, setTasks] = useState<TaskDueSoon[]>()
-//
-//   useEffect(() => {
-//     ;(async () => {
-//       const res = await fetchTasksDueSoon()
-//       setTasks(res)
-//     })()
-//   }, [])
-//
-//   return {
-//     tasks,
-//   }
-// }
-
 export const RecentProjects: React.VFC<Props> = memo<Props>(() => {
-  // const { tasks } = useTasksDueSoonQuery()
+  const { projectIds } = useProjects()
 
   return (
     <Accordion allowToggle defaultIndex={0}>
@@ -54,7 +41,13 @@ export const RecentProjects: React.VFC<Props> = memo<Props>(() => {
               />
             </AccordionButton>
             <AccordionPanel p={0}>
-              <Box py={4}>hey</Box>
+              <Box py={4}>
+                <Stack direction="row" spacing={6}>
+                  {projectIds.map((id) => (
+                    <ListItem projectId={id} key={id} />
+                  ))}
+                </Stack>
+              </Box>
             </AccordionPanel>
           </>
         )}

@@ -1,12 +1,12 @@
 import React from 'react'
 import {
   Icon,
-  IconType,
   InputProps,
   InputGroup,
   Input,
   InputLeftElement,
 } from 'src/components/atoms'
+import { IconType } from 'src/shared/icons'
 
 type Props = InputProps & {
   icon: IconType

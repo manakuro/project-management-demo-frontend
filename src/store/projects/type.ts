@@ -11,4 +11,10 @@ export type Project = {
   icon: {
     id: string
   }
+  teammates: {
+    id: string
+    name: string
+    image: string
+    email: string
+  }[]
 }

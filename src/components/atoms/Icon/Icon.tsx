@@ -3,57 +3,7 @@ import {
   Icon as ChakraIcon,
   IconProps as ChakraIconProps,
 } from '@chakra-ui/react'
-import {
-  BiHome,
-  BiSun,
-  BiMenu,
-  BiCompass,
-  BiCodeAlt,
-  BiCheckCircle,
-  BiBell,
-  BiNotification,
-  BiBarChart,
-  BiRocket,
-  BiIdCard,
-  BiHelpCircle,
-  BiUserPlus,
-  BiTrashAlt,
-  BiGridAlt,
-  BiTask,
-  BiBookOpen,
-  BiLayerPlus,
-  BiMobile,
-  BiGridHorizontal,
-  BiChevronRight,
-  BiCopyAlt,
-  BiX,
-  BiChevronDown,
-  BiChevronLeft,
-  BiPlay,
-  BiPause,
-  BiPlayCircle,
-  BiMovie,
-  BiShapePolygon,
-  BiPlus,
-  BiSpreadsheet,
-  BiFileBlank,
-  BiLayout,
-  BiDotsHorizontalRounded,
-  BiMessageRoundedDots,
-  BiCheck,
-  BiSearch,
-  BiListPlus,
-  BiTime,
-  BiTable,
-} from 'react-icons/bi'
-import { FaTwitter, FaGithub, FaMoon } from 'react-icons/fa'
-import { HiOutlineMail } from 'react-icons/hi'
-import {
-  AiFillCheckCircle,
-  AiFillPlayCircle,
-  AiOutlineProject,
-} from 'react-icons/ai'
-import { Medium } from './icons'
+import { IconType, icons } from 'src/shared/icons'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraIconProps & {
@@ -62,61 +12,11 @@ type Props = ChakraIconProps & {
 }
 export type IconProps = Props
 
-const icons = {
-  home: BiHome,
-  twitter: FaTwitter,
-  github: FaGithub,
-  medium: Medium,
-  moon: FaMoon,
-  sun: BiSun,
-  menu: BiMenu,
-  compass: BiCompass,
-  codeAlt: BiCodeAlt,
-  checkCircle: BiCheckCircle,
-  checkCircleFilled: AiFillCheckCircle,
-  check: BiCheck,
-  bell: BiBell,
-  notification: BiNotification,
-  barChart: BiBarChart,
-  rocket: BiRocket,
-  idCard: BiIdCard,
-  help: BiHelpCircle,
-  userPlus: BiUserPlus,
-  trashAlt: BiTrashAlt,
-  gridAlt: BiGridAlt,
-  gridHorizontal: BiGridHorizontal,
-  task: BiTask,
-  bookOpen: BiBookOpen,
-  layerPlus: BiLayerPlus,
-  mobile: BiMobile,
-  chevronRight: BiChevronRight,
-  chevronDown: BiChevronDown,
-  chevronLeft: BiChevronLeft,
-  copyAlt: BiCopyAlt,
-  playCircle: AiFillPlayCircle,
-  playCircleOutline: BiPlayCircle,
-  play: BiPlay,
-  pause: BiPause,
-  x: BiX,
-  movie: BiMovie,
-  shapePolygon: BiShapePolygon,
-  plus: BiPlus,
-  spreadsheet: BiSpreadsheet,
-  fileBlank: BiFileBlank,
-  layout: BiLayout,
-  dotsHorizontalRounded: BiDotsHorizontalRounded,
-  mailOutline: HiOutlineMail,
-  messageRoundedDots: BiMessageRoundedDots,
-  search: BiSearch,
-  listPlus: BiListPlus,
-  outlineProject: AiOutlineProject,
-  time: BiTime,
-  table: BiTable,
-} as const
-
-export type IconType = keyof typeof icons
-
 const sizes = {
+  '3xl': {
+    w: 10,
+    h: 10,
+  },
   md: {
     w: '1.25em',
     h: '1.25em',

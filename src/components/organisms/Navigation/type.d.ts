@@ -1,5 +1,5 @@
 import { Pathname, Routes } from 'src/router'
-import { IconType } from 'src/components/atoms'
+import { IconType } from 'src/shared/icons'
 
 export type NavListItem = {
   name: string

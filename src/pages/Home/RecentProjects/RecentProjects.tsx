@@ -7,7 +7,7 @@ import {
   AccordionButton,
 } from 'src/components/organisms'
 import { useProjects } from 'src/store/projects'
-import { ListItem } from './ListItem'
+import { ListItemTiles } from './ListItemTiles'
 import { ListIcon } from './ListIcon'
 
 type Props = {}
@@ -42,7 +42,7 @@ export const RecentProjects: React.VFC<Props> = memo<Props>(() => {
               <Box py={4}>
                 <Stack direction="row" spacing={6}>
                   {projectIds.map((id) => (
-                    <ListItem projectId={id} key={id} />
+                    <ListItemTiles projectId={id} key={id} />
                   ))}
                 </Stack>
               </Box>

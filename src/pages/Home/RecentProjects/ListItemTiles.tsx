@@ -17,7 +17,7 @@ type Props = {
   projectId: string
 }
 
-export const ListItem: React.VFC<Props> = (props) => {
+export const ListItemTiles: React.VFC<Props> = (props) => {
   const { project } = useProject(props.projectId)
   const ref = useRef(null)
   const isHovering = useHover(ref)

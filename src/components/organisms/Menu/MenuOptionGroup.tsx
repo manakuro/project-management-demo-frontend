@@ -7,6 +7,8 @@ import {
 type Props = ChakraMenuOptionGroupProps
 export type MenuOptionGroupProps = Props
 
-export const MenuOptionGroup: React.FC<Props> = (props) => {
+export const MenuOptionGroup: React.FC<Props> & { id?: string } = (props) => {
   return <ChakraMenuOptionGroup {...props} />
 }
+
+MenuOptionGroup.id = 'MenuOptionGroup'

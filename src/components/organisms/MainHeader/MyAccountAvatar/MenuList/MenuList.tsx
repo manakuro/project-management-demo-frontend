@@ -58,7 +58,7 @@ export const MenuList: React.FC<Props> = (props) => {
         </MenuItem>
         <MenuDivider />
         <MenuItem onMouseEnter={handleClose} link>
-          <Link isExternal href="https://google.com">
+          <Link fontSize="sm" isExternal href="https://google.com">
             Privacy Policy
           </Link>
         </MenuItem>

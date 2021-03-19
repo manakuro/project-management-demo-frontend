@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react'
-import { Box, Button, Heading, Icon, Stack } from 'src/components/atoms'
+import { Box, Button, Flex, Heading, Icon, Stack } from 'src/components/atoms'
 import {
   Accordion,
   AccordionItem,
@@ -73,21 +73,17 @@ export const TasksDueSoon: React.VFC<Props> = memo<Props>(() => {
       <AccordionItem border="none">
         {({ isExpanded }) => (
           <>
-            <AccordionButton
-              py={1}
-              px={2}
-              borderBottom="1px"
-              borderColor="gray.200"
-              _hover={{ bg: 'none' }}
-            >
-              {isExpanded ? (
-                <Icon icon="chevronDown" mt="1px" />
-              ) : (
-                <Icon icon="chevronRight" mt="1px" />
-              )}
-              <Heading ml={2} as="h4" size="sm" flex="1" textAlign="left">
-                Tasks Due Soon
-              </Heading>
+            <Flex py={1} px={2} borderBottom="1px" borderColor="gray.200">
+              <AccordionButton p={0} _hover={{ bg: 'none' }}>
+                {isExpanded ? (
+                  <Icon icon="chevronDown" mt="1px" />
+                ) : (
+                  <Icon icon="chevronRight" mt="1px" />
+                )}
+                <Heading ml={2} as="h4" size="sm" flex="1" textAlign="left">
+                  Tasks Due Soon
+                </Heading>
+              </AccordionButton>
               <Tooltip
                 hasArrow
                 color="white"
@@ -105,10 +101,12 @@ export const TasksDueSoon: React.VFC<Props> = memo<Props>(() => {
                 size="xs"
                 ml={1}
                 colorScheme="gray"
+                cursor="pointer"
               >
                 See all my tasks
               </Button>
-            </AccordionButton>
+            </Flex>
+
             <AccordionPanel p={0}>
               <Box py={4}>
                 <Stack spacing={2}>

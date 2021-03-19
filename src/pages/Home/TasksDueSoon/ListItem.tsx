@@ -47,13 +47,7 @@ export const ListItem: React.VFC<Props> = (props) => {
           time={props.task.dueTime}
           onChange={(date) => console.log(date)}
         >
-          <Text
-            w={24}
-            ml={2}
-            fontSize="xs"
-            color="text.muted"
-            textAlign="right"
-          >
+          <Text ml={2} fontSize="xs" color="text.muted" textAlign="right">
             {formatDueDate(props.task.dueDate)}
             {props.task.dueTime && (
               <Text as="span" fontSize="xs" color="text.muted" ml={1}>

@@ -4,10 +4,12 @@ import { PopoverProjectMenu } from 'src/components/organisms'
 
 type Props = Omit<IconButtonProps, 'aria-label'> & {
   projectId: string
+  onOpened?: () => void
+  onClosed?: () => void
 }
 
 export const MenuButton: React.VFC<Props> = (props) => {
-  const { projectId, ...rest } = props
+  const { projectId, onOpened, onClosed, ...rest } = props
 
   return (
     <PopoverProjectMenu
@@ -23,6 +25,8 @@ export const MenuButton: React.VFC<Props> = (props) => {
         variant: 'ghost',
         ...rest,
       }}
+      onOpened={onOpened}
+      onClosed={onClosed}
     />
   )
 }

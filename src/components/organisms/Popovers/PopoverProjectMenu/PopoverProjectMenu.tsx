@@ -18,7 +18,10 @@ type Props = MenuButtonProps & {
   share?: boolean
   iconButton?: IconButtonProps
   menuButtonStyle?: ChakraProps
+  onOpened?: () => void
+  onClosed?: () => void
 }
+export type PopoverProjectMenuProps = Props
 
 export const PopoverProjectMenu: React.VFC<Props> = (props) => {
   const {
@@ -33,13 +36,21 @@ export const PopoverProjectMenu: React.VFC<Props> = (props) => {
     share,
     iconButton,
     menuButtonStyle,
+    onOpened,
+    onClosed,
   } = props
   const { project } = useProject(projectId)
   const { onClose, onOpen, isOpen } = useDisclosure()
 
+  const handleCloseMenu = useCallback(() => {
+    onClose()
+    onClosed?.()
+  }, [onClose, onClosed])
+
   const handleOpen = useCallback(() => {
     onOpen()
-  }, [onOpen])
+    onOpened?.()
+  }, [onOpen, onOpened])
 
   const handleAddFavorite = useCallback(() => {
     console.log('handleAddFavorite!')
@@ -74,7 +85,7 @@ export const PopoverProjectMenu: React.VFC<Props> = (props) => {
       {isOpen && (
         <MenuList
           project={project}
-          onCloseMenu={onClose}
+          onCloseMenu={handleCloseMenu}
           onAddFavorite={handleAddFavorite}
           onRemoveFavorite={handleRemoveFavorite}
           onDuplicateProject={handleDuplicateProject}

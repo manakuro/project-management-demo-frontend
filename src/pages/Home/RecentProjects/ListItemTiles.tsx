@@ -13,6 +13,7 @@ import { transitions } from 'src/styles'
 import { useHover } from 'src/hooks/useHover'
 import { findProjectIcon } from 'src/store/projects/projectIcons'
 import { useClickableHover } from 'src/hooks'
+import { MenuButton } from './MenuButton/MenuButton'
 
 type Props = {
   projectId: string
@@ -62,12 +63,7 @@ export const ListItemTiles: React.VFC<Props> = (props) => {
 
         <Flex position="absolute" top={2} right={2}>
           <Fade in={isHovering}>
-            <IconButton
-              aria-label="menu button"
-              icon={<Icon icon="menu" size="xs" />}
-              light
-              variant="ghost"
-            />
+            <MenuButton projectId={project.id} light />
           </Fade>
         </Flex>
 

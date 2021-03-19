@@ -11,6 +11,7 @@ import { useProject } from 'src/store/projects'
 import { findProjectIcon } from 'src/store/projects/projectIcons'
 import { useClickableHover } from 'src/hooks'
 import { PADDING_X } from './RecentProjects'
+import { MenuButton } from './MenuButton/MenuButton'
 
 type Props = {
   projectId: string
@@ -65,12 +66,7 @@ export const ListItemList: React.VFC<Props> = (props) => {
             />
           ))}
         </AvatarGroup>
-        <IconButton
-          aria-label="menu button"
-          icon={<Icon icon="menu" size="xs" color="text.muted" />}
-          variant="ghost"
-          ml={2}
-        />
+        <MenuButton projectId={project.id} ml={2} />
       </Flex>
     </Flex>
   )

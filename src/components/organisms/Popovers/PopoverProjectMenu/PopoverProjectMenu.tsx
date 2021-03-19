@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { useProject } from 'src/store/projects'
 import { Menu, MenuButton, MenuButtonProps } from 'src/components/organisms'
 import { MenuList } from './MenuList'
-import { useDisclosure } from 'src/shared/chakra'
+import { ChakraProps, useDisclosure } from 'src/shared/chakra'
 import { IconButtonProps } from 'src/components/atoms'
 
 type Props = MenuButtonProps & {
@@ -17,6 +17,7 @@ type Props = MenuButtonProps & {
   copyProjectLink?: boolean
   share?: boolean
   iconButton?: IconButtonProps
+  menuButtonStyle?: ChakraProps
 }
 
 export const PopoverProjectMenu: React.VFC<Props> = (props) => {
@@ -31,6 +32,7 @@ export const PopoverProjectMenu: React.VFC<Props> = (props) => {
     copyProjectLink,
     share,
     iconButton,
+    menuButtonStyle,
   } = props
   const { project } = useProject(projectId)
   const { onClose, onOpen, isOpen } = useDisclosure()
@@ -66,7 +68,9 @@ export const PopoverProjectMenu: React.VFC<Props> = (props) => {
 
   return (
     <Menu closeOnBlur={false} closeOnSelect={false} isOpen={isOpen} isLazy>
-      <MenuButton onClick={handleOpen} {...iconButton} />
+      <MenuButton onClick={handleOpen} {...iconButton} {...menuButtonStyle}>
+        {props.children}
+      </MenuButton>
       {isOpen && (
         <MenuList
           project={project}

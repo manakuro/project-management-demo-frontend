@@ -7,7 +7,7 @@ import {
   AccordionButton,
 } from 'src/components/organisms'
 import { useProjects } from 'src/store/projects'
-import { ListItemTiles } from './ListItemTiles'
+import { ListItemTile, ListItemTileNew } from './ListItemTile'
 import { ListItemList } from './ListItemList'
 import { ListIcon } from './ListIcon'
 
@@ -51,8 +51,9 @@ export const RecentProjects: React.VFC<Props> = memo<Props>(() => {
                   <Box py={4}>
                     <Stack direction="row" spacing={6}>
                       {projectIds.map((id) => (
-                        <ListItemTiles projectId={id} key={id} />
+                        <ListItemTile projectId={id} key={id} />
                       ))}
+                      <ListItemTileNew />
                     </Stack>
                   </Box>
                 ) : (

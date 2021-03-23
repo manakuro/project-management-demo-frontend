@@ -10,8 +10,8 @@ import {
 import { useProject } from 'src/store/projects'
 import { findProjectIcon } from 'src/store/projects/projectIcons'
 import { useClickableHover } from 'src/hooks'
-import { PADDING_X } from './RecentProjects'
-import { MenuButton } from './MenuButton/MenuButton'
+import { MenuButton } from '../MenuButton/MenuButton'
+import { Container } from './Container'
 
 type Props = {
   projectId: string
@@ -19,17 +19,10 @@ type Props = {
 
 export const ListItemList: React.VFC<Props> = (props) => {
   const { project } = useProject(props.projectId)
-  const { clickableHoverStyle, clickableHoverLightStyle } = useClickableHover()
+  const { clickableHoverLightStyle } = useClickableHover()
 
   return (
-    <Flex
-      w="full"
-      borderBottom="1px"
-      borderColor="gray.200"
-      py={3}
-      px={PADDING_X}
-      {...clickableHoverStyle}
-    >
+    <Container>
       <Flex
         borderRadius="lg"
         p={2}
@@ -68,6 +61,6 @@ export const ListItemList: React.VFC<Props> = (props) => {
         </AvatarGroup>
         <MenuButton projectId={project.id} ml={2} />
       </Flex>
-    </Flex>
+    </Container>
   )
 }

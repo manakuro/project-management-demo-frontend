@@ -8,7 +8,7 @@ import {
 } from 'src/components/organisms'
 import { useProjects } from 'src/store/projects'
 import { ListItemTile, ListItemTileNew } from './ListItemTile'
-import { ListItemList } from './ListItemList'
+import { ListItemList, ListItemListNew } from './ListItemList'
 import { ListIcon } from './ListIcon'
 
 type Props = {}
@@ -61,6 +61,7 @@ export const RecentProjects: React.VFC<Props> = memo<Props>(() => {
                     {projectIds.map((id) => (
                       <ListItemList projectId={id} key={id} />
                     ))}
+                    <ListItemListNew />
                   </>
                 )}
               </>

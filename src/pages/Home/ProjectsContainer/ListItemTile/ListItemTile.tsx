@@ -11,7 +11,7 @@ import { useProject } from 'src/store/projects'
 import { transitions } from 'src/styles'
 import { findProjectIcon } from 'src/store/projects/projectIcons'
 import { useClickableHover } from 'src/hooks'
-import { MenuButton } from 'src/pages/Home/RecentProjects/MenuButton/MenuButton'
+import { MenuButton } from 'src/pages/Home/ProjectsContainer/MenuButton/MenuButton'
 import { Container } from './Container'
 
 type Props = {

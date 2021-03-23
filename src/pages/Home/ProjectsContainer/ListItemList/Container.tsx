@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex } from 'src/components/atoms'
 import { useClickableHover } from 'src/hooks'
-import { PADDING_X } from '../RecentProjects'
+import { PADDING_X } from '../ProjectsContainer'
 
 type Props = {}
 

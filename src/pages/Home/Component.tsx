@@ -4,6 +4,7 @@ import { Head } from 'src/components/atoms/Head'
 import { Heading, Box, Stack } from 'src/components/atoms'
 import { TasksDueSoon } from './TasksDueSoon'
 import { RecentProjects } from './RecentProjects'
+import { FavoriteProjects } from './FavoriteProjects'
 
 type Props = {}
 
@@ -19,6 +20,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
       <Box w="840px" mx="auto" py={10}>
         <Stack spacing={10}>
           <TasksDueSoon />
+          <FavoriteProjects />
           <RecentProjects />
         </Stack>
       </Box>

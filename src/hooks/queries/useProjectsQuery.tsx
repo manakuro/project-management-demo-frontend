@@ -1,15 +1,32 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { Project, useProjects } from 'src/store/projects'
 
-export const useProjectsQuery = () => {
+type Props = {
+  lazy?: boolean
+}
+
+export const useProjectsQuery = (props?: Props) => {
   const { setProjects } = useProjects()
 
   useEffect(() => {
+    ;(async () => {
+      if (props?.lazy) return
+
+      const res = await fetchProjects()
+      setProjects(res)
+    })()
+  }, [props?.lazy, setProjects])
+
+  const refetch = useCallback(() => {
     ;(async () => {
       const res = await fetchProjects()
       setProjects(res)
     })()
   }, [setProjects])
+
+  return {
+    refetch,
+  }
 }
 
 const fetchProjects = (): Promise<Project[]> => {

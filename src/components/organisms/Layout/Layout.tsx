@@ -15,7 +15,12 @@ export const Layout: React.FC = (props) => {
     >
       <Navigation />
       <Flex flex="1" flexDirection="column" minW="920px">
-        <Flex as="main" flex="1 1 auto" flexDirection="column">
+        <Flex
+          as="main"
+          flex="1 1 auto"
+          flexDirection="column"
+          overflowY="scroll"
+        >
           {props.children}
         </Flex>
       </Flex>

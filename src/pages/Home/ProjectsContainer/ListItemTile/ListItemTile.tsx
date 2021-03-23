@@ -1,16 +1,15 @@
 import React from 'react'
 import {
   Flex,
-  IconButton,
   Icon,
   Fade,
   Avatar,
   AvatarGroup,
+  FavoriteButton,
 } from 'src/components/atoms'
 import { useProject } from 'src/store/projects'
 import { transitions } from 'src/styles'
 import { findProjectIcon } from 'src/store/projects/projectIcons'
-import { useClickableHover } from 'src/hooks'
 import { MenuButton } from 'src/pages/Home/ProjectsContainer/MenuButton/MenuButton'
 import { Container } from './Container'
 
@@ -20,7 +19,6 @@ type Props = {
 
 export const ListItemTile: React.VFC<Props> = (props) => {
   const { project } = useProject(props.projectId)
-  const { clickableHoverLightStyle } = useClickableHover()
 
   return (
     <Container name={project.name}>
@@ -43,12 +41,7 @@ export const ListItemTile: React.VFC<Props> = (props) => {
         >
           <Flex position="absolute" top={2} left={2}>
             <Fade in={showTransition}>
-              <IconButton
-                aria-label="favorite button"
-                icon={<Icon icon="starOutline" size="xs" />}
-                variant="ghost"
-                {...clickableHoverLightStyle}
-              />
+              <FavoriteButton favoriteProjectId={props.projectId} />
             </Fade>
           </Flex>
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { Flex } from 'src/components/atoms'
 import { Navigation } from 'src/components/organisms'
 
-export const Layout: React.FC = (props) => {
+export const LayoutDefault: React.FC = (props) => {
   return (
     <Flex
       w="full"
@@ -28,3 +28,7 @@ export const Layout: React.FC = (props) => {
     </Flex>
   )
 }
+
+export const getLayoutDefault = (page: any) => (
+  <LayoutDefault>{page}</LayoutDefault>
+)

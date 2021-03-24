@@ -12,8 +12,15 @@ import {
   AdapterDateFns,
 } from 'src/shared/material-ui'
 import { BeforeAppMount } from 'src/shared/beforeAppMount'
+import { getLayoutDefault, LayoutDefault } from 'src/components/organisms'
+
+export type AppLayout = { getLayout: typeof getLayoutDefault }
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const getLayout =
+    (Component as any).getLayout ||
+    ((page: any) => <LayoutDefault>{page}</LayoutDefault>)
+
   return (
     <RecoilRoot>
       <MuiThemeProvider theme={muiTheme}>
@@ -21,7 +28,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           <LocalizationProvider dateAdapter={AdapterDateFns} locale={enLocale}>
             <BeforeAppMount>
               <>
-                <Component {...pageProps} />
+                {getLayout(<Component {...pageProps} />)}
                 <Modals />
               </>
             </BeforeAppMount>

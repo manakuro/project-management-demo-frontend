@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import {
   Text,
   ListItem,
@@ -21,7 +21,7 @@ type Props = {
   linkStyle?: LinkProps
 } & ListItemProps
 
-export const NavListItem: React.VFC<Props> = (props) => {
+export const NavListItem: React.VFC<Props> = memo<Props>((props) => {
   const { item, selectedStyle, linkStyle, light, ...rest } = props
   const router = useRouter()
   const { _hover, selected } = useLinkHover()
@@ -48,7 +48,7 @@ export const NavListItem: React.VFC<Props> = (props) => {
       </WithNextLink>
     </ListItem>
   )
-}
+})
 
 const WithNextLink: React.FC<Props> = (props) => {
   return props.item.isExternal ? (

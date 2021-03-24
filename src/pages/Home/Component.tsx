@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Layout, MainHeader } from 'src/components/organisms'
+import { MainHeader } from 'src/components/organisms'
 import { Head } from 'src/components/atoms/Head'
 import { Heading, Box, Stack } from 'src/components/atoms'
 import { TasksDueSoon } from './TasksDueSoon'
@@ -10,7 +10,7 @@ type Props = {}
 
 export const Component: React.VFC<Props> = memo<Props>((props) => {
   return (
-    <Layout data-testid="Home">
+    <Box data-testid="Home">
       <Head title="Home" />
       <MainHeader>
         <Heading as="h2" size="md">
@@ -24,6 +24,6 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
           <RecentProjects />
         </Stack>
       </Box>
-    </Layout>
+    </Box>
   )
 })

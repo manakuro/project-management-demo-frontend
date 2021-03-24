@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Box, Flex } from 'src/components/atoms'
 import { CustomNav } from './CustomNav'
 import { Footer } from './Footer'
@@ -10,7 +10,7 @@ import { useNavigation } from './useNavigation'
 export const PADDING_X = 4
 export const MAX_WIDTH = '240px'
 export const MIN_WIDTH = '53px'
-export const Navigation: React.VFC = () => {
+export const Navigation: React.VFC = memo(() => {
   const { isExpanded } = useNavigation()
 
   return (
@@ -34,4 +34,4 @@ export const Navigation: React.VFC = () => {
       <Footer />
     </Flex>
   )
-}
+})

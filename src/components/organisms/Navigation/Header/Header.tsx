@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import {
   Logo,
   Link,
@@ -11,7 +11,7 @@ import { PADDING_X, useNavigation } from 'src/components/organisms/Navigation'
 
 type Props = {}
 
-export const Header: React.VFC<Props> = () => {
+export const Header: React.VFC<Props> = memo<Props>(() => {
   const { isExpanded, toggleMenu } = useNavigation()
 
   return (
@@ -40,4 +40,4 @@ export const Header: React.VFC<Props> = () => {
       />
     </Flex>
   )
-}
+})

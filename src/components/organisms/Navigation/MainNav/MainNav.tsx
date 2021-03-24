@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { List } from 'src/components/atoms'
 import { MAX_WIDTH } from '../Navigation'
 import { NavListItem as TNavListItem } from '../type'
@@ -37,7 +37,7 @@ const items: TNavListItem[] = [
   },
 ]
 
-export const MainNav: React.VFC = () => {
+export const MainNav: React.VFC = memo(() => {
   return (
     <List w={MAX_WIDTH} mb={2}>
       {items.map((n, i) => (
@@ -45,4 +45,4 @@ export const MainNav: React.VFC = () => {
       ))}
     </List>
   )
-}
+})

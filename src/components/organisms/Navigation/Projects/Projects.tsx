@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
 import { Workspace } from './Workspace'
@@ -8,7 +8,7 @@ import { useNavigation } from 'src/components/organisms/Navigation'
 
 type Props = {}
 
-export const Projects: React.VFC<Props> = () => {
+export const Projects: React.VFC<Props> = memo<Props>(() => {
   const { isExpanded } = useNavigation()
 
   return (
@@ -44,4 +44,4 @@ export const Projects: React.VFC<Props> = () => {
       </Flex>
     </>
   )
-}
+})

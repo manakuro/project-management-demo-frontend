@@ -1,2 +1,2 @@
-export * from './Layout'
+export * from './LayoutDefault'
 export * from './Inner'

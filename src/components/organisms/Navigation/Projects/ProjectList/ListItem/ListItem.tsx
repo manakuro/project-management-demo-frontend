@@ -24,25 +24,15 @@ export const ListItem: React.VFC<Props> = (props) => {
   const { clickableHoverLightStyle } = useClickableHover()
 
   return (
-    <>
+    <Flex p={2} px={PADDING_X} _hover={_hover} alignItems="center">
       <NextLink href="home" passHref>
-        <Link p={2} px={PADDING_X} _hover={_hover}>
+        <Link w="full">
           {isExpanded ? (
             <Flex alignItems="center">
               <ColorBox w={2} h={2} bg={project.color.color} />
               <Text fontSize="sm" flex={1} ml={3}>
                 {project.name}
               </Text>
-              <PopoverProjectMenu
-                addFavorite
-                duplicateProject
-                archiveProject
-                deleteProject
-                projectId={props.projectId}
-                menuButtonStyle={{ ...clickableHoverLightStyle }}
-              >
-                <Icon icon="dotsHorizontalRounded" />
-              </PopoverProjectMenu>
             </Flex>
           ) : (
             <Flex alignItems="center" justifyContent="center">
@@ -53,7 +43,17 @@ export const ListItem: React.VFC<Props> = (props) => {
           )}
         </Link>
       </NextLink>
-    </>
+      <PopoverProjectMenu
+        addFavorite
+        duplicateProject
+        archiveProject
+        deleteProject
+        projectId={props.projectId}
+        menuButtonStyle={{ ...clickableHoverLightStyle }}
+      >
+        <Icon icon="dotsHorizontalRounded" />
+      </PopoverProjectMenu>
+    </Flex>
   )
 }
 

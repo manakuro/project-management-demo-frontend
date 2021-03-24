@@ -30,20 +30,20 @@ export const Workspace: React.VFC<Props> = () => {
   return (
     <>
       <Menu placement="bottom-end">
-        <NextLink href="home" passHref>
-          <Link p={2} px={PADDING_X} _hover={_hover}>
-            <Flex alignItems="center">
+        <Flex p={2} px={PADDING_X} _hover={_hover} alignItems="center">
+          <NextLink href="home" passHref>
+            <Link w="full">
               {isExpanded && (
                 <Text fontSize="sm" flex={1}>
                   Workspace
                 </Text>
               )}
-              <MenuButton {...clickableHoverLightStyle}>
-                <Icon icon="plus" />
-              </MenuButton>
-            </Flex>
-          </Link>
-        </NextLink>
+            </Link>
+          </NextLink>
+          <MenuButton {...clickableHoverLightStyle}>
+            <Icon icon="plus" />
+          </MenuButton>
+        </Flex>
         <Portal>
           <MenuList color="text.base">
             <MenuGroup title="Create project">

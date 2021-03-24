@@ -9,7 +9,6 @@ export const BeforeAppMount: React.FC = (props) => {
   })
 
   useEffect(() => {
-    console.log('BeforeAppMount fetch!!')
     projectQueryResult.refetch()
     favoriteProjectIdsQueryResult.refetch()
 

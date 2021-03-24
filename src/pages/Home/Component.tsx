@@ -10,7 +10,7 @@ type Props = {}
 
 export const Component: React.VFC<Props> = memo<Props>((props) => {
   return (
-    <Layout>
+    <Layout data-testid="Home">
       <Head title="Home" />
       <MainHeader>
         <Heading as="h2" size="md">

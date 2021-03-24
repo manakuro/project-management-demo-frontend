@@ -12,6 +12,7 @@ export const Layout: React.FC = (props) => {
       bottom={0}
       right={0}
       overflow="hidden"
+      {...props}
     >
       <Navigation />
       <Flex flex="1" flexDirection="column" minW="920px">

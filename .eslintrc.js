@@ -1,10 +1,5 @@
 module.exports = {
-  extends: [
-    'react-app',
-    'eslint:recommended',
-    'plugin:prettier/recommended',
-    'prettier/react',
-  ],
+  extends: ['react-app', 'eslint:recommended', 'plugin:prettier/recommended'],
   plugins: ['babel'],
   rules: {
     quotes: ['error', 'single', { avoidEscape: true }],

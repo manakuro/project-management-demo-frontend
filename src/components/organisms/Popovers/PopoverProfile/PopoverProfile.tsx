@@ -8,7 +8,6 @@ import {
 } from 'src/components/organisms'
 import {
   AspectRatio,
-  Box,
   Button,
   Divider,
   Icon,
@@ -36,11 +35,11 @@ export const PopoverProfile: React.FC<Props> = (props) => {
         <PopoverContent w={56} border="none">
           <PopoverBody p={0} boxShadow="md" borderRadius="md">
             <AspectRatio ratio={4 / 3}>
-              <Box
+              <Flex
                 bg="teal.400"
                 w="full"
                 justifyContent="flex-start"
-                alignItems="flex-end"
+                alignItems="flex-end !important"
                 borderTopRadius="md"
               >
                 <Flex
@@ -63,7 +62,7 @@ export const PopoverProfile: React.FC<Props> = (props) => {
                 >
                   {props.profile.name}
                 </Text>
-              </Box>
+              </Flex>
             </AspectRatio>
             <Flex px={4} py={3} alignItems="center">
               <Icon icon="mailOutline" w={4} h={4} />

@@ -1,11 +1,21 @@
 import React, { memo } from 'react'
 import { Flex, Heading, Icon, IconButton, Portal } from 'src/components/atoms'
-import { Menu, MenuButton, MenuItem, MenuList } from 'src/components/organisms'
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  TabList,
+  Tab,
+} from 'src/components/organisms'
+import { useClickableHover } from 'src/hooks'
 
 export const Tabs: React.VFC = memo(() => {
+  const { clickableHoverLightStyle } = useClickableHover()
+
   return (
     <Flex ml={4} mt={3} flex={1}>
-      <Flex alignItems="flex-start">
+      <Flex alignItems="flex-start" flexDirection="column">
         <Flex alignItems="center">
           <Heading as="h2" size="md" fontWeight="semibold">
             My Tasks
@@ -28,6 +38,35 @@ export const Tabs: React.VFC = memo(() => {
             </Portal>
           </Menu>
         </Flex>
+        <TabList borderBottom="none">
+          <Tab
+            px={0}
+            mr={4}
+            mb={0}
+            {...clickableHoverLightStyle}
+            fontWeight="medium"
+          >
+            List
+          </Tab>
+          <Tab
+            px={0}
+            mr={4}
+            mb={0}
+            {...clickableHoverLightStyle}
+            fontWeight="medium"
+          >
+            Calendar
+          </Tab>
+          <Tab
+            px={0}
+            mr={4}
+            mb={0}
+            {...clickableHoverLightStyle}
+            fontWeight="medium"
+          >
+            Files
+          </Tab>
+        </TabList>
       </Flex>
     </Flex>
   )

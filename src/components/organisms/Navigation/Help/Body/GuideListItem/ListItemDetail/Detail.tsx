@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { Box, Button, Flex, Text } from 'src/components/atoms'
+import { Box, Button, Flex, Text, MoreLink } from 'src/components/atoms'
 import {
   PADDING_X,
   Item,
@@ -59,18 +59,7 @@ export const Detail: React.VFC<Props> = (props) => {
             {item.description}
           </Text>
           <Box>
-            <Text
-              as="span"
-              fontSize="xs"
-              color="link"
-              cursor="pointer"
-              _hover={{
-                textDecoration: 'underline !important',
-              }}
-              onClick={disclosure.onOpen}
-            >
-              See more
-            </Text>
+            <MoreLink onClick={disclosure.onOpen}>See more</MoreLink>
           </Box>
           <Text fontSize="xs" color="text.muted" mt={2} textAlign="right">
             {item.time}

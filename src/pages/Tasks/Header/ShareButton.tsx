@@ -1,8 +1,15 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Button, Flex, Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
+import { useShareWorkspaceModal } from 'src/components/organisms/Modals/ShareWorkspaceModal'
 
 export const ShareButton: React.VFC = memo(() => {
+  const { setIsOpen } = useShareWorkspaceModal()
+
+  const handleShareWorkspace = useCallback(() => {
+    setIsOpen(true)
+  }, [setIsOpen])
+
   return (
     <Flex alignItems="center">
       <Tooltip
@@ -15,6 +22,7 @@ export const ShareButton: React.VFC = memo(() => {
           leftIcon={<Icon icon="lockAlt" mt="-1px" size="xs" />}
           variant="outline"
           size="xs"
+          onClick={handleShareWorkspace}
         >
           Share
         </Button>

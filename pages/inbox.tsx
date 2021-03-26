@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container } from 'src/pages/Home'
 
-const Home: React.VFC = () => {
+const Inbox: React.VFC = () => {
   return <Container />
 }
 
-export default Home
+export default Inbox

@@ -13,7 +13,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
     <Box data-testid="Home">
       <Head title="Home" />
       <MainHeader>
-        <Heading as="h2" size="md">
+        <Heading as="h2" size="md" fontWeight="semibold">
           Home
         </Heading>
       </MainHeader>

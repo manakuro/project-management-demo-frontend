@@ -12,8 +12,11 @@ type Props = ChakraTooltipProps & {
 export type TooltipProps = Props
 
 const sizes = {
-  md: {
+  lg: {
     w: '200px',
+  },
+  md: {
+    w: '160px',
   },
   sm: {
     w: '120px',
@@ -32,6 +35,9 @@ export const Tooltip: React.FC<Props> & { id?: string } = forwardRef<
     px: 4,
     borderRadius: 'md',
     textAlign: 'center',
+    color: 'white',
+    bg: 'gray.800',
+    fontSize: 'xs',
     ...sizeStyle,
     ...rest,
   }

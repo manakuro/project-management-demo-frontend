@@ -29,12 +29,9 @@ export const DueTime: React.FC<Props> = (props) => {
     return (
       <Tooltip
         hasArrow
-        color="white"
-        bg="gray.800"
         label="Add due time"
         aria-label="A due time description"
         size="sm"
-        fontSize="xs"
       >
         <IconButton
           aria-label="due time"

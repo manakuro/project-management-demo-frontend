@@ -86,11 +86,9 @@ export const TasksDueSoon: React.VFC<Props> = memo<Props>(() => {
               </AccordionButton>
               <Tooltip
                 hasArrow
-                color="white"
-                bg="gray.800"
                 label="These are your most urgent tasks due in the next five days"
-                aria-label="A tasks due soon message"
-                fontSize="xs"
+                aria-label="A tasks due soon description"
+                size="lg"
                 withIcon
               >
                 <Icon icon="help" size="xs" color="gray.500" mt="-1px" />

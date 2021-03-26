@@ -1,8 +1,8 @@
 import React from 'react'
-import { Container } from 'src/pages/Home'
+import { Container } from 'src/pages/Tasks'
 
-const Home: React.VFC = () => {
+const Tasks: React.VFC = () => {
   return <Container />
 }
 
-export default Home
+export default Tasks

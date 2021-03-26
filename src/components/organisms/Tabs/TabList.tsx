@@ -9,5 +9,5 @@ type Props = ChakraTabListProps
 export type TabListProps = Props
 
 export const TabList: React.FC<Props> = forwardRef((props, ref) => (
-  <ChakraTabList {...props} ref={ref} />
+  <ChakraTabList borderBottom="none" {...props} ref={ref} />
 ))

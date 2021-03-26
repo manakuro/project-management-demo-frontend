@@ -9,7 +9,13 @@ type Props = ButtonProps & {
 export const Button: React.FC<Props> & {
   id?: string
 } = forwardRef((props, ref) => (
-  <ChakraButton iconSpacing={1} {...props} fontWeight="normal" ref={ref} />
+  <ChakraButton
+    minH={7}
+    iconSpacing={1}
+    fontWeight="normal"
+    {...props}
+    ref={ref}
+  />
 ))
 
 Button.id = 'Button'

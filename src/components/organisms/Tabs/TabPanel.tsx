@@ -9,5 +9,5 @@ type Props = ChakraTabPanelProps
 export type TabPanelProps = Props
 
 export const TabPanel: React.FC<Props> = forwardRef((props, ref) => (
-  <ChakraTabPanel {...props} ref={ref} />
+  <ChakraTabPanel p={0} {...props} ref={ref} />
 ))

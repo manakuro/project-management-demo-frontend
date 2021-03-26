@@ -3,10 +3,19 @@ import { Flex, Stack } from 'src/components/atoms'
 import { SearchInput } from './SearchInput'
 import { AddButton } from './AddButton'
 import { MyAccountAvatar } from './MyAccountAvatar'
+import { useMainStyle } from 'src/hooks/useMainStyle'
 
 export const MainHeader: React.FC = (props) => {
+  const { paddingX } = useMainStyle()
+
   return (
-    <Flex w="full" h="72px" px={6} borderBottom="1px" borderColor="gray.200">
+    <Flex
+      w="full"
+      h="72px"
+      px={paddingX}
+      borderBottom="1px"
+      borderColor="gray.200"
+    >
       <Flex flex="1 1 auto" flexDirection="column" justifyContent="center">
         {props.children}
       </Flex>

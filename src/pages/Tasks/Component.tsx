@@ -3,12 +3,13 @@ import { MainHeader, Tabs, TabPanels, TabPanel } from 'src/components/organisms'
 import { Head } from 'src/components/atoms/Head'
 import { Box } from 'src/components/atoms'
 import { Header } from './Header'
+import { List } from './List'
 
 type Props = {}
 
 export const Component: React.VFC<Props> = memo<Props>((props) => {
   return (
-    <Tabs isLazy defaultIndex={0} colorScheme="teal" size="sm">
+    <Tabs defaultIndex={0}>
       <Box data-testid="Home">
         <Head title="My Tasks" />
         <MainHeader>
@@ -17,7 +18,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
         <Box mx="auto">
           <TabPanels>
             <TabPanel>
-              <p>List!</p>
+              <List />
             </TabPanel>
             <TabPanel>
               <p>Calendar!</p>

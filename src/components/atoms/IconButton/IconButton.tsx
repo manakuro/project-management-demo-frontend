@@ -11,38 +11,40 @@ type Props = ChakraIconButtonProps & {
 }
 export type IconButtonProps = Props
 
-export const IconButton: React.FC<Props> = forwardRef<Props, 'button'>(
-  (props, ref) => {
-    const { light, ...rest } = props
-    const { _hover } = useLinkHover()
+export const IconButton: React.FC<Props> & { id?: string } = forwardRef<
+  Props,
+  'button'
+>((props, ref) => {
+  const { light, ...rest } = props
+  const { _hover } = useLinkHover()
 
-    let style: ChakraProps
-    switch (true) {
-      case props.variant === 'ghost':
-        style = {
-          p: '0.4em',
-        }
-        break
-      default:
-        style = {}
-    }
-    if (light) {
+  let style: ChakraProps
+  switch (true) {
+    case props.variant === 'ghost':
       style = {
-        ...style,
-        _hover,
+        p: '0.4em',
       }
+      break
+    default:
+      style = {}
+  }
+  if (light) {
+    style = {
+      ...style,
+      _hover,
     }
+  }
 
-    return (
-      <ChakraIconButton
-        as="div"
-        cursor="pointer"
-        minW={8}
-        h={8}
-        {...style}
-        {...rest}
-        ref={ref}
-      />
-    )
-  },
-)
+  return (
+    <ChakraIconButton
+      as="div"
+      cursor="pointer"
+      minW={8}
+      h={8}
+      {...style}
+      {...rest}
+      ref={ref}
+    />
+  )
+})
+IconButton.id = 'IconButton'

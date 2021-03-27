@@ -10,6 +10,8 @@ export type MenuItemOptionProps = Props
 
 export const MenuItemOption: React.FC<Props> & {
   id?: string
-} = forwardRef((props, ref) => <ChakraMenuItemOption {...props} ref={ref} />)
+} = forwardRef((props, ref) => (
+  <ChakraMenuItemOption fontSize="sm" {...props} ref={ref} />
+))
 
 MenuItemOption.id = 'MenuItemOption'

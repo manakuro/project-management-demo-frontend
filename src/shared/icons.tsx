@@ -52,6 +52,7 @@ import {
   AiFillPlayCircle,
   AiOutlineProject,
 } from 'react-icons/ai'
+import { MdSort } from 'react-icons/md'
 
 export const icons = {
   home: BiHome,
@@ -105,6 +106,7 @@ export const icons = {
   starOutline: FaRegStar,
   starFilled: FaStar,
   lockAlt: BiLockAlt,
+  sort: MdSort,
 } as const
 
 export type IconType = keyof typeof icons

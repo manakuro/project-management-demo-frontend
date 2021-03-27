@@ -1,14 +1,9 @@
 import React, { memo, useCallback, useState } from 'react'
-import { Button, Icon, Portal } from 'src/components/atoms'
-import {
-  Menu,
-  MenuButton,
-  MenuItemOption,
-  MenuList,
-  MenuOptionGroup,
-} from 'src/components/organisms'
+import { Button, Icon } from 'src/components/atoms'
+import { Menu, MenuButton } from 'src/components/organisms'
 import { useDisclosure } from 'src/shared/chakra'
-import { NONE, DUE_DATE, PROJECT, LIKES, ListStatus } from './listState'
+import { NONE, ListStatus } from './listState'
+import { MenuList } from './MenuList'
 
 type Props = {}
 
@@ -20,7 +15,7 @@ export const SortButton: React.VFC<Props> = memo<Props>((props) => {
     onOpen()
   }, [onOpen])
 
-  const handleSort = useCallback(
+  const handleChangeSort = useCallback(
     (status: ListStatus) => {
       setListState(status)
       onClose()
@@ -40,27 +35,13 @@ export const SortButton: React.VFC<Props> = memo<Props>((props) => {
       >
         Sort
       </MenuButton>
-      <Portal>
-        <MenuList>
-          <MenuOptionGroup defaultValue={listState} type="radio">
-            <MenuItemOption value={NONE} onClick={() => handleSort(NONE)}>
-              None
-            </MenuItemOption>
-            <MenuItemOption value={PROJECT} onClick={() => handleSort(PROJECT)}>
-              Project
-            </MenuItemOption>
-            <MenuItemOption
-              value={DUE_DATE}
-              onClick={() => handleSort(DUE_DATE)}
-            >
-              Due date
-            </MenuItemOption>
-            <MenuItemOption value={LIKES} onClick={() => handleSort(LIKES)}>
-              Likes
-            </MenuItemOption>
-          </MenuOptionGroup>
-        </MenuList>
-      </Portal>
+      {isOpen && (
+        <MenuList
+          listStatus={listState}
+          onCloseMenu={onClose}
+          onChange={handleChangeSort}
+        />
+      )}
     </Menu>
   )
 })

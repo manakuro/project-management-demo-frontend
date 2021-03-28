@@ -5,6 +5,7 @@ import {
   Help,
   ShareWorkspaceModal,
 } from 'src/components/organisms'
+import { CustomizeMenu } from 'src/components/organisms/Tasks'
 
 export const Modals: React.VFC = () => {
   return (
@@ -12,6 +13,7 @@ export const Modals: React.VFC = () => {
       <InviteModal />
       <ShareWorkspaceModal />
       <Help />
+      <CustomizeMenu />
       <VideoPlayer />
     </>
   )

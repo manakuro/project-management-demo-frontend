@@ -45,6 +45,7 @@ import {
   BiTable,
   BiLockAlt,
   BiFilterAlt,
+  BiCustomize,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon, FaRegStar, FaStar } from 'react-icons/fa'
 import { HiOutlineMail } from 'react-icons/hi'
@@ -109,6 +110,7 @@ export const icons = {
   lockAlt: BiLockAlt,
   sort: MdSort,
   filter: BiFilterAlt,
+  customize: BiCustomize,
 } as const
 
 export type IconType = keyof typeof icons

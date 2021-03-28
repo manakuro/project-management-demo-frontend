@@ -7,6 +7,7 @@ import {
   AddTaskButton,
   IncompleteTasksButton,
   SortButton,
+  CustomizeButton,
 } from 'src/components/organisms'
 
 export const List: React.VFC = memo(() => {
@@ -19,6 +20,7 @@ export const List: React.VFC = memo(() => {
         <TasksHeaderRight>
           <IncompleteTasksButton />
           <SortButton />
+          <CustomizeButton />
         </TasksHeaderRight>
       </TasksHeader>
     </TasksList>

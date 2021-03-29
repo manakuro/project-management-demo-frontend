@@ -45,8 +45,10 @@ export const CustomizeMenu: React.VFC = () => {
             <Heading as="h4" size="xs">
               Fields
             </Heading>
-            <Stack spacing={2} mt={2}>
+            <Stack spacing={4} mt={2}>
               <CustomField label="Due date" />
+              <CustomField label="Projects" />
+              <CustomField label="Tags" />
             </Stack>
           </DrawerBody>
         </Flex>

@@ -25,8 +25,21 @@ export const useClickableHover = () => {
     [],
   )
 
+  const inputGrabbableStyle = useMemo<ChakraProps>(
+    () => ({
+      _hover: {
+        borderColor: 'gray.300',
+        boxShadow: 'lg',
+      },
+      transition: transitions.base,
+      cursor: 'pointer',
+    }),
+    [],
+  )
+
   return {
     clickableHoverStyle: defaultStyle,
     clickableHoverLightStyle: lightStyle,
+    clickableHoverInputGrabbableStyle: inputGrabbableStyle,
   }
 }

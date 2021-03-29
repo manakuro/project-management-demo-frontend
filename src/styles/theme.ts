@@ -58,6 +58,17 @@ export const theme = extendTheme({
       },
     },
   },
+  components: {
+    Switch: {
+      baseStyle: {
+        track: {
+          _focus: {
+            boxShadow: 'none',
+          },
+        },
+      },
+    },
+  },
 })
 
 export const transitions = {

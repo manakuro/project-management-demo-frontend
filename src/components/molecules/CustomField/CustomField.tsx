@@ -23,12 +23,12 @@ export const CustomField: React.FC<Props> = (props) => {
         alignItems="center"
         px={1}
         py={2}
-        cursor="grab"
         border="1px"
         borderRadius="md"
         borderColor="gray.200"
         boxShadow="md"
         {...clickableHoverInputGrabbableStyle}
+        cursor="grab"
       >
         <Icon icon="gridVertical" color="text.muted" size="sm" />
         <FormLabel cursor="grab" ml={2} mb="0" flex={1} fontSize="sm">

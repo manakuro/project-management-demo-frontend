@@ -13,8 +13,11 @@ import {
 } from 'src/shared/material-ui'
 import { BeforeAppMount } from 'src/shared/beforeAppMount'
 import { getLayoutDefault, LayoutDefault } from 'src/components/organisms'
+import { resetServerContext } from 'react-beautiful-dnd'
 
 export type AppLayout = { getLayout: typeof getLayoutDefault }
+
+resetServerContext()
 
 const App = ({ Component, pageProps }: AppProps) => {
   const getLayout =

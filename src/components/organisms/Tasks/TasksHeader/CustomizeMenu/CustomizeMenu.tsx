@@ -27,7 +27,7 @@ const CUSTOM_FIELDS = [
   {
     name: 'Tags',
   },
-]
+] as const
 
 export const CustomizeMenu: React.VFC = () => {
   const { isOpen, onClose } = useCustomizeMenu()

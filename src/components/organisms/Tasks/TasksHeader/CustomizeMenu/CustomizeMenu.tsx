@@ -39,6 +39,7 @@ export const CustomizeMenu: React.VFC = () => {
       <DrawerContent
         flex={1}
         top={`${TOP}px !important`}
+        borderTop="1px"
         borderLeft="1px"
         borderColor="gray.200"
         boxShadow="none"

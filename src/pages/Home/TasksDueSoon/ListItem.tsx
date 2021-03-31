@@ -1,5 +1,5 @@
 import React from 'react'
-import { Badge, Flex, Icon, Text, IconProps } from 'src/components/atoms'
+import { Badge, Flex, Text, CheckIcon } from 'src/components/atoms'
 import { useClickableHover } from 'src/hooks'
 import { TaskDueSoon } from './types'
 import { useProject } from 'src/store/projects'
@@ -11,11 +11,8 @@ type Props = {
 }
 
 export const ListItem: React.VFC<Props> = (props) => {
-  const { clickableHoverStyle, clickableHoverLightStyle } = useClickableHover()
+  const { clickableHoverStyle } = useClickableHover()
   const { project } = useProject(props.task.projectId)
-  const iconStyle: IconProps = props.task.isDone
-    ? { icon: 'checkCircle', color: 'gray.500' }
-    : { icon: 'checkCircleFilled', color: 'teal.400' }
 
   return (
     <Flex
@@ -28,7 +25,7 @@ export const ListItem: React.VFC<Props> = (props) => {
       {...clickableHoverStyle}
     >
       <Flex alignItems="center" flex={1}>
-        <Icon {...iconStyle} {...clickableHoverLightStyle} />
+        <CheckIcon isDone={props.task.isDone} />
         <Text fontSize="sm" ml={2} isTruncated>
           {props.task.name}
         </Text>

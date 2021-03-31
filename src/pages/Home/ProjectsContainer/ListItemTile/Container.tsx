@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useRef, useState } from 'react'
+import React, { ReactElement, useCallback, useState } from 'react'
 import { Flex, Text, FlexProps } from 'src/components/atoms'
 import { transitions } from 'src/styles'
 import { useHover } from 'src/hooks/useHover'
@@ -17,8 +17,7 @@ const focusedStyle: FlexProps = {
   transform: 'translate(0, -5px)',
 }
 export const Container: React.FC<Props> = (props) => {
-  const ref = useRef<HTMLElement | null>(null)
-  const isHovering = useHover(ref)
+  const { ref, isHovering } = useHover()
   const [focused, setFocused] = useState(false)
 
   const handlePopoverProjectMenuOpened = useCallback(() => {

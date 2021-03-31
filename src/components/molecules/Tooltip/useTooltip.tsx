@@ -1,11 +1,10 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useHover } from 'src/hooks/useHover'
 import { useDisclosure } from 'src/shared/chakra'
 
 export const useTooltip = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const ref = useRef<HTMLElement | null>(null)
-  const isHovering = useHover(ref)
+  const { ref, isHovering } = useHover()
 
   useEffect(() => {
     if (isHovering) {

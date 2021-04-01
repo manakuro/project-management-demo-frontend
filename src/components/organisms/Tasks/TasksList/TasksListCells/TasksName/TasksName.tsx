@@ -1,8 +1,9 @@
 import React, { memo, useCallback, useState } from 'react'
-import { CheckIcon, FlexProps, Icon } from 'src/components/atoms'
+import { CheckIcon, Flex, FlexProps, Icon, Text } from 'src/components/atoms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { useHover } from 'src/hooks/useHover'
 import { TasksNameField } from './TasksNameField'
+import { Mark } from './Mark'
 
 type Props = FlexProps
 
@@ -42,6 +43,17 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
         onInputFocus={handleInputFocused}
         onInputBlur={handleInputBlur}
       />
+      <Flex
+        alignItems="center"
+        ml="auto"
+        visibility={isHovering ? 'visible' : 'hidden'}
+      >
+        <Mark variant="unmarked" />
+        <Text fontSize="xs" color="text.muted" ml={3}>
+          Details
+        </Text>
+        <Icon icon="chevronRight" color="text.muted" mt="1px" />
+      </Flex>
     </TasksListCell>
   )
 })

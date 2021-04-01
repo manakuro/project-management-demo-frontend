@@ -7,7 +7,7 @@ type Props = {
 }
 
 export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(true)
 
   const handleToggle = useCallback(() => {
     setIsExpanded((s) => !s)

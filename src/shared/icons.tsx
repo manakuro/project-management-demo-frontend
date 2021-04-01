@@ -48,6 +48,7 @@ import {
   BiCustomize,
   BiArrowToRight,
   BiGridVertical,
+  BiSliderAlt,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon, FaRegStar, FaStar } from 'react-icons/fa'
 import { HiOutlineMail } from 'react-icons/hi'
@@ -115,6 +116,7 @@ export const icons = {
   customize: BiCustomize,
   arrowToRight: BiArrowToRight,
   gridVertical: BiGridVertical,
+  sliderAlt: BiSliderAlt,
 } as const
 
 export type IconType = keyof typeof icons

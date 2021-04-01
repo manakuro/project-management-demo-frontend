@@ -2,7 +2,7 @@ import { atom, useRecoilState } from 'recoil'
 import { useCallback } from 'react'
 
 const state = atom({
-  key: 'customizeMenuState',
+  key: 'taskListDetailState',
   default: false,
 })
 

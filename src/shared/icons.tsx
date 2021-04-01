@@ -51,6 +51,12 @@ import {
   BiSliderAlt,
   BiLike,
   BiSubdirectoryRight,
+  BiBookAdd,
+  BiSquareRounded,
+  BiGitPullRequest,
+  BiExpand,
+  BiBeenHere,
+  BiTag,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon, FaRegStar, FaStar } from 'react-icons/fa'
 import { HiOutlineMail } from 'react-icons/hi'
@@ -123,6 +129,12 @@ export const icons = {
   like: BiLike,
   attach: IoMdAttach,
   subdirectoryRight: BiSubdirectoryRight,
+  fullscreenOutline: BiExpand,
+  bookAdd: BiBookAdd,
+  squareRounded: BiSquareRounded,
+  gitPullRequest: BiGitPullRequest,
+  beenHere: BiBeenHere,
+  tag: BiTag,
 } as const
 
 export type IconType = keyof typeof icons

@@ -2,7 +2,6 @@ import React, { memo } from 'react'
 import { Box, Flex, Input, InputProps } from 'src/components/atoms'
 
 type Props = {
-  isHovering: boolean
   value: string
   onChange: () => void
   onInputFocus: () => void

@@ -9,6 +9,7 @@ type Props = FlexProps
 
 export const TasksName: React.FC<Props> = memo<Props>((props) => {
   const { ref, isHovering } = useHover()
+  const [focused, setFocused] = useState(false)
   const [cellStyle, setCellStyle] = useState<FlexProps>()
   const handleInputFocused = useCallback(() => {
     setCellStyle({
@@ -19,6 +20,14 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
   const handleInputBlur = useCallback(() => {
     setCellStyle({})
   }, [])
+  const handleMarkMenuOpened = useCallback(() => {
+    setFocused(true)
+  }, [])
+  const handleMarkMenuClosed = useCallback(() => {
+    setFocused(false)
+  }, [])
+
+  const showOptions = isHovering || focused
 
   return (
     <TasksListCell
@@ -32,12 +41,11 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
         icon="gridVertical"
         color="text.muted"
         size="sm"
-        visibility={isHovering ? 'visible' : 'hidden'}
+        visibility={showOptions ? 'visible' : 'hidden'}
         cursor="grab"
       />
       <CheckIcon isDone={false} ml={4} />
       <TasksNameField
-        isHovering={isHovering}
         value="Organize component folder"
         onChange={() => {}}
         onInputFocus={handleInputFocused}
@@ -46,9 +54,13 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
       <Flex
         alignItems="center"
         ml="auto"
-        visibility={isHovering ? 'visible' : 'hidden'}
+        display={showOptions ? 'flex' : 'none'}
       >
-        <Mark variant="unmarked" />
+        <Mark
+          variant="unmarked"
+          onOpened={handleMarkMenuOpened}
+          onClosed={handleMarkMenuClosed}
+        />
         <Text fontSize="xs" color="text.muted" ml={3}>
           Details
         </Text>

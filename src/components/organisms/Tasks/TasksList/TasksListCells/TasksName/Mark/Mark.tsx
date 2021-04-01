@@ -11,6 +11,8 @@ import { ListStatus } from './listState'
 type Props = {
   variant: 'unmarked' | 'today' | 'upcoming' | 'later'
   status?: ListStatus
+  onOpened?: () => void
+  onClosed?: () => void
 }
 
 const getVariantData = (
@@ -55,38 +57,45 @@ export const Mark: React.FC<Props> = memo<Props>((props) => {
 
   const handleOpen = useCallback(() => {
     onOpen()
-  }, [onOpen])
+    props.onOpened?.()
+  }, [onOpen, props])
+  const handleClose = useCallback(() => {
+    onClose()
+    props.onClosed?.()
+  }, [onClose, props])
 
   const handleChangeSort = useCallback(
     (status: ListStatus) => {
       setListState(status)
-      onClose()
+      handleClose()
     },
-    [onClose],
+    [handleClose],
   )
 
   return (
     <Menu isOpen={isOpen} isLazy placement="bottom-end">
-      <MenuButton onClick={handleOpen}>
-        <Tooltip
-          hasArrow
-          label={data.label}
-          aria-label={data.ariaLabel}
-          size="lg"
-          withIcon
-        >
+      <Tooltip
+        hasArrow
+        label={data.label}
+        aria-label={data.ariaLabel}
+        size="lg"
+        withIcon
+        display={isOpen ? 'none' : 'block'}
+      >
+        <MenuButton onClick={handleOpen}>
           <Icon
             icon={data.icon}
             color="text.muted"
             mt="1px"
             {...clickableHoverLightStyle}
           />
-        </Tooltip>
-      </MenuButton>
+        </MenuButton>
+      </Tooltip>
+
       {isOpen && (
         <MenuList
           listStatus={listState}
-          onCloseMenu={onClose}
+          onCloseMenu={handleClose}
           onChange={handleChangeSort}
         />
       )}

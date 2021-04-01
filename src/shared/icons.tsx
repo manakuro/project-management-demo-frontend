@@ -49,6 +49,8 @@ import {
   BiArrowToRight,
   BiGridVertical,
   BiSliderAlt,
+  BiLike,
+  BiSubdirectoryRight,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon, FaRegStar, FaStar } from 'react-icons/fa'
 import { HiOutlineMail } from 'react-icons/hi'
@@ -58,6 +60,7 @@ import {
   AiOutlineProject,
 } from 'react-icons/ai'
 import { MdSort } from 'react-icons/md'
+import { IoMdAttach } from 'react-icons/io'
 
 export const icons = {
   home: BiHome,
@@ -117,6 +120,9 @@ export const icons = {
   arrowToRight: BiArrowToRight,
   gridVertical: BiGridVertical,
   sliderAlt: BiSliderAlt,
+  like: BiLike,
+  attach: IoMdAttach,
+  subdirectoryRight: BiSubdirectoryRight,
 } as const
 
 export type IconType = keyof typeof icons

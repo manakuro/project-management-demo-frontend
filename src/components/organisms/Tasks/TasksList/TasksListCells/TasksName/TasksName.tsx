@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo, useCallback, useMemo } from 'react'
 import { CheckIcon, Flex, FlexProps, Icon, Text } from 'src/components/atoms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { useHover } from 'src/hooks/useHover'
@@ -6,6 +6,7 @@ import { TasksNameField } from './TasksNameField'
 import { Mark } from './Mark'
 import { useInputFocus } from './useInputFocus'
 import { useMarkMenuFocus } from './useMarkMenuFocus'
+import { useTasksListDetail } from 'src/components/organisms'
 
 type Props = FlexProps
 
@@ -25,6 +26,10 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
     () => (isHovering || markMenuFocused) && !inputFocused,
     [isHovering, markMenuFocused, inputFocused],
   )
+  const { setIsOpen } = useTasksListDetail()
+  const handleTasksListDetailOpen = useCallback(() => {
+    setIsOpen(true)
+  }, [setIsOpen])
 
   return (
     <TasksListCell
@@ -33,6 +38,7 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
       flex={1}
       cursor="pointer"
       {...cellStyle}
+      onClick={handleTasksListDetailOpen}
     >
       <Icon
         icon="gridVertical"

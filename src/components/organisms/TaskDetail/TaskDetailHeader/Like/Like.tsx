@@ -6,13 +6,7 @@ type Props = {}
 
 export const Like: React.FC<Props> = () => {
   return (
-    <Tooltip
-      hasArrow
-      label="Like this task"
-      aria-label="Like button"
-      size="sm"
-      openDelay={500}
-    >
+    <Tooltip hasArrow label="Like this task" aria-label="Like button" size="sm">
       <IconButton
         aria-label="Like this task"
         icon={<Icon icon="like" color="text.muted" />}

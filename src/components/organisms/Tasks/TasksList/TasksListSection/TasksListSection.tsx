@@ -26,7 +26,12 @@ export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
           {props.title}
         </Heading>
       </Flex>
-      {isExpanded && <TasksListRow />}
+      {isExpanded && (
+        <Flex flexDirection="column" borderBottom="1px" borderColor="gray.200">
+          <TasksListRow />
+          <TasksListRow />
+        </Flex>
+      )}
     </Flex>
   )
 })

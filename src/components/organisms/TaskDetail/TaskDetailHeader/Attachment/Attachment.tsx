@@ -20,7 +20,6 @@ export const Attachment: React.FC<Props> = () => {
         aria-label="Attachment button"
         size="md"
         withIcon
-        openDelay={500}
       >
         <MenuButton
           aria-label="Attachment button"

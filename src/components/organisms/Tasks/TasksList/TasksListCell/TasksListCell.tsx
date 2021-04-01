@@ -9,7 +9,6 @@ export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => (
     fontWeight="normal"
     borderRight="1px"
     borderTop="1px"
-    borderBottom="1px"
     borderLeft="none"
     borderColor="gray.200"
     alignItems="center"

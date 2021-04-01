@@ -17,7 +17,13 @@ export const TasksListDetail: React.VFC = () => {
   const { isOpen, onClose } = useTasksListDetail()
 
   return (
-    <Drawer isOpen={isOpen} onClose={onClose} placement="right" size="lg">
+    <Drawer
+      isOpen={isOpen}
+      onClose={onClose}
+      placement="right"
+      size="lg"
+      variant="alwaysOpen"
+    >
       <DrawerContent
         flex={1}
         top={`${TOP}px !important`}

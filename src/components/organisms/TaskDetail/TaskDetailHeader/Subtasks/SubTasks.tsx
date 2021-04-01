@@ -11,7 +11,6 @@ export const SubTasks: React.FC<Props> = () => {
       label="Add a task to this task. SubTasks can have different assignees and due date"
       aria-label="Subtasks button description"
       size="md"
-      openDelay={500}
       textAlign="left"
     >
       <IconButton

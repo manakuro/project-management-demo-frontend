@@ -28,7 +28,6 @@ export const MoreAction: React.FC<Props> = memo<Props>(() => {
         aria-label="More actions button"
         size="sm"
         withIcon
-        openDelay={500}
       >
         <MenuButton
           aria-label="More actions"

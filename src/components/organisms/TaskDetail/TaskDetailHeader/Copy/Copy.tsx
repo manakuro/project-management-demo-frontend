@@ -11,7 +11,6 @@ export const Copy: React.FC<Props> = () => {
       label="Copy task link"
       aria-label="Copy task link button description"
       size="sm"
-      openDelay={500}
     >
       <IconButton
         aria-label="Copy button"

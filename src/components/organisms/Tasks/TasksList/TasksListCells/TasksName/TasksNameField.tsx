@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import { Box, Flex, Input, InputProps } from 'src/components/atoms'
 
 type Props = {
@@ -9,21 +9,24 @@ type Props = {
 } & InputProps
 
 export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
-  const style: InputProps = {
-    ml: 1,
-    fontSize: 'sm',
-    color: 'text.base',
-    minH: 5,
-    h: 5,
-    border: '1px',
-    borderColor: 'transparent',
-    borderRadius: 'sm',
-    paddingInlineStart: 2,
-    paddingInlineEnd: 2,
-    _hover: {
-      borderColor: 'gray.400',
-    },
-  }
+  const style = useMemo<InputProps>(
+    () => ({
+      ml: 1,
+      fontSize: 'sm',
+      color: 'text.base',
+      minH: 5,
+      h: 5,
+      border: '1px',
+      borderColor: 'transparent',
+      borderRadius: 'sm',
+      paddingInlineStart: 2,
+      paddingInlineEnd: 2,
+      _hover: {
+        borderColor: 'gray.400',
+      },
+    }),
+    [],
+  )
 
   return (
     <Flex position="relative">

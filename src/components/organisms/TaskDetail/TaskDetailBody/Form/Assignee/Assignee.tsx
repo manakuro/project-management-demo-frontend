@@ -6,11 +6,11 @@ import {
   ButtonProps,
   Icon,
   Text,
-  Input,
   Box,
 } from 'src/components/atoms'
 import { useClickableHover } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
+import { Input } from './Input'
 
 type Props = {}
 
@@ -30,6 +30,10 @@ export const Assignee: React.FC<Props> = (props) => {
 
   const handleClick = useCallback(() => {
     setFocused(true)
+  }, [])
+
+  const handleClickInputOutside = useCallback(() => {
+    setFocused(false)
   }, [])
 
   return (
@@ -55,14 +59,7 @@ export const Assignee: React.FC<Props> = (props) => {
             bg="teal.200"
           />
           {focused ? (
-            <Input
-              autoFocus
-              variant="unstyled"
-              fontSize="sm"
-              placeholder="mana"
-              ml={2}
-              w={60}
-            />
+            <Input onClickOutside={handleClickInputOutside} />
           ) : (
             <>
               <Text ml={2} fontSize="sm">

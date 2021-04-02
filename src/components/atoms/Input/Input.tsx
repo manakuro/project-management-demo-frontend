@@ -5,7 +5,9 @@ import {
 } from '@chakra-ui/react'
 import { forwardRef } from 'src/shared/chakra'
 
-type Props = ChakraInputProps
+type Props = ChakraInputProps & {
+  ref?: React.MutableRefObject<any>
+}
 export type InputProps = Props
 
 export const Input: React.FC<Props> & { id?: string } = forwardRef<

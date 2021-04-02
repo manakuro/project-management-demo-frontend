@@ -23,6 +23,7 @@ export const TasksListDetail: React.VFC = () => {
       placement="right"
       size="lg"
       variant="alwaysOpen"
+      trapFocus={false}
     >
       <DrawerContent
         flex={1}

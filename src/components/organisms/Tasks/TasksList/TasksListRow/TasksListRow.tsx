@@ -10,7 +10,7 @@ export const TasksListRow: React.FC<Props> = memo<Props>((props) => {
   const { clickableHoverStyle } = useClickableHover()
 
   return (
-    <Flex {...clickableHoverStyle} cursor="auto">
+    <Flex {...clickableHoverStyle} cursor="auto" h="36px">
       <TasksName />
       <TasksListCell w="12%" />
       <TasksListCell w="12%" />

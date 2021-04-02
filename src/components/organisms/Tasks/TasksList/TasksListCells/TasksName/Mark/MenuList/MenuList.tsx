@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { Portal } from 'src/components/atoms'
 import {
   MenuList as AtomsMenuList,
@@ -23,20 +23,29 @@ export const MenuList: React.FC<Props> = (props) => {
     }
   }, [hasClickedOutside, props])
 
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>, listStatus: ListStatus) => {
+      e.stopPropagation()
+
+      props.onChange(listStatus)
+    },
+    [props],
+  )
+
   return (
     <Portal>
       <AtomsMenuList ref={ref}>
         <MenuOptionGroup value={props.listStatus} type="radio">
-          <MenuItemOption value={TODAY} onClick={() => props.onChange(TODAY)}>
+          <MenuItemOption value={TODAY} onClick={(e) => handleClick(e, TODAY)}>
             Mark for Today
-          </MenuItemOption>
-          <MenuItemOption value={LATER} onClick={() => props.onChange(LATER)}>
-            Mark for Upcoming
           </MenuItemOption>
           <MenuItemOption
             value={UPCOMING}
-            onClick={() => props.onChange(UPCOMING)}
+            onClick={(e) => handleClick(e, UPCOMING)}
           >
+            Mark for Upcoming
+          </MenuItemOption>
+          <MenuItemOption value={LATER} onClick={(e) => handleClick(e, LATER)}>
             Mark for Later
           </MenuItemOption>
         </MenuOptionGroup>

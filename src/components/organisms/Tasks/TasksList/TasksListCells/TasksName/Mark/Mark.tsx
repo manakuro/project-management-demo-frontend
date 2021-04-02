@@ -55,10 +55,14 @@ export const Mark: React.FC<Props> = memo<Props>((props) => {
     props.status,
   )
 
-  const handleOpen = useCallback(() => {
-    onOpen()
-    props.onOpened?.()
-  }, [onOpen, props])
+  const handleOpen = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation()
+      onOpen()
+      props.onOpened?.()
+    },
+    [onOpen, props],
+  )
   const handleClose = useCallback(() => {
     onClose()
     props.onClosed?.()

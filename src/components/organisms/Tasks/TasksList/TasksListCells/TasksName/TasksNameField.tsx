@@ -34,6 +34,7 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
         {props.value}
       </Box>
       <Input
+        onClick={(e) => e.stopPropagation()}
         onChange={props.onChange}
         value={props.value}
         {...style}

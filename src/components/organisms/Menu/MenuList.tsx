@@ -11,5 +11,10 @@ type Props = ChakraMenuListProps & {
 export type MenuListProps = Props
 
 export const MenuList: React.FC<Props> = forwardRef((props, ref) => (
-  <ChakraMenuList {...props} ref={ref} aria-label="menu-list" />
+  <ChakraMenuList
+    zIndex="popover"
+    {...props}
+    ref={ref}
+    aria-label="menu-list"
+  />
 ))

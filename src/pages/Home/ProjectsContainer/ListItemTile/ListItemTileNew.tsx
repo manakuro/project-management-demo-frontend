@@ -2,13 +2,10 @@ import React from 'react'
 import { Flex, Icon } from 'src/components/atoms'
 import { transitions } from 'src/styles'
 import { Container } from './Container'
-import { useClickableHover } from 'src/hooks'
 
 type Props = {}
 
 export const ListItemTileNew: React.VFC<Props> = () => {
-  const { clickableHoverLightStyle } = useClickableHover()
-
   return (
     <Container name="New Project">
       {({ showTransition }) => (
@@ -24,7 +21,6 @@ export const ListItemTileNew: React.VFC<Props> = () => {
           justifyContent="center"
           alignItems="center"
           flexDirection="column"
-          {...clickableHoverLightStyle}
         >
           <Flex
             {...(showTransition

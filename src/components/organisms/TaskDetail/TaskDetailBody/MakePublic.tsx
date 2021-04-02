@@ -16,7 +16,7 @@ export const MakePublic: React.FC<Props> = (props) => {
     >
       <Icon icon="lockAlt" color="text.muted" />
       <Text fontSize="sm" flex={1} ml={2}>
-        This task is visible to members to My workspace
+        This task is visible to its collaborators and members to My workspace
       </Text>
       <Button size="sm" variant="ghost">
         Make public

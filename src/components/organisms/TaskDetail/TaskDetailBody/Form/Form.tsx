@@ -1,19 +1,17 @@
 import React from 'react'
-import { Flex, InputText } from 'src/components/atoms'
+import { Flex, Stack } from 'src/components/atoms'
+import { TaskName } from './TaskName'
+import { Assignee } from './Assignee'
 
 type Props = {}
 
 export const Form: React.FC<Props> = (props) => {
   return (
     <Flex flexDirection="column" py={2}>
-      <Flex px={4}>
-        <InputText
-          fontSize="2xl"
-          fontWeight="semibold"
-          value="Organize components folder"
-          onChange={() => {}}
-        />
-      </Flex>
+      <TaskName />
+      <Stack px={6} mt={3}>
+        <Assignee />
+      </Stack>
     </Flex>
   )
 }

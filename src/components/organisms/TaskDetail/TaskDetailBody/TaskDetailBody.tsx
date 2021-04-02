@@ -9,7 +9,7 @@ type Props = {
 
 export const TaskDetailBody: React.FC<Props> = (props) => {
   return (
-    <Flex overflowY="scroll">
+    <Flex overflowY="scroll" flexDirection="column">
       {props.isMakePublic && <MakePublic />}
       <Form />
     </Flex>

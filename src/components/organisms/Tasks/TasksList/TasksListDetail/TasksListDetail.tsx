@@ -37,9 +37,8 @@ export const TasksListDetail: React.VFC = () => {
           <TaskDetailHeader onClose={onClose} />
         </DrawerHeader>
         <Divider />
-
-        <DrawerBody flex={1} display="flex" flexDirection="column" px={4}>
-          <TaskDetailBody />
+        <DrawerBody flex={1} display="flex" flexDirection="column" p={0}>
+          <TaskDetailBody isMakePublic />
         </DrawerBody>
       </DrawerContent>
     </Drawer>

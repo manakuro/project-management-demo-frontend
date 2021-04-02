@@ -1,8 +1,17 @@
 import React from 'react'
 import { Flex } from 'src/components/atoms'
+import { MakePublic } from 'src/components/organisms/TaskDetail/TaskDetailBody/MakePublic'
+import { Form } from './Form'
 
-type Props = {}
+type Props = {
+  isMakePublic?: boolean
+}
 
 export const TaskDetailBody: React.FC<Props> = (props) => {
-  return <Flex>Header here</Flex>
+  return (
+    <Flex overflowY="scroll">
+      {props.isMakePublic && <MakePublic />}
+      <Form />
+    </Flex>
+  )
 }

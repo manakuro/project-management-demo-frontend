@@ -1,5 +1,6 @@
 import isToday from 'date-fns/isToday'
 import isYesterday from 'date-fns/isYesterday'
+import isTomorrow from 'date-fns/isTomorrow'
 import isThisYear from 'date-fns/isThisYear'
 import isThisWeek from 'date-fns/isThisWeek'
 import addYears from 'date-fns/addYears'
@@ -9,6 +10,9 @@ import DateIODateFnsAdapter from '@date-io/date-fns'
 class DateFnsAdapter extends DateIODateFnsAdapter {
   isToday(date: Parameters<typeof isToday>[0]) {
     return isToday(date)
+  }
+  isTomorrow(date: Parameters<typeof isTomorrow>[0]) {
+    return isTomorrow(date)
   }
   isYesterday(date: Parameters<typeof isYesterday>[0]) {
     return isYesterday(date)

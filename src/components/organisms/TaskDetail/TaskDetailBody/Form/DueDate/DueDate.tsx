@@ -4,6 +4,7 @@ import { Button, Icon, Text, Box } from 'src/components/atoms'
 import { useClickableHover } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { PopoverDueDatePicker } from 'src/components/organisms'
+import { formatDueDate } from 'src/shared/formatDate'
 
 type Props = {
   dueDate: string
@@ -34,7 +35,7 @@ export const DueDate: React.FC<Props> = (props) => {
           >
             <Icon icon="calendar" color="text.muted" size="xl" />
             <Text ml={2} fontSize="sm">
-              Tuesday
+              {formatDueDate(props.dueDate)}
             </Text>
             <Icon
               ml={2}

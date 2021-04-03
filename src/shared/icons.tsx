@@ -57,6 +57,7 @@ import {
   BiExpand,
   BiBeenHere,
   BiTag,
+  BiCalendar,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon, FaRegStar, FaStar } from 'react-icons/fa'
 import { HiOutlineMail } from 'react-icons/hi'
@@ -135,6 +136,7 @@ export const icons = {
   gitPullRequest: BiGitPullRequest,
   beenHere: BiBeenHere,
   tag: BiTag,
+  calendar: BiCalendar,
 } as const
 
 export type IconType = keyof typeof icons

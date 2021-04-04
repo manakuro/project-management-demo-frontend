@@ -8,6 +8,7 @@ import {
 } from 'recoil'
 import { Project } from './type'
 import { COLORS } from 'src/hooks/useColorPicker'
+import { uniqBy } from 'src/shared/utils'
 
 export const projectIdsState = atom<string[]>({
   key: 'projectIdsState',
@@ -45,11 +46,21 @@ export const projectSelector = selectorFamily<Project, string>({
     }
 
     set(projectState(projectId), newVal)
+    set(projectsState, (prev) =>
+      uniqBy([...prev, newVal], 'id').map((p) => {
+        if (p.id === newVal.id) {
+          return {
+            ...p,
+            ...newVal,
+          }
+        }
+        return p
+      }),
+    )
 
     if (get(projectIdsState).find((projectId) => projectId === newVal.id))
       return
     set(projectIdsState, (prev) => [...prev, newVal.id])
-    set(projectsState, (prev) => [...prev, newVal])
   },
 })
 

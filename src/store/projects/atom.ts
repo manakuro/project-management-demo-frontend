@@ -13,6 +13,10 @@ export const projectIdsState = atom<string[]>({
   key: 'projectIdsState',
   default: [],
 })
+export const projectsState = atom<Project[]>({
+  key: 'projectsState',
+  default: [],
+})
 
 const projectState = atomFamily<Project, string>({
   key: 'projectState',
@@ -45,11 +49,13 @@ export const projectSelector = selectorFamily<Project, string>({
     if (get(projectIdsState).find((projectId) => projectId === newVal.id))
       return
     set(projectIdsState, (prev) => [...prev, newVal.id])
+    set(projectsState, (prev) => [...prev, newVal])
   },
 })
 
 export const useProjects = () => {
   const projectIds = useRecoilValue(projectIdsState)
+  const projects = useRecoilValue(projectsState)
 
   const setProjects = useRecoilCallback(
     ({ set }) => (projects: Project[]) => {
@@ -62,6 +68,7 @@ export const useProjects = () => {
 
   return {
     projectIds,
+    projects,
     setProjects,
   }
 }

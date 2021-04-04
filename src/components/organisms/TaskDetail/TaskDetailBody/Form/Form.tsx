@@ -4,6 +4,7 @@ import { TaskName } from './TaskName'
 import { Assignee } from './Assignee'
 import { DueDate } from './DueDate'
 import { dateFns } from 'src/shared/dateFns'
+import { Projects } from './Projects'
 
 type Props = {}
 
@@ -17,6 +18,7 @@ export const Form: React.FC<Props> = (props) => {
           dueDate={new Date(dateFns.addDays(new Date(), 3)).toISOString()}
           dueTime={new Date(dateFns.addDays(new Date(), 3)).toISOString()}
         />
+        <Projects />
       </Stack>
     </Flex>
   )

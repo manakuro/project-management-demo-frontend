@@ -30,7 +30,7 @@ export const ListItem: React.VFC<Props> = (props) => {
           {isExpanded ? (
             <Flex alignItems="center">
               <ColorBox w={2} h={2} bg={project.color.color} />
-              <Text fontSize="sm" flex={1} ml={3}>
+              <Text fontSize="sm" flex={1} ml={2}>
                 {project.name}
               </Text>
             </Flex>

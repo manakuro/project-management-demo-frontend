@@ -26,7 +26,6 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
         variant="unstyled"
         fontSize="sm"
         placeholder="Add to a Project"
-        ml={2}
         w={60}
       />
       <Menu
@@ -38,7 +37,7 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
       >
         <MenuButton />
         <Portal>
-          <MenuList w="450px" ml="-71px" mt={2}>
+          <MenuList w="450px" ml="-54px" mt={2}>
             {projects.map((p) => (
               <MenuItem key={p.id}>{p.name}</MenuItem>
             ))}

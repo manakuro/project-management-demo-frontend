@@ -1,9 +1,8 @@
-import React, { memo, useCallback, useState } from 'react'
+import React, { memo } from 'react'
 import { Icon } from 'src/components/atoms'
-import { useClickableHover } from 'src/hooks'
+import { useClickableHover, useMenuOption } from 'src/hooks'
 import { Tooltip } from 'src/components/molecules'
 import { IconType } from 'src/shared/icons'
-import { useDisclosure } from 'src/shared/chakra'
 import { Menu, MenuButton } from 'src/components/organisms'
 import { MenuList } from './MenuList'
 import { ListStatus } from './listState'
@@ -49,32 +48,11 @@ const getVariantData = (
 export const Mark: React.FC<Props> = memo<Props>((props) => {
   const { clickableHoverLightStyle } = useClickableHover()
   const data = getVariantData(props.variant)
-
-  const { onOpen, isOpen, onClose } = useDisclosure()
-  const [listState, setListState] = useState<ListStatus | undefined>(
-    props.status,
-  )
-
-  const handleOpen = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation()
-      onOpen()
-      props.onOpened?.()
-    },
-    [onOpen, props],
-  )
-  const handleClose = useCallback(() => {
-    onClose()
-    props.onClosed?.()
-  }, [onClose, props])
-
-  const handleChangeSort = useCallback(
-    (status: ListStatus) => {
-      setListState(status)
-      handleClose()
-    },
-    [handleClose],
-  )
+  const { isOpen, onChange, onClose, onOpen, listState } = useMenuOption({
+    status: props.status,
+    onOpened: props.onOpened,
+    onClosed: props.onClosed,
+  })
 
   return (
     <Menu isOpen={isOpen} isLazy placement="bottom-end">
@@ -86,7 +64,7 @@ export const Mark: React.FC<Props> = memo<Props>((props) => {
         withIcon
         display={isOpen ? 'none' : 'block'}
       >
-        <MenuButton onClick={handleOpen}>
+        <MenuButton onClick={onOpen}>
           <Icon
             icon={data.icon}
             color="text.muted"
@@ -99,8 +77,8 @@ export const Mark: React.FC<Props> = memo<Props>((props) => {
       {isOpen && (
         <MenuList
           listStatus={listState}
-          onCloseMenu={handleClose}
-          onChange={handleChangeSort}
+          onCloseMenu={onClose}
+          onChange={onChange}
         />
       )}
     </Menu>

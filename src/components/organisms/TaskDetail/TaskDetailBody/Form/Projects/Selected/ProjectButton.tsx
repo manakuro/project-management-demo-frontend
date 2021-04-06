@@ -15,7 +15,7 @@ export const ProjectButton: React.FC<Props> = (props) => {
       borderRadius="full"
     >
       <Flex alignItems="center">
-        <Box ml={2} w={2} h={2} bg="pink.400" borderRadius="sm" />
+        <Box ml={1} w={2} h={2} bg="pink.400" borderRadius="sm" />
         <Text fontSize="xs" flex={1} ml={2}>
           Asana
         </Text>

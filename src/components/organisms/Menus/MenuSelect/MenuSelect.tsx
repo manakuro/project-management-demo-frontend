@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, ReactElement } from 'react'
 import { UseMenuSelect, useMenuSelect } from './useMenuSelect'
 import { Menu, MenuProps } from 'src/components/organisms'
+import { Context } from './useMenuSelect'
 
 type Props<ListStatus> = {
   onChange: (listStatus: ListStatus) => void
@@ -23,8 +24,10 @@ export const MenuSelect = <ListStatus,>(
   })
 
   return (
-    <Menu isOpen={useMenuSelectResult.isOpen} isLazy {...rest}>
-      {props.children(useMenuSelectResult)}
-    </Menu>
+    <Context.Provider value={useMenuSelectResult}>
+      <Menu isOpen={useMenuSelectResult.isOpen} isLazy {...rest}>
+        {props.children(useMenuSelectResult)}
+      </Menu>
+    </Context.Provider>
   )
 }

@@ -24,7 +24,7 @@ export const Section: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <MenuSelect<ListStatus> onChange={handleChange} placement="bottom-start">
-      {({ isOpen, onOpen, listStatus, onChange, onClose }) => (
+      {({ onOpen }) => (
         <>
           <MenuButton
             onClick={onOpen}
@@ -38,12 +38,7 @@ export const Section: React.FC<Props> = memo<Props>((props) => {
           >
             Backlog
           </MenuButton>
-          <MenuSelectList
-            isOpen={isOpen}
-            listStatus={listStatus}
-            onClose={onClose}
-            onChange={onChange}
-          >
+          <MenuSelectList>
             <MenuItemOption value={BACKLOG}>Backlog</MenuItemOption>
             <MenuItemOption value={DONE}>Done</MenuItemOption>
             <MenuItemOption value={IN_PROGRESS}>In progress</MenuItemOption>

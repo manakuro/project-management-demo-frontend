@@ -1,5 +1,5 @@
 import { useDisclosure } from 'src/shared/chakra'
-import React, { useCallback, useState } from 'react'
+import React, { createContext, useCallback, useContext, useState } from 'react'
 
 type Props<ListStatus> = {
   onChange: (status: ListStatus) => void
@@ -15,6 +15,15 @@ export type UseMenuSelect<ListStatus> = {
   onChange: (status: ListStatus) => void
   listStatus: ListStatus | undefined
 }
+
+export const Context = createContext<UseMenuSelect<any>>({
+  isOpen: false,
+  onOpen: () => {},
+  onClose: () => {},
+  onChange: () => {},
+  listStatus: undefined,
+})
+export const useMenuSelectContext = () => useContext(Context)
 
 export const useMenuSelect = <ListStatus,>(
   props: Props<ListStatus>,

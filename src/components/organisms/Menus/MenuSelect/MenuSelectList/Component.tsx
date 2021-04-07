@@ -1,29 +1,26 @@
-import React, { PropsWithChildren, useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { Portal } from 'src/components/atoms'
 import {
   MenuList as AtomsMenuList,
   MenuOptionGroup,
 } from 'src/components/organisms'
 import { useClickOutside } from 'src/hooks/useClickOutside'
-import { MenuSelectListProps } from './MenuSelectList'
+import { useMenuSelectContext } from '../useMenuSelect'
 
-type Props<ListStatus> = MenuSelectListProps<ListStatus>
-
-export const Component = <ListStatus,>(
-  props: PropsWithChildren<Props<ListStatus>>,
-) => {
+export const Component: React.FC = (props) => {
+  const { onChange, onClose, listStatus } = useMenuSelectContext()
   const { ref, hasClickedOutside } = useClickOutside()
 
   useEffect(() => {
-    if (hasClickedOutside) props.onClose()
-  }, [hasClickedOutside, props])
+    if (hasClickedOutside) onClose()
+  }, [hasClickedOutside, onClose])
 
   const handleChange = useCallback(
     (listStatus: string | string[] | undefined) => {
       if (listStatus === undefined) return
-      props.onChange((listStatus as unknown) as ListStatus)
+      onChange(listStatus)
     },
-    [props],
+    [onChange],
   )
   const handleClickMenuList = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
@@ -36,7 +33,7 @@ export const Component = <ListStatus,>(
     <Portal>
       <AtomsMenuList ref={ref} onClick={handleClickMenuList}>
         <MenuOptionGroup
-          value={(props.listStatus as unknown) as string}
+          value={(listStatus as unknown) as string}
           type="radio"
           onChange={handleChange}
         >

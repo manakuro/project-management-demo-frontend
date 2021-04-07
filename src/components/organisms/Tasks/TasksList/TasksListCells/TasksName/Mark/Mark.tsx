@@ -65,7 +65,7 @@ export const Mark: React.FC<Props> = memo<Props>((props) => {
       onOpened={props.onOpened}
       placement="bottom-end"
     >
-      {({ isOpen, onOpen, listStatus, onChange, onClose }) => (
+      {({ isOpen, onOpen }) => (
         <>
           <Tooltip
             hasArrow
@@ -84,12 +84,7 @@ export const Mark: React.FC<Props> = memo<Props>((props) => {
               />
             </MenuButton>
           </Tooltip>
-          <MenuSelectList
-            isOpen={isOpen}
-            listStatus={listStatus}
-            onClose={onClose}
-            onChange={onChange}
-          >
+          <MenuSelectList>
             <MenuItemOption value={TODAY}>Mark for Today</MenuItemOption>
             <MenuItemOption value={UPCOMING}>Mark for Upcoming</MenuItemOption>
             <MenuItemOption value={LATER}>Mark for Later</MenuItemOption>

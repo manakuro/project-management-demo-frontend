@@ -25,7 +25,7 @@ export const IncompleteTasksButton: React.VFC<Props> = memo<Props>((props) => {
 
   return (
     <MenuSelect<ListStatus> onChange={handleChange} placement="bottom-end">
-      {({ isOpen, onOpen, listStatus, onChange, onClose }) => (
+      {({ onOpen, listStatus, onChange, onClose }) => (
         <>
           <MenuButton
             variant="ghost"
@@ -37,12 +37,7 @@ export const IncompleteTasksButton: React.VFC<Props> = memo<Props>((props) => {
           >
             Incomplete tasks
           </MenuButton>
-          <MenuSelectList
-            isOpen={isOpen}
-            listStatus={listStatus}
-            onClose={onClose}
-            onChange={onChange}
-          >
+          <MenuSelectList>
             <MenuItemOption value={INCOMPLETE_TASKS}>
               <Flex onMouseEnter={popoverDisclosure.onClose}>
                 Incomplete tasks

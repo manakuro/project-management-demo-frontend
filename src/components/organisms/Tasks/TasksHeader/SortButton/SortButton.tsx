@@ -17,7 +17,7 @@ export const SortButton: React.VFC<Props> = memo<Props>((props) => {
 
   return (
     <MenuSelect<ListStatus> onChange={handleChange} placement="bottom-end">
-      {({ isOpen, onOpen, listStatus, onChange, onClose }) => (
+      {({ onOpen }) => (
         <>
           <MenuButton
             variant="ghost"
@@ -29,12 +29,7 @@ export const SortButton: React.VFC<Props> = memo<Props>((props) => {
           >
             Sort
           </MenuButton>
-          <MenuSelectList
-            isOpen={isOpen}
-            listStatus={listStatus}
-            onClose={onClose}
-            onChange={onChange}
-          >
+          <MenuSelectList>
             <MenuItemOption value={NONE}>None</MenuItemOption>
             <MenuItemOption value={PROJECT}>Project</MenuItemOption>
             <MenuItemOption value={DUE_DATE}>Due date</MenuItemOption>

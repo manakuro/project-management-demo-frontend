@@ -63,6 +63,7 @@ export const Mark: React.FC<Props> = memo<Props>((props) => {
       onChange={handleChange}
       onClosed={props.onClosed}
       onOpened={props.onOpened}
+      placement="bottom-end"
     >
       {({ isOpen, onOpen, listStatus, onChange, onClose }) => (
         <>

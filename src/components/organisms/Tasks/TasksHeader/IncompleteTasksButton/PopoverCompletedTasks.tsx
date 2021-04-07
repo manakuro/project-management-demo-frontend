@@ -20,40 +20,18 @@ import {
 
 type Props = {
   onClose: () => void
-  listStatus: ListStatus
-  onChangeListStatus: (listStatus: ListStatus) => void
+  listStatus?: ListStatus
+  onChange: (listStatus: ListStatus) => void
 } & MenuProps
 
 export const PopoverCompletedTasks: React.FC<Props> = (props) => {
-  const handleAllCompletedTasks = useCallback(() => {
-    props.onChangeListStatus(ALL_COMPLETED_TASKS)
-    props.onClose()
-  }, [props])
-
-  const handleToday = useCallback(() => {
-    props.onChangeListStatus(TODAY)
-    props.onClose()
-  }, [props])
-
-  const handleYesterday = useCallback(() => {
-    props.onChangeListStatus(YESTERDAY)
-    props.onClose()
-  }, [props])
-
-  const handle1Week = useCallback(() => {
-    props.onChangeListStatus(ONE_WEEK)
-    props.onClose()
-  }, [props])
-
-  const handle2Week = useCallback(() => {
-    props.onChangeListStatus(TWO_WEEK)
-    props.onClose()
-  }, [props])
-
-  const handle3Week = useCallback(() => {
-    props.onChangeListStatus(THREE_WEEK)
-    props.onClose()
-  }, [props])
+  const handleChange = useCallback(
+    (listStatus: string | string[] | undefined) => {
+      props.onChange(listStatus as ListStatus)
+      props.onClose()
+    },
+    [props],
+  )
 
   return (
     <Menu closeOnBlur={false} closeOnSelect={false} isLazy {...props}>
@@ -61,12 +39,12 @@ export const PopoverCompletedTasks: React.FC<Props> = (props) => {
         {props.children}
       </MenuButton>
       <MenuList pointerEvents="auto" mr="30px">
-        <MenuOptionGroup value={props.listStatus} type="radio">
-          <MenuItemOption
-            value={ALL_COMPLETED_TASKS}
-            as="div"
-            onClick={handleAllCompletedTasks}
-          >
+        <MenuOptionGroup
+          value={props.listStatus}
+          type="radio"
+          onChange={handleChange}
+        >
+          <MenuItemOption value={ALL_COMPLETED_TASKS} as="div">
             All Completed Tasks
           </MenuItemOption>
           <MenuOptionGroup
@@ -74,24 +52,21 @@ export const PopoverCompletedTasks: React.FC<Props> = (props) => {
             title="Marked complete since:"
             color="text.muted"
             fontSize="xs"
+            onChange={handleChange}
           >
-            <MenuItemOption as="div" value={TODAY} onClick={handleToday}>
+            <MenuItemOption as="div" value={TODAY}>
               Today
             </MenuItemOption>
-            <MenuItemOption
-              as="div"
-              value={YESTERDAY}
-              onClick={handleYesterday}
-            >
+            <MenuItemOption as="div" value={YESTERDAY}>
               Yesterday
             </MenuItemOption>
-            <MenuItemOption as="div" value={ONE_WEEK} onClick={handle1Week}>
+            <MenuItemOption as="div" value={ONE_WEEK}>
               1 week
             </MenuItemOption>
-            <MenuItemOption as="div" value={TWO_WEEK} onClick={handle2Week}>
+            <MenuItemOption as="div" value={TWO_WEEK}>
               2 weeks
             </MenuItemOption>
-            <MenuItemOption as="div" value={THREE_WEEK} onClick={handle3Week}>
+            <MenuItemOption as="div" value={THREE_WEEK}>
               3 weeks
             </MenuItemOption>
           </MenuOptionGroup>

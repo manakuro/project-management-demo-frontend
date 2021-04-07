@@ -20,6 +20,7 @@ export const Component = <ListStatus,>(
 
   const handleChange = useCallback(
     (listStatus: string | string[] | undefined) => {
+      if (listStatus === undefined) return
       props.onChange((listStatus as unknown) as ListStatus)
     },
     [props],

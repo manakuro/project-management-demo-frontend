@@ -16,7 +16,7 @@ import {
   YESTERDAY,
   ALL_COMPLETED_TASKS,
   TODAY,
-} from 'src/components/organisms/Tasks/TasksHeader/IncompleteTasksButton/listState'
+} from './listState'
 
 type Props = {
   onClose: () => void

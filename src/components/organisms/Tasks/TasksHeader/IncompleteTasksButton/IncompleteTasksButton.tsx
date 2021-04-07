@@ -23,14 +23,6 @@ export const IncompleteTasksButton: React.VFC<Props> = memo<Props>((props) => {
     console.log('hey: ', listStatus)
   }, [])
 
-  const handleClose = useCallback(() => {
-    popoverDisclosure.onClose()
-  }, [popoverDisclosure])
-
-  const handleOpen = useCallback(() => {
-    popoverDisclosure.onOpen()
-  }, [popoverDisclosure])
-
   return (
     <MenuSelect<ListStatus> onChange={handleChange} placement="bottom-end">
       {({ isOpen, onOpen, listStatus, onChange, onClose }) => (
@@ -52,15 +44,17 @@ export const IncompleteTasksButton: React.VFC<Props> = memo<Props>((props) => {
             onChange={onChange}
           >
             <MenuItemOption value={INCOMPLETE_TASKS}>
-              <Flex onMouseEnter={handleClose}>Incomplete tasks</Flex>
+              <Flex onMouseEnter={popoverDisclosure.onClose}>
+                Incomplete tasks
+              </Flex>
             </MenuItemOption>
             <MenuItemOption>
-              <Flex onMouseEnter={handleOpen}>
+              <Flex onMouseEnter={popoverDisclosure.onOpen}>
                 <PopoverCompletedTasks
                   isOpen={popoverDisclosure.isOpen}
                   placement="left-start"
                   onClose={() => {
-                    handleClose()
+                    popoverDisclosure.onClose()
                     onClose()
                   }}
                   listStatus={listStatus}
@@ -76,7 +70,7 @@ export const IncompleteTasksButton: React.VFC<Props> = memo<Props>((props) => {
               </Flex>
             </MenuItemOption>
             <MenuItemOption value={ALL_TASKS}>
-              <Flex onMouseEnter={handleClose}>All tasks</Flex>
+              <Flex onMouseEnter={popoverDisclosure.onClose}>All tasks</Flex>
             </MenuItemOption>
           </MenuSelectList>
         </>

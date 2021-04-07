@@ -1,11 +1,15 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
-import { useClickableHover, useMenuOption } from 'src/hooks'
+import { useClickableHover } from 'src/hooks'
 import { Tooltip } from 'src/components/molecules'
 import { IconType } from 'src/shared/icons'
-import { Menu, MenuButton } from 'src/components/organisms'
-import { MenuList } from './MenuList'
-import { ListStatus } from './listState'
+import {
+  MenuButton,
+  MenuItemOption,
+  MenuSelect,
+  MenuSelectList,
+} from 'src/components/organisms'
+import { LATER, ListStatus, TODAY, UPCOMING } from './listState'
 
 type Props = {
   variant: 'unmarked' | 'today' | 'upcoming' | 'later'
@@ -48,39 +52,52 @@ const getVariantData = (
 export const Mark: React.FC<Props> = memo<Props>((props) => {
   const { clickableHoverLightStyle } = useClickableHover()
   const data = getVariantData(props.variant)
-  const { isOpen, onChange, onClose, onOpen, listState } = useMenuOption({
-    status: props.status,
-    onOpened: props.onOpened,
-    onClosed: props.onClosed,
-  })
+
+  const handleChange = useCallback((listStatus: ListStatus) => {
+    console.log('hey: ', listStatus)
+  }, [])
 
   return (
-    <Menu isOpen={isOpen} isLazy placement="bottom-end">
-      <Tooltip
-        hasArrow
-        label={data.label}
-        aria-label={data.ariaLabel}
-        size="lg"
-        withIcon
-        display={isOpen ? 'none' : 'block'}
-      >
-        <MenuButton onClick={onOpen}>
-          <Icon
-            icon={data.icon}
-            color="text.muted"
-            mt="1px"
-            {...clickableHoverLightStyle}
-          />
-        </MenuButton>
-      </Tooltip>
-
-      {isOpen && (
-        <MenuList
-          listStatus={listState}
-          onCloseMenu={onClose}
-          onChange={onChange}
-        />
+    <MenuSelect<ListStatus>
+      listStatus={props.status}
+      onChange={handleChange}
+      onClosed={props.onClosed}
+      onOpened={props.onOpened}
+    >
+      {({ isOpen, onOpen, listStatus, onChange, onClose }) => (
+        <>
+          <Tooltip
+            hasArrow
+            label={data.label}
+            aria-label={data.ariaLabel}
+            size="lg"
+            withIcon
+            display={isOpen ? 'none' : 'block'}
+          >
+            <MenuButton onClick={onOpen}>
+              <Icon
+                icon={data.icon}
+                color="text.muted"
+                mt="1px"
+                {...clickableHoverLightStyle}
+              />
+            </MenuButton>
+          </Tooltip>
+          {isOpen && (
+            <MenuSelectList
+              listStatus={listStatus}
+              onCloseMenu={onClose}
+              onChange={onChange}
+            >
+              <MenuItemOption value={TODAY}>Mark for Today</MenuItemOption>
+              <MenuItemOption value={UPCOMING}>
+                Mark for Upcoming
+              </MenuItemOption>
+              <MenuItemOption value={LATER}>Mark for Later</MenuItemOption>
+            </MenuSelectList>
+          )}
+        </>
       )}
-    </Menu>
+    </MenuSelect>
   )
 })

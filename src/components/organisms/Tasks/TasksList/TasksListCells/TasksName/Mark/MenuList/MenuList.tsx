@@ -24,9 +24,7 @@ export const MenuList: React.FC<Props> = (props) => {
   }, [hasClickedOutside, props])
 
   const handleClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>, listStatus: ListStatus) => {
-      e.stopPropagation()
-
+    (listStatus: ListStatus) => {
       props.onChange(listStatus)
     },
     [props],
@@ -34,20 +32,15 @@ export const MenuList: React.FC<Props> = (props) => {
 
   return (
     <Portal>
-      <AtomsMenuList ref={ref}>
-        <MenuOptionGroup value={props.listStatus} type="radio">
-          <MenuItemOption value={TODAY} onClick={(e) => handleClick(e, TODAY)}>
-            Mark for Today
-          </MenuItemOption>
-          <MenuItemOption
-            value={UPCOMING}
-            onClick={(e) => handleClick(e, UPCOMING)}
-          >
-            Mark for Upcoming
-          </MenuItemOption>
-          <MenuItemOption value={LATER} onClick={(e) => handleClick(e, LATER)}>
-            Mark for Later
-          </MenuItemOption>
+      <AtomsMenuList ref={ref} onClick={(e) => e.stopPropagation()}>
+        <MenuOptionGroup
+          value={props.listStatus}
+          type="radio"
+          onChange={(s) => handleClick(s as ListStatus)}
+        >
+          <MenuItemOption value={TODAY}>Mark for Today</MenuItemOption>
+          <MenuItemOption value={UPCOMING}>Mark for Upcoming</MenuItemOption>
+          <MenuItemOption value={LATER}>Mark for Later</MenuItemOption>
         </MenuOptionGroup>
       </AtomsMenuList>
     </Portal>

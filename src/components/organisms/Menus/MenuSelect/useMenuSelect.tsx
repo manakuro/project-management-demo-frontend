@@ -2,19 +2,28 @@ import { useDisclosure } from 'src/shared/chakra'
 import React, { useCallback, useState } from 'react'
 
 type Props<ListStatus> = {
-  status: ListStatus
+  listStatus: ListStatus | undefined
+  onChange: (status: ListStatus) => void
   onOpened?: () => void
   onClosed?: () => void
 }
 
-export const useMenuOption = <ListStatus,>(props: Props<ListStatus>) => {
+export type UseMenuSelect<ListStatus> = {
+  isOpen: boolean
+  onOpen: (e: React.MouseEvent<HTMLButtonElement>) => void
+  onClose: () => void
+  onChange: (status: ListStatus) => void
+  listStatus: ListStatus | undefined
+}
+
+export const useMenuSelect = <ListStatus,>(
+  props: Props<ListStatus>,
+): UseMenuSelect<ListStatus> => {
   const disclosure = useDisclosure()
-  const [listState, setListState] = useState<ListStatus | undefined>(
-    props.status,
-  )
+  const [listStatus, setListStatus] = useState(props.listStatus)
 
   const onOpen = useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
+    (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation()
       disclosure.onOpen()
       props.onOpened?.()
@@ -29,10 +38,11 @@ export const useMenuOption = <ListStatus,>(props: Props<ListStatus>) => {
 
   const onChange = useCallback(
     (status: ListStatus) => {
-      setListState(status)
+      setListStatus(status)
+      props.onChange(status)
       onClose()
     },
-    [onClose],
+    [onClose, props],
   )
 
   return {
@@ -40,6 +50,6 @@ export const useMenuOption = <ListStatus,>(props: Props<ListStatus>) => {
     onOpen,
     onClose,
     onChange,
-    listState,
+    listStatus,
   }
 }

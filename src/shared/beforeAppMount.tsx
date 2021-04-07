@@ -9,13 +9,12 @@ export const BeforeAppMount: React.FC = (props) => {
   })
 
   useEffect(() => {
+    console.log('BeforeAppMount!!')
     projectQueryResult.refetch()
     favoriteProjectIdsQueryResult.refetch()
 
     /* eslint react-hooks/exhaustive-deps: off */
   }, [])
-
-  console.log('BeforeAppMount!!')
 
   return props.children as React.ReactElement
 }

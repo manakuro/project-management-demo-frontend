@@ -1,9 +1,9 @@
 import React, { memo, useCallback } from 'react'
 import { Button, Flex, Icon, Text } from 'src/components/atoms'
 import {
-  MenuButton,
   MenuItemOption,
   MenuSelect,
+  MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms'
 import { useDisclosure } from 'src/shared/chakra'
@@ -25,18 +25,17 @@ export const IncompleteTasksButton: React.VFC<Props> = memo<Props>((props) => {
 
   return (
     <MenuSelect<ListStatus> onChange={handleChange} placement="bottom-end">
-      {({ onOpen, listStatus, onChange, onClose }) => (
+      {({ listStatus, onChange, onClose }) => (
         <>
-          <MenuButton
+          <MenuSelectButton
             variant="ghost"
             aria-label="Sort tasks"
             as={Button}
             leftIcon={<Icon icon="checkCircle" />}
             size="xs"
-            onClick={onOpen}
           >
             Incomplete tasks
-          </MenuButton>
+          </MenuSelectButton>
           <MenuSelectList>
             <MenuItemOption value={INCOMPLETE_TASKS}>
               <Flex onMouseEnter={popoverDisclosure.onClose}>

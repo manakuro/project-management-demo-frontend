@@ -1,19 +1,18 @@
-import React, { PropsWithChildren, ReactElement } from 'react'
+import React from 'react'
 import { UseMenuSelect, useMenuSelect } from './useMenuSelect'
 import { Menu, MenuProps } from 'src/components/organisms'
 import { Context } from './useMenuSelect'
+import { MaybeRenderProp, runIfFn } from 'src/shared/utils'
 
 type Props<ListStatus> = {
   onChange: (listStatus: ListStatus) => void
   listStatus?: ListStatus
   onOpened?: () => void
   onClosed?: () => void
-  children(data: UseMenuSelect<ListStatus>): ReactElement
-} & MenuProps
+  children: MaybeRenderProp<UseMenuSelect<ListStatus>>
+} & Omit<MenuProps, 'children'>
 
-export const MenuSelect = <ListStatus,>(
-  props: PropsWithChildren<Props<ListStatus>>,
-) => {
+export const MenuSelect = <ListStatus,>(props: Props<ListStatus>) => {
   const { listStatus, onOpened, onClosed, onChange, ...rest } = props
 
   const useMenuSelectResult = useMenuSelect({
@@ -26,7 +25,7 @@ export const MenuSelect = <ListStatus,>(
   return (
     <Context.Provider value={useMenuSelectResult}>
       <Menu isOpen={useMenuSelectResult.isOpen} isLazy {...rest}>
-        {props.children(useMenuSelectResult)}
+        {runIfFn(props.children, useMenuSelectResult)}
       </Menu>
     </Context.Provider>
   )

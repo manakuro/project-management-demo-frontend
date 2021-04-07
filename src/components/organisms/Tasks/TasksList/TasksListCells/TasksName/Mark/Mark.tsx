@@ -4,9 +4,9 @@ import { useClickableHover } from 'src/hooks'
 import { Tooltip } from 'src/components/molecules'
 import { IconType } from 'src/shared/icons'
 import {
-  MenuButton,
   MenuItemOption,
   MenuSelect,
+  MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms'
 import { LATER, ListStatus, TODAY, UPCOMING } from './listState'
@@ -65,7 +65,7 @@ export const Mark: React.FC<Props> = memo<Props>((props) => {
       onOpened={props.onOpened}
       placement="bottom-end"
     >
-      {({ isOpen, onOpen }) => (
+      {({ isOpen }) => (
         <>
           <Tooltip
             hasArrow
@@ -75,14 +75,14 @@ export const Mark: React.FC<Props> = memo<Props>((props) => {
             withIcon
             display={isOpen ? 'none' : 'block'}
           >
-            <MenuButton onClick={onOpen}>
+            <MenuSelectButton>
               <Icon
                 icon={data.icon}
                 color="text.muted"
                 mt="1px"
                 {...clickableHoverLightStyle}
               />
-            </MenuButton>
+            </MenuSelectButton>
           </Tooltip>
           <MenuSelectList>
             <MenuItemOption value={TODAY}>Mark for Today</MenuItemOption>

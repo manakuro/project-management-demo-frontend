@@ -15,7 +15,7 @@ export const Component = <ListStatus,>(
   const { ref, hasClickedOutside } = useClickOutside()
 
   useEffect(() => {
-    if (hasClickedOutside) props.onCloseMenu()
+    if (hasClickedOutside) props.onClose()
   }, [hasClickedOutside, props])
 
   const handleChange = useCallback(

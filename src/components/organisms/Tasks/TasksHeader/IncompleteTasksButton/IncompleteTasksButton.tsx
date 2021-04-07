@@ -40,7 +40,7 @@ export const IncompleteTasksButton: React.VFC<Props> = memo<Props>((props) => {
           <MenuSelectList
             isOpen={isOpen}
             listStatus={listStatus}
-            onCloseMenu={onClose}
+            onClose={onClose}
             onChange={onChange}
           >
             <MenuItemOption value={INCOMPLETE_TASKS}>

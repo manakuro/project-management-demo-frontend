@@ -4,7 +4,7 @@ import { Component } from './Component'
 
 export type Props<ListStatus> = {
   isOpen: boolean
-  onCloseMenu: () => void
+  onClose: () => void
 } & Pick<UseMenuSelect<ListStatus>, 'listStatus' | 'onChange'>
 export type MenuSelectListProps<ListStatus> = Props<ListStatus>
 

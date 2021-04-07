@@ -41,7 +41,7 @@ export const Section: React.FC<Props> = memo<Props>((props) => {
           <MenuSelectList
             isOpen={isOpen}
             listStatus={listStatus}
-            onCloseMenu={onClose}
+            onClose={onClose}
             onChange={onChange}
           >
             <MenuItemOption value={BACKLOG}>Backlog</MenuItemOption>

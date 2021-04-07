@@ -2,8 +2,8 @@ import { useDisclosure } from 'src/shared/chakra'
 import React, { useCallback, useState } from 'react'
 
 type Props<ListStatus> = {
-  listStatus: ListStatus | undefined
   onChange: (status: ListStatus) => void
+  listStatus?: ListStatus
   onOpened?: () => void
   onClosed?: () => void
 }

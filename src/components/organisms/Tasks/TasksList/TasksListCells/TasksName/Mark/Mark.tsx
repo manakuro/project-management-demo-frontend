@@ -83,19 +83,16 @@ export const Mark: React.FC<Props> = memo<Props>((props) => {
               />
             </MenuButton>
           </Tooltip>
-          {isOpen && (
-            <MenuSelectList
-              listStatus={listStatus}
-              onCloseMenu={onClose}
-              onChange={onChange}
-            >
-              <MenuItemOption value={TODAY}>Mark for Today</MenuItemOption>
-              <MenuItemOption value={UPCOMING}>
-                Mark for Upcoming
-              </MenuItemOption>
-              <MenuItemOption value={LATER}>Mark for Later</MenuItemOption>
-            </MenuSelectList>
-          )}
+          <MenuSelectList
+            isOpen={isOpen}
+            listStatus={listStatus}
+            onCloseMenu={onClose}
+            onChange={onChange}
+          >
+            <MenuItemOption value={TODAY}>Mark for Today</MenuItemOption>
+            <MenuItemOption value={UPCOMING}>Mark for Upcoming</MenuItemOption>
+            <MenuItemOption value={LATER}>Mark for Later</MenuItemOption>
+          </MenuSelectList>
         </>
       )}
     </MenuSelect>

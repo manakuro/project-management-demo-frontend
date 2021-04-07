@@ -3,8 +3,8 @@ import { UseMenuSelect, useMenuSelect } from './useMenuSelect'
 import { Menu } from 'src/components/organisms'
 
 type Props<ListStatus> = {
-  listStatus: ListStatus | undefined
   onChange: (listStatus: ListStatus) => void
+  listStatus?: ListStatus
   onOpened?: () => void
   onClosed?: () => void
   children(data: UseMenuSelect<ListStatus>): ReactElement

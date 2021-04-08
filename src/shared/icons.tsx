@@ -61,6 +61,7 @@ import {
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon, FaRegStar, FaStar } from 'react-icons/fa'
 import { HiOutlineMail } from 'react-icons/hi'
+import { FiBold, FiItalic } from 'react-icons/fi'
 import {
   AiFillCheckCircle,
   AiFillPlayCircle,
@@ -137,6 +138,8 @@ export const icons = {
   beenHere: BiBeenHere,
   tag: BiTag,
   calendar: BiCalendar,
+  italic: FiItalic,
+  bold: FiBold,
 } as const
 
 export type IconType = keyof typeof icons

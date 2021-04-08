@@ -1,28 +1,28 @@
 import React, { useCallback } from 'react'
-import { Button } from 'src/components/atoms'
+import { IconButton, IconButtonProps } from 'src/components/atoms'
 
 type Props = {
   isActive: boolean
   onClick: () => void
-}
+} & IconButtonProps
 
 export const BaseButton: React.FC<Props> = (props) => {
+  const { onClick, ...rest } = props
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault()
-      props.onClick()
+      onClick()
     },
-    [props],
+    [onClick],
   )
 
   return (
-    <Button
+    <IconButton
       variant="ghost"
       size="sm"
-      bg={props.isActive ? 'teal.100' : 'transparent'}
+      colorScheme="teal"
       onMouseDown={handleMouseDown}
-    >
-      {props.children}
-    </Button>
+      {...rest}
+    />
   )
 }

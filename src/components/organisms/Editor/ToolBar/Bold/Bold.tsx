@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import {
   isMarkActive,
   toggleMarkCommand,
@@ -6,6 +6,7 @@ import {
 import { schema } from 'prosemirror-schema-basic'
 import { EditorState } from 'prosemirror-state'
 import { BaseButton } from '../BaseButton'
+import { Icon } from 'src/components/atoms'
 
 type Props = {
   state: EditorState<any>
@@ -17,14 +18,16 @@ const isBold = (state: EditorState): boolean =>
   isMarkActive(state, schema.marks.strong)
 
 export const Bold: React.FC<Props> = memo<Props>((props) => {
+  const handleClick = useCallback(() => {
+    toggleBold(props.state, (tr) => props.setState(props.state.apply(tr)))
+  }, [props])
+
   return (
     <BaseButton
+      aria-label="bold"
+      icon={<Icon icon="bold" color="text.muted" />}
       isActive={isBold(props.state)}
-      onClick={() =>
-        toggleBold(props.state, (tr) => props.setState(props.state.apply(tr)))
-      }
-    >
-      B
-    </BaseButton>
+      onClick={handleClick}
+    />
   )
 })

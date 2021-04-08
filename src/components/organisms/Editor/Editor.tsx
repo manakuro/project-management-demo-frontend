@@ -75,15 +75,13 @@ export const Editor: React.FC<Props> = memo<Props>(() => {
             width: '100%',
           }}
         />
-        <Stack
-          flex={1}
-          direction="row"
-          spacing={1}
-          minH={6}
-          display={focused ? 'flex' : 'none'}
-        >
-          <Bold state={state} setState={setState} />
-          <Italic state={state} setState={setState} />
+        <Stack flex={1} direction="row" spacing={1} minH={8}>
+          {focused && (
+            <>
+              <Bold state={state} setState={setState} />
+              <Italic state={state} setState={setState} />
+            </>
+          )}
         </Stack>
       </Flex>
     </ConditionalRender>

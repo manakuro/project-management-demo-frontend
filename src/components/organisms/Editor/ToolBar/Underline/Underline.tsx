@@ -13,20 +13,20 @@ type Props = {
   setState: React.Dispatch<React.SetStateAction<EditorState<any>>>
 }
 
-export const toggleBold = toggleMarkCommand(schema.marks.strong)
-const isBold = (state: EditorState): boolean =>
-  isMarkActive(state, schema.marks.strong)
+export const toggleUnderline = toggleMarkCommand(schema.marks.underline)
+const isUnderline = (state: EditorState): boolean =>
+  isMarkActive(state, schema.marks.underline)
 
-export const Bold: React.FC<Props> = memo<Props>((props) => {
+export const Underline: React.FC<Props> = memo<Props>((props) => {
   const handleClick = useCallback(() => {
-    toggleBold(props.state, (tr) => props.setState(props.state.apply(tr)))
+    toggleUnderline(props.state, (tr) => props.setState(props.state.apply(tr)))
   }, [props])
 
   return (
     <BaseButton
-      aria-label="bold"
-      icon={<Icon icon="bold" color="text.muted" />}
-      isActive={isBold(props.state)}
+      aria-label="underline"
+      icon={<Icon icon="underline" color="text.muted" />}
+      isActive={isUnderline(props.state)}
       onClick={handleClick}
     />
   )

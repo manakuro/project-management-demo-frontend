@@ -3,7 +3,7 @@ import {
   isMarkActive,
   toggleMarkCommand,
 } from 'src/components/organisms/Editor/utils'
-import { schema } from 'prosemirror-schema-basic'
+import { schema } from 'src/components/organisms/Editor/schema'
 import { EditorState } from 'prosemirror-state'
 import { BaseButton } from '../BaseButton'
 import { Icon } from 'src/components/atoms'

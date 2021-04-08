@@ -1,18 +1,25 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { ConditionalRender, Flex, Stack } from 'src/components/atoms'
 import 'prosemirror-view/style/prosemirror.css'
-import { schema } from 'prosemirror-schema-basic'
+import { schema } from 'src/components/organisms/Editor/schema'
 import { keymap } from 'prosemirror-keymap'
 import { baseKeymap } from 'prosemirror-commands'
 import { history, redo, undo } from 'prosemirror-history'
 import { useProseMirror, ProseMirror, Handle } from 'use-prosemirror'
 import { EditorView } from 'prosemirror-view'
-import { Bold, Italic, toggleBold, toggleItalic } from './ToolBar'
+import {
+  Bold,
+  Italic,
+  toggleBold,
+  toggleItalic,
+  toggleUnderline,
+  Underline,
+} from './ToolBar'
 import { useClickOutside } from 'src/hooks'
 
 type Props = {}
 
-const opts: Parameters<typeof useProseMirror>[0] = {
+const options: Parameters<typeof useProseMirror>[0] = {
   schema,
   plugins: [
     history(),
@@ -23,12 +30,13 @@ const opts: Parameters<typeof useProseMirror>[0] = {
       'Mod-Shift-z': redo,
       'Mod-b': toggleBold,
       'Mod-i': toggleItalic,
+      'Mod-u': toggleUnderline,
     }),
   ],
 }
 
 export const Editor: React.FC<Props> = memo<Props>(() => {
-  const [state, setState] = useProseMirror(opts)
+  const [state, setState] = useProseMirror(options)
   const viewRef = useRef<EditorView<any> & Handle>()
   const [focused, setFocused] = useState(false)
   const { ref, hasClickedOutside } = useClickOutside()
@@ -80,6 +88,7 @@ export const Editor: React.FC<Props> = memo<Props>(() => {
             <>
               <Bold state={state} setState={setState} />
               <Italic state={state} setState={setState} />
+              <Underline state={state} setState={setState} />
             </>
           )}
         </Stack>

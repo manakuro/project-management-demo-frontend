@@ -14,6 +14,8 @@ import {
   toggleItalic,
   toggleUnderline,
   Underline,
+  toggleStrikeThrough,
+  Strikethrough,
 } from './ToolBar'
 import { useClickOutside } from 'src/hooks'
 
@@ -31,6 +33,7 @@ const options: Parameters<typeof useProseMirror>[0] = {
       'Mod-b': toggleBold,
       'Mod-i': toggleItalic,
       'Mod-u': toggleUnderline,
+      'Mod-Shift-s': toggleStrikeThrough,
     }),
   ],
 }
@@ -89,6 +92,7 @@ export const Editor: React.FC<Props> = memo<Props>(() => {
               <Bold state={state} setState={setState} />
               <Italic state={state} setState={setState} />
               <Underline state={state} setState={setState} />
+              <Strikethrough state={state} setState={setState} />
             </>
           )}
         </Stack>

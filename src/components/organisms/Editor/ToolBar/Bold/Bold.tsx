@@ -28,6 +28,10 @@ export const Bold: React.FC<Props> = memo<Props>((props) => {
       icon={<Icon icon="bold" color="text.muted" />}
       isActive={isBold(props.state)}
       onClick={handleClick}
+      tooltip={{
+        label: 'Bold\n(⌘+b)',
+        'aria-label': 'Bold',
+      }}
     />
   )
 })

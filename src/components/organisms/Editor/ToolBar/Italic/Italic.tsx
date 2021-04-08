@@ -28,6 +28,10 @@ export const Italic: React.FC<Props> = memo<Props>((props) => {
       icon={<Icon icon="italic" color="text.muted" />}
       isActive={isItalic(props.state)}
       onClick={handleClick}
+      tooltip={{
+        label: 'Italic\n(⌘+i)',
+        'aria-label': 'Italic',
+      }}
     />
   )
 })

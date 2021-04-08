@@ -13,24 +13,26 @@ type Props = {
   setState: React.Dispatch<React.SetStateAction<EditorState<any>>>
 }
 
-export const toggleUnderline = toggleMarkCommand(schema.marks.underline)
-const isUnderline = (state: EditorState): boolean =>
-  isMarkActive(state, schema.marks.underline)
+export const toggleStrikeThrough = toggleMarkCommand(schema.marks.strikethrough)
+const isStrikeThrough = (state: EditorState): boolean =>
+  isMarkActive(state, schema.marks.strikethrough)
 
-export const Underline: React.FC<Props> = memo<Props>((props) => {
+export const Strikethrough: React.FC<Props> = memo<Props>((props) => {
   const handleClick = useCallback(() => {
-    toggleUnderline(props.state, (tr) => props.setState(props.state.apply(tr)))
+    toggleStrikeThrough(props.state, (tr) =>
+      props.setState(props.state.apply(tr)),
+    )
   }, [props])
 
   return (
     <BaseButton
-      aria-label="underline"
-      icon={<Icon icon="underline" color="text.muted" />}
-      isActive={isUnderline(props.state)}
+      aria-label="strikethrough"
+      icon={<Icon icon="strikethrough" color="text.muted" />}
+      isActive={isStrikeThrough(props.state)}
       onClick={handleClick}
       tooltip={{
-        label: 'Underline\n(⌘+u)',
-        'aria-label': 'Underline',
+        label: 'Strikethrough\n(⌘+⇧+S)',
+        'aria-label': 'Strikethrough',
       }}
     />
   )

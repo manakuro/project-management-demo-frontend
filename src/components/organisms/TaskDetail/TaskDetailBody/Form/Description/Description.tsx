@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { Row, Label, Content } from '../Row'
-import { InputText } from 'src/components/atoms'
+import 'prosemirror-view/style/prosemirror.css'
+import { Editor } from 'src/components/organisms'
 
 type Props = {}
 
@@ -9,11 +10,7 @@ export const Description: React.FC<Props> = memo<Props>(() => {
     <Row>
       <Label>Description</Label>
       <Content>
-        <InputText
-          fontSize="sm"
-          value="Organize components folder"
-          onChange={() => {}}
-        />
+        <Editor />
       </Content>
     </Row>
   )

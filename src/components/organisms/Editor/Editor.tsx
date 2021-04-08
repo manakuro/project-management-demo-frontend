@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef } from 'react'
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { ConditionalRender, Flex, Stack } from 'src/components/atoms'
 import 'prosemirror-view/style/prosemirror.css'
 import { schema } from 'prosemirror-schema-basic'
@@ -8,6 +8,7 @@ import { history, redo, undo } from 'prosemirror-history'
 import { useProseMirror, ProseMirror, Handle } from 'use-prosemirror'
 import { EditorView } from 'prosemirror-view'
 import { Bold, Italic, toggleBold, toggleItalic } from './ToolBar'
+import { useClickOutside } from 'src/hooks'
 
 type Props = {}
 
@@ -29,6 +30,12 @@ const opts: Parameters<typeof useProseMirror>[0] = {
 export const Editor: React.FC<Props> = memo<Props>(() => {
   const [state, setState] = useProseMirror(opts)
   const viewRef = useRef<EditorView<any> & Handle>()
+  const [focused, setFocused] = useState(false)
+  const { ref, hasClickedOutside } = useClickOutside()
+
+  const handleFocus = useCallback(() => {
+    setFocused(true)
+  }, [])
 
   useEffect(() => {
     setTimeout(() => {
@@ -39,21 +46,26 @@ export const Editor: React.FC<Props> = memo<Props>(() => {
     }, 300)
   }, [])
 
+  useEffect(() => {
+    if (hasClickedOutside) {
+      setFocused(false)
+    }
+  }, [hasClickedOutside])
+
   return (
     <ConditionalRender client>
       <Flex
+        ref={ref}
         border="1px"
         borderRadius="md"
-        borderColor="transparent"
+        borderColor={focused ? 'gray.400' : 'transparent'}
         _hover={{
           borderColor: 'gray.400',
         }}
-        _focus={{
-          borderColor: 'gray.400',
-        }}
-        p={2}
+        p={3}
         flexDirection="column"
         flex={1}
+        onFocus={handleFocus}
       >
         <ProseMirror
           ref={viewRef as any}
@@ -63,7 +75,13 @@ export const Editor: React.FC<Props> = memo<Props>(() => {
             width: '100%',
           }}
         />
-        <Stack flex={1} direction="row" spacing={1}>
+        <Stack
+          flex={1}
+          direction="row"
+          spacing={1}
+          minH={6}
+          display={focused ? 'flex' : 'none'}
+        >
           <Bold state={state} setState={setState} />
           <Italic state={state} setState={setState} />
         </Stack>

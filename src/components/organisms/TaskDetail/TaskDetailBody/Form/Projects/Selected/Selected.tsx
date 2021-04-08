@@ -1,20 +1,45 @@
 import React from 'react'
-import { Box, Button, Icon, Stack } from 'src/components/atoms'
+import { Box, Button, Flex, Icon, Stack } from 'src/components/atoms'
 import { ProjectButton } from './ProjectButton'
-import { AddToProject } from './AddtoProject'
 import { Section } from './Section'
+import { useDisclosure } from 'src/shared/chakra'
+import { Input } from '../Input'
 
 type Props = {}
 
 export const Selected: React.FC<Props> = (props) => {
+  const inputDisclosure = useDisclosure()
+
   return (
-    <Stack spacing={1} direction="row" display="flex" alignItems="center">
-      <ProjectButton />
-      <Section />
-      <Button as={Box} variant="ghost" size="xs" cursor="pointer">
-        <Icon icon="x" color="text.muted" />
-      </Button>
-      <AddToProject />
-    </Stack>
+    <Flex flexDirection="column">
+      <Stack
+        spacing={1}
+        direction="row"
+        display="flex"
+        alignItems="center"
+        mt={1}
+        mb={2}
+      >
+        <ProjectButton />
+        <Section />
+        <Button as={Box} variant="ghost" size="xs" cursor="pointer">
+          <Icon icon="x" color="text.muted" />
+        </Button>
+        <Button
+          as={Box}
+          variant="ghost"
+          size="xs"
+          cursor="pointer"
+          onClick={inputDisclosure.onOpen}
+        >
+          <Icon icon="plus" color="text.muted" />
+        </Button>
+      </Stack>
+      {inputDisclosure.isOpen && (
+        <Flex flex={1}>
+          <Input onClickOutside={inputDisclosure.onClose} />
+        </Flex>
+      )}
+    </Flex>
   )
 }

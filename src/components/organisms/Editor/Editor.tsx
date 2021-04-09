@@ -1,108 +1,31 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
-import { ConditionalRender, Flex, Stack } from 'src/components/atoms'
+import React, { memo, useState } from 'react'
+import { ConditionalRender } from 'src/components/atoms'
 import 'prosemirror-view/style/prosemirror.css'
-import { schema } from 'src/shared/prosemirror/schema'
-import { keymap } from 'prosemirror-keymap'
-import { baseKeymap } from 'prosemirror-commands'
-import { history, redo, undo } from 'prosemirror-history'
-import { useProseMirror, ProseMirror, Handle } from 'use-prosemirror'
-import { EditorView } from 'prosemirror-view'
-import {
-  Bold,
-  Italic,
-  toggleBold,
-  toggleItalic,
-  toggleUnderline,
-  Underline,
-  toggleStrikeThrough,
-  Strikethrough,
-  toggleBulletedList,
-  BulletedList,
-} from './ToolBar'
-import { useClickOutside } from 'src/hooks'
-import { rules } from 'src/shared/prosemirror/rules'
+import { Editor as ReactProseMirrorEditor, HtmlEditor } from './Components'
+import { schema, plugins } from 'src/shared/prosemirror/config'
+import { Container } from './Container'
 
 type Props = {}
 
-const options: Parameters<typeof useProseMirror>[0] = {
-  schema,
-  plugins: [
-    history(),
-    rules(),
-    keymap({
-      ...baseKeymap,
-      'Mod-z': undo,
-      'Mod-y': redo,
-      'Shift-Mod-z': redo,
-      'Mod-b': toggleBold,
-      'Mod-i': toggleItalic,
-      'Mod-u': toggleUnderline,
-      'Shift-Mod-s': toggleStrikeThrough,
-      'Shift-Mod-8': toggleBulletedList,
-    }),
-  ],
-}
-
+const initialValue = '<p></p>'
 export const Editor: React.FC<Props> = memo<Props>(() => {
-  const [state, setState] = useProseMirror(options)
-  const viewRef = useRef<EditorView<any> & Handle>()
-  const [focused, setFocused] = useState(false)
-  const { ref, hasClickedOutside } = useClickOutside()
+  const [value, setValue] = useState(initialValue)
 
-  const handleFocus = useCallback(() => {
-    setFocused(true)
-  }, [])
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (!viewRef.current?.view) return
-      // Explicitly enable `focus ring` style
-      // @see https://github.com/WICG/focus-visible#2-update-your-css
-      viewRef.current.view.dom.classList.add('focus-visible')
-    }, 300)
-  }, [])
-
-  useEffect(() => {
-    if (hasClickedOutside) {
-      setFocused(false)
-    }
-  }, [hasClickedOutside])
+  console.log('value: ', value)
 
   return (
     <ConditionalRender client>
-      <Flex
-        ref={ref}
-        border="1px"
-        borderRadius="md"
-        borderColor={focused ? 'gray.400' : 'transparent'}
-        _hover={{
-          borderColor: 'gray.400',
-        }}
-        p={3}
-        flexDirection="column"
-        flex={1}
-        onFocus={handleFocus}
-      >
-        <ProseMirror
-          ref={viewRef as any}
-          state={state}
-          onChange={setState}
-          style={{
-            width: '100%',
-          }}
-        />
-        <Stack flex={1} direction="row" spacing={1} minH={8}>
-          {focused && (
-            <>
-              <Bold state={state} setState={setState} />
-              <Italic state={state} setState={setState} />
-              <Underline state={state} setState={setState} />
-              <Strikethrough state={state} setState={setState} />
-              <BulletedList state={state} setState={setState} />
-            </>
-          )}
-        </Stack>
-      </Flex>
+      <Container>
+        <HtmlEditor
+          schema={schema}
+          plugins={plugins}
+          value={initialValue}
+          onChange={setValue}
+          debounce={250}
+        >
+          <ReactProseMirrorEditor />
+        </HtmlEditor>
+      </Container>
     </ConditionalRender>
   )
 })

@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { isMarkActive, toggleMarkCommand } from 'src/shared/prosemirror/utils'
-import { schema } from 'src/shared/prosemirror/schema'
+import { schema } from 'src/shared/prosemirror/config'
 import { EditorState } from 'prosemirror-state'
 import { BaseButton } from '../BaseButton'
 import { Icon } from 'src/components/atoms'

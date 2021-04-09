@@ -7,7 +7,8 @@ import {
   wrappingInputRule,
 } from 'prosemirror-inputrules'
 import { Plugin } from 'prosemirror-state'
-import { schema } from '../config'
+
+import { schema } from './schema'
 
 export const rules = (): Plugin =>
   inputRules({

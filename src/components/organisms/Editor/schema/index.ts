@@ -1,4 +1,5 @@
 import { strikethrough, underline } from './marks'
+import { list, listItem } from './nodes'
 import { Schema } from 'prosemirror-model'
 import { marks, nodes } from 'prosemirror-schema-basic'
 
@@ -8,5 +9,9 @@ export const schema = new Schema({
     underline,
     strikethrough,
   },
-  nodes,
+  nodes: {
+    ...nodes,
+    list,
+    listItem,
+  },
 })

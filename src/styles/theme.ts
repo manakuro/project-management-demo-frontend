@@ -27,6 +27,16 @@ export const theme = extendTheme({
           textDecoration: 'none !important',
         },
       },
+      '.ProseMirror ul, .ProseMirror ol': {
+        marginTop: '1em',
+        marginBottom: '1em',
+        marginLeft: 0,
+        marginRight: 0,
+        paddingLeft: '40px',
+      },
+      '.ProseMirror li': {
+        listStyleType: 'inherit !important',
+      },
       ...dueDatePickerCustomStyle(),
     }),
   },

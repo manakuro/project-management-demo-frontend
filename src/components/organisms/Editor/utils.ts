@@ -1,6 +1,11 @@
-import { MarkType } from 'prosemirror-model'
+import { MarkType, NodeType } from 'prosemirror-model'
 import { Command, toggleMark } from 'prosemirror-commands'
-import { EditorState, Transaction } from 'prosemirror-state'
+import {
+  EditorState,
+  NodeSelection,
+  Transaction,
+  Selection,
+} from 'prosemirror-state'
 
 export const toggleMarkCommand = (mark: MarkType): Command => {
   return (
@@ -16,4 +21,21 @@ export const isMarkActive = (state: EditorState, mark: MarkType): boolean => {
   return empty
     ? !!mark.isInSet(state.storedMarks || $from.marks())
     : state.doc.rangeHasMark(from, to, mark)
+}
+
+const isNodeSelection = (selection: Selection): selection is NodeSelection =>
+  'node' in selection
+
+export const isBlockActive = (
+  state: EditorState,
+  type: NodeType,
+  attrs: Record<string, unknown> = {},
+): boolean => {
+  if (isNodeSelection(state.selection)) {
+    return state.selection.node.hasMarkup(type, attrs)
+  }
+
+  const { $from, to } = state.selection
+
+  return to <= $from.end() && $from.parent.hasMarkup(type, attrs)
 }

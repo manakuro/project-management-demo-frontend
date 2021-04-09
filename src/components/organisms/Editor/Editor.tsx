@@ -16,8 +16,11 @@ import {
   Underline,
   toggleStrikeThrough,
   Strikethrough,
+  toggleBulletedList,
+  BulletedList,
 } from './ToolBar'
 import { useClickOutside } from 'src/hooks'
+import { rules } from './rules'
 
 type Props = {}
 
@@ -25,15 +28,17 @@ const options: Parameters<typeof useProseMirror>[0] = {
   schema,
   plugins: [
     history(),
+    rules(),
     keymap({
       ...baseKeymap,
       'Mod-z': undo,
       'Mod-y': redo,
-      'Mod-Shift-z': redo,
+      'Shift-Mod--z': redo,
       'Mod-b': toggleBold,
       'Mod-i': toggleItalic,
       'Mod-u': toggleUnderline,
-      'Mod-Shift-s': toggleStrikeThrough,
+      'Shift-Mod--s': toggleStrikeThrough,
+      'Shift-Mod-8': toggleBulletedList,
     }),
   ],
 }
@@ -93,6 +98,7 @@ export const Editor: React.FC<Props> = memo<Props>(() => {
               <Italic state={state} setState={setState} />
               <Underline state={state} setState={setState} />
               <Strikethrough state={state} setState={setState} />
+              <BulletedList state={state} setState={setState} />
             </>
           )}
         </Stack>

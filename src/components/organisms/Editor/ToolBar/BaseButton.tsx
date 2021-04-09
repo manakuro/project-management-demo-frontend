@@ -1,21 +1,29 @@
 import React, { useCallback } from 'react'
 import { IconButton, IconButtonProps } from 'src/components/atoms'
 import { Tooltip, TooltipProps } from 'src/components/molecules'
+import {
+  useEditorState,
+  useEditorView,
+} from 'src/components/organisms/Editor/Components/EditorProvider'
+import { ToolbarItem } from 'src/shared/prosemirror/hooks'
 
 type Props = {
-  isActive: boolean
-  onClick: () => void
+  isActive: ToolbarItem['isActive']
+  action: ToolbarItem['action']
   tooltip: Omit<TooltipProps, 'children'>
-} & IconButtonProps
+} & Omit<IconButtonProps, 'isActive'>
 
 export const BaseButton: React.FC<Props> = (props) => {
+  const state = useEditorState()
+  const view = useEditorView()
   const { onClick, tooltip, ...rest } = props
+
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault()
-      onClick()
+      props.action(state, view.dispatch, view)
     },
-    [onClick],
+    [props, state, view],
   )
 
   return (
@@ -26,6 +34,7 @@ export const BaseButton: React.FC<Props> = (props) => {
         colorScheme="teal"
         onMouseDown={handleMouseDown}
         {...rest}
+        isActive={props.isActive(state)}
       />
     </Tooltip>
   )

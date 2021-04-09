@@ -14,7 +14,7 @@ export const Description: React.FC<Props> = memo<Props>(() => {
   return (
     <Row>
       <Label>Description</Label>
-      <Content mt={3}>
+      <Content>
         <Editor onChange={setValue} value={initialValue} />
       </Content>
     </Row>

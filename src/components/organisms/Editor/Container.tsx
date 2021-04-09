@@ -31,7 +31,8 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
         _hover={{
           borderColor: 'gray.400',
         }}
-        p={3}
+        py={2}
+        px={3}
         flexDirection="column"
         flex={1}
         onFocus={handleFocus}

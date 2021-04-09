@@ -11,6 +11,8 @@ import {
   Strikethrough,
   BulletList,
   OrderedList,
+  IncreaseListIndent,
+  DecreaseListIndent,
 } from './ToolBar'
 
 type Props = {
@@ -47,6 +49,8 @@ export const Editor: React.FC<Props> = memo<Props>((props) => {
                     <Strikethrough />
                     <BulletList />
                     <OrderedList />
+                    <IncreaseListIndent />
+                    <DecreaseListIndent />
                     <Divider
                       orientation="vertical"
                       borderColor="gray.400"

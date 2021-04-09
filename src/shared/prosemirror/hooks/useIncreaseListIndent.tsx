@@ -6,7 +6,7 @@ export const useIncreaseListIndent = (): ToolbarItem => {
   return useMemo(
     () => ({
       action: sinkListItemCommand,
-      isActive: sinkListItemCommand,
+      isEnable: sinkListItemCommand,
     }),
     [],
   )

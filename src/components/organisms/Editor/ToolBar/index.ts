@@ -1,6 +1,7 @@
 export * from './ToolBar'
 export * from './Bold'
 export * from './Italic'
+export * from './Link'
 export * from './Underline'
 export * from './Strikethrough'
 export * from './BulletList'

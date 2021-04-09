@@ -9,6 +9,7 @@ import { ToolbarItem } from 'src/shared/prosemirror/hooks'
 
 type Props = {
   isActive?: ToolbarItem['isActive']
+  isEnable?: ToolbarItem['isEnable']
   action: ToolbarItem['action']
   tooltip: Omit<TooltipProps, 'children'>
 } & Omit<IconButtonProps, 'isActive'>
@@ -35,6 +36,7 @@ export const BaseButton: React.FC<Props> = (props) => {
         onMouseDown={handleMouseDown}
         {...rest}
         isActive={props.isActive?.(state) ?? false}
+        isDisabled={props.isEnable?.(state) === false}
         _disabled={{
           cursor: 'pointer',
           opacity: 0.4,

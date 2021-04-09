@@ -7,6 +7,7 @@ import { Container } from './Container'
 import {
   Bold,
   Italic,
+  Link,
   Underline,
   Strikethrough,
   BulletList,
@@ -51,6 +52,7 @@ export const Editor: React.FC<Props> = memo<Props>((props) => {
                     <OrderedList />
                     <IncreaseListIndent />
                     <DecreaseListIndent />
+                    <Link />
                     <Divider
                       orientation="vertical"
                       borderColor="gray.400"

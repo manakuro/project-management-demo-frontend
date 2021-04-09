@@ -6,7 +6,7 @@ export const useDecreaseListIndent = (): ToolbarItem => {
   return useMemo(
     () => ({
       action: liftListItemCommand,
-      isActive: liftListItemCommand,
+      isEnable: liftListItemCommand,
     }),
     [],
   )

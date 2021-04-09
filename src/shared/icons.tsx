@@ -154,7 +154,7 @@ export const icons = {
   listOl: BiListOl,
   rightIndent: BiRightIndent,
   leftIndent: BiLeftIndent,
-  Link: BiLink,
+  link: BiLink,
   unlink: BiUnlink,
   at: BiAt,
   emojiHappy: HiOutlineEmojiHappy,

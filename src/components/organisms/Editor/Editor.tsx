@@ -1,9 +1,10 @@
 import React, { memo, useState } from 'react'
-import { ConditionalRender } from 'src/components/atoms'
+import { ConditionalRender, Stack } from 'src/components/atoms'
 import 'prosemirror-view/style/prosemirror.css'
 import { Editor as ReactProseMirrorEditor, HtmlEditor } from './Components'
 import { schema, plugins } from 'src/shared/prosemirror/config'
 import { Container } from './Container'
+import { Bold, Italic, Underline, Strikethrough, BulletList } from './ToolBar'
 
 type Props = {}
 
@@ -16,15 +17,30 @@ export const Editor: React.FC<Props> = memo<Props>(() => {
   return (
     <ConditionalRender client>
       <Container>
-        <HtmlEditor
-          schema={schema}
-          plugins={plugins}
-          value={initialValue}
-          onChange={setValue}
-          debounce={250}
-        >
-          <ReactProseMirrorEditor />
-        </HtmlEditor>
+        {({ focused }) => (
+          <>
+            <HtmlEditor
+              schema={schema}
+              plugins={plugins}
+              value={initialValue}
+              onChange={setValue}
+              debounce={250}
+            >
+              <ReactProseMirrorEditor />
+              <Stack flex={1} direction="row" spacing={1} minH={8}>
+                {focused && (
+                  <>
+                    <Bold />
+                    <Italic />
+                    <Underline />
+                    <Strikethrough />
+                    <BulletList />
+                  </>
+                )}
+              </Stack>
+            </HtmlEditor>
+          </>
+        )}
       </Container>
     </ConditionalRender>
   )

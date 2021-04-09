@@ -1,29 +1,28 @@
 import React, { memo, useCallback } from 'react'
-import { isMarkActive, toggleMarkCommand } from 'src/shared/prosemirror/utils'
-import { schema } from 'src/shared/prosemirror/config'
-import { EditorState } from 'prosemirror-state'
 import { BaseButton } from '../BaseButton'
 import { Icon } from 'src/components/atoms'
+import {
+  useEditorState,
+  useEditorView,
+} from 'src/components/organisms/Editor/Components/EditorProvider'
+import { useBold } from 'src/shared/prosemirror/hooks'
 
-type Props = {
-  state: EditorState<any>
-  setState: React.Dispatch<React.SetStateAction<EditorState<any>>>
-}
+type Props = {}
 
-export const toggleUnderline = toggleMarkCommand(schema.marks.underline)
-const isUnderline = (state: EditorState): boolean =>
-  isMarkActive(state, schema.marks.underline)
+export const Underline: React.FC<Props> = memo<Props>(() => {
+  const state = useEditorState()
+  const view = useEditorView()
+  const { action, isActive } = useBold()
 
-export const Underline: React.FC<Props> = memo<Props>((props) => {
   const handleClick = useCallback(() => {
-    toggleUnderline(props.state, (tr) => props.setState(props.state.apply(tr)))
-  }, [props])
+    action(state, view.dispatch, view)
+  }, [action, state, view])
 
   return (
     <BaseButton
       aria-label="underline"
       icon={<Icon icon="underline" color="text.muted" />}
-      isActive={isUnderline(props.state)}
+      isActive={isActive(state)}
       onClick={handleClick}
       tooltip={{
         label: 'Underline\n(⌘+u)',

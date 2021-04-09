@@ -1,29 +1,28 @@
 import React, { memo, useCallback } from 'react'
-import { isMarkActive, toggleMarkCommand } from 'src/shared/prosemirror/utils'
-import { schema } from 'src/shared/prosemirror/config'
-import { EditorState } from 'prosemirror-state'
 import { BaseButton } from '../BaseButton'
 import { Icon } from 'src/components/atoms'
+import { useBold } from 'src/shared/prosemirror/hooks'
+import {
+  useEditorState,
+  useEditorView,
+} from 'src/components/organisms/Editor/Components/EditorProvider'
 
-type Props = {
-  state: EditorState<any>
-  setState: React.Dispatch<React.SetStateAction<EditorState<any>>>
-}
+type Props = {}
 
-export const toggleBold = toggleMarkCommand(schema.marks.strong)
-const isBold = (state: EditorState): boolean =>
-  isMarkActive(state, schema.marks.strong)
+export const Bold: React.FC<Props> = memo<Props>(() => {
+  const state = useEditorState()
+  const view = useEditorView()
+  const { action, isActive } = useBold()
 
-export const Bold: React.FC<Props> = memo<Props>((props) => {
   const handleClick = useCallback(() => {
-    toggleBold(props.state, (tr) => props.setState(props.state.apply(tr)))
-  }, [props])
+    action(state, view.dispatch, view)
+  }, [action, state, view])
 
   return (
     <BaseButton
       aria-label="bold"
       icon={<Icon icon="bold" color="text.muted" />}
-      isActive={isBold(props.state)}
+      isActive={isActive(state)}
       onClick={handleClick}
       tooltip={{
         label: 'Bold\n(⌘+b)',

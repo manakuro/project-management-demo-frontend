@@ -1,8 +1,11 @@
 import React, { memo, useCallback, useEffect, useState } from 'react'
 import { ConditionalRender, Flex } from 'src/components/atoms'
 import { useClickOutside } from 'src/hooks'
+import { MaybeRenderProp, runIfFn } from 'src/shared/utils'
 
-type Props = {}
+type Props = {
+  children: MaybeRenderProp<{ focused: boolean }>
+}
 
 export const Container: React.FC<Props> = memo<Props>((props) => {
   const [focused, setFocused] = useState(false)
@@ -33,7 +36,7 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
         flex={1}
         onFocus={handleFocus}
       >
-        {props.children}
+        {runIfFn(props.children, { focused })}
       </Flex>
     </ConditionalRender>
   )

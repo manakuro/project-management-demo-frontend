@@ -1,29 +1,28 @@
 import React, { memo, useCallback } from 'react'
-import { isMarkActive, toggleMarkCommand } from 'src/shared/prosemirror/utils'
-import { schema } from 'src/shared/prosemirror/config'
-import { EditorState } from 'prosemirror-state'
 import { BaseButton } from '../BaseButton'
 import { Icon } from 'src/components/atoms'
+import {
+  useEditorState,
+  useEditorView,
+} from 'src/components/organisms/Editor/Components/EditorProvider'
+import { useItalic } from 'src/shared/prosemirror/hooks'
 
-type Props = {
-  state: EditorState<any>
-  setState: React.Dispatch<React.SetStateAction<EditorState<any>>>
-}
+type Props = {}
 
-export const toggleItalic = toggleMarkCommand(schema.marks.em)
-const isItalic = (state: EditorState): boolean =>
-  isMarkActive(state, schema.marks.em)
+export const Italic: React.FC<Props> = memo<Props>(() => {
+  const state = useEditorState()
+  const view = useEditorView()
+  const { action, isActive } = useItalic()
 
-export const Italic: React.FC<Props> = memo<Props>((props) => {
   const handleClick = useCallback(() => {
-    toggleItalic(props.state, (tr) => props.setState(props.state.apply(tr)))
-  }, [props])
+    action(state, view.dispatch, view)
+  }, [action, state, view])
 
   return (
     <BaseButton
-      aria-label="bold"
+      aria-label="italic"
       icon={<Icon icon="italic" color="text.muted" />}
-      isActive={isItalic(props.state)}
+      isActive={isActive(state)}
       onClick={handleClick}
       tooltip={{
         label: 'Italic\n(⌘+i)',

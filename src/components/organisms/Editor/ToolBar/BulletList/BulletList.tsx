@@ -5,14 +5,14 @@ import {
   useEditorState,
   useEditorView,
 } from 'src/components/organisms/Editor/Components/EditorProvider'
-import { useStrikethrough } from 'src/shared/prosemirror/hooks'
+import { useBulletList } from 'src/shared/prosemirror/hooks'
 
 type Props = {}
 
-export const Strikethrough: React.FC<Props> = memo<Props>((props) => {
+export const BulletList: React.FC<Props> = memo<Props>(() => {
   const state = useEditorState()
   const view = useEditorView()
-  const { action, isActive } = useStrikethrough()
+  const { action, isActive } = useBulletList()
 
   const handleClick = useCallback(() => {
     action(state, view.dispatch, view)
@@ -20,13 +20,13 @@ export const Strikethrough: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <BaseButton
-      aria-label="strikethrough"
-      icon={<Icon icon="strikethrough" color="text.muted" />}
+      aria-label="underline"
+      icon={<Icon icon="listUl" color="text.muted" />}
       isActive={isActive(state)}
       onClick={handleClick}
       tooltip={{
-        label: 'Strikethrough\n(⌘+⇧+S)',
-        'aria-label': 'Strikethrough',
+        label: 'Bullet List\n(⌘+⇧+8)',
+        'aria-label': 'Bullet List',
       }}
     />
   )

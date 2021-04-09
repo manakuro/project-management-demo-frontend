@@ -1,9 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import {
-  isMarkActive,
-  toggleMarkCommand,
-} from 'src/components/organisms/Editor/utils'
-import { schema } from 'src/components/organisms/Editor/schema'
+import { isMarkActive, toggleMarkCommand } from 'src/shared/prosemirror/utils'
+import { schema } from 'src/shared/prosemirror/schema'
 import { EditorState } from 'prosemirror-state'
 import { BaseButton } from '../BaseButton'
 import { Icon } from 'src/components/atoms'

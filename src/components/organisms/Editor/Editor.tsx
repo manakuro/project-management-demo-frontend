@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { ConditionalRender, Flex, Stack } from 'src/components/atoms'
 import 'prosemirror-view/style/prosemirror.css'
-import { schema } from 'src/components/organisms/Editor/schema'
+import { schema } from 'src/shared/prosemirror/schema'
 import { keymap } from 'prosemirror-keymap'
 import { baseKeymap } from 'prosemirror-commands'
 import { history, redo, undo } from 'prosemirror-history'
@@ -20,7 +20,7 @@ import {
   BulletedList,
 } from './ToolBar'
 import { useClickOutside } from 'src/hooks'
-import { rules } from './rules'
+import { rules } from 'src/shared/prosemirror/rules'
 
 type Props = {}
 
@@ -33,11 +33,11 @@ const options: Parameters<typeof useProseMirror>[0] = {
       ...baseKeymap,
       'Mod-z': undo,
       'Mod-y': redo,
-      'Shift-Mod--z': redo,
+      'Shift-Mod-z': redo,
       'Mod-b': toggleBold,
       'Mod-i': toggleItalic,
       'Mod-u': toggleUnderline,
-      'Shift-Mod--s': toggleStrikeThrough,
+      'Shift-Mod-s': toggleStrikeThrough,
       'Shift-Mod-8': toggleBulletedList,
     }),
   ],

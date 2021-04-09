@@ -15,6 +15,8 @@ import { Plugin } from 'prosemirror-state'
 import {
   insertNodeHorizontalRule,
   insertNodeLineBreak,
+  setListTypeBullet,
+  setListTypeOrdered,
   liftListItemCommand,
   sinkListItemCommand,
   splitListItemCommand,
@@ -23,6 +25,7 @@ import {
   toggleMarkItalic,
   toggleMarkUnderline,
   wrapInBlockquote,
+  toggleMarkStrikethrough,
 } from './commands'
 
 export const listKeys = (): Plugin =>
@@ -46,10 +49,13 @@ export const editorKeys = (): Plugin =>
     'Alt-ArrowDown': joinDown,
     'Mod-BracketLeft': lift,
     Escape: selectParentNode,
-    'Meta-b': toggleMarkBold,
-    'Meta-i': toggleMarkItalic,
+    'Shift-Mod-8': setListTypeBullet,
+    'Shift-Mod-7': setListTypeOrdered,
+    'Mod-b': toggleMarkBold,
+    'Mod-i': toggleMarkItalic,
     'Ctrl-`': toggleMarkCode,
     'Mod-u': toggleMarkUnderline,
+    'Shift-Mod-s': toggleMarkStrikethrough,
     'Ctrl->': wrapInBlockquote,
     'Mod-Enter': chainCommands(exitCode, insertNodeLineBreak),
     'Shift-Enter': chainCommands(exitCode, insertNodeLineBreak),

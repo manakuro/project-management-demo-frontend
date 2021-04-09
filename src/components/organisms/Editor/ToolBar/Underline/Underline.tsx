@@ -5,14 +5,14 @@ import {
   useEditorState,
   useEditorView,
 } from 'src/components/organisms/Editor/Components/EditorProvider'
-import { useBold } from 'src/shared/prosemirror/hooks'
+import { useUnderline } from 'src/shared/prosemirror/hooks'
 
 type Props = {}
 
 export const Underline: React.FC<Props> = memo<Props>(() => {
   const state = useEditorState()
   const view = useEditorView()
-  const { action, isActive } = useBold()
+  const { action, isActive } = useUnderline()
 
   const handleClick = useCallback(() => {
     action(state, view.dispatch, view)

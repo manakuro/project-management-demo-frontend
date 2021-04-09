@@ -25,7 +25,7 @@ export const OrderedList: React.FC<Props> = memo<Props>(() => {
       isActive={isActive(state)}
       onClick={handleClick}
       tooltip={{
-        label: 'Ordered List\n(⌘+⇧+8)',
+        label: 'Ordered List\n(⌘+⇧+7)',
         'aria-label': 'Ordered List',
       }}
     />

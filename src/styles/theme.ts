@@ -4,6 +4,7 @@ import { dueDatePickerCustomStyle } from 'src/components/organisms/Popovers/Popo
 // Disabling border for non-keyboard interactions
 // @see https://github.com/chakra-ui/chakra-ui/blob/develop/packages/css-reset/README.md
 import 'focus-visible/dist/focus-visible'
+import { proseMirrorStyle } from 'src/shared/prosemirror/style'
 
 export const theme = extendTheme({
   styles: {
@@ -27,14 +28,7 @@ export const theme = extendTheme({
           textDecoration: 'none !important',
         },
       },
-      '.ProseMirror ul, .ProseMirror ol': {
-        marginLeft: 0,
-        marginRight: 0,
-        paddingLeft: '32px',
-      },
-      '.ProseMirror li': {
-        listStyleType: 'inherit !important',
-      },
+      ...proseMirrorStyle(),
       ...dueDatePickerCustomStyle(),
     }),
   },

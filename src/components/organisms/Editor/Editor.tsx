@@ -4,7 +4,14 @@ import 'prosemirror-view/style/prosemirror.css'
 import { Editor as ReactProseMirrorEditor, HtmlEditor } from './Components'
 import { schema, plugins } from 'src/shared/prosemirror/config'
 import { Container } from './Container'
-import { Bold, Italic, Underline, Strikethrough, BulletList } from './ToolBar'
+import {
+  Bold,
+  Italic,
+  Underline,
+  Strikethrough,
+  BulletList,
+  OrderedList,
+} from './ToolBar'
 
 type Props = {}
 
@@ -35,6 +42,7 @@ export const Editor: React.FC<Props> = memo<Props>(() => {
                     <Underline />
                     <Strikethrough />
                     <BulletList />
+                    <OrderedList />
                   </>
                 )}
               </Stack>

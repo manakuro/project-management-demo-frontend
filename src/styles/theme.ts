@@ -28,11 +28,9 @@ export const theme = extendTheme({
         },
       },
       '.ProseMirror ul, .ProseMirror ol': {
-        marginTop: '1em',
-        marginBottom: '1em',
         marginLeft: 0,
         marginRight: 0,
-        paddingLeft: '40px',
+        paddingLeft: '32px',
       },
       '.ProseMirror li': {
         listStyleType: 'inherit !important',

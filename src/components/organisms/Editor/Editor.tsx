@@ -1,5 +1,5 @@
-import React, { memo, useState } from 'react'
-import { ConditionalRender, Stack } from 'src/components/atoms'
+import React, { memo } from 'react'
+import { ConditionalRender, Divider, Stack } from 'src/components/atoms'
 import 'prosemirror-view/style/prosemirror.css'
 import { Editor as ReactProseMirrorEditor, HtmlEditor } from './Components'
 import { schema, plugins } from 'src/shared/prosemirror/config'
@@ -13,14 +13,12 @@ import {
   OrderedList,
 } from './ToolBar'
 
-type Props = {}
+type Props = {
+  onChange: (val: string) => void
+  value: string
+}
 
-const initialValue = '<p></p>'
-export const Editor: React.FC<Props> = memo<Props>(() => {
-  const [value, setValue] = useState(initialValue)
-
-  console.log('value: ', value)
-
+export const Editor: React.FC<Props> = memo<Props>((props) => {
   return (
     <ConditionalRender client>
       <Container>
@@ -29,12 +27,18 @@ export const Editor: React.FC<Props> = memo<Props>(() => {
             <HtmlEditor
               schema={schema}
               plugins={plugins}
-              value={initialValue}
-              onChange={setValue}
+              value={props.value}
+              onChange={props.onChange}
               debounce={250}
             >
               <ReactProseMirrorEditor />
-              <Stack flex={1} direction="row" spacing={1} minH={8}>
+              <Stack
+                flex={1}
+                direction="row"
+                spacing={1}
+                minH={8}
+                alignItems="center"
+              >
                 {focused && (
                   <>
                     <Bold />
@@ -43,6 +47,11 @@ export const Editor: React.FC<Props> = memo<Props>(() => {
                     <Strikethrough />
                     <BulletList />
                     <OrderedList />
+                    <Divider
+                      orientation="vertical"
+                      borderColor="gray.400"
+                      h={5}
+                    />
                   </>
                 )}
               </Stack>

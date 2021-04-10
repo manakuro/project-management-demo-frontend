@@ -15,8 +15,7 @@ export const useLink = (): ToolbarItem => {
       }
       const selectedText = window.getSelection()
       const position = selectedText?.getRangeAt(0).getBoundingClientRect()
-      console.log(position)
-      onOpen({ x: position?.x, y: position?.y })
+      onOpen({ x: Number(position?.top), y: Number(position?.left) })
 
       toggleMark(schema.marks.link, { href: '' })(state, dispatch)
 

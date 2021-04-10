@@ -8,5 +8,5 @@ type Props = ChakraModalContentProps
 export type ModalContentProps = Props
 
 export const ModalContent: React.FC<Props> = (props) => {
-  return <ChakraModalContent {...props} />
+  return <ChakraModalContent {...props} aria-label="modal-content" />
 }

@@ -6,7 +6,7 @@ import { useEditorLinkModal } from './useEditorLinkModal'
 type Props = {}
 
 const MARGIN = 30
-export const EditorLinkModal: React.VFC<Props> = (props) => {
+export const EditorLinkModal: React.VFC<Props> = () => {
   const { isOpen, x, y, onClose } = useEditorLinkModal()
 
   return (

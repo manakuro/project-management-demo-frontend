@@ -17,14 +17,14 @@ type Props = {
 export const BaseButton: React.FC<Props> = (props) => {
   const state = useEditorState()
   const view = useEditorView()
-  const { onClick, tooltip, ...rest } = props
+  const { onClick, tooltip, action, isEnable, isActive, ...rest } = props
 
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault()
-      props.action(state, view.dispatch, view)
+      action(state, view.dispatch, view)
     },
-    [props, state, view],
+    [action, state, view],
   )
 
   return (
@@ -35,8 +35,8 @@ export const BaseButton: React.FC<Props> = (props) => {
         colorScheme="teal"
         onMouseDown={handleMouseDown}
         {...rest}
-        isActive={props.isActive?.(state) ?? false}
-        isDisabled={props.isEnable?.(state) === false}
+        isActive={isActive?.(state) ?? false}
+        isDisabled={isEnable?.(state) === false}
         _disabled={{
           cursor: 'pointer',
           opacity: 0.4,

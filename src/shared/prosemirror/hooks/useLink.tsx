@@ -7,17 +7,27 @@ import { useEditorLinkModal } from 'src/components/organisms'
 
 export const useLink = (): ToolbarItem => {
   const { onOpen } = useEditorLinkModal()
-  const action = useCallback<Command>(
-    (state, dispatch, view) => {
+  const action = useCallback<
+    (
+      state: Parameters<Command>[0],
+      dispatch: Parameters<Command>[1],
+      view: Parameters<Command>[2],
+    ) => Promise<boolean>
+  >(
+    async (state, dispatch) => {
       if (isMarkActive(schema.marks.link)(state)) {
         toggleMark(schema.marks.link)(state, dispatch)
         return true
       }
       const selectedText = window.getSelection()
       const position = selectedText?.getRangeAt(0).getBoundingClientRect()
-      onOpen({ x: Number(position?.top), y: Number(position?.left) })
+      const input = await onOpen({
+        x: Number(position?.top),
+        y: Number(position?.left),
+      })
+      console.log('input: ', input)
 
-      toggleMark(schema.marks.link, { href: '' })(state, dispatch)
+      toggleMark(schema.marks.link, { href: input.url })(state, dispatch)
 
       return true
     },

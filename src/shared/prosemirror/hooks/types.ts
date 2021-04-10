@@ -7,7 +7,7 @@ export type ToolbarItem<S extends Schema = any> = {
     state: EditorState<S>,
     dispatch: (tr: Transaction<S>) => void,
     view: EditorView,
-  ) => boolean
+  ) => boolean | Promise<boolean>
   isActive?: (state: EditorState<S>) => boolean
   isEnable?: (state: EditorState<S>) => boolean
 }

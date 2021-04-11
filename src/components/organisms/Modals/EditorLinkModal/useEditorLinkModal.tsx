@@ -6,7 +6,6 @@ type State = {
   x: number
   y: number
   input: {
-    text: string
     url: string
   }
   callback: (input: State['input']) => void
@@ -19,7 +18,6 @@ const atomState = atom<State>({
     x: 0,
     y: 0,
     input: {
-      text: '',
       url: '',
     },
     callback: () => {},
@@ -37,14 +35,11 @@ export const useEditorLinkModal = () => {
   }, [resetState, setState, state])
 
   const onOpen = useCallback(
-    ({ x, y, text }: { x: State['x']; y: State['y']; text: string }) => {
+    ({ x, y }: { x: State['x']; y: State['y'] }) => {
       return new Promise<State['input']>((resolve) => {
-        setState(() => ({
+        setState((s) => ({
+          ...s,
           isOpen: true,
-          input: {
-            text,
-            url: '',
-          },
           x,
           y,
           callback: resolve,

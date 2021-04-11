@@ -25,13 +25,6 @@ export const EditorLinkModal: React.VFC<Props> = () => {
         <ModalBody>
           <Stack spacing={2}>
             <Input
-              value={input.text}
-              onChange={(e) => handleInput(e, 'text')}
-              focusBorderColor="none"
-              placeholder="Add text"
-              size="sm"
-            />
-            <Input
               value={input.url}
               onChange={(e) => handleInput(e, 'url')}
               focusBorderColor="none"

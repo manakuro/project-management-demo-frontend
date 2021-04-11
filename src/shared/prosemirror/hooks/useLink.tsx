@@ -21,10 +21,12 @@ export const useLink = (): ToolbarItem => {
       }
       const selectedText = window.getSelection()
       const position = selectedText?.getRangeAt(0).getBoundingClientRect()
+
+      if (!selectedText?.anchorNode) return false
+
       const input = await onOpen({
         x: Number(position?.top),
         y: Number(position?.left),
-        text: selectedText?.anchorNode?.textContent || '',
       })
       if (!input.url) return false
 

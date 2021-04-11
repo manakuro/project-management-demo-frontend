@@ -9,6 +9,7 @@ export const proseMirrorStyle = () => ({
   },
   '.ProseMirror a': {
     color: 'cyan.400',
+    cursor: 'pointer',
     _hover: {
       textDecoration: 'underline !important',
     },

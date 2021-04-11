@@ -1,4 +1,4 @@
-import { atom, useRecoilState } from 'recoil'
+import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useCallback } from 'react'
 
 type State = {
@@ -28,18 +28,23 @@ const atomState = atom<State>({
 
 export const useEditorLinkModal = () => {
   const [state, setState] = useRecoilState(atomState)
+  const resetState = useResetRecoilState(atomState)
 
   const onClose = useCallback(() => {
     setState((s) => ({ ...s, isOpen: false }))
     state.callback(state.input)
-  }, [setState, state])
+    resetState()
+  }, [resetState, setState, state])
 
   const onOpen = useCallback(
-    ({ x, y }) => {
+    ({ x, y, text }: { x: State['x']; y: State['y']; text: string }) => {
       return new Promise<State['input']>((resolve) => {
-        setState((s) => ({
-          ...s,
+        setState(() => ({
           isOpen: true,
+          input: {
+            text,
+            url: '',
+          },
           x,
           y,
           callback: resolve,

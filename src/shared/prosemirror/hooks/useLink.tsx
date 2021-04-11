@@ -24,8 +24,9 @@ export const useLink = (): ToolbarItem => {
       const input = await onOpen({
         x: Number(position?.top),
         y: Number(position?.left),
+        text: selectedText?.anchorNode?.textContent || '',
       })
-      console.log('input: ', input)
+      if (!input.url) return false
 
       toggleMark(schema.marks.link, { href: input.url })(state, dispatch)
 

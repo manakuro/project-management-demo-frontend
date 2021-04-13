@@ -5,12 +5,12 @@ import { useEditorState } from './EditorProvider'
 import { useDebounce } from './hooks'
 
 type Props<P> = {
-  handleChange: (value: P) => void
+  onChange: (value: P) => void
   transformer: ProsemirrorTransformer<P>
   debounce?: number
 }
 export const ChangeHandler = <P extends unknown>({
-  handleChange,
+  onChange,
   transformer,
   debounce = 0,
 }: PropsWithChildren<Props<P>>): ReactElement | null => {
@@ -19,8 +19,8 @@ export const ChangeHandler = <P extends unknown>({
   const debouncedDoc = useDebounce(state.doc, debounce)
 
   useEffect(() => {
-    handleChange(transformer.serialize(debouncedDoc))
-  }, [handleChange, transformer, debouncedDoc])
+    onChange(transformer.serialize(debouncedDoc))
+  }, [onChange, transformer, debouncedDoc])
 
   return null
 }

@@ -1,5 +1,5 @@
 import {
-  createHTMLTransformer,
+  createJSONTransformer,
   ProsemirrorTransformer,
 } from 'src/shared/prosemirror/transformers'
 import { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
@@ -17,19 +17,19 @@ type Props = {
   debounce?: number
 }
 export const HtmlEditor: React.FC<Props> = (props) => {
-  const [htmlTransformer] = useState<ProsemirrorTransformer>(() =>
-    createHTMLTransformer(props.schema),
+  const [transformer] = useState<ProsemirrorTransformer>(() =>
+    createJSONTransformer(props.schema),
   )
 
   const [initialDoc] = useState<ProsemirrorNode>(() =>
-    htmlTransformer.parse(props.value),
+    transformer.parse(props.value),
   )
 
   return (
     <EditorProvider plugins={props.plugins} doc={initialDoc}>
       <ChangeHandler
-        transformer={htmlTransformer}
-        handleChange={props.onChange}
+        transformer={transformer}
+        onChange={props.onChange}
         debounce={props.debounce}
       />
       {props.children}

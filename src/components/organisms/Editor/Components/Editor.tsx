@@ -7,7 +7,7 @@ export const Editor: React.FC<Props> = React.memo<Props>(() => {
 
   const editorRef = useCallback(
     (element: HTMLDivElement | null) => {
-      if (element) {
+      if (element && view) {
         element.appendChild(view.dom)
       }
     },
@@ -16,7 +16,7 @@ export const Editor: React.FC<Props> = React.memo<Props>(() => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (!view.dom) return
+      if (!view?.dom) return
       // Explicitly enable `focus ring` style
       // @see https://github.com/WICG/focus-visible#2-update-your-css
       view.dom.classList.add('focus-visible')

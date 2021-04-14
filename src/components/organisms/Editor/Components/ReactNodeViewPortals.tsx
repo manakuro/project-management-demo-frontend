@@ -4,14 +4,10 @@ type Props = {}
 
 const initialState = {}
 
-export type ReactNodeViewPortalsContextProps = {
-  createPortal: (portal: any) => void
-}
-const ReactNodeViewPortalsContext = React.createContext<ReactNodeViewPortalsContextProps>(
-  {
-    createPortal: () => {},
-  },
-)
+const ReactNodeViewPortalsContext = React.createContext<Partial<State>>({})
+const ReactNodeViewCreatePortalContext = React.createContext<
+  (portal: any) => void
+>(() => {})
 
 const reducer = (state: State, action: Action) => {
   switch (action.type) {
@@ -34,12 +30,12 @@ export const ReactNodeViewPortalsProvider: React.FC<Props> = (props) => {
     return dispatch({ type: 'createPortal', key: portal.key!, portal })
   }, [])
 
-  console.log('data: ', data)
-
   return (
-    <ReactNodeViewPortalsContext.Provider value={{ createPortal }}>
-      {props.children}
-      {/*{Object.values(data).map((obj) => obj.portal)}*/}
+    <ReactNodeViewPortalsContext.Provider value={data}>
+      <ReactNodeViewCreatePortalContext.Provider value={createPortal}>
+        {props.children}
+        {/*{Object.values(data).map((obj) => obj.portal)}*/}
+      </ReactNodeViewCreatePortalContext.Provider>
     </ReactNodeViewPortalsContext.Provider>
   )
 }
@@ -56,3 +52,5 @@ type Action = {
 
 export const useReactNodeViewPortals = () =>
   useContext(ReactNodeViewPortalsContext)
+export const useReactNodeViewCreatePortal = () =>
+  useContext(ReactNodeViewCreatePortalContext)

@@ -21,6 +21,8 @@ export const BaseButton: React.FC<Props> = (props) => {
 
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
+      if (!view) return
+
       e.preventDefault()
       action(state, view.dispatch, view)
     },

@@ -8,6 +8,7 @@ import React, { useState } from 'react'
 
 import { ChangeHandler } from './ChangeHandler'
 import { EditorProvider } from './EditorProvider'
+import { Portals } from './Portals'
 
 type Props = {
   schema: Schema
@@ -33,6 +34,7 @@ export const HtmlEditor: React.FC<Props> = (props) => {
         debounce={props.debounce}
       />
       {props.children}
+      <Portals />
     </EditorProvider>
   )
 }

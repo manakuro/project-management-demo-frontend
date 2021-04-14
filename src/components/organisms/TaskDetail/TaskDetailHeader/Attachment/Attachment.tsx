@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, IconButton } from 'src/components/atoms'
+import { Icon, IconButton, Portal } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import {
   Menu,
@@ -29,15 +29,17 @@ export const Attachment: React.FC<Props> = () => {
           variant="ghost"
         />
       </Tooltip>
-      <MenuList>
-        <MenuGroup title="Attach a File">
-          <MenuItem>Your computer</MenuItem>
-          <MenuItem>Dropbox</MenuItem>
-          <MenuItem>Google Drive</MenuItem>
-          <MenuItem>Box</MenuItem>
-          <MenuItem>OneDrive/SharePoint</MenuItem>
-        </MenuGroup>
-      </MenuList>
+      <Portal>
+        <MenuList>
+          <MenuGroup title="Attach a File">
+            <MenuItem>Your computer</MenuItem>
+            <MenuItem>Dropbox</MenuItem>
+            <MenuItem>Google Drive</MenuItem>
+            <MenuItem>Box</MenuItem>
+            <MenuItem>OneDrive/SharePoint</MenuItem>
+          </MenuGroup>
+        </MenuList>
+      </Portal>
     </Menu>
   )
 }

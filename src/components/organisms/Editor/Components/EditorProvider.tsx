@@ -1,16 +1,10 @@
 import { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
 import { EditorState, Plugin } from 'prosemirror-state'
-import { EditorProps, EditorView } from 'prosemirror-view'
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from 'react'
+import { EditorView } from 'prosemirror-view'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import {
   ReactNodeViewPortalsProvider,
-  useReactNodeViewPortals,
+  useReactNodeViewCreatePortal,
 } from './ReactNodeViewPortals'
 import { createReactNodeView } from './ReactNodeView'
 import { Blockquote } from './nodeViews'
@@ -28,21 +22,12 @@ export const useEditorState = (): EditorState => {
   return context
 }
 
-export const useEditorView = (): EditorView => {
-  const context = useContext(EditorViewContext)
-
-  if (!context) {
-    throw new Error('useEditorView is only available inside EditorProvider')
-  }
-
-  return context
-}
+export const useEditorView = () => useContext(EditorViewContext)
 
 type Props = {
   doc?: ProsemirrorNode
   schema?: Schema
   plugins?: Plugin[]
-  editorProps?: EditorProps
 }
 export const EditorProvider: React.FC<Props> = (props) => {
   return (
@@ -52,22 +37,20 @@ export const EditorProvider: React.FC<Props> = (props) => {
   )
 }
 
-const Provider: React.FC<Props> = ({
-  doc,
-  schema,
-  plugins = [],
-  editorProps,
-  children,
-}) => {
-  const { createPortal } = useReactNodeViewPortals()
-  const handleCreatePortal = useCallback(createPortal, [createPortal])
+const Provider: React.FC<Props> = (props) => {
+  const createPortal = useReactNodeViewCreatePortal()
   const [state, setState] = useState(() =>
-    EditorState.create({ doc, schema, plugins }),
+    EditorState.create({
+      doc: props.doc,
+      schema: props.doc,
+      plugins: props.plugins,
+    }),
   )
-  const view = useMemo(
-    () =>
+  const [view, setView] = useState<EditorView | null>(null)
+
+  useEffect(() => {
+    setView(
       new EditorView(undefined, {
-        ...editorProps,
         state,
         nodeViews: {
           blockquote(node, view, getPos, decorations) {
@@ -77,23 +60,24 @@ const Provider: React.FC<Props> = ({
               getPos,
               decorations,
               component: Blockquote,
-              onCreatePortal: handleCreatePortal,
+              onCreatePortal: createPortal,
             })
           },
         },
         dispatchTransaction: function (tr) {
           const state = this.state.apply(tr)
-          view.updateState(state)
+          this.updateState(state)
           setState(state)
         },
       }),
-    [editorProps, handleCreatePortal, state],
-  )
+    )
+    /* eslint react-hooks/exhaustive-deps: off */
+  }, [])
 
   return (
     <EditorStateContext.Provider value={state}>
       <EditorViewContext.Provider value={view}>
-        {children}
+        {props.children}
       </EditorViewContext.Provider>
     </EditorStateContext.Provider>
   )

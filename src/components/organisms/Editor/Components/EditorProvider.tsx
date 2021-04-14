@@ -7,7 +7,7 @@ import {
   useReactNodeViewCreatePortal,
 } from './ReactNodeViewPortals'
 import { createReactNodeView } from './ReactNodeView'
-import { Blockquote } from './nodeViews'
+import { Link } from './nodeViews'
 
 const EditorStateContext = createContext<EditorState | null>(null)
 const EditorViewContext = createContext<EditorView | null>(null)
@@ -49,28 +49,27 @@ const Provider: React.FC<Props> = (props) => {
   const [view, setView] = useState<EditorView | null>(null)
 
   useEffect(() => {
-    setView(
-      new EditorView(undefined, {
-        state,
-        nodeViews: {
-          blockquote(node, view, getPos, decorations) {
-            return createReactNodeView({
-              node,
-              view,
-              getPos,
-              decorations,
-              component: Blockquote,
-              onCreatePortal: createPortal,
-            })
-          },
+    const view = new EditorView(undefined, {
+      state,
+      nodeViews: {
+        link(node, view, getPos, decorations) {
+          return createReactNodeView({
+            node,
+            view,
+            getPos,
+            decorations,
+            component: Link,
+            onCreatePortal: createPortal,
+          })
         },
-        dispatchTransaction: function (tr) {
-          const state = this.state.apply(tr)
-          this.updateState(state)
-          setState(state)
-        },
-      }),
-    )
+      },
+      dispatchTransaction(tr) {
+        const state = view.state.apply(tr)
+        view.updateState(state)
+        setState(state)
+      },
+    })
+    setView(view)
     /* eslint react-hooks/exhaustive-deps: off */
   }, [])
 

@@ -7,11 +7,4 @@ export const proseMirrorStyle = () => ({
   '.ProseMirror li': {
     listStyleType: 'inherit !important',
   },
-  '.ProseMirror a': {
-    color: 'cyan.400',
-    cursor: 'pointer',
-    _hover: {
-      textDecoration: 'underline !important',
-    },
-  },
 })

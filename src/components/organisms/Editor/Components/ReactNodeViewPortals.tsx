@@ -34,7 +34,6 @@ export const ReactNodeViewPortalsProvider: React.FC<Props> = (props) => {
     <ReactNodeViewPortalsContext.Provider value={data}>
       <ReactNodeViewCreatePortalContext.Provider value={createPortal}>
         {props.children}
-        {/*{Object.values(data).map((obj) => obj.portal)}*/}
       </ReactNodeViewCreatePortalContext.Provider>
     </ReactNodeViewPortalsContext.Provider>
   )

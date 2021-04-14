@@ -31,14 +31,7 @@ export const EditorProvider: React.FC<{
   schema?: Schema
   plugins?: Plugin[]
   editorProps?: EditorProps
-}> = ({
-  doc,
-  schema,
-  plugins = [],
-  editorProps,
-  // handleDocChange,
-  children,
-}) => {
+}> = ({ doc, schema, plugins = [], editorProps, children }) => {
   const [state, setState] = useState(() => {
     return EditorState.create({ doc, schema, plugins })
   })

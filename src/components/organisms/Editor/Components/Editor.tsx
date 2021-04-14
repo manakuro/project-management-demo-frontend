@@ -30,7 +30,7 @@ export const Editor: React.FC<Props> = React.memo<Props>(
       }
     }, [autoFocus, view])
 
-    return <div ref={editorRef} className="prosemirror-editor" />
+    return <div ref={editorRef} />
   },
 )
 Editor.displayName = 'Editor'

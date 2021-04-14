@@ -80,6 +80,10 @@ const initialValue = JSON.stringify(
       },
       { type: 'paragraph' },
       { type: 'paragraph' },
+      {
+        type: 'blockquote',
+        content: [{ type: 'text', text: 'A blockquote here' }],
+      },
     ],
   },
   null,

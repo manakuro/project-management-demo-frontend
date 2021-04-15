@@ -1,18 +1,18 @@
 import { atom, useRecoilState } from 'recoil'
 import { useCallback } from 'react'
-import { EmojiData } from 'emoji-mart'
+import { BaseEmoji } from 'emoji-mart'
 
 const emojiOpenState = atom<boolean>({
   key: 'popoverEmojiOpenState',
   default: false,
 })
 
-const emojiState = atom<EmojiData | null>({
+const emojiState = atom<BaseEmoji | null>({
   key: 'popoverEmojiState',
   default: null,
 })
 
-const emojiCallbackState = atom<(val: EmojiData | null) => void>({
+const emojiCallbackState = atom<(val: BaseEmoji | null) => void>({
   key: 'popoverEmojiCallbackState',
   default: () => {},
 })
@@ -27,7 +27,7 @@ export const usePopoverEmoji = () => {
     callback(emoji)
   }, [callback, emoji, setIsOpen])
 
-  const onOpen = useCallback(() => {
+  const onOpen = useCallback((): Promise<BaseEmoji> => {
     return new Promise((resolve) => {
       setIsOpen(true)
       setCallback(() => resolve)

@@ -8,7 +8,7 @@ import { Portal, Link, Box } from 'src/components/atoms'
 import { usePopoverEmoji } from './usePopoverEmoji'
 import { PortalManager } from '@chakra-ui/react'
 import 'emoji-mart/css/emoji-mart.css'
-import { EmojiData, Picker } from 'emoji-mart'
+import { BaseEmoji, Picker } from 'emoji-mart'
 
 type Props = {}
 
@@ -16,7 +16,7 @@ export const PopoverEmoji: React.FC<Props> = (props) => {
   const usePopoverEmojiResult = usePopoverEmoji()
 
   const handleSelect = useCallback(
-    (emoji: EmojiData) => {
+    (emoji: BaseEmoji) => {
       usePopoverEmojiResult.setEmoji(emoji)
       usePopoverEmojiResult.onClose()
     },

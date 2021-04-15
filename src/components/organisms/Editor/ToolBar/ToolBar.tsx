@@ -9,7 +9,8 @@ import {
   OrderedList,
   Strikethrough,
   Underline,
-} from 'src/components/organisms'
+  Emoji,
+} from './'
 import { Divider, Stack } from 'src/components/atoms'
 
 type Props = {
@@ -31,6 +32,7 @@ export const ToolBar: React.FC<Props> = memo<Props>((props) => {
           <DecreaseListIndent />
           <Link />
           <Divider orientation="vertical" borderColor="gray.400" h={5} />
+          <Emoji />
         </>
       )}
     </Stack>

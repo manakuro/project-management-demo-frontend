@@ -14,11 +14,8 @@ const EditorViewContext = createContext<EditorView | null>(null)
 
 export const useEditorState = (): EditorState => {
   const context = useContext(EditorStateContext)
-
-  if (!context) {
+  if (!context)
     throw new Error('useEditorState is only available inside EditorProvider')
-  }
-
   return context
 }
 

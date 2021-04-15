@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { ConditionalRender } from 'src/components/atoms'
-import { Editor as ReactProseMirrorEditor, HtmlEditor } from './Components'
+import { EditorContent, EditorContainer } from './Components'
 import { schema, plugins } from 'src/shared/prosemirror/config'
 import { Container } from './Container'
 import { ToolBar } from './ToolBar'
@@ -16,16 +16,16 @@ export const Editor: React.FC<Props> = memo<Props>((props) => {
       <Container>
         {({ focused }) => (
           <>
-            <HtmlEditor
+            <EditorContainer
               schema={schema}
               plugins={plugins}
               value={props.value}
               onChange={props.onChange}
               debounce={250}
             >
-              <ReactProseMirrorEditor />
+              <EditorContent />
               <ToolBar show={focused} />
-            </HtmlEditor>
+            </EditorContainer>
           </>
         )}
       </Container>

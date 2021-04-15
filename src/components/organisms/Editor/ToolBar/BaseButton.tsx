@@ -4,7 +4,7 @@ import { Tooltip, TooltipProps } from 'src/components/molecules'
 import {
   useEditorState,
   useEditorView,
-} from 'src/components/organisms/Editor/Components/EditorProvider'
+} from 'src/components/organisms/Editor/Components/EdiorProvider'
 import { ToolbarItem } from 'src/shared/prosemirror/hooks'
 
 type Props = {
@@ -22,7 +22,6 @@ export const BaseButton: React.FC<Props> = (props) => {
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
       if (!view) return
-
       e.preventDefault()
       action(state, view.dispatch, view)
     },

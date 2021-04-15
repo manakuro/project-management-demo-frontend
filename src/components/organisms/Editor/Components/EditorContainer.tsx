@@ -7,7 +7,7 @@ import { Plugin } from 'prosemirror-state'
 import React, { useState } from 'react'
 
 import { ChangeHandler } from './ChangeHandler'
-import { EditorProvider } from './EditorProvider'
+import { EditorProvider } from './EdiorProvider'
 import { Portals } from './Portals'
 
 type Props = {
@@ -17,7 +17,7 @@ type Props = {
   onChange: (value: string) => void
   debounce?: number
 }
-export const HtmlEditor: React.FC<Props> = (props) => {
+export const EditorContainer: React.FC<Props> = (props) => {
   const [transformer] = useState<ProsemirrorTransformer>(() =>
     createJSONTransformer(props.schema),
   )

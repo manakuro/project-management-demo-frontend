@@ -1,4 +1,4 @@
-export * from './HtmlEditor'
-export * from './Editor'
+export * from './EditorContainer'
+export * from './EditorContent'
 export * from './ReactNodeView'
 export * from './ReactNodeViewPortals'

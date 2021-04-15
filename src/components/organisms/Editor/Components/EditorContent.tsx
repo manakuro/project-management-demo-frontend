@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect } from 'react'
-import { useEditorView } from './EditorProvider'
+import { useEditorView } from './EdiorProvider'
 
 type Props = {}
-export const Editor: React.FC<Props> = React.memo<Props>(() => {
+export const EditorContent: React.FC<Props> = React.memo<Props>(() => {
   const view = useEditorView()
 
   const editorRef = useCallback(
@@ -25,4 +25,4 @@ export const Editor: React.FC<Props> = React.memo<Props>(() => {
 
   return <div ref={editorRef} />
 })
-Editor.displayName = 'Editor'
+EditorContent.displayName = 'Editor'

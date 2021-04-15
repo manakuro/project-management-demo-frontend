@@ -1,7 +1,7 @@
 import { ProsemirrorTransformer } from 'src/shared/prosemirror/transformers'
 import { PropsWithChildren, ReactElement, useEffect } from 'react'
 
-import { useEditorState } from './EditorProvider'
+import { useEditorState } from './EdiorProvider'
 import { useDebounce } from 'src/hooks'
 
 type Props<P> = {
@@ -15,10 +15,10 @@ export const ChangeHandler = <P extends unknown>({
   debounce = 0,
 }: PropsWithChildren<Props<P>>): ReactElement | null => {
   const state = useEditorState()
-
-  const debouncedDoc = useDebounce(state.doc, debounce)
+  const debouncedDoc = useDebounce(state?.doc, debounce)
 
   useEffect(() => {
+    if (!debouncedDoc) return
     onChange(transformer.serialize(debouncedDoc))
   }, [onChange, transformer, debouncedDoc])
 

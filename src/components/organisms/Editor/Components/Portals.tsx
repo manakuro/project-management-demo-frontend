@@ -3,8 +3,5 @@ import { useReactNodeViewPortals } from 'src/components/organisms/Editor/Compone
 
 export const Portals: React.FC = React.memo(() => {
   const portals = useReactNodeViewPortals()
-
-  console.log('portals: ', portals)
-
   return <>{Object.values(portals).map((obj) => obj.portal)}</>
 })

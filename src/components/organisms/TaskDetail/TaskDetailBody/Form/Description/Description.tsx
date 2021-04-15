@@ -9,7 +9,6 @@ const initialValue = JSON.stringify(
   {
     type: 'doc',
     content: [
-      { type: 'paragraph' },
       {
         type: 'list',
         attrs: { type: 'ordered', start: 1 },
@@ -70,14 +69,19 @@ const initialValue = JSON.stringify(
           {
             type: 'text',
             marks: [
-              { type: 'bold' },
-              { type: 'link', attrs: { href: 'd', title: null } },
+              {
+                type: 'link',
+                attrs: { href: 'https://google.com', title: null },
+              },
             ],
-            text: 'Paragra',
+            text: 'test link',
           },
-          { type: 'text', marks: [{ type: 'bold' }], text: 'ph' },
         ],
       },
+      { type: 'paragraph' },
+      { type: 'paragraph' },
+      { type: 'paragraph' },
+      { type: 'paragraph' },
       { type: 'paragraph' },
       { type: 'paragraph' },
     ],
@@ -86,9 +90,7 @@ const initialValue = JSON.stringify(
   2,
 )
 export const Description: React.FC<Props> = memo<Props>(() => {
-  const [value, setValue] = useState(initialValue)
-
-  console.log('value: ', JSON.parse(value))
+  const [, setValue] = useState(initialValue)
 
   return (
     <Row>

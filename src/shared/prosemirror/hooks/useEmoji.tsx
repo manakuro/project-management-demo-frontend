@@ -1,8 +1,7 @@
 import { ToolbarItem } from './types'
-// import { schema } from 'src/shared/prosemirror/config'
+import { schema } from 'src/shared/prosemirror/config'
 import { useCallback, useMemo } from 'react'
-// import { Command, toggleMark } from 'prosemirror-commands'
-import { Command } from 'prosemirror-commands'
+import { Command, toggleMark } from 'prosemirror-commands'
 import { usePopoverEmoji } from 'src/components/organisms'
 
 export const useEmoji = (): ToolbarItem => {
@@ -15,11 +14,10 @@ export const useEmoji = (): ToolbarItem => {
     ) => Promise<boolean>
   >(
     async (state, dispatch) => {
-      console.log('action!')
-      onOpen()
-      // if (!input.emoji) return false
-
-      // toggleMark(schema.marks.text, {})(state, dispatch)
+      const emoji = await onOpen()
+      if (!emoji) return false
+      console.log('emoji: ', emoji)
+      toggleMark(schema.marks.text, {})(state, dispatch)
 
       return true
     },

@@ -12,5 +12,7 @@ type Props = ChakraPopoverContentProps & {
 export type PopoverContentProps = Props
 
 export const PopoverContent: React.FC<Props> = forwardRef<Props, 'div'>(
-  (props, ref) => <ChakraPopoverContent {...props} ref={ref} />,
+  (props, ref) => (
+    <ChakraPopoverContent {...props} ref={ref} aria-label="popover-content" />
+  ),
 )

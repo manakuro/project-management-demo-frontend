@@ -12,7 +12,12 @@ export const useClickOutside = () => {
         setState({ hasClickedOutside: false })
       } else {
         // Ignore when click menu list inside popover modal
-        if (isContainInMenuList(e) || isContainInModalContent(e)) return
+        if (
+          isContainInMenuList(e) ||
+          isContainInModalContent(e) ||
+          isContainInPopoverContent(e)
+        )
+          return
 
         setState({ hasClickedOutside: true })
       }
@@ -52,4 +57,8 @@ const isContainInMenuList = (e: Event) =>
 const isContainInModalContent = (e: Event) =>
   Array.from(
     document.querySelectorAll("[aria-label='modal-content']"),
+  ).some((q) => q.contains(e.target as Node))
+const isContainInPopoverContent = (e: Event) =>
+  Array.from(
+    document.querySelectorAll("[aria-label='popover-content']"),
   ).some((q) => q.contains(e.target as Node))

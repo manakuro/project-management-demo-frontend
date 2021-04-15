@@ -10,6 +10,7 @@ import {
   Strikethrough,
   Underline,
   Emoji,
+  AtMention,
 } from './'
 import { Divider, Stack } from 'src/components/atoms'
 
@@ -32,6 +33,7 @@ export const ToolBar: React.FC<Props> = memo<Props>((props) => {
           <DecreaseListIndent />
           <Link />
           <Divider orientation="vertical" borderColor="gray.400" h={5} />
+          <AtMention />
           <Emoji />
         </>
       )}

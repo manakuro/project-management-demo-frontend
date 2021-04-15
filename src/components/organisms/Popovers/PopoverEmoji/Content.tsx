@@ -29,7 +29,7 @@ export const Content: React.FC<Props> = memo<Props>(() => {
     <Portal>
       <Box zIndex="popover" w="full" h="full" ref={ref}>
         <PopoverContent boxShadow="none" border="none" w="auto">
-          <Picker onSelect={handleSelect} />
+          <Picker onSelect={handleSelect} title="manato" />
         </PopoverContent>
       </Box>
     </Portal>

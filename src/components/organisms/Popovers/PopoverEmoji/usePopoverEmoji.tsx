@@ -12,7 +12,7 @@ const emojiState = atom<BaseEmoji | null>({
   default: null,
 })
 
-const emojiCallbackState = atom<(val: BaseEmoji | null) => void>({
+const emojiCallbackState = atom<(val?: BaseEmoji) => void>({
   key: 'popoverEmojiCallbackState',
   default: () => {},
 })
@@ -23,10 +23,10 @@ export const usePopoverEmoji = () => {
   const [callback, setCallback] = useRecoilState(emojiCallbackState)
 
   const onClose = useCallback(
-    (data: BaseEmoji) => {
+    (data?: BaseEmoji) => {
       setIsOpen(false)
       callback(data)
-      setEmoji(data)
+      setEmoji(data ?? null)
     },
     [callback, setIsOpen, setEmoji],
   )

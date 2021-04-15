@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { ConditionalRender } from 'src/components/atoms'
-import { EditorContent, EditorContainer } from './Components'
+import { EditorContent, EditorContainer } from './Editors'
 import { schema, plugins } from 'src/shared/prosemirror/config'
 import { Container } from './Container'
 import { ToolBar } from './ToolBar'

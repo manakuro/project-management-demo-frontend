@@ -4,7 +4,7 @@ import { Tooltip, TooltipProps } from 'src/components/molecules'
 import {
   useEditorState,
   useEditorView,
-} from 'src/components/organisms/Editor/Components/EdiorProvider'
+} from 'src/components/organisms/Editor/Editors'
 import { ToolbarItem } from 'src/shared/prosemirror/hooks'
 
 type Props = {

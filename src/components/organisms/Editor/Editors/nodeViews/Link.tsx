@@ -10,7 +10,6 @@ import {
 
 export const Link: React.FC = (props) => {
   const context = useReactNodeView()
-  console.log(context)
 
   return (
     <Popover trigger="hover" isLazy placement="bottom-start" openDelay={500}>

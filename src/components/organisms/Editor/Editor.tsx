@@ -1,20 +1,9 @@
 import React, { memo } from 'react'
-import { ConditionalRender, Divider, Stack } from 'src/components/atoms'
-import 'prosemirror-view/style/prosemirror.css'
+import { ConditionalRender } from 'src/components/atoms'
 import { Editor as ReactProseMirrorEditor, HtmlEditor } from './Components'
 import { schema, plugins } from 'src/shared/prosemirror/config'
 import { Container } from './Container'
-import {
-  Bold,
-  Italic,
-  Link,
-  Underline,
-  Strikethrough,
-  BulletList,
-  OrderedList,
-  IncreaseListIndent,
-  DecreaseListIndent,
-} from './ToolBar'
+import { ToolBar } from './ToolBar'
 
 type Props = {
   onChange: (val: string) => void
@@ -35,32 +24,7 @@ export const Editor: React.FC<Props> = memo<Props>((props) => {
               debounce={250}
             >
               <ReactProseMirrorEditor />
-              <Stack
-                flex={1}
-                direction="row"
-                spacing={1}
-                minH={8}
-                alignItems="center"
-              >
-                {focused && (
-                  <>
-                    <Bold />
-                    <Italic />
-                    <Underline />
-                    <Strikethrough />
-                    <BulletList />
-                    <OrderedList />
-                    <IncreaseListIndent />
-                    <DecreaseListIndent />
-                    <Link />
-                    <Divider
-                      orientation="vertical"
-                      borderColor="gray.400"
-                      h={5}
-                    />
-                  </>
-                )}
-              </Stack>
+              <ToolBar show={focused} />
             </HtmlEditor>
           </>
         )}

@@ -2,7 +2,7 @@ import { ProsemirrorTransformer } from 'src/shared/prosemirror/transformers'
 import { PropsWithChildren, ReactElement, useEffect } from 'react'
 
 import { useEditorState } from './EditorProvider'
-import { useDebounce } from './hooks'
+import { useDebounce } from 'src/hooks'
 
 type Props<P> = {
   onChange: (value: P) => void

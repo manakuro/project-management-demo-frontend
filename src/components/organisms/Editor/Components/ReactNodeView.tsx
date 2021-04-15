@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import shortid from 'shortid'
 
-type IReactNodeViewContext = {
+type ReactNodeViewContextProps = {
   node: Node
   view: EditorView
   getPos: TGetPos
@@ -12,7 +12,7 @@ type IReactNodeViewContext = {
 }
 
 const ReactNodeViewContext = React.createContext<
-  Partial<IReactNodeViewContext>
+  Partial<ReactNodeViewContextProps>
 >({
   node: undefined,
   view: undefined,
@@ -97,7 +97,7 @@ class ReactNodeView implements NodeView {
     return ReactDOM.createPortal(<Component />, container, shortid.generate())
   }
 
-  update(node: Node) {
+  update(_: Node) {
     return true
   }
 
@@ -107,10 +107,10 @@ class ReactNodeView implements NodeView {
   }
 }
 
-type TCreateReactNodeView = {
+type CreateReactNodeViewProps = {
   component: React.FC<any>
   onCreatePortal: (portal: any) => void
-} & IReactNodeViewContext
+} & ReactNodeViewContextProps
 
 export const createReactNodeView = ({
   node,
@@ -119,7 +119,7 @@ export const createReactNodeView = ({
   decorations,
   component,
   onCreatePortal,
-}: TCreateReactNodeView) => {
+}: CreateReactNodeViewProps) => {
   const reactNodeView = new ReactNodeView(
     node,
     view,
@@ -133,4 +133,3 @@ export const createReactNodeView = ({
   return nodeView
 }
 export const useReactNodeView = () => useContext(ReactNodeViewContext)
-export default ReactNodeView

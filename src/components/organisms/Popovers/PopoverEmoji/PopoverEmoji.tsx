@@ -4,7 +4,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from 'src/components/organisms'
-import { Portal, Link, Box } from 'src/components/atoms'
+import { Portal, Link, Box, ConditionalRender } from 'src/components/atoms'
 import { usePopoverEmoji } from './usePopoverEmoji'
 import { PortalManager } from '@chakra-ui/react'
 import 'emoji-mart/css/emoji-mart.css'
@@ -17,31 +17,31 @@ export const PopoverEmoji: React.FC<Props> = (props) => {
 
   const handleSelect = useCallback(
     (emoji: BaseEmoji) => {
-      usePopoverEmojiResult.setEmoji(emoji)
-      usePopoverEmojiResult.onClose()
+      usePopoverEmojiResult.onClose(emoji)
     },
     [usePopoverEmojiResult],
   )
 
   return (
-    <PortalManager zIndex={1500}>
-      <Popover
-        isOpen={usePopoverEmojiResult.isOpen}
-        isLazy
-        placement="top-end"
-        closeOnBlur={false}
-      >
-        <PopoverTrigger>
-          <Link>{props.children}</Link>
-        </PopoverTrigger>
-        <Portal>
-          <Box zIndex="popover" w="full" h="full">
-            <PopoverContent boxShadow="none" border="none" w="auto">
-              <Picker set="apple" onSelect={handleSelect} />
-            </PopoverContent>
-          </Box>
-        </Portal>
-      </Popover>
-    </PortalManager>
+    <ConditionalRender client>
+      <PortalManager zIndex={1500}>
+        <Popover
+          isOpen={usePopoverEmojiResult.isOpen}
+          placement="top-end"
+          closeOnBlur={false}
+        >
+          <PopoverTrigger>
+            <Link>{props.children}</Link>
+          </PopoverTrigger>
+          <Portal>
+            <Box zIndex="popover" w="full" h="full">
+              <PopoverContent boxShadow="none" border="none" w="auto">
+                <Picker onSelect={handleSelect} />
+              </PopoverContent>
+            </Box>
+          </Portal>
+        </Popover>
+      </PortalManager>
+    </ConditionalRender>
   )
 }

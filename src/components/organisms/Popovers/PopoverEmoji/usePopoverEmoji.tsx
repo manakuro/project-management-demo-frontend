@@ -22,10 +22,14 @@ export const usePopoverEmoji = () => {
   const [emoji, setEmoji] = useRecoilState(emojiState)
   const [callback, setCallback] = useRecoilState(emojiCallbackState)
 
-  const onClose = useCallback(() => {
-    setIsOpen(false)
-    callback(emoji)
-  }, [callback, emoji, setIsOpen])
+  const onClose = useCallback(
+    (data: BaseEmoji) => {
+      setIsOpen(false)
+      callback(data)
+      setEmoji(data)
+    },
+    [callback, setIsOpen, setEmoji],
+  )
 
   const onOpen = useCallback((): Promise<BaseEmoji> => {
     return new Promise((resolve) => {

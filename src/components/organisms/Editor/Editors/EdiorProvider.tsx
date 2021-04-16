@@ -7,7 +7,7 @@ import {
   useReactNodeViewCreatePortal,
 } from './ReactNodeViewPortals'
 import { createReactNodeView } from './ReactNodeView'
-import { Link } from './nodeViews'
+import { Link, Paragraph } from './nodeViews'
 
 const EditorStateContext = createContext<EditorState | null>(null)
 const EditorViewContext = createContext<EditorView | null>(null)
@@ -35,7 +35,7 @@ export const EditorProvider: React.FC<Props> = (props) => {
 }
 
 const Provider: React.FC<Props> = (props) => {
-  const createPortal = useReactNodeViewCreatePortal()
+  const { createPortal, removePortal } = useReactNodeViewCreatePortal()
   const [state, setState] = useState(() =>
     EditorState.create({
       doc: props.doc,
@@ -57,6 +57,19 @@ const Provider: React.FC<Props> = (props) => {
             decorations,
             component: Link,
             onCreatePortal: createPortal,
+            onRemovePortal: removePortal,
+          })
+        },
+        paragraph(node, view, getPos, decorations) {
+          console.log('【nodeViews】paragraph!')
+          return createReactNodeView({
+            node,
+            view,
+            getPos,
+            decorations,
+            component: Paragraph,
+            onCreatePortal: createPortal,
+            onRemovePortal: removePortal,
           })
         },
       },

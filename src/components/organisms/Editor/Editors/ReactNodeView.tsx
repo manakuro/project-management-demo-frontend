@@ -1,8 +1,7 @@
 import { Node } from 'prosemirror-model'
 import { Decoration, EditorView, NodeView } from 'prosemirror-view'
 import React, { useContext, useEffect, useRef } from 'react'
-import ReactDOM from 'react-dom'
-import shortid from 'shortid'
+import { PortalHandlers } from 'src/components/organisms/Editor/Editors/ReactNodeViewPortals'
 
 type ReactNodeViewContextProps = {
   node: Node
@@ -33,6 +32,8 @@ class ReactNodeView implements NodeView {
   view: EditorView
   getPos: TGetPos
   decorations: Decoration[]
+  onCreatePortal: (portal: { Component: any; container: any }) => void
+  onRemovePortal: (container: HTMLElement) => void
 
   constructor(
     node: Node,
@@ -40,6 +41,8 @@ class ReactNodeView implements NodeView {
     getPos: TGetPos,
     decorations: Decoration[],
     component: React.FC<any>,
+    onCreatePortal: PortalHandlers['createPortal'],
+    onRemovePortal: PortalHandlers['removePortal'],
   ) {
     this.node = node
     this.view = view
@@ -47,6 +50,8 @@ class ReactNodeView implements NodeView {
     this.decorations = decorations
     this.component = component
     this.componentRef = React.createRef()
+    this.onCreatePortal = onCreatePortal
+    this.onRemovePortal = onRemovePortal
   }
 
   init() {
@@ -59,10 +64,9 @@ class ReactNodeView implements NodeView {
       this.dom.appendChild(this.contentDOM)
     }
 
-    return {
-      nodeView: this,
-      portal: this.renderPortal(this.dom),
-    }
+    this.renderPortal(this.dom)
+
+    return this
   }
 
   renderPortal(container: HTMLElement) {
@@ -97,7 +101,7 @@ class ReactNodeView implements NodeView {
       )
     }
 
-    return ReactDOM.createPortal(<Component />, container, shortid.generate())
+    return this.onCreatePortal({ Component, container })
   }
 
   update(_: Node) {
@@ -105,6 +109,8 @@ class ReactNodeView implements NodeView {
   }
 
   destroy() {
+    const dom = this.dom as HTMLElement
+    this.onRemovePortal(dom)
     this.dom = undefined
     this.contentDOM = undefined
   }
@@ -112,27 +118,20 @@ class ReactNodeView implements NodeView {
 
 type CreateReactNodeViewProps = {
   component: React.FC<any>
-  onCreatePortal: (portal: any) => void
+  onCreatePortal: PortalHandlers['createPortal']
+  onRemovePortal: PortalHandlers['removePortal']
 } & Omit<ReactNodeViewContextProps, 'text'>
 
-export const createReactNodeView = ({
-  node,
-  view,
-  getPos,
-  decorations,
-  component,
-  onCreatePortal,
-}: CreateReactNodeViewProps) => {
+export const createReactNodeView = (props: CreateReactNodeViewProps) => {
   const reactNodeView = new ReactNodeView(
-    node,
-    view,
-    getPos,
-    decorations,
-    component,
+    props.node,
+    props.view,
+    props.getPos,
+    props.decorations,
+    props.component,
+    props.onCreatePortal,
+    props.onRemovePortal,
   )
-  const { nodeView, portal } = reactNodeView.init()
-  onCreatePortal(portal)
-
-  return nodeView
+  return reactNodeView.init()
 }
 export const useReactNodeView = () => useContext(ReactNodeViewContext)

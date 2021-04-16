@@ -9,81 +9,81 @@ const initialValue = JSON.stringify(
   {
     type: 'doc',
     content: [
-      {
-        type: 'list',
-        attrs: { type: 'ordered', start: 1 },
-        content: [
-          {
-            type: 'listItem',
-            content: [
-              {
-                type: 'paragraph',
-                content: [
-                  {
-                    type: 'text',
-                    marks: [
-                      { type: 'bold' },
-                      { type: 'italic' },
-                      { type: 'strikethrough' },
-                      { type: 'underline' },
-                    ],
-                    text: 'Hey',
-                  },
-                ],
-              },
-              {
-                type: 'list',
-                attrs: { type: 'ordered', start: 1 },
-                content: [
-                  {
-                    type: 'listItem',
-                    content: [
-                      { type: 'paragraph' },
-                      {
-                        type: 'list',
-                        attrs: { type: 'ordered', start: 1 },
-                        content: [
-                          {
-                            type: 'listItem',
-                            content: [
-                              {
-                                type: 'paragraph',
-                                content: [{ type: 'text', text: 'test' }],
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-      { type: 'paragraph' },
-      {
-        type: 'paragraph',
-        content: [
-          {
-            type: 'text',
-            marks: [
-              {
-                type: 'link',
-                attrs: { href: 'https://google.com', title: null },
-              },
-            ],
-            text: 'test link',
-          },
-        ],
-      },
-      { type: 'paragraph' },
+      // {
+      //   type: 'list',
+      //   attrs: { type: 'ordered', start: 1 },
+      //   content: [
+      //     {
+      //       type: 'listItem',
+      //       content: [
+      //         {
+      //           type: 'paragraph',
+      //           content: [
+      //             {
+      //               type: 'text',
+      //               marks: [
+      //                 { type: 'bold' },
+      //                 { type: 'italic' },
+      //                 { type: 'strikethrough' },
+      //                 { type: 'underline' },
+      //               ],
+      //               text: 'Hey',
+      //             },
+      //           ],
+      //         },
+      //         {
+      //           type: 'list',
+      //           attrs: { type: 'ordered', start: 1 },
+      //           content: [
+      //             {
+      //               type: 'listItem',
+      //               content: [
+      //                 { type: 'paragraph' },
+      //                 {
+      //                   type: 'list',
+      //                   attrs: { type: 'ordered', start: 1 },
+      //                   content: [
+      //                     {
+      //                       type: 'listItem',
+      //                       content: [
+      //                         {
+      //                           type: 'paragraph',
+      //                           content: [{ type: 'text', text: 'test' }],
+      //                         },
+      //                       ],
+      //                     },
+      //                   ],
+      //                 },
+      //               ],
+      //             },
+      //           ],
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
+      // { type: 'paragraph' },
+      // {
+      //   type: 'paragraph',
+      //   content: [
+      //     {
+      //       type: 'text',
+      //       marks: [
+      //         {
+      //           type: 'link',
+      //           attrs: { href: 'https://google.com', title: null },
+      //         },
+      //       ],
+      //       text: 'test link',
+      //     },
+      //   ],
+      // },
+      // { type: 'paragraph' },
       { type: 'paragraph', content: [{ type: 'text', text: '😜' }] },
-      { type: 'paragraph' },
-      { type: 'paragraph' },
-      { type: 'paragraph' },
-      { type: 'paragraph' },
+      { type: 'paragraph', content: [{ type: 'text', text: 'テキスト2' }] },
+      // { type: 'paragraph' },
+      // { type: 'paragraph' },
+      // { type: 'paragraph' },
     ],
   },
   null,

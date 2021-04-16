@@ -9,6 +9,7 @@ type ReactNodeViewContextProps = {
   view: EditorView
   getPos: TGetPos
   decorations: Decoration[]
+  text: string
 }
 
 const ReactNodeViewContext = React.createContext<
@@ -18,6 +19,7 @@ const ReactNodeViewContext = React.createContext<
   view: undefined,
   getPos: undefined,
   decorations: undefined,
+  text: '',
 })
 
 type TGetPos = boolean | (() => number)
@@ -69,7 +71,7 @@ class ReactNodeView implements NodeView {
 
       useEffect(() => {
         const componentDOM = componentRef.current
-        if (componentDOM != null && this.contentDOM != null) {
+        if (!!componentDOM && !!this.contentDOM) {
           if (!this.node.isLeaf) {
             componentDOM.firstChild?.appendChild(this.contentDOM)
           }
@@ -86,6 +88,7 @@ class ReactNodeView implements NodeView {
               view: this.view,
               getPos: this.getPos,
               decorations: this.decorations,
+              text: this.contentDOM?.innerText ?? '',
             }}
           >
             <NodeView {...props} />
@@ -110,7 +113,7 @@ class ReactNodeView implements NodeView {
 type CreateReactNodeViewProps = {
   component: React.FC<any>
   onCreatePortal: (portal: any) => void
-} & ReactNodeViewContextProps
+} & Omit<ReactNodeViewContextProps, 'text'>
 
 export const createReactNodeView = ({
   node,

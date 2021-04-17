@@ -61,7 +61,6 @@ const Provider: React.FC<Props> = (props) => {
           })
         },
         paragraph(node, view, getPos, decorations) {
-          console.log('【nodeViews】paragraph!')
           return createReactNodeView({
             node,
             view,

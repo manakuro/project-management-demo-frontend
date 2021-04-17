@@ -1,7 +1,15 @@
-import { Node } from 'prosemirror-model'
+import { DOMSerializer, Node } from 'prosemirror-model'
 import { Decoration, EditorView, NodeView } from 'prosemirror-view'
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext } from 'react'
 import { PortalHandlers } from 'src/components/organisms/Editor/Editors/ReactNodeViewPortals'
+import {
+  entries,
+  isDomNodeOutputSpec,
+  isElementDomNode,
+  isNodeOfType,
+  isPlainObject,
+  isString,
+} from 'src/shared/prosemirror/utils'
 
 type ReactNodeViewContextProps = {
   node: Node
@@ -26,7 +34,8 @@ type TGetPos = boolean | (() => number)
 class ReactNodeView implements NodeView {
   componentRef: React.RefObject<HTMLDivElement>
   dom?: HTMLElement
-  contentDOM?: HTMLElement
+  contentDOM: NodeView['contentDOM']
+  contentDOMWrapper?: HTMLElement | undefined
   component: React.FC<any>
   node: Node
   view: EditorView
@@ -55,57 +64,98 @@ class ReactNodeView implements NodeView {
   }
 
   init() {
-    this.dom = document.createElement('div')
-    this.dom.classList.add('ProseMirror__dom')
+    this.dom = this.node.type.spec.inline
+      ? document.createElement('span')
+      : document.createElement('div')
 
-    if (!this.node.isLeaf) {
-      this.contentDOM = document.createElement('span')
-      this.contentDOM.classList.add('ProseMirror__contentDOM')
-      this.dom.appendChild(this.contentDOM)
+    const { contentDOM, wrapper } = this.createContentDom() ?? {}
+    this.contentDOM = contentDOM
+    this.contentDOMWrapper = wrapper
+
+    if (this.contentDOMWrapper) {
+      this.dom.append(this.contentDOMWrapper)
     }
-
-    this.renderPortal(this.dom)
+    this.setDomAttributes(this.node, this.dom)
+    this.renderPortal()
 
     return this
   }
 
-  renderPortal(container: HTMLElement) {
+  createContentDom() {
+    if (this.node.isLeaf) return
+
+    const domSpec = this.node.type.spec.toDOM?.(this.node)
+    if (!domSpec) return
+
+    const { contentDOM, dom } = DOMSerializer.renderSpec(document, domSpec)
+
+    let wrapper: HTMLElement
+    if (!isElementDomNode(dom)) return
+
+    wrapper = dom
+    if (dom === contentDOM) {
+      wrapper = document.createElement('span')
+      wrapper.classList.add('ProseMirror__contentWrapper')
+      wrapper.append(contentDOM)
+    }
+
+    return { wrapper, contentDOM }
+  }
+
+  renderPortal() {
     const Component: React.FC = (props) => {
-      const componentRef = useRef<HTMLDivElement>(null)
-
-      useEffect(() => {
-        const componentDOM = componentRef.current
-        if (!!componentDOM && !!this.contentDOM) {
-          if (!this.node.isLeaf) {
-            componentDOM.firstChild?.appendChild(this.contentDOM)
-          }
-        }
-      }, [componentRef])
-
       const NodeView = this.component
-
       return (
-        <div ref={componentRef} className="ProseMirror__reactComponent">
-          <ReactNodeViewContext.Provider
-            value={{
-              node: this.node,
-              view: this.view,
-              getPos: this.getPos,
-              decorations: this.decorations,
-              text: this.contentDOM?.innerText ?? '',
-            }}
-          >
-            <NodeView {...props} />
-          </ReactNodeViewContext.Provider>
-        </div>
+        <ReactNodeViewContext.Provider
+          value={{
+            node: this.node,
+            view: this.view,
+            getPos: this.getPos,
+            decorations: this.decorations,
+            text: (this.contentDOM as HTMLElement)?.innerText ?? '',
+          }}
+        >
+          <NodeView {...props} />
+        </ReactNodeViewContext.Provider>
       )
     }
 
-    return this.onCreatePortal({ Component, container })
+    return this.onCreatePortal({ Component, container: this.dom })
   }
 
-  update(_: Node) {
+  update(node: Node) {
+    if (!isNodeOfType({ types: this.node.type, node })) return false
+    if (this.node === node) return true
+
+    if (!this.node.sameMarkup(node)) {
+      this.setDomAttributes(node, this.dom!)
+    }
+
+    this.node = node
+    this.renderPortal()
+
     return true
+  }
+
+  setDomAttributes(node: any, element: HTMLElement): void {
+    const { toDOM } = this.node.type.spec
+    let attributes = node.attrs
+
+    if (toDOM) {
+      const domSpec = toDOM(node)
+
+      if (isString(domSpec) || isDomNodeOutputSpec(domSpec)) {
+        return
+      }
+
+      if (isPlainObject(domSpec[1])) {
+        attributes = domSpec[1]
+      }
+    }
+
+    for (const [attribute, value] of entries(attributes)) {
+      element.setAttribute(attribute, value)
+    }
   }
 
   destroy() {
@@ -113,6 +163,10 @@ class ReactNodeView implements NodeView {
     this.onRemovePortal(dom)
     this.dom = undefined
     this.contentDOM = undefined
+  }
+
+  ignoreMutation() {
+    return true
   }
 }
 

@@ -5,7 +5,6 @@ import { useReactNodeViewPortals } from './ReactNodeViewPortals'
 export const Portals: React.FC = React.memo(() => {
   const portals = useReactNodeViewPortals()
 
-  console.log('portals: ', portals)
   return (
     <>
       {portals.map((p) =>

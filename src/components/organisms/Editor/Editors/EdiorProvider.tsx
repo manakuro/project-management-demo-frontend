@@ -7,7 +7,7 @@ import {
   useReactNodeViewCreatePortal,
 } from './ReactNodeViewPortals'
 import { createReactNodeView } from './ReactNodeView'
-import { Link, Paragraph } from './nodeViews'
+import { Link } from './nodeViews'
 
 const EditorStateContext = createContext<EditorState | null>(null)
 const EditorViewContext = createContext<EditorView | null>(null)
@@ -60,17 +60,17 @@ const Provider: React.FC<Props> = (props) => {
             onRemovePortal: removePortal,
           })
         },
-        paragraph(node, view, getPos, decorations) {
-          return createReactNodeView({
-            node,
-            view,
-            getPos,
-            decorations,
-            component: Paragraph,
-            onCreatePortal: createPortal,
-            onRemovePortal: removePortal,
-          })
-        },
+        // paragraph(node, view, getPos, decorations) {
+        //   return createReactNodeView({
+        //     node,
+        //     view,
+        //     getPos,
+        //     decorations,
+        //     component: Paragraph,
+        //     onCreatePortal: createPortal,
+        //     onRemovePortal: removePortal,
+        //   })
+        // },
       },
       dispatchTransaction(tr) {
         const state = view.state.apply(tr)

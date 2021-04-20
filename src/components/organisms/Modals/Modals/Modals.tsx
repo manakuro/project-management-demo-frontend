@@ -6,6 +6,7 @@ import {
   ShareWorkspaceModal,
   TasksListDetail,
   EditorLinkModal,
+  EditorMentionModal,
 } from 'src/components/organisms'
 import { CustomizeMenu } from 'src/components/organisms/Tasks'
 
@@ -19,6 +20,7 @@ export const Modals: React.VFC = () => {
       <TasksListDetail />
       <VideoPlayer />
       <EditorLinkModal />
+      <EditorMentionModal />
     </>
   )
 }

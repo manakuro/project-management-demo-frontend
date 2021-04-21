@@ -6,7 +6,7 @@ import {
   onOpen,
   onClose,
   setQuery,
-} from 'src/components/organisms/Modals/EditorMentionModal'
+} from 'src/components/organisms/Menus/EditorMentionMenu'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
 
 let selectedIndex = 0

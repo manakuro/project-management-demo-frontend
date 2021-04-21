@@ -1,4 +1,4 @@
-import { atom, useRecoilState, useResetRecoilState } from 'recoil'
+import { atom, useRecoilState } from 'recoil'
 import { useCallback, useMemo } from 'react'
 
 type State = {
@@ -54,15 +54,13 @@ export let onOpen: (args: onOpenProps) => void
 export let onClose: () => void
 export let setQuery: (query: string) => void
 
-export const useEditorMentionModal = () => {
+export const useEditorMentionMenu = () => {
   const [state, setState] = useRecoilState(atomState)
-  const resetState = useResetRecoilState(atomState)
 
   onClose = useCallback(() => {
     setState((s) => ({ ...s, isOpen: false }))
     state.callback(state.input)
-    resetState()
-  }, [resetState, setState, state])
+  }, [setState, state])
 
   onOpen = useCallback(
     ({ x, y }: onOpenProps) => {
@@ -86,6 +84,7 @@ export const useEditorMentionModal = () => {
   )
 
   const teammates = useMemo(() => {
+    if (!state.query) return []
     return teammatesData.filter((t) => t.email.includes(state.query))
   }, [state.query])
 

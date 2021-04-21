@@ -49,6 +49,7 @@ type onOpenProps = { x: State['x']; y: State['y'] }
 export let onOpen: (args: onOpenProps) => Promise<State['value']>
 export let onClose: (value?: string) => void
 export let setQuery: (query: string) => void
+export let getQuery: () => string
 
 export const useEditorMentionMenu = () => {
   const [state, setState] = useRecoilState(atomState)
@@ -81,6 +82,7 @@ export const useEditorMentionMenu = () => {
     },
     [setState],
   )
+  getQuery = useCallback(() => state.query, [state.query])
 
   const teammates = useMemo(() => {
     if (!state.query) return []

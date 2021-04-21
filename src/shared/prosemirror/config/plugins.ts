@@ -6,6 +6,7 @@ import {
   onOpen,
   onClose,
   setQuery,
+  getQuery,
 } from 'src/components/organisms/Menus/EditorMentionMenu'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
 
@@ -35,11 +36,9 @@ const suggestEmojis: Suggester = {
       showSuggestions = false
     },
   },
-
   onChange: async (params) => {
     console.log('onChange: ', params)
     setQuery(params.queryText.full)
-
     const position = getCaretPosition()
     if (!position) return
 
@@ -47,38 +46,17 @@ const suggestEmojis: Suggester = {
       x: Number(position?.x),
       y: Number(position?.y),
     })
-    console.log('value: ', value)
     if (!value) return
 
-    const state = params.view.state
-    const node = state.schema.nodes.mention.create({
-      name: value,
-    })
-    const tr = state.tr.replaceWith(params.range.from, params.range.to, node)
+    const tr = params.view.state.tr
+    const { from, end: to } = params.range
 
-    const newState = state.apply(tr)
-    params.view.updateState(newState)
+    tr.insertText(value, from, to + getQuery().length)
+    params.view.dispatch(tr)
   },
 
   onExit: () => {
     onClose()
-  },
-
-  // Create a  function that is passed into the change, exit and keybinding handlers.
-  // This is useful when these handlers are called in a different part of the app.
-  createCommand: ({ match, view }) => {
-    return (emoji) => {
-      if (!emoji) {
-        throw new Error(
-          'An emoji is required when calling the emoji suggestions command',
-        )
-      }
-
-      const tr = view.state.tr
-      const { from, end: to } = match.range
-      tr.insertText(emoji, from, to)
-      view.dispatch(tr)
-    }
   },
 }
 

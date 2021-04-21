@@ -16,7 +16,6 @@ const suggestEmojis: Suggester = {
   name: 'mention-suggestion',
   appendText: '',
   onChange: async (params) => {
-    console.log('onChange: ', params)
     setQuery(params.queryText.full)
     const position = getCaretPosition()
     if (!position) return
@@ -27,10 +26,12 @@ const suggestEmojis: Suggester = {
     })
     if (!value) return
 
-    const tr = params.view.state.tr
+    const state = params.view.state
+    const node = state.schema.nodes.mention.create({
+      name: value,
+    })
     const { from, end: to } = params.range
-
-    tr.insertText(value, from, to + getQuery().length)
+    const tr = state.tr.replaceWith(from, to + getQuery().length, node)
     params.view.dispatch(tr)
   },
 

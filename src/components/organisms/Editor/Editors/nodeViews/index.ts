@@ -1,2 +1,2 @@
 export * from './Link'
-export * from './Paragraph'
+export * from './Mention'

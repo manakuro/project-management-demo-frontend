@@ -1,10 +1,11 @@
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 
 type State = {
   isOpen: boolean
   x: number
   y: number
+  query: string
   input: {
     url: string
   }
@@ -17,6 +18,7 @@ const atomState = atom<State>({
     isOpen: false,
     x: 0,
     y: 0,
+    query: '',
     input: {
       url: '',
     },
@@ -24,16 +26,39 @@ const atomState = atom<State>({
   },
 })
 
+const teammatesData = [
+  {
+    id: '1',
+    name: 'Manato Kuroda',
+    image: '/images/cat_img.png',
+    email: 'manato.kuroda@gmail.com',
+  },
+  {
+    id: '2',
+    name: 'Dan Abrahmov',
+    image: 'https://bit.ly/dan-abramov',
+    email: 'dan.abrahmov@gmail.com',
+  },
+  {
+    id: '3',
+    name: 'Kent Dodds',
+    image: 'https://bit.ly/kent-c-dodds',
+    email: 'kent.dodds@gmail.com',
+  },
+] as const
+
 // NOTE: Export onOpen method in order to execute prosemirror's plugins
 // @see src/shared/prosemirror/config/plugins.ts
 type onOpenProps = { x: State['x']; y: State['y'] }
 export let onOpen: (args: onOpenProps) => void
+export let onClose: () => void
+export let setQuery: (query: string) => void
 
 export const useEditorMentionModal = () => {
   const [state, setState] = useRecoilState(atomState)
   const resetState = useResetRecoilState(atomState)
 
-  const onClose = useCallback(() => {
+  onClose = useCallback(() => {
     setState((s) => ({ ...s, isOpen: false }))
     state.callback(state.input)
     resetState()
@@ -53,6 +78,16 @@ export const useEditorMentionModal = () => {
     },
     [setState],
   )
+  setQuery = useCallback(
+    (query) => {
+      setState((s) => ({ ...s, query }))
+    },
+    [setState],
+  )
+
+  const teammates = useMemo(() => {
+    return teammatesData.filter((t) => t.email.includes(state.query))
+  }, [state.query])
 
   const setInput = useCallback(
     (input: State['input']) => {
@@ -66,5 +101,6 @@ export const useEditorMentionModal = () => {
     setInput,
     onOpen,
     onClose,
+    teammates,
   }
 }

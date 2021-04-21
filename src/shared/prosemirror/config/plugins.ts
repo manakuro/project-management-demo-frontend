@@ -2,7 +2,11 @@ import { history } from 'prosemirror-history'
 import { baseKeys, editorKeys, listKeys } from './keys'
 import { rules } from './rules'
 import { Suggester, suggest } from 'prosemirror-suggest'
-import { onOpen } from 'src/components/organisms/Modals/EditorMentionModal'
+import {
+  onOpen,
+  onClose,
+  setQuery,
+} from 'src/components/organisms/Modals/EditorMentionModal'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
 
 let selectedIndex = 0
@@ -34,6 +38,8 @@ const suggestEmojis: Suggester = {
 
   onChange: async (params) => {
     console.log('onChange: ', params)
+    setQuery(params.queryText.full)
+
     const position = getCaretPosition()
     if (!position) return
 
@@ -47,10 +53,7 @@ const suggestEmojis: Suggester = {
   },
 
   onExit: () => {
-    console.log('onExit: ')
-    showSuggestions = false
-    emojiList = []
-    selectedIndex = 0
+    onClose()
   },
 
   // Create a  function that is passed into the change, exit and keybinding handlers.

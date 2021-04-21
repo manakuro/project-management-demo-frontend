@@ -1,8 +1,9 @@
 import React, { memo, useCallback } from 'react'
-import { MenuItem, MenuItemProps } from 'src/components/organisms'
+import { Flex, FlexProps } from 'src/components/atoms'
+import { useMenuStyle } from 'src/hooks'
 
 type Props = Override<
-  MenuItemProps,
+  FlexProps,
   {
     onClick?: (val: string) => void
   }
@@ -12,6 +13,7 @@ type Props = Override<
 
 export const MentionItem: React.FC<Props> = memo<Props>((props) => {
   const { value, onClick, ...rest } = props
+  const styles = useMenuStyle()
 
   const handleClick = useCallback(
     (val: string) => {
@@ -21,8 +23,8 @@ export const MentionItem: React.FC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <MenuItem onClick={() => handleClick(value)} {...rest}>
+    <Flex {...styles.item} onClick={() => handleClick(value)} {...rest}>
       {props.children}
-    </MenuItem>
+    </Flex>
   )
 })

@@ -1,33 +1,32 @@
 import React from 'react'
-import { Menu, MenuButton, MenuList } from 'src/components/organisms'
-import { Portal } from 'src/components/atoms'
+import { ModalContent, Modal, ModalBody } from 'src/components/organisms'
 import { useEditorMentionMenu } from './useEditorMentionMenu'
 import { MentionItem } from './MentionItem'
+import { useMenuStyle } from 'src/hooks'
 
 type Props = {}
 
 export const EditorMentionMenu: React.VFC<Props> = () => {
   const { isOpen, x, y, onClose, teammates } = useEditorMentionMenu()
+  const menuStyles = useMenuStyle()
 
   return (
-    <Menu
+    <Modal
       isOpen={isOpen}
       onClose={onClose}
-      placement="bottom-start"
-      isLazy
-      offset={[0, 0]}
-      autoSelect={false}
+      size="xs"
+      autoFocus={false}
+      trapFocus={false}
     >
-      <MenuButton />
-      <Portal>
-        <MenuList
-          zIndex="popover"
-          overflowY="scroll"
-          position="fixed"
-          top={y + 24}
-          left={x}
-          w="450px"
-        >
+      <ModalContent
+        position="fixed"
+        top={y + 24}
+        left={x}
+        mb={0}
+        mt={0}
+        maxW="450px"
+      >
+        <ModalBody w="full" px={0} {...menuStyles.list}>
           {teammates.length > 0 ? (
             teammates.map((t) => (
               <MentionItem
@@ -43,8 +42,8 @@ export const EditorMentionMenu: React.VFC<Props> = () => {
               Mention a teammate or link to a task, project, or message.
             </MentionItem>
           )}
-        </MenuList>
-      </Portal>
-    </Menu>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   )
 }

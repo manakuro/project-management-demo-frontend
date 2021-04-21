@@ -47,11 +47,17 @@ const suggestEmojis: Suggester = {
       x: Number(position?.x),
       y: Number(position?.y),
     })
+    console.log('value: ', value)
     if (!value) return
 
-    const { tr } = params.view.state
-    tr.insertText(value)
-    params.view.dispatch?.(tr)
+    const state = params.view.state
+    const node = state.schema.nodes.mention.create({
+      name: value,
+    })
+    const tr = state.tr.replaceWith(params.range.from, params.range.to, node)
+
+    const newState = state.apply(tr)
+    params.view.updateState(newState)
   },
 
   onExit: () => {

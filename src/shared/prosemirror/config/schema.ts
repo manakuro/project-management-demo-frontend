@@ -21,6 +21,7 @@ import {
   tableRow,
   text,
   underline,
+  mention,
 } from '../schema'
 import { Schema } from 'prosemirror-model'
 
@@ -36,9 +37,9 @@ export const schema = new Schema({
     underline,
   },
   nodes: {
-    text, // plain text node
-    doc, // top-level node
-    paragraph, // paragraph must be the first node type of the "block" group
+    text,
+    doc,
+    paragraph,
     lineBreak,
     heading,
     blockquote,
@@ -48,7 +49,8 @@ export const schema = new Schema({
     listItem,
     table,
     tableRow,
-    tableDataCell, // tableDataCell must be the first node type of the "tableCell" group
+    tableDataCell,
     tableHeaderCell,
+    mention,
   },
 })

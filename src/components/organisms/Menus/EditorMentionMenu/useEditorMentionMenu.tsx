@@ -47,16 +47,19 @@ const teammatesData = [
 // @see src/shared/prosemirror/config/plugins.ts
 type onOpenProps = { x: State['x']; y: State['y'] }
 export let onOpen: (args: onOpenProps) => Promise<State['value']>
-export let onClose: () => void
+export let onClose: (value?: string) => void
 export let setQuery: (query: string) => void
 
 export const useEditorMentionMenu = () => {
   const [state, setState] = useRecoilState(atomState)
 
-  onClose = useCallback(() => {
-    setState((s) => ({ ...s, isOpen: false }))
-    state.callback(state.value)
-  }, [setState, state])
+  onClose = useCallback(
+    (value) => {
+      setState((s) => ({ ...s, isOpen: false }))
+      state.callback(value ?? '')
+    },
+    [setState, state],
+  )
 
   onOpen = useCallback(
     ({ x, y }: onOpenProps) => {
@@ -87,7 +90,7 @@ export const useEditorMentionMenu = () => {
   const setValue = useCallback(
     (value: State['value']) => {
       setState((s) => ({ ...s, value }))
-      onClose()
+      onClose(value)
     },
     [setState],
   )

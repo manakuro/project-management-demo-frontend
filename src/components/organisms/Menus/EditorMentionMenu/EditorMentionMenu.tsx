@@ -7,7 +7,7 @@ import { useMenuStyle } from 'src/hooks'
 type Props = {}
 
 export const EditorMentionMenu: React.VFC<Props> = () => {
-  const { isOpen, x, y, onClose, teammates } = useEditorMentionMenu()
+  const { isOpen, x, y, onClose, teammates, setValue } = useEditorMentionMenu()
   const menuStyles = useMenuStyle()
 
   return (
@@ -29,11 +29,7 @@ export const EditorMentionMenu: React.VFC<Props> = () => {
         <ModalBody w="full" px={0} {...menuStyles.list}>
           {teammates.length > 0 ? (
             teammates.map((t) => (
-              <MentionItem
-                onClick={(val) => console.log(val)}
-                value={t.email}
-                key={t.id}
-              >
+              <MentionItem onClick={setValue} value={t.email} key={t.id}>
                 {t.email}
               </MentionItem>
             ))

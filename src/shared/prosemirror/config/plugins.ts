@@ -15,9 +15,9 @@ let showSuggestions = false
 
 const suggestEmojis: Suggester = {
   noDecorations: true,
-  char: '@', // The character to match against
-  name: 'emoji-suggestion', // a unique name
-  appendText: '', // Text to append to the created match
+  char: '@',
+  name: 'mention-suggestion',
+  appendText: '',
 
   keyBindings: {
     // ArrowUp: () => {
@@ -43,13 +43,15 @@ const suggestEmojis: Suggester = {
     const position = getCaretPosition()
     if (!position) return
 
-    onOpen({
+    const value = await onOpen({
       x: Number(position?.x),
       y: Number(position?.y),
     })
-    // emojiList = sortEmojiMatches({ query, maxResults })
-    // selectedIndex = 0
-    // showSuggestions = true
+    if (!value) return
+
+    const { tr } = params.view.state
+    tr.insertText(value)
+    params.view.dispatch?.(tr)
   },
 
   onExit: () => {
@@ -59,7 +61,7 @@ const suggestEmojis: Suggester = {
   // Create a  function that is passed into the change, exit and keybinding handlers.
   // This is useful when these handlers are called in a different part of the app.
   createCommand: ({ match, view }) => {
-    return (emoji, skinVariation) => {
+    return (emoji) => {
       if (!emoji) {
         throw new Error(
           'An emoji is required when calling the emoji suggestions command',

@@ -6,10 +6,8 @@ type State = {
   x: number
   y: number
   query: string
-  input: {
-    url: string
-  }
-  callback: (input: State['input']) => void
+  value: string
+  callback: (value: State['value']) => void
 }
 
 const atomState = atom<State>({
@@ -19,9 +17,7 @@ const atomState = atom<State>({
     x: 0,
     y: 0,
     query: '',
-    input: {
-      url: '',
-    },
+    value: '',
     callback: () => {},
   },
 })
@@ -50,7 +46,7 @@ const teammatesData = [
 // NOTE: Export onOpen method in order to execute prosemirror's plugins
 // @see src/shared/prosemirror/config/plugins.ts
 type onOpenProps = { x: State['x']; y: State['y'] }
-export let onOpen: (args: onOpenProps) => void
+export let onOpen: (args: onOpenProps) => Promise<State['value']>
 export let onClose: () => void
 export let setQuery: (query: string) => void
 
@@ -59,12 +55,12 @@ export const useEditorMentionMenu = () => {
 
   onClose = useCallback(() => {
     setState((s) => ({ ...s, isOpen: false }))
-    state.callback(state.input)
+    state.callback(state.value)
   }, [setState, state])
 
   onOpen = useCallback(
     ({ x, y }: onOpenProps) => {
-      return new Promise<State['input']>((resolve) => {
+      return new Promise<State['value']>((resolve) => {
         setState((s) => ({
           ...s,
           isOpen: true,
@@ -88,16 +84,17 @@ export const useEditorMentionMenu = () => {
     return teammatesData.filter((t) => t.email.includes(state.query))
   }, [state.query])
 
-  const setInput = useCallback(
-    (input: State['input']) => {
-      setState((s) => ({ ...s, input }))
+  const setValue = useCallback(
+    (value: State['value']) => {
+      setState((s) => ({ ...s, value }))
+      onClose()
     },
     [setState],
   )
 
   return {
     ...state,
-    setInput,
+    setValue,
     onOpen,
     onClose,
     teammates,

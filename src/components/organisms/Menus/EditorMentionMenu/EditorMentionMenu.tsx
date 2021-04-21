@@ -16,6 +16,7 @@ export const EditorMentionMenu: React.VFC<Props> = () => {
       placement="bottom-start"
       isLazy
       offset={[0, 0]}
+      autoSelect={false}
     >
       <MenuButton />
       <Portal>
@@ -29,7 +30,11 @@ export const EditorMentionMenu: React.VFC<Props> = () => {
         >
           {teammates.length > 0 ? (
             teammates.map((t) => (
-              <MentionItem onClick={() => {}} value={t.email} key={t.id}>
+              <MentionItem
+                onClick={(val) => console.log(val)}
+                value={t.email}
+                key={t.id}
+              >
                 {t.email}
               </MentionItem>
             ))

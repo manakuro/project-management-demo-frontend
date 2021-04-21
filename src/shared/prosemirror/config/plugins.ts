@@ -10,32 +10,11 @@ import {
 } from 'src/components/organisms/Menus/EditorMentionMenu'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
 
-let selectedIndex = 0
-let emojiList: string[] = []
-let showSuggestions = false
-
 const suggestEmojis: Suggester = {
   noDecorations: true,
   char: '@',
   name: 'mention-suggestion',
   appendText: '',
-
-  keyBindings: {
-    // ArrowUp: () => {
-    //   selectedIndex = rotateSelectionBackwards(selectedIndex, emojiList.length)
-    // },
-    // ArrowDown: () => {
-    //   selectedIndex = rotateSelectionForwards(selectedIndex, emojiList.length)
-    // },
-    Enter: ({ command }) => {
-      if (showSuggestions) {
-        command(emojiList[selectedIndex])
-      }
-    },
-    Esc: () => {
-      showSuggestions = false
-    },
-  },
   onChange: async (params) => {
     console.log('onChange: ', params)
     setQuery(params.queryText.full)
@@ -60,7 +39,6 @@ const suggestEmojis: Suggester = {
   },
 }
 
-// Create the plugin with the above configuration. It also supports multiple plugins being added.
 const suggestionPlugin = suggest(suggestEmojis)
 
 export const plugins = [
@@ -68,6 +46,6 @@ export const plugins = [
   history(),
   listKeys(),
   editorKeys(),
-  baseKeys(), // last
+  baseKeys(),
   rules(),
 ]

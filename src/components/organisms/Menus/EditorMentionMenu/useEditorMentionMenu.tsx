@@ -6,8 +6,8 @@ type State = {
   x: number
   y: number
   query: string
-  value: string
-  callback: (value: State['value']) => void
+  id: number | null
+  callback: (id: State['id']) => void
 }
 
 const atomState = atom<State>({
@@ -17,26 +17,26 @@ const atomState = atom<State>({
     x: 0,
     y: 0,
     query: '',
-    value: '',
+    id: null,
     callback: () => {},
   },
 })
 
 const teammatesData = [
   {
-    id: '1',
+    id: 1,
     name: 'Manato Kuroda',
     image: '/images/cat_img.png',
     email: 'manato.kuroda@gmail.com',
   },
   {
-    id: '2',
+    id: 2,
     name: 'Dan Abrahmov',
     image: 'https://bit.ly/dan-abramov',
     email: 'dan.abrahmov@gmail.com',
   },
   {
-    id: '3',
+    id: 3,
     name: 'Kent Dodds',
     image: 'https://bit.ly/kent-c-dodds',
     email: 'kent.dodds@gmail.com',
@@ -46,8 +46,8 @@ const teammatesData = [
 // NOTE: Export onOpen method in order to execute prosemirror's plugins
 // @see src/shared/prosemirror/config/plugins.ts
 type onOpenProps = { x: State['x']; y: State['y'] }
-export let onOpen: (args: onOpenProps) => Promise<State['value']>
-export let onClose: (value?: string) => void
+export let onOpen: (args: onOpenProps) => Promise<State['id']>
+export let onClose: (id?: State['id']) => void
 export let setQuery: (query: string) => void
 export let getQuery: () => string
 
@@ -55,16 +55,16 @@ export const useEditorMentionMenu = () => {
   const [state, setState] = useRecoilState(atomState)
 
   onClose = useCallback(
-    (value) => {
+    (id) => {
       setState((s) => ({ ...s, isOpen: false }))
-      state.callback(value ?? '')
+      state.callback(id ?? null)
     },
     [setState, state],
   )
 
   onOpen = useCallback(
     ({ x, y }: onOpenProps) => {
-      return new Promise<State['value']>((resolve) => {
+      return new Promise<State['id']>((resolve) => {
         setState((s) => ({
           ...s,
           isOpen: true,
@@ -89,17 +89,17 @@ export const useEditorMentionMenu = () => {
     return teammatesData.filter((t) => t.email.includes(state.query))
   }, [state.query])
 
-  const setValue = useCallback(
-    (value: State['value']) => {
-      setState((s) => ({ ...s, value }))
-      onClose(value)
+  const setId = useCallback(
+    (id: State['id']) => {
+      setState((s) => ({ ...s, id }))
+      onClose(id)
     },
     [setState],
   )
 
   return {
     ...state,
-    setValue,
+    setId,
     onOpen,
     onClose,
     teammates,

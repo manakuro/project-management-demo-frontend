@@ -9,6 +9,7 @@ import {
   getQuery,
 } from 'src/components/organisms/Menus/EditorMentionMenu'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
+import { MentionAttrs } from 'src/shared/prosemirror/schema'
 
 const suggestEmojis: Suggester = {
   noDecorations: true,
@@ -28,8 +29,8 @@ const suggestEmojis: Suggester = {
 
     const state = params.view.state
     const node = state.schema.nodes.mention.create({
-      name: value,
-    })
+      teammateId: String(value),
+    } as MentionAttrs)
     const { from, end: to } = params.range
     const tr = state.tr.replaceWith(from, to + getQuery().length, node)
     params.view.dispatch(tr)

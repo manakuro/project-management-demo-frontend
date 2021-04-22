@@ -1,15 +1,16 @@
 import { NodeSpec } from 'prosemirror-model'
 
 type Attrs = {
-  name: string
+  teammateId: string
 }
+export type MentionAttrs = Attrs
 
 export const mention: NodeSpec = {
   group: 'inline',
   inline: true,
   atom: true,
   attrs: {
-    name: { default: '' },
+    teammateId: { default: '' },
   },
   selectable: false,
   draggable: false,
@@ -19,20 +20,19 @@ export const mention: NodeSpec = {
     return [
       'span',
       {
-        'data-mention-name': attrs.name,
+        'data-mention-teammateId': attrs.teammateId,
       },
-      attrs.name,
     ]
   },
 
   parseDOM: [
     {
-      tag: 'span[data-mention-id][data-mention-name][data-mention-email]',
+      tag: 'span[data-mention-teammateId]',
       // @ts-ignore
       getAttrs: (element: HTMLSpanElement): Attrs => {
-        const name = element.getAttribute('data-mention-name') ?? ''
+        const teammateId = element.getAttribute('data-mention-teammateId') ?? ''
         return {
-          name,
+          teammateId,
         }
       },
     },

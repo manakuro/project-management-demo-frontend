@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { ModalContent, Modal, ModalBody } from 'src/components/organisms'
 import { useEditorMentionMenu } from './useEditorMentionMenu'
 import { MentionItem } from './MentionItem'
@@ -7,8 +7,15 @@ import { useMenuStyle } from 'src/hooks'
 type Props = {}
 
 export const EditorMentionMenu: React.VFC<Props> = () => {
-  const { isOpen, x, y, onClose, teammates, setValue } = useEditorMentionMenu()
+  const { isOpen, x, y, onClose, teammates, setId } = useEditorMentionMenu()
   const menuStyles = useMenuStyle()
+
+  const handleClick = useCallback(
+    (val: string | number) => {
+      setId(Number(val))
+    },
+    [setId],
+  )
 
   return (
     <Modal
@@ -29,7 +36,7 @@ export const EditorMentionMenu: React.VFC<Props> = () => {
         <ModalBody w="full" px={0} {...menuStyles.list}>
           {teammates.length > 0 ? (
             teammates.map((t) => (
-              <MentionItem onClick={setValue} value={t.email} key={t.id}>
+              <MentionItem onClick={handleClick} value={t.id} key={t.id}>
                 {t.email}
               </MentionItem>
             ))

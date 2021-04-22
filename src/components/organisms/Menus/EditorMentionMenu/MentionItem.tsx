@@ -5,10 +5,10 @@ import { useMenuStyle } from 'src/hooks'
 type Props = Override<
   FlexProps,
   {
-    onClick?: (val: string) => void
+    onClick?: (val: string | number) => void
   }
 > & {
-  value: string
+  value: string | number
 }
 
 export const MentionItem: React.FC<Props> = memo<Props>((props) => {
@@ -16,7 +16,7 @@ export const MentionItem: React.FC<Props> = memo<Props>((props) => {
   const styles = useMenuStyle()
 
   const handleClick = useCallback(
-    (val: string) => {
+    (val: string | number) => {
       onClick?.(val)
     },
     [onClick],

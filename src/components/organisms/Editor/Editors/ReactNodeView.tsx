@@ -1,6 +1,6 @@
 import { DOMSerializer, Node } from 'prosemirror-model'
 import { Decoration, EditorView, NodeView } from 'prosemirror-view'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { PortalHandlers } from 'src/components/organisms/Editor/Editors/ReactNodeViewPortals'
 import {
   entries,
@@ -93,30 +93,37 @@ class ReactNodeView implements NodeView {
     if (!isElementDomNode(dom)) return
 
     wrapper = dom
-    if (dom === contentDOM) {
-      wrapper = document.createElement('span')
-      wrapper.classList.add('ProseMirror__contentWrapper')
-      wrapper.append(contentDOM)
-    }
-
     return { wrapper, contentDOM }
   }
 
   renderPortal() {
     const Component: React.FC = (props) => {
+      const componentRef = useRef<HTMLDivElement>(null)
+
+      useEffect(() => {
+        const componentDOM = componentRef.current
+        if (!!componentDOM && !!this.contentDOM) {
+          if (!this.node.isLeaf) {
+            componentDOM.firstChild?.appendChild(this.contentDOM)
+          }
+        }
+      }, [componentRef])
+
       const NodeView = this.component
       return (
-        <ReactNodeViewContext.Provider
-          value={{
-            node: this.node,
-            view: this.view,
-            getPos: this.getPos,
-            decorations: this.decorations,
-            text: (this.contentDOM as HTMLElement)?.innerText ?? '',
-          }}
-        >
-          <NodeView {...props} />
-        </ReactNodeViewContext.Provider>
+        <span ref={componentRef} className="ProseMirror__reactComponent">
+          <ReactNodeViewContext.Provider
+            value={{
+              node: this.node,
+              view: this.view,
+              getPos: this.getPos,
+              decorations: this.decorations,
+              text: (this.contentDOM as HTMLElement)?.innerText ?? '',
+            }}
+          >
+            <NodeView {...props} />
+          </ReactNodeViewContext.Provider>
+        </span>
       )
     }
 

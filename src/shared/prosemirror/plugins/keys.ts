@@ -26,7 +26,7 @@ import {
   toggleMarkUnderline,
   wrapInBlockquote,
   toggleMarkStrikethrough,
-} from './commands'
+} from '../config/commands'
 
 export const listKeys = (): Plugin =>
   keymap({

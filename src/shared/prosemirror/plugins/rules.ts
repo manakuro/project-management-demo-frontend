@@ -8,7 +8,7 @@ import {
 } from 'prosemirror-inputrules'
 import { Plugin } from 'prosemirror-state'
 
-import { schema } from './schema'
+import { schema } from '../config/schema'
 
 export const rules = (): Plugin =>
   inputRules({

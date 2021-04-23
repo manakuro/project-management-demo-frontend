@@ -120,7 +120,9 @@ export const useEditorMentionMenu = () => {
 
   const mentions = useMemo(() => {
     if (!state.query) return []
-    return mentionData.filter((t) => t.text.includes(state.query))
+    return mentionData.filter((t) =>
+      t.text.toLowerCase().includes(state.query.toLowerCase()),
+    )
   }, [state.query])
 
   const setId = useCallback(

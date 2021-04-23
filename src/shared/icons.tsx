@@ -67,6 +67,7 @@ import {
   BiUnlink,
   BiAt,
   BiLinkExternal,
+  BiGroup,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon, FaRegStar, FaStar } from 'react-icons/fa'
 import { HiOutlineMail, HiOutlineEmojiHappy } from 'react-icons/hi'
@@ -160,6 +161,7 @@ export const icons = {
   at: BiAt,
   emojiHappy: HiOutlineEmojiHappy,
   linkExternal: BiLinkExternal,
+  group: BiGroup,
 } as const
 
 export type IconType = keyof typeof icons

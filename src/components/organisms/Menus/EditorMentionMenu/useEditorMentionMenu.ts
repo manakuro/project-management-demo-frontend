@@ -1,5 +1,5 @@
 import { atom, useRecoilState } from 'recoil'
-import { useCallback, useMemo, useRef } from 'react'
+import { useCallback, useMemo } from 'react'
 import { MentionItem } from './types'
 
 type Id = number | null
@@ -112,14 +112,20 @@ export let onOpen: (args: onOpenProps) => Promise<void>
 export let onClose: () => void
 export let setQuery: (query: string) => void
 export let getQuery: () => string
-export let getId: () => Id
 export let onArrowDown: () => void
 export let onArrowUp: () => void
 export let onEnter: () => void
 
+type IdRef = Readonly<{ current: Id }>
+const idRef: IdRef = {
+  current: 0,
+}
+export const getId = () => idRef.current
+export const setIdRef = (val: Id) =>
+  void ((idRef as Writeable<IdRef>).current = val)
+
 export const useEditorMentionMenu = () => {
   const [state, setState] = useRecoilState(atomState)
-  const idRef = useRef<Id>(null)
 
   onOpen = useCallback(
     ({ x, y }: onOpenProps) => {
@@ -142,7 +148,6 @@ export const useEditorMentionMenu = () => {
     [setState],
   )
   getQuery = useCallback(() => state.query, [state.query])
-  getId = useCallback(() => idRef.current, [])
 
   const mentions = useMemo(() => {
     if (!state.query) return []
@@ -152,7 +157,7 @@ export const useEditorMentionMenu = () => {
   }, [state.query])
 
   const setId = useCallback((id: Id) => {
-    idRef.current = id
+    setIdRef(id)
     onClose()
   }, [])
 

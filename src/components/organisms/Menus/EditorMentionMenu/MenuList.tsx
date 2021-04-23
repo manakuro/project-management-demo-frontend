@@ -3,7 +3,7 @@ import { ModalBody, ModalContent } from 'src/components/organisms'
 import { useEditorMentionMenu } from './useEditorMentionMenu'
 import { MentionItem } from './MentionItem'
 import { useMenuStyle } from 'src/hooks'
-import { MentionItemBase } from './MentionItem/MentionItemBase'
+import { Empty } from './MentionItem/Empty'
 
 type Props = {}
 
@@ -40,9 +40,9 @@ export const MenuList: React.VFC<Props> = () => {
             />
           ))
         ) : (
-          <MentionItemBase color="text.muted" pointerEvents="none">
+          <Empty>
             Mention a teammate or link to a task, project, or message.
-          </MentionItemBase>
+          </Empty>
         )}
       </ModalBody>
     </ModalContent>

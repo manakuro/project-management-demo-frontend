@@ -1,7 +1,8 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo, useCallback, useEffect } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { useMenuStyle } from 'src/hooks'
 import { MentionItem } from 'src/components/organisms'
+import { useHover } from 'src/hooks/useHover'
 
 type Props = Override<
   FlexProps,
@@ -15,18 +16,28 @@ type Props = Override<
 
 export const MentionItemBase: React.FC<Props> = memo<Props>((props) => {
   const { onClick, ...rest } = props
-  const styles = useMenuStyle()
+  const styles = useMenuStyle().item
+  const { ref, isHovering } = useHover()
+
+  delete styles._hover
 
   const handleClick = useCallback(() => {
     if (!onClick) return
     onClick(props.mention!.id)
   }, [onClick, props.mention])
 
+  useEffect(() => {
+    if (isHovering) {
+      console.log('isHovering!')
+    }
+  }, [isHovering])
+
   return (
     <Flex
-      bg={props.selected ? styles.item._focus.bg : 'transparent'}
+      ref={ref}
+      bg={props.selected ? styles._focus.bg : 'transparent'}
       fontSize="sm"
-      {...styles.item}
+      {...styles}
       onClick={handleClick}
       {...rest}
     >

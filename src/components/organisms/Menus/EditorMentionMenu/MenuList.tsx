@@ -8,7 +8,7 @@ import { Empty } from './MentionItem/Empty'
 type Props = {}
 
 export const MenuList: React.VFC<Props> = () => {
-  const { mentions, x, y, setId, selectedIndex } = useEditorMentionMenu()
+  const { mentions, x, y, setId } = useEditorMentionMenu()
   const menuStyles = useMenuStyle()
 
   const handleClick = useCallback(
@@ -36,7 +36,7 @@ export const MenuList: React.VFC<Props> = () => {
               onClick={handleClick}
               mention={m}
               key={`${m.type}_${m.id}`}
-              selected={i === selectedIndex}
+              index={i}
             />
           ))
         ) : (

@@ -121,11 +121,6 @@ export const useEditorMentionMenu = () => {
   const [state, setState] = useRecoilState(atomState)
   const idRef = useRef<Id>(null)
 
-  onClose = useCallback(() => {
-    setState((s) => ({ ...s, isOpen: false }))
-    state.callback()
-  }, [setState, state])
-
   onOpen = useCallback(
     ({ x, y }: onOpenProps) => {
       return new Promise<void>((resolve) => {
@@ -161,6 +156,16 @@ export const useEditorMentionMenu = () => {
     onClose()
   }, [])
 
+  const setSelectedIndex = useCallback(
+    (val: number) => {
+      setState((s) => ({ ...s, selectedIndex: val }))
+    },
+    [setState],
+  )
+  const resetSelectedIndex = useCallback(() => {
+    setState((s) => ({ ...s, selectedIndex: 0 }))
+  }, [setState])
+
   onArrowDown = useCallback(() => {
     const selectedIndex = state.selectedIndex + 1
     if (selectedIndex > mentions.length) {
@@ -186,11 +191,18 @@ export const useEditorMentionMenu = () => {
     setId(mention.id)
   }, [mentions, setId, state.selectedIndex])
 
+  onClose = useCallback(() => {
+    setState((s) => ({ ...s, isOpen: false }))
+    state.callback()
+    resetSelectedIndex()
+  }, [resetSelectedIndex, setState, state])
+
   return {
     ...state,
     setId,
     onOpen,
     onClose,
     mentions,
+    setSelectedIndex,
   }
 }

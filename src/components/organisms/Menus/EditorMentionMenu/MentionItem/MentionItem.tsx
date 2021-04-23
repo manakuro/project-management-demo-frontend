@@ -17,11 +17,11 @@ import { Workspace } from './Workspace'
 type Props = Override<
   FlexProps,
   {
-    onClick?: (val: string | number) => void
+    onClick: (val: string | number) => void
   }
 > & {
   mention: TMentionItem
-  selected: boolean
+  index: number
 }
 
 export const MentionItem: React.FC<Props> = memo<Props>((props) => {

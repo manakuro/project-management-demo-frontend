@@ -10,6 +10,7 @@ type Props = Override<
   }
 > & {
   mention?: MentionItem
+  selected?: boolean
 }
 
 export const MentionItemBase: React.FC<Props> = memo<Props>((props) => {
@@ -22,7 +23,13 @@ export const MentionItemBase: React.FC<Props> = memo<Props>((props) => {
   }, [onClick, props.mention])
 
   return (
-    <Flex {...styles.item} onClick={handleClick} {...rest}>
+    <Flex
+      bg={props.selected ? styles.item._focus.bg : 'transparent'}
+      fontSize="sm"
+      {...styles.item}
+      onClick={handleClick}
+      {...rest}
+    >
       {props.children}
     </Flex>
   )

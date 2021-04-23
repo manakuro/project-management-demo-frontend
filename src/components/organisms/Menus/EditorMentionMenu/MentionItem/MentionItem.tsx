@@ -21,6 +21,7 @@ type Props = Override<
   }
 > & {
   mention: TMentionItem
+  selected: boolean
 }
 
 export const MentionItem: React.FC<Props> = memo<Props>((props) => {

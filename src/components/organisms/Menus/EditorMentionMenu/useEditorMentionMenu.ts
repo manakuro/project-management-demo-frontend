@@ -1,14 +1,15 @@
 import { atom, useRecoilState } from 'recoil'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useRef } from 'react'
 import { MentionItem } from './types'
 
+type Id = number | null
 type State = {
   isOpen: boolean
   x: number
   y: number
   query: string
-  id: number | null
-  callback: (id: State['id']) => void
+  callback: () => void
+  selectedIndex: number
 }
 
 const atomState = atom<State>({
@@ -18,8 +19,8 @@ const atomState = atom<State>({
     x: 0,
     y: 0,
     query: '',
-    id: null,
     callback: () => {},
+    selectedIndex: 0,
   },
 })
 
@@ -107,25 +108,27 @@ const mentionData: MentionItem[] = [
 // NOTE: Export functions in order to execute inside prosemirror's plugins
 // @see src/shared/prosemirror/config/plugins.ts
 type onOpenProps = { x: State['x']; y: State['y'] }
-export let onOpen: (args: onOpenProps) => Promise<State['id']>
-export let onClose: (id?: State['id']) => void
+export let onOpen: (args: onOpenProps) => Promise<void>
+export let onClose: () => void
 export let setQuery: (query: string) => void
 export let getQuery: () => string
+export let getId: () => Id
+export let onArrowDown: () => void
+export let onArrowUp: () => void
+export let onEnter: () => void
 
 export const useEditorMentionMenu = () => {
   const [state, setState] = useRecoilState(atomState)
+  const idRef = useRef<Id>(null)
 
-  onClose = useCallback(
-    (id) => {
-      setState((s) => ({ ...s, isOpen: false }))
-      state.callback(id ?? null)
-    },
-    [setState, state],
-  )
+  onClose = useCallback(() => {
+    setState((s) => ({ ...s, isOpen: false }))
+    state.callback()
+  }, [setState, state])
 
   onOpen = useCallback(
     ({ x, y }: onOpenProps) => {
-      return new Promise<State['id']>((resolve) => {
+      return new Promise<void>((resolve) => {
         setState((s) => ({
           ...s,
           isOpen: true,
@@ -144,6 +147,7 @@ export const useEditorMentionMenu = () => {
     [setState],
   )
   getQuery = useCallback(() => state.query, [state.query])
+  getId = useCallback(() => idRef.current, [])
 
   const mentions = useMemo(() => {
     if (!state.query) return []
@@ -152,13 +156,35 @@ export const useEditorMentionMenu = () => {
     )
   }, [state.query])
 
-  const setId = useCallback(
-    (id: State['id']) => {
-      setState((s) => ({ ...s, id }))
-      onClose(id)
-    },
-    [setState],
-  )
+  const setId = useCallback((id: Id) => {
+    idRef.current = id
+    onClose()
+  }, [])
+
+  onArrowDown = useCallback(() => {
+    const selectedIndex = state.selectedIndex + 1
+    if (selectedIndex > mentions.length) {
+      setState((s) => ({ ...s, selectedIndex: 0 }))
+      return
+    }
+
+    setState((s) => ({ ...s, selectedIndex }))
+  }, [mentions.length, setState, state.selectedIndex])
+
+  onArrowUp = useCallback(() => {
+    const selectedIndex = state.selectedIndex - 1
+    if (selectedIndex < 0) {
+      setState((s) => ({ ...s, selectedIndex: mentions.length }))
+      return
+    }
+
+    setState((s) => ({ ...s, selectedIndex }))
+  }, [mentions.length, setState, state.selectedIndex])
+
+  onEnter = useCallback(() => {
+    const mention = mentions.find((_, i) => i === state.selectedIndex)!
+    setId(mention.id)
+  }, [mentions, setId, state.selectedIndex])
 
   return {
     ...state,

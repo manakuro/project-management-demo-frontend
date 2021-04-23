@@ -3,7 +3,14 @@ import { ChakraProps, useStyleConfig } from 'src/shared/chakra'
 
 type MenuStyle = {
   list: ChakraProps
-  item: ChakraProps
+  item: Override<
+    ChakraProps,
+    {
+      _focus: {
+        bg: ChakraProps['bg']
+      }
+    }
+  >
 }
 
 export const useMenuStyle = () => {

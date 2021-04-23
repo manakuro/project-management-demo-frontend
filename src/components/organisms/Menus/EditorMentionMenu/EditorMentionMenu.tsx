@@ -1,22 +1,12 @@
-import React, { useCallback } from 'react'
-import { ModalContent, Modal, ModalBody } from 'src/components/organisms'
+import React from 'react'
+import { Modal } from 'src/components/organisms'
 import { useEditorMentionMenu } from './useEditorMentionMenu'
-import { MentionItem } from './MentionItem'
-import { useMenuStyle } from 'src/hooks'
-import { MentionItemBase } from './MentionItem/MentionItemBase'
+import { MenuList } from './MenuList'
 
 type Props = {}
 
 export const EditorMentionMenu: React.VFC<Props> = () => {
-  const { isOpen, x, y, onClose, mentions, setId } = useEditorMentionMenu()
-  const menuStyles = useMenuStyle()
-
-  const handleClick = useCallback(
-    (val: string | number) => {
-      setId(Number(val))
-    },
-    [setId],
-  )
+  const { isOpen, onClose } = useEditorMentionMenu()
 
   return (
     <Modal
@@ -26,32 +16,7 @@ export const EditorMentionMenu: React.VFC<Props> = () => {
       autoFocus={false}
       trapFocus={false}
     >
-      <ModalContent
-        position="fixed"
-        top={y + 24}
-        left={x}
-        mb={0}
-        mt={0}
-        maxW="450px"
-        maxH={56}
-        overflowY="scroll"
-      >
-        <ModalBody w="full" px={0} {...menuStyles.list}>
-          {mentions.length > 0 ? (
-            mentions.map((m) => (
-              <MentionItem
-                onClick={handleClick}
-                mention={m}
-                key={`${m.type}_${m.id}`}
-              />
-            ))
-          ) : (
-            <MentionItemBase color="text.muted" pointerEvents="none">
-              Mention a teammate or link to a task, project, or message.
-            </MentionItemBase>
-          )}
-        </ModalBody>
-      </ModalContent>
+      {isOpen && <MenuList />}
     </Modal>
   )
 }

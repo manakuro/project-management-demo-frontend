@@ -1,27 +1,23 @@
 import React, { memo } from 'react'
-import { Avatar, Flex, FlexProps, Text } from 'src/components/atoms'
-import { MentionTeammate } from '../types'
+import { CheckIcon, Flex, FlexProps, Text } from 'src/components/atoms'
+import { MentionTask } from '../types'
 import { LeftContainer } from './LeftContainer'
 import { RightContainer } from './RightContainer'
 
 type Props = FlexProps & {
-  mention: MentionTeammate
+  mention: MentionTask
 }
 
-export const Teammate: React.FC<Props> = memo<Props>((props) => {
+export const Project: React.FC<Props> = memo<Props>((props) => {
   return (
     <Flex alignItems="center" flex={1}>
       <LeftContainer>
-        <Avatar
-          name={props.mention.title}
-          src={props.mention.image}
-          size="xs"
-          cursor="pointer"
-          bg="teal.200"
-        />
+        <CheckIcon isDone={props.mention.idDone} />
       </LeftContainer>
       <RightContainer>
-        <Text fontSize="sm">{props.mention.title}</Text>
+        <Text fontSize="sm" w="80%" isTruncated>
+          {props.mention.title}
+        </Text>
         <Text ml={5} fontSize="xs" color="text.muted">
           {props.mention.subTitle}
         </Text>

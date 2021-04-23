@@ -3,10 +3,12 @@ import { FlexProps } from 'src/components/atoms'
 import {
   MENTION_TYPE,
   MentionItem as TMentionItem,
+  MentionTask,
   MentionTeammate,
 } from '../types'
 import { Teammate } from './Teammate'
 import { MentionItemBase } from './MentionItemBase'
+import { Task } from './Task'
 
 type Props = Override<
   FlexProps,
@@ -30,7 +32,7 @@ export const MentionItem: React.FC<Props> = memo<Props>((props) => {
     case MENTION_TYPE.TASK:
       return (
         <MentionItemBase {...props}>
-          <Teammate {...rest} mention={props.mention as MentionTeammate} />
+          <Task {...rest} mention={props.mention as MentionTask} />
         </MentionItemBase>
       )
     case MENTION_TYPE.PROJECT:

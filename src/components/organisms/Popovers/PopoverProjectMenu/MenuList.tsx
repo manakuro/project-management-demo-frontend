@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react'
-import { Flex, Text, Icon, Box, Portal, BoxProps } from 'src/components/atoms'
+import { Flex, Text, Icon, Portal, ColorBox } from 'src/components/atoms'
 import {
   MenuList as AtomsMenuList,
   MenuItem as AtomsMenuItem,
@@ -56,7 +56,7 @@ export const MenuList: React.VFC<Props> = (props) => {
       <AtomsMenuList color="text.base" ref={ref}>
         <MenuItem
           icon={
-            <ColorBox w={4} h={4} bg={props.project.color.color} mt="-1px" />
+            <ColorBox size="md" color={props.project.color.color} mt="-1px" />
           }
           onMouseEnter={handleOpen}
         >
@@ -130,8 +130,4 @@ export const MenuList: React.VFC<Props> = (props) => {
 
 const MenuItem: React.FC<MenuItemProps> = (props) => (
   <AtomsMenuItem fontSize="sm" iconSpacing={3} {...props} />
-)
-
-const ColorBox: React.FC<BoxProps> = (props) => (
-  <Box borderRadius="sm" {...props} />
 )

@@ -5,8 +5,7 @@ import {
   NextLink,
   Text,
   Icon,
-  Box,
-  BoxProps,
+  ColorBox,
 } from 'src/components/atoms'
 import { PopoverProjectMenu, useNavigation } from 'src/components/organisms'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
@@ -29,7 +28,7 @@ export const ListItem: React.VFC<Props> = (props) => {
         <Link w="full">
           {isExpanded ? (
             <Flex alignItems="center">
-              <ColorBox w={2} h={2} bg={project.color.color} />
+              <ColorBox size="xs" color={project.color.color} />
               <Text fontSize="sm" flex={1} ml={2}>
                 {project.name}
               </Text>
@@ -56,7 +55,3 @@ export const ListItem: React.VFC<Props> = (props) => {
     </Flex>
   )
 }
-
-const ColorBox: React.FC<BoxProps> = (props) => (
-  <Box borderRadius="sm" {...props} />
-)

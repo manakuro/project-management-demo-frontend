@@ -4,7 +4,7 @@ import { forwardRef } from 'src/shared/chakra'
 import { DraggableProvided } from 'react-beautiful-dnd'
 
 type Props = ChakraBoxProps & {
-  ref?: React.MutableRefObject<any> | DraggableProvided['innerRef']
+  ref?: React.ForwardedRef<any> | DraggableProvided['innerRef']
 }
 export type BoxProps = Props
 

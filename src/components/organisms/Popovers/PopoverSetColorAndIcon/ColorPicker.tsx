@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { Icon, BoxProps, Wrap, WrapItem, Center } from 'src/components/atoms'
+import { Icon, Wrap, WrapItem, ColorBox } from 'src/components/atoms'
 import { useColorPicker } from 'src/hooks/useColorPicker'
 import { useProject } from 'src/store/projects'
 
@@ -23,7 +23,12 @@ export const ColorPicker: React.VFC<Props> = (props) => {
     <Wrap p={6} spacing={1}>
       {colors.map((c) => (
         <WrapItem key={c.id}>
-          <ColorBox bg={c.base} onClick={() => handlePickColor(c.id)}>
+          <ColorBox
+            size="lg"
+            cursor="pointer"
+            color={c.base}
+            onClick={() => handlePickColor(c.id)}
+          >
             {props.currentId === c.id && <Icon icon="check" color="white" />}
           </ColorBox>
         </WrapItem>
@@ -31,7 +36,3 @@ export const ColorPicker: React.VFC<Props> = (props) => {
     </Wrap>
   )
 }
-
-const ColorBox: React.FC<BoxProps> = (props) => (
-  <Center borderRadius="sm" w={5} h={5} cursor="pointer" {...props} />
-)

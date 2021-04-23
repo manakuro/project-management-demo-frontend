@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Box, Flex, FlexProps, Text } from 'src/components/atoms'
+import { ColorBox, Flex, FlexProps, Text } from 'src/components/atoms'
 import { MentionProject } from '../types'
 import { LeftContainer } from './LeftContainer'
 import { RightContainer } from './RightContainer'
@@ -15,7 +15,7 @@ export const Project: React.FC<Props> = memo<Props>((props) => {
   return (
     <Flex alignItems="center" flex={1}>
       <LeftContainer>
-        <Box w={3} h={3} borderRadius="sm" bg={project.color.color} />
+        <ColorBox size="sm" color={project.color.color} />
       </LeftContainer>
       <RightContainer>
         <Text fontSize="sm" w="80%" isTruncated>

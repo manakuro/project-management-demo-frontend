@@ -1,5 +1,6 @@
 export * from './AspectRatio'
 export * from './Box'
+export * from './ColorBox'
 export * from './Flex'
 export * from './Grid'
 export * from './Icon'

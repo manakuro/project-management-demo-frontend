@@ -1,5 +1,13 @@
 import { atom, useRecoilState } from 'recoil'
 import { useCallback, useMemo } from 'react'
+import {
+  MentionTeammate,
+  MentionProject,
+  MentionTask,
+  MentionWorkspace,
+  MENTION_TYPE,
+  MentionItem,
+} from './types'
 
 type State = {
   isOpen: boolean
@@ -22,28 +30,60 @@ const atomState = atom<State>({
   },
 })
 
-const teammatesData = [
+const mentionData: MentionItem[] = [
   {
     id: 1,
-    name: 'Manato Kuroda',
+    type: 1,
+    text: 'manato.kuroda@gmail.com',
+    title: 'Manato Kuroda',
+    subTitle: 'manato.kuroda@gmail.com',
+    href: '',
     image: '/images/cat_img.png',
-    email: 'manato.kuroda@gmail.com',
   },
   {
     id: 2,
-    name: 'Dan Abrahmov',
+    type: 1,
+    text: 'dan.abrahmov@gmail.com',
+    title: 'Dan Abrahmov',
+    subTitle: 'dan.abrahmov@gmail.com',
+    href: '',
     image: 'https://bit.ly/dan-abramov',
-    email: 'dan.abrahmov@gmail.com',
   },
   {
-    id: 3,
-    name: 'Kent Dodds',
-    image: 'https://bit.ly/kent-c-dodds',
-    email: 'kent.dodds@gmail.com',
+    id: 10,
+    type: 2,
+    text: 'Resolve an issue of auto focus for tasks list detail page',
+    title: 'Resolve an issue of auto focus for tasks list detail page',
+    subTitle: 'Asana',
+    idDone: false,
+    href: '',
   },
-] as const
+  {
+    id: 2,
+    type: 3,
+    text: 'To Do',
+    title: 'To Do',
+    href: '',
+  },
+  {
+    id: 1,
+    type: 4,
+    text: 'My workspace',
+    title: 'My workspace',
+    href: '',
+  },
+]
 
-// NOTE: Export onOpen method in order to execute prosemirror's plugins
+export const isMentionTeammate = (obj: any): obj is MentionTeammate =>
+  obj.type === MENTION_TYPE.TEAMMATE
+export const isMentionTask = (obj: any): obj is MentionTask =>
+  obj.type === MENTION_TYPE.TASK
+export const isMentionProject = (obj: any): obj is MentionProject =>
+  obj.type === MENTION_TYPE.PROJECT
+export const isMentionWorkspace = (obj: any): obj is MentionWorkspace =>
+  obj.type === MENTION_TYPE.WORKSPACE
+
+// NOTE: Export functions in order to execute inside prosemirror's plugins
 // @see src/shared/prosemirror/config/plugins.ts
 type onOpenProps = { x: State['x']; y: State['y'] }
 export let onOpen: (args: onOpenProps) => Promise<State['id']>
@@ -84,9 +124,9 @@ export const useEditorMentionMenu = () => {
   )
   getQuery = useCallback(() => state.query, [state.query])
 
-  const teammates = useMemo(() => {
+  const mentions = useMemo(() => {
     if (!state.query) return []
-    return teammatesData.filter((t) => t.email.includes(state.query))
+    return mentionData.filter((t) => t.text.includes(state.query))
   }, [state.query])
 
   const setId = useCallback(
@@ -102,6 +142,6 @@ export const useEditorMentionMenu = () => {
     setId,
     onOpen,
     onClose,
-    teammates,
+    mentions,
   }
 }

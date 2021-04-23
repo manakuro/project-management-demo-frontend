@@ -3,11 +3,12 @@ import { ModalContent, Modal, ModalBody } from 'src/components/organisms'
 import { useEditorMentionMenu } from './useEditorMentionMenu'
 import { MentionItem } from './MentionItem'
 import { useMenuStyle } from 'src/hooks'
+import { MentionItemBase } from './MentionItem/MentionItemBase'
 
 type Props = {}
 
 export const EditorMentionMenu: React.VFC<Props> = () => {
-  const { isOpen, x, y, onClose, teammates, setId } = useEditorMentionMenu()
+  const { isOpen, x, y, onClose, mentions, setId } = useEditorMentionMenu()
   const menuStyles = useMenuStyle()
 
   const handleClick = useCallback(
@@ -34,16 +35,18 @@ export const EditorMentionMenu: React.VFC<Props> = () => {
         maxW="450px"
       >
         <ModalBody w="full" px={0} {...menuStyles.list}>
-          {teammates.length > 0 ? (
-            teammates.map((t) => (
-              <MentionItem onClick={handleClick} value={t.id} key={t.id}>
-                {t.email}
-              </MentionItem>
+          {mentions.length > 0 ? (
+            mentions.map((m) => (
+              <MentionItem
+                onClick={handleClick}
+                mention={m}
+                key={`${m.type}_${m.id}`}
+              />
             ))
           ) : (
-            <MentionItem color="text.muted" value="" pointerEvents="none">
+            <MentionItemBase color="text.muted" pointerEvents="none">
               Mention a teammate or link to a task, project, or message.
-            </MentionItem>
+            </MentionItemBase>
           )}
         </ModalBody>
       </ModalContent>

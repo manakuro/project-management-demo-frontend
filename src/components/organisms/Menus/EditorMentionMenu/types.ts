@@ -20,7 +20,9 @@ export type MentionTask = BaseMention & {
   subTitle: string
   idDone: boolean
 }
-export type MentionProject = BaseMention & {}
+export type MentionProject = BaseMention & {
+  projectId: string
+}
 export type MentionWorkspace = BaseMention & {}
 
 export type MentionItem =

@@ -1,13 +1,6 @@
 import { atom, useRecoilState } from 'recoil'
 import { useCallback, useMemo } from 'react'
-import {
-  MentionTeammate,
-  MentionProject,
-  MentionTask,
-  MentionWorkspace,
-  MENTION_TYPE,
-  MentionItem,
-} from './types'
+import { MentionItem } from './types'
 
 type State = {
   isOpen: boolean
@@ -72,6 +65,7 @@ const mentionData: MentionItem[] = [
     type: 3,
     text: 'To Do',
     title: 'To Do',
+    projectId: '2',
     href: '',
   },
   {
@@ -82,15 +76,6 @@ const mentionData: MentionItem[] = [
     href: '',
   },
 ]
-
-export const isMentionTeammate = (obj: any): obj is MentionTeammate =>
-  obj.type === MENTION_TYPE.TEAMMATE
-export const isMentionTask = (obj: any): obj is MentionTask =>
-  obj.type === MENTION_TYPE.TASK
-export const isMentionProject = (obj: any): obj is MentionProject =>
-  obj.type === MENTION_TYPE.PROJECT
-export const isMentionWorkspace = (obj: any): obj is MentionWorkspace =>
-  obj.type === MENTION_TYPE.WORKSPACE
 
 // NOTE: Export functions in order to execute inside prosemirror's plugins
 // @see src/shared/prosemirror/config/plugins.ts

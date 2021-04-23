@@ -1,25 +1,25 @@
 import React, { memo } from 'react'
-import { CheckIcon, Flex, FlexProps, Text } from 'src/components/atoms'
-import { MentionTask } from '../types'
+import { Box, Flex, FlexProps, Text } from 'src/components/atoms'
+import { MentionProject } from '../types'
 import { LeftContainer } from './LeftContainer'
 import { RightContainer } from './RightContainer'
+import { useProject } from 'src/store/projects'
 
 type Props = FlexProps & {
-  mention: MentionTask
+  mention: MentionProject
 }
 
 export const Project: React.FC<Props> = memo<Props>((props) => {
+  const { project } = useProject(props.mention.projectId)
+
   return (
     <Flex alignItems="center" flex={1}>
       <LeftContainer>
-        <CheckIcon isDone={props.mention.idDone} />
+        <Box w={3} h={3} borderRadius="sm" bg={project.color.color} />
       </LeftContainer>
       <RightContainer>
         <Text fontSize="sm" w="80%" isTruncated>
           {props.mention.title}
-        </Text>
-        <Text ml={5} fontSize="xs" color="text.muted">
-          {props.mention.subTitle}
         </Text>
       </RightContainer>
     </Flex>

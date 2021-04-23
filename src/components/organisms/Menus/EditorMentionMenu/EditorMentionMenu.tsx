@@ -33,6 +33,8 @@ export const EditorMentionMenu: React.VFC<Props> = () => {
         mb={0}
         mt={0}
         maxW="450px"
+        maxH={56}
+        overflowY="scroll"
       >
         <ModalBody w="full" px={0} {...menuStyles.list}>
           {mentions.length > 0 ? (

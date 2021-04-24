@@ -3,10 +3,13 @@ import {
   ModalContent as ChakraModalContent,
   ModalContentProps as ChakraModalContentProps,
 } from '@chakra-ui/react'
+import { forwardRef } from 'src/shared/chakra'
 
-type Props = ChakraModalContentProps
+type Props = ChakraModalContentProps & {
+  ref?: React.ForwardedRef<any>
+}
 export type ModalContentProps = Props
 
-export const ModalContent: React.FC<Props> = (props) => {
-  return <ChakraModalContent {...props} aria-label="modal-content" />
-}
+export const ModalContent: React.FC<Props> = forwardRef((props, ref) => (
+  <ChakraModalContent ref={ref} {...props} aria-label="modal-content" />
+))

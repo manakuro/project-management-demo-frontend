@@ -15,6 +15,7 @@ export const EditorMentionMenu: React.VFC<Props> = () => {
       size="xs"
       autoFocus={false}
       trapFocus={false}
+      motionPreset="none"
     >
       {isOpen && <MenuList />}
     </Modal>

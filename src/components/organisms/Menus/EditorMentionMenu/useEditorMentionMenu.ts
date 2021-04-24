@@ -1,5 +1,5 @@
 import { atom, useRecoilState } from 'recoil'
-import { useCallback, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import { MentionItem } from './types'
 
 type Id = number | null
@@ -10,6 +10,7 @@ type State = {
   query: string
   callback: () => void
   selectedIndex: number
+  containerRef: React.MutableRefObject<HTMLDivElement> | null
 }
 
 const atomState = atom<State>({
@@ -21,6 +22,7 @@ const atomState = atom<State>({
     query: '',
     callback: () => {},
     selectedIndex: 0,
+    containerRef: null,
   },
 })
 
@@ -126,6 +128,7 @@ export const setIdRef = (val: Id) =>
 
 export const useEditorMentionMenu = () => {
   const [state, setState] = useRecoilState(atomState)
+  const containerRef = useRef<HTMLDivElement | null>(null)
 
   onOpen = useCallback(
     ({ x, y }: onOpenProps) => {
@@ -171,25 +174,39 @@ export const useEditorMentionMenu = () => {
     setState((s) => ({ ...s, selectedIndex: 0 }))
   }, [setState])
 
+  const scrollTo = useCallback(
+    (index: number) => {
+      const dom = state.containerRef?.current
+      if (!dom) return
+
+      dom.scrollTop += 50 * index
+    },
+    [state.containerRef],
+  )
+
   onArrowDown = useCallback(() => {
     const selectedIndex = state.selectedIndex + 1
     if (selectedIndex > mentions.length) {
       setState((s) => ({ ...s, selectedIndex: 0 }))
+      scrollTo(0)
       return
     }
 
     setState((s) => ({ ...s, selectedIndex }))
-  }, [mentions.length, setState, state.selectedIndex])
+    scrollTo(selectedIndex)
+  }, [mentions.length, scrollTo, setState, state.selectedIndex])
 
   onArrowUp = useCallback(() => {
     const selectedIndex = state.selectedIndex - 1
     if (selectedIndex < 0) {
       setState((s) => ({ ...s, selectedIndex: mentions.length }))
+      scrollTo(mentions.length)
       return
     }
 
     setState((s) => ({ ...s, selectedIndex }))
-  }, [mentions.length, setState, state.selectedIndex])
+    scrollTo(-selectedIndex)
+  }, [mentions.length, scrollTo, setState, state.selectedIndex])
 
   onEnter = useCallback(() => {
     const mention = mentions.find((_, i) => i === state.selectedIndex)!
@@ -202,6 +219,15 @@ export const useEditorMentionMenu = () => {
     resetSelectedIndex()
   }, [resetSelectedIndex, setState, state])
 
+  useEffect(() => {
+    if (containerRef.current) {
+      setState((s) => ({
+        ...s,
+        containerRef: containerRef as State['containerRef'],
+      }))
+    }
+  }, [setState])
+
   return {
     ...state,
     setId,
@@ -209,5 +235,6 @@ export const useEditorMentionMenu = () => {
     onClose,
     mentions,
     setSelectedIndex,
+    containerRef,
   }
 }

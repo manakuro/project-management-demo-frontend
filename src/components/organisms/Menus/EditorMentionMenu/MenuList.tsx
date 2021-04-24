@@ -8,7 +8,7 @@ import { Empty } from './MentionItem/Empty'
 type Props = {}
 
 export const MenuList: React.VFC<Props> = () => {
-  const { mentions, x, y, setId } = useEditorMentionMenu()
+  const { mentions, x, y, setId, containerRef } = useEditorMentionMenu()
   const menuStyles = useMenuStyle()
 
   const handleClick = useCallback(
@@ -28,6 +28,7 @@ export const MenuList: React.VFC<Props> = () => {
       maxW="450px"
       maxH={56}
       overflowY="scroll"
+      ref={containerRef}
     >
       <ModalBody w="full" px={0} {...menuStyles.list}>
         {mentions.length > 0 ? (

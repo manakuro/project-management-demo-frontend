@@ -1857,10 +1857,10 @@
     lz-string "^1.4.4"
     pretty-format "^26.6.2"
 
-"@testing-library/dom@^7.30.3":
-  version "7.30.3"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.30.3.tgz#779ea9bbb92d63302461800a388a5a890ac22519"
-  integrity sha512-7JhIg2MW6WPwyikH2iL3o7z+FTVgSOd2jqCwTAHqK7Qal2gRRYiUQyURAxtbK9VXm/UTyG9bRihv8C5Tznr2zw==
+"@testing-library/dom@^7.30.4":
+  version "7.30.4"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.30.4.tgz#c6a4a91557e92035fd565246bbbfb8107aa4634d"
+  integrity sha512-GObDVMaI4ARrZEXaRy4moolNAxWPKvEYNV/fa6Uc2eAzR/t4otS6A7EhrntPBIQLeehL9DbVhscvvv7gd6hWqA==
   dependencies:
     "@babel/code-frame" "^7.10.4"
     "@babel/runtime" "^7.12.5"
@@ -1871,10 +1871,10 @@
     lz-string "^1.4.4"
     pretty-format "^26.6.2"
 
-"@testing-library/jest-dom@^5.11.10":
-  version "5.11.10"
-  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-5.11.10.tgz#1cd90715023e1627f5ed26ab3b38e6f22d77046c"
-  integrity sha512-FuKiq5xuk44Fqm0000Z9w0hjOdwZRNzgx7xGGxQYepWFZy+OYUMOT/wPI4nLYXCaVltNVpU1W/qmD88wLWDsqQ==
+"@testing-library/jest-dom@^5.12.0":
+  version "5.12.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-5.12.0.tgz#6a5d340b092c44b7bce17a4791b47d9bc2c61443"
+  integrity sha512-N9Y82b2Z3j6wzIoAqajlKVF1Zt7sOH0pPee0sUHXHc5cv2Fdn23r+vpWm0MBBoGJtPOly5+Bdx1lnc3CD+A+ow==
   dependencies:
     "@babel/runtime" "^7.9.2"
     "@types/testing-library__jest-dom" "^5.9.1"
@@ -4228,10 +4228,10 @@ eslint-plugin-babel@^5.3.1:
   dependencies:
     eslint-rule-composer "^0.3.0"
 
-eslint-plugin-flowtype@^5.7.1:
-  version "5.7.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-5.7.1.tgz#16b15d7a981bc0894284a87e71021f523b4fa580"
-  integrity sha512-RsurlNszyKLIHJvw6J4C98ubTTsLlgzL5xYqQ6ZTV5d2E2iHIR744SxoU3o7yQf0HjIe0GwnAIxpD+g0IV+emg==
+eslint-plugin-flowtype@^5.7.2:
+  version "5.7.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-5.7.2.tgz#482a42fe5d15ee614652ed256d37543d584d7bc0"
+  integrity sha512-7Oq/N0+3nijBnYWQYzz/Mp/7ZCpwxYvClRyW/PLAmimY9uLCBvoXsNsERcJdkKceyOjgRbFhhxs058KTrne9Mg==
   dependencies:
     lodash "^4.17.15"
     string-natural-compare "^3.0.1"
@@ -4332,10 +4332,10 @@ eslint-visitor-keys@^2.0.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-2.0.0.tgz#21fdc8fbcd9c795cc0321f0563702095751511a8"
   integrity sha512-QudtT6av5WXels9WjIM7qz1XD1cWGvX4gGXvp/zBn9nXG02D0utdU3Em2m/QjTnrsk6bBjmCygl3rmj118msQQ==
 
-eslint@^7.24.0:
-  version "7.24.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.24.0.tgz#2e44fa62d93892bfdb100521f17345ba54b8513a"
-  integrity sha512-k9gaHeHiFmGCDQ2rEfvULlSLruz6tgfA8DEn+rY9/oYPFFTlz55mM/Q/Rij1b2Y42jwZiK3lXvNTw6w6TXzcKQ==
+eslint@^7.25.0:
+  version "7.25.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.25.0.tgz#1309e4404d94e676e3e831b3a3ad2b050031eb67"
+  integrity sha512-TVpSovpvCNpLURIScDRB6g5CYu/ZFq9GfX2hLNIV4dSBKxIWojeDODvYl3t0k0VtMxYeR8OXPCFE5+oHMlGfhw==
   dependencies:
     "@babel/code-frame" "7.12.11"
     "@eslint/eslintrc" "^0.4.0"
@@ -6119,10 +6119,10 @@ jest-validate@^26.6.2:
     leven "^3.1.0"
     pretty-format "^26.6.2"
 
-jest-watch-typeahead@^0.6.2:
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/jest-watch-typeahead/-/jest-watch-typeahead-0.6.2.tgz#f3ea6518a2a497baad09a8d39f658140e6778e26"
-  integrity sha512-JKcDGEKWjhXo+/+RZMhtCsCA7J6KfbRXb7AbnQqoG9SH8AOGAkJFx8dHd80uIbkSxSVGEwI4ub62pET7a5BRPg==
+jest-watch-typeahead@^0.6.3:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/jest-watch-typeahead/-/jest-watch-typeahead-0.6.3.tgz#26efa37da39a46d8ff417b9e4badc8176a698016"
+  integrity sha512-rM+2m2U/7o4VeXxA3rcEWbbKq8K/aGjAwCgmqsthPV1AqLb5NNACzS+tDCD11bdQ8MrN+H3uN61Y9qFiJgtZPw==
   dependencies:
     ansi-escapes "^4.3.1"
     chalk "^4.0.0"

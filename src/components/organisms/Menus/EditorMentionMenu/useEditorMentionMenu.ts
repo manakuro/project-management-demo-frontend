@@ -1,5 +1,5 @@
 import { atom, useRecoilState } from 'recoil'
-import React, { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { MentionItem } from './types'
 
 type Id = number | null
@@ -10,7 +10,7 @@ type State = {
   query: string
   callback: () => void
   selectedIndex: number
-  containerRef: React.MutableRefObject<HTMLDivElement> | null
+  containerRef: HTMLDivElement | null
 }
 
 const atomState = atom<State>({
@@ -176,8 +176,11 @@ export const useEditorMentionMenu = () => {
 
   const scrollTo = useCallback(
     (index: number) => {
-      const dom = state.containerRef?.current
+      const dom = state.containerRef
       if (!dom) return
+
+      if (index === 0) dom.scrollTop = 0
+      if (index < 5) return
 
       dom.scrollTop += 50 * index
     },
@@ -223,8 +226,12 @@ export const useEditorMentionMenu = () => {
     if (containerRef.current) {
       setState((s) => ({
         ...s,
-        containerRef: containerRef as State['containerRef'],
+        containerRef: containerRef.current,
       }))
+    }
+
+    return () => {
+      setState((s) => ({ ...s, containerRef: null }))
     }
   }, [setState])
 

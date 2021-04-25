@@ -1,38 +1,47 @@
 import { NodeSpec } from 'prosemirror-model'
 
 type Attrs = {
-  teammateId: string
+  mentionId: string
+  mentionType: string
 }
 export type MentionAttrs = Attrs
 
-export const mention: NodeSpec = {
+export const mention: Override<
+  NodeSpec,
+  { attrs: Record<keyof Attrs, { default: string }> }
+> = {
   group: 'inline',
   inline: true,
   atom: true,
   attrs: {
-    teammateId: { default: '' },
+    mentionId: { default: '' },
+    mentionType: { default: '' },
   },
   selectable: false,
   draggable: false,
-  toDOM: (node) => {
+  toDOM: (node: NodeSpec) => {
     const attrs = node.attrs as Attrs
 
     return [
       'span',
       {
-        'data-mention-teammateId': attrs.teammateId,
+        'data-mention-mentionId': attrs.mentionId,
+        'data-mention-mentionType': attrs.mentionType,
       },
     ]
   },
 
   parseDOM: [
     {
-      tag: 'span[data-mention-teammateId]',
+      tag: 'span[data-mention-mentionId]',
       // @ts-ignore
       getAttrs: (element: HTMLSpanElement): Attrs => {
-        const teammateId = element.getAttribute('data-mention-teammateId') ?? ''
+        const mentionId = element.getAttribute('data-mention-mentionId') ?? ''
+        const mentionType =
+          element.getAttribute('data-mention-mentionType') ?? ''
         return {
-          teammateId,
+          mentionId,
+          mentionType,
         }
       },
     },

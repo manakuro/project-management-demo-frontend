@@ -1,6 +1,6 @@
 import { atom, useRecoilState } from 'recoil'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
-import { MentionItem } from './types'
+import { MentionItem, MentionType } from './types'
 
 type Id = number | null
 type State = {
@@ -26,7 +26,7 @@ const atomState = atom<State>({
   },
 })
 
-const mentionData: MentionItem[] = [
+export const mentionData: MentionItem[] = [
   {
     id: 1,
     type: 1,
@@ -123,8 +123,20 @@ const idRef: IdRef = {
   current: 0,
 }
 export const getId = () => idRef.current
-export const setIdRef = (val: Id) =>
-  void ((idRef as Writeable<IdRef>).current = val)
+const setIdRef = (val: Id) => void ((idRef as Writeable<IdRef>).current = val)
+
+type TypeRef = Readonly<{ current: MentionType | null }>
+const typeRef: IdRef = {
+  current: null,
+}
+export const getType = () => typeRef.current
+const setTypeRef = (val: MentionType) =>
+  void ((typeRef as Writeable<TypeRef>).current = val)
+
+export type SetValueParam = {
+  id: Id
+  type: MentionType
+}
 
 export const useEditorMentionMenu = () => {
   const [state, setState] = useRecoilState(atomState)
@@ -159,8 +171,9 @@ export const useEditorMentionMenu = () => {
     )
   }, [state.query])
 
-  const setId = useCallback((id: Id) => {
-    setIdRef(id)
+  const setValue = useCallback((params: SetValueParam) => {
+    setIdRef(params.id)
+    setTypeRef(params.type)
     onClose()
   }, [])
 
@@ -213,8 +226,8 @@ export const useEditorMentionMenu = () => {
 
   onEnter = useCallback(() => {
     const mention = mentions.find((_, i) => i === state.selectedIndex)!
-    setId(mention.id)
-  }, [mentions, setId, state.selectedIndex])
+    setValue({ id: mention.id, type: mention.type })
+  }, [mentions, setValue, state.selectedIndex])
 
   onClose = useCallback(() => {
     setState((s) => ({ ...s, isOpen: false }))
@@ -237,7 +250,7 @@ export const useEditorMentionMenu = () => {
 
   return {
     ...state,
-    setId,
+    setValue,
     onOpen,
     onClose,
     mentions,

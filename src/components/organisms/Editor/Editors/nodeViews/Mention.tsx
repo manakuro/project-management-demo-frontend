@@ -1,7 +1,11 @@
-import { Text } from 'src/components/atoms'
+import { Flex, Text } from 'src/components/atoms'
 import React from 'react'
 import { useReactNodeView } from '../ReactNodeView'
-import { PopoverProfile } from 'src/components/organisms'
+import {
+  MENTION_TYPE,
+  MentionType,
+  PopoverProfile,
+} from 'src/components/organisms'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
 
 const teammatesData = [
@@ -28,13 +32,23 @@ const teammatesData = [
 export const Mention: React.FC = () => {
   const context = useReactNodeView()
   const attrs = context.node?.attrs as MentionAttrs
-  const profile = teammatesData.find((t) => t.id === Number(attrs.teammateId))!
+  const type = Number(attrs.mentionType) as MentionType
+  const profile = teammatesData.find((t) => t.id === Number(attrs.mentionId))!
 
-  return (
-    <PopoverProfile profile={profile}>
-      <Text as="span" color="cyan.400" cursor="pointer">
-        {profile.email}
-      </Text>
-    </PopoverProfile>
-  )
+  switch (type) {
+    case MENTION_TYPE.TEAMMATE:
+      return (
+        <PopoverProfile profile={profile}>
+          <Text as="span" color="cyan.400" cursor="pointer">
+            {profile.email}
+          </Text>
+        </PopoverProfile>
+      )
+    case MENTION_TYPE.TASK:
+      return <Flex>hi</Flex>
+    case MENTION_TYPE.PROJECT:
+      return <Flex>hi</Flex>
+    case MENTION_TYPE.WORKSPACE:
+      return <Flex>hi</Flex>
+  }
 }

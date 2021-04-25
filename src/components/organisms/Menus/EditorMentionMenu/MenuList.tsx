@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { ModalBody, ModalContent } from 'src/components/organisms'
-import { useEditorMentionMenu } from './useEditorMentionMenu'
+import { useEditorMentionMenu, SetValueParam } from './useEditorMentionMenu'
 import { MentionItem } from './MentionItem'
 import { useMenuStyle } from 'src/hooks'
 import { Empty } from './MentionItem/Empty'
@@ -8,14 +8,14 @@ import { Empty } from './MentionItem/Empty'
 type Props = {}
 
 export const MenuList: React.VFC<Props> = () => {
-  const { mentions, x, y, setId, containerRef } = useEditorMentionMenu()
+  const { mentions, x, y, setValue, containerRef } = useEditorMentionMenu()
   const menuStyles = useMenuStyle()
 
   const handleClick = useCallback(
-    (val: string | number) => {
-      setId(Number(val))
+    (val: SetValueParam) => {
+      setValue(val)
     },
-    [setId],
+    [setValue],
   )
 
   return (

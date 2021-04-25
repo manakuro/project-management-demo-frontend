@@ -5,9 +5,11 @@ export const MENTION_TYPE = {
   WORKSPACE: 4,
 } as const
 
+export type MentionType = ValueOf<typeof MENTION_TYPE>
+
 type BaseMention = {
   id: number
-  type: ValueOf<typeof MENTION_TYPE>
+  type: MentionType
   text: string
   href: string
   title: string

@@ -13,11 +13,12 @@ import { MentionItemBase } from './MentionItemBase'
 import { Task } from './Task'
 import { Project } from './Project'
 import { Workspace } from './Workspace'
+import { SetValueParam } from 'src/components/organisms/Menus/EditorMentionMenu'
 
 type Props = Override<
   FlexProps,
   {
-    onClick: (val: string | number) => void
+    onClick: (val: SetValueParam) => void
   }
 > & {
   mention: TMentionItem

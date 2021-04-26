@@ -31,9 +31,8 @@ const suggestEmojis: Suggester = {
 
       onArrowUp()
     },
-    Enter: (params) => {
+    Enter: () => {
       onEnter()
-      params.command()
     },
   },
   onChange: async (params) => {
@@ -45,13 +44,13 @@ const suggestEmojis: Suggester = {
       x: Number(position?.x),
       y: Number(position?.y),
     })
-    if (!getId()) return
-
     params.command()
   },
 
   createCommand: (params) => {
     return () => {
+      if (!getId()) return
+
       const state = params.view.state
       const node = state.schema.nodes.mention.create({
         mentionId: String(getId()),

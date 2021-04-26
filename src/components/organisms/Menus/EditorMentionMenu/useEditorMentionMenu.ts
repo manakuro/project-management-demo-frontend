@@ -225,7 +225,11 @@ export const useEditorMentionMenu = () => {
   }, [mentions.length, scrollTo, setState, state.selectedIndex])
 
   onEnter = useCallback(() => {
-    const mention = mentions.find((_, i) => i === state.selectedIndex)!
+    const mention = mentions.find((_, i) => i === state.selectedIndex)
+
+    // Do nothing when it is entered without selecting an item
+    if (!mention) return
+
     setValue({ id: mention.id, type: mention.type })
   }, [mentions, setValue, state.selectedIndex])
 

@@ -4,6 +4,7 @@ import { useReactNodeView } from '../../ReactNodeView'
 import { MENTION_TYPE, MentionType } from 'src/components/organisms'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
 import { Teammate } from './Teammate'
+import { Task } from './Task'
 
 export const Mention: React.FC = () => {
   const context = useReactNodeView()
@@ -14,7 +15,7 @@ export const Mention: React.FC = () => {
     case MENTION_TYPE.TEAMMATE:
       return <Teammate />
     case MENTION_TYPE.TASK:
-      return <Flex>hi</Flex>
+      return <Task />
     case MENTION_TYPE.PROJECT:
       return <Flex>hi</Flex>
     case MENTION_TYPE.WORKSPACE:

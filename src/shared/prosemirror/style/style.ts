@@ -7,4 +7,7 @@ export const proseMirrorStyle = () => ({
   '.ProseMirror li': {
     listStyleType: 'inherit !important',
   },
+  '.ProseMirror p': {
+    fontSize: '14px',
+  },
 })

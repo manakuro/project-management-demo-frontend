@@ -1,5 +1,5 @@
 import React from 'react'
-import { useReactNodeView } from '../../ReactNodeView'
+import { useReactNodeView } from 'src/components/organisms/Editor/Editors/ReactNodeView'
 import { PopoverProfile } from 'src/components/organisms'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
 import { MentionText } from './MentionText'

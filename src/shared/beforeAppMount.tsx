@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-import { useProjectsQuery } from 'src/hooks/queries'
-import { useFavoriteProjectIdsQuery } from 'src/hooks/queries/useFavoriteProjectIdsQuery'
+import { useProjectsQuery, useFavoriteProjectIdsQuery } from 'src/hooks/queries'
 
 export const BeforeAppMount: React.FC = (props) => {
   const projectQueryResult = useProjectsQuery({ lazy: true })

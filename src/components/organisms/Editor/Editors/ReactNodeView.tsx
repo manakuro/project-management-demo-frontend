@@ -110,6 +110,7 @@ class ReactNodeView implements NodeView {
       }, [componentRef])
 
       const NodeView = this.component
+      console.log('this.contentDOM: ', this.contentDOM?.cloneNode(true))
       return (
         <span ref={componentRef} className="ProseMirror__reactComponent">
           <ReactNodeViewContext.Provider

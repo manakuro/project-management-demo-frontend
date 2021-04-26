@@ -2,6 +2,7 @@ import { Text, TextProps } from 'src/components/atoms'
 import React from 'react'
 
 type Props = TextProps
+export type MentionTextProps = Props
 
 export const MentionText: React.FC<Props> = (props) => {
   return (

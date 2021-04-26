@@ -3,11 +3,11 @@ import { Component } from './Component'
 import { useMyTasksQuery } from 'src/hooks/queries'
 
 export const Container: React.FC = () => {
-  const myTasksQueryResult = useMyTasksQuery({ lazy: true })
+  const { refetch } = useMyTasksQuery({ lazy: true })
 
   useEffect(() => {
-    myTasksQueryResult.refetch()
-  }, [myTasksQueryResult])
+    refetch()
+  }, [refetch])
 
   return <Component />
 }

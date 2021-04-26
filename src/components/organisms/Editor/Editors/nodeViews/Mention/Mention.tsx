@@ -1,6 +1,6 @@
 import { Flex } from 'src/components/atoms'
 import React from 'react'
-import { useReactNodeView } from '../ReactNodeView'
+import { useReactNodeView } from '../../ReactNodeView'
 import { MENTION_TYPE, MentionType } from 'src/components/organisms'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
 import { Teammate } from './Teammate'

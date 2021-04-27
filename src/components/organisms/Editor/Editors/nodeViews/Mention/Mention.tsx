@@ -1,11 +1,11 @@
-import { Flex } from 'src/components/atoms'
 import React from 'react'
-import { useReactNodeView } from '../../ReactNodeView'
+import { useReactNodeView } from 'src/components/organisms/Editor/Editors'
 import { MENTION_TYPE, MentionType } from 'src/components/organisms'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
 import { Teammate } from './Teammate'
 import { Task } from './Task'
 import { Project } from './Project'
+import { Workspace } from './Workspace'
 
 export const Mention: React.FC = () => {
   const context = useReactNodeView()
@@ -20,6 +20,6 @@ export const Mention: React.FC = () => {
     case MENTION_TYPE.PROJECT:
       return <Project />
     case MENTION_TYPE.WORKSPACE:
-      return <Flex>hi</Flex>
+      return <Workspace />
   }
 }

@@ -11,15 +11,15 @@ import {
   useNavigation,
 } from 'src/components/organisms'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
-import { useLinkHover, useClickableHover } from 'src/hooks'
+import { useLinkHoverStyle, useClickableHoverStyle } from 'src/hooks'
 import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
 
 type Props = {}
 
 export const Workspace: React.VFC<Props> = () => {
   const { isExpanded } = useNavigation()
-  const { _hover } = useLinkHover()
-  const { clickableHoverLightStyle } = useClickableHover()
+  const { _hover } = useLinkHoverStyle()
+  const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   const { setIsOpen } = useInviteModal()
 

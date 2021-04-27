@@ -1,6 +1,6 @@
 import React from 'react'
 import { Badge, Flex, Text, CheckIcon } from 'src/components/atoms'
-import { useClickableHover } from 'src/hooks'
+import { useClickableHoverStyle } from 'src/hooks'
 import { TaskDueSoon } from './types'
 import { useProject } from 'src/store/projects'
 import { PopoverDueDatePicker } from 'src/components/organisms'
@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const ListItem: React.VFC<Props> = (props) => {
-  const { clickableHoverStyle } = useClickableHover()
+  const { clickableHoverStyle } = useClickableHoverStyle()
   const { project } = useProject(props.task.projectId)
 
   return (

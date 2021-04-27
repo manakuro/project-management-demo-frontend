@@ -3,7 +3,7 @@ import { Flex, Stack } from 'src/components/atoms'
 import { SearchInput } from './SearchInput'
 import { AddButton } from './AddButton'
 import { MyAccountAvatar } from './MyAccountAvatar'
-import { useMainStyle } from 'src/hooks/useMainStyle'
+import { useMainStyle } from 'src/hooks'
 
 export const MainHeader: React.FC = (props) => {
   const { paddingX } = useMainStyle()

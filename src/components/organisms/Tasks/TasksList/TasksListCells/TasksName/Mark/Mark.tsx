@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
-import { useClickableHover } from 'src/hooks'
+import { useClickableHoverStyle } from 'src/hooks'
 import { Tooltip } from 'src/components/molecules'
 import { IconType } from 'src/shared/icons'
 import {
@@ -50,7 +50,7 @@ const getVariantData = (
 }
 
 export const Mark: React.FC<Props> = memo<Props>((props) => {
-  const { clickableHoverLightStyle } = useClickableHover()
+  const { clickableHoverLightStyle } = useClickableHoverStyle()
   const data = getVariantData(props.variant)
 
   const handleChange = useCallback((listStatus: ListStatus) => {

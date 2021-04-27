@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Label, Content } from '../Row'
 import { Button, Icon, Text, Box } from 'src/components/atoms'
-import { useClickableHover } from 'src/hooks'
+import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { PopoverDueDatePicker } from 'src/components/organisms'
 import { formatDueDate } from 'src/shared/formatDate'
@@ -12,7 +12,7 @@ type Props = {
 }
 
 export const DueDate: React.FC<Props> = (props) => {
-  const { clickableHoverLightStyle } = useClickableHover()
+  const { clickableHoverLightStyle } = useClickableHoverStyle()
   const { ref, isHovering } = useHover()
 
   return (

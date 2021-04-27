@@ -7,7 +7,7 @@ export type UseHoverProps = {
   color?: Colors
 }
 
-export const useLinkHover = (props?: UseHoverProps) => {
+export const useLinkHoverStyle = (props?: UseHoverProps) => {
   const bg =
     props?.color ||
     (props?.light ? 'navigation.hover.light' : 'navigation.hover.dark')

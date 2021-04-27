@@ -8,7 +8,7 @@ import {
   Text,
   Box,
 } from 'src/components/atoms'
-import { useClickableHover } from 'src/hooks'
+import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { Input } from './Input'
 
@@ -23,8 +23,8 @@ const focusedStyle: ButtonProps = {
   },
 }
 
-export const Assignee: React.FC<Props> = (props) => {
-  const { clickableHoverLightStyle } = useClickableHover()
+export const Assignee: React.FC<Props> = () => {
+  const { clickableHoverLightStyle } = useClickableHoverStyle()
   const { ref, isHovering } = useHover()
   const [focused, setFocused] = useState(false)
 

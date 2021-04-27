@@ -7,7 +7,7 @@ import {
   Flex,
   Icon,
 } from 'src/components/atoms'
-import { useClickableHover } from 'src/hooks'
+import { useClickableHoverStyle } from 'src/hooks'
 
 type Props = FormControlProps & {
   label: string
@@ -15,7 +15,7 @@ type Props = FormControlProps & {
 export type CustomFieldProps = Props
 
 export const CustomField: React.FC<Props> = (props) => {
-  const { clickableHoverInputGrabbableStyle } = useClickableHover()
+  const { clickableHoverInputGrabbableStyle } = useClickableHoverStyle()
 
   return (
     <FormControl>

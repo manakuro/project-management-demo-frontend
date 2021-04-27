@@ -4,7 +4,7 @@ import {
   IconButtonProps as ChakraIconButtonProps,
 } from '@chakra-ui/react'
 import { ChakraProps, forwardRef } from 'src/shared/chakra'
-import { useLinkHover } from 'src/hooks'
+import { useLinkHoverStyle } from 'src/hooks'
 
 type Props = ChakraIconButtonProps & {
   light?: boolean
@@ -16,7 +16,7 @@ export const IconButton: React.FC<Props> & { id?: string } = forwardRef<
   'button'
 >((props, ref) => {
   const { light, ...rest } = props
-  const { _hover } = useLinkHover()
+  const { _hover } = useLinkHoverStyle()
 
   let style: ChakraProps
   switch (true) {

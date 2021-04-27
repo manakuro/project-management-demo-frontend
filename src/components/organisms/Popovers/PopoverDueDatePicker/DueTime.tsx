@@ -9,7 +9,7 @@ import {
 } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { formatDueTime } from 'src/shared/formatDate'
-import { useClickableHover } from 'src/hooks'
+import { useClickableHoverStyle } from 'src/hooks'
 import { times } from 'src/shared/time'
 
 type Props = {
@@ -24,7 +24,7 @@ const selects = times().map((t) => ({
 }))
 
 export const DueTime: React.FC<Props> = (props) => {
-  const { clickableHoverStyle } = useClickableHover()
+  const { clickableHoverStyle } = useClickableHoverStyle()
   if (!props.isEditing) {
     return (
       <Tooltip

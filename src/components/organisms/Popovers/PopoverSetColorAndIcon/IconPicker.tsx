@@ -6,7 +6,7 @@ import {
   WrapItem,
   Center,
 } from 'src/components/atoms'
-import { useLinkHover } from 'src/hooks'
+import { useLinkHoverStyle } from 'src/hooks'
 import { useColorPicker } from 'src/hooks/useColorPicker'
 import { projectIcons } from 'src/store/projects/projectIcons'
 
@@ -18,7 +18,9 @@ type Props = {
 export const IconPicker: React.VFC<Props> = (props) => {
   const { findColor } = useColorPicker()
   const currentColor = findColor(props.currentColorId)
-  const { _hover, transition } = useLinkHover({ color: currentColor.light })
+  const { _hover, transition } = useLinkHoverStyle({
+    color: currentColor.light,
+  })
 
   return (
     <Wrap p={6} spacing={1} overflowY="scroll" maxH={60}>

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Flex } from 'src/components/atoms'
-import { useClickableHover } from 'src/hooks'
+import { useClickableHoverStyle } from 'src/hooks'
 import { PADDING_X } from '../ProjectsContainer'
 
 type Props = {}
 
 export const Container: React.FC<Props> = (props) => {
-  const { clickableHoverStyle } = useClickableHover()
+  const { clickableHoverStyle } = useClickableHoverStyle()
 
   return (
     <Flex

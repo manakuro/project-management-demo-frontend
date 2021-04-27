@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Icon, IconButton, IconProps } from 'src/components/atoms'
-import { useClickableHover } from 'src/hooks'
+import { useClickableHoverStyle } from 'src/hooks'
 import { useFavoriteProjectIds } from 'src/store/favorteProjectIds'
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 export type FavoriteButtonProps = Props
 
 export const FavoriteButton: React.FC<Props> = (props) => {
-  const { clickableHoverLightStyle } = useClickableHover()
+  const { clickableHoverLightStyle } = useClickableHoverStyle()
   const { isFavorite, setFavoriteProjectId } = useFavoriteProjectIds()
 
   const iconStyle: IconProps = isFavorite(props.favoriteProjectId)

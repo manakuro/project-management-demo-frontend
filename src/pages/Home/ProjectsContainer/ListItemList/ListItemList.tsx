@@ -9,7 +9,7 @@ import {
 } from 'src/components/atoms'
 import { useProject } from 'src/store/projects'
 import { findProjectIcon } from 'src/store/projects/projectIcons'
-import { useClickableHover } from 'src/hooks'
+import { useClickableHoverStyle } from 'src/hooks'
 import { MenuButton } from '../MenuButton/MenuButton'
 import { Container } from './Container'
 
@@ -19,7 +19,7 @@ type Props = {
 
 export const ListItemList: React.VFC<Props> = (props) => {
   const { project } = useProject(props.projectId)
-  const { clickableHoverLightStyle } = useClickableHover()
+  const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   return (
     <Container>

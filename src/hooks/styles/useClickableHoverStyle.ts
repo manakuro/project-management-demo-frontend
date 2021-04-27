@@ -2,7 +2,7 @@ import { transitions } from 'src/styles'
 import { useMemo } from 'react'
 import { ChakraProps } from 'src/shared/chakra'
 
-export const useClickableHover = () => {
+export const useClickableHoverStyle = () => {
   const defaultStyle = useMemo<ChakraProps>(
     () => ({
       _hover: {

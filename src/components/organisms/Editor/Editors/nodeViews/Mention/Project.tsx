@@ -1,4 +1,4 @@
-import { CheckIcon } from 'src/components/atoms'
+import { ColorBox } from 'src/components/atoms'
 import React, { memo } from 'react'
 import { useReactNodeView } from 'src/components/organisms/Editor/Editors/ReactNodeView'
 import {
@@ -8,19 +8,19 @@ import {
   PopoverEditorLinkText,
 } from 'src/components/organisms'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
-import { useTask } from 'src/store/tasks'
+import { useProject } from 'src/store/projects'
 
-export const Task: React.FC = memo(() => {
+export const Project: React.FC = memo(() => {
   const context = useReactNodeView()
   const attrs = context.node?.attrs as MentionAttrs
-  const { task } = useTask(attrs.mentionId)
+  const { project } = useProject(attrs.mentionId)
 
   return (
     <PopoverEditorLink>
-      <PopoverEditorLinkTrigger>{task.name}</PopoverEditorLinkTrigger>
+      <PopoverEditorLinkTrigger>{project.name}</PopoverEditorLinkTrigger>
       <PopoverEditorLinkContent>
-        <CheckIcon isDone={task.isDone} size="sm" cursor="auto" />
-        <PopoverEditorLinkText>{task.name}</PopoverEditorLinkText>
+        <ColorBox size="sm" color={project.color.color} />
+        <PopoverEditorLinkText>{project.name}</PopoverEditorLinkText>
       </PopoverEditorLinkContent>
     </PopoverEditorLink>
   )

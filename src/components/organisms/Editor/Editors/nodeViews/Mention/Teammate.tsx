@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { useReactNodeView } from 'src/components/organisms/Editor/Editors/ReactNodeView'
 import { PopoverProfile } from 'src/components/organisms'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
@@ -25,7 +25,7 @@ const teammatesData = [
   },
 ] as const
 
-export const Teammate: React.FC = () => {
+export const Teammate: React.FC = memo(() => {
   const context = useReactNodeView()
   const attrs = context.node?.attrs as MentionAttrs
 
@@ -35,4 +35,4 @@ export const Teammate: React.FC = () => {
       <MentionText>{profile.email}</MentionText>
     </PopoverProfile>
   )
-}
+})

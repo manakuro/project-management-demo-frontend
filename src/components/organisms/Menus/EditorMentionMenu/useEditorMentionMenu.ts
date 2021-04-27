@@ -228,10 +228,10 @@ export const useEditorMentionMenu = () => {
     const mention = mentions.find((_, i) => i === state.selectedIndex)
 
     // Do nothing when it is entered without selecting an item
-    if (!mention) return
+    if (!mention || !state.query) return
 
     setValue({ id: mention.id, type: mention.type })
-  }, [mentions, setValue, state.selectedIndex])
+  }, [mentions, setValue, state.query, state.selectedIndex])
 
   onClose = useCallback(() => {
     setState((s) => ({ ...s, isOpen: false }))

@@ -49,7 +49,7 @@ const suggestEmojis: Suggester = {
 
   createCommand: (params) => {
     return () => {
-      if (!getId()) return
+      if (!getId() || !getQuery()) return
 
       const state = params.view.state
       const node = state.schema.nodes.mention.create({

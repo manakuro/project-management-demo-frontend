@@ -1,4 +1,4 @@
-import { Suggester, suggest } from 'prosemirror-suggest'
+import { Suggester } from 'prosemirror-suggest'
 import {
   onOpen,
   onClose,
@@ -13,7 +13,7 @@ import {
 import { getCaretPosition } from 'src/shared/getCaretPosition'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
 
-const suggestEmojis: Suggester = {
+export const suggestMention: Suggester = {
   noDecorations: true,
   char: '@',
   name: 'mention-suggestion',
@@ -65,5 +65,3 @@ const suggestEmojis: Suggester = {
     onClose()
   },
 }
-
-export const suggestionPlugin = suggest(suggestEmojis)

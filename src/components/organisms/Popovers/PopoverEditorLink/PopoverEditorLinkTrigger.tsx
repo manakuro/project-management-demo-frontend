@@ -1,14 +1,14 @@
-import { Link as AtomsLink } from 'src/components/atoms'
+import { Link } from 'src/components/atoms'
 import React from 'react'
 import { PopoverTrigger } from 'src/components/organisms'
-import { MentionText } from 'src/components/organisms/Editor/Editors/nodeViews/Mention/MentionText'
+import { useLinkStyle } from 'src/hooks/styles'
 
 export const PopoverEditorLinkTrigger: React.FC = (props) => {
+  const { style } = useLinkStyle()
+
   return (
     <PopoverTrigger>
-      <AtomsLink>
-        <MentionText>{props.children}</MentionText>
-      </AtomsLink>
+      <Link {...style}>{props.children}</Link>
     </PopoverTrigger>
   )
 }

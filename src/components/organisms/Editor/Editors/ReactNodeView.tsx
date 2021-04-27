@@ -16,7 +16,6 @@ type ReactNodeViewContextProps = {
   view: EditorView
   getPos: TGetPos
   decorations: Decoration[]
-  text: string
 }
 
 const ReactNodeViewContext = React.createContext<
@@ -26,7 +25,6 @@ const ReactNodeViewContext = React.createContext<
   view: undefined,
   getPos: undefined,
   decorations: undefined,
-  text: '',
 })
 
 type TGetPos = boolean | (() => number)
@@ -110,7 +108,6 @@ class ReactNodeView implements NodeView {
       }, [componentRef])
 
       const NodeView = this.component
-      console.log('this.contentDOM: ', this.contentDOM?.cloneNode(true))
       return (
         <span ref={componentRef} className="ProseMirror__reactComponent">
           <ReactNodeViewContext.Provider
@@ -119,7 +116,6 @@ class ReactNodeView implements NodeView {
               view: this.view,
               getPos: this.getPos,
               decorations: this.decorations,
-              text: (this.contentDOM as HTMLElement)?.innerText ?? '',
             }}
           >
             <NodeView {...props} />
@@ -182,7 +178,7 @@ type CreateReactNodeViewProps = {
   component: React.FC<any>
   onCreatePortal: PortalHandlers['createPortal']
   onRemovePortal: PortalHandlers['removePortal']
-} & Omit<ReactNodeViewContextProps, 'text'>
+} & ReactNodeViewContextProps
 
 export const createReactNodeView = (props: CreateReactNodeViewProps) => {
   const reactNodeView = new ReactNodeView(

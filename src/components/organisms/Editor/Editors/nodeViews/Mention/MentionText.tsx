@@ -1,20 +1,11 @@
 import { Text, TextProps } from 'src/components/atoms'
 import React from 'react'
+import { useLinkStyle } from 'src/hooks/styles'
 
 type Props = TextProps
 export type MentionTextProps = Props
 
 export const MentionText: React.FC<Props> = (props) => {
-  return (
-    <Text
-      as="span"
-      color="cyan.400"
-      cursor="pointer"
-      fontSize="sm"
-      _hover={{
-        textDecoration: 'underline !important',
-      }}
-      {...props}
-    />
-  )
+  const { style } = useLinkStyle()
+  return <Text as="span" {...style} {...props} />
 }

@@ -79,7 +79,103 @@ const setEmojiRef = (val: BaseEmoji | null) =>
 export const useEditorEmojiMenu = () => {
   const [state, setState] = useRecoilState(atomState)
   const resetState = useResetRecoilState(atomState)
-  const containerRef = useRef<HTMLDivElement | null>(null)
+
+  const setValue = useCallback((val: BaseEmoji) => {
+    setEmojiRef(val)
+    onClose()
+  }, [])
+
+  const emojis = useMemo<BaseEmoji[]>(() => {
+    if (!state.query) return defaultEmojis()
+    return (
+      (emojiData.search(state.query.toLowerCase()) as BaseEmoji[])?.map(
+        (o) => o,
+      ) || []
+    ).slice(0, 10)
+  }, [state.query])
+
+  const setSelectedIndex = useCallback(
+    (val: number) => {
+      setState((s) => ({ ...s, selectedIndex: val }))
+    },
+    [setState],
+  )
+
+  const reset = useCallback(() => {
+    resetState()
+    setEmojiRef(null)
+  }, [resetState])
+
+  const { containerRef } = useContainer()
+  useQuery()
+  useOnKeyBindings({ emojis, setValue })
+  useDisclosure({ reset })
+
+  return {
+    ...state,
+    setValue,
+    onOpen,
+    onClose,
+    emojis,
+    setSelectedIndex,
+    containerRef,
+  }
+}
+
+function useOnKeyBindings(props: {
+  emojis: BaseEmoji[]
+  setValue: (emoji: BaseEmoji) => void
+}) {
+  const [state, setState] = useRecoilState(atomState)
+
+  const scrollTo = useCallback(
+    (index: number) => {
+      const dom = state.containerRef
+      if (!dom) return
+
+      if (index === 0) dom.scrollTop = 0
+      if (index < 5) return
+
+      dom.scrollTop += 50 * index
+    },
+    [state.containerRef],
+  )
+
+  onArrowDown = useCallback(() => {
+    const selectedIndex = state.selectedIndex + 1
+    if (selectedIndex > props.emojis.length) {
+      setState((s) => ({ ...s, selectedIndex: 0 }))
+      scrollTo(0)
+      return
+    }
+
+    setState((s) => ({ ...s, selectedIndex }))
+    scrollTo(selectedIndex)
+  }, [props.emojis, scrollTo, setState, state.selectedIndex])
+
+  onArrowUp = useCallback(() => {
+    const selectedIndex = state.selectedIndex - 1
+    if (selectedIndex < 0) {
+      setState((s) => ({ ...s, selectedIndex: props.emojis.length }))
+      scrollTo(props.emojis.length)
+      return
+    }
+
+    setState((s) => ({ ...s, selectedIndex }))
+    scrollTo(-selectedIndex)
+  }, [props.emojis.length, scrollTo, setState, state.selectedIndex])
+
+  onEnter = useCallback(() => {
+    const emoji = props.emojis.find((_, i) => i === state.selectedIndex)
+
+    if (!emoji) return
+
+    props.setValue(emoji)
+  }, [props, state.selectedIndex])
+}
+
+function useDisclosure(props: { reset: () => void }) {
+  const [state, setState] = useRecoilState(atomState)
 
   onOpen = useCallback(
     ({ x, y }: onOpenProps) => {
@@ -97,6 +193,18 @@ export const useEditorEmojiMenu = () => {
     },
     [setState],
   )
+
+  onClose = useCallback(async () => {
+    isOpen = false
+    setState((s) => ({ ...s, isOpen: false }))
+    await state.callback()
+    props.reset()
+  }, [props, setState, state])
+}
+
+function useQuery() {
+  const [state, setState] = useRecoilState(atomState)
+
   setQuery = useCallback(
     (query) => {
       setState((s) => ({ ...s, query }))
@@ -104,86 +212,11 @@ export const useEditorEmojiMenu = () => {
     [setState],
   )
   getQuery = useCallback(() => state.query, [state.query])
+}
 
-  const setValue = useCallback((val: BaseEmoji) => {
-    setEmojiRef(val)
-    onClose?.()
-  }, [])
-
-  const emojis = useMemo<BaseEmoji[]>(() => {
-    if (!state.query) {
-      return defaultEmojis()
-    }
-    return (
-      (emojiData.search(state.query.toLowerCase()) as BaseEmoji[])?.map(
-        (o) => o,
-      ) || []
-    ).slice(0, 10)
-  }, [state.query])
-
-  const setSelectedIndex = useCallback(
-    (val: number) => {
-      setState((s) => ({ ...s, selectedIndex: val }))
-    },
-    [setState],
-  )
-
-  const scrollTo = useCallback(
-    (index: number) => {
-      const dom = state.containerRef
-      if (!dom) return
-
-      if (index === 0) dom.scrollTop = 0
-      if (index < 5) return
-
-      dom.scrollTop += 50 * index
-    },
-    [state.containerRef],
-  )
-
-  const reset = useCallback(() => {
-    resetState()
-    setEmojiRef(null)
-  }, [resetState])
-
-  onArrowDown = useCallback(() => {
-    const selectedIndex = state.selectedIndex + 1
-    if (selectedIndex > emojis.length) {
-      setState((s) => ({ ...s, selectedIndex: 0 }))
-      scrollTo(0)
-      return
-    }
-
-    setState((s) => ({ ...s, selectedIndex }))
-    scrollTo(selectedIndex)
-  }, [emojis, scrollTo, setState, state.selectedIndex])
-
-  onArrowUp = useCallback(() => {
-    const selectedIndex = state.selectedIndex - 1
-    if (selectedIndex < 0) {
-      setState((s) => ({ ...s, selectedIndex: emojis.length }))
-      scrollTo(emojis.length)
-      return
-    }
-
-    setState((s) => ({ ...s, selectedIndex }))
-    scrollTo(-selectedIndex)
-  }, [emojis.length, scrollTo, setState, state.selectedIndex])
-
-  onEnter = useCallback(() => {
-    const emoji = emojis.find((_, i) => i === state.selectedIndex)
-
-    if (!emoji) return
-
-    setValue(emoji)
-  }, [emojis, setValue, state.selectedIndex])
-
-  onClose = useCallback(async () => {
-    isOpen = false
-    setState((s) => ({ ...s, isOpen: false }))
-    await state.callback()
-    reset()
-  }, [reset, setState, state])
+function useContainer() {
+  const [, setState] = useRecoilState(atomState)
+  const containerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     if (containerRef.current) {
@@ -199,12 +232,6 @@ export const useEditorEmojiMenu = () => {
   }, [setState])
 
   return {
-    ...state,
-    setValue,
-    onOpen,
-    onClose,
-    emojis,
-    setSelectedIndex,
     containerRef,
   }
 }

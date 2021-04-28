@@ -7,7 +7,7 @@ import {
   useReactNodeViewCreatePortal,
 } from './ReactNodeViewPortals'
 import { createReactNodeView } from './ReactNodeView'
-import { Link, Mention } from './nodeViews'
+import { Link, Mention, Emoji } from './nodeViews'
 
 const EditorStateContext = createContext<EditorState | null>(null)
 const EditorViewContext = createContext<EditorView | null>(null)
@@ -67,6 +67,17 @@ const Provider: React.FC<Props> = (props) => {
             getPos,
             decorations,
             component: Mention,
+            onCreatePortal: createPortal,
+            onRemovePortal: removePortal,
+          })
+        },
+        emoji(node, view, getPos, decorations) {
+          return createReactNodeView({
+            node,
+            view,
+            getPos,
+            decorations,
+            component: Emoji,
             onCreatePortal: createPortal,
             onRemovePortal: removePortal,
           })

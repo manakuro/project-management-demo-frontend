@@ -4,14 +4,13 @@ import {
   onEmojiClose as onClose,
   setEmojiQuery as setQuery,
   getEmojiQuery as getQuery,
-  getEmojiId,
+  getEmoji,
   onEmojiArrowDown as onArrowDown,
   onEmojiArrowUp as onArrowUp,
   onEmojiEnter as onEnter,
-  isEmojiOpen,
 } from 'src/components/organisms/Menus/EditorEmojiMenu'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
-import { MentionAttrs } from 'src/shared/prosemirror/schema'
+import { EmojiAttrs } from 'src/shared/prosemirror/schema'
 
 export const suggestEmoji: Suggester = {
   noDecorations: true,
@@ -37,7 +36,6 @@ export const suggestEmoji: Suggester = {
   },
   onChange: async (params) => {
     setQuery(params.queryText.full)
-    if (isEmojiOpen) return
 
     const position = getCaretPosition()
     if (!position) return
@@ -51,12 +49,12 @@ export const suggestEmoji: Suggester = {
 
   createCommand: (params) => {
     return () => {
-      if (!getEmojiId() || !getQuery()) return
+      if (!getEmoji() || !getQuery()) return
 
       const state = params.view.state
-      const node = state.schema.nodes.mention.create({
-        mentionId: String(getEmojiId()),
-      } as MentionAttrs)
+      const node = state.schema.nodes.emoji.create({
+        emoji: getEmoji()?.native,
+      } as EmojiAttrs)
       const { from, end: to } = params.match.range
       const tr = state.tr.replaceWith(from, to + getQuery().length, node)
       params.view.dispatch(tr)

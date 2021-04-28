@@ -22,6 +22,7 @@ import {
   text,
   underline,
   mention,
+  emoji,
 } from '../schema'
 import { Schema } from 'prosemirror-model'
 
@@ -52,5 +53,6 @@ export const schema = new Schema({
     tableDataCell,
     tableHeaderCell,
     mention,
+    emoji,
   },
 })

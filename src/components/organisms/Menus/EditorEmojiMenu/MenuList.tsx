@@ -3,6 +3,7 @@ import { ModalBody, ModalContent } from 'src/components/organisms'
 import { useEditorEmojiMenu } from './useEditorEmojiMenu'
 import { EmojiItem } from './EmojiItem'
 import { useMenuStyle } from 'src/hooks'
+import { BaseEmoji } from 'emoji-mart'
 
 type Props = {}
 
@@ -11,7 +12,7 @@ export const MenuList: React.VFC<Props> = () => {
   const menuStyles = useMenuStyle()
 
   const handleClick = useCallback(
-    (val: any) => {
+    (val: BaseEmoji) => {
       setValue(val)
     },
     [setValue],

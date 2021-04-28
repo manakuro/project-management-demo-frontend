@@ -2,7 +2,6 @@ import { atom, useRecoilState } from 'recoil'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { BaseEmoji, emojiIndex as emojiData } from 'emoji-mart'
 
-type Id = number | null
 type State = {
   isOpen: boolean
   x: number
@@ -38,13 +37,13 @@ let onArrowUp: () => void
 let onEnter: () => void
 let isOpen: boolean
 
-type IdRef = Readonly<{ current: Id }>
-const idRef: IdRef = {
-  current: 0,
+type EmojiRef = Readonly<{ current: BaseEmoji | null }>
+const emojiRef: EmojiRef = {
+  current: null,
 }
-export const getEmojiId = () => idRef.current
-const setEmojiIdRef = (val: Id) =>
-  void ((idRef as Writeable<IdRef>).current = val)
+export const getEmoji = () => emojiRef.current
+const setEmojiRef = (val: BaseEmoji) =>
+  void ((emojiRef as Writeable<EmojiRef>).current = val)
 
 export const useEditorEmojiMenu = () => {
   const [state, setState] = useRecoilState(atomState)
@@ -83,8 +82,8 @@ export const useEditorEmojiMenu = () => {
     ).slice(0, 10)
   }, [state.query])
 
-  const setValue = useCallback((params: any) => {
-    setEmojiIdRef(params.id)
+  const setValue = useCallback((params: BaseEmoji) => {
+    setEmojiRef(params)
     onClose()
   }, [])
 
@@ -141,7 +140,7 @@ export const useEditorEmojiMenu = () => {
     // Do nothing when it is entered without selecting an item
     if (!emoji || !state.query) return
 
-    setValue({ id: emoji.id })
+    setValue(emoji)
   }, [emojis, setValue, state.query, state.selectedIndex])
 
   onClose = useCallback(() => {

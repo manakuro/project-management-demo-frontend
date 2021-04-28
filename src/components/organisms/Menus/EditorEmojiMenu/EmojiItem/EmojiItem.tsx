@@ -8,7 +8,7 @@ import { BaseEmoji } from 'emoji-mart'
 type Props = Override<
   FlexProps,
   {
-    onClick: (val: any) => void
+    onClick: (val: BaseEmoji) => void
   }
 > & {
   emoji: BaseEmoji
@@ -24,7 +24,7 @@ export const EmojiItem: React.FC<Props> = memo<Props>((props) => {
   delete styles._hover
 
   const handleClick = useCallback(() => {
-    onClick({ id: props.emoji!.id })
+    onClick(props.emoji)
   }, [onClick, props.emoji])
 
   useEffect(() => {

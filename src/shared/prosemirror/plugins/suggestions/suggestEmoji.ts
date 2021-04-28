@@ -28,8 +28,13 @@ export const suggestEmoji: Suggester = {
 
       onArrowUp()
     },
-    Enter: () => {
+    Enter: (params) => {
+      params.event.preventDefault()
       onEnter()
+    },
+    Esc: (params) => {
+      params.event.preventDefault()
+      onClose()
     },
   },
   onChange: async (params) => {

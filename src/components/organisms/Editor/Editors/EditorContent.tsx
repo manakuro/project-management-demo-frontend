@@ -36,4 +36,3 @@ export const EditorContent: React.FC<Props> = React.memo<Props>(() => {
 
   return <Box mb={4} onKeyDown={handleKeyDown} ref={ref} />
 })
-EditorContent.displayName = 'Editor'

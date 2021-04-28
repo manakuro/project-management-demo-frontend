@@ -1,4 +1,4 @@
-import { atom, useRecoilState } from 'recoil'
+import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import {
   BaseEmoji,
@@ -38,7 +38,7 @@ type State = {
   x: number
   y: number
   query: string
-  callback: () => void
+  callback: () => Promise<void>
   selectedIndex: number
   containerRef: HTMLDivElement | null
 }
@@ -50,7 +50,7 @@ const atomState = atom<State>({
     x: 0,
     y: 0,
     query: '',
-    callback: () => {},
+    callback: () => Promise.resolve(),
     selectedIndex: 0,
     containerRef: null,
   },
@@ -73,11 +73,12 @@ const emojiRef: EmojiRef = {
   current: null,
 }
 export const getEmoji = () => emojiRef.current
-const setEmojiRef = (val: BaseEmoji) =>
+const setEmojiRef = (val: BaseEmoji | null) =>
   void ((emojiRef as Writeable<EmojiRef>).current = val)
 
 export const useEditorEmojiMenu = () => {
   const [state, setState] = useRecoilState(atomState)
+  const resetState = useResetRecoilState(atomState)
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   onOpen = useCallback(
@@ -90,7 +91,7 @@ export const useEditorEmojiMenu = () => {
           isOpen: true,
           x,
           y,
-          callback: resolve,
+          callback: resolve as () => Promise<void>,
         }))
       })
     },
@@ -126,9 +127,6 @@ export const useEditorEmojiMenu = () => {
     },
     [setState],
   )
-  const resetSelectedIndex = useCallback(() => {
-    setState((s) => ({ ...s, selectedIndex: 0 }))
-  }, [setState])
 
   const scrollTo = useCallback(
     (index: number) => {
@@ -142,6 +140,11 @@ export const useEditorEmojiMenu = () => {
     },
     [state.containerRef],
   )
+
+  const reset = useCallback(() => {
+    resetState()
+    setEmojiRef(null)
+  }, [resetState])
 
   onArrowDown = useCallback(() => {
     const selectedIndex = state.selectedIndex + 1
@@ -175,12 +178,12 @@ export const useEditorEmojiMenu = () => {
     setValue(emoji)
   }, [emojis, setValue, state.selectedIndex])
 
-  onClose = useCallback(() => {
+  onClose = useCallback(async () => {
     isOpen = false
     setState((s) => ({ ...s, isOpen: false }))
-    state.callback()
-    resetSelectedIndex()
-  }, [resetSelectedIndex, setState, state])
+    await state.callback()
+    reset()
+  }, [reset, setState, state])
 
   useEffect(() => {
     if (containerRef.current) {

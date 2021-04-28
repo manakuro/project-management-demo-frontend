@@ -20,7 +20,18 @@ type Props = {
 
 export const ToolBar: React.FC<Props> = memo<Props>((props) => {
   return (
-    <Stack flex={1} direction="row" spacing={1} minH={8} alignItems="center">
+    <Stack
+      flex={1}
+      direction="row"
+      spacing={1}
+      minH={8}
+      alignItems="center"
+      position="sticky"
+      bottom={0}
+      borderTop="1px"
+      borderColor={props.show ? 'gray.100' : 'transparent'}
+      bg="white"
+    >
       {props.show && (
         <>
           <Bold />

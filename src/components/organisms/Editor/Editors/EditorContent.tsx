@@ -1,18 +1,19 @@
-import React, { useCallback, useEffect } from 'react'
-import { useEditorView } from './EdiorProvider'
+import React, { useCallback, useEffect, useRef } from 'react'
+import { Box } from 'src/components/atoms'
+import { useEditorView } from 'src/components/organisms/Editor/Editors/EdiorProvider'
+import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 
 type Props = {}
 export const EditorContent: React.FC<Props> = React.memo<Props>(() => {
   const view = useEditorView()
+  const ref = useRef<HTMLDivElement | null>(null)
+  const { taskDetailBodyDom } = useTaskDetailBody()
 
-  const editorRef = useCallback(
-    (element: HTMLDivElement | null) => {
-      if (element && view) {
-        element.appendChild(view.dom)
-      }
-    },
-    [view],
-  )
+  useEffect(() => {
+    if (ref.current && view) {
+      ref.current.appendChild(view.dom)
+    }
+  }, [view])
 
   useEffect(() => {
     setTimeout(() => {
@@ -23,6 +24,16 @@ export const EditorContent: React.FC<Props> = React.memo<Props>(() => {
     }, 300)
   }, [view])
 
-  return <div ref={editorRef} />
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.code === 'Enter') {
+        if (!taskDetailBodyDom) return
+        taskDetailBodyDom.scrollTop += 50
+      }
+    },
+    [taskDetailBodyDom],
+  )
+
+  return <Box mb={4} onKeyDown={handleKeyDown} ref={ref} />
 })
 EditorContent.displayName = 'Editor'

@@ -36,6 +36,7 @@ let getQuery: () => string
 let onArrowDown: () => void
 let onArrowUp: () => void
 let onEnter: () => void
+let isOpen: boolean
 
 type IdRef = Readonly<{ current: Id }>
 const idRef: IdRef = {
@@ -51,6 +52,8 @@ export const useEditorEmojiMenu = () => {
 
   onOpen = useCallback(
     ({ x, y }: onOpenProps) => {
+      isOpen = true
+
       return new Promise<void>((resolve) => {
         setState((s) => ({
           ...s,
@@ -142,6 +145,7 @@ export const useEditorEmojiMenu = () => {
   }, [emojis, setValue, state.query, state.selectedIndex])
 
   onClose = useCallback(() => {
+    isOpen = false
     setState((s) => ({ ...s, isOpen: false }))
     state.callback()
     resetSelectedIndex()
@@ -179,4 +183,5 @@ export {
   onArrowDown as onEmojiArrowDown,
   onArrowUp as onEmojiArrowUp,
   onEnter as onEmojiEnter,
+  isOpen as isEmojiOpen,
 }

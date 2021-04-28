@@ -8,6 +8,7 @@ import {
   onEmojiArrowDown as onArrowDown,
   onEmojiArrowUp as onArrowUp,
   onEmojiEnter as onEnter,
+  isEmojiOpen,
 } from 'src/components/organisms/Menus/EditorEmojiMenu'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
@@ -36,6 +37,8 @@ export const suggestEmoji: Suggester = {
   },
   onChange: async (params) => {
     setQuery(params.queryText.full)
+    if (isEmojiOpen) return
+
     const position = getCaretPosition()
     if (!position) return
 

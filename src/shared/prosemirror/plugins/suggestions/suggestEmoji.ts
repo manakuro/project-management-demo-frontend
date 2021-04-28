@@ -20,13 +20,11 @@ export const suggestEmoji: Suggester = {
   keyBindings: {
     ArrowDown: (params) => {
       params.event.preventDefault()
-      if (!params.queryText.full) return
 
       onArrowDown()
     },
     ArrowUp: (params) => {
       params.event.preventDefault()
-      if (!params.queryText.full) return
 
       onArrowUp()
     },
@@ -49,7 +47,7 @@ export const suggestEmoji: Suggester = {
 
   createCommand: (params) => {
     return () => {
-      if (!getEmoji() || !getQuery()) return
+      if (!getEmoji()) return
 
       const state = params.view.state
       const node = state.schema.nodes.emoji.create({

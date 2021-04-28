@@ -1,6 +1,37 @@
 import { atom, useRecoilState } from 'recoil'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
-import { BaseEmoji, emojiIndex as emojiData } from 'emoji-mart'
+import {
+  BaseEmoji,
+  emojiIndex as emojiData,
+  frequently,
+  EmojiData,
+  EmojiSkin,
+} from 'emoji-mart'
+
+const DEFAULT_EMOJIS = [
+  'grinning',
+  'laughing',
+  'sweat_smile',
+  'joy',
+  'scream',
+  'sob',
+  'sunglasses',
+]
+const defaultEmojis = (): BaseEmoji[] => {
+  const frequentlyEmojis = frequently.get(2)
+  const data = frequentlyEmojis.length
+    ? frequentlyEmojis.slice(0, 7)
+    : DEFAULT_EMOJIS
+
+  return data.map((e) => {
+    const matched = emojiData.emojis[e]
+    if (isEmojiWithSkin(matched)) return matched[1]
+
+    return matched
+  }) as BaseEmoji[]
+}
+type EmojiWithSkin = { [variant in EmojiSkin]: EmojiData }
+const isEmojiWithSkin = (data: any): data is EmojiWithSkin => !!data[1]
 
 type State = {
   isOpen: boolean
@@ -73,19 +104,21 @@ export const useEditorEmojiMenu = () => {
   )
   getQuery = useCallback(() => state.query, [state.query])
 
+  const setValue = useCallback((val: BaseEmoji) => {
+    setEmojiRef(val)
+    onClose?.()
+  }, [])
+
   const emojis = useMemo<BaseEmoji[]>(() => {
-    if (!state.query) return []
+    if (!state.query) {
+      return defaultEmojis()
+    }
     return (
       (emojiData.search(state.query.toLowerCase()) as BaseEmoji[])?.map(
         (o) => o,
       ) || []
     ).slice(0, 10)
   }, [state.query])
-
-  const setValue = useCallback((params: BaseEmoji) => {
-    setEmojiRef(params)
-    onClose()
-  }, [])
 
   const setSelectedIndex = useCallback(
     (val: number) => {
@@ -137,11 +170,10 @@ export const useEditorEmojiMenu = () => {
   onEnter = useCallback(() => {
     const emoji = emojis.find((_, i) => i === state.selectedIndex)
 
-    // Do nothing when it is entered without selecting an item
-    if (!emoji || !state.query) return
+    if (!emoji) return
 
     setValue(emoji)
-  }, [emojis, setValue, state.query, state.selectedIndex])
+  }, [emojis, setValue, state.selectedIndex])
 
   onClose = useCallback(() => {
     isOpen = false

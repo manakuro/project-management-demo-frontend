@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { CheckIcon, FlexProps } from 'src/components/atoms'
+import { CheckIcon, Flex, FlexProps, Stack } from 'src/components/atoms'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
 import {
   TasksNameCell,
@@ -7,8 +7,9 @@ import {
   TasksNameField,
   useTasksName,
   TasksNameProvider,
-  TasksNameRightContainer,
 } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName'
+import { DueDate } from './DueDate'
+// import { dateFns } from 'src/shared/dateFns'
 
 type Props = FlexProps
 
@@ -29,7 +30,16 @@ export const Component: React.FC<Props> = memo<Props>(() => {
         <TasksNameGrabIcon />
         <CheckIcon isDone={false} ml={2} />
         <TasksNameField value="Organize component folder" onChange={() => {}} />
-        <TasksNameRightContainer></TasksNameRightContainer>
+        <Flex alignItems="center" ml="auto">
+          <Stack direction="row" spacing={2}>
+            <DueDate
+              // dueDate={new Date(dateFns.addDays(new Date(), 3)).toISOString()}
+              // dueTime={new Date(dateFns.addDays(new Date(), 3)).toISOString()}
+              dueDate=""
+              dueTime=""
+            />
+          </Stack>
+        </Flex>
       </TasksNameCell>
     </TasksListRow>
   )

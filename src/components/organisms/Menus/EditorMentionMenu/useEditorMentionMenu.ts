@@ -145,9 +145,9 @@ export const useEditorMentionMenu = () => {
   const resetState = useResetRecoilState(atomState)
 
   const reset = useCallback(() => {
-    resetState()
     setMentionIdRef(null)
     setMentionTypeRef(null)
+    resetState()
   }, [resetState])
 
   const mentions = useMemo<MentionItem[]>(() => {
@@ -262,9 +262,17 @@ function useDisclosure(props: { reset: () => void }) {
   onClose = useCallback(async () => {
     isOpen = false
     setState((s) => ({ ...s, isOpen: false }))
-    await state.callback()
-    props.reset()
-  }, [props, setState, state])
+    state.callback()
+  }, [setState, state])
+
+  useEffect(() => {
+    if (!state.isOpen) {
+      // Use setTimeout to prevent moving back to the initial position ({ top: 0, left: 0 }) before closing
+      setTimeout(() => {
+        props.reset()
+      })
+    }
+  }, [props, state.isOpen])
 }
 
 function useQuery() {

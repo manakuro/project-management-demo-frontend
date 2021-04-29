@@ -1,11 +1,14 @@
 import React, { memo, useMemo } from 'react'
-import { CheckIcon, FlexProps, Icon } from 'src/components/atoms'
-import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
+import { CheckIcon, FlexProps } from 'src/components/atoms'
 import { useHover } from 'src/hooks/useHover'
 import { TasksNameField } from './TasksNameField'
 import { useInputFocus } from './useInputFocus'
 import { useMarkMenuFocus } from './useMarkMenuFocus'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
+import {
+  TasksNameCell,
+  TasksNameGrabIcon,
+} from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName'
 
 type Props = FlexProps
 
@@ -25,29 +28,16 @@ export const TasksName: React.FC<Props> = memo<Props>(() => {
 
   return (
     <TasksListRow w="full">
-      <TasksListCell
-        fontSize="sm"
-        ref={ref}
-        flex={1}
-        cursor="pointer"
-        borderRight="none"
-        {...cellStyle}
-      >
-        <Icon
-          icon="gridVertical"
-          color="text.muted"
-          size="sm"
-          visibility={showIcon ? 'visible' : 'hidden'}
-          cursor="grab"
-        />
-        <CheckIcon isDone={false} ml={4} />
+      <TasksNameCell ref={ref} borderRight="none" {...cellStyle}>
+        <TasksNameGrabIcon show={showIcon} />
+        <CheckIcon isDone={false} ml={2} />
         <TasksNameField
           value="Organize component folder"
           onChange={() => {}}
           onInputFocus={onInputFocus}
           onInputBlur={onInputBlur}
         />
-      </TasksListCell>
+      </TasksNameCell>
     </TasksListRow>
   )
 })

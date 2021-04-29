@@ -10,4 +10,7 @@ export const proseMirrorStyle = () => ({
   '.ProseMirror p': {
     fontSize: '14px',
   },
+  '.ProseMirror-selectednode': {
+    outline: '0 !important',
+  },
 })

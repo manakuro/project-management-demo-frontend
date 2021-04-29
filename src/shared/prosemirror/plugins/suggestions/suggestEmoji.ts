@@ -16,7 +16,6 @@ export const suggestEmoji: Suggester = {
   noDecorations: true,
   char: ':',
   name: 'emoji-suggestion',
-  appendText: '',
   keyBindings: {
     ArrowDown: (params) => {
       params.event.preventDefault()
@@ -31,10 +30,12 @@ export const suggestEmoji: Suggester = {
     Enter: (params) => {
       params.event.preventDefault()
       onEnter()
+      return true
     },
     Esc: (params) => {
       params.event.preventDefault()
       onClose()
+      return true
     },
   },
   onChange: async (params) => {
@@ -56,7 +57,7 @@ export const suggestEmoji: Suggester = {
 
       const state = params.view.state
       const node = state.schema.nodes.emoji.create({
-        emoji: getEmoji()?.native,
+        emoji: getEmoji()?.native + '  ',
       } as EmojiAttrs)
       const { from, end: to } = params.match.range
       const tr = state.tr.replaceWith(from, to + getQuery().length, node)

@@ -20,7 +20,7 @@ export const Project: React.FC = memo(() => {
       <PopoverEditorLinkTrigger>{project.name}</PopoverEditorLinkTrigger>
       <PopoverEditorLinkContent>
         <ColorBox size="sm" color={project.color.color} />
-        <PopoverEditorLinkText>{project.name + ''}</PopoverEditorLinkText>
+        <PopoverEditorLinkText>{project.name + ' '}</PopoverEditorLinkText>
       </PopoverEditorLinkContent>
     </PopoverEditorLink>
   )

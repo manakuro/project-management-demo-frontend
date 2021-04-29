@@ -10,7 +10,7 @@ import { useTasksListDetail } from 'src/components/organisms'
 
 type Props = FlexProps
 
-export const TasksName: React.FC<Props> = memo<Props>((props) => {
+export const TasksName: React.FC<Props> = memo<Props>(() => {
   const { ref, isHovering } = useHover()
   const { cellStyle, inputFocused, onInputBlur, onInputFocus } = useInputFocus()
   const {

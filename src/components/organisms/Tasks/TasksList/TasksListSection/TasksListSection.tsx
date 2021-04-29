@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useState } from 'react'
 import { Flex, Heading, Icon, IconButton } from 'src/components/atoms'
-import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
+import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
 
 type Props = {
   title: string
@@ -28,7 +28,7 @@ export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
       </Flex>
       {isExpanded && (
         <Flex flexDirection="column">
-          <TasksListRow />
+          <TasksListItem />
         </Flex>
       )}
     </Flex>

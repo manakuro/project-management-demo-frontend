@@ -1,8 +1,7 @@
 import React from 'react'
 import { Popover, PopoverTrigger } from 'src/components/organisms'
-import { Link, ConditionalRender } from 'src/components/atoms'
+import { Link, ConditionalRender, PortalManager } from 'src/components/atoms'
 import { usePopoverEmoji } from './usePopoverEmoji'
-import { PortalManager } from '@chakra-ui/react'
 import 'emoji-mart/css/emoji-mart.css'
 import { Content } from './Content'
 

@@ -5,10 +5,9 @@ import {
   PopoverTrigger,
   PopoverProps,
 } from 'src/components/organisms'
-import { Link, Portal } from 'src/components/atoms'
+import { Link, Portal, PortalManager } from 'src/components/atoms'
 import { useDisclosure } from 'src/shared/chakra'
 import { Body } from './Body'
-import { PortalManager } from '@chakra-ui/react'
 
 type Props = {
   date: string

@@ -15,8 +15,8 @@ import {
   Text,
   Link,
   Image,
+  PortalManager,
 } from 'src/components/atoms'
-import { PortalManager } from '@chakra-ui/react'
 
 type Props = {
   profile: {

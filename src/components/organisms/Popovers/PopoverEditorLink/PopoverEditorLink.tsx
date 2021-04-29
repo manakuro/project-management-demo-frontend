@@ -1,6 +1,6 @@
 import React from 'react'
 import { Popover } from 'src/components/organisms'
-import { PortalManager } from '@chakra-ui/react'
+import { PortalManager } from 'src/components/atoms'
 
 export const PopoverEditorLink: React.FC = (props) => {
   return (

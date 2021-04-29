@@ -4,7 +4,7 @@ import { useClickableHoverStyle } from 'src/hooks'
 import { TaskDueSoon } from './types'
 import { useProject } from 'src/store/projects'
 import { PopoverDueDatePicker } from 'src/components/organisms'
-import { formatDueDate, formatDueTime } from 'src/shared/formatDate'
+import { formatDueDate, formatDueTime } from 'src/shared/date'
 
 type Props = {
   task: TaskDueSoon

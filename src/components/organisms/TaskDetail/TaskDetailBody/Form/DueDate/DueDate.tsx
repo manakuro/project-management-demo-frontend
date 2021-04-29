@@ -4,7 +4,7 @@ import { Button, Icon, Text, Box } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { PopoverDueDatePicker } from 'src/components/organisms'
-import { formatDueDate } from 'src/shared/formatDate'
+import { formatDueDate } from 'src/shared/date'
 
 type Props = {
   dueDate: string

@@ -3,7 +3,7 @@ import { Icon, Text } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
 import { PopoverDueDatePicker } from 'src/components/organisms'
-import { formatDueDate } from 'src/shared/formatDate'
+import { formatDueDate } from 'src/shared/date'
 import { useTasksName } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { getDifferenceInDays } from 'src/shared/date'
 

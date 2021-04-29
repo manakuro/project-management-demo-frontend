@@ -110,27 +110,29 @@ export const mentionData: MentionItem[] = [
 // NOTE: Export functions in order to execute inside prosemirror's plugins
 // @see src/shared/prosemirror/config/plugins.ts
 type onOpenProps = { x: State['x']; y: State['y'] }
-export let onOpen: (args: onOpenProps) => Promise<void>
-export let onClose: () => void
-export let setQuery: (query: string) => void
-export let getQuery: () => string
-export let onArrowDown: () => void
-export let onArrowUp: () => void
-export let onEnter: () => void
+let onOpen: (args: onOpenProps) => Promise<void>
+let onClose: () => void
+let setQuery: (query: string) => void
+let getQuery: () => string
+let onArrowDown: () => void
+let onArrowUp: () => void
+let onEnter: () => void
+let isOpen: boolean
 
 type IdRef = Readonly<{ current: Id }>
 const idRef: IdRef = {
   current: 0,
 }
-export const getId = () => idRef.current
-const setIdRef = (val: Id) => void ((idRef as Writeable<IdRef>).current = val)
+export const getMentionId = () => idRef.current
+const setMentionIdRef = (val: Id) =>
+  void ((idRef as Writeable<IdRef>).current = val)
 
 type TypeRef = Readonly<{ current: MentionType | null }>
 const typeRef: IdRef = {
   current: null,
 }
-export const getType = () => typeRef.current
-const setTypeRef = (val: MentionType) =>
+export const getMentionType = () => typeRef.current
+const setMentionTypeRef = (val: MentionType) =>
   void ((typeRef as Writeable<TypeRef>).current = val)
 
 export type SetValueParam = {
@@ -144,6 +146,8 @@ export const useEditorMentionMenu = () => {
 
   onOpen = useCallback(
     ({ x, y }: onOpenProps) => {
+      isOpen = true
+
       return new Promise<void>((resolve) => {
         setState((s) => ({
           ...s,
@@ -172,8 +176,8 @@ export const useEditorMentionMenu = () => {
   }, [state.query])
 
   const setValue = useCallback((params: SetValueParam) => {
-    setIdRef(params.id)
-    setTypeRef(params.type)
+    setMentionIdRef(params.id)
+    setMentionTypeRef(params.type)
     onClose()
   }, [])
 
@@ -234,6 +238,7 @@ export const useEditorMentionMenu = () => {
   }, [mentions, setValue, state.query, state.selectedIndex])
 
   onClose = useCallback(() => {
+    isOpen = false
     setState((s) => ({ ...s, isOpen: false }))
     state.callback()
     resetSelectedIndex()
@@ -261,4 +266,15 @@ export const useEditorMentionMenu = () => {
     setSelectedIndex,
     containerRef,
   }
+}
+
+export {
+  onOpen as onMentionOpen,
+  onClose as onMentionClose,
+  setQuery as setMentionQuery,
+  getQuery as getMentionQuery,
+  onArrowDown as onMentionArrowDown,
+  onArrowUp as onMentionArrowUp,
+  onEnter as onMentionEnter,
+  isOpen as isMentionOpen,
 }

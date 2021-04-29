@@ -1,14 +1,14 @@
 import { Suggester } from 'prosemirror-suggest'
 import {
-  onOpen,
-  onClose,
-  setQuery,
-  getQuery,
-  getId,
-  onArrowDown,
-  onArrowUp,
-  onEnter,
-  getType,
+  onMentionOpen as onOpen,
+  onMentionClose as onClose,
+  setMentionQuery as setQuery,
+  getMentionQuery as getQuery,
+  getMentionId,
+  onMentionArrowDown as onArrowDown,
+  onMentionArrowUp as onArrowUp,
+  onMentionEnter as onEnter,
+  getMentionType,
 } from 'src/components/organisms/Menus/EditorMentionMenu'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
@@ -17,7 +17,6 @@ export const suggestMention: Suggester = {
   noDecorations: true,
   char: '@',
   name: 'mention-suggestion',
-  appendText: '',
   keyBindings: {
     ArrowDown: (params) => {
       params.event.preventDefault()
@@ -50,12 +49,12 @@ export const suggestMention: Suggester = {
 
   createCommand: (params) => {
     return () => {
-      if (!getId() || !getQuery()) return
+      if (!getMentionId() || !getQuery()) return
 
       const state = params.view.state
       const node = state.schema.nodes.mention.create({
-        mentionId: String(getId()),
-        mentionType: String(getType()),
+        mentionId: String(getMentionId()),
+        mentionType: String(getMentionType()),
       } as MentionAttrs)
       const { from, end: to } = params.match.range
       const tr = state.tr.replaceWith(from, to, node)

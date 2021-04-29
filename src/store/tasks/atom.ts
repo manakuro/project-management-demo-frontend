@@ -6,8 +6,9 @@ import {
   atom,
   useRecoilValue,
 } from 'recoil'
-import { Task } from './type'
+import { Task, TaskResponse } from './type'
 import { uniqBy } from 'src/shared/utils'
+import { subtaskSelector } from 'src/store/subtasks'
 
 export const taskIdsState = atom<string[]>({
   key: 'taskIdsState',
@@ -27,6 +28,8 @@ const taskState = atomFamily<Task, string>({
     dueDate: '',
     dueTime: '',
     isDone: false,
+    subTaskIds: [],
+    subTasks: [],
   },
 })
 
@@ -62,9 +65,18 @@ export const useTasks = () => {
   const tasks = useRecoilValue(tasksState)
 
   const setTasks = useRecoilCallback(
-    ({ set }) => (tasks: Task[]) => {
-      tasks.forEach((p) => {
-        set(taskSelector(p.id), p)
+    ({ set }) => (data: TaskResponse[]) => {
+      const tasks = data.map((t) => ({
+        ...t,
+        subTaskIds: t.subTasks.map((s) => s.id),
+      }))
+
+      tasks.forEach((t) => {
+        set(taskSelector(t.id), t)
+
+        t.subTasks.forEach((s) => {
+          set(subtaskSelector(s.id), s)
+        })
       })
     },
     [],

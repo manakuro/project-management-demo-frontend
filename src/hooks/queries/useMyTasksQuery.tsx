@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react'
-import { Task, useTasks } from 'src/store/tasks'
+import { TaskResponse, useTasks } from 'src/store/tasks'
 import { dateFns } from 'src/shared/dateFns'
 
 type Props = {
@@ -30,8 +30,8 @@ export const useMyTasksQuery = (props?: Props) => {
   }
 }
 
-const fetchTasks = (): Promise<Task[]> => {
-  return new Promise((resolve) => {
+const fetchTasks = async (): Promise<TaskResponse[]> => {
+  return new Promise<TaskResponse[]>((resolve) => {
     setTimeout(() => {
       resolve([
         {
@@ -41,6 +41,26 @@ const fetchTasks = (): Promise<Task[]> => {
           dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
           dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
           isDone: true,
+          subTasks: [
+            {
+              id: '1',
+              taskId: '1',
+              projectId: '1',
+              name: 'Subtask 1',
+              dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
+              dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
+              isDone: false,
+            },
+            {
+              id: '2',
+              taskId: '1',
+              projectId: '1',
+              name: 'Subtask 2',
+              dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
+              dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
+              isDone: true,
+            },
+          ],
         },
         {
           id: '2',
@@ -48,6 +68,7 @@ const fetchTasks = (): Promise<Task[]> => {
           name: 'Implement Task Due Soon',
           dueDate: new Date(dateFns.addDays(new Date(), 4)).toISOString(),
           isDone: true,
+          subTasks: [],
         },
         {
           id: '3',
@@ -55,6 +76,7 @@ const fetchTasks = (): Promise<Task[]> => {
           name: 'Implement Recent Projects',
           dueDate: new Date(dateFns.addDays(new Date(), 5)).toISOString(),
           isDone: false,
+          subTasks: [],
         },
         {
           id: '4',
@@ -62,6 +84,7 @@ const fetchTasks = (): Promise<Task[]> => {
           name: 'Implement Date picker',
           dueDate: new Date(dateFns.addDays(new Date(), 6)).toISOString(),
           isDone: false,
+          subTasks: [],
         },
         {
           id: '5',
@@ -69,6 +92,7 @@ const fetchTasks = (): Promise<Task[]> => {
           name: 'Implement Message page',
           dueDate: new Date(dateFns.addDays(new Date(), 6)).toISOString(),
           isDone: false,
+          subTasks: [],
         },
       ])
     }, 1000)

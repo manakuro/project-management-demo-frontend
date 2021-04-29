@@ -1,4 +1,4 @@
-import { atom, useRecoilState } from 'recoil'
+import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { MentionItem, MentionType } from './types'
 
@@ -132,7 +132,7 @@ const typeRef: IdRef = {
   current: null,
 }
 export const getMentionType = () => typeRef.current
-const setMentionTypeRef = (val: MentionType) =>
+const setMentionTypeRef = (val: MentionType | null) =>
   void ((typeRef as Writeable<TypeRef>).current = val)
 
 export type SetValueParam = {
@@ -142,33 +142,15 @@ export type SetValueParam = {
 
 export const useEditorMentionMenu = () => {
   const [state, setState] = useRecoilState(atomState)
-  const containerRef = useRef<HTMLDivElement | null>(null)
+  const resetState = useResetRecoilState(atomState)
 
-  onOpen = useCallback(
-    ({ x, y }: onOpenProps) => {
-      isOpen = true
+  const reset = useCallback(() => {
+    resetState()
+    setMentionIdRef(null)
+    setMentionTypeRef(null)
+  }, [resetState])
 
-      return new Promise<void>((resolve) => {
-        setState((s) => ({
-          ...s,
-          isOpen: true,
-          x,
-          y,
-          callback: resolve,
-        }))
-      })
-    },
-    [setState],
-  )
-  setQuery = useCallback(
-    (query) => {
-      setState((s) => ({ ...s, query }))
-    },
-    [setState],
-  )
-  getQuery = useCallback(() => state.query, [state.query])
-
-  const mentions = useMemo(() => {
+  const mentions = useMemo<MentionItem[]>(() => {
     if (!state.query) return []
     return mentionData.filter((t) =>
       t.text.toLowerCase().includes(state.query.toLowerCase()),
@@ -187,9 +169,28 @@ export const useEditorMentionMenu = () => {
     },
     [setState],
   )
-  const resetSelectedIndex = useCallback(() => {
-    setState((s) => ({ ...s, selectedIndex: 0 }))
-  }, [setState])
+
+  const { containerRef } = useContainer()
+  useOnKeyBindings({ mentions, setValue })
+  useQuery()
+  useDisclosure({ reset })
+
+  return {
+    ...state,
+    setValue,
+    onOpen,
+    onClose,
+    mentions,
+    setSelectedIndex,
+    containerRef,
+  }
+}
+
+function useOnKeyBindings(props: {
+  mentions: MentionItem[]
+  setValue: (val: SetValueParam) => void
+}) {
+  const [state, setState] = useRecoilState(atomState)
 
   const scrollTo = useCallback(
     (index: number) => {
@@ -206,7 +207,7 @@ export const useEditorMentionMenu = () => {
 
   onArrowDown = useCallback(() => {
     const selectedIndex = state.selectedIndex + 1
-    if (selectedIndex > mentions.length) {
+    if (selectedIndex > props.mentions.length) {
       setState((s) => ({ ...s, selectedIndex: 0 }))
       scrollTo(0)
       return
@@ -214,35 +215,73 @@ export const useEditorMentionMenu = () => {
 
     setState((s) => ({ ...s, selectedIndex }))
     scrollTo(selectedIndex)
-  }, [mentions.length, scrollTo, setState, state.selectedIndex])
+  }, [props.mentions.length, scrollTo, setState, state.selectedIndex])
 
   onArrowUp = useCallback(() => {
     const selectedIndex = state.selectedIndex - 1
     if (selectedIndex < 0) {
-      setState((s) => ({ ...s, selectedIndex: mentions.length }))
-      scrollTo(mentions.length)
+      setState((s) => ({ ...s, selectedIndex: props.mentions.length }))
+      scrollTo(props.mentions.length)
       return
     }
 
     setState((s) => ({ ...s, selectedIndex }))
     scrollTo(-selectedIndex)
-  }, [mentions.length, scrollTo, setState, state.selectedIndex])
+  }, [props.mentions.length, scrollTo, setState, state.selectedIndex])
 
   onEnter = useCallback(() => {
-    const mention = mentions.find((_, i) => i === state.selectedIndex)
+    const mention = props.mentions.find((_, i) => i === state.selectedIndex)
 
     // Do nothing when it is entered without selecting an item
     if (!mention || !state.query) return
 
-    setValue({ id: mention.id, type: mention.type })
-  }, [mentions, setValue, state.query, state.selectedIndex])
+    props.setValue({ id: mention.id, type: mention.type })
+  }, [props, state.query, state.selectedIndex])
+}
 
-  onClose = useCallback(() => {
+function useDisclosure(props: { reset: () => void }) {
+  const [state, setState] = useRecoilState(atomState)
+
+  onOpen = useCallback(
+    ({ x, y }: onOpenProps) => {
+      isOpen = true
+
+      return new Promise<void>((resolve) => {
+        setState((s) => ({
+          ...s,
+          isOpen: true,
+          x,
+          y,
+          callback: resolve as () => Promise<void>,
+        }))
+      })
+    },
+    [setState],
+  )
+
+  onClose = useCallback(async () => {
     isOpen = false
     setState((s) => ({ ...s, isOpen: false }))
-    state.callback()
-    resetSelectedIndex()
-  }, [resetSelectedIndex, setState, state])
+    await state.callback()
+    props.reset()
+  }, [props, setState, state])
+}
+
+function useQuery() {
+  const [state, setState] = useRecoilState(atomState)
+
+  setQuery = useCallback(
+    (query) => {
+      setState((s) => ({ ...s, query }))
+    },
+    [setState],
+  )
+  getQuery = useCallback(() => state.query, [state.query])
+}
+
+function useContainer() {
+  const [, setState] = useRecoilState(atomState)
+  const containerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     if (containerRef.current) {
@@ -258,12 +297,6 @@ export const useEditorMentionMenu = () => {
   }, [setState])
 
   return {
-    ...state,
-    setValue,
-    onOpen,
-    onClose,
-    mentions,
-    setSelectedIndex,
     containerRef,
   }
 }

@@ -33,6 +33,7 @@ export const suggestMention: Suggester = {
     },
     Enter: () => {
       onEnter()
+      return true
     },
   },
   onChange: async (params) => {
@@ -57,7 +58,7 @@ export const suggestMention: Suggester = {
         mentionType: String(getType()),
       } as MentionAttrs)
       const { from, end: to } = params.match.range
-      const tr = state.tr.replaceWith(from, to + getQuery().length, node)
+      const tr = state.tr.replaceWith(from, to, node)
       params.view.dispatch(tr)
     }
   },

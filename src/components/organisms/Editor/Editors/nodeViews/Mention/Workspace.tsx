@@ -16,7 +16,7 @@ export const Workspace: React.FC = memo(() => {
       <PopoverEditorLinkTrigger>{workspace.name}</PopoverEditorLinkTrigger>
       <PopoverEditorLinkContent>
         <Icon icon="group" color="text.muted" />
-        <PopoverEditorLinkText>{workspace.name}</PopoverEditorLinkText>
+        <PopoverEditorLinkText>{workspace.name + ''}</PopoverEditorLinkText>
       </PopoverEditorLinkContent>
     </PopoverEditorLink>
   )

@@ -32,7 +32,7 @@ export const Teammate: React.FC = memo(() => {
   const profile = teammatesData.find((t) => t.id === Number(attrs.mentionId))!
   return (
     <PopoverProfile profile={profile}>
-      <MentionText>{profile.email}</MentionText>
+      <MentionText>{profile.email + ''}</MentionText>
     </PopoverProfile>
   )
 })

@@ -5,7 +5,6 @@ import {
   joinDown,
   joinUp,
   lift,
-  selectParentNode,
 } from 'prosemirror-commands'
 import { redo, undo } from 'prosemirror-history'
 import { undoInputRule } from 'prosemirror-inputrules'
@@ -27,6 +26,7 @@ import {
   wrapInBlockquote,
   toggleMarkStrikethrough,
 } from '../config/commands'
+import { Escape } from 'src/shared/prosemirror/plugins/suggestions/keys'
 
 export const listKeys = (): Plugin =>
   keymap({
@@ -37,8 +37,6 @@ export const listKeys = (): Plugin =>
     Enter: splitListItemCommand,
   })
 
-// TODO: sink/lift headings
-
 export const editorKeys = (): Plugin =>
   keymap({
     'Mod-z': undo,
@@ -48,7 +46,7 @@ export const editorKeys = (): Plugin =>
     'Alt-ArrowUp': joinUp,
     'Alt-ArrowDown': joinDown,
     'Mod-BracketLeft': lift,
-    Escape: selectParentNode,
+    Escape,
     'Shift-Mod-8': setListTypeBullet,
     'Shift-Mod-7': setListTypeOrdered,
     'Mod-b': toggleMarkBold,

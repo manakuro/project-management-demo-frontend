@@ -30,11 +30,6 @@ export const suggestEmoji: Suggester = {
       onEnter()
       return true
     },
-    Esc: (params) => {
-      params.event.preventDefault()
-      onClose()
-      return true
-    },
   },
   onChange: async (params) => {
     setQuery(params.queryText.full)

@@ -3,14 +3,12 @@ import {
   onEmojiOpen as onOpen,
   onEmojiClose as onClose,
   setEmojiQuery as setQuery,
-  getEmojiQuery as getQuery,
   getEmoji,
   onEmojiArrowDown as onArrowDown,
   onEmojiArrowUp as onArrowUp,
   onEmojiEnter as onEnter,
 } from 'src/components/organisms/Menus/EditorEmojiMenu'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
-import { EmojiAttrs } from 'src/shared/prosemirror/schema'
 
 export const suggestEmoji: Suggester = {
   noDecorations: true,
@@ -55,13 +53,11 @@ export const suggestEmoji: Suggester = {
     return () => {
       if (!getEmoji()) return
 
+      const emoji = getEmoji()?.native + '  '
       const state = params.view.state
-      const node = state.schema.nodes.emoji.create({
-        emoji: getEmoji()?.native + '  ',
-      } as EmojiAttrs)
       const { from, end: to } = params.match.range
-      const tr = state.tr.replaceWith(from, to + getQuery().length, node)
-      params.view.dispatch(tr)
+      const { tr } = state
+      params.view.dispatch(tr.insertText(emoji, from, to))
     }
   },
   onExit: () => {

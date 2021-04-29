@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { Row, Label, Content } from '../Row'
 import {
   Avatar,
@@ -23,7 +23,7 @@ const focusedStyle: ButtonProps = {
   },
 }
 
-export const Assignee: React.FC<Props> = () => {
+export const Assignee: React.FC<Props> = memo(() => {
   const { clickableHoverLightStyle } = useClickableHoverStyle()
   const { ref, isHovering } = useHover()
   const [focused, setFocused] = useState(false)
@@ -84,4 +84,4 @@ export const Assignee: React.FC<Props> = () => {
       </Content>
     </Row>
   )
-}
+})

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Row, Label, Content } from '../Row'
 import { Button, Icon, Text, Box } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
@@ -11,7 +11,7 @@ type Props = {
   dueTime: string
 }
 
-export const DueDate: React.FC<Props> = (props) => {
+export const DueDate: React.FC<Props> = memo<Props>((props) => {
   const { clickableHoverLightStyle } = useClickableHoverStyle()
   const { ref, isHovering } = useHover()
 
@@ -55,4 +55,4 @@ export const DueDate: React.FC<Props> = (props) => {
       </Content>
     </Row>
   )
-}
+})

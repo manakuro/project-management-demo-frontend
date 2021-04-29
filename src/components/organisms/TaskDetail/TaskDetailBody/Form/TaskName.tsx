@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Flex, InputText } from 'src/components/atoms'
 
 type Props = {}
 
-export const TaskName: React.FC<Props> = (props) => {
+export const TaskName: React.FC<Props> = memo<Props>(() => {
   return (
     <Flex px={4}>
       <InputText
@@ -14,4 +14,4 @@ export const TaskName: React.FC<Props> = (props) => {
       />
     </Flex>
   )
-}
+})

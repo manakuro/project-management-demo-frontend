@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Row, Label, Content } from '../Row'
 import { UnSelected } from './UnSelected'
 import { Selected } from './Selected'
 
 type Props = {}
 
-export const Projects: React.FC<Props> = (props) => {
+export const Projects: React.FC<Props> = memo<Props>(() => {
   return (
     <Row>
       <Label>Projects</Label>
@@ -15,4 +15,4 @@ export const Projects: React.FC<Props> = (props) => {
       </Content>
     </Row>
   )
-}
+})

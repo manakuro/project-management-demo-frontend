@@ -1,13 +1,13 @@
 import React from 'react'
 import { FlexProps } from 'src/components/atoms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
-import { useInputFocus } from './useInputFocus'
 import { forwardRef } from 'src/shared/chakra'
+import { useTasksName } from './TasksNameProvider'
 
 type Props = FlexProps
 
 export const TasksNameCell: React.FC<Props> = forwardRef((props, ref) => {
-  const { cellStyle } = useInputFocus()
+  const { cellStyle } = useTasksName()
 
   return (
     <TasksListCell

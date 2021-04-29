@@ -1,14 +1,16 @@
 import React, { memo, useMemo } from 'react'
 import { Box, Flex, Input, InputProps } from 'src/components/atoms'
+import { useTasksName } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName/TasksNameProvider'
 
 type Props = {
   value: string
   onChange: () => void
-  onInputFocus: () => void
-  onInputBlur: () => void
+  focusedBorder?: boolean
 } & InputProps
 
 export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
+  const { onInputFocus, onInputBlur } = useTasksName()
+
   const style = useMemo<InputProps>(
     () => ({
       ml: 1,
@@ -16,16 +18,22 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
       color: 'text.base',
       minH: 5,
       h: 5,
-      border: '1px',
-      borderColor: 'transparent',
-      borderRadius: 'sm',
       paddingInlineStart: 2,
       paddingInlineEnd: 2,
-      _hover: {
-        borderColor: 'gray.400',
-      },
+      ...(props.focusedBorder
+        ? {
+            border: '1px',
+            borderColor: 'transparent',
+            borderRadius: 'sm',
+            _hover: {
+              borderColor: 'gray.400',
+            },
+          }
+        : {
+            border: 'none',
+          }),
     }),
-    [],
+    [props.focusedBorder],
   )
 
   return (
@@ -41,8 +49,8 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
         position="absolute"
         top={0}
         focusBorderColor="transparent"
-        onFocus={props.onInputFocus}
-        onBlur={props.onInputBlur}
+        onFocus={onInputFocus}
+        onBlur={onInputBlur}
       />
     </Flex>
   )

@@ -1,5 +1,10 @@
 import { useCallback, useState } from 'react'
 
+export type UseMarkMenuFocus = {
+  markMenuFocused: boolean
+  onMarkMenuOpened: () => void
+  onMarkMenuClosed: () => void
+}
 export const useMarkMenuFocus = () => {
   const [focused, setFocused] = useState(false)
   const onMarkMenuOpened = useCallback(() => {

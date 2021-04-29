@@ -13,9 +13,10 @@ import {
 import { getCaretPosition } from 'src/shared/getCaretPosition'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
 
+export const MENTION_CHAR = '@'
 export const suggestMention: Suggester = {
   noDecorations: true,
-  char: '@',
+  char: MENTION_CHAR,
   name: 'mention-suggestion',
   keyBindings: {
     ArrowDown: (params) => {

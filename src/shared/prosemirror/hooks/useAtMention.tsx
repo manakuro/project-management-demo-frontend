@@ -1,34 +1,21 @@
 import { ToolbarItem } from './types'
 import { useCallback, useMemo } from 'react'
 import { Command } from 'prosemirror-commands'
-import { useEditorLinkModal } from 'src/components/organisms'
+import { MENTION_CHAR } from 'src/shared/prosemirror/plugins/suggestions/suggestMention'
 
 export const useAtMention = (): ToolbarItem => {
-  const { onOpen } = useEditorLinkModal()
   const action = useCallback<
     (
       state: Parameters<Command>[0],
       dispatch: Parameters<Command>[1],
       view: Parameters<Command>[2],
-    ) => Promise<boolean>
-  >(
-    async (state, dispatch) => {
-      console.log('state: ', state)
-      const selectedText = window.getSelection()
-      const position = selectedText?.getRangeAt(0).getBoundingClientRect()
+    ) => boolean
+  >((state, dispatch) => {
+    const { tr } = state
+    dispatch?.(tr.insertText(MENTION_CHAR))
 
-      if (!selectedText?.anchorNode) return false
-
-      const input = await onOpen({
-        x: Number(position?.top),
-        y: Number(position?.left),
-      })
-      if (!input.url) return false
-
-      return true
-    },
-    [onOpen],
-  )
+    return true
+  }, [])
 
   return useMemo(
     () => ({

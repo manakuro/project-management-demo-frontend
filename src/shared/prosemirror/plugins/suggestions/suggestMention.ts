@@ -9,6 +9,7 @@ import {
   onMentionArrowUp as onArrowUp,
   onMentionEnter as onEnter,
   getMentionType,
+  getMentionQuery,
 } from 'src/components/organisms/Menus/EditorMentionMenu'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
@@ -32,6 +33,8 @@ export const suggestMention: Suggester = {
       onArrowUp()
     },
     Enter: () => {
+      if (!getMentionQuery()) return false
+
       onEnter()
       return true
     },

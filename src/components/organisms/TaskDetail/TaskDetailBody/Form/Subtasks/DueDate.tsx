@@ -5,6 +5,7 @@ import { useClickableHoverStyle } from 'src/hooks'
 import { PopoverDueDatePicker } from 'src/components/organisms'
 import { formatDueDate } from 'src/shared/formatDate'
 import { useTasksName } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
+import { getDifferenceInDays } from 'src/shared/date'
 
 type Props = {
   dueDate: string
@@ -16,10 +17,11 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
   const { isHovering } = useTasksName()
 
   if (props.dueDate) {
+    const days = getDifferenceInDays(new Date(props.dueDate), new Date())
     return (
       <Tooltip
         hasArrow
-        label="Due in 7 days"
+        label={`Due in ${days} days`}
         aria-label="Due date"
         size="sm"
         withIcon

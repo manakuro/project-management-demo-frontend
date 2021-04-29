@@ -1,6 +1,6 @@
 import { dateFns } from 'src/shared/dateFns'
 
-export const formatDueDate = (date: string) => {
+export const formatDueDate = (date: string): string => {
   const dateObj = new Date(date)
 
   if (dateFns.isTomorrow(dateObj)) return 'Tomorrow'
@@ -9,10 +9,6 @@ export const formatDueDate = (date: string) => {
   return dateFns.format(dateObj, 'MMM d')
 }
 
-export const formatDueTime = (date: string) => {
+export const formatDueTime = (date: string): string => {
   return dateFns.format(new Date(date), 'H:mm aaa')
-}
-
-export const isDueDate = (date: string) => {
-  return dateFns.isBefore(new Date(), dateFns.addDays(new Date(), 5))
 }

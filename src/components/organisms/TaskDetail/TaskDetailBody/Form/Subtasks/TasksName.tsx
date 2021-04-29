@@ -7,6 +7,7 @@ import {
   TasksNameField,
   useTasksName,
   TasksNameProvider,
+  TasksNameRightContainer,
 } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName'
 
 type Props = FlexProps
@@ -28,6 +29,7 @@ export const Component: React.FC<Props> = memo<Props>(() => {
         <TasksNameGrabIcon />
         <CheckIcon isDone={false} ml={2} />
         <TasksNameField value="Organize component folder" onChange={() => {}} />
+        <TasksNameRightContainer></TasksNameRightContainer>
       </TasksNameCell>
     </TasksListRow>
   )

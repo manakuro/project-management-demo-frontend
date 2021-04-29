@@ -1,8 +1,9 @@
 import React, { memo, useCallback } from 'react'
-import { CheckIcon, Flex, FlexProps, Icon, Text } from 'src/components/atoms'
+import { CheckIcon, FlexProps, Icon, Text } from 'src/components/atoms'
 import { TasksNameField } from './TasksNameField'
 import { TasksNameCell } from './TasksNameCell'
 import { TasksNameGrabIcon } from './TasksNameGrabIcon'
+import { TasksNameRightContainer } from './TasksNameRightContainer'
 import { Mark } from './Mark'
 import { useTasksListDetail } from 'src/components/organisms'
 import { TasksNameProvider, useTasksName } from './TasksNameProvider'
@@ -18,7 +19,7 @@ export const TasksName: React.FC<Props> = (props) => {
 }
 
 const Component: React.FC<Props> = memo<Props>(() => {
-  const { ref, onMarkMenuOpened, onMarkMenuClosed, showMark } = useTasksName()
+  const { ref, onMarkMenuOpened, onMarkMenuClosed } = useTasksName()
   const { setIsOpen } = useTasksListDetail()
 
   const handleTasksListDetailOpen = useCallback(() => {
@@ -34,7 +35,7 @@ const Component: React.FC<Props> = memo<Props>(() => {
         onChange={() => {}}
         focusedBorder
       />
-      <Flex alignItems="center" ml="auto" display={showMark ? 'flex' : 'none'}>
+      <TasksNameRightContainer>
         <Mark
           variant="unmarked"
           onOpened={onMarkMenuOpened}
@@ -44,7 +45,7 @@ const Component: React.FC<Props> = memo<Props>(() => {
           Details
         </Text>
         <Icon icon="chevronRight" color="text.muted" mt="1px" />
-      </Flex>
+      </TasksNameRightContainer>
     </TasksNameCell>
   )
 })

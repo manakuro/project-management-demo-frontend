@@ -27,7 +27,11 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
 
   const handleClose = useCallback(() => {
     popoverDisclosure.onClose()
-    props.onClosed?.()
+
+    // Prevent flush when closing popover
+    setTimeout(() => {
+      props.onClosed?.()
+    }, 60)
   }, [popoverDisclosure, props])
 
   return (
@@ -39,6 +43,7 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
         <Portal>
           <PopoverContent
             w="276px"
+            minH="311px"
             className="PopoverDueDatePicker"
             pointerEvents="auto"
           >

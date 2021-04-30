@@ -10,6 +10,7 @@ type ContextProps = UseInputFocus &
     showIcon: boolean
     showMark: boolean
   }
+export type TasksNameContextProps = ContextProps
 
 const Context = createContext<ContextProps>({
   inputFocused: false,

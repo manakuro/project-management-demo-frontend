@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import {
   Popover,
   PopoverContent,
@@ -13,16 +13,28 @@ type Props = {
   date: string
   onChange: (date: Date) => void
   time?: string
+  onOpened?: () => void
+  onClosed?: () => void
 } & PopoverProps
 
 export const PopoverDueDatePicker: React.FC<Props> = (props) => {
   const popoverDisclosure = useDisclosure()
 
+  const handleOpen = useCallback(() => {
+    popoverDisclosure.onOpen()
+    props.onOpened?.()
+  }, [popoverDisclosure, props])
+
+  const handleClose = useCallback(() => {
+    popoverDisclosure.onClose()
+    props.onClosed?.()
+  }, [popoverDisclosure, props])
+
   return (
     <PortalManager zIndex={1500}>
       <Popover isOpen={popoverDisclosure.isOpen} isLazy closeOnBlur={false}>
         <PopoverTrigger>
-          <Link onClick={popoverDisclosure.onOpen}>{props.children}</Link>
+          <Link onClick={handleOpen}>{props.children}</Link>
         </PopoverTrigger>
         <Portal>
           <PopoverContent
@@ -35,7 +47,7 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
                 date={props.date}
                 onChange={props.onChange}
                 time={props.time}
-                onCloseMenu={popoverDisclosure.onClose}
+                onCloseMenu={handleClose}
               />
             )}
           </PopoverContent>

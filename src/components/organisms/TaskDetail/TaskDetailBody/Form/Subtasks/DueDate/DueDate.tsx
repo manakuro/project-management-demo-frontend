@@ -4,8 +4,8 @@ import { Tooltip } from 'src/components/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
 import { PopoverDueDatePicker } from 'src/components/organisms'
 import { formatDueDate } from 'src/shared/date'
-import { useTasksName } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { getDifferenceInDays } from 'src/shared/date'
+import { useDueDate } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/Subtasks/DueDate/useDueDate'
 
 type Props = {
   dueDate: string
@@ -14,7 +14,7 @@ type Props = {
 
 export const DueDate: React.FC<Props> = memo<Props>((props) => {
   const { clickableHoverLightStyle } = useClickableHoverStyle()
-  const { isHovering } = useTasksName()
+  const { onDueDateOpened, onDueDateClosed, showIcon } = useDueDate()
 
   if (props.dueDate) {
     const days = getDifferenceInDays(new Date(props.dueDate), new Date())
@@ -38,8 +38,10 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
       date={props.dueDate}
       time={props.dueTime}
       onChange={(date) => console.log(date)}
+      onOpened={onDueDateOpened}
+      onClosed={onDueDateClosed}
     >
-      {isHovering && (
+      {showIcon && (
         <Tooltip
           hasArrow
           label="Add a due date to this subtask"

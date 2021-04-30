@@ -6,18 +6,18 @@ import {
   TasksNameGrabIcon,
   TasksNameField,
   useTasksName,
-  TasksNameProvider,
 } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName'
 import { DueDate } from './DueDate'
+import { SubtaskNameProvider } from './SubtaskNameProvider'
 // import { dateFns } from 'src/shared/dateFns'
 
 type Props = FlexProps
 
 export const TasksName: React.FC<Props> = (props) => {
   return (
-    <TasksNameProvider>
+    <SubtaskNameProvider>
       <Component {...props} />
-    </TasksNameProvider>
+    </SubtaskNameProvider>
   )
 }
 

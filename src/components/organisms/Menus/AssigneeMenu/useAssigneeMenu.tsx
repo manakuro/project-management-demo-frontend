@@ -23,13 +23,9 @@ export const useAssigneeMenu = () => {
     assigneeSelectedIndexState,
   )
 
-  const onClose = useCallback(
-    (data?: any) => {
-      setIsOpen(false)
-      setAssignee(data ?? null)
-    },
-    [setIsOpen, setAssignee],
-  )
+  const onClose = useCallback(() => {
+    setIsOpen(false)
+  }, [setIsOpen])
 
   const onOpen = useCallback(() => {
     setIsOpen(true)

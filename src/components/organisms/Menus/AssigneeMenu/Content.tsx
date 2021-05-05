@@ -9,14 +9,15 @@ import { ListItem, LeftContainer, RightContainer } from './ListItem'
 type Props = {}
 
 export const Content: React.FC<Props> = memo<Props>(() => {
-  const { onClose } = useAssigneeMenu()
+  const { onClose, setAssignee } = useAssigneeMenu()
   const { ref, hasClickedOutside } = useClickOutside()
 
   const handleSelect = useCallback(
     (val: any) => {
-      onClose(val)
+      setAssignee(val)
+      onClose()
     },
-    [onClose],
+    [onClose, setAssignee],
   )
 
   useEffect(() => {

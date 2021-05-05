@@ -69,6 +69,7 @@ import {
   BiLinkExternal,
   BiGroup,
   BiCalendarAlt,
+  BiUser,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon, FaRegStar, FaStar } from 'react-icons/fa'
 import { HiOutlineMail, HiOutlineEmojiHappy } from 'react-icons/hi'
@@ -162,6 +163,7 @@ export const icons = {
   twitter: FaTwitter,
   underline: FiUnderline,
   unlink: BiUnlink,
+  user: BiUser,
   userPlus: BiUserPlus,
   x: BiX,
 } as const

@@ -8,6 +8,7 @@ import {
   useTasksName,
 } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName'
 import { DueDate } from './DueDate'
+import { Assignee } from './Assignee'
 import { SubtaskNameProvider } from './SubtaskNameProvider'
 // import { dateFns } from 'src/shared/dateFns'
 
@@ -38,6 +39,7 @@ export const Component: React.FC<Props> = memo<Props>(() => {
               dueDate=""
               dueTime=""
             />
+            <Assignee />
           </Stack>
         </Flex>
       </TasksNameCell>

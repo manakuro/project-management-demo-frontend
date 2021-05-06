@@ -4,27 +4,29 @@ import { Tooltip } from 'src/components/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
 import { PopoverAssigneeInput, PopoverProfile } from 'src/components/organisms'
 import { useAssignee } from './useAssignee'
+import { useTeammate } from 'src/store/teammates'
 
 type Props = {
-  profileId?: string
+  teammateId?: string
 }
 
 export const Assignee: React.FC<Props> = memo<Props>((props) => {
   const { clickableHoverLightStyle } = useClickableHoverStyle()
   const { onAssigneeClosed, onAssigneeOpened, showIcon } = useAssignee()
+  const { teammate } = useTeammate(props.teammateId)
 
-  if (props.profileId) {
+  if (teammate.id) {
     return (
       <PopoverProfile
         profile={{
-          name: 'Manato Kuroda',
-          image: '/images/cat_img.png',
-          email: 'manato.kuroda@gmail.com',
+          name: teammate.name,
+          image: teammate.image,
+          email: teammate.email,
         }}
       >
         <Avatar
-          name="Manato Kuroda"
-          src="/images/cat_img.png"
+          name={teammate.name}
+          src={teammate.image}
           size="xs"
           cursor="pointer"
           bg="teal.200"

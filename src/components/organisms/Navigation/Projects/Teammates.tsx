@@ -1,24 +1,17 @@
-import React, { useCallback } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Avatar, Wrap, WrapItem } from 'src/components/atoms'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
-import { PopoverProfile } from 'src/components/organisms/Popovers/PopoverProfile'
+import { useTeammates } from 'src/store/teammates'
+import { Teammate } from './Teammate'
 
-type Teammate = {
-  id: string
-  name: string
-  image: string
-  email: string
-}
+type Props = {}
 
-type Props = {
-  teammates: Teammate[]
-}
-
-export const Teammates: React.VFC<Props> = (props) => {
+export const Teammates: React.VFC<Props> = memo(() => {
   const { clickableHoverLightStyle } = useClickableHoverStyle()
   const inviteModal = useInviteModal()
+  const { teammateIds } = useTeammates()
 
   const handleInvitePeople = useCallback(() => {
     inviteModal.setIsOpen(true)
@@ -26,18 +19,8 @@ export const Teammates: React.VFC<Props> = (props) => {
 
   return (
     <Wrap p={2} px={PADDING_X}>
-      {props.teammates.map((t, k) => (
-        <WrapItem key={k}>
-          <PopoverProfile profile={t}>
-            <Avatar
-              name={t.name}
-              src={t.image}
-              size="xs"
-              cursor="pointer"
-              bg="teal.200"
-            />
-          </PopoverProfile>
-        </WrapItem>
+      {teammateIds.map((t) => (
+        <Teammate teammateId={t} key={t} />
       ))}
       <WrapItem>
         <Avatar
@@ -49,4 +32,4 @@ export const Teammates: React.VFC<Props> = (props) => {
       </WrapItem>
     </Wrap>
   )
-}
+})

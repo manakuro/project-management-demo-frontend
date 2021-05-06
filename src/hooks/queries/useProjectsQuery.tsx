@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react'
-import { Project, useProjects } from 'src/store/projects'
+import { ProjectResponse, useProjects } from 'src/store/projects'
 
 type Props = {
   lazy?: boolean
@@ -29,7 +29,7 @@ export const useProjectsQuery = (props?: Props) => {
   }
 }
 
-const fetchProjects = (): Promise<Project[]> => {
+const fetchProjects = (): Promise<ProjectResponse[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve([

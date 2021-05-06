@@ -39,17 +39,21 @@ export const Assignee: React.FC<Props> = memo<Props>((props) => {
       onOpened={onAssigneeOpened}
       onClosed={onAssigneeClosed}
     >
-      {showIcon && (
-        <Tooltip
-          hasArrow
-          label="Assign this task"
-          aria-label="Assign this task"
-          size="sm"
-          withIcon
-        >
-          <Icon icon="user" color="text.muted" {...clickableHoverLightStyle} />
-        </Tooltip>
-      )}
+      <Tooltip
+        hasArrow
+        label="Assign this task"
+        aria-label="Assign this task"
+        size="sm"
+        withIcon
+      >
+        <Icon
+          visibility={showIcon ? 'visible' : 'hidden'}
+          pointerEvents={showIcon ? 'auto' : 'none'}
+          icon="user"
+          color="text.muted"
+          {...clickableHoverLightStyle}
+        />
+      </Tooltip>
     </PopoverAssigneeInput>
   )
 })

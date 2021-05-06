@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { Avatar, Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
-import { PopoverDueDatePicker, PopoverProfile } from 'src/components/organisms'
+import { PopoverAssigneeInput, PopoverProfile } from 'src/components/organisms'
 import { useAssignee } from './useAssignee'
 
 type Props = {
@@ -34,10 +34,8 @@ export const Assignee: React.FC<Props> = memo<Props>((props) => {
   }
 
   return (
-    <PopoverDueDatePicker
-      date=""
-      time=""
-      onChange={(date) => console.log(date)}
+    <PopoverAssigneeInput
+      onChange={() => {}}
       onOpened={onAssigneeOpened}
       onClosed={onAssigneeClosed}
     >
@@ -52,6 +50,6 @@ export const Assignee: React.FC<Props> = memo<Props>((props) => {
           <Icon icon="user" color="text.muted" {...clickableHoverLightStyle} />
         </Tooltip>
       )}
-    </PopoverDueDatePicker>
+    </PopoverAssigneeInput>
   )
 })

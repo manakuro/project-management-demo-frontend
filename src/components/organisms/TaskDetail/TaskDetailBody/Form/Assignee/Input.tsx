@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo } from 'react'
 import { Input as AtomsInput } from 'src/components/atoms'
 import { useClickOutside } from 'src/hooks'
 import { AssigneeMenu } from 'src/components/organisms'
@@ -8,13 +8,7 @@ type Props = {
 }
 
 export const Input: React.FC<Props> = memo<Props>((props) => {
-  const { ref, hasClickedOutside } = useClickOutside()
-
-  useEffect(() => {
-    if (hasClickedOutside) {
-      props.onClickOutside()
-    }
-  })
+  const { ref } = useClickOutside(props.onClickOutside)
 
   return (
     <AssigneeMenu defaultIsOpen>

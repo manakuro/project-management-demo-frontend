@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { Portal } from 'src/components/atoms'
 import {
   MenuList as AtomsMenuList,
@@ -9,11 +9,7 @@ import { useMenuSelectContext } from '../useMenuSelect'
 
 export const Component: React.FC = (props) => {
   const { onChange, onClose, listStatus } = useMenuSelectContext()
-  const { ref, hasClickedOutside } = useClickOutside()
-
-  useEffect(() => {
-    if (hasClickedOutside) onClose()
-  }, [hasClickedOutside, onClose])
+  const { ref } = useClickOutside(onClose)
 
   const handleChange = useCallback(
     (listStatus: string | string[] | undefined) => {

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { Flex, Icon, Link, Portal, Text } from 'src/components/atoms'
 import {
   MenuList as AtomsMenuList,
@@ -15,7 +15,9 @@ type Props = {
 
 export const MenuList: React.FC<Props> = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { ref, hasClickedOutside } = useClickOutside()
+  const { ref } = useClickOutside(() => {
+    handleCloseAll()
+  })
 
   const handleOpen = useCallback(() => {
     onOpen()
@@ -29,12 +31,6 @@ export const MenuList: React.FC<Props> = (props) => {
     onClose()
     props.onCloseMenu()
   }, [onClose, props])
-
-  useEffect(() => {
-    if (hasClickedOutside) {
-      handleCloseAll()
-    }
-  }, [hasClickedOutside, handleCloseAll])
 
   return (
     <Portal>

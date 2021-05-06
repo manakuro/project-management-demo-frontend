@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useState } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { ConditionalRender, Flex } from 'src/components/atoms'
 import { useClickOutside } from 'src/hooks'
 import { MaybeRenderProp, runIfFn } from 'src/shared/utils'
@@ -9,17 +9,13 @@ type Props = {
 
 export const Container: React.FC<Props> = memo<Props>((props) => {
   const [focused, setFocused] = useState(false)
-  const { ref, hasClickedOutside } = useClickOutside()
+  const { ref } = useClickOutside(() => {
+    setFocused(false)
+  })
 
   const handleFocus = useCallback(() => {
     setFocused(true)
   }, [])
-
-  useEffect(() => {
-    if (hasClickedOutside) {
-      setFocused(false)
-    }
-  }, [hasClickedOutside])
 
   return (
     <ConditionalRender client>

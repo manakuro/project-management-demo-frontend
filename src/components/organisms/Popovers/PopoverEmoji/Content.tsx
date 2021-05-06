@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect } from 'react'
+import React, { memo, useCallback } from 'react'
 import { PopoverContent } from 'src/components/organisms'
 import { Portal, Box } from 'src/components/atoms'
 import { usePopoverEmoji } from './usePopoverEmoji'
@@ -10,7 +10,7 @@ type Props = {}
 
 export const Content: React.FC<Props> = memo<Props>(() => {
   const { onClose } = usePopoverEmoji()
-  const { ref, hasClickedOutside } = useClickOutside()
+  const { ref } = useClickOutside(onClose)
 
   const handleSelect = useCallback(
     (emoji: BaseEmoji) => {
@@ -18,12 +18,6 @@ export const Content: React.FC<Props> = memo<Props>(() => {
     },
     [onClose],
   )
-
-  useEffect(() => {
-    if (hasClickedOutside) {
-      onClose()
-    }
-  }, [hasClickedOutside, onClose])
 
   return (
     <Portal>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { PopoverBody, PopoverProps } from 'src/components/organisms'
 import { Button, Divider, Flex, FlexProps } from 'src/components/atoms'
 import { DatePicker } from 'src/components/organisms'
@@ -20,7 +20,7 @@ const MAX_DATE = dateFns.addYears(new Date(), 1)
 export const Body: React.FC<Props> = (props) => {
   const [value, setValue] = React.useState<Date | null>(new Date(props.date))
   const dueTimeDisclosure = useDisclosure()
-  const { ref, hasClickedOutside } = useClickOutside()
+  const { ref } = useClickOutside(props.onCloseMenu)
 
   const handleAccept = useCallback(
     (newValue) => {
@@ -38,12 +38,6 @@ export const Body: React.FC<Props> = (props) => {
   const handleDueTimeClick = useCallback(() => {
     dueTimeDisclosure.onToggle()
   }, [dueTimeDisclosure])
-
-  useEffect(() => {
-    if (hasClickedOutside) {
-      props.onCloseMenu()
-    }
-  }, [props, hasClickedOutside])
 
   return (
     <PopoverBody p={4} ref={ref}>

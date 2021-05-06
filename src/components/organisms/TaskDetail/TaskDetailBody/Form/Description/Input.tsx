@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo } from 'react'
 import {
   Avatar,
   Flex,
@@ -21,13 +21,7 @@ type Props = {
 }
 
 export const Input: React.FC<Props> = memo<Props>((props) => {
-  const { ref, hasClickedOutside } = useClickOutside()
-
-  useEffect(() => {
-    if (hasClickedOutside) {
-      props.onClickOutside()
-    }
-  })
+  const { ref } = useClickOutside(props.onClickOutside)
 
   return (
     <>

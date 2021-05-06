@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo } from 'react'
 import {
   Flex,
   Input as AtomsInput,
@@ -21,15 +21,11 @@ type Props = {
 } & InputProps
 
 export const Input: React.FC<Props> = memo<Props>((props) => {
-  const { ref, hasClickedOutside } = useClickOutside()
-  const { projects } = useProjects()
   const { onClickOutside, menuListStyle, ...rest } = props
-
-  useEffect(() => {
-    if (hasClickedOutside) {
-      onClickOutside?.()
-    }
-  }, [hasClickedOutside, onClickOutside])
+  const { ref } = useClickOutside(() => {
+    onClickOutside?.()
+  })
+  const { projects } = useProjects()
 
   return (
     <Flex flexDirection="column">

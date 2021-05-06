@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect } from 'react'
+import React, { memo, useCallback } from 'react'
 import { PopoverContent } from 'src/components/organisms'
 import { Portal, Icon, Divider, Text } from 'src/components/atoms'
 import { useAssigneeMenu } from './useAssigneeMenu'
@@ -12,7 +12,7 @@ type Props = {
 
 export const Content: React.FC<Props> = memo<Props>((props) => {
   const { onClose, setAssignee } = useAssigneeMenu()
-  const { ref, hasClickedOutside } = useClickOutside()
+  const { ref } = useClickOutside(onClose)
 
   const handleSelect = useCallback(
     (val: any) => {
@@ -23,12 +23,6 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
     },
     [onClose, props, setAssignee],
   )
-
-  useEffect(() => {
-    if (hasClickedOutside) {
-      onClose()
-    }
-  }, [hasClickedOutside, onClose])
 
   return (
     <Portal>

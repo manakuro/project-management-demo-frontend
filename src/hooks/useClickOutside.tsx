@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 
-export const useClickOutside = () => {
+export const useClickOutside = (onClickOutside?: () => void) => {
   const ref = useRef<HTMLElement | null>(null)
   const [state, setState] = useState({
     hasClickedOutside: false,
@@ -43,6 +43,12 @@ export const useClickOutside = () => {
       }
     }
   }, [])
+
+  useEffect(() => {
+    if (state.hasClickedOutside) {
+      onClickOutside?.()
+    }
+  }, [onClickOutside, state.hasClickedOutside])
 
   return {
     ref,

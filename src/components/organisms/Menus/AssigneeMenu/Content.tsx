@@ -6,18 +6,22 @@ import { useClickOutside } from 'src/hooks'
 import { AssigneeItem } from './AssigneeItem'
 import { ListItem, LeftContainer, RightContainer } from './ListItem'
 
-type Props = {}
+type Props = {
+  onClosed?: () => void
+}
 
-export const Content: React.FC<Props> = memo<Props>(() => {
+export const Content: React.FC<Props> = memo<Props>((props) => {
   const { onClose, setAssignee } = useAssigneeMenu()
   const { ref, hasClickedOutside } = useClickOutside()
 
   const handleSelect = useCallback(
     (val: any) => {
+      console.log('handleSelect!: ', val)
       setAssignee(val)
       onClose()
+      props.onClosed?.()
     },
-    [onClose, setAssignee],
+    [onClose, props, setAssignee],
   )
 
   useEffect(() => {
@@ -28,7 +32,7 @@ export const Content: React.FC<Props> = memo<Props>(() => {
 
   return (
     <Portal>
-      <PopoverContent w="450px" ref={ref} mr={-3}>
+      <PopoverContent className="focus-visible" w="450px" ref={ref} mr={-3}>
         <AssigneeItem onClick={handleSelect} assignee={{}} index={0} />
         <Divider />
         <ListItem index={1}>

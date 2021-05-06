@@ -28,7 +28,8 @@ type Props = {
 
 export const PopoverAssigneeInput: React.FC<Props> = (props) => {
   const popoverDisclosure = useDisclosure()
-  const firstFieldRef = React.useRef(null)
+  const assigneeMenuDisclosure = useDisclosure()
+  const inputRef = React.useRef<HTMLInputElement | null>(null)
 
   const handleOpen = useCallback(() => {
     popoverDisclosure.onOpen()
@@ -43,14 +44,18 @@ export const PopoverAssigneeInput: React.FC<Props> = (props) => {
     }, 60)
   }, [popoverDisclosure, props])
 
+  const handleInputFocus = useCallback(() => {
+    assigneeMenuDisclosure.onOpen()
+  }, [assigneeMenuDisclosure])
+
   return (
     <PortalManager zIndex={1500}>
       <Popover
         placement="bottom-end"
         isOpen={popoverDisclosure.isOpen}
+        initialFocusRef={inputRef}
         isLazy
         closeOnBlur={false}
-        initialFocusRef={firstFieldRef}
       >
         <PopoverTrigger>
           <Link onClick={handleOpen}>{props.children}</Link>
@@ -70,9 +75,13 @@ export const PopoverAssigneeInput: React.FC<Props> = (props) => {
                 alignItems="center"
                 justifyContent="flex-end"
               >
-                <AssigneeMenu>
+                <AssigneeMenu
+                  isOpen={assigneeMenuDisclosure.isOpen}
+                  onClosed={popoverDisclosure.onClose}
+                >
                   <Input
-                    ref={firstFieldRef}
+                    ref={inputRef}
+                    onFocus={handleInputFocus}
                     size="sm"
                     placeholder="Name or email"
                     flex={1}

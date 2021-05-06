@@ -17,7 +17,7 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
   })
 
   return (
-    <AssigneeMenu>
+    <AssigneeMenu defaultIsOpen>
       <AtomsInput
         ref={ref}
         autoFocus

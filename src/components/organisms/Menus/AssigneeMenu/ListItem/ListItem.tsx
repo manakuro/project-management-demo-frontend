@@ -9,7 +9,6 @@ type Props = FlexProps & {
 }
 
 export const ListItem: React.FC<Props> = memo<Props>((props) => {
-  const { onClick, ...rest } = props
   const styles = useMenuStyle().item
   const { ref, isHovering } = useHover()
   const { selectedIndex, setSelectedIndex } = useAssigneeMenu()
@@ -32,7 +31,7 @@ export const ListItem: React.FC<Props> = memo<Props>((props) => {
       fontSize="sm"
       alignItems="center"
       {...styles}
-      {...rest}
+      {...props}
     />
   )
 })

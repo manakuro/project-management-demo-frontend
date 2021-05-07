@@ -29,6 +29,7 @@ const subtaskState = atomFamily<Subtask, string>({
     dueDate: '',
     dueTime: '',
     isDone: false,
+    assigneeId: '',
   },
 })
 

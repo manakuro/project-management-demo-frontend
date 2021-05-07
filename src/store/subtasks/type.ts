@@ -6,4 +6,5 @@ export type Subtask = {
   dueDate: string
   isDone: boolean
   dueTime?: string
+  assigneeId: string
 }

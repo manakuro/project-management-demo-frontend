@@ -9,6 +9,7 @@ export type Task = {
   dueTime?: string
   subTaskIds: string[]
   subTasks: Subtask[]
+  assigneeId: string
 }
 
 export type TaskResponse = {
@@ -19,4 +20,5 @@ export type TaskResponse = {
   isDone: boolean
   dueTime?: string
   subTasks: Subtask[]
+  assigneeId: string
 }

@@ -7,13 +7,13 @@ import { useAssignee } from './useAssignee'
 import { useTeammate } from 'src/store/teammates'
 
 type Props = {
-  teammateId?: string
+  assigneeId?: string
 }
 
 export const Assignee: React.FC<Props> = memo<Props>((props) => {
   const { clickableHoverLightStyle } = useClickableHoverStyle()
   const { onAssigneeClosed, onAssigneeOpened, showIcon } = useAssignee()
-  const { teammate } = useTeammate(props.teammateId)
+  const { teammate } = useTeammate(props.assigneeId)
 
   if (teammate.id) {
     return (

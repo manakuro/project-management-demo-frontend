@@ -10,19 +10,19 @@ type Props = {
 
 export const Subtasks: React.FC<Props> = memo<Props>((props) => {
   const { subtasksByTaskId } = useSubtasks()
-  const subtasks = useMemo(() => subtasksByTaskId(props.taskId), [
-    props.taskId,
-    subtasksByTaskId,
-  ])
-
-  console.log('subtasks: ', subtasks)
+  const subtaskIds = useMemo(
+    () => subtasksByTaskId(props.taskId).map((s) => s.id),
+    [props.taskId, subtasksByTaskId],
+  )
 
   return (
     <Row flexDirection="column" alignItems="flex-start">
-      {subtasks.length > 0 && (
+      {subtaskIds.length > 0 && (
         <>
           <Label>Subtasks</Label>
-          <TasksName />
+          {subtaskIds.map((s) => (
+            <TasksName subtaskId={s} key={s} />
+          ))}
         </>
       )}
       <AddSubtaskButton />

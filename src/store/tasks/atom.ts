@@ -30,6 +30,7 @@ const taskState = atomFamily<Task, string>({
     isDone: false,
     subTaskIds: [],
     subTasks: [],
+    assigneeId: '',
   },
 })
 

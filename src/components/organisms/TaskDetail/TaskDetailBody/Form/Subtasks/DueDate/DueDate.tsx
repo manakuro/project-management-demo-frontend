@@ -9,7 +9,7 @@ import { useDueDate } from 'src/components/organisms/TaskDetail/TaskDetailBody/F
 
 type Props = {
   dueDate: string
-  dueTime: string
+  dueTime?: string
 }
 
 export const DueDate: React.FC<Props> = memo<Props>((props) => {
@@ -26,7 +26,7 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
         size="sm"
         withIcon
       >
-        <Text ml={2} fontSize="sm">
+        <Text ml={2} fontSize="xs">
           {formatDueDate(props.dueDate)}
         </Text>
       </Tooltip>

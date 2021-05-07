@@ -10,9 +10,12 @@ import {
 import { DueDate } from './DueDate'
 import { Assignee } from './Assignee'
 import { SubtaskNameProvider } from './SubtaskNameProvider'
-// import { dateFns } from 'src/shared/dateFns'
+import { RightItem } from './RightItem'
+import { useSubtask } from 'src/store/subtasks'
 
-type Props = FlexProps
+type Props = FlexProps & {
+  subtaskId: string
+}
 
 export const TasksName: React.FC<Props> = (props) => {
   return (
@@ -22,24 +25,24 @@ export const TasksName: React.FC<Props> = (props) => {
   )
 }
 
-export const Component: React.FC<Props> = memo<Props>(() => {
+export const Component: React.FC<Props> = memo<Props>((props) => {
   const { ref } = useTasksName()
+  const { subtask } = useSubtask(props.subtaskId)
 
   return (
     <TasksListRow w="full">
       <TasksNameCell ref={ref} borderRight="none">
         <TasksNameGrabIcon />
-        <CheckIcon isDone={false} ml={2} />
-        <TasksNameField value="Organize component folder" onChange={() => {}} />
+        <CheckIcon isDone={subtask.isDone} ml={2} />
+        <TasksNameField value={subtask.name} onChange={() => {}} />
         <Flex alignItems="center" ml="auto">
-          <Stack direction="row" spacing={2}>
-            <DueDate
-              // dueDate={new Date(dateFns.addDays(new Date(), 3)).toISOString()}
-              // dueTime={new Date(dateFns.addDays(new Date(), 3)).toISOString()}
-              dueDate=""
-              dueTime=""
-            />
-            <Assignee />
+          <Stack direction="row" spacing={2} alignItems="center">
+            <RightItem>
+              <DueDate dueDate={subtask.dueDate} dueTime={subtask.dueTime} />
+            </RightItem>
+            <RightItem>
+              <Assignee assigneeId={subtask.assigneeId} />
+            </RightItem>
           </Stack>
         </Flex>
       </TasksNameCell>

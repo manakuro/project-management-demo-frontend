@@ -50,17 +50,20 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
               dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
               dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
               isDone: false,
+              assigneeId: '1',
             },
             {
               id: '2',
               taskId: '1',
               projectId: '1',
               name: 'Subtask 2',
-              dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
-              dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
+              dueDate: '',
+              dueTime: '',
               isDone: true,
+              assigneeId: '',
             },
           ],
+          assigneeId: '1',
         },
         {
           id: '2',
@@ -69,6 +72,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           dueDate: new Date(dateFns.addDays(new Date(), 4)).toISOString(),
           isDone: true,
           subTasks: [],
+          assigneeId: '',
         },
         {
           id: '3',
@@ -77,6 +81,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           dueDate: new Date(dateFns.addDays(new Date(), 5)).toISOString(),
           isDone: false,
           subTasks: [],
+          assigneeId: '',
         },
         {
           id: '4',
@@ -85,6 +90,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           dueDate: new Date(dateFns.addDays(new Date(), 6)).toISOString(),
           isDone: false,
           subTasks: [],
+          assigneeId: '',
         },
         {
           id: '5',
@@ -93,6 +99,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           dueDate: new Date(dateFns.addDays(new Date(), 6)).toISOString(),
           isDone: false,
           subTasks: [],
+          assigneeId: '',
         },
       ])
     }, 1000)

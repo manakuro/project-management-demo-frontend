@@ -1,22 +1,20 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect } from 'react'
+import lodashDebounce from 'lodash/debounce'
 
 export const useDebounce = <T extends any>(
   value: T,
-  callback: (value: T) => void,
+  callback: (val: T) => void,
   delay = 100,
 ) => {
-  const [state, setState] = useState(value)
-
-  const timer = useRef<number | null>(null)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debounce = useCallback(
+    lodashDebounce((val: T) => {
+      callback(val)
+    }, delay),
+    [callback, delay],
+  )
 
   useEffect(() => {
-    if (timer.current) {
-      window.clearInterval(timer.current)
-    }
-
-    timer.current = window.setTimeout(() => {
-      callback(value)
-      setState(value)
-    }, delay)
-  }, [callback, delay, state, timer, value])
+    debounce(value)
+  }, [debounce, value])
 }

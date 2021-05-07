@@ -7,14 +7,14 @@ import { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
 import { Plugin } from 'prosemirror-state'
 import { EditorProvider, useEditorState } from './EdiorProvider'
 import { Portals } from './Portals'
-import { useDebounce } from 'src/hooks'
+import { useDebounceForEditor } from 'src/hooks'
 
 type Props = {
   schema: Schema
   plugins: Plugin[]
   value: string
   onChange: (value: string) => void
-  debounce?: number
+  debounce: number
 }
 export const EditorContainer: React.FC<Props> = (props) => {
   const transformer = useMemo<ProsemirrorTransformer>(
@@ -37,13 +37,13 @@ export const EditorContainer: React.FC<Props> = (props) => {
 type ContainerProps<P> = {
   onChange: (value: P) => void
   transformer: ProsemirrorTransformer<P>
-  debounce?: number
+  debounce: number
 }
 export const Container = <P extends unknown>(
   props: PropsWithChildren<ContainerProps<P>>,
 ) => {
   const state = useEditorState()
-  useDebounce(
+  useDebounceForEditor(
     state.doc,
     (val) => {
       props.onChange(props.transformer.serialize(val))

@@ -7,10 +7,10 @@ type Props = {
   value: string
   onChange: (val: string) => void
   focusedBorder?: boolean
-} & InputProps
+} & Omit<InputProps, 'onChange'>
 
 export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
-  const [value, setValue] = useState(props.value)
+  const [value, setValue] = useState<string>(props.value)
   const { onInputFocus, onInputBlur } = useTasksName()
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,14 +18,7 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
     setValue(value)
   }, [])
 
-  useDebounce(
-    value,
-    (val) => {
-      console.log('useDebounce!!: ', val)
-      props.onChange(val)
-    },
-    750,
-  )
+  useDebounce(value, props.onChange, 500)
 
   const style = useMemo<InputProps>(
     () => ({

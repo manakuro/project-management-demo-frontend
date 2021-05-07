@@ -9,11 +9,11 @@ type Props = {
 }
 
 export const Subtasks: React.FC<Props> = memo<Props>((props) => {
-  const { subtaskIds } = useSubtasksByTask(props.taskId)
+  const { subtaskIds, addSubtask } = useSubtasksByTask(props.taskId)
 
   const handleAddSubtask = useCallback(() => {
-    console.log('handleAddSubtask!')
-  }, [])
+    addSubtask()
+  }, [addSubtask])
 
   return (
     <Row flexDirection="column" alignItems="flex-start">

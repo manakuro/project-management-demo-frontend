@@ -18,7 +18,7 @@ export const CheckIcon: React.FC<Props> = (props) => {
       {...iconStyle}
       _hover={{ color: 'teal.300' }}
       cursor="pointer"
-      transition={transitions.base}
+      transition={transitions.base()}
       {...rest}
     />
   )

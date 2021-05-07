@@ -87,5 +87,5 @@ export const theme = extendTheme({
 })
 
 export const transitions = {
-  base: 'all .15s ease-out',
-} as const
+  base: (prop?: string) => `${prop || 'all'} .15s ease-out`,
+}

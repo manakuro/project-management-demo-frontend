@@ -18,7 +18,7 @@ export const useLinkHoverStyle = (props?: UseHoverProps) => {
         bg,
       },
       selected: { bg: 'navigation.selected' },
-      transition: transitions.base,
+      transition: transitions.base(),
     }),
     [bg],
   )

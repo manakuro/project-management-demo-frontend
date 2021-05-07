@@ -62,7 +62,7 @@ export const ListItemTile: React.VFC<Props> = (props) => {
                   transform: 'translate(0, -3px)',
                 }
               : {})}
-            transition={transitions.base}
+            transition={transitions.base()}
             position="relative"
           >
             <Icon size="3xl" icon={findProjectIcon(project.icon.id).icon} />

@@ -33,7 +33,7 @@ export const Container: React.FC<Props> = (props) => {
     <Flex
       borderRadius="3xl"
       _hover={focusedStyle}
-      transition={transitions.base}
+      transition={transitions.base()}
       w="152px"
       h="226px"
       alignItems="center"

@@ -8,7 +8,7 @@ export const useClickableHoverStyle = () => {
       _hover: {
         bg: 'gray.50',
       },
-      transition: transitions.base,
+      transition: transitions.base('background'),
       cursor: 'pointer',
     }),
     [],
@@ -19,7 +19,7 @@ export const useClickableHoverStyle = () => {
       _hover: {
         opacity: 1,
       },
-      transition: transitions.base,
+      transition: transitions.base('opacity'),
       cursor: 'pointer',
     }),
     [],
@@ -31,7 +31,7 @@ export const useClickableHoverStyle = () => {
         borderColor: 'gray.300',
         boxShadow: 'lg',
       },
-      transition: transitions.base,
+      transition: transitions.base(),
       cursor: 'pointer',
     }),
     [],

@@ -29,7 +29,7 @@ export const ListItem: React.VFC<Props> = (props) => {
       _hover={{
         bg: 'navigation.hover.dark',
       }}
-      transition={transitions.base}
+      transition={transitions.base()}
       transitionProperty="background"
       height="40px"
       onClick={handleToggle}

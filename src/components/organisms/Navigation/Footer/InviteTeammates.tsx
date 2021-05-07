@@ -23,7 +23,7 @@ export const InviteTeammates: React.VFC = () => {
         _hover={{
           bg: 'navigation.hover.dark',
         }}
-        transition={transitions.base}
+        transition={transitions.base()}
         cursor="pointer"
         onClick={handleClick}
       >

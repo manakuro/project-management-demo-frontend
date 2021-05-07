@@ -28,7 +28,7 @@ export const ListItemTileNew: React.VFC<Props> = () => {
                   transform: 'translate(0, -3px)',
                 }
               : {})}
-            transition={transitions.base}
+            transition={transitions.base()}
           >
             <Icon size="3xl" icon="plus" />
           </Flex>

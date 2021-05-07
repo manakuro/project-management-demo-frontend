@@ -41,21 +41,21 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
       onOpened={onDueDateOpened}
       onClosed={onDueDateClosed}
     >
-      {showIcon && (
-        <Tooltip
-          hasArrow
-          label="Add a due date to this subtask"
-          aria-label="Due date"
-          size="sm"
-          withIcon
-        >
-          <Icon
-            icon="calendarAlt"
-            color="text.muted"
-            {...clickableHoverLightStyle}
-          />
-        </Tooltip>
-      )}
+      <Tooltip
+        hasArrow
+        label="Add a due date to this subtask"
+        aria-label="Due date"
+        size="sm"
+        withIcon
+      >
+        <Icon
+          visibility={showIcon ? 'visible' : 'hidden'}
+          pointerEvents={showIcon ? 'auto' : 'none'}
+          icon="calendarAlt"
+          color="text.muted"
+          {...clickableHoverLightStyle}
+        />
+      </Tooltip>
     </PopoverDueDatePicker>
   )
 })

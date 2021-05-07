@@ -70,6 +70,17 @@ export const useProjects = () => {
   const projectIds = useRecoilValue(projectIdsState)
   const projects = useRecoilValue(projectsState)
 
+  const setTeammates = useRecoilCallback(
+    ({ set }) => (data: ProjectResponse[]) => {
+      data
+        .reduce<Project['teammates']>(
+          (acc, p) => uniqBy([...acc, ...p.teammates], 'id'),
+          [],
+        )
+        .forEach((t) => set(teammateSelector(t.id), t))
+    },
+  )
+
   const setProjects = useRecoilCallback(
     ({ set }) => (data: ProjectResponse[]) => {
       const projects: Project[] = data.map((d) => ({
@@ -83,18 +94,7 @@ export const useProjects = () => {
 
       setTeammates(data)
     },
-    [],
-  )
-
-  const setTeammates = useRecoilCallback(
-    ({ set }) => (data: ProjectResponse[]) => {
-      data
-        .reduce<Project['teammates']>(
-          (acc, p) => uniqBy([...acc, ...p.teammates], 'id'),
-          [],
-        )
-        .forEach((t) => set(teammateSelector(t.id), t))
-    },
+    [setTeammates],
   )
 
   return {
@@ -124,7 +124,7 @@ export const useProject = (projectId: string) => {
         color: { id: color.id, name: color.name, color: color.base },
       })
     },
-    [],
+    [upsertProject],
   )
 
   return {

@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { CheckIcon, Flex, FlexProps, Stack } from 'src/components/atoms'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
 import {
@@ -27,14 +27,21 @@ export const TasksName: React.FC<Props> = (props) => {
 
 export const Component: React.FC<Props> = memo<Props>((props) => {
   const { ref } = useTasksName()
-  const { subtask } = useSubtask(props.subtaskId)
+  const { subtask, setSubtask } = useSubtask(props.subtaskId)
+
+  const handleChange = useCallback(
+    async (val) => {
+      await setSubtask({ name: val })
+    },
+    [setSubtask],
+  )
 
   return (
     <TasksListRow w="full">
       <TasksNameCell ref={ref} borderRight="none">
         <TasksNameGrabIcon />
         <CheckIcon isDone={subtask.isDone} ml={2} />
-        <TasksNameField value={subtask.name} onChange={() => {}} />
+        <TasksNameField value={subtask.name} onChange={handleChange} />
         <Flex alignItems="center" ml="auto">
           <Stack direction="row" spacing={2} alignItems="center">
             <RightItem>

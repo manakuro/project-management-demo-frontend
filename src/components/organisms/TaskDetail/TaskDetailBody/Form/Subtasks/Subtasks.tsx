@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo, useCallback, useMemo } from 'react'
 import { Row, Label } from '../Row'
 import { useSubtasks } from 'src/store/subtasks'
 import { AddSubtaskButton } from './AddSubtaskButton'
@@ -10,10 +10,15 @@ type Props = {
 
 export const Subtasks: React.FC<Props> = memo<Props>((props) => {
   const { subtasksByTaskId } = useSubtasks()
+
   const subtaskIds = useMemo(
     () => subtasksByTaskId(props.taskId).map((s) => s.id),
     [props.taskId, subtasksByTaskId],
   )
+
+  const handleAddSubtask = useCallback(() => {
+    console.log('handleAddSubtask!')
+  }, [])
 
   return (
     <Row flexDirection="column" alignItems="flex-start">
@@ -25,7 +30,7 @@ export const Subtasks: React.FC<Props> = memo<Props>((props) => {
           ))}
         </>
       )}
-      <AddSubtaskButton />
+      <AddSubtaskButton onClick={handleAddSubtask} />
     </Row>
   )
 })

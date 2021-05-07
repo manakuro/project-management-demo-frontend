@@ -19,18 +19,19 @@ export const subtasksState = atom<Subtask[]>({
   default: [],
 })
 
+const defaultStateValue = (): Subtask => ({
+  id: '',
+  taskId: '',
+  projectId: '',
+  name: '',
+  dueDate: '',
+  dueTime: '',
+  isDone: false,
+  assigneeId: '',
+})
 const subtaskState = atomFamily<Subtask, string>({
   key: 'subtaskState',
-  default: {
-    id: '',
-    taskId: '',
-    projectId: '',
-    name: '',
-    dueDate: '',
-    dueTime: '',
-    isDone: false,
-    assigneeId: '',
-  },
+  default: defaultStateValue(),
 })
 
 export const subtaskSelector = selectorFamily<Subtask, string>({
@@ -64,6 +65,7 @@ export const subtaskSelector = selectorFamily<Subtask, string>({
 export const useSubtasks = () => {
   const subtaskIds = useRecoilValue(subtaskIdsState)
   const subtasks = useRecoilValue(subtasksState)
+  // const { upsertSubtask } = useSubtask()
 
   const setSubtasks = useRecoilCallback(
     ({ set }) => (subtasks: Subtask[]) => {
@@ -80,16 +82,28 @@ export const useSubtasks = () => {
     [subtasks],
   )
 
+  // const addSubtask = useCallback(
+  //   (val?: Subtask) => {
+  //     upsertSubtask({
+  //       ...defaultStateValue(),
+  //       id: String(subtasks.length + 1),
+  //       ...val,
+  //     })
+  //   },
+  //   [subtasks.length, upsertSubtask],
+  // )
+
   return {
     subtaskIds,
     subtasks,
     setSubtasks,
     subtasksByTaskId,
+    // addSubtask,
   }
 }
 
-export const useSubtask = (subtaskId: string) => {
-  const subtask = useRecoilValue(subtaskSelector(subtaskId))
+export const useSubtask = (subtaskId?: string) => {
+  const subtask = useRecoilValue(subtaskSelector(subtaskId || ''))
 
   const upsertSubtask = useRecoilCallback(
     ({ set }) => (subtask: Subtask) => {
@@ -98,8 +112,20 @@ export const useSubtask = (subtaskId: string) => {
     [],
   )
 
+  const setSubtask = useRecoilCallback(
+    ({ snapshot }) => async (val: DeepPartial<Subtask>) => {
+      const prev = await snapshot.getPromise(subtaskSelector(subtask.id))
+      upsertSubtask({
+        ...prev,
+        ...val,
+      })
+    },
+    [upsertSubtask, subtask.id],
+  )
+
   return {
     subtask,
     upsertSubtask,
+    setSubtask,
   }
 }

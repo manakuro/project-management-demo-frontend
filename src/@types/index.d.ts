@@ -5,3 +5,6 @@ declare type ArgType<
   T extends (...args: any[]) => any,
   N extends number
 > = Parameters<T>[N]
+declare type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P]
+}

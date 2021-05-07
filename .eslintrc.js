@@ -6,7 +6,12 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     'no-console': process.env.NODE_ENV === 'production' ? 2 : 0,
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'error',
+    'react-hooks/exhaustive-deps': [
+      'error',
+      {
+        additionalHooks: 'useRecoilCallback',
+      },
+    ],
     '@typescript-eslint/no-unused-vars': [
       'error',
       { args: 'all', argsIgnorePattern: '^_', ignoreRestSiblings: true },

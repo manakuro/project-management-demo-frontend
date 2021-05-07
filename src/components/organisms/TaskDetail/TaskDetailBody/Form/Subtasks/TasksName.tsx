@@ -37,11 +37,15 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
     [setSubtask],
   )
 
+  const handleToggleDone = useCallback(async () => {
+    await setSubtask({ isDone: !subtask.isDone })
+  }, [setSubtask, subtask.isDone])
+
   return (
     <TasksListRow w="full">
       <TasksNameCell ref={ref} borderRight="none">
         <TasksNameGrabIcon />
-        <CheckIcon isDone={subtask.isDone} ml={2} />
+        <CheckIcon isDone={subtask.isDone} ml={2} onClick={handleToggleDone} />
         <TasksNameField value={subtask.name} onChange={handleChange} />
         <Flex alignItems="center" ml="auto">
           <Stack direction="row" spacing={2} alignItems="center">

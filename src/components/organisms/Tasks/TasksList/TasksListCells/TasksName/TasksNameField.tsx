@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useMemo, useState } from 'react'
 import { Box, Flex, Input, InputProps } from 'src/components/atoms'
 import { useTasksName } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName/TasksNameProvider'
+import { useDebounce } from 'src/hooks'
 
 type Props = {
   value: string
@@ -16,6 +17,15 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
     const value = e.target.value
     setValue(value)
   }, [])
+
+  useDebounce(
+    value,
+    (val) => {
+      console.log('useDebounce!!: ', val)
+      props.onChange(val)
+    },
+    750,
+  )
 
   const style = useMemo<InputProps>(
     () => ({
@@ -43,7 +53,7 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <Flex position="relative">
+    <Flex position="relative" maxWidth="70%">
       <Box as="span" {...style} visibility="hidden">
         {value}
       </Box>

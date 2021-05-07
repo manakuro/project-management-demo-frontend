@@ -15,11 +15,8 @@ export const useDebounce = <T extends any>(
     }
 
     timer.current = window.setTimeout(() => {
+      callback(value)
       setState(value)
     }, delay)
-  }, [delay, timer, value])
-
-  useEffect(() => {
-    callback(state)
-  }, [callback, state])
+  }, [callback, delay, state, timer, value])
 }

@@ -90,9 +90,9 @@ const initialValue = JSON.stringify(
   2,
 )
 export const Description: React.FC<Props> = memo<Props>(() => {
-  const [, setValue] = useState(initialValue)
+  const [value, setValue] = useState(initialValue)
 
-  // console.log(JSON.parse(value))
+  console.log(JSON.parse(value))
   return (
     <Row>
       <Label>Description</Label>

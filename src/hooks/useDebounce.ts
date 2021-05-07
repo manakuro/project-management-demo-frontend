@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 
-export const useDebounce = <T extends any>(value: T, delay = 100): T => {
+export const useDebounce = <T extends any>(
+  value: T,
+  callback: (value: T) => void,
+  delay = 100,
+) => {
   const [state, setState] = useState(value)
 
   const timer = useRef<number | null>(null)
@@ -15,5 +19,7 @@ export const useDebounce = <T extends any>(value: T, delay = 100): T => {
     }, delay)
   }, [delay, timer, value])
 
-  return state
+  useEffect(() => {
+    callback(state)
+  }, [callback, state])
 }

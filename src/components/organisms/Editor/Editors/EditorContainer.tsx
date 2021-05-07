@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useMemo } from 'react'
+import React, { PropsWithChildren, useMemo } from 'react'
 import {
   createJSONTransformer,
   ProsemirrorTransformer,
@@ -43,11 +43,13 @@ export const Container = <P extends unknown>(
   props: PropsWithChildren<ContainerProps<P>>,
 ) => {
   const state = useEditorState()
-  const debouncedDoc = useDebounce(state.doc, props.debounce)
-
-  useEffect(() => {
-    props.onChange(props.transformer.serialize(debouncedDoc))
-  }, [props, debouncedDoc])
+  useDebounce(
+    state.doc,
+    (val) => {
+      props.onChange(props.transformer.serialize(val))
+    },
+    props.debounce,
+  )
 
   return <>{props.children}</>
 }

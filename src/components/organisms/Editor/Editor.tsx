@@ -21,7 +21,7 @@ export const Editor: React.FC<Props> = memo<Props>((props) => {
               plugins={plugins}
               value={props.value}
               onChange={props.onChange}
-              debounce={250}
+              debounce={500}
             >
               <EditorContent />
               <ToolBar show={focused} />

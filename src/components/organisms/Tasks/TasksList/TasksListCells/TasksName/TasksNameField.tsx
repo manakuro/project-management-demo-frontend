@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import React, { memo, useCallback, useMemo, useState } from 'react'
 import { Box, Flex, Input, InputProps } from 'src/components/atoms'
 import { useTasksName } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName/TasksNameProvider'
 
@@ -9,15 +9,13 @@ type Props = {
 } & InputProps
 
 export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
+  const [value, setValue] = useState(props.value)
   const { onInputFocus, onInputBlur } = useTasksName()
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value
-      props.onChange(value)
-    },
-    [props],
-  )
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setValue(value)
+  }, [])
 
   const style = useMemo<InputProps>(
     () => ({
@@ -46,13 +44,13 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <Flex position="relative">
-      <Box {...style} visibility="hidden">
-        {props.value}
+      <Box as="span" {...style} visibility="hidden">
+        {value}
       </Box>
       <Input
         onClick={(e) => e.stopPropagation()}
         onChange={handleChange}
-        value={props.value}
+        value={value}
         {...style}
         position="absolute"
         top={0}

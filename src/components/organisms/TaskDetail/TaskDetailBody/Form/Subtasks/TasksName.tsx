@@ -31,6 +31,7 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
 
   const handleChange = useCallback(
     async (val) => {
+      console.log('handleChange!: ', val)
       await setSubtask({ name: val })
     },
     [setSubtask],

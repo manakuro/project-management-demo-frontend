@@ -7,7 +7,7 @@ import { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
 import { Plugin } from 'prosemirror-state'
 import { EditorProvider, useEditorState } from './EdiorProvider'
 import { Portals } from './Portals'
-import { useDebounceForEditor } from 'src/hooks'
+import { useDebounce } from 'src/hooks'
 
 type Props = {
   schema: Schema
@@ -43,7 +43,7 @@ export const Container = <P extends unknown>(
   props: PropsWithChildren<ContainerProps<P>>,
 ) => {
   const state = useEditorState()
-  useDebounceForEditor(
+  useDebounce(
     state.doc,
     (val) => {
       props.onChange(props.transformer.serialize(val))

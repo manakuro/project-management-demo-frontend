@@ -8,11 +8,15 @@ import {
 } from 'recoil'
 import { Subtask } from './type'
 import { uniqBy } from 'src/shared/utils'
-import { useCallback } from 'react'
+import { useMemo } from 'react'
 
 export const subtaskIdsState = atom<string[]>({
   key: 'subtaskIdsState',
   default: [],
+})
+export const subtaskIdsGroupByTaskState = atom<Record<string, string[]>>({
+  key: 'subtaskIdsGroupByTaskState',
+  default: {},
 })
 export const subtasksState = atom<Subtask[]>({
   key: 'subtasksState',
@@ -58,9 +62,28 @@ export const subtaskSelector = selectorFamily<Subtask, string>({
 
     if (get(subtaskIdsState).find((subtaskId) => subtaskId === newVal.id))
       return
+
     set(subtaskIdsState, (prev) => [...prev, newVal.id])
+    set(subtaskIdsGroupByTaskState, (prev) => {
+      return {
+        ...prev,
+        [newVal.taskId]: [...(prev[newVal.taskId] || []), newVal.id],
+      }
+    })
   },
 })
+
+export const useSubtasksByTask = (taskId: string) => {
+  const subtaskIdsGroupByTask = useRecoilValue(subtaskIdsGroupByTaskState)
+
+  const subtaskIds = useMemo(() => {
+    return subtaskIdsGroupByTask[taskId]
+  }, [subtaskIdsGroupByTask, taskId])
+
+  return {
+    subtaskIds,
+  }
+}
 
 export const useSubtasks = () => {
   const subtaskIds = useRecoilValue(subtaskIdsState)
@@ -74,12 +97,6 @@ export const useSubtasks = () => {
       })
     },
     [],
-  )
-  const subtasksByTaskId = useCallback(
-    (taskId: string) => {
-      return subtasks.filter((s) => s.taskId === taskId)
-    },
-    [subtasks],
   )
 
   // const addSubtask = useCallback(
@@ -97,7 +114,6 @@ export const useSubtasks = () => {
     subtaskIds,
     subtasks,
     setSubtasks,
-    subtasksByTaskId,
     // addSubtask,
   }
 }

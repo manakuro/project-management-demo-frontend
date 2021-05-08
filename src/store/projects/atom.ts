@@ -66,8 +66,15 @@ export const projectSelector = selectorFamily<Project, string>({
   },
 })
 
-export const useProjects = () => {
+export const useProjectIds = () => {
   const projectIds = useRecoilValue(projectIdsState)
+
+  return {
+    projectIds,
+  }
+}
+
+export const useProjects = () => {
   const projects = useRecoilValue(projectsState)
 
   const setTeammates = useRecoilCallback(
@@ -98,7 +105,6 @@ export const useProjects = () => {
   )
 
   return {
-    projectIds,
     projects,
     setProjects,
   }

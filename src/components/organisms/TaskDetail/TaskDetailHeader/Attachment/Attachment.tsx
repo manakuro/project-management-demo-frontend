@@ -1,45 +1,19 @@
-import React from 'react'
-import { Icon, IconButton, Portal } from 'src/components/atoms'
-import { Tooltip } from 'src/components/molecules'
-import {
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  MenuGroup,
-} from 'src/components/organisms'
+import React, { memo } from 'react'
+import { Icon, IconButton } from 'src/components/atoms'
+import { MenuButton, AttachmentMenu } from 'src/components/organisms'
 
 type Props = {}
 
-export const Attachment: React.FC<Props> = () => {
+export const Attachment: React.VFC<Props> = memo<Props>(() => {
   return (
-    <Menu isLazy>
-      <Tooltip
-        hasArrow
-        label="Add a file to this task"
+    <AttachmentMenu label="Add a file to this task">
+      <MenuButton
         aria-label="Attachment button"
-        size="md"
-        withIcon
-      >
-        <MenuButton
-          aria-label="Attachment button"
-          as={IconButton}
-          icon={<Icon icon="attach" color="text.muted" />}
-          size="sm"
-          variant="ghost"
-        />
-      </Tooltip>
-      <Portal>
-        <MenuList>
-          <MenuGroup title="Attach a File">
-            <MenuItem>Your computer</MenuItem>
-            <MenuItem>Dropbox</MenuItem>
-            <MenuItem>Google Drive</MenuItem>
-            <MenuItem>Box</MenuItem>
-            <MenuItem>OneDrive/SharePoint</MenuItem>
-          </MenuGroup>
-        </MenuList>
-      </Portal>
-    </Menu>
+        as={IconButton}
+        icon={<Icon icon="attach" color="text.muted" />}
+        size="sm"
+        variant="ghost"
+      />
+    </AttachmentMenu>
   )
-}
+})

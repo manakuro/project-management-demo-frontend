@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Icon } from 'src/components/atoms'
+import { Flex, Text, Icon, DashedBox } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { Container } from './Container'
 
@@ -10,21 +10,9 @@ export const ListItemListNew: React.VFC<Props> = () => {
 
   return (
     <Container>
-      <Flex
-        border="dashed 2px"
-        borderColor="gray.300"
-        borderRadius="md"
-        p={2}
-        w={12}
-        h={12}
-        color="text.muted"
-        justifyContent="center"
-        alignItems="center"
-        flexDirection="column"
-        {...clickableHoverLightStyle}
-      >
+      <DashedBox w={12} h={12}>
         <Icon size="md" icon="plus" />
-      </Flex>
+      </DashedBox>
       <Flex ml={3} flex={1} alignItems="center">
         <Text fontSize="sm" {...clickableHoverLightStyle}>
           New Project

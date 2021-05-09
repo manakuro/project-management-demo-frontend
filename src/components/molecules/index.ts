@@ -1,4 +1,5 @@
 export * from './ColorModeSwitch'
-export * from './InputWithIcon'
-export * from './Tooltip'
 export * from './CustomField'
+export * from './InputWithIcon'
+export * from './NewBox'
+export * from './Tooltip'

@@ -7,6 +7,7 @@ import { dateFns } from 'src/shared/dateFns'
 import { Projects } from './Projects'
 import { Description } from './Description'
 import { Subtasks } from './Subtasks'
+import { Attachment } from './Attachment'
 
 type Props = {}
 
@@ -23,6 +24,7 @@ export const Form: React.FC<Props> = memo(() => {
         <Projects />
         <Description />
         <Subtasks taskId="1" />
+        <Attachment />
       </Stack>
     </Flex>
   )

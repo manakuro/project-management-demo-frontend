@@ -1,10 +1,11 @@
 import React, { memo } from 'react'
 import { Portal } from 'src/components/atoms'
-import { Tooltip } from 'src/components/molecules'
+import { Tooltip, TooltipProps } from 'src/components/molecules'
 import { Menu, MenuItem, MenuList, MenuGroup } from 'src/components/organisms'
 
 type Props = {
   label: string
+  tooltipSize?: TooltipProps['size']
 }
 
 export const AttachmentMenu: React.FC<Props> = memo((props) => {
@@ -14,7 +15,7 @@ export const AttachmentMenu: React.FC<Props> = memo((props) => {
         hasArrow
         label={props.label}
         aria-label="Attachment button"
-        size="md"
+        size={props.tooltipSize}
         withIcon
       >
         {props.children}

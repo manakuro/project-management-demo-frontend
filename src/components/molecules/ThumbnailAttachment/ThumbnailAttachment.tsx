@@ -1,6 +1,9 @@
 import React from 'react'
-import { Box, Flex, FlexProps, Image } from 'src/components/atoms'
+import { Flex, FlexProps, Icon, IconButton, Image } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
+import { MenuButton } from 'src/components/organisms'
+import { ThumbnailMenu } from './ThumbnailMenu'
+import { useHover } from 'src/hooks/useHover'
 
 type Props = FlexProps & {
   image: string
@@ -8,10 +11,13 @@ type Props = FlexProps & {
 
 export const ThumbnailAttachment: React.VFC<Props> = (props) => {
   const { image, ...rest } = props
+  const { ref, isHovering } = useHover()
+
   return (
     <Tooltip hasArrow label={props.image} aria-label={props.image} size="sm">
       <Flex
         {...rest}
+        ref={ref}
         minW="60px"
         h={16}
         bg="gray.50"
@@ -27,7 +33,21 @@ export const ThumbnailAttachment: React.VFC<Props> = (props) => {
           borderRadius="lg"
           objectFit="cover"
         />
-        <Box
+        <ThumbnailMenu>
+          <MenuButton
+            aria-label="Attachment button"
+            as={IconButton}
+            icon={<Icon icon="chevronDown" color="white" />}
+            size="sm"
+            variant="ghost"
+            position="absolute"
+            top={4}
+            right={1}
+            zIndex="docked"
+            light
+          />
+        </ThumbnailMenu>
+        <Flex
           borderRadius="lg"
           position="absolute"
           top={0}
@@ -35,8 +55,11 @@ export const ThumbnailAttachment: React.VFC<Props> = (props) => {
           w="full"
           h="full"
           bg="gray.700"
-          opacity={0}
-          _hover={{ opacity: 0.5 }}
+          opacity={isHovering ? 0.5 : 0}
+          zIndex="base"
+          alignItems="center"
+          justifyContent="flex-end"
+          p={1}
         />
       </Flex>
     </Tooltip>

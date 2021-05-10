@@ -16,7 +16,7 @@ export const IconButton: React.FC<Props> & { id?: string } = forwardRef<
   'button'
 >((props, ref) => {
   const { light, ...rest } = props
-  const { _hover } = useLinkHoverStyle()
+  const linkHoverStyle = useLinkHoverStyle()
 
   let style: ChakraProps
   switch (true) {
@@ -31,7 +31,7 @@ export const IconButton: React.FC<Props> & { id?: string } = forwardRef<
   if (light) {
     style = {
       ...style,
-      _hover,
+      ...linkHoverStyle,
     }
   }
 

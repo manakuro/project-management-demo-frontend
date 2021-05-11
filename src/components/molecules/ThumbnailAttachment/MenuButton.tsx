@@ -1,5 +1,10 @@
 import React from 'react'
-import { Icon, IconButton, IconButtonProps } from 'src/components/atoms'
+import {
+  Icon,
+  IconButton,
+  IconButtonProps,
+  IconProps,
+} from 'src/components/atoms'
 import {
   MenuButton as AtomsMenuButton,
   MenuProps,
@@ -7,6 +12,7 @@ import {
 
 type Props = Omit<MenuProps, 'children'> & {
   light?: IconButtonProps['light']
+  color: IconProps['color']
 }
 
 export const MenuButton: React.VFC<Props> = (props) => {
@@ -14,7 +20,7 @@ export const MenuButton: React.VFC<Props> = (props) => {
     <AtomsMenuButton
       aria-label="Attachment button"
       as={IconButton}
-      icon={<Icon icon="chevronDown" color="white" />}
+      icon={<Icon icon="chevronDown" color={props.color} />}
       size="sm"
       variant="ghost"
       position="absolute"

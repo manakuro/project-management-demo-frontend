@@ -29,6 +29,7 @@ const defaultStateValue = (): Attachment => ({
   taskId: '',
   name: '',
   src: '',
+  type: 1,
 })
 const attachmentState = atomFamily<Attachment, string>({
   key: 'attachmentState',

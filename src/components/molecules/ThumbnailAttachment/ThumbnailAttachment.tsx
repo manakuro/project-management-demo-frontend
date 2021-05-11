@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { Flex, FlexProps, Icon, IconButton, Image } from 'src/components/atoms'
+import { Flex, FlexProps, Icon, IconButton } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { MenuButton } from 'src/components/organisms'
 import { ThumbnailMenu } from './ThumbnailMenu'
 import { useHover } from 'src/hooks/useHover'
 import { useDisclosure } from 'src/shared/chakra'
 import { useAttachment } from 'src/store/attachments'
+import { ThumbnailListItem } from './ThrumbnailListItem'
 
 type Props = FlexProps & {
   attachmentId: string
@@ -52,14 +53,7 @@ export const ThumbnailAttachment: React.VFC<Props> = (props) => {
         cursor="pointer"
         position="relative"
       >
-        <Image
-          width="auto"
-          maxH={16}
-          maxW="240px"
-          src={attachment.src}
-          borderRadius="lg"
-          objectFit="cover"
-        />
+        <ThumbnailListItem attachmentId={attachmentId} />
         <ThumbnailMenu
           onOpen={handleThumbnailMenuOpen}
           onClose={handleThumbnailMenuClose}

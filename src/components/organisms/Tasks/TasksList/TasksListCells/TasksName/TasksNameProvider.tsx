@@ -30,17 +30,14 @@ export const useTasksName = () => useContext(Context)
 
 export const TasksNameProvider: React.FC = (props) => {
   const useInputFocusResult = useInputFocus()
-  const {
-    markMenuFocused,
-    onMarkMenuClosed,
-    onMarkMenuOpened,
-  } = useMarkMenuFocus()
+  const { markMenuFocused, onMarkMenuClosed, onMarkMenuOpened } =
+    useMarkMenuFocus()
   const { ref, isHovering } = useHover()
 
-  const showIcon = useMemo(() => isHovering || markMenuFocused, [
-    isHovering,
-    markMenuFocused,
-  ])
+  const showIcon = useMemo(
+    () => isHovering || markMenuFocused,
+    [isHovering, markMenuFocused],
+  )
 
   const showMark = useMemo(
     () => (isHovering || markMenuFocused) && !useInputFocusResult.inputFocused,

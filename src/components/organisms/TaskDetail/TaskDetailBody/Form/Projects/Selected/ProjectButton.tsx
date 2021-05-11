@@ -3,7 +3,7 @@ import { Button, Text, Box, Flex } from 'src/components/atoms'
 
 type Props = {}
 
-export const ProjectButton: React.FC<Props> = (props) => {
+export const ProjectButton: React.FC<Props> = () => {
   return (
     <Button
       as={Box}

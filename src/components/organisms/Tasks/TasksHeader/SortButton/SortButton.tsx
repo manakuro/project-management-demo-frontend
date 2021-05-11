@@ -10,7 +10,7 @@ import { NONE, ListStatus, PROJECT, DUE_DATE, LIKES } from './listState'
 
 type Props = {}
 
-export const SortButton: React.VFC<Props> = memo<Props>((props) => {
+export const SortButton: React.VFC<Props> = memo<Props>(() => {
   const handleChange = useCallback((listStatus: ListStatus) => {
     console.log('hey: ', listStatus)
   }, [])

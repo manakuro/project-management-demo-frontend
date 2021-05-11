@@ -41,37 +41,42 @@ const subtaskState = atomFamily<Subtask, string>({
 
 export const subtaskSelector = selectorFamily<Subtask, string>({
   key: 'subtaskSelector',
-  get: (subtaskId) => ({ get }) => get(subtaskState(subtaskId)),
-  set: (subtaskId) => ({ get, set, reset }, newVal) => {
-    if (newVal instanceof DefaultValue) {
-      reset(subtaskState(subtaskId))
-      return
-    }
-
-    set(subtaskState(subtaskId), newVal)
-    set(subtasksState, (prev) =>
-      uniqBy([...prev, newVal], 'id').map((p) => {
-        if (p.id === newVal.id) {
-          return {
-            ...p,
-            ...newVal,
-          }
-        }
-        return p
-      }),
-    )
-
-    if (get(subtaskIdsState).find((subtaskId) => subtaskId === newVal.id))
-      return
-
-    set(subtaskIdsState, (prev) => [...prev, newVal.id])
-    set(subtaskIdsGroupByTaskState, (prev) => {
-      return {
-        ...prev,
-        [newVal.taskId]: [...(prev[newVal.taskId] || []), newVal.id],
+  get:
+    (subtaskId) =>
+    ({ get }) =>
+      get(subtaskState(subtaskId)),
+  set:
+    (subtaskId) =>
+    ({ get, set, reset }, newVal) => {
+      if (newVal instanceof DefaultValue) {
+        reset(subtaskState(subtaskId))
+        return
       }
-    })
-  },
+
+      set(subtaskState(subtaskId), newVal)
+      set(subtasksState, (prev) =>
+        uniqBy([...prev, newVal], 'id').map((p) => {
+          if (p.id === newVal.id) {
+            return {
+              ...p,
+              ...newVal,
+            }
+          }
+          return p
+        }),
+      )
+
+      if (get(subtaskIdsState).find((subtaskId) => subtaskId === newVal.id))
+        return
+
+      set(subtaskIdsState, (prev) => [...prev, newVal.id])
+      set(subtaskIdsGroupByTaskState, (prev) => {
+        return {
+          ...prev,
+          [newVal.taskId]: [...(prev[newVal.taskId] || []), newVal.id],
+        }
+      })
+    },
 })
 
 export const useSubtasksByTask = (taskId: string) => {
@@ -101,11 +106,12 @@ export const useSubtasks = () => {
   const subtasks = useRecoilValue(subtasksState)
 
   const setSubtasks = useRecoilCallback(
-    ({ set }) => (subtasks: Subtask[]) => {
-      subtasks.forEach((p) => {
-        set(subtaskSelector(p.id), p)
-      })
-    },
+    ({ set }) =>
+      (subtasks: Subtask[]) => {
+        subtasks.forEach((p) => {
+          set(subtaskSelector(p.id), p)
+        })
+      },
     [],
   )
 
@@ -120,20 +126,22 @@ export const useSubtask = (subtaskId?: string) => {
   const subtask = useRecoilValue(subtaskSelector(subtaskId || ''))
 
   const upsertSubtask = useRecoilCallback(
-    ({ set }) => (subtask: Subtask) => {
-      set(subtaskSelector(subtask.id), subtask)
-    },
+    ({ set }) =>
+      (subtask: Subtask) => {
+        set(subtaskSelector(subtask.id), subtask)
+      },
     [],
   )
 
   const setSubtask = useRecoilCallback(
-    ({ snapshot }) => async (val: DeepPartial<Subtask>) => {
-      const prev = await snapshot.getPromise(subtaskSelector(subtask.id))
-      upsertSubtask({
-        ...prev,
-        ...val,
-      })
-    },
+    ({ snapshot }) =>
+      async (val: DeepPartial<Subtask>) => {
+        const prev = await snapshot.getPromise(subtaskSelector(subtask.id))
+        upsertSubtask({
+          ...prev,
+          ...val,
+        })
+      },
     [upsertSubtask, subtask.id],
   )
 

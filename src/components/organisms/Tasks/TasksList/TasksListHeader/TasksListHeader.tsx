@@ -25,7 +25,7 @@ type Props = {
   fields: number[]
 }
 
-export const TasksListHeader: React.FC<Props> = memo<Props>((props) => {
+export const TasksListHeader: React.FC<Props> = memo<Props>(() => {
   return (
     <Flex flex={1}>
       <TasksListCell pl={0} flex={1}>

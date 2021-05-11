@@ -7,7 +7,7 @@ import { Input } from '../Input'
 
 type Props = {}
 
-export const Selected: React.FC<Props> = (props) => {
+export const Selected: React.FC<Props> = () => {
   const inputDisclosure = useDisclosure()
 
   return (

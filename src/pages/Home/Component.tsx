@@ -8,7 +8,7 @@ import { FavoriteProjects } from './FavoriteProjects'
 
 type Props = {}
 
-export const Component: React.VFC<Props> = memo<Props>((props) => {
+export const Component: React.VFC<Props> = memo<Props>(() => {
   return (
     <Box data-testid="Home">
       <Head title="Home" />

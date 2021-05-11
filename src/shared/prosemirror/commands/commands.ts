@@ -8,44 +8,42 @@ import {
 import { EditorState, NodeSelection, Selection } from 'prosemirror-state'
 import { findWrapping, liftTarget } from 'prosemirror-transform'
 
-export const insertNodeOfType = (nodeType: NodeType): Command => (
-  state,
-  dispatch,
-) => {
-  const node = nodeType.create()
-  if (dispatch) {
-    dispatch(state.tr.replaceSelectionWith(node).scrollIntoView())
-  }
-  return true
-}
-
-export const isMarkActive = (markType: MarkType) => (
-  state: EditorState,
-): boolean => {
-  const { from, $from, to, empty } = state.selection
-
-  if (empty) {
-    return Boolean(markType.isInSet(state.storedMarks || $from.marks()))
+export const insertNodeOfType =
+  (nodeType: NodeType): Command =>
+  (state, dispatch) => {
+    const node = nodeType.create()
+    if (dispatch) {
+      dispatch(state.tr.replaceSelectionWith(node).scrollIntoView())
+    }
+    return true
   }
 
-  return state.doc.rangeHasMark(from, to, markType)
-}
+export const isMarkActive =
+  (markType: MarkType) =>
+  (state: EditorState): boolean => {
+    const { from, $from, to, empty } = state.selection
+
+    if (empty) {
+      return Boolean(markType.isInSet(state.storedMarks || $from.marks()))
+    }
+
+    return state.doc.rangeHasMark(from, to, markType)
+  }
 
 const isNodeSelection = (selection: Selection): selection is NodeSelection =>
   'node' in selection
 
-export const isBlockActive = (
-  type: NodeType,
-  attrs: Record<string, unknown> = {},
-) => (state: EditorState): boolean => {
-  if (isNodeSelection(state.selection)) {
-    return state.selection.node.hasMarkup(type, attrs)
+export const isBlockActive =
+  (type: NodeType, attrs: Record<string, unknown> = {}) =>
+  (state: EditorState): boolean => {
+    if (isNodeSelection(state.selection)) {
+      return state.selection.node.hasMarkup(type, attrs)
+    }
+
+    const { $from, to } = state.selection
+
+    return to <= $from.end() && $from.parent.hasMarkup(type, attrs)
   }
-
-  const { $from, to } = state.selection
-
-  return to <= $from.end() && $from.parent.hasMarkup(type, attrs)
-}
 
 // export const removeFormatting: Command = (state, dispatch) => {
 //   const { from, to } = state.selection
@@ -160,113 +158,111 @@ export const parentInGroupPos = (
 //   return findWrapping(range, nodeType, attrs) !== null
 // }
 
-export const isWrapped = (nodeType: NodeType) => (
-  state: EditorState,
-): boolean => {
-  const { $from, $to } = state.selection
+export const isWrapped =
+  (nodeType: NodeType) =>
+  (state: EditorState): boolean => {
+    const { $from, $to } = state.selection
 
-  const range = $from.blockRange($to)
+    const range = $from.blockRange($to)
 
-  if (!range) {
-    return false
-  }
-
-  return parentWithNodeType(range.$from, nodeType) !== undefined
-}
-
-export const toggleWrap = (
-  nodeType: NodeType,
-  attrs?: Record<string, unknown>,
-): Command => (state, dispatch): boolean => {
-  const { $from, $to } = state.selection
-
-  const range = $from.blockRange($to)
-
-  if (!range) {
-    return false
-  }
-
-  const parentPos = parentWithNodeTypePos(range.$from, nodeType)
-
-  if (typeof parentPos === 'number') {
-    // unwrap
-    const target = liftTarget(range)
-
-    if (typeof target !== 'number') {
+    if (!range) {
       return false
     }
 
-    if (dispatch) {
-      dispatch(state.tr.lift(range, target).scrollIntoView())
-    }
+    return parentWithNodeType(range.$from, nodeType) !== undefined
+  }
 
-    return true
-  } else {
-    // wrap
-    const wrapping = findWrapping(range, nodeType, attrs)
+export const toggleWrap =
+  (nodeType: NodeType, attrs?: Record<string, unknown>): Command =>
+  (state, dispatch): boolean => {
+    const { $from, $to } = state.selection
 
-    if (!wrapping) {
+    const range = $from.blockRange($to)
+
+    if (!range) {
       return false
     }
 
-    if (dispatch) {
-      dispatch(state.tr.wrap(range, wrapping).scrollIntoView())
+    const parentPos = parentWithNodeTypePos(range.$from, nodeType)
+
+    if (typeof parentPos === 'number') {
+      // unwrap
+      const target = liftTarget(range)
+
+      if (typeof target !== 'number') {
+        return false
+      }
+
+      if (dispatch) {
+        dispatch(state.tr.lift(range, target).scrollIntoView())
+      }
+
+      return true
+    } else {
+      // wrap
+      const wrapping = findWrapping(range, nodeType, attrs)
+
+      if (!wrapping) {
+        return false
+      }
+
+      if (dispatch) {
+        dispatch(state.tr.wrap(range, wrapping).scrollIntoView())
+      }
+
+      return true
     }
-
-    return true
-  }
-}
-
-export const setListTypeOrWrapInList = (
-  listType: NodeType,
-  attrs: { type: string },
-): Command => (state, dispatch) => {
-  const { $from, $to } = state.selection
-
-  const range = $from.blockRange($to)
-
-  if (!range) {
-    return false
   }
 
-  const parentPos = parentInGroupPos(range.$from, 'list')
+export const setListTypeOrWrapInList =
+  (listType: NodeType, attrs: { type: string }): Command =>
+  (state, dispatch) => {
+    const { $from, $to } = state.selection
 
-  if (typeof parentPos === 'number') {
-    // already in list
-    const $pos = state.doc.resolve(parentPos)
+    const range = $from.blockRange($to)
 
-    const node = $pos.nodeAfter
-
-    if (node && node.type === listType && node.attrs.type === attrs.type) {
-      // return false if the list type already matches
+    if (!range) {
       return false
     }
 
-    if (dispatch) {
-      dispatch(
-        state.tr.setNodeMarkup(
-          parentPos,
-          listType,
-          node ? { ...node.attrs, ...attrs } : attrs,
-        ),
-      )
+    const parentPos = parentInGroupPos(range.$from, 'list')
+
+    if (typeof parentPos === 'number') {
+      // already in list
+      const $pos = state.doc.resolve(parentPos)
+
+      const node = $pos.nodeAfter
+
+      if (node && node.type === listType && node.attrs.type === attrs.type) {
+        // return false if the list type already matches
+        return false
+      }
+
+      if (dispatch) {
+        dispatch(
+          state.tr.setNodeMarkup(
+            parentPos,
+            listType,
+            node ? { ...node.attrs, ...attrs } : attrs,
+          ),
+        )
+      }
+
+      return true
+    } else {
+      const wrapping = findWrapping(range, listType, attrs)
+
+      if (!wrapping) {
+        return false
+      }
+
+      if (dispatch) {
+        dispatch(state.tr.wrap(range, wrapping).scrollIntoView())
+      }
+
+      return true
     }
-
-    return true
-  } else {
-    const wrapping = findWrapping(range, listType, attrs)
-
-    if (!wrapping) {
-      return false
-    }
-
-    if (dispatch) {
-      dispatch(state.tr.wrap(range, wrapping).scrollIntoView())
-    }
-
-    return true
   }
-}
 
 export const promptForURL = (): string | null => {
   let url = window && window.prompt('Enter the URL', 'https://')

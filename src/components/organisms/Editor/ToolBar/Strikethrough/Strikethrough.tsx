@@ -5,7 +5,7 @@ import { useStrikethrough } from 'src/shared/prosemirror/hooks'
 
 type Props = {}
 
-export const Strikethrough: React.FC<Props> = memo<Props>((props) => {
+export const Strikethrough: React.FC<Props> = memo<Props>(() => {
   const { action, isActive } = useStrikethrough()
   return (
     <BaseButton

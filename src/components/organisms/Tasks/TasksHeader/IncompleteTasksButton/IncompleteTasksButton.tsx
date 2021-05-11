@@ -16,7 +16,7 @@ import { PopoverCompletedTasks } from 'src/components/organisms/Tasks/TasksHeade
 
 type Props = {}
 
-export const IncompleteTasksButton: React.VFC<Props> = memo<Props>((props) => {
+export const IncompleteTasksButton: React.VFC<Props> = memo<Props>(() => {
   const popoverDisclosure = useDisclosure()
 
   const handleChange = useCallback((listStatus: ListStatus) => {

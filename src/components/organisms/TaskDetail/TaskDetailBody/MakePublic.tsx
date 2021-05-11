@@ -3,7 +3,7 @@ import { Button, Flex, Icon, Text } from 'src/components/atoms'
 
 type Props = {}
 
-export const MakePublic: React.FC<Props> = (props) => {
+export const MakePublic: React.FC<Props> = () => {
   return (
     <Flex
       h="44px"

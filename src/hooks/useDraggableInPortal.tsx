@@ -19,16 +19,14 @@ export const useDraggableInPortal = () => {
     }
   }, [self])
 
-  return (render: DraggableChildrenFn): DraggableChildrenFn => (
-    provided,
-    ...args
-  ) => {
-    const element = render(provided, ...args)
-    if (
-      (provided?.draggableProps?.style as DraggingStyle).position === 'fixed'
-    ) {
-      return createPortal(element, self.current as HTMLDivElement)
+  return (render: DraggableChildrenFn): DraggableChildrenFn =>
+    (provided, ...args) => {
+      const element = render(provided, ...args)
+      if (
+        (provided?.draggableProps?.style as DraggingStyle).position === 'fixed'
+      ) {
+        return createPortal(element, self.current as HTMLDivElement)
+      }
+      return element
     }
-    return element
-  }
 }

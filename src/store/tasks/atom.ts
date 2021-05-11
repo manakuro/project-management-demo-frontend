@@ -39,29 +39,34 @@ const taskState = atomFamily<Task, string>({
 
 export const taskSelector = selectorFamily<Task, string>({
   key: 'taskSelector',
-  get: (taskId) => ({ get }) => get(taskState(taskId)),
-  set: (taskId) => ({ get, set, reset }, newVal) => {
-    if (newVal instanceof DefaultValue) {
-      reset(taskState(taskId))
-      return
-    }
+  get:
+    (taskId) =>
+    ({ get }) =>
+      get(taskState(taskId)),
+  set:
+    (taskId) =>
+    ({ get, set, reset }, newVal) => {
+      if (newVal instanceof DefaultValue) {
+        reset(taskState(taskId))
+        return
+      }
 
-    set(taskState(taskId), newVal)
-    set(tasksState, (prev) =>
-      uniqBy([...prev, newVal], 'id').map((p) => {
-        if (p.id === newVal.id) {
-          return {
-            ...p,
-            ...newVal,
+      set(taskState(taskId), newVal)
+      set(tasksState, (prev) =>
+        uniqBy([...prev, newVal], 'id').map((p) => {
+          if (p.id === newVal.id) {
+            return {
+              ...p,
+              ...newVal,
+            }
           }
-        }
-        return p
-      }),
-    )
+          return p
+        }),
+      )
 
-    if (get(taskIdsState).find((taskId) => taskId === newVal.id)) return
-    set(taskIdsState, (prev) => [...prev, newVal.id])
-  },
+      if (get(taskIdsState).find((taskId) => taskId === newVal.id)) return
+      set(taskIdsState, (prev) => [...prev, newVal.id])
+    },
 })
 
 export const useTasks = () => {
@@ -77,31 +82,33 @@ export const useTasks = () => {
       .forEach((t) => set(subtaskSelector(t.id), t))
   })
   const setAttachments = useRecoilCallback(
-    ({ set }) => (data: TaskResponse[]) => {
-      data
-        .reduce<Task['attachments']>(
-          (acc, p) => uniqBy([...acc, ...p.attachments], 'id'),
-          [],
-        )
-        .forEach((t) => set(attachmentSelector(t.id), t))
-    },
+    ({ set }) =>
+      (data: TaskResponse[]) => {
+        data
+          .reduce<Task['attachments']>(
+            (acc, p) => uniqBy([...acc, ...p.attachments], 'id'),
+            [],
+          )
+          .forEach((t) => set(attachmentSelector(t.id), t))
+      },
   )
 
   const setTasks = useRecoilCallback(
-    ({ set }) => (data: TaskResponse[]) => {
-      const tasks = data.map((t) => ({
-        ...t,
-        subTaskIds: t.subTasks.map((s) => s.id),
-        attachmentIds: t.attachments.map((a) => a.id),
-      }))
+    ({ set }) =>
+      (data: TaskResponse[]) => {
+        const tasks = data.map((t) => ({
+          ...t,
+          subTaskIds: t.subTasks.map((s) => s.id),
+          attachmentIds: t.attachments.map((a) => a.id),
+        }))
 
-      tasks.forEach((t) => {
-        set(taskSelector(t.id), t)
-      })
+        tasks.forEach((t) => {
+          set(taskSelector(t.id), t)
+        })
 
-      setSubtasks(data)
-      setAttachments(data)
-    },
+        setSubtasks(data)
+        setAttachments(data)
+      },
     [setAttachments, setSubtasks],
   )
 
@@ -116,9 +123,10 @@ export const useTask = (taskId: string) => {
   const task = useRecoilValue(taskSelector(taskId))
 
   const upsertTask = useRecoilCallback(
-    ({ set }) => (task: Task) => {
-      set(taskSelector(task.id), task)
-    },
+    ({ set }) =>
+      (task: Task) => {
+        set(taskSelector(task.id), task)
+      },
     [],
   )
 

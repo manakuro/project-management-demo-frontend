@@ -4,7 +4,7 @@ import { useCustomizeMenu } from 'src/components/organisms/Tasks/TasksHeader/Cus
 
 type Props = {}
 
-export const CustomizeButton: React.VFC<Props> = memo<Props>((props) => {
+export const CustomizeButton: React.VFC<Props> = memo<Props>(() => {
   const { setIsOpen } = useCustomizeMenu()
 
   const handleClick = useCallback(() => {

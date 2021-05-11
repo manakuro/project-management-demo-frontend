@@ -29,7 +29,7 @@ export const Component: React.FC = (props) => {
     <Portal>
       <AtomsMenuList ref={ref} onClick={handleClickMenuList}>
         <MenuOptionGroup
-          value={(listStatus as unknown) as string}
+          value={listStatus as unknown as string}
           type="radio"
           onChange={handleChange}
         >

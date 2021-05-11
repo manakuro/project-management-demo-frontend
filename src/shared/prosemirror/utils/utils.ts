@@ -71,7 +71,7 @@ export const entries = <
   Type extends object,
   Key extends Extract<keyof Type, string>,
   Value extends Type[Key],
-  Entry extends [Key, Value]
+  Entry extends [Key, Value],
 >(
   value: Type,
 ): Entry[] => Object.entries(value) as Entry[]

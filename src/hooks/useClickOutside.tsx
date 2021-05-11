@@ -61,10 +61,10 @@ const isContainInMenuList = (e: Event) =>
     q.contains(e.target as Node),
   )
 const isContainInModalContent = (e: Event) =>
-  Array.from(
-    document.querySelectorAll("[aria-label='modal-content']"),
-  ).some((q) => q.contains(e.target as Node))
+  Array.from(document.querySelectorAll("[aria-label='modal-content']")).some(
+    (q) => q.contains(e.target as Node),
+  )
 const isContainInPopoverContent = (e: Event) =>
-  Array.from(
-    document.querySelectorAll("[aria-label='popover-content']"),
-  ).some((q) => q.contains(e.target as Node))
+  Array.from(document.querySelectorAll("[aria-label='popover-content']")).some(
+    (q) => q.contains(e.target as Node),
+  )

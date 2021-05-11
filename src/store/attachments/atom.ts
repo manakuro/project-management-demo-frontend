@@ -38,39 +38,46 @@ const attachmentState = atomFamily<Attachment, string>({
 
 export const attachmentSelector = selectorFamily<Attachment, string>({
   key: 'attachmentSelector',
-  get: (attachmentId) => ({ get }) => get(attachmentState(attachmentId)),
-  set: (attachmentId) => ({ get, set, reset }, newVal) => {
-    if (newVal instanceof DefaultValue) {
-      reset(attachmentState(attachmentId))
-      return
-    }
-
-    set(attachmentState(attachmentId), newVal)
-    set(attachmentsState, (prev) =>
-      uniqBy([...prev, newVal], 'id').map((p) => {
-        if (p.id === newVal.id) {
-          return {
-            ...p,
-            ...newVal,
-          }
-        }
-        return p
-      }),
-    )
-
-    if (
-      get(attachmentIdsState).find((attachmentId) => attachmentId === newVal.id)
-    )
-      return
-
-    set(attachmentIdsState, (prev) => [...prev, newVal.id])
-    set(attachmentIdsGroupByTaskState, (prev) => {
-      return {
-        ...prev,
-        [newVal.taskId]: [...(prev[newVal.taskId] || []), newVal.id],
+  get:
+    (attachmentId) =>
+    ({ get }) =>
+      get(attachmentState(attachmentId)),
+  set:
+    (attachmentId) =>
+    ({ get, set, reset }, newVal) => {
+      if (newVal instanceof DefaultValue) {
+        reset(attachmentState(attachmentId))
+        return
       }
-    })
-  },
+
+      set(attachmentState(attachmentId), newVal)
+      set(attachmentsState, (prev) =>
+        uniqBy([...prev, newVal], 'id').map((p) => {
+          if (p.id === newVal.id) {
+            return {
+              ...p,
+              ...newVal,
+            }
+          }
+          return p
+        }),
+      )
+
+      if (
+        get(attachmentIdsState).find(
+          (attachmentId) => attachmentId === newVal.id,
+        )
+      )
+        return
+
+      set(attachmentIdsState, (prev) => [...prev, newVal.id])
+      set(attachmentIdsGroupByTaskState, (prev) => {
+        return {
+          ...prev,
+          [newVal.taskId]: [...(prev[newVal.taskId] || []), newVal.id],
+        }
+      })
+    },
 })
 
 export const useAttachmentsByTask = (taskId: string) => {
@@ -100,11 +107,12 @@ export const useAttachments = () => {
   const attachments = useRecoilValue(attachmentsState)
 
   const setAttachments = useRecoilCallback(
-    ({ set }) => (attachments: Attachment[]) => {
-      attachments.forEach((p) => {
-        set(attachmentSelector(p.id), p)
-      })
-    },
+    ({ set }) =>
+      (attachments: Attachment[]) => {
+        attachments.forEach((p) => {
+          set(attachmentSelector(p.id), p)
+        })
+      },
     [],
   )
 
@@ -119,20 +127,24 @@ export const useAttachment = (attachmentId?: string) => {
   const attachment = useRecoilValue(attachmentSelector(attachmentId || ''))
 
   const upsertAttachment = useRecoilCallback(
-    ({ set }) => (attachment: Attachment) => {
-      set(attachmentSelector(attachment.id), attachment)
-    },
+    ({ set }) =>
+      (attachment: Attachment) => {
+        set(attachmentSelector(attachment.id), attachment)
+      },
     [],
   )
 
   const setAttachment = useRecoilCallback(
-    ({ snapshot }) => async (val: DeepPartial<Attachment>) => {
-      const prev = await snapshot.getPromise(attachmentSelector(attachment.id))
-      upsertAttachment({
-        ...prev,
-        ...val,
-      })
-    },
+    ({ snapshot }) =>
+      async (val: DeepPartial<Attachment>) => {
+        const prev = await snapshot.getPromise(
+          attachmentSelector(attachment.id),
+        )
+        upsertAttachment({
+          ...prev,
+          ...val,
+        })
+      },
     [upsertAttachment, attachment.id],
   )
 

@@ -34,10 +34,10 @@ export const MentionItemBase: React.FC<Props> = memo<Props>((props) => {
     if (isHovering) setSelectedIndex(props.index)
   }, [isHovering, props.index, setSelectedIndex])
 
-  const selected = useMemo(() => props.index === selectedIndex, [
-    props.index,
-    selectedIndex,
-  ])
+  const selected = useMemo(
+    () => props.index === selectedIndex,
+    [props.index, selectedIndex],
+  )
 
   return (
     <Flex

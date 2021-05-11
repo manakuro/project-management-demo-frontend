@@ -18,9 +18,10 @@ export const useFavoriteProjectIds = () => {
     [setIds],
   )
 
-  const isFavorite = useCallback((id: string) => ids.some((i) => i === id), [
-    ids,
-  ])
+  const isFavorite = useCallback(
+    (id: string) => ids.some((i) => i === id),
+    [ids],
+  )
 
   const setFavoriteProjectId = useCallback(
     (id: string) => {

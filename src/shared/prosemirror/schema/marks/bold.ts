@@ -8,7 +8,7 @@ export const bold: MarkSpec = {
       tag: 'b',
       // @ts-ignore
       getAttrs: (element: HTMLElement) =>
-        element.style.fontWeight != 'normal' && null,
+        element.style.fontWeight !== 'normal' && null,
     },
     { tag: 'strong' },
     {

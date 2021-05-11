@@ -17,7 +17,7 @@ import {
 
 type Props = {}
 
-export const Section: React.FC<Props> = memo<Props>((props) => {
+export const Section: React.FC<Props> = memo<Props>(() => {
   const handleChange = useCallback((listStatus: ListStatus) => {
     console.log('hey: ', listStatus)
   }, [])

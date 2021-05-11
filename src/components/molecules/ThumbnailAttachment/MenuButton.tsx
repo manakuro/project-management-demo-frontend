@@ -19,10 +19,10 @@ type Props = Omit<MenuProps, 'children'> & {
 
 export const MenuButton: React.VFC<Props> = (props) => {
   const { isHovering, thumbnailMenuOpened } = useThumbnailAttachment()
-  const show = useMemo(() => isHovering || thumbnailMenuOpened, [
-    isHovering,
-    thumbnailMenuOpened,
-  ])
+  const show = useMemo(
+    () => isHovering || thumbnailMenuOpened,
+    [isHovering, thumbnailMenuOpened],
+  )
 
   return (
     <AtomsMenuButton

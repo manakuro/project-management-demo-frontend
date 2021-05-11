@@ -7,7 +7,7 @@ import { List } from './List'
 
 type Props = {}
 
-export const Component: React.VFC<Props> = memo<Props>((props) => {
+export const Component: React.VFC<Props> = memo<Props>(() => {
   return (
     <Tabs defaultIndex={0}>
       <Box data-testid="Home">

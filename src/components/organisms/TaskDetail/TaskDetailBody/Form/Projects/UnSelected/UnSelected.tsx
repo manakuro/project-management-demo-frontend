@@ -5,7 +5,7 @@ import { useDisclosure } from 'src/shared/chakra'
 
 type Props = {}
 
-export const UnSelected: React.FC<Props> = (props) => {
+export const UnSelected: React.FC<Props> = () => {
   const inputDisclosure = useDisclosure()
 
   return (

@@ -4,7 +4,7 @@ import { Menu, MenuButton } from 'src/components/organisms'
 import { useDisclosure } from 'src/shared/chakra'
 import { MenuList } from './MenuList'
 
-export const MyAccountAvatar: React.FC = (props) => {
+export const MyAccountAvatar: React.FC = () => {
   const { onClose, onOpen, isOpen } = useDisclosure()
 
   const handleOpen = useCallback(() => {

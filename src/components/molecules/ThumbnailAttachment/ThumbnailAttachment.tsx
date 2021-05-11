@@ -61,6 +61,7 @@ export const ThumbnailAttachment: React.VFC<Props> = (props) => {
         <ThumbnailMenu
           onOpen={handleThumbnailMenuOpen}
           onClose={handleThumbnailMenuClose}
+          src={props.image}
         >
           <MenuButton
             aria-label="Attachment button"

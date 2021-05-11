@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Portal } from 'src/components/atoms'
+import { Link, Portal } from 'src/components/atoms'
 import {
   Menu as OrganismsMenu,
   MenuProps,
@@ -7,15 +7,23 @@ import {
   MenuList,
 } from 'src/components/organisms'
 
-type Props = MenuProps
+type Props = MenuProps & {
+  src: string
+}
 
 export const ThumbnailMenu: React.FC<Props> = memo((props) => {
+  const { src, ...rest } = props
+
   return (
-    <OrganismsMenu isLazy {...props}>
+    <OrganismsMenu isLazy {...rest}>
       {props.children}
       <Portal>
         <MenuList>
-          <MenuItem>Download attachment</MenuItem>
+          <MenuItem>
+            <Link href={src} download>
+              Download attachment
+            </Link>
+          </MenuItem>
           <MenuItem color="alert">Delete attachment</MenuItem>
         </MenuList>
       </Portal>

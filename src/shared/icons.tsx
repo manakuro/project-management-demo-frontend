@@ -78,6 +78,8 @@ import {
   AiFillCheckCircle,
   AiFillPlayCircle,
   AiOutlineProject,
+  AiOutlineFileText,
+  AiOutlineFilePdf,
 } from 'react-icons/ai'
 import { MdSort } from 'react-icons/md'
 import { IoMdAttach } from 'react-icons/io'
@@ -136,6 +138,8 @@ export const icons = {
   moon: FaMoon,
   movie: BiMovie,
   notification: BiNotification,
+  outlineFilePdf: AiOutlineFilePdf,
+  outlineFileText: AiOutlineFileText,
   outlineProject: AiOutlineProject,
   pause: BiPause,
   play: BiPlay,

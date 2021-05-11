@@ -1,3 +1,4 @@
+export * from './AttachmentBox'
 export * from './ColorModeSwitch'
 export * from './CustomField'
 export * from './InputWithIcon'

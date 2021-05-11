@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image } from 'src/components/atoms'
 import { useAttachment } from 'src/store/attachments'
+import { AttachmentBox } from 'src/components/molecules'
 
 type Props = {
   attachmentId: string
@@ -24,16 +25,7 @@ export const ThumbnailListItem: React.VFC<Props> = (props) => {
       )
     }
     case 2: {
-      return (
-        <Image
-          width="auto"
-          maxH={16}
-          maxW="240px"
-          src={attachment.src}
-          borderRadius="lg"
-          objectFit="cover"
-        />
-      )
+      return <AttachmentBox size="md" attachmentId={attachmentId} />
     }
     case 3: {
       return (

@@ -79,6 +79,13 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
               src: '/images/screen_shot.png',
               type: 1,
             },
+            {
+              id: '3',
+              taskId: '1',
+              name: '/files/pdf-test.pdf',
+              src: '/files/pdf-test.pdf',
+              type: 2,
+            },
           ],
         },
         {

@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { Flex, FlexProps, Icon, IconButton } from 'src/components/atoms'
+import { Flex, FlexProps } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
-import { MenuButton } from 'src/components/organisms'
 import { ThumbnailMenu } from './ThumbnailMenu'
 import { useHover } from 'src/hooks/useHover'
 import { useDisclosure } from 'src/shared/chakra'
 import { useAttachment } from 'src/store/attachments'
 import { ThumbnailListItem } from './ThrumbnailListItem'
+import { MenuButton } from './MenuButton'
 
 type Props = FlexProps & {
   attachmentId: string
@@ -48,7 +48,6 @@ export const ThumbnailAttachment: React.VFC<Props> = (props) => {
         ref={ref}
         minW="60px"
         h={16}
-        bg="gray.50"
         borderRadius="lg"
         cursor="pointer"
         position="relative"
@@ -62,18 +61,7 @@ export const ThumbnailAttachment: React.VFC<Props> = (props) => {
           onClose={handleThumbnailMenuClose}
           src={attachment.src}
         >
-          <MenuButton
-            aria-label="Attachment button"
-            as={IconButton}
-            icon={<Icon icon="chevronDown" color="white" />}
-            size="sm"
-            variant="ghost"
-            position="absolute"
-            top={4}
-            right={1}
-            zIndex="docked"
-            light
-          />
+          <MenuButton light />
         </ThumbnailMenu>
       </Flex>
     </Tooltip>

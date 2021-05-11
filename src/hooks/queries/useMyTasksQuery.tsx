@@ -86,6 +86,13 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
               src: '/files/pdf-test.pdf',
               type: 2,
             },
+            {
+              id: '4',
+              taskId: '1',
+              name: '/files/test.js',
+              src: '/files/test.js',
+              type: 3,
+            },
           ],
         },
         {

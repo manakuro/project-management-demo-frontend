@@ -10,7 +10,7 @@ type Props = FlexProps & {
   attachmentId: string
 }
 
-export const Pdf: React.VFC<Props> = (props) => {
+export const File: React.VFC<Props> = (props) => {
   const { attachmentId, ...rest } = props
 
   return (

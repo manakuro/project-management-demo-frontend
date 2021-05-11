@@ -3,7 +3,7 @@ import { FlexProps } from 'src/components/atoms'
 import { Provider } from './Provider'
 import { useAttachment } from 'src/store/attachments'
 import { Image } from './Image'
-import { Pdf } from './Pdf'
+import { File } from './File'
 
 type Props = FlexProps & {
   attachmentId: string
@@ -25,11 +25,9 @@ export const Component: React.VFC<Props> = (props) => {
     case 1: {
       return <Image attachmentId={attachmentId} {...rest} />
     }
-    case 2: {
-      return <Pdf attachmentId={attachmentId} {...rest} />
-    }
+    case 2:
     case 3: {
-      return <Pdf attachmentId={attachmentId} {...rest} />
+      return <File attachmentId={attachmentId} {...rest} />
     }
   }
 }

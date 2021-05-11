@@ -1,10 +1,9 @@
 import React from 'react'
 import { FlexProps } from 'src/components/atoms'
-import { ThumbnailMenu } from './ThumbnailMenu'
-import { useAttachment } from 'src/store/attachments'
-import { ThumbnailListItem } from './ThrumbnailListItem'
+import { Menu } from './Menu'
+import { ListItem } from './ListItem'
 import { MenuButton } from './MenuButton'
-import { ThumbnailAttachmentProvider } from './ThumbnailAttachmentProvider'
+import { Provider } from './Provider'
 import { Tooltip } from './Tooltip'
 import { Container } from './Container'
 
@@ -14,18 +13,17 @@ type Props = FlexProps & {
 
 export const ThumbnailAttachment: React.VFC<Props> = (props) => {
   const { attachmentId, ...rest } = props
-  const { attachment } = useAttachment(attachmentId)
 
   return (
-    <ThumbnailAttachmentProvider>
+    <Provider>
       <Tooltip attachmentId={attachmentId}>
         <Container {...rest}>
-          <ThumbnailListItem attachmentId={attachmentId} />
-          <ThumbnailMenu src={attachment.src}>
+          <ListItem attachmentId={attachmentId} />
+          <Menu attachmentId={attachmentId}>
             <MenuButton light />
-          </ThumbnailMenu>
+          </Menu>
         </Container>
       </Tooltip>
-    </ThumbnailAttachmentProvider>
+    </Provider>
   )
 }

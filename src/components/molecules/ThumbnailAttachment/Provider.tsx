@@ -16,11 +16,7 @@ const Context = createContext<ContextProps>({
 })
 export const useThumbnailAttachment = () => useContext(Context)
 
-export const ThumbnailAttachmentProvider: React.FC = (props) => {
-  return <Provider {...props} />
-}
-
-const Provider: React.FC = (props) => {
+export const Provider: React.FC = (props) => {
   const { ref, isHovering } = useHover()
   const [thumbnailMenuOpened, setThumbnailMenuOpened] = useState<boolean>(false)
 

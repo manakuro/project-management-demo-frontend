@@ -5,7 +5,7 @@ import {
 } from 'src/components/molecules'
 import { useDisclosure } from 'src/shared/chakra'
 import { useAttachment } from 'src/store/attachments'
-import { useThumbnailAttachment } from './ThumbnailAttachmentProvider'
+import { useThumbnailAttachment } from './Provider'
 import { Flex } from 'src/components/atoms'
 
 type Props = Omit<TooltipProps, 'label' | 'size'> & {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useThumbnailAttachment } from './ThumbnailAttachmentProvider'
+import { useThumbnailAttachment } from './Provider'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = FlexProps

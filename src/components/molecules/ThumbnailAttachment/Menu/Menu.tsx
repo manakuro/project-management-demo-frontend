@@ -6,14 +6,17 @@ import {
   MenuItem,
   MenuList,
 } from 'src/components/organisms'
-import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/ThumbnailAttachmentProvider'
+import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/Provider'
+import { useAttachment } from 'src/store/attachments'
 
 type Props = MenuProps & {
-  src: string
+  attachmentId: string
 }
 
-export const ThumbnailMenu: React.FC<Props> = memo((props) => {
+export const Menu: React.FC<Props> = memo((props) => {
+  const { attachmentId, ...rest } = props
   const { setThumbnailMenuOpened } = useThumbnailAttachment()
+  const { attachment } = useAttachment(attachmentId)
 
   const handleThumbnailMenuOpen = useCallback(() => {
     setThumbnailMenuOpened(true)
@@ -22,8 +25,6 @@ export const ThumbnailMenu: React.FC<Props> = memo((props) => {
   const handleThumbnailMenuClose = useCallback(() => {
     setThumbnailMenuOpened(false)
   }, [setThumbnailMenuOpened])
-
-  const { src, ...rest } = props
 
   return (
     <OrganismsMenu
@@ -36,7 +37,7 @@ export const ThumbnailMenu: React.FC<Props> = memo((props) => {
       <Portal>
         <MenuList>
           <MenuItem>
-            <Link href={src} download>
+            <Link href={attachment.src} download>
               Download attachment
             </Link>
           </MenuItem>

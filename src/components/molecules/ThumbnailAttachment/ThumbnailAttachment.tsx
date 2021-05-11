@@ -7,7 +7,6 @@ import { useHover } from 'src/hooks/useHover'
 import { useDisclosure } from 'src/shared/chakra'
 import { useAttachment } from 'src/store/attachments'
 import { ThumbnailListItem } from './ThrumbnailListItem'
-import { Overlay } from './Overlay'
 
 type Props = FlexProps & {
   attachmentId: string
@@ -54,7 +53,10 @@ export const ThumbnailAttachment: React.VFC<Props> = (props) => {
         cursor="pointer"
         position="relative"
       >
-        <ThumbnailListItem attachmentId={attachmentId} />
+        <ThumbnailListItem
+          attachmentId={attachmentId}
+          isHovering={isHovering}
+        />
         <ThumbnailMenu
           onOpen={handleThumbnailMenuOpen}
           onClose={handleThumbnailMenuClose}
@@ -73,7 +75,6 @@ export const ThumbnailAttachment: React.VFC<Props> = (props) => {
             light
           />
         </ThumbnailMenu>
-        <Overlay isHovering={isHovering} />
       </Flex>
     </Tooltip>
   )

@@ -24,7 +24,7 @@ export const Form: React.FC<Props> = memo(() => {
         <Projects />
         <Description />
         <Subtasks taskId="1" />
-        <Attachment />
+        <Attachment taskId="1" />
       </Stack>
     </Flex>
   )

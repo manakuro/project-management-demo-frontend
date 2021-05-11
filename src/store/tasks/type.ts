@@ -1,4 +1,5 @@
 import { Subtask } from 'src/store/subtasks'
+import { Attachment } from 'src/store/attachments'
 
 export type Task = {
   id: string
@@ -10,6 +11,8 @@ export type Task = {
   subTaskIds: string[]
   subTasks: Subtask[]
   assigneeId: string
+  attachmentIds: string[]
+  attachments: Attachment[]
 }
 
 export type TaskResponse = {
@@ -21,4 +24,5 @@ export type TaskResponse = {
   dueTime?: string
   subTasks: Subtask[]
   assigneeId: string
+  attachments: Attachment[]
 }

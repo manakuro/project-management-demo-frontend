@@ -64,6 +64,20 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
             },
           ],
           assigneeId: '1',
+          attachments: [
+            {
+              id: '1',
+              taskId: '1',
+              name: '/images/cat_img.png',
+              src: '/images/cat_img.png',
+            },
+            {
+              id: '2',
+              taskId: '1',
+              name: '/images/screen_shot.png',
+              src: '/images/screen_shot.png',
+            },
+          ],
         },
         {
           id: '2',
@@ -73,6 +87,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           isDone: true,
           subTasks: [],
           assigneeId: '',
+          attachments: [],
         },
         {
           id: '3',
@@ -82,6 +97,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           isDone: false,
           subTasks: [],
           assigneeId: '',
+          attachments: [],
         },
         {
           id: '4',
@@ -91,6 +107,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           isDone: false,
           subTasks: [],
           assigneeId: '',
+          attachments: [],
         },
         {
           id: '5',
@@ -100,6 +117,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           isDone: false,
           subTasks: [],
           assigneeId: '',
+          attachments: [],
         },
       ])
     }, 1000)

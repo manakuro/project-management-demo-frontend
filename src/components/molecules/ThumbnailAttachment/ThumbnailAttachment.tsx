@@ -5,13 +5,15 @@ import { MenuButton } from 'src/components/organisms'
 import { ThumbnailMenu } from './ThumbnailMenu'
 import { useHover } from 'src/hooks/useHover'
 import { useDisclosure } from 'src/shared/chakra'
+import { useAttachment } from 'src/store/attachments'
 
 type Props = FlexProps & {
-  image: string
+  attachmentId: string
 }
 
 export const ThumbnailAttachment: React.VFC<Props> = (props) => {
-  const { image, ...rest } = props
+  const { attachmentId, ...rest } = props
+  const { attachment } = useAttachment(attachmentId)
   const { ref, isHovering } = useHover()
   const tooltipDisclosure = useDisclosure()
   const [thumbnailMenuOpened, setThumbnailMenuOpened] = useState<boolean>(false)
@@ -36,8 +38,8 @@ export const ThumbnailAttachment: React.VFC<Props> = (props) => {
     <Tooltip
       isOpen={tooltipDisclosure.isOpen}
       hasArrow
-      label={props.image}
-      aria-label={props.image}
+      label={attachment.src}
+      aria-label={attachment.src}
       size="sm"
     >
       <Flex
@@ -54,14 +56,14 @@ export const ThumbnailAttachment: React.VFC<Props> = (props) => {
           width="auto"
           maxH={16}
           maxW="240px"
-          src={image}
+          src={attachment.src}
           borderRadius="lg"
           objectFit="cover"
         />
         <ThumbnailMenu
           onOpen={handleThumbnailMenuOpen}
           onClose={handleThumbnailMenuClose}
-          src={props.image}
+          src={attachment.src}
         >
           <MenuButton
             aria-label="Attachment button"

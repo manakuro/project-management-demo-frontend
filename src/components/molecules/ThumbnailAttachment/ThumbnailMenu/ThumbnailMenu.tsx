@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Link, Portal } from 'src/components/atoms'
 import {
   Menu as OrganismsMenu,
@@ -6,16 +6,32 @@ import {
   MenuItem,
   MenuList,
 } from 'src/components/organisms'
+import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/ThumbnailAttachmentProvider'
 
 type Props = MenuProps & {
   src: string
 }
 
 export const ThumbnailMenu: React.FC<Props> = memo((props) => {
+  const { setThumbnailMenuOpened } = useThumbnailAttachment()
+
+  const handleThumbnailMenuOpen = useCallback(() => {
+    setThumbnailMenuOpened(true)
+  }, [setThumbnailMenuOpened])
+
+  const handleThumbnailMenuClose = useCallback(() => {
+    setThumbnailMenuOpened(false)
+  }, [setThumbnailMenuOpened])
+
   const { src, ...rest } = props
 
   return (
-    <OrganismsMenu isLazy {...rest}>
+    <OrganismsMenu
+      isLazy
+      onOpen={handleThumbnailMenuOpen}
+      onClose={handleThumbnailMenuClose}
+      {...rest}
+    >
       {props.children}
       <Portal>
         <MenuList>

@@ -3,15 +3,16 @@ import { Image } from 'src/components/atoms'
 import { useAttachment } from 'src/store/attachments'
 import { AttachmentBox } from 'src/components/molecules'
 import { Overlay } from 'src/components/molecules/ThumbnailAttachment/Overlay'
+import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/ThumbnailAttachmentProvider'
 
 type Props = {
   attachmentId: string
-  isHovering: boolean
 }
 
 export const ThumbnailListItem: React.VFC<Props> = (props) => {
-  const { attachmentId, isHovering } = props
+  const { attachmentId } = props
   const { attachment } = useAttachment(attachmentId)
+  const { isHovering } = useThumbnailAttachment()
 
   switch (attachment.type) {
     case 1: {

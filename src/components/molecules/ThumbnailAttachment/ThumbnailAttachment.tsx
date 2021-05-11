@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Flex, FlexProps, Icon, IconButton, Image } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { MenuButton } from 'src/components/organisms'
 import { ThumbnailMenu } from './ThumbnailMenu'
 import { useHover } from 'src/hooks/useHover'
+import { useDisclosure } from 'src/shared/chakra'
 
 type Props = FlexProps & {
   image: string
@@ -12,9 +13,29 @@ type Props = FlexProps & {
 export const ThumbnailAttachment: React.VFC<Props> = (props) => {
   const { image, ...rest } = props
   const { ref, isHovering } = useHover()
+  const tooltipDisclosure = useDisclosure()
+  const [thumbnailMenuOpened, setThumbnailMenuOpened] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (!thumbnailMenuOpened && isHovering) {
+      tooltipDisclosure.onOpen()
+    } else {
+      tooltipDisclosure.onClose()
+    }
+  }, [isHovering, thumbnailMenuOpened, tooltipDisclosure])
+
+  const handleThumbnailMenuOpen = useCallback(() => {
+    setThumbnailMenuOpened(true)
+  }, [])
 
   return (
-    <Tooltip hasArrow label={props.image} aria-label={props.image} size="sm">
+    <Tooltip
+      isOpen={tooltipDisclosure.isOpen}
+      hasArrow
+      label={props.image}
+      aria-label={props.image}
+      size="sm"
+    >
       <Flex
         {...rest}
         ref={ref}
@@ -33,7 +54,7 @@ export const ThumbnailAttachment: React.VFC<Props> = (props) => {
           borderRadius="lg"
           objectFit="cover"
         />
-        <ThumbnailMenu>
+        <ThumbnailMenu onOpen={handleThumbnailMenuOpen}>
           <MenuButton
             aria-label="Attachment button"
             as={IconButton}

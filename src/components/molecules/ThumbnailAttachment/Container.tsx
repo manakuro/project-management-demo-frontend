@@ -1,11 +1,10 @@
 import React from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { useThumbnailAttachment } from './Provider'
-import { forwardRef } from 'src/shared/chakra'
 
 type Props = FlexProps
 
-export const Container: React.VFC<Props> = forwardRef((props) => {
+export const Container: React.VFC<Props> = (props) => {
   const { ref } = useThumbnailAttachment()
 
   return (
@@ -19,4 +18,4 @@ export const Container: React.VFC<Props> = forwardRef((props) => {
       {...props}
     />
   )
-})
+}

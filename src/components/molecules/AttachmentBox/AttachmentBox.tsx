@@ -3,11 +3,11 @@ import { Flex, FlexProps, Icon, Link, Text } from 'src/components/atoms'
 import { useAttachment } from 'src/store/attachments'
 import { getAttachmentIcon, getAttachmentName } from 'src/shared/attachment'
 import { transitions } from 'src/styles'
-import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/Provider'
 
 type Props = FlexProps & {
   size: Sizes
   attachmentId: string
+  isHovering: boolean
 }
 export type AttachmentBoxProps = Props
 
@@ -20,12 +20,11 @@ const sizes = {
 type Sizes = keyof typeof sizes
 
 export const AttachmentBox: React.FC<Props> = (props) => {
-  const { size, color, attachmentId, ...rest } = props
+  const { size, color, attachmentId, isHovering, ...rest } = props
   const { attachment } = useAttachment(attachmentId)
   const sizeStyle = sizes[size]
   const icon = getAttachmentIcon(attachment.type)
   const attachmentName = getAttachmentName(attachment.type)
-  const { isHovering } = useThumbnailAttachment()
 
   return (
     <Flex
@@ -51,6 +50,7 @@ export const AttachmentBox: React.FC<Props> = (props) => {
               fontSize="xs"
               color="text.muted"
               download
+              hover
             >
               Download
             </Link>

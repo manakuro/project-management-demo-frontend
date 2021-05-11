@@ -28,6 +28,10 @@ export const ThumbnailAttachment: React.VFC<Props> = (props) => {
     setThumbnailMenuOpened(true)
   }, [])
 
+  const handleThumbnailMenuClose = useCallback(() => {
+    setThumbnailMenuOpened(false)
+  }, [])
+
   return (
     <Tooltip
       isOpen={tooltipDisclosure.isOpen}
@@ -54,7 +58,10 @@ export const ThumbnailAttachment: React.VFC<Props> = (props) => {
           borderRadius="lg"
           objectFit="cover"
         />
-        <ThumbnailMenu onOpen={handleThumbnailMenuOpen}>
+        <ThumbnailMenu
+          onOpen={handleThumbnailMenuOpen}
+          onClose={handleThumbnailMenuClose}
+        >
           <MenuButton
             aria-label="Attachment button"
             as={IconButton}

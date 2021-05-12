@@ -1,10 +1,15 @@
 import React from 'react'
 import {
+  Carousel,
+  CarouselItem,
+  CarouselRightChevron,
+  CarouselLeftChevron,
   Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
+  CarouselBody,
 } from 'src/components/organisms'
 import {
   Button,
@@ -12,6 +17,7 @@ import {
   Flex,
   Icon,
   IconButton,
+  Image,
   Stack,
   Text,
 } from 'src/components/atoms'
@@ -73,12 +79,18 @@ export const FileViewerModal: React.VFC<Props> = () => {
         </ModalHeader>
         <Divider />
         <ModalBody>
-          <Stack spacing={6}>
-            <Text>
-              Your teammates will get an email that gives them access to your
-              team.
-            </Text>
-          </Stack>
+          <Carousel>
+            <CarouselBody>
+              <CarouselItem>
+                <Image src="/images/screen_shot.png" objectFit="contain" />
+              </CarouselItem>
+              <CarouselItem>
+                <Image src="/images/cat_img.png" objectFit="contain" />
+              </CarouselItem>
+            </CarouselBody>
+            <CarouselRightChevron />
+            <CarouselLeftChevron />
+          </Carousel>
         </ModalBody>
         <ModalFooter>Footer</ModalFooter>
       </ModalContent>

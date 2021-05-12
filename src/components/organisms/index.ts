@@ -1,3 +1,4 @@
+export * from './Carousel'
 export * from './Navigation'
 export * from './Layout'
 export * from './Modal'

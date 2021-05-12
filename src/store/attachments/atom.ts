@@ -85,7 +85,7 @@ export const useAttachmentsByTask = (taskId: string) => {
   const { upsertAttachment } = useAttachment()
 
   const attachmentIds = useMemo(() => {
-    return attachmentIdsGroupByTask[taskId]
+    return attachmentIdsGroupByTask[taskId] || []
   }, [attachmentIdsGroupByTask, taskId])
 
   const addAttachment = useCallback(() => {

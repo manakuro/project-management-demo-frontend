@@ -6,25 +6,27 @@ const openState = atom({
   default: false,
 })
 
-type TaskState = {
+type State = {
   taskId: string
+  currentAttachmentId: string
 }
-const taskState = atom<TaskState>({
-  key: 'fileViewerTaskState',
+const fileViewerState = atom<State>({
+  key: 'fileViewerState',
   default: {
     taskId: '',
+    currentAttachmentId: '',
   },
 })
 
 export const useFileViewerModal = () => {
   const [isOpen, setIsOpen] = useRecoilState(openState)
-  const [task, setTask] = useRecoilState(taskState)
-  const resetTaskState = useResetRecoilState(taskState)
+  const [state, setState] = useRecoilState(fileViewerState)
+  const resetState = useResetRecoilState(fileViewerState)
 
   const onClose = useCallback(() => {
     setIsOpen(false)
-    resetTaskState()
-  }, [resetTaskState, setIsOpen])
+    resetState()
+  }, [resetState, setIsOpen])
 
   const onOpen = useCallback(() => {
     setIsOpen(true)
@@ -34,7 +36,7 @@ export const useFileViewerModal = () => {
     isOpen,
     onOpen,
     onClose,
-    task,
-    setTask,
+    ...state,
+    setState,
   }
 }

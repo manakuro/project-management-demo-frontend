@@ -7,7 +7,6 @@ import {
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   CarouselBody,
 } from 'src/components/organisms'
@@ -17,18 +16,18 @@ import {
   Flex,
   Icon,
   IconButton,
-  Image,
   Stack,
   Text,
 } from 'src/components/atoms'
 import { useFileViewerModal } from './useFileViewerModal'
 import { useAttachmentsByTask } from 'src/store/attachments'
+import { ListItem } from './ListItem'
 
 type Props = {}
 
 export const FileViewerModal: React.VFC<Props> = () => {
-  const { isOpen, onClose, task } = useFileViewerModal()
-  const { attachmentIds } = useAttachmentsByTask(task.taskId)
+  const { isOpen, onClose, taskId } = useFileViewerModal()
+  const { attachmentIds } = useAttachmentsByTask(taskId)
   console.log('attachmentIds: ', attachmentIds)
 
   return (
@@ -81,18 +80,16 @@ export const FileViewerModal: React.VFC<Props> = () => {
         <ModalBody>
           <Carousel>
             <CarouselBody>
-              <CarouselItem>
-                <Image src="/images/screen_shot.png" objectFit="contain" />
-              </CarouselItem>
-              <CarouselItem>
-                <Image src="/images/cat_img.png" objectFit="contain" />
-              </CarouselItem>
+              {attachmentIds.map((id) => (
+                <CarouselItem key={id}>
+                  <ListItem attachmentId={id} />
+                </CarouselItem>
+              ))}
             </CarouselBody>
             <CarouselRightChevron />
             <CarouselLeftChevron />
           </Carousel>
         </ModalBody>
-        <ModalFooter>Footer</ModalFooter>
       </ModalContent>
     </Modal>
   )

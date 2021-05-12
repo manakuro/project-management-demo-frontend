@@ -11,18 +11,27 @@ type Props = {
 
 export const Attachment: React.VFC<Props> = memo<Props>((props) => {
   const { attachmentIds } = useAttachmentsByTask(props.taskId)
-  const { onOpen, setTask } = useFileViewerModal()
+  const { onOpen, setState } = useFileViewerModal()
 
-  const handleClick = useCallback(() => {
-    setTask({ taskId: props.taskId })
-    onOpen()
-  }, [onOpen, props.taskId, setTask])
+  const onOpenFileViewer = useCallback(
+    (attachmentId: string) => {
+      setState({
+        taskId: props.taskId,
+        currentAttachmentId: attachmentId,
+      })
+      onOpen()
+    },
+    [onOpen, props.taskId, setState],
+  )
 
   return (
     <Wrap spacing={3}>
       {attachmentIds.map((id) => (
-        <WrapItem key={id} onClick={handleClick}>
-          <ThumbnailAttachment attachmentId={id} />
+        <WrapItem key={id}>
+          <ThumbnailAttachment
+            attachmentId={id}
+            onOpenFileViewer={onOpenFileViewer}
+          />
         </WrapItem>
       ))}
       <NewButton />

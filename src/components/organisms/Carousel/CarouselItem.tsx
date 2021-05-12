@@ -12,7 +12,6 @@ export const CarouselItem: React.FC<Props> = (props) => {
     () => currentIndex === props.index,
     [currentIndex, props.index],
   )
-  console.log(props.index, currentIndex)
 
   return (
     <Flex

@@ -70,6 +70,8 @@ import {
   BiGroup,
   BiCalendarAlt,
   BiUser,
+  BiDownload,
+  BiCommentDots,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon, FaRegStar, FaStar } from 'react-icons/fa'
 import { HiOutlineMail, HiOutlineEmojiHappy } from 'react-icons/hi'
@@ -103,10 +105,12 @@ export const icons = {
   chevronLeft: BiChevronLeft,
   chevronRight: BiChevronRight,
   codeAlt: BiCodeAlt,
+  commentDots: BiCommentDots,
   compass: BiCompass,
   copyAlt: BiCopyAlt,
   customize: BiCustomize,
   dotsHorizontalRounded: BiDotsHorizontalRounded,
+  download: BiDownload,
   emojiHappy: HiOutlineEmojiHappy,
   fileBlank: BiFileBlank,
   filter: BiFilterAlt,

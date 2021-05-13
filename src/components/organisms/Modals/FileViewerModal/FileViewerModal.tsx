@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import {
   Carousel,
   CarouselItem,
@@ -10,25 +10,25 @@ import {
   ModalHeader,
   CarouselBody,
 } from 'src/components/organisms'
-import {
-  Button,
-  Divider,
-  Flex,
-  Icon,
-  IconButton,
-  Stack,
-  Text,
-} from 'src/components/atoms'
+import { Divider } from 'src/components/atoms'
 import { useFileViewerModal } from './useFileViewerModal'
 import { useAttachmentsByTask } from 'src/store/attachments'
 import { ListItem } from './ListItem'
+import { Header } from './Header'
 
 type Props = {}
 
 export const FileViewerModal: React.VFC<Props> = () => {
   const { isOpen, onClose, taskId } = useFileViewerModal()
   const { attachmentIds } = useAttachmentsByTask(taskId)
-  console.log('attachmentIds: ', attachmentIds)
+  const [currentAttachmentId, setCurrentAttachmentId] = useState<string>('')
+
+  const handleChangeCarousel = useCallback(
+    (currentIndex: number) => {
+      setCurrentAttachmentId(attachmentIds[currentIndex])
+    },
+    [attachmentIds],
+  )
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="full">
@@ -41,44 +41,11 @@ export const FileViewerModal: React.VFC<Props> = () => {
         borderRadius="none"
       >
         <ModalHeader p={0}>
-          <Flex h="full">
-            <Flex flexDirection="column" py={4} px={6}>
-              <Text fontSize="md">Screen Shot 2021-04-08 at 10.21.42.png</Text>
-              <Text fontSize="sm" color="text.muted">
-                Apr 8, 2021 at 10:24am
-              </Text>
-            </Flex>
-            <Stack direction="row" spacing={2} ml="auto" py={4} px={6}>
-              <Button
-                leftIcon={<Icon icon="download" mr={1} />}
-                variant="ghost"
-                lightBg
-              >
-                Download
-              </Button>
-              <Button
-                leftIcon={<Icon icon="commentDots" mr={1} />}
-                variant="ghost"
-                lightBg
-              >
-                Add Feedback
-              </Button>
-            </Stack>
-            <Divider orientation="vertical" />
-            <Flex py={4} px={6} justifyContent="center" alignItems="center">
-              <IconButton
-                icon={<Icon icon="x" size="lg" />}
-                aria-label="close modal"
-                variant="ghost"
-                light
-                onClick={onClose}
-              />
-            </Flex>
-          </Flex>
+          <Header attachmentId={currentAttachmentId} />
         </ModalHeader>
         <Divider />
         <ModalBody>
-          <Carousel>
+          <Carousel onChange={handleChangeCarousel}>
             <CarouselBody>
               {attachmentIds.map((id) => (
                 <CarouselItem key={id}>

@@ -1,10 +1,10 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useCallback, useContext, useState } from 'react'
 
 type ContextProps = {
   count: number
   setCount: React.Dispatch<React.SetStateAction<number>>
   currentIndex: number
-  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>
+  setCurrentIndex: (currentIndex: number) => void
 }
 
 const Context = createContext<ContextProps>({
@@ -15,17 +15,28 @@ const Context = createContext<ContextProps>({
 })
 export const useCarousel = () => useContext(Context)
 
-export const Provider: React.FC = (props) => {
-  const [currentIndex, setCurrentIndex] = useState<number>(0)
+type Props = {
+  onChange?: (currentIndex: number) => void
+}
+export const Provider: React.FC<Props> = (props) => {
+  const currentIndexState = useState<number>(0)
   const [count, setCount] = useState<number>(0)
+
+  const handleCurrentIndex = useCallback(
+    (index: number) => {
+      currentIndexState[1](index)
+      props.onChange?.(index)
+    },
+    [currentIndexState, props],
+  )
 
   return (
     <Context.Provider
       value={{
         count,
         setCount,
-        currentIndex,
-        setCurrentIndex,
+        currentIndex: currentIndexState[0],
+        setCurrentIndex: handleCurrentIndex,
       }}
     >
       {props.children}

@@ -51,6 +51,7 @@ export const AttachmentBox: React.FC<Props> = (props) => {
               color="text.muted"
               download
               hover
+              onClick={(e) => e.stopPropagation()}
             >
               Download
             </Link>

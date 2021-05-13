@@ -1,0 +1,63 @@
+import React, { memo } from 'react'
+import {
+  Button,
+  Divider,
+  Flex,
+  Icon,
+  IconButton,
+  Link,
+  Stack,
+  Text,
+} from 'src/components/atoms'
+import { useFileViewerModal } from './useFileViewerModal'
+import { useAttachment } from 'src/store/attachments'
+
+type Props = {
+  attachmentId: string
+}
+
+export const Header: React.VFC<Props> = memo((props) => {
+  const { onClose } = useFileViewerModal()
+  const { attachment } = useAttachment(props.attachmentId)
+
+  return (
+    <Flex h="full">
+      <Flex flexDirection="column" py={4} px={6}>
+        <Text fontSize="md">{attachment.name}</Text>
+        <Text fontSize="sm" color="text.muted">
+          Apr 8, 2021 at 10:24am
+        </Text>
+      </Flex>
+      <Stack direction="row" spacing={2} ml="auto" py={4} px={6}>
+        <Link href={attachment.src} download>
+          <Button
+            leftIcon={<Icon icon="download" />}
+            iconSpacing={2}
+            variant="ghost"
+            lightBg
+          >
+            Download
+          </Button>
+        </Link>
+        <Button
+          leftIcon={<Icon icon="commentDots" />}
+          iconSpacing={2}
+          variant="ghost"
+          lightBg
+        >
+          Add Feedback
+        </Button>
+      </Stack>
+      <Divider orientation="vertical" />
+      <Flex py={4} px={6} justifyContent="center" alignItems="center">
+        <IconButton
+          icon={<Icon icon="x" size="lg" />}
+          aria-label="close modal"
+          variant="ghost"
+          light
+          onClick={onClose}
+        />
+      </Flex>
+    </Flex>
+  )
+})

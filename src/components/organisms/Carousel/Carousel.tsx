@@ -3,7 +3,7 @@ import { Provider } from './Provider'
 import { Flex } from 'src/components/atoms'
 
 type Props = {
-  onChange?: () => void
+  onChange?: (currentIndex: number) => void
 }
 
 export const Carousel: React.FC<Props> = (props) => {

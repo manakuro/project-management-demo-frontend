@@ -1,10 +1,11 @@
 import { extendTheme, theme as defaultTheme } from '@chakra-ui/react'
 import { dueDatePickerCustomStyle } from 'src/components/organisms/Popovers/PopoverDueDatePicker/dueDatePickerCustomStyle'
+import { pdfViewerCustomStyle } from 'src/components/organisms/PdfViewer/pdfViewerCustomStyle'
+import { proseMirrorStyle } from 'src/shared/prosemirror/style'
 
 // Disabling border for non-keyboard interactions
 // @see https://github.com/chakra-ui/chakra-ui/blob/develop/packages/css-reset/README.md
 import 'focus-visible/dist/focus-visible'
-import { proseMirrorStyle } from 'src/shared/prosemirror/style'
 
 export const theme = extendTheme({
   styles: {
@@ -30,6 +31,7 @@ export const theme = extendTheme({
       },
       ...proseMirrorStyle(),
       ...dueDatePickerCustomStyle(),
+      ...pdfViewerCustomStyle(),
     }),
   },
 

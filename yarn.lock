@@ -1663,6 +1663,11 @@
   resolved "https://registry.yarnpkg.com/@react-hook/passive-layout-effect/-/passive-layout-effect-1.2.1.tgz#c06dac2d011f36d61259aa1c6df4f0d5e28bc55e"
   integrity sha512-IwEphTD75liO8g+6taS+4oqz+nnroocNfWVHWz7j+N+ZO2vYrc6PV1q7GQhuahL0IOR7JccFTsFKQ/mb6iZWAg==
 
+"@react-pdf-viewer/core@2.4.3":
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/@react-pdf-viewer/core/-/core-2.4.3.tgz#781b341186e4a799c711a67a21cf6f18eaa451aa"
+  integrity sha512-1OHdruQZwYjBQ0Cadm0XGhMMAPeIObEIdJYHJYu30goM5UD0QF1L4q/1Bd12fRXR07fU7rZY65Ypup/riikQtQ==
+
 "@remirror/core-constants@^0.7.4":
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/@remirror/core-constants/-/core-constants-0.7.4.tgz#926c0d36ce975c88a5d51de338d34424f3a4cadb"
@@ -7537,6 +7542,11 @@ pbkdf2@^3.0.3:
     ripemd160 "^2.0.1"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+pdfjs-dist@2.6.347:
+  version "2.6.347"
+  resolved "https://registry.yarnpkg.com/pdfjs-dist/-/pdfjs-dist-2.6.347.tgz#f257ed66e83be900cd0fd28524a2187fb9e25cd5"
+  integrity sha512-QC+h7hG2su9v/nU1wEI3SnpPIrqJODL7GTDFvR74ANKGq1AFJW16PH8VWnhpiTi9YcLSFV9xLeWSgq+ckHLdVQ==
 
 performance-now@^2.1.0:
   version "2.1.0"

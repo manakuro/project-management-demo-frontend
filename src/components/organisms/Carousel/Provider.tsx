@@ -20,15 +20,17 @@ type Props = {
   defaultIndex?: number
 }
 export const Provider: React.FC<Props> = (props) => {
-  const currentIndexState = useState<number>(props.defaultIndex ?? 0)
+  const [currentIndex, setCurrentIndex] = useState<number>(
+    props.defaultIndex ?? 0,
+  )
   const [count, setCount] = useState<number>(0)
 
-  const handleCurrentIndex = useCallback(
+  const handleSetCurrentIndex = useCallback(
     (index: number) => {
-      currentIndexState[1](index)
+      setCurrentIndex(index)
       props.onChange?.(index)
     },
-    [currentIndexState, props],
+    [setCurrentIndex, props],
   )
 
   return (
@@ -36,8 +38,8 @@ export const Provider: React.FC<Props> = (props) => {
       value={{
         count,
         setCount,
-        currentIndex: currentIndexState[0],
-        setCurrentIndex: handleCurrentIndex,
+        currentIndex,
+        setCurrentIndex: handleSetCurrentIndex,
       }}
     >
       {props.children}

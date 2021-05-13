@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image } from 'src/components/atoms'
+import { Box, Flex, Image, Text } from 'src/components/atoms'
 import { PdfViewer } from 'src/components/organisms'
 import { useAttachment } from 'src/store/attachments'
 
@@ -19,7 +19,23 @@ export const ListItem: React.VFC<Props> = (props) => {
       return <PdfViewer fileUrl={attachment.src} />
     }
     case 3: {
-      return <Image src={attachment.src} objectFit="contain" />
+      return (
+        <Flex
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+        >
+          <Box w="40%">
+            <Image src="/images/not_preview_file.svg" objectFit="contain" />
+          </Box>
+          <Text fontSize="xl" mt={4}>
+            We're not able to preview this file
+          </Text>
+          <Text fontSize="sm" color="text.muted" mt={4}>
+            {attachment.name}
+          </Text>
+        </Flex>
+      )
     }
   }
 }

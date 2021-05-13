@@ -1,34 +1,19 @@
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 import {
-  Carousel,
-  CarouselItem,
-  CarouselRightChevron,
-  CarouselLeftChevron,
   Modal,
   ModalBody,
   ModalContent,
   ModalHeader,
-  CarouselBody,
 } from 'src/components/organisms'
 import { Divider } from 'src/components/atoms'
 import { useFileViewerModal } from './useFileViewerModal'
-import { useAttachmentsByTask } from 'src/store/attachments'
-import { ListItem } from './ListItem'
 import { Header } from './Header'
+import { Body } from './Body'
 
 type Props = {}
 
 export const FileViewerModal: React.VFC<Props> = () => {
-  const { isOpen, onClose, taskId } = useFileViewerModal()
-  const { attachmentIds } = useAttachmentsByTask(taskId)
-  const [currentAttachmentId, setCurrentAttachmentId] = useState<string>('')
-
-  const handleChangeCarousel = useCallback(
-    (currentIndex: number) => {
-      setCurrentAttachmentId(attachmentIds[currentIndex])
-    },
-    [attachmentIds],
-  )
+  const { isOpen, onClose } = useFileViewerModal()
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="full">
@@ -41,22 +26,10 @@ export const FileViewerModal: React.VFC<Props> = () => {
         borderRadius="none"
       >
         <ModalHeader p={0}>
-          <Header attachmentId={currentAttachmentId} />
+          <Header />
         </ModalHeader>
         <Divider />
-        <ModalBody>
-          <Carousel onChange={handleChangeCarousel}>
-            <CarouselBody>
-              {attachmentIds.map((id) => (
-                <CarouselItem key={id}>
-                  <ListItem attachmentId={id} />
-                </CarouselItem>
-              ))}
-            </CarouselBody>
-            <CarouselRightChevron />
-            <CarouselLeftChevron />
-          </Carousel>
-        </ModalBody>
+        <ModalBody zIndex="tooltip">{isOpen && <Body />}</ModalBody>
       </ModalContent>
     </Modal>
   )

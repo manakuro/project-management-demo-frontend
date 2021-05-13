@@ -5,5 +5,6 @@ export type Attachment = {
   taskId: string
   name: string
   src: string
+  createdAt: string
   type: AttachmentType
 }

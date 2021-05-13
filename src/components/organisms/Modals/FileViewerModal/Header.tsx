@@ -11,21 +11,21 @@ import {
 } from 'src/components/atoms'
 import { useFileViewerModal } from './useFileViewerModal'
 import { useAttachment } from 'src/store/attachments'
+import { formatAttachmentCreatedAt } from 'src/shared/date'
 
-type Props = {
-  attachmentId: string
-}
+type Props = {}
 
-export const Header: React.VFC<Props> = memo((props) => {
-  const { onClose } = useFileViewerModal()
-  const { attachment } = useAttachment(props.attachmentId)
+export const Header: React.VFC<Props> = memo(() => {
+  const { onClose, currentAttachmentId } = useFileViewerModal()
+  const { attachment } = useAttachment(currentAttachmentId)
+  const formattedCreateAt = formatAttachmentCreatedAt(attachment.createdAt)
 
   return (
     <Flex h="full">
       <Flex flexDirection="column" py={4} px={6}>
         <Text fontSize="md">{attachment.name}</Text>
         <Text fontSize="sm" color="text.muted">
-          Apr 8, 2021 at 10:24am
+          {formattedCreateAt}
         </Text>
       </Flex>
       <Stack direction="row" spacing={2} ml="auto" py={4} px={6}>
@@ -61,3 +61,4 @@ export const Header: React.VFC<Props> = memo((props) => {
     </Flex>
   )
 })
+Header.displayName = 'Header'

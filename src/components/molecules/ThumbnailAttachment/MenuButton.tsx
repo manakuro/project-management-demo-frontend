@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import {
   Icon,
   IconButton,
@@ -7,12 +7,12 @@ import {
 } from 'src/components/atoms'
 import {
   MenuButton as AtomsMenuButton,
-  MenuProps,
+  MenuButtonProps,
 } from 'src/components/organisms'
 import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/Provider'
 import { transitions } from 'src/styles'
 
-type Props = Omit<MenuProps, 'children'> & {
+type Props = Omit<MenuButtonProps, 'children'> & {
   light?: IconButtonProps['light']
   color: IconProps['color']
 }
@@ -23,6 +23,9 @@ export const MenuButton: React.VFC<Props> = (props) => {
     () => isHovering || thumbnailMenuOpened,
     [isHovering, thumbnailMenuOpened],
   )
+  const handleClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation()
+  }, [])
 
   return (
     <AtomsMenuButton
@@ -37,6 +40,7 @@ export const MenuButton: React.VFC<Props> = (props) => {
       zIndex="docked"
       visibility={show ? 'visible' : 'hidden'}
       transition={transitions.base('background')}
+      onClick={handleClick}
       {...props}
     />
   )

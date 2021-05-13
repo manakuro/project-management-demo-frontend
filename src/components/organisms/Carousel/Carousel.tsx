@@ -4,6 +4,7 @@ import { Flex } from 'src/components/atoms'
 
 type Props = {
   onChange?: (currentIndex: number) => void
+  defaultIndex?: number
 }
 
 export const Carousel: React.FC<Props> = (props) => {

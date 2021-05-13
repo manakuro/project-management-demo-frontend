@@ -12,3 +12,13 @@ export const formatDueDate = (date: string): string => {
 export const formatDueTime = (date: string): string => {
   return dateFns.format(new Date(date), 'H:mm aaa')
 }
+
+export const formatAttachmentCreatedAt = (date: string): string => {
+  if (!date) return ''
+
+  const dateObj = new Date(date)
+  const day = dateFns.format(dateObj, 'MMM d')
+  const time = dateFns.format(dateObj, 'H:mm aaa')
+
+  return `${day}, at ${time}`
+}

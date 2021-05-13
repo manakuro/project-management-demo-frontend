@@ -70,6 +70,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
               taskId: '1',
               name: '/images/cat_img.png',
               src: '/images/cat_img.png',
+              createdAt: new Date().toISOString(),
               type: 1,
             },
             {
@@ -77,6 +78,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
               taskId: '1',
               name: '/images/screen_shot.png',
               src: '/images/screen_shot.png',
+              createdAt: new Date().toISOString(),
               type: 1,
             },
             {
@@ -84,6 +86,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
               taskId: '1',
               name: '/files/pdf-test.pdf',
               src: '/files/pdf-test.pdf',
+              createdAt: new Date().toISOString(),
               type: 2,
             },
             {
@@ -91,6 +94,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
               taskId: '1',
               name: '/files/test.js',
               src: '/files/test.js',
+              createdAt: new Date().toISOString(),
               type: 3,
             },
           ],

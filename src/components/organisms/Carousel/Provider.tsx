@@ -17,9 +17,10 @@ export const useCarousel = () => useContext(Context)
 
 type Props = {
   onChange?: (currentIndex: number) => void
+  defaultIndex?: number
 }
 export const Provider: React.FC<Props> = (props) => {
-  const currentIndexState = useState<number>(0)
+  const currentIndexState = useState<number>(props.defaultIndex ?? 0)
   const [count, setCount] = useState<number>(0)
 
   const handleCurrentIndex = useCallback(

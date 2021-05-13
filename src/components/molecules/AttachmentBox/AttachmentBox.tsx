@@ -38,7 +38,7 @@ export const AttachmentBox: React.FC<Props> = (props) => {
       {...rest}
     >
       <Icon icon={icon} color="text.muted" size="2xl" />
-      <Flex ml={4} flexDirection="column">
+      <Flex ml={4} flexDirection="column" flex={1} minW={0}>
         <Text fontSize="sm" isTruncated>
           {attachment.name}
         </Text>

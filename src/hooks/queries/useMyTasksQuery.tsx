@@ -100,6 +100,14 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
             {
               id: '5',
               taskId: '1',
+              name: 'コンピュータシステムの理論と実践',
+              src: '/files/コンピュータシステムの理論と実践.pdf',
+              createdAt: new Date().toISOString(),
+              type: 2,
+            },
+            {
+              id: '6',
+              taskId: '1',
               name: '/files/test.js',
               src: '/files/test.js',
               createdAt: new Date().toISOString(),

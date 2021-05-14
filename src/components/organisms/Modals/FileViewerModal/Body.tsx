@@ -11,7 +11,7 @@ import {
 import { useFileViewerModal } from './useFileViewerModal'
 import { useAttachmentsByTask } from 'src/store/attachments'
 import { ListItem } from './ListItem'
-import { ThumbnailListItem } from './ThumbnailListItem'
+import { ThumbnailListItem } from './ThumbnailListItem/ThumbnailListItem'
 
 type Props = {}
 

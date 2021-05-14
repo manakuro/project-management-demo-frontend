@@ -3,6 +3,7 @@ import { Center, Icon, Image } from 'src/components/atoms'
 import { useAttachment } from 'src/store/attachments'
 import { getAttachmentIcon } from 'src/shared/attachment'
 import { ChakraProps } from 'src/shared/chakra'
+import { Container } from './Container'
 
 type Props = {
   attachmentId: string
@@ -23,15 +24,21 @@ export const ThumbnailListItem: React.VFC<Props> = (props) => {
 
   switch (attachment.type) {
     case 1: {
-      return <Image src={attachment.src} objectFit="cover" {...style} />
+      return (
+        <Container label={attachment.name}>
+          <Image src={attachment.src} objectFit="cover" {...style} />
+        </Container>
+      )
     }
     case 2:
     case 3: {
       const icon = getAttachmentIcon(attachment.type)
       return (
-        <Center {...style}>
-          <Icon icon={icon} color="primary" />
-        </Center>
+        <Container label={attachment.name}>
+          <Center {...style}>
+            <Icon icon={icon} color="primary" />
+          </Center>
+        </Container>
       )
     }
   }

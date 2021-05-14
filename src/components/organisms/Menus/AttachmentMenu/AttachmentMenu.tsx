@@ -1,7 +1,8 @@
 import React, { memo } from 'react'
-import { Portal } from 'src/components/atoms'
+import { FileUploader, Portal } from 'src/components/atoms'
 import { Tooltip, TooltipProps } from 'src/components/molecules'
 import { Menu, MenuItem, MenuList, MenuGroup } from 'src/components/organisms'
+import { useMenuStyle } from 'src/hooks'
 
 type Props = {
   label: string
@@ -9,6 +10,8 @@ type Props = {
 }
 
 export const AttachmentMenu: React.FC<Props> = memo((props) => {
+  const itemStyle = useMenuStyle().item
+
   return (
     <Menu isLazy>
       <Tooltip
@@ -23,7 +26,9 @@ export const AttachmentMenu: React.FC<Props> = memo((props) => {
       <Portal>
         <MenuList>
           <MenuGroup title="Attach a File">
-            <MenuItem>Your computer</MenuItem>
+            <FileUploader {...itemStyle} id="attach-file-from-your-computer">
+              Your computer
+            </FileUploader>
             <MenuItem>Dropbox</MenuItem>
             <MenuItem>Google Drive</MenuItem>
             <MenuItem>Box</MenuItem>

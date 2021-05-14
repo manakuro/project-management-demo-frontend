@@ -5,10 +5,13 @@ import {
   CarouselRightChevron,
   CarouselLeftChevron,
   CarouselBody,
+  CarouselThumbnail,
+  CarouselThumbnailItem,
 } from 'src/components/organisms'
 import { useFileViewerModal } from './useFileViewerModal'
 import { useAttachmentsByTask } from 'src/store/attachments'
 import { ListItem } from './ListItem'
+import { ThumbnailListItem } from './ThumbnailListItem'
 
 type Props = {}
 
@@ -39,6 +42,13 @@ export const Body: React.VFC<Props> = memo(() => {
           </CarouselItem>
         ))}
       </CarouselBody>
+      <CarouselThumbnail>
+        {attachmentIds.map((id) => (
+          <CarouselThumbnailItem key={id}>
+            <ThumbnailListItem attachmentId={id} />
+          </CarouselThumbnailItem>
+        ))}
+      </CarouselThumbnail>
       <CarouselRightChevron />
       <CarouselLeftChevron />
     </Carousel>

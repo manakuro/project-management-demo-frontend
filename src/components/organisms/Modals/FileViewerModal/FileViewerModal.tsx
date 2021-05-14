@@ -29,7 +29,9 @@ export const FileViewerModal: React.VFC<Props> = () => {
           <Header />
         </ModalHeader>
         <Divider />
-        <ModalBody zIndex="tooltip">{isOpen && <Body />}</ModalBody>
+        <ModalBody pb={0} zIndex="tooltip">
+          {isOpen && <Body />}
+        </ModalBody>
       </ModalContent>
     </Modal>
   )

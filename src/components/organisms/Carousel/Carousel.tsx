@@ -17,7 +17,13 @@ export const Carousel: React.FC<Props> = (props) => {
 
 const Component: React.FC<Props> = (props) => {
   return (
-    <Flex flex="1" overflow="hidden" position="relative" height="100%">
+    <Flex
+      flex="1"
+      overflow="hidden"
+      position="relative"
+      height="100%"
+      flexDirection="column"
+    >
       {props.children}
     </Flex>
   )

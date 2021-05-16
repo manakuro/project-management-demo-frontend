@@ -12,7 +12,7 @@ export const TaskDetailBody: React.FC<Props> = (props) => {
   const { ref } = useTaskDetailBody()
 
   return (
-    <Flex overflowY="scroll" flexDirection="column" mb={24} ref={ref}>
+    <Flex overflowY="scroll" flexDirection="column" pb={24} ref={ref}>
       {props.isMakePublic && <MakePublic />}
       <Form />
     </Flex>

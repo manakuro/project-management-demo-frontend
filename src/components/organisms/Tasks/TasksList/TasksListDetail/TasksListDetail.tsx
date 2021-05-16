@@ -2,10 +2,12 @@ import React from 'react'
 import {
   Drawer,
   DrawerBody,
+  DrawerFooter,
   DrawerContent,
   DrawerHeader,
   TaskDetailBody,
   TaskDetailHeader,
+  TaskDetailFooter,
 } from 'src/components/organisms'
 import { useTasksListDetail } from './useTasksListDetail'
 import { Divider } from 'src/components/atoms'
@@ -40,6 +42,9 @@ export const TasksListDetail: React.VFC = () => {
         <DrawerBody flex={1} display="flex" flexDirection="column" p={0}>
           <TaskDetailBody isMakePublic />
         </DrawerBody>
+        <DrawerFooter p={0}>
+          <TaskDetailFooter />
+        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   )

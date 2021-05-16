@@ -3,6 +3,7 @@ import {
   useProjectsQuery,
   useFavoriteProjectIdsQuery,
   useWorkspaceQuery,
+  useMeQuery,
 } from 'src/hooks/queries'
 
 export const BeforeAppMount: React.FC = (props) => {
@@ -13,12 +14,16 @@ export const BeforeAppMount: React.FC = (props) => {
   const workspaceQueryResult = useWorkspaceQuery({
     lazy: true,
   })
+  const meQueryResult = useMeQuery({
+    lazy: true,
+  })
 
   useEffect(() => {
     console.log('BeforeAppMount!!')
     projectQueryResult.refetch()
     favoriteProjectIdsQueryResult.refetch()
     workspaceQueryResult.refetch()
+    meQueryResult.refetch()
 
     /* eslint react-hooks/exhaustive-deps: off */
   }, [])

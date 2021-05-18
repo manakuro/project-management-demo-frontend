@@ -8,6 +8,7 @@ import { Plugin } from 'prosemirror-state'
 import { EditorProvider, useEditorState } from './EdiorProvider'
 import { Portals } from './Portals'
 import { useDebounce } from 'src/hooks'
+import { ConditionalRender } from 'src/components/atoms'
 
 type Props = {
   schema: Schema
@@ -27,10 +28,12 @@ export const EditorContainer: React.FC<Props> = (props) => {
   )
 
   return (
-    <EditorProvider plugins={props.plugins} doc={initialDoc}>
-      <Container transformer={transformer} {...props} />
-      <Portals />
-    </EditorProvider>
+    <ConditionalRender client>
+      <EditorProvider plugins={props.plugins} doc={initialDoc}>
+        <Container transformer={transformer} {...props} />
+        <Portals />
+      </EditorProvider>
+    </ConditionalRender>
   )
 }
 

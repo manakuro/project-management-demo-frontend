@@ -20,6 +20,7 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
       bg="white"
       minH={focused ? 40 : 0}
       transition="min-height .25s"
+      position="relative"
       onFocus={onFocus}
       {...props}
     />

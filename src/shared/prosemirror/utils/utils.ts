@@ -1,4 +1,5 @@
 import { NodeType } from 'prosemirror-model'
+import { EditorView } from 'prosemirror-view'
 
 const isOfType = <Type>(type: string, predicate?: (value: Type) => boolean) => {
   return (value: unknown): value is Type => {
@@ -75,3 +76,9 @@ export const entries = <
 >(
   value: Type,
 ): Entry[] => Object.entries(value) as Entry[]
+
+export const isContentEmpty = (view: EditorView): boolean => {
+  const { state } = view
+
+  return state.doc.content.size === 0 || state.doc.textContent === ''
+}

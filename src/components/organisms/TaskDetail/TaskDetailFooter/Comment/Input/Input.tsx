@@ -1,10 +1,10 @@
 import React, { memo, useState } from 'react'
-import 'prosemirror-view/style/prosemirror.css'
 import { Editor, EditorContent } from 'src/components/organisms'
 import { Flex } from 'src/components/atoms'
 import { Container } from './Container'
 import { Provider } from './Provider'
 import { ToolBar } from './ToolBar'
+import { Placeholder } from './Placeholder'
 
 type Props = {}
 
@@ -37,6 +37,7 @@ const Component: React.FC<Props> = memo<Props>(() => {
       <Container>
         <Editor onChange={setValue} value={initialValue}>
           <EditorContent />
+          <Placeholder />
           <ToolBar />
         </Editor>
       </Container>

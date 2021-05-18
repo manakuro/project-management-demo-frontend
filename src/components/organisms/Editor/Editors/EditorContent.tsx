@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { Box, BoxProps } from 'src/components/atoms'
 import { useEditorView } from 'src/components/organisms/Editor/Editors/EdiorProvider'
+import 'prosemirror-view/style/prosemirror.css'
+
 // import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 
 type Props = BoxProps

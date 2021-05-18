@@ -11,14 +11,15 @@ import {
   Underline,
   Emoji,
   AtMention,
-} from './'
+} from 'src/components/organisms/Editor/ToolBar'
 import { Divider, Stack } from 'src/components/atoms'
+import { useDescription } from './Provider'
 
-type Props = {
-  show: boolean
-}
+type Props = {}
 
-export const ToolBar: React.FC<Props> = memo<Props>((props) => {
+export const ToolBar: React.FC<Props> = memo<Props>(() => {
+  const { focused } = useDescription()
+
   return (
     <Stack
       flex={1}
@@ -31,7 +32,7 @@ export const ToolBar: React.FC<Props> = memo<Props>((props) => {
       // bottom={0}
       bg="white"
     >
-      {props.show && (
+      {focused && (
         <>
           <Bold />
           <Italic />
@@ -50,3 +51,4 @@ export const ToolBar: React.FC<Props> = memo<Props>((props) => {
     </Stack>
   )
 })
+ToolBar.displayName = 'ToolBar'

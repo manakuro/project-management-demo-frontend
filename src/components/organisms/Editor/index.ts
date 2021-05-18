@@ -1,2 +1,2 @@
 export * from './Editor'
-export * from './ToolBar'
+export * from './Editors/EditorContent'

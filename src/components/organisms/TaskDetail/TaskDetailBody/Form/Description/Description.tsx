@@ -1,7 +1,9 @@
 import React, { memo, useState } from 'react'
 import { Row, Label, Content } from '../Row'
-import 'prosemirror-view/style/prosemirror.css'
-import { Editor } from 'src/components/organisms'
+import { Editor, EditorContent } from 'src/components/organisms'
+import { Provider } from './Provider'
+import { ToolBar } from './ToolBar'
+import { Container } from './Container'
 
 type Props = {}
 
@@ -89,7 +91,15 @@ const initialValue = JSON.stringify(
   null,
   2,
 )
-export const Description: React.FC<Props> = memo<Props>(() => {
+export const Description: React.FC<Props> = (props) => {
+  return (
+    <Provider>
+      <Component {...props} />
+    </Provider>
+  )
+}
+
+export const Component: React.FC<Props> = memo<Props>(() => {
   const [value, setValue] = useState(initialValue)
 
   console.log(JSON.parse(value))
@@ -97,7 +107,12 @@ export const Description: React.FC<Props> = memo<Props>(() => {
     <Row>
       <Label>Description</Label>
       <Content>
-        <Editor onChange={setValue} value={initialValue} />
+        <Container>
+          <Editor onChange={setValue} value={initialValue}>
+            <EditorContent />
+            <ToolBar />
+          </Editor>
+        </Container>
       </Content>
     </Row>
   )

@@ -26,10 +26,9 @@ export const ToolBar: React.FC<Props> = memo<Props>((props) => {
       spacing={1}
       minH={8}
       alignItems="center"
-      position="sticky"
-      bottom={0}
-      borderTop="1px"
-      borderColor={props.show ? 'gray.100' : 'transparent'}
+      // TODO: Find a workaround to make tool bar sticky at bottom
+      // position="sticky"
+      // bottom={0}
       bg="white"
     >
       {props.show && (

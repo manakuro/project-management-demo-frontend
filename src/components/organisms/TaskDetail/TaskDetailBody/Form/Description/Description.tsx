@@ -99,7 +99,7 @@ export const Description: React.FC<Props> = (props) => {
   )
 }
 
-export const Component: React.FC<Props> = memo<Props>(() => {
+const Component: React.FC<Props> = memo<Props>(() => {
   const [value, setValue] = useState(initialValue)
 
   console.log(JSON.parse(value))

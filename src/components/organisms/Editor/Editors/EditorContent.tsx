@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react'
-import { Box } from 'src/components/atoms'
+import { Box, BoxProps } from 'src/components/atoms'
 import { useEditorView } from 'src/components/organisms/Editor/Editors/EdiorProvider'
 // import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 
-type Props = {}
-export const EditorContent: React.FC<Props> = React.memo<Props>(() => {
+type Props = BoxProps
+export const EditorContent: React.FC<Props> = React.memo<Props>((props) => {
   const view = useEditorView()
   const ref = useRef<HTMLDivElement | null>(null)
   // const { taskDetailBodyDom } = useTaskDetailBody()
@@ -35,5 +35,5 @@ export const EditorContent: React.FC<Props> = React.memo<Props>(() => {
   //   [taskDetailBodyDom],
   // )
 
-  return <Box mb={4} ref={ref} />
+  return <Box {...props} ref={ref} />
 })

@@ -4,6 +4,7 @@ import { Editor, EditorContent } from 'src/components/organisms'
 import { Provider } from './Provider'
 import { ToolBar } from './ToolBar'
 import { Container } from './Container'
+import { Placeholder } from './Placeholder'
 
 type Props = {}
 
@@ -110,6 +111,7 @@ const Component: React.FC<Props> = memo<Props>(() => {
         <Container>
           <Editor onChange={setValue} value={initialValue}>
             <EditorContent />
+            <Placeholder />
             <ToolBar />
           </Editor>
         </Container>

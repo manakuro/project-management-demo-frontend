@@ -20,6 +20,7 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
       px={3}
       flexDirection="column"
       flex={1}
+      position="relative"
       onFocus={onFocus}
       {...props}
     />

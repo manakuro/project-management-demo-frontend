@@ -12,7 +12,7 @@ import {
   Emoji,
   AtMention,
 } from 'src/components/organisms/Editor/ToolBar'
-import { Divider, Stack } from 'src/components/atoms'
+import { Button, Divider, Flex, Stack } from 'src/components/atoms'
 import { useInput } from './Provider'
 import { transitions } from 'src/styles'
 
@@ -22,30 +22,32 @@ export const ToolBar: React.FC<Props> = memo<Props>(() => {
   const { focused } = useInput()
 
   return (
-    <Stack
-      direction="row"
-      spacing={1}
-      h={focused ? 8 : 0}
-      alignItems="center"
-      transition={transitions.base('height')}
+    <Flex
       marginTop="auto"
+      h={focused ? 9 : 0}
+      transition={transitions.base('height')}
       overflow="hidden"
     >
-      <>
-        <Bold />
-        <Italic />
-        <Underline />
-        <Strikethrough />
-        <BulletList />
-        <OrderedList />
-        <IncreaseListIndent />
-        <DecreaseListIndent />
-        <Link />
-        <Divider orientation="vertical" borderColor="gray.400" h={5} />
-        <AtMention />
-        <Emoji />
-      </>
-    </Stack>
+      <Stack direction="row" spacing={1} alignItems="center">
+        <>
+          <Bold />
+          <Italic />
+          <Underline />
+          <Strikethrough />
+          <BulletList />
+          <OrderedList />
+          <IncreaseListIndent />
+          <DecreaseListIndent />
+          <Link />
+          <Divider orientation="vertical" borderColor="gray.400" h={5} />
+          <AtMention />
+          <Emoji />
+        </>
+      </Stack>
+      <Button colorScheme="teal" ml="auto" size="sm">
+        Comment
+      </Button>
+    </Flex>
   )
 })
 ToolBar.displayName = 'ToolBar'

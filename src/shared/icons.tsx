@@ -83,7 +83,7 @@ import {
   AiOutlineFileText,
   AiOutlineFilePdf,
 } from 'react-icons/ai'
-import { MdSort } from 'react-icons/md'
+import { MdSort, MdTextFormat } from 'react-icons/md'
 import { IoMdAttach } from 'react-icons/io'
 
 export const icons = {
@@ -166,6 +166,7 @@ export const icons = {
   table: BiTable,
   tag: BiTag,
   task: BiTask,
+  textFormat: MdTextFormat,
   time: BiTime,
   trashAlt: BiTrashAlt,
   twitter: FaTwitter,

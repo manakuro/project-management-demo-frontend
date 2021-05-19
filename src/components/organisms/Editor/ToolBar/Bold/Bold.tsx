@@ -1,22 +1,28 @@
 import React, { memo } from 'react'
 import { BaseButton } from '../BaseButton'
-import { Icon } from 'src/components/atoms'
+import { Icon, IconButtonProps } from 'src/components/atoms'
 import { useBold } from 'src/shared/prosemirror/hooks'
-type Props = {}
+import { TooltipProps } from 'src/components/molecules'
 
-export const Bold: React.FC<Props> = memo<Props>(() => {
+type Props = Omit<IconButtonProps, 'aria-label'> & {
+  tooltip?: Omit<TooltipProps, 'children'>
+}
+
+export const Bold: React.FC<Props> = memo<Props>((props) => {
   const { action, isActive } = useBold()
 
   return (
     <BaseButton
       aria-label="bold"
       icon={<Icon icon="bold" color="text.muted" />}
-      isActive={isActive}
       action={action}
+      {...props}
       tooltip={{
         label: 'Bold\n(⌘+b)',
         'aria-label': 'Bold',
+        ...props.tooltip,
       }}
+      isActive={isActive}
     />
   )
 })

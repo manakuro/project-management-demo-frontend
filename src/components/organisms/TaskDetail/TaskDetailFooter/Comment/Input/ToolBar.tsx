@@ -1,18 +1,10 @@
 import React, { memo } from 'react'
 import {
-  Bold,
-  BulletList,
-  DecreaseListIndent,
-  IncreaseListIndent,
-  Italic,
-  Link,
-  OrderedList,
-  Strikethrough,
-  Underline,
+  Format,
   Emoji,
   AtMention,
 } from 'src/components/organisms/Editor/ToolBar'
-import { Button, Divider, Flex, Stack } from 'src/components/atoms'
+import { Button, Flex, Stack } from 'src/components/atoms'
 import { useInput } from './Provider'
 import { transitions } from 'src/styles'
 
@@ -30,16 +22,7 @@ export const ToolBar: React.FC<Props> = memo<Props>(() => {
     >
       <Stack direction="row" spacing={1} alignItems="center">
         <>
-          <Bold />
-          <Italic />
-          <Underline />
-          <Strikethrough />
-          <BulletList />
-          <OrderedList />
-          <IncreaseListIndent />
-          <DecreaseListIndent />
-          <Link />
-          <Divider orientation="vertical" borderColor="gray.400" h={5} />
+          <Format />
           <AtMention />
           <Emoji />
         </>

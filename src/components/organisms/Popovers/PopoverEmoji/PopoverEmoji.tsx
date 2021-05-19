@@ -1,13 +1,22 @@
 import React from 'react'
 import { Popover, PopoverTrigger } from 'src/components/organisms'
-import { Link, ConditionalRender, PortalManager } from 'src/components/atoms'
-import { usePopoverEmoji } from './usePopoverEmoji'
+import { ConditionalRender, PortalManager, Flex } from 'src/components/atoms'
+import { usePopoverEmoji } from './Provider'
 import 'emoji-mart/css/emoji-mart.css'
 import { Content } from './Content'
+import { Provider } from './Provider'
 
 type Props = {}
 
 export const PopoverEmoji: React.FC<Props> = (props) => {
+  return (
+    <Provider>
+      <Component {...props} />
+    </Provider>
+  )
+}
+
+const Component: React.FC<Props> = (props) => {
   const { isOpen } = usePopoverEmoji()
 
   return (
@@ -15,7 +24,8 @@ export const PopoverEmoji: React.FC<Props> = (props) => {
       <PortalManager zIndex={1500}>
         <Popover isOpen={isOpen} placement="top-end" closeOnBlur={false}>
           <PopoverTrigger>
-            <Link>{props.children}</Link>
+            {/*TODO: To fix an issue of duplicated trigger wrapper generated*/}
+            <Flex>{props.children}</Flex>
           </PopoverTrigger>
           {isOpen && <Content />}
         </Popover>

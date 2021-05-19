@@ -8,6 +8,7 @@ import { forwardRef } from 'src/shared/chakra'
 type Props = ChakraTooltipProps & {
   withIcon?: boolean
   size?: Sizes
+  ref?: React.ForwardedRef<any>
 }
 export type TooltipProps = Props
 

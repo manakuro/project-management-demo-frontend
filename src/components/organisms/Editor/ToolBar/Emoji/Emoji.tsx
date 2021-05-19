@@ -6,7 +6,15 @@ import { PopoverEmoji } from 'src/components/organisms'
 
 type Props = {}
 
-export const Emoji: React.FC<Props> = memo<Props>(() => {
+export const Emoji: React.FC<Props> = (props) => {
+  return (
+    <PopoverEmoji>
+      <Component {...props} />
+    </PopoverEmoji>
+  )
+}
+
+export const Component: React.FC<Props> = memo<Props>(() => {
   const { action } = useEmoji()
 
   return (

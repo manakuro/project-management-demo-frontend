@@ -7,6 +7,9 @@ import {
   EmojiData,
   EmojiSkin,
 } from 'emoji-mart'
+import useResizeObserver from '@react-hook/resize-observer'
+import { calculateModalPosition } from 'src/shared/calculateModalPosition'
+import { getCaretPosition } from 'src/shared/getCaretPosition'
 
 const DEFAULT_EMOJIS = [
   'grinning',
@@ -58,8 +61,7 @@ const atomState = atom<State>({
 
 // NOTE: Export functions in order to execute inside prosemirror's plugins
 // @see src/shared/prosemirror/config/plugins.ts
-type onOpenProps = { x: State['x']; y: State['y'] }
-let onOpen: (args: onOpenProps) => Promise<void>
+let onOpen: () => Promise<void> | void
 let onClose: () => void
 let setQuery: (query: string) => void
 let getQuery: () => string
@@ -67,6 +69,7 @@ let onArrowDown: () => void
 let onArrowUp: () => void
 let onEnter: () => void
 let isOpen: boolean
+let getCurrentCaretPosition: () => { x: number; y: number } | null
 
 type EmojiRef = Readonly<{ current: BaseEmoji | null }>
 const emojiRef: EmojiRef = {
@@ -177,22 +180,30 @@ function useOnKeyBindings(props: {
 function useDisclosure(props: { reset: () => void }) {
   const [state, setState] = useRecoilState(atomState)
 
-  onOpen = useCallback(
-    ({ x, y }: onOpenProps) => {
-      isOpen = true
+  getCurrentCaretPosition = useCallback(() => {
+    const position = getCaretPosition()
+    if (!position) return null
 
-      return new Promise<void>((resolve) => {
-        setState((s) => ({
-          ...s,
-          isOpen: true,
-          x,
-          y,
-          callback: resolve as () => Promise<void>,
-        }))
-      })
-    },
-    [setState],
-  )
+    position.y += 24
+    return position
+  }, [])
+
+  onOpen = useCallback(() => {
+    // Avoid recalculate the position while the modal is opening
+    const position = isOpen ? {} : getCurrentCaretPosition()
+    if (!position) return
+
+    isOpen = true
+
+    return new Promise<void>((resolve) => {
+      setState((s) => ({
+        ...s,
+        isOpen: true,
+        callback: resolve as () => Promise<void>,
+        ...position,
+      }))
+    })
+  }, [setState])
 
   onClose = useCallback(async () => {
     isOpen = false
@@ -224,7 +235,7 @@ function useQuery() {
 }
 
 function useContainer() {
-  const [, setState] = useRecoilState(atomState)
+  const [state, setState] = useRecoilState(atomState)
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -239,6 +250,22 @@ function useContainer() {
       setState((s) => ({ ...s, containerRef: null }))
     }
   }, [setState])
+
+  // TODO: Make text input faster and more smoothly.
+  useResizeObserver(containerRef, () => {
+    if (!containerRef.current) return
+
+    const caretPosition = getCurrentCaretPosition()
+    if (!caretPosition) return null
+
+    const position = calculateModalPosition(containerRef.current, {
+      y: caretPosition.y,
+    })
+    if (!position) return
+    if (position.y === state.y) return
+
+    setState((s) => ({ ...s, ...position }))
+  })
 
   return {
     containerRef,

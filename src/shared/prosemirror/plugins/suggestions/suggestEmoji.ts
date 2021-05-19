@@ -8,7 +8,6 @@ import {
   onEmojiArrowUp as onArrowUp,
   onEmojiEnter as onEnter,
 } from 'src/components/organisms/Menus/EditorEmojiMenu'
-import { getCaretPosition } from 'src/shared/getCaretPosition'
 
 export const suggestEmoji: Suggester = {
   noDecorations: true,
@@ -33,14 +32,7 @@ export const suggestEmoji: Suggester = {
   },
   onChange: async (params) => {
     setQuery(params.queryText.full)
-
-    const position = getCaretPosition()
-    if (!position) return
-
-    await onOpen({
-      x: Number(position?.x),
-      y: Number(position?.y),
-    })
+    await onOpen()
     params.command()
   },
 

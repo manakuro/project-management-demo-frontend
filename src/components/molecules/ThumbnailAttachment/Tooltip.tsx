@@ -20,17 +20,19 @@ export const Tooltip: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (!thumbnailMenuOpened && isHovering) {
-      tooltipDisclosure.onOpen()
+      setTimeout(() => {
+        tooltipDisclosure.onOpen()
+      }, props.openDelay ?? 0)
     } else {
       tooltipDisclosure.onClose()
     }
-  }, [isHovering, thumbnailMenuOpened, tooltipDisclosure])
+  }, [isHovering, props.openDelay, thumbnailMenuOpened, tooltipDisclosure])
 
   return (
     <MoleculesTooltip
       isOpen={tooltipDisclosure.isOpen}
       hasArrow
-      label={attachment.src}
+      label={attachment.name}
       aria-label={attachment.src}
       size="sm"
       {...rest}

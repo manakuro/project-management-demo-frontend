@@ -16,7 +16,7 @@ export const File: React.VFC<Props> = (props) => {
   const { isHovering } = useThumbnailAttachment()
 
   return (
-    <Tooltip attachmentId={attachmentId}>
+    <Tooltip attachmentId={attachmentId} openDelay={500}>
       <Container {...rest}>
         <AttachmentBox
           size="md"

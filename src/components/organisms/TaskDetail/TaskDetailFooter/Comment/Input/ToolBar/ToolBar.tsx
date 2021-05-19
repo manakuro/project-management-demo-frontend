@@ -5,7 +5,8 @@ import {
   AtMention,
 } from 'src/components/organisms/Editor/ToolBar'
 import { Button, Flex, Stack } from 'src/components/atoms'
-import { useInput } from './Provider'
+import { useInput } from '../Provider'
+import { Attachment } from './Attachment'
 import { transitions } from 'src/styles'
 
 type Props = {}
@@ -25,6 +26,7 @@ export const ToolBar: React.FC<Props> = memo<Props>(() => {
           <Format />
           <AtMention />
           <Emoji />
+          <Attachment />
         </>
       </Stack>
       <Button colorScheme="teal" ml="auto" size="sm">

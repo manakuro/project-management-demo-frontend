@@ -6,7 +6,7 @@ type Props = {}
 
 export const NewButton: React.VFC<Props> = memo<Props>(() => {
   return (
-    <AttachmentMenu label="Attach a file" tooltipSize="sm">
+    <AttachmentMenu label="Attach a file" tooltip={{ size: 'sm' }}>
       <MenuButton cursor="pointer">
         <NewBox size="lg" />
       </MenuButton>

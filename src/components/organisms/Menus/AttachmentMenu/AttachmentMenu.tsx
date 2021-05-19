@@ -6,7 +6,7 @@ import { useMenuStyle } from 'src/hooks'
 
 type Props = {
   label: string
-  tooltipSize?: TooltipProps['size']
+  tooltip?: Omit<TooltipProps, 'children'>
 }
 
 export const AttachmentMenu: React.FC<Props> = memo((props) => {
@@ -18,7 +18,7 @@ export const AttachmentMenu: React.FC<Props> = memo((props) => {
         hasArrow
         label={props.label}
         aria-label="Attachment button"
-        size={props.tooltipSize}
+        {...props.tooltip}
         withIcon
       >
         {props.children}

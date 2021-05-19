@@ -27,6 +27,7 @@
     "@material-ui/core": "^5.0.0-alpha.27",
     "@material-ui/lab": "^5.0.0-alpha.27",
     "@react-hook/hover": "^4.0.0",
+    "@react-hook/resize-observer": "^1.2.0",
     "@react-pdf-viewer/core": "2.4.3",
     "date-fns": "^2.21.3",
     "emoji-mart": "^3.0.1",

@@ -2,6 +2,8 @@ import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { MentionItem, MentionType } from './types'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
+import useResizeObserver from '@react-hook/resize-observer'
+import { calculateModalPosition } from 'src/shared/calculateModalPosition'
 
 type Id = number | null
 type State = {
@@ -296,7 +298,7 @@ function useQuery() {
 }
 
 function useContainer() {
-  const [, setState] = useRecoilState(atomState)
+  const [state, setState] = useRecoilState(atomState)
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -311,6 +313,22 @@ function useContainer() {
       setState((s) => ({ ...s, containerRef: null }))
     }
   }, [setState])
+
+  // TODO: Make text input faster and more smoothly.
+  useResizeObserver(containerRef, () => {
+    if (!containerRef.current) return
+
+    const caretPosition = getCurrentCaretPosition()
+    if (!caretPosition) return null
+
+    const position = calculateModalPosition(containerRef.current, {
+      y: caretPosition.y,
+    })
+    if (!position) return
+    if (position.y === state.y) return
+
+    setState((s) => ({ ...s, ...position }))
+  })
 
   return {
     containerRef,

@@ -21,7 +21,7 @@ export const MenuList: React.VFC<Props> = () => {
   return (
     <ModalContent
       position="fixed"
-      top={y + 24}
+      top={y}
       left={x}
       mb={0}
       mt={0}

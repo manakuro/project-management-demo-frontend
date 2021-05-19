@@ -11,7 +11,6 @@ import {
   getMentionType,
   getMentionQuery,
 } from 'src/components/organisms/Menus/EditorMentionMenu'
-import { getCaretPosition } from 'src/shared/getCaretPosition'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
 
 export const MENTION_CHAR = '@'
@@ -41,13 +40,7 @@ export const suggestMention: Suggester = {
   },
   onChange: async (params) => {
     setQuery(params.queryText.full)
-    const position = getCaretPosition()
-    if (!position) return
-
-    await onOpen({
-      x: Number(position?.x),
-      y: Number(position?.y),
-    })
+    await onOpen()
     params.command()
   },
 

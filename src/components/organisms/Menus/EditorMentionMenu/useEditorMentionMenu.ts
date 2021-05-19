@@ -1,6 +1,7 @@
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { MentionItem, MentionType } from './types'
+import { getCaretPosition } from 'src/shared/getCaretPosition'
 
 type Id = number | null
 type State = {
@@ -109,8 +110,7 @@ export const mentionData: MentionItem[] = [
 
 // NOTE: Export functions in order to execute inside prosemirror's plugins
 // @see src/shared/prosemirror/config/plugins.ts
-type onOpenProps = { x: State['x']; y: State['y'] }
-let onOpen: (args: onOpenProps) => Promise<void>
+let onOpen: () => Promise<void> | void
 let onClose: () => void
 let setQuery: (query: string) => void
 let getQuery: () => string
@@ -118,6 +118,7 @@ let onArrowDown: () => void
 let onArrowUp: () => void
 let onEnter: () => void
 let isOpen: boolean
+let getCurrentCaretPosition: () => { x: number; y: number } | null
 
 type IdRef = Readonly<{ current: Id }>
 const idRef: IdRef = {
@@ -242,22 +243,29 @@ function useOnKeyBindings(props: {
 function useDisclosure(props: { reset: () => void }) {
   const [state, setState] = useRecoilState(atomState)
 
-  onOpen = useCallback(
-    ({ x, y }: onOpenProps) => {
-      isOpen = true
+  getCurrentCaretPosition = useCallback(() => {
+    const position = getCaretPosition()
+    if (!position) return null
 
-      return new Promise<void>((resolve) => {
-        setState((s) => ({
-          ...s,
-          isOpen: true,
-          x,
-          y,
-          callback: resolve as () => Promise<void>,
-        }))
-      })
-    },
-    [setState],
-  )
+    position.y += 24
+    return position
+  }, [])
+
+  onOpen = useCallback(() => {
+    // Avoid recalculate the position while the modal is opening
+    const position = isOpen ? {} : getCurrentCaretPosition()
+    if (!position) return
+
+    isOpen = true
+    return new Promise<void>((resolve) => {
+      setState((s) => ({
+        ...s,
+        isOpen: true,
+        callback: resolve as () => Promise<void>,
+        ...position,
+      }))
+    })
+  }, [setState])
 
   onClose = useCallback(async () => {
     isOpen = false

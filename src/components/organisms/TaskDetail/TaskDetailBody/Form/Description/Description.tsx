@@ -101,9 +101,9 @@ export const Description: React.FC<Props> = (props) => {
 }
 
 const Component: React.FC<Props> = memo<Props>(() => {
-  const [value, setValue] = useState(initialValue)
+  const [, setValue] = useState(initialValue)
 
-  console.log(JSON.parse(value))
+  // console.log(JSON.parse(value))
   return (
     <Row>
       <Label>Description</Label>

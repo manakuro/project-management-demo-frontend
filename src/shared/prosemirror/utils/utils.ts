@@ -79,6 +79,8 @@ export const entries = <
 
 export const isContentEmpty = (view: EditorView): boolean => {
   const { state } = view
-
-  return state.doc.content.size === 0 || state.doc.textContent === ''
+  return (
+    state.doc.content.size === 0 ||
+    (state.doc.content.size <= 2 && state.doc.textContent === '')
+  )
 }

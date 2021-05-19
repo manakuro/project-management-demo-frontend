@@ -92,6 +92,7 @@ export const useProjects = () => {
           )
           .forEach((t) => set(teammateSelector(t.id), t))
       },
+    [],
   )
 
   const setProjects = useRecoilCallback(

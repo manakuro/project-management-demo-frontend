@@ -73,14 +73,18 @@ export const useTasks = () => {
   const taskIds = useRecoilValue(taskIdsState)
   const tasks = useRecoilValue(tasksState)
 
-  const setSubtasks = useRecoilCallback(({ set }) => (data: TaskResponse[]) => {
-    data
-      .reduce<Task['subTasks']>(
-        (acc, p) => uniqBy([...acc, ...p.subTasks], 'id'),
-        [],
-      )
-      .forEach((t) => set(subtaskSelector(t.id), t))
-  })
+  const setSubtasks = useRecoilCallback(
+    ({ set }) =>
+      (data: TaskResponse[]) => {
+        data
+          .reduce<Task['subTasks']>(
+            (acc, p) => uniqBy([...acc, ...p.subTasks], 'id'),
+            [],
+          )
+          .forEach((t) => set(subtaskSelector(t.id), t))
+      },
+    [],
+  )
   const setAttachments = useRecoilCallback(
     ({ set }) =>
       (data: TaskResponse[]) => {
@@ -91,6 +95,7 @@ export const useTasks = () => {
           )
           .forEach((t) => set(attachmentSelector(t.id), t))
       },
+    [],
   )
 
   const setTasks = useRecoilCallback(

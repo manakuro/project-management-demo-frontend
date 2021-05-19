@@ -7,8 +7,8 @@ import {
   listKeys,
 } from 'src/shared/prosemirror/plugins'
 
-export const plugins = [
-  suggestionPlugin,
+export const plugins = () => [
+  suggestionPlugin(),
   history(),
   listKeys(),
   editorKeys(),

@@ -11,7 +11,7 @@ export const Editor: React.FC<Props> = memo<Props>((props) => {
   return (
     <EditorContainer
       schema={schema}
-      plugins={plugins}
+      plugins={plugins()}
       value={props.value}
       onChange={props.onChange}
       debounce={500}

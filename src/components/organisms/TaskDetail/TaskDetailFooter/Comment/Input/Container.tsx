@@ -13,7 +13,7 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
       border="1px"
       borderRadius="md"
       borderColor="gray.400"
-      py={1}
+      py={focused ? 2 : 1}
       px={2}
       flexDirection="column"
       flex={1}

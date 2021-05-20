@@ -75,7 +75,74 @@ export const taskSelector = selectorFamily<Task, string>({
 export const useTasks = () => {
   const taskIds = useRecoilValue(taskIdsState)
   const tasks = useRecoilValue(tasksState)
+  const { setSubtasks, setAttachments, setFeeds } = useSetters()
 
+  const setTasks = useRecoilCallback(
+    ({ set }) =>
+      (data: TaskResponse[]) => {
+        const tasks = data.map((t) => ({
+          ...t,
+          subTaskIds: t.subTasks.map((s) => s.id),
+          attachmentIds: t.attachments.map((a) => a.id),
+          feedIds: t.feeds.map((f) => f.id),
+        }))
+
+        tasks.forEach((t) => {
+          set(taskSelector(t.id), t)
+        })
+
+        setSubtasks(data)
+        setAttachments(data)
+        setFeeds(data)
+      },
+    [setAttachments, setFeeds, setSubtasks],
+  )
+
+  return {
+    taskIds,
+    tasks,
+    setTasks,
+  }
+}
+
+export const useTask = (taskId?: string) => {
+  const task = useRecoilValue(taskSelector(taskId || ''))
+  const { setSubtasks, setAttachments, setFeeds } = useSetters()
+
+  const upsertTask = useRecoilCallback(
+    ({ set }) =>
+      (task: Task) => {
+        set(taskSelector(task.id), task)
+      },
+    [],
+  )
+
+  const setTaskFromResponse = useRecoilCallback(
+    ({ set }) =>
+      (data: TaskResponse) => {
+        const task: Task = {
+          ...data,
+          subTaskIds: data.subTasks.map((s) => s.id),
+          attachmentIds: data.attachments.map((a) => a.id),
+          feedIds: data.feeds.map((f) => f.id),
+        }
+        set(taskSelector(task.id), task)
+
+        setSubtasks([data])
+        setAttachments([data])
+        setFeeds([data])
+      },
+    [setAttachments, setFeeds, setSubtasks],
+  )
+
+  return {
+    task,
+    upsertTask,
+    setTaskFromResponse,
+  }
+}
+
+const useSetters = () => {
   const setSubtasks = useRecoilCallback(
     ({ set }) =>
       (data: TaskResponse[]) => {
@@ -113,47 +180,9 @@ export const useTasks = () => {
     [],
   )
 
-  const setTasks = useRecoilCallback(
-    ({ set }) =>
-      (data: TaskResponse[]) => {
-        const tasks = data.map((t) => ({
-          ...t,
-          subTaskIds: t.subTasks.map((s) => s.id),
-          attachmentIds: t.attachments.map((a) => a.id),
-          feedIds: t.feeds.map((f) => f.id),
-        }))
-
-        tasks.forEach((t) => {
-          set(taskSelector(t.id), t)
-        })
-
-        setSubtasks(data)
-        setAttachments(data)
-        setFeeds(data)
-      },
-    [setAttachments, setFeeds, setSubtasks],
-  )
-
   return {
-    taskIds,
-    tasks,
-    setTasks,
-  }
-}
-
-export const useTask = (taskId: string) => {
-  const task = useRecoilValue(taskSelector(taskId))
-
-  const upsertTask = useRecoilCallback(
-    ({ set }) =>
-      (task: Task) => {
-        set(taskSelector(task.id), task)
-      },
-    [],
-  )
-
-  return {
-    task,
-    upsertTask,
+    setSubtasks,
+    setAttachments,
+    setFeeds,
   }
 }

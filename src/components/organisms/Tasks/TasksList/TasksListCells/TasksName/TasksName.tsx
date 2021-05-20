@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo } from 'react'
 import { CheckIcon, FlexProps, Icon, Text } from 'src/components/atoms'
 import { TasksNameField } from './TasksNameField'
 import { TasksNameCell } from './TasksNameCell'
@@ -20,14 +20,10 @@ export const TasksName: React.FC<Props> = (props) => {
 
 const Component: React.FC<Props> = memo<Props>(() => {
   const { ref, onMarkMenuOpened, onMarkMenuClosed } = useTasksName()
-  const { setIsOpen } = useTasksListDetail()
-
-  const handleTasksListDetailOpen = useCallback(() => {
-    setIsOpen(true)
-  }, [setIsOpen])
+  const { onOpen } = useTasksListDetail()
 
   return (
-    <TasksNameCell ref={ref} onClick={handleTasksListDetailOpen}>
+    <TasksNameCell ref={ref} onClick={onOpen}>
       <TasksNameGrabIcon />
       <CheckIcon isDone={false} ml={4} />
       <TasksNameField

@@ -13,9 +13,13 @@ export const useTasksListDetail = () => {
     setIsOpen(false)
   }, [setIsOpen])
 
+  const onOpen = useCallback(() => {
+    setIsOpen(true)
+  }, [setIsOpen])
+
   return {
     isOpen,
-    setIsOpen,
+    onOpen,
     onClose,
   }
 }

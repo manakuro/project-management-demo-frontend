@@ -10,6 +10,7 @@ import { Task, TaskResponse } from './type'
 import { uniqBy } from 'src/shared/utils'
 import { subtaskSelector } from 'src/store/subtasks'
 import { attachmentSelector } from 'src/store/attachments'
+import { feedSelector } from 'src/store/feeds'
 
 export const taskIdsState = atom<string[]>({
   key: 'taskIdsState',
@@ -34,6 +35,8 @@ const taskState = atomFamily<Task, string>({
     assigneeId: '',
     attachments: [],
     attachmentIds: [],
+    feeds: [],
+    feedIds: [],
   },
 })
 
@@ -97,6 +100,18 @@ export const useTasks = () => {
       },
     [],
   )
+  const setFeeds = useRecoilCallback(
+    ({ set }) =>
+      (data: TaskResponse[]) => {
+        data
+          .reduce<Task['feeds']>(
+            (acc, p) => uniqBy([...acc, ...p.feeds], 'id'),
+            [],
+          )
+          .forEach((f) => set(feedSelector(f.id), f))
+      },
+    [],
+  )
 
   const setTasks = useRecoilCallback(
     ({ set }) =>
@@ -105,6 +120,7 @@ export const useTasks = () => {
           ...t,
           subTaskIds: t.subTasks.map((s) => s.id),
           attachmentIds: t.attachments.map((a) => a.id),
+          feedIds: t.feeds.map((f) => f.id),
         }))
 
         tasks.forEach((t) => {
@@ -113,8 +129,9 @@ export const useTasks = () => {
 
         setSubtasks(data)
         setAttachments(data)
+        setFeeds(data)
       },
-    [setAttachments, setSubtasks],
+    [setAttachments, setFeeds, setSubtasks],
   )
 
   return {

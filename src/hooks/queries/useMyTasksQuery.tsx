@@ -114,6 +114,28 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
               type: 3,
             },
           ],
+          feeds: [
+            {
+              id: '1',
+              taskId: '1',
+              teammateId: '1',
+              description: '',
+              attachmentIds: [],
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString(),
+              type: 1,
+            },
+            {
+              id: '2',
+              taskId: '1',
+              teammateId: '1',
+              description: '',
+              attachmentIds: [],
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString(),
+              type: 1,
+            },
+          ],
         },
         {
           id: '2',
@@ -124,6 +146,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           subTasks: [],
           assigneeId: '',
           attachments: [],
+          feeds: [],
         },
         {
           id: '3',
@@ -134,6 +157,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           subTasks: [],
           assigneeId: '',
           attachments: [],
+          feeds: [],
         },
         {
           id: '4',
@@ -144,6 +168,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           subTasks: [],
           assigneeId: '',
           attachments: [],
+          feeds: [],
         },
         {
           id: '5',
@@ -154,6 +179,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           subTasks: [],
           assigneeId: '',
           attachments: [],
+          feeds: [],
         },
       ])
     }, 1000)

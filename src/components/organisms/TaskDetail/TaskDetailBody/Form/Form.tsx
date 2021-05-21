@@ -14,7 +14,7 @@ type Props = {}
 
 export const Form: React.FC<Props> = memo(() => {
   return (
-    <Flex flexDirection="column" py={2}>
+    <Flex flexDirection="column" pt={2}>
       <TaskName />
       <Stack px={6} mt={3}>
         <Assignee />

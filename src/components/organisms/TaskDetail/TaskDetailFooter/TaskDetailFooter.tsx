@@ -16,7 +16,14 @@ export const TaskDetailFooter: React.FC<Props> = (props) => {
     )
 
   return (
-    <Flex flex={1} px={6} py={2} bg="gray.50">
+    <Flex
+      flex={1}
+      px={6}
+      py={2}
+      bg="gray.50"
+      borderTop="1px"
+      borderColor="gray.100"
+    >
       <Comment />
     </Flex>
   )

@@ -9,14 +9,16 @@ import { EditorProvider, useEditorState } from './EdiorProvider'
 import { Portals } from './Portals'
 import { useDebounce } from 'src/hooks'
 import { ConditionalRender } from 'src/components/atoms'
+import { EditorProps } from 'prosemirror-view'
 
 type Props = {
   schema: Schema
   plugins: Plugin[]
   value: string
-  onChange: (value: string) => void
+  onChange?: (value: string) => void
   debounce: number
-}
+} & EditorProps
+
 export const EditorContainer: React.FC<Props> = (props) => {
   const transformer = useMemo<ProsemirrorTransformer>(
     () => createJSONTransformer(props.schema),
@@ -38,7 +40,7 @@ export const EditorContainer: React.FC<Props> = (props) => {
 }
 
 type ContainerProps<P> = {
-  onChange: (value: P) => void
+  onChange?: (value: P) => void
   transformer: ProsemirrorTransformer<P>
   debounce: number
 }
@@ -49,7 +51,7 @@ export const Container = <P extends unknown>(
   useDebounce(
     state.doc,
     (val) => {
-      props.onChange(props.transformer.serialize(val))
+      props.onChange?.(props.transformer.serialize(val))
     },
     props.debounce,
   )

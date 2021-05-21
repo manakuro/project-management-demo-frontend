@@ -1,6 +1,6 @@
 import { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
 import { EditorState, Plugin } from 'prosemirror-state'
-import { EditorView } from 'prosemirror-view'
+import { EditorProps, EditorView } from 'prosemirror-view'
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import {
   ReactNodeViewPortalsProvider,
@@ -25,7 +25,7 @@ type Props = {
   doc?: ProsemirrorNode
   schema?: Schema
   plugins?: Plugin[]
-}
+} & EditorProps
 export const EditorProvider: React.FC<Props> = (props) => {
   return (
     <ReactNodeViewPortalsProvider>
@@ -48,6 +48,7 @@ const Provider: React.FC<Props> = (props) => {
   useEffect(() => {
     const view = new EditorView(undefined, {
       state,
+      editable: props.editable,
       nodeViews: {
         link(node, view, getPos, decorations) {
           return createReactNodeView({

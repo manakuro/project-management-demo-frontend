@@ -1,12 +1,12 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { CheckIcon, FlexProps, Icon, Text } from 'src/components/atoms'
 import { TasksNameField } from './TasksNameField'
 import { TasksNameCell } from './TasksNameCell'
 import { TasksNameGrabIcon } from './TasksNameGrabIcon'
 import { TasksNameRightContainer } from './TasksNameRightContainer'
 import { Mark } from './Mark'
-import { useTasksListDetail } from 'src/components/organisms'
 import { TasksNameProvider, useTasksName } from './TasksNameProvider'
+import { useRouter } from 'src/router'
 
 type Props = FlexProps
 
@@ -18,12 +18,16 @@ export const TasksName: React.FC<Props> = (props) => {
   )
 }
 
-const Component: React.FC<Props> = memo<Props>(() => {
+const Component: React.VFC<Props> = memo<Props>(() => {
   const { ref, onMarkMenuOpened, onMarkMenuClosed } = useTasksName()
-  const { onOpen } = useTasksListDetail()
+  const { navigateToTaskDetail } = useRouter()
+
+  const handleClick = useCallback(async () => {
+    await navigateToTaskDetail('1')
+  }, [navigateToTaskDetail])
 
   return (
-    <TasksNameCell ref={ref} onClick={onOpen}>
+    <TasksNameCell ref={ref} onClick={handleClick}>
       <TasksNameGrabIcon />
       <CheckIcon isDone={false} ml={4} />
       <TasksNameField

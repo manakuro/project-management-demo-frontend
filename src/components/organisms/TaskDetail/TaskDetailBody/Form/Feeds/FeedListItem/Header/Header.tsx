@@ -1,10 +1,11 @@
 import React, { memo } from 'react'
-import { Avatar, Flex } from 'src/components/atoms'
+import { Avatar, Flex, Stack } from 'src/components/atoms'
 import { PopoverProfile } from 'src/components/organisms'
 import { useFeedListItem } from '../Provider'
 import { CreateAt } from './CreateAt'
 import { Title } from './Title'
 import { Like } from './Like'
+import { FeedOptionMenu } from './FeedOptionMenu'
 
 type Props = {}
 
@@ -30,9 +31,10 @@ export const Header: React.VFC<Props> = memo<Props>(() => {
       </PopoverProfile>
       <Title />
       <CreateAt />
-      <Flex ml="auto">
+      <Stack direction="row" ml="auto" spacing={2}>
         <Like />
-      </Flex>
+        <FeedOptionMenu />
+      </Stack>
     </Flex>
   )
 })

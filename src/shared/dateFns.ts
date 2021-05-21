@@ -6,6 +6,7 @@ import isThisWeek from 'date-fns/isThisWeek'
 import addYears from 'date-fns/addYears'
 import getWeek from 'date-fns/getWeek'
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
+import intervalToDuration from 'date-fns/intervalToDuration'
 import DateIODateFnsAdapter from '@date-io/date-fns'
 
 class DateFnsAdapter extends DateIODateFnsAdapter {
@@ -41,6 +42,9 @@ class DateFnsAdapter extends DateIODateFnsAdapter {
     dateRight: ArgType<typeof differenceInCalendarDays, 1>,
   ) {
     return differenceInCalendarDays(dateLeft, dateRight)
+  }
+  intervalToDuration(interval: ArgType<typeof intervalToDuration, 0>) {
+    return intervalToDuration(interval)
   }
 }
 

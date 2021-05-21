@@ -6,6 +6,7 @@ import {
   Icon,
   IconButton,
   Stack,
+  Skeleton,
 } from 'src/components/atoms'
 import { Like } from './Like'
 import { Attachment } from './Attachment'
@@ -15,9 +16,18 @@ import { MoreAction } from './MoreAction'
 
 type Props = {
   onClose: () => void
+  loading?: boolean
 }
 
 export const TaskDetailHeader: React.FC<Props> = (props) => {
+  if (props.loading)
+    return (
+      <Flex px={6} h="57px" alignItems="center">
+        <Skeleton h="28px" w="117px" />
+        <Skeleton h="28px" w="212px" ml="auto" />
+      </Flex>
+    )
+
   return (
     <Flex px={6} h="57px" alignItems="center">
       <Flex flex={1}>

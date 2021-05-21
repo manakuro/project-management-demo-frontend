@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { TaskResponse, useTask } from 'src/store/tasks'
 import { dateFns } from 'src/shared/dateFns'
 
@@ -7,26 +7,32 @@ type Props = {
 }
 
 export const useTaskDetailQuery = (props?: Props) => {
+  const [loading, setLoading] = useState<boolean>(false)
   const { setTaskFromResponse } = useTask()
 
   useEffect(() => {
     ;(async () => {
       if (props?.lazy) return
 
+      setLoading(true)
       const res = await fetchTask()
       setTaskFromResponse(res)
+      setLoading(false)
     })()
   }, [props?.lazy, setTaskFromResponse])
 
   const refetch = useCallback(() => {
     ;(async () => {
+      setLoading(true)
       const res = await fetchTask()
       setTaskFromResponse(res)
+      setLoading(false)
     })()
   }, [setTaskFromResponse])
 
   return {
     refetch,
+    loading,
   }
 }
 

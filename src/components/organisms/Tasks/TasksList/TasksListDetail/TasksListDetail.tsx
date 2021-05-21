@@ -16,7 +16,7 @@ const HEADER_HEIGHT = 72
 const TOP = HEADER_HEIGHT
 
 export const TasksListDetail: React.VFC = () => {
-  const { isOpen, onClose } = useTasksListDetail()
+  const { isOpen, onClose, loading } = useTasksListDetail()
 
   return (
     <Drawer
@@ -36,14 +36,14 @@ export const TasksListDetail: React.VFC = () => {
         boxShadow="none"
       >
         <DrawerHeader p={0}>
-          <TaskDetailHeader onClose={onClose} />
+          <TaskDetailHeader onClose={onClose} loading={loading} />
         </DrawerHeader>
         <Divider />
         <DrawerBody flex={1} display="flex" flexDirection="column" p={0}>
-          <TaskDetailBody isMakePublic />
+          <TaskDetailBody isMakePublic loading={loading} />
         </DrawerBody>
         <DrawerFooter p={0}>
-          <TaskDetailFooter />
+          <TaskDetailFooter loading={loading} />
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

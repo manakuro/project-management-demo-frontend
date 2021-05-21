@@ -134,7 +134,14 @@ const fetchTask = async (): Promise<TaskResponse> => {
             id: '1',
             taskId: '1',
             teammateId: '1',
-            description: '',
+            description: JSON.stringify(
+              {
+                type: 'doc',
+                content: [],
+              },
+              null,
+              2,
+            ),
             attachmentIds: [],
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
@@ -145,7 +152,52 @@ const fetchTask = async (): Promise<TaskResponse> => {
             id: '2',
             taskId: '1',
             teammateId: '1',
-            description: '',
+            description: JSON.stringify(
+              {
+                type: 'doc',
+                content: [
+                  {
+                    type: 'paragraph',
+                    content: [{ type: 'text', text: 'test' }],
+                  },
+                  {
+                    type: 'paragraph',
+                    content: [{ type: 'text', text: 'test' }],
+                  },
+                  {
+                    type: 'paragraph',
+                    content: [{ type: 'text', text: 'test' }],
+                  },
+                  {
+                    type: 'paragraph',
+                    content: [
+                      {
+                        type: 'mention',
+                        attrs: { mentionId: '2', mentionType: '1' },
+                      },
+                    ],
+                  },
+                  {
+                    type: 'paragraph',
+                    content: [
+                      {
+                        type: 'mention',
+                        attrs: { mentionId: '1', mentionType: '1' },
+                      },
+                    ],
+                  },
+                  { type: 'paragraph' },
+                  {
+                    type: 'paragraph',
+                    content: [{ type: 'text', text: '🐠  ' }],
+                  },
+                  { type: 'paragraph' },
+                  { type: 'paragraph' },
+                ],
+              },
+              null,
+              2,
+            ),
             attachmentIds: [],
             createdAt: new Date('2021/05/20 18:12:41').toISOString(),
             updatedAt: '',
@@ -156,7 +208,23 @@ const fetchTask = async (): Promise<TaskResponse> => {
             id: '3',
             taskId: '1',
             teammateId: '1',
-            description: '',
+            description: JSON.stringify(
+              {
+                type: 'doc',
+                content: [
+                  {
+                    type: 'paragraph',
+                    content: [{ type: 'text', text: '😜' }],
+                  },
+                  {
+                    type: 'paragraph',
+                    content: [{ type: 'text', text: 'テキスト2' }],
+                  },
+                ],
+              },
+              null,
+              2,
+            ),
             attachmentIds: [],
             createdAt: new Date('2021/05/21 12:00:00').toISOString(),
             updatedAt: new Date().toISOString(),

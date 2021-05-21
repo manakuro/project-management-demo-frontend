@@ -31,7 +31,11 @@ export const EditorContainer: React.FC<Props> = (props) => {
 
   return (
     <ConditionalRender client>
-      <EditorProvider plugins={props.plugins} doc={initialDoc}>
+      <EditorProvider
+        plugins={props.plugins}
+        doc={initialDoc}
+        editable={props.editable}
+      >
         <Container transformer={transformer} {...props} />
         <Portals />
       </EditorProvider>

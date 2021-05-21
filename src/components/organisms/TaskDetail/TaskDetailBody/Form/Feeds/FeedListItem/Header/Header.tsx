@@ -1,13 +1,14 @@
 import React, { memo } from 'react'
-import { Avatar, Flex, Text } from 'src/components/atoms'
+import { Avatar, Flex } from 'src/components/atoms'
 import { PopoverProfile } from 'src/components/organisms'
-import { useFeedListItem } from './Provider'
-import { formatCreatedAt } from 'src/shared/date'
+import { useFeedListItem } from '../Provider'
+import { CreateAt } from './CreateAt'
+import { Title } from './Title'
 
 type Props = {}
 
 export const Header: React.VFC<Props> = memo<Props>(() => {
-  const { teammate, feed } = useFeedListItem()
+  const { teammate } = useFeedListItem()
 
   return (
     <Flex alignItems="center">
@@ -26,13 +27,8 @@ export const Header: React.VFC<Props> = memo<Props>(() => {
           bg="teal.200"
         />
       </PopoverProfile>
-      <Text fontSize="sm" fontWeight="medium" ml={2}>
-        {teammate.name}
-      </Text>
-      <Text fontSize="xs" color="text.muted" ml={2}>
-        {formatCreatedAt(feed.createdAt)}
-        {feed.updatedAt ? ' (edited)' : ''}
-      </Text>
+      <Title />
+      <CreateAt />
     </Flex>
   )
 })

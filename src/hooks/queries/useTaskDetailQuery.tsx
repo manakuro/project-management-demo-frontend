@@ -139,6 +139,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             type: 1,
+            isFirst: true,
           },
           {
             id: '2',
@@ -149,6 +150,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
             createdAt: new Date('2021/05/20 18:12:41').toISOString(),
             updatedAt: '',
             type: 1,
+            isFirst: false,
           },
           {
             id: '3',
@@ -159,6 +161,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
             createdAt: new Date('2021/05/21 12:00:00').toISOString(),
             updatedAt: new Date().toISOString(),
             type: 1,
+            isFirst: false,
           },
         ],
       })

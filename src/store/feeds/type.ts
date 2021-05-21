@@ -9,4 +9,5 @@ export type Feed = {
   createdAt: string
   updatedAt: string
   type: FeedType
+  isFirst: boolean
 }

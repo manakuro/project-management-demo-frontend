@@ -33,6 +33,7 @@ const defaultStateValue = (): Feed => ({
   createdAt: '',
   updatedAt: '',
   type: 1,
+  isFirst: false,
 })
 const feedState = atomFamily<Feed, string>({
   key: 'feedState',

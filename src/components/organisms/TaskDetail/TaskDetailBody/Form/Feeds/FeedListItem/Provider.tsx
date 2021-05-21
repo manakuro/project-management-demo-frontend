@@ -17,6 +17,7 @@ const Context = createContext<ContextProps>({
     taskId: '',
     teammateId: '',
     type: 1,
+    isFirst: false,
   },
   teammate: {
     id: '',

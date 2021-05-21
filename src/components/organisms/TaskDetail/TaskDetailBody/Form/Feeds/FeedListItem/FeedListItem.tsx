@@ -7,7 +7,7 @@ type Props = {
   feedId: string
 }
 
-export const Feed: React.VFC<Props> = memo<Props>((props) => {
+export const FeedListItem: React.VFC<Props> = memo<Props>((props) => {
   return (
     <Provider feedId={props.feedId}>
       <Component />

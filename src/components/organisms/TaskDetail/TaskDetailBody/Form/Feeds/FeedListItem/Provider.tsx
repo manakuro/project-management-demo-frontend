@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react'
-import { Feed, useFeed as useFeedStore } from 'src/store/feeds'
+import { Feed, useFeed } from 'src/store/feeds'
 import { Teammate, useTeammate } from 'src/store/teammates'
 
 type ContextProps = {
@@ -25,13 +25,13 @@ const Context = createContext<ContextProps>({
     email: '',
   },
 })
-export const useFeed = () => useContext(Context)
+export const useFeedListItem = () => useContext(Context)
 
 type Props = {
   feedId: string
 }
 export const Provider: React.FC<Props> = (props) => {
-  const { feed } = useFeedStore(props.feedId)
+  const { feed } = useFeed(props.feedId)
   const { teammate } = useTeammate(feed.teammateId)
 
   return (

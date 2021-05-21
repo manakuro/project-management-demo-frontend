@@ -1,13 +1,13 @@
 import React, { memo } from 'react'
 import { Avatar, Flex, Text } from 'src/components/atoms'
 import { PopoverProfile } from 'src/components/organisms'
-import { useFeed } from './Provider'
+import { useFeedListItem } from './Provider'
 import { formatCreatedAt } from 'src/shared/date'
 
 type Props = {}
 
 export const Header: React.VFC<Props> = memo<Props>(() => {
-  const { teammate, feed } = useFeed()
+  const { teammate, feed } = useFeedListItem()
 
   return (
     <Flex alignItems="center">

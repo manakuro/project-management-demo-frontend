@@ -4,6 +4,7 @@ import { PopoverProfile } from 'src/components/organisms'
 import { useFeedListItem } from '../Provider'
 import { CreateAt } from './CreateAt'
 import { Title } from './Title'
+import { Like } from './Like'
 
 type Props = {}
 
@@ -11,7 +12,7 @@ export const Header: React.VFC<Props> = memo<Props>(() => {
   const { teammate } = useFeedListItem()
 
   return (
-    <Flex alignItems="center">
+    <Flex alignItems="center" flex={1}>
       <PopoverProfile
         profile={{
           name: teammate.name,
@@ -29,6 +30,9 @@ export const Header: React.VFC<Props> = memo<Props>(() => {
       </PopoverProfile>
       <Title />
       <CreateAt />
+      <Flex ml="auto">
+        <Like />
+      </Flex>
     </Flex>
   )
 })

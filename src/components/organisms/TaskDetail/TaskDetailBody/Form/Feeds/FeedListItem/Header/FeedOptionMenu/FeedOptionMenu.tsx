@@ -7,10 +7,13 @@ import {
   MenuGroup,
   MenuButton,
 } from 'src/components/organisms'
+import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/Feeds/FeedListItem/Provider'
 
 type Props = {}
 
 export const FeedOptionMenu: React.FC<Props> = memo(() => {
+  const { onEdit } = useFeedListItem()
+
   return (
     <Menu isLazy placement="bottom-end">
       <MenuButton
@@ -24,7 +27,7 @@ export const FeedOptionMenu: React.FC<Props> = memo(() => {
         <MenuList>
           <MenuGroup>
             <MenuItem>Pin to top</MenuItem>
-            <MenuItem>Edit comment</MenuItem>
+            <MenuItem onClick={onEdit}>Edit comment</MenuItem>
             <MenuItem color="alert">Delete comment</MenuItem>
             <MenuItem>Copy comment link</MenuItem>
           </MenuGroup>

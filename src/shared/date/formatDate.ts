@@ -35,7 +35,7 @@ export const formatCreatedAt = (date: string): string => {
     if (duration.days === 1)
       return `Yesterday at ${dateFns.format(dateObj, 'H:mm aaa')}`
 
-    return `${duration.days} ago`
+    return `${duration.days} days ago`
   }
 
   if (duration.hours) {

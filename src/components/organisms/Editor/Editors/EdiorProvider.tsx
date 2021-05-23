@@ -91,8 +91,9 @@ const Provider: React.FC<Props> = (props) => {
       },
     })
     setView(view)
+
     /* eslint react-hooks/exhaustive-deps: off */
-  }, [])
+  }, [props.editable])
 
   return (
     <EditorStateContext.Provider value={state}>

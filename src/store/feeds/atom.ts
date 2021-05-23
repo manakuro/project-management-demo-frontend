@@ -24,7 +24,7 @@ export const feedsState = atom<Feed[]>({
   default: [],
 })
 
-const defaultStateValue = (): Feed => ({
+export const defaultFeedStateValue = (): Feed => ({
   id: '',
   taskId: '',
   teammateId: '',
@@ -37,7 +37,7 @@ const defaultStateValue = (): Feed => ({
 })
 const feedState = atomFamily<Feed, string>({
   key: 'feedState',
-  default: defaultStateValue(),
+  default: defaultFeedStateValue(),
 })
 
 export const feedSelector = selectorFamily<Feed, string>({
@@ -89,7 +89,7 @@ export const useFeedsByTask = (taskId: string) => {
 
   const addFeed = useCallback(() => {
     upsertFeed({
-      ...defaultStateValue(),
+      ...defaultFeedStateValue(),
       id: uuid(),
       taskId,
     })

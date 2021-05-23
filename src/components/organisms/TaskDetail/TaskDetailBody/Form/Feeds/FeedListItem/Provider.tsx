@@ -1,34 +1,25 @@
 import React, { createContext, useCallback, useContext, useState } from 'react'
-import { Feed, useFeed } from 'src/store/feeds'
-import { Teammate, useTeammate } from 'src/store/teammates'
+import { Feed, defaultFeedStateValue, useFeed } from 'src/store/feeds'
+import {
+  Teammate,
+  defaultTeammateStateValue,
+  useTeammate,
+} from 'src/store/teammates'
 
 type ContextProps = {
   feed: Feed
   teammate: Teammate
   editable: () => boolean
   onEdit: () => void
+  onCancel: () => void
 }
 
 const Context = createContext<ContextProps>({
-  feed: {
-    id: '',
-    description: '',
-    attachmentIds: [],
-    createdAt: '',
-    updatedAt: '',
-    taskId: '',
-    teammateId: '',
-    type: 1,
-    isFirst: false,
-  },
-  teammate: {
-    id: '',
-    name: '',
-    image: '',
-    email: '',
-  },
+  feed: defaultFeedStateValue(),
+  teammate: defaultTeammateStateValue(),
   editable: () => false,
   onEdit: () => {},
+  onCancel: () => {},
 })
 export const useFeedListItem = () => useContext(Context)
 
@@ -42,6 +33,7 @@ export const Provider: React.FC<Props> = (props) => {
   const editable = useCallback(() => isEdit, [isEdit])
 
   const onEdit = useCallback(() => setIsEdit(true), [])
+  const onCancel = useCallback(() => setIsEdit(false), [])
 
   return (
     <Context.Provider
@@ -50,6 +42,7 @@ export const Provider: React.FC<Props> = (props) => {
         teammate,
         editable,
         onEdit,
+        onCancel,
       }}
     >
       {props.children}

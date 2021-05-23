@@ -18,14 +18,15 @@ export const teammatesState = atom<Teammate[]>({
   default: [],
 })
 
+export const defaultTeammateStateValue = (): Teammate => ({
+  id: '',
+  image: '',
+  email: '',
+  name: '',
+})
 const teammateState = atomFamily<Teammate, string>({
   key: 'teammateState',
-  default: {
-    id: '',
-    image: '',
-    email: '',
-    name: '',
-  },
+  default: defaultTeammateStateValue(),
 })
 
 export const teammateSelector = selectorFamily<Teammate, string>({

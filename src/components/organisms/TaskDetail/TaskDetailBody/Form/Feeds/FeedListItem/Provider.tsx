@@ -1,4 +1,10 @@
-import React, { createContext, useCallback, useContext, useState } from 'react'
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from 'react'
 import { Feed, defaultFeedStateValue, useFeed } from 'src/store/feeds'
 import {
   Teammate,
@@ -15,6 +21,8 @@ type ContextProps = {
   description: string
   onChangeDescription: (val: string) => void
   onSave: () => void
+  showFeedOptionMenu: boolean
+  showLike: boolean
 }
 
 const Context = createContext<ContextProps>({
@@ -26,6 +34,8 @@ const Context = createContext<ContextProps>({
   description: '',
   onChangeDescription: () => {},
   onSave: () => {},
+  showFeedOptionMenu: false,
+  showLike: false,
 })
 export const useFeedListItem = () => useContext(Context)
 
@@ -51,6 +61,9 @@ export const Provider: React.FC<Props> = (props) => {
     setIsEdit(false)
   }, [description, setFeed])
 
+  const showFeedOptionMenu = useMemo(() => !feed.isFirst, [feed.isFirst])
+  const showLike = useMemo(() => !feed.isFirst, [feed.isFirst])
+
   return (
     <Context.Provider
       value={{
@@ -62,6 +75,8 @@ export const Provider: React.FC<Props> = (props) => {
         description,
         onChangeDescription,
         onSave,
+        showFeedOptionMenu,
+        showLike,
       }}
     >
       {props.children}

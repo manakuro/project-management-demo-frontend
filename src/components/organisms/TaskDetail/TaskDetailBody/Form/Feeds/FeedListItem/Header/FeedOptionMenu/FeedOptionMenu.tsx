@@ -12,7 +12,8 @@ import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailB
 type Props = {}
 
 export const FeedOptionMenu: React.FC<Props> = memo(() => {
-  const { onEdit } = useFeedListItem()
+  const { onEdit, showFeedOptionMenu } = useFeedListItem()
+  if (!showFeedOptionMenu) return null
 
   return (
     <Menu isLazy placement="bottom-end">

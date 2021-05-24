@@ -12,8 +12,14 @@ export const EditorContent: React.FC<Props> = React.memo<Props>((props) => {
   // const { taskDetailBodyDom } = useTaskDetailBody()
 
   useEffect(() => {
-    if (ref.current && view) {
-      ref.current.appendChild(view.dom)
+    const current = ref.current
+    if (current && view) {
+      current.appendChild(view.dom)
+    }
+    return () => {
+      if (current && view) {
+        current.removeChild(view.dom)
+      }
     }
   }, [view])
 

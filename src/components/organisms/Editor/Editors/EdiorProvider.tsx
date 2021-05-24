@@ -1,4 +1,4 @@
-import { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
+import { Node as ProsemirrorNode } from 'prosemirror-model'
 import { EditorState, Plugin } from 'prosemirror-state'
 import { EditorProps, EditorView } from 'prosemirror-view'
 import React, {
@@ -29,7 +29,6 @@ export const useEditorView = () => useContext(EditorViewContext)
 
 type Props = {
   doc?: ProsemirrorNode
-  schema?: Schema
   plugins?: Plugin[]
   forceUpdate?: boolean
 } & EditorProps
@@ -43,24 +42,18 @@ export const EditorProvider: React.FC<Props> = (props) => {
 
 const Provider: React.FC<Props> = (props) => {
   const { createPortal, removePortal } = useReactNodeViewCreatePortal()
-  const [state, setState] = useState(() =>
-    EditorState.create({
-      doc: props.doc,
-      schema: props.doc,
-      plugins: props.plugins,
-    }),
-  )
   const [view, setView] = useState<EditorView | null>(null)
 
   const generateState = useCallback(() => {
     return EditorState.create({
       doc: props.doc,
-      schema: props.doc,
       plugins: props.plugins,
     })
 
     /* eslint react-hooks/exhaustive-deps: off */
   }, [props.forceUpdate])
+
+  const [state, setState] = useState(generateState())
 
   const generateView = useCallback(() => {
     const newState = generateState()

@@ -10,7 +10,7 @@ import { useFeedListItem } from '../Provider'
 type Props = {}
 
 export const ToolBar: React.FC<Props> = memo<Props>(() => {
-  const { editable, onCancel } = useFeedListItem()
+  const { editable, onCancel, onSave } = useFeedListItem()
   if (!editable()) return null
 
   return (
@@ -24,7 +24,7 @@ export const ToolBar: React.FC<Props> = memo<Props>(() => {
         <Button variant="outline" size="sm" onClick={onCancel}>
           Cancel
         </Button>
-        <Button colorScheme="teal" ml={2} size="sm" w={28}>
+        <Button colorScheme="teal" ml={2} size="sm" w={28} onClick={onSave}>
           Save
         </Button>
       </Flex>

@@ -14,6 +14,7 @@ type ContextProps = {
   onCancel: () => void
   description: string
   onChangeDescription: (val: string) => void
+  onSave: () => void
 }
 
 const Context = createContext<ContextProps>({
@@ -24,6 +25,7 @@ const Context = createContext<ContextProps>({
   onCancel: () => {},
   description: '',
   onChangeDescription: () => {},
+  onSave: () => {},
 })
 export const useFeedListItem = () => useContext(Context)
 
@@ -31,7 +33,7 @@ type Props = {
   feedId: string
 }
 export const Provider: React.FC<Props> = (props) => {
-  const { feed } = useFeed(props.feedId)
+  const { feed, setFeed } = useFeed(props.feedId)
   const { teammate } = useTeammate(feed.teammateId)
   const [isEdit, setIsEdit] = useState<boolean>(false)
   const editable = useCallback(() => isEdit, [isEdit])
@@ -44,6 +46,11 @@ export const Provider: React.FC<Props> = (props) => {
     setDescription(val)
   }, [])
 
+  const onSave = useCallback(async () => {
+    await setFeed({ description })
+    setIsEdit(false)
+  }, [description, setFeed])
+
   return (
     <Context.Provider
       value={{
@@ -54,6 +61,7 @@ export const Provider: React.FC<Props> = (props) => {
         onCancel,
         description,
         onChangeDescription,
+        onSave,
       }}
     >
       {props.children}

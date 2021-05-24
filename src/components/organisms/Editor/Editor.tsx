@@ -6,6 +6,7 @@ import { EditorProps } from 'prosemirror-view'
 type Props = {
   onChange?: (val: string) => void
   value: string
+  forceUpdate?: boolean
 } & EditorProps
 
 export const Editor: React.FC<Props> = memo<Props>((props) => {

@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms'
 import { useFeedListItem } from '../Provider'
@@ -8,12 +8,21 @@ import { ToolBar } from './ToolBar'
 type Props = {}
 
 export const Content: React.VFC<Props> = memo<Props>(() => {
-  const { feed, editable } = useFeedListItem()
+  const { feed, editable, onChangeDescription, description } = useFeedListItem()
+  const forceUpdate = useMemo(() => editable(), [editable])
+  const value = useMemo(() => {
+    return editable() ? description : feed.description
+  }, [description, editable, feed.description])
 
   return (
     <Flex mt={2} flexDirection="column">
       <Container>
-        <Editor value={feed.description} editable={editable}>
+        <Editor
+          value={value}
+          editable={editable}
+          onChange={onChangeDescription}
+          forceUpdate={forceUpdate}
+        >
           <EditorContent />
           <ToolBar />
         </Editor>

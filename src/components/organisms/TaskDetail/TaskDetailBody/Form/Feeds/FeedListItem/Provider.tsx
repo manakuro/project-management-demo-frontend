@@ -12,6 +12,8 @@ type ContextProps = {
   editable: () => boolean
   onEdit: () => void
   onCancel: () => void
+  description: string
+  onChangeDescription: (val: string) => void
 }
 
 const Context = createContext<ContextProps>({
@@ -20,6 +22,8 @@ const Context = createContext<ContextProps>({
   editable: () => false,
   onEdit: () => {},
   onCancel: () => {},
+  description: '',
+  onChangeDescription: () => {},
 })
 export const useFeedListItem = () => useContext(Context)
 
@@ -35,6 +39,11 @@ export const Provider: React.FC<Props> = (props) => {
   const onEdit = useCallback(() => setIsEdit(true), [])
   const onCancel = useCallback(() => setIsEdit(false), [])
 
+  const [description, setDescription] = useState<string>('')
+  const onChangeDescription = useCallback((val: string) => {
+    setDescription(val)
+  }, [])
+
   return (
     <Context.Provider
       value={{
@@ -43,6 +52,8 @@ export const Provider: React.FC<Props> = (props) => {
         editable,
         onEdit,
         onCancel,
+        description,
+        onChangeDescription,
       }}
     >
       {props.children}

@@ -1,7 +1,13 @@
 import { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
 import { EditorState, Plugin } from 'prosemirror-state'
 import { EditorProps, EditorView } from 'prosemirror-view'
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import {
   ReactNodeViewPortalsProvider,
   useReactNodeViewCreatePortal,
@@ -25,6 +31,7 @@ type Props = {
   doc?: ProsemirrorNode
   schema?: Schema
   plugins?: Plugin[]
+  forceUpdate?: boolean
 } & EditorProps
 export const EditorProvider: React.FC<Props> = (props) => {
   return (
@@ -45,9 +52,22 @@ const Provider: React.FC<Props> = (props) => {
   )
   const [view, setView] = useState<EditorView | null>(null)
 
-  useEffect(() => {
+  const generateState = useCallback(() => {
+    return EditorState.create({
+      doc: props.doc,
+      schema: props.doc,
+      plugins: props.plugins,
+    })
+
+    /* eslint react-hooks/exhaustive-deps: off */
+  }, [props.forceUpdate])
+
+  const generateView = useCallback(() => {
+    const newState = generateState()
+    setState(newState)
+
     const view = new EditorView(undefined, {
-      state,
+      state: newState,
       editable: props.editable,
       nodeViews: {
         link(node, view, getPos, decorations) {
@@ -90,10 +110,15 @@ const Provider: React.FC<Props> = (props) => {
         setState(state)
       },
     })
-    setView(view)
+    return view
 
     /* eslint react-hooks/exhaustive-deps: off */
-  }, [props.editable])
+  }, [props.forceUpdate])
+
+  useEffect(() => {
+    const view = generateView()
+    setView(view)
+  }, [generateView])
 
   return (
     <EditorStateContext.Provider value={state}>

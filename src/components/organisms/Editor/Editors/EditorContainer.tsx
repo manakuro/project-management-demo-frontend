@@ -17,6 +17,7 @@ type Props = {
   value: string
   onChange?: (value: string) => void
   debounce: number
+  forceUpdate?: boolean
 } & EditorProps
 
 export const EditorContainer: React.FC<Props> = (props) => {
@@ -35,6 +36,7 @@ export const EditorContainer: React.FC<Props> = (props) => {
         plugins={props.plugins}
         doc={initialDoc}
         editable={props.editable}
+        forceUpdate={props.forceUpdate}
       >
         <Container transformer={transformer} {...props} />
         <Portals />

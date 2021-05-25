@@ -30,7 +30,7 @@ export const useEditorView = () => useContext(EditorViewContext)
 type Props = {
   doc?: ProsemirrorNode
   plugins?: Plugin[]
-  forceUpdate?: string
+  forceUpdate?: () => string
 } & EditorProps
 export const EditorProvider: React.FC<Props> = (props) => {
   return (
@@ -51,7 +51,7 @@ const Provider: React.FC<Props> = (props) => {
     })
 
     /* eslint react-hooks/exhaustive-deps: off */
-  }, [props.forceUpdate])
+  }, [props.forceUpdate?.()])
 
   const [state, setState] = useState(generateState())
 

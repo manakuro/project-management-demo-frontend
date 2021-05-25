@@ -10,13 +10,14 @@ type Props = {}
 
 export const Content: React.VFC<Props> = memo<Props>(() => {
   const { feed, editable, onChangeDescription, description } = useFeedListItem()
-  const [forceUpdate, setForceUpdate] = useState<string>('')
+  const [forceUpdate, setForceUpdate] = useState<() => string>(() => () => '')
   const value = useMemo(() => {
     return editable() ? description : feed.description
   }, [description, editable, feed.description])
 
   useEffect(() => {
-    setForceUpdate(uuid())
+    console.log('update!!')
+    setForceUpdate(() => () => uuid())
   }, [editable, feed.description])
 
   return (

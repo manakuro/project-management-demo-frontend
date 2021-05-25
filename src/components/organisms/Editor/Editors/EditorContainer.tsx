@@ -17,7 +17,7 @@ type Props = {
   value: string
   onChange?: (value: string) => void
   debounce: number
-  forceUpdate?: string
+  forceUpdate?: () => string
 } & EditorProps
 
 export const EditorContainer: React.FC<Props> = (props) => {

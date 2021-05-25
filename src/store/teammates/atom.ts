@@ -79,7 +79,7 @@ export const useTeammates = () => {
 
   const getTeammatesById = useCallback(
     (teammateIds: string[]) => {
-      return teammates.filter((t) => teammateIds.indexOf(t.id))
+      return teammates.filter((t) => teammateIds.includes(t.id))
     },
     [teammates],
   )

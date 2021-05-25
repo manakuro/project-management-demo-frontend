@@ -49,7 +49,6 @@ import {
   BiArrowToRight,
   BiGridVertical,
   BiSliderAlt,
-  BiLike,
   BiSubdirectoryRight,
   BiBookAdd,
   BiSquareRounded,
@@ -82,6 +81,8 @@ import {
   AiOutlineProject,
   AiOutlineFileText,
   AiOutlineFilePdf,
+  AiFillLike,
+  AiOutlineLike,
 } from 'react-icons/ai'
 import { MdSort, MdTextFormat } from 'react-icons/md'
 import { IoMdAttach } from 'react-icons/io'
@@ -113,6 +114,7 @@ export const icons = {
   download: BiDownload,
   emojiHappy: HiOutlineEmojiHappy,
   fileBlank: BiFileBlank,
+  fillLike: AiFillLike,
   filter: BiFilterAlt,
   fullscreenOutline: BiExpand,
   gitPullRequest: BiGitPullRequest,
@@ -128,7 +130,6 @@ export const icons = {
   layerPlus: BiLayerPlus,
   layout: BiLayout,
   leftIndent: BiLeftIndent,
-  like: BiLike,
   link: BiLink,
   linkExternal: BiLinkExternal,
   listOl: BiListOl,
@@ -144,6 +145,7 @@ export const icons = {
   notification: BiNotification,
   outlineFilePdf: AiOutlineFilePdf,
   outlineFileText: AiOutlineFileText,
+  outlineLike: AiOutlineLike,
   outlineProject: AiOutlineProject,
   pause: BiPause,
   play: BiPlay,

@@ -4,6 +4,7 @@ import {
   useFavoriteProjectIdsQuery,
   useWorkspaceQuery,
   useMeQuery,
+  useFeedLikesQuery,
 } from 'src/hooks/queries'
 
 export const BeforeAppMount: React.FC = (props) => {
@@ -17,6 +18,9 @@ export const BeforeAppMount: React.FC = (props) => {
   const meQueryResult = useMeQuery({
     lazy: true,
   })
+  const feedLikesResult = useFeedLikesQuery({
+    lazy: true,
+  })
 
   useEffect(() => {
     console.log('BeforeAppMount!!')
@@ -24,6 +28,7 @@ export const BeforeAppMount: React.FC = (props) => {
     favoriteProjectIdsQueryResult.refetch()
     workspaceQueryResult.refetch()
     meQueryResult.refetch()
+    feedLikesResult.refetch()
 
     /* eslint react-hooks/exhaustive-deps: off */
   }, [])

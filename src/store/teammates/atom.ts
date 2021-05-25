@@ -8,6 +8,7 @@ import {
 } from 'recoil'
 import { Teammate } from './type'
 import { uniqBy } from 'src/shared/utils'
+import { useCallback } from 'react'
 
 export const teammateIdsState = atom<string[]>({
   key: 'teammateIdsState',
@@ -76,10 +77,18 @@ export const useTeammates = () => {
     [],
   )
 
+  const getTeammatesById = useCallback(
+    (teammateIds: string[]) => {
+      return teammates.filter((t) => teammateIds.indexOf(t.id))
+    },
+    [teammates],
+  )
+
   return {
     teammateIds,
     teammates,
     setTeammates,
+    getTeammatesById,
   }
 }
 

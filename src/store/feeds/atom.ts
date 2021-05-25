@@ -95,7 +95,6 @@ export const feedSelector = selectorFamily<Feed, string>({
 
 export const useFeedsPinnedIds = (taskId: string) => {
   const feedPinnedIds = useRecoilValue(feedPinnedIdsSelector(taskId))
-  console.log('useFeedsPinnedIds!!: ', feedPinnedIds)
 
   return {
     feedPinnedIds,

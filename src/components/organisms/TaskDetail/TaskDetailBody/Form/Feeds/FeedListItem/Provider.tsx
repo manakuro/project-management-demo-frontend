@@ -71,6 +71,7 @@ export const Provider: React.FC<Props> = (props) => {
   const onPin = useCallback(async () => {
     await setFeed({ isPinned: true })
   }, [setFeed])
+
   const onUnpin = useCallback(async () => {
     await setFeed({ isPinned: false })
   }, [setFeed])

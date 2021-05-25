@@ -10,7 +10,7 @@ type Props = {
 }
 
 export const TaskDetailBody: React.FC<Props> = (props) => {
-  const { ref } = useTaskDetailBody()
+  const { ref } = useTaskDetailBody(props.loading)
 
   if (props.loading)
     return (

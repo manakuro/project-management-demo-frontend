@@ -12,7 +12,7 @@ import { transitions } from 'src/styles'
 type Props = {}
 
 export const ToolBar: React.FC<Props> = memo<Props>(() => {
-  const { focused } = useInput()
+  const { focused, onSave } = useInput()
 
   return (
     <Flex
@@ -29,7 +29,7 @@ export const ToolBar: React.FC<Props> = memo<Props>(() => {
           <Attachment />
         </>
       </Stack>
-      <Button colorScheme="teal" ml="auto" size="sm">
+      <Button colorScheme="teal" ml="auto" size="sm" onClick={onSave}>
         Comment
       </Button>
     </Flex>

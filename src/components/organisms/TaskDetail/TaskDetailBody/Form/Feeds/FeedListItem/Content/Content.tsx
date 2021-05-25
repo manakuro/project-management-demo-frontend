@@ -16,7 +16,6 @@ export const Content: React.VFC<Props> = memo<Props>(() => {
   }, [description, editable, feed.description])
 
   useEffect(() => {
-    console.log('update!!')
     setForceUpdate(() => () => uuid())
   }, [editable, feed.description])
 

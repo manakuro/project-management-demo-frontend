@@ -102,7 +102,11 @@ export const useFeedsPinnedIds = (taskId: string) => {
   }
 }
 
-export const useFeedsByTask = (taskId: string) => {
+export type UseFeedsByTask = {
+  feedIds: string[]
+  addFeed: (val: Partial<Feed>) => string
+}
+export const useFeedsByTask = (taskId: string): UseFeedsByTask => {
   const feedIdsGroupByTask = useRecoilValue(feedIdsGroupByTaskState)
   const { upsertFeed } = useFeed()
 
@@ -110,13 +114,20 @@ export const useFeedsByTask = (taskId: string) => {
     return feedIdsGroupByTask[taskId] || []
   }, [feedIdsGroupByTask, taskId])
 
-  const addFeed = useCallback(() => {
-    upsertFeed({
-      ...defaultFeedStateValue(),
-      id: uuid(),
-      taskId,
-    })
-  }, [taskId, upsertFeed])
+  const addFeed = useCallback(
+    (val: Partial<Feed>) => {
+      const id = uuid()
+      upsertFeed({
+        ...defaultFeedStateValue(),
+        ...val,
+        id,
+        taskId,
+      })
+
+      return id
+    },
+    [taskId, upsertFeed],
+  )
 
   return {
     feedIds,

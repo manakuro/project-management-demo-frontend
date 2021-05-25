@@ -8,7 +8,7 @@ const atomState = atom<State>({
   default: null,
 })
 
-export const useTaskDetailBody = () => {
+export const useTaskDetailBody = (deps?: any) => {
   const ref = useRef<HTMLElement | null>(null)
   const [state, setState] = useRecoilState(atomState)
 
@@ -20,7 +20,7 @@ export const useTaskDetailBody = () => {
     return () => {
       setState(null)
     }
-  }, [setState])
+  }, [setState, deps])
 
   return {
     ref,

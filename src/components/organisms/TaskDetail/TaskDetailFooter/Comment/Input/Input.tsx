@@ -1,20 +1,18 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { Editor, EditorContent } from 'src/components/organisms'
 import { Flex } from 'src/components/atoms'
 import { Container } from './Container'
-import { Provider } from './Provider'
+import { Provider, useInput } from './Provider'
 import { ToolBar } from './ToolBar'
 import { Placeholder } from './Placeholder'
+import { uuid } from 'src/shared/uuid'
 
 type Props = {}
 
 const initialValue = JSON.stringify(
   {
     type: 'doc',
-    content: [
-      // { type: 'paragraph', content: [{ type: 'text', text: '😜' }] },
-      // { type: 'paragraph', content: [{ type: 'text', text: 'テキスト2' }] },
-    ],
+    content: [],
   },
   null,
   2,
@@ -29,13 +27,21 @@ export const Input: React.FC<Props> = (props) => {
 }
 
 const Component: React.FC<Props> = memo<Props>(() => {
-  const [value, setValue] = useState(initialValue)
+  const { onChangeDescription, feed } = useInput()
+  const [forceUpdate, setForceUpdate] = useState<() => string>(() => () => '')
 
-  console.log(JSON.parse(value))
+  useEffect(() => {
+    setForceUpdate(() => () => uuid())
+  }, [feed.id])
+
   return (
     <Flex ml={2} flex={1}>
       <Container>
-        <Editor onChange={setValue} value={initialValue}>
+        <Editor
+          onChange={onChangeDescription}
+          value={initialValue}
+          forceUpdate={forceUpdate}
+        >
           <EditorContent />
           <Placeholder />
           <ToolBar />

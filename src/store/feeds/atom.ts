@@ -34,10 +34,24 @@ export const defaultFeedStateValue = (): Feed => ({
   updatedAt: '',
   type: 1,
   isFirst: false,
+  isPinned: false,
 })
 const feedState = atomFamily<Feed, string>({
   key: 'feedState',
   default: defaultFeedStateValue(),
+})
+
+export const feedPinnedIdsSelector = selectorFamily<string[], string>({
+  key: 'feedPinnedIdsSelector',
+  get:
+    (taskId) =>
+    ({ get }) => {
+      const ids = get(feedIdsState)
+      return ids.filter((id) => {
+        const feed = get(feedSelector(id))
+        return feed.isPinned && feed.taskId === taskId
+      })
+    },
 })
 
 export const feedSelector = selectorFamily<Feed, string>({
@@ -78,6 +92,15 @@ export const feedSelector = selectorFamily<Feed, string>({
       })
     },
 })
+
+export const useFeedsPinnedIds = (taskId: string) => {
+  const feedPinnedIds = useRecoilValue(feedPinnedIdsSelector(taskId))
+  console.log('useFeedsPinnedIds!!: ', feedPinnedIds)
+
+  return {
+    feedPinnedIds,
+  }
+}
 
 export const useFeedsByTask = (taskId: string) => {
   const feedIdsGroupByTask = useRecoilValue(feedIdsGroupByTaskState)

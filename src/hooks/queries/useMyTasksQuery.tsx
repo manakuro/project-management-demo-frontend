@@ -125,6 +125,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
               updatedAt: new Date().toISOString(),
               type: 1,
               isFirst: true,
+              isPinned: false,
             },
             {
               id: '2',
@@ -136,6 +137,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
               updatedAt: new Date().toISOString(),
               type: 1,
               isFirst: false,
+              isPinned: false,
             },
           ],
         },

@@ -8,6 +8,7 @@ import {
   MenuButton,
 } from 'src/components/organisms'
 import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/Feeds/FeedListItem/Provider'
+import { Pin } from './Pin'
 
 type Props = {}
 
@@ -27,7 +28,7 @@ export const FeedOptionMenu: React.FC<Props> = memo(() => {
       <Portal>
         <MenuList>
           <MenuGroup>
-            <MenuItem>Pin to top</MenuItem>
+            <Pin />
             <MenuItem onClick={onEdit}>Edit comment</MenuItem>
             <MenuItem color="alert">Delete comment</MenuItem>
             <MenuItem>Copy comment link</MenuItem>

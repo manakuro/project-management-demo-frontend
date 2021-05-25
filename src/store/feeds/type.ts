@@ -10,4 +10,5 @@ export type Feed = {
   updatedAt: string
   type: FeedType
   isFirst: boolean
+  isPinned: boolean
 }

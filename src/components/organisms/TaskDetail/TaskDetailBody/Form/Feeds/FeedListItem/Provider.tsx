@@ -23,6 +23,9 @@ type ContextProps = {
   onSave: () => void
   showFeedOptionMenu: boolean
   showLike: boolean
+  onPin: () => void
+  onUnpin: () => void
+  isPinned: boolean
 }
 
 const Context = createContext<ContextProps>({
@@ -36,11 +39,15 @@ const Context = createContext<ContextProps>({
   onSave: () => {},
   showFeedOptionMenu: false,
   showLike: false,
+  onPin: () => void {},
+  onUnpin: () => void {},
+  isPinned: false,
 })
 export const useFeedListItem = () => useContext(Context)
 
 type Props = {
   feedId: string
+  isPinned?: boolean
 }
 export const Provider: React.FC<Props> = (props) => {
   const { feed, setFeed } = useFeed(props.feedId)
@@ -61,6 +68,13 @@ export const Provider: React.FC<Props> = (props) => {
     setIsEdit(false)
   }, [description, setFeed])
 
+  const onPin = useCallback(async () => {
+    await setFeed({ isPinned: true })
+  }, [setFeed])
+  const onUnpin = useCallback(async () => {
+    await setFeed({ isPinned: false })
+  }, [setFeed])
+
   const showFeedOptionMenu = useMemo(() => !feed.isFirst, [feed.isFirst])
   const showLike = useMemo(() => !feed.isFirst, [feed.isFirst])
 
@@ -77,6 +91,9 @@ export const Provider: React.FC<Props> = (props) => {
         onSave,
         showFeedOptionMenu,
         showLike,
+        onPin,
+        onUnpin,
+        isPinned: props.isPinned || false,
       }}
     >
       {props.children}

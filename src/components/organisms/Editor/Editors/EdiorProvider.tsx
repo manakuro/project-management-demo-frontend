@@ -30,7 +30,7 @@ export const useEditorView = () => useContext(EditorViewContext)
 type Props = {
   doc?: ProsemirrorNode
   plugins?: Plugin[]
-  forceUpdate?: boolean
+  forceUpdate?: string
 } & EditorProps
 export const EditorProvider: React.FC<Props> = (props) => {
   return (

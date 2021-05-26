@@ -12,14 +12,14 @@ import '@react-pdf-viewer/core/lib/styles/index.css'
 const characterMap: CharacterMap = {
   isCompressed: true,
   // The url has to end with "/"
-  url: 'https://unpkg.com/pdfjs-dist@2.6.347/cmaps/',
+  url: 'https://unpkg.com/pdfjs-dist@2.7.570/cmaps/',
 }
 
 type Props = ViewerProps
 
 export const PdfViewer: React.VFC<Props> = (props) => {
   return (
-    <Worker workerUrl="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js">
+    <Worker workerUrl="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.worker.min.js">
       <Box w="70%" h="full" className="pdfViewer">
         <Viewer characterMap={characterMap} {...props} />
       </Box>

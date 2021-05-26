@@ -6,9 +6,9 @@ import { useLike } from './useLike'
 type Props = {}
 
 export const Icon: React.VFC<Props> = () => {
-  const { isLiked, label, likeLength } = useLike()
+  const { hasAnyoneLiked, label, likeLength, onToggleLike } = useLike()
 
-  if (isLiked) {
+  if (hasAnyoneLiked) {
     return (
       <Tooltip
         hasArrow
@@ -17,7 +17,11 @@ export const Icon: React.VFC<Props> = () => {
         size="sm"
         withIcon
       >
-        <Flex alignItems="center" justifyContent="center">
+        <Flex
+          alignItems="center"
+          justifyContent="center"
+          onClick={onToggleLike}
+        >
           <Text fontSize="xs" mt={1} color="primary">
             {likeLength}
           </Text>
@@ -27,5 +31,7 @@ export const Icon: React.VFC<Props> = () => {
     )
   }
 
-  return <AtomsIcon icon="outlineLike" color="text.muted" />
+  return (
+    <AtomsIcon icon="outlineLike" color="text.muted" onClick={onToggleLike} />
+  )
 }

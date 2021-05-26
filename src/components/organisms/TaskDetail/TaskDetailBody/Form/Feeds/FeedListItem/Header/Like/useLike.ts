@@ -2,16 +2,17 @@ import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailB
 import { useTeammates } from 'src/store/teammates'
 import { useFeedLikesByFeedId } from 'src/store/feedLikes'
 import { useMe } from 'src/store/me'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 
 export const useLike = () => {
   const { feed } = useFeedListItem()
   const { getTeammatesById } = useTeammates()
-  const { feedLikes, teammateIds } = useFeedLikesByFeedId(feed.id)
+  const { feedLikes, teammateIds, addFeedLike, deleteFeedLike } =
+    useFeedLikesByFeedId(feed.id)
   const { me } = useMe()
 
   const likeLength = useMemo(() => feedLikes.length, [feedLikes])
-  const isLiked = useMemo(() => !!feedLikes.length, [feedLikes])
+  const hasAnyoneLiked = useMemo(() => !!feedLikes.length, [feedLikes])
 
   const teammates = useMemo(
     () => getTeammatesById(teammateIds),
@@ -36,9 +37,18 @@ export const useLike = () => {
     return `${names.join(' and ')} liked this`
   }, [teammateNames])
 
+  const onToggleLike = useCallback(() => {
+    const isLiked = feedLikes.some(
+      (f) => f.teammateId === me.id && f.feedId === feed.id,
+    )
+
+    isLiked ? deleteFeedLike(me.id) : addFeedLike(me.id)
+  }, [addFeedLike, deleteFeedLike, feed.id, feedLikes, me.id])
+
   return {
     label,
     likeLength,
-    isLiked,
+    hasAnyoneLiked,
+    onToggleLike,
   }
 }

@@ -5,6 +5,7 @@ import {
   DefaultValue,
   atom,
   useRecoilValue,
+  useRecoilState,
 } from 'recoil'
 import { FeedLike } from './type'
 import { uniqBy } from 'src/shared/utils'
@@ -70,21 +71,35 @@ export const feedLikeSelector = selectorFamily<FeedLike, string>({
 
 export const useFeedLikesByFeedId = (feedId: string) => {
   const { upsertFeedLike } = useFeedLike()
-  const feedLikesAll = useRecoilValue(feedLikesState)
+  const [feedLikesAll, setFeedLikesAll] = useRecoilState(feedLikesState)
 
   const addFeedLike = useCallback(
-    (val: Partial<FeedLike>) => {
+    (teammateId: string) => {
       const id = uuid()
       upsertFeedLike({
         ...defaultFeedLikeStateValue(),
-        ...val,
         id,
         feedId,
+        teammateId,
       })
 
       return id
     },
     [feedId, upsertFeedLike],
+  )
+
+  const deleteFeedLike = useRecoilCallback(
+    () => (teammateId: string) => {
+      const index = feedLikesAll.findIndex(
+        (f) => f.teammateId === teammateId && f.feedId === feedId,
+      )
+      const newValue = [
+        ...feedLikesAll.slice(0, index),
+        ...feedLikesAll.slice(index + 1),
+      ]
+      setFeedLikesAll(newValue)
+    },
+    [feedId, feedLikesAll, setFeedLikesAll],
   )
 
   const feedLikes = useMemo(
@@ -98,6 +113,7 @@ export const useFeedLikesByFeedId = (feedId: string) => {
 
   return {
     addFeedLike,
+    deleteFeedLike,
     feedLikes,
     teammateIds,
   }

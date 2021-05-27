@@ -17,7 +17,7 @@ export const FeedOptionMenu: React.FC<Props> = memo(() => {
   if (!showFeedOptionMenu) return null
 
   return (
-    <Menu isLazy placement="bottom-end">
+    <Menu isLazy lazyBehavior="keepMounted" placement="bottom-end">
       <MenuButton
         aria-label="Feed option menu"
         as={IconButton}

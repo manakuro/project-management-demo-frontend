@@ -11,6 +11,7 @@ import {
   defaultTeammateStateValue,
   useTeammate,
 } from 'src/store/teammates'
+import { Provider as ProviderContainer } from './ProviderContainer'
 
 type ContextProps = {
   feed: Feed
@@ -26,8 +27,6 @@ type ContextProps = {
   onPin: () => void
   onUnpin: () => void
   isPinned: boolean
-  // containerRef: React.MutableRefObject<HTMLElement | null>
-  // isReferenced: boolean
 }
 
 const Context = createContext<ContextProps>({
@@ -44,8 +43,6 @@ const Context = createContext<ContextProps>({
   onPin: () => void {},
   onUnpin: () => void {},
   isPinned: false,
-  // containerRef: null as any,
-  // isReferenced: false,
 })
 export const useFeedListItem = () => useContext(Context)
 
@@ -54,6 +51,14 @@ type Props = {
   isPinned?: boolean
 }
 export const Provider: React.FC<Props> = (props) => {
+  return (
+    <ProviderBase {...props}>
+      <ProviderContainer {...props}>{props.children}</ProviderContainer>
+    </ProviderBase>
+  )
+}
+
+const ProviderBase: React.FC<Props> = (props) => {
   const { feed } = useFeed(props.feedId)
   const { teammate } = useTeammate(feed.teammateId)
   const {
@@ -88,8 +93,6 @@ export const Provider: React.FC<Props> = (props) => {
         onPin,
         onUnpin,
         isPinned: props.isPinned || false,
-        // containerRef,
-        // isReferenced,
       }}
     >
       {props.children}

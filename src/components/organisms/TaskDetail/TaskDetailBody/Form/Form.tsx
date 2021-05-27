@@ -8,7 +8,7 @@ import { Projects } from './Projects'
 import { Description } from './Description'
 import { Subtasks } from './Subtasks'
 import { Attachment } from './Attachment'
-import { Feeds } from './Feeds'
+import { FeedList } from './FeedList'
 
 type Props = {}
 
@@ -27,7 +27,7 @@ export const Form: React.FC<Props> = memo(() => {
         <Subtasks taskId="1" />
         <Attachment taskId="1" />
       </Stack>
-      <Feeds taskId="1" />
+      <FeedList taskId="1" />
     </Flex>
   )
 })

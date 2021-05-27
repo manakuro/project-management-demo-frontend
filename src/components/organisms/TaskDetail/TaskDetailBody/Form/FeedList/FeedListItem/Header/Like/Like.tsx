@@ -1,6 +1,6 @@
 import React from 'react'
 import { IconButton } from 'src/components/atoms'
-import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/Feeds/FeedListItem/Provider'
+import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
 import { Icon } from './Icon'
 
 type Props = {}

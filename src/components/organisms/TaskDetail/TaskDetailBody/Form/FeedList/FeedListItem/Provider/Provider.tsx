@@ -161,10 +161,10 @@ function useEditor(
   },
 ) {
   const { setFeed } = useFeed(props.feedId)
+  const [description, setDescription] = useState<string>('')
 
   const onCancel = useCallback(() => setIsEdit(false), [setIsEdit])
 
-  const [description, setDescription] = useState<string>('')
   const onChangeDescription = useCallback((val: string) => {
     setDescription(val)
   }, [])

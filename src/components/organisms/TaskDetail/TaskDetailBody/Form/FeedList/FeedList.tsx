@@ -7,7 +7,7 @@ type Props = {
   taskId: string
 }
 
-export const Feeds: React.VFC<Props> = memo<Props>((props) => {
+export const FeedList: React.VFC<Props> = memo<Props>((props) => {
   const { feedIds } = useFeedsByTask(props.taskId)
   const { feedPinnedIds } = useFeedsPinnedIds(props.taskId)
 

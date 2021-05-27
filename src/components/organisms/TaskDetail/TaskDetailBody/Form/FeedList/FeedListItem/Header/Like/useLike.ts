@@ -1,4 +1,4 @@
-import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/Feeds/FeedListItem/Provider'
+import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
 import { useTeammates } from 'src/store/teammates'
 import { useFeedLikesByFeedId } from 'src/store/feedLikes'
 import { useMe } from 'src/store/me'

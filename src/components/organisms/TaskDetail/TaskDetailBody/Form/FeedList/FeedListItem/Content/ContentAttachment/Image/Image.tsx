@@ -12,12 +12,14 @@ import { useAttachment } from 'src/store/attachments'
 type Props = FlexProps
 
 export const Image: React.VFC<Props> = memo<Props>((props) => {
+  const { onClick, ...rest } = props
   const { feed } = useFeedListItem()
   const { attachment } = useAttachment(feed.attachmentId)
 
   return (
-    <Flex flexDirection="column" {...props}>
+    <Flex flexDirection="column" {...rest}>
       <AtomsImage
+        onClick={onClick}
         src={attachment.src}
         bg="gray.50"
         width="auto"

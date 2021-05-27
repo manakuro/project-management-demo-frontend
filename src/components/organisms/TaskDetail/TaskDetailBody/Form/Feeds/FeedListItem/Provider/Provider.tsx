@@ -12,6 +12,7 @@ import {
   useTeammate,
 } from 'src/store/teammates'
 import { Provider as ProviderContainer } from './ProviderContainer'
+import { useToast } from 'src/hooks'
 
 type ContextProps = {
   description: string
@@ -108,6 +109,7 @@ const ProviderBase: React.FC<Props> = (props) => {
 function useFeedOptionMenu(props: Props) {
   const { feed, setFeed } = useFeed(props.feedId)
   const [isEdit, setIsEdit] = useState<boolean>(false)
+  const { toast } = useToast()
 
   const onPin = useCallback(async () => {
     await setFeed({ isPinned: true })
@@ -124,9 +126,17 @@ function useFeedOptionMenu(props: Props) {
 
   const onCopyCommentLink = useCallback(async () => {
     await navigator.clipboard.writeText(
-      `${window.location.origin}/tasks/${props.taskId}/${feed.id}/`,
+      `${window.location.origin}/tasks/${props.taskId}/${feed.id}`,
     )
-  }, [feed.id, props.taskId])
+    toast({
+      title: 'Copied successfully',
+      description: 'The comment link was copied to your clipboard.',
+      status: 'success',
+      duration: 5000,
+      isClosable: true,
+      position: 'bottom-left',
+    })
+  }, [feed.id, props.taskId, toast])
 
   return {
     onPin,

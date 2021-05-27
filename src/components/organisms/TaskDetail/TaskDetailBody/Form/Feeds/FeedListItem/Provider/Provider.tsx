@@ -14,40 +14,43 @@ import {
 import { Provider as ProviderContainer } from './ProviderContainer'
 
 type ContextProps = {
-  feed: Feed
-  teammate: Teammate
-  editable: () => boolean
-  onEdit: () => void
-  onCancel: () => void
   description: string
+  editable: () => boolean
+  feed: Feed
+  isPinned: boolean
+  onCancel: () => void
   onChangeDescription: (val: string) => void
+  onCopyCommentLink: () => void
+  onEdit: () => void
+  onPin: () => void
   onSave: () => void
+  onUnpin: () => void
   showFeedOptionMenu: boolean
   showLike: boolean
-  onPin: () => void
-  onUnpin: () => void
-  isPinned: boolean
+  teammate: Teammate
 }
 
 const Context = createContext<ContextProps>({
-  feed: defaultFeedStateValue(),
-  teammate: defaultTeammateStateValue(),
-  editable: () => false,
-  onEdit: () => {},
-  onCancel: () => {},
   description: '',
+  editable: () => false,
+  feed: defaultFeedStateValue(),
+  isPinned: false,
+  onCancel: () => {},
   onChangeDescription: () => {},
+  onCopyCommentLink: () => {},
+  onEdit: () => {},
+  onPin: () => void {},
   onSave: () => {},
+  onUnpin: () => void {},
   showFeedOptionMenu: false,
   showLike: false,
-  onPin: () => void {},
-  onUnpin: () => void {},
-  isPinned: false,
+  teammate: defaultTeammateStateValue(),
 })
 export const useFeedListItem = () => useContext(Context)
 
 type Props = {
   feedId: string
+  taskId: string
   isPinned?: boolean
 }
 export const Provider: React.FC<Props> = (props) => {
@@ -69,6 +72,7 @@ const ProviderBase: React.FC<Props> = (props) => {
     isEdit,
     showFeedOptionMenu,
     showLike,
+    onCopyCommentLink,
   } = useFeedOptionMenu(props)
 
   const { editable, onCancel, onSave, onChangeDescription, description } =
@@ -92,6 +96,7 @@ const ProviderBase: React.FC<Props> = (props) => {
         showLike,
         onPin,
         onUnpin,
+        onCopyCommentLink,
         isPinned: props.isPinned || false,
       }}
     >
@@ -117,6 +122,12 @@ function useFeedOptionMenu(props: Props) {
   const showFeedOptionMenu = useMemo(() => !feed.isFirst, [feed.isFirst])
   const showLike = useMemo(() => !feed.isFirst, [feed.isFirst])
 
+  const onCopyCommentLink = useCallback(async () => {
+    await navigator.clipboard.writeText(
+      `${window.location.origin}/tasks/${props.taskId}/${feed.id}/`,
+    )
+  }, [feed.id, props.taskId])
+
   return {
     onPin,
     onUnpin,
@@ -125,6 +136,7 @@ function useFeedOptionMenu(props: Props) {
     showLike,
     isEdit,
     setIsEdit,
+    onCopyCommentLink,
   }
 }
 

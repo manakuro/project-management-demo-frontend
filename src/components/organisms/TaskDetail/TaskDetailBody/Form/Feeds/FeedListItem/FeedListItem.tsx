@@ -6,12 +6,13 @@ import { Container } from './Container'
 
 type Props = {
   feedId: string
+  taskId: string
   isPinned?: boolean
 }
 
 export const FeedListItem: React.VFC<Props> = memo<Props>((props) => {
   return (
-    <Provider feedId={props.feedId} isPinned={props.isPinned}>
+    <Provider {...props}>
       <Component />
     </Provider>
   )

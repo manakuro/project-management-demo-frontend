@@ -14,10 +14,15 @@ export const Feeds: React.VFC<Props> = memo<Props>((props) => {
   return (
     <Flex mt={4} flexDirection="column">
       {feedPinnedIds.map((pinnedId) => (
-        <FeedListItem key={pinnedId} feedId={pinnedId} isPinned />
+        <FeedListItem
+          key={pinnedId}
+          feedId={pinnedId}
+          taskId={props.taskId}
+          isPinned
+        />
       ))}
       {feedIds.map((id) => (
-        <FeedListItem key={id} feedId={id} />
+        <FeedListItem key={id} feedId={id} taskId={props.taskId} />
       ))}
     </Flex>
   )

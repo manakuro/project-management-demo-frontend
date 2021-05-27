@@ -13,7 +13,7 @@ import { Pin } from './Pin'
 type Props = {}
 
 export const FeedOptionMenu: React.FC<Props> = memo(() => {
-  const { onEdit, showFeedOptionMenu } = useFeedListItem()
+  const { onEdit, showFeedOptionMenu, onCopyCommentLink } = useFeedListItem()
   if (!showFeedOptionMenu) return null
 
   return (
@@ -31,7 +31,7 @@ export const FeedOptionMenu: React.FC<Props> = memo(() => {
             <Pin />
             <MenuItem onClick={onEdit}>Edit comment</MenuItem>
             <MenuItem color="alert">Delete comment</MenuItem>
-            <MenuItem>Copy comment link</MenuItem>
+            <MenuItem onClick={onCopyCommentLink}>Copy comment link</MenuItem>
           </MenuGroup>
         </MenuList>
       </Portal>

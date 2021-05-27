@@ -5,7 +5,7 @@ import {
   AtMention,
 } from 'src/components/organisms/Editor/ToolBar'
 import { Button, Flex, Stack } from 'src/components/atoms'
-import { useFeedListItem } from '../Provider'
+import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
 
 type Props = {}
 

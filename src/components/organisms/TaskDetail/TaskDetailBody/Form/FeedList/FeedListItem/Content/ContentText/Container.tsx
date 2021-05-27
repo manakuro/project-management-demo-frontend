@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useFeedListItem } from '../Provider'
+import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
 
 type Props = FlexProps
 

@@ -1,38 +1,27 @@
-import React, { memo, useEffect, useMemo, useState } from 'react'
+import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { Editor, EditorContent } from 'src/components/organisms'
 import { useFeedListItem } from '../Provider'
-import { Container } from './Container'
-import { ToolBar } from './ToolBar'
-import { uuid } from 'src/shared/uuid'
+import { ContentText } from './ContentText'
+import { ContentAttachment } from './ContentAttachment'
+import { FEED_TYPE_ATTACHMENT, FEED_TYPE_TEXT } from 'src/store/feeds/types'
 
 type Props = {}
 
 export const Content: React.VFC<Props> = memo<Props>(() => {
-  const { feed, editable, onChangeDescription, description } = useFeedListItem()
-  const [forceUpdate, setForceUpdate] = useState<() => string>(() => () => '')
-  const value = useMemo(() => {
-    return editable() ? description : feed.description
-  }, [description, editable, feed.description])
-
-  useEffect(() => {
-    setForceUpdate(() => () => uuid())
-  }, [editable, feed.description])
-
   return (
     <Flex mt={2} flexDirection="column">
-      <Container>
-        <Editor
-          value={value}
-          editable={editable}
-          onChange={onChangeDescription}
-          forceUpdate={forceUpdate}
-        >
-          <EditorContent />
-          <ToolBar />
-        </Editor>
-      </Container>
+      <Component />
     </Flex>
   )
+})
+const Component: React.VFC<Props> = memo<Props>(() => {
+  const { feed } = useFeedListItem()
+
+  switch (feed.type) {
+    case FEED_TYPE_TEXT:
+      return <ContentText />
+    case FEED_TYPE_ATTACHMENT:
+      return <ContentAttachment />
+  }
 })
 Content.displayName = 'Content'

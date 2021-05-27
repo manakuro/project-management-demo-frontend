@@ -13,12 +13,15 @@ import {
 } from 'src/store/teammates'
 import { Provider as ProviderContainer } from './ProviderContainer'
 import { useToast } from 'src/hooks'
+import { FEED_TYPE_ATTACHMENT, FEED_TYPE_TEXT } from 'src/store/feeds/types'
 
 type ContextProps = {
   description: string
   editable: () => boolean
   feed: Feed
+  isAttachment: boolean
   isPinned: boolean
+  isText: boolean
   onCancel: () => void
   onChangeDescription: (val: string) => void
   onCopyCommentLink: () => void
@@ -28,6 +31,7 @@ type ContextProps = {
   onUnpin: () => void
   showFeedOptionMenu: boolean
   showLike: boolean
+  taskId: string
   teammate: Teammate
 }
 
@@ -35,7 +39,9 @@ const Context = createContext<ContextProps>({
   description: '',
   editable: () => false,
   feed: defaultFeedStateValue(),
+  isAttachment: false,
   isPinned: false,
+  isText: false,
   onCancel: () => {},
   onChangeDescription: () => {},
   onCopyCommentLink: () => {},
@@ -45,6 +51,7 @@ const Context = createContext<ContextProps>({
   onUnpin: () => void {},
   showFeedOptionMenu: false,
   showLike: false,
+  taskId: '',
   teammate: defaultTeammateStateValue(),
 })
 export const useFeedListItem = () => useContext(Context)
@@ -82,6 +89,12 @@ const ProviderBase: React.FC<Props> = (props) => {
       isEdit,
     })
 
+  const isAttachment = useMemo(
+    () => feed.type === FEED_TYPE_ATTACHMENT && !!feed.attachmentId,
+    [feed.attachmentId, feed.type],
+  )
+  const isText = useMemo(() => feed.type === FEED_TYPE_TEXT, [feed.type])
+
   return (
     <Context.Provider
       value={{
@@ -99,6 +112,9 @@ const ProviderBase: React.FC<Props> = (props) => {
         onUnpin,
         onCopyCommentLink,
         isPinned: props.isPinned || false,
+        isAttachment,
+        isText,
+        taskId: props.taskId,
       }}
     >
       {props.children}

@@ -1,34 +1,45 @@
 import React, { memo } from 'react'
-import { Text, TextProps } from 'src/components/atoms'
+import { Flex, Icon, Text, TextProps } from 'src/components/atoms'
 import { useFeedListItem } from '../Provider'
 import { Teammate } from 'src/store/teammates'
 import { Feed } from 'src/store/feeds'
 
 type Props = TextProps
 
-const generateTitle = ({
-  teammate,
-  feed,
-}: {
-  teammate: Teammate
-  feed: Feed
-}): string => {
+const generateTitle = (
+  {
+    teammate,
+    feed,
+  }: {
+    teammate: Teammate
+    feed: Feed
+  },
+  { isAttachment }: { isAttachment: boolean },
+): React.ReactElement => {
   switch (true) {
     case feed.isFirst:
-      return `${teammate.name} created this task.`
+      return <Text>{`${teammate.name} created this task.`}</Text>
+    case Boolean(isAttachment): {
+      return (
+        <Flex flex={1} alignItems="center">
+          <Icon icon="attach" color="text.muted" />
+          <Text ml={1}>attached</Text>
+        </Flex>
+      )
+    }
     default:
-      return teammate.name
+      return <Text>{teammate.name}</Text>
   }
 }
 
 export const Title: React.VFC<Props> = memo<Props>((props) => {
-  const { teammate, feed } = useFeedListItem()
-  const title = generateTitle({ teammate, feed })
+  const { teammate, feed, isAttachment } = useFeedListItem()
+  const title = generateTitle({ teammate, feed }, { isAttachment })
 
   return (
-    <Text fontSize="sm" fontWeight="medium" ml={2} {...props}>
+    <Flex fontSize="sm" fontWeight="medium" ml={2} {...props}>
       {title}
-    </Text>
+    </Flex>
   )
 })
 Title.displayName = 'Title'

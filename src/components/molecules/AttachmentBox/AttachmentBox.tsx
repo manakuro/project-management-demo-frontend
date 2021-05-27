@@ -7,11 +7,15 @@ import { transitions } from 'src/styles'
 type Props = FlexProps & {
   size: Sizes
   attachmentId: string
-  isHovering: boolean
+  isHovering?: boolean
 }
 export type AttachmentBoxProps = Props
 
 const sizes = {
+  lg: {
+    w: '420px',
+    h: 16,
+  },
   md: {
     w: 60,
     h: 16,
@@ -30,7 +34,7 @@ export const AttachmentBox: React.FC<Props> = (props) => {
     <Flex
       borderRadius="lg"
       border="1px"
-      borderColor={isHovering ? 'gray.300' : 'gray.200'}
+      borderColor={isHovering ? 'gray.400' : 'gray.200'}
       alignItems="center"
       transition={transitions.base()}
       p={4}

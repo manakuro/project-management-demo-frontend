@@ -3,6 +3,7 @@ import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailB
 import { useAttachment } from 'src/store/attachments'
 import { ATTACHMENT_TYPE_IMAGE } from 'src/store/attachments/types'
 import { Image } from './Image'
+import { File } from './File'
 import { useFileViewerModal } from 'src/components/organisms'
 
 type Props = {}
@@ -24,7 +25,7 @@ export const ContentAttachment: React.VFC<Props> = memo<Props>(() => {
     case ATTACHMENT_TYPE_IMAGE:
       return <Image onClick={handleOpenFileViewer} />
     default:
-      return null
+      return <File onClick={handleOpenFileViewer} />
   }
 })
 ContentAttachment.displayName = 'ContentAttachment'

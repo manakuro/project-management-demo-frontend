@@ -11,3 +11,6 @@ export const isTaskDetailURL = (router: NextRouter): boolean => {
 }
 export const getTaskDetailId = (router: NextRouter): string =>
   (isTaskDetailURL(router) && (router.query?.tasks?.[0] as string)) || ''
+
+export const getTaskDetailFeedId = (router: NextRouter): string =>
+  (isTaskDetailURL(router) && (router.query?.tasks?.[1] as string)) || ''

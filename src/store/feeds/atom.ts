@@ -28,7 +28,14 @@ export const defaultFeedStateValue = (): Feed => ({
   id: '',
   taskId: '',
   teammateId: '',
-  description: '',
+  description: JSON.stringify(
+    {
+      type: 'doc',
+      content: [],
+    },
+    null,
+    2,
+  ),
   attachmentIds: [],
   createdAt: '',
   updatedAt: '',

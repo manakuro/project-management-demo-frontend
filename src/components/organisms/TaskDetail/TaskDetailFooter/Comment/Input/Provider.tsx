@@ -24,6 +24,10 @@ type ContextProps = {
   onUploadFile: (files: FileUploaderParams) => void
   ref: React.MutableRefObject<HTMLElement | null>
   attachmentIds: string[]
+  uploadingFiles: {
+    name: string
+    num: number
+  }[]
 }
 
 const Context = createContext<ContextProps>({
@@ -35,6 +39,7 @@ const Context = createContext<ContextProps>({
   onUploadFile: () => void {},
   ref: null as any,
   attachmentIds: [],
+  uploadingFiles: [],
 })
 export const useInput = () => useContext(Context)
 
@@ -47,7 +52,11 @@ export const Provider: React.FC = (props) => {
 
   const [focused, setFocused] = useState(false)
   const [description, setDescription] = useState<string>('')
+  const [uploadingFiles, setUploadingFiles] = useState<
+    ContextProps['uploadingFiles']
+  >([])
   const [attachmentIds, setAttachmentIds] = useState<string[]>([])
+
   const [feedId, setFeedId] = useState<string>('')
   const { feed } = useFeed(feedId)
 
@@ -83,8 +92,29 @@ export const Provider: React.FC = (props) => {
     async (files: FileUploaderParams) => {
       const promises: Promise<{
         createdAttachmentId: string
-      }>[] = files.map(async (f) => {
+      }>[] = files.map(async (f, i) => {
         const file = await f
+        setUploadingFiles((prev) => [
+          ...prev,
+          {
+            name: file.name,
+            num: 20,
+          },
+        ])
+        const timeout = setInterval(() => {
+          setUploadingFiles((prev) => {
+            const uploadingFile = prev.find((p) => p.name === file.name)!
+            const index = prev.indexOf(uploadingFile)
+            return [
+              ...prev.slice(0, index),
+              {
+                ...uploadingFile,
+                num: uploadingFile.num === 80 ? 80 : uploadingFile.num + 20,
+              },
+              ...prev.slice(index + 1),
+            ]
+          })
+        }, 1000)
         return new Promise((resolve) => {
           setTimeout(() => {
             const createdAttachmentId = addAttachment({
@@ -94,12 +124,31 @@ export const Provider: React.FC = (props) => {
               status: ATTACHMENT_STATUS_UNATTACHED,
             })
 
-            resolve({
-              createdAttachmentId,
+            setUploadingFiles((prev) => {
+              const uploadingFile = prev.find((p) => p.name === file.name)!
+              const index = prev.indexOf(uploadingFile)
+              return [
+                ...prev.slice(0, index),
+                { ...uploadingFile, num: 100 },
+                ...prev.slice(index + 1),
+              ]
             })
-          }, 2000)
+            setTimeout(() => {
+              setUploadingFiles((prev) => {
+                const uploadingFile = prev.find((p) => p.name === file.name)!
+                const index = prev.indexOf(uploadingFile)
+                return [...prev.slice(0, index), ...prev.slice(index + 1)]
+              })
+              clearInterval(timeout)
+
+              resolve({
+                createdAttachmentId,
+              })
+            }, 500)
+          }, 2000 + i * 1000)
         })
       })
+
       const result = await Promise.all(promises)
       console.log('Uploaded: ', result)
       setAttachmentIds(result.map((r) => r.createdAttachmentId))
@@ -118,6 +167,7 @@ export const Provider: React.FC = (props) => {
         feed,
         onUploadFile,
         attachmentIds,
+        uploadingFiles,
       }}
     >
       {props.children}

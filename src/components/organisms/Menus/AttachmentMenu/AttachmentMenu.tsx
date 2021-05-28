@@ -7,7 +7,7 @@ import { useMenuStyle } from 'src/hooks'
 type Props = {
   label: string
   tooltip?: Omit<TooltipProps, 'children'>
-  onUpload?: (file: FileUploaderParams) => void
+  onUpload?: (files: FileUploaderParams) => void
 }
 
 export const AttachmentMenu: React.FC<Props> = memo((props) => {

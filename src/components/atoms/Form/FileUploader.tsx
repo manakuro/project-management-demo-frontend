@@ -7,7 +7,7 @@ export type UploadedFile = {
   type: File['type']
   data: string
 }
-export type FileUploaderParams = UploadedFile[]
+export type FileUploaderParams = Promise<UploadedFile>[]
 
 type Props = {
   id: string
@@ -16,33 +16,33 @@ type Props = {
 export type FileUploaderProps = Props
 
 export const FileUploader: React.FC<Props> = (props) => {
-  const { id, ...rest } = props
+  const { id, onUpload, ...rest } = props
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (!isInputFiles(e) || !e.currentTarget.files?.length) return
 
       const files = e.currentTarget.files
-      const uploadedFiles: UploadedFile[] = []
-      Array.from(files).forEach((file) => {
-        const reader = new FileReader()
+      const promises = Array.from(files).map((file) => {
+        return new Promise<UploadedFile>((resolve) => {
+          const reader = new FileReader()
 
-        reader.onload = (event) => {
-          const data = (event.target?.result || '') as string
-          // const base64 = file.replace(/^data:.+;base64,/, '')
-          const base64 = data
-          uploadedFiles.push({
-            data: base64,
-            type: file.type,
-            name: file.name,
-          })
-        }
-        reader.readAsDataURL(file)
+          reader.onload = (event) => {
+            const data = (event.target?.result || '') as string
+            // const base64 = file.replace(/^data:.+;base64,/, '')
+            const base64 = data
+            resolve({
+              data: base64,
+              type: file.type,
+              name: file.name,
+            })
+          }
+          reader.readAsDataURL(file)
+        })
       })
-
-      props.onUpload?.(uploadedFiles)
+      onUpload?.(promises)
     },
-    [props],
+    [onUpload],
   )
 
   return (

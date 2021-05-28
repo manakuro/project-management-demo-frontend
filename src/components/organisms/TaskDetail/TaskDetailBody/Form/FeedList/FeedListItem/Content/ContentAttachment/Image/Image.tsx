@@ -13,8 +13,8 @@ type Props = FlexProps & {
 }
 
 export const Image: React.VFC<Props> = memo<Props>((props) => {
-  const { onClick, ...rest } = props
-  const { attachment } = useAttachment(props.attachmentId)
+  const { onClick, attachmentId, ...rest } = props
+  const { attachment } = useAttachment(attachmentId)
 
   return (
     <Flex flexDirection="column" {...rest}>

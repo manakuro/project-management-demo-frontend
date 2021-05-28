@@ -10,7 +10,7 @@ import { useTasksListDetail } from 'src/components/organisms'
 import { useMe } from 'src/store/me'
 import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 import { getScrollBottom } from 'src/shared/getScrollBottom'
-import { Attachment, useAttachmentsByTask } from 'src/store/attachments'
+import { useAttachmentsByTask } from 'src/store/attachments'
 import { FileUploaderParams } from 'src/components/atoms'
 import { getAttachmentTypeFromFile } from 'src/shared/getAttachmentTypeFromFile'
 
@@ -22,6 +22,7 @@ type ContextProps = {
   onSave: () => void
   onUploadFile: (files: FileUploaderParams) => void
   ref: React.MutableRefObject<HTMLElement | null>
+  attachmentIds: string[]
 }
 
 const Context = createContext<ContextProps>({
@@ -32,6 +33,7 @@ const Context = createContext<ContextProps>({
   onSave: () => void {},
   onUploadFile: () => void {},
   ref: null as any,
+  attachmentIds: [],
 })
 export const useInput = () => useContext(Context)
 
@@ -44,6 +46,7 @@ export const Provider: React.FC = (props) => {
 
   const [focused, setFocused] = useState(false)
   const [description, setDescription] = useState<string>('')
+  const [attachmentIds, setAttachmentIds] = useState<string[]>([])
   const [feedId, setFeedId] = useState<string>('')
   const { feed } = useFeed(feedId)
 
@@ -76,39 +79,29 @@ export const Provider: React.FC = (props) => {
   }, [addFeed, description, me.id, scrollToBottom])
 
   const onUploadFile = useCallback(
-    (files: FileUploaderParams) => {
+    async (files: FileUploaderParams) => {
       const promises: Promise<{
         createdAttachmentId: string
-        type: Attachment['type']
-      }>[] = files.map((f) => {
+      }>[] = files.map(async (f) => {
+        const file = await f
         return new Promise((resolve) => {
           setTimeout(() => {
             const createdAttachmentId = addAttachment({
-              src: f.data,
-              name: f.name,
+              src: file.data,
+              name: file.name,
+              type: getAttachmentTypeFromFile(file.type),
             })
 
             resolve({
               createdAttachmentId,
-              type: getAttachmentTypeFromFile(f.type),
             })
-          }, 5000)
+          }, 2000)
         })
       })
-      console.log(promises)
-
-      // const id = addFeed({
-      //   teammateId: me.id,
-      //   attachmentId: createdAttachmentId,
-      //   type: getAttachmentTypeFromFile(f.type),
-      //   createdAt: new Date().toISOString(),
-      // })
-      // setFeedId(id)
-
-      setFocused(false)
-      scrollToBottom()
+      const result = await Promise.all(promises)
+      setAttachmentIds(result.map((r) => r.createdAttachmentId))
     },
-    [addAttachment, scrollToBottom],
+    [addAttachment],
   )
 
   return (
@@ -121,6 +114,7 @@ export const Provider: React.FC = (props) => {
         onChangeDescription,
         feed,
         onUploadFile,
+        attachmentIds,
       }}
     >
       {props.children}

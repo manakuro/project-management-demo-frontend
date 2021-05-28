@@ -11,7 +11,7 @@ import { useMe } from 'src/store/me'
 import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 import { getScrollBottom } from 'src/shared/getScrollBottom'
 import { useAttachmentsByTask } from 'src/store/attachments'
-import { FileUploaderParams } from 'src/components/atoms'
+import { FileUploaderParams, UploadedFile } from 'src/components/atoms'
 import { getAttachmentTypeFromFile } from 'src/shared/getAttachmentTypeFromFile'
 import { ATTACHMENT_STATUS_UNATTACHED } from 'src/store/attachments/types'
 
@@ -88,33 +88,48 @@ export const Provider: React.FC = (props) => {
     scrollToBottom()
   }, [addFeed, description, me.id, scrollToBottom])
 
+  const upsertUploadingFile = useCallback(
+    (file: UploadedFile, num?: number) => {
+      setUploadingFiles((prev) => {
+        const uploadingFile = prev.find((p) => p.name === file.name) ?? {
+          name: file.name,
+          num: 0,
+        }
+        const index = prev.indexOf(uploadingFile)
+        return [
+          ...prev.slice(0, index),
+          {
+            ...uploadingFile,
+            num:
+              num ?? (uploadingFile.num === 80 ? 80 : uploadingFile.num + 20),
+          },
+          ...prev.slice(index + 1),
+        ]
+      })
+    },
+    [],
+  )
+
+  const removeUploadingFile = useCallback((file: UploadedFile) => {
+    setUploadingFiles((prev) => {
+      const uploadingFile = prev.find((p) => p.name === file.name)!
+      const index = prev.indexOf(uploadingFile)
+      return [...prev.slice(0, index), ...prev.slice(index + 1)]
+    })
+  }, [])
+
   const onUploadFile = useCallback(
     async (files: FileUploaderParams) => {
       const promises: Promise<{
         createdAttachmentId: string
       }>[] = files.map(async (f, i) => {
         const file = await f
-        setUploadingFiles((prev) => [
-          ...prev,
-          {
-            name: file.name,
-            num: 20,
-          },
-        ])
+
+        upsertUploadingFile(file)
         const timeout = setInterval(() => {
-          setUploadingFiles((prev) => {
-            const uploadingFile = prev.find((p) => p.name === file.name)!
-            const index = prev.indexOf(uploadingFile)
-            return [
-              ...prev.slice(0, index),
-              {
-                ...uploadingFile,
-                num: uploadingFile.num === 80 ? 80 : uploadingFile.num + 20,
-              },
-              ...prev.slice(index + 1),
-            ]
-          })
+          upsertUploadingFile(file)
         }, 1000)
+
         return new Promise((resolve) => {
           setTimeout(() => {
             const createdAttachmentId = addAttachment({
@@ -124,21 +139,10 @@ export const Provider: React.FC = (props) => {
               status: ATTACHMENT_STATUS_UNATTACHED,
             })
 
-            setUploadingFiles((prev) => {
-              const uploadingFile = prev.find((p) => p.name === file.name)!
-              const index = prev.indexOf(uploadingFile)
-              return [
-                ...prev.slice(0, index),
-                { ...uploadingFile, num: 100 },
-                ...prev.slice(index + 1),
-              ]
-            })
+            upsertUploadingFile(file, 100)
+
             setTimeout(() => {
-              setUploadingFiles((prev) => {
-                const uploadingFile = prev.find((p) => p.name === file.name)!
-                const index = prev.indexOf(uploadingFile)
-                return [...prev.slice(0, index), ...prev.slice(index + 1)]
-              })
+              removeUploadingFile(file)
               clearInterval(timeout)
 
               resolve({
@@ -153,7 +157,7 @@ export const Provider: React.FC = (props) => {
       console.log('Uploaded: ', result)
       setAttachmentIds(result.map((r) => r.createdAttachmentId))
     },
-    [addAttachment],
+    [addAttachment, removeUploadingFile, upsertUploadingFile],
   )
 
   return (

@@ -22,7 +22,7 @@ export const Attachments: React.FC<Props> = memo<Props>(() => {
   )
 
   return (
-    <Wrap spacing={3}>
+    <Wrap spacing={3} py={2}>
       {attachmentIds.map((id) => (
         <WrapItem key={id}>
           <ThumbnailAttachment

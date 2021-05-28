@@ -10,14 +10,15 @@ import { Attachment } from './type'
 import { uniqBy } from 'src/shared/utils'
 import { useCallback, useMemo } from 'react'
 import { uuid } from 'src/shared/uuid'
+import { ATTACHMENT_STATUS_ATTACHED } from 'src/store/attachments/types'
 
 export const attachmentIdsState = atom<string[]>({
   key: 'attachmentIdsState',
   default: [],
 })
-export const attachmentIdsGroupByTaskState = atom<Record<string, string[]>>({
+export const attachmentIdsGroupByTaskState = atomFamily<string[], string>({
   key: 'attachmentIdsGroupByTaskState',
-  default: {},
+  default: [],
 })
 export const attachmentsState = atom<Attachment[]>({
   key: 'attachmentsState',
@@ -31,6 +32,7 @@ const defaultStateValue = (): Attachment => ({
   src: '',
   createdAt: '',
   type: 1,
+  status: 2,
 })
 const attachmentState = atomFamily<Attachment, string>({
   key: 'attachmentState',
@@ -72,22 +74,22 @@ export const attachmentSelector = selectorFamily<Attachment, string>({
         return
 
       set(attachmentIdsState, (prev) => [...prev, newVal.id])
-      set(attachmentIdsGroupByTaskState, (prev) => {
-        return {
-          ...prev,
-          [newVal.taskId]: [...(prev[newVal.taskId] || []), newVal.id],
-        }
-      })
+      set(attachmentIdsGroupByTaskState(newVal.taskId), (prev) => [
+        ...prev,
+        ...(newVal.status === ATTACHMENT_STATUS_ATTACHED ? [newVal.id] : []),
+      ])
     },
 })
 
 export const useAttachmentsByTask = (taskId: string) => {
-  const attachmentIdsGroupByTask = useRecoilValue(attachmentIdsGroupByTaskState)
+  const attachmentIdsGroupByTask = useRecoilValue(
+    attachmentIdsGroupByTaskState(taskId),
+  )
   const { upsertAttachment } = useAttachment()
 
   const attachmentIds = useMemo(() => {
-    return attachmentIdsGroupByTask[taskId] || []
-  }, [attachmentIdsGroupByTask, taskId])
+    return attachmentIdsGroupByTask || []
+  }, [attachmentIdsGroupByTask])
 
   const addAttachment = useCallback(
     (val: Partial<Attachment>) => {

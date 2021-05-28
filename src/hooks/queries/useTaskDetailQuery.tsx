@@ -87,6 +87,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
             src: '/images/cat_img.png',
             createdAt: new Date().toISOString(),
             type: 1,
+            status: 1,
           },
           {
             id: '2',
@@ -95,6 +96,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
             src: '/images/screen_shot.png',
             createdAt: new Date().toISOString(),
             type: 1,
+            status: 1,
           },
           {
             id: '3',
@@ -103,6 +105,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
             src: '/files/pdf-test.pdf',
             createdAt: new Date().toISOString(),
             type: 2,
+            status: 1,
           },
           {
             id: '4',
@@ -111,6 +114,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
             src: '/files/pdf-test-2.pdf',
             createdAt: new Date().toISOString(),
             type: 2,
+            status: 1,
           },
           {
             id: '5',
@@ -119,6 +123,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
             src: '/files/コンピュータシステムの理論と実践.pdf',
             createdAt: new Date().toISOString(),
             type: 2,
+            status: 1,
           },
           {
             id: '6',
@@ -127,6 +132,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
             src: '/files/test.js',
             createdAt: new Date().toISOString(),
             type: 3,
+            status: 1,
           },
         ],
         feeds: [

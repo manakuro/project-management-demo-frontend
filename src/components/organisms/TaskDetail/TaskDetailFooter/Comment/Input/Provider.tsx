@@ -13,6 +13,7 @@ import { getScrollBottom } from 'src/shared/getScrollBottom'
 import { useAttachmentsByTask } from 'src/store/attachments'
 import { FileUploaderParams } from 'src/components/atoms'
 import { getAttachmentTypeFromFile } from 'src/shared/getAttachmentTypeFromFile'
+import { ATTACHMENT_STATUS_UNATTACHED } from 'src/store/attachments/types'
 
 type ContextProps = {
   feed: Feed
@@ -90,6 +91,7 @@ export const Provider: React.FC = (props) => {
               src: file.data,
               name: file.name,
               type: getAttachmentTypeFromFile(file.type),
+              status: ATTACHMENT_STATUS_UNATTACHED,
             })
 
             resolve({

@@ -1,4 +1,4 @@
-import { AttachmentType } from './types'
+import { AttachmentType, AttachmentStatus } from './types'
 
 export type Attachment = {
   id: string
@@ -7,4 +7,5 @@ export type Attachment = {
   src: string
   createdAt: string
   type: AttachmentType
+  status: AttachmentStatus
 }

@@ -1,4 +1,10 @@
-import React, { createContext, useCallback, useContext, useState } from 'react'
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from 'react'
 import { useClickOutside } from 'src/hooks'
 import {
   defaultFeedStateValue,
@@ -28,6 +34,7 @@ type ContextProps = {
     name: string
     num: number
   }[]
+  hasAttachment: boolean
 }
 
 const Context = createContext<ContextProps>({
@@ -40,6 +47,7 @@ const Context = createContext<ContextProps>({
   ref: null as any,
   attachmentIds: [],
   uploadingFiles: [],
+  hasAttachment: false,
 })
 export const useInput = () => useContext(Context)
 
@@ -87,6 +95,8 @@ export const Provider: React.FC = (props) => {
     setFocused(false)
     scrollToBottom()
   }, [addFeed, description, me.id, scrollToBottom])
+
+  const hasAttachment = useMemo(() => !!attachmentIds.length, [attachmentIds])
 
   const upsertUploadingFile = useCallback(
     (file: UploadedFile, num?: number) => {
@@ -172,6 +182,7 @@ export const Provider: React.FC = (props) => {
         onUploadFile,
         attachmentIds,
         uploadingFiles,
+        hasAttachment,
       }}
     >
       {props.children}

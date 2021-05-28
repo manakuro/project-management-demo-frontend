@@ -5,9 +5,10 @@ import { useInput } from './Provider'
 type Props = {}
 
 export const Placeholder: React.FC<Props> = memo<Props>(() => {
-  const { focused } = useInput()
+  const { focused, hasAttachment } = useInput()
 
   if (focused) return null
+  if (hasAttachment) return null
 
   return (
     <EditorPlaceholder ml={2}>

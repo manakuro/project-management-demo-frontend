@@ -1,5 +1,3 @@
-import { FeedType } from './types'
-
 export type Feed = {
   id: string
   taskId: string
@@ -8,7 +6,6 @@ export type Feed = {
   attachmentIds: string[]
   createdAt: string
   updatedAt: string
-  type: FeedType
   isFirst: boolean
   isPinned: boolean
 }

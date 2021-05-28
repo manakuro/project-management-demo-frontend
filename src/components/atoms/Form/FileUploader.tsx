@@ -12,11 +12,12 @@ export type FileUploaderParams = Promise<UploadedFile>[]
 type Props = {
   id: string
   onUpload?: (file: FileUploaderParams) => void
+  onUploaded?: () => void
 } & LabelProps
 export type FileUploaderProps = Props
 
 export const FileUploader: React.FC<Props> = (props) => {
-  const { id, onUpload, ...rest } = props
+  const { id, onUpload, onUploaded, ...rest } = props
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,8 +42,9 @@ export const FileUploader: React.FC<Props> = (props) => {
         })
       })
       onUpload?.(promises)
+      onUploaded?.()
     },
-    [onUpload],
+    [onUpload, onUploaded],
   )
 
   return (

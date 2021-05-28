@@ -5,8 +5,8 @@ import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailB
 type Props = {}
 
 export const DeleteComment: React.FC<Props> = memo(() => {
-  const { isText } = useFeedListItem()
-  if (!isText) return null
+  const { hasText } = useFeedListItem()
+  if (!hasText) return null
 
   return <MenuItem color="alert">Delete comment</MenuItem>
 })

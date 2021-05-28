@@ -5,8 +5,8 @@ import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailB
 type Props = {}
 
 export const DeleteStory: React.FC<Props> = memo(() => {
-  const { isAttachment } = useFeedListItem()
-  if (!isAttachment) return null
+  const { hasAttachment, hasText } = useFeedListItem()
+  if (hasText || !hasAttachment) return null
 
   return <MenuItem color="alert">Delete Story</MenuItem>
 })

@@ -11,5 +11,4 @@ export type Feed = {
   type: FeedType
   isFirst: boolean
   isPinned: boolean
-  attachmentId: string
 }

@@ -1,9 +1,8 @@
 import React, { memo } from 'react'
-import { Flex } from 'src/components/atoms'
+import { Flex, Stack } from 'src/components/atoms'
 import { useFeedListItem } from '../Provider'
 import { ContentText } from './ContentText'
 import { ContentAttachment } from './ContentAttachment'
-import { FEED_TYPE_ATTACHMENT, FEED_TYPE_TEXT } from 'src/store/feeds/types'
 
 type Props = {}
 
@@ -15,13 +14,17 @@ export const Content: React.VFC<Props> = memo<Props>(() => {
   )
 })
 const Component: React.VFC<Props> = memo<Props>(() => {
-  const { feed } = useFeedListItem()
+  const { feed, hasText } = useFeedListItem()
 
-  switch (feed.type) {
-    case FEED_TYPE_TEXT:
-      return <ContentText />
-    case FEED_TYPE_ATTACHMENT:
-      return <ContentAttachment />
-  }
+  return (
+    <Stack flexDirection="column" flex={1} spacing={4}>
+      {hasText && <ContentText />}
+      <Stack spacing={4}>
+        {feed.attachmentIds.map((id) => (
+          <ContentAttachment attachmentId={id} key={id} />
+        ))}
+      </Stack>
+    </Stack>
+  )
 })
 Content.displayName = 'Content'

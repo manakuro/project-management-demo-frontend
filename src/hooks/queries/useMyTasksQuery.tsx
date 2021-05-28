@@ -133,7 +133,6 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
               type: 1,
               isFirst: true,
               isPinned: false,
-              attachmentId: '',
             },
             {
               id: '2',
@@ -153,7 +152,6 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
               type: 1,
               isFirst: false,
               isPinned: false,
-              attachmentId: '',
             },
           ],
         },

@@ -6,15 +6,15 @@ import {
   Link,
   Text,
 } from 'src/components/atoms'
-import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
 import { useAttachment } from 'src/store/attachments'
 
-type Props = FlexProps
+type Props = FlexProps & {
+  attachmentId: string
+}
 
 export const Image: React.VFC<Props> = memo<Props>((props) => {
   const { onClick, ...rest } = props
-  const { feed } = useFeedListItem()
-  const { attachment } = useAttachment(feed.attachmentId)
+  const { attachment } = useAttachment(props.attachmentId)
 
   return (
     <Flex flexDirection="column" {...rest}>

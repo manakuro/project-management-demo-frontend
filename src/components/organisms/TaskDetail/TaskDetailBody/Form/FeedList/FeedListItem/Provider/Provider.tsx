@@ -13,15 +13,14 @@ import {
 } from 'src/store/teammates'
 import { Provider as ProviderContainer } from './ProviderContainer'
 import { useToast } from 'src/hooks'
-import { FEED_TYPE_ATTACHMENT, FEED_TYPE_TEXT } from 'src/store/feeds/types'
 
 type ContextProps = {
   description: string
   editable: () => boolean
   feed: Feed
-  isAttachment: boolean
+  hasAttachment: boolean
   isPinned: boolean
-  isText: boolean
+  hasText: boolean
   onCancel: () => void
   onChangeDescription: (val: string) => void
   onCopyCommentLink: () => void
@@ -39,9 +38,9 @@ const Context = createContext<ContextProps>({
   description: '',
   editable: () => false,
   feed: defaultFeedStateValue(),
-  isAttachment: false,
+  hasAttachment: false,
   isPinned: false,
-  isText: false,
+  hasText: false,
   onCancel: () => {},
   onChangeDescription: () => {},
   onCopyCommentLink: () => {},
@@ -89,11 +88,14 @@ const ProviderBase: React.FC<Props> = (props) => {
       isEdit,
     })
 
-  const isAttachment = useMemo(
-    () => feed.type === FEED_TYPE_ATTACHMENT && !!feed.attachmentId,
-    [feed.attachmentId, feed.type],
+  const hasAttachment = useMemo(
+    () => !!feed.attachmentIds.length,
+    [feed.attachmentIds],
   )
-  const isText = useMemo(() => feed.type === FEED_TYPE_TEXT, [feed.type])
+  const hasText = useMemo(
+    () => !!JSON.parse(feed.description).content.length,
+    [feed.description],
+  )
 
   return (
     <Context.Provider
@@ -112,8 +114,8 @@ const ProviderBase: React.FC<Props> = (props) => {
         onUnpin,
         onCopyCommentLink,
         isPinned: props.isPinned || false,
-        isAttachment,
-        isText,
+        hasAttachment,
+        hasText,
         taskId: props.taskId,
       }}
     >

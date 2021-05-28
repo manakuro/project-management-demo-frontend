@@ -6,11 +6,13 @@ import { Image } from './Image'
 import { File } from './File'
 import { useFileViewerModal } from 'src/components/organisms'
 
-type Props = {}
+type Props = {
+  attachmentId: string
+}
 
-export const ContentAttachment: React.VFC<Props> = memo<Props>(() => {
-  const { feed, taskId } = useFeedListItem()
-  const { attachment } = useAttachment(feed.attachmentId)
+export const ContentAttachment: React.VFC<Props> = memo<Props>((props) => {
+  const { taskId } = useFeedListItem()
+  const { attachment } = useAttachment(props.attachmentId)
   const { onOpen, setState } = useFileViewerModal()
 
   const handleOpenFileViewer = useCallback(() => {
@@ -23,9 +25,19 @@ export const ContentAttachment: React.VFC<Props> = memo<Props>(() => {
 
   switch (attachment.type) {
     case ATTACHMENT_TYPE_IMAGE:
-      return <Image onClick={handleOpenFileViewer} />
+      return (
+        <Image
+          attachmentId={props.attachmentId}
+          onClick={handleOpenFileViewer}
+        />
+      )
     default:
-      return <File onClick={handleOpenFileViewer} />
+      return (
+        <File
+          attachmentId={props.attachmentId}
+          onClick={handleOpenFileViewer}
+        />
+      )
   }
 })
 ContentAttachment.displayName = 'ContentAttachment'

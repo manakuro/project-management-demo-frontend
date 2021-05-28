@@ -148,7 +148,6 @@ const fetchTask = async (): Promise<TaskResponse> => {
             type: 1,
             isFirst: true,
             isPinned: false,
-            attachmentId: '',
           },
           {
             id: '2',
@@ -206,7 +205,6 @@ const fetchTask = async (): Promise<TaskResponse> => {
             type: 1,
             isFirst: false,
             isPinned: false,
-            attachmentId: '',
           },
           {
             id: '3',
@@ -235,7 +233,6 @@ const fetchTask = async (): Promise<TaskResponse> => {
             type: 1,
             isFirst: false,
             isPinned: false,
-            attachmentId: '',
           },
           {
             id: '4',
@@ -244,18 +241,17 @@ const fetchTask = async (): Promise<TaskResponse> => {
             description: JSON.stringify(
               {
                 type: 'doc',
-                content: [],
+                content: [{ type: 'text', text: '😜' }],
               },
               null,
               2,
             ),
-            attachmentIds: [],
+            attachmentIds: ['1', '2', '3'],
             createdAt: new Date('2021/05/21 12:00:00').toISOString(),
             updatedAt: new Date().toISOString(),
             type: 2,
             isFirst: false,
             isPinned: false,
-            attachmentId: '1',
           },
           {
             id: '5',
@@ -269,13 +265,12 @@ const fetchTask = async (): Promise<TaskResponse> => {
               null,
               2,
             ),
-            attachmentIds: [],
+            attachmentIds: ['3'],
             createdAt: new Date('2021/05/21 12:00:00').toISOString(),
             updatedAt: new Date().toISOString(),
             type: 2,
             isFirst: false,
             isPinned: false,
-            attachmentId: '3',
           },
         ],
       })

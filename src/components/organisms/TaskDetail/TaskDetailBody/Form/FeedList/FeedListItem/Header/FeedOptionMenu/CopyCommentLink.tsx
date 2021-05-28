@@ -5,8 +5,8 @@ import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailB
 type Props = {}
 
 export const CopyCommentLink: React.FC<Props> = memo(() => {
-  const { onCopyCommentLink, isText } = useFeedListItem()
-  if (!isText) return null
+  const { onCopyCommentLink, hasText } = useFeedListItem()
+  if (!hasText) return null
 
   return <MenuItem onClick={onCopyCommentLink}>Copy comment link</MenuItem>
 })

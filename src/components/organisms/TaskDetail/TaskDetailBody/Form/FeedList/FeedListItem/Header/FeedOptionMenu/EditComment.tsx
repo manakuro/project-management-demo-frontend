@@ -5,8 +5,8 @@ import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailB
 type Props = {}
 
 export const EditComment: React.FC<Props> = memo(() => {
-  const { onEdit, isText } = useFeedListItem()
-  if (!isText) return null
+  const { onEdit, hasText } = useFeedListItem()
+  if (!hasText) return null
 
   return <MenuItem onClick={onEdit}>Edit comment</MenuItem>
 })

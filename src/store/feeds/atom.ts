@@ -42,7 +42,6 @@ export const defaultFeedStateValue = (): Feed => ({
   type: 1,
   isFirst: false,
   isPinned: false,
-  attachmentId: '',
 })
 const feedState = atomFamily<Feed, string>({
   key: 'feedState',

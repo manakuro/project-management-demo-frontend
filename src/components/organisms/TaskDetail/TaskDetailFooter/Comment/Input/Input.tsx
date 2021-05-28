@@ -5,6 +5,7 @@ import { Container } from './Container'
 import { Provider, useInput } from './Provider'
 import { ToolBar } from './ToolBar'
 import { Placeholder } from './Placeholder'
+import { Attachments } from './Attachments'
 import { uuid } from 'src/shared/uuid'
 
 type Props = {}
@@ -44,6 +45,7 @@ const Component: React.FC<Props> = memo<Props>(() => {
         >
           <EditorContent />
           <Placeholder />
+          <Attachments />
           <ToolBar />
         </Editor>
       </Container>

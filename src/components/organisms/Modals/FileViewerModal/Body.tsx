@@ -9,15 +9,13 @@ import {
   CarouselThumbnailItem,
 } from 'src/components/organisms'
 import { useFileViewerModal } from './useFileViewerModal'
-import { useAttachmentsByTask } from 'src/store/attachments'
 import { ListItem } from './ListItem'
 import { ThumbnailListItem } from './ThumbnailListItem/ThumbnailListItem'
 
 type Props = {}
 
 export const Body: React.VFC<Props> = memo(() => {
-  const { taskId, setState, currentAttachmentId } = useFileViewerModal()
-  const { attachmentIds } = useAttachmentsByTask(taskId)
+  const { attachmentIds, setState, currentAttachmentId } = useFileViewerModal()
   const defaultIndex = useMemo(
     () => attachmentIds.indexOf(currentAttachmentId),
     [attachmentIds, currentAttachmentId],

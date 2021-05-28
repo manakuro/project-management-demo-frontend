@@ -1,16 +1,13 @@
 import React, { memo, useCallback } from 'react'
-import { NewButton } from './NewButton'
 import { Wrap, WrapItem } from 'src/components/atoms'
+import { useInput } from 'src/components/organisms/TaskDetail/TaskDetailFooter/Comment/Input/Provider'
 import { ThumbnailAttachment } from 'src/components/molecules'
-import { useAttachmentsByTask } from 'src/store/attachments'
 import { useFileViewerModal } from 'src/components/organisms'
 
-type Props = {
-  taskId: string
-}
+type Props = {}
 
-export const Attachment: React.VFC<Props> = memo<Props>((props) => {
-  const { attachmentIds } = useAttachmentsByTask(props.taskId)
+export const Attachments: React.FC<Props> = memo<Props>(() => {
+  const { attachmentIds } = useInput()
   const { onOpen, setState } = useFileViewerModal()
 
   const onOpenFileViewer = useCallback(
@@ -34,7 +31,7 @@ export const Attachment: React.VFC<Props> = memo<Props>((props) => {
           />
         </WrapItem>
       ))}
-      <NewButton />
     </Wrap>
   )
 })
+Attachments.displayName = 'Attachments'

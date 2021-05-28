@@ -99,6 +99,7 @@ export const Provider: React.FC = (props) => {
         })
       })
       const result = await Promise.all(promises)
+      console.log('Uploaded: ', result)
       setAttachmentIds(result.map((r) => r.createdAttachmentId))
     },
     [addAttachment],

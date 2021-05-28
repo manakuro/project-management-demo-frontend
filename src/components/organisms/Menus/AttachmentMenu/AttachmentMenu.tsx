@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { FileUploader, Portal } from 'src/components/atoms'
+import { FileUploader, FileUploaderParams, Portal } from 'src/components/atoms'
 import { Tooltip, TooltipProps } from 'src/components/molecules'
 import { Menu, MenuItem, MenuList, MenuGroup } from 'src/components/organisms'
 import { useMenuStyle } from 'src/hooks'
@@ -7,6 +7,7 @@ import { useMenuStyle } from 'src/hooks'
 type Props = {
   label: string
   tooltip?: Omit<TooltipProps, 'children'>
+  onUpload?: (file: FileUploaderParams) => void
 }
 
 export const AttachmentMenu: React.FC<Props> = memo((props) => {
@@ -26,7 +27,11 @@ export const AttachmentMenu: React.FC<Props> = memo((props) => {
       <Portal>
         <MenuList>
           <MenuGroup title="Attach a File">
-            <FileUploader {...itemStyle} id="attach-file-from-your-computer">
+            <FileUploader
+              {...itemStyle}
+              id="attach-file-from-your-computer"
+              onUpload={props.onUpload}
+            >
               Your computer
             </FileUploader>
             <MenuItem>Dropbox</MenuItem>

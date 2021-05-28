@@ -10,28 +10,34 @@ import { useTasksListDetail } from 'src/components/organisms'
 import { useMe } from 'src/store/me'
 import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 import { getScrollBottom } from 'src/shared/getScrollBottom'
+import { Attachment, useAttachmentsByTask } from 'src/store/attachments'
+import { FileUploaderParams } from 'src/components/atoms'
+import { getAttachmentTypeFromFile } from 'src/shared/getAttachmentTypeFromFile'
 
 type ContextProps = {
+  feed: Feed
   focused: boolean
-  ref: React.MutableRefObject<HTMLElement | null>
+  onChangeDescription: (val: string) => void
   onFocus: () => void
   onSave: () => void
-  onChangeDescription: (val: string) => void
-  feed: Feed
+  onUploadFile: (files: FileUploaderParams) => void
+  ref: React.MutableRefObject<HTMLElement | null>
 }
 
 const Context = createContext<ContextProps>({
-  ref: null as any,
+  feed: defaultFeedStateValue(),
   focused: false,
+  onChangeDescription: () => void {},
   onFocus: () => void {},
   onSave: () => void {},
-  onChangeDescription: () => void {},
-  feed: defaultFeedStateValue(),
+  onUploadFile: () => void {},
+  ref: null as any,
 })
 export const useInput = () => useContext(Context)
 
 export const Provider: React.FC = (props) => {
   const { taskId } = useTasksListDetail()
+  const { addAttachment } = useAttachmentsByTask(taskId)
   const { addFeed } = useFeedsByTask(taskId)
   const { me } = useMe()
   const { taskDetailBodyDom } = useTaskDetailBody()
@@ -69,6 +75,42 @@ export const Provider: React.FC = (props) => {
     scrollToBottom()
   }, [addFeed, description, me.id, scrollToBottom])
 
+  const onUploadFile = useCallback(
+    (files: FileUploaderParams) => {
+      const promises: Promise<{
+        createdAttachmentId: string
+        type: Attachment['type']
+      }>[] = files.map((f) => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            const createdAttachmentId = addAttachment({
+              src: f.data,
+              name: f.name,
+            })
+
+            resolve({
+              createdAttachmentId,
+              type: getAttachmentTypeFromFile(f.type),
+            })
+          }, 5000)
+        })
+      })
+      console.log(promises)
+
+      // const id = addFeed({
+      //   teammateId: me.id,
+      //   attachmentId: createdAttachmentId,
+      //   type: getAttachmentTypeFromFile(f.type),
+      //   createdAt: new Date().toISOString(),
+      // })
+      // setFeedId(id)
+
+      setFocused(false)
+      scrollToBottom()
+    },
+    [addAttachment, scrollToBottom],
+  )
+
   return (
     <Context.Provider
       value={{
@@ -78,6 +120,7 @@ export const Provider: React.FC = (props) => {
         onSave,
         onChangeDescription,
         feed,
+        onUploadFile,
       }}
     >
       {props.children}

@@ -89,13 +89,19 @@ export const useAttachmentsByTask = (taskId: string) => {
     return attachmentIdsGroupByTask[taskId] || []
   }, [attachmentIdsGroupByTask, taskId])
 
-  const addAttachment = useCallback(() => {
-    upsertAttachment({
-      ...defaultStateValue(),
-      id: uuid(),
-      taskId,
-    })
-  }, [taskId, upsertAttachment])
+  const addAttachment = useCallback(
+    (val: Partial<Attachment>) => {
+      const id = uuid()
+      upsertAttachment({
+        ...defaultStateValue(),
+        ...val,
+        id,
+        taskId,
+      })
+      return id
+    },
+    [taskId, upsertAttachment],
+  )
 
   return {
     attachmentIds,

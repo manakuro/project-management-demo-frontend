@@ -15,7 +15,7 @@ type Props = MenuProps & {
 
 export const Menu: React.FC<Props> = memo((props) => {
   const { attachmentId, ...rest } = props
-  const { setThumbnailMenuOpened } = useThumbnailAttachment()
+  const { setThumbnailMenuOpened, onDelete } = useThumbnailAttachment()
   const { attachment } = useAttachment(attachmentId)
 
   const handleThumbnailMenuOpen = useCallback(() => {
@@ -40,7 +40,9 @@ export const Menu: React.FC<Props> = memo((props) => {
               Download attachment
             </Link>
           </MenuItem>
-          <MenuItem color="alert">Delete attachment</MenuItem>
+          <MenuItem onClick={onDelete} color="alert">
+            Delete attachment
+          </MenuItem>
         </MenuList>
       </Portal>
     </OrganismsMenu>

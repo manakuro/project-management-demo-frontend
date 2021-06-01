@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from 'react'
-import { useClickOutside } from 'src/hooks'
+import { useClickOutside, useToast } from 'src/hooks'
 import {
   defaultFeedStateValue,
   Feed,
@@ -16,7 +16,7 @@ import { useTasksListDetail } from 'src/components/organisms'
 import { useMe } from 'src/store/me'
 import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 import { getScrollBottom } from 'src/shared/getScrollBottom'
-import { useAttachmentsByTask } from 'src/store/attachments'
+import { Attachment, useAttachmentsByTask } from 'src/store/attachments'
 import { FileUploaderParams, UploadedFile } from 'src/components/atoms'
 import { getAttachmentTypeFromFile } from 'src/shared/getAttachmentTypeFromFile'
 import { ATTACHMENT_STATUS_UNATTACHED } from 'src/store/attachments/types'
@@ -35,6 +35,7 @@ type ContextProps = {
     num: number
   }[]
   hasAttachment: boolean
+  onDeleteAttachment: (attachment: Attachment) => void
 }
 
 const Context = createContext<ContextProps>({
@@ -48,6 +49,7 @@ const Context = createContext<ContextProps>({
   attachmentIds: [],
   uploadingFiles: [],
   hasAttachment: false,
+  onDeleteAttachment: () => void {},
 })
 export const useInput = () => useContext(Context)
 
@@ -55,8 +57,11 @@ export const Provider: React.FC = (props) => {
   const { focused, setFocused, onFocus, ref } = useFocus()
   const [feedId, setFeedId] = useState<string>('')
   const { feed } = useFeed(feedId)
-  const { uploadingFiles, hasAttachment, onUploadFile, attachmentIds } =
-    useUploadingFile()
+  const { hasAttachment, setAttachmentIds, attachmentIds, onDeleteAttachment } =
+    useAttachmentFile()
+  const { uploadingFiles, onUploadFile } = useUploadingFile({
+    setAttachmentIds,
+  })
   const { onSave, onChangeDescription } = useSave({
     onSaved: (id: string) => {
       setFeedId(id)
@@ -77,6 +82,7 @@ export const Provider: React.FC = (props) => {
         attachmentIds,
         uploadingFiles,
         hasAttachment,
+        onDeleteAttachment,
       }}
     >
       {props.children}
@@ -84,15 +90,43 @@ export const Provider: React.FC = (props) => {
   )
 }
 
-function useUploadingFile() {
+function useAttachmentFile() {
+  const [attachmentIds, setAttachmentIds] = useState<string[]>([])
+  const { toast } = useToast()
+
+  const hasAttachment = useMemo(() => !!attachmentIds.length, [attachmentIds])
+
+  const onDelete = useCallback(
+    (attachment: Attachment) => {
+      setAttachmentIds((prev) => prev.filter((p) => p !== attachment.id))
+      toast({
+        title: 'Deleted successfully',
+        description: `${attachment.name} is deleted from this task`,
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom-left',
+      })
+    },
+    [toast],
+  )
+
+  return {
+    attachmentIds,
+    setAttachmentIds,
+    hasAttachment,
+    onDeleteAttachment: onDelete,
+  }
+}
+
+function useUploadingFile(props: {
+  setAttachmentIds: React.Dispatch<React.SetStateAction<string[]>>
+}) {
   const { taskId } = useTasksListDetail()
   const { addAttachment } = useAttachmentsByTask(taskId)
   const [uploadingFiles, setUploadingFiles] = useState<
     ContextProps['uploadingFiles']
   >([])
-  const [attachmentIds, setAttachmentIds] = useState<string[]>([])
-
-  const hasAttachment = useMemo(() => !!attachmentIds.length, [attachmentIds])
 
   const upsertUploadingFile = useCallback(
     (file: UploadedFile, num?: number) => {
@@ -160,20 +194,18 @@ function useUploadingFile() {
       })
 
       const result = await Promise.all(promises)
-      setAttachmentIds((prev) => [
+      props.setAttachmentIds((prev) => [
         ...prev,
         ...result.map((r) => r.createdAttachmentId),
       ])
       setUploadingFiles([])
     },
-    [addAttachment, removeUploadingFile, upsertUploadingFile],
+    [addAttachment, props, removeUploadingFile, upsertUploadingFile],
   )
 
   return {
     uploadingFiles,
     onUploadFile,
-    hasAttachment,
-    attachmentIds,
   }
 }
 

@@ -1,25 +1,26 @@
 import React, { useCallback } from 'react'
 import { FlexProps } from 'src/components/atoms'
 import { Provider } from './Provider'
-import { useAttachment } from 'src/store/attachments'
+import { Attachment, useAttachment } from 'src/store/attachments'
 import { Image } from './Image'
 import { File } from './File'
 
 type Props = FlexProps & {
   attachmentId: string
   onOpenFileViewer: (attachmentId: string) => void
+  onDelete: (attachment: Attachment) => void
 }
 
 export const ThumbnailAttachment: React.VFC<Props> = (props) => {
   return (
-    <Provider>
+    <Provider {...props}>
       <Component {...props} />
     </Provider>
   )
 }
 
 export const Component: React.VFC<Props> = (props) => {
-  const { attachmentId, onOpenFileViewer, ...rest } = props
+  const { attachmentId, onOpenFileViewer, onDelete, ...rest } = props
   const { attachment } = useAttachment(attachmentId)
 
   const handleClick = useCallback(() => {

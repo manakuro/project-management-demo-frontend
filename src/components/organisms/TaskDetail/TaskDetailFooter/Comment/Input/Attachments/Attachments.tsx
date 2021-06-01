@@ -10,7 +10,7 @@ import { useFileViewerModal } from 'src/components/organisms'
 type Props = {}
 
 export const Attachments: React.FC<Props> = memo<Props>(() => {
-  const { attachmentIds, uploadingFiles } = useInput()
+  const { attachmentIds, uploadingFiles, onDeleteAttachment } = useInput()
   const { onOpen, setState } = useFileViewerModal()
 
   const onOpenFileViewer = useCallback(
@@ -33,6 +33,7 @@ export const Attachments: React.FC<Props> = memo<Props>(() => {
           <ThumbnailAttachment
             attachmentId={id}
             onOpenFileViewer={onOpenFileViewer}
+            onDelete={onDeleteAttachment}
           />
         </WrapItem>
       ))}

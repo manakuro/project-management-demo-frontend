@@ -8,6 +8,7 @@ type Props = PopoverProps & {
 }
 
 export const AssigneeMenu: React.FC<Props> = memo<Props>((props) => {
+  const { onClosed, ...rest } = props
   return (
     <PortalManager zIndex={1500}>
       <Popover
@@ -19,9 +20,11 @@ export const AssigneeMenu: React.FC<Props> = memo<Props>((props) => {
         autoFocus={false}
         returnFocusOnClose={false}
         isLazy
+        lazyBehavior="keepMounted"
+        {...rest}
       >
         <PopoverTrigger>{props.children}</PopoverTrigger>
-        <Content onClosed={props.onClosed} />
+        <Content onClosed={onClosed} />
       </Popover>
     </PortalManager>
   )

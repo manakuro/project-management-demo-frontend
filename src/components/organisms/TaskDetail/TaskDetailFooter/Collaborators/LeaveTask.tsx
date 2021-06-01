@@ -1,10 +1,15 @@
 import React, { memo } from 'react'
 import { Button, Flex, Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
+import { useCollaborators } from './Provider'
 
-export const LeaveTaskButton: React.VFC = memo(() => {
+export const LeaveTask: React.VFC = memo(() => {
+  const { isInputFocused } = useCollaborators()
+
+  if (isInputFocused) return null
+
   return (
-    <Flex alignItems="center">
+    <Flex alignItems="center" ml="auto" mt={1}>
       <Tooltip
         hasArrow
         label="Stop getting notifications about activity on this task."

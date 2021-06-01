@@ -33,7 +33,6 @@ function useInput() {
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false)
 
   const onInputFocus = useCallback(() => {
-    console.log('onInputFocus!')
     setIsInputFocused(true)
   }, [])
 

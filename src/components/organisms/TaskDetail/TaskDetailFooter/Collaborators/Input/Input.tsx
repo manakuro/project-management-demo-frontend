@@ -4,11 +4,17 @@ import { useCollaborators } from '../Provider'
 import { AssigneeMenu } from 'src/components/organisms'
 import { useClickOutside } from 'src/hooks'
 
-export const Input: React.VFC = memo(() => {
-  const { onInputUnfocus, isInputFocused } = useCollaborators()
-  const { ref } = useClickOutside(onInputUnfocus)
+export const Input: React.VFC = () => {
+  const { isInputFocused } = useCollaborators()
 
   if (!isInputFocused) return null
+
+  return <Component />
+}
+
+const Component: React.VFC = memo(() => {
+  const { onInputUnfocus, isInputFocused } = useCollaborators()
+  const { ref } = useClickOutside(onInputUnfocus)
 
   return (
     <AssigneeMenu
@@ -24,7 +30,6 @@ export const Input: React.VFC = memo(() => {
         placeholder="Name or email"
         bg="white"
         ml={2}
-        onBlur={onInputUnfocus}
       />
     </AssigneeMenu>
   )

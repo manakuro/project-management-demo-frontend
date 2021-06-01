@@ -28,7 +28,6 @@ export const Menu: React.FC<Props> = memo((props) => {
 
   return (
     <OrganismsMenu
-      isLazy
       onOpen={handleThumbnailMenuOpen}
       onClose={handleThumbnailMenuClose}
       {...rest}

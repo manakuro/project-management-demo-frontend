@@ -8,5 +8,5 @@ type Props = ChakraMenuProps
 export type MenuProps = Props
 
 export const Menu: React.FC<Props> = (props) => {
-  return <ChakraMenu {...props} />
+  return <ChakraMenu isLazy lazyBehavior="keepMounted" {...props} />
 }

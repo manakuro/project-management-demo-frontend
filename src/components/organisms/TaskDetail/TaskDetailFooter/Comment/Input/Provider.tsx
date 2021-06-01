@@ -101,20 +101,19 @@ export const Provider: React.FC = (props) => {
   const upsertUploadingFile = useCallback(
     (file: UploadedFile, num?: number) => {
       setUploadingFiles((prev) => {
-        const uploadingFile = prev.find((p) => p.name === file.name) ?? {
+        const uploadingFile = prev.find((p) => p.name === file.name) || {
           name: file.name,
           num: 0,
         }
-        const index = prev.indexOf(uploadingFile)
-        return [
-          ...prev.slice(0, index),
-          {
-            ...uploadingFile,
-            num:
-              num ?? (uploadingFile.num === 80 ? 80 : uploadingFile.num + 20),
-          },
-          ...prev.slice(index + 1),
-        ]
+
+        const index = prev.findIndex((p) => p.name === uploadingFile.name)
+        const newValue = {
+          ...uploadingFile,
+          num: num ?? (uploadingFile.num === 80 ? 80 : uploadingFile.num + 20),
+        }
+        if (index === -1) return [...prev, newValue]
+
+        return [...prev.slice(0, index), newValue, ...prev.slice(index + 1)]
       })
     },
     [],
@@ -123,7 +122,7 @@ export const Provider: React.FC = (props) => {
   const removeUploadingFile = useCallback((file: UploadedFile) => {
     setUploadingFiles((prev) => {
       const uploadingFile = prev.find((p) => p.name === file.name)!
-      const index = prev.indexOf(uploadingFile)
+      const index = prev.findIndex((prev) => prev.name === uploadingFile.name)
       return [...prev.slice(0, index), ...prev.slice(index + 1)]
     })
   }, [])
@@ -132,15 +131,16 @@ export const Provider: React.FC = (props) => {
     async (files: FileUploaderParams) => {
       const promises: Promise<{
         createdAttachmentId: string
-      }>[] = files.map(async (f, i) => {
+      }>[] = files.map(async (f) => {
         const file = await f
 
         upsertUploadingFile(file)
-        const timeout = setInterval(() => {
-          upsertUploadingFile(file)
-        }, 1000)
 
         return new Promise((resolve) => {
+          const timeout = setInterval(() => {
+            upsertUploadingFile(file)
+          }, 3000)
+
           setTimeout(() => {
             const createdAttachmentId = addAttachment({
               src: file.data,
@@ -159,13 +159,16 @@ export const Provider: React.FC = (props) => {
                 createdAttachmentId,
               })
             }, 500)
-          }, 2000 + i * 1000)
+          }, 2000)
         })
       })
 
       const result = await Promise.all(promises)
-      console.log('Uploaded: ', result)
-      setAttachmentIds(result.map((r) => r.createdAttachmentId))
+      setAttachmentIds((prev) => [
+        ...prev,
+        ...result.map((r) => r.createdAttachmentId),
+      ])
+      setUploadingFiles([])
     },
     [addAttachment, removeUploadingFile, upsertUploadingFile],
   )

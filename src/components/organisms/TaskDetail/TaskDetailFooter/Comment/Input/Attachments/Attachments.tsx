@@ -24,6 +24,8 @@ export const Attachments: React.FC<Props> = memo<Props>(() => {
     [attachmentIds, onOpen, setState],
   )
 
+  if (!attachmentIds.length && !uploadingFiles.length) return null
+
   return (
     <Wrap spacing={3} py={2}>
       {attachmentIds.map((id) => (
@@ -34,20 +36,11 @@ export const Attachments: React.FC<Props> = memo<Props>(() => {
           />
         </WrapItem>
       ))}
-      {uploadingFiles.map((f) => (
-        <WrapItem key={f.name}>
+      {uploadingFiles.map((f, i) => (
+        <WrapItem key={`${f.name}-${i}`}>
           <AttachmentUploadingBox file={f} size="md" />
         </WrapItem>
       ))}
-      {/*<WrapItem>*/}
-      {/*  <AttachmentUploadingBox*/}
-      {/*    file={{*/}
-      {/*      name: 'cat-image.png',*/}
-      {/*      num: 20,*/}
-      {/*    }}*/}
-      {/*    size="md"*/}
-      {/*  />*/}
-      {/*</WrapItem>*/}
     </Wrap>
   )
 })

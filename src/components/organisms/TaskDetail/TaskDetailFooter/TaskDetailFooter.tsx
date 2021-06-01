@@ -1,6 +1,7 @@
 import React from 'react'
 import { Flex, Skeleton } from 'src/components/atoms'
 import { Comment } from './Comment'
+import { Collaborators } from './Collaborators'
 
 type Props = {
   loading?: boolean
@@ -23,8 +24,10 @@ export const TaskDetailFooter: React.FC<Props> = (props) => {
       bg="gray.50"
       borderTop="1px"
       borderColor="gray.100"
+      flexDirection="column"
     >
       <Comment />
+      <Collaborators />
     </Flex>
   )
 }

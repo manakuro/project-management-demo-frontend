@@ -274,6 +274,20 @@ const fetchTask = async (): Promise<TaskResponse> => {
             isPinned: false,
           },
         ],
+        teammates: [
+          {
+            id: '1',
+            name: 'Manato Kuroda',
+            image: '/images/cat_img.png',
+            email: 'manato.kuroda@gmail.com',
+          },
+          {
+            id: '2',
+            name: 'Dan Abrahmov',
+            image: 'https://bit.ly/dan-abramov',
+            email: 'dan.abrahmov@gmail.com',
+          },
+        ],
       })
     }, 1000)
   })

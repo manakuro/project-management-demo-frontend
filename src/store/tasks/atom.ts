@@ -11,6 +11,7 @@ import { uniqBy } from 'src/shared/utils'
 import { subtaskSelector } from 'src/store/subtasks'
 import { attachmentSelector } from 'src/store/attachments'
 import { feedSelector } from 'src/store/feeds'
+import { teammateSelector } from 'src/store/teammates'
 
 export const taskIdsState = atom<string[]>({
   key: 'taskIdsState',
@@ -37,6 +38,8 @@ const taskState = atomFamily<Task, string>({
     attachmentIds: [],
     feeds: [],
     feedIds: [],
+    teammates: [],
+    teammateIds: [],
   },
 })
 
@@ -85,6 +88,7 @@ export const useTasks = () => {
           subTaskIds: t.subTasks.map((s) => s.id),
           attachmentIds: t.attachments.map((a) => a.id),
           feedIds: t.feeds.map((f) => f.id),
+          teammateIds: t.teammates.map((t) => t.id),
         }))
 
         tasks.forEach((t) => {
@@ -107,7 +111,7 @@ export const useTasks = () => {
 
 export const useTask = (taskId?: string) => {
   const task = useRecoilValue(taskSelector(taskId || ''))
-  const { setSubtasks, setAttachments, setFeeds } = useSetters()
+  const { setSubtasks, setAttachments, setFeeds, setTeammates } = useSetters()
 
   const upsertTask = useRecoilCallback(
     ({ set }) =>
@@ -125,14 +129,16 @@ export const useTask = (taskId?: string) => {
           subTaskIds: data.subTasks.map((s) => s.id),
           attachmentIds: data.attachments.map((a) => a.id),
           feedIds: data.feeds.map((f) => f.id),
+          teammateIds: data.teammates.map((t) => t.id),
         }
         set(taskSelector(task.id), task)
 
         setSubtasks([data])
         setAttachments([data])
         setFeeds([data])
+        setTeammates([data])
       },
-    [setAttachments, setFeeds, setSubtasks],
+    [setAttachments, setFeeds, setSubtasks, setTeammates],
   )
 
   return {
@@ -179,10 +185,23 @@ const useSetters = () => {
       },
     [],
   )
+  const setTeammates = useRecoilCallback(
+    ({ set }) =>
+      (data: TaskResponse[]) => {
+        data
+          .reduce<Task['teammates']>(
+            (acc, p) => uniqBy([...acc, ...p.teammates], 'id'),
+            [],
+          )
+          .forEach((f) => set(teammateSelector(f.id), f))
+      },
+    [],
+  )
 
   return {
     setSubtasks,
     setAttachments,
     setFeeds,
+    setTeammates,
   }
 }

@@ -158,6 +158,20 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
               isPinned: false,
             },
           ],
+          teammates: [
+            {
+              id: '1',
+              name: 'Manato Kuroda',
+              image: '/images/cat_img.png',
+              email: 'manato.kuroda@gmail.com',
+            },
+            {
+              id: '2',
+              name: 'Dan Abrahmov',
+              image: 'https://bit.ly/dan-abramov',
+              email: 'dan.abrahmov@gmail.com',
+            },
+          ],
         },
         {
           id: '2',
@@ -169,6 +183,26 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           assigneeId: '',
           attachments: [],
           feeds: [],
+          teammates: [
+            {
+              id: '1',
+              name: 'Manato Kuroda',
+              image: '/images/cat_img.png',
+              email: 'manato.kuroda@gmail.com',
+            },
+            {
+              id: '2',
+              name: 'Dan Abrahmov',
+              image: 'https://bit.ly/dan-abramov',
+              email: 'dan.abrahmov@gmail.com',
+            },
+            {
+              id: '3',
+              name: 'Kent Dodds',
+              image: 'https://bit.ly/kent-c-dodds',
+              email: 'kent.dodds@gmail.com',
+            },
+          ],
         },
         {
           id: '3',
@@ -180,6 +214,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           assigneeId: '',
           attachments: [],
           feeds: [],
+          teammates: [],
         },
         {
           id: '4',
@@ -191,6 +226,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           assigneeId: '',
           attachments: [],
           feeds: [],
+          teammates: [],
         },
         {
           id: '5',
@@ -202,6 +238,7 @@ const fetchTasks = async (): Promise<TaskResponse[]> => {
           assigneeId: '',
           attachments: [],
           feeds: [],
+          teammates: [],
         },
       ])
     }, 1000)

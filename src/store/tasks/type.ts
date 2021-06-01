@@ -1,6 +1,7 @@
 import { Subtask } from 'src/store/subtasks'
 import { Attachment } from 'src/store/attachments'
 import { Feed } from 'src/store/feeds'
+import { Teammate } from 'src/store/teammates'
 
 export type Task = {
   id: string
@@ -16,6 +17,8 @@ export type Task = {
   attachments: Attachment[]
   feedIds: string[]
   feeds: Feed[]
+  teammateIds: string[]
+  teammates: Teammate[]
 }
 
 export type TaskResponse = {
@@ -29,4 +32,5 @@ export type TaskResponse = {
   assigneeId: string
   attachments: Attachment[]
   feeds: Feed[]
+  teammates: Teammate[]
 }

@@ -52,49 +52,40 @@ const Context = createContext<ContextProps>({
 export const useInput = () => useContext(Context)
 
 export const Provider: React.FC = (props) => {
+  const { focused, setFocused, onFocus, ref } = useFocus()
+  const [feedId, setFeedId] = useState<string>('')
+  const { feed } = useFeed(feedId)
+  const { uploadingFiles, hasAttachment, onUploadFile, attachmentIds } =
+    useUploadingFile()
+  const { onSave, onChangeDescription } = useSave({ setFocused, setFeedId })
+
+  return (
+    <Context.Provider
+      value={{
+        focused,
+        onFocus,
+        ref,
+        onSave,
+        onChangeDescription,
+        feed,
+        onUploadFile,
+        attachmentIds,
+        uploadingFiles,
+        hasAttachment,
+      }}
+    >
+      {props.children}
+    </Context.Provider>
+  )
+}
+
+function useUploadingFile() {
   const { taskId } = useTasksListDetail()
   const { addAttachment } = useAttachmentsByTask(taskId)
-  const { addFeed } = useFeedsByTask(taskId)
-  const { me } = useMe()
-  const { taskDetailBodyDom } = useTaskDetailBody()
-
-  const [focused, setFocused] = useState(false)
-  const [description, setDescription] = useState<string>('')
   const [uploadingFiles, setUploadingFiles] = useState<
     ContextProps['uploadingFiles']
   >([])
   const [attachmentIds, setAttachmentIds] = useState<string[]>([])
-
-  const [feedId, setFeedId] = useState<string>('')
-  const { feed } = useFeed(feedId)
-
-  const { ref } = useClickOutside(() => {
-    setFocused(false)
-  })
-
-  const onFocus = useCallback(() => {
-    setFocused(true)
-  }, [])
-
-  const onChangeDescription = useCallback((val: string) => {
-    setDescription(val)
-  }, [])
-
-  const scrollToBottom = useCallback(() => {
-    if (!taskDetailBodyDom) return
-    taskDetailBodyDom.scrollTop = getScrollBottom(taskDetailBodyDom)
-  }, [taskDetailBodyDom])
-
-  const onSave = useCallback(() => {
-    const id = addFeed({
-      description,
-      teammateId: me.id,
-      createdAt: new Date().toISOString(),
-    })
-    setFeedId(id)
-    setFocused(false)
-    scrollToBottom()
-  }, [addFeed, description, me.id, scrollToBottom])
 
   const hasAttachment = useMemo(() => !!attachmentIds.length, [attachmentIds])
 
@@ -173,22 +164,65 @@ export const Provider: React.FC = (props) => {
     [addAttachment, removeUploadingFile, upsertUploadingFile],
   )
 
-  return (
-    <Context.Provider
-      value={{
-        focused,
-        onFocus,
-        ref,
-        onSave,
-        onChangeDescription,
-        feed,
-        onUploadFile,
-        attachmentIds,
-        uploadingFiles,
-        hasAttachment,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+  return {
+    uploadingFiles,
+    onUploadFile,
+    hasAttachment,
+    attachmentIds,
+  }
+}
+
+function useFocus() {
+  const [focused, setFocused] = useState(false)
+
+  const onFocus = useCallback(() => {
+    setFocused(true)
+  }, [])
+
+  const { ref } = useClickOutside(() => {
+    setFocused(false)
+  })
+
+  return {
+    focused,
+    setFocused,
+    onFocus,
+    ref,
+  }
+}
+
+function useSave(props: {
+  setFeedId: React.Dispatch<React.SetStateAction<string>>
+  setFocused: React.Dispatch<React.SetStateAction<boolean>>
+}) {
+  const { taskId } = useTasksListDetail()
+  const { addFeed } = useFeedsByTask(taskId)
+  const { me } = useMe()
+  const { taskDetailBodyDom } = useTaskDetailBody()
+  const [description, setDescription] = useState<string>('')
+
+  const scrollToBottom = useCallback(() => {
+    if (!taskDetailBodyDom) return
+    taskDetailBodyDom.scrollTop = getScrollBottom(taskDetailBodyDom)
+  }, [taskDetailBodyDom])
+
+  const onSave = useCallback(() => {
+    const id = addFeed({
+      description,
+      teammateId: me.id,
+      createdAt: new Date().toISOString(),
+    })
+    props.setFeedId(id)
+    props.setFocused(false)
+    scrollToBottom()
+  }, [addFeed, description, me.id, props, scrollToBottom])
+
+  const onChangeDescription = useCallback((val: string) => {
+    setDescription(val)
+  }, [])
+
+  return {
+    onSave,
+    onChangeDescription,
+  }
 }

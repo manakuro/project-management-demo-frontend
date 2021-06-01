@@ -57,7 +57,12 @@ export const Provider: React.FC = (props) => {
   const { feed } = useFeed(feedId)
   const { uploadingFiles, hasAttachment, onUploadFile, attachmentIds } =
     useUploadingFile()
-  const { onSave, onChangeDescription } = useSave({ setFocused, setFeedId })
+  const { onSave, onChangeDescription } = useSave({
+    onSaved: (id: string) => {
+      setFeedId(id)
+      setFocused(false)
+    },
+  })
 
   return (
     <Context.Provider
@@ -191,10 +196,7 @@ function useFocus() {
   }
 }
 
-function useSave(props: {
-  setFeedId: React.Dispatch<React.SetStateAction<string>>
-  setFocused: React.Dispatch<React.SetStateAction<boolean>>
-}) {
+function useSave(props: { onSaved: (id: string) => void }) {
   const { taskId } = useTasksListDetail()
   const { addFeed } = useFeedsByTask(taskId)
   const { me } = useMe()
@@ -212,8 +214,7 @@ function useSave(props: {
       teammateId: me.id,
       createdAt: new Date().toISOString(),
     })
-    props.setFeedId(id)
-    props.setFocused(false)
+    props.onSaved(id)
     scrollToBottom()
   }, [addFeed, description, me.id, props, scrollToBottom])
 

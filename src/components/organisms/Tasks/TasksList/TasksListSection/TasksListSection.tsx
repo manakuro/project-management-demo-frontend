@@ -34,3 +34,4 @@ export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
     </Flex>
   )
 })
+TasksListSection.displayName = 'TasksListSection'

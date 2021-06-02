@@ -35,3 +35,4 @@ export const List: React.VFC = memo(() => {
     </TasksList>
   )
 })
+List.displayName = 'List'

@@ -17,3 +17,4 @@ export const TasksListItem: React.FC<Props> = memo<Props>(() => {
     </TasksListRow>
   )
 })
+TasksListItem.displayName = 'TasksListItem'

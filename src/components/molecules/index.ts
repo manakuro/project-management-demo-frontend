@@ -1,3 +1,4 @@
+export * from './AssigneeChip'
 export * from './AttachmentBox'
 export * from './AttachmentUploadingBox'
 export * from './ColorModeSwitch'

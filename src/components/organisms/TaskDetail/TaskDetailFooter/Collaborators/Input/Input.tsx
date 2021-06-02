@@ -34,6 +34,7 @@ const Component: React.VFC = memo(() => {
       placement="top-start"
     >
       <Flex
+        ref={ref}
         border={1}
         borderColor="gray.200"
         borderStyle="solid"
@@ -52,7 +53,6 @@ const Component: React.VFC = memo(() => {
           ))}
           <WrapItem>
             <AtomsInput
-              ref={ref}
               minH={9}
               autoFocus
               fontSize="sm"

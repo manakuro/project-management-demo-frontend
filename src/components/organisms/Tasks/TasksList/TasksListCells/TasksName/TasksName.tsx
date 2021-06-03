@@ -7,8 +7,11 @@ import { TasksNameRightContainer } from './TasksNameRightContainer'
 import { Mark } from './Mark'
 import { TasksNameProvider, useTasksName } from './TasksNameProvider'
 import { useRouter } from 'src/router'
+import { useTask } from 'src/store/entities/tasks'
 
-type Props = FlexProps
+type Props = FlexProps & {
+  taskId: string
+}
 
 export const TasksName: React.FC<Props> = (props) => {
   return (
@@ -18,23 +21,20 @@ export const TasksName: React.FC<Props> = (props) => {
   )
 }
 
-const Component: React.VFC<Props> = memo<Props>(() => {
+const Component: React.VFC<Props> = memo<Props>((props) => {
   const { ref, onMarkMenuOpened, onMarkMenuClosed } = useTasksName()
   const { navigateToTaskDetail } = useRouter()
+  const { task } = useTask(props.taskId)
 
   const handleClick = useCallback(async () => {
-    await navigateToTaskDetail('1')
-  }, [navigateToTaskDetail])
+    await navigateToTaskDetail(task.id)
+  }, [navigateToTaskDetail, task.id])
 
   return (
     <TasksNameCell ref={ref} onClick={handleClick}>
       <TasksNameGrabIcon />
-      <CheckIcon isDone={false} ml={4} />
-      <TasksNameField
-        value="Organize component folder"
-        onChange={() => {}}
-        focusedBorder
-      />
+      <CheckIcon isDone={task.isDone} ml={4} />
+      <TasksNameField value={task.name} onChange={() => {}} focusedBorder />
       <TasksNameRightContainer>
         <Mark
           variant="unmarked"

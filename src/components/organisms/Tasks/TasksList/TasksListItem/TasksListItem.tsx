@@ -4,12 +4,14 @@ import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksLis
 import { TasksName } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
 
-type Props = FlexProps
+type Props = FlexProps & {
+  taskId: string
+}
 
-export const TasksListItem: React.FC<Props> = memo<Props>(() => {
+export const TasksListItem: React.FC<Props> = memo<Props>((props) => {
   return (
     <TasksListRow>
-      <TasksName />
+      <TasksName taskId={props.taskId} />
       <TasksListCell w="12%" />
       <TasksListCell w="12%" />
       <TasksListCell w="12%" />

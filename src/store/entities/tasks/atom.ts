@@ -77,7 +77,7 @@ export const taskSelector = selectorFamily<Task, string>({
 
 export const useTasks = () => {
   const taskIds = useRecoilValue(taskIdsState)
-  const tasks = useRecoilValue(tasksState)
+  // const tasks = useRecoilValue(tasksState)
   const { setSubtasks, setAttachments, setFeeds } = useSetters()
 
   const setTasks = useRecoilCallback(
@@ -104,7 +104,7 @@ export const useTasks = () => {
 
   return {
     taskIds,
-    tasks,
+    // tasks,
     setTasks,
   }
 }

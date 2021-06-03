@@ -1,12 +1,14 @@
 import React, { memo, useCallback, useState } from 'react'
 import { Flex, Heading, Icon, IconButton } from 'src/components/atoms'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
+import { useMyTask } from 'src/store/app/myTasks'
 
 type Props = {
-  title: string
+  myTaskId: string
 }
 
 export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
+  const { myTask } = useMyTask(props.myTaskId)
   const [isExpanded, setIsExpanded] = useState(true)
 
   const handleToggle = useCallback(() => {
@@ -23,12 +25,14 @@ export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
           onClick={handleToggle}
         />
         <Heading as="h3" size="sm" ml={2} fontWeight="semibold">
-          {props.title}
+          {myTask.name}
         </Heading>
       </Flex>
       {isExpanded && (
         <Flex flexDirection="column">
-          <TasksListItem />
+          {myTask.taskIds.map((id) => (
+            <TasksListItem taskId={id} key={id} />
+          ))}
         </Flex>
       )}
     </Flex>

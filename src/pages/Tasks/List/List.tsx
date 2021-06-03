@@ -12,8 +12,11 @@ import {
 import { TasksListHeader } from 'src/components/organisms/Tasks/TasksList/TasksListHeader'
 import { Flex } from 'src/components/atoms'
 import { TasksListSection } from 'src/components/organisms/Tasks/TasksList/TasksListSection'
+import { useMyTasks } from 'src/store/app/myTasks'
 
 export const List: React.VFC = memo(() => {
+  const { myTaskIds } = useMyTasks()
+
   return (
     <TasksList>
       <TasksHeader>
@@ -29,7 +32,9 @@ export const List: React.VFC = memo(() => {
       <Flex px={6} flex={1}>
         <Flex flex={1} flexDirection="column">
           <TasksListHeader fields={[1, 2, 3]} />
-          <TasksListSection title="Recently assigned" />
+          {myTaskIds.map((id) => (
+            <TasksListSection myTaskId={id} key={id} />
+          ))}
         </Flex>
       </Flex>
     </TasksList>

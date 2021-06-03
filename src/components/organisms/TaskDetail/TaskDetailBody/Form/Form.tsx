@@ -9,13 +9,16 @@ import { Description } from './Description'
 import { Subtasks } from './Subtasks'
 import { Attachment } from './Attachment'
 import { FeedList } from './FeedList'
+import { useTasksListDetail } from 'src/components/organisms'
 
 type Props = {}
 
 export const Form: React.FC<Props> = memo(() => {
+  const { taskId } = useTasksListDetail()
+
   return (
     <Flex flexDirection="column" pt={2}>
-      <TaskName />
+      <TaskName taskId={taskId} />
       <Stack px={6} mt={3}>
         <Assignee />
         <DueDate
@@ -24,10 +27,11 @@ export const Form: React.FC<Props> = memo(() => {
         />
         <Projects />
         <Description />
-        <Subtasks taskId="1" />
-        <Attachment taskId="1" />
+        <Subtasks taskId={taskId} />
+        <Attachment taskId={taskId} />
       </Stack>
-      <FeedList taskId="1" />
+      <FeedList taskId={taskId} />
     </Flex>
   )
 })
+Form.displayName = 'Form'

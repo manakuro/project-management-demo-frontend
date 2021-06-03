@@ -14,16 +14,17 @@ const taskListDetailIdState = atom({
 })
 
 export const useTasksListDetail = () => {
-  const { router } = useRouter()
+  const { router, navigateToTasks } = useRouter()
   const [isOpen, setIsOpen] = useRecoilState(taskListDetailOpenState)
   const [id, setId] = useRecoilState(taskListDetailIdState)
   const resetId = useResetRecoilState(taskListDetailIdState)
   const { refetch, loading } = useTaskDetailQuery({ lazy: true })
 
-  const onClose = useCallback(() => {
+  const onClose = useCallback(async () => {
     setIsOpen(false)
+    await navigateToTasks()
     resetId()
-  }, [setIsOpen, resetId])
+  }, [setIsOpen, navigateToTasks, resetId])
 
   const onOpen = useCallback(() => {
     setIsOpen(true)

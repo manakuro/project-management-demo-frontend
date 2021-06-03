@@ -4,7 +4,7 @@ import { ChakraProps } from 'src/shared/chakra'
 
 type Props = {
   value: string
-  onChange: () => void
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
 } & ChakraProps
 
 export const InputText: React.FC<Props> = memo<Props>((props) => {

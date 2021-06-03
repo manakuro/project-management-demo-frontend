@@ -84,7 +84,7 @@ export const useSubtasksByTask = (taskId: string) => {
   const { upsertSubtask } = useSubtask()
 
   const subtaskIds = useMemo(() => {
-    return subtaskIdsGroupByTask[taskId]
+    return subtaskIdsGroupByTask[taskId] || []
   }, [subtaskIdsGroupByTask, taskId])
 
   const addSubtask = useCallback(() => {

@@ -24,17 +24,28 @@ export const TasksName: React.FC<Props> = (props) => {
 const Component: React.VFC<Props> = memo<Props>((props) => {
   const { ref, onMarkMenuOpened, onMarkMenuClosed } = useTasksName()
   const { navigateToTaskDetail } = useRouter()
-  const { task } = useTask(props.taskId)
+  const { task, setTask } = useTask(props.taskId)
 
   const handleClick = useCallback(async () => {
     await navigateToTaskDetail(task.id)
   }, [navigateToTaskDetail, task.id])
 
+  const handleChangeName = useCallback(
+    async (val: string) => {
+      await setTask({ name: val })
+    },
+    [setTask],
+  )
+
   return (
     <TasksNameCell ref={ref} onClick={handleClick}>
       <TasksNameGrabIcon />
       <CheckIcon isDone={task.isDone} ml={4} />
-      <TasksNameField value={task.name} onChange={() => {}} focusedBorder />
+      <TasksNameField
+        value={task.name}
+        onChange={handleChangeName}
+        focusedBorder
+      />
       <TasksNameRightContainer>
         <Mark
           variant="unmarked"

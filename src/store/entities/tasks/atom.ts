@@ -120,6 +120,17 @@ export const useTask = (taskId?: string) => {
       },
     [],
   )
+  const setTask = useRecoilCallback(
+    ({ snapshot }) =>
+      async (val: Partial<Task>) => {
+        const prev = await snapshot.getPromise(taskSelector(task.id))
+        upsertTask({
+          ...prev,
+          ...val,
+        })
+      },
+    [upsertTask, task.id],
+  )
 
   const setTaskFromResponse = useRecoilCallback(
     ({ set }) =>
@@ -143,7 +154,7 @@ export const useTask = (taskId?: string) => {
 
   return {
     task,
-    upsertTask,
+    setTask,
     setTaskFromResponse,
   }
 }

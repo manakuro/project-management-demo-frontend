@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react'
-import { useFeedLikes, FeedLike } from 'src/store/feedLikes'
+import { useFeedLikes, FeedLike } from 'src/store/entities/feedLikes'
 
 type Props = {
   lazy?: boolean

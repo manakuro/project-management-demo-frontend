@@ -13,7 +13,7 @@ import {
   MenuList,
   MenuListProps,
 } from 'src/components/organisms'
-import { useProjects } from 'src/store/projects'
+import { useProjects } from 'src/store/entities/projects'
 
 type Props = {
   onClickOutside?: () => void

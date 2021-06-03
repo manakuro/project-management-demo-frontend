@@ -6,7 +6,7 @@ import {
   Link,
   Text,
 } from 'src/components/atoms'
-import { useAttachment } from 'src/store/attachments'
+import { useAttachment } from 'src/store/entities/attachments'
 
 type Props = FlexProps & {
   attachmentId: string

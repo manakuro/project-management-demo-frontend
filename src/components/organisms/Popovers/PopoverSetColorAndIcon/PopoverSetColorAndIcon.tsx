@@ -10,7 +10,7 @@ import { Divider, Link } from 'src/components/atoms'
 import { ColorPicker } from './ColorPicker'
 import { IconPicker } from './IconPicker'
 import { Setting } from './Setting'
-import { Project } from 'src/store/projects'
+import { Project } from 'src/store/entities/projects'
 
 type Props = {
   project: Project

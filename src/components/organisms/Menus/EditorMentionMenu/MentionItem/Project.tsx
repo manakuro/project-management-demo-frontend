@@ -3,7 +3,7 @@ import { ColorBox, Flex, FlexProps, Text } from 'src/components/atoms'
 import { MentionProject } from '../types'
 import { LeftContainer } from './LeftContainer'
 import { RightContainer } from './RightContainer'
-import { useProject } from 'src/store/projects'
+import { useProject } from 'src/store/entities/projects'
 
 type Props = FlexProps & {
   mention: MentionProject

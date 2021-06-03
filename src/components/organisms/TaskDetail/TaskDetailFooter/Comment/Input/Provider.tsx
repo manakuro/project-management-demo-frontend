@@ -11,15 +11,18 @@ import {
   Feed,
   useFeed,
   useFeedsByTask,
-} from 'src/store/feeds'
+} from 'src/store/entities/feeds'
 import { useTasksListDetail } from 'src/components/organisms'
-import { useMe } from 'src/store/me'
+import { useMe } from 'src/store/entities/me'
 import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 import { getScrollBottom } from 'src/shared/getScrollBottom'
-import { Attachment, useAttachmentsByTask } from 'src/store/attachments'
+import {
+  Attachment,
+  useAttachmentsByTask,
+} from 'src/store/entities/attachments'
 import { FileUploaderParams, UploadedFile } from 'src/components/atoms'
 import { getAttachmentTypeFromFile } from 'src/shared/getAttachmentTypeFromFile'
-import { ATTACHMENT_STATUS_UNATTACHED } from 'src/store/attachments/types'
+import { ATTACHMENT_STATUS_UNATTACHED } from 'src/store/entities/attachments/types'
 
 type ContextProps = {
   feed: Feed

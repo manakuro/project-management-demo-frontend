@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react'
 import {
   useFavoriteProjectIds,
   FavoriteProject,
-} from 'src/store/favorteProjectIds'
+} from 'src/store/entities/favorteProjectIds'
 
 type Props = {
   lazy?: boolean

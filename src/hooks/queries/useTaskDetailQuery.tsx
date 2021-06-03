@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { TaskResponse, useTask } from 'src/store/tasks'
+import { TaskResponse, useTask } from 'src/store/entities/tasks'
 import { dateFns } from 'src/shared/dateFns'
 
 type Props = {

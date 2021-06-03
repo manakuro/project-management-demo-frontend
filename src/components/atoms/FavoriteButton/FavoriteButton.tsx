@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { Icon, IconButton, IconProps } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useFavoriteProjectIds } from 'src/store/favorteProjectIds'
+import { useFavoriteProjectIds } from 'src/store/entities/favorteProjectIds'
 
 type Props = {
   favoriteProjectId: string

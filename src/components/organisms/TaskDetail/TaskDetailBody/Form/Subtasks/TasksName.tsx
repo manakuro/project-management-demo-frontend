@@ -11,7 +11,7 @@ import { DueDate } from './DueDate'
 import { Assignee } from './Assignee'
 import { SubtaskNameProvider } from './SubtaskNameProvider'
 import { RightItem } from './RightItem'
-import { useSubtask } from 'src/store/subtasks'
+import { useSubtask } from 'src/store/entities/subtasks'
 
 type Props = FlexProps & {
   subtaskId: string

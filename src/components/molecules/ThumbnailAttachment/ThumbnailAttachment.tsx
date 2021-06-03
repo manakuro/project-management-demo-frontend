@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { FlexProps } from 'src/components/atoms'
 import { Provider } from './Provider'
-import { Attachment, useAttachment } from 'src/store/attachments'
+import { Attachment, useAttachment } from 'src/store/entities/attachments'
 import { Image } from './Image'
 import { File } from './File'
 

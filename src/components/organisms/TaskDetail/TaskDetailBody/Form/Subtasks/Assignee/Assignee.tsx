@@ -4,7 +4,7 @@ import { Tooltip } from 'src/components/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
 import { PopoverAssigneeInput, PopoverProfile } from 'src/components/organisms'
 import { useAssignee } from './useAssignee'
-import { useTeammate } from 'src/store/teammates'
+import { useTeammate } from 'src/store/entities/teammates'
 
 type Props = {
   assigneeId?: string

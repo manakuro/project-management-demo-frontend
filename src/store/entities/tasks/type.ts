@@ -1,7 +1,7 @@
-import { Subtask } from 'src/store/subtasks'
-import { Attachment } from 'src/store/attachments'
-import { Feed } from 'src/store/feeds'
-import { Teammate } from 'src/store/teammates'
+import { Subtask } from 'src/store/entities/subtasks'
+import { Attachment } from 'src/store/entities/attachments'
+import { Feed } from 'src/store/entities/feeds'
+import { Teammate } from 'src/store/entities/teammates'
 
 export type Task = {
   id: string

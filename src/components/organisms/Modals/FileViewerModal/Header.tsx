@@ -10,7 +10,7 @@ import {
   Text,
 } from 'src/components/atoms'
 import { useFileViewerModal } from './useFileViewerModal'
-import { useAttachment } from 'src/store/attachments'
+import { useAttachment } from 'src/store/entities/attachments'
 import { formatAttachmentCreatedAt } from 'src/shared/date'
 
 type Props = {}

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { Center, Icon, Image } from 'src/components/atoms'
-import { useAttachment } from 'src/store/attachments'
+import { useAttachment } from 'src/store/entities/attachments'
 import { getAttachmentIcon } from 'src/shared/attachment'
 import { ChakraProps } from 'src/shared/chakra'
 import { Container } from './Container'

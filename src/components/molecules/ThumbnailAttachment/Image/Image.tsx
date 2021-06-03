@@ -5,7 +5,7 @@ import { MenuButton } from 'src/components/molecules/ThumbnailAttachment/MenuBut
 import { Tooltip } from 'src/components/molecules/ThumbnailAttachment/Tooltip'
 import { Container } from 'src/components/molecules/ThumbnailAttachment/Container'
 import { Overlay } from 'src/components/molecules/ThumbnailAttachment/Overlay'
-import { useAttachment } from 'src/store/attachments'
+import { useAttachment } from 'src/store/entities/attachments'
 import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/Provider'
 import { Image as AtomsImage } from 'src/components/atoms'
 

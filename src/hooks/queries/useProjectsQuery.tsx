@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react'
-import { ProjectResponse, useProjects } from 'src/store/projects'
+import { ProjectResponse, useProjects } from 'src/store/entities/projects'
 
 type Props = {
   lazy?: boolean

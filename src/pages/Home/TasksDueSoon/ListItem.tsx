@@ -2,7 +2,7 @@ import React from 'react'
 import { Badge, Flex, Text, CheckIcon } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { TaskDueSoon } from './types'
-import { useProject } from 'src/store/projects'
+import { useProject } from 'src/store/entities/projects'
 import { PopoverDueDatePicker } from 'src/components/organisms'
 import { formatDueDate, formatDueTime } from 'src/shared/date'
 

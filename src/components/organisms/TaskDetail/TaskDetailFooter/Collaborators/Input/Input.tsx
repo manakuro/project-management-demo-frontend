@@ -5,7 +5,7 @@ import { AssigneeMenu, useTasksListDetail } from 'src/components/organisms'
 import { useClickOutside } from 'src/hooks'
 import { ChakraProps, useStyleConfig } from 'src/shared/chakra'
 import { AssigneeChip } from 'src/components/molecules'
-import { useTask } from 'src/store/tasks'
+import { useTask } from 'src/store/entities/tasks'
 
 export const Input: React.VFC = () => {
   const { isInputFocused } = useCollaborators()

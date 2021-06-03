@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { useFeed } from 'src/store/feeds'
+import { useFeed } from 'src/store/entities/feeds'
 import { getTaskDetailFeedId, useRouter } from 'src/router'
 import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 import { isHTMLElement } from 'src/shared/isHTMLElement'

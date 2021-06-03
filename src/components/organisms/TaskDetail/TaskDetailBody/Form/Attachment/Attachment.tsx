@@ -2,10 +2,10 @@ import React, { memo, useCallback } from 'react'
 import { NewButton } from './NewButton'
 import { Wrap, WrapItem } from 'src/components/atoms'
 import { ThumbnailAttachment } from 'src/components/molecules'
-import { useAttachmentsByTask } from 'src/store/attachments'
+import { useAttachmentsByTask } from 'src/store/entities/attachments'
 import { useFileViewerModal } from 'src/components/organisms'
 import { useToast } from 'src/hooks'
-import { Attachment as TAttachment } from 'src/store/attachments'
+import { Attachment as TAttachment } from 'src/store/entities/attachments'
 
 type Props = {
   taskId: string

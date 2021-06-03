@@ -8,7 +8,7 @@ import {
 } from 'src/components/atoms'
 import { useLinkHoverStyle } from 'src/hooks'
 import { useColorPicker } from 'src/hooks/useColorPicker'
-import { projectIcons } from 'src/store/projects/projectIcons'
+import { projectIcons } from 'src/store/entities/projects/projectIcons'
 
 type Props = {
   currentIconId: string

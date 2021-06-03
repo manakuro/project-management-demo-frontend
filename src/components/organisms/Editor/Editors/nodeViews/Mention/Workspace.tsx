@@ -6,7 +6,7 @@ import {
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
 } from 'src/components/organisms'
-import { useWorkspace } from 'src/store/workspace'
+import { useWorkspace } from 'src/store/entities/workspace'
 
 export const Workspace: React.FC = memo(() => {
   const { workspace } = useWorkspace()

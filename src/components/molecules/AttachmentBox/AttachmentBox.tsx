@@ -1,6 +1,6 @@
 import React from 'react'
 import { Flex, FlexProps, Icon, Link, Text } from 'src/components/atoms'
-import { useAttachment } from 'src/store/attachments'
+import { useAttachment } from 'src/store/entities/attachments'
 import { getAttachmentIcon, getAttachmentName } from 'src/shared/attachment'
 import { transitions } from 'src/styles'
 

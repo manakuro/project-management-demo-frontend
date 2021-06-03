@@ -10,7 +10,7 @@ import {
 import { PopoverProjectMenu, useNavigation } from 'src/components/organisms'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { useLinkHoverStyle, useClickableHoverStyle } from 'src/hooks'
-import { useProject } from 'src/store/projects'
+import { useProject } from 'src/store/entities/projects'
 
 type Props = {
   projectId: string

@@ -1,7 +1,7 @@
 import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
-import { useTeammates } from 'src/store/teammates'
-import { useFeedLikesByFeedId } from 'src/store/feedLikes'
-import { useMe } from 'src/store/me'
+import { useTeammates } from 'src/store/entities/teammates'
+import { useFeedLikesByFeedId } from 'src/store/entities/feedLikes'
+import { useMe } from 'src/store/entities/me'
 import { useCallback, useMemo } from 'react'
 
 export const useLike = () => {

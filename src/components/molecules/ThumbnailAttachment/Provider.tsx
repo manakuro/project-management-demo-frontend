@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useContext, useState } from 'react'
 import { useHover } from 'src/hooks/useHover'
-import { Attachment, useAttachment } from 'src/store/attachments'
+import { Attachment, useAttachment } from 'src/store/entities/attachments'
 
 type ContextProps = {
   ref: React.MutableRefObject<HTMLElement | null>

@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react'
-import { useWorkspace, Workspace } from 'src/store/workspace'
+import { useWorkspace, Workspace } from 'src/store/entities/workspace'
 
 type Props = {
   lazy?: boolean

@@ -7,8 +7,8 @@ import {
   Avatar,
   AvatarGroup,
 } from 'src/components/atoms'
-import { useProject } from 'src/store/projects'
-import { findProjectIcon } from 'src/store/projects/projectIcons'
+import { useProject } from 'src/store/entities/projects'
+import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
 import { useClickableHoverStyle } from 'src/hooks'
 import { MenuButton } from '../MenuButton/MenuButton'
 import { Container } from './Container'

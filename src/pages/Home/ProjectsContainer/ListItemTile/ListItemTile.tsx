@@ -7,9 +7,9 @@ import {
   AvatarGroup,
   FavoriteButton,
 } from 'src/components/atoms'
-import { useProject } from 'src/store/projects'
+import { useProject } from 'src/store/entities/projects'
 import { transitions } from 'src/styles'
-import { findProjectIcon } from 'src/store/projects/projectIcons'
+import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
 import { MenuButton } from 'src/pages/Home/ProjectsContainer/MenuButton/MenuButton'
 import { Container } from './Container'
 

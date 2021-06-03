@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { Icon, Wrap, WrapItem, ColorBox } from 'src/components/atoms'
 import { useColorPicker } from 'src/hooks/useColorPicker'
-import { useProject } from 'src/store/projects'
+import { useProject } from 'src/store/entities/projects'
 
 type Props = {
   currentId: string

@@ -10,7 +10,7 @@ import { Attachment } from './type'
 import { uniqBy } from 'src/shared/utils'
 import { useCallback, useMemo } from 'react'
 import { uuid } from 'src/shared/uuid'
-import { ATTACHMENT_STATUS_ATTACHED } from 'src/store/attachments/types'
+import { ATTACHMENT_STATUS_ATTACHED } from 'src/store/entities/attachments/types'
 
 export const attachmentIdsState = atom<string[]>({
   key: 'attachmentIdsState',

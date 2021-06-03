@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar, WrapItem } from 'src/components/atoms'
 import { PopoverProfile } from 'src/components/organisms/Popovers/PopoverProfile'
-import { useTeammate } from 'src/store/teammates'
+import { useTeammate } from 'src/store/entities/teammates'
 
 type Props = {
   teammateId: string

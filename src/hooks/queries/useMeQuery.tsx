@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react'
-import { useMe, Me } from 'src/store/me'
+import { useMe, Me } from 'src/store/entities/me'
 
 type Props = {
   lazy?: boolean

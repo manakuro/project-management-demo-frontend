@@ -3,7 +3,7 @@ import { useReactNodeView } from 'src/components/organisms/Editor/Editors/ReactN
 import { PopoverProfile } from 'src/components/organisms'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
 import { MentionText } from './MentionText'
-import { useTeammate } from 'src/store/teammates'
+import { useTeammate } from 'src/store/entities/teammates'
 
 export const Teammate: React.FC = memo(() => {
   const context = useReactNodeView()

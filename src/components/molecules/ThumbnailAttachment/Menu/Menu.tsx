@@ -7,7 +7,7 @@ import {
   MenuList,
 } from 'src/components/organisms'
 import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/Provider'
-import { useAttachment } from 'src/store/attachments'
+import { useAttachment } from 'src/store/entities/attachments'
 
 type Props = MenuProps & {
   attachmentId: string

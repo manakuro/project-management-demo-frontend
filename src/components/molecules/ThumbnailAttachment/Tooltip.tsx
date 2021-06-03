@@ -4,7 +4,7 @@ import {
   TooltipProps,
 } from 'src/components/molecules'
 import { useDisclosure } from 'src/shared/chakra'
-import { useAttachment } from 'src/store/attachments'
+import { useAttachment } from 'src/store/entities/attachments'
 import { useThumbnailAttachment } from './Provider'
 import { Flex } from 'src/components/atoms'
 

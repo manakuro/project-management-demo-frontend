@@ -8,10 +8,10 @@ import {
 } from 'recoil'
 import { Task, TaskResponse } from './type'
 import { uniqBy } from 'src/shared/utils'
-import { subtaskSelector } from 'src/store/subtasks'
-import { attachmentSelector } from 'src/store/attachments'
-import { feedSelector } from 'src/store/feeds'
-import { teammateSelector } from 'src/store/teammates'
+import { subtaskSelector } from 'src/store/entities/subtasks'
+import { attachmentSelector } from 'src/store/entities/attachments'
+import { feedSelector } from 'src/store/entities/feeds'
+import { teammateSelector } from 'src/store/entities/teammates'
 
 export const taskIdsState = atom<string[]>({
   key: 'taskIdsState',

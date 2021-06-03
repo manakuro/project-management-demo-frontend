@@ -7,7 +7,7 @@ import {
   MenuItemProps,
   PopoverSetColorAndIcon,
 } from 'src/components/organisms'
-import { Project } from 'src/store/projects'
+import { Project } from 'src/store/entities/projects'
 import { useDisclosure } from 'src/shared/chakra'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 

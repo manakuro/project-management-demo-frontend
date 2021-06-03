@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useFeedsByTask, useFeedsPinnedIds } from 'src/store/feeds'
+import { useFeedsByTask, useFeedsPinnedIds } from 'src/store/entities/feeds'
 import { FeedListItem } from './FeedListItem'
 
 type Props = {

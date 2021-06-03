@@ -5,12 +5,12 @@ import React, {
   useMemo,
   useState,
 } from 'react'
-import { Feed, defaultFeedStateValue, useFeed } from 'src/store/feeds'
+import { Feed, defaultFeedStateValue, useFeed } from 'src/store/entities/feeds'
 import {
   Teammate,
   defaultTeammateStateValue,
   useTeammate,
-} from 'src/store/teammates'
+} from 'src/store/entities/teammates'
 import { Provider as ProviderContainer } from './ProviderContainer'
 import { useToast } from 'src/hooks'
 

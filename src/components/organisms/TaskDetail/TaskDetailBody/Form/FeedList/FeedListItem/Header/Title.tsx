@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 import { Flex, Icon, Text, TextProps } from 'src/components/atoms'
 import { useFeedListItem } from '../Provider'
-import { Teammate } from 'src/store/teammates'
-import { Feed } from 'src/store/feeds'
+import { Teammate } from 'src/store/entities/teammates'
+import { Feed } from 'src/store/entities/feeds'
 
 type Props = TextProps
 

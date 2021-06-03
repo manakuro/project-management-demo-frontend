@@ -9,7 +9,7 @@ import {
 import { Project, ProjectResponse } from './type'
 import { COLORS } from 'src/hooks/useColorPicker'
 import { uniqBy } from 'src/shared/utils'
-import { teammateSelector } from 'src/store/teammates'
+import { teammateSelector } from 'src/store/entities/teammates'
 
 export const projectIdsState = atom<string[]>({
   key: 'projectIdsState',

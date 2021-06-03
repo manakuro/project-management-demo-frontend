@@ -13,9 +13,14 @@ import { TasksListHeader } from 'src/components/organisms/Tasks/TasksList/TasksL
 import { Flex } from 'src/components/atoms'
 import { TasksListSection } from 'src/components/organisms/Tasks/TasksList/TasksListSection'
 import { useMyTasks } from 'src/store/app/myTasks'
+import { useTasksComponent } from 'src/pages/Tasks/Provider'
+import { SkeletonList } from './SkeletonList'
 
 export const List: React.VFC = memo(() => {
   const { myTaskIds } = useMyTasks()
+  const { loading } = useTasksComponent()
+
+  if (loading) return <SkeletonList />
 
   return (
     <TasksList>

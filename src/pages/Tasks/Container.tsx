@@ -4,7 +4,7 @@ import { useMyTasksQuery } from 'src/hooks/queries'
 import { useTasksListDetail } from 'src/components/organisms'
 
 export const Container: React.FC = () => {
-  const { refetch } = useMyTasksQuery({ lazy: true })
+  const { refetch, loading } = useMyTasksQuery({ lazy: true })
   useTasksListDetail({
     listenRouter: true,
   })
@@ -13,5 +13,5 @@ export const Container: React.FC = () => {
     refetch()
   }, [refetch])
 
-  return <Component />
+  return <Component loading={loading} />
 }

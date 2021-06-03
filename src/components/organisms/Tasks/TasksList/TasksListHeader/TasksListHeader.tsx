@@ -38,3 +38,4 @@ export const TasksListHeader: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
+TasksListHeader.displayName = 'TasksListHeader'

@@ -1,38 +1,46 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import { TaskResponse, useTask } from 'src/store/entities/tasks'
 import { dateFns } from 'src/shared/dateFns'
+import { atom, useRecoilState } from 'recoil'
 
 type Props = {
   lazy?: boolean
 }
 
+const taskDetailQueryState = atom<{ loading: boolean }>({
+  key: 'taskDetailQueryState',
+  default: {
+    loading: false,
+  },
+})
+
 export const useTaskDetailQuery = (props?: Props) => {
-  const [loading, setLoading] = useState<boolean>(false)
+  const [state, setState] = useRecoilState(taskDetailQueryState)
   const { setTaskFromResponse } = useTask()
 
   useEffect(() => {
     ;(async () => {
       if (props?.lazy) return
 
-      setLoading(true)
+      setState((s) => ({ ...s, loading: true }))
       const res = await fetchTask()
       setTaskFromResponse(res)
-      setLoading(false)
+      setState((s) => ({ ...s, loading: false }))
     })()
-  }, [props?.lazy, setTaskFromResponse])
+  }, [props?.lazy, setState, setTaskFromResponse])
 
   const refetch = useCallback(() => {
     ;(async () => {
-      setLoading(true)
+      setState((s) => ({ ...s, loading: true }))
       const res = await fetchTask()
       setTaskFromResponse(res)
-      setLoading(false)
+      setState((s) => ({ ...s, loading: false }))
     })()
-  }, [setTaskFromResponse])
+  }, [setState, setTaskFromResponse])
 
   return {
     refetch,
-    loading,
+    loading: state.loading,
   }
 }
 

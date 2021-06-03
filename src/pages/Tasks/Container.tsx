@@ -5,7 +5,9 @@ import { useTasksListDetail } from 'src/components/organisms'
 
 export const Container: React.FC = () => {
   const { refetch } = useMyTasksQuery({ lazy: true })
-  useTasksListDetail()
+  useTasksListDetail({
+    listenRouter: true,
+  })
 
   useEffect(() => {
     refetch()

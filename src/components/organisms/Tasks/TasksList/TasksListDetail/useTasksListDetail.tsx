@@ -13,7 +13,10 @@ const taskListDetailIdState = atom({
   default: '',
 })
 
-export const useTasksListDetail = () => {
+type Props = {
+  listenRouter?: boolean
+}
+export const useTasksListDetail = (props?: Props) => {
   const { router, navigateToTasks } = useRouter()
   const [isOpen, setIsOpen] = useRecoilState(taskListDetailOpenState)
   const [id, setId] = useRecoilState(taskListDetailIdState)
@@ -31,12 +34,13 @@ export const useTasksListDetail = () => {
   }, [setIsOpen])
 
   useEffect(() => {
+    if (!props?.listenRouter) return
     if (!isTaskDetailURL(router)) return
 
     setId(getTaskDetailId(router))
     refetch()
     onOpen()
-  }, [router, onOpen, setId, refetch])
+  }, [router, onOpen, setId, refetch, props?.listenRouter])
 
   return {
     isOpen,

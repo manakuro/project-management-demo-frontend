@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react'
+import React, { memo, useCallback, useEffect, useState } from 'react'
 import { Flex, InputText } from 'src/components/atoms'
 import { useDebounce } from 'src/hooks'
 
@@ -20,6 +20,10 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.code === 'Enter') e.preventDefault()
   }, [])
+
+  useEffect(() => {
+    setValue(props.value)
+  }, [props.value])
 
   useDebounce(value, props.onChange, 500)
 

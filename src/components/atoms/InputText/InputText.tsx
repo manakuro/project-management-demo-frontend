@@ -56,6 +56,7 @@ export const InputText: React.FC<Props> = memo<Props>((props) => {
         top={0}
         left={0}
         focusBorderColor="transparent"
+        value={value}
       >
         {value}
       </Textarea>

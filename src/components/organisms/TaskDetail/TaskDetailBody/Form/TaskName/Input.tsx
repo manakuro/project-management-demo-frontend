@@ -17,15 +17,21 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
     [],
   )
 
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.code === 'Enter') e.preventDefault()
+  }, [])
+
   useDebounce(value, props.onChange, 500)
 
   return (
-    <Flex px={4}>
+    <Flex flex={1} px={4}>
       <InputText
-        fontSize="2xl"
-        fontWeight="semibold"
         value={value}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        fontSize="2xl"
+        fontWeight="semibold"
+        minH="38px"
       />
     </Flex>
   )

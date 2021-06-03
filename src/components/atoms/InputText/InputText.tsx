@@ -1,20 +1,28 @@
 import React, { memo, useMemo } from 'react'
-import { Box, Flex, Textarea } from 'src/components/atoms'
+import {
+  Box,
+  Flex,
+  FlexProps,
+  Textarea,
+  TextareaProps,
+} from 'src/components/atoms'
 import { ChakraProps } from 'src/shared/chakra'
 
 type Props = {
   value: string
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+  onChange: TextareaProps['onChange']
+  onKeyDown?: TextareaProps['onKeyDown']
+  containerStyle?: FlexProps
 } & ChakraProps
 
 export const InputText: React.FC<Props> = memo<Props>((props) => {
-  const { value, onChange, ...rest } = props
+  const { value, onChange, onKeyDown, containerStyle, ...rest } = props
 
   const style = useMemo<ChakraProps>(
     () => ({
       w: 'full',
       h: 'full',
-      minH: 'auto',
+      minH: props.minH || 'auto',
       m: 0,
       color: 'text.base',
       border: '1px',
@@ -29,20 +37,21 @@ export const InputText: React.FC<Props> = memo<Props>((props) => {
         borderColor: 'gray.400',
       },
     }),
-    [],
+    [props.minH],
   )
 
   return (
-    <Flex position="relative" {...rest} w="full">
+    <Flex flex={1} position="relative" {...rest} {...containerStyle} w="full">
       <Box {...style} visibility="hidden">
         {value}
       </Box>
       <Textarea
         p={0}
         {...style}
-        {...props}
+        {...rest}
         resize="none"
         onChange={onChange}
+        onKeyDown={onKeyDown}
         position="absolute"
         top={0}
         left={0}

@@ -1,12 +1,18 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 
-export const useClickOutside = (onClickOutside?: () => void) => {
+type Options = {
+  skipElement: (e: Event) => boolean
+}
+export const useClickOutside = (
+  onClickOutside?: () => void,
+  options?: Options,
+) => {
   const ref = useRef<HTMLElement | null>(null)
   const [state, setState] = useState({
     hasClickedOutside: false,
   })
 
-  const handleEvent = (e: Event) => {
+  const handleEvent = useCallback((e: Event) => {
     if (ref && ref.current) {
       if (ref.current.contains(e.target as Node)) {
         setState({ hasClickedOutside: false })
@@ -19,10 +25,14 @@ export const useClickOutside = (onClickOutside?: () => void) => {
         )
           return
 
+        if (options?.skipElement?.(e)) return
+
         setState({ hasClickedOutside: true })
       }
+
+      /* eslint react-hooks/exhaustive-deps: off */
     }
-  }
+  }, [])
 
   useEffect(() => {
     if (window.PointerEvent) {
@@ -42,6 +52,7 @@ export const useClickOutside = (onClickOutside?: () => void) => {
         document.removeEventListener('touchstart', handleEvent)
       }
     }
+    /* eslint react-hooks/exhaustive-deps: off */
   }, [])
 
   useEffect(() => {

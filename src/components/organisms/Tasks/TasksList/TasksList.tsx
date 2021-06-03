@@ -1,12 +1,9 @@
-import React, { memo } from 'react'
-import { Flex } from 'src/components/atoms'
+import React from 'react'
+import { Flex, FlexProps } from 'src/components/atoms'
+import { forwardRef } from 'src/shared/chakra'
 
-type Props = {}
+type Props = FlexProps
 
-export const TasksList: React.FC<Props> = memo<Props>((props) => {
-  return (
-    <Flex flex={1} flexDirection="column">
-      {props.children}
-    </Flex>
-  )
-})
+export const TasksList: React.FC<Props> = forwardRef((props, ref) => (
+  <Flex flex={1} flexDirection="column" {...props} ref={ref} />
+))

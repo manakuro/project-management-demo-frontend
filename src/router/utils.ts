@@ -9,6 +9,10 @@ export const isTaskDetailURL = (router: NextRouter): boolean => {
     isNumeric(router.query.tasks[0] as any)
   )
 }
+
+export const isTasksURL = (router: NextRouter): boolean => {
+  return !!router.query && !!router.query.tasks
+}
 export const getTaskDetailId = (router: NextRouter): string =>
   (isTaskDetailURL(router) && (router.query?.tasks?.[0] as string)) || ''
 

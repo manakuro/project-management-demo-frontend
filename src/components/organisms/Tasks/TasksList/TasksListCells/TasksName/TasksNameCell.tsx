@@ -15,8 +15,10 @@ export const TasksNameCell: React.FC<Props> = forwardRef((props, ref) => {
       ref={ref}
       flex={1}
       cursor="pointer"
+      borderLeft="none"
       {...cellStyle}
       onClick={props.onClick}
+      hover
       {...props}
     />
   )

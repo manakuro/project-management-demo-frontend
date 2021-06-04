@@ -27,7 +27,7 @@ export const SkeletonList: React.VFC = memo(() => {
       <Flex px={6} flex={1}>
         <Flex flex={1} flexDirection="column">
           <Flex flex={1}>
-            <TasksListCell pl={0} flex={1} />
+            <TasksListCell pl={0} flex={1} borderLeft="none" />
             <TasksListCell w="12%" />
             <TasksListCell w="12%" />
             <TasksListCell w="12%" />

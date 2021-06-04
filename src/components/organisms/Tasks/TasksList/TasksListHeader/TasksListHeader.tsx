@@ -28,7 +28,7 @@ type Props = {
 export const TasksListHeader: React.FC<Props> = memo<Props>(() => {
   return (
     <Flex flex={1}>
-      <TasksListCell pl={0} flex={1}>
+      <TasksListCell pl={0} flex={1} borderLeft="none">
         Task name
       </TasksListCell>
       <TasksListCell w="12%">Due date</TasksListCell>

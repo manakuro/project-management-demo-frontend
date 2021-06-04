@@ -5,10 +5,12 @@ import { Content } from './Content'
 
 type Props = PopoverProps & {
   onClosed?: () => void
+  queryText: string
 }
 
 export const ProjectMenu: React.FC<Props> = memo<Props>((props) => {
   const { onClosed, ...rest } = props
+
   return (
     <PortalManager zIndex={1500}>
       <Popover

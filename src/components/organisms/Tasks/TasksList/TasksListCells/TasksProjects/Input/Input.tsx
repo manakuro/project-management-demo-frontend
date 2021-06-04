@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { Flex, Input as AtomsInput, Wrap, WrapItem } from 'src/components/atoms'
 import { ProjectMenu } from 'src/components/organisms'
 import { useClickOutside } from 'src/hooks'
@@ -18,12 +18,27 @@ export const Input: React.VFC<Props> = memo((props) => {
   const popoverDisclosure = useDisclosure()
   const { task } = useTask(taskId)
   const { ref } = useClickOutside(onClose)
+  const [value, setValue] = useState<string>('')
+
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const val = e.target.value
+      setValue(val)
+      if (val) {
+        popoverDisclosure.onOpen()
+        return
+      }
+      popoverDisclosure.onClose()
+    },
+    [popoverDisclosure],
+  )
 
   return (
     <ProjectMenu
       isOpen={popoverDisclosure.isOpen}
       onClose={popoverDisclosure.onClose}
       placement="top-start"
+      queryText={value}
     >
       <Flex
         ref={ref}
@@ -54,6 +69,8 @@ export const Input: React.VFC<Props> = memo((props) => {
               size="sm"
               variant="unstyled"
               color="text.base"
+              value={value}
+              onChange={handleChange}
             />
           </WrapItem>
         </Wrap>

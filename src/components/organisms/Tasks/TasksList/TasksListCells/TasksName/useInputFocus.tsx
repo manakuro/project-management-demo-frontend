@@ -15,6 +15,7 @@ export const useInputFocus = (): UseInputFocus => {
     setCellStyle({
       bg: 'white',
       borderColor: 'primary',
+      zIndex: 1,
     })
     setFocused(true)
   }, [])

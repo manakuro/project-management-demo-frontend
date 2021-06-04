@@ -12,7 +12,7 @@ type Props = {
   onClose: () => void
 }
 
-const HEIGHT = '38px'
+const HEIGHT = '37px'
 export const Input: React.VFC<Props> = memo((props) => {
   const { taskId, onClose } = props
   const popoverDisclosure = useDisclosure()

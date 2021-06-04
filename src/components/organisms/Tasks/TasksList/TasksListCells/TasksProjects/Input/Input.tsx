@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useState } from 'react'
 import { Flex, Input as AtomsInput, Wrap, WrapItem } from 'src/components/atoms'
 import { ProjectMenu } from 'src/components/organisms'
-import { useClickOutside } from 'src/hooks'
+import { useClickOutside, useDebounce } from 'src/hooks'
 import { ProjectChip } from 'src/components/molecules'
 import { useTask } from 'src/store/entities/tasks'
 import { useDisclosure } from 'src/shared/chakra'
@@ -19,6 +19,7 @@ export const Input: React.VFC<Props> = memo((props) => {
   const { task } = useTask(taskId)
   const { ref } = useClickOutside(onClose)
   const [value, setValue] = useState<string>('')
+  const [queryText, setQueryText] = useState<string>('')
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,12 +34,19 @@ export const Input: React.VFC<Props> = memo((props) => {
     [popoverDisclosure],
   )
 
+  const handleSelect = useCallback((val: string) => {
+    console.log(val)
+  }, [])
+
+  useDebounce(value, (val) => setQueryText(val), 500)
+
   return (
     <ProjectMenu
       isOpen={popoverDisclosure.isOpen}
       onClose={popoverDisclosure.onClose}
+      onSelect={handleSelect}
       placement="top-start"
-      queryText={value}
+      queryText={queryText}
     >
       <Flex
         ref={ref}

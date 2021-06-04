@@ -1,13 +1,17 @@
 import React, { memo, useCallback } from 'react'
 import { PopoverContent } from 'src/components/organisms'
-import { Portal, Icon, Divider, Text } from 'src/components/atoms'
+import { Portal, Icon, Divider, Text, Spinner } from 'src/components/atoms'
 import { useClickOutside } from 'src/hooks'
 import { ProjectItem } from './ProjectItem'
 import { ListItem, LeftContainer, RightContainer } from './ListItem'
+import { Project } from 'src/store/entities/projects'
 
 type Props = {
   onClose?: () => void
   onClosed?: () => void
+  onSelect: (val: string) => void
+  projects: Project[]
+  loading: boolean
 }
 
 export const Content: React.FC<Props> = memo<Props>((props) => {
@@ -15,7 +19,7 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
 
   const handleSelect = useCallback(
     (val: string) => {
-      console.log('handleSelect!: ', val)
+      props.onSelect(val)
       props.onClose?.()
       props.onClosed?.()
     },
@@ -25,18 +29,28 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
   return (
     <Portal>
       <PopoverContent className="focus-visible" w="450px" ref={ref} mr={-3}>
-        <ProjectItem onClick={handleSelect} projectId="1" index={0} />
-        <Divider />
-        <ListItem index={1}>
-          <LeftContainer>
-            <Icon icon="plus" color="primary" />
-          </LeftContainer>
-          <RightContainer>
-            <Text fontSize="sm" color="primary" fontWeight="medium">
-              Create project for `...`
-            </Text>
-          </RightContainer>
-        </ListItem>
+        {props.loading ? (
+          <ListItem index={-1} alignItems="center" justifyContent="center">
+            <Spinner size="sm" color="gray.400" emptyColor="gray.200" />
+          </ListItem>
+        ) : (
+          <>
+            {props.projects.map((p, i) => (
+              <ProjectItem onClick={handleSelect} project={p} index={i} />
+            ))}
+            <Divider />
+            <ListItem index={props.projects.length}>
+              <LeftContainer>
+                <Icon icon="plus" color="primary" />
+              </LeftContainer>
+              <RightContainer>
+                <Text fontSize="sm" color="primary" fontWeight="medium">
+                  Create project for `...`
+                </Text>
+              </RightContainer>
+            </ListItem>
+          </>
+        )}
       </PopoverContent>
     </Portal>
   )

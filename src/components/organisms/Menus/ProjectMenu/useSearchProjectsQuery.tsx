@@ -1,41 +1,33 @@
-import { useCallback, useEffect } from 'react'
-import { ProjectResponse, useProjects } from 'src/store/entities/projects'
+import { useCallback } from 'react'
+import { ProjectResponse } from 'src/store/entities/projects'
 import { atom, useRecoilState } from 'recoil'
 
-type Props = {
-  lazy?: boolean
-}
-
-const projectsQueryState = atom<{ loading: boolean }>({
-  key: 'projectsQueryState',
+const searchProjectsQueryState = atom<{ loading: boolean; projects: any[] }>({
+  key: 'searchProjectsQueryState',
   default: {
     loading: false,
+    projects: [],
   },
 })
 
-export const useProjectsQuery = (props?: Props) => {
-  const [state, setState] = useRecoilState(projectsQueryState)
-  const { setProjects } = useProjects()
+type Props = {
+  queryText: string
+}
+export const useSearchProjectsQuery = () => {
+  const [state, setState] = useRecoilState(searchProjectsQueryState)
 
-  useEffect(() => {
-    ;(async () => {
-      if (props?.lazy) return
-
+  const refetch = useCallback(
+    async (props: Props) => {
       setState((s) => ({ ...s, loading: true }))
       const res = await fetchProjects()
-      setProjects(res)
-      setState((s) => ({ ...s, loading: false }))
-    })()
-  }, [props?.lazy, setProjects, setState])
-
-  const refetch = useCallback(() => {
-    ;(async () => {
-      setState((s) => ({ ...s, loading: true }))
-      const res = await fetchProjects()
-      setProjects(res)
-      setState((s) => ({ ...s, loading: false }))
-    })()
-  }, [setProjects, setState])
+      const filtered = res.filter((r) =>
+        r.name.toLowerCase().includes(props.queryText.toLowerCase()),
+      )
+      setState((s) => ({ ...s, projects: filtered, loading: false }))
+      return filtered
+    },
+    [setState],
+  )
 
   return {
     refetch,

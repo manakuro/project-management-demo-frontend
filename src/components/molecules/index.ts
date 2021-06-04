@@ -1,4 +1,4 @@
-export * from './AssigneeChip'
+export * from './Chips'
 export * from './AttachmentBox'
 export * from './AttachmentUploadingBox'
 export * from './ColorModeSwitch'

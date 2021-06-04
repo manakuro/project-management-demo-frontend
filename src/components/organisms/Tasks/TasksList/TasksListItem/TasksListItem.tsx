@@ -4,6 +4,7 @@ import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksLis
 import {
   TasksName,
   TasksDueDate,
+  TasksProjects,
 } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
 import { Provider, useTasksListItem } from './Provider'
@@ -27,7 +28,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
     <TasksListRow selected={selected}>
       <TasksName taskId={props.taskId} />
       <TasksDueDate taskId={props.taskId} />
-      <TasksListCell hover w="12%" />
+      <TasksProjects taskId={props.taskId} />
       <TasksListCell hover w="12%" />
       <TasksListCell hover w="4%" borderRight="none" />
     </TasksListRow>

@@ -12,6 +12,7 @@ type Props = {
   onSelect: (val: string) => void
   projects: Project[]
   loading: boolean
+  queryText: string
 }
 
 export const Content: React.FC<Props> = memo<Props>((props) => {
@@ -36,7 +37,12 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
         ) : (
           <>
             {props.projects.map((p, i) => (
-              <ProjectItem onClick={handleSelect} project={p} index={i} />
+              <ProjectItem
+                key={p.id}
+                onClick={handleSelect}
+                project={p}
+                index={i}
+              />
             ))}
             <Divider />
             <ListItem index={props.projects.length}>
@@ -45,7 +51,7 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
               </LeftContainer>
               <RightContainer>
                 <Text fontSize="sm" color="primary" fontWeight="medium">
-                  Create project for `...`
+                  {`Create project for '${props.queryText}'`}
                 </Text>
               </RightContainer>
             </ListItem>

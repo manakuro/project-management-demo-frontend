@@ -98,6 +98,6 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
           ],
         },
       ])
-    }, 1000)
+    }, 300)
   })
 }

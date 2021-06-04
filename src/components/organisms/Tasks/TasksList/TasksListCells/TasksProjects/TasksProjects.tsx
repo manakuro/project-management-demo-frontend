@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState } from 'react'
-import { FlexProps } from 'src/components/atoms'
+import { FlexProps, Stack } from 'src/components/atoms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { useTask } from 'src/store/entities/tasks'
 import { ProjectChip } from 'src/components/molecules'
@@ -30,7 +30,13 @@ export const TasksProjects: React.VFC<Props> = memo<Props>((props) => {
       position="relative"
       zIndex={focused ? 'docked' : 0}
     >
-      {!focused && <ProjectChip projectId={task.projectId} />}
+      {!focused && (
+        <Stack direction="row" spacing={1} overflow="hidden">
+          {task.projectIds.map((id) => (
+            <ProjectChip key={id} projectId={id} />
+          ))}
+        </Stack>
+      )}
       {focused && (
         <Input focused={focused} onClose={onUnfocus} taskId={props.taskId} />
       )}

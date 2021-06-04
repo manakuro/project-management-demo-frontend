@@ -58,7 +58,7 @@ const fetchTasks = async (): Promise<MyTaskResponse[]> => {
           tasks: [
             {
               id: '1',
-              projectId: '1',
+              projects: [{ id: '1' }, { id: '2' }],
               name: 'Resolve an issue of auto focus for tasks list detail page',
               dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
               dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
@@ -201,7 +201,7 @@ const fetchTasks = async (): Promise<MyTaskResponse[]> => {
             },
             {
               id: '2',
-              projectId: '1',
+              projects: [{ id: '1' }],
               name: 'Implement Task Due Soon',
               dueDate: '',
               dueTime: '',
@@ -233,7 +233,7 @@ const fetchTasks = async (): Promise<MyTaskResponse[]> => {
             },
             {
               id: '3',
-              projectId: '2',
+              projects: [{ id: '1' }],
               name: 'Implement Recent Projects',
               dueDate: new Date('2021/06/01').toISOString(),
               isDone: false,
@@ -245,7 +245,7 @@ const fetchTasks = async (): Promise<MyTaskResponse[]> => {
             },
             {
               id: '4',
-              projectId: '1',
+              projects: [{ id: '1' }],
               name: 'Implement Date picker',
               dueDate: new Date(dateFns.addDays(new Date(), 6)).toISOString(),
               isDone: false,
@@ -257,7 +257,7 @@ const fetchTasks = async (): Promise<MyTaskResponse[]> => {
             },
             {
               id: '5',
-              projectId: '1',
+              projects: [{ id: '1' }],
               name: 'Implement Message page',
               dueDate: new Date(dateFns.addDays(new Date(), 6)).toISOString(),
               isDone: false,
@@ -278,7 +278,7 @@ const fetchTasks = async (): Promise<MyTaskResponse[]> => {
           tasks: [
             {
               id: '10',
-              projectId: '1',
+              projects: [{ id: '1' }],
               name: '一覧ページの実装',
               dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
               dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),

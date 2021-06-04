@@ -5,7 +5,8 @@ import { Teammate } from 'src/store/entities/teammates'
 
 export type Task = {
   id: string
-  projectId: string
+  projectIds: string[]
+  projects: { id: string }[]
   name: string
   dueDate: string
   isDone: boolean
@@ -23,7 +24,7 @@ export type Task = {
 
 export type TaskResponse = {
   id: string
-  projectId: string
+  projects: { id: string }[]
   name: string
   dueDate: string
   isDone: boolean

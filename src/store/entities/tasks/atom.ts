@@ -26,7 +26,8 @@ const taskState = atomFamily<Task, string>({
   key: 'taskState',
   default: {
     id: '',
-    projectId: '',
+    projectIds: [],
+    projects: [],
     name: '',
     dueDate: '',
     dueTime: '',
@@ -85,6 +86,7 @@ export const useTasks = () => {
       (data: TaskResponse[]) => {
         const tasks = data.map((t) => ({
           ...t,
+          projectIds: t.projects.map((p) => p.id),
           subTaskIds: t.subTasks.map((s) => s.id),
           attachmentIds: t.attachments.map((a) => a.id),
           feedIds: t.feeds.map((f) => f.id),
@@ -137,6 +139,7 @@ export const useTask = (taskId?: string) => {
       (data: TaskResponse) => {
         const task: Task = {
           ...data,
+          projectIds: data.projects.map((p) => p.id),
           subTaskIds: data.subTasks.map((s) => s.id),
           attachmentIds: data.attachments.map((a) => a.id),
           feedIds: data.feeds.map((f) => f.id),

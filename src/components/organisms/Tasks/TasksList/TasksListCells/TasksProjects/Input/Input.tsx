@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react'
+import React, { memo, useCallback, useMemo, useState } from 'react'
 import { Flex, Input as AtomsInput, Wrap, WrapItem } from 'src/components/atoms'
 import { ProjectMenu } from 'src/components/organisms'
 import { useClickOutside } from 'src/hooks'
@@ -19,6 +19,10 @@ export const Input: React.VFC<Props> = memo((props) => {
   const { task } = useTask(taskId)
   const { ref } = useClickOutside(onClose)
   const [value, setValue] = useState<string>('')
+  const hasMultipleProjects = useMemo<boolean>(
+    () => task.projectIds.length > 1,
+    [task.projectIds.length],
+  )
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,8 +56,8 @@ export const Input: React.VFC<Props> = memo((props) => {
         borderStyle="solid"
         alignItems="center"
         px={2}
-        h={HEIGHT}
-        maxH={HEIGHT}
+        minH={HEIGHT}
+        maxH={hasMultipleProjects ? 'auto' : HEIGHT}
         position="absolute"
         left="-1px"
         top="-1px"
@@ -61,8 +65,8 @@ export const Input: React.VFC<Props> = memo((props) => {
         borderRadius="none"
         w="300px"
       >
-        <Wrap height="37px" py={2} justifyItems="center" display="flex">
-          {[task.projectId].map((id) => (
+        <Wrap minH={HEIGHT} py={2} justifyItems="center" display="flex">
+          {task.projectIds.map((id) => (
             <WrapItem key={id}>
               <ProjectChip projectId={id} deletable />
             </WrapItem>

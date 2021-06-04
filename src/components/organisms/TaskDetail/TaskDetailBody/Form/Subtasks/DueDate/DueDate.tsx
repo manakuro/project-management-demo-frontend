@@ -1,9 +1,8 @@
 import React, { memo } from 'react'
-import { Icon, Text } from 'src/components/atoms'
+import { Icon, DueDate as AtomsDueDate } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
 import { PopoverDueDatePicker } from 'src/components/organisms'
-import { formatDueDate } from 'src/shared/date'
 import { getDifferenceInDays } from 'src/shared/date'
 import { useDueDate } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/Subtasks/DueDate/useDueDate'
 
@@ -26,9 +25,7 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
         size="sm"
         withIcon
       >
-        <Text ml={2} fontSize="xs">
-          {formatDueDate(props.dueDate)}
-        </Text>
+        <AtomsDueDate ml={2} fontSize="xs" dueDate={props.dueDate} />
       </Tooltip>
     )
   }

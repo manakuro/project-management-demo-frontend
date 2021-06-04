@@ -6,7 +6,7 @@ import {
   PopoverProps,
 } from 'src/components/organisms'
 import { Link, Portal, PortalManager } from 'src/components/atoms'
-import { useDisclosure } from 'src/shared/chakra'
+import { ChakraProps, useDisclosure } from 'src/shared/chakra'
 import { Body } from './Body'
 
 type Props = {
@@ -15,6 +15,7 @@ type Props = {
   time?: string
   onOpened?: () => void
   onClosed?: () => void
+  linkStyle?: ChakraProps
 } & PopoverProps
 
 export const PopoverDueDatePicker: React.FC<Props> = (props) => {
@@ -29,16 +30,23 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
     popoverDisclosure.onClose()
 
     // Prevent flush when closing popover
-    setTimeout(() => {
-      props.onClosed?.()
-    }, 60)
-  }, [popoverDisclosure, props])
+    // setTimeout(() => {
+    //   props.onClosed?.()
+    // }, 60)
+  }, [popoverDisclosure])
 
   return (
     <PortalManager zIndex={1500}>
-      <Popover isOpen={popoverDisclosure.isOpen} isLazy closeOnBlur={false}>
+      <Popover
+        isOpen={popoverDisclosure.isOpen}
+        isLazy
+        lazyBehavior="keepMounted"
+        closeOnBlur={false}
+      >
         <PopoverTrigger>
-          <Link onClick={handleOpen}>{props.children}</Link>
+          <Link {...props.linkStyle} onClick={handleOpen}>
+            {props.children}
+          </Link>
         </PopoverTrigger>
         <Portal>
           <PopoverContent

@@ -1,8 +1,14 @@
 import { dateFns } from 'src/shared/dateFns'
 
 export const formatDueDate = (date: string): string => {
+  if (!date) return ''
   const dateObj = new Date(date)
 
+  if (dateFns.isYesterday(dateObj)) return 'Yesterday'
+  if (dateFns.isBeforeDay(dateObj, new Date()))
+    return dateFns.format(dateObj, 'MMM d')
+
+  if (dateFns.isToday(dateObj)) return 'Today'
   if (dateFns.isTomorrow(dateObj)) return 'Tomorrow'
   if (dateFns.isThisWeek(dateObj)) return dateFns.format(dateObj, 'EEEE')
 

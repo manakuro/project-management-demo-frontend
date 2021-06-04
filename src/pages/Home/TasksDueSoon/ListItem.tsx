@@ -1,10 +1,10 @@
 import React from 'react'
-import { Badge, Flex, Text, CheckIcon } from 'src/components/atoms'
+import { Badge, Flex, Text, CheckIcon, DueDate } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { TaskDueSoon } from './types'
 import { useProject } from 'src/store/entities/projects'
 import { PopoverDueDatePicker } from 'src/components/organisms'
-import { formatDueDate, formatDueTime } from 'src/shared/date'
+import { formatDueTime } from 'src/shared/date'
 
 type Props = {
   task: TaskDueSoon
@@ -44,14 +44,19 @@ export const ListItem: React.VFC<Props> = (props) => {
           time={props.task.dueTime}
           onChange={(date) => console.log(date)}
         >
-          <Text ml={2} fontSize="xs" color="text.muted" textAlign="right">
-            {formatDueDate(props.task.dueDate)}
+          <DueDate
+            ml={2}
+            fontSize="xs"
+            color="text.muted"
+            textAlign="right"
+            dueDate={props.task.dueDate}
+          >
             {props.task.dueTime && (
               <Text as="span" fontSize="xs" color="text.muted" ml={1}>
                 {formatDueTime(props.task.dueTime)}
               </Text>
             )}
-          </Text>
+          </DueDate>
         </PopoverDueDatePicker>
       </Flex>
     </Flex>

@@ -1,10 +1,14 @@
 import React, { memo } from 'react'
 import { Row, Label, Content } from '../Row'
-import { Button, Icon, Text, Box } from 'src/components/atoms'
+import {
+  Button,
+  Icon,
+  DueDate as AtomsDueDate,
+  Box,
+} from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { PopoverDueDatePicker } from 'src/components/organisms'
-import { formatDueDate } from 'src/shared/date'
 
 type Props = {
   dueDate: string
@@ -34,9 +38,7 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
             cursor="pointer"
           >
             <Icon icon="calendar" color="text.muted" size="xl" />
-            <Text ml={2} fontSize="sm">
-              {formatDueDate(props.dueDate)}
-            </Text>
+            <AtomsDueDate ml={2} fontSize="xs" dueDate={props.dueDate} />
             <Icon
               ml={2}
               mt="1px"

@@ -40,7 +40,7 @@ export const ProjectChip: React.VFC<Props> = memo((props) => {
       </Text>
       {props.deletable && (
         <Icon
-          ml={2}
+          ml={1}
           mt="1px"
           icon="x"
           color="text.muted"

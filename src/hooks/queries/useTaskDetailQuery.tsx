@@ -297,6 +297,6 @@ const fetchTask = async (): Promise<TaskResponse> => {
           },
         ],
       })
-    }, 1000)
+    }, 300)
   })
 }

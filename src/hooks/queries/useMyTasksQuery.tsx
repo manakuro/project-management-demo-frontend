@@ -247,7 +247,7 @@ const fetchTasks = async (): Promise<MyTaskResponse[]> => {
               tags: [
                 {
                   id: '1',
-                  taskId: '1',
+                  taskId: '2',
                   name: 'Medium',
                   color: {
                     id: '1',
@@ -259,7 +259,7 @@ const fetchTasks = async (): Promise<MyTaskResponse[]> => {
                 },
                 {
                   id: '2',
-                  taskId: '1',
+                  taskId: '2',
                   name: 'Asana',
                   color: {
                     id: '2',

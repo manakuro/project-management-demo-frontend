@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo, useState } from 'react'
 import { Flex, Input as AtomsInput, Wrap, WrapItem } from 'src/components/atoms'
-import { ProjectMenu } from 'src/components/organisms'
+import { TagMenu } from 'src/components/organisms'
 import { useClickOutside } from 'src/hooks'
 import { TagChip } from 'src/components/molecules'
 import { useTask } from 'src/store/entities/tasks'
@@ -44,7 +44,7 @@ export const Input: React.VFC<Props> = memo((props) => {
   }, [])
 
   return (
-    <ProjectMenu
+    <TagMenu
       isOpen={popoverDisclosure.isOpen}
       onClose={popoverDisclosure.onClose}
       onSelect={handleSelect}
@@ -86,7 +86,7 @@ export const Input: React.VFC<Props> = memo((props) => {
           </WrapItem>
         </Wrap>
       </Flex>
-    </ProjectMenu>
+    </TagMenu>
   )
 })
 Input.displayName = 'Input'

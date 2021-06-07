@@ -12,6 +12,7 @@ import { subtaskSelector } from 'src/store/entities/subtasks'
 import { attachmentSelector } from 'src/store/entities/attachments'
 import { feedSelector } from 'src/store/entities/feeds'
 import { teammateSelector } from 'src/store/entities/teammates'
+import { tagSelector } from 'src/store/entities/tags'
 
 export const taskIdsState = atom<string[]>({
   key: 'taskIdsState',
@@ -41,6 +42,8 @@ const taskState = atomFamily<Task, string>({
     feedIds: [],
     teammates: [],
     teammateIds: [],
+    tags: [],
+    tagIds: [],
   },
 })
 
@@ -79,7 +82,7 @@ export const taskSelector = selectorFamily<Task, string>({
 export const useTasks = () => {
   const taskIds = useRecoilValue(taskIdsState)
   // const tasks = useRecoilValue(tasksState)
-  const { setSubtasks, setAttachments, setFeeds } = useSetters()
+  const { setSubtasks, setAttachments, setFeeds, setTags } = useSetters()
 
   const setTasks = useRecoilCallback(
     ({ set }) =>
@@ -91,6 +94,7 @@ export const useTasks = () => {
           attachmentIds: t.attachments.map((a) => a.id),
           feedIds: t.feeds.map((f) => f.id),
           teammateIds: t.teammates.map((t) => t.id),
+          tagIds: t.tags.map((t) => t.id),
         }))
 
         tasks.forEach((t) => {
@@ -100,8 +104,9 @@ export const useTasks = () => {
         setSubtasks(data)
         setAttachments(data)
         setFeeds(data)
+        setTags(data)
       },
-    [setAttachments, setFeeds, setSubtasks],
+    [setAttachments, setFeeds, setSubtasks, setTags],
   )
 
   return {
@@ -144,6 +149,7 @@ export const useTask = (taskId?: string) => {
           attachmentIds: data.attachments.map((a) => a.id),
           feedIds: data.feeds.map((f) => f.id),
           teammateIds: data.teammates.map((t) => t.id),
+          tagIds: data.tags.map((t) => t.id),
         }
         set(taskSelector(task.id), task)
 
@@ -211,11 +217,24 @@ const useSetters = () => {
       },
     [],
   )
+  const setTags = useRecoilCallback(
+    ({ set }) =>
+      (data: TaskResponse[]) => {
+        data
+          .reduce<Task['tags']>(
+            (acc, p) => uniqBy([...acc, ...p.tags], 'id'),
+            [],
+          )
+          .forEach((f) => set(tagSelector(f.id), f))
+      },
+    [],
+  )
 
   return {
     setSubtasks,
     setAttachments,
     setFeeds,
     setTeammates,
+    setTags,
   }
 }

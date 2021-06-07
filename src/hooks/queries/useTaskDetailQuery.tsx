@@ -296,6 +296,20 @@ const fetchTask = async (): Promise<TaskResponse> => {
             email: 'dan.abrahmov@gmail.com',
           },
         ],
+        tags: [
+          {
+            id: '1',
+            taskId: '1',
+            name: 'Medium',
+            color: {
+              id: '1',
+              name: 'gray.200',
+              color: 'gray.200',
+            },
+            createdAt: '',
+            updatedAt: '',
+          },
+        ],
       })
     }, 300)
   })

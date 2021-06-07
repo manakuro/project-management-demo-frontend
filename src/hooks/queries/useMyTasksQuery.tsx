@@ -198,6 +198,20 @@ const fetchTasks = async (): Promise<MyTaskResponse[]> => {
                   email: 'dan.abrahmov@gmail.com',
                 },
               ],
+              tags: [
+                {
+                  id: '1',
+                  taskId: '1',
+                  name: 'Medium',
+                  color: {
+                    id: '1',
+                    name: 'gray.200',
+                    color: 'gray.200',
+                  },
+                  createdAt: '',
+                  updatedAt: '',
+                },
+              ],
             },
             {
               id: '2',
@@ -230,6 +244,32 @@ const fetchTasks = async (): Promise<MyTaskResponse[]> => {
                   email: 'kent.dodds@gmail.com',
                 },
               ],
+              tags: [
+                {
+                  id: '1',
+                  taskId: '1',
+                  name: 'Medium',
+                  color: {
+                    id: '1',
+                    name: 'gray.200',
+                    color: 'gray.200',
+                  },
+                  createdAt: '',
+                  updatedAt: '',
+                },
+                {
+                  id: '2',
+                  taskId: '1',
+                  name: 'Asana',
+                  color: {
+                    id: '2',
+                    name: 'pink.200',
+                    color: 'pink.200',
+                  },
+                  createdAt: '',
+                  updatedAt: '',
+                },
+              ],
             },
             {
               id: '3',
@@ -242,6 +282,7 @@ const fetchTasks = async (): Promise<MyTaskResponse[]> => {
               attachments: [],
               feeds: [],
               teammates: [],
+              tags: [],
             },
             {
               id: '4',
@@ -254,6 +295,7 @@ const fetchTasks = async (): Promise<MyTaskResponse[]> => {
               attachments: [],
               feeds: [],
               teammates: [],
+              tags: [],
             },
             {
               id: '5',
@@ -266,6 +308,7 @@ const fetchTasks = async (): Promise<MyTaskResponse[]> => {
               attachments: [],
               feeds: [],
               teammates: [],
+              tags: [],
             },
           ],
         },
@@ -418,6 +461,7 @@ const fetchTasks = async (): Promise<MyTaskResponse[]> => {
                   email: 'dan.abrahmov@gmail.com',
                 },
               ],
+              tags: [],
             },
           ],
         },

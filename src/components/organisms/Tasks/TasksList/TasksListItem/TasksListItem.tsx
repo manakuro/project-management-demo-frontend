@@ -5,6 +5,7 @@ import {
   TasksName,
   TasksDueDate,
   TasksProjects,
+  TasksTags,
 } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
 import { Provider, useTasksListItem } from './Provider'
@@ -29,7 +30,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
       <TasksName taskId={props.taskId} />
       <TasksDueDate taskId={props.taskId} />
       <TasksProjects taskId={props.taskId} />
-      <TasksListCell hover w="12%" />
+      <TasksTags taskId={props.taskId} />
       <TasksListCell hover w="4%" borderRight="none" />
     </TasksListRow>
   )

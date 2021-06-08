@@ -8,16 +8,10 @@ import {
 } from 'recoil'
 import { Tag } from './type'
 import { uniqBy } from 'src/shared/utils'
-import { useCallback, useMemo } from 'react'
-import { uuid } from 'src/shared/uuid'
 
 export const tagIdsState = atom<string[]>({
   key: 'tagIdsState',
   default: [],
-})
-export const tagIdsGroupByTaskState = atom<Record<string, string[]>>({
-  key: 'tagIdsGroupByTaskState',
-  default: {},
 })
 export const tagsState = atom<Tag[]>({
   key: 'tagsState',
@@ -71,36 +65,8 @@ export const tagSelector = selectorFamily<Tag, string>({
       if (get(tagIdsState).find((tagId) => tagId === newVal.id)) return
 
       set(tagIdsState, (prev) => [...prev, newVal.id])
-      set(tagIdsGroupByTaskState, (prev) => {
-        return {
-          ...prev,
-          [newVal.taskId]: [...(prev[newVal.taskId] || []), newVal.id],
-        }
-      })
     },
 })
-
-export const useTagByTask = (taskId: string) => {
-  const tagIdsGroupByTask = useRecoilValue(tagIdsGroupByTaskState)
-  const { upsertTag } = useTag()
-
-  const tagIds = useMemo(() => {
-    return tagIdsGroupByTask[taskId] || []
-  }, [tagIdsGroupByTask, taskId])
-
-  const addTag = useCallback(() => {
-    upsertTag({
-      ...defaultStateValue(),
-      id: uuid(),
-      taskId,
-    })
-  }, [taskId, upsertTag])
-
-  return {
-    tagIds,
-    addTag,
-  }
-}
 
 export const useTags = () => {
   const tagIds = useRecoilValue(tagIdsState)

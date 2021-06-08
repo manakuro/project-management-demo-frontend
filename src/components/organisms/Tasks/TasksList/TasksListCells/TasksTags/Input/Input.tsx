@@ -5,7 +5,6 @@ import { useClickOutside } from 'src/hooks'
 import { TagChip } from 'src/components/molecules'
 import { useTask } from 'src/store/entities/tasks'
 import { useDisclosure } from 'src/shared/chakra'
-import { useTagByTask } from 'src/store/entities/tags'
 
 type Props = {
   taskId: string
@@ -18,7 +17,6 @@ export const Input: React.VFC<Props> = memo((props) => {
   const { taskId, onClose } = props
   const popoverDisclosure = useDisclosure()
   const { task } = useTask(taskId)
-  const { tagIds } = useTagByTask(taskId)
   const { ref } = useClickOutside(onClose)
   const [value, setValue] = useState<string>('')
   const hasMultipleProjects = useMemo<boolean>(
@@ -68,7 +66,7 @@ export const Input: React.VFC<Props> = memo((props) => {
         w="300px"
       >
         <Wrap minH={HEIGHT} py={2} justifyItems="center" display="flex">
-          {tagIds.map((id) => (
+          {task.tagIds.map((id) => (
             <WrapItem key={id}>
               <TagChip tagId={id} deletable />
             </WrapItem>

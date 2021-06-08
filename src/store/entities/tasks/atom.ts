@@ -118,7 +118,8 @@ export const useTasks = () => {
 
 export const useTask = (taskId?: string) => {
   const task = useRecoilValue(taskSelector(taskId || ''))
-  const { setSubtasks, setAttachments, setFeeds, setTeammates } = useSetters()
+  const { setSubtasks, setAttachments, setFeeds, setTeammates, setTags } =
+    useSetters()
 
   const upsertTask = useRecoilCallback(
     ({ set }) =>
@@ -157,8 +158,9 @@ export const useTask = (taskId?: string) => {
         setAttachments([data])
         setFeeds([data])
         setTeammates([data])
+        setTags([data])
       },
-    [setAttachments, setFeeds, setSubtasks, setTeammates],
+    [setAttachments, setFeeds, setSubtasks, setTeammates, setTags],
   )
 
   return {

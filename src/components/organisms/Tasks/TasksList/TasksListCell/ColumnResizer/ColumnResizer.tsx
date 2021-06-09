@@ -1,0 +1,109 @@
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from 'react'
+import { Flex, FlexProps, Portal } from 'src/components/atoms'
+import { useHover } from 'src/hooks/useHover'
+
+type Props = Omit<FlexProps, 'onChange'> & {
+  onChange?: (margin: number) => void
+}
+
+export const ColumnResizer: React.FC<Props> = (props) => {
+  const { onChange, ...rest } = props
+  const [dragging, setDragging] = useState<boolean>(false)
+  const { ref, isHovering } = useHover()
+  const [height, setHeight] = useState<number>(0)
+  const [top, setTop] = useState<number>(0)
+  const [left, setLeft] = useState<number>(0)
+  const [translateX, setTranslateX] = useState<number>(0)
+  const [show, setShow] = useState<boolean>(false)
+  const showBorderLine = useMemo(() => dragging, [dragging])
+
+  const handleStartDrag = useCallback(() => {
+    setDragging(true)
+  }, [])
+
+  const handleEndDrag = useCallback(() => {
+    setDragging(false)
+    onChange?.(translateX)
+    setTranslateX(0)
+    setShow(false)
+  }, [onChange, translateX])
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      e.preventDefault()
+      if (!dragging) return
+
+      setTranslateX(e.screenX - left)
+    },
+    [dragging, left],
+  )
+
+  useLayoutEffect(() => {
+    if (!ref.current) return
+    const rect = ref.current?.getBoundingClientRect()
+    setHeight(rect.height)
+    setTop(rect.top)
+    setLeft(rect.left)
+  }, [ref])
+
+  useEffect(() => {
+    if (isHovering) setShow(true)
+  }, [isHovering])
+
+  return (
+    <>
+      <Flex
+        ref={ref}
+        position="absolute"
+        w="8px"
+        h="full"
+        top={0}
+        right="-4.5px"
+        cursor="col-resize"
+        zIndex="dropdown"
+        {...rest}
+      />
+      {show && (
+        <Portal>
+          <Flex
+            position="fixed"
+            w="100px"
+            h={height}
+            top={top}
+            left={left - 46}
+            transform={`translateX(${translateX}px)`}
+            cursor="col-resize"
+            zIndex="tooltip"
+            justifyContent="center"
+            alignItems="center"
+            onMouseDown={handleStartDrag}
+            onTouchStart={handleStartDrag}
+            onMouseUp={handleEndDrag}
+            onTouchEnd={handleEndDrag}
+            onMouseMove={handleMouseMove}
+            {...rest}
+          >
+            <Flex w="8px" h="full" bg="cyan.300" />
+            {showBorderLine && (
+              <Flex
+                position="absolute"
+                top="0"
+                left="50%"
+                marginLeft="-0.5px"
+                width="1px"
+                height="100vh"
+                bg="cyan.500"
+              />
+            )}
+          </Flex>
+        </Portal>
+      )}
+    </>
+  )
+}

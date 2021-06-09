@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 import { Flex } from 'src/components/atoms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 
@@ -26,15 +26,30 @@ type Props = {
 }
 
 export const TasksListHeader: React.FC<Props> = memo<Props>(() => {
+  const [width, setWidth] = useState<string>('60%')
+
   return (
     <Flex flex={1}>
-      <TasksListCell pl={0} flex={1} borderLeft="none">
+      <TasksListCell
+        resizable
+        w={width}
+        minW="40%"
+        pl={0}
+        borderLeft="none"
+        onChangeSize={(s) => setWidth(s)}
+      >
         Task name
       </TasksListCell>
-      <TasksListCell w="12%">Due date</TasksListCell>
-      <TasksListCell w="12%">Projects</TasksListCell>
-      <TasksListCell w="12%">Tags</TasksListCell>
-      <TasksListCell w="4%" borderRight="none" />
+      <TasksListCell resizable w="12%">
+        Due date
+      </TasksListCell>
+      <TasksListCell resizable w="12%">
+        Projects
+      </TasksListCell>
+      <TasksListCell resizable w="12%">
+        Tags
+      </TasksListCell>
+      <TasksListCell w="4%" flex={1} borderRight="none" />
     </Flex>
   )
 })

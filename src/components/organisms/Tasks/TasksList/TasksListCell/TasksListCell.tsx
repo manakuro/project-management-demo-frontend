@@ -1,15 +1,27 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { forwardRef } from 'src/shared/chakra'
+import { ColumnResizer } from './ColumnResizer'
 
 type Props = FlexProps & {
   hover?: boolean
+  resizable?: boolean
+  onChangeSize?: (size: string) => void
 }
 
 export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
-  const { hover, ...rest } = props
+  const { hover, resizable, onChangeSize, ...rest } = props
+
+  const handleChange = useCallback(
+    (margin: number) => {
+      onChangeSize?.(`calc(${props.w} + ${margin})`)
+    },
+    [onChangeSize, props.w],
+  )
+
   return (
     <Flex
+      position="relative"
       fontWeight="normal"
       border={1}
       borderStyle="solid"
@@ -23,6 +35,7 @@ export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
       h="37px"
       {...(hover
         ? {
+            zIndex: 0,
             _hover: {
               borderColor: 'gray.400',
               zIndex: 1,
@@ -30,8 +43,10 @@ export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
           }
         : {})}
       ref={ref}
-      zIndex={0}
       {...rest}
-    />
+    >
+      {props.children}
+      {resizable && <ColumnResizer onChange={handleChange} />}
+    </Flex>
   )
 })

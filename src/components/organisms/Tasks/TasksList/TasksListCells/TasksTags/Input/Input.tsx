@@ -19,9 +19,9 @@ export const Input: React.VFC<Props> = memo((props) => {
   const { task } = useTask(taskId)
   const { ref } = useClickOutside(onClose)
   const [value, setValue] = useState<string>('')
-  const hasMultipleProjects = useMemo<boolean>(
-    () => task.projectIds.length > 1,
-    [task.projectIds.length],
+  const hasMultipleTags = useMemo<boolean>(
+    () => task.tagIds.length > 1,
+    [task.tagIds.length],
   )
 
   const handleChange = useCallback(
@@ -57,7 +57,7 @@ export const Input: React.VFC<Props> = memo((props) => {
         alignItems="center"
         px={2}
         minH={HEIGHT}
-        maxH={hasMultipleProjects ? 'auto' : HEIGHT}
+        maxH={hasMultipleTags ? 'auto' : HEIGHT}
         position="absolute"
         right="-1px"
         top="-1px"

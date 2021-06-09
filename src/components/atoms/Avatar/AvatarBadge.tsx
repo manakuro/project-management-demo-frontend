@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   AvatarBadge as ChakraAvatarBadge,
   AvatarBadgeProps as ChakraAvatarBadgeProps,
 } from '@chakra-ui/react'
+import React from 'react'
 
 type Props = ChakraAvatarBadgeProps
 export type AvatarBadgeProps = Props

@@ -1,6 +1,6 @@
 import { extendTheme, theme as defaultTheme } from '@chakra-ui/react'
-import { dueDatePickerCustomStyle } from 'src/components/organisms/Popovers/PopoverDueDatePicker/dueDatePickerCustomStyle'
 import { pdfViewerCustomStyle } from 'src/components/organisms/PdfViewer/pdfViewerCustomStyle'
+import { dueDatePickerCustomStyle } from 'src/components/organisms/Popovers/PopoverDueDatePicker/dueDatePickerCustomStyle'
 import { proseMirrorStyle } from 'src/shared/prosemirror/style'
 
 // Disabling border for non-keyboard interactions

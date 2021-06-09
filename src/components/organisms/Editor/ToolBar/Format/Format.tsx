@@ -1,5 +1,8 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Icon, IconButton, Link, PortalManager } from 'src/components/atoms'
+import { Popover, PopoverTrigger } from 'src/components/organisms'
+import { useEditorState } from 'src/components/organisms/Editor/Editors'
+import { useDisclosure } from 'src/shared/chakra'
 import {
   useBold,
   useBulletList,
@@ -8,10 +11,7 @@ import {
   useStrikethrough,
   useUnderline,
 } from 'src/shared/prosemirror/hooks'
-import { Popover, PopoverTrigger } from 'src/components/organisms'
 import { Content } from './Content'
-import { useDisclosure } from 'src/shared/chakra'
-import { useEditorState } from 'src/components/organisms/Editor/Editors'
 type Props = {}
 
 export const Format: React.FC<Props> = memo<Props>(() => {

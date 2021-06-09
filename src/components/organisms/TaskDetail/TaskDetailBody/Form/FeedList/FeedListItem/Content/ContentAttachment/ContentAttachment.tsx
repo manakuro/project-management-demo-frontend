@@ -1,13 +1,13 @@
 import React, { memo, useCallback } from 'react'
+import { useFileViewerModal } from 'src/components/organisms'
 import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
 import {
   useAttachment,
   useAttachmentsByTask,
 } from 'src/store/entities/attachments'
 import { ATTACHMENT_TYPE_IMAGE } from 'src/store/entities/attachments/types'
-import { Image } from './Image'
 import { File } from './File'
-import { useFileViewerModal } from 'src/components/organisms'
+import { Image } from './Image'
 
 type Props = {
   attachmentId: string

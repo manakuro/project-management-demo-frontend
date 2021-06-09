@@ -1,10 +1,10 @@
 import React, { memo, useCallback, useMemo, useState } from 'react'
 import { Flex, Input as AtomsInput, Wrap, WrapItem } from 'src/components/atoms'
+import { ProjectChip } from 'src/components/molecules'
 import { ProjectMenu } from 'src/components/organisms'
 import { useClickOutside } from 'src/hooks'
-import { ProjectChip } from 'src/components/molecules'
-import { useTask } from 'src/store/entities/tasks'
 import { useDisclosure } from 'src/shared/chakra'
+import { useTask } from 'src/store/entities/tasks'
 
 type Props = {
   taskId: string

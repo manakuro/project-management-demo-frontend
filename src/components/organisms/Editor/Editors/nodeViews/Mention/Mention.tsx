@@ -1,10 +1,10 @@
 import React from 'react'
-import { useReactNodeView } from 'src/components/organisms/Editor/Editors'
 import { MENTION_TYPE, MentionType } from 'src/components/organisms'
+import { useReactNodeView } from 'src/components/organisms/Editor/Editors'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
-import { Teammate } from './Teammate'
-import { Task } from './Task'
 import { Project } from './Project'
+import { Task } from './Task'
+import { Teammate } from './Teammate'
 import { Workspace } from './Workspace'
 
 export const Mention: React.FC = () => {

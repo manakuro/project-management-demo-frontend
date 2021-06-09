@@ -1,3 +1,4 @@
+import { useCallback, useMemo } from 'react'
 import {
   atomFamily,
   selectorFamily,
@@ -6,11 +7,10 @@ import {
   atom,
   useRecoilValue,
 } from 'recoil'
-import { Attachment } from './type'
 import { uniqBy } from 'src/shared/utils'
-import { useCallback, useMemo } from 'react'
 import { uuid } from 'src/shared/uuid'
 import { ATTACHMENT_STATUS_ATTACHED } from 'src/store/entities/attachments/types'
+import { Attachment } from './type'
 
 export const attachmentIdsState = atom<string[]>({
   key: 'attachmentIdsState',

@@ -1,7 +1,7 @@
-import React from 'react'
 import { Box as ChakraBox, BoxProps as ChakraBoxProps } from '@chakra-ui/react'
-import { forwardRef } from 'src/shared/chakra'
+import React from 'react'
 import { DraggableProvided } from 'react-beautiful-dnd'
+import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraBoxProps & {
   ref?: React.ForwardedRef<any> | DraggableProvided['innerRef']

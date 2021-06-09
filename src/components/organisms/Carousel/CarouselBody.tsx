@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { useCarousel } from './Provider'
 import { Flex } from 'src/components/atoms'
+import { useCarousel } from './Provider'
 
 type Props = {}
 

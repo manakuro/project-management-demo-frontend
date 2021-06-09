@@ -6,8 +6,8 @@ import {
   atom,
   useRecoilValue,
 } from 'recoil'
-import { Tag } from './type'
 import { uniqBy } from 'src/shared/utils'
+import { Tag } from './type'
 
 export const tagIdsState = atom<string[]>({
   key: 'tagIdsState',

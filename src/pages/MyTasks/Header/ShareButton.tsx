@@ -1,8 +1,8 @@
 import React, { memo, useCallback } from 'react'
 import { Button, Flex, Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
-import { useShareWorkspaceModal } from 'src/components/organisms/Modals/ShareWorkspaceModal'
 import { useTooltip } from 'src/components/molecules/Tooltip/useTooltip'
+import { useShareWorkspaceModal } from 'src/components/organisms/Modals/ShareWorkspaceModal'
 
 export const ShareButton: React.VFC = memo(() => {
   const { setIsOpen } = useShareWorkspaceModal()

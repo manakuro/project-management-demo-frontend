@@ -11,6 +11,7 @@ import { undoInputRule } from 'prosemirror-inputrules'
 import { keymap } from 'prosemirror-keymap'
 import { Plugin } from 'prosemirror-state'
 
+import { Escape } from 'src/shared/prosemirror/plugins/suggestions/keys'
 import {
   insertNodeHorizontalRule,
   insertNodeLineBreak,
@@ -26,7 +27,6 @@ import {
   wrapInBlockquote,
   toggleMarkStrikethrough,
 } from '../config/commands'
-import { Escape } from 'src/shared/prosemirror/plugins/suggestions/keys'
 
 export const listKeys = (): Plugin =>
   keymap({

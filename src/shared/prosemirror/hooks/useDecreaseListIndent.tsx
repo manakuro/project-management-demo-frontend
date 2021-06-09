@@ -1,6 +1,6 @@
-import { ToolbarItem } from './types'
-import { liftListItemCommand } from 'src/shared/prosemirror/config/commands'
 import { useMemo } from 'react'
+import { liftListItemCommand } from 'src/shared/prosemirror/config/commands'
+import { ToolbarItem } from './types'
 
 export const useDecreaseListIndent = (): ToolbarItem => {
   return useMemo(

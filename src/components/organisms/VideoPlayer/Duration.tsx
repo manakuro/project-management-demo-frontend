@@ -1,5 +1,5 @@
-import React from 'react'
 import styled from '@emotion/styled'
+import React from 'react'
 import { chakra, ChakraProps } from 'src/shared/chakra'
 
 type Props = {

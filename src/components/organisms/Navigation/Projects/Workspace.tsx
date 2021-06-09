@@ -10,9 +10,9 @@ import {
   MenuGroup,
   useNavigation,
 } from 'src/components/organisms'
+import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { useLinkHoverStyle, useClickableHoverStyle } from 'src/hooks'
-import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
 
 type Props = {}
 

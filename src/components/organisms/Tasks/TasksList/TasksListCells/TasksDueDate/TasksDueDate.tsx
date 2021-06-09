@@ -1,10 +1,10 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { FlexProps, Icon, DueDate, Flex } from 'src/components/atoms'
-import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
-import { useTask } from 'src/store/entities/tasks'
-import { useHover } from 'src/hooks/useHover'
-import { useClickableHoverStyle } from 'src/hooks'
 import { PopoverDueDatePicker } from 'src/components/organisms'
+import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
+import { useClickableHoverStyle } from 'src/hooks'
+import { useHover } from 'src/hooks/useHover'
+import { useTask } from 'src/store/entities/tasks'
 
 type Props = FlexProps & {
   taskId: string

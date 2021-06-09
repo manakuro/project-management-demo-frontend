@@ -7,8 +7,8 @@ import {
   UnorderedList,
   ListItem,
 } from 'src/components/atoms'
-import { guide3Item } from './item'
 import { Section } from 'src/components/organisms/Navigation/Help/Body/GuideListItem/ListItemDetail'
+import { guide3Item } from './item'
 
 export const SeeMore: React.VFC = () => {
   return (

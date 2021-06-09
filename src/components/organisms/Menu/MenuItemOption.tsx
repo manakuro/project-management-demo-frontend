@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   MenuItemOption as ChakraMenuItemOption,
   MenuItemOptionProps as ChakraMenuItemOptionProps,
 } from '@chakra-ui/react'
+import React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraMenuItemOptionProps

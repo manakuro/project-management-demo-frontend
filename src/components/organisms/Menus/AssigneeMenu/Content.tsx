@@ -1,10 +1,10 @@
 import React, { memo, useCallback } from 'react'
-import { PopoverContent } from 'src/components/organisms'
 import { Portal, Icon, Divider, Text } from 'src/components/atoms'
-import { useAssigneeMenu } from './useAssigneeMenu'
+import { PopoverContent } from 'src/components/organisms'
 import { useClickOutside } from 'src/hooks'
 import { AssigneeItem } from './AssigneeItem'
 import { ListItem, LeftContainer, RightContainer } from './ListItem'
+import { useAssigneeMenu } from './useAssigneeMenu'
 
 type Props = {
   onClosed?: () => void

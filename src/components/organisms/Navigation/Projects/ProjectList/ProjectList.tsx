@@ -1,6 +1,6 @@
 import React from 'react'
-import { ListItem } from './ListItem'
 import { useProjectIds } from 'src/store/entities/projects'
+import { ListItem } from './ListItem'
 
 type Props = {}
 

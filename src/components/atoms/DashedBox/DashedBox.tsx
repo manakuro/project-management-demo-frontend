@@ -1,7 +1,7 @@
 import React from 'react'
-import { forwardRef } from 'src/shared/chakra'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
+import { forwardRef } from 'src/shared/chakra'
 
 type Props = FlexProps & {
   ref?: React.ForwardedRef<any>

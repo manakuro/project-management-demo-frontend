@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react'
-import { ProjectResponse, useProjects } from 'src/store/entities/projects'
 import { atom, useRecoilState } from 'recoil'
+import { ProjectResponse, useProjects } from 'src/store/entities/projects'
 
 type Props = {
   lazy?: boolean

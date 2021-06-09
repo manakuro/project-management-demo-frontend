@@ -1,8 +1,8 @@
 import React, { memo, useCallback } from 'react'
 import { Avatar, Wrap, WrapItem } from 'src/components/atoms'
+import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
 import { useTeammates } from 'src/store/entities/teammates'
 import { Teammate } from './Teammate'
 

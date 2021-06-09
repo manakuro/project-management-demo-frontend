@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
 import { Icon, DueDate as AtomsDueDate } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
-import { useClickableHoverStyle } from 'src/hooks'
 import { PopoverDueDatePicker } from 'src/components/organisms'
-import { getDifferenceInDays } from 'src/shared/date'
 import { useDueDate } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/Subtasks/DueDate/useDueDate'
+import { useClickableHoverStyle } from 'src/hooks'
+import { getDifferenceInDays } from 'src/shared/date'
 
 type Props = {
   dueDate: string

@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   FormHelperText as ChakraFormHelperText,
   HelpTextProps as ChakraHelpTextProps,
 } from '@chakra-ui/react'
+import React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraHelpTextProps

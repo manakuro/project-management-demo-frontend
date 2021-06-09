@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   MenuButton as ChakraMenuButton,
   MenuButtonProps as ChakraMenuButtonProps,
 } from '@chakra-ui/react'
+import React from 'react'
 import { Box } from 'src/components/atoms'
 
 type Props = ChakraMenuButtonProps &

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Box, Flex } from 'src/components/atoms'
-import { Input } from '../Input'
 import { useDisclosure } from 'src/shared/chakra'
+import { Input } from '../Input'
 
 type Props = {}
 

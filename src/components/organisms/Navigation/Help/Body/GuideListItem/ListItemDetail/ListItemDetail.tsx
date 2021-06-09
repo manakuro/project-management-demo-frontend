@@ -2,8 +2,8 @@ import React from 'react'
 import { Flex } from 'src/components/atoms'
 import { Item } from 'src/components/organisms/Navigation/Help/Body/GuideListItem'
 import { Background } from './Background'
-import { Header } from './Header'
 import { Detail } from './Detail'
+import { Header } from './Header'
 
 type Props = {
   item: Item

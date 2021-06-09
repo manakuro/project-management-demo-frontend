@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { AttachmentMenu, MenuButton } from 'src/components/organisms'
 import { NewBox } from 'src/components/molecules'
+import { AttachmentMenu, MenuButton } from 'src/components/organisms'
 
 type Props = {}
 

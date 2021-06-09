@@ -1,3 +1,4 @@
+import { useCallback, useMemo } from 'react'
 import {
   atomFamily,
   selectorFamily,
@@ -7,11 +8,10 @@ import {
   useRecoilValue,
   useRecoilState,
 } from 'recoil'
-import { MyTask, MyTaskResponse } from './type'
 import { uniqBy } from 'src/shared/utils'
-import { useCallback, useMemo } from 'react'
 import { uuid } from 'src/shared/uuid'
 import { useTasks } from 'src/store/entities/tasks'
+import { MyTask, MyTaskResponse } from './type'
 
 export const myTaskIdsState = atom<string[]>({
   key: 'myTaskIdsState',

@@ -5,11 +5,11 @@ import {
   IconButtonProps,
   IconProps,
 } from 'src/components/atoms'
+import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/Provider'
 import {
   MenuButton as AtomsMenuButton,
   MenuButtonProps,
 } from 'src/components/organisms'
-import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/Provider'
 import { transitions } from 'src/styles'
 
 type Props = Omit<MenuButtonProps, 'children'> & {

@@ -1,9 +1,8 @@
 import React from 'react'
-import { Popover, PopoverTrigger } from 'src/components/organisms'
 import { ConditionalRender, PortalManager, Flex } from 'src/components/atoms'
-import { usePopoverEmoji } from './Provider'
-import 'emoji-mart/css/emoji-mart.css'
+import { Popover, PopoverTrigger } from 'src/components/organisms'
 import { Content } from './Content'
+import { usePopoverEmoji } from './Provider'
 import { Provider } from './Provider'
 
 type Props = {}

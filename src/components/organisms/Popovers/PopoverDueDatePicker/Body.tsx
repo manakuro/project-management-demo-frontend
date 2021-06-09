@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react'
-import { PopoverBody, PopoverProps } from 'src/components/organisms'
 import { Button, Divider, Flex, FlexProps } from 'src/components/atoms'
+import { PopoverBody, PopoverProps } from 'src/components/organisms'
 import { DatePicker } from 'src/components/organisms'
+import { useClickOutside } from 'src/hooks/useClickOutside'
+import { useDisclosure } from 'src/shared/chakra'
 import { dateFns } from 'src/shared/dateFns'
 import { DueTime } from './DueTime'
-import { useDisclosure } from 'src/shared/chakra'
-import { useClickOutside } from 'src/hooks/useClickOutside'
 
 type Props = {
   date: string

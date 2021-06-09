@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
-import { ProjectResponse } from 'src/store/entities/projects'
 import { atom, useRecoilState } from 'recoil'
+import { ProjectResponse } from 'src/store/entities/projects'
 
 const searchProjectsQueryState = atom<{ loading: boolean; projects: any[] }>({
   key: 'searchProjectsQueryState',

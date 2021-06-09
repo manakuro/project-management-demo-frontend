@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react'
 import {
   Link as ChakraLink,
   LinkProps as ChakraLinkProps,
 } from '@chakra-ui/react'
+import React, { useMemo } from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraLinkProps & {

@@ -1,9 +1,9 @@
+import { BaseEmoji } from 'emoji-mart'
 import React, { useCallback } from 'react'
 import { ModalBody, ModalContent } from 'src/components/organisms'
-import { useEditorEmojiMenu } from './useEditorEmojiMenu'
-import { EmojiItem } from './EmojiItem'
 import { useMenuStyle } from 'src/hooks'
-import { BaseEmoji } from 'emoji-mart'
+import { EmojiItem } from './EmojiItem'
+import { useEditorEmojiMenu } from './useEditorEmojiMenu'
 
 type Props = {}
 

@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   InputGroup as ChakraInputGroup,
   InputGroupProps as ChakraInputGroupProps,
 } from '@chakra-ui/react'
+import React from 'react'
 
 type Props = ChakraInputGroupProps
 export type InputGroupProps = Props

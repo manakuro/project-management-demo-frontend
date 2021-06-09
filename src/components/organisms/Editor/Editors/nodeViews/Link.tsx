@@ -1,12 +1,12 @@
-import { Icon, Link as AtomsLink } from 'src/components/atoms'
 import React from 'react'
-import { useReactNodeView } from '../ReactNodeView'
+import { Icon, Link as AtomsLink } from 'src/components/atoms'
 import {
   PopoverEditorLink,
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
   PopoverEditorLinkTrigger,
 } from 'src/components/organisms'
+import { useReactNodeView } from '../ReactNodeView'
 
 export const Link: React.FC = (props) => {
   const context = useReactNodeView()

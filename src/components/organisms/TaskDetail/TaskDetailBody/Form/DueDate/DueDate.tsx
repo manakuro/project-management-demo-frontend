@@ -1,14 +1,14 @@
 import React, { memo } from 'react'
-import { Row, Label, Content } from '../Row'
 import {
   Button,
   Icon,
   DueDate as AtomsDueDate,
   Box,
 } from 'src/components/atoms'
+import { PopoverDueDatePicker } from 'src/components/organisms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
-import { PopoverDueDatePicker } from 'src/components/organisms'
+import { Row, Label, Content } from '../Row'
 
 type Props = {
   dueDate: string

@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Input as AtomsInput } from 'src/components/atoms'
-import { useClickOutside } from 'src/hooks'
 import { AssigneeMenu } from 'src/components/organisms'
+import { useClickOutside } from 'src/hooks'
 
 type Props = {
   onClickOutside: () => void

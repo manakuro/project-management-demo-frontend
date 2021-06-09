@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
-import { createPortal } from 'react-dom'
 import { DraggableChildrenFn, DraggingStyle } from 'react-beautiful-dnd'
+import { createPortal } from 'react-dom'
 
 export const useDraggableInPortal = () => {
   const self = useRef<HTMLDivElement | null>(null)

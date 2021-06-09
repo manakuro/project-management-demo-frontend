@@ -1,5 +1,5 @@
-import React, { createContext, useCallback, useContext, useState } from 'react'
 import { BaseEmoji } from 'emoji-mart'
+import React, { createContext, useCallback, useContext, useState } from 'react'
 
 type ContextProps = {
   isOpen: boolean

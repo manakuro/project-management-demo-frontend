@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Row, Label, Content } from '../Row'
-import { UnSelected } from './UnSelected'
 import { Selected } from './Selected'
+import { UnSelected } from './UnSelected'
 
 type Props = {}
 

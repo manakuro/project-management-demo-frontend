@@ -1,16 +1,16 @@
+import { ChakraProvider } from '@chakra-ui/react'
+import enLocale from 'date-fns/locale/en-US'
+import React from 'react'
 import { RecoilRoot } from 'recoil'
+import { Modals } from 'src/components/organisms'
+import { BeforeAppMount } from 'src/shared/beforeAppMount'
 import {
   AdapterDateFns,
   LocalizationProvider,
   muiTheme,
   MuiThemeProvider,
 } from 'src/shared/material-ui'
-import React from 'react'
 import { theme } from 'src/styles'
-import { ChakraProvider } from '@chakra-ui/react'
-import enLocale from 'date-fns/locale/en-US'
-import { Modals } from 'src/components/organisms'
-import { BeforeAppMount } from 'src/shared/beforeAppMount'
 
 export const WrappedComponent: React.FC = (props) => {
   return (

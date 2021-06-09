@@ -1,12 +1,12 @@
-import { CheckIcon } from 'src/components/atoms'
 import React, { memo } from 'react'
-import { useReactNodeView } from 'src/components/organisms/Editor/Editors/ReactNodeView'
+import { CheckIcon } from 'src/components/atoms'
 import {
   PopoverEditorLink,
   PopoverEditorLinkTrigger,
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
 } from 'src/components/organisms'
+import { useReactNodeView } from 'src/components/organisms/Editor/Editors/ReactNodeView'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
 import { useTask } from 'src/store/entities/tasks'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex, FlexProps, Icon, Link, Text } from 'src/components/atoms'
-import { useAttachment } from 'src/store/entities/attachments'
 import { getAttachmentIcon, getAttachmentName } from 'src/shared/attachment'
+import { useAttachment } from 'src/store/entities/attachments'
 import { transitions } from 'src/styles'
 
 type Props = FlexProps & {

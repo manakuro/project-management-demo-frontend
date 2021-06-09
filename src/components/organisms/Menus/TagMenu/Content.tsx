@@ -1,10 +1,10 @@
 import React, { memo, useCallback } from 'react'
-import { PopoverContent } from 'src/components/organisms'
 import { Portal, Icon, Divider, Text, Spinner } from 'src/components/atoms'
+import { PopoverContent } from 'src/components/organisms'
 import { useClickOutside } from 'src/hooks'
-import { TagItem } from './TagItem'
-import { ListItem, LeftContainer, RightContainer } from './ListItem'
 import { Tag } from 'src/store/entities/tags'
+import { ListItem, LeftContainer, RightContainer } from './ListItem'
+import { TagItem } from './TagItem'
 
 type Props = {
   onClose?: () => void

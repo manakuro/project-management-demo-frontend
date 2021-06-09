@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 import { Flex, Text } from 'src/components/atoms'
-import { LeaveTask } from './LeaveTask'
 import { Input } from './Input'
-import { Teammates } from './Teammates'
+import { LeaveTask } from './LeaveTask'
 import { Provider } from './Provider'
+import { Teammates } from './Teammates'
 
 type Props = {}
 

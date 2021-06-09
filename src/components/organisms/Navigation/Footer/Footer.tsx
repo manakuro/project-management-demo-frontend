@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 import { List } from 'src/components/atoms'
 import { MAX_WIDTH } from '../Navigation'
-import { InviteTeammates } from './InviteTeammates'
 import { Help } from './Help'
+import { InviteTeammates } from './InviteTeammates'
 
 export const Footer: React.VFC = memo(() => {
   return (

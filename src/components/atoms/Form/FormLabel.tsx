@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   FormLabel as ChakraFormLabel,
   FormLabelProps as ChakraFormLabelProps,
 } from '@chakra-ui/react'
+import React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraFormLabelProps

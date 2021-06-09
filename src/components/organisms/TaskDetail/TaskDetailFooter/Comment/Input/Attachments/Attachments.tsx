@@ -1,11 +1,11 @@
 import React, { memo, useCallback } from 'react'
 import { Wrap, WrapItem } from 'src/components/atoms'
-import { useInput } from 'src/components/organisms/TaskDetail/TaskDetailFooter/Comment/Input/Provider'
 import {
   ThumbnailAttachment,
   AttachmentUploadingBox,
 } from 'src/components/molecules'
 import { useFileViewerModal } from 'src/components/organisms'
+import { useInput } from 'src/components/organisms/TaskDetail/TaskDetailFooter/Comment/Input/Provider'
 
 type Props = {}
 

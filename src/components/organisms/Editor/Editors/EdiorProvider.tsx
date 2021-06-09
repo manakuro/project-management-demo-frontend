@@ -8,11 +8,11 @@ import React, {
   useEffect,
   useState,
 } from 'react'
+import { createReactNodeView } from './ReactNodeView'
 import {
   ReactNodeViewPortalsProvider,
   useReactNodeViewCreatePortal,
 } from './ReactNodeViewPortals'
-import { createReactNodeView } from './ReactNodeView'
 import { Link, Mention, Emoji } from './nodeViews'
 
 const EditorStateContext = createContext<EditorState | null>(null)

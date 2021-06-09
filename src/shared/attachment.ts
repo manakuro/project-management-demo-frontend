@@ -1,5 +1,5 @@
-import { AttachmentType } from 'src/store/entities/attachments/types'
 import { IconType } from 'src/shared/icons'
+import { AttachmentType } from 'src/store/entities/attachments/types'
 
 export const getAttachmentIcon = (type: AttachmentType): IconType => {
   switch (type) {

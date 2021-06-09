@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { Divider, Flex } from 'src/components/atoms'
 import {
   DrawerBody,
   DrawerFooter,
@@ -8,7 +9,6 @@ import {
   TaskDetailHeader,
   TaskDetailFooter,
 } from 'src/components/organisms'
-import { Divider, Flex } from 'src/components/atoms'
 import { useClickOutside } from 'src/hooks'
 import { useTasksListBody } from 'src/pages/MyTasks/List/useTasksListBody'
 

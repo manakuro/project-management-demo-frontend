@@ -1,5 +1,4 @@
 import React, { memo, useCallback, useState } from 'react'
-import { Row, Label, Content } from '../Row'
 import {
   Avatar,
   Button,
@@ -10,6 +9,7 @@ import {
 } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
+import { Row, Label, Content } from '../Row'
 import { Input } from './Input'
 
 type Props = {}

@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react'
-import { useProject } from 'src/store/entities/projects'
-import { Menu, MenuButton, MenuButtonProps } from 'src/components/organisms'
-import { MenuList } from './MenuList'
-import { ChakraProps, useDisclosure } from 'src/shared/chakra'
 import { IconButtonProps } from 'src/components/atoms'
+import { Menu, MenuButton, MenuButtonProps } from 'src/components/organisms'
+import { ChakraProps, useDisclosure } from 'src/shared/chakra'
+import { useProject } from 'src/store/entities/projects'
+import { MenuList } from './MenuList'
 
 type Props = MenuButtonProps & {
   projectId: string

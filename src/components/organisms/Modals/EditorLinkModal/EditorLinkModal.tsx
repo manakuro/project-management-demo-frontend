@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
-import { Modal, ModalBody, ModalContent } from 'src/components/organisms'
 import { Input, Stack } from 'src/components/atoms'
+import { Modal, ModalBody, ModalContent } from 'src/components/organisms'
 import { useEditorLinkModal } from './useEditorLinkModal'
 
 type Props = {}

@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 import { Flex, Stack } from 'src/components/atoms'
 import { useFeedListItem } from '../Provider'
-import { ContentText } from './ContentText'
 import { ContentAttachment } from './ContentAttachment'
+import { ContentText } from './ContentText'
 
 type Props = {}
 

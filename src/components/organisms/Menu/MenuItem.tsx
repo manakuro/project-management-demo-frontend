@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   MenuItem as ChakraMenuItem,
   MenuItemProps as ChakraMenuItemProps,
 } from '@chakra-ui/react'
+import React from 'react'
 
 type Props = ChakraMenuItemProps & {
   link?: boolean

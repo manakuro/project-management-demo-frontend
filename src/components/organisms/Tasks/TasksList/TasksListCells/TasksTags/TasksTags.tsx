@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useState } from 'react'
 import { FlexProps, Stack } from 'src/components/atoms'
-import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { TagChip } from 'src/components/molecules'
-import { Input } from './Input'
+import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { useTask } from 'src/store/entities/tasks'
+import { Input } from './Input'
 
 type Props = FlexProps & {
   taskId: string

@@ -1,10 +1,10 @@
 import React, { memo, useState } from 'react'
-import { Row, Label, Content } from '../Row'
 import { Editor, EditorContent } from 'src/components/organisms'
-import { Provider } from './Provider'
-import { ToolBar } from './ToolBar'
+import { Row, Label, Content } from '../Row'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
+import { Provider } from './Provider'
+import { ToolBar } from './ToolBar'
 
 type Props = {}
 

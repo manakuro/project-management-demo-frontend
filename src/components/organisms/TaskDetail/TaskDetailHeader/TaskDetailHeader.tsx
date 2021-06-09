@@ -8,11 +8,11 @@ import {
   Stack,
   Skeleton,
 } from 'src/components/atoms'
-import { Like } from './Like'
 import { Attachment } from './Attachment'
-import { SubTasks } from './Subtasks'
 import { Copy } from './Copy'
+import { Like } from './Like'
 import { MoreAction } from './MoreAction'
+import { SubTasks } from './Subtasks'
 
 type Props = {
   onClose: () => void

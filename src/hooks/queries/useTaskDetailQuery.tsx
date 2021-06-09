@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react'
-import { TaskResponse, useTask } from 'src/store/entities/tasks'
-import { dateFns } from 'src/shared/dateFns'
 import { atom, useRecoilState } from 'recoil'
+import { dateFns } from 'src/shared/dateFns'
+import { TaskResponse, useTask } from 'src/store/entities/tasks'
 
 type Props = {
   lazy?: boolean

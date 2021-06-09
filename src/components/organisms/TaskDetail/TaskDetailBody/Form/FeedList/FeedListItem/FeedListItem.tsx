@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
+import { Container } from './Container'
+import { Content } from './Content'
 import { Header } from './Header'
 import { Provider } from './Provider'
-import { Content } from './Content'
-import { Container } from './Container'
 
 type Props = {
   feedId: string

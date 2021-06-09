@@ -1,9 +1,9 @@
-import { ToolbarItem } from './types'
+import { Command, toggleMark } from 'prosemirror-commands'
+import { useCallback, useMemo } from 'react'
+import { useEditorLinkModal } from 'src/components/organisms'
 import { isMarkActive } from 'src/shared/prosemirror/commands'
 import { schema } from 'src/shared/prosemirror/config'
-import { useCallback, useMemo } from 'react'
-import { Command, toggleMark } from 'prosemirror-commands'
-import { useEditorLinkModal } from 'src/components/organisms'
+import { ToolbarItem } from './types'
 
 export const useLink = (): ToolbarItem => {
   const { onOpen } = useEditorLinkModal()

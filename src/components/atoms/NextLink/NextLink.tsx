@@ -1,5 +1,5 @@
-import React from 'react'
 import Link, { LinkProps } from 'next/link'
+import React from 'react'
 import { Routes, routes } from 'src/router'
 
 type Props = Omit<LinkProps, 'href'> & {

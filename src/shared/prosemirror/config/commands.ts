@@ -1,3 +1,9 @@
+import { Command, setBlockType, toggleMark, wrapIn } from 'prosemirror-commands'
+import {
+  liftListItem,
+  sinkListItem,
+  splitListItem,
+} from 'prosemirror-schema-list'
 import {
   insertNodeOfType,
   isMarkActive,
@@ -5,12 +11,6 @@ import {
   setListTypeOrWrapInList,
   toggleWrap,
 } from '../commands'
-import { Command, setBlockType, toggleMark, wrapIn } from 'prosemirror-commands'
-import {
-  liftListItem,
-  sinkListItem,
-  splitListItem,
-} from 'prosemirror-schema-list'
 
 import { schema } from './schema'
 

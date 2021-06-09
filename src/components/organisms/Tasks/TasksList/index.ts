@@ -1,3 +1,5 @@
 export * from './TasksList'
 export * from './TasksListDetail'
 export * from './TasksListRow'
+export * from './TasksListHeader'
+export * from './TasksListSection'

@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
-import { MainHeader } from 'src/components/organisms'
-import { Head } from 'src/components/atoms/Head'
 import { Heading, Box, Stack } from 'src/components/atoms'
-import { TasksDueSoon } from './TasksDueSoon'
-import { RecentProjects } from './RecentProjects'
+import { Head } from 'src/components/atoms/Head'
+import { MainHeader } from 'src/components/organisms'
 import { FavoriteProjects } from './FavoriteProjects'
+import { RecentProjects } from './RecentProjects'
+import { TasksDueSoon } from './TasksDueSoon'
 
 type Props = {}
 

@@ -1,13 +1,13 @@
 import React, { memo, useCallback } from 'react'
 import { CheckIcon, FlexProps, Icon, Text } from 'src/components/atoms'
-import { TasksNameField } from './TasksNameField'
-import { TasksNameCell } from './TasksNameCell'
-import { TasksNameGrabIcon } from './TasksNameGrabIcon'
-import { TasksNameRightContainer } from './TasksNameRightContainer'
-import { Mark } from './Mark'
-import { TasksNameProvider, useTasksName } from './TasksNameProvider'
 import { useRouter } from 'src/router'
 import { useTask } from 'src/store/entities/tasks'
+import { Mark } from './Mark'
+import { TasksNameCell } from './TasksNameCell'
+import { TasksNameField } from './TasksNameField'
+import { TasksNameGrabIcon } from './TasksNameGrabIcon'
+import { TasksNameProvider, useTasksName } from './TasksNameProvider'
+import { TasksNameRightContainer } from './TasksNameRightContainer'
 
 type Props = FlexProps & {
   taskId: string

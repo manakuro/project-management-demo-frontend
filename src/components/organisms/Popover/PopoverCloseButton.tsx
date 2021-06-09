@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   PopoverCloseButton as ChakraPopoverCloseButton,
   PopoverCloseButtonProps as ChakraPopoverCloseButtonProps,
 } from '@chakra-ui/react'
+import React from 'react'
 
 type Props = ChakraPopoverCloseButtonProps
 export type PopoverCloseButtonProps = Props

@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react'
 import { Text, ListItem, Icon } from 'src/components/atoms'
-import { PADDING_X } from '../Navigation'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
-import { transitions } from 'src/styles'
 import { useHelp } from 'src/components/organisms/Navigation/Help'
+import { transitions } from 'src/styles'
+import { PADDING_X } from '../Navigation'
 
 export const Help: React.VFC = () => {
   const { setIsOpen } = useHelp()

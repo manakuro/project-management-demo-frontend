@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Text, TextProps } from 'src/components/atoms'
-import { useFeedListItem } from '../Provider'
 import { formatCreatedAt } from 'src/shared/date'
+import { useFeedListItem } from '../Provider'
 
 type Props = TextProps
 

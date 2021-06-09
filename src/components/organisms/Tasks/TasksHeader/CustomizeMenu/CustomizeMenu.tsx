@@ -1,17 +1,17 @@
 import React from 'react'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
+import { Box, Flex, Heading, Icon, IconButton } from 'src/components/atoms'
+import { CustomField } from 'src/components/molecules'
 import {
   Drawer,
   DrawerBody,
   DrawerContent,
   DrawerHeader,
 } from 'src/components/organisms'
-import { useCustomizeMenu } from './useCustomizeMenu'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
-import { Box, Flex, Heading, Icon, IconButton } from 'src/components/atoms'
-import { CustomField } from 'src/components/molecules'
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
-import { useDraggableInPortal } from 'src/hooks/useDraggableInPortal'
 import { useDnd } from 'src/hooks/dnd/useDnd'
+import { useDraggableInPortal } from 'src/hooks/useDraggableInPortal'
+import { useCustomizeMenu } from './useCustomizeMenu'
 
 const HEADER_HEIGHT = 72
 const TASKS_HEADER_HEIGHT = 60

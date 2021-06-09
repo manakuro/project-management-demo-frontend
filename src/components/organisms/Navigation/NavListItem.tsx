@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import React, { memo } from 'react'
 import {
   Text,
@@ -8,11 +9,10 @@ import {
   ListItemProps,
   LinkProps,
 } from 'src/components/atoms'
-import { useRouter } from 'next/router'
+import { useLinkHoverStyle } from 'src/hooks'
+import { Routes } from 'src/router'
 import { PADDING_X } from './Navigation'
 import { NavListItem as TNavListItem } from './type'
-import { Routes } from 'src/router'
-import { useLinkHoverStyle } from 'src/hooks'
 
 type Props = {
   item: TNavListItem

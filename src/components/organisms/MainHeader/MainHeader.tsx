@@ -1,9 +1,9 @@
 import React from 'react'
 import { Flex, Stack } from 'src/components/atoms'
-import { SearchInput } from './SearchInput'
+import { useMainStyle } from 'src/hooks'
 import { AddButton } from './AddButton'
 import { MyAccountAvatar } from './MyAccountAvatar'
-import { useMainStyle } from 'src/hooks'
+import { SearchInput } from './SearchInput'
 
 export const MainHeader: React.FC = (props) => {
   const { paddingX } = useMainStyle()

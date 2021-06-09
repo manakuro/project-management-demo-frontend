@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
-import { Tag } from 'src/store/entities/tags'
 import { atom, useRecoilState } from 'recoil'
+import { Tag } from 'src/store/entities/tags'
 
 const searchTagsQueryState = atom<{ loading: boolean; tags: any[] }>({
   key: 'searchTagsQueryState',

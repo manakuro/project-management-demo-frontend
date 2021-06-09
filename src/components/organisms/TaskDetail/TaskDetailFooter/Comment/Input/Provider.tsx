@@ -5,24 +5,24 @@ import React, {
   useMemo,
   useState,
 } from 'react'
+import { FileUploaderParams, UploadedFile } from 'src/components/atoms'
+import { useTasksListDetail } from 'src/components/organisms'
+import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 import { useClickOutside, useToast } from 'src/hooks'
+import { getAttachmentTypeFromFile } from 'src/shared/getAttachmentTypeFromFile'
+import { getScrollBottom } from 'src/shared/getScrollBottom'
+import {
+  Attachment,
+  useAttachmentsByTask,
+} from 'src/store/entities/attachments'
+import { ATTACHMENT_STATUS_UNATTACHED } from 'src/store/entities/attachments/types'
 import {
   defaultFeedStateValue,
   Feed,
   useFeed,
   useFeedsByTask,
 } from 'src/store/entities/feeds'
-import { useTasksListDetail } from 'src/components/organisms'
 import { useMe } from 'src/store/entities/me'
-import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
-import { getScrollBottom } from 'src/shared/getScrollBottom'
-import {
-  Attachment,
-  useAttachmentsByTask,
-} from 'src/store/entities/attachments'
-import { FileUploaderParams, UploadedFile } from 'src/components/atoms'
-import { getAttachmentTypeFromFile } from 'src/shared/getAttachmentTypeFromFile'
-import { ATTACHMENT_STATUS_UNATTACHED } from 'src/store/entities/attachments/types'
 
 type ContextProps = {
   feed: Feed

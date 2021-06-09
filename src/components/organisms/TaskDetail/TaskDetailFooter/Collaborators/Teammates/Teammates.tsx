@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 import { Icon, IconButton, Stack } from 'src/components/atoms'
-import { Teammate } from './Teammate'
 import { useTasksListDetail } from 'src/components/organisms'
 import { useTask } from 'src/store/entities/tasks'
 import { useCollaborators } from '../Provider'
+import { Teammate } from './Teammate'
 
 type Props = {}
 

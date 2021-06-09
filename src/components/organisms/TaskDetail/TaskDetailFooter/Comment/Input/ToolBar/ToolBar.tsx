@@ -1,13 +1,13 @@
 import React, { memo } from 'react'
+import { Button, Flex, Stack } from 'src/components/atoms'
 import {
   Format,
   Emoji,
   AtMention,
 } from 'src/components/organisms/Editor/ToolBar'
-import { Button, Flex, Stack } from 'src/components/atoms'
+import { transitions } from 'src/styles'
 import { useInput } from '../Provider'
 import { Attachment } from './Attachment'
-import { transitions } from 'src/styles'
 
 type Props = {}
 

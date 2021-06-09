@@ -1,5 +1,5 @@
-import React from 'react'
 import { GridItem as ChakraGridItem, GridItemProps } from '@chakra-ui/react'
+import React from 'react'
 
 type Props = GridItemProps
 

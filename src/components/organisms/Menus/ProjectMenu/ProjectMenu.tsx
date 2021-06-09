@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { PortalManager } from 'src/components/atoms'
 import { Popover, PopoverProps, PopoverTrigger } from 'src/components/organisms'
+import { useDebounce } from 'src/hooks'
 import { Content } from './Content'
 import { useSearchProjectsQuery } from './useSearchProjectsQuery'
-import { useDebounce } from 'src/hooks'
 
 type Props = PopoverProps & {
   onSelect: (val: string) => void

@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   MenuOptionGroup as ChakraMenuOptionGroup,
   MenuOptionGroupProps as ChakraMenuOptionGroupProps,
 } from '@chakra-ui/react'
+import React from 'react'
 
 type Props = ChakraMenuOptionGroupProps
 export type MenuOptionGroupProps = Props

@@ -1,15 +1,15 @@
 import React, { memo, useEffect, useState } from 'react'
 import { Box, Button, Flex, Heading, Icon, Stack } from 'src/components/atoms'
+import { Tooltip } from 'src/components/molecules'
 import {
   Accordion,
   AccordionItem,
   AccordionPanel,
   AccordionButton,
 } from 'src/components/organisms'
+import { dateFns } from 'src/shared/dateFns'
 import { ListItem } from './/ListItem'
 import { TaskDueSoon } from './types'
-import { Tooltip } from 'src/components/molecules'
-import { dateFns } from 'src/shared/dateFns'
 
 type Props = {}
 

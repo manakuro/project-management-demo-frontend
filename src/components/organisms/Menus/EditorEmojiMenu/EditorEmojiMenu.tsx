@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal } from 'src/components/organisms'
-import { useEditorEmojiMenu } from './useEditorEmojiMenu'
 import { MenuList } from './MenuList'
+import { useEditorEmojiMenu } from './useEditorEmojiMenu'
 
 type Props = {}
 

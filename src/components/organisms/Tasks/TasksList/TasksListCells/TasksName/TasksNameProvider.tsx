@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useMemo } from 'react'
-import { useInputFocus, UseInputFocus } from './useInputFocus'
 import { useHover } from 'src/hooks/useHover'
+import { useInputFocus, UseInputFocus } from './useInputFocus'
 import { useMarkMenuFocus, UseMarkMenuFocus } from './useMarkMenuFocus'
 
 type ContextProps = UseInputFocus &

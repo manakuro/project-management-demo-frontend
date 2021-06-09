@@ -5,7 +5,6 @@ import {
   InputProps,
   Portal,
 } from 'src/components/atoms'
-import { useClickOutside } from 'src/hooks'
 import {
   Menu,
   MenuButton,
@@ -13,6 +12,7 @@ import {
   MenuList,
   MenuListProps,
 } from 'src/components/organisms'
+import { useClickOutside } from 'src/hooks'
 import { useProjects } from 'src/store/entities/projects'
 
 type Props = {

@@ -6,9 +6,9 @@ import {
   AccordionPanel,
   AccordionButton,
 } from 'src/components/organisms'
-import { ListItemTile, ListItemTileNew } from './ListItemTile'
-import { ListItemList, ListItemListNew } from './ListItemList'
 import { ListIcon } from './ListIcon'
+import { ListItemList, ListItemListNew } from './ListItemList'
+import { ListItemTile, ListItemTileNew } from './ListItemTile'
 
 type Props = {
   projectIds: string[]

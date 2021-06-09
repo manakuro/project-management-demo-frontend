@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   Textarea as ChakraTextarea,
   TextareaProps as ChakraTextareaProps,
 } from '@chakra-ui/react'
+import React from 'react'
 
 type Props = ChakraTextareaProps
 export type TextareaProps = Props

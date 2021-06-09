@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import {
   atomFamily,
   selectorFamily,
@@ -6,9 +7,8 @@ import {
   atom,
   useRecoilValue,
 } from 'recoil'
-import { Teammate } from './type'
 import { uniqBy } from 'src/shared/utils'
-import { useCallback } from 'react'
+import { Teammate } from './type'
 
 export const teammateIdsState = atom<string[]>({
   key: 'teammateIdsState',

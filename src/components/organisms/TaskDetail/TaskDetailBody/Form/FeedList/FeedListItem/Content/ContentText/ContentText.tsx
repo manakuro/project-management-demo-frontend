@@ -1,9 +1,9 @@
 import React, { memo, useEffect, useMemo, useState } from 'react'
 import { Editor, EditorContent } from 'src/components/organisms'
+import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
+import { uuid } from 'src/shared/uuid'
 import { Container } from './Container'
 import { ToolBar } from './ToolBar'
-import { uuid } from 'src/shared/uuid'
-import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
 
 type Props = {}
 

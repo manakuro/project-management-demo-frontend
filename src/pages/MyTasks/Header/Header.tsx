@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 import { Divider, Flex } from 'src/components/atoms'
+import { Avatar } from './Avatar'
 import { ShareButton } from './ShareButton'
 import { Tabs } from './Tabs'
-import { Avatar } from './Avatar'
 
 export const Header: React.VFC = memo(() => {
   return (

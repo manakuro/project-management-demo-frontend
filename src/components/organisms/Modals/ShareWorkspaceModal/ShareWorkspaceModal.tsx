@@ -1,13 +1,5 @@
 import React from 'react'
 import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-} from 'src/components/organisms'
-import { ModalCloseButton } from 'src/components/organisms/Modal/ModalCloseButton'
-import {
   Input,
   Container,
   Flex,
@@ -16,6 +8,14 @@ import {
   MoreLink,
   Link,
 } from 'src/components/atoms'
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+} from 'src/components/organisms'
+import { ModalCloseButton } from 'src/components/organisms/Modal/ModalCloseButton'
 import { useShareWorkspaceModal } from './useShareWorkspaceModal'
 
 type Props = {}

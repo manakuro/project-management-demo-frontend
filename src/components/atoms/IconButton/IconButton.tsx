@@ -1,10 +1,10 @@
-import React from 'react'
 import {
   IconButton as ChakraIconButton,
   IconButtonProps as ChakraIconButtonProps,
 } from '@chakra-ui/react'
-import { ChakraProps, forwardRef } from 'src/shared/chakra'
+import React from 'react'
 import { useLinkHoverStyle } from 'src/hooks'
+import { ChakraProps, forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraIconButtonProps & {
   light?: boolean

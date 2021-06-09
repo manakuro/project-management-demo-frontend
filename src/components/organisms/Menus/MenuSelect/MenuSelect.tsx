@@ -1,8 +1,8 @@
 import React from 'react'
-import { UseMenuSelect, useMenuSelect } from './useMenuSelect'
 import { Menu, MenuProps } from 'src/components/organisms'
-import { Context } from './useMenuSelect'
 import { MaybeRenderProp, runIfFn } from 'src/shared/utils'
+import { UseMenuSelect, useMenuSelect } from './useMenuSelect'
+import { Context } from './useMenuSelect'
 
 type Props<ListStatus> = {
   onChange: (listStatus: ListStatus) => void

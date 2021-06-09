@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   DrawerContent as ChakraDrawerContent,
   DrawerContentProps as ChakraDrawerContentProps,
 } from '@chakra-ui/react'
+import React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraDrawerContentProps & {

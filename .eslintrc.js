@@ -1,6 +1,13 @@
 module.exports = {
   extends: ['react-app', 'eslint:recommended', 'plugin:prettier/recommended'],
   plugins: ['babel'],
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.ts'],
+      },
+    },
+  },
   rules: {
     quotes: ['error', 'single', { avoidEscape: true }],
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
@@ -23,6 +30,9 @@ module.exports = {
     '@typescript-eslint/no-redeclare': ['error'],
     // TypeScriptの型宣言と競合するのでoffにする
     'no-undef': 'off',
+
+    'sort-imports': 0,
+    'import/order': [2, { alphabetize: { order: 'asc' } }],
 
     'prettier/prettier': [
       'error',

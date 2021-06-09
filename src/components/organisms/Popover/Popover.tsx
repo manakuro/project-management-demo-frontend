@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   Popover as ChakraPopover,
   PopoverProps as ChakraPopoverProps,
 } from '@chakra-ui/react'
+import React from 'react'
 
 type Props = ChakraPopoverProps
 export type PopoverProps = Props

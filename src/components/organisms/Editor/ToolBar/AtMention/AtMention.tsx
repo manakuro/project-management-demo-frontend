@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
-import { BaseButton } from '../BaseButton'
 import { Icon } from 'src/components/atoms'
 import { useAtMention } from 'src/shared/prosemirror/hooks'
+import { BaseButton } from '../BaseButton'
 
 type Props = {}
 

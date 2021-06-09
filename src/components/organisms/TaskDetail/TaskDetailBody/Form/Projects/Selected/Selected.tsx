@@ -1,9 +1,9 @@
 import React from 'react'
 import { Box, Button, Flex, Icon, Stack } from 'src/components/atoms'
-import { ProjectButton } from './ProjectButton'
-import { Section } from './Section'
 import { useDisclosure } from 'src/shared/chakra'
 import { Input } from '../Input'
+import { ProjectButton } from './ProjectButton'
+import { Section } from './Section'
 
 type Props = {}
 

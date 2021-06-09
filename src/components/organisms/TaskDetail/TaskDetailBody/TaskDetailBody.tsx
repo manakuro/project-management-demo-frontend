@@ -1,8 +1,8 @@
 import React from 'react'
 import { Flex, Skeleton, Stack } from 'src/components/atoms'
 import { MakePublic } from 'src/components/organisms/TaskDetail/TaskDetailBody/MakePublic'
-import { Form } from './Form'
 import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
+import { Form } from './Form'
 
 type Props = {
   isMakePublic?: boolean

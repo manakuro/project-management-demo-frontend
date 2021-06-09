@@ -1,6 +1,15 @@
-import React from 'react'
 import { createIcon } from '@chakra-ui/react'
+import React from 'react'
 
+import {
+  AiFillCheckCircle,
+  AiFillPlayCircle,
+  AiOutlineProject,
+  AiOutlineFileText,
+  AiOutlineFilePdf,
+  AiFillLike,
+  AiOutlineLike,
+} from 'react-icons/ai'
 import {
   BiHome,
   BiSun,
@@ -73,19 +82,10 @@ import {
   BiCommentDots,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon, FaRegStar, FaStar } from 'react-icons/fa'
-import { HiOutlineMail, HiOutlineEmojiHappy } from 'react-icons/hi'
 import { FiBold, FiItalic, FiUnderline } from 'react-icons/fi'
-import {
-  AiFillCheckCircle,
-  AiFillPlayCircle,
-  AiOutlineProject,
-  AiOutlineFileText,
-  AiOutlineFilePdf,
-  AiFillLike,
-  AiOutlineLike,
-} from 'react-icons/ai'
-import { MdSort, MdTextFormat } from 'react-icons/md'
+import { HiOutlineMail, HiOutlineEmojiHappy } from 'react-icons/hi'
 import { IoMdAttach } from 'react-icons/io'
+import { MdSort, MdTextFormat } from 'react-icons/md'
 
 export const icons = {
   arrowToRight: BiArrowToRight,

@@ -1,7 +1,7 @@
-import React, { useCallback, useMemo } from 'react'
 import styled from '@emotion/styled'
-import { State } from './VideoPlayer'
+import React, { useCallback, useMemo } from 'react'
 import { chakra, ChakraProps } from 'src/shared/chakra'
+import { State } from './VideoPlayer'
 
 type Props = {
   played: number

@@ -1,19 +1,19 @@
 import React, { memo } from 'react'
+import { Flex } from 'src/components/atoms'
 import {
+  AddTaskButton,
+  CustomizeButton,
+  IncompleteTasksButton,
+  SortButton,
   TasksHeader,
   TasksHeaderLeft,
   TasksHeaderRight,
   TasksList,
-  AddTaskButton,
-  IncompleteTasksButton,
-  SortButton,
-  CustomizeButton,
+  TasksListHeader,
+  TasksListSection,
 } from 'src/components/organisms'
-import { TasksListHeader } from 'src/components/organisms/Tasks/TasksList/TasksListHeader'
-import { Flex } from 'src/components/atoms'
-import { TasksListSection } from 'src/components/organisms/Tasks/TasksList/TasksListSection'
-import { useMyTasks } from 'src/store/app/myTasks'
 import { useMyTasksComponent } from 'src/pages/MyTasks/Provider'
+import { useMyTasks } from 'src/store/app/myTasks'
 import { SkeletonList } from './SkeletonList'
 import { useTasksListBody } from './useTasksListBody'
 

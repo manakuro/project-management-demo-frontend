@@ -3,9 +3,9 @@ import { Avatar, Flex, Stack } from 'src/components/atoms'
 import { PopoverProfile } from 'src/components/organisms'
 import { useFeedListItem } from '../Provider'
 import { CreateAt } from './CreateAt'
-import { Title } from './Title'
-import { Like } from './Like'
 import { FeedOptionMenu } from './FeedOptionMenu'
+import { Like } from './Like'
+import { Title } from './Title'
 
 type Props = {}
 

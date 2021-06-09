@@ -1,6 +1,6 @@
-import { transitions } from 'src/styles'
 import { useMemo } from 'react'
 import { ChakraProps } from 'src/shared/chakra'
+import { transitions } from 'src/styles'
 
 export const useClickableHoverStyle = () => {
   const defaultStyle = useMemo<ChakraProps>(

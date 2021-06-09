@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
-import { useCarousel } from './Provider'
 import { Flex, Icon, IconButton } from 'src/components/atoms'
+import { useCarousel } from './Provider'
 
 type Props = {}
 

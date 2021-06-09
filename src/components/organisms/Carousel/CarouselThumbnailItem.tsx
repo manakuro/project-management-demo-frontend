@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react'
-import { useCarousel } from './Provider'
 import { AspectRatio, WrapItem } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
+import { useCarousel } from './Provider'
 
 type Props = {
   index?: number

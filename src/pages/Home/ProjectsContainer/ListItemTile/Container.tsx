@@ -1,7 +1,7 @@
 import React, { ReactElement, useCallback, useState } from 'react'
 import { Flex, Text, FlexProps } from 'src/components/atoms'
-import { transitions } from 'src/styles'
 import { useHover } from 'src/hooks/useHover'
+import { transitions } from 'src/styles'
 
 type Props = {
   name: string

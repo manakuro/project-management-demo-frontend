@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import { FlexProps } from 'src/components/atoms'
+import { SetValueParam } from 'src/components/organisms/Menus/EditorMentionMenu'
 import {
   MENTION_TYPE,
   MentionItem as TMentionItem,
@@ -8,12 +9,11 @@ import {
   MentionTeammate,
   MentionWorkspace,
 } from '../types'
-import { Teammate } from './Teammate'
 import { MentionItemBase } from './MentionItemBase'
-import { Task } from './Task'
 import { Project } from './Project'
+import { Task } from './Task'
+import { Teammate } from './Teammate'
 import { Workspace } from './Workspace'
-import { SetValueParam } from 'src/components/organisms/Menus/EditorMentionMenu'
 
 type Props = Override<
   FlexProps,

@@ -5,8 +5,8 @@ import {
   MenuItem,
   MenuDivider,
 } from 'src/components/organisms'
-import { useDisclosure } from 'src/shared/chakra'
 import { useClickOutside } from 'src/hooks/useClickOutside'
+import { useDisclosure } from 'src/shared/chakra'
 import { PopoverMore } from './PopoverMore'
 
 type Props = {

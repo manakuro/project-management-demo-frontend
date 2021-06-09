@@ -1,7 +1,7 @@
-import React, { memo } from 'react'
-import { EditorContainer } from './Editors'
-import { schema, plugins } from 'src/shared/prosemirror/config'
 import { EditorProps } from 'prosemirror-view'
+import React, { memo } from 'react'
+import { schema, plugins } from 'src/shared/prosemirror/config'
+import { EditorContainer } from './Editors'
 
 type Props = {
   onChange?: (val: string) => void

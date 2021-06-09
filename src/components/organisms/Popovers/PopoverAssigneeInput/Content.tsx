@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { Button, Input, Portal, Stack, Text } from 'src/components/atoms'
 import {
   PopoverContent,
   PopoverProps,
@@ -7,9 +8,8 @@ import {
   PopoverBody,
   AssigneeMenu,
 } from 'src/components/organisms'
-import { Button, Input, Portal, Stack, Text } from 'src/components/atoms'
-import { useDisclosure } from 'src/shared/chakra'
 import { useClickOutside } from 'src/hooks'
+import { useDisclosure } from 'src/shared/chakra'
 
 type Props = {
   onClose?: () => void

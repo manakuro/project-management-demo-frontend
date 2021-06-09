@@ -6,13 +6,13 @@ import {
   atom,
   useRecoilValue,
 } from 'recoil'
-import { Task, TaskResponse } from './type'
 import { uniqBy } from 'src/shared/utils'
-import { subtaskSelector } from 'src/store/entities/subtasks'
 import { attachmentSelector } from 'src/store/entities/attachments'
 import { feedSelector } from 'src/store/entities/feeds'
-import { teammateSelector } from 'src/store/entities/teammates'
+import { subtaskSelector } from 'src/store/entities/subtasks'
 import { tagSelector } from 'src/store/entities/tags'
+import { teammateSelector } from 'src/store/entities/teammates'
+import { Task, TaskResponse } from './type'
 
 export const taskIdsState = atom<string[]>({
   key: 'taskIdsState',

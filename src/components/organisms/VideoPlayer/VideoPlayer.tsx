@@ -1,4 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react'
+import ReactPlayer from 'react-player'
+import { AspectRatio, Box, Flex, Icon, IconButton } from 'src/components/atoms'
 import {
   Modal,
   ModalBody,
@@ -6,11 +8,9 @@ import {
   ModalFooter,
   ModalOverlay,
 } from 'src/components/organisms'
-import { AspectRatio, Box, Flex, Icon, IconButton } from 'src/components/atoms'
-import { useVideoPlayer } from './useVideoPlayer'
-import { Duration } from './Duration'
-import ReactPlayer from 'react-player'
 import { DurationBar } from 'src/components/organisms/VideoPlayer/DurationBar'
+import { Duration } from './Duration'
+import { useVideoPlayer } from './useVideoPlayer'
 
 export type State = {
   played: number

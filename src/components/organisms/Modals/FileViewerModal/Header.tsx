@@ -9,9 +9,9 @@ import {
   Stack,
   Text,
 } from 'src/components/atoms'
-import { useFileViewerModal } from './useFileViewerModal'
-import { useAttachment } from 'src/store/entities/attachments'
 import { formatAttachmentCreatedAt } from 'src/shared/date'
+import { useAttachment } from 'src/store/entities/attachments'
+import { useFileViewerModal } from './useFileViewerModal'
 
 type Props = {}
 

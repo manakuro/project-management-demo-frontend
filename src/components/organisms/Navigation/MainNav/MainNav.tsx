@@ -1,8 +1,5 @@
 import React, { memo } from 'react'
 import { List } from 'src/components/atoms'
-import { MAX_WIDTH } from '../Navigation'
-import { NavListItem as TNavListItem } from '../type'
-import { NavListItem } from '../NavListItem'
 import {
   ROUTE_HOME,
   ROUTE_MY_TASKS,
@@ -10,6 +7,9 @@ import {
   ROUTE_GOALS,
   ROUTE_PORTFOLIOS,
 } from 'src/router'
+import { NavListItem } from '../NavListItem'
+import { MAX_WIDTH } from '../Navigation'
+import { NavListItem as TNavListItem } from '../type'
 
 const items: TNavListItem[] = [
   {

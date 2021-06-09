@@ -1,14 +1,14 @@
 import React from 'react'
+import { Divider } from 'src/components/atoms'
 import {
   Modal,
   ModalBody,
   ModalContent,
   ModalHeader,
 } from 'src/components/organisms'
-import { Divider } from 'src/components/atoms'
-import { useFileViewerModal } from './useFileViewerModal'
-import { Header } from './Header'
 import { Body } from './Body'
+import { Header } from './Header'
+import { useFileViewerModal } from './useFileViewerModal'
 
 type Props = {}
 

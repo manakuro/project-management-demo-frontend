@@ -1,4 +1,5 @@
 import React from 'react'
+import { Divider, Link } from 'src/components/atoms'
 import {
   Popover,
   PopoverBody,
@@ -6,11 +7,10 @@ import {
   PopoverTrigger,
   PopoverProps,
 } from 'src/components/organisms'
-import { Divider, Link } from 'src/components/atoms'
+import { Project } from 'src/store/entities/projects'
 import { ColorPicker } from './ColorPicker'
 import { IconPicker } from './IconPicker'
 import { Setting } from './Setting'
-import { Project } from 'src/store/entities/projects'
 
 type Props = {
   project: Project

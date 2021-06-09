@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   TabPanels as ChakraTabPanels,
   TabPanelsProps as ChakraTabPanelsProps,
 } from '@chakra-ui/react'
+import React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraTabPanelsProps

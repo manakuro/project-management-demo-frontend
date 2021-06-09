@@ -1,12 +1,12 @@
 import React, { memo, useEffect, useState } from 'react'
-import { Editor, EditorContent } from 'src/components/organisms'
 import { Flex } from 'src/components/atoms'
+import { Editor, EditorContent } from 'src/components/organisms'
+import { uuid } from 'src/shared/uuid'
+import { Attachments } from './Attachments'
 import { Container } from './Container'
+import { Placeholder } from './Placeholder'
 import { Provider, useInput } from './Provider'
 import { ToolBar } from './ToolBar'
-import { Placeholder } from './Placeholder'
-import { Attachments } from './Attachments'
-import { uuid } from 'src/shared/uuid'
 
 type Props = {}
 

@@ -1,8 +1,8 @@
 import React, { memo, useCallback } from 'react'
 import { Avatar, Box, Button, Icon, Text } from 'src/components/atoms'
+import { PopoverProfile } from 'src/components/organisms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useTeammate } from 'src/store/entities/teammates'
-import { PopoverProfile } from 'src/components/organisms'
 
 type Props = {
   teammateId: string

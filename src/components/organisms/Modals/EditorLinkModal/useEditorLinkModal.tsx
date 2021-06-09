@@ -1,5 +1,5 @@
-import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useCallback } from 'react'
+import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 
 type State = {
   isOpen: boolean

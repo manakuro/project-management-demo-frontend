@@ -1,11 +1,11 @@
-import React from 'react'
-import { Box } from 'src/components/atoms'
 import {
   Worker,
   Viewer,
   ViewerProps,
   CharacterMap,
 } from '@react-pdf-viewer/core'
+import React from 'react'
+import { Box } from 'src/components/atoms'
 
 import '@react-pdf-viewer/core/lib/styles/index.css'
 const packageJson = require('../../../../package.json')

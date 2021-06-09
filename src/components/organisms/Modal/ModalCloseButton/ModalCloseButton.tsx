@@ -1,5 +1,5 @@
-import React from 'react'
 import { ModalCloseButton as ChakraModalCloseButton } from '@chakra-ui/react'
+import React from 'react'
 
 type Props = {}
 export type ModalCloseButtonProps = Props

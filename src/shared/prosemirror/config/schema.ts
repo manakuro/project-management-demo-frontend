@@ -1,3 +1,4 @@
+import { Schema } from 'prosemirror-model'
 import {
   blockquote,
   bold,
@@ -24,7 +25,6 @@ import {
   mention,
   emoji,
 } from '../schema'
-import { Schema } from 'prosemirror-model'
 
 export const schema = new Schema({
   marks: {

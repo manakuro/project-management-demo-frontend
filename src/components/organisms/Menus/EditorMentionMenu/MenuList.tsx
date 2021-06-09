@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react'
 import { ModalBody, ModalContent } from 'src/components/organisms'
-import { useEditorMentionMenu, SetValueParam } from './useEditorMentionMenu'
-import { MentionItem } from './MentionItem'
 import { useMenuStyle } from 'src/hooks'
+import { MentionItem } from './MentionItem'
 import { Empty } from './MentionItem/Empty'
+import { useEditorMentionMenu, SetValueParam } from './useEditorMentionMenu'
 
 type Props = {}
 

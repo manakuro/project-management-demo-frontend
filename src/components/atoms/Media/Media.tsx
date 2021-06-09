@@ -1,5 +1,5 @@
-import React from 'react'
 import { Box as ChakraBox, BoxProps } from '@chakra-ui/react'
+import React from 'react'
 
 type Props = BoxProps & {
   mobile?: boolean

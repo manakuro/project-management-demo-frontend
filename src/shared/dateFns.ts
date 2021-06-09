@@ -1,13 +1,13 @@
-import isToday from 'date-fns/isToday'
-import isYesterday from 'date-fns/isYesterday'
-import isTomorrow from 'date-fns/isTomorrow'
-import isThisYear from 'date-fns/isThisYear'
-import isThisWeek from 'date-fns/isThisWeek'
-import addYears from 'date-fns/addYears'
-import getWeek from 'date-fns/getWeek'
-import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
-import intervalToDuration from 'date-fns/intervalToDuration'
 import DateIODateFnsAdapter from '@date-io/date-fns'
+import addYears from 'date-fns/addYears'
+import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
+import getWeek from 'date-fns/getWeek'
+import intervalToDuration from 'date-fns/intervalToDuration'
+import isThisWeek from 'date-fns/isThisWeek'
+import isThisYear from 'date-fns/isThisYear'
+import isToday from 'date-fns/isToday'
+import isTomorrow from 'date-fns/isTomorrow'
+import isYesterday from 'date-fns/isYesterday'
 
 class DateFnsAdapter extends DateIODateFnsAdapter {
   isToday(date: ArgType<typeof isToday, 0>) {

@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react'
 import { Text, ListItem, Icon } from 'src/components/atoms'
-import { PADDING_X } from '../Navigation'
+import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
 import { transitions } from 'src/styles'
-import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
+import { PADDING_X } from '../Navigation'
 
 export const InviteTeammates: React.VFC = () => {
   const { setIsOpen } = useInviteModal()

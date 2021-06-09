@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { Row, Label } from '../Row'
 import { useSubtasksByTask } from 'src/store/entities/subtasks'
+import { Row, Label } from '../Row'
 import { AddSubtaskButton } from './AddSubtaskButton'
 import { TasksName } from './TasksName'
 

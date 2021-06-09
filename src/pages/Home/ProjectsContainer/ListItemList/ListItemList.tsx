@@ -7,9 +7,9 @@ import {
   Avatar,
   AvatarGroup,
 } from 'src/components/atoms'
+import { useClickableHoverStyle } from 'src/hooks'
 import { useProject } from 'src/store/entities/projects'
 import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
-import { useClickableHoverStyle } from 'src/hooks'
 import { MenuButton } from '../MenuButton/MenuButton'
 import { Container } from './Container'
 

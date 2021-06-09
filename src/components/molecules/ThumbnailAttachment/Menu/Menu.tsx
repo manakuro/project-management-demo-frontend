@@ -1,12 +1,12 @@
 import React, { memo, useCallback } from 'react'
 import { Link, Portal } from 'src/components/atoms'
+import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/Provider'
 import {
   Menu as OrganismsMenu,
   MenuProps,
   MenuItem,
   MenuList,
 } from 'src/components/organisms'
-import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/Provider'
 import { useAttachment } from 'src/store/entities/attachments'
 
 type Props = MenuProps & {

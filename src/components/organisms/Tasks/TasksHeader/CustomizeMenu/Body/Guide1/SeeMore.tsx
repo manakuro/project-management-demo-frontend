@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, Stack, AspectRatio, Box, Link } from 'src/components/atoms'
-import { guide1Item } from './item'
 import { Section } from 'src/components/organisms/Navigation/Help/Body/GuideListItem/ListItemDetail'
+import { guide1Item } from './item'
 
 export const SeeMore: React.VFC = () => {
   return (

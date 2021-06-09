@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Flex } from 'src/components/atoms'
 import {
   Tooltip as MoleculesTooltip,
   TooltipProps,
@@ -6,7 +7,6 @@ import {
 import { useDisclosure } from 'src/shared/chakra'
 import { useAttachment } from 'src/store/entities/attachments'
 import { useThumbnailAttachment } from './Provider'
-import { Flex } from 'src/components/atoms'
 
 type Props = Omit<TooltipProps, 'label' | 'size'> & {
   attachmentId: string

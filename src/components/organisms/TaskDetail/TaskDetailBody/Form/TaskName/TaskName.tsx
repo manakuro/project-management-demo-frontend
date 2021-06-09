@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { Flex } from 'src/components/atoms'
-import { Input } from './Input'
 import { useTask } from 'src/store/entities/tasks'
+import { Input } from './Input'
 
 type Props = {
   taskId: string

@@ -1,9 +1,9 @@
+import { BaseEmoji } from 'emoji-mart'
 import React, { memo, useCallback, useEffect, useMemo } from 'react'
 import { Flex, FlexProps, Text } from 'src/components/atoms'
-import { useMenuStyle } from 'src/hooks'
 import { useEditorEmojiMenu } from 'src/components/organisms/Menus/EditorEmojiMenu'
+import { useMenuStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
-import { BaseEmoji } from 'emoji-mart'
 
 type Props = Override<
   FlexProps,

@@ -8,8 +8,8 @@ import {
   Text,
 } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
-import { formatDueTime } from 'src/shared/date'
 import { useClickableHoverStyle } from 'src/hooks'
+import { formatDueTime } from 'src/shared/date'
 import { times } from 'src/shared/date/time'
 
 type Props = {

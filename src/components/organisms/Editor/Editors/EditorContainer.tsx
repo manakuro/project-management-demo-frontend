@@ -1,15 +1,15 @@
+import { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
+import { Plugin } from 'prosemirror-state'
+import { EditorProps } from 'prosemirror-view'
 import React, { PropsWithChildren, useMemo } from 'react'
+import { ConditionalRender } from 'src/components/atoms'
+import { useDebounce } from 'src/hooks'
 import {
   createJSONTransformer,
   ProsemirrorTransformer,
 } from 'src/shared/prosemirror/transformers'
-import { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
-import { Plugin } from 'prosemirror-state'
 import { EditorProvider, useEditorState } from './EdiorProvider'
 import { Portals } from './Portals'
-import { useDebounce } from 'src/hooks'
-import { ConditionalRender } from 'src/components/atoms'
-import { EditorProps } from 'prosemirror-view'
 
 type Props = {
   schema: Schema

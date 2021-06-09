@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
 import { Flex, Input as AtomsInput, Wrap, WrapItem } from 'src/components/atoms'
-import { useCollaborators } from '../Provider'
+import { AssigneeChip } from 'src/components/molecules'
 import { AssigneeMenu, useTasksListDetail } from 'src/components/organisms'
 import { useClickOutside } from 'src/hooks'
 import { ChakraProps, useStyleConfig } from 'src/shared/chakra'
-import { AssigneeChip } from 'src/components/molecules'
 import { useTask } from 'src/store/entities/tasks'
+import { useCollaborators } from '../Provider'
 
 export const Input: React.VFC = () => {
   const { isInputFocused } = useCollaborators()

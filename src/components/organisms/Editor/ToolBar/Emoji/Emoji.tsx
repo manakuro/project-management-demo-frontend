@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
-import { BaseButton } from '../BaseButton'
 import { Icon } from 'src/components/atoms'
-import { useEmoji } from 'src/shared/prosemirror/hooks'
 import { PopoverEmoji } from 'src/components/organisms'
+import { useEmoji } from 'src/shared/prosemirror/hooks'
+import { BaseButton } from '../BaseButton'
 
 type Props = {}
 

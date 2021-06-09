@@ -1,3 +1,4 @@
+import { useCallback, useMemo } from 'react'
 import {
   atomFamily,
   selectorFamily,
@@ -7,10 +8,9 @@ import {
   useRecoilValue,
   useRecoilState,
 } from 'recoil'
-import { FeedLike } from './type'
 import { uniqBy } from 'src/shared/utils'
-import { useCallback, useMemo } from 'react'
 import { uuid } from 'src/shared/uuid'
+import { FeedLike } from './type'
 
 export const feedLikeIdsState = atom<string[]>({
   key: 'feedLikeIdsState',

@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react'
 import { Stack } from 'src/components/atoms'
-import { GuideListItem, Item } from './GuideListItem'
+import { HELP_CONTAINER_PADDING } from 'src/components/organisms/Navigation/Help'
 import { guide1Item } from './Guide1'
 import { guide2Item } from './Guide2'
 import { guide3Item } from './Guide3'
 import { guide4Item } from './Guide4'
-import { HELP_CONTAINER_PADDING } from 'src/components/organisms/Navigation/Help'
+import { GuideListItem, Item } from './GuideListItem'
 
 const items: Item[] = [guide1Item, guide2Item, guide3Item, guide4Item]
 

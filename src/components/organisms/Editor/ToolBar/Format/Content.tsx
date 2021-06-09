@@ -1,12 +1,11 @@
 import React from 'react'
+import { Portal, Stack } from 'src/components/atoms'
 import {
   PopoverContent,
   PopoverProps,
   PopoverBody,
   PopoverArrow,
 } from 'src/components/organisms'
-import { Portal, Stack } from 'src/components/atoms'
-import { useClickOutside } from 'src/hooks'
 import {
   Bold,
   BulletList,
@@ -18,6 +17,7 @@ import {
   Strikethrough,
   Underline,
 } from 'src/components/organisms/Editor/ToolBar'
+import { useClickOutside } from 'src/hooks'
 
 type Props = {
   onClose?: () => void

@@ -6,10 +6,10 @@ import {
   atom,
   useRecoilValue,
 } from 'recoil'
-import { Project, ProjectResponse } from './type'
 import { COLORS } from 'src/hooks/useColorPicker'
 import { uniqBy } from 'src/shared/utils'
 import { teammateSelector } from 'src/store/entities/teammates'
+import { Project, ProjectResponse } from './type'
 
 export const projectIdsState = atom<string[]>({
   key: 'projectIdsState',

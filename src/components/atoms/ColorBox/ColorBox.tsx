@@ -1,6 +1,6 @@
 import React from 'react'
-import { forwardRef } from 'src/shared/chakra'
 import { Box, BoxProps } from 'src/components/atoms'
+import { forwardRef } from 'src/shared/chakra'
 
 type Props = BoxProps & {
   ref?: React.ForwardedRef<any>

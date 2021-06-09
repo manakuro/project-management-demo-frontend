@@ -1,7 +1,7 @@
+import { FormLabelProps } from '@chakra-ui/react'
+import styled from '@emotion/styled'
 import React from 'react'
 import { chakra, ChakraProps } from 'src/shared/chakra'
-import styled from '@emotion/styled'
-import { FormLabelProps } from '@chakra-ui/react'
 
 type Props = ChakraProps & FormLabelProps
 export type LabelProps = Props

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { Flex, FlexProps, Text } from 'src/components/atoms'
-import { useEditorView } from './EdiorProvider'
 import { isContentEmpty } from 'src/shared/prosemirror/utils'
+import { useEditorView } from './EdiorProvider'
 
 type Props = FlexProps
 export const EditorPlaceholder: React.FC<Props> = React.memo<Props>((props) => {

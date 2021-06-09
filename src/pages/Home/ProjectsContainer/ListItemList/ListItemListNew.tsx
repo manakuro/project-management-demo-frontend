@@ -1,8 +1,8 @@
 import React from 'react'
 import { Flex, Text } from 'src/components/atoms'
+import { NewBox } from 'src/components/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
 import { Container } from './Container'
-import { NewBox } from 'src/components/molecules'
 
 type Props = {}
 

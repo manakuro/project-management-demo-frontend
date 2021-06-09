@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { Flex, Skeleton } from 'src/components/atoms'
 import {
   TasksHeader,
   TasksHeaderLeft,
@@ -6,7 +7,6 @@ import {
   TasksList,
   TasksListRow,
 } from 'src/components/organisms'
-import { Flex, Skeleton } from 'src/components/atoms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 
 const TEXT_HEIGHT = '16px'

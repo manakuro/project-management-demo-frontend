@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   Avatar as ChakraAvatar,
   AvatarProps as ChakraAvatarProps,
 } from '@chakra-ui/react'
+import React from 'react'
 
 type Props = ChakraAvatarProps
 export type AvatarProps = Props

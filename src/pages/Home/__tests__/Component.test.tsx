@@ -1,6 +1,6 @@
+import { render, screen } from '@testing-library/react'
 import React from 'react'
 import { Component } from 'src/pages/Home/Component'
-import { render, screen } from '@testing-library/react'
 import { WrappedComponent } from 'src/testUtils/'
 
 describe('Home', () => {

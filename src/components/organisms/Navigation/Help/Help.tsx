@@ -1,4 +1,5 @@
 import React from 'react'
+import { Flex } from 'src/components/atoms'
 import {
   Drawer,
   DrawerBody,
@@ -6,11 +7,10 @@ import {
   DrawerContent,
   DrawerHeader,
 } from 'src/components/organisms'
-import { useHelp } from './useHelp'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
-import { Footer } from './Footer'
 import { Body } from './Body'
-import { Flex } from 'src/components/atoms'
+import { Footer } from './Footer'
+import { useHelp } from './useHelp'
 
 export const HELP_CONTAINER_PADDING = 4
 export const Help: React.VFC = () => {

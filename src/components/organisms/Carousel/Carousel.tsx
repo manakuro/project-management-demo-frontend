@@ -1,6 +1,6 @@
 import React from 'react'
-import { Provider } from './Provider'
 import { Flex } from 'src/components/atoms'
+import { Provider } from './Provider'
 
 type Props = {
   onChange?: (currentIndex: number) => void

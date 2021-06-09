@@ -1,5 +1,5 @@
-import { Text, TextProps } from 'src/components/atoms'
 import React from 'react'
+import { Text, TextProps } from 'src/components/atoms'
 import { useLinkStyle } from 'src/hooks/styles'
 
 type Props = TextProps

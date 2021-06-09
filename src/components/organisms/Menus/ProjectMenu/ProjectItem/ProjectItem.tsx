@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { ListItem } from '../ListItem'
 import { Project } from 'src/store/entities/projects'
+import { ListItem } from '../ListItem'
 
 type Props = {
   onClick: (project: string) => void

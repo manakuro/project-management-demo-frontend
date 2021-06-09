@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
 import { Avatar, Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
-import { useClickableHoverStyle } from 'src/hooks'
 import { PopoverAssigneeInput, PopoverProfile } from 'src/components/organisms'
-import { useAssignee } from './useAssignee'
+import { useClickableHoverStyle } from 'src/hooks'
 import { useTeammate } from 'src/store/entities/teammates'
+import { useAssignee } from './useAssignee'
 
 type Props = {
   assigneeId?: string

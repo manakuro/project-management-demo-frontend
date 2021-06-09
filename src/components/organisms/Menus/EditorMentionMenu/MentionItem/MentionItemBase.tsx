@@ -1,11 +1,11 @@
 import React, { memo, useCallback, useEffect, useMemo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useMenuStyle } from 'src/hooks'
 import {
   MentionItem,
   SetValueParam,
   useEditorMentionMenu,
 } from 'src/components/organisms/Menus/EditorMentionMenu'
+import { useMenuStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 
 type Props = Override<

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex, Skeleton } from 'src/components/atoms'
-import { Comment } from './Comment'
 import { Collaborators } from './Collaborators'
+import { Comment } from './Comment'
 
 type Props = {
   loading?: boolean

@@ -1,7 +1,7 @@
-import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useCallback, useEffect } from 'react'
-import { isTaskDetailURL, useRouter, getTaskDetailId } from 'src/router'
+import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useTaskDetailQuery } from 'src/hooks/queries/useTaskDetailQuery'
+import { isTaskDetailURL, useRouter, getTaskDetailId } from 'src/router'
 
 const taskListDetailOpenState = atom({
   key: 'taskListDetailOpenState',

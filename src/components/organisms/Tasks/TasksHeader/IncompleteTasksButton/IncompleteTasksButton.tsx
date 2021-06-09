@@ -6,13 +6,13 @@ import {
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms'
-import { useDisclosure } from 'src/shared/chakra'
+import { PopoverCompletedTasks } from 'src/components/organisms/Tasks/TasksHeader/IncompleteTasksButton/PopoverCompletedTasks'
 import {
   ALL_TASKS,
   INCOMPLETE_TASKS,
   ListStatus,
 } from 'src/components/organisms/Tasks/TasksHeader/IncompleteTasksButton/listState'
-import { PopoverCompletedTasks } from 'src/components/organisms/Tasks/TasksHeader/IncompleteTasksButton/PopoverCompletedTasks'
+import { useDisclosure } from 'src/shared/chakra'
 
 type Props = {}
 

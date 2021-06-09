@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   Menu as ChakraMenu,
   MenuProps as ChakraMenuProps,
 } from '@chakra-ui/react'
+import React from 'react'
 
 type Props = ChakraMenuProps
 export type MenuProps = Props

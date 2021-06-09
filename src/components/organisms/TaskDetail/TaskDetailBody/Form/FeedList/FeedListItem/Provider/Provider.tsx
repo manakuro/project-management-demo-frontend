@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useState,
 } from 'react'
+import { useToast } from 'src/hooks'
 import { Feed, defaultFeedStateValue, useFeed } from 'src/store/entities/feeds'
 import {
   Teammate,
@@ -12,7 +13,6 @@ import {
   useTeammate,
 } from 'src/store/entities/teammates'
 import { Provider as ProviderContainer } from './ProviderContainer'
-import { useToast } from 'src/hooks'
 
 type ContextProps = {
   description: string

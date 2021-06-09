@@ -1,5 +1,5 @@
-import { Icon } from 'src/components/atoms'
 import React, { memo } from 'react'
+import { Icon } from 'src/components/atoms'
 import {
   PopoverEditorLink,
   PopoverEditorLinkTrigger,

@@ -1,8 +1,8 @@
-import React from 'react'
 import {
   Wrap as ChakraWrap,
   WrapProps as ChakraWrapProps,
 } from '@chakra-ui/react'
+import React from 'react'
 
 type Props = ChakraWrapProps
 export type WrapProps = Props

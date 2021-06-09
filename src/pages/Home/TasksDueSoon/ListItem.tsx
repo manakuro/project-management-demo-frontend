@@ -1,10 +1,10 @@
 import React from 'react'
 import { Badge, Flex, Text, CheckIcon, DueDate } from 'src/components/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
-import { TaskDueSoon } from './types'
-import { useProject } from 'src/store/entities/projects'
 import { PopoverDueDatePicker } from 'src/components/organisms'
+import { useClickableHoverStyle } from 'src/hooks'
 import { formatDueTime } from 'src/shared/date'
+import { useProject } from 'src/store/entities/projects'
+import { TaskDueSoon } from './types'
 
 type Props = {
   task: TaskDueSoon

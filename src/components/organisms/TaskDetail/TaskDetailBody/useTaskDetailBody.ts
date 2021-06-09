@@ -1,5 +1,5 @@
-import { atom, useRecoilState } from 'recoil'
 import { useEffect, useRef } from 'react'
+import { atom, useRecoilState } from 'recoil'
 
 type State = HTMLElement | null
 

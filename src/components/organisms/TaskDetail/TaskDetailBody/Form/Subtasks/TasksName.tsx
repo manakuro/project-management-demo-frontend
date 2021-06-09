@@ -1,17 +1,17 @@
 import React, { memo, useCallback } from 'react'
 import { CheckIcon, Flex, FlexProps, Stack } from 'src/components/atoms'
-import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
 import {
   TasksNameCell,
   TasksNameGrabIcon,
   TasksNameField,
   useTasksName,
 } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName'
-import { DueDate } from './DueDate'
-import { Assignee } from './Assignee'
-import { SubtaskNameProvider } from './SubtaskNameProvider'
-import { RightItem } from './RightItem'
+import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
 import { useSubtask } from 'src/store/entities/subtasks'
+import { Assignee } from './Assignee'
+import { DueDate } from './DueDate'
+import { RightItem } from './RightItem'
+import { SubtaskNameProvider } from './SubtaskNameProvider'
 
 type Props = FlexProps & {
   subtaskId: string

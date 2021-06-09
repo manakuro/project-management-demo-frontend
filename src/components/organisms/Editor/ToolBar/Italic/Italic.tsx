@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
-import { BaseButton } from '../BaseButton'
 import { Icon, IconButtonProps } from 'src/components/atoms'
-import { useItalic } from 'src/shared/prosemirror/hooks'
 import { TooltipProps } from 'src/components/molecules'
+import { useItalic } from 'src/shared/prosemirror/hooks'
+import { BaseButton } from '../BaseButton'
 
 type Props = Omit<IconButtonProps, 'aria-label'> & {
   tooltip?: Omit<TooltipProps, 'children'>

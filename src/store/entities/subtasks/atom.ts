@@ -1,3 +1,4 @@
+import { useCallback, useMemo } from 'react'
 import {
   atomFamily,
   selectorFamily,
@@ -6,10 +7,9 @@ import {
   atom,
   useRecoilValue,
 } from 'recoil'
-import { Subtask } from './type'
 import { uniqBy } from 'src/shared/utils'
-import { useCallback, useMemo } from 'react'
 import { uuid } from 'src/shared/uuid'
+import { Subtask } from './type'
 
 export const subtaskIdsState = atom<string[]>({
   key: 'subtaskIdsState',

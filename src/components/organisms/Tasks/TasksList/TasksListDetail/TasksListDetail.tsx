@@ -1,7 +1,7 @@
 import React from 'react'
 import { Drawer } from 'src/components/organisms'
-import { useTasksListDetail } from './useTasksListDetail'
 import { Content } from './Content'
+import { useTasksListDetail } from './useTasksListDetail'
 
 export const TasksListDetail: React.VFC = () => {
   const { isOpen, onClose, loading } = useTasksListDetail()

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal } from 'src/components/organisms'
-import { useEditorMentionMenu } from './useEditorMentionMenu'
 import { MenuList } from './MenuList'
+import { useEditorMentionMenu } from './useEditorMentionMenu'
 
 type Props = {}
 

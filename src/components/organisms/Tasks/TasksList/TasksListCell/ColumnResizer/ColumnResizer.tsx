@@ -10,10 +10,11 @@ import { useHover } from 'src/hooks/useHover'
 
 type Props = Omit<FlexProps, 'onChange'> & {
   onChange?: (margin: number) => void
+  forceUpdate?: number
 }
 
 export const ColumnResizer: React.FC<Props> = (props) => {
-  const { onChange, ...rest } = props
+  const { onChange, forceUpdate, ...rest } = props
   const [dragging, setDragging] = useState<boolean>(false)
   const { ref, isHovering } = useHover()
   const [height, setHeight] = useState<number>(0)
@@ -23,6 +24,15 @@ export const ColumnResizer: React.FC<Props> = (props) => {
   const [show, setShow] = useState<boolean>(false)
   const showBorderLine = useMemo(() => dragging, [dragging])
 
+  const initializeResizerPosition = useCallback(() => {
+    if (!ref.current) return
+    const rect = ref.current?.getBoundingClientRect()
+    setHeight(rect.height)
+    setTop(rect.top)
+    setLeft(rect.left)
+    setTranslateX(0)
+  }, [ref])
+
   const handleStartDrag = useCallback(() => {
     setDragging(true)
   }, [])
@@ -30,7 +40,6 @@ export const ColumnResizer: React.FC<Props> = (props) => {
   const handleEndDrag = useCallback(() => {
     setDragging(false)
     onChange?.(translateX)
-    setTranslateX(0)
     setShow(false)
   }, [onChange, translateX])
 
@@ -44,17 +53,21 @@ export const ColumnResizer: React.FC<Props> = (props) => {
     [dragging, left],
   )
 
+  const handleMouseLeave = useCallback(() => {
+    setShow(false)
+  }, [])
+
   useLayoutEffect(() => {
-    if (!ref.current) return
-    const rect = ref.current?.getBoundingClientRect()
-    setHeight(rect.height)
-    setTop(rect.top)
-    setLeft(rect.left)
-  }, [ref])
+    initializeResizerPosition()
+  }, [initializeResizerPosition])
 
   useEffect(() => {
     if (isHovering) setShow(true)
   }, [isHovering])
+
+  useEffect(() => {
+    initializeResizerPosition()
+  }, [initializeResizerPosition, forceUpdate])
 
   return (
     <>
@@ -87,6 +100,7 @@ export const ColumnResizer: React.FC<Props> = (props) => {
             onMouseUp={handleEndDrag}
             onTouchEnd={handleEndDrag}
             onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
             {...rest}
           >
             <Flex w="8px" h="full" bg="cyan.300" />

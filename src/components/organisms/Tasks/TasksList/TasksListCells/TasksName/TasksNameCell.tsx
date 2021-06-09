@@ -13,7 +13,8 @@ export const TasksNameCell: React.FC<Props> = forwardRef((props, ref) => {
     <TasksListCell
       fontSize="sm"
       ref={ref}
-      flex={1}
+      w="60%"
+      minW="40%"
       cursor="pointer"
       borderLeft="none"
       {...cellStyle}

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useLayoutEffect, useState } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { forwardRef } from 'src/shared/chakra'
 import { ColumnResizer } from './ColumnResizer'
@@ -11,13 +11,20 @@ type Props = FlexProps & {
 
 export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
   const { hover, resizable, onChangeSize, ...rest } = props
+  const [forceUpdate, setForceUpdate] = useState(1)
 
   const handleChange = useCallback(
     (margin: number) => {
-      onChangeSize?.(`calc(${props.w} + ${margin})`)
+      console.log('margin: ', margin)
+      onChangeSize?.(`calc(${props.w} + ${margin}px)`)
     },
     [onChangeSize, props.w],
   )
+
+  useLayoutEffect(() => {
+    if (!resizable) return
+    setForceUpdate((p) => p + 1)
+  }, [props.w, resizable])
 
   return (
     <Flex
@@ -46,7 +53,9 @@ export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
       {...rest}
     >
       {props.children}
-      {resizable && <ColumnResizer onChange={handleChange} />}
+      {resizable && (
+        <ColumnResizer onChange={handleChange} forceUpdate={forceUpdate} />
+      )}
     </Flex>
   )
 })

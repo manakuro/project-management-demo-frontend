@@ -13,13 +13,13 @@ import { TasksListHeader } from 'src/components/organisms/Tasks/TasksList/TasksL
 import { Flex } from 'src/components/atoms'
 import { TasksListSection } from 'src/components/organisms/Tasks/TasksList/TasksListSection'
 import { useMyTasks } from 'src/store/app/myTasks'
-import { useTasksComponent } from 'src/pages/Tasks/Provider'
+import { useMyTasksComponent } from 'src/pages/MyTasks/Provider'
 import { SkeletonList } from './SkeletonList'
 import { useTasksListBody } from './useTasksListBody'
 
 export const List: React.VFC = memo(() => {
   const { myTaskIds } = useMyTasks()
-  const { loading } = useTasksComponent()
+  const { loading } = useMyTasksComponent()
   const { id } = useTasksListBody()
 
   if (loading) return <SkeletonList />

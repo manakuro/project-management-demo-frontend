@@ -144,7 +144,7 @@ function useFeedOptionMenu(props: Props) {
 
   const onCopyCommentLink = useCallback(async () => {
     await navigator.clipboard.writeText(
-      `${window.location.origin}/tasks/${props.taskId}/${feed.id}`,
+      `${window.location.origin}/my_tasks/${props.taskId}/${feed.id}`,
     )
     toast({
       title: 'Copied successfully',

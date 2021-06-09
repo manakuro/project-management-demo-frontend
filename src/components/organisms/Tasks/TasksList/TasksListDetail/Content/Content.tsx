@@ -10,7 +10,7 @@ import {
 } from 'src/components/organisms'
 import { Divider, Flex } from 'src/components/atoms'
 import { useClickOutside } from 'src/hooks'
-import { useTasksListBody } from 'src/pages/Tasks/List/useTasksListBody'
+import { useTasksListBody } from 'src/pages/MyTasks/List/useTasksListBody'
 
 const HEADER_HEIGHT = 72
 const TOP = HEADER_HEIGHT

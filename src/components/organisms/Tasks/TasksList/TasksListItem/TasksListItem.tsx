@@ -31,7 +31,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
       <TasksDueDate taskId={props.taskId} />
       <TasksProjects taskId={props.taskId} />
       <TasksTags taskId={props.taskId} />
-      <TasksListCell hover w="4%" borderRight="none" />
+      <TasksListCell w="4%" borderRight="none" />
     </TasksListRow>
   )
 })

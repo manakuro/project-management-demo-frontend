@@ -6,12 +6,13 @@ import { ColumnResizer } from './ColumnResizer'
 type Props = FlexProps & {
   hover?: boolean
   resizable?: boolean
+  resizedMinW?: number
   onChangeSize?: (size: string) => void
 }
 export type TasksListCellProps = Props
 
 export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
-  const { hover, resizable, onChangeSize, ...rest } = props
+  const { hover, resizable, onChangeSize, resizedMinW, ...rest } = props
 
   const handleChange = useCallback(
     (margin: number) => {
@@ -48,7 +49,9 @@ export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
       {...rest}
     >
       {props.children}
-      {resizable && <ColumnResizer onChange={handleChange} />}
+      {resizable && (
+        <ColumnResizer onChange={handleChange} resizedMinW={resizedMinW} />
+      )}
     </Flex>
   )
 })

@@ -11,17 +11,15 @@ type Props = {
 export const Column: React.FC<Props> = memo<Props>((props) => {
   const { taskColumnId, isFirst } = props
   const { taskColumn, setTaskColumn } = useTaskColumn(taskColumnId)
+  const minW = useMemo(() => (isFirst ? 400 : 120), [isFirst])
   const style = useMemo<FlexProps>(() => {
     return {
       ...(isFirst
         ? {
-            minW: '400px',
             pl: 0,
             borderLeft: 'none',
           }
-        : {
-            minW: '120px',
-          }),
+        : {}),
     }
   }, [isFirst])
 
@@ -37,6 +35,8 @@ export const Column: React.FC<Props> = memo<Props>((props) => {
       resizable
       w={taskColumn.width}
       {...style}
+      minW={`${minW}px`}
+      resizedMinW={minW}
       onChangeSize={handleChangeSize}
     >
       {taskColumn.name}

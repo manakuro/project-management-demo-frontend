@@ -15,11 +15,13 @@ export const Column: React.FC<Props> = memo<Props>((props) => {
     return {
       ...(isFirst
         ? {
-            minW: '40%',
+            minW: '400px',
             pl: 0,
             borderLeft: 'none',
           }
-        : {}),
+        : {
+            minW: '120px',
+          }),
     }
   }, [isFirst])
 

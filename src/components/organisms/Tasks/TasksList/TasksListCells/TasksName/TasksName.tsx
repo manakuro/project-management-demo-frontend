@@ -41,7 +41,12 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <TasksNameCell ref={ref} onClick={handleClick} w={taskColumn.width}>
+    <TasksNameCell
+      ref={ref}
+      onClick={handleClick}
+      w={taskColumn.width}
+      minW="400px"
+    >
       <TasksNameGrabIcon />
       <CheckIcon isDone={task.isDone} ml={4} />
       <TasksNameField

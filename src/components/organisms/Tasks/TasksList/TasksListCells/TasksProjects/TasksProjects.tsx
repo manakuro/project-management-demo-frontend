@@ -27,6 +27,7 @@ export const TasksProjects: React.VFC<Props> = memo<Props>((props) => {
   return (
     <TasksListCell
       w={taskColumn.width}
+      minW="120px"
       hover
       cursor="pointer"
       onClick={onFocus}

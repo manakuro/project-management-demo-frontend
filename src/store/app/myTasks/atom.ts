@@ -114,7 +114,7 @@ export const useMyTasksByTeammateId = (teammateId: string) => {
   }
 }
 
-export const useMyTaskTaskColumns = () => {
+export const useMyTasksTaskColumns = () => {
   const taskColumnIds = useRecoilValue(myTaskTaskColumnIdsState)
 
   return {

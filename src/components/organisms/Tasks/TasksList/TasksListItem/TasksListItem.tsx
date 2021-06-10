@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import { FlexProps } from 'src/components/atoms'
+import { useTasksList } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import {
   TasksName,
@@ -24,6 +25,8 @@ export const TasksListItem: React.FC<Props> = (props) => {
 
 const Component: React.FC<Props> = memo<Props>((props) => {
   const { selected } = useTasksListItem()
+  const { taskColumnIds } = useTasksList()
+  console.log('taskColumnIds: ', taskColumnIds)
 
   return (
     <TasksListRow selected={selected}>

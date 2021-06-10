@@ -4,7 +4,6 @@ import {
   TasksHeader,
   TasksHeaderLeft,
   TasksHeaderRight,
-  TasksList,
   TasksListRow,
 } from 'src/components/organisms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
@@ -13,7 +12,7 @@ const TEXT_HEIGHT = '16px'
 const BUTTON_HEIGHT = '28px'
 export const SkeletonList: React.VFC = memo(() => {
   return (
-    <TasksList>
+    <Flex flex={1} flexDirection="column">
       <TasksHeader>
         <TasksHeaderLeft>
           <Skeleton w="114px" h={BUTTON_HEIGHT} />
@@ -61,7 +60,7 @@ export const SkeletonList: React.VFC = memo(() => {
           </Flex>
         </Flex>
       </Flex>
-    </TasksList>
+    </Flex>
   )
 })
 SkeletonList.displayName = 'SkeletonList'

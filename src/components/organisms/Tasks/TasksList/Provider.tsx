@@ -1,11 +1,26 @@
 import React, { createContext, useContext } from 'react'
 
-type ContextProps = {}
+type ContextProps = {
+  taskColumnIds: string[]
+}
 
-type Props = {}
-const Context = createContext<ContextProps>({})
+type Props = {
+  taskColumnIds: string[]
+}
+const Context = createContext<ContextProps>({
+  taskColumnIds: [],
+})
 export const useTasksList = () => useContext(Context)
 
 export const Provider: React.FC<Props> = (props) => {
-  return <Context.Provider value={{}}>{props.children}</Context.Provider>
+  const { taskColumnIds } = props
+  return (
+    <Context.Provider
+      value={{
+        taskColumnIds,
+      }}
+    >
+      {props.children}
+    </Context.Provider>
+  )
 }

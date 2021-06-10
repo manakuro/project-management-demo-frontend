@@ -20,7 +20,9 @@ export const taskColumnsState = atom<TaskColumn[]>({
 
 const defaultStateValue = (): TaskColumn => ({
   id: '',
+  fieldId: '',
   projectId: '',
+  teammateId: '',
   name: '',
   type: 1,
   width: '',

@@ -4,10 +4,12 @@ import { PopoverDueDatePicker } from 'src/components/organisms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
+import { useTaskColumn } from 'src/store/entities/taskColumns'
 import { useTask } from 'src/store/entities/tasks'
 
 type Props = FlexProps & {
   taskId: string
+  taskColumnId: string
 }
 
 export const TasksDueDate: React.VFC<Props> = memo<Props>((props) => {
@@ -15,6 +17,7 @@ export const TasksDueDate: React.VFC<Props> = memo<Props>((props) => {
   const hasDueDate = useMemo(() => !!task.dueDate, [task.dueDate])
   const { ref, isHovering } = useHover()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
+  const { taskColumn } = useTaskColumn(props.taskColumnId)
   const showIcon = useMemo(
     () => !hasDueDate && isHovering,
     [hasDueDate, isHovering],
@@ -27,7 +30,7 @@ export const TasksDueDate: React.VFC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <TasksListCell w="12%" hover ref={ref} cursor="pointer">
+    <TasksListCell w={taskColumn.width} hover ref={ref} cursor="pointer">
       <PopoverDueDatePicker
         linkStyle={{ w: 'full', h: 'full' }}
         date={task.dueDate}

@@ -8,6 +8,7 @@ type Props = FlexProps & {
   resizable?: boolean
   onChangeSize?: (size: string) => void
 }
+export type TasksListCellProps = Props
 
 export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
   const { hover, resizable, onChangeSize, ...rest } = props

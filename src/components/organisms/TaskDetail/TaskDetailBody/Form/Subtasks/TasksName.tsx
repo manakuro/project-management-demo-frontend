@@ -42,7 +42,7 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <TasksListRow w="full">
-      <TasksNameCell ref={ref} borderRight="none">
+      <TasksNameCell ref={ref} borderRight="none" flex={1}>
         <TasksNameGrabIcon />
         <CheckIcon isDone={subtask.isDone} ml={2} onClick={handleToggleDone} />
         <TasksNameField value={subtask.name} onChange={handleChange} />

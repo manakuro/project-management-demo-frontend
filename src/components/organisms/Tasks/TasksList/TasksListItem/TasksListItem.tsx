@@ -2,13 +2,8 @@ import React, { memo } from 'react'
 import { FlexProps } from 'src/components/atoms'
 import { useTasksList } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
-import {
-  TasksName,
-  TasksDueDate,
-  TasksProjects,
-  TasksTags,
-} from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
+import { Cell } from './Cell'
 import { Provider, useTasksListItem } from './Provider'
 
 type Props = FlexProps & {
@@ -26,15 +21,13 @@ export const TasksListItem: React.FC<Props> = (props) => {
 const Component: React.FC<Props> = memo<Props>((props) => {
   const { selected } = useTasksListItem()
   const { taskColumnIds } = useTasksList()
-  console.log('taskColumnIds: ', taskColumnIds)
 
   return (
     <TasksListRow selected={selected}>
-      <TasksName taskId={props.taskId} />
-      <TasksDueDate taskId={props.taskId} />
-      <TasksProjects taskId={props.taskId} />
-      <TasksTags taskId={props.taskId} />
-      <TasksListCell w="4%" borderRight="none" />
+      {taskColumnIds.map((id) => (
+        <Cell taskId={props.taskId} taskColumnId={id} key={id} />
+      ))}
+      <TasksListCell flex={1} borderRight="none" />
     </TasksListRow>
   )
 })

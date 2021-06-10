@@ -10,8 +10,8 @@ export const TasksListHeader: React.FC<Props> = memo<Props>(() => {
   const { taskColumnIds } = useTasksList()
   return (
     <Flex flex={1}>
-      {taskColumnIds.map((id, i) => (
-        <Column taskColumnId={id} key={id} isFirst={i === 0} />
+      {taskColumnIds.map((id) => (
+        <Column taskColumnId={id} key={id} />
       ))}
       <TasksListCell flex={1} borderRight="none" />
     </Flex>

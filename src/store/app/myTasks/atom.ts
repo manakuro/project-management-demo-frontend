@@ -10,8 +10,14 @@ import {
 } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import { uuid } from 'src/shared/uuid'
+import { taskColumnSelector } from 'src/store/entities/taskColumns'
 import { useTasks } from 'src/store/entities/tasks'
 import { MyTask, MyTaskResponse } from './type'
+
+export const myTaskTaskColumnIdsState = atom<string[]>({
+  key: 'myTaskTaskColumnIdsState',
+  default: [],
+})
 
 export const myTaskIdsState = atom<string[]>({
   key: 'myTaskIdsState',
@@ -108,25 +114,35 @@ export const useMyTasksByTeammateId = (teammateId: string) => {
   }
 }
 
+export const useMyTaskTaskColumns = () => {
+  const taskColumnIds = useRecoilValue(myTaskTaskColumnIdsState)
+
+  return {
+    taskColumnIds,
+  }
+}
+
 export const useMyTasks = () => {
   const myTaskIds = useRecoilValue(myTaskIdsState)
   const myTasks = useRecoilValue(myTasksState)
   const { setTasks } = useTasks()
+  const { setTaskColumns } = useSetters()
 
   const setMyTasks = useRecoilCallback(
     ({ set }) =>
-      (data: MyTaskResponse[]) => {
-        const myTasks = data.map((d) => ({
+      (data: MyTaskResponse) => {
+        const myTasks = data.myTasks.map((d) => ({
           ...d,
           taskIds: d.tasks.map((t) => t.id),
         }))
-
         myTasks.forEach((d) => {
           set(myTaskSelector(d.id), d)
           setTasks(d.tasks)
         })
+
+        setTaskColumns(data)
       },
-    [setTasks],
+    [setTaskColumns, setTasks],
   )
 
   return {
@@ -163,5 +179,25 @@ export const useMyTask = (myTaskId?: string) => {
     myTask,
     upsertMyTask,
     setMyTask,
+  }
+}
+
+function useSetters() {
+  const setTaskColumns = useRecoilCallback(
+    ({ set }) =>
+      (data: MyTaskResponse) => {
+        set(
+          myTaskTaskColumnIdsState,
+          data.taskColumns.map((t) => t.id),
+        )
+        data.taskColumns.forEach((t) => {
+          set(taskColumnSelector(t.id), t)
+        })
+      },
+    [],
+  )
+
+  return {
+    setTaskColumns,
   }
 }

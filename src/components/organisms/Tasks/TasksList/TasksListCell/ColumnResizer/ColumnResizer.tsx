@@ -1,20 +1,13 @@
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useState,
-} from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Flex, FlexProps, Portal } from 'src/components/atoms'
 import { useHover } from 'src/hooks/useHover'
 
 type Props = Omit<FlexProps, 'onChange'> & {
   onChange?: (margin: number) => void
-  forceUpdate?: number
 }
 
 export const ColumnResizer: React.FC<Props> = (props) => {
-  const { onChange, forceUpdate, ...rest } = props
+  const { onChange, ...rest } = props
   const [dragging, setDragging] = useState<boolean>(false)
   const { ref, isHovering } = useHover()
   const [height, setHeight] = useState<number>(0)
@@ -57,17 +50,12 @@ export const ColumnResizer: React.FC<Props> = (props) => {
     setShow(false)
   }, [])
 
-  useLayoutEffect(() => {
-    initializeResizerPosition()
-  }, [initializeResizerPosition])
-
   useEffect(() => {
-    if (isHovering) setShow(true)
-  }, [isHovering])
-
-  useEffect(() => {
-    initializeResizerPosition()
-  }, [initializeResizerPosition, forceUpdate])
+    if (isHovering) {
+      initializeResizerPosition()
+      setShow(true)
+    }
+  }, [isHovering, initializeResizerPosition])
 
   return (
     <>

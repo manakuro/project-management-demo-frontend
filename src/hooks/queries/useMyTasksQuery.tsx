@@ -513,6 +513,11 @@ const fetchTasks = async (): Promise<MyTaskResponse> => {
             updatedAt: '',
           },
         ],
+        taskStatus: {
+          id: '1',
+          taskListStatus: 1,
+          sortStatus: 1,
+        },
       })
     }, 1000)
   })

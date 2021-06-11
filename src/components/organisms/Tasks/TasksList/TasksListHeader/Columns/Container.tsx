@@ -1,16 +1,19 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { FlexProps } from 'src/components/atoms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
+import { useClickableHoverStyle } from 'src/hooks'
 import { useTaskColumn } from 'src/store/entities/taskColumns'
 
 type Props = {
   taskColumnId: string
   isFirst?: boolean
-}
+  clickable?: boolean
+} & FlexProps
 
 export const Container: React.FC<Props> = memo<Props>((props) => {
-  const { taskColumnId, isFirst } = props
+  const { taskColumnId, isFirst, clickable, ...rest } = props
   const { taskColumn, setTaskColumn } = useTaskColumn(taskColumnId)
+  const { clickableHoverStyle } = useClickableHoverStyle()
   const minW = useMemo(() => (isFirst ? 400 : 120), [isFirst])
   const style = useMemo<FlexProps>(() => {
     return {
@@ -20,8 +23,14 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
             borderLeft: 'none',
           }
         : {}),
+      ...(clickable
+        ? {
+            cursor: 'pointer',
+            ...clickableHoverStyle,
+          }
+        : {}),
     }
-  }, [isFirst])
+  }, [clickable, clickableHoverStyle, isFirst])
 
   const handleChangeSize = useCallback(
     async (size: string) => {
@@ -38,8 +47,10 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
       minW={`${minW}px`}
       resizedMinW={minW}
       onChangeSize={handleChangeSize}
+      {...rest}
     >
       {taskColumn.name}
+      {props.children}
     </TasksListCell>
   )
 })

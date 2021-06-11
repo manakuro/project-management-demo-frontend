@@ -80,6 +80,7 @@ import {
   BiUser,
   BiDownload,
   BiCommentDots,
+  BiDownArrowAlt,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon, FaRegStar, FaStar } from 'react-icons/fa'
 import { FiBold, FiItalic, FiUnderline } from 'react-icons/fi'
@@ -88,6 +89,7 @@ import { IoMdAttach } from 'react-icons/io'
 import { MdSort, MdTextFormat } from 'react-icons/md'
 
 export const icons = {
+  arrowDownAlt: BiDownArrowAlt,
   arrowToRight: BiArrowToRight,
   at: BiAt,
   attach: IoMdAttach,

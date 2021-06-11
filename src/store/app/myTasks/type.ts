@@ -1,3 +1,4 @@
+import { TaskListStatus } from 'src/store/app/myTasks/taskListStatus'
 import { TaskColumn } from 'src/store/entities/taskColumns'
 import { TaskResponse } from 'src/store/entities/tasks'
 
@@ -11,6 +12,7 @@ export type MyTaskResponse = {
     updatedAt: string
   }[]
   taskColumns: TaskColumn[]
+  taskStatus: TaskListStatus
 }
 
 export type MyTask = {

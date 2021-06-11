@@ -12,6 +12,7 @@ import { uniqBy } from 'src/shared/utils'
 import { uuid } from 'src/shared/uuid'
 import { taskColumnSelector } from 'src/store/entities/taskColumns'
 import { useTasks } from 'src/store/entities/tasks'
+import { myTaskTaskStatusState } from './taskListStatus'
 import { MyTask, MyTaskResponse } from './type'
 
 export const myTaskTaskColumnIdsState = atom<string[]>({
@@ -126,7 +127,7 @@ export const useMyTasks = () => {
   const myTaskIds = useRecoilValue(myTaskIdsState)
   const myTasks = useRecoilValue(myTasksState)
   const { setTasks } = useTasks()
-  const { setTaskColumns } = useSetters()
+  const { setTaskColumns, setTaskStatus } = useSetters()
 
   const setMyTasks = useRecoilCallback(
     ({ set }) =>
@@ -141,8 +142,9 @@ export const useMyTasks = () => {
         })
 
         setTaskColumns(data)
+        setTaskStatus(data)
       },
-    [setTaskColumns, setTasks],
+    [setTaskColumns, setTasks, setTaskStatus],
   )
 
   return {
@@ -197,7 +199,16 @@ function useSetters() {
     [],
   )
 
+  const setTaskStatus = useRecoilCallback(
+    ({ set }) =>
+      (data: MyTaskResponse) => {
+        set(myTaskTaskStatusState, data.taskStatus)
+      },
+    [],
+  )
+
   return {
     setTaskColumns,
+    setTaskStatus,
   }
 }

@@ -6,52 +6,62 @@ import {
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms'
-import { SortStatuses, useMyTasksTaskStatus } from 'src/store/app/myTasks'
+import {
+  TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
+  TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
+  TASK_LIST_SORT_STATUS_TYPE_LIKES,
+  TASK_LIST_SORT_STATUS_TYPE_NONE,
+  TASK_LIST_SORT_STATUS_TYPE_PROJECT,
+  TaskListSortStatusType,
+  useMyTasksTaskStatus,
+} from 'src/store/app/myTasks'
 
 type Props = {}
 
 const items: {
-  value: SortStatuses
+  value: TaskListSortStatusType
   text: string
 }[] = [
   {
-    value: 'none',
+    value: TASK_LIST_SORT_STATUS_TYPE_NONE,
     text: 'None',
   },
   {
-    value: 'dueDate',
+    value: TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
     text: 'Due Date',
   },
   {
-    value: 'likes',
+    value: TASK_LIST_SORT_STATUS_TYPE_LIKES,
     text: 'Likes',
   },
   {
-    value: 'alphabetical',
+    value: TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
     text: 'Alphabetical',
   },
   {
-    value: 'project',
+    value: TASK_LIST_SORT_STATUS_TYPE_PROJECT,
     text: 'Project',
   },
 ]
 
 export const SortButton: React.VFC<Props> = memo<Props>(() => {
-  const { onSort, isSorted } = useMyTasksTaskStatus()
+  const { onSort, isSorted, sortStatus } = useMyTasksTaskStatus()
   const handleChange = useCallback(
-    (status: SortStatuses) => {
-      onSort(status)
+    (status: ToString<TaskListSortStatusType>) => {
+      onSort(Number(status) as TaskListSortStatusType)
     },
     [onSort],
   )
   const text = useMemo<string>(() => {
     if (isSorted('none')) return ''
-
-    return `: ${items.find((i) => isSorted(i.value))!.text}`
-  }, [isSorted])
+    return `: ${items.find((i) => i.value === sortStatus)!.text}`
+  }, [isSorted, sortStatus])
 
   return (
-    <MenuSelect<SortStatuses> onChange={handleChange} placement="bottom-end">
+    <MenuSelect<ToString<TaskListSortStatusType>>
+      onChange={handleChange}
+      placement="bottom-end"
+    >
       <MenuSelectButton
         variant="ghost"
         aria-label="Sort tasks"
@@ -61,9 +71,9 @@ export const SortButton: React.VFC<Props> = memo<Props>(() => {
       >
         Sort{text}
       </MenuSelectButton>
-      <MenuSelectList>
+      <MenuSelectList defaultValue={sortStatus.toString()}>
         {items.map((item, i) => (
-          <MenuItemOption value={item.value} key={i}>
+          <MenuItemOption value={item.value.toString()} key={i}>
             {item.text}
           </MenuItemOption>
         ))}

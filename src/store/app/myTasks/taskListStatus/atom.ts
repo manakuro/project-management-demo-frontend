@@ -15,6 +15,7 @@ import {
   TASK_LIST_STATUS_TYPE_COMPLETED_TODAY,
   TASK_LIST_STATUS_TYPE_COMPLETED_YESTERDAY,
   TASK_LIST_STATUS_TYPE_INCOMPLETE,
+  TaskListSortStatusType,
   TaskListStatusType,
 } from './types'
 
@@ -75,12 +76,17 @@ function useSort() {
     (status: SortStatuses) => state.sortStatus === sortStatues[status],
     [state.sortStatus],
   )
+  const isSortStatusKey = useCallback(
+    (val: any): val is SortStatuses => typeof val === 'string',
+    [],
+  )
 
   const onSort = useCallback(
-    (status: SortStatuses) => {
-      setTaskStatus({ sortStatus: sortStatues[status] })
+    (status: TaskListSortStatusType | SortStatuses) => {
+      const val = isSortStatusKey(status) ? sortStatues[status] : status
+      setTaskStatus({ sortStatus: val })
     },
-    [setTaskStatus],
+    [setTaskStatus, isSortStatusKey],
   )
 
   return {

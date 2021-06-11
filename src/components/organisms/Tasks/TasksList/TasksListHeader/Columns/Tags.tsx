@@ -8,6 +8,6 @@ type Props = {
 export const Tags: React.FC<Props> = memo<Props>((props) => {
   const { taskColumnId } = props
 
-  return <Container taskColumnId={taskColumnId} />
+  return <Container clickable taskColumnId={taskColumnId} />
 })
 Tags.displayName = 'Tags'

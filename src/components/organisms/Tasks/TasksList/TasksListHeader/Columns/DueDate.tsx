@@ -12,12 +12,12 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
   const { isSorted, onSort } = useMyTasksTaskStatus()
 
   const handleClick = useCallback(() => {
-    if (isSorted('none')) {
-      onSort('dueDate')
+    if (isSorted('dueDate')) {
+      onSort('none')
       return
     }
 
-    onSort('none')
+    onSort('dueDate')
   }, [isSorted, onSort])
 
   return (

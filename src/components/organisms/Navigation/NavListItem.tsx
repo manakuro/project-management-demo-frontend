@@ -37,9 +37,7 @@ export const NavListItem: React.VFC<Props> = memo<Props>((props) => {
           px={PADDING_X}
           py={2}
           _hover={_hover}
-          {...(selectedStyle && item.pathname === router.pathname
-            ? selected
-            : {})}
+          {...(selectedStyle && item.isCurrentRoute?.(router) ? selected : {})}
           {...linkStyle}
         >
           <Icon icon={item.icon} mr={PADDING_X} mt="-2px" />

@@ -18,6 +18,7 @@ const items: TNavListItem[] = [
     icon: 'home',
     pathname: ROUTE_HOME.href.pathname,
     isExternal: false,
+    isCurrentRoute: (router) => router.pathname === ROUTE_HOME.href.pathname,
   },
   {
     name: 'My Tasks',
@@ -25,6 +26,9 @@ const items: TNavListItem[] = [
     icon: 'checkCircle',
     pathname: ROUTE_MY_TASKS.href.pathname,
     isExternal: false,
+    isCurrentRoute: (router) => {
+      return router.pathname.includes(ROUTE_MY_TASKS.href.pathname)
+    },
   },
   {
     name: 'Inbox',
@@ -32,6 +36,7 @@ const items: TNavListItem[] = [
     icon: 'bell',
     pathname: ROUTE_INBOX.href.pathname,
     isExternal: false,
+    isCurrentRoute: (router) => router.pathname === ROUTE_INBOX.href.pathname,
   },
   {
     name: 'Portfolios',
@@ -39,6 +44,8 @@ const items: TNavListItem[] = [
     icon: 'barChart',
     pathname: ROUTE_PORTFOLIOS.href.pathname,
     isExternal: false,
+    isCurrentRoute: (router) =>
+      router.pathname === ROUTE_PORTFOLIOS.href.pathname,
   },
   {
     name: 'Goals',
@@ -46,6 +53,7 @@ const items: TNavListItem[] = [
     icon: 'rocket',
     pathname: ROUTE_GOALS.href.pathname,
     isExternal: false,
+    isCurrentRoute: (router) => router.pathname === ROUTE_GOALS.href.pathname,
   },
 ]
 

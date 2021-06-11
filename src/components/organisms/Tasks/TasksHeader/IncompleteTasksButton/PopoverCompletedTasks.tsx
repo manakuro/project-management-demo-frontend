@@ -8,26 +8,18 @@ import {
   MenuOptionGroup,
 } from 'src/components/organisms'
 import { chakra } from 'src/shared/chakra'
-import {
-  ListStatus,
-  ONE_WEEK,
-  TWO_WEEK,
-  THREE_WEEK,
-  YESTERDAY,
-  ALL_COMPLETED_TASKS,
-  TODAY,
-} from './listState'
+import { TaskListStatuses } from 'src/store/app/myTasks'
 
 type Props = {
   onClose: () => void
-  listStatus?: ListStatus
-  onChange: (listStatus: ListStatus) => void
+  listStatus?: TaskListStatuses
+  onChange: (listStatus: TaskListStatuses) => void
 } & MenuProps
 
 export const PopoverCompletedTasks: React.FC<Props> = (props) => {
   const handleChange = useCallback(
-    (listStatus: string | string[] | undefined) => {
-      props.onChange(listStatus as ListStatus)
+    (listStatus?: string | string[]) => {
+      props.onChange(listStatus as TaskListStatuses)
       props.onClose()
     },
     [props],
@@ -44,7 +36,7 @@ export const PopoverCompletedTasks: React.FC<Props> = (props) => {
           type="radio"
           onChange={handleChange}
         >
-          <MenuItemOption value={ALL_COMPLETED_TASKS} as="div">
+          <MenuItemOption value="completed" as="div">
             All Completed Tasks
           </MenuItemOption>
           <MenuOptionGroup
@@ -54,19 +46,19 @@ export const PopoverCompletedTasks: React.FC<Props> = (props) => {
             fontSize="xs"
             onChange={handleChange}
           >
-            <MenuItemOption as="div" value={TODAY}>
+            <MenuItemOption as="div" value="completedToday">
               Today
             </MenuItemOption>
-            <MenuItemOption as="div" value={YESTERDAY}>
+            <MenuItemOption as="div" value="completedYesterday">
               Yesterday
             </MenuItemOption>
-            <MenuItemOption as="div" value={ONE_WEEK}>
+            <MenuItemOption as="div" value="completed1Week">
               1 week
             </MenuItemOption>
-            <MenuItemOption as="div" value={TWO_WEEK}>
+            <MenuItemOption as="div" value="completed2Weeks">
               2 weeks
             </MenuItemOption>
-            <MenuItemOption as="div" value={THREE_WEEK}>
+            <MenuItemOption as="div" value="completed3Weeks">
               3 weeks
             </MenuItemOption>
           </MenuOptionGroup>

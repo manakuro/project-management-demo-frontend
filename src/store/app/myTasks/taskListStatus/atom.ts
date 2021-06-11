@@ -25,7 +25,7 @@ const sortStatues = {
   alphabetical: TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
   project: TASK_LIST_SORT_STATUS_TYPE_PROJECT,
 } as const
-type SortStatuses = keyof typeof sortStatues
+export type SortStatuses = keyof typeof sortStatues
 
 export const useMyTasksTaskStatus = () => {
   const state = useRecoilValue(myTaskTaskStatusState)

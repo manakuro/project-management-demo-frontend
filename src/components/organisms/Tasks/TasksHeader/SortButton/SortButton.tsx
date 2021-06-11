@@ -6,17 +6,21 @@ import {
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms'
-import { NONE, ListStatus, PROJECT, DUE_DATE, LIKES } from './listState'
+import { SortStatuses, useMyTasksTaskStatus } from 'src/store/app/myTasks'
 
 type Props = {}
 
 export const SortButton: React.VFC<Props> = memo<Props>(() => {
-  const handleChange = useCallback((listStatus: ListStatus) => {
-    console.log('hey: ', listStatus)
-  }, [])
+  const { onSort } = useMyTasksTaskStatus()
+  const handleChange = useCallback(
+    (status: SortStatuses) => {
+      onSort(status)
+    },
+    [onSort],
+  )
 
   return (
-    <MenuSelect<ListStatus> onChange={handleChange} placement="bottom-end">
+    <MenuSelect<SortStatuses> onChange={handleChange} placement="bottom-end">
       <MenuSelectButton
         variant="ghost"
         aria-label="Sort tasks"
@@ -27,10 +31,11 @@ export const SortButton: React.VFC<Props> = memo<Props>(() => {
         Sort
       </MenuSelectButton>
       <MenuSelectList>
-        <MenuItemOption value={NONE}>None</MenuItemOption>
-        <MenuItemOption value={PROJECT}>Project</MenuItemOption>
-        <MenuItemOption value={DUE_DATE}>Due date</MenuItemOption>
-        <MenuItemOption value={LIKES}>Likes</MenuItemOption>
+        <MenuItemOption value="none">None</MenuItemOption>
+        <MenuItemOption value="dueDate">Due date</MenuItemOption>
+        <MenuItemOption value="likes">Likes</MenuItemOption>
+        <MenuItemOption value="alphabetical">Alphabetical</MenuItemOption>
+        <MenuItemOption value="project">Project</MenuItemOption>
       </MenuSelectList>
     </MenuSelect>
   )

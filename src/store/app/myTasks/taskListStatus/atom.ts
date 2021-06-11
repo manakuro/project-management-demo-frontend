@@ -15,6 +15,7 @@ import {
   TASK_LIST_STATUS_TYPE_COMPLETED_TODAY,
   TASK_LIST_STATUS_TYPE_COMPLETED_YESTERDAY,
   TASK_LIST_STATUS_TYPE_INCOMPLETE,
+  TaskListStatusType,
 } from './types'
 
 export const myTaskTaskStatusState = atom<TaskListStatus>({
@@ -109,8 +110,8 @@ function useTaskListStatus() {
   )
 
   const onSetTaskListStatus = useCallback(
-    (status: TaskListStatuses) => {
-      setTaskStatus({ taskListStatus: taskListStatues[status] })
+    (status: TaskListStatusType) => {
+      setTaskStatus({ taskListStatus: status })
     },
     [setTaskStatus],
   )

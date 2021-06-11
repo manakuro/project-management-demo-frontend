@@ -1,8 +1,10 @@
 import React from 'react'
 import { useMenuSelectContext } from '../useMenuSelect'
-import { Component } from './Component'
+import { Component, ComponentProps } from './Component'
 
-export const MenuSelectList: React.FC = (props) => {
+type Props = ComponentProps
+
+export const MenuSelectList: React.FC<Props> = (props) => {
   const { isOpen } = useMenuSelectContext()
   if (!isOpen) return null
 

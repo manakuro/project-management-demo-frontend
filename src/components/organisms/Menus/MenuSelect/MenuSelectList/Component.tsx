@@ -3,11 +3,15 @@ import { Portal } from 'src/components/atoms'
 import {
   MenuList as AtomsMenuList,
   MenuOptionGroup,
+  MenuOptionGroupProps,
 } from 'src/components/organisms'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useMenuSelectContext } from '../useMenuSelect'
 
-export const Component: React.FC = (props) => {
+type Props = MenuOptionGroupProps
+export type ComponentProps = Props
+
+export const Component: React.FC<Props> = (props) => {
   const { onChange, onClose, listStatus } = useMenuSelectContext()
   const { ref } = useClickOutside(onClose)
 
@@ -32,9 +36,8 @@ export const Component: React.FC = (props) => {
           value={listStatus as unknown as string}
           type="radio"
           onChange={handleChange}
-        >
-          {props.children}
-        </MenuOptionGroup>
+          {...props}
+        />
       </AtomsMenuList>
     </Portal>
   )

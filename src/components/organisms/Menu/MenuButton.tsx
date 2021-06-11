@@ -10,5 +10,5 @@ type Props = ChakraMenuButtonProps &
 export type MenuButtonProps = Props
 
 export const MenuButton: React.FC<Props> = (props) => {
-  return <ChakraMenuButton as={Box} {...props} />
+  return <ChakraMenuButton as={Box} outline="none; !important" {...props} />
 }

@@ -9,3 +9,4 @@ export const MenuSelectButton: React.FC<Props> = memo<Props>((props) => {
 
   return <MenuButton onClick={onOpen} {...props} />
 })
+MenuSelectButton.displayName = 'MenuSelectButton'

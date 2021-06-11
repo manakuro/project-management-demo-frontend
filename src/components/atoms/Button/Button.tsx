@@ -29,6 +29,7 @@ export const Button: React.FC<Props> & {
       minH={7}
       iconSpacing={1}
       fontWeight="normal"
+      outline="none; !important"
       {...style}
       {...rest}
       ref={ref}

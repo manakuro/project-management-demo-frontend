@@ -22,7 +22,7 @@ type Props = {
 export const TaskDetailHeader: React.FC<Props> = (props) => {
   if (props.loading)
     return (
-      <Flex px={6} h="57px" alignItems="center">
+      <Flex px={6} h="57px" alignItems="center" flex={1}>
         <Skeleton h="28px" w="117px" />
         <Skeleton h="28px" w="212px" ml="auto" />
       </Flex>

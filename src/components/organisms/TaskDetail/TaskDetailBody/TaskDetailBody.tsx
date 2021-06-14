@@ -14,7 +14,7 @@ export const TaskDetailBody: React.FC<Props> = (props) => {
 
   if (props.loading)
     return (
-      <Flex flexDirection="column">
+      <Flex flexDirection="column" flex={1}>
         <Skeleton h="44px" />
 
         <Stack direction="column" spacing={4} mt={4} px={6}>

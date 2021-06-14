@@ -29,7 +29,7 @@ export const TaskDetailHeader: React.FC<Props> = (props) => {
     )
 
   return (
-    <Flex px={6} h="57px" alignItems="center">
+    <Flex px={6} h="57px" alignItems="center" flex={1}>
       <Flex flex={1}>
         <Button
           leftIcon={<CheckIcon isDone mt="0.75px" />}

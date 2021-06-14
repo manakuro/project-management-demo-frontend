@@ -1,18 +1,14 @@
 import React, { memo } from 'react'
 import { Divider, Flex } from 'src/components/atoms'
 import {
-  DrawerBody,
-  DrawerFooter,
-  DrawerContent,
-  DrawerHeader,
   TaskDetailBody,
   TaskDetailHeader,
   TaskDetailFooter,
 } from 'src/components/organisms'
-import { useClickOutside } from 'src/hooks'
+import { useClickOutside, useDrawerStyle } from 'src/hooks'
 import { useTasksListBody } from 'src/pages/MyTasks/List/useTasksListBody'
 
-const HEADER_HEIGHT = 72
+const HEADER_HEIGHT = 71
 const TOP = HEADER_HEIGHT
 
 type Props = {
@@ -22,6 +18,8 @@ type Props = {
 
 export const Content: React.VFC<Props> = memo((props) => {
   const { getTasksListBodyElement } = useTasksListBody()
+  const { drawerStyle } = useDrawerStyle()
+  console.log('drawerStyle: ', drawerStyle)
 
   const { ref } = useClickOutside(
     () => {
@@ -34,27 +32,40 @@ export const Content: React.VFC<Props> = memo((props) => {
   )
 
   return (
-    <DrawerContent
+    <Flex
       flex={1}
       top={`${TOP}px !important`}
+      left={0}
+      position="absolute"
       borderTop="1px"
       borderLeft="1px"
       borderColor="gray.200"
       boxShadow="none"
+      w="full"
+      maxH={`calc(100vh - ${TOP}px)`}
+      h={`calc(100vh - ${TOP}px)`}
+      bg="white"
+      flexDirection="column"
     >
-      <Flex h="full" w="full" ref={ref} flexDirection="column">
-        <DrawerHeader p={0}>
+      <Flex
+        flex={1}
+        maxH="inherit"
+        h="inherit"
+        ref={ref}
+        flexDirection="column"
+      >
+        <Flex p={0}>
           <TaskDetailHeader onClose={props.onClose} loading={props.loading} />
-        </DrawerHeader>
+        </Flex>
         <Divider />
-        <DrawerBody flex={1} display="flex" flexDirection="column" p={0}>
+        <Flex {...drawerStyle.body} display="flex" flexDirection="column" p={0}>
           <TaskDetailBody isMakePublic loading={props.loading} />
-        </DrawerBody>
-        <DrawerFooter p={0}>
+        </Flex>
+        <Flex p={0}>
           <TaskDetailFooter loading={props.loading} />
-        </DrawerFooter>
+        </Flex>
       </Flex>
-    </DrawerContent>
+    </Flex>
   )
 })
 Content.displayName = 'Content'

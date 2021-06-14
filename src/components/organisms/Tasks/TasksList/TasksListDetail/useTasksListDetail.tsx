@@ -3,6 +3,11 @@ import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useTaskDetailQuery } from 'src/hooks/queries/useTaskDetailQuery'
 import { isTaskDetailURL, useRouter, getTaskDetailId } from 'src/router'
 
+const taskListDetailLoadingState = atom({
+  key: 'taskListDetailLoadingState',
+  default: false,
+})
+
 const taskListDetailOpenState = atom({
   key: 'taskListDetailOpenState',
   default: false,
@@ -20,8 +25,9 @@ export const useTasksListDetail = (props?: Props) => {
   const { router, navigateToTasks } = useRouter()
   const [isOpen, setIsOpen] = useRecoilState(taskListDetailOpenState)
   const [id, setId] = useRecoilState(taskListDetailIdState)
+  const [loading, setLoading] = useRecoilState(taskListDetailLoadingState)
   const resetId = useResetRecoilState(taskListDetailIdState)
-  const { refetch, loading } = useTaskDetailQuery({ lazy: true })
+  const { refetch } = useTaskDetailQuery({ lazy: true })
 
   const onClose = useCallback(async () => {
     setIsOpen(false)
@@ -29,18 +35,30 @@ export const useTasksListDetail = (props?: Props) => {
     resetId()
   }, [setIsOpen, navigateToTasks, resetId])
 
-  const onOpen = useCallback(() => {
-    setIsOpen(true)
-  }, [setIsOpen])
+  const onOpen = useCallback(
+    (callback?: () => void) => {
+      setIsOpen(true)
+      callback?.()
+    },
+    [setIsOpen],
+  )
 
   useEffect(() => {
     if (!props?.listenRouter) return
     if (!isTaskDetailURL(router)) return
 
-    setId(getTaskDetailId(router))
-    refetch()
-    onOpen()
-  }, [router, onOpen, setId, refetch, props?.listenRouter])
+    const newId = getTaskDetailId(router)
+    if (id === newId) return
+
+    setLoading(true)
+    setId(newId)
+    onOpen(() => {
+      setTimeout(async () => {
+        await refetch()
+        setLoading(false)
+      }, 200)
+    })
+  }, [router, onOpen, refetch, setId, props?.listenRouter, id, setLoading])
 
   return {
     isOpen,
@@ -48,5 +66,6 @@ export const useTasksListDetail = (props?: Props) => {
     onClose,
     loading,
     taskId: id,
+    refetch,
   }
 }

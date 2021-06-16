@@ -10,13 +10,13 @@ type Props = FlexProps & {
   taskId: string
 }
 
-export const TasksListItem: React.FC<Props> = (props) => {
+export const TasksListItem: React.FC<Props> = memo<Props>((props) => {
   return (
     <Provider {...props}>
       <Component {...props} />
     </Provider>
   )
-}
+})
 
 const Component: React.FC<Props> = memo<Props>((props) => {
   const { selected } = useTasksListItem()

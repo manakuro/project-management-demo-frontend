@@ -17,13 +17,13 @@ type Props = FlexProps & {
   subtaskId: string
 }
 
-export const TasksName: React.FC<Props> = (props) => {
+export const TasksName: React.FC<Props> = memo<Props>((props) => {
   return (
     <SubtaskNameProvider>
       <Component {...props} />
     </SubtaskNameProvider>
   )
-}
+})
 
 export const Component: React.FC<Props> = memo<Props>((props) => {
   const { ref } = useTasksName()
@@ -60,3 +60,4 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
     </TasksListRow>
   )
 })
+TasksName.displayName = 'TasksName'

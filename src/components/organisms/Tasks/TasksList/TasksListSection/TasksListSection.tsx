@@ -9,7 +9,7 @@ type Props = {
 }
 
 export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
-  const { myTask } = useMyTask(props.myTaskId)
+  const { taskSection } = useMyTask(props.myTaskId)
   const [isExpanded, setIsExpanded] = useState(true)
 
   const handleToggle = useCallback(() => {
@@ -26,12 +26,12 @@ export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
           onClick={handleToggle}
         />
         <Heading as="h3" size="sm" ml={2} fontWeight="semibold">
-          {myTask.name}
+          {taskSection.name}
         </Heading>
       </Flex>
       {isExpanded && (
         <Flex flexDirection="column">
-          {myTask.taskIds.map((id) => (
+          {taskSection.taskIds.map((id) => (
             <TasksListItem taskId={id} key={id} />
           ))}
           <AddTask myTaskId={props.myTaskId} />

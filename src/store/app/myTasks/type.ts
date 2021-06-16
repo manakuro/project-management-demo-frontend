@@ -1,27 +1,15 @@
 import { TaskListStatus } from 'src/store/app/myTasks/taskListStatus'
 import { TaskColumn } from 'src/store/entities/taskColumns'
-import { TaskResponse } from 'src/store/entities/tasks'
+import { TaskSectionResponse } from 'src/store/entities/taskSections'
 
 export type MyTaskResponse = {
-  myTasks: {
-    id: string
-    name: string
-    teammateId: string // TODO: change to `userId`
-    tasks: TaskResponse[]
-    createdAt: string
-    updatedAt: string
-  }[]
+  taskSections: TaskSectionResponse[]
   taskColumns: TaskColumn[]
   taskStatus: TaskListStatus
 }
 
-export type MyTask = {
-  id: string
-  name: string
-  teammateId: string // TODO: change to `userId`
-  taskIds: string[]
-  createdAt: string
-  updatedAt: string
+export type MyTasks = {
+  taskSectionIds: string[]
 }
 
 export type MyTaskTaskColumns = {

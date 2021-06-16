@@ -49,7 +49,7 @@ const fetchTasks = async (): Promise<MyTaskResponse> => {
   return new Promise<MyTaskResponse>((resolve) => {
     setTimeout(() => {
       resolve({
-        myTasks: [
+        taskSections: [
           {
             id: '1',
             name: 'Recently assigned',

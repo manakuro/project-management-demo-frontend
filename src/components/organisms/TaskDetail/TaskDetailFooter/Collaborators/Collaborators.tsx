@@ -7,13 +7,13 @@ import { Teammates } from './Teammates'
 
 type Props = {}
 
-export const Collaborators: React.FC<Props> = (props) => {
+export const Collaborators: React.FC<Props> = memo<Props>((props) => {
   return (
     <Provider>
       <Component {...props} />
     </Provider>
   )
-}
+})
 
 const Component: React.FC<Props> = memo(() => {
   return (
@@ -27,3 +27,4 @@ const Component: React.FC<Props> = memo(() => {
     </Flex>
   )
 })
+Collaborators.displayName = 'Collaborators'

@@ -47,7 +47,7 @@ const Component: React.VFC = memo(() => {
       >
         <Wrap py={task.teammateIds.length ? 2 : 0}>
           {task.teammateIds.map((id) => (
-            <WrapItem>
+            <WrapItem key={id}>
               <AssigneeChip teammateId={id} key={id} />
             </WrapItem>
           ))}

@@ -18,7 +18,7 @@ export const TasksListDetail: React.VFC = () => {
         width: '42rem',
         minHeight: '100vh',
         height: '100%',
-        zIndex: 1500,
+        zIndex: 1400,
         overflowY: 'scroll',
         pointerEvents: 'auto',
       }}

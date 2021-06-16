@@ -2,6 +2,7 @@ import React, { memo, useCallback, useState } from 'react'
 import { Flex, Heading, Icon, IconButton } from 'src/components/atoms'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
 import { useMyTask } from 'src/store/app/myTasks'
+import { AddTask } from './AddTask'
 
 type Props = {
   myTaskId: string
@@ -33,6 +34,7 @@ export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
           {myTask.taskIds.map((id) => (
             <TasksListItem taskId={id} key={id} />
           ))}
+          <AddTask myTaskId={props.myTaskId} />
         </Flex>
       )}
     </Flex>

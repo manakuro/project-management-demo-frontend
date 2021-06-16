@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import {
   atomFamily,
   selectorFamily,
@@ -7,6 +8,7 @@ import {
   useRecoilValue,
 } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
+import { uuid } from 'src/shared/uuid'
 import { attachmentSelector } from 'src/store/entities/attachments'
 import { feedSelector } from 'src/store/entities/feeds'
 import { subtaskSelector } from 'src/store/entities/subtasks'
@@ -23,28 +25,29 @@ export const tasksState = atom<Task[]>({
   default: [],
 })
 
+const defaultTaskState = (): Task => ({
+  id: '',
+  projectIds: [],
+  projects: [],
+  name: '',
+  dueDate: '',
+  dueTime: '',
+  isDone: false,
+  subTaskIds: [],
+  subTasks: [],
+  assigneeId: '',
+  attachments: [],
+  attachmentIds: [],
+  feeds: [],
+  feedIds: [],
+  teammates: [],
+  teammateIds: [],
+  tags: [],
+  tagIds: [],
+})
 const taskState = atomFamily<Task, string>({
   key: 'taskState',
-  default: {
-    id: '',
-    projectIds: [],
-    projects: [],
-    name: '',
-    dueDate: '',
-    dueTime: '',
-    isDone: false,
-    subTaskIds: [],
-    subTasks: [],
-    assigneeId: '',
-    attachments: [],
-    attachmentIds: [],
-    feeds: [],
-    feedIds: [],
-    teammates: [],
-    teammateIds: [],
-    tags: [],
-    tagIds: [],
-  },
+  default: defaultTaskState(),
 })
 
 export const taskSelector = selectorFamily<Task, string>({
@@ -79,9 +82,36 @@ export const taskSelector = selectorFamily<Task, string>({
     },
 })
 
+export const useTasksCommand = () => {
+  const upsert = useRecoilCallback(
+    ({ set }) =>
+      (task: Task) => {
+        set(taskSelector(task.id), task)
+      },
+    [],
+  )
+
+  const addTask = useCallback(
+    (val?: Partial<Task>) => {
+      const id = uuid()
+      upsert({
+        ...defaultTaskState(),
+        ...val,
+        id,
+      })
+
+      return id
+    },
+    [upsert],
+  )
+
+  return {
+    addTask,
+  }
+}
+
 export const useTasks = () => {
   const taskIds = useRecoilValue(taskIdsState)
-  // const tasks = useRecoilValue(tasksState)
   const { setSubtasks, setAttachments, setFeeds, setTags } = useSetters()
 
   const setTasks = useRecoilCallback(
@@ -111,7 +141,6 @@ export const useTasks = () => {
 
   return {
     taskIds,
-    // tasks,
     setTasks,
   }
 }

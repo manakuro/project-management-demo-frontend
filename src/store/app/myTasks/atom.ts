@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback } from 'react'
 import {
   atomFamily,
   selectorFamily,
@@ -6,12 +6,12 @@ import {
   DefaultValue,
   atom,
   useRecoilValue,
-  useRecoilState,
 } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import { uuid } from 'src/shared/uuid'
+import { useMe } from 'src/store/entities/me'
 import { taskColumnSelector } from 'src/store/entities/taskColumns'
-import { useTasks } from 'src/store/entities/tasks'
+import { useTasks, useTasksCommand } from 'src/store/entities/tasks'
 import { myTaskTaskStatusState } from './taskListStatus'
 import { MyTask, MyTaskResponse } from './type'
 
@@ -76,48 +76,8 @@ export const myTaskSelector = selectorFamily<MyTask, string>({
     },
 })
 
-export const useMyTasksByTeammateId = (teammateId: string) => {
-  const { upsertMyTask } = useMyTask()
-  const [myTasksAll, setMyTasksAll] = useRecoilState(myTasksState)
-
-  const addMyTask = useCallback(() => {
-    const id = uuid()
-    upsertMyTask({
-      ...defaultMyTaskStateValue(),
-      teammateId,
-      id,
-    })
-
-    return id
-  }, [upsertMyTask, teammateId])
-
-  const deleteMyTask = useRecoilCallback(
-    () => (teammateId: string) => {
-      const index = myTasksAll.findIndex((f) => f.teammateId === teammateId)
-      const newValue = [
-        ...myTasksAll.slice(0, index),
-        ...myTasksAll.slice(index + 1),
-      ]
-      setMyTasksAll(newValue)
-    },
-    [myTasksAll, setMyTasksAll],
-  )
-
-  const myTasks = useMemo(
-    () => myTasksAll.filter((f) => f.teammateId === teammateId),
-    [myTasksAll, teammateId],
-  )
-
-  return {
-    addMyTask,
-    deleteMyTask,
-    myTasks,
-  }
-}
-
 export const useMyTasksTaskColumns = () => {
   const taskColumnIds = useRecoilValue(myTaskTaskColumnIdsState)
-
   return {
     taskColumnIds,
   }
@@ -125,7 +85,6 @@ export const useMyTasksTaskColumns = () => {
 
 export const useMyTasks = () => {
   const myTaskIds = useRecoilValue(myTaskIdsState)
-  const myTasks = useRecoilValue(myTasksState)
   const { setTasks } = useTasks()
   const { setTaskColumns, setTaskStatus } = useSetters()
 
@@ -149,15 +108,11 @@ export const useMyTasks = () => {
 
   return {
     myTaskIds,
-    myTasks,
     setMyTasks,
   }
 }
-
-export const useMyTask = (myTaskId?: string) => {
-  const myTask = useRecoilValue(myTaskSelector(myTaskId || ''))
-
-  const upsertMyTask = useRecoilCallback(
+export const useMyTasksCommand = () => {
+  const upsert = useRecoilCallback(
     ({ set }) =>
       (myTask: MyTask) => {
         set(myTaskSelector(myTask.id), myTask)
@@ -165,22 +120,56 @@ export const useMyTask = (myTaskId?: string) => {
     [],
   )
 
+  const addMyTask = useCallback(() => {
+    const id = uuid()
+    upsert({
+      ...defaultMyTaskStateValue(),
+      id,
+    })
+
+    return id
+  }, [upsert])
+
+  return {
+    upsert,
+    addMyTask,
+  }
+}
+
+export const useMyTask = (myTaskId?: string) => {
+  const myTask = useRecoilValue(myTaskSelector(myTaskId || ''))
+  const { upsert } = useMyTasksCommand()
+  const tasksCommand = useTasksCommand()
+  const { me } = useMe()
+
   const setMyTask = useRecoilCallback(
     ({ snapshot }) =>
       async (val: Partial<MyTask>) => {
         const prev = await snapshot.getPromise(myTaskSelector(myTask.id))
-        upsertMyTask({
+        upsert({
           ...prev,
           ...val,
         })
       },
-    [upsertMyTask, myTask.id],
+    [upsert, myTask.id],
+  )
+
+  const addTask = useRecoilCallback(
+    ({ snapshot }) =>
+      async (val?: Partial<MyTask>) => {
+        const prev = await snapshot.getPromise(myTaskSelector(myTask.id))
+        const newTaskId = tasksCommand.addTask()
+        const taskIds = [...prev.taskIds, newTaskId]
+
+        await setMyTask({ ...val, taskIds, teammateId: me.id })
+      },
+    [myTask.id, tasksCommand, setMyTask, me.id],
   )
 
   return {
     myTask,
-    upsertMyTask,
     setMyTask,
+    addTask,
   }
 }
 

@@ -19,7 +19,6 @@ type Props = {
 export const Content: React.VFC<Props> = memo((props) => {
   const { getTasksListBodyElement } = useTasksListBody()
   const { drawerStyle } = useDrawerStyle()
-  console.log('drawerStyle: ', drawerStyle)
 
   const { ref } = useClickOutside(
     () => {

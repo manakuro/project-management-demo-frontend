@@ -1,19 +1,19 @@
-import React from 'react'
-import { AppProps } from 'next/app'
-import { RecoilRoot } from 'recoil'
 import { ChakraProvider } from '@chakra-ui/react'
-import { theme } from 'src/styles'
-import { Modals } from 'src/components/organisms'
 import enLocale from 'date-fns/locale/en-US'
+import { AppProps } from 'next/app'
+import React from 'react'
+import { resetServerContext } from 'react-beautiful-dnd'
+import { RecoilRoot } from 'recoil'
+import { getLayoutDefault, LayoutDefault } from 'src/components/organisms'
+import { Modals } from 'src/components/organisms'
+import { BeforeAppMount } from 'src/shared/beforeAppMount'
 import {
   muiTheme,
   MuiThemeProvider,
   LocalizationProvider,
   AdapterDateFns,
 } from 'src/shared/material-ui'
-import { BeforeAppMount } from 'src/shared/beforeAppMount'
-import { getLayoutDefault, LayoutDefault } from 'src/components/organisms'
-import { resetServerContext } from 'react-beautiful-dnd'
+import { theme } from 'src/styles'
 
 export type AppLayout = { getLayout: typeof getLayoutDefault }
 

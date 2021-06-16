@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { useRouter } from 'src/router'
+import { ROUTE_MY_TASKS, useRouter } from 'src/router'
 
 type ContextProps = {
   selected: boolean
@@ -32,7 +32,7 @@ function useRow(props: Props) {
   const { router } = useRouter()
 
   useEffect(() => {
-    if (router.query?.tasks?.[0] === props.taskId) {
+    if (router.query[ROUTE_MY_TASKS['name']]?.[0] === props.taskId) {
       setSelected(true)
       return
     }

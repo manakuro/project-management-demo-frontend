@@ -27,6 +27,7 @@ export const tasksState = atom<Task[]>({
 
 const defaultTaskState = (): Task => ({
   id: '',
+  taskSectionId: '',
   projectIds: [],
   projects: [],
   name: '',
@@ -44,6 +45,8 @@ const defaultTaskState = (): Task => ({
   teammateIds: [],
   tags: [],
   tagIds: [],
+  isNew: false,
+  isDeleted: false,
 })
 const taskState = atomFamily<Task, string>({
   key: 'taskState',
@@ -77,7 +80,13 @@ export const taskSelector = selectorFamily<Task, string>({
         }),
       )
 
+      if (newVal.isDeleted) {
+        set(taskIdsState, (prev) => prev.filter((id) => id !== newVal.id))
+        return
+      }
+
       if (get(taskIdsState).find((taskId) => taskId === newVal.id)) return
+
       set(taskIdsState, (prev) => [...prev, newVal.id])
     },
 })
@@ -97,6 +106,7 @@ export const useTasksCommand = () => {
       upsert({
         ...defaultTaskState(),
         ...val,
+        isNew: true,
         id,
       })
 
@@ -150,7 +160,7 @@ export const useTask = (taskId?: string) => {
   const { setSubtasks, setAttachments, setFeeds, setTeammates, setTags } =
     useSetters()
 
-  const upsertTask = useRecoilCallback(
+  const upsert = useRecoilCallback(
     ({ set }) =>
       (task: Task) => {
         set(taskSelector(task.id), task)
@@ -161,12 +171,18 @@ export const useTask = (taskId?: string) => {
     ({ snapshot }) =>
       async (val: Partial<Task>) => {
         const prev = await snapshot.getPromise(taskSelector(task.id))
-        upsertTask({
+        upsert({
           ...prev,
           ...val,
         })
       },
-    [upsertTask, task.id],
+    [upsert, task.id],
+  )
+  const deleteTask = useRecoilCallback(
+    () => async () => {
+      await setTask({ isDeleted: true })
+    },
+    [setTask],
   )
 
   const setTaskFromResponse = useRecoilCallback(
@@ -196,6 +212,7 @@ export const useTask = (taskId?: string) => {
     task,
     setTask,
     setTaskFromResponse,
+    deleteTask,
   }
 }
 

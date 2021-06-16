@@ -49,6 +49,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
     setTimeout(() => {
       resolve({
         id: '1',
+        taskSectionId: '1',
         projects: [{ id: '1' }],
         name: 'Resolve an issue of auto focus for tasks list detail page',
         dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
@@ -310,6 +311,8 @@ const fetchTask = async (): Promise<TaskResponse> => {
             updatedAt: '',
           },
         ],
+        isNew: false,
+        isDeleted: false,
       })
     }, 300)
   })

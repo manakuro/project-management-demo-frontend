@@ -6,6 +6,7 @@ import { Teammate } from 'src/store/entities/teammates'
 
 export type Task = {
   id: string
+  taskSectionId: string
   projectIds: string[]
   projects: { id: string }[]
   name: string
@@ -23,10 +24,13 @@ export type Task = {
   teammates: Teammate[]
   tagIds: string[]
   tags: Tag[]
+  isNew: boolean
+  isDeleted: boolean
 }
 
 export type TaskResponse = {
   id: string
+  taskSectionId: string
   projects: { id: string }[]
   name: string
   dueDate: string
@@ -38,4 +42,6 @@ export type TaskResponse = {
   feeds: Feed[]
   teammates: Teammate[]
   tags: Tag[]
+  isNew: boolean
+  isDeleted: boolean
 }

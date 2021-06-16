@@ -1,17 +1,27 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Box, Flex, Input, InputProps } from 'src/components/atoms'
 import { useTasksName } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName/TasksNameProvider'
-import { useDebounce } from 'src/hooks'
+import { useClickOutside, useDebounce } from 'src/hooks'
 
 type Props = {
   value: string
   onChange: (val: string) => void
+  isNew?: boolean
+  deleteTask?: () => Promise<void>
   focusedBorder?: boolean
 } & Omit<InputProps, 'onChange'>
 
 export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   const [value, setValue] = useState<string>(props.value)
   const { onInputFocus, onInputBlur, inputFocused } = useTasksName()
+  const autoFocus = useMemo(() => props.isNew, [props.isNew])
+
+  const { ref } = useClickOutside(
+    async () => {
+      if (!value) await props.deleteTask?.()
+    },
+    { skip: !props.isNew },
+  )
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
@@ -20,6 +30,12 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   useEffect(() => {
     setValue(props.value)
   }, [props.value])
+
+  useEffect(() => {
+    if (props.isNew) {
+      onInputFocus()
+    }
+  }, [onInputFocus, props.isNew])
 
   useDebounce(value, props.onChange, 500)
 
@@ -49,7 +65,7 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <Flex position="relative" maxWidth="70%" minW="150px">
+    <Flex position="relative" maxWidth="70%" minW="150px" ref={ref}>
       <Box as="span" {...style} visibility="hidden">
         {value}
       </Box>
@@ -64,6 +80,7 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
         placeholder={inputFocused ? 'Write a task name' : ''}
         onFocus={onInputFocus}
         onBlur={onInputBlur}
+        autoFocus={autoFocus}
       />
     </Flex>
   )

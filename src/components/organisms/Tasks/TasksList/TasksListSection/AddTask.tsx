@@ -4,11 +4,11 @@ import { useClickableHoverStyle } from 'src/hooks'
 import { useMyTask } from 'src/store/app/myTasks'
 
 type Props = {
-  myTaskId: string
+  taskSectionId: string
 }
 
 export const AddTask: React.FC<Props> = memo<Props>((props) => {
-  const { addTask } = useMyTask(props.myTaskId)
+  const { addTask } = useMyTask(props.taskSectionId)
   const { clickableHoverStyle } = useClickableHoverStyle()
 
   const handleClick = useCallback(async () => {

@@ -41,7 +41,7 @@ export const List: React.VFC = memo(() => {
         <Flex flex={1} flexDirection="column" id={id}>
           <TasksListHeader />
           {taskSectionIds.map((id) => (
-            <TasksListSection myTaskId={id} key={id} />
+            <TasksListSection taskSectionId={id} key={id} />
           ))}
         </Flex>
       </Flex>

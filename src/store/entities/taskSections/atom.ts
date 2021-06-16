@@ -9,7 +9,7 @@ import {
 } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import { uuid } from 'src/shared/uuid'
-import { useTasks, useTasksCommand } from 'src/store/entities/tasks'
+import { tasksState, useTasks, useTasksCommand } from 'src/store/entities/tasks'
 import { TaskSection, TaskSectionResponse } from './type'
 
 export const taskSectionIdsState = atom<string[]>({
@@ -34,6 +34,18 @@ export const defaultTaskSectionStateValue = (): TaskSection => ({
 const taskSectionState = atomFamily<TaskSection, string>({
   key: 'taskSectionState',
   default: defaultTaskSectionStateValue(),
+})
+
+export const taskSectionsTaskIdsSelector = selectorFamily<string[], string>({
+  key: 'taskSectionsTaskIdsSelector',
+  get:
+    (taskSectionId) =>
+    ({ get }) => {
+      const tasks = get(tasksState)
+      return tasks
+        .filter((t) => !t.isDeleted && taskSectionId === t.taskSectionId)
+        .map((t) => t.id)
+    },
 })
 
 export const taskSectionSelector = selectorFamily<TaskSection, string>({
@@ -123,10 +135,20 @@ export const useTaskSectionsCommand = () => {
   }
 }
 
+export const useTaskSectionTaskIds = (taskSectionId?: string) => {
+  const taskIds = useRecoilValue(
+    taskSectionsTaskIdsSelector(taskSectionId || ''),
+  )
+
+  return {
+    taskIds,
+  }
+}
+
 export const useTaskSection = (taskSectionId?: string) => {
   const taskSection = useRecoilValue(taskSectionSelector(taskSectionId || ''))
   const { upsert } = useTaskSectionsCommand()
-  const tasksCommand = useTasksCommand()
+  const useTasksCommandResult = useTasksCommand()
 
   const setTaskSection = useRecoilCallback(
     ({ snapshot }) =>
@@ -143,17 +165,10 @@ export const useTaskSection = (taskSectionId?: string) => {
   )
 
   const addTask = useRecoilCallback(
-    ({ snapshot }) =>
-      async (val?: Partial<TaskSection>) => {
-        const prev = await snapshot.getPromise(
-          taskSectionSelector(taskSection.id),
-        )
-        const newTaskId = tasksCommand.addTask()
-        const taskIds = [...prev.taskIds, newTaskId]
-
-        await setTaskSection({ ...val, taskIds })
-      },
-    [taskSection.id, tasksCommand, setTaskSection],
+    () => async (val?: Partial<TaskSection>) => {
+      useTasksCommandResult.addTask({ ...val, taskSectionId })
+    },
+    [useTasksCommandResult, taskSectionId],
   )
 
   return {

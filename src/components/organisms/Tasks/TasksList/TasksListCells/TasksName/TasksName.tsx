@@ -26,7 +26,7 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
 const Component: React.VFC<Props> = memo<Props>((props) => {
   const { ref, onMarkMenuOpened, onMarkMenuClosed } = useTasksName()
   const { navigateToTaskDetail } = useRouter()
-  const { task, setTask } = useTask(props.taskId)
+  const { task, setTask, deleteTask } = useTask(props.taskId)
   const { taskColumn } = useTaskColumn(props.taskColumnId)
 
   const handleClick = useCallback(async () => {
@@ -58,7 +58,9 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
       <CheckIcon isDone={task.isDone} ml={4} onClick={handleChangeIsDone} />
       <TasksNameField
         value={task.name}
+        isNew={task.isNew}
         onChange={handleChangeName}
+        deleteTask={deleteTask}
         focusedBorder
       />
       <TasksNameRightContainer>

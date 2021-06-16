@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 
 type Options = {
-  skipElement: (e: Event) => boolean
+  skipElement?: (e: Event) => boolean
+  skip?: boolean
 }
 export const useClickOutside = (
   onClickOutside?: () => void,
@@ -35,6 +36,8 @@ export const useClickOutside = (
   }, [])
 
   useEffect(() => {
+    if (options?.skip) return
+
     if (window.PointerEvent) {
       document.addEventListener('pointerdown', handleEvent)
     } else {
@@ -56,6 +59,8 @@ export const useClickOutside = (
   }, [])
 
   useEffect(() => {
+    if (options?.skip) return
+
     if (state.hasClickedOutside) {
       onClickOutside?.()
     }

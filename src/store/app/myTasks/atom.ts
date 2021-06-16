@@ -4,6 +4,7 @@ import { taskColumnSelector } from 'src/store/entities/taskColumns'
 import {
   useTaskSection,
   useTaskSections,
+  useTaskSectionTaskIds,
 } from 'src/store/entities/taskSections'
 import { myTaskTaskStatusState } from './taskListStatus'
 import { MyTasks, MyTaskResponse } from './type'
@@ -56,6 +57,7 @@ export const useMyTasks = () => {
 export const useMyTask = (taskSectionId: string) => {
   const { me } = useMe()
   const useTaskSectionResult = useTaskSection(taskSectionId)
+  const { taskIds } = useTaskSectionTaskIds(taskSectionId)
 
   const addTask = useRecoilCallback(
     () => async () => {
@@ -66,6 +68,7 @@ export const useMyTask = (taskSectionId: string) => {
 
   return {
     taskSection: useTaskSectionResult.taskSection,
+    taskIds,
     addTask,
   }
 }

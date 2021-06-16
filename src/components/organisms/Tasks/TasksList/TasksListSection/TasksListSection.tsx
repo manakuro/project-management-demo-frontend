@@ -5,11 +5,12 @@ import { useMyTask } from 'src/store/app/myTasks'
 import { AddTask } from './AddTask'
 
 type Props = {
-  myTaskId: string
+  taskSectionId: string
 }
 
 export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
-  const { taskSection } = useMyTask(props.myTaskId)
+  const { taskSection, taskIds } = useMyTask(props.taskSectionId)
+
   const [isExpanded, setIsExpanded] = useState(true)
 
   const handleToggle = useCallback(() => {
@@ -31,10 +32,10 @@ export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
       </Flex>
       {isExpanded && (
         <Flex flexDirection="column">
-          {taskSection.taskIds.map((id) => (
+          {taskIds.map((id) => (
             <TasksListItem taskId={id} key={id} />
           ))}
-          <AddTask myTaskId={props.myTaskId} />
+          <AddTask taskSectionId={props.taskSectionId} />
         </Flex>
       )}
     </Flex>

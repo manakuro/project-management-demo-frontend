@@ -16,12 +16,16 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   const { onInputFocus, onInputBlur, inputFocused } = useTasksName()
   const autoFocus = useMemo(() => props.isNew, [props.isNew])
 
-  const { ref } = useClickOutside(
+  const { ref, removeEventListener } = useClickOutside(
     async () => {
       if (!value) await props.deleteTask?.()
     },
     { skip: !props.isNew },
   )
+
+  useEffect(() => {
+    if (!props.isNew) removeEventListener()
+  }, [props.isNew, removeEventListener])
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)

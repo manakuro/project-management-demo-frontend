@@ -35,6 +35,16 @@ export const useClickOutside = (
     }
   }, [])
 
+  const removeEventListener = useCallback(() => {
+    console.log('Unsubscribe!!')
+    if (window.PointerEvent) {
+      document.removeEventListener('pointerdown', handleEvent)
+    } else {
+      document.removeEventListener('mousedown', handleEvent)
+      document.removeEventListener('touchstart', handleEvent)
+    }
+  }, [])
+
   useEffect(() => {
     if (options?.skip) return
 
@@ -47,13 +57,7 @@ export const useClickOutside = (
     console.log('Subscribe!!')
 
     return () => {
-      console.log('Unsubscribe!!')
-      if (window.PointerEvent) {
-        document.removeEventListener('pointerdown', handleEvent)
-      } else {
-        document.removeEventListener('mousedown', handleEvent)
-        document.removeEventListener('touchstart', handleEvent)
-      }
+      removeEventListener()
     }
     /* eslint react-hooks/exhaustive-deps: off */
   }, [])
@@ -69,6 +73,7 @@ export const useClickOutside = (
   return {
     ref,
     hasClickedOutside: state.hasClickedOutside,
+    removeEventListener,
   }
 }
 

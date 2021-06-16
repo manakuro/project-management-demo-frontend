@@ -185,6 +185,16 @@ export const useTask = (taskId?: string) => {
     [setTask],
   )
 
+  const setTaskName = useRecoilCallback(
+    ({ snapshot }) =>
+      async (val: string) => {
+        const current = await snapshot.getPromise(taskSelector(task.id))
+        const isNew = current.isNew && !!val ? { isNew: false } : {}
+        await setTask({ name: val, ...isNew })
+      },
+    [setTask, task.id],
+  )
+
   const setTaskFromResponse = useRecoilCallback(
     ({ set }) =>
       (data: TaskResponse) => {
@@ -213,6 +223,7 @@ export const useTask = (taskId?: string) => {
     setTask,
     setTaskFromResponse,
     deleteTask,
+    setTaskName,
   }
 }
 

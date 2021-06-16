@@ -11,7 +11,7 @@ type Props = {
 
 export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   const [value, setValue] = useState<string>(props.value)
-  const { onInputFocus, onInputBlur } = useTasksName()
+  const { onInputFocus, onInputBlur, inputFocused } = useTasksName()
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
@@ -49,7 +49,7 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <Flex position="relative" maxWidth="70%">
+    <Flex position="relative" maxWidth="70%" minW="150px">
       <Box as="span" {...style} visibility="hidden">
         {value}
       </Box>
@@ -61,9 +61,11 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
         position="absolute"
         top={0}
         focusBorderColor="transparent"
+        placeholder={inputFocused ? 'Write a task name' : ''}
         onFocus={onInputFocus}
         onBlur={onInputBlur}
       />
     </Flex>
   )
 })
+TasksNameField.displayName = 'TasksNameField'

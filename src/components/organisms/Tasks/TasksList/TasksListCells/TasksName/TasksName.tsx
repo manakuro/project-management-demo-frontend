@@ -15,13 +15,13 @@ type Props = FlexProps & {
   taskColumnId: string
 }
 
-export const TasksName: React.FC<Props> = (props) => {
+export const TasksName: React.FC<Props> = memo<Props>((props) => {
   return (
     <TasksNameProvider>
       <Component {...props} />
     </TasksNameProvider>
   )
-}
+})
 
 const Component: React.VFC<Props> = memo<Props>((props) => {
   const { ref, onMarkMenuOpened, onMarkMenuClosed } = useTasksName()
@@ -68,3 +68,4 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
     </TasksNameCell>
   )
 })
+TasksName.displayName = 'TasksName'

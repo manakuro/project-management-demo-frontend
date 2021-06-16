@@ -26,8 +26,6 @@ export const defaultTaskSectionStateValue = (): TaskSection => ({
   id: '',
   name: '',
   teammateId: '',
-  taskIds: [],
-  tasks: [],
   createdAt: '',
   updatedAt: '',
 })
@@ -93,11 +91,7 @@ export const useTaskSections = () => {
   const setTaskSections = useRecoilCallback(
     ({ set }) =>
       (data: TaskSectionResponse[]) => {
-        const taskSections = data.map((d) => ({
-          ...d,
-          taskIds: d.tasks.map((t) => t.id),
-        }))
-        taskSections.forEach((d) => {
+        data.forEach((d) => {
           set(taskSectionSelector(d.id), d)
           setTasks(d.tasks)
         })

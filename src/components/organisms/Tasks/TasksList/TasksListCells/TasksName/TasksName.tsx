@@ -39,7 +39,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
     },
     [setTask],
   )
-  const handleChangeIsDone = useCallback(
+  const handleToggleDone = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
       e.stopPropagation()
       await setTask({ isDone: !task.isDone })
@@ -55,7 +55,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
       minW="400px"
     >
       <TasksNameGrabIcon />
-      <CheckIcon isDone={task.isDone} ml={4} onClick={handleChangeIsDone} />
+      <CheckIcon isDone={task.isDone} ml={4} onClick={handleToggleDone} />
       <TasksNameField
         value={task.name}
         isNew={task.isNew}

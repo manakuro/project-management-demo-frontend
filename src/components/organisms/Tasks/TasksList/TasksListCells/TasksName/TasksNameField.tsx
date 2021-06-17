@@ -26,7 +26,6 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   const skipElement = useCallback(
     (e: Event) => {
       if (containerRef.current?.contains(e.target as Node) ?? false) return true
-
       if (taskDetailListDetailRef?.contains(e.target as Node) ?? false)
         return true
 

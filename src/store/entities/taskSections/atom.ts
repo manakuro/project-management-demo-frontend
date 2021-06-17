@@ -41,7 +41,12 @@ export const taskSectionsTaskIdsSelector = selectorFamily<string[], string>({
     ({ get }) => {
       const tasks = get(tasksState)
       return tasks
-        .filter((t) => !t.isDeleted && taskSectionId === t.taskSectionId)
+        .filter(
+          (t) =>
+            !t.isDeleted &&
+            taskSectionId === t.taskSectionId &&
+            !t.taskParentId,
+        )
         .map((t) => t.id)
     },
 })
@@ -86,17 +91,17 @@ export const taskSectionSelector = selectorFamily<TaskSection, string>({
 
 export const useTaskSections = () => {
   const taskSectionIds = useRecoilValue(taskSectionIdsState)
-  const { setTasks } = useTasks()
+  const { setTasksFromResponse } = useTasks()
 
   const setTaskSections = useRecoilCallback(
     ({ set }) =>
       (data: TaskSectionResponse[]) => {
         data.forEach((d) => {
           set(taskSectionSelector(d.id), d)
-          setTasks(d.tasks)
+          setTasksFromResponse(d.tasks)
         })
       },
-    [setTasks],
+    [setTasksFromResponse],
   )
 
   return {

@@ -7,14 +7,14 @@ import {
   useTasksName,
 } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
-import { useSubtask } from 'src/store/entities/subtasks'
+import { useTask } from 'src/store/entities/tasks'
 import { Assignee } from './Assignee'
 import { DueDate } from './DueDate'
 import { RightItem } from './RightItem'
 import { SubtaskNameProvider } from './SubtaskNameProvider'
 
 type Props = FlexProps & {
-  subtaskId: string
+  taskId: string
 }
 
 export const TasksName: React.FC<Props> = memo<Props>((props) => {
@@ -27,32 +27,37 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
 
 export const Component: React.FC<Props> = memo<Props>((props) => {
   const { ref } = useTasksName()
-  const { subtask, setSubtask } = useSubtask(props.subtaskId)
+  const { task, setTaskName, setTask, deleteTask } = useTask(props.taskId)
 
   const handleChange = useCallback(
     async (val) => {
-      await setSubtask({ name: val })
+      await setTaskName(val)
     },
-    [setSubtask],
+    [setTaskName],
   )
 
   const handleToggleDone = useCallback(async () => {
-    await setSubtask({ isDone: !subtask.isDone })
-  }, [setSubtask, subtask.isDone])
+    await setTask({ isDone: !task.isDone })
+  }, [setTask, task.isDone])
 
   return (
     <TasksListRow w="full">
       <TasksNameCell ref={ref} borderRight="none" flex={1}>
         <TasksNameGrabIcon />
-        <CheckIcon isDone={subtask.isDone} ml={2} onClick={handleToggleDone} />
-        <TasksNameField value={subtask.name} onChange={handleChange} />
+        <CheckIcon isDone={task.isDone} ml={2} onClick={handleToggleDone} />
+        <TasksNameField
+          value={task.name}
+          onChange={handleChange}
+          isNew={task.isNew}
+          deleteTask={deleteTask}
+        />
         <Flex alignItems="center" ml="auto">
           <Stack direction="row" spacing={2} alignItems="center">
             <RightItem>
-              <DueDate dueDate={subtask.dueDate} dueTime={subtask.dueTime} />
+              <DueDate dueDate={task.dueDate} dueTime={task.dueTime} />
             </RightItem>
             <RightItem>
-              <Assignee assigneeId={subtask.assigneeId} />
+              <Assignee assigneeId={task.assigneeId} />
             </RightItem>
           </Stack>
         </Flex>

@@ -27,7 +27,7 @@ export const Form: React.FC<Props> = memo(() => {
         />
         <Projects />
         <Description />
-        <Subtasks taskId={taskId} />
+        <Subtasks taskParentId={taskId} />
         <Attachment taskId={taskId} />
       </Stack>
       <FeedList taskId={taskId} />

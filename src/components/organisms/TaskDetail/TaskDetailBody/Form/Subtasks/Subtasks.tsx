@@ -1,27 +1,27 @@
 import React, { memo, useCallback } from 'react'
-import { useSubtasksByTask } from 'src/store/entities/subtasks'
+import { useTaskIdsByTaskParentId } from 'src/store/entities/tasks'
 import { Row, Label } from '../Row'
 import { AddSubtaskButton } from './AddSubtaskButton'
 import { TasksName } from './TasksName'
 
 type Props = {
-  taskId: string
+  taskParentId: string
 }
 
 export const Subtasks: React.FC<Props> = memo<Props>((props) => {
-  const { subtaskIds, addSubtask } = useSubtasksByTask(props.taskId)
+  const { taskIds, addTask } = useTaskIdsByTaskParentId(props.taskParentId)
 
-  const handleAddSubtask = useCallback(() => {
-    addSubtask()
-  }, [addSubtask])
+  const handleAddSubtask = useCallback(async () => {
+    await addTask()
+  }, [addTask])
 
   return (
     <Row flexDirection="column" alignItems="flex-start">
-      {subtaskIds.length > 0 && (
+      {taskIds.length > 0 && (
         <>
           <Label>Subtasks</Label>
-          {subtaskIds.map((s) => (
-            <TasksName subtaskId={s} key={s} />
+          {taskIds.map((id) => (
+            <TasksName taskId={id} key={id} />
           ))}
         </>
       )}

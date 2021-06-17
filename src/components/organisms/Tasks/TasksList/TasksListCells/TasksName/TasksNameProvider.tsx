@@ -40,8 +40,8 @@ export const TasksNameProvider: React.FC = (props) => {
   )
 
   const showMark = useMemo(
-    () => (isHovering || markMenuFocused) && !useInputFocusResult.inputFocused,
-    [isHovering, markMenuFocused, useInputFocusResult.inputFocused],
+    () => isHovering || markMenuFocused,
+    [isHovering, markMenuFocused],
   )
 
   return (

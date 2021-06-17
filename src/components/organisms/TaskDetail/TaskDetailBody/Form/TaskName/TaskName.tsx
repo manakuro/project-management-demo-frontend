@@ -8,13 +8,13 @@ type Props = {
 }
 
 export const TaskName: React.FC<Props> = memo<Props>((props) => {
-  const { task, setTask } = useTask(props.taskId)
+  const { task, setTaskName } = useTask(props.taskId)
 
   const handleChange = useCallback(
     async (val: string) => {
-      await setTask({ name: val })
+      await setTaskName(val)
     },
-    [setTask],
+    [setTaskName],
   )
 
   return (

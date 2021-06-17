@@ -13,37 +13,41 @@ export const useClickOutside = (
     hasClickedOutside: false,
   })
 
-  const handleEvent = useCallback((e: Event) => {
-    if (ref && ref.current) {
-      if (ref.current.contains(e.target as Node)) {
-        setState({ hasClickedOutside: false })
-      } else {
-        // Ignore when click menu list inside popover modal
-        if (
-          isContainInMenuList(e) ||
-          isContainInModalContent(e) ||
-          isContainInPopoverContent(e)
-        )
-          return
+  const handleEvent = useCallback(
+    (e: Event) => {
+      if (ref && ref.current) {
+        if (ref.current.contains(e.target as Node)) {
+          setState({ hasClickedOutside: false })
+        } else {
+          // Ignore when click menu list inside popover modal
+          if (
+            isContainInMenuList(e) ||
+            isContainInModalContent(e) ||
+            isContainInPopoverContent(e)
+          )
+            return
 
-        if (options?.skipElement?.(e)) return
+          if (options?.skipElement?.(e)) return
 
-        setState({ hasClickedOutside: true })
+          setState({ hasClickedOutside: true })
+        }
       }
-
-      /* eslint react-hooks/exhaustive-deps: off */
-    }
-  }, [])
+    },
+    [options],
+  )
 
   const removeEventListener = useCallback(() => {
+    if (options?.skip) return
+
     console.log('Unsubscribe!!')
+
     if (window.PointerEvent) {
       document.removeEventListener('pointerdown', handleEvent)
     } else {
       document.removeEventListener('mousedown', handleEvent)
       document.removeEventListener('touchstart', handleEvent)
     }
-  }, [])
+  }, [handleEvent, options?.skip])
 
   useEffect(() => {
     if (options?.skip) return
@@ -59,8 +63,7 @@ export const useClickOutside = (
     return () => {
       removeEventListener()
     }
-    /* eslint react-hooks/exhaustive-deps: off */
-  }, [])
+  }, [handleEvent, options?.skip, removeEventListener])
 
   useEffect(() => {
     if (options?.skip) return
@@ -68,7 +71,7 @@ export const useClickOutside = (
     if (state.hasClickedOutside) {
       onClickOutside?.()
     }
-  }, [onClickOutside, state.hasClickedOutside])
+  }, [onClickOutside, state.hasClickedOutside, options?.skip])
 
   return {
     ref,

@@ -36,6 +36,7 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
         fontSize="2xl"
         fontWeight="semibold"
         minH="38px"
+        placeholder="Write a task name"
       />
     </Flex>
   )

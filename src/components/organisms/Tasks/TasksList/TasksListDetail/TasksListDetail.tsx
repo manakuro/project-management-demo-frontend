@@ -1,13 +1,16 @@
 import React from 'react'
 import { Slide } from 'src/components/atoms'
 import { Content } from './Content'
+import { useTaskDetailListDetailRef } from './useTaskListDetailRef'
 import { useTasksListDetail } from './useTasksListDetail'
 
 export const TasksListDetail: React.VFC = () => {
   const { isOpen, onClose, loading } = useTasksListDetail()
+  const { ref } = useTaskDetailListDetailRef()
 
   return (
     <Slide
+      ref={ref}
       in={isOpen}
       direction="right"
       transition={{

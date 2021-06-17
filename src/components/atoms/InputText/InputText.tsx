@@ -13,10 +13,12 @@ type Props = {
   onChange: TextareaProps['onChange']
   onKeyDown?: TextareaProps['onKeyDown']
   containerStyle?: FlexProps
+  placeholder?: string
 } & ChakraProps
 
 export const InputText: React.FC<Props> = memo<Props>((props) => {
-  const { value, onChange, onKeyDown, containerStyle, ...rest } = props
+  const { value, onChange, onKeyDown, containerStyle, placeholder, ...rest } =
+    props
 
   const style = useMemo<ChakraProps>(
     () => ({
@@ -57,6 +59,7 @@ export const InputText: React.FC<Props> = memo<Props>((props) => {
         left={0}
         focusBorderColor="transparent"
         value={value}
+        placeholder={placeholder}
       >
         {value}
       </Textarea>

@@ -11,6 +11,7 @@ import { uniqBy } from 'src/shared/utils'
 import { uuid } from 'src/shared/uuid'
 import { attachmentSelector } from 'src/store/entities/attachments'
 import { feedSelector } from 'src/store/entities/feeds'
+import { projectTaskSelector } from 'src/store/entities/projectTasks'
 import { tagSelector } from 'src/store/entities/tags'
 import { teammateSelector } from 'src/store/entities/teammates'
 import { Task, TaskResponse } from './type'
@@ -37,7 +38,6 @@ const defaultTaskState = (): Task => ({
   isDone: false,
   isNew: false,
   name: '',
-  projectIds: [],
   projects: [],
   tagIds: [],
   tags: [],
@@ -156,7 +156,8 @@ export const useTaskIdsByTaskParentId = (taskParentId: string) => {
 
 export const useTasks = () => {
   const taskIds = useRecoilValue(taskIdsState)
-  const { setTasks, setAttachments, setFeeds, setTags } = useSetters()
+  const { setTasks, setAttachments, setFeeds, setTags, setProjects } =
+    useSetters()
 
   const setTasksFromResponse = useRecoilCallback(
     () => (data: TaskResponse[]) => {
@@ -164,8 +165,9 @@ export const useTasks = () => {
       setAttachments(data)
       setFeeds(data)
       setTags(data)
+      setProjects(data)
     },
-    [setAttachments, setFeeds, setTags, setTasks],
+    [setAttachments, setFeeds, setTags, setTasks, setProjects],
   )
 
   return {
@@ -176,8 +178,14 @@ export const useTasks = () => {
 
 export const useTask = (taskId?: string) => {
   const task = useRecoilValue(taskSelector(taskId || ''))
-  const { setTasks, setAttachments, setFeeds, setTags, setTeammates } =
-    useSetters()
+  const {
+    setTasks,
+    setAttachments,
+    setFeeds,
+    setTags,
+    setTeammates,
+    setProjects,
+  } = useSetters()
 
   const upsert = useRecoilCallback(
     ({ set }) =>
@@ -221,8 +229,9 @@ export const useTask = (taskId?: string) => {
       setFeeds([data])
       setTeammates([data])
       setTags([data])
+      setProjects([data])
     },
-    [setAttachments, setFeeds, setTags, setTasks, setTeammates],
+    [setAttachments, setFeeds, setTags, setTasks, setTeammates, setProjects],
   )
 
   return {
@@ -240,7 +249,6 @@ const useSetters = () => {
       (data: TaskResponse) => {
         const task: Task = {
           ...data,
-          projectIds: data.projects.map((p) => p.id),
           attachmentIds: data.attachments.map((a) => a.id),
           feedIds: data.feeds.map((f) => f.id),
           teammateIds: data.teammates.map((t) => t.id),
@@ -322,11 +330,25 @@ const useSetters = () => {
     [],
   )
 
+  const setProjects = useRecoilCallback(
+    ({ set }) =>
+      (data: TaskResponse[]) => {
+        data
+          .reduce<Task['projects']>(
+            (acc, p) => uniqBy([...acc, ...p.projects], 'id'),
+            [],
+          )
+          .forEach((p) => set(projectTaskSelector(p.id), p))
+      },
+    [],
+  )
+
   return {
     setAttachments,
     setFeeds,
     setTeammates,
     setTags,
     setTasks,
+    setProjects,
   }
 }

@@ -55,7 +55,22 @@ export const taskSections: MyTaskResponse['taskSections'] = [
       {
         id: '1',
         taskSectionId: '1',
-        projects: [{ id: '1' }, { id: '2' }],
+        projects: [
+          {
+            id: '1',
+            taskId: '1',
+            projectId: '1',
+            createdAt: '',
+            updatedAt: '',
+          },
+          {
+            id: '2',
+            taskId: '1',
+            projectId: '2',
+            createdAt: '',
+            updatedAt: '',
+          },
+        ],
         name: 'Resolve an issue of auto focus for tasks list detail page',
         dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
         dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
@@ -72,7 +87,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
             isDone: false,
             isNew: false,
             name: 'Subtask 1',
-            projects: [{ id: '1' }, { id: '2' }],
+            projects: [],
             subTasks: [],
             tags: [],
             taskSectionId: '1',
@@ -90,7 +105,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
             isDone: false,
             isNew: false,
             name: 'Subtask 2',
-            projects: [{ id: '1' }, { id: '2' }],
+            projects: [],
             subTasks: [],
             tags: [],
             taskSectionId: '1',
@@ -108,7 +123,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
             isDone: false,
             isNew: false,
             name: 'Subtask 3',
-            projects: [{ id: '1' }, { id: '2' }],
+            projects: [],
             subTasks: [],
             tags: [],
             taskSectionId: '1',
@@ -246,7 +261,15 @@ export const taskSections: MyTaskResponse['taskSections'] = [
       {
         id: '2',
         taskSectionId: '1',
-        projects: [{ id: '1' }],
+        projects: [
+          {
+            id: '3',
+            taskId: '2',
+            projectId: '1',
+            createdAt: '',
+            updatedAt: '',
+          },
+        ],
         name: 'Implement Task Due Soon',
         dueDate: '',
         dueTime: '',
@@ -308,7 +331,15 @@ export const taskSections: MyTaskResponse['taskSections'] = [
       {
         id: '3',
         taskSectionId: '1',
-        projects: [{ id: '1' }],
+        projects: [
+          {
+            id: '4',
+            taskId: '3',
+            projectId: '1',
+            createdAt: '',
+            updatedAt: '',
+          },
+        ],
         name: 'Implement Recent Projects',
         dueDate: new Date('2021/06/01').toISOString(),
         isDone: false,
@@ -325,7 +356,15 @@ export const taskSections: MyTaskResponse['taskSections'] = [
       {
         id: '4',
         taskSectionId: '1',
-        projects: [{ id: '1' }],
+        projects: [
+          {
+            id: '5',
+            taskId: '4',
+            projectId: '1',
+            createdAt: '',
+            updatedAt: '',
+          },
+        ],
         name: 'Implement Date picker',
         dueDate: new Date(dateFns.addDays(new Date(), 6)).toISOString(),
         isDone: false,
@@ -342,7 +381,15 @@ export const taskSections: MyTaskResponse['taskSections'] = [
       {
         id: '5',
         taskSectionId: '1',
-        projects: [{ id: '1' }],
+        projects: [
+          {
+            id: '6',
+            taskId: '5',
+            projectId: '1',
+            createdAt: '',
+            updatedAt: '',
+          },
+        ],
         name: 'Implement Message page',
         dueDate: new Date(dateFns.addDays(new Date(), 6)).toISOString(),
         isDone: false,
@@ -368,7 +415,15 @@ export const taskSections: MyTaskResponse['taskSections'] = [
       {
         id: '10',
         taskSectionId: '2',
-        projects: [{ id: '1' }],
+        projects: [
+          {
+            id: '7',
+            taskId: '10',
+            projectId: '1',
+            createdAt: '',
+            updatedAt: '',
+          },
+        ],
         name: '一覧ページの実装',
         dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
         dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
@@ -385,7 +440,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
             isDone: false,
             isNew: false,
             name: 'Subtask 10',
-            projects: [{ id: '1' }, { id: '2' }],
+            projects: [],
             subTasks: [],
             tags: [],
             taskSectionId: '2',
@@ -403,7 +458,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
             isDone: false,
             isNew: false,
             name: 'Subtask 11',
-            projects: [{ id: '1' }, { id: '2' }],
+            projects: [],
             subTasks: [],
             tags: [],
             taskSectionId: '2',

@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react'
 import { atom, useRecoilState } from 'recoil'
+import { taskSections } from 'src/hooks/queries/useMyTasksQuery'
 import { dateFns } from 'src/shared/dateFns'
 import { TaskResponse, useTask } from 'src/store/entities/tasks'
 
@@ -48,7 +49,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
   return new Promise<TaskResponse>((resolve) => {
     setTimeout(() => {
       resolve({
-        id: '1',
+        id: taskSections[0].tasks[0].id,
         taskSectionId: '1',
         projects: [{ id: '1' }],
         name: 'Resolve an issue of auto focus for tasks list detail page',
@@ -62,7 +63,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
             dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             feeds: [],
-            id: '1',
+            id: taskSections[0].tasks[0].subTasks[0].id,
             isDeleted: false,
             isDone: false,
             isNew: false,
@@ -80,7 +81,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
             dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             feeds: [],
-            id: '2',
+            id: taskSections[0].tasks[0].subTasks[1].id,
             isDeleted: false,
             isDone: false,
             isNew: false,
@@ -98,7 +99,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
             dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             feeds: [],
-            id: '3',
+            id: taskSections[0].tasks[0].subTasks[2].id,
             isDeleted: false,
             isDone: false,
             isNew: false,

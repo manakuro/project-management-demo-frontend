@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import {
   Button,
   CheckIcon,
@@ -19,7 +19,7 @@ type Props = {
   loading?: boolean
 }
 
-export const TaskDetailHeader: React.FC<Props> = (props) => {
+export const TaskDetailHeader: React.FC<Props> = memo<Props>((props) => {
   if (props.loading)
     return (
       <Flex px={6} h="57px" alignItems="center" flex={1}>
@@ -58,4 +58,5 @@ export const TaskDetailHeader: React.FC<Props> = (props) => {
       </Flex>
     </Flex>
   )
-}
+})
+TaskDetailHeader.displayName = 'TaskDetailHeader'

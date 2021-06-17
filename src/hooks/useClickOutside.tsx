@@ -6,12 +6,13 @@ type Options = {
 }
 export const useClickOutside = (
   onClickOutside?: () => void,
-  options?: Options,
+  options: Options = {},
 ) => {
   const ref = useRef<HTMLElement | null>(null)
   const [state, setState] = useState({
     hasClickedOutside: false,
   })
+  const { skipElement, skip } = options
 
   const handleEvent = useCallback(
     (e: Event) => {
@@ -27,17 +28,17 @@ export const useClickOutside = (
           )
             return
 
-          if (options?.skipElement?.(e)) return
+          if (skipElement?.(e)) return
 
           setState({ hasClickedOutside: true })
         }
       }
     },
-    [options],
+    [skipElement],
   )
 
   const removeEventListener = useCallback(() => {
-    if (options?.skip) return
+    if (skip) return
 
     console.log('Unsubscribe!!')
 
@@ -47,10 +48,10 @@ export const useClickOutside = (
       document.removeEventListener('mousedown', handleEvent)
       document.removeEventListener('touchstart', handleEvent)
     }
-  }, [handleEvent, options?.skip])
+  }, [handleEvent, skip])
 
   useEffect(() => {
-    if (options?.skip) return
+    if (skip) return
 
     if (window.PointerEvent) {
       document.addEventListener('pointerdown', handleEvent)
@@ -63,15 +64,15 @@ export const useClickOutside = (
     return () => {
       removeEventListener()
     }
-  }, [handleEvent, options?.skip, removeEventListener])
+  }, [handleEvent, skip, removeEventListener])
 
   useEffect(() => {
-    if (options?.skip) return
+    if (skip) return
 
     if (state.hasClickedOutside) {
       onClickOutside?.()
     }
-  }, [onClickOutside, state.hasClickedOutside, options?.skip])
+  }, [onClickOutside, state.hasClickedOutside, skip])
 
   return {
     ref,

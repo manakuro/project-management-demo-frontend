@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Divider, Flex } from 'src/components/atoms'
 import {
   TaskDetailBody,
@@ -20,13 +20,19 @@ export const Content: React.VFC<Props> = memo((props) => {
   const { getTasksListBodyElement } = useTasksListBody()
   const { drawerStyle } = useDrawerStyle()
 
+  const skipElement = useCallback(
+    (e: Event) => {
+      return getTasksListBodyElement()?.contains(e.target as Node) ?? false
+    },
+    [getTasksListBodyElement],
+  )
+
   const { ref } = useClickOutside(
     () => {
       props.onClose()
     },
     {
-      skipElement: (e) =>
-        getTasksListBodyElement()?.contains(e.target as Node) ?? false,
+      skipElement,
     },
   )
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Flex, Skeleton, Stack } from 'src/components/atoms'
 import { MakePublic } from 'src/components/organisms/TaskDetail/TaskDetailBody/MakePublic'
 import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
@@ -9,7 +9,7 @@ type Props = {
   loading?: boolean
 }
 
-export const TaskDetailBody: React.FC<Props> = (props) => {
+export const TaskDetailBody: React.FC<Props> = memo<Props>((props) => {
   const { ref } = useTaskDetailBody(props.loading)
 
   if (props.loading)
@@ -32,4 +32,4 @@ export const TaskDetailBody: React.FC<Props> = (props) => {
       <Form />
     </Flex>
   )
-}
+})

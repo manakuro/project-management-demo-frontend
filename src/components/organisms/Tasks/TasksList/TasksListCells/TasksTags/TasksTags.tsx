@@ -3,7 +3,7 @@ import { FlexProps, Stack } from 'src/components/atoms'
 import { TagChip } from 'src/components/molecules'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { useTaskColumn } from 'src/store/entities/taskColumns'
-import { useTask } from 'src/store/entities/tasks'
+import { useTasksTagIds } from 'src/store/entities/tasks/tagIds'
 import { Input } from './Input'
 
 type Props = FlexProps & {
@@ -12,7 +12,7 @@ type Props = FlexProps & {
 }
 
 export const TasksTags: React.VFC<Props> = memo<Props>((props) => {
-  const { task } = useTask(props.taskId)
+  const { tagIds } = useTasksTagIds(props.taskId)
   const [focused, setFocused] = useState<boolean>(false)
   const { taskColumn } = useTaskColumn(props.taskColumnId)
 
@@ -36,7 +36,7 @@ export const TasksTags: React.VFC<Props> = memo<Props>((props) => {
     >
       {!focused && (
         <Stack direction="row" spacing={1} overflow="hidden">
-          {task.tagIds.map((id) => (
+          {tagIds.map((id) => (
             <TagChip key={id} tagId={id} />
           ))}
         </Stack>

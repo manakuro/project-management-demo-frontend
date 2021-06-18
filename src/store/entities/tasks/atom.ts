@@ -37,8 +37,6 @@ const defaultTaskState = (): Task => ({
   isNew: false,
   name: '',
   projects: [],
-  tagIds: [],
-  tags: [],
   taskParentId: '',
   taskSectionId: '',
 })
@@ -245,11 +243,7 @@ const useSetters = () => {
   const setTaskValue = useRecoilCallback(
     ({ set }) =>
       (data: TaskResponse) => {
-        const task: Task = {
-          ...data,
-          tagIds: data.tags.map((t) => t.id),
-        }
-        set(taskSelector(task.id), task)
+        set(taskSelector(data.id), data)
       },
     [],
   )
@@ -317,7 +311,7 @@ const useSetters = () => {
     ({ set }) =>
       (data: TaskResponse[]) => {
         data
-          .reduce<Task['tags']>(
+          .reduce<TaskResponse['tags']>(
             (acc, p) => uniqBy([...acc, ...p.tags], 'id'),
             [],
           )

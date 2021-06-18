@@ -15,8 +15,6 @@ export type Task = {
   isNew: boolean
   name: string
   projects: ProjectTaskResponse[]
-  tagIds: string[]
-  tags: Tag[]
   taskParentId: string
   taskSectionId: string
 }

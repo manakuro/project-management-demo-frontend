@@ -1,8 +1,10 @@
 import { useCallback, useEffect } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
+import { uuid } from 'src/shared/uuid'
 import { useMyTasks } from 'src/store/app/myTasks'
 import { MyTaskResponse } from 'src/store/app/myTasks'
+import { teammates } from 'src/store/entities/teammates/data'
 
 type Props = {
   lazy?: boolean
@@ -44,6 +46,7 @@ export const useMyTasksQuery = (props?: Props) => {
     ...state,
   }
 }
+
 export const taskSections: MyTaskResponse['taskSections'] = [
   {
     id: '1',
@@ -228,16 +231,24 @@ export const taskSections: MyTaskResponse['taskSections'] = [
         ],
         teammates: [
           {
-            id: '1',
-            name: 'Manato Kuroda',
-            image: '/images/cat_img.png',
-            email: 'manato.kuroda@gmail.com',
+            id: uuid(),
+            teammateId: teammates.manato.id,
+            taskId: '1',
+            name: teammates.manato.name,
+            image: teammates.manato.image,
+            email: teammates.manato.email,
+            createdAt: '',
+            updatedAt: '',
           },
           {
-            id: '2',
-            name: 'Dan Abrahmov',
-            image: 'https://bit.ly/dan-abramov',
-            email: 'dan.abrahmov@gmail.com',
+            id: uuid(),
+            teammateId: teammates.dan.id,
+            taskId: '1',
+            name: teammates.dan.name,
+            image: teammates.dan.image,
+            email: teammates.dan.email,
+            createdAt: '',
+            updatedAt: '',
           },
         ],
         tags: [
@@ -280,22 +291,34 @@ export const taskSections: MyTaskResponse['taskSections'] = [
         feeds: [],
         teammates: [
           {
-            id: '1',
-            name: 'Manato Kuroda',
-            image: '/images/cat_img.png',
-            email: 'manato.kuroda@gmail.com',
+            id: uuid(),
+            teammateId: teammates.manato.id,
+            taskId: '2',
+            name: teammates.manato.name,
+            image: teammates.manato.image,
+            email: teammates.manato.email,
+            createdAt: '',
+            updatedAt: '',
           },
           {
-            id: '2',
-            name: 'Dan Abrahmov',
-            image: 'https://bit.ly/dan-abramov',
-            email: 'dan.abrahmov@gmail.com',
+            id: uuid(),
+            teammateId: teammates.dan.id,
+            taskId: '2',
+            name: teammates.dan.name,
+            image: teammates.dan.image,
+            email: teammates.dan.email,
+            createdAt: '',
+            updatedAt: '',
           },
           {
-            id: '3',
-            name: 'Kent Dodds',
-            image: 'https://bit.ly/kent-c-dodds',
-            email: 'kent.dodds@gmail.com',
+            id: uuid(),
+            teammateId: teammates.kent.id,
+            taskId: '2',
+            name: teammates.kent.name,
+            image: teammates.kent.image,
+            email: teammates.kent.email,
+            createdAt: '',
+            updatedAt: '',
           },
         ],
         tags: [
@@ -563,16 +586,24 @@ export const taskSections: MyTaskResponse['taskSections'] = [
         ],
         teammates: [
           {
-            id: '1',
-            name: 'Manato Kuroda',
-            image: '/images/cat_img.png',
-            email: 'manato.kuroda@gmail.com',
+            id: uuid(),
+            teammateId: teammates.manato.id,
+            taskId: '10',
+            name: teammates.manato.name,
+            image: teammates.manato.image,
+            email: teammates.manato.email,
+            createdAt: '',
+            updatedAt: '',
           },
           {
-            id: '2',
-            name: 'Dan Abrahmov',
-            image: 'https://bit.ly/dan-abramov',
-            email: 'dan.abrahmov@gmail.com',
+            id: uuid(),
+            teammateId: teammates.dan.id,
+            taskId: '10',
+            name: teammates.dan.name,
+            image: teammates.dan.image,
+            email: teammates.dan.email,
+            createdAt: '',
+            updatedAt: '',
           },
         ],
         tags: [],

@@ -2,7 +2,9 @@ import { useCallback, useEffect } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { taskSections } from 'src/hooks/queries/useMyTasksQuery'
 import { dateFns } from 'src/shared/dateFns'
+import { uuid } from 'src/shared/uuid'
 import { TaskResponse, useTask } from 'src/store/entities/tasks'
+import { teammates } from 'src/store/entities/teammates/data'
 
 type Props = {
   lazy?: boolean
@@ -310,16 +312,24 @@ const fetchTask = async (): Promise<TaskResponse> => {
         ],
         teammates: [
           {
-            id: '1',
-            name: 'Manato Kuroda',
-            image: '/images/cat_img.png',
-            email: 'manato.kuroda@gmail.com',
+            id: uuid(),
+            teammateId: teammates.manato.id,
+            taskId: '1',
+            name: teammates.manato.name,
+            image: teammates.manato.image,
+            email: teammates.manato.email,
+            createdAt: '',
+            updatedAt: '',
           },
           {
-            id: '2',
-            name: 'Dan Abrahmov',
-            image: 'https://bit.ly/dan-abramov',
-            email: 'dan.abrahmov@gmail.com',
+            id: uuid(),
+            teammateId: teammates.dan.id,
+            taskId: '1',
+            name: teammates.dan.name,
+            image: teammates.dan.image,
+            email: teammates.dan.email,
+            createdAt: '',
+            updatedAt: '',
           },
         ],
         tags: [

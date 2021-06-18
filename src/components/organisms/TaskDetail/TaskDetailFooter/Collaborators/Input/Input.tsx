@@ -4,7 +4,7 @@ import { AssigneeChip } from 'src/components/molecules'
 import { AssigneeMenu, useTasksListDetail } from 'src/components/organisms'
 import { useClickOutside } from 'src/hooks'
 import { ChakraProps, useStyleConfig } from 'src/shared/chakra'
-import { useTask } from 'src/store/entities/tasks'
+import { useTasksTeammateIds } from 'src/store/entities/tasks/teammateIds'
 import { useCollaborators } from '../Provider'
 
 export const Input: React.VFC = () => {
@@ -22,7 +22,7 @@ type InputStyle = {
 
 const Component: React.VFC = memo(() => {
   const { taskId } = useTasksListDetail()
-  const { task } = useTask(taskId)
+  const { teammateIds } = useTasksTeammateIds(taskId)
   const { onInputUnfocus, isInputFocused } = useCollaborators()
   const { ref } = useClickOutside(onInputUnfocus)
   const style = useStyleConfig('Input') as InputStyle
@@ -45,8 +45,8 @@ const Component: React.VFC = memo(() => {
         h="auto"
         maxH="none"
       >
-        <Wrap py={task.teammateIds.length ? 2 : 0}>
-          {task.teammateIds.map((id) => (
+        <Wrap py={teammateIds.length ? 2 : 0}>
+          {teammateIds.map((id) => (
             <WrapItem key={id}>
               <AssigneeChip teammateId={id} key={id} />
             </WrapItem>

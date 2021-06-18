@@ -63,19 +63,32 @@ export const teammateSelector = selectorFamily<Teammate, string>({
     },
 })
 
-export const useTeammates = () => {
-  const teammateIds = useRecoilValue(teammateIdsState)
-  const teammates = useRecoilValue(teammatesState)
-
-  const setTeammates = useRecoilCallback(
+export const useTeammateCommand = () => {
+  const setTeammatesFromResponse = useRecoilCallback(
     ({ set }) =>
-      (teammates: Teammate[]) => {
-        teammates.forEach((p) => {
-          set(teammateSelector(p.id), p)
-        })
+      (teammates: (Teammate & { teammateId: string })[]) => {
+        teammates
+          .map<Teammate>((t) => ({
+            id: t.teammateId,
+            name: t.name,
+            email: t.email,
+            image: t.image,
+          }))
+          .forEach((p) => {
+            set(teammateSelector(p.id), p)
+          })
       },
     [],
   )
+
+  return {
+    setTeammatesFromResponse,
+  }
+}
+
+export const useTeammates = () => {
+  const teammateIds = useRecoilValue(teammateIdsState)
+  const teammates = useRecoilValue(teammatesState)
 
   const getTeammatesById = useCallback(
     (teammateIds: string[]) => {
@@ -87,7 +100,6 @@ export const useTeammates = () => {
   return {
     teammateIds,
     teammates,
-    setTeammates,
     getTeammatesById,
   }
 }

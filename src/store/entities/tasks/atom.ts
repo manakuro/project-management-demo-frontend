@@ -13,7 +13,8 @@ import { attachmentSelector } from 'src/store/entities/attachments'
 import { feedSelector } from 'src/store/entities/feeds'
 import { projectTaskSelector } from 'src/store/entities/projectTasks'
 import { tagSelector } from 'src/store/entities/tags'
-import { teammateSelector } from 'src/store/entities/teammates'
+import { taskTeammateSelector } from 'src/store/entities/taskTeammates'
+import { useTeammateCommand } from 'src/store/entities/teammates'
 import { Task, TaskResponse } from './type'
 
 export const taskIdsState = atom<string[]>({
@@ -27,11 +28,9 @@ export const tasksState = atom<Task[]>({
 
 const defaultTaskState = (): Task => ({
   assigneeId: '',
-  attachmentIds: [],
   attachments: [],
   dueDate: '',
   dueTime: '',
-  feedIds: [],
   feeds: [],
   id: '',
   isDeleted: false,
@@ -43,8 +42,6 @@ const defaultTaskState = (): Task => ({
   tags: [],
   taskParentId: '',
   taskSectionId: '',
-  teammateIds: [],
-  teammates: [],
 })
 export const taskIdsByTaskParentIdSelector = selectorFamily<string[], string>({
   key: 'taskIdsByTaskParentIdSelector',
@@ -244,14 +241,13 @@ export const useTask = (taskId?: string) => {
 }
 
 const useSetters = () => {
+  const { setTeammatesFromResponse } = useTeammateCommand()
+
   const setTaskValue = useRecoilCallback(
     ({ set }) =>
       (data: TaskResponse) => {
         const task: Task = {
           ...data,
-          attachmentIds: data.attachments.map((a) => a.id),
-          feedIds: data.feeds.map((f) => f.id),
-          teammateIds: data.teammates.map((t) => t.id),
           tagIds: data.tags.map((t) => t.id),
         }
         set(taskSelector(task.id), task)
@@ -308,14 +304,15 @@ const useSetters = () => {
   const setTeammates = useRecoilCallback(
     ({ set }) =>
       (data: TaskResponse[]) => {
-        data
-          .reduce<Task['teammates']>(
-            (acc, p) => uniqBy([...acc, ...p.teammates], 'id'),
-            [],
-          )
-          .forEach((f) => set(teammateSelector(f.id), f))
+        const taskTeammates = data.reduce<TaskResponse['teammates']>(
+          (acc, d) => [...acc, ...d.teammates],
+          [],
+        )
+        taskTeammates.forEach((t) => set(taskTeammateSelector(t.id), t))
+
+        setTeammatesFromResponse(taskTeammates)
       },
-    [],
+    [setTeammatesFromResponse],
   )
   const setTags = useRecoilCallback(
     ({ set }) =>

@@ -61,3 +61,4 @@ export const AssigneeChip: React.VFC<Props> = memo((props) => {
     </PopoverProfile>
   )
 })
+AssigneeChip.displayName = 'AssigneeChip'

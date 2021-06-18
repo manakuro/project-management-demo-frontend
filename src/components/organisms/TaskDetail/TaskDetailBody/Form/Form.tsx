@@ -20,7 +20,7 @@ export const Form: React.FC<Props> = memo(() => {
     <Flex flexDirection="column" pt={2}>
       <TaskName taskId={taskId} />
       <Stack px={6} mt={3}>
-        <Assignee />
+        <Assignee taskId={taskId} />
         <DueDate
           dueDate={new Date(dateFns.addDays(new Date(), 3)).toISOString()}
           dueTime={new Date(dateFns.addDays(new Date(), 3)).toISOString()}

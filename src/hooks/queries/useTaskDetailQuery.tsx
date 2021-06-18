@@ -2,9 +2,7 @@ import { useCallback, useEffect } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { taskSections } from 'src/hooks/queries/useMyTasksQuery'
 import { dateFns } from 'src/shared/dateFns'
-import { uuid } from 'src/shared/uuid'
 import { TaskResponse, useTask } from 'src/store/entities/tasks'
-import { teammates } from 'src/store/entities/teammates/data'
 
 type Props = {
   lazy?: boolean
@@ -310,42 +308,8 @@ const fetchTask = async (): Promise<TaskResponse> => {
             isPinned: false,
           },
         ],
-        teammates: [
-          {
-            id: uuid(),
-            teammateId: teammates.manato.id,
-            taskId: '1',
-            name: teammates.manato.name,
-            image: teammates.manato.image,
-            email: teammates.manato.email,
-            createdAt: '',
-            updatedAt: '',
-          },
-          {
-            id: uuid(),
-            teammateId: teammates.dan.id,
-            taskId: '1',
-            name: teammates.dan.name,
-            image: teammates.dan.image,
-            email: teammates.dan.email,
-            createdAt: '',
-            updatedAt: '',
-          },
-        ],
-        tags: [
-          {
-            id: '1',
-            taskId: '1',
-            name: 'Medium',
-            color: {
-              id: '1',
-              name: 'gray.200',
-              color: 'gray.200',
-            },
-            createdAt: '',
-            updatedAt: '',
-          },
-        ],
+        teammates: taskSections[0].tasks[0].teammates,
+        tags: taskSections[0].tasks[0].tags,
         isNew: false,
         isDeleted: false,
         taskParentId: '',

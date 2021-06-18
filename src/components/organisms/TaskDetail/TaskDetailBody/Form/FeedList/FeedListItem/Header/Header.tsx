@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Avatar, Flex, Stack } from 'src/components/atoms'
-import { PopoverProfile } from 'src/components/organisms'
+import { Flex, Stack } from 'src/components/atoms'
+import { TeammateAvatar } from 'src/components/organisms'
 import { useFeedListItem } from '../Provider'
 import { CreateAt } from './CreateAt'
 import { FeedOptionMenu } from './FeedOptionMenu'
@@ -14,21 +14,7 @@ export const Header: React.VFC<Props> = memo<Props>(() => {
 
   return (
     <Flex alignItems="center" flex={1}>
-      <PopoverProfile
-        profile={{
-          name: teammate.name,
-          image: teammate.image,
-          email: teammate.email,
-        }}
-      >
-        <Avatar
-          name={teammate.name}
-          src={teammate.image}
-          size="xs"
-          cursor="pointer"
-          bg="teal.200"
-        />
-      </PopoverProfile>
+      <TeammateAvatar teammateId={teammate.id} size="xs" />
       <Title />
       <CreateAt />
       <Stack direction="row" ml="auto" spacing={2}>

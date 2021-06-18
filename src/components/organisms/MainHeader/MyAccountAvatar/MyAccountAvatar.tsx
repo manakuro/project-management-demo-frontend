@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react'
-import { Avatar } from 'src/components/atoms'
-import { Menu, MenuButton } from 'src/components/organisms'
+import { Menu, MenuButton, MyAvatar } from 'src/components/organisms'
 import { useDisclosure } from 'src/shared/chakra'
 import { MenuList } from './MenuList'
 
@@ -19,14 +18,8 @@ export const MyAccountAvatar: React.FC = () => {
       isOpen={isOpen}
       isLazy
     >
-      <MenuButton onClick={handleOpen}>
-        <Avatar
-          name="Manato Kuroda"
-          src="/images/cat_img.png"
-          size="sm"
-          cursor="pointer"
-          bg="teal.200"
-        />
+      <MenuButton onClick={handleOpen} cursor="pointer">
+        <MyAvatar size="sm" />
       </MenuButton>
       {isOpen && <MenuList onCloseMenu={onClose} />}
     </Menu>

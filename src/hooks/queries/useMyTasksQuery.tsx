@@ -231,7 +231,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
         ],
         teammates: [
           {
-            id: uuid(),
+            id: '1',
             teammateId: teammates.manato.id,
             taskId: '1',
             name: teammates.manato.name,
@@ -241,7 +241,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
             updatedAt: '',
           },
           {
-            id: uuid(),
+            id: '2',
             teammateId: teammates.dan.id,
             taskId: '1',
             name: teammates.dan.name,

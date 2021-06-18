@@ -1,5 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { Avatar, Wrap, WrapItem } from 'src/components/atoms'
+import { Wrap, WrapItem } from 'src/components/atoms'
+import { TeammateAvatar } from 'src/components/organisms'
 import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { useClickableHoverStyle } from 'src/hooks'
@@ -23,7 +24,8 @@ export const Teammates: React.VFC<Props> = memo(() => {
         <Teammate teammateId={t} key={t} />
       ))}
       <WrapItem>
-        <Avatar
+        <TeammateAvatar
+          teammateId=""
           size="xs"
           bg="teal.200"
           {...clickableHoverLightStyle}

@@ -11,6 +11,10 @@ export const TeammateAvatar: React.VFC<Props> = (props) => {
   const { teammateId, ...rest } = props
   const { teammate } = useTeammate(teammateId)
 
+  if (!teammateId) {
+    return <Avatar name="" src="" bg="teal.200" border="none" {...rest} />
+  }
+
   return (
     <PopoverProfile
       profile={{

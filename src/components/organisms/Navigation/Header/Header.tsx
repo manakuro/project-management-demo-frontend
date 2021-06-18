@@ -22,6 +22,7 @@ export const Header: React.VFC<Props> = memo<Props>(() => {
       alignItems="center"
       px={PADDING_X}
       justifyContent="flex-end"
+      ml={isExpanded ? 0 : '-3px'}
     >
       {isExpanded && (
         <NextLink href="home" passHref>

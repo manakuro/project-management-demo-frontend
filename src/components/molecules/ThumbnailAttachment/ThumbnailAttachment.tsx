@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { memo, useCallback } from 'react'
 import { FlexProps } from 'src/components/atoms'
 import { Attachment, useAttachment } from 'src/store/entities/attachments'
 import { File } from './File'
@@ -11,15 +11,15 @@ type Props = FlexProps & {
   onDelete: (attachment: Attachment) => void
 }
 
-export const ThumbnailAttachment: React.VFC<Props> = (props) => {
+export const ThumbnailAttachment: React.VFC<Props> = memo<Props>((props) => {
   return (
     <Provider {...props}>
       <Component {...props} />
     </Provider>
   )
-}
+})
 
-export const Component: React.VFC<Props> = (props) => {
+export const Component: React.VFC<Props> = memo((props) => {
   const { attachmentId, onOpenFileViewer, onDelete, ...rest } = props
   const { attachment } = useAttachment(attachmentId)
 
@@ -40,4 +40,5 @@ export const Component: React.VFC<Props> = (props) => {
       )
     }
   }
-}
+})
+ThumbnailAttachment.displayName = 'ThumbnailAttachment'

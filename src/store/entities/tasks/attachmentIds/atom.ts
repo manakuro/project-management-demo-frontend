@@ -1,5 +1,10 @@
+import { useCallback } from 'react'
 import { selectorFamily, useRecoilValue } from 'recoil'
-import { attachmentsState } from 'src/store/entities/attachments'
+import {
+  Attachment,
+  attachmentsState,
+  useAttachmentCommand,
+} from 'src/store/entities/attachments'
 
 export const tasksAttachmentIdsSelector = selectorFamily<string[], string>({
   key: 'tasksAttachmentIdsSelector',
@@ -15,5 +20,20 @@ export const useTasksAttachmentIds = (taskId: string) => {
 
   return {
     attachmentIds,
+  }
+}
+
+export const useTasksAttachments = (taskId: string) => {
+  const attachmentCommand = useAttachmentCommand()
+
+  const addAttachment = useCallback(
+    (val: Partial<Attachment>) => {
+      return attachmentCommand.addAttachment({ ...val, taskId })
+    },
+    [attachmentCommand, taskId],
+  )
+
+  return {
+    addAttachment,
   }
 }

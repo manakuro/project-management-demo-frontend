@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { FlexProps } from 'src/components/atoms'
 import { AttachmentBox } from 'src/components/molecules'
 
@@ -6,7 +6,7 @@ type Props = FlexProps & {
   attachmentId: string
 }
 
-export const File: React.VFC<Props> = (props) => {
+export const File: React.VFC<Props> = memo<Props>((props) => {
   return (
     <AttachmentBox
       size="lg"
@@ -18,4 +18,5 @@ export const File: React.VFC<Props> = (props) => {
       {...props}
     />
   )
-}
+})
+File.displayName = 'File'

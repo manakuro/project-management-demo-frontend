@@ -1,11 +1,9 @@
 import React, { memo, useCallback } from 'react'
 import { useFileViewerModal } from 'src/components/organisms'
 import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
-import {
-  useAttachment,
-  useAttachmentsByTask,
-} from 'src/store/entities/attachments'
+import { useAttachment } from 'src/store/entities/attachments'
 import { ATTACHMENT_TYPE_IMAGE } from 'src/store/entities/attachments/types'
+import { useTasksAttachmentIds } from 'src/store/entities/tasks/attachmentIds'
 import { File } from './File'
 import { Image } from './Image'
 
@@ -16,7 +14,7 @@ type Props = {
 export const ContentAttachment: React.VFC<Props> = memo<Props>((props) => {
   const { taskId } = useFeedListItem()
   const { attachment } = useAttachment(props.attachmentId)
-  const { attachmentIds } = useAttachmentsByTask(taskId)
+  const { attachmentIds } = useTasksAttachmentIds(taskId)
   const { onOpen, setState } = useFileViewerModal()
 
   const handleOpenFileViewer = useCallback(() => {

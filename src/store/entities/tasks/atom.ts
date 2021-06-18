@@ -28,7 +28,6 @@ export const tasksState = atom<Task[]>({
 
 const defaultTaskState = (): Task => ({
   assigneeId: '',
-  attachments: [],
   dueDate: '',
   dueTime: '',
   feeds: [],
@@ -281,7 +280,7 @@ const useSetters = () => {
     ({ set }) =>
       (data: TaskResponse[]) => {
         data
-          .reduce<Task['attachments']>(
+          .reduce<TaskResponse['attachments']>(
             (acc, p) => uniqBy([...acc, ...p.attachments], 'id'),
             [],
           )

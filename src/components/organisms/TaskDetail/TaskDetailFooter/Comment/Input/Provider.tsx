@@ -11,10 +11,7 @@ import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetai
 import { useClickOutside, useToast } from 'src/hooks'
 import { getAttachmentTypeFromFile } from 'src/shared/getAttachmentTypeFromFile'
 import { getScrollBottom } from 'src/shared/getScrollBottom'
-import {
-  Attachment,
-  useAttachmentsByTask,
-} from 'src/store/entities/attachments'
+import { Attachment } from 'src/store/entities/attachments'
 import { ATTACHMENT_STATUS_UNATTACHED } from 'src/store/entities/attachments/types'
 import {
   defaultFeedStateValue,
@@ -23,6 +20,7 @@ import {
   useFeedsByTask,
 } from 'src/store/entities/feeds'
 import { useMe } from 'src/store/entities/me'
+import { useTasksAttachments } from 'src/store/entities/tasks/attachmentIds'
 
 type ContextProps = {
   feed: Feed
@@ -126,7 +124,7 @@ function useUploadingFile(props: {
   setAttachmentIds: React.Dispatch<React.SetStateAction<string[]>>
 }) {
   const { taskId } = useTasksListDetail()
-  const { addAttachment } = useAttachmentsByTask(taskId)
+  const { addAttachment } = useTasksAttachments(taskId)
   const [uploadingFiles, setUploadingFiles] = useState<
     ContextProps['uploadingFiles']
   >([])

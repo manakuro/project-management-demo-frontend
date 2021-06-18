@@ -6,7 +6,6 @@ import { TaskTeammateResponse } from 'src/store/entities/taskTeammates'
 
 export type Task = {
   assigneeId: string
-  attachments: Attachment[]
   dueDate: string
   dueTime?: string
   feeds: Feed[]

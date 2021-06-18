@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback } from 'react'
 import {
   atomFamily,
   selectorFamily,
@@ -81,61 +81,18 @@ export const attachmentSelector = selectorFamily<Attachment, string>({
     },
 })
 
-export const useAttachmentsByTask = (taskId: string) => {
-  const attachmentIdsGroupByTask = useRecoilValue(
-    attachmentIdsGroupByTaskState(taskId),
-  )
-  const { upsertAttachment } = useAttachment()
-
-  const attachmentIds = useMemo(() => {
-    return attachmentIdsGroupByTask || []
-  }, [attachmentIdsGroupByTask])
-
-  const addAttachment = useCallback(
-    (val: Partial<Attachment>) => {
-      const id = uuid()
-      upsertAttachment({
-        ...defaultStateValue(),
-        ...val,
-        id,
-        taskId,
-      })
-      return id
-    },
-    [taskId, upsertAttachment],
-  )
-
-  return {
-    attachmentIds,
-    addAttachment,
-  }
-}
-
 export const useAttachments = () => {
   const attachmentIds = useRecoilValue(attachmentIdsState)
   const attachments = useRecoilValue(attachmentsState)
 
-  const setAttachments = useRecoilCallback(
-    ({ set }) =>
-      (attachments: Attachment[]) => {
-        attachments.forEach((p) => {
-          set(attachmentSelector(p.id), p)
-        })
-      },
-    [],
-  )
-
   return {
     attachmentIds,
     attachments,
-    setAttachments,
   }
 }
 
-export const useAttachment = (attachmentId?: string) => {
-  const attachment = useRecoilValue(attachmentSelector(attachmentId || ''))
-
-  const upsertAttachment = useRecoilCallback(
+export const useAttachmentCommand = () => {
+  const upsert = useRecoilCallback(
     ({ set }) =>
       (attachment: Attachment) => {
         set(attachmentSelector(attachment.id), attachment)
@@ -143,23 +100,45 @@ export const useAttachment = (attachmentId?: string) => {
     [],
   )
 
+  const addAttachment = useCallback(
+    (val: Partial<Attachment>) => {
+      const id = uuid()
+      upsert({
+        ...defaultStateValue(),
+        ...val,
+        id,
+      })
+      return id
+    },
+    [upsert],
+  )
+
+  return {
+    addAttachment,
+    upsert,
+  }
+}
+
+export const useAttachment = (attachmentId?: string) => {
+  const attachment = useRecoilValue(attachmentSelector(attachmentId || ''))
+  const { upsert } = useAttachmentCommand()
+
   const setAttachment = useRecoilCallback(
     ({ snapshot }) =>
       async (val: DeepPartial<Attachment>) => {
         const prev = await snapshot.getPromise(
           attachmentSelector(attachment.id),
         )
-        upsertAttachment({
+        upsert({
           ...prev,
           ...val,
         })
       },
-    [upsertAttachment, attachment.id],
+    [upsert, attachment.id],
   )
 
   return {
     attachment,
-    upsertAttachment,
     setAttachment,
   }
 }

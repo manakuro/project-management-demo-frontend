@@ -14,13 +14,13 @@ export const Content: React.VFC<Props> = memo<Props>(() => {
   )
 })
 const Component: React.VFC<Props> = memo<Props>(() => {
-  const { feed, hasText } = useFeedListItem()
+  const { attachmentIds, hasText } = useFeedListItem()
 
   return (
     <Stack flexDirection="column" flex={1} spacing={4}>
       {hasText && <ContentText />}
       <Stack spacing={4}>
-        {feed.attachmentIds.map((id) => (
+        {attachmentIds.map((id) => (
           <ContentAttachment attachmentId={id} key={id} />
         ))}
       </Stack>

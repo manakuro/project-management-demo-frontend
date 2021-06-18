@@ -36,7 +36,6 @@ export const defaultFeedStateValue = (): Feed => ({
     null,
     2,
   ),
-  attachmentIds: [],
   createdAt: '',
   updatedAt: '',
   isFirst: false,

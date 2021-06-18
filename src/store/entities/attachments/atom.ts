@@ -27,7 +27,9 @@ export const attachmentsState = atom<Attachment[]>({
 
 const defaultStateValue = (): Attachment => ({
   id: '',
+  projectId: '',
   taskId: '',
+  feedId: '',
   name: '',
   src: '',
   createdAt: '',

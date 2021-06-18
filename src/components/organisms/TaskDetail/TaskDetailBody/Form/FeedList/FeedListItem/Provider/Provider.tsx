@@ -7,6 +7,7 @@ import React, {
 } from 'react'
 import { useToast } from 'src/hooks'
 import { Feed, defaultFeedStateValue, useFeed } from 'src/store/entities/feeds'
+import { useFeedsAttachmentIds } from 'src/store/entities/feeds/attachmentIds'
 import {
   Teammate,
   defaultTeammateStateValue,
@@ -32,6 +33,7 @@ type ContextProps = {
   showLike: boolean
   taskId: string
   teammate: Teammate
+  attachmentIds: string[]
 }
 
 const Context = createContext<ContextProps>({
@@ -52,6 +54,7 @@ const Context = createContext<ContextProps>({
   showLike: false,
   taskId: '',
   teammate: defaultTeammateStateValue(),
+  attachmentIds: [],
 })
 export const useFeedListItem = () => useContext(Context)
 
@@ -70,6 +73,7 @@ export const Provider: React.FC<Props> = (props) => {
 
 const ProviderBase: React.FC<Props> = (props) => {
   const { feed } = useFeed(props.feedId)
+  const { attachmentIds } = useFeedsAttachmentIds(props.feedId)
   const { teammate } = useTeammate(feed.teammateId)
   const {
     onPin,
@@ -88,10 +92,7 @@ const ProviderBase: React.FC<Props> = (props) => {
       isEdit,
     })
 
-  const hasAttachment = useMemo(
-    () => !!feed.attachmentIds.length,
-    [feed.attachmentIds],
-  )
+  const hasAttachment = useMemo(() => !!attachmentIds.length, [attachmentIds])
   const hasText = useMemo(
     () => !!JSON.parse(feed.description).content.length,
     [feed.description],
@@ -117,6 +118,7 @@ const ProviderBase: React.FC<Props> = (props) => {
         hasAttachment,
         hasText,
         taskId: props.taskId,
+        attachmentIds,
       }}
     >
       {props.children}

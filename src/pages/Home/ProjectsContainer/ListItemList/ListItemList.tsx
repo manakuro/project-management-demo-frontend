@@ -1,15 +1,10 @@
 import React from 'react'
-import {
-  Flex,
-  IconButton,
-  Text,
-  Icon,
-  Avatar,
-  AvatarGroup,
-} from 'src/components/atoms'
+import { Flex, IconButton, Text, Icon, AvatarGroup } from 'src/components/atoms'
+import { TeammateAvatar } from 'src/components/organisms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useProject } from 'src/store/entities/projects'
 import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
+import { useProjectsTeammateIds } from 'src/store/entities/projects/teammateIds'
 import { MenuButton } from '../MenuButton/MenuButton'
 import { Container } from './Container'
 
@@ -19,6 +14,7 @@ type Props = {
 
 export const ListItemList: React.VFC<Props> = (props) => {
   const { project } = useProject(props.projectId)
+  const { teammateIds } = useProjectsTeammateIds(props.projectId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   return (
@@ -49,14 +45,8 @@ export const ListItemList: React.VFC<Props> = (props) => {
       </Flex>
       <Flex alignItems="center">
         <AvatarGroup size="xs" max={2} spacing={1} fontSize="xs">
-          {project.teammates.map((t, k) => (
-            <Avatar
-              key={k}
-              name={t.name}
-              src={t.image}
-              bg="teal.200"
-              border="none"
-            />
+          {teammateIds.map((id) => (
+            <TeammateAvatar teammateId={id} key={id} />
           ))}
         </AvatarGroup>
         <MenuButton projectId={project.id} ml={2} />

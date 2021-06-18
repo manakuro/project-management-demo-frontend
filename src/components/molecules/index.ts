@@ -1,6 +1,6 @@
-export * from './Chips'
 export * from './AttachmentBox'
 export * from './AttachmentUploadingBox'
+export * from './Chips'
 export * from './ColorModeSwitch'
 export * from './CustomField'
 export * from './InputWithIcon'

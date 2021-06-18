@@ -1,6 +1,8 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
+import { uuid } from 'src/shared/uuid'
 import { ProjectResponse } from 'src/store/entities/projects'
+import { teammates } from 'src/store/entities/teammates/data'
 
 const searchProjectsQueryState = atom<{ loading: boolean; projects: any[] }>({
   key: 'searchProjectsQueryState',
@@ -52,16 +54,24 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
           },
           teammates: [
             {
-              id: '1',
-              name: 'Manato Kuroda',
-              image: '/images/cat_img.png',
-              email: 'manato.kuroda@gmail.com',
+              id: uuid(),
+              teammateId: teammates.manato.id,
+              projectId: '2',
+              name: teammates.manato.name,
+              image: teammates.manato.image,
+              email: teammates.manato.email,
+              createdAt: '',
+              updatedAt: '',
             },
             {
-              id: '2',
-              name: 'Dan Abrahmov',
-              image: 'https://bit.ly/dan-abramov',
-              email: 'dan.abrahmov@gmail.com',
+              id: uuid(),
+              teammateId: teammates.dan.id,
+              projectId: '2',
+              name: teammates.dan.name,
+              image: teammates.dan.image,
+              email: teammates.dan.email,
+              createdAt: '',
+              updatedAt: '',
             },
           ],
         },
@@ -78,22 +88,34 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
           },
           teammates: [
             {
-              id: '1',
-              name: 'Manato Kuroda',
-              image: '/images/cat_img.png',
-              email: 'manato.kuroda@gmail.com',
+              id: uuid(),
+              teammateId: teammates.manato.id,
+              projectId: '2',
+              name: teammates.manato.name,
+              image: teammates.manato.image,
+              email: teammates.manato.email,
+              createdAt: '',
+              updatedAt: '',
             },
             {
-              id: '2',
-              name: 'Dan Abrahmov',
-              image: 'https://bit.ly/dan-abramov',
-              email: 'dan.abrahmov@gmail.com',
+              id: uuid(),
+              teammateId: teammates.dan.id,
+              projectId: '2',
+              name: teammates.dan.name,
+              image: teammates.dan.image,
+              email: teammates.dan.email,
+              createdAt: '',
+              updatedAt: '',
             },
             {
-              id: '3',
-              name: 'Kent Dodds',
-              image: 'https://bit.ly/kent-c-dodds',
-              email: 'kent.dodds@gmail.com',
+              id: uuid(),
+              teammateId: teammates.kent.id,
+              projectId: '1',
+              name: teammates.kent.name,
+              image: teammates.kent.image,
+              email: teammates.kent.email,
+              createdAt: '',
+              updatedAt: '',
             },
           ],
         },

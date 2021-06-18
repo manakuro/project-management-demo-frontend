@@ -1,4 +1,5 @@
 import { Colors } from 'src/shared/chakra'
+import { ProjectTeammateResponse } from 'src/store/entities/projectTeammates'
 
 export type ProjectResponse = {
   id: string
@@ -11,12 +12,7 @@ export type ProjectResponse = {
   icon: {
     id: string
   }
-  teammates: {
-    id: string
-    name: string
-    image: string
-    email: string
-  }[]
+  teammates: ProjectTeammateResponse[]
 }
 
 export type Project = {
@@ -30,11 +26,4 @@ export type Project = {
   icon: {
     id: string
   }
-  teammates: {
-    id: string
-    name: string
-    image: string
-    email: string
-  }[]
-  teammateIds: string[]
 }

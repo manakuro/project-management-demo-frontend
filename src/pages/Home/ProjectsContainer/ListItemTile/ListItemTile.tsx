@@ -3,13 +3,14 @@ import {
   Flex,
   Icon,
   Fade,
-  Avatar,
   AvatarGroup,
   FavoriteButton,
 } from 'src/components/atoms'
+import { TeammateAvatar } from 'src/components/organisms'
 import { MenuButton } from 'src/pages/Home/ProjectsContainer/MenuButton/MenuButton'
 import { useProject } from 'src/store/entities/projects'
 import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
+import { useProjectsTeammateIds } from 'src/store/entities/projects/teammateIds'
 import { transitions } from 'src/styles'
 import { Container } from './Container'
 
@@ -19,6 +20,7 @@ type Props = {
 
 export const ListItemTile: React.VFC<Props> = (props) => {
   const { project } = useProject(props.projectId)
+  const { teammateIds } = useProjectsTeammateIds(props.projectId)
 
   return (
     <Container name={project.name}>
@@ -72,14 +74,8 @@ export const ListItemTile: React.VFC<Props> = (props) => {
             <Flex position="absolute" bottom={3}>
               <Fade in>
                 <AvatarGroup size="xs" max={2}>
-                  {project.teammates.map((t, k) => (
-                    <Avatar
-                      key={k}
-                      name={t.name}
-                      src={t.image}
-                      bg="teal.200"
-                      border="none"
-                    />
+                  {teammateIds.map((id) => (
+                    <TeammateAvatar teammateId={id} key={id} />
                   ))}
                 </AvatarGroup>
               </Fade>

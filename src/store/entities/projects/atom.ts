@@ -8,7 +8,8 @@ import {
 } from 'recoil'
 import { COLORS } from 'src/hooks/useColorPicker'
 import { uniqBy } from 'src/shared/utils'
-import { teammateSelector } from 'src/store/entities/teammates'
+import { projectTeammateSelector } from 'src/store/entities/projectTeammates'
+import { useTeammateCommand } from 'src/store/entities/teammates'
 import { Project, ProjectResponse } from './type'
 
 export const projectIdsState = atom<string[]>({
@@ -33,8 +34,6 @@ const projectState = atomFamily<Project, string>({
     icon: {
       id: '',
     },
-    teammates: [],
-    teammateIds: [],
   },
 })
 
@@ -81,18 +80,20 @@ export const useProjectIds = () => {
 
 export const useProjects = () => {
   const projects = useRecoilValue(projectsState)
+  const { setTeammatesFromResponse } = useTeammateCommand()
 
   const setTeammates = useRecoilCallback(
     ({ set }) =>
       (data: ProjectResponse[]) => {
-        data
-          .reduce<Project['teammates']>(
-            (acc, p) => uniqBy([...acc, ...p.teammates], 'id'),
-            [],
-          )
-          .forEach((t) => set(teammateSelector(t.id), t))
+        const projectTeammates = data.reduce<ProjectResponse['teammates']>(
+          (acc, p) => uniqBy([...acc, ...p.teammates], 'id'),
+          [],
+        )
+        projectTeammates.forEach((t) => set(projectTeammateSelector(t.id), t))
+
+        setTeammatesFromResponse(projectTeammates)
       },
-    [],
+    [setTeammatesFromResponse],
   )
 
   const setProjects = useRecoilCallback(

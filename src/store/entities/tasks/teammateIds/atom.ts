@@ -7,7 +7,9 @@ export const tasksTeammateIdsSelector = selectorFamily<string[], string>({
     (taskId) =>
     ({ get }) => {
       const teammates = get(taskTeammatesState)
-      return teammates.filter((t) => t.taskId === taskId).map((p) => p.id)
+      return teammates
+        .filter((t) => t.taskId === taskId)
+        .map((p) => p.teammateId)
     },
 })
 export const useTasksTeammateIds = (taskId: string) => {

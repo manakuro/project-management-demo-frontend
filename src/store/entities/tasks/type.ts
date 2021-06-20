@@ -8,13 +8,11 @@ export type Task = {
   assigneeId: string
   dueDate: string
   dueTime?: string
-  feeds: Feed[]
   id: string
   isDeleted: boolean
   isDone: boolean
   isNew: boolean
   name: string
-  projects: ProjectTaskResponse[]
   taskParentId: string
   taskSectionId: string
 }

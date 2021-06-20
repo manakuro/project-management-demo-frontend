@@ -30,13 +30,11 @@ const defaultTaskState = (): Task => ({
   assigneeId: '',
   dueDate: '',
   dueTime: '',
-  feeds: [],
   id: '',
   isDeleted: false,
   isDone: false,
   isNew: false,
   name: '',
-  projects: [],
   taskParentId: '',
   taskSectionId: '',
 })
@@ -286,7 +284,7 @@ const useSetters = () => {
     ({ set }) =>
       (data: TaskResponse[]) => {
         data
-          .reduce<Task['feeds']>(
+          .reduce<TaskResponse['feeds']>(
             (acc, p) => uniqBy([...acc, ...p.feeds], 'id'),
             [],
           )
@@ -324,7 +322,7 @@ const useSetters = () => {
     ({ set }) =>
       (data: TaskResponse[]) => {
         data
-          .reduce<Task['projects']>(
+          .reduce<TaskResponse['projects']>(
             (acc, p) => uniqBy([...acc, ...p.projects], 'id'),
             [],
           )

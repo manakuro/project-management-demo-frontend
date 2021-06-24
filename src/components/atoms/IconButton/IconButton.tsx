@@ -8,6 +8,7 @@ import { ChakraProps, forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraIconButtonProps & {
   light?: boolean
+  ref?: React.ForwardedRef<any>
 }
 export type IconButtonProps = Props
 

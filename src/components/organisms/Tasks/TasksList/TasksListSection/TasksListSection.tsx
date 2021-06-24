@@ -1,8 +1,11 @@
 import React, { memo, useCallback, useState } from 'react'
-import { Flex, Icon, IconButton } from 'src/components/atoms'
+import { Flex, Icon, IconButton, Stack } from 'src/components/atoms'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
+import { useHover } from 'src/hooks/useHover'
 import { useMyTask } from 'src/store/app/myTasks'
 import { AddTask } from './AddTask'
+import { AddTaskButton } from './AddTaskButton'
+import { MoreAction } from './MoreAction'
 import { TaskSectionName } from './TaskSectionName'
 
 type Props = {
@@ -11,7 +14,7 @@ type Props = {
 
 export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
   const { taskIds } = useMyTask(props.taskSectionId)
-
+  const { ref, isHovering } = useHover()
   const [isExpanded, setIsExpanded] = useState(true)
 
   const handleToggle = useCallback(() => {
@@ -19,7 +22,7 @@ export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
   }, [])
 
   return (
-    <Flex flex={1} flexDirection="column">
+    <Flex flex={1} flexDirection="column" ref={ref}>
       <Flex h="50px" alignItems="center">
         <IconButton
           aria-label="Task list expand button"
@@ -28,6 +31,12 @@ export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
           onClick={handleToggle}
         />
         <TaskSectionName taskSectionId={props.taskSectionId} />
+        {isHovering && (
+          <Stack direction="row" spacing={1}>
+            <AddTaskButton />
+            <MoreAction />
+          </Stack>
+        )}
       </Flex>
       {isExpanded && (
         <Flex flexDirection="column">

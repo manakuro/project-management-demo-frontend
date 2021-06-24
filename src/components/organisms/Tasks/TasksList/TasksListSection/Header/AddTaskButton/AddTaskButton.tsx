@@ -2,13 +2,20 @@ import React, { useCallback } from 'react'
 import { Icon, IconButton } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { useTooltip } from 'src/components/molecules/Tooltip/useTooltip'
+import { useMyTask } from 'src/store/app/myTasks'
 
-type Props = {}
+type Props = {
+  taskSectionId: string
+}
 
-export const AddTaskButton: React.FC<Props> = () => {
-  const { ref, isOpen } = useTooltip({ openDelay: 500 })
+export const AddTaskButton: React.FC<Props> = (props) => {
+  const { ref, isOpen, onClose } = useTooltip({ openDelay: 500 })
+  const { addTask } = useMyTask(props.taskSectionId)
 
-  const handleClick = useCallback(() => {}, [])
+  const handleClick = useCallback(async () => {
+    onClose()
+    await addTask()
+  }, [addTask, onClose])
 
   return (
     <Tooltip

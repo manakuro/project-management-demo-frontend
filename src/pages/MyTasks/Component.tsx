@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Box } from 'src/components/atoms'
+import { Flex } from 'src/components/atoms'
 import { Head } from 'src/components/atoms/Head'
 import { MainHeader, Tabs, TabPanels, TabPanel } from 'src/components/organisms'
 import { Header } from './Header'
@@ -13,13 +13,13 @@ type Props = {
 export const Component: React.VFC<Props> = memo<Props>((props) => {
   return (
     <Provider loading={props.loading}>
-      <Tabs defaultIndex={0}>
-        <Box data-testid="Home">
+      <Tabs defaultIndex={0} flex={1} display="flex">
+        <Flex data-testid="Home" flex={1} flexDirection="column">
           <Head title="My Tasks" />
           <MainHeader>
             <Header />
           </MainHeader>
-          <Box mx="auto">
+          <Flex flex={1}>
             <TabPanels>
               <TabPanel>
                 <List />
@@ -31,8 +31,8 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
                 <p>Files!</p>
               </TabPanel>
             </TabPanels>
-          </Box>
-        </Box>
+          </Flex>
+        </Flex>
       </Tabs>
     </Provider>
   )

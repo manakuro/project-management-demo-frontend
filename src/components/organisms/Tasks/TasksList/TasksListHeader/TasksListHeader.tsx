@@ -9,7 +9,7 @@ type Props = {}
 export const TasksListHeader: React.FC<Props> = memo<Props>(() => {
   const { taskColumnIds } = useTasksList()
   return (
-    <Flex flex={1}>
+    <Flex px={6}>
       {taskColumnIds.map((id) => (
         <Column taskColumnId={id} key={id} />
       ))}

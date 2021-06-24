@@ -52,4 +52,4 @@ export const TaskSectionName: React.FC<Props> = memo<Props>((props) => {
     </Box>
   )
 })
-TaskSectionName.displayName = 'TasksListSection'
+TaskSectionName.displayName = 'TaskSectionName'

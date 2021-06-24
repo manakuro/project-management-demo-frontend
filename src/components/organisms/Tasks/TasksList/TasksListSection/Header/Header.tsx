@@ -35,7 +35,7 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
       <TaskSectionName taskSectionId={props.taskSectionId} />
       {isHovering && (
         <Stack direction="row" spacing={1}>
-          <AddTaskButton />
+          <AddTaskButton taskSectionId={props.taskSectionId} />
           <MoreAction />
         </Stack>
       )}

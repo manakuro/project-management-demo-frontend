@@ -27,5 +27,7 @@ export const useTooltip = (props: Props = {}) => {
   return {
     ref,
     isOpen,
+    onClose,
+    onOpen,
   }
 }

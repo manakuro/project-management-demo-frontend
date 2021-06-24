@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Icon, IconButton } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { useTooltip } from 'src/components/molecules/Tooltip/useTooltip'
@@ -7,6 +7,8 @@ type Props = {}
 
 export const AddTaskButton: React.FC<Props> = () => {
   const { ref, isOpen } = useTooltip({ openDelay: 500 })
+
+  const handleClick = useCallback(() => {}, [])
 
   return (
     <Tooltip
@@ -22,6 +24,7 @@ export const AddTaskButton: React.FC<Props> = () => {
         icon={<Icon icon="plus" color="text.muted" />}
         variant="ghost"
         size="sm"
+        onClick={handleClick}
       />
     </Tooltip>
   )

@@ -1,6 +1,7 @@
-import React, { memo, useCallback, useState } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Box } from 'src/components/atoms'
 import { useMyTask } from 'src/store/app/myTasks'
+import { useTasksListSectionHeader } from '../Provider'
 import { Input } from './Input'
 
 type Props = {
@@ -9,15 +10,15 @@ type Props = {
 
 export const TaskSectionName: React.FC<Props> = memo<Props>((props) => {
   const { taskSection, setSectionName } = useMyTask(props.taskSectionId)
-  const [focused, setFocused] = useState(false)
+  const { focused, onFocusInput, onUnfocusInput } = useTasksListSectionHeader()
 
   const handleClick = useCallback(() => {
-    setFocused(true)
-  }, [])
+    onFocusInput()
+  }, [onFocusInput])
 
   const handleClickOutside = useCallback(() => {
-    setFocused(false)
-  }, [])
+    onUnfocusInput()
+  }, [onUnfocusInput])
 
   const handleChange = useCallback(
     async (val: string) => {

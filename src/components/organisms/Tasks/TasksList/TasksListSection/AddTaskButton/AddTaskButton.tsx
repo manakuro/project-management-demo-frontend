@@ -1,12 +1,12 @@
 import React from 'react'
 import { Icon, IconButton } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
-import { useHover } from 'src/hooks/useHover'
+import { useTooltip } from 'src/components/molecules/Tooltip/useTooltip'
 
 type Props = {}
 
 export const AddTaskButton: React.FC<Props> = () => {
-  const { ref, isHovering } = useHover()
+  const { ref, isOpen } = useTooltip({ openDelay: 500 })
 
   return (
     <Tooltip
@@ -14,7 +14,7 @@ export const AddTaskButton: React.FC<Props> = () => {
       label="Add a task to this section"
       aria-label="Add task button"
       size="lg"
-      isOpen={isHovering}
+      isOpen={isOpen}
     >
       <IconButton
         ref={ref}

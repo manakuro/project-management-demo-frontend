@@ -169,10 +169,20 @@ export const useTaskSection = (taskSectionId?: string) => {
     },
     [useTasksCommandResult, taskSectionId],
   )
+  const setSectionName = useRecoilCallback(
+    () => async (val: string) => {
+      if (taskSection.name === val) return
+      const name = val || 'Untitled Section'
+
+      await setTaskSection({ name })
+    },
+    [setTaskSection, taskSection.name],
+  )
 
   return {
     taskSection,
     setTaskSection,
     addTask,
+    setSectionName,
   }
 }

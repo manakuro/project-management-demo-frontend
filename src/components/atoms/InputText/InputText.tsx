@@ -36,7 +36,7 @@ export const InputText: React.FC<Props> = memo<Props>((props) => {
         borderColor: 'gray.400',
       },
       _focus: {
-        borderColor: 'gray.400',
+        borderColor: 'gray.500',
       },
     }),
     [props.minH],

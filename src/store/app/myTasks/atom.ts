@@ -56,20 +56,21 @@ export const useMyTasks = () => {
 
 export const useMyTask = (taskSectionId: string) => {
   const { me } = useMe()
-  const useTaskSectionResult = useTaskSection(taskSectionId)
+  const { setSectionName, addTask, taskSection } = useTaskSection(taskSectionId)
   const { taskIds } = useTaskSectionTaskIds(taskSectionId)
 
-  const addTask = useRecoilCallback(
+  const addMyTask = useRecoilCallback(
     () => async () => {
-      await useTaskSectionResult.addTask({ teammateId: me.id })
+      await addTask({ teammateId: me.id })
     },
-    [me.id, useTaskSectionResult],
+    [me.id, addTask],
   )
 
   return {
-    taskSection: useTaskSectionResult.taskSection,
+    taskSection,
     taskIds,
-    addTask,
+    addTask: addMyTask,
+    setSectionName,
   }
 }
 

@@ -1,19 +1,25 @@
 import React, { memo, useCallback } from 'react'
-import { MenuList as AtomsMenuList, MenuItem } from 'src/components/organisms'
+import {
+  MenuList as AtomsMenuList,
+  MenuItem,
+  useDeleteTaskSectionModal,
+} from 'src/components/organisms'
 import { useTasksListSectionHeader } from 'src/components/organisms/Tasks/TasksList/TasksListSection/Header/Provider'
 
 type Props = {}
 
 export const MenuList: React.FC<Props> = memo(() => {
-  const { onFocusInput } = useTasksListSectionHeader()
+  const { setTaskSectionId, onOpen } = useDeleteTaskSectionModal()
+  const { onFocusInput, taskSectionId } = useTasksListSectionHeader()
 
   const handleRenameSection = useCallback(() => {
     onFocusInput()
   }, [onFocusInput])
 
   const handleDeleteSection = useCallback(() => {
-    console.log('handleDeleteSection!')
-  }, [])
+    setTaskSectionId(taskSectionId)
+    onOpen()
+  }, [onOpen, setTaskSectionId, taskSectionId])
 
   return (
     <AtomsMenuList zIndex={1}>

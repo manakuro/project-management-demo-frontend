@@ -4,13 +4,17 @@ type ContextProps = {
   focused: boolean
   onFocusInput: () => void
   onUnfocusInput: () => void
+  taskSectionId: string
 }
 
-type Props = {}
+type Props = {
+  taskSectionId: string
+}
 const Context = createContext<ContextProps>({
   focused: false,
   onFocusInput: () => void {},
   onUnfocusInput: () => void {},
+  taskSectionId: '',
 })
 export const useTasksListSectionHeader = () => useContext(Context)
 
@@ -31,6 +35,7 @@ export const Provider: React.FC<Props> = (props) => {
         focused,
         onFocusInput,
         onUnfocusInput,
+        taskSectionId: props.taskSectionId,
       }}
     >
       {props.children}

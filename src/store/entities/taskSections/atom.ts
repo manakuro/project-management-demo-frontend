@@ -151,6 +151,12 @@ export const useTaskSectionTaskIds = (taskSectionId?: string) => {
     taskIds,
   }
 }
+export const useTaskSectionTasks = (taskSectionId?: string) => {
+  const tasks = useRecoilValue(taskSectionsTasksSelector(taskSectionId || ''))
+  return {
+    tasks,
+  }
+}
 
 export const useTaskSection = (taskSectionId?: string) => {
   const taskSection = useRecoilValue(taskSectionSelector(taskSectionId || ''))

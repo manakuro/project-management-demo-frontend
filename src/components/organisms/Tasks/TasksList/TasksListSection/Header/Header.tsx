@@ -14,7 +14,7 @@ type Props = {
 
 export const Header: React.FC<Props> = memo<Props>((props) => {
   return (
-    <Provider>
+    <Provider taskSectionId={props.taskSectionId}>
       <Component {...props} />
     </Provider>
   )

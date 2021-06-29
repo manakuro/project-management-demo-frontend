@@ -12,7 +12,6 @@ export const AddTask: React.FC<Props> = memo<Props>((props) => {
   const { clickableHoverStyle } = useClickableHoverStyle()
 
   const handleClick = useCallback(async () => {
-    console.log('AddTask!')
     await addTask()
   }, [addTask])
 

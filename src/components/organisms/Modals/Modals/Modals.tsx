@@ -9,6 +9,7 @@ import {
   EditorMentionMenu,
   EditorEmojiMenu,
   FileViewerModal,
+  DeleteTaskSectionModal,
 } from 'src/components/organisms'
 import { CustomizeMenu } from 'src/components/organisms/Tasks'
 
@@ -25,6 +26,7 @@ export const Modals: React.VFC = () => {
       <EditorMentionMenu />
       <EditorEmojiMenu />
       <FileViewerModal />
+      <DeleteTaskSectionModal />
     </>
   )
 }

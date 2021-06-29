@@ -42,6 +42,7 @@ export const IconButton: React.FC<Props> & { id?: string } = forwardRef<
       cursor="pointer"
       minW={8}
       h={8}
+      borderRadius="md"
       {...style}
       {...rest}
       ref={ref}

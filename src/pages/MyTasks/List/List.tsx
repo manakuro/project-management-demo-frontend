@@ -16,13 +16,11 @@ import {
 import { useMyTasksComponent } from 'src/pages/MyTasks/Provider'
 import { useMyTasks, useMyTasksTaskColumns } from 'src/store/app/myTasks'
 import { SkeletonList } from './SkeletonList'
-import { useTasksListBody } from './useTasksListBody'
 
 export const List: React.VFC = memo(() => {
   const { taskSectionIds } = useMyTasks()
   const { taskColumnIds } = useMyTasksTaskColumns()
   const { loading } = useMyTasksComponent()
-  const { id } = useTasksListBody()
 
   if (loading) return <SkeletonList />
 
@@ -39,7 +37,7 @@ export const List: React.VFC = memo(() => {
         </TasksHeaderRight>
       </TasksHeader>
       <Flex flex={1}>
-        <Flex flex={1} flexDirection="column" id={id}>
+        <Flex flex={1} flexDirection="column">
           <TasksListHeader />
           <TasksListBody>
             {taskSectionIds.map((id) => (

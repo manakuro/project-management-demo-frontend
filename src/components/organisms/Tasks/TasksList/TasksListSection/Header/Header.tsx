@@ -25,7 +25,7 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
   const { ref, isHovering } = useHover()
 
   return (
-    <Flex h="50px" alignItems="center" ref={ref}>
+    <Flex h="50px" maxW="40%" alignItems="center" ref={ref}>
       <IconButton
         aria-label="Task list expand button"
         icon={<Icon icon={isExpanded ? 'chevronDown' : 'chevronRight'} />}

@@ -1,4 +1,8 @@
 import { useRecoilCallback } from 'recoil'
+import {
+  useMyTasksTaskIds,
+  useMyTasksTaskIdsByTaskSection,
+} from 'src/store/app/myTasks/tasks'
 import { useMe } from 'src/store/entities/me'
 import { taskColumnSelector } from 'src/store/entities/taskColumns'
 import {
@@ -6,7 +10,6 @@ import {
   useTaskSections,
   useTaskSectionsCommand,
 } from 'src/store/entities/taskSections'
-import { useTaskSectionTaskIds } from 'src/store/entities/taskSections/tasks'
 import { myTaskTaskColumnIdsState } from './taskColumns'
 import { myTaskTaskStatusState } from './taskListStatus'
 import { useMyTasksTaskSectionIds } from './taskSections'
@@ -32,6 +35,7 @@ export const useMyTasks = () => {
   const { setTaskSections } = useTaskSections()
   const { setTaskColumns, setTaskStatus } = useSetters()
   const { taskSectionIds } = useMyTasksTaskSectionIds()
+  const { taskIds } = useMyTasksTaskIds()
 
   const setMyTasks = useRecoilCallback(
     () => (data: MyTaskResponse) => {
@@ -45,13 +49,14 @@ export const useMyTasks = () => {
   return {
     taskSectionIds,
     setMyTasks,
+    taskIds,
   }
 }
 
 export const useMyTask = (taskSectionId: string) => {
   const { me } = useMe()
   const { setSectionName, addTask, taskSection } = useTaskSection(taskSectionId)
-  const { taskIds } = useTaskSectionTaskIds(taskSectionId)
+  const { taskIds } = useMyTasksTaskIdsByTaskSection(taskSectionId)
 
   const addMyTask = useRecoilCallback(
     () => async () => {

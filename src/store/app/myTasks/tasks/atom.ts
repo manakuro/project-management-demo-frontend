@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { selectorFamily, useRecoilValue } from 'recoil'
 import {
   myTaskTaskStatusState,
+  TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
   TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
   TASK_LIST_SORT_STATUS_TYPE_LIKES,
 } from 'src/store/app/myTasks'
@@ -37,6 +38,15 @@ export const myTasksTaskIdsSelector = selectorFamily<string[], string>({
             })
             .map((t) => t.id)
         }
+        case taskStatus.sortStatus ===
+          TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL: {
+          return tasks
+            .filter(filterByTeammateId(teammateId))
+            .sort((a, b) =>
+              a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1,
+            )
+            .map((t) => t.id)
+        }
         default: {
           return tasks.filter(filterByTeammateId(teammateId)).map((t) => t.id)
         }
@@ -65,6 +75,10 @@ export const myTasksTaskIdsByTaskSectionIdSelector = selectorFamily<
             .map((t) => t.id)
         }
         case taskStatus.sortStatus === TASK_LIST_SORT_STATUS_TYPE_LIKES: {
+          return []
+        }
+        case taskStatus.sortStatus ===
+          TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL: {
           return []
         }
         default: {

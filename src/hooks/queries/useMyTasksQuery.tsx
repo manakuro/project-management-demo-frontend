@@ -437,6 +437,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
         taskParentId: '',
       },
     ],
+    isDeleted: false,
   },
   {
     id: '2',
@@ -632,6 +633,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
         taskParentId: '',
       },
     ],
+    isDeleted: false,
   },
 ]
 

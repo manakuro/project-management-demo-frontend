@@ -14,7 +14,8 @@ import {
   TasksListBody,
 } from 'src/components/organisms'
 import { useMyTasksComponent } from 'src/pages/MyTasks/Provider'
-import { useMyTasks, useMyTasksTaskColumns } from 'src/store/app/myTasks'
+import { useMyTasks } from 'src/store/app/myTasks'
+import { useMyTasksTaskColumns } from 'src/store/app/myTasks/taskColumns'
 import { SkeletonList } from './SkeletonList'
 
 export const List: React.VFC = memo(() => {
@@ -40,8 +41,12 @@ export const List: React.VFC = memo(() => {
         <Flex flex={1} flexDirection="column">
           <TasksListHeader />
           <TasksListBody>
-            {taskSectionIds.map((id) => (
-              <TasksListSection taskSectionId={id} key={id} />
+            {taskSectionIds.map((id, i) => (
+              <TasksListSection
+                taskSectionId={id}
+                key={id}
+                showAddButton={taskSectionIds.length === i + 1}
+              />
             ))}
           </TasksListBody>
         </Flex>

@@ -3,7 +3,6 @@ import { Flex, Icon, IconButton, Stack } from 'src/components/atoms'
 import { useHover } from 'src/hooks/useHover'
 import { AddTaskButton } from './AddTaskButton'
 import { MoreAction } from './MoreAction'
-import { Provider } from './Provider'
 import { TaskSectionName } from './TaskSectionName'
 
 type Props = {
@@ -13,14 +12,6 @@ type Props = {
 }
 
 export const Header: React.FC<Props> = memo<Props>((props) => {
-  return (
-    <Provider taskSectionId={props.taskSectionId}>
-      <Component {...props} />
-    </Provider>
-  )
-})
-
-export const Component: React.FC<Props> = memo<Props>((props) => {
   const { onToggle, isExpanded } = props
   const { ref, isHovering } = useHover()
 

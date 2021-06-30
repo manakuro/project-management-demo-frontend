@@ -7,11 +7,3 @@ export type MyTaskResponse = {
   taskColumns: TaskColumn[]
   taskStatus: TaskListStatus
 }
-
-export type MyTasks = {
-  taskSectionIds: string[]
-}
-
-export type MyTaskTaskColumns = {
-  taskColumnIds: string[]
-}

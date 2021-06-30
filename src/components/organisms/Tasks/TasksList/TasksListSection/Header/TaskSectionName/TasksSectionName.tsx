@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { Box } from 'src/components/atoms'
+import { useTasksListSection } from 'src/components/organisms/Tasks/TasksList/TasksListSection/Provider'
 import { useMyTask } from 'src/store/app/myTasks'
-import { useTasksListSectionHeader } from '../Provider'
 import { Input } from './Input'
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 
 export const TaskSectionName: React.FC<Props> = memo<Props>((props) => {
   const { taskSection, setSectionName } = useMyTask(props.taskSectionId)
-  const { focused, onFocusInput, onUnfocusInput } = useTasksListSectionHeader()
+  const { focused, onFocusInput, onUnfocusInput } = useTasksListSection()
 
   const handleClick = useCallback(() => {
     onFocusInput()

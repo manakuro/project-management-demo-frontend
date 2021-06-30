@@ -7,6 +7,7 @@ export type TaskSectionResponse = {
   tasks: TaskResponse[]
   createdAt: string
   updatedAt: string
+  isDeleted: boolean
 }
 
 export type TaskSection = {
@@ -15,4 +16,5 @@ export type TaskSection = {
   teammateId: string // TODO: change to `userId`
   createdAt: string
   updatedAt: string
+  isDeleted: boolean
 }

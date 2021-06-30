@@ -16,7 +16,7 @@ const Context = createContext<ContextProps>({
   onUnfocusInput: () => void {},
   taskSectionId: '',
 })
-export const useTasksListSectionHeader = () => useContext(Context)
+export const useTasksListSection = () => useContext(Context)
 
 export const Provider: React.FC<Props> = (props) => {
   const [focused, setFocused] = useState(false)

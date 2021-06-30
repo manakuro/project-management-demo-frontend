@@ -12,6 +12,8 @@ import { uuid } from 'src/shared/uuid'
 import { useTasks, useTasksCommand } from 'src/store/entities/tasks'
 import { TaskSection, TaskSectionResponse } from './type'
 
+export const DEFAULT_TITLE_NAME = 'Untitled Section'
+
 export const taskSectionIdsState = atom<string[]>({
   key: 'taskSectionIdsState',
   default: [],
@@ -24,10 +26,11 @@ export const taskSectionsState = atom<TaskSection[]>({
 
 export const defaultTaskSectionStateValue = (): TaskSection => ({
   id: '',
-  name: '',
+  name: DEFAULT_TITLE_NAME,
   teammateId: '',
   createdAt: '',
   updatedAt: '',
+  isDeleted: false,
 })
 const taskSectionState = atomFamily<TaskSection, string>({
   key: 'taskSectionState',
@@ -101,15 +104,19 @@ export const useTaskSectionsCommand = () => {
     [],
   )
 
-  const addTaskSection = useCallback(() => {
-    const id = uuid()
-    upsert({
-      ...defaultTaskSectionStateValue(),
-      id,
-    })
+  const addTaskSection = useCallback(
+    (val?: Partial<TaskSection>) => {
+      const id = uuid()
+      upsert({
+        ...defaultTaskSectionStateValue(),
+        ...val,
+        id,
+      })
 
-    return id
-  }, [upsert])
+      return id
+    },
+    [upsert],
+  )
 
   return {
     upsert,
@@ -142,7 +149,7 @@ export const useTaskSection = (taskSectionId?: string) => {
   const setSectionName = useRecoilCallback(
     () => async (val: string) => {
       if (taskSection.name === val) return
-      const name = val || 'Untitled Section'
+      const name = val || DEFAULT_TITLE_NAME
 
       await setTaskSection({ name })
     },

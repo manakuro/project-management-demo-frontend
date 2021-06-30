@@ -1,55 +1,49 @@
-import { useRecoilCallback, atom, useRecoilValue } from 'recoil'
+import { useRecoilCallback } from 'recoil'
 import { useMe } from 'src/store/entities/me'
 import { taskColumnSelector } from 'src/store/entities/taskColumns'
 import {
   useTaskSection,
   useTaskSections,
+  useTaskSectionsCommand,
 } from 'src/store/entities/taskSections'
 import { useTaskSectionTaskIds } from 'src/store/entities/taskSections/tasks'
+import { myTaskTaskColumnIdsState } from './taskColumns'
 import { myTaskTaskStatusState } from './taskListStatus'
-import { MyTasks, MyTaskResponse } from './type'
+import { useMyTasksTaskSectionIds } from './taskSections'
+import { MyTaskResponse } from './type'
 
-export const myTaskTaskColumnIdsState = atom<string[]>({
-  key: 'myTaskTaskColumnIdsState',
-  default: [],
-})
+export const useMyTaskCommands = () => {
+  const { me } = useMe()
+  const { addTaskSection } = useTaskSectionsCommand()
 
-const myTasksState = atom<MyTasks>({
-  key: 'myTasksState',
-  default: {
-    taskSectionIds: [],
-  },
-})
+  const addMyTaskSection = useRecoilCallback(
+    () => () => {
+      return addTaskSection({ teammateId: me.id })
+    },
+    [me.id, addTaskSection],
+  )
 
-export const useMyTasksTaskColumns = () => {
-  const taskColumnIds = useRecoilValue(myTaskTaskColumnIdsState)
   return {
-    taskColumnIds,
+    addMyTaskSection,
   }
 }
 
 export const useMyTasks = () => {
-  const state = useRecoilValue(myTasksState)
   const { setTaskSections } = useTaskSections()
   const { setTaskColumns, setTaskStatus } = useSetters()
+  const { taskSectionIds } = useMyTasksTaskSectionIds()
 
   const setMyTasks = useRecoilCallback(
-    ({ set }) =>
-      (data: MyTaskResponse) => {
-        const taskSectionIds = data.taskSections.map((t) => t.id)
-
-        set(myTasksState, {
-          taskSectionIds,
-        })
-        setTaskSections(data.taskSections)
-        setTaskColumns(data)
-        setTaskStatus(data)
-      },
+    () => (data: MyTaskResponse) => {
+      setTaskSections(data.taskSections)
+      setTaskColumns(data)
+      setTaskStatus(data)
+    },
     [setTaskColumns, setTaskSections, setTaskStatus],
   )
 
   return {
-    ...state,
+    taskSectionIds,
     setMyTasks,
   }
 }

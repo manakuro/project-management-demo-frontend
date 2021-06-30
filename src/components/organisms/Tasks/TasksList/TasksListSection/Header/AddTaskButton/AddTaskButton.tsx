@@ -22,7 +22,7 @@ export const AddTaskButton: React.FC<Props> = memo((props) => {
       hasArrow
       label="Add a task to this section"
       aria-label="Add task button"
-      size="lg"
+      size="sm"
       isOpen={isOpen}
     >
       <IconButton

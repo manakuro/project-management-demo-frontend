@@ -4,13 +4,13 @@ import {
   MenuItem,
   useDeleteTaskSectionModal,
 } from 'src/components/organisms'
-import { useTasksListSectionHeader } from 'src/components/organisms/Tasks/TasksList/TasksListSection/Header/Provider'
+import { useTasksListSection } from 'src/components/organisms/Tasks/TasksList/TasksListSection/Provider'
 
 type Props = {}
 
 export const MenuList: React.FC<Props> = memo(() => {
   const { setTaskSectionId, onOpen } = useDeleteTaskSectionModal()
-  const { onFocusInput, taskSectionId } = useTasksListSectionHeader()
+  const { onFocusInput, taskSectionId } = useTasksListSection()
 
   const handleRenameSection = useCallback(() => {
     onFocusInput()

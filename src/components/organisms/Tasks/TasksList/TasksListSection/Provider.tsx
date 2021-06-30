@@ -1,20 +1,32 @@
-import React, { createContext, useCallback, useContext, useState } from 'react'
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from 'react'
+import { FlexProps } from 'src/components/atoms'
 
 type ContextProps = {
   focused: boolean
   onFocusInput: () => void
   onUnfocusInput: () => void
   taskSectionId: string
+  indented?: boolean
+  sortedStyle: FlexProps
 }
 
 type Props = {
   taskSectionId: string
+  indented?: boolean
 }
 const Context = createContext<ContextProps>({
   focused: false,
   onFocusInput: () => void {},
   onUnfocusInput: () => void {},
   taskSectionId: '',
+  indented: false,
+  sortedStyle: {},
 })
 export const useTasksListSection = () => useContext(Context)
 
@@ -29,6 +41,11 @@ export const Provider: React.FC<Props> = (props) => {
     setFocused(false)
   }, [])
 
+  const sortedStyle = useMemo<FlexProps>(
+    () => (props.indented ? { pl: 8 } : {}),
+    [props.indented],
+  )
+
   return (
     <Context.Provider
       value={{
@@ -36,6 +53,8 @@ export const Provider: React.FC<Props> = (props) => {
         onFocusInput,
         onUnfocusInput,
         taskSectionId: props.taskSectionId,
+        indented: props.indented,
+        sortedStyle,
       }}
     >
       {props.children}

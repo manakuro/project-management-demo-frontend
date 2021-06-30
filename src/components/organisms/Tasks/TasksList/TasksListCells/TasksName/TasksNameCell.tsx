@@ -1,10 +1,10 @@
 import React from 'react'
 import { Box } from 'src/components/atoms'
-import { useTasksList } from 'src/components/organisms/Tasks/TasksList/Provider'
 import {
   TasksListCell,
   TasksListCellProps,
 } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
+import { useTasksListSection } from 'src/components/organisms/Tasks/TasksList/TasksListSection/Provider'
 import { forwardRef } from 'src/shared/chakra'
 import { useTask } from 'src/store/entities/tasks'
 import { useTasksName } from './TasksNameProvider'
@@ -14,7 +14,7 @@ type Props = TasksListCellProps
 export const TasksNameCell: React.FC<Props> = forwardRef((props, ref) => {
   const { cellStyle, taskId } = useTasksName()
   const { task } = useTask(taskId)
-  const { sortedStyle, needIndent } = useTasksList()
+  const { sortedStyle, indented } = useTasksListSection()
 
   return (
     <>
@@ -31,7 +31,7 @@ export const TasksNameCell: React.FC<Props> = forwardRef((props, ref) => {
         {...props}
       >
         {props.children}
-        {needIndent && !task.taskParentId && (
+        {indented && !task.taskParentId && (
           <Box
             position="absolute"
             left={0}

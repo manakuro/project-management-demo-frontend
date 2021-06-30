@@ -34,6 +34,7 @@ export const ListSortByDueDate: React.VFC = memo(() => {
         <Flex flexDirection="column">
           {taskSectionIds.map((id, i) => (
             <TasksListSection
+              indented
               taskSectionId={id}
               key={id}
               showAddButton={taskSectionIds.length === i + 1}

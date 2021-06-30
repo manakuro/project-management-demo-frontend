@@ -10,10 +10,11 @@ import { Provider } from './Provider'
 type Props = {
   taskSectionId: string
   showAddButton: boolean
+  indented?: boolean
 }
 export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
   return (
-    <Provider taskSectionId={props.taskSectionId}>
+    <Provider taskSectionId={props.taskSectionId} indented={props.indented}>
       <Component {...props} />
     </Provider>
   )

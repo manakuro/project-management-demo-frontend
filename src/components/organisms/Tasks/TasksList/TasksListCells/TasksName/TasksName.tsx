@@ -1,7 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { CheckIcon, FlexProps, Icon, Text } from 'src/components/atoms'
 import { useRouter } from 'src/router'
-import { useTaskColumn } from 'src/store/entities/taskColumns'
 import { useTask } from 'src/store/entities/tasks'
 import { Mark } from './Mark'
 import { TasksNameCell } from './TasksNameCell'
@@ -12,12 +11,12 @@ import { TasksNameRightContainer } from './TasksNameRightContainer'
 
 type Props = FlexProps & {
   taskId: string
-  taskColumnId: string
+  width: string
 }
 
 export const TasksName: React.FC<Props> = memo<Props>((props) => {
   return (
-    <TasksNameProvider>
+    <TasksNameProvider taskId={props.taskId}>
       <Component {...props} />
     </TasksNameProvider>
   )
@@ -27,7 +26,6 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
   const { ref, onMarkMenuOpened, onMarkMenuClosed } = useTasksName()
   const { navigateToTaskDetail } = useRouter()
   const { task, setTask, deleteTask, setTaskName } = useTask(props.taskId)
-  const { taskColumn } = useTaskColumn(props.taskColumnId)
 
   const handleClick = useCallback(async () => {
     await navigateToTaskDetail(task.id)
@@ -48,12 +46,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <TasksNameCell
-      ref={ref}
-      onClick={handleClick}
-      w={taskColumn.width}
-      minW="400px"
-    >
+    <TasksNameCell ref={ref} onClick={handleClick} w={props.width} minW="400px">
       <TasksNameGrabIcon />
       <CheckIcon isDone={task.isDone} ml={4} onClick={handleToggleDone} />
       <TasksNameField

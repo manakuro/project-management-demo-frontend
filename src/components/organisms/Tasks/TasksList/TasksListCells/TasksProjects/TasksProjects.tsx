@@ -2,19 +2,17 @@ import React, { memo, useCallback, useState } from 'react'
 import { FlexProps, Stack } from 'src/components/atoms'
 import { ProjectChip } from 'src/components/molecules'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
-import { useTaskColumn } from 'src/store/entities/taskColumns'
 import { useTasksProjectTaskIds } from 'src/store/entities/tasks/projectIds'
 import { Input } from './Input'
 
 type Props = FlexProps & {
   taskId: string
-  taskColumnId: string
+  width: string
 }
 
 export const TasksProjects: React.VFC<Props> = memo<Props>((props) => {
   const { projectIds } = useTasksProjectTaskIds(props.taskId)
   const [focused, setFocused] = useState<boolean>(false)
-  const { taskColumn } = useTaskColumn(props.taskColumnId)
 
   const onFocus = useCallback(() => {
     setFocused(true)
@@ -26,7 +24,7 @@ export const TasksProjects: React.VFC<Props> = memo<Props>((props) => {
 
   return (
     <TasksListCell
-      w={taskColumn.width}
+      w={props.width}
       minW="120px"
       hover
       cursor="pointer"

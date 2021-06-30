@@ -9,6 +9,7 @@ type ContextProps = UseInputFocus &
     isHovering: boolean
     showIcon: boolean
     showMark: boolean
+    taskId: string
   }
 export type TasksNameContextProps = ContextProps
 
@@ -25,10 +26,14 @@ const Context = createContext<ContextProps>({
   showIcon: false,
   showMark: false,
   ref: null as any,
+  taskId: '',
 })
 export const useTasksName = () => useContext(Context)
 
-export const TasksNameProvider: React.FC = (props) => {
+type Props = {
+  taskId: string
+}
+export const TasksNameProvider: React.FC<Props> = (props) => {
   const useInputFocusResult = useInputFocus()
   const { markMenuFocused, onMarkMenuClosed, onMarkMenuOpened } =
     useMarkMenuFocus()
@@ -55,6 +60,7 @@ export const TasksNameProvider: React.FC = (props) => {
         isHovering,
         showIcon,
         showMark,
+        taskId: props.taskId,
       }}
     >
       {props.children}

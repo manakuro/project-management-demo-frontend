@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import { FlexProps } from 'src/components/atoms'
 import {
   TasksName,
@@ -24,32 +24,25 @@ type Props = FlexProps & {
 export const Cell: React.FC<Props> = memo<Props>((props) => {
   const { taskColumn } = useTaskColumn(props.taskColumnId)
 
+  const width = useMemo(() => {
+    return taskColumn.width
+  }, [taskColumn.width])
+
   switch (taskColumn.type) {
     case TASK_COLUMN_TYPE_FIELD_NAME: {
-      return (
-        <TasksName taskId={props.taskId} taskColumnId={props.taskColumnId} />
-      )
+      return <TasksName taskId={props.taskId} width={width} />
     }
     case TASK_COLUMN_TYPE_ASSIGNMENT: {
       return null
     }
     case TASK_COLUMN_TYPE_DUE_DATE: {
-      return (
-        <TasksDueDate taskId={props.taskId} taskColumnId={props.taskColumnId} />
-      )
+      return <TasksDueDate taskId={props.taskId} width={width} />
     }
     case TASK_COLUMN_TYPE_PROJECT: {
-      return (
-        <TasksProjects
-          taskId={props.taskId}
-          taskColumnId={props.taskColumnId}
-        />
-      )
+      return <TasksProjects taskId={props.taskId} width={width} />
     }
     case TASK_COLUMN_TYPE_TAGS: {
-      return (
-        <TasksTags taskId={props.taskId} taskColumnId={props.taskColumnId} />
-      )
+      return <TasksTags taskId={props.taskId} width={width} />
     }
     case TASK_COLUMN_TYPE_CUSTOM: {
       return null

@@ -19,7 +19,7 @@ type Props = FlexProps & {
 
 export const TasksName: React.FC<Props> = memo<Props>((props) => {
   return (
-    <SubtaskNameProvider>
+    <SubtaskNameProvider taskId={props.taskId}>
       <Component {...props} />
     </SubtaskNameProvider>
   )

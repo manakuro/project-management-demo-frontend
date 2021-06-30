@@ -6,9 +6,12 @@ type ContextProps = {}
 const Context = createContext<ContextProps>({})
 export const useSubtaskName = () => useContext(Context)
 
-export const SubtaskNameProvider: React.FC = (props) => {
+type Props = {
+  taskId: string
+}
+export const SubtaskNameProvider: React.FC<Props> = (props) => {
   return (
-    <TasksNameProvider>
+    <TasksNameProvider taskId={props.taskId}>
       <Provider {...props} />
     </TasksNameProvider>
   )

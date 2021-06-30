@@ -16,6 +16,8 @@ export const TasksListBody: React.FC<Props> = memo<Props>((props) => {
       maxH={`calc(100vh - ${maxH}px)`}
       px={6}
       pb={20}
+      position="relative"
+      top="-1px"
       {...props}
     />
   )

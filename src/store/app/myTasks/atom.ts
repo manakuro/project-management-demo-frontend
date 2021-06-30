@@ -4,8 +4,8 @@ import { taskColumnSelector } from 'src/store/entities/taskColumns'
 import {
   useTaskSection,
   useTaskSections,
-  useTaskSectionTaskIds,
 } from 'src/store/entities/taskSections'
+import { useTaskSectionTaskIds } from 'src/store/entities/taskSections/tasks'
 import { myTaskTaskStatusState } from './taskListStatus'
 import { MyTasks, MyTaskResponse } from './type'
 

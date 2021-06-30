@@ -1,9 +1,7 @@
 import { useCallback, useMemo } from 'react'
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
-import {
-  useTaskSection,
-  useTaskSectionTasks,
-} from 'src/store/entities/taskSections'
+import { useTaskSection } from 'src/store/entities/taskSections'
+import { useTaskSectionTasks } from 'src/store/entities/taskSections/tasks'
 
 const deleteTaskSectionModalOpenState = atom({
   key: 'deleteTaskSectionModalOpenState',

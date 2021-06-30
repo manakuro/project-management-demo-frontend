@@ -9,12 +9,7 @@ import {
 } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import { uuid } from 'src/shared/uuid'
-import {
-  Task,
-  tasksState,
-  useTasks,
-  useTasksCommand,
-} from 'src/store/entities/tasks'
+import { useTasks, useTasksCommand } from 'src/store/entities/tasks'
 import { TaskSection, TaskSectionResponse } from './type'
 
 export const taskSectionIdsState = atom<string[]>({
@@ -37,27 +32,6 @@ export const defaultTaskSectionStateValue = (): TaskSection => ({
 const taskSectionState = atomFamily<TaskSection, string>({
   key: 'taskSectionState',
   default: defaultTaskSectionStateValue(),
-})
-
-const filterByTaskSectionId = (taskSectionId: string) => (t: Task) =>
-  !t.isDeleted && taskSectionId === t.taskSectionId && !t.taskParentId
-
-export const taskSectionsTaskIdsSelector = selectorFamily<string[], string>({
-  key: 'taskSectionsTaskIdsSelector',
-  get:
-    (taskSectionId) =>
-    ({ get }) =>
-      get(taskSectionsTasksSelector(taskSectionId)).map((t) => t.id),
-})
-
-export const taskSectionsTasksSelector = selectorFamily<Task[], string>({
-  key: 'taskSectionsTasksSelector',
-  get:
-    (taskSectionId) =>
-    ({ get }) => {
-      const tasks = get(tasksState)
-      return tasks.filter(filterByTaskSectionId(taskSectionId))
-    },
 })
 
 export const taskSectionSelector = selectorFamily<TaskSection, string>({
@@ -140,21 +114,6 @@ export const useTaskSectionsCommand = () => {
   return {
     upsert,
     addTaskSection,
-  }
-}
-
-export const useTaskSectionTaskIds = (taskSectionId?: string) => {
-  const taskIds = useRecoilValue(
-    taskSectionsTaskIdsSelector(taskSectionId || ''),
-  )
-  return {
-    taskIds,
-  }
-}
-export const useTaskSectionTasks = (taskSectionId?: string) => {
-  const tasks = useRecoilValue(taskSectionsTasksSelector(taskSectionId || ''))
-  return {
-    tasks,
   }
 }
 

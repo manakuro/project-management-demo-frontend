@@ -1,15 +1,18 @@
 import React, { memo, useCallback } from 'react'
 import { Button, Flex, Icon } from 'src/components/atoms'
+import { useTasksList } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { useMyTaskCommands } from 'src/store/app/myTasks'
 
 type Props = {}
 
 export const AddTaskSection: React.FC<Props> = memo<Props>(() => {
   const { addMyTaskSection } = useMyTaskCommands()
+  const { setAddedTaskSectionId } = useTasksList()
 
   const handleClick = useCallback(() => {
-    addMyTaskSection()
-  }, [addMyTaskSection])
+    const id = addMyTaskSection()
+    setAddedTaskSectionId(id)
+  }, [addMyTaskSection, setAddedTaskSectionId])
 
   return (
     <Flex w={40} mt={4}>

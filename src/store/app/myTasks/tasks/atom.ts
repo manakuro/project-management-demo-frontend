@@ -3,8 +3,10 @@ import { selectorFamily, useRecoilValue } from 'recoil'
 import {
   myTaskTaskStatusState,
   TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
+  TASK_LIST_SORT_STATUS_TYPE_LIKES,
 } from 'src/store/app/myTasks'
 import { useMe } from 'src/store/entities/me'
+import { taskLikesByTaskIdSelector } from 'src/store/entities/taskLikes'
 import { Task, tasksState } from 'src/store/entities/tasks'
 
 const filterByTeammateId = (teammateId: string) => (t: Task) =>
@@ -17,15 +19,28 @@ export const myTasksTaskIdsSelector = selectorFamily<string[], string>({
       const tasks = get(tasksState)
       const taskStatus = get(myTaskTaskStatusState)
 
-      if (taskStatus.sortStatus === TASK_LIST_SORT_STATUS_TYPE_DUE_DATE) {
-        return tasks
-          .filter(filterByTeammateId(teammateId))
-          .filter((t) => !!t.dueDate)
-          .sort((a, b) => (a.dueDate < b.dueDate ? -1 : 1))
-          .map((t) => t.id)
+      switch (true) {
+        case taskStatus.sortStatus === TASK_LIST_SORT_STATUS_TYPE_DUE_DATE: {
+          return tasks
+            .filter(filterByTeammateId(teammateId))
+            .filter((t) => !!t.dueDate)
+            .sort((a, b) => (a.dueDate < b.dueDate ? -1 : 1))
+            .map((t) => t.id)
+        }
+        case taskStatus.sortStatus === TASK_LIST_SORT_STATUS_TYPE_LIKES: {
+          return tasks
+            .filter(filterByTeammateId(teammateId))
+            .sort((a, b) => {
+              const taskLikesA = get(taskLikesByTaskIdSelector(a.id))
+              const taskLikesB = get(taskLikesByTaskIdSelector(b.id))
+              return taskLikesA.length < taskLikesB.length ? 1 : -1
+            })
+            .map((t) => t.id)
+        }
+        default: {
+          return tasks.filter(filterByTeammateId(teammateId)).map((t) => t.id)
+        }
       }
-
-      return tasks.filter(filterByTeammateId(teammateId)).map((t) => t.id)
     },
 })
 
@@ -42,14 +57,22 @@ export const myTasksTaskIdsByTaskSectionIdSelector = selectorFamily<
       const tasks = get(tasksState)
       const taskStatus = get(myTaskTaskStatusState)
 
-      if (taskStatus.sortStatus === TASK_LIST_SORT_STATUS_TYPE_DUE_DATE) {
-        return tasks
-          .filter(filterByTaskSectionId(taskSectionId))
-          .filter((t) => !t.dueDate)
-          .map((t) => t.id)
+      switch (true) {
+        case taskStatus.sortStatus === TASK_LIST_SORT_STATUS_TYPE_DUE_DATE: {
+          return tasks
+            .filter(filterByTaskSectionId(taskSectionId))
+            .filter((t) => !t.dueDate)
+            .map((t) => t.id)
+        }
+        case taskStatus.sortStatus === TASK_LIST_SORT_STATUS_TYPE_LIKES: {
+          return []
+        }
+        default: {
+          return tasks
+            .filter(filterByTaskSectionId(taskSectionId))
+            .map((t) => t.id)
+        }
       }
-
-      return tasks.filter(filterByTaskSectionId(taskSectionId)).map((t) => t.id)
     },
 })
 

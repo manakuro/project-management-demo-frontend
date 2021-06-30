@@ -5,6 +5,7 @@ import {
   useWorkspaceQuery,
   useMeQuery,
   useFeedLikesQuery,
+  useTaskLikesQuery,
 } from 'src/hooks/queries'
 
 export const BeforeAppMount: React.FC = (props) => {
@@ -21,6 +22,9 @@ export const BeforeAppMount: React.FC = (props) => {
   const feedLikesResult = useFeedLikesQuery({
     lazy: true,
   })
+  const taskLikesResult = useTaskLikesQuery({
+    lazy: true,
+  })
 
   useEffect(() => {
     console.log('BeforeAppMount!!')
@@ -29,6 +33,7 @@ export const BeforeAppMount: React.FC = (props) => {
     workspaceQueryResult.refetch()
     meQueryResult.refetch()
     feedLikesResult.refetch()
+    taskLikesResult.refetch()
 
     /* eslint react-hooks/exhaustive-deps: off */
   }, [])

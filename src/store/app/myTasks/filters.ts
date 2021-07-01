@@ -23,9 +23,7 @@ type Params = {
 }
 
 export const sortTasks = (params: Params) => (t: Task[]) => {
-  let tasks = t
-
-  tasks = sortByDueDate(params)(tasks)
+  let tasks = sortByDueDate(params)(t)
   tasks = sortByLikes(params)(tasks)
   tasks = sortByAlphabetical(params)(tasks)
 
@@ -98,8 +96,7 @@ export const filterByNoProject =
   }
 
 export const filterTasks = (params: Params) => (t: Task[]) => {
-  let tasks = t
-  tasks = filterByIncomplete(params)(tasks)
+  let tasks = filterByIncomplete(params)(t)
   tasks = filterByAllCompleted(params)(tasks)
   tasks = filterByCompletedSinceToday(params)(tasks)
   tasks = filterByCompletedSinceYesterday(params)(tasks)
@@ -159,7 +156,7 @@ export const filterByCompletedSinceYesterday =
       if (!t.doneAt) return false
 
       const duration = getDuration(t.doneAt)
-      return t.isDone && duration.days === 1
+      return t.isDone && Number(duration.days) <= 1
     })
   }
 
@@ -174,7 +171,7 @@ export const filterByCompletedSince1Week =
       if (!t.doneAt) return false
 
       const duration = getDuration(t.doneAt)
-      return t.isDone && duration.days === 7
+      return t.isDone && Number(duration.days) <= 7
     })
   }
 
@@ -189,7 +186,7 @@ export const filterByCompletedSince2Weeks =
       if (!t.doneAt) return false
 
       const duration = getDuration(t.doneAt)
-      return t.isDone && duration.days === 14
+      return t.isDone && Number(duration.days) <= 14
     })
   }
 
@@ -204,6 +201,6 @@ export const filterByCompletedSince3Weeks =
       if (!t.doneAt) return false
 
       const duration = getDuration(t.doneAt)
-      return t.isDone && duration.days === 21
+      return t.isDone && Number(duration.days) <= 21
     })
   }

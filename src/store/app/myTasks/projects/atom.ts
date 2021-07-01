@@ -1,12 +1,15 @@
 import { useMemo } from 'react'
 import { selector, selectorFamily, useRecoilValue } from 'recoil'
 import { uniq } from 'src/shared/utils'
-import { useMe } from 'src/store/entities/me'
 import {
-  projectTaskIdsByProjectIdSelector,
-  projectTasksState,
-} from 'src/store/entities/projectTasks'
-import { Task, tasksState } from 'src/store/entities/tasks'
+  filterByTeammateId,
+  filterTasks,
+  filterByProjectTasks,
+  filterByNoProject,
+} from 'src/store/app/myTasks/filters'
+import { useMe } from 'src/store/entities/me'
+import { projectTasksState } from 'src/store/entities/projectTasks'
+import { tasksState } from 'src/store/entities/tasks'
 
 export const myTasksProjectIdsSelector = selector<string[]>({
   key: 'myTasksProjectIdsSelector',
@@ -16,8 +19,19 @@ export const myTasksProjectIdsSelector = selector<string[]>({
   },
 })
 
-const filterByTeammateId = (teammateId: string) => (t: Task) =>
-  !t.isDeleted && t.assigneeId === teammateId
+export const myTasksProjectTaskIdsSelector = selectorFamily<string[], string>({
+  key: 'myTasksProjectTaskIdsSelector',
+  get:
+    (projectId: string) =>
+    ({ get }) => {
+      let tasks = get(tasksState)
+      tasks = filterByProjectTasks({ get, projectId })(tasks)
+      tasks = filterTasks({ get })(tasks)
+
+      return tasks.map((t) => t.id)
+    },
+})
+
 export const myTasksTaskIdsWithNoProjectSelector = selectorFamily<
   string[],
   string
@@ -26,13 +40,11 @@ export const myTasksTaskIdsWithNoProjectSelector = selectorFamily<
   get:
     (teammateId: string) =>
     ({ get }) => {
-      const tasks = get(tasksState)
-      const projectTasks = get(projectTasksState)
-      const taskIdsWithProject = uniq(projectTasks.map((p) => p.taskId))
-      return tasks
-        .filter(filterByTeammateId(teammateId))
-        .filter((t) => !taskIdsWithProject.includes(t.id))
-        .map((t) => t.id)
+      let tasks = get(tasksState)
+      tasks = filterByTeammateId(teammateId)(tasks)
+      tasks = filterByNoProject({ get })(tasks)
+
+      return tasks.map((t) => t.id)
     },
 })
 
@@ -56,7 +68,7 @@ export const useMyTasksTaskIdsWithNoProject = () => {
 }
 
 export const useMyTasksTaskIdsByProject = (projectId: string) => {
-  const ids = useRecoilValue(projectTaskIdsByProjectIdSelector(projectId))
+  const ids = useRecoilValue(myTasksProjectTaskIdsSelector(projectId))
   const taskIds = useMemo(() => ids, [ids])
 
   return {

@@ -12,7 +12,7 @@ import { taskLikesByTaskIdSelector } from 'src/store/entities/taskLikes'
 import { Task, tasksState } from 'src/store/entities/tasks'
 
 const filterByTeammateId = (teammateId: string) => (t: Task) =>
-  !t.isDeleted && !t.taskParentId && t.assigneeId === teammateId
+  !t.isDeleted && t.assigneeId === teammateId
 export const myTasksTaskIdsSelector = selectorFamily<string[], string>({
   key: 'myTasksTaskIdsSelector',
   get:

@@ -17,7 +17,7 @@ export const myTasksProjectIdsSelector = selector<string[]>({
 })
 
 const filterByTeammateId = (teammateId: string) => (t: Task) =>
-  !t.isDeleted && !t.taskParentId && t.assigneeId === teammateId
+  !t.isDeleted && t.assigneeId === teammateId
 export const myTasksTaskIdsWithNoProjectSelector = selectorFamily<
   string[],
   string

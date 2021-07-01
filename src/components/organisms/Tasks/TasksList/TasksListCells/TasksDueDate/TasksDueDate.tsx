@@ -16,13 +16,24 @@ export const TasksDueDate: React.VFC<Props> = memo<Props>((props) => {
   const hasDueDate = useMemo(() => !!task.dueDate, [task.dueDate])
   const { ref, isHovering } = useHover()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
-  const showIcon = useMemo(
+  const showCalendarIcon = useMemo(
     () => !hasDueDate && isHovering,
+    [hasDueDate, isHovering],
+  )
+  const showResetIcon = useMemo(
+    () => hasDueDate && isHovering,
     [hasDueDate, isHovering],
   )
   const handleChange = useCallback(
     async (date: Date) => {
       await setTask({ dueDate: date.toISOString() })
+    },
+    [setTask],
+  )
+  const handleReset = useCallback(
+    async (e: React.MouseEvent<SVGElement>) => {
+      e.stopPropagation()
+      await setTask({ dueDate: '' })
     },
     [setTask],
   )
@@ -41,7 +52,7 @@ export const TasksDueDate: React.VFC<Props> = memo<Props>((props) => {
         onChange={handleChange}
       >
         <Flex flex={1} h="full" alignItems="center">
-          {showIcon && (
+          {showCalendarIcon && (
             <Icon
               icon="calendarAlt"
               color="text.muted"
@@ -49,6 +60,17 @@ export const TasksDueDate: React.VFC<Props> = memo<Props>((props) => {
             />
           )}
           <DueDate fontSize="xs" dueDate={task.dueDate} />
+          {showResetIcon && (
+            <Icon
+              ml="auto"
+              mt="1px"
+              icon="x"
+              color="text.muted"
+              size="sm"
+              {...clickableHoverLightStyle}
+              onClick={handleReset}
+            />
+          )}
         </Flex>
       </PopoverDueDatePicker>
     </TasksListCell>

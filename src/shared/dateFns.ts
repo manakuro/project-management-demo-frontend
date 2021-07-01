@@ -8,6 +8,7 @@ import isThisYear from 'date-fns/isThisYear'
 import isToday from 'date-fns/isToday'
 import isTomorrow from 'date-fns/isTomorrow'
 import isYesterday from 'date-fns/isYesterday'
+import subDays from 'date-fns/subDays'
 
 class DateFnsAdapter extends DateIODateFnsAdapter {
   isToday(date: ArgType<typeof isToday, 0>) {
@@ -45,6 +46,12 @@ class DateFnsAdapter extends DateIODateFnsAdapter {
   }
   intervalToDuration(interval: ArgType<typeof intervalToDuration, 0>) {
     return intervalToDuration(interval)
+  }
+  subDays(
+    date: ArgType<typeof subDays, 0>,
+    amount: ArgType<typeof subDays, 1>,
+  ) {
+    return subDays(date, amount)
   }
 }
 

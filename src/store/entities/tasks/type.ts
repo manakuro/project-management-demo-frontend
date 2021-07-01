@@ -11,6 +11,7 @@ export type Task = {
   id: string
   isDeleted: boolean
   isDone: boolean
+  doneAt: string
   isNew: boolean
   name: string
   taskParentId: string
@@ -26,6 +27,7 @@ export type TaskResponse = {
   id: string
   isDeleted: boolean
   isDone: boolean
+  doneAt: string
   isNew: boolean
   name: string
   projects: ProjectTaskResponse[]

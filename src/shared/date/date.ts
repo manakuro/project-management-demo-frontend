@@ -6,3 +6,11 @@ export const getDifferenceInDays = (
 ): number => {
   return dateFns.differenceInCalendarDays(laterDate, earlierDate)
 }
+
+export const isToday = (date: string) => {
+  return dateFns.isToday(new Date(date))
+}
+
+export const isYesterday = (date: string) => {
+  return dateFns.isYesterday(new Date(date))
+}

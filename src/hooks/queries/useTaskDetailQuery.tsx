@@ -74,6 +74,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
             taskSectionId: '1',
             teammates: [],
             taskParentId: '1',
+            doneAt: '',
           },
           {
             assigneeId: '1',
@@ -92,6 +93,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
             taskSectionId: '1',
             teammates: [],
             taskParentId: '1',
+            doneAt: '',
           },
           {
             assigneeId: '1',
@@ -110,6 +112,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
             taskSectionId: '1',
             teammates: [],
             taskParentId: '1',
+            doneAt: '',
           },
         ],
         assigneeId: '1',
@@ -320,6 +323,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
         isNew: false,
         isDeleted: false,
         taskParentId: '',
+        doneAt: new Date(dateFns.subDays(new Date(), 3)).toISOString(),
       })
     }, 300)
   })

@@ -33,6 +33,7 @@ const defaultTaskState = (): Task => ({
   id: '',
   isDeleted: false,
   isDone: false,
+  doneAt: '',
   isNew: false,
   name: '',
   taskParentId: '',

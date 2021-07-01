@@ -4,6 +4,7 @@ import { ListBasic } from './ListBasic'
 import { ListSortByAlphabetical } from './ListSortByAlphabetical'
 import { ListSortByDueDate } from './ListSortByDueDate'
 import { ListSortByLike } from './ListSortByLike'
+import { ListSortByProject } from './ListSortByProject'
 
 export const TasksListLayout: React.VFC = memo(() => {
   const { isSorted } = useMyTasksTaskStatus()
@@ -17,6 +18,9 @@ export const TasksListLayout: React.VFC = memo(() => {
     }
     case isSorted('alphabetical'): {
       return <ListSortByAlphabetical />
+    }
+    case isSorted('project'): {
+      return <ListSortByProject />
     }
     default: {
       return <ListBasic />

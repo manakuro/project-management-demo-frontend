@@ -5,6 +5,7 @@ import {
   TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
   TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
   TASK_LIST_SORT_STATUS_TYPE_LIKES,
+  TASK_LIST_SORT_STATUS_TYPE_PROJECT,
 } from 'src/store/app/myTasks'
 import { useMe } from 'src/store/entities/me'
 import { taskLikesByTaskIdSelector } from 'src/store/entities/taskLikes'
@@ -47,6 +48,9 @@ export const myTasksTaskIdsSelector = selectorFamily<string[], string>({
             )
             .map((t) => t.id)
         }
+        case taskStatus.sortStatus === TASK_LIST_SORT_STATUS_TYPE_PROJECT: {
+          return tasks.filter(filterByTeammateId(teammateId)).map((t) => t.id)
+        }
         default: {
           return tasks.filter(filterByTeammateId(teammateId)).map((t) => t.id)
         }
@@ -79,6 +83,9 @@ export const myTasksTaskIdsByTaskSectionIdSelector = selectorFamily<
         }
         case taskStatus.sortStatus ===
           TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL: {
+          return []
+        }
+        case taskStatus.sortStatus === TASK_LIST_SORT_STATUS_TYPE_PROJECT: {
           return []
         }
         default: {

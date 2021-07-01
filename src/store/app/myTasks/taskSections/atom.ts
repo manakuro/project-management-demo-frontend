@@ -5,6 +5,7 @@ import {
   TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
   TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
   TASK_LIST_SORT_STATUS_TYPE_LIKES,
+  TASK_LIST_SORT_STATUS_TYPE_PROJECT,
 } from 'src/store/app/myTasks'
 import { useMe } from 'src/store/entities/me'
 import { TaskSection, taskSectionsState } from 'src/store/entities/taskSections'
@@ -38,6 +39,9 @@ export const myTasksTaskSectionIdsSelector = selectorFamily<string[], string>({
         }
         case taskStatus.sortStatus ===
           TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL: {
+          return []
+        }
+        case taskStatus.sortStatus === TASK_LIST_SORT_STATUS_TYPE_PROJECT: {
           return []
         }
         default: {

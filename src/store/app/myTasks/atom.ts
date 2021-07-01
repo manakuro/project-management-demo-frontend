@@ -60,7 +60,7 @@ export const useMyTask = (taskSectionId: string) => {
 
   const addMyTask = useRecoilCallback(
     () => async () => {
-      return await addTask({ teammateId: me.id })
+      return await addTask({ assigneeId: me.id })
     },
     [me.id, addTask],
   )

@@ -29,6 +29,34 @@ const projectTaskState = atomFamily<ProjectTask, string>({
   },
 })
 
+export const projectTasksByTaskIdSelector = selectorFamily<
+  ProjectTask[],
+  string
+>({
+  key: 'projectTasksByTaskIdSelector',
+  get:
+    (taskId: string) =>
+    ({ get }) => {
+      const projectTasks = get(projectTasksState)
+      return projectTasks.filter((p) => p.taskId === taskId)
+    },
+})
+
+export const projectTaskIdsByProjectIdSelector = selectorFamily<
+  string[],
+  string
+>({
+  key: 'projectTaskIdsByProjectIdSelector',
+  get:
+    (projectId: string) =>
+    ({ get }) => {
+      const projectTasks = get(projectTasksState)
+      return projectTasks
+        .filter((p) => p.projectId === projectId)
+        .map((p) => p.taskId)
+    },
+})
+
 export const projectTaskSelector = selectorFamily<ProjectTask, string>({
   key: 'projectTaskSelector',
   get:

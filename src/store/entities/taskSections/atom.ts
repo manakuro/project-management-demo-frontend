@@ -9,7 +9,7 @@ import {
 } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import { uuid } from 'src/shared/uuid'
-import { useTasks, useTasksCommand } from 'src/store/entities/tasks'
+import { Task, useTasks, useTasksCommand } from 'src/store/entities/tasks'
 import { TaskSection, TaskSectionResponse } from './type'
 
 export const DEFAULT_TITLE_NAME = 'Untitled Section'
@@ -141,7 +141,7 @@ export const useTaskSection = (taskSectionId?: string) => {
   )
 
   const addTask = useRecoilCallback(
-    () => async (val?: Partial<TaskSection>) => {
+    () => async (val?: Partial<Task>) => {
       return useTasksCommandResult.addTask({ ...val, taskSectionId })
     },
     [useTasksCommandResult, taskSectionId],

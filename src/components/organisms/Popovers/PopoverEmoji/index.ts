@@ -1,2 +1,2 @@
 export * from './PopoverEmoji'
-export { usePopoverEmoji } from './Provider'
+export { usePopoverEmojiContext } from './Provider'

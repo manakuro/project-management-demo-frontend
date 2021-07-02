@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Icon, IconButton, Link, PortalManager } from 'src/components/atoms'
 import { Popover, PopoverTrigger } from 'src/components/organisms'
-import { useEditorState } from 'src/components/organisms/Editor/Editors'
+import { useEditorStateContext } from 'src/components/organisms/Editor/Editors'
 import { useDisclosure } from 'src/shared/chakra'
 import {
   useBold,
@@ -15,7 +15,7 @@ import { Content } from './Content'
 type Props = {}
 
 export const Format: React.FC<Props> = memo<Props>(() => {
-  const state = useEditorState()
+  const state = useEditorStateContext()
   const popoverDisclosure = useDisclosure()
   const useBoldResult = useBold()
   const useItalicResult = useItalic()

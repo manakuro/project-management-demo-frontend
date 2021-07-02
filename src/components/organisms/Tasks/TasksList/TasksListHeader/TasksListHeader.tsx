@@ -1,13 +1,13 @@
 import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useTasksList } from 'src/components/organisms/Tasks/TasksList/Provider'
+import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { Column } from './Column'
 
 type Props = {}
 
 export const TasksListHeader: React.FC<Props> = memo<Props>(() => {
-  const { taskColumnIds } = useTasksList()
+  const { taskColumnIds } = useTasksListContext()
   return (
     <Flex px={6}>
       {taskColumnIds.map((id) => (

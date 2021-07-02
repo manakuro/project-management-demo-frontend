@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useDescription } from './Provider'
+import { useDescriptionContext } from './Provider'
 
 type Props = FlexProps
 
 export const Container: React.FC<Props> = memo<Props>((props) => {
-  const { ref, focused, onFocus } = useDescription()
+  const { ref, focused, onFocus } = useDescriptionContext()
 
   return (
     <Flex

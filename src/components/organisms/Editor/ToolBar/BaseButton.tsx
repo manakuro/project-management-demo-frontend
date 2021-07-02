@@ -2,8 +2,8 @@ import React, { useCallback } from 'react'
 import { IconButton, IconButtonProps } from 'src/components/atoms'
 import { Tooltip, TooltipProps } from 'src/components/molecules'
 import {
-  useEditorState,
-  useEditorView,
+  useEditorStateContext,
+  useEditorViewContext,
 } from 'src/components/organisms/Editor/Editors'
 import { ToolbarItem } from 'src/shared/prosemirror/hooks'
 
@@ -15,8 +15,8 @@ type Props = {
 } & Omit<IconButtonProps, 'isActive'>
 
 export const BaseButton: React.FC<Props> = (props) => {
-  const state = useEditorState()
-  const view = useEditorView()
+  const state = useEditorStateContext()
+  const view = useEditorViewContext()
   const { onClick, tooltip, action, isEnable, isActive, ...rest } = props
 
   const handleMouseDown = useCallback(

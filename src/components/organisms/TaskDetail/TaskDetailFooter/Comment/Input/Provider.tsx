@@ -52,7 +52,7 @@ const Context = createContext<ContextProps>({
   hasAttachment: false,
   onDeleteAttachment: () => void {},
 })
-export const useInput = () => useContext(Context)
+export const useInputContext = () => useContext(Context)
 
 export const Provider: React.FC = (props) => {
   const { focused, setFocused, onFocus, ref } = useFocus()

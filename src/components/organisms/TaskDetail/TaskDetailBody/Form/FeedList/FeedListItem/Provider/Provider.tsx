@@ -57,7 +57,7 @@ const Context = createContext<ContextProps>({
   teammate: defaultTeammateStateValue(),
   attachmentIds: [],
 })
-export const useFeedListItem = () => useContext(Context)
+export const useFeedListItemContext = () => useContext(Context)
 
 type Props = {
   feedId: string

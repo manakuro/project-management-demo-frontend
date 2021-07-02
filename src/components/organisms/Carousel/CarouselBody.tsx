@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useCarousel } from './Provider'
+import { useCarouselContext } from './Provider'
 
 type Props = {}
 
 export const CarouselBody: React.FC<Props> = (props) => {
-  const { setCount } = useCarousel()
+  const { setCount } = useCarouselContext()
   const count = React.Children.toArray(props.children).filter(
     (c) => (c as any).type.displayName === 'CarouselItem',
   ).length

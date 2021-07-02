@@ -28,7 +28,7 @@ const Context = createContext<ContextProps>({
   indented: false,
   sortedStyle: {},
 })
-export const useTasksListSection = () => useContext(Context)
+export const useTasksListSectionContext = () => useContext(Context)
 
 export const Provider: React.FC<Props> = (props) => {
   const [focused, setFocused] = useState(false)

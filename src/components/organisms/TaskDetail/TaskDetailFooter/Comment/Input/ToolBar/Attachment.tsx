@@ -1,12 +1,12 @@
 import React, { memo } from 'react'
 import { Icon, IconButton } from 'src/components/atoms'
 import { MenuButton, AttachmentMenu } from 'src/components/organisms'
-import { useInput } from 'src/components/organisms/TaskDetail/TaskDetailFooter/Comment/Input/Provider'
+import { useInputContext } from 'src/components/organisms/TaskDetail/TaskDetailFooter/Comment/Input/Provider'
 
 type Props = {}
 
 export const Attachment: React.VFC<Props> = memo<Props>(() => {
-  const { onUploadFile } = useInput()
+  const { onUploadFile } = useInputContext()
 
   return (
     <AttachmentMenu

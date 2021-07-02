@@ -11,7 +11,7 @@ type Props = {
 const Context = createContext<ContextProps>({
   selected: false,
 })
-export const useTasksListItem = () => useContext(Context)
+export const useTasksListItemContext = () => useContext(Context)
 
 export const Provider: React.FC<Props> = (props) => {
   const { selected } = useRow(props)

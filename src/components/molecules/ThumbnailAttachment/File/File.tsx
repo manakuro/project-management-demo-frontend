@@ -4,7 +4,7 @@ import { AttachmentBox } from 'src/components/molecules'
 import { Container } from 'src/components/molecules/ThumbnailAttachment/Container'
 import { Menu } from 'src/components/molecules/ThumbnailAttachment/Menu'
 import { MenuButton } from 'src/components/molecules/ThumbnailAttachment/MenuButton'
-import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/Provider'
+import { useThumbnailAttachmentContext } from 'src/components/molecules/ThumbnailAttachment/Provider'
 import { Tooltip } from 'src/components/molecules/ThumbnailAttachment/Tooltip'
 
 type Props = FlexProps & {
@@ -13,7 +13,7 @@ type Props = FlexProps & {
 
 export const File: React.VFC<Props> = (props) => {
   const { attachmentId, ...rest } = props
-  const { isHovering } = useThumbnailAttachment()
+  const { isHovering } = useThumbnailAttachmentContext()
 
   return (
     <Tooltip attachmentId={attachmentId} openDelay={500}>

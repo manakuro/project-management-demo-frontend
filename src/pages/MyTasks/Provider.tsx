@@ -7,7 +7,7 @@ type ContextProps = {
 const Context = createContext<ContextProps>({
   loading: false,
 })
-export const useMyTasksComponent = () => useContext(Context)
+export const useMyTasksContext = () => useContext(Context)
 
 type Props = {
   loading: boolean

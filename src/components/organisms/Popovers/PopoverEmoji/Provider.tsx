@@ -14,7 +14,7 @@ const Context = createContext<ContextProps>({
   onClose: () => void {},
   onOpen: (() => {}) as any,
 })
-export const usePopoverEmoji = () => {
+export const usePopoverEmojiContext = () => {
   const context = useContext(Context)
   if (!context)
     throw new Error('usePopoverEmoji is only available inside PopoverEmoji')

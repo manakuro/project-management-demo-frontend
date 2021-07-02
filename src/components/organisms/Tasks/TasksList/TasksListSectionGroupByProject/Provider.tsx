@@ -10,7 +10,8 @@ type Props = {
 const Context = createContext<ContextProps>({
   projectId: '',
 })
-export const useTasksListSectionGroupByProject = () => useContext(Context)
+export const useTasksListSectionGroupByProjectContext = () =>
+  useContext(Context)
 
 export const Provider: React.FC<Props> = (props) => {
   return (

@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
 import { Button, Flex, Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
-import { useCollaborators } from './Provider'
+import { useCollaboratorsContext } from './Provider'
 
 export const LeaveTask: React.VFC = memo(() => {
-  const { isInputFocused } = useCollaborators()
+  const { isInputFocused } = useCollaboratorsContext()
 
   if (isInputFocused) return null
 

@@ -13,7 +13,7 @@ const Context = createContext<ContextProps>({
   currentIndex: 0,
   setCurrentIndex: () => {},
 })
-export const useCarousel = () => useContext(Context)
+export const useCarouselContext = () => useContext(Context)
 
 type Props = {
   onChange?: (currentIndex: number) => void

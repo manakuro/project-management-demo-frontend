@@ -5,7 +5,7 @@ import { Container } from 'src/components/molecules/ThumbnailAttachment/Containe
 import { Menu } from 'src/components/molecules/ThumbnailAttachment/Menu'
 import { MenuButton } from 'src/components/molecules/ThumbnailAttachment/MenuButton'
 import { Overlay } from 'src/components/molecules/ThumbnailAttachment/Overlay'
-import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/Provider'
+import { useThumbnailAttachmentContext } from 'src/components/molecules/ThumbnailAttachment/Provider'
 import { Tooltip } from 'src/components/molecules/ThumbnailAttachment/Tooltip'
 import { useAttachment } from 'src/store/entities/attachments'
 
@@ -16,7 +16,7 @@ type Props = FlexProps & {
 export const Image: React.VFC<Props> = (props) => {
   const { attachmentId, ...rest } = props
   const { attachment } = useAttachment(attachmentId)
-  const { isHovering } = useThumbnailAttachment()
+  const { isHovering } = useThumbnailAttachmentContext()
 
   return (
     <Tooltip attachmentId={attachmentId}>

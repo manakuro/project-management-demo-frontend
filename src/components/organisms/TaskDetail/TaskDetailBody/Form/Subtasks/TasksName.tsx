@@ -4,7 +4,7 @@ import {
   TasksNameCell,
   TasksNameGrabIcon,
   TasksNameField,
-  useTasksName,
+  useTasksNameContext,
 } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
 import { useTask } from 'src/store/entities/tasks'
@@ -26,7 +26,7 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
 })
 
 export const Component: React.FC<Props> = memo<Props>((props) => {
-  const { ref } = useTasksName()
+  const { ref } = useTasksNameContext()
   const { task, setTaskName, setTask, deleteTask } = useTask(props.taskId)
 
   const handleChange = useCallback(

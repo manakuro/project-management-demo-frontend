@@ -1,14 +1,14 @@
 import React, { useCallback, useMemo } from 'react'
 import { AspectRatio, WrapItem } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useCarousel } from './Provider'
+import { useCarouselContext } from './Provider'
 
 type Props = {
   index?: number
 }
 
 export const CarouselThumbnailItem: React.FC<Props> = (props) => {
-  const { currentIndex, setCurrentIndex } = useCarousel()
+  const { currentIndex, setCurrentIndex } = useCarouselContext()
   const show = useMemo(
     () => currentIndex === props.index,
     [currentIndex, props.index],

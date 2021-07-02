@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Flex, Stack } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms'
-import { useFeedListItem } from '../Provider'
+import { useFeedListItemContext } from '../Provider'
 import { CreateAt } from './CreateAt'
 import { FeedOptionMenu } from './FeedOptionMenu'
 import { Like } from './Like'
@@ -10,7 +10,7 @@ import { Title } from './Title'
 type Props = {}
 
 export const Header: React.VFC<Props> = memo<Props>(() => {
-  const { teammate } = useFeedListItem()
+  const { teammate } = useFeedListItemContext()
 
   return (
     <Flex alignItems="center" flex={1}>

@@ -6,13 +6,13 @@ import {
   AtMention,
 } from 'src/components/organisms/Editor/ToolBar'
 import { transitions } from 'src/styles'
-import { useInput } from '../Provider'
+import { useInputContext } from '../Provider'
 import { Attachment } from './Attachment'
 
 type Props = {}
 
 export const ToolBar: React.FC<Props> = memo<Props>(() => {
-  const { focused, onSave } = useInput()
+  const { focused, onSave } = useInputContext()
 
   return (
     <Flex

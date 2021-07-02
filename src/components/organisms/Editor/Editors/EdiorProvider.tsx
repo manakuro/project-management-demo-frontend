@@ -18,14 +18,14 @@ import { Link, Mention, Emoji } from './nodeViews'
 const EditorStateContext = createContext<EditorState | null>(null)
 const EditorViewContext = createContext<EditorView | null>(null)
 
-export const useEditorState = (): EditorState => {
+export const useEditorStateContext = (): EditorState => {
   const context = useContext(EditorStateContext)
   if (!context)
     throw new Error('useEditorState is only available inside EditorProvider')
   return context
 }
 
-export const useEditorView = () => useContext(EditorViewContext)
+export const useEditorViewContext = () => useContext(EditorViewContext)
 
 type Props = {
   doc?: ProsemirrorNode

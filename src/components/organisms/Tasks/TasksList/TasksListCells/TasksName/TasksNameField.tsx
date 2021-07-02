@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Box, Flex, Input, InputProps } from 'src/components/atoms'
-import { useTasksName } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName/TasksNameProvider'
+import { useTasksNameContext } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName/TasksNameProvider'
 import { useTaskDetailListDetailRef } from 'src/components/organisms/Tasks/TasksList/TasksListDetail/useTaskListDetailRef'
 import { useClickOutside, useDebounce } from 'src/hooks'
 
@@ -19,7 +19,7 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
     onInputFocus,
     onInputBlur,
     inputFocused,
-  } = useTasksName()
+  } = useTasksNameContext()
   const { taskDetailListDetailRef } = useTaskDetailListDetailRef()
   const autoFocus = useMemo(() => props.isNew, [props.isNew])
 

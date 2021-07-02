@@ -28,7 +28,7 @@ const Context = createContext<ContextProps>({
   ref: null as any,
   taskId: '',
 })
-export const useTasksName = () => useContext(Context)
+export const useTasksNameContext = () => useContext(Context)
 
 type Props = {
   taskId: string

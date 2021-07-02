@@ -2,7 +2,7 @@ import React from 'react'
 import { ConditionalRender, PortalManager, Flex } from 'src/components/atoms'
 import { Popover, PopoverTrigger } from 'src/components/organisms'
 import { Content } from './Content'
-import { usePopoverEmoji } from './Provider'
+import { usePopoverEmojiContext } from './Provider'
 import { Provider } from './Provider'
 
 type Props = {}
@@ -16,7 +16,7 @@ export const PopoverEmoji: React.FC<Props> = (props) => {
 }
 
 const Component: React.FC<Props> = (props) => {
-  const { isOpen } = usePopoverEmoji()
+  const { isOpen } = usePopoverEmojiContext()
 
   return (
     <ConditionalRender client>

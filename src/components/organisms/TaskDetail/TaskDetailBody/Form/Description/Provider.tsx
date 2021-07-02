@@ -12,7 +12,7 @@ const Context = createContext<ContextProps>({
   focused: false,
   onFocus: () => void {},
 })
-export const useDescription = () => useContext(Context)
+export const useDescriptionContext = () => useContext(Context)
 
 export const Provider: React.FC = (props) => {
   const [focused, setFocused] = useState(false)

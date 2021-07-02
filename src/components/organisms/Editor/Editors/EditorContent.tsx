@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react'
 import { Box, BoxProps } from 'src/components/atoms'
-import { useEditorView } from 'src/components/organisms/Editor/Editors/EdiorProvider'
+import { useEditorViewContext } from 'src/components/organisms/Editor/Editors/EdiorProvider'
 import 'prosemirror-view/style/prosemirror.css'
 
 // import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 
 type Props = BoxProps
 export const EditorContent: React.FC<Props> = React.memo<Props>((props) => {
-  const view = useEditorView()
+  const view = useEditorViewContext()
   const ref = useRef<HTMLDivElement | null>(null)
   // const { taskDetailBodyDom } = useTaskDetailBody()
 

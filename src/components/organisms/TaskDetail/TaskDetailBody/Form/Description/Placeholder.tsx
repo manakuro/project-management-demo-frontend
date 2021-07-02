@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
 import { EditorPlaceholder } from 'src/components/organisms'
-import { useDescription } from './Provider'
+import { useDescriptionContext } from './Provider'
 
 type Props = {}
 
 export const Placeholder: React.FC<Props> = memo<Props>(() => {
-  const { focused } = useDescription()
+  const { focused } = useDescriptionContext()
 
   if (focused) return null
 

@@ -5,7 +5,7 @@ import {
   IconButtonProps,
   IconProps,
 } from 'src/components/atoms'
-import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/Provider'
+import { useThumbnailAttachmentContext } from 'src/components/molecules/ThumbnailAttachment/Provider'
 import {
   MenuButton as AtomsMenuButton,
   MenuButtonProps,
@@ -18,7 +18,7 @@ type Props = Omit<MenuButtonProps, 'children'> & {
 }
 
 export const MenuButton: React.VFC<Props> = (props) => {
-  const { isHovering, thumbnailMenuOpened } = useThumbnailAttachment()
+  const { isHovering, thumbnailMenuOpened } = useThumbnailAttachmentContext()
   const show = useMemo(
     () => isHovering || thumbnailMenuOpened,
     [isHovering, thumbnailMenuOpened],

@@ -17,7 +17,7 @@ const Context = createContext<ContextProps>({
   setThumbnailMenuOpened: () => {},
   onDelete: () => void {},
 })
-export const useThumbnailAttachment = () => useContext(Context)
+export const useThumbnailAttachmentContext = () => useContext(Context)
 
 type Props = {
   attachmentId: string

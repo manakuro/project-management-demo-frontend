@@ -5,12 +5,13 @@ import {
   AttachmentUploadingBox,
 } from 'src/components/molecules'
 import { useFileViewerModal } from 'src/components/organisms'
-import { useInput } from 'src/components/organisms/TaskDetail/TaskDetailFooter/Comment/Input/Provider'
+import { useInputContext } from 'src/components/organisms/TaskDetail/TaskDetailFooter/Comment/Input/Provider'
 
 type Props = {}
 
 export const Attachments: React.FC<Props> = memo<Props>(() => {
-  const { attachmentIds, uploadingFiles, onDeleteAttachment } = useInput()
+  const { attachmentIds, uploadingFiles, onDeleteAttachment } =
+    useInputContext()
   const { onOpen, setState } = useFileViewerModal()
 
   const onOpenFileViewer = useCallback(

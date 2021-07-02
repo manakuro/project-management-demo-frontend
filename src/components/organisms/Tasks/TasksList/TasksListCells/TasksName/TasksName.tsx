@@ -9,7 +9,7 @@ import { Subtask } from './Subtask'
 import { TasksNameCell } from './TasksNameCell'
 import { TasksNameField } from './TasksNameField'
 import { TasksNameGrabIcon } from './TasksNameGrabIcon'
-import { TasksNameProvider, useTasksName } from './TasksNameProvider'
+import { TasksNameProvider, useTasksNameContext } from './TasksNameProvider'
 import { TasksNameRightContainer } from './TasksNameRightContainer'
 
 type Props = FlexProps & {
@@ -26,7 +26,7 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
 })
 
 const Component: React.VFC<Props> = memo<Props>((props) => {
-  const { ref, onMarkMenuOpened, onMarkMenuClosed } = useTasksName()
+  const { ref, onMarkMenuOpened, onMarkMenuClosed } = useTasksNameContext()
   const { navigateToTaskDetail } = useRouter()
   const { task, setTask, deleteTask, setTaskName } = useTask(props.taskId)
 

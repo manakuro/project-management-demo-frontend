@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex, Icon, IconButton, Stack } from 'src/components/atoms'
-import { useTasksListSection } from 'src/components/organisms/Tasks/TasksList/TasksListSection/Provider'
+import { useTasksListSectionContext } from 'src/components/organisms/Tasks/TasksList/TasksListSection/Provider'
 import { useHover } from 'src/hooks/useHover'
 import { AddTaskButton } from './AddTaskButton'
 import { MoreAction } from './MoreAction'
@@ -15,7 +15,7 @@ type Props = {
 export const Header: React.FC<Props> = memo<Props>((props) => {
   const { onToggle, isExpanded } = props
   const { ref, isHovering } = useHover()
-  const { sortedStyle } = useTasksListSection()
+  const { sortedStyle } = useTasksListSectionContext()
 
   return (
     <Flex h="50px" maxW="40%" alignItems="center" ref={ref} {...sortedStyle}>

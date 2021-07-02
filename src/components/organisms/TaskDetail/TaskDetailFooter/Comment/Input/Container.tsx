@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useInput } from './Provider'
+import { useInputContext } from './Provider'
 
 type Props = FlexProps
 
 export const Container: React.FC<Props> = memo<Props>((props) => {
-  const { ref, onFocus, focused } = useInput()
+  const { ref, onFocus, focused } = useInputContext()
 
   return (
     <Flex

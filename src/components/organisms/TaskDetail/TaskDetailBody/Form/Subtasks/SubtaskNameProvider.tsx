@@ -4,7 +4,7 @@ import { TasksNameProvider } from 'src/components/organisms/Tasks/TasksList/Task
 type ContextProps = {}
 
 const Context = createContext<ContextProps>({})
-export const useSubtaskName = () => useContext(Context)
+export const useSubtaskNameContext = () => useContext(Context)
 
 type Props = {
   taskId: string

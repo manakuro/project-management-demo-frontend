@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
 import { Icon } from 'src/components/atoms'
-import { useTasksName } from './TasksNameProvider'
+import { useTasksNameContext } from './TasksNameProvider'
 
 type Props = {}
 
 export const TasksNameGrabIcon: React.FC<Props> = memo<Props>(() => {
-  const { showIcon } = useTasksName()
+  const { showIcon } = useTasksNameContext()
   return (
     <Icon
       icon="gridVertical"

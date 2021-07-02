@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useCarousel } from './Provider'
+import { useCarouselContext } from './Provider'
 
 type Props = {
   index?: number
 }
 
 export const CarouselItem: React.FC<Props> = (props) => {
-  const { currentIndex } = useCarousel()
+  const { currentIndex } = useCarouselContext()
   const show = useMemo(
     () => currentIndex === props.index,
     [currentIndex, props.index],

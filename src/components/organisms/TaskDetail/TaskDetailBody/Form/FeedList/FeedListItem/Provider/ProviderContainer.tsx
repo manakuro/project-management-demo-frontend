@@ -20,7 +20,7 @@ const Context = createContext<ContextProps>({
   containerRef: null as any,
   isReferenced: false,
 })
-export const useFeedListItemContainer = () => useContext(Context)
+export const useFeedListItemContainerContext = () => useContext(Context)
 
 type Props = {
   feedId: string

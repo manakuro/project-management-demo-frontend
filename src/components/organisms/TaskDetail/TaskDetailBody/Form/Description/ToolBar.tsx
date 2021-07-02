@@ -13,12 +13,12 @@ import {
   Emoji,
   AtMention,
 } from 'src/components/organisms/Editor/ToolBar'
-import { useDescription } from './Provider'
+import { useDescriptionContext } from './Provider'
 
 type Props = {}
 
 export const ToolBar: React.FC<Props> = memo<Props>(() => {
-  const { focused } = useDescription()
+  const { focused } = useDescriptionContext()
 
   return (
     <Stack

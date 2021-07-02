@@ -16,7 +16,7 @@ const Context = createContext<ContextProps>({
   setAddedTaskSectionId: () => {},
   resetAddedTaskSectionId: () => {},
 })
-export const useTasksList = () => useContext(Context)
+export const useTasksListContext = () => useContext(Context)
 
 export const Provider: React.FC<Props> = (props) => {
   const { taskColumnIds } = props

@@ -5,7 +5,7 @@ import { uuid } from 'src/shared/uuid'
 import { Attachments } from './Attachments'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
-import { Provider, useInput } from './Provider'
+import { Provider, useInputContext } from './Provider'
 import { ToolBar } from './ToolBar'
 
 type Props = {}
@@ -28,7 +28,7 @@ export const Input: React.FC<Props> = (props) => {
 }
 
 const Component: React.FC<Props> = memo<Props>(() => {
-  const { onChangeDescription, feed } = useInput()
+  const { onChangeDescription, feed } = useInputContext()
   const [forceUpdate, setForceUpdate] = useState<() => string>(() => () => '')
 
   useEffect(() => {

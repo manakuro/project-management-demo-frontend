@@ -8,7 +8,7 @@ import {
   createJSONTransformer,
   ProsemirrorTransformer,
 } from 'src/shared/prosemirror/transformers'
-import { EditorProvider, useEditorState } from './EdiorProvider'
+import { EditorProvider, useEditorStateContext } from './EdiorProvider'
 import { Portals } from './Portals'
 
 type Props = {
@@ -53,7 +53,7 @@ type ContainerProps<P> = {
 export const Container = <P extends unknown>(
   props: PropsWithChildren<ContainerProps<P>>,
 ) => {
-  const state = useEditorState()
+  const state = useEditorStateContext()
   useDebounce(
     state.doc,
     (val) => {

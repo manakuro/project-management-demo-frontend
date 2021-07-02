@@ -1,14 +1,14 @@
 import React, { memo, useMemo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
-import { useFeedListItemContainer } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider/ProviderContainer'
+import { useFeedListItemContext } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
+import { useFeedListItemContainerContext } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider/ProviderContainer'
 import { transitions } from 'src/styles'
 
 type Props = {}
 
 export const Container: React.FC<Props> = memo((props) => {
-  const { feed, isPinned } = useFeedListItem()
-  const { containerRef, isReferenced } = useFeedListItemContainer()
+  const { feed, isPinned } = useFeedListItemContext()
+  const { containerRef, isReferenced } = useFeedListItemContainerContext()
 
   const style = useMemo((): FlexProps => {
     if (isReferenced)

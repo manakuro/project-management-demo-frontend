@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { Flex, Icon, Text, TextProps } from 'src/components/atoms'
 import { Feed } from 'src/store/entities/feeds'
 import { Teammate } from 'src/store/entities/teammates'
-import { useFeedListItem } from '../Provider'
+import { useFeedListItemContext } from '../Provider'
 
 type Props = TextProps
 
@@ -33,7 +33,7 @@ const generateTitle = (
 }
 
 export const Title: React.VFC<Props> = memo<Props>((props) => {
-  const { teammate, feed, hasAttachment } = useFeedListItem()
+  const { teammate, feed, hasAttachment } = useFeedListItemContext()
   const title = generateTitle({ teammate, feed }, { hasAttachment })
 
   return (

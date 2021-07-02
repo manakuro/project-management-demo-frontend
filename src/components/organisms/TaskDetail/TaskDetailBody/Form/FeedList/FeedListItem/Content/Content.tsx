@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex, Stack } from 'src/components/atoms'
-import { useFeedListItem } from '../Provider'
+import { useFeedListItemContext } from '../Provider'
 import { ContentAttachment } from './ContentAttachment'
 import { ContentText } from './ContentText'
 
@@ -14,7 +14,7 @@ export const Content: React.VFC<Props> = memo<Props>(() => {
   )
 })
 const Component: React.VFC<Props> = memo<Props>(() => {
-  const { attachmentIds, hasText } = useFeedListItem()
+  const { attachmentIds, hasText } = useFeedListItemContext()
 
   return (
     <Stack flexDirection="column" flex={1} spacing={4}>

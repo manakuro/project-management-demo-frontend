@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { Link, Portal } from 'src/components/atoms'
-import { useThumbnailAttachment } from 'src/components/molecules/ThumbnailAttachment/Provider'
+import { useThumbnailAttachmentContext } from 'src/components/molecules/ThumbnailAttachment/Provider'
 import {
   Menu as OrganismsMenu,
   MenuProps,
@@ -15,7 +15,7 @@ type Props = MenuProps & {
 
 export const Menu: React.FC<Props> = memo((props) => {
   const { attachmentId, ...rest } = props
-  const { setThumbnailMenuOpened, onDelete } = useThumbnailAttachment()
+  const { setThumbnailMenuOpened, onDelete } = useThumbnailAttachmentContext()
   const { attachment } = useAttachment(attachmentId)
 
   const handleThumbnailMenuOpen = useCallback(() => {

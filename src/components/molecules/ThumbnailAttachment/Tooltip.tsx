@@ -6,7 +6,7 @@ import {
 } from 'src/components/molecules'
 import { useDisclosure } from 'src/shared/chakra'
 import { useAttachment } from 'src/store/entities/attachments'
-import { useThumbnailAttachment } from './Provider'
+import { useThumbnailAttachmentContext } from './Provider'
 
 type Props = Omit<TooltipProps, 'label' | 'size'> & {
   attachmentId: string
@@ -16,7 +16,7 @@ export const Tooltip: React.FC<Props> = (props) => {
   const { attachmentId, children, ...rest } = props
   const { attachment } = useAttachment(attachmentId)
   const tooltipDisclosure = useDisclosure()
-  const { isHovering, thumbnailMenuOpened } = useThumbnailAttachment()
+  const { isHovering, thumbnailMenuOpened } = useThumbnailAttachmentContext()
 
   useEffect(() => {
     if (!thumbnailMenuOpened && isHovering) {

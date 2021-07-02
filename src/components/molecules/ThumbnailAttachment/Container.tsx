@@ -1,11 +1,11 @@
 import React from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useThumbnailAttachment } from './Provider'
+import { useThumbnailAttachmentContext } from './Provider'
 
 type Props = FlexProps
 
 export const Container: React.VFC<Props> = (props) => {
-  const { ref } = useThumbnailAttachment()
+  const { ref } = useThumbnailAttachmentContext()
 
   return (
     <Flex

@@ -11,7 +11,7 @@ const Context = createContext<ContextProps>({
   onInputUnfocus: () => void {},
   isInputFocused: false,
 })
-export const useCollaborators = () => useContext(Context)
+export const useCollaboratorsContext = () => useContext(Context)
 
 export const Provider: React.FC = (props) => {
   const { onInputFocus, onInputUnfocus, isInputFocused } = useInput()

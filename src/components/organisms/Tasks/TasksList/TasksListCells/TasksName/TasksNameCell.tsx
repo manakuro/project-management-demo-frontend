@@ -4,17 +4,17 @@ import {
   TasksListCell,
   TasksListCellProps,
 } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
-import { useTasksListSection } from 'src/components/organisms/Tasks/TasksList/TasksListSection/Provider'
+import { useTasksListSectionContext } from 'src/components/organisms/Tasks/TasksList/TasksListSection/Provider'
 import { forwardRef } from 'src/shared/chakra'
 import { useTask } from 'src/store/entities/tasks'
-import { useTasksName } from './TasksNameProvider'
+import { useTasksNameContext } from './TasksNameProvider'
 
 type Props = TasksListCellProps
 
 export const TasksNameCell: React.FC<Props> = forwardRef((props, ref) => {
-  const { cellStyle, taskId } = useTasksName()
+  const { cellStyle, taskId } = useTasksNameContext()
   const { task } = useTask(taskId)
-  const { sortedStyle, indented } = useTasksListSection()
+  const { sortedStyle, indented } = useTasksListSectionContext()
 
   return (
     <>

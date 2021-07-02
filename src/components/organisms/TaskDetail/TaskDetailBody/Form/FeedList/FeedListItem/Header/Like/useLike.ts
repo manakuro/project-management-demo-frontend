@@ -1,11 +1,11 @@
 import { useCallback, useMemo } from 'react'
-import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
+import { useFeedListItemContext } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
 import { useFeedLikesByFeedId } from 'src/store/entities/feedLikes'
 import { useMe } from 'src/store/entities/me'
 import { useTeammates } from 'src/store/entities/teammates'
 
 export const useLike = () => {
-  const { feed } = useFeedListItem()
+  const { feed } = useFeedListItemContext()
   const { getTeammatesById } = useTeammates()
   const { feedLikes, teammateIds, addFeedLike, deleteFeedLike } =
     useFeedLikesByFeedId(feed.id)

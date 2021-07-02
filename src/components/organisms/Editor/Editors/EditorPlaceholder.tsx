@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react'
 import { Flex, FlexProps, Text } from 'src/components/atoms'
 import { isContentEmpty } from 'src/shared/prosemirror/utils'
-import { useEditorView } from './EdiorProvider'
+import { useEditorViewContext } from './EdiorProvider'
 
 type Props = FlexProps
 export const EditorPlaceholder: React.FC<Props> = React.memo<Props>((props) => {
   const { children, ...rest } = props
-  const view = useEditorView()
+  const view = useEditorViewContext()
 
   const show = useMemo(() => {
     if (!view) return true

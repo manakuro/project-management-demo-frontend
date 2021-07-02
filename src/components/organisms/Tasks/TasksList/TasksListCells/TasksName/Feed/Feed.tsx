@@ -11,8 +11,11 @@ type Props = {}
 
 export const Feed: React.VFC<Props> = () => {
   const { taskId } = useTasksName()
-  const { feedIds } = useTasksFeedIds(taskId)
-  const size = useMemo(() => feedIds.length, [feedIds.length])
+  const { feedIdsWithoutFirst } = useTasksFeedIds(taskId)
+  const size = useMemo(
+    () => feedIdsWithoutFirst.length,
+    [feedIdsWithoutFirst.length],
+  )
   const { setScrollId } = useTasksListDetail()
   const { navigateToTaskDetail } = useRouter()
 

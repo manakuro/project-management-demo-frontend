@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { IconButton, IconButtonProps } from 'src/components/atoms'
+import { IconButton, IconButtonProps, TextProps } from 'src/components/atoms'
 import { Icon } from './Icon'
 
 type Props = {
@@ -8,12 +8,20 @@ type Props = {
   likeLength: number
   onToggleLike: () => void
   show?: boolean
-} & Omit<IconButtonProps, 'aria-label' | 'icon'>
+  textStyle?: TextProps
+} & Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>
 export type LikeButtonProps = Props
 
 export const LikeButton: React.VFC<Props> = memo<Props>((props) => {
-  const { hasAnyoneLiked, label, likeLength, onToggleLike, show, ...rest } =
-    props
+  const {
+    hasAnyoneLiked,
+    label,
+    likeLength,
+    onToggleLike,
+    show,
+    textStyle,
+    ...rest
+  } = props
   if (!props.show) return null
 
   return (
@@ -25,6 +33,7 @@ export const LikeButton: React.VFC<Props> = memo<Props>((props) => {
           label={label}
           likeLength={likeLength}
           onToggleLike={onToggleLike}
+          textStyle={textStyle}
         />
       }
       variant="ghost"

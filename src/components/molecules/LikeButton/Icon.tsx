@@ -5,11 +5,11 @@ import { LikeButtonProps } from './LikeButton'
 
 type Props = Pick<
   LikeButtonProps,
-  'hasAnyoneLiked' | 'label' | 'likeLength' | 'onToggleLike'
+  'hasAnyoneLiked' | 'label' | 'likeLength' | 'onToggleLike' | 'textStyle'
 >
 
 export const Icon: React.VFC<Props> = memo<Props>((props) => {
-  const { hasAnyoneLiked, label, likeLength, onToggleLike } = props
+  const { hasAnyoneLiked, label, likeLength, onToggleLike, textStyle } = props
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLElement | SVGElement>) => {
@@ -29,7 +29,7 @@ export const Icon: React.VFC<Props> = memo<Props>((props) => {
         withIcon
       >
         <Flex alignItems="center" justifyContent="center" onClick={handleClick}>
-          <Text fontSize="xs" mt={1} color="primary">
+          <Text fontSize="xs" mt={1} color="primary" {...textStyle}>
             {likeLength}
           </Text>
           <AtomsIcon icon="fillLike" color="primary" ml={1} />

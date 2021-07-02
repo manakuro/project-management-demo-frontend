@@ -10,5 +10,13 @@ export const Like: React.VFC<Props> = () => {
   const { taskLikes } = useTaskLikesByTaskId(taskId)
   const show = useMemo(() => !!taskLikes.length, [taskLikes.length])
 
-  return <LikeTaskButton taskId={taskId} show={show} />
+  return (
+    <LikeTaskButton
+      taskId={taskId}
+      show={show}
+      size="xs"
+      h={5}
+      textStyle={{ mt: 0 }}
+    />
+  )
 }

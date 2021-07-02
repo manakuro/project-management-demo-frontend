@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { IconButton, IconButtonProps, TextProps } from 'src/components/atoms'
 import { Icon } from './Icon'
 
@@ -22,6 +22,15 @@ export const LikeButton: React.VFC<Props> = memo<Props>((props) => {
     textStyle,
     ...rest
   } = props
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      e.stopPropagation()
+      onToggleLike()
+    },
+    [onToggleLike],
+  )
+
   if (!props.show) return null
 
   return (
@@ -32,12 +41,12 @@ export const LikeButton: React.VFC<Props> = memo<Props>((props) => {
           hasAnyoneLiked={hasAnyoneLiked}
           label={label}
           likeLength={likeLength}
-          onToggleLike={onToggleLike}
           textStyle={textStyle}
         />
       }
       variant="ghost"
       size="sm"
+      onClick={handleClick}
       {...rest}
     />
   )

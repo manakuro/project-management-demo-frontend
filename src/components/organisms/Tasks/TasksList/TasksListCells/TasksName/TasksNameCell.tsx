@@ -28,6 +28,7 @@ export const TasksNameCell: React.FC<Props> = forwardRef((props, ref) => {
         onClick={props.onClick}
         hover
         position="relative"
+        justifyContent="flex-end"
         {...props}
       >
         {props.children}

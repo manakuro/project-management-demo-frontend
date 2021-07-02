@@ -1,23 +1,15 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo } from 'react'
 import { Flex, Icon as AtomsIcon, Text } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { LikeButtonProps } from './LikeButton'
 
 type Props = Pick<
   LikeButtonProps,
-  'hasAnyoneLiked' | 'label' | 'likeLength' | 'onToggleLike' | 'textStyle'
+  'hasAnyoneLiked' | 'label' | 'likeLength' | 'textStyle'
 >
 
 export const Icon: React.VFC<Props> = memo<Props>((props) => {
-  const { hasAnyoneLiked, label, likeLength, onToggleLike, textStyle } = props
-
-  const handleClick = useCallback(
-    (e: React.MouseEvent<HTMLElement | SVGElement>) => {
-      e.stopPropagation()
-      onToggleLike()
-    },
-    [onToggleLike],
-  )
+  const { hasAnyoneLiked, label, likeLength, textStyle } = props
 
   if (hasAnyoneLiked) {
     return (
@@ -28,7 +20,7 @@ export const Icon: React.VFC<Props> = memo<Props>((props) => {
         size="sm"
         withIcon
       >
-        <Flex alignItems="center" justifyContent="center" onClick={handleClick}>
+        <Flex alignItems="center" justifyContent="center">
           <Text fontSize="xs" mt={1} color="primary" {...textStyle}>
             {likeLength}
           </Text>
@@ -38,8 +30,6 @@ export const Icon: React.VFC<Props> = memo<Props>((props) => {
     )
   }
 
-  return (
-    <AtomsIcon icon="outlineLike" color="text.muted" onClick={handleClick} />
-  )
+  return <AtomsIcon icon="outlineLike" color="text.muted" />
 })
 Icon.displayName = 'Icon'

@@ -2,6 +2,7 @@ import React, { memo, useCallback } from 'react'
 import { CheckIcon, FlexProps, Icon, Stack, Text } from 'src/components/atoms'
 import { useRouter } from 'src/router'
 import { useTask } from 'src/store/entities/tasks'
+import { Feed } from './Feed'
 import { Like } from './Like'
 import { Mark } from './Mark'
 import { TasksNameCell } from './TasksNameCell'
@@ -56,9 +57,11 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
         onChange={handleChangeName}
         deleteTask={deleteTask}
         focusedBorder
+        flex={1}
       />
-      <Stack direction="row" spacing={2} ml={1}>
+      <Stack direction="row" spacing={1} ml={1} mr="auto">
         <Like />
+        <Feed />
       </Stack>
       <TasksNameRightContainer>
         <Mark
@@ -66,7 +69,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
           onOpened={onMarkMenuOpened}
           onClosed={onMarkMenuClosed}
         />
-        <Text fontSize="xs" color="text.muted" ml={3}>
+        <Text fontSize="xs" color="text.muted" ml={2}>
           Details
         </Text>
         <Icon icon="chevronRight" color="text.muted" mt="1px" />

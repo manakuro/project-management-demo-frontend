@@ -89,7 +89,12 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <Flex position="relative" maxWidth="70%" minW="150px" ref={ref}>
+    <Flex
+      position="relative"
+      maxWidth="70%"
+      minW={props.isNew ? '150px' : ''}
+      ref={ref}
+    >
       <Box as="span" {...style} visibility="hidden">
         {value}
       </Box>

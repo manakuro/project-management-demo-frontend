@@ -5,6 +5,7 @@ import { useTask } from 'src/store/entities/tasks'
 import { Feed } from './Feed'
 import { Like } from './Like'
 import { Mark } from './Mark'
+import { Subtask } from './Subtask'
 import { TasksNameCell } from './TasksNameCell'
 import { TasksNameField } from './TasksNameField'
 import { TasksNameGrabIcon } from './TasksNameGrabIcon'
@@ -62,6 +63,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
       <Stack direction="row" spacing={1} ml={1} mr="auto">
         <Like />
         <Feed />
+        <Subtask />
       </Stack>
       <TasksNameRightContainer>
         <Mark

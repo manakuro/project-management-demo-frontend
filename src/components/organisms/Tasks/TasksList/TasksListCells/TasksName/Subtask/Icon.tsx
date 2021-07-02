@@ -14,7 +14,7 @@ export const Icon: React.VFC<Props> = memo<Props>((props) => {
       <Text fontSize="xs" color="primary" {...textStyle}>
         {size}
       </Text>
-      <AtomsIcon icon="messageRounded" color="primary" ml={1} />
+      <AtomsIcon icon="flowChildren" color="primary" ml={1} />
     </Flex>
   )
 })

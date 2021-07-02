@@ -88,6 +88,7 @@ import { FiBold, FiItalic, FiUnderline } from 'react-icons/fi'
 import { HiOutlineMail, HiOutlineEmojiHappy } from 'react-icons/hi'
 import { IoMdAttach } from 'react-icons/io'
 import { MdSort, MdTextFormat } from 'react-icons/md'
+import { TiFlowChildren } from 'react-icons/ti'
 
 export const icons = {
   arrowDownAlt: BiDownArrowAlt,
@@ -119,6 +120,7 @@ export const icons = {
   fileBlank: BiFileBlank,
   fillLike: AiFillLike,
   filter: BiFilterAlt,
+  flowChildren: TiFlowChildren,
   fullscreenOutline: BiExpand,
   gitPullRequest: BiGitPullRequest,
   github: FaGithub,
@@ -141,8 +143,8 @@ export const icons = {
   lockAlt: BiLockAlt,
   mailOutline: HiOutlineMail,
   menu: BiMenu,
-  messageRoundedDots: BiMessageRoundedDots,
   messageRounded: BiMessageRounded,
+  messageRoundedDots: BiMessageRoundedDots,
   mobile: BiMobile,
   moon: FaMoon,
   movie: BiMovie,

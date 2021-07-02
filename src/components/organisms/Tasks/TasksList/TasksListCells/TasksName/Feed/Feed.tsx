@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo } from 'react'
 import { IconButton } from 'src/components/atoms'
 import { useTasksName } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
+import { useRouter } from 'src/router'
 import { useTasksFeedIds } from 'src/store/entities/tasks/feedIds'
 import { Icon } from './Icon'
 
@@ -9,16 +10,23 @@ type Props = {}
 export const Feed: React.VFC<Props> = () => {
   const { taskId } = useTasksName()
   const { feedIds } = useTasksFeedIds(taskId)
-  const feedSize = useMemo(() => feedIds.length, [feedIds.length])
+  const size = useMemo(() => feedIds.length, [feedIds.length])
+  const { navigateToTaskDetailFeed } = useRouter()
 
-  const handleClick = useCallback(() => {}, [])
+  const handleClick = useCallback(
+    async (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation()
+      await navigateToTaskDetailFeed(taskId, feedIds[0])
+    },
+    [feedIds, navigateToTaskDetailFeed, taskId],
+  )
 
-  if (!feedSize) return null
+  if (!size) return null
 
   return (
     <IconButton
-      aria-label="Like this"
-      icon={<Icon size={feedSize} />}
+      aria-label="The number of feed"
+      icon={<Icon size={size} />}
       variant="ghost"
       size="xs"
       h={5}

@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react'
 import { useToast } from 'src/hooks'
+import { useRouter } from 'src/router'
 import { Feed, defaultFeedStateValue, useFeed } from 'src/store/entities/feeds'
 import { useFeedsAttachmentIds } from 'src/store/entities/feeds/attachmentIds'
 import {
@@ -130,6 +131,7 @@ function useFeedOptionMenu(props: Props) {
   const { feed, setFeed } = useFeed(props.feedId)
   const [isEdit, setIsEdit] = useState<boolean>(false)
   const { toast } = useToast()
+  const { taskDetailFeedURL } = useRouter()
 
   const onPin = useCallback(async () => {
     await setFeed({ isPinned: true })
@@ -146,7 +148,7 @@ function useFeedOptionMenu(props: Props) {
 
   const onCopyCommentLink = useCallback(async () => {
     await navigator.clipboard.writeText(
-      `${window.location.origin}/my_tasks/${props.taskId}/${feed.id}`,
+      taskDetailFeedURL(props.taskId, feed.id),
     )
     toast({
       title: 'Copied successfully',
@@ -156,7 +158,7 @@ function useFeedOptionMenu(props: Props) {
       isClosable: true,
       position: 'bottom-left',
     })
-  }, [feed.id, props.taskId, toast])
+  }, [feed.id, props.taskId, taskDetailFeedURL, toast])
 
   return {
     onPin,

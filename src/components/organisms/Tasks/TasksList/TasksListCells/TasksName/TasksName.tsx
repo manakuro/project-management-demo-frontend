@@ -1,7 +1,8 @@
 import React, { memo, useCallback } from 'react'
-import { CheckIcon, FlexProps, Icon, Text } from 'src/components/atoms'
+import { CheckIcon, FlexProps, Icon, Stack, Text } from 'src/components/atoms'
 import { useRouter } from 'src/router'
 import { useTask } from 'src/store/entities/tasks'
+import { Like } from './Like'
 import { Mark } from './Mark'
 import { TasksNameCell } from './TasksNameCell'
 import { TasksNameField } from './TasksNameField'
@@ -56,6 +57,9 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
         deleteTask={deleteTask}
         focusedBorder
       />
+      <Stack direction="row" spacing={2} ml={1}>
+        <Like />
+      </Stack>
       <TasksNameRightContainer>
         <Mark
           variant="unmarked"

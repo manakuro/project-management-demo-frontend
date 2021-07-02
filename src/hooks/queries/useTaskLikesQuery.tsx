@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from 'react'
+import { uuid } from 'src/shared/uuid'
 import { useTaskLikes, TaskLike } from 'src/store/entities/taskLikes'
 
 type Props = {
@@ -34,27 +35,34 @@ const fetchTaskLikes = (): Promise<TaskLike[]> => {
     setTimeout(() => {
       resolve([
         {
-          id: '3',
+          id: uuid(),
           taskId: '1',
-          teammateId: '3',
+          teammateId: '1',
           createdAt: '',
           updatedAt: '',
         },
         {
-          id: '4',
+          id: uuid(),
           taskId: '1',
           teammateId: '2',
           createdAt: '',
           updatedAt: '',
         },
         {
-          id: '5',
+          id: uuid(),
           taskId: '1',
-          teammateId: '1',
+          teammateId: '3',
+          createdAt: '',
+          updatedAt: '',
+        },
+        {
+          id: uuid(),
+          taskId: '2',
+          teammateId: '3',
           createdAt: '',
           updatedAt: '',
         },
       ])
-    }, 1000)
+    }, 500)
   })
 }

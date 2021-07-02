@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Flex, Icon as AtomsIcon, Text } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { LikeButtonProps } from './LikeButton'
@@ -11,6 +11,14 @@ type Props = Pick<
 export const Icon: React.VFC<Props> = memo<Props>((props) => {
   const { hasAnyoneLiked, label, likeLength, onToggleLike } = props
 
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLElement | SVGElement>) => {
+      e.stopPropagation()
+      onToggleLike()
+    },
+    [onToggleLike],
+  )
+
   if (hasAnyoneLiked) {
     return (
       <Tooltip
@@ -20,11 +28,7 @@ export const Icon: React.VFC<Props> = memo<Props>((props) => {
         size="sm"
         withIcon
       >
-        <Flex
-          alignItems="center"
-          justifyContent="center"
-          onClick={onToggleLike}
-        >
+        <Flex alignItems="center" justifyContent="center" onClick={handleClick}>
           <Text fontSize="xs" mt={1} color="primary">
             {likeLength}
           </Text>
@@ -35,7 +39,7 @@ export const Icon: React.VFC<Props> = memo<Props>((props) => {
   }
 
   return (
-    <AtomsIcon icon="outlineLike" color="text.muted" onClick={onToggleLike} />
+    <AtomsIcon icon="outlineLike" color="text.muted" onClick={handleClick} />
   )
 })
 Icon.displayName = 'Icon'

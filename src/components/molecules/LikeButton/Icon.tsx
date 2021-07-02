@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Flex, Icon as AtomsIcon, Text } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
-import { useLike } from './useLike'
+import { LikeButtonProps } from './LikeButton'
 
-type Props = {}
+type Props = Pick<
+  LikeButtonProps,
+  'hasAnyoneLiked' | 'label' | 'likeLength' | 'onToggleLike'
+>
 
-export const Icon: React.VFC<Props> = () => {
-  const { hasAnyoneLiked, label, likeLength, onToggleLike } = useLike()
+export const Icon: React.VFC<Props> = memo<Props>((props) => {
+  const { hasAnyoneLiked, label, likeLength, onToggleLike } = props
 
   if (hasAnyoneLiked) {
     return (
@@ -34,4 +37,5 @@ export const Icon: React.VFC<Props> = () => {
   return (
     <AtomsIcon icon="outlineLike" color="text.muted" onClick={onToggleLike} />
   )
-}
+})
+Icon.displayName = 'Icon'

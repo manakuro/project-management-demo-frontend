@@ -1,21 +1,21 @@
 import React from 'react'
-import { IconButton } from 'src/components/atoms'
+import { LikeButton } from 'src/components/molecules'
 import { useFeedListItem } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
-import { Icon } from './Icon'
+import { useLike } from './useLike'
 
 type Props = {}
 
 export const Like: React.VFC<Props> = () => {
   const { showLike } = useFeedListItem()
-
-  if (!showLike) return null
+  const { hasAnyoneLiked, label, likeLength, onToggleLike } = useLike()
 
   return (
-    <IconButton
-      aria-label="Like this"
-      icon={<Icon />}
-      variant="ghost"
-      size="sm"
+    <LikeButton
+      show={showLike}
+      hasAnyoneLiked={hasAnyoneLiked}
+      label={label}
+      likeLength={likeLength}
+      onToggleLike={onToggleLike}
     />
   )
 }

@@ -1,5 +1,6 @@
-import React, { memo } from 'react'
+import React, { memo, useLayoutEffect } from 'react'
 import { Flex, Skeleton, Stack } from 'src/components/atoms'
+import { useTasksListDetail } from 'src/components/organisms'
 import { MakePublic } from 'src/components/organisms/TaskDetail/TaskDetailBody/MakePublic'
 import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 import { Form } from './Form'
@@ -11,6 +12,19 @@ type Props = {
 
 export const TaskDetailBody: React.FC<Props> = memo<Props>((props) => {
   const { ref } = useTaskDetailBody(props.loading)
+  const { scrollId } = useTasksListDetail()
+
+  useLayoutEffect(() => {
+    if (props.loading) return
+    if (!scrollId) return
+    if (!ref.current) return
+
+    setTimeout(() => {
+      const rect = document.getElementById(scrollId)?.getBoundingClientRect()
+      const top = (rect?.top ?? 0) - (72 + 57)
+      ref.current?.scrollTo({ top, behavior: 'smooth' })
+    })
+  }, [props.loading, ref, scrollId])
 
   if (props.loading)
     return (

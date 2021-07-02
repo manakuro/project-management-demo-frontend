@@ -3,18 +3,23 @@ import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useTaskDetailQuery } from 'src/hooks/queries/useTaskDetailQuery'
 import { isTaskDetailURL, useRouter, getTaskDetailId } from 'src/router'
 
-const taskListDetailLoadingState = atom({
+const taskListDetailLoadingState = atom<boolean>({
   key: 'taskListDetailLoadingState',
   default: false,
 })
 
-const taskListDetailOpenState = atom({
+const taskListDetailOpenState = atom<boolean>({
   key: 'taskListDetailOpenState',
   default: false,
 })
 
-const taskListDetailIdState = atom({
+const taskListDetailIdState = atom<string>({
   key: 'taskListDetailIdState',
+  default: '',
+})
+
+const taskListDetailScrollIdState = atom<string>({
+  key: 'taskListDetailScrollIdState',
   default: '',
 })
 
@@ -26,6 +31,8 @@ export const useTasksListDetail = (props?: Props) => {
   const [isOpen, setIsOpen] = useRecoilState(taskListDetailOpenState)
   const [id, setId] = useRecoilState(taskListDetailIdState)
   const [loading, setLoading] = useRecoilState(taskListDetailLoadingState)
+  const [scrollId, setScrollId] = useRecoilState(taskListDetailScrollIdState)
+  const resetScrollId = useResetRecoilState(taskListDetailScrollIdState)
   const resetId = useResetRecoilState(taskListDetailIdState)
   const { refetch } = useTaskDetailQuery({ lazy: true })
 
@@ -33,7 +40,8 @@ export const useTasksListDetail = (props?: Props) => {
     setIsOpen(false)
     await navigateToTasks()
     resetId()
-  }, [setIsOpen, navigateToTasks, resetId])
+    resetScrollId()
+  }, [setIsOpen, navigateToTasks, resetId, resetScrollId])
 
   const onOpen = useCallback(
     (callback?: () => void) => {
@@ -67,5 +75,7 @@ export const useTasksListDetail = (props?: Props) => {
     loading,
     taskId: id,
     refetch,
+    scrollId,
+    setScrollId,
   }
 }

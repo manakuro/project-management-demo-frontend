@@ -1,5 +1,7 @@
 import React, { useCallback, useMemo } from 'react'
 import { IconButton } from 'src/components/atoms'
+import { useTasksListDetail } from 'src/components/organisms'
+import { FEED_LIST_CONTAINER_ID } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList'
 import { useTasksName } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { useRouter } from 'src/router'
 import { useTasksFeedIds } from 'src/store/entities/tasks/feedIds'
@@ -11,14 +13,16 @@ export const Feed: React.VFC<Props> = () => {
   const { taskId } = useTasksName()
   const { feedIds } = useTasksFeedIds(taskId)
   const size = useMemo(() => feedIds.length, [feedIds.length])
-  const { navigateToTaskDetailFeed } = useRouter()
+  const { setScrollId } = useTasksListDetail()
+  const { navigateToTaskDetail } = useRouter()
 
   const handleClick = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation()
-      await navigateToTaskDetailFeed(taskId, feedIds[0])
+      setScrollId(FEED_LIST_CONTAINER_ID)
+      await navigateToTaskDetail(taskId)
     },
-    [feedIds, navigateToTaskDetailFeed, taskId],
+    [navigateToTaskDetail, setScrollId, taskId],
   )
 
   if (!size) return null

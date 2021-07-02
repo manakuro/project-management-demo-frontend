@@ -7,6 +7,7 @@ import { TasksName } from './TasksName'
 type Props = {
   taskParentId: string
 }
+export const SUBTASK_LIST_CONTAINER_ID = 'SUBTASK_LIST_CONTAINER_ID'
 
 export const Subtasks: React.FC<Props> = memo<Props>((props) => {
   const { taskIds, addTask } = useTaskIdsByTaskParentId(props.taskParentId)
@@ -16,7 +17,11 @@ export const Subtasks: React.FC<Props> = memo<Props>((props) => {
   }, [addTask])
 
   return (
-    <Row flexDirection="column" alignItems="flex-start">
+    <Row
+      flexDirection="column"
+      alignItems="flex-start"
+      id={SUBTASK_LIST_CONTAINER_ID}
+    >
       {taskIds.length > 0 && (
         <>
           <Label>Subtasks</Label>

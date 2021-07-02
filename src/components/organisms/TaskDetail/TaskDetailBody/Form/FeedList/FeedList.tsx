@@ -7,12 +7,14 @@ type Props = {
   taskId: string
 }
 
+export const FEED_LIST_CONTAINER_ID = 'FEED_LIST_CONTAINER_ID'
+
 export const FeedList: React.VFC<Props> = memo<Props>((props) => {
   const { feedIds } = useFeedsByTask(props.taskId)
   const { feedPinnedIds } = useFeedsPinnedIds(props.taskId)
 
   return (
-    <Flex mt={4} flexDirection="column">
+    <Flex mt={4} flexDirection="column" id={FEED_LIST_CONTAINER_ID}>
       {feedPinnedIds.map((pinnedId) => (
         <FeedListItem
           key={pinnedId}

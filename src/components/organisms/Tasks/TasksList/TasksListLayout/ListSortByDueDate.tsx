@@ -1,11 +1,10 @@
 import React, { memo, useCallback, useState } from 'react'
 import { Box, Flex, Icon, IconButton } from 'src/components/atoms'
-import { TasksListSection } from 'src/components/organisms'
+import { TasksListSection, useTasksContext } from 'src/components/organisms'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
-import { useMyTasks } from 'src/store/app/myTasks'
 
 export const ListSortByDueDate: React.VFC = memo(() => {
-  const { taskSectionIds, taskIds } = useMyTasks()
+  const { taskIds, taskSectionIds } = useTasksContext()
   const [isExpanded, setIsExpanded] = useState(true)
 
   const handleToggle = useCallback(() => {

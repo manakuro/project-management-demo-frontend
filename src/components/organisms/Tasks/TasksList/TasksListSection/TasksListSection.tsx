@@ -21,8 +21,8 @@ export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
 })
 
 const Component: React.FC<Props> = memo<Props>((props) => {
-  const { useTaskIds } = useTasksContext()
-  const { taskIds } = useTaskIds(props.taskSectionId)
+  const { useTaskByTaskSection } = useTasksContext()
+  const { taskIds } = useTaskByTaskSection(props.taskSectionId)
   const [isExpanded, setIsExpanded] = useState(true)
 
   const handleToggle = useCallback(() => {

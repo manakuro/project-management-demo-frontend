@@ -1,16 +1,14 @@
-import React, { createContext, useCallback, useContext } from 'react'
-import { createUseTaskIds, CreateUseTaskIdsResult } from './useTaskIds'
+import React, { createContext, useContext } from 'react'
+import { createUseTask, CreateUseTaskResult, initialUseTask } from './useTask'
 import {
-  useTaskSectionIds,
-  UseTaskSectionIdsResult,
+  useTaskSection,
+  UseTaskSectionResult,
   initialUseTaskSectionIds,
-} from './useTaskSectionIds'
+} from './useTaskSection'
 
 type ContextProps = {
-  addTask: () => void
-  addSection: () => void
-  useTaskIds: CreateUseTaskIdsResult
-} & UseTaskSectionIdsResult
+  useTaskByTaskSection: CreateUseTaskResult
+} & UseTaskSectionResult
 
 type Props = {
   myTasks?: boolean
@@ -19,26 +17,17 @@ type Props = {
 export type TasksProviderProps = Props
 
 const Context = createContext<ContextProps>({
-  addTask: () => {},
-  addSection: () => {},
   ...initialUseTaskSectionIds(),
-  useTaskIds: () => ({
-    taskIds: [],
-  }),
+  useTaskByTaskSection: () => initialUseTask(),
 })
 export const useTasksContext = () => useContext(Context)
 
 export const TasksProvider: React.FC<Props> = (props) => {
-  const addTask = useCallback(() => {}, [])
-  const addSection = useCallback(() => {}, [])
-
   return (
     <Context.Provider
       value={{
-        addTask,
-        addSection,
-        ...useTaskSectionIds(props),
-        useTaskIds: createUseTaskIds(props),
+        ...useTaskSection(props),
+        useTaskByTaskSection: createUseTask(props),
       }}
     >
       {props.children}

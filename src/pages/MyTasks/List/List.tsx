@@ -9,9 +9,10 @@ import {
   TasksHeaderLeft,
   TasksHeaderRight,
   TasksList,
-  TasksListHeader,
   TasksListBody,
+  TasksListHeader,
   TasksListLayout,
+  TasksProvider,
 } from 'src/components/organisms'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { useMyTasksTaskColumns } from 'src/store/app/myTasks/taskColumns'
@@ -24,26 +25,28 @@ export const List: React.VFC = memo(() => {
   if (loading) return <SkeletonList />
 
   return (
-    <TasksList taskColumnIds={taskColumnIds}>
-      <TasksHeader>
-        <TasksHeaderLeft>
-          <AddTaskButton solid />
-        </TasksHeaderLeft>
-        <TasksHeaderRight>
-          <IncompleteTasksButton />
-          <SortButton />
-          <CustomizeButton />
-        </TasksHeaderRight>
-      </TasksHeader>
-      <Flex flex={1}>
-        <Flex flex={1} flexDirection="column">
-          <TasksListHeader />
-          <TasksListBody>
-            <TasksListLayout />
-          </TasksListBody>
+    <TasksProvider myTasks>
+      <TasksList taskColumnIds={taskColumnIds}>
+        <TasksHeader>
+          <TasksHeaderLeft>
+            <AddTaskButton solid />
+          </TasksHeaderLeft>
+          <TasksHeaderRight>
+            <IncompleteTasksButton />
+            <SortButton />
+            <CustomizeButton />
+          </TasksHeaderRight>
+        </TasksHeader>
+        <Flex flex={1}>
+          <Flex flex={1} flexDirection="column">
+            <TasksListHeader />
+            <TasksListBody>
+              <TasksListLayout />
+            </TasksListBody>
+          </Flex>
         </Flex>
-      </Flex>
-    </TasksList>
+      </TasksList>
+    </TasksProvider>
   )
 })
 List.displayName = 'List'

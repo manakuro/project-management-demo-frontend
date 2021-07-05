@@ -8,8 +8,13 @@ import {
   Portal,
   Divider,
 } from 'src/components/atoms'
-import { Menu, MenuButton, MenuItem, MenuList } from 'src/components/organisms'
-import { useTasks } from 'src/components/organisms/Tasks/useTasks'
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  useTasksContext,
+} from 'src/components/organisms'
 import { ChakraProps } from 'src/shared/chakra'
 
 type Props = ButtonGroupProps & {
@@ -19,7 +24,7 @@ type Props = ButtonGroupProps & {
 
 export const AddTaskButton: React.VFC<Props> = memo<Props>((props) => {
   const { solid, outlined, ...rest } = props
-  const { addTask, addSection } = useTasks()
+  const { addTask, addSection } = useTasksContext()
   const buttonGroupProps: ButtonGroupProps = props.solid
     ? {
         variant: 'solid',

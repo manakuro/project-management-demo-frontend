@@ -1,13 +1,11 @@
 import React, { memo, useCallback } from 'react'
 import { Button, Flex, Icon } from 'src/components/atoms'
 import { useTasksContext } from 'src/components/organisms'
-import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 
 type Props = {}
 
 export const AddTaskSection: React.FC<Props> = memo<Props>(() => {
-  const { addTaskSection } = useTasksContext()
-  const { setAddedTaskSectionId } = useTasksListContext()
+  const { addTaskSection, setAddedTaskSectionId } = useTasksContext()
 
   const handleClick = useCallback(() => {
     const id = addTaskSection()
@@ -28,4 +26,4 @@ export const AddTaskSection: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
-AddTaskSection.displayName = 'TasksListSectionAddButton'
+AddTaskSection.displayName = 'AddTaskSection'

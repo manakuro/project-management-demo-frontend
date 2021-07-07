@@ -1,7 +1,6 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Box } from 'src/components/atoms'
 import { useTasksContext } from 'src/components/organisms'
-import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { useTasksListSectionContext } from 'src/components/organisms/Tasks/TasksList/TasksListSection/Provider'
 import { Input } from './Input'
 
@@ -10,12 +9,12 @@ type Props = {
 }
 
 export const TaskSectionName: React.FC<Props> = memo<Props>((props) => {
-  const { useTaskByTaskSection } = useTasksContext()
+  const { useTaskByTaskSection, addedTaskSectionId, resetAddedTaskSectionId } =
+    useTasksContext()
   const { taskSection, setSectionName } = useTaskByTaskSection(
     props.taskSectionId,
   )
   const { focused, onFocusInput, onUnfocusInput } = useTasksListSectionContext()
-  const { addedTaskSectionId, resetAddedTaskSectionId } = useTasksListContext()
 
   const showInput = useMemo(() => {
     if (addedTaskSectionId === props.taskSectionId) return true

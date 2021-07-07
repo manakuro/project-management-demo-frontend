@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import {
   ButtonGroup,
   ButtonGroupProps,
@@ -24,7 +24,13 @@ type Props = ButtonGroupProps & {
 
 export const AddTaskButton: React.VFC<Props> = memo<Props>((props) => {
   const { solid, outlined, ...rest } = props
-  const { addTask, addSection } = useTasksContext()
+  const {
+    addTaskSection,
+    setAddedTaskSectionId,
+    useTaskByTaskSection,
+    taskSectionIds,
+  } = useTasksContext()
+  const { addTask } = useTaskByTaskSection(taskSectionIds[0])
   const buttonGroupProps: ButtonGroupProps = props.solid
     ? {
         variant: 'solid',
@@ -40,6 +46,11 @@ export const AddTaskButton: React.VFC<Props> = memo<Props>((props) => {
     : {
         color: 'text.muted',
       }
+
+  const handleAddTaskSection = useCallback(() => {
+    const id = addTaskSection()
+    setAddedTaskSectionId(id)
+  }, [addTaskSection, setAddedTaskSectionId])
 
   return (
     <ButtonGroup size="xs" isAttached {...buttonGroupProps} {...rest}>
@@ -62,13 +73,11 @@ export const AddTaskButton: React.VFC<Props> = memo<Props>((props) => {
         />
         <Portal>
           <MenuList color="text.base">
-            <MenuItem onClick={addSection} command="Tab + N">
-              Add section
-            </MenuItem>
-            <MenuItem>Add milestone</MenuItem>
+            <MenuItem onClick={handleAddTaskSection}>Add section</MenuItem>
           </MenuList>
         </Portal>
       </Menu>
     </ButtonGroup>
   )
 })
+AddTaskButton.displayName = 'AddTaskButton'

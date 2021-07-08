@@ -43,10 +43,10 @@ export const ColumnResizer: React.FC<Props> = (props) => {
       e.preventDefault()
       if (!dragging) return
       if (!ref.current) return
-      const x = e.screenX - left
+      const x = e.clientX - left
       const parentWidth = ref.current?.parentElement?.offsetWidth ?? 0
-      const minW = parentWidth - Number(resizedMinW)
-      if (-x > minW) return
+      const minX = parentWidth - Number(resizedMinW)
+      if (-x > minX) return
       if (resizedMaxW && parentWidth + x > Number(resizedMaxW)) return
 
       setTranslateX(x)

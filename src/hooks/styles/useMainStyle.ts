@@ -1,13 +1,20 @@
-import { useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigation } from 'src/components/organisms'
 
 export const useMainStyle = () => {
   const { isExpanded } = useNavigation()
+  const [maxW, setMaxW] = useState<string>('')
 
-  const maxW = useMemo(
-    () => (isExpanded ? 'calc(100vw - 240px)' : 'calc(100vw - 53px)'),
-    [isExpanded],
-  )
+  useEffect(() => {
+    if (isExpanded) {
+      setMaxW('calc(100vw - 240px)')
+      return
+    }
+
+    setTimeout(() => {
+      setMaxW('calc(100vw - 53px)')
+    }, 250)
+  }, [isExpanded])
 
   return {
     paddingX: 6,

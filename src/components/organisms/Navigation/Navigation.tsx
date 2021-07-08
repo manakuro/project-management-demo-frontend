@@ -20,7 +20,7 @@ export const Navigation: React.VFC = memo(() => {
       backgroundColor="gray.800"
       flexDirection="column"
       color="white"
-      transition="width .25s cubic-bezier(0.820, 0.085, 0.395, 0.895)"
+      transition="width .2s"
       overflowX="hidden"
       h="100vh"
       flex="0 0 auto"

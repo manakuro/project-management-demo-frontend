@@ -19,6 +19,7 @@ import {
 type Props = FlexProps & {
   taskId: string
   taskColumnId: string
+  isSubtask?: boolean
 }
 
 export const Cell: React.FC<Props> = memo<Props>((props) => {
@@ -30,7 +31,13 @@ export const Cell: React.FC<Props> = memo<Props>((props) => {
 
   switch (taskColumn.type) {
     case TASK_COLUMN_TYPE_FIELD_NAME: {
-      return <TasksName taskId={props.taskId} width={width} />
+      return (
+        <TasksName
+          taskId={props.taskId}
+          width={width}
+          isSubtask={props.isSubtask}
+        />
+      )
     }
     case TASK_COLUMN_TYPE_ASSIGNMENT: {
       return null

@@ -17,6 +17,7 @@ import { TasksNameRightContainer } from './TasksNameRightContainer'
 type Props = FlexProps & {
   taskId: string
   width: string
+  isSubtask?: boolean
 }
 
 export const TasksName: React.FC<Props> = memo<Props>((props) => {
@@ -52,7 +53,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
 
   return (
     <TasksNameCell
-      pl={6}
+      pl={props.isSubtask ? 12 : 6}
       ref={ref}
       onClick={handleClick}
       w={props.width}

@@ -1,25 +1,33 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Icon, IconButton } from 'src/components/atoms'
-import { useTasksContext } from 'src/components/organisms'
-import { useTasksNameContext } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
-import { useTaskIdsByTaskParentId } from 'src/store/entities/tasks'
+import { useTasksListItemContext } from 'src/components/organisms/Tasks/TasksList/TasksListItem/Provider'
 
 type Props = {}
 
 export const ExpandIcon: React.FC<Props> = memo<Props>(() => {
-  const { isProjectsPage } = useTasksContext()
-  const { taskId } = useTasksNameContext()
-  const { taskIds } = useTaskIdsByTaskParentId(taskId)
-  const showIcon = useMemo(
-    () => isProjectsPage && !!taskIds.length,
-    [isProjectsPage, taskIds.length],
+  const { showExpandIcon, isSubtaskExpanded, onToggleExpandSubtask } =
+    useTasksListItemContext()
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation()
+      onToggleExpandSubtask()
+    },
+    [onToggleExpandSubtask],
   )
 
   return (
     <IconButton
+      onClick={handleClick}
       aria-label="Show sub task"
-      icon={<Icon icon="chevronRight" color="text.muted" size="sm" />}
-      visibility={showIcon ? 'visible' : 'hidden'}
+      icon={
+        <Icon
+          icon={isSubtaskExpanded ? 'chevronDown' : 'chevronRight'}
+          color="text.muted"
+          size="sm"
+        />
+      }
+      visibility={showExpandIcon ? 'visible' : 'hidden'}
       size="xs"
       h={5}
       minW={5}

@@ -58,7 +58,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
       onClick={handleClick}
       w={props.width}
       minW="400px"
-      maxW="800px"
+      maxW="600px"
     >
       <TasksNameGrabIconContainer>
         <TasksNameGrabIcon />

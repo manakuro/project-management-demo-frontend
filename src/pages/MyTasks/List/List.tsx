@@ -14,6 +14,7 @@ import {
   TasksListLayout,
   TasksProvider,
 } from 'src/components/organisms'
+import { useMainStyle } from 'src/hooks'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { useMyTasksTaskColumns } from 'src/store/app/myTasks/taskColumns'
 import { SkeletonList } from './SkeletonList'
@@ -21,6 +22,7 @@ import { SkeletonList } from './SkeletonList'
 export const List: React.VFC = memo(() => {
   const { taskColumnIds } = useMyTasksTaskColumns()
   const { loading } = useMyTasksContext()
+  const { maxW } = useMainStyle()
 
   if (loading) return <SkeletonList />
 
@@ -37,7 +39,7 @@ export const List: React.VFC = memo(() => {
             <CustomizeButton />
           </TasksHeaderRight>
         </TasksHeader>
-        <Flex flex={1}>
+        <Flex flex={1} maxW={maxW} overflowX="scroll">
           <Flex flex={1} flexDirection="column">
             <TasksListHeader />
             <TasksListBody>

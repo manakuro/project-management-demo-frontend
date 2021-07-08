@@ -14,7 +14,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
   return (
     <Provider loading={props.loading}>
       <Tabs defaultIndex={0} flex={1} display="flex">
-        <Flex data-testid="Home" flex={1} flexDirection="column">
+        <Flex data-testid="MyTasks" flex={1} flexDirection="column">
           <Head title="My Tasks" />
           <MainHeader>
             <Header />

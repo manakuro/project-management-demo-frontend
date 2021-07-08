@@ -23,7 +23,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
   const { taskColumnIds } = useTasksListContext()
 
   return (
-    <TasksListRow selected={selected}>
+    <TasksListRow selected={selected} pr={6}>
       {taskColumnIds.map((id) => (
         <Cell taskId={props.taskId} taskColumnId={id} key={id} />
       ))}

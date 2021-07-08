@@ -12,7 +12,16 @@ type Props = FlexProps & {
 export type TasksListCellProps = Props
 
 export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
-  const { hover, resizable, onChangeSize, resizedMinW, ...rest } = props
+  const {
+    hover,
+    resizable,
+    onChangeSize,
+    resizedMinW,
+    w,
+    minW,
+    flex,
+    ...rest
+  } = props
 
   const handleChange = useCallback(
     (margin: number) => {
@@ -25,30 +34,37 @@ export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
   return (
     <Flex
       position="relative"
-      fontWeight="normal"
-      border={1}
-      borderStyle="solid"
-      borderColor="gray.200"
       mr="-1px"
-      alignItems="center"
-      fontSize="xs"
-      color="text.muted"
-      py={0}
-      px={2}
       h="37px"
-      {...(hover
-        ? {
-            zIndex: 0,
-            _hover: {
-              borderColor: 'gray.400',
-              zIndex: 1,
-            },
-          }
-        : {})}
       ref={ref}
-      {...rest}
+      w={w}
+      minW={minW}
+      flex={flex}
     >
-      {props.children}
+      <Flex
+        w="100%"
+        fontWeight="normal"
+        border={1}
+        borderStyle="solid"
+        borderColor="gray.200"
+        alignItems="center"
+        fontSize="xs"
+        color="text.muted"
+        py={0}
+        px={2}
+        {...(hover
+          ? {
+              zIndex: 0,
+              _hover: {
+                borderColor: 'gray.400',
+                zIndex: 1,
+              },
+            }
+          : {})}
+        {...rest}
+      >
+        {props.children}
+      </Flex>
       {resizable && (
         <ColumnResizer onChange={handleChange} resizedMinW={resizedMinW} />
       )}

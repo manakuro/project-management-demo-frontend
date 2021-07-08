@@ -28,7 +28,7 @@ export const useTaskSection = (props: TasksProviderProps): Result => {
     setAddedTaskSectionId('')
   }, [])
 
-  if (props.myTasks) {
+  if (props.isMyTasksPage) {
     return {
       taskSectionIds,
       taskIds,

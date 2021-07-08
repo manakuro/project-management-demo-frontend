@@ -18,7 +18,14 @@ export const Header: React.FC<Props> = memo<Props>((props) => {
   const { sortedStyle } = useTasksListSectionContext()
 
   return (
-    <Flex h="50px" maxW="40%" alignItems="center" ref={ref} {...sortedStyle}>
+    <Flex
+      h="50px"
+      maxW="40%"
+      alignItems="center"
+      ref={ref}
+      {...sortedStyle}
+      px={6}
+    >
       <IconButton
         aria-label="Task list expand button"
         icon={<Icon icon={isExpanded ? 'chevronDown' : 'chevronRight'} />}

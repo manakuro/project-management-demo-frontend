@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
-import { Icon } from 'src/components/atoms'
+import { Icon, IconProps } from 'src/components/atoms'
 import { useTasksNameContext } from './TasksNameProvider'
 
-type Props = {}
+type Props = Omit<IconProps, 'icon'>
 
-export const TasksNameGrabIcon: React.FC<Props> = memo<Props>(() => {
+export const TasksNameGrabIcon: React.FC<Props> = memo<Props>((props) => {
   const { showIcon } = useTasksNameContext()
   return (
     <Icon
@@ -13,6 +13,8 @@ export const TasksNameGrabIcon: React.FC<Props> = memo<Props>(() => {
       size="sm"
       visibility={showIcon ? 'visible' : 'hidden'}
       cursor="grab"
+      {...props}
     />
   )
 })
+TasksNameGrabIcon.displayName = 'TasksNameGrabIcon'

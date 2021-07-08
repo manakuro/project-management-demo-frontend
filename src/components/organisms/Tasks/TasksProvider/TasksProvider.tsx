@@ -7,16 +7,20 @@ import {
 } from './useTaskSection'
 
 type ContextProps = {
+  isMyTasksPage: boolean
+  isProjectsPage: boolean
   useTaskByTaskSection: CreateUseTaskResult
 } & UseTaskSectionResult
 
 type Props = {
-  myTasks?: boolean
-  projects?: boolean
+  isMyTasksPage?: boolean
+  isProjectsPage?: boolean
 }
 export type TasksProviderProps = Props
 
 const Context = createContext<ContextProps>({
+  isMyTasksPage: false,
+  isProjectsPage: false,
   ...initialUseTaskSectionIds(),
   useTaskByTaskSection: () => initialUseTask(),
 })
@@ -26,6 +30,8 @@ export const TasksProvider: React.FC<Props> = (props) => {
   return (
     <Context.Provider
       value={{
+        isMyTasksPage: !!props.isMyTasksPage,
+        isProjectsPage: !!props.isProjectsPage,
         ...useTaskSection(props),
         useTaskByTaskSection: createUseTask(props),
       }}

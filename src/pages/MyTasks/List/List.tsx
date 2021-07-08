@@ -25,7 +25,7 @@ export const List: React.VFC = memo(() => {
   if (loading) return <SkeletonList />
 
   return (
-    <TasksProvider myTasks>
+    <TasksProvider isMyTasksPage>
       <TasksList taskColumnIds={taskColumnIds}>
         <TasksHeader>
           <TasksHeaderLeft>

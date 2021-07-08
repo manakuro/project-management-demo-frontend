@@ -13,7 +13,7 @@ export const AddTaskSection: React.FC<Props> = memo<Props>(() => {
   }, [addTaskSection, setAddedTaskSectionId])
 
   return (
-    <Flex w={40} mt={4}>
+    <Flex w={40} mt={4} pl={6}>
       <Button
         leftIcon={<Icon icon="plus" />}
         colorScheme="teal"

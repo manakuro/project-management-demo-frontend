@@ -23,7 +23,7 @@ export const createUseTask = (props: TasksProviderProps) => {
   return function useTaskByTaskSection(taskSectionId: string): Result {
     const useMyTasksResult = useMyTask(taskSectionId)
 
-    if (props.myTasks) {
+    if (props.isMyTasksPage) {
       return {
         taskIds: useMyTasksResult.taskIds,
         addTask: useMyTasksResult.addTask,

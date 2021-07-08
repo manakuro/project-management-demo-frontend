@@ -2,6 +2,7 @@ import React, { memo, useCallback } from 'react'
 import { CheckIcon, FlexProps, Icon, Stack, Text } from 'src/components/atoms'
 import { useRouter } from 'src/router'
 import { useTask } from 'src/store/entities/tasks'
+import { ExpandIcon } from './ExpandIcon'
 import { Feed } from './Feed'
 import { Like } from './Like'
 import { Mark } from './Mark'
@@ -9,6 +10,7 @@ import { Subtask } from './Subtask'
 import { TasksNameCell } from './TasksNameCell'
 import { TasksNameField } from './TasksNameField'
 import { TasksNameGrabIcon } from './TasksNameGrabIcon'
+import { TasksNameGrabIconContainer } from './TasksNameGrabIconContainer'
 import { TasksNameProvider, useTasksNameContext } from './TasksNameProvider'
 import { TasksNameRightContainer } from './TasksNameRightContainer'
 
@@ -49,9 +51,18 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <TasksNameCell ref={ref} onClick={handleClick} w={props.width} minW="400px">
-      <TasksNameGrabIcon />
-      <CheckIcon isDone={task.isDone} ml={4} onClick={handleToggleDone} />
+    <TasksNameCell
+      pl={6}
+      ref={ref}
+      onClick={handleClick}
+      w={props.width}
+      minW="400px"
+    >
+      <TasksNameGrabIconContainer>
+        <TasksNameGrabIcon />
+      </TasksNameGrabIconContainer>
+      <ExpandIcon />
+      <CheckIcon isDone={task.isDone} ml={1} onClick={handleToggleDone} />
       <TasksNameField
         value={task.name}
         isNew={task.isNew}

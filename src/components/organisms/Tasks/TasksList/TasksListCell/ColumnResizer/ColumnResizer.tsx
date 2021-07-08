@@ -5,10 +5,11 @@ import { useHover } from 'src/hooks/useHover'
 type Props = Omit<FlexProps, 'onChange'> & {
   onChange?: (margin: number) => void
   resizedMinW?: number
+  resizedMaxW?: number
 }
 
 export const ColumnResizer: React.FC<Props> = (props) => {
-  const { onChange, resizedMinW, ...rest } = props
+  const { onChange, resizedMinW, resizedMaxW, ...rest } = props
   const [dragging, setDragging] = useState<boolean>(false)
   const { ref, isHovering } = useHover()
   const [height, setHeight] = useState<number>(0)
@@ -46,10 +47,11 @@ export const ColumnResizer: React.FC<Props> = (props) => {
       const parentWidth = ref.current?.parentElement?.offsetWidth ?? 0
       const minW = parentWidth - Number(resizedMinW)
       if (-x > minW) return
+      if (resizedMaxW && parentWidth + x > Number(resizedMaxW)) return
 
       setTranslateX(x)
     },
-    [dragging, left, ref, resizedMinW],
+    [dragging, left, ref, resizedMaxW, resizedMinW],
   )
 
   const handleMouseLeave = useCallback(() => {

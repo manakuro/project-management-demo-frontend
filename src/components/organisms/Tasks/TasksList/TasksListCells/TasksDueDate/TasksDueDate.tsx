@@ -42,6 +42,7 @@ export const TasksDueDate: React.VFC<Props> = memo<Props>((props) => {
     <TasksListCell
       w={props.width}
       minW="120px"
+      maxW="280px"
       hover
       ref={ref}
       cursor="pointer"

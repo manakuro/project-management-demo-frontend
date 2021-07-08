@@ -1,12 +1,14 @@
 import React, { useCallback } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { forwardRef } from 'src/shared/chakra'
+import { pxToNum } from 'src/shared/pxToNum'
 import { ColumnResizer } from './ColumnResizer'
 
 type Props = FlexProps & {
   hover?: boolean
   resizable?: boolean
   resizedMinW?: number
+  resizedMaxW?: number
   onChangeSize?: (size: string) => void
 }
 export type TasksListCellProps = Props
@@ -17,6 +19,7 @@ export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
     resizable,
     onChangeSize,
     resizedMinW,
+    resizedMaxW,
     w,
     minW,
     flex,
@@ -25,8 +28,9 @@ export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
 
   const handleChange = useCallback(
     (margin: number) => {
-      console.log('margin: ', margin)
-      onChangeSize?.(`calc(${props.w} + ${margin}px)`)
+      const width = pxToNum(props.w as string)
+      console.log('width: ', width, margin)
+      onChangeSize?.(`${width + margin}px`)
     },
     [onChangeSize, props.w],
   )
@@ -66,7 +70,11 @@ export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
         {props.children}
       </Flex>
       {resizable && (
-        <ColumnResizer onChange={handleChange} resizedMinW={resizedMinW} />
+        <ColumnResizer
+          onChange={handleChange}
+          resizedMinW={resizedMinW}
+          resizedMaxW={resizedMaxW}
+        />
       )}
     </Flex>
   )

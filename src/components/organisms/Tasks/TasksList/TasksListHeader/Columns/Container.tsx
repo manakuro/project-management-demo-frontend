@@ -15,6 +15,7 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
   const { taskColumn, setTaskColumn } = useTaskColumn(taskColumnId)
   const { clickableHoverStyle } = useClickableHoverStyle()
   const minW = useMemo(() => (isFirst ? 400 : 120), [isFirst])
+  const maxW = useMemo(() => (isFirst ? 800 : 280), [isFirst])
   const style = useMemo<FlexProps>(() => {
     return {
       ...(isFirst
@@ -45,7 +46,9 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
       w={taskColumn.width}
       {...style}
       minW={`${minW}px`}
+      maxW={`${maxW}px`}
       resizedMinW={minW}
+      resizedMaxW={maxW}
       onChangeSize={handleChangeSize}
       {...rest}
     >

@@ -4,7 +4,6 @@ import { useTasksListBody } from 'src/pages/MyTasks/List/useTasksListBody'
 
 type Props = {}
 
-const maxH = 72 + 62 + 37
 export const TasksListBody: React.FC<Props> = memo<Props>((props) => {
   const { id } = useTasksListBody()
   return (
@@ -12,8 +11,7 @@ export const TasksListBody: React.FC<Props> = memo<Props>((props) => {
       id={id}
       flex={1}
       flexDirection="column"
-      maxH={`calc(100vh - ${maxH}px)`}
-      pb={20}
+      pb={4}
       position="relative"
       {...props}
     />

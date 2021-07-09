@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { useMyTasksTaskStatus } from 'src/store/app/myTasks'
+import { useTasksContext } from 'src/components/organisms'
 import { ListBasic } from './ListBasic'
 import { ListSortByAlphabetical } from './ListSortByAlphabetical'
 import { ListSortByDueDate } from './ListSortByDueDate'
@@ -7,7 +7,7 @@ import { ListSortByLike } from './ListSortByLike'
 import { ListSortByProject } from './ListSortByProject'
 
 export const TasksListLayout: React.VFC = memo(() => {
-  const { isSorted } = useMyTasksTaskStatus()
+  const { isSorted } = useTasksContext()
 
   switch (true) {
     case isSorted('dueDate'): {

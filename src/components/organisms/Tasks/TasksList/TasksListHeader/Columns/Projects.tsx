@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
-import { useMyTasksTaskStatus } from 'src/store/app/myTasks'
+import { useTasksContext } from 'src/components/organisms'
 import { Container } from './Container'
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 
 export const Projects: React.FC<Props> = memo<Props>((props) => {
   const { taskColumnId } = props
-  const { isSorted, onSort } = useMyTasksTaskStatus()
+  const { isSorted, onSort } = useTasksContext()
 
   const handleClick = useCallback(() => {
     if (isSorted('project')) {

@@ -26,11 +26,15 @@ export const SkeletonList: React.VFC = memo(() => {
       <Flex px={6} flex={1}>
         <Flex flex={1} flexDirection="column">
           <Flex flex={1}>
-            <TasksListCell w="calc(600px - 24px)" pl={0} borderLeft="none" />
-            <TasksListCell w="120px" />
-            <TasksListCell w="120px" />
-            <TasksListCell w="120px" />
-            <TasksListCell flex={1} borderRight="none" />
+            <TasksListCell
+              containerStyle={{ w: 'calc(600px - 24px)' }}
+              pl={0}
+              borderLeft="none"
+            />
+            <TasksListCell containerStyle={{ w: '120px' }} />
+            <TasksListCell containerStyle={{ w: '120px' }} />
+            <TasksListCell containerStyle={{ w: '120px' }} />
+            <TasksListCell containerStyle={{ flex: 1 }} borderRight="none" />
           </Flex>
           <Flex flex={1} flexDirection="column">
             <Flex h="50px" alignItems="center">

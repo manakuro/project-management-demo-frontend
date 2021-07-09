@@ -40,12 +40,14 @@ export const TasksDueDate: React.VFC<Props> = memo<Props>((props) => {
 
   return (
     <TasksListCell
-      w={props.width}
-      minW="120px"
-      maxW="280px"
-      hover
-      ref={ref}
+      containerStyle={{
+        w: props.width,
+        minW: '120px',
+        maxW: '280px',
+        ref,
+      }}
       cursor="pointer"
+      hover
     >
       <PopoverDueDatePicker
         linkStyle={{ w: 'full', h: 'full' }}

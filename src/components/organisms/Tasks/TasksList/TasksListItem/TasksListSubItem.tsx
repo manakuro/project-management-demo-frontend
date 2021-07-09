@@ -20,7 +20,7 @@ export const TasksListSubItem: React.FC<Props> = memo<Props>((props) => {
         {taskColumnIds.map((id) => (
           <Cell taskId={props.taskId} taskColumnId={id} key={id} isSubtask />
         ))}
-        <TasksListCell flex={1} borderRight="none" />
+        <TasksListCell containerStyle={{ flex: 1 }} borderRight="none" />
       </TasksListRow>
     </>
   )

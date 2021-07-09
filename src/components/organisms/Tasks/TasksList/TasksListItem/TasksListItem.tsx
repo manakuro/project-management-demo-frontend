@@ -31,7 +31,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
         {taskColumnIds.map((id) => (
           <Cell taskId={props.taskId} taskColumnId={id} key={id} />
         ))}
-        <TasksListCell flex={1} borderRight="none" />
+        <TasksListCell containerStyle={{ flex: 1 }} borderRight="none" />
       </TasksListRow>
       {isSubtaskExpanded &&
         taskIds.length > 0 &&

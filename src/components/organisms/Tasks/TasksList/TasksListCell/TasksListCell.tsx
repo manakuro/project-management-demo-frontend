@@ -4,13 +4,14 @@ import { forwardRef } from 'src/shared/chakra'
 import { pxToNum } from 'src/shared/pxToNum'
 import { ColumnResizer } from './ColumnResizer'
 
-type Props = FlexProps & {
+type Props = {
   hover?: boolean
   resizable?: boolean
   resizedMinW?: number
   resizedMaxW?: number
   onChangeSize?: (size: string) => void
-}
+  containerStyle?: FlexProps
+} & FlexProps
 export type TasksListCellProps = Props
 
 export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
@@ -20,40 +21,29 @@ export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
     onChangeSize,
     resizedMinW,
     resizedMaxW,
-    w,
-    minW,
-    flex,
-    position,
-    left,
-    zIndex,
-    bg,
+    containerStyle,
     ...rest
   } = props
 
   const handleChange = useCallback(
     (margin: number) => {
-      const width = pxToNum(props.w as string)
+      const width = pxToNum(containerStyle?.w as string)
       console.log('width: ', width, margin)
       onChangeSize?.(`${width + margin}px`)
     },
-    [onChangeSize, props.w],
+    [onChangeSize, containerStyle?.w],
   )
 
   return (
     <Flex
-      position={position || 'relative'}
-      left={left}
       h="37px"
       mr="-1px"
+      {...containerStyle}
       ref={ref}
-      w={w}
-      minW={minW}
-      flex={flex}
-      zIndex={zIndex || 1}
+      position={containerStyle?.position || 'relative'}
       _hover={{
-        zIndex: ((zIndex as number) || 1) + 1,
+        zIndex: ((containerStyle?.zIndex as number) || 1) + 1,
       }}
-      bg={bg}
     >
       <Flex
         w="100%"

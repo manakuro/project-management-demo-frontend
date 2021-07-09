@@ -57,13 +57,15 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
     <>
       <TasksNameCell
         pl={props.isSubtask ? 12 : 6}
-        ref={ref}
         onClick={handleClick}
-        w={props.width}
-        minW="400px"
-        maxW="800px"
-        {...stickyStyle}
-        bg="inherit"
+        containerStyle={{
+          w: props.width,
+          minW: '400px',
+          maxW: '800px',
+          bg: 'inherit',
+          ...stickyStyle,
+          ref,
+        }}
       >
         <TasksNameGrabIconContainer>
           <TasksNameGrabIcon />

@@ -11,7 +11,12 @@ export const TaskName: React.FC<Props> = memo<Props>((props) => {
   const { stickyStyle } = useStickyListStyle()
 
   return (
-    <Container ml={6} taskColumnId={taskColumnId} isFirst {...stickyStyle} />
+    <Container
+      ml={6}
+      taskColumnId={taskColumnId}
+      isFirst
+      containerStyle={{ ...stickyStyle }}
+    />
   )
 })
 TaskName.displayName = 'TaskName'

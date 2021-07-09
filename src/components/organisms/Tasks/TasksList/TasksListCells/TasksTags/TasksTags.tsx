@@ -24,14 +24,16 @@ export const TasksTags: React.VFC<Props> = memo<Props>((props) => {
 
   return (
     <TasksListCell
-      w={props.width}
-      minW="120px"
-      maxW="280px"
       hover
       cursor="pointer"
       onClick={onFocus}
-      position="relative"
-      zIndex={focused ? 'docked' : ''}
+      containerStyle={{
+        w: props.width,
+        minW: '120px',
+        maxW: '280px',
+        position: 'relative',
+        zIndex: focused ? 'docked' : '',
+      }}
     >
       {!focused && (
         <Stack direction="row" spacing={1} overflow="hidden">

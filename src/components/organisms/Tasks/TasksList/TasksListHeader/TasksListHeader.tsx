@@ -13,7 +13,7 @@ export const TasksListHeader: React.FC<Props> = memo<Props>(() => {
       {taskColumnIds.map((id) => (
         <Column taskColumnId={id} key={id} />
       ))}
-      <TasksListCell flex={1} borderRight="none" />
+      <TasksListCell containerStyle={{ flex: 1 }} borderRight="none" />
     </Flex>
   )
 })

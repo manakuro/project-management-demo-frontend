@@ -16,10 +16,12 @@ type Props = {
   onOpened?: () => void
   onClosed?: () => void
   linkStyle?: ChakraProps
+  closeOnChange?: boolean
 } & PopoverProps
 
 export const PopoverDueDatePicker: React.FC<Props> = (props) => {
   const popoverDisclosure = useDisclosure()
+  const closeOnChange = props.closeOnChange ?? true
 
   const handleOpen = useCallback(() => {
     popoverDisclosure.onOpen()
@@ -28,12 +30,16 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
 
   const handleClose = useCallback(() => {
     popoverDisclosure.onClose()
-
-    // Prevent flush when closing popover
-    // setTimeout(() => {
-    //   props.onClosed?.()
-    // }, 60)
   }, [popoverDisclosure])
+
+  const handleChange = useCallback(
+    (date: Date) => {
+      props.onChange(date)
+      if (!closeOnChange) return
+      popoverDisclosure.onClose()
+    },
+    [closeOnChange, popoverDisclosure, props],
+  )
 
   return (
     <PortalManager zIndex={1500}>
@@ -58,7 +64,7 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
             {popoverDisclosure.isOpen && (
               <Body
                 date={props.date}
-                onChange={props.onChange}
+                onChange={handleChange}
                 time={props.time}
                 onCloseMenu={handleClose}
               />

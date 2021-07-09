@@ -59,8 +59,8 @@ export const Input: React.VFC<Props> = memo((props) => {
         minH={HEIGHT}
         maxH={hasMultipleProjects ? 'auto' : HEIGHT}
         position="absolute"
-        left="-1px"
-        top="-1px"
+        left="0"
+        top="0"
         bg="white"
         borderRadius="none"
         w="300px"

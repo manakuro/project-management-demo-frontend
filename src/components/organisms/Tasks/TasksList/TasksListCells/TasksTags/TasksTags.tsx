@@ -31,7 +31,7 @@ export const TasksTags: React.VFC<Props> = memo<Props>((props) => {
       cursor="pointer"
       onClick={onFocus}
       position="relative"
-      zIndex={focused ? 'docked' : 0}
+      zIndex={focused ? 'docked' : ''}
     >
       {!focused && (
         <Stack direction="row" spacing={1} overflow="hidden">

@@ -22,7 +22,7 @@ export const MenuList: React.FC<Props> = memo(() => {
   }, [onOpen, setTaskSectionId, taskSectionId])
 
   return (
-    <AtomsMenuList zIndex={1}>
+    <AtomsMenuList>
       <MenuItem onClick={handleRenameSection}>Rename section</MenuItem>
       <MenuItem onClick={handleDeleteSection} color="alert">
         Delete section

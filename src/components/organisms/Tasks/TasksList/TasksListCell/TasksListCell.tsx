@@ -23,6 +23,10 @@ export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
     w,
     minW,
     flex,
+    position,
+    left,
+    zIndex,
+    bg,
     ...rest
   } = props
 
@@ -37,13 +41,19 @@ export const TasksListCell: React.FC<Props> = forwardRef((props, ref) => {
 
   return (
     <Flex
-      position="relative"
-      mr="-1px"
+      position={position || 'relative'}
+      left={left}
       h="37px"
+      mr="-1px"
       ref={ref}
       w={w}
       minW={minW}
       flex={flex}
+      zIndex={zIndex || 1}
+      _hover={{
+        zIndex: ((zIndex as number) || 1) + 1,
+      }}
+      bg={bg}
     >
       <Flex
         w="100%"

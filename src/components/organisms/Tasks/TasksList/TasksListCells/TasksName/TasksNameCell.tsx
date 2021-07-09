@@ -20,13 +20,13 @@ export const TasksNameCell: React.FC<Props> = forwardRef((props, ref) => {
         ref={ref}
         cursor="pointer"
         borderLeft="none"
-        {...cellStyle}
-        {...sortedStyle}
         onClick={props.onClick}
         hover
         position="relative"
         justifyContent="flex-end"
         {...props}
+        {...cellStyle}
+        {...sortedStyle}
       >
         {props.children}
       </TasksListCell>

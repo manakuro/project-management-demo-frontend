@@ -12,11 +12,9 @@ export const TasksListBody: React.FC<Props> = memo<Props>((props) => {
       id={id}
       flex={1}
       flexDirection="column"
-      overflowY="scroll"
       maxH={`calc(100vh - ${maxH}px)`}
       pb={20}
       position="relative"
-      top="-1px"
       {...props}
     />
   )

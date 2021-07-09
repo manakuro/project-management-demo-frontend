@@ -1,5 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { CheckIcon, FlexProps, Icon, Stack, Text } from 'src/components/atoms'
+import { useStickyListStyle } from 'src/hooks/styles/useStickyListStyle'
 import { useRouter } from 'src/router'
 import { useTask } from 'src/store/entities/tasks'
 import { ExpandIcon } from './ExpandIcon'
@@ -32,6 +33,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
   const { ref, onMarkMenuOpened, onMarkMenuClosed } = useTasksNameContext()
   const { navigateToTaskDetail } = useRouter()
   const { task, setTask, deleteTask, setTaskName } = useTask(props.taskId)
+  const { stickyStyle } = useStickyListStyle()
 
   const handleClick = useCallback(async () => {
     await navigateToTaskDetail(task.id)
@@ -52,44 +54,48 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <TasksNameCell
-      pl={props.isSubtask ? 12 : 6}
-      ref={ref}
-      onClick={handleClick}
-      w={props.width}
-      minW="400px"
-      maxW="600px"
-    >
-      <TasksNameGrabIconContainer>
-        <TasksNameGrabIcon />
-      </TasksNameGrabIconContainer>
-      <ExpandIcon />
-      <CheckIcon isDone={task.isDone} ml={1} onClick={handleToggleDone} />
-      <TasksNameField
-        value={task.name}
-        isNew={task.isNew}
-        onChange={handleChangeName}
-        deleteTask={deleteTask}
-        focusedBorder
-        flex={1}
-      />
-      <Stack direction="row" spacing={1} ml={1} mr="auto">
-        <Like />
-        <Feed />
-        <Subtask />
-      </Stack>
-      <TasksNameRightContainer>
-        <Mark
-          variant="unmarked"
-          onOpened={onMarkMenuOpened}
-          onClosed={onMarkMenuClosed}
+    <>
+      <TasksNameCell
+        pl={props.isSubtask ? 12 : 6}
+        ref={ref}
+        onClick={handleClick}
+        w={props.width}
+        minW="400px"
+        maxW="800px"
+        {...stickyStyle}
+        bg="inherit"
+      >
+        <TasksNameGrabIconContainer>
+          <TasksNameGrabIcon />
+        </TasksNameGrabIconContainer>
+        <ExpandIcon />
+        <CheckIcon isDone={task.isDone} ml={1} onClick={handleToggleDone} />
+        <TasksNameField
+          value={task.name}
+          isNew={task.isNew}
+          onChange={handleChangeName}
+          deleteTask={deleteTask}
+          focusedBorder
+          flex={1}
         />
-        <Text fontSize="xs" color="text.muted" ml={2}>
-          Details
-        </Text>
-        <Icon icon="chevronRight" color="text.muted" mt="1px" />
-      </TasksNameRightContainer>
-    </TasksNameCell>
+        <Stack direction="row" spacing={1} ml={1} mr="auto">
+          <Like />
+          <Feed />
+          <Subtask />
+        </Stack>
+        <TasksNameRightContainer>
+          <Mark
+            variant="unmarked"
+            onOpened={onMarkMenuOpened}
+            onClosed={onMarkMenuClosed}
+          />
+          <Text fontSize="xs" color="text.muted" ml={2}>
+            Details
+          </Text>
+          <Icon icon="chevronRight" color="text.muted" mt="1px" />
+        </TasksNameRightContainer>
+      </TasksNameCell>
+    </>
   )
 })
 TasksName.displayName = 'TasksName'

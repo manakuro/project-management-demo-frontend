@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { Flex, Icon, IconButton, Stack } from 'src/components/atoms'
 import { useTasksListSectionContext } from 'src/components/organisms/Tasks/TasksList/TasksListSection/Provider'
+import { useStickyListStyle } from 'src/hooks/styles/useStickyListStyle'
 import { useHover } from 'src/hooks/useHover'
 import { AddTaskButton } from './AddTaskButton'
 import { MoreAction } from './MoreAction'
@@ -16,6 +17,7 @@ export const Header: React.FC<Props> = memo<Props>((props) => {
   const { onToggle, isExpanded } = props
   const { ref, isHovering } = useHover()
   const { sortedStyle } = useTasksListSectionContext()
+  const { stickyStyle } = useStickyListStyle()
 
   return (
     <Flex
@@ -25,6 +27,8 @@ export const Header: React.FC<Props> = memo<Props>((props) => {
       ref={ref}
       {...sortedStyle}
       px={6}
+      {...stickyStyle}
+      zIndex={(stickyStyle.zIndex as number) + 1}
     >
       <IconButton
         aria-label="Task list expand button"

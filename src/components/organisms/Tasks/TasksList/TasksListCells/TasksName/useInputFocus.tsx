@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useCallback, useState } from 'react'
 import { FlexProps } from 'src/components/atoms'
+import { useStickyListStyle } from 'src/hooks/styles/useStickyListStyle'
 
 export type UseInputFocus = {
   inputFocused: boolean
@@ -11,14 +12,18 @@ export type UseInputFocus = {
 export const useInputFocus = (): UseInputFocus => {
   const [focused, setFocused] = useState(false)
   const [cellStyle, setCellStyle] = useState<FlexProps>()
+  const { stickyStyle } = useStickyListStyle()
   const onInputFocus = useCallback(() => {
     setCellStyle({
       bg: 'white',
-      borderColor: 'primary',
-      zIndex: 1,
+      borderColor: 'cyan.400',
+      zIndex: (stickyStyle.zIndex as number) + 1,
+      _hover: {
+        bg: 'white',
+      },
     })
     setFocused(true)
-  }, [])
+  }, [stickyStyle.zIndex])
   const onInputBlur = useCallback(() => {
     setCellStyle({})
     setFocused(false)

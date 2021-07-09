@@ -18,7 +18,9 @@ export const TasksListRow: React.FC<Props> = memo<Props>((props) => {
               bg: 'teal.50',
             },
           }
-        : {}),
+        : {
+            bg: 'white',
+          }),
     }
   }, [selected])
 

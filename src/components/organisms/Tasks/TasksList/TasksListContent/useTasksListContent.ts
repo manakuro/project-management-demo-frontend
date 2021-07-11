@@ -12,7 +12,7 @@ const taskListContentScrollState = atom<boolean>({
 })
 
 type Props = {
-  listenScroll?: boolean
+  listenOnScroll?: boolean
 }
 export const useTasksListContent = (props?: Props) => {
   const ref = useRef<HTMLElement | null>(null)
@@ -40,14 +40,14 @@ export const useTasksListContent = (props?: Props) => {
   )
 
   useEffect(() => {
-    if (!props?.listenScroll) return
+    if (!props?.listenOnScroll) return
     if (!ref.current) return
     const dom = ref.current
 
     dom.addEventListener('scroll', handleScroll)
 
     return () => dom.removeEventListener('scroll', handleScroll)
-  }, [handleScroll, props?.listenScroll])
+  }, [handleScroll, props?.listenOnScroll])
 
   return {
     ref,

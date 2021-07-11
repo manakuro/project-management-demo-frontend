@@ -16,7 +16,7 @@ type Props = {
 export const Header: React.FC<Props> = memo<Props>((props) => {
   const { onToggle, isExpanded } = props
   const { ref, isHovering } = useHover()
-  const { sortedStyle } = useTasksListSectionContext()
+  const { indentedStyle } = useTasksListSectionContext()
   const { stickyStyle } = useStickyListStyle()
 
   return (
@@ -25,8 +25,8 @@ export const Header: React.FC<Props> = memo<Props>((props) => {
       maxW="40%"
       alignItems="center"
       ref={ref}
-      {...sortedStyle}
       px={6}
+      {...indentedStyle}
       {...stickyStyle}
       zIndex={(stickyStyle.zIndex as number) + 1}
     >

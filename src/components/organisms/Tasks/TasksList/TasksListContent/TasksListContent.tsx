@@ -8,7 +8,7 @@ type Props = FlexProps
 const maxH = 72 + 60
 export const TasksListContent: React.FC<Props> = memo<Props>((props) => {
   const { maxW } = useMainStyle()
-  const { ref } = useTasksListContent({ listenScroll: true })
+  const { ref } = useTasksListContent({ listenOnScroll: true })
 
   return (
     <Flex

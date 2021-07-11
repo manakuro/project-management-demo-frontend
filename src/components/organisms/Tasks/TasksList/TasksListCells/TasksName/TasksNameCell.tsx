@@ -11,7 +11,7 @@ type Props = TasksListCellProps
 
 export const TasksNameCell: React.FC<Props> = forwardRef((props, ref) => {
   const { cellStyle } = useTasksNameContext()
-  const { sortedStyle } = useTasksListSectionContext()
+  const { indentedStyle } = useTasksListSectionContext()
 
   const { containerStyle: cellStyleContainerStyle, ...cellStyleRest } =
     cellStyle ?? { containerStyle: {} }
@@ -31,7 +31,7 @@ export const TasksNameCell: React.FC<Props> = forwardRef((props, ref) => {
         }}
         {...props}
         {...cellStyleRest}
-        {...sortedStyle}
+        {...indentedStyle}
       >
         {props.children}
       </TasksListCell>

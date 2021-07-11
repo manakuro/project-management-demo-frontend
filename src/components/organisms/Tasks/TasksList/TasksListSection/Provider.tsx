@@ -13,7 +13,7 @@ type ContextProps = {
   onUnfocusInput: () => void
   taskSectionId: string
   indented?: boolean
-  sortedStyle: FlexProps
+  indentedStyle: FlexProps
 }
 
 type Props = {
@@ -26,7 +26,7 @@ const Context = createContext<ContextProps>({
   onUnfocusInput: () => void {},
   taskSectionId: '',
   indented: false,
-  sortedStyle: {},
+  indentedStyle: {},
 })
 export const useTasksListSectionContext = () => useContext(Context)
 
@@ -41,7 +41,7 @@ export const Provider: React.FC<Props> = (props) => {
     setFocused(false)
   }, [])
 
-  const sortedStyle = useMemo<FlexProps>(
+  const indentedStyle = useMemo<FlexProps>(
     () => (props.indented ? { pl: 8 } : {}),
     [props.indented],
   )
@@ -54,7 +54,7 @@ export const Provider: React.FC<Props> = (props) => {
         onUnfocusInput,
         taskSectionId: props.taskSectionId,
         indented: props.indented,
-        sortedStyle,
+        indentedStyle,
       }}
     >
       {props.children}

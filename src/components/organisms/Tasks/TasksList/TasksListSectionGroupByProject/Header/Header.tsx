@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import { Flex, Icon, IconButton } from 'src/components/atoms'
+import { useStickyListStyle } from 'src/hooks/styles/useStickyListStyle'
 import { TaskSectionName } from './TaskSectionName'
 
 type Props = {
@@ -10,9 +11,18 @@ type Props = {
 
 export const Header: React.FC<Props> = memo<Props>((props) => {
   const { onToggle, isExpanded } = props
+  const { stickyStyle } = useStickyListStyle()
 
   return (
-    <Flex h="50px" maxW="40%" alignItems="center">
+    <Flex
+      h="50px"
+      maxW="40%"
+      alignItems="center"
+      pl={6}
+      {...stickyStyle}
+      zIndex={(stickyStyle.zIndex as number) + 1}
+      mt={1}
+    >
       <IconButton
         aria-label="Task list expand button"
         icon={<Icon icon={isExpanded ? 'chevronDown' : 'chevronRight'} />}

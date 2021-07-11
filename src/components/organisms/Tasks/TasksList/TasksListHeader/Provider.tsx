@@ -19,7 +19,8 @@ export const Provider: React.FC<Props> = (props) => {
   const { isScrolling } = useTasksListContent()
 
   const sortedStyle = useMemo((): ChakraProps => {
-    if (!isSorted('none')) return { borderBottom: 'none' }
+    if (!isSorted('none') && !isSorted('project'))
+      return { borderBottom: 'none' }
     if (isScrolling) return { borderBottom: 'none' }
     return {}
   }, [isSorted, isScrolling])

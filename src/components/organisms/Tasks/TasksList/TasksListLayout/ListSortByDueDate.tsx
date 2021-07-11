@@ -2,10 +2,12 @@ import React, { memo, useCallback, useState } from 'react'
 import { Box, Flex, Icon, IconButton } from 'src/components/atoms'
 import { TasksListSection, useTasksContext } from 'src/components/organisms'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
+import { useStickyListStyle } from 'src/hooks/styles/useStickyListStyle'
 
 export const ListSortByDueDate: React.VFC = memo(() => {
   const { taskIds, taskSectionIds } = useTasksContext()
   const [isExpanded, setIsExpanded] = useState(true)
+  const { stickyStyle } = useStickyListStyle()
 
   const handleToggle = useCallback(() => {
     setIsExpanded((s) => !s)
@@ -18,16 +20,18 @@ export const ListSortByDueDate: React.VFC = memo(() => {
           <TasksListItem taskId={id} key={id} />
         ))}
       </Flex>
-      <Flex alignItems="center" mt={6}>
-        <IconButton
-          aria-label="Task list expand button"
-          icon={<Icon icon={isExpanded ? 'chevronDown' : 'chevronRight'} />}
-          variant="ghost"
-          onClick={handleToggle}
-        />
-        <Box px={2} fontWeight="semibold">
-          No Due Date
-        </Box>
+      <Flex>
+        <Flex alignItems="center" mt={6} pl={6} {...stickyStyle}>
+          <IconButton
+            aria-label="Task list expand button"
+            icon={<Icon icon={isExpanded ? 'chevronDown' : 'chevronRight'} />}
+            variant="ghost"
+            onClick={handleToggle}
+          />
+          <Box px={2} fontWeight="semibold">
+            No Due Date
+          </Box>
+        </Flex>
       </Flex>
       {isExpanded && (
         <Flex flexDirection="column">

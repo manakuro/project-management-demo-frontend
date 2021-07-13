@@ -1,6 +1,6 @@
-import useResizeObserver from '@react-hook/resize-observer'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
+import { useResizeObserver } from 'src/hooks/useResizeObserver'
 import { calculateModalPosition } from 'src/shared/calculateModalPosition'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
 import { MentionItem, MentionType } from './types'

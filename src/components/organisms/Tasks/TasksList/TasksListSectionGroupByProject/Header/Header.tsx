@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex, Icon, IconButton } from 'src/components/atoms'
-import { useStickyListStyle } from 'src/hooks/styles/useStickyListStyle'
+import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { TaskSectionName } from './TaskSectionName'
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 
 export const Header: React.FC<Props> = memo<Props>((props) => {
   const { onToggle, isExpanded } = props
-  const { stickyStyle } = useStickyListStyle()
+  const { stickyStyle } = useTasksListContext()
 
   return (
     <Flex

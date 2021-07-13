@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useCallback, useState } from 'react'
+import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { TasksListCellProps } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
-import { useStickyListStyle } from 'src/hooks/styles/useStickyListStyle'
 
 export type UseInputFocus = {
   inputFocused: boolean
@@ -12,7 +12,7 @@ export type UseInputFocus = {
 export const useInputFocus = (): UseInputFocus => {
   const [focused, setFocused] = useState(false)
   const [cellStyle, setCellStyle] = useState<TasksListCellProps>()
-  const { stickyStyle } = useStickyListStyle()
+  const { stickyStyle } = useTasksListContext()
   const onInputFocus = useCallback(() => {
     setCellStyle({
       borderColor: 'cyan.400',

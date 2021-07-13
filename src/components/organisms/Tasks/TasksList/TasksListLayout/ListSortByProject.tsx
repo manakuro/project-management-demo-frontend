@@ -1,8 +1,8 @@
 import React, { memo, useCallback, useState } from 'react'
 import { Box, Flex, Icon, IconButton } from 'src/components/atoms'
 import { TasksListSectionGroupByProject } from 'src/components/organisms'
+import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
-import { useStickyListStyle } from 'src/hooks/styles/useStickyListStyle'
 import {
   useMyTasksProjectIds,
   useMyTasksTaskIdsWithNoProject,
@@ -11,7 +11,7 @@ import {
 export const ListSortByProject: React.VFC = memo(() => {
   const { projectIds } = useMyTasksProjectIds()
   const { taskIds } = useMyTasksTaskIdsWithNoProject()
-  const { stickyStyle } = useStickyListStyle()
+  const { stickyStyle } = useTasksListContext()
   const [isExpanded, setIsExpanded] = useState(true)
 
   const handleToggle = useCallback(() => {

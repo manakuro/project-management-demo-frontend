@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { CheckIcon, FlexProps, Icon, Stack, Text } from 'src/components/atoms'
-import { useStickyListStyle } from 'src/hooks/styles/useStickyListStyle'
+import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { useRouter } from 'src/router'
 import { useTask } from 'src/store/entities/tasks'
 import { ExpandIcon } from './ExpandIcon'
@@ -33,7 +33,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
   const { ref, onMarkMenuOpened, onMarkMenuClosed } = useTasksNameContext()
   const { navigateToTaskDetail } = useRouter()
   const { task, setTask, deleteTask, setTaskName } = useTask(props.taskId)
-  const { stickyStyle } = useStickyListStyle()
+  const { stickyStyle } = useTasksListContext()
 
   const handleClick = useCallback(async () => {
     await navigateToTaskDetail(task.id)

@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { useStickyListStyle } from 'src/hooks/styles/useStickyListStyle'
+import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { Container } from './Container'
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 
 export const TaskName: React.FC<Props> = memo<Props>((props) => {
   const { taskColumnId } = props
-  const { stickyStyle } = useStickyListStyle()
+  const { stickyStyle } = useTasksListContext()
 
   return (
     <Container

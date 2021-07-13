@@ -1,4 +1,3 @@
-import useResizeObserver from '@react-hook/resize-observer'
 import {
   BaseEmoji,
   emojiIndex as emojiData,
@@ -8,6 +7,7 @@ import {
 } from 'emoji-mart'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
+import { useResizeObserver } from 'src/hooks/useResizeObserver'
 import { calculateModalPosition } from 'src/shared/calculateModalPosition'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
 

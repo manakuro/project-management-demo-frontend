@@ -9,8 +9,8 @@ type Props = {
 }
 
 export const TaskSectionName: React.FC<Props> = memo<Props>((props) => {
-  const { useTaskByTaskSection, addedTaskSectionId, resetAddedTaskSectionId } =
-    useTasksContext()
+  const { useTaskByTaskSection, useTaskSection } = useTasksContext()
+  const { addedTaskSectionId, resetAddedTaskSectionId } = useTaskSection()
   const { taskSection, setSectionName } = useTaskByTaskSection(
     props.taskSectionId,
   )

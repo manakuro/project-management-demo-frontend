@@ -6,7 +6,8 @@ import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Pr
 type Props = {}
 
 export const AddTaskSection: React.FC<Props> = memo<Props>(() => {
-  const { addTaskSection, setAddedTaskSectionId } = useTasksContext()
+  const { useTaskSection } = useTasksContext()
+  const { addTaskSection, setAddedTaskSectionId } = useTaskSection()
   const { stickyStyle } = useTasksListContext()
 
   const handleClick = useCallback(() => {

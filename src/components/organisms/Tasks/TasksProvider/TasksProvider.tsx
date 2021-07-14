@@ -1,13 +1,13 @@
 import React, { createContext, useContext } from 'react'
 import { createUseTask, CreateUseTaskResult, initialUseTask } from './useTask'
 import {
-  useTaskSection,
-  UseTaskSectionResult,
-  initialUseTaskSectionIds,
+  createUseTaskSection,
+  CreateUseTaskSectionResult,
+  initialUseTaskSection,
 } from './useTaskSection'
 import {
-  useTaskStatus,
-  UseTaskStatusResult,
+  createUseTaskStatus,
+  CreateUseTaskStatusResult,
   initialUseTaskStatus,
 } from './useTaskStatus'
 
@@ -15,8 +15,9 @@ type ContextProps = {
   isMyTasksPage: boolean
   isProjectsPage: boolean
   useTaskByTaskSection: CreateUseTaskResult
-} & UseTaskSectionResult &
-  UseTaskStatusResult
+  useTaskSection: CreateUseTaskSectionResult
+  useTaskStatus: CreateUseTaskStatusResult
+}
 
 type Props = {
   isMyTasksPage?: boolean
@@ -27,9 +28,9 @@ export type TasksProviderProps = Props
 const Context = createContext<ContextProps>({
   isMyTasksPage: false,
   isProjectsPage: false,
-  ...initialUseTaskSectionIds(),
-  ...initialUseTaskStatus(),
   useTaskByTaskSection: () => initialUseTask(),
+  useTaskSection: () => initialUseTaskSection(),
+  useTaskStatus: () => initialUseTaskStatus(),
 })
 export const useTasksContext = () => useContext(Context)
 
@@ -39,8 +40,8 @@ export const TasksProvider: React.FC<Props> = (props) => {
       value={{
         isMyTasksPage: !!props.isMyTasksPage,
         isProjectsPage: !!props.isProjectsPage,
-        ...useTaskSection(props),
-        ...useTaskStatus(props),
+        useTaskSection: createUseTaskSection(props),
+        useTaskStatus: createUseTaskStatus(props),
         useTaskByTaskSection: createUseTask(props),
       }}
     >

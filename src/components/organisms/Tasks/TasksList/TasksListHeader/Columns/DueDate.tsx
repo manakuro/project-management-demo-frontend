@@ -9,7 +9,8 @@ type Props = {
 
 export const DueDate: React.FC<Props> = memo<Props>((props) => {
   const { taskColumnId } = props
-  const { isSorted, onSort } = useTasksContext()
+  const { useTaskStatus } = useTasksContext()
+  const { onSort, isSorted } = useTaskStatus()
 
   const handleClick = useCallback(() => {
     if (isSorted('dueDate')) {

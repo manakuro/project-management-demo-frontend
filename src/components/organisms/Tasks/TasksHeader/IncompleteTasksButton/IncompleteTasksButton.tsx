@@ -18,8 +18,9 @@ import {
 type Props = {}
 
 export const IncompleteTasksButton: React.VFC<Props> = memo<Props>(() => {
+  const { useTaskStatus } = useTasksContext()
   const { onSetTaskListStatus, isTaskListStatus, taskListStatus } =
-    useTasksContext()
+    useTaskStatus()
   const popoverDisclosure = useDisclosure()
 
   const handleChange = useCallback(

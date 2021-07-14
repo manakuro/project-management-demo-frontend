@@ -24,28 +24,16 @@ type Props = ButtonGroupProps & {
 
 export const AddTaskButton: React.VFC<Props> = memo<Props>((props) => {
   const { solid, outlined, ...rest } = props
-  const {
-    addTaskSection,
-    setAddedTaskSectionId,
-    useTaskByTaskSection,
-    taskSectionIds,
-  } = useTasksContext()
+  const { useTaskByTaskSection, useTaskSection } = useTasksContext()
+  const { taskSectionIds, addTaskSection, setAddedTaskSectionId } =
+    useTaskSection()
   const { addTask } = useTaskByTaskSection(taskSectionIds[0])
   const buttonGroupProps: ButtonGroupProps = props.solid
-    ? {
-        variant: 'solid',
-        colorScheme: 'teal',
-      }
-    : {
-        variant: 'outline',
-      }
+    ? { variant: 'solid', colorScheme: 'teal' }
+    : { variant: 'outline' }
   const iconStyle: ChakraProps = props.solid
-    ? {
-        color: 'white',
-      }
-    : {
-        color: 'text.muted',
-      }
+    ? { color: 'white' }
+    : { color: 'text.muted' }
 
   const handleAddTaskSection = useCallback(() => {
     const id = addTaskSection()

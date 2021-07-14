@@ -18,7 +18,8 @@ const Context = createContext<ContextProps>({
 export const useTasksListHeaderContext = () => useContext(Context)
 
 export const Provider: React.FC<Props> = (props) => {
-  const { isSorted } = useTasksContext()
+  const { useTaskStatus } = useTasksContext()
+  const { isSorted } = useTaskStatus()
   const { isScrolling } = useTasksListContentScroll()
 
   const sortedStyle = useMemo((): ChakraProps => {

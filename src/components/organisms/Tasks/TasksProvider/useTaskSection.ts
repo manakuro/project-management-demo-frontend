@@ -11,7 +11,7 @@ type Result = {
   resetAddedTaskSectionId: () => void
 }
 export type UseTaskSectionResult = Result
-export const initialUseTaskSectionIds = (): Result => ({
+export const initialUseTaskSection = (): Result => ({
   taskSectionIds: [],
   taskIds: [],
   addTaskSection: () => '',
@@ -19,25 +19,30 @@ export const initialUseTaskSectionIds = (): Result => ({
   setAddedTaskSectionId: () => {},
   resetAddedTaskSectionId: () => {},
 })
-export const useTaskSection = (props: TasksProviderProps): Result => {
-  const { taskSectionIds, taskIds } = useMyTasks()
-  const { addMyTaskSection } = useMyTaskCommands()
-  const [addedTaskSectionId, setAddedTaskSectionId] = useState('')
 
-  const resetAddedTaskSectionId = useCallback(() => {
-    setAddedTaskSectionId('')
-  }, [])
+export type CreateUseTaskSectionResult = ReturnType<typeof createUseTaskSection>
 
-  if (props.isMyTasksPage) {
-    return {
-      taskSectionIds,
-      taskIds,
-      addTaskSection: addMyTaskSection,
-      resetAddedTaskSectionId,
-      addedTaskSectionId,
-      setAddedTaskSectionId,
+export const createUseTaskSection = (props: TasksProviderProps) => {
+  return function useTaskSection(): Result {
+    const { taskSectionIds, taskIds } = useMyTasks()
+    const { addMyTaskSection } = useMyTaskCommands()
+    const [addedTaskSectionId, setAddedTaskSectionId] = useState('')
+
+    const resetAddedTaskSectionId = useCallback(() => {
+      setAddedTaskSectionId('')
+    }, [])
+
+    if (props.isMyTasksPage) {
+      return {
+        taskSectionIds,
+        taskIds,
+        addTaskSection: addMyTaskSection,
+        resetAddedTaskSectionId,
+        addedTaskSectionId,
+        setAddedTaskSectionId,
+      }
     }
-  }
 
-  return initialUseTaskSectionIds()
+    return initialUseTaskSection()
+  }
 }

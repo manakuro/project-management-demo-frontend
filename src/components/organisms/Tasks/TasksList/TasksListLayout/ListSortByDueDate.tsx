@@ -5,7 +5,8 @@ import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Pr
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
 
 export const ListSortByDueDate: React.VFC = memo(() => {
-  const { taskIds, taskSectionIds } = useTasksContext()
+  const { useTaskSection } = useTasksContext()
+  const { taskIds, taskSectionIds } = useTaskSection()
   const [isExpanded, setIsExpanded] = useState(true)
   const { stickyStyle } = useTasksListContext()
 

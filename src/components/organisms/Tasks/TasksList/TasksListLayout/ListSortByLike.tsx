@@ -4,7 +4,8 @@ import { useTasksContext } from 'src/components/organisms'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
 
 export const ListSortByLike: React.VFC = memo(() => {
-  const { taskIds } = useTasksContext()
+  const { useTaskSection } = useTasksContext()
+  const { taskIds } = useTaskSection()
   return (
     <Flex flexDirection="column">
       <Flex flexDirection="column">

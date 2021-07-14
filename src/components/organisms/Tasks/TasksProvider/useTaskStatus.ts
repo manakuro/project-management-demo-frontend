@@ -11,14 +11,18 @@ export const initialUseTaskStatus = (): Result => ({
   isTaskListStatus: () => false,
   isSorted: () => false,
 })
-export const useTaskStatus = (props: TasksProviderProps): Result => {
-  const useMyTasksTaskStatusResult = useMyTasksTaskStatus()
 
-  if (props.isMyTasksPage) {
-    return {
-      ...useMyTasksTaskStatusResult,
+export type CreateUseTaskStatusResult = ReturnType<typeof createUseTaskStatus>
+export const createUseTaskStatus = (props: TasksProviderProps) => {
+  return function useTaskStatus(): Result {
+    const useMyTasksTaskStatusResult = useMyTasksTaskStatus()
+
+    if (props.isMyTasksPage) {
+      return {
+        ...useMyTasksTaskStatusResult,
+      }
     }
-  }
 
-  return initialUseTaskStatus()
+    return initialUseTaskStatus()
+  }
 }

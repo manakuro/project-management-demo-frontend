@@ -7,7 +7,8 @@ import { ListSortByLike } from './ListSortByLike'
 import { ListSortByProject } from './ListSortByProject'
 
 export const TasksListLayout: React.VFC = memo(() => {
-  const { isSorted } = useTasksContext()
+  const { useTaskStatus } = useTasksContext()
+  const { isSorted } = useTaskStatus()
 
   switch (true) {
     case isSorted('dueDate'): {

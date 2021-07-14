@@ -45,7 +45,8 @@ const items: {
 ]
 
 export const SortButton: React.VFC<Props> = memo<Props>(() => {
-  const { onSort, isSorted, sortStatus } = useTasksContext()
+  const { useTaskStatus } = useTasksContext()
+  const { onSort, isSorted, sortStatus } = useTaskStatus()
   const handleChange = useCallback(
     (status: ToString<TaskListSortStatusType>) => {
       onSort(Number(status) as TaskListSortStatusType)

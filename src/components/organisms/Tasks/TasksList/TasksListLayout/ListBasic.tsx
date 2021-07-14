@@ -2,7 +2,8 @@ import React, { memo } from 'react'
 import { TasksListSection, useTasksContext } from 'src/components/organisms'
 
 export const ListBasic: React.VFC = memo(() => {
-  const { taskSectionIds } = useTasksContext()
+  const { useTaskSection } = useTasksContext()
+  const { taskSectionIds } = useTaskSection()
 
   return (
     <>

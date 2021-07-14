@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { useTaskIdsByTaskParentId } from 'src/store/entities/tasks'
-import { useTasksListItemContext } from './Provider'
+import { useSubtaskListContext } from './Provider'
 import { TasksListSubtaskItem } from './TasksListSubtaskItem'
 
 type Props = {
@@ -8,8 +8,7 @@ type Props = {
 }
 
 export const TasksListSubtaskList: React.FC<Props> = memo<Props>((props) => {
-  const { useSubtaskList } = useTasksListItemContext()
-  const { isSubtaskExpanded } = useSubtaskList()
+  const { isSubtaskExpanded } = useSubtaskListContext()
   const { taskIds } = useTaskIdsByTaskParentId(props.taskId)
 
   if (!isSubtaskExpanded || !taskIds.length) return null

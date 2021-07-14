@@ -209,6 +209,9 @@ export const useTask = (taskId?: string) => {
     ({ snapshot }) =>
       async (val: string) => {
         const current = await snapshot.getPromise(taskSelector(task.id))
+        // Skip when touching input for the first time
+        if (current.isNew && !current.name && !val) return
+
         const isNew = current.isNew && !!val ? { isNew: false } : {}
         await setTask({ name: val, ...isNew })
       },

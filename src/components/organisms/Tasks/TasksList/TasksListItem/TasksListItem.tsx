@@ -4,7 +4,7 @@ import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Pr
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
 import { Cell } from './Cell'
-import { Provider, useTasksListItemContext } from './Provider'
+import { Provider, useTasksListItemRowContext } from './Provider'
 import { TasksListSubtaskList } from './TasksListSubtaskList'
 
 type Props = FlexProps & {
@@ -20,7 +20,7 @@ export const TasksListItem: React.FC<Props> = memo<Props>((props) => {
 })
 
 const Component: React.FC<Props> = memo<Props>((props) => {
-  const { selected } = useTasksListItemContext()
+  const { selected } = useTasksListItemRowContext()
   const { taskColumnIds } = useTasksListContext()
 
   return (

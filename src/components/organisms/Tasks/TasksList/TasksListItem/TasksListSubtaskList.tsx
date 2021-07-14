@@ -12,7 +12,7 @@ export const TasksListSubtaskList: React.FC<Props> = memo<Props>((props) => {
   const { isSubtaskExpanded } = useSubtaskList()
   const { taskIds } = useTaskIdsByTaskParentId(props.taskId)
 
-  if (!isSubtaskExpanded && !taskIds.length) return null
+  if (!isSubtaskExpanded || !taskIds.length) return null
 
   return (
     <>

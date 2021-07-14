@@ -5,8 +5,9 @@ import { useTasksListItemContext } from 'src/components/organisms/Tasks/TasksLis
 type Props = {}
 
 export const ExpandIcon: React.FC<Props> = memo<Props>(() => {
+  const { useSubtaskList } = useTasksListItemContext()
   const { showExpandIcon, isSubtaskExpanded, onToggleExpandSubtask } =
-    useTasksListItemContext()
+    useSubtaskList()
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {

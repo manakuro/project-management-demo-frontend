@@ -10,7 +10,7 @@ type Props = FlexProps & {
   taskId: string
 }
 
-export const TasksListSubItem: React.FC<Props> = memo<Props>((props) => {
+export const TasksListSubtaskItem: React.FC<Props> = memo<Props>((props) => {
   const { selected } = useTasksListItemContext()
   const { taskColumnIds } = useTasksListContext()
 
@@ -25,4 +25,4 @@ export const TasksListSubItem: React.FC<Props> = memo<Props>((props) => {
     </>
   )
 })
-TasksListSubItem.displayName = 'TasksListSubItem'
+TasksListSubtaskItem.displayName = 'TasksListSubItem'

@@ -3,10 +3,9 @@ import { FlexProps } from 'src/components/atoms'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
-import { useTaskIdsByTaskParentId } from 'src/store/entities/tasks'
 import { Cell } from './Cell'
 import { Provider, useTasksListItemContext } from './Provider'
-import { TasksListSubItem } from './TasksListSubItem'
+import { TasksListSubtaskList } from './TasksListSubtaskList'
 
 type Props = FlexProps & {
   taskId: string
@@ -21,9 +20,8 @@ export const TasksListItem: React.FC<Props> = memo<Props>((props) => {
 })
 
 const Component: React.FC<Props> = memo<Props>((props) => {
-  const { selected, isSubtaskExpanded } = useTasksListItemContext()
+  const { selected } = useTasksListItemContext()
   const { taskColumnIds } = useTasksListContext()
-  const { taskIds } = useTaskIdsByTaskParentId(props.taskId)
 
   return (
     <>
@@ -33,9 +31,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
         ))}
         <TasksListCell containerStyle={{ flex: 1 }} borderRight="none" />
       </TasksListRow>
-      {isSubtaskExpanded &&
-        taskIds.length > 0 &&
-        taskIds.map((id) => <TasksListSubItem key={id} taskId={id} />)}
+      <TasksListSubtaskList taskId={props.taskId} />
     </>
   )
 })

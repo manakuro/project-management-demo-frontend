@@ -12,10 +12,11 @@ import { useTask, useTaskIdsByTaskParentId } from 'src/store/entities/tasks'
 
 type ContextProps = {
   selected: boolean
-  showExpandIcon: boolean
-  setIsSubtaskExpanded: React.Dispatch<React.SetStateAction<boolean>>
-  isSubtaskExpanded: boolean
-  onToggleExpandSubtask: () => void
+  useSubtaskList: () => {
+    isSubtaskExpanded: boolean
+    showExpandIcon: boolean
+    onToggleExpandSubtask: () => void
+  }
 }
 
 type Props = {
@@ -23,37 +24,23 @@ type Props = {
 }
 const Context = createContext<ContextProps>({
   selected: false,
-  showExpandIcon: false,
-  setIsSubtaskExpanded: () => {},
-  isSubtaskExpanded: false,
-  onToggleExpandSubtask: () => {},
+  useSubtaskList: () => ({
+    isSubtaskExpanded: false,
+    showExpandIcon: false,
+    onToggleExpandSubtask: () => {},
+  }),
 })
 export const useTasksListItemContext = () => useContext(Context)
 
 export const Provider: React.FC<Props> = (props) => {
   const { selected } = useRow(props)
-  const { isProjectsPage } = useTasksContext()
-  const { taskIds } = useTaskIdsByTaskParentId(props.taskId)
-  const { task } = useTask(props.taskId)
-  const [isSubtaskExpanded, setIsSubtaskExpanded] = useState(false)
-
-  const showExpandIcon = useMemo(
-    () => isProjectsPage && !!taskIds.length && !task.taskParentId,
-    [isProjectsPage, taskIds.length, task.taskParentId],
-  )
-
-  const onToggleExpandSubtask = useCallback(() => {
-    setIsSubtaskExpanded((s) => !s)
-  }, [])
+  const useSubtaskList = useMemo(() => createUseSubtaskList(props), [props])
 
   return (
     <Context.Provider
       value={{
         selected,
-        showExpandIcon,
-        isSubtaskExpanded,
-        setIsSubtaskExpanded,
-        onToggleExpandSubtask,
+        useSubtaskList,
       }}
     >
       {props.children}
@@ -61,7 +48,7 @@ export const Provider: React.FC<Props> = (props) => {
   )
 }
 
-function useRow(props: Props) {
+const useRow = (props: Props) => {
   const [selected, setSelected] = useState<boolean>(false)
   const { router } = useRouter()
 
@@ -75,5 +62,28 @@ function useRow(props: Props) {
 
   return {
     selected,
+  }
+}
+const createUseSubtaskList = (props: Props) => {
+  return function useSubtaskList() {
+    const { isProjectsPage } = useTasksContext()
+    const { task } = useTask(props.taskId)
+    const { taskIds } = useTaskIdsByTaskParentId(props.taskId)
+    const [isSubtaskExpanded, setIsSubtaskExpanded] = useState(false)
+
+    const showExpandIcon = useMemo(
+      () => isProjectsPage && !!taskIds.length && !task.taskParentId,
+      [isProjectsPage, taskIds.length, task.taskParentId],
+    )
+
+    const onToggleExpandSubtask = useCallback(() => {
+      setIsSubtaskExpanded((s) => !s)
+    }, [])
+
+    return {
+      isSubtaskExpanded,
+      showExpandIcon,
+      onToggleExpandSubtask,
+    }
   }
 }

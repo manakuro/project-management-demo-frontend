@@ -1,5 +1,8 @@
 import React, { createContext, useContext, useMemo } from 'react'
-import { useTasksContext, useTasksListContent } from 'src/components/organisms'
+import {
+  useTasksContext,
+  useTasksListContentScroll,
+} from 'src/components/organisms'
 import { ChakraProps } from 'src/shared/chakra'
 
 type ContextProps = {
@@ -16,7 +19,7 @@ export const useTasksListHeaderContext = () => useContext(Context)
 
 export const Provider: React.FC<Props> = (props) => {
   const { isSorted } = useTasksContext()
-  const { isScrolling } = useTasksListContent()
+  const { isScrolling } = useTasksListContentScroll()
 
   const sortedStyle = useMemo((): ChakraProps => {
     if (!isSorted('none') && !isSorted('project'))

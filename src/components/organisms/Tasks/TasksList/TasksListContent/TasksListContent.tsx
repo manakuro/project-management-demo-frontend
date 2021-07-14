@@ -2,13 +2,18 @@ import React, { memo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { useMainStyle } from 'src/hooks'
 import { useTasksListContent } from './useTasksListContent'
+import { useTasksListContentScroll } from './useTasksListContentScroll'
+import { useTasksListContentSticky } from './useTasksListContentSticky'
 
 type Props = FlexProps
 
 const maxH = 72 + 60
 export const TasksListContent: React.FC<Props> = memo<Props>((props) => {
   const { maxW } = useMainStyle()
-  const { ref } = useTasksListContent({ listenOnEvent: true })
+  const { ref } = useTasksListContent()
+
+  useTasksListContentScroll({ listenOnEvent: true })
+  useTasksListContentSticky({ listenOnEvent: true })
 
   return (
     <Flex

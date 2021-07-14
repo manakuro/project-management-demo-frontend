@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import {
   TasksListCell,
   TasksListCellProps,
@@ -9,32 +9,35 @@ import { useTasksNameContext } from './TasksNameProvider'
 
 type Props = TasksListCellProps
 
-export const TasksNameCell: React.FC<Props> = forwardRef((props, ref) => {
-  const { cellStyle } = useTasksNameContext()
-  const { indentedStyle } = useTasksListSectionContext()
+export const TasksNameCell: React.FC<Props> = memo(
+  forwardRef((props, ref) => {
+    const { cellStyle } = useTasksNameContext()
+    const { indentedStyle } = useTasksListSectionContext()
 
-  const { containerStyle: cellStyleContainerStyle, ...cellStyleRest } =
-    cellStyle ?? { containerStyle: {} }
-  return (
-    <>
-      <TasksListCell
-        fontSize="sm"
-        cursor="pointer"
-        borderLeft="none"
-        onClick={props.onClick}
-        hover
-        justifyContent="flex-end"
-        containerStyle={{
-          position: 'relative',
-          ref,
-          ...cellStyleContainerStyle,
-        }}
-        {...props}
-        {...cellStyleRest}
-        {...indentedStyle}
-      >
-        {props.children}
-      </TasksListCell>
-    </>
-  )
-})
+    const { containerStyle: cellStyleContainerStyle, ...cellStyleRest } =
+      cellStyle ?? { containerStyle: {} }
+    return (
+      <>
+        <TasksListCell
+          fontSize="sm"
+          cursor="pointer"
+          borderLeft="none"
+          onClick={props.onClick}
+          hover
+          justifyContent="flex-end"
+          containerStyle={{
+            position: 'relative',
+            ref,
+            ...cellStyleContainerStyle,
+          }}
+          {...props}
+          {...cellStyleRest}
+          {...indentedStyle}
+        >
+          {props.children}
+        </TasksListCell>
+      </>
+    )
+  }),
+)
+TasksNameCell.displayName = 'TasksNameCell'

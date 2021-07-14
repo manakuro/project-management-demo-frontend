@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useMemo } from 'react'
-import { useTasksListContent } from 'src/components/organisms'
+import { useTasksListContentSticky } from 'src/components/organisms'
 import { ChakraProps } from 'src/shared/chakra'
 
 type ContextProps = {
@@ -17,7 +17,7 @@ const Context = createContext<ContextProps>({
 export const useTasksListContext = () => useContext(Context)
 
 export const Provider: React.FC<Props> = (props) => {
-  const { isStickyVertical } = useTasksListContent()
+  const { isStickyVertical } = useTasksListContentSticky()
   const stickyStyle = useMemo((): ChakraProps => {
     if (isStickyVertical)
       return {

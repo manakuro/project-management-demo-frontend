@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useMemo } from 'react'
 import {
-  useTasksContext,
   useTasksListContentScroll,
+  useTaskStatusContext,
 } from 'src/components/organisms'
 import { ChakraProps } from 'src/shared/chakra'
 
@@ -18,8 +18,7 @@ const Context = createContext<ContextProps>({
 export const useTasksListHeaderContext = () => useContext(Context)
 
 export const Provider: React.FC<Props> = (props) => {
-  const { useTaskStatus } = useTasksContext()
-  const { isSorted } = useTaskStatus()
+  const { isSorted } = useTaskStatusContext()
   const { isScrolling } = useTasksListContentScroll()
 
   const sortedStyle = useMemo((): ChakraProps => {

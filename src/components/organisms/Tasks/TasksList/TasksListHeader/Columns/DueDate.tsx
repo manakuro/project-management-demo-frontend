@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
-import { useTasksContext } from 'src/components/organisms'
+import { useTaskStatusContext } from 'src/components/organisms'
 import { Container } from './Container'
 
 type Props = {
@@ -9,8 +9,7 @@ type Props = {
 
 export const DueDate: React.FC<Props> = memo<Props>((props) => {
   const { taskColumnId } = props
-  const { useTaskStatus } = useTasksContext()
-  const { onSort, isSorted } = useTaskStatus()
+  const { onSort, isSorted } = useTaskStatusContext()
 
   const handleClick = useCallback(() => {
     if (isSorted('dueDate')) {

@@ -1,11 +1,10 @@
 import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useTasksContext } from 'src/components/organisms'
+import { useTaskSectionContext } from 'src/components/organisms'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
 
 export const ListSortByLike: React.VFC = memo(() => {
-  const { useTaskSection } = useTasksContext()
-  const { taskIds } = useTaskSection()
+  const { taskIds } = useTaskSectionContext()
   return (
     <Flex flexDirection="column">
       <Flex flexDirection="column">

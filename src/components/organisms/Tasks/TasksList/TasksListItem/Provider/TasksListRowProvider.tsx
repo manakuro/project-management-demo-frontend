@@ -1,19 +1,12 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ROUTE_MY_TASKS, useRouter } from 'src/router'
-
-type ContextProps = {
-  selected: boolean
-}
+import { createProvider } from 'src/shared/react/createProvider'
 
 type Props = {
   taskId: string
 }
-const Context = createContext<ContextProps>({
-  selected: false,
-})
-export const useTasksListItemRowContext = () => useContext(Context)
 
-export const Provider: React.FC<Props> = (props) => {
+const useValue = (props: Props) => {
   const [selected, setSelected] = useState<boolean>(false)
   const { router } = useRouter()
 
@@ -25,13 +18,10 @@ export const Provider: React.FC<Props> = (props) => {
     setSelected(false)
   }, [props.taskId, router])
 
-  return (
-    <Context.Provider
-      value={{
-        selected,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+  return {
+    selected,
+  }
 }
+
+export const { Provider, useContext: useTasksListItemRowContext } =
+  createProvider(useValue)

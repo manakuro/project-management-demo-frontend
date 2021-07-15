@@ -24,8 +24,8 @@ export type CreateUseTaskSectionResult = ReturnType<typeof createUseTaskSection>
 
 export const createUseTaskSection = (props: TasksProviderProps) => {
   return function useTaskSection(): Result {
-    const { taskSectionIds, taskIds } = useMyTasks()
-    const { addMyTaskSection } = useMyTaskCommands()
+    const myTasks = useMyTasks()
+    const myTaskCommands = useMyTaskCommands()
     const [addedTaskSectionId, setAddedTaskSectionId] = useState('')
 
     const resetAddedTaskSectionId = useCallback(() => {
@@ -34,9 +34,9 @@ export const createUseTaskSection = (props: TasksProviderProps) => {
 
     if (props.isMyTasksPage) {
       return {
-        taskSectionIds,
-        taskIds,
-        addTaskSection: addMyTaskSection,
+        taskSectionIds: myTasks.taskSectionIds,
+        taskIds: myTasks.taskIds,
+        addTaskSection: myTaskCommands.addMyTaskSection,
         resetAddedTaskSectionId,
         addedTaskSectionId,
         setAddedTaskSectionId,

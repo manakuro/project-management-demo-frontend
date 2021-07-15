@@ -1,6 +1,9 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
+import { atom, useRecoilState } from 'recoil'
 import { useMyTaskCommands, useMyTasks } from 'src/store/app/myTasks'
 import { TasksProviderProps } from './TasksProvider'
+
+const FILE_NAME = 'src/components/organisms/Tasks/TasksProvider/useTaskSection'
 
 type Result = {
   taskSectionIds: string[]
@@ -10,7 +13,6 @@ type Result = {
   setAddedTaskSectionId: React.Dispatch<React.SetStateAction<string>>
   resetAddedTaskSectionId: () => void
 }
-export type UseTaskSectionResult = Result
 export const initialUseTaskSection = (): Result => ({
   taskSectionIds: [],
   taskIds: [],
@@ -22,15 +24,22 @@ export const initialUseTaskSection = (): Result => ({
 
 export type CreateUseTaskSectionResult = ReturnType<typeof createUseTaskSection>
 
+const addedTaskSectionIdState = atom<string>({
+  key: `${FILE_NAME}/addedTaskSectionIdState`,
+  default: '',
+})
+
 export const createUseTaskSection = (props: TasksProviderProps) => {
   return function useTaskSection(): Result {
     const myTasks = useMyTasks()
     const myTaskCommands = useMyTaskCommands()
-    const [addedTaskSectionId, setAddedTaskSectionId] = useState('')
+    const [addedTaskSectionId, setAddedTaskSectionId] = useRecoilState(
+      addedTaskSectionIdState,
+    )
 
     const resetAddedTaskSectionId = useCallback(() => {
       setAddedTaskSectionId('')
-    }, [])
+    }, [setAddedTaskSectionId])
 
     if (props.isMyTasksPage) {
       return {

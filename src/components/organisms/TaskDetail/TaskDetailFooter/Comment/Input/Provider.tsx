@@ -59,6 +59,7 @@ const useValue = (): ContextProps => {
     onDeleteAttachment,
   }
 }
+useValue.__PROVIDER__ = 'CommentInputProvider'
 export const { Provider, useContext: useInputContext } =
   createProvider(useValue)
 

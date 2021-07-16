@@ -13,5 +13,6 @@ const useValue = (props: Props): ContextProps => {
     loading: props.loading,
   } as const
 }
+useValue.__PROVIDER__ = 'src/pages/MyTasks/Provider.tsx'
 export const { Provider, useContext: useMyTasksContext } =
   createProvider(useValue)

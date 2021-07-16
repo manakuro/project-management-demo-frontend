@@ -32,6 +32,6 @@ const useValue = (): ContextProps => {
     scrollingStyle,
   } as const
 }
-
+useValue.__PROVIDER__ = 'TasksListHeaderProvider'
 export const { Provider, useContext: useTasksListHeaderContext } =
   createProvider(useValue)

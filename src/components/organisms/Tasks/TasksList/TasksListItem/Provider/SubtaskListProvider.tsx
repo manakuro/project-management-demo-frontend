@@ -33,5 +33,7 @@ const useValue = (props: Props): ContextProps => {
     onToggleExpandSubtask,
   } as const
 }
+useValue.__PROVIDER__ =
+  'src/components/organisms/Tasks/TasksList/TasksListItem/Provider/SubtaskListProvider.tsx'
 export const { Provider, useContext: useSubtaskListContext } =
   createProvider(useValue)

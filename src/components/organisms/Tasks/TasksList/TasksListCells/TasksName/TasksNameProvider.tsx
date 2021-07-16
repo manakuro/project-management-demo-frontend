@@ -44,6 +44,7 @@ const useValue = (props: Props): ContextProps => {
     taskId: props.taskId,
   }
 }
-
+useValue.__PROVIDER__ =
+  'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName/TasksNameProvider.tsx'
 export const { Provider: TasksNameProvider, useContext: useTasksNameContext } =
   createProvider(useValue)

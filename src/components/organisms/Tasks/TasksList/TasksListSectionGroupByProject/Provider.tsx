@@ -13,6 +13,8 @@ const useValue = (props: Props): ContextProps => {
     projectId: props.projectId,
   } as const
 }
+useValue.__PROVIDER__ =
+  'src/components/organisms/Tasks/TasksList/TasksListSectionGroupByProject/Provider.tsx'
 export const {
   Provider,
   useContext: useTasksListSectionGroupByProjectContext,

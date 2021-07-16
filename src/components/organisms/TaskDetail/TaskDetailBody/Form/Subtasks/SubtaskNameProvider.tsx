@@ -18,6 +18,7 @@ export const SubtaskNameProvider: React.FC<Props> = (props) => {
 const useValue = (): ContextProps => {
   return {}
 }
-
+useValue.__PROVIDER__ =
+  'src/components/organisms/TaskDetail/TaskDetailBody/Form/Subtasks/SubtaskNameProvider.tsx'
 export const { Provider, useContext: useSubtaskNameContext } =
   createProvider(useValue)

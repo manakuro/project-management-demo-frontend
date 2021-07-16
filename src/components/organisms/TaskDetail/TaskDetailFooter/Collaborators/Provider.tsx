@@ -16,6 +16,8 @@ const useValue = (): ContextProps => {
     onInputUnfocus,
   } as const
 }
+useValue.__PROVIDER__ =
+  'src/components/organisms/TaskDetail/TaskDetailFooter/Collaborators/Provider.tsx'
 export const { Provider, useContext: useCollaboratorsContext } =
   createProvider(useValue)
 

@@ -17,5 +17,6 @@ const useValue = (props: Props): ContextProps => {
     isProjectsPage: !!props.isProjectsPage,
   } as const
 }
+useValue.__PROVIDER__ = 'TasksProvider'
 export const { Provider: TasksProvider, useContext: useTasksContext } =
   createProvider(useValue)

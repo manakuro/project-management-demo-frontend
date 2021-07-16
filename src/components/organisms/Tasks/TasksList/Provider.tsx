@@ -32,5 +32,6 @@ const useValue = (props: Props): ContextProps => {
     stickyStyle,
   } as const
 }
+useValue.__PROVIDER__ = 'src/components/organisms/Tasks/TasksList/Provider.tsx'
 export const { Provider, useContext: useTasksListContext } =
   createProvider(useValue)

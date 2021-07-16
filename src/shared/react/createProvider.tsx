@@ -9,7 +9,11 @@ export function createProvider<
   const useContext = () => {
     const context = React.useContext(Context)
     if (!Object.keys(context).length) {
-      throw new Error('Context needs to be consumed in Provider')
+      throw new Error(
+        `【${
+          (useValue as any).__PROVIDER__
+        }】Context needs to be consumed in Provider`,
+      )
     }
 
     return context

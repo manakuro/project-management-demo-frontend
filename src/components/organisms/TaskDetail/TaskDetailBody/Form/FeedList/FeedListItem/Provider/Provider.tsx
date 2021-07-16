@@ -67,7 +67,8 @@ const useValue = (props: Props) => {
     attachmentIds,
   }
 }
-
+useValue.__PROVIDER__ =
+  'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider/Provider.tsx'
 const { Provider: ProviderBase, useContext: useFeedListItemContext } =
   createProvider(useValue)
 

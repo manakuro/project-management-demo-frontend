@@ -52,6 +52,7 @@ const useValue = (props: Props): ContextProps => {
     isReferenced,
   } as const
 }
-
+useValue.__PROVIDER__ =
+  'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider/ProviderContainer.tsx'
 export const { Provider, useContext: useFeedListItemContainerContext } =
   createProvider(useValue)

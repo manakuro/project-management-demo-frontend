@@ -17,12 +17,14 @@ import { taskTeammateSelector } from 'src/store/entities/taskTeammates'
 import { useTeammateCommand } from 'src/store/entities/teammates'
 import { Task, TaskResponse } from './type'
 
+const key = (str: string) => `src/store/entities/tasks/${str}`
+
 export const taskIdsState = atom<string[]>({
-  key: 'taskIdsState',
+  key: key('taskIdsState'),
   default: [],
 })
 export const tasksState = atom<Task[]>({
-  key: 'tasksState',
+  key: key('tasksState'),
   default: [],
 })
 
@@ -40,7 +42,7 @@ const defaultTaskState = (): Task => ({
   taskSectionId: '',
 })
 export const taskIdsByTaskParentIdSelector = selectorFamily<string[], string>({
-  key: 'taskIdsByTaskParentIdSelector',
+  key: key('taskIdsByTaskParentIdSelector'),
   get:
     (taskParentId) =>
     ({ get }) => {
@@ -52,12 +54,12 @@ export const taskIdsByTaskParentIdSelector = selectorFamily<string[], string>({
 })
 
 const taskState = atomFamily<Task, string>({
-  key: 'taskState',
+  key: key('taskState'),
   default: defaultTaskState(),
 })
 
 export const taskSelector = selectorFamily<Task, string>({
-  key: 'taskSelector',
+  key: key('taskSelector'),
   get:
     (taskId) =>
     ({ get }) =>

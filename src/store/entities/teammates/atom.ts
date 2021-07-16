@@ -10,12 +10,14 @@ import {
 import { uniqBy } from 'src/shared/utils'
 import { Teammate } from './type'
 
+const key = (str: string) => `src/store/entities/teammates/${str}`
+
 export const teammateIdsState = atom<string[]>({
-  key: 'teammateIdsState',
+  key: key('teammateIdsState'),
   default: [],
 })
 export const teammatesState = atom<Teammate[]>({
-  key: 'teammatesState',
+  key: key('teammatesState'),
   default: [],
 })
 
@@ -26,12 +28,12 @@ export const defaultTeammateStateValue = (): Teammate => ({
   name: '',
 })
 const teammateState = atomFamily<Teammate, string>({
-  key: 'teammateState',
+  key: key('teammateState'),
   default: defaultTeammateStateValue(),
 })
 
 export const teammateSelector = selectorFamily<Teammate, string>({
-  key: 'teammateSelector',
+  key: key('teammateSelector'),
   get:
     (teammateId) =>
     ({ get }) =>

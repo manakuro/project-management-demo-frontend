@@ -9,12 +9,14 @@ import {
 import { uniqBy } from 'src/shared/utils'
 import { Tag } from './type'
 
+const key = (str: string) => `src/store/entities/tags/${str}`
+
 export const tagIdsState = atom<string[]>({
-  key: 'tagIdsState',
+  key: key('tagIdsState'),
   default: [],
 })
 export const tagsState = atom<Tag[]>({
-  key: 'tagsState',
+  key: key('tagsState'),
   default: [],
 })
 
@@ -31,12 +33,12 @@ const defaultStateValue = (): Tag => ({
   updatedAt: '',
 })
 const tagState = atomFamily<Tag, string>({
-  key: 'tagState',
+  key: key('tagState'),
   default: defaultStateValue(),
 })
 
 export const tagSelector = selectorFamily<Tag, string>({
-  key: 'tagSelector',
+  key: key('tagSelector'),
   get:
     (tagId) =>
     ({ get }) =>

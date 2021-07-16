@@ -3,8 +3,10 @@ import { atom, useRecoilState } from 'recoil'
 import { uniq } from 'src/shared/utils'
 import { FavoriteProject } from './type'
 
+const key = (str: string) => `src/store/entities/favoriteProjectIds/${str}`
+
 export const favoriteProjectIdsState = atom<string[]>({
-  key: 'favoriteProjectIdsState',
+  key: key('favoriteProjectIdsState'),
   default: [],
 })
 

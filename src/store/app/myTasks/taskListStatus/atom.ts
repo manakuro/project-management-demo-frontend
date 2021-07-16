@@ -19,8 +19,10 @@ import {
   TaskListStatusType,
 } from './types'
 
+const key = (str: string) => `src/store/app/myTasks/taskListStatus/${str}`
+
 export const myTaskTaskStatusState = atom<TaskListStatus>({
-  key: 'myTaskTaskStatusState',
+  key: key('myTaskTaskStatusState'),
   default: {
     id: '',
     taskListStatus: 1,

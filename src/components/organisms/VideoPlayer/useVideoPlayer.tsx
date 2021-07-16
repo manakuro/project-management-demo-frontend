@@ -6,8 +6,10 @@ type State = {
   src: string
 }
 
+const key = (str: string) => `src/components/organisms/VideoPlayer/${str}`
+
 const atomState = atom<State>({
-  key: 'videoPlayerState',
+  key: key('videoPlayerState'),
   default: {
     isOpen: false,
     src: '',

@@ -27,8 +27,6 @@ const useValue = (props: Props): ContextProps => {
   }, [isStickyVertical])
   const { taskColumnIds } = props
 
-  console.log('useTasksListContext: ', stickyStyle)
-
   return {
     taskColumnIds,
     stickyStyle,

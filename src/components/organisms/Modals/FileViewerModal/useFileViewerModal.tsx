@@ -1,8 +1,11 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 
+const key = (str: string) =>
+  `src/components/organisms/Modals/FileViewerModal/useFileViewerModal/${str}`
+
 const openState = atom({
-  key: 'fileViewerOpenState',
+  key: key('fileViewerOpenState'),
   default: false,
 })
 
@@ -11,7 +14,7 @@ type State = {
   attachmentIds: string[]
 }
 const fileViewerState = atom<State>({
-  key: 'fileViewerState',
+  key: key('fileViewerState'),
   default: {
     currentAttachmentId: '',
     attachmentIds: [],

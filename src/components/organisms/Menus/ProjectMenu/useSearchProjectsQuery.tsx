@@ -4,8 +4,11 @@ import { uuid } from 'src/shared/uuid'
 import { ProjectResponse } from 'src/store/entities/projects'
 import { teammates } from 'src/store/entities/teammates/data'
 
+const key = (str: string) =>
+  `src/components/organisms/Menus/ProjectMenu/useSearchProjectsQuery/${str}`
+
 const searchProjectsQueryState = atom<{ loading: boolean; projects: any[] }>({
-  key: 'searchProjectsQueryState',
+  key: key('searchProjectsQueryState'),
   default: {
     loading: false,
     projects: [],

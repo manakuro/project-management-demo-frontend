@@ -1,8 +1,10 @@
 import { atom, useRecoilState } from 'recoil'
 import { Workspace } from './type'
 
+const key = (str: string) => `src/store/entities/workspace/${str}`
+
 export const workspaceState = atom<Workspace>({
-  key: 'workspaceState',
+  key: key('workspaceState'),
   default: {
     id: '',
     name: '',

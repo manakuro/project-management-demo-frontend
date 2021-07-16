@@ -11,6 +11,9 @@ import { useResizeObserver } from 'src/hooks/useResizeObserver'
 import { calculateModalPosition } from 'src/shared/calculateModalPosition'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
 
+const key = (str: string) =>
+  `src/components/organisms/Menus/EditorEmojiMenu/useEditorEmojiMenu/${str}`
+
 const DEFAULT_EMOJIS = [
   'grinning',
   'laughing',
@@ -46,8 +49,8 @@ type State = {
   containerRef: HTMLDivElement | null
 }
 
-const atomState = atom<State>({
-  key: 'editorEmojiModalState',
+const modalState = atom<State>({
+  key: key('editorEmojiModalState'),
   default: {
     isOpen: false,
     x: 0,
@@ -80,8 +83,8 @@ const setEmojiRef = (val: BaseEmoji | null) =>
   void ((emojiRef as Writeable<EmojiRef>).current = val)
 
 export const useEditorEmojiMenu = () => {
-  const [state, setState] = useRecoilState(atomState)
-  const resetState = useResetRecoilState(atomState)
+  const [state, setState] = useRecoilState(modalState)
+  const resetState = useResetRecoilState(modalState)
 
   const setValue = useCallback((val: BaseEmoji) => {
     setEmojiRef(val)
@@ -129,7 +132,7 @@ function useOnKeyBindings(props: {
   emojis: BaseEmoji[]
   setValue: (emoji: BaseEmoji) => void
 }) {
-  const [state, setState] = useRecoilState(atomState)
+  const [state, setState] = useRecoilState(modalState)
 
   const scrollTo = useCallback(
     (index: number) => {
@@ -178,7 +181,7 @@ function useOnKeyBindings(props: {
 }
 
 function useDisclosure(props: { reset: () => void }) {
-  const [state, setState] = useRecoilState(atomState)
+  const [state, setState] = useRecoilState(modalState)
 
   getCurrentCaretPosition = useCallback(() => {
     const position = getCaretPosition()
@@ -219,7 +222,7 @@ function useDisclosure(props: { reset: () => void }) {
 }
 
 function useQuery() {
-  const [state, setState] = useRecoilState(atomState)
+  const [state, setState] = useRecoilState(modalState)
 
   setQuery = useCallback(
     (query) => {
@@ -231,7 +234,7 @@ function useQuery() {
 }
 
 function useContainer() {
-  const [state, setState] = useRecoilState(atomState)
+  const [state, setState] = useRecoilState(modalState)
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {

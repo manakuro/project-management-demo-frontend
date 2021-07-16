@@ -12,16 +12,18 @@ import { uuid } from 'src/shared/uuid'
 import { ATTACHMENT_STATUS_ATTACHED } from 'src/store/entities/attachments/types'
 import { Attachment } from './type'
 
+const key = (str: string) => `src/store/entities/attachments/${str}`
+
 export const attachmentIdsState = atom<string[]>({
-  key: 'attachmentIdsState',
+  key: key('attachmentIdsState'),
   default: [],
 })
 export const attachmentIdsGroupByTaskState = atomFamily<string[], string>({
-  key: 'attachmentIdsGroupByTaskState',
+  key: key('attachmentIdsGroupByTaskState'),
   default: [],
 })
 export const attachmentsState = atom<Attachment[]>({
-  key: 'attachmentsState',
+  key: key('attachmentsState'),
   default: [],
 })
 
@@ -37,12 +39,12 @@ const defaultStateValue = (): Attachment => ({
   status: 2,
 })
 const attachmentState = atomFamily<Attachment, string>({
-  key: 'attachmentState',
+  key: key('attachmentState'),
   default: defaultStateValue(),
 })
 
 export const attachmentSelector = selectorFamily<Attachment, string>({
-  key: 'attachmentSelector',
+  key: key('attachmentSelector'),
   get:
     (attachmentId) =>
     ({ get }) =>

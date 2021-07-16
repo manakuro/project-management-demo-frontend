@@ -12,17 +12,19 @@ import { projectTeammateSelector } from 'src/store/entities/projectTeammates'
 import { useTeammateCommand } from 'src/store/entities/teammates'
 import { Project, ProjectResponse } from './type'
 
+const key = (str: string) => `src/store/entities/projects/${str}`
+
 export const projectIdsState = atom<string[]>({
-  key: 'projectIdsState',
+  key: key('projectIdsState'),
   default: [],
 })
 export const projectsState = atom<Project[]>({
-  key: 'projectsState',
+  key: key('projectsState'),
   default: [],
 })
 
 const projectState = atomFamily<Project, string>({
-  key: 'projectState',
+  key: key('projectState'),
   default: {
     id: '',
     name: '',
@@ -38,7 +40,7 @@ const projectState = atomFamily<Project, string>({
 })
 
 export const projectSelector = selectorFamily<Project, string>({
-  key: 'projectSelector',
+  key: key('projectSelector'),
   get:
     (projectId) =>
     ({ get }) =>

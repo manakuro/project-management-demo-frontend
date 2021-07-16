@@ -11,16 +11,18 @@ import { uniqBy } from 'src/shared/utils'
 import { uuid } from 'src/shared/uuid'
 import { Feed } from './type'
 
+const key = (str: string) => `src/store/entities/feeds/${str}`
+
 export const feedIdsState = atom<string[]>({
-  key: 'feedIdsState',
+  key: key('feedIdsState'),
   default: [],
 })
 export const feedIdsGroupByTaskState = atom<Record<string, string[]>>({
-  key: 'feedIdsGroupByTaskState',
+  key: key('feedIdsGroupByTaskState'),
   default: {},
 })
 export const feedsState = atom<Feed[]>({
-  key: 'feedsState',
+  key: key('feedsState'),
   default: [],
 })
 
@@ -42,12 +44,12 @@ export const defaultFeedStateValue = (): Feed => ({
   isPinned: false,
 })
 const feedState = atomFamily<Feed, string>({
-  key: 'feedState',
+  key: key('feedState'),
   default: defaultFeedStateValue(),
 })
 
 export const feedPinnedIdsSelector = selectorFamily<string[], string>({
-  key: 'feedPinnedIdsSelector',
+  key: key('feedPinnedIdsSelector'),
   get:
     (taskId) =>
     ({ get }) => {
@@ -60,7 +62,7 @@ export const feedPinnedIdsSelector = selectorFamily<string[], string>({
 })
 
 export const feedSelector = selectorFamily<Feed, string>({
-  key: 'feedSelector',
+  key: key('feedSelector'),
   get:
     (feedId) =>
     ({ get }) =>

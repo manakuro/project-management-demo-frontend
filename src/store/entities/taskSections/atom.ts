@@ -12,15 +12,17 @@ import { uuid } from 'src/shared/uuid'
 import { Task, useTasks, useTasksCommand } from 'src/store/entities/tasks'
 import { TaskSection, TaskSectionResponse } from './type'
 
+const key = (str: string) => `src/store/entities/taskSections/${str}`
+
 export const DEFAULT_TITLE_NAME = 'Untitled Section'
 
 export const taskSectionIdsState = atom<string[]>({
-  key: 'taskSectionIdsState',
+  key: key('taskSectionIdsState'),
   default: [],
 })
 
 export const taskSectionsState = atom<TaskSection[]>({
-  key: 'taskSectionsState',
+  key: key('taskSectionsState'),
   default: [],
 })
 
@@ -33,12 +35,12 @@ export const defaultTaskSectionStateValue = (): TaskSection => ({
   isDeleted: false,
 })
 const taskSectionState = atomFamily<TaskSection, string>({
-  key: 'taskSectionState',
+  key: key('taskSectionState'),
   default: defaultTaskSectionStateValue(),
 })
 
 export const taskSectionSelector = selectorFamily<TaskSection, string>({
-  key: 'taskSectionSelector',
+  key: key('taskSectionSelector'),
   get:
     (taskSectionId) =>
     ({ get }) =>

@@ -9,17 +9,19 @@ import {
 import { uniqBy } from 'src/shared/utils'
 import { TaskTeammate, TaskTeammateResponse } from './type'
 
+const key = (str: string) => `src/store/entities/taskTeammates/${str}`
+
 export const taskTeammateIdsState = atom<string[]>({
-  key: 'taskTeammateIdsState',
+  key: key('taskTeammateIdsState'),
   default: [],
 })
 export const taskTeammatesState = atom<TaskTeammate[]>({
-  key: 'taskTeammatesState',
+  key: key('taskTeammatesState'),
   default: [],
 })
 
 const taskTeammateState = atomFamily<TaskTeammate, string>({
-  key: 'taskTeammateState',
+  key: key('taskTeammateState'),
   default: {
     id: '',
     taskId: '',
@@ -30,7 +32,7 @@ const taskTeammateState = atomFamily<TaskTeammate, string>({
 })
 
 export const taskTeammateSelector = selectorFamily<TaskTeammate, string>({
-  key: 'taskTeammateSelector',
+  key: key('taskTeammateSelector'),
   get:
     (taskTeammateId) =>
     ({ get }) =>

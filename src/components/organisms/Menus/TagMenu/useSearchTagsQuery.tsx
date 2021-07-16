@@ -2,8 +2,11 @@ import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { Tag } from 'src/store/entities/tags'
 
+const key = (str: string) =>
+  `src/components/organisms/Menus/TagMenu/useSearchTagsQuery/${str}`
+
 const searchTagsQueryState = atom<{ loading: boolean; tags: any[] }>({
-  key: 'searchTagsQueryState',
+  key: key('searchTagsQueryState'),
   default: {
     loading: false,
     tags: [],

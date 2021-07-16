@@ -3,8 +3,11 @@ import { atom, useRecoilState } from 'recoil'
 import { isHTMLElement } from 'src/shared/isHTMLElement'
 import { useTasksListContent } from './useTasksListContent'
 
-const taskListContentScrollState = atom<boolean>({
-  key: 'taskListContentScrollState',
+const key = (str: string) =>
+  `src/components/organisms/Tasks/TasksList/TasksListContent/useTasksListContentScroll/${str}`
+
+const state = atom<boolean>({
+  key: key('state'),
   default: false,
 })
 
@@ -13,9 +16,7 @@ type Props = {
 }
 export const useTasksListContentScroll = (props?: Props) => {
   const { dom } = useTasksListContent()
-  const [isScrolling, setIsScrolling] = useRecoilState(
-    taskListContentScrollState,
-  )
+  const [isScrolling, setIsScrolling] = useRecoilState(state)
 
   const handleScroll = useCallback(
     (event: Event) => {

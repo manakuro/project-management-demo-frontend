@@ -9,17 +9,19 @@ import {
 import { uniqBy } from 'src/shared/utils'
 import { ProjectTeammate, ProjectTeammateResponse } from './type'
 
+const key = (str: string) => `src/store/entities/projectTeammates/${str}`
+
 export const projectTeammateIdsState = atom<string[]>({
-  key: 'projectTeammateIdsState',
+  key: key('projectTeammateIdsState'),
   default: [],
 })
 export const projectTeammatesState = atom<ProjectTeammate[]>({
-  key: 'projectTeammatesState',
+  key: key('projectTeammatesState'),
   default: [],
 })
 
 const projectTeammateState = atomFamily<ProjectTeammate, string>({
-  key: 'projectTeammateState',
+  key: key('projectTeammateState'),
   default: {
     id: '',
     projectId: '',
@@ -30,7 +32,7 @@ const projectTeammateState = atomFamily<ProjectTeammate, string>({
 })
 
 export const projectTeammateSelector = selectorFamily<ProjectTeammate, string>({
-  key: 'projectTeammateSelector',
+  key: key('projectTeammateSelector'),
   get:
     (projectTeammateId) =>
     ({ get }) =>

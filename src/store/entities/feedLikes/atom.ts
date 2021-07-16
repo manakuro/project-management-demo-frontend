@@ -12,13 +12,15 @@ import { uniqBy } from 'src/shared/utils'
 import { uuid } from 'src/shared/uuid'
 import { FeedLike } from './type'
 
+const key = (str: string) => `src/store/entities/feedLikes/${str}`
+
 export const feedLikeIdsState = atom<string[]>({
-  key: 'feedLikeIdsState',
+  key: key('feedLikeIdsState'),
   default: [],
 })
 
 export const feedLikesState = atom<FeedLike[]>({
-  key: 'feedLikesState',
+  key: key('feedLikesState'),
   default: [],
 })
 
@@ -31,12 +33,12 @@ export const defaultFeedLikeStateValue = (): FeedLike => ({
   updatedAt: '',
 })
 const feedLikeState = atomFamily<FeedLike, string>({
-  key: 'feedLikeState',
+  key: key('feedLikeState'),
   default: defaultFeedLikeStateValue(),
 })
 
 export const feedLikeSelector = selectorFamily<FeedLike, string>({
-  key: 'feedLikeSelector',
+  key: key('feedLikeSelector'),
   get:
     (feedLikeId) =>
     ({ get }) =>

@@ -1,16 +1,19 @@
 import { useEffect, useRef } from 'react'
 import { atom, useRecoilState } from 'recoil'
 
+const key = (str: string) =>
+  `src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody/${str}`
+
 type State = HTMLElement | null
 
-const atomState = atom<State>({
-  key: 'taskDetailBodyState',
+const refState = atom<State>({
+  key: key('refState'),
   default: null,
 })
 
 export const useTaskDetailBody = (deps?: any) => {
   const ref = useRef<HTMLElement | null>(null)
-  const [state, setState] = useRecoilState(atomState)
+  const [state, setState] = useRecoilState(refState)
 
   useEffect(() => {
     if (ref.current) {

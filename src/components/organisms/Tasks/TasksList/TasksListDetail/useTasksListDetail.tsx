@@ -3,23 +3,26 @@ import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useTaskDetailQuery } from 'src/hooks/queries/useTaskDetailQuery'
 import { isTaskDetailURL, useRouter, getTaskDetailId } from 'src/router'
 
-const taskListDetailLoadingState = atom<boolean>({
-  key: 'taskListDetailLoadingState',
+const key = (str: string) =>
+  `src/components/organisms/Tasks/TasksList/TasksListDetail/useTasksListDetail/${str}`
+
+const loadingState = atom<boolean>({
+  key: key('loadingState'),
   default: false,
 })
 
-const taskListDetailOpenState = atom<boolean>({
-  key: 'taskListDetailOpenState',
+const openState = atom<boolean>({
+  key: key('openState'),
   default: false,
 })
 
-const taskListDetailIdState = atom<string>({
-  key: 'taskListDetailIdState',
+const idState = atom<string>({
+  key: key('idState'),
   default: '',
 })
 
-const taskListDetailScrollIdState = atom<string>({
-  key: 'taskListDetailScrollIdState',
+const scrollIdState = atom<string>({
+  key: key('scrollIdState'),
   default: '',
 })
 
@@ -28,12 +31,12 @@ type Props = {
 }
 export const useTasksListDetail = (props?: Props) => {
   const { router, navigateToTasks } = useRouter()
-  const [isOpen, setIsOpen] = useRecoilState(taskListDetailOpenState)
-  const [id, setId] = useRecoilState(taskListDetailIdState)
-  const [loading, setLoading] = useRecoilState(taskListDetailLoadingState)
-  const [scrollId, setScrollId] = useRecoilState(taskListDetailScrollIdState)
-  const resetScrollId = useResetRecoilState(taskListDetailScrollIdState)
-  const resetId = useResetRecoilState(taskListDetailIdState)
+  const [isOpen, setIsOpen] = useRecoilState(openState)
+  const [id, setId] = useRecoilState(idState)
+  const [loading, setLoading] = useRecoilState(loadingState)
+  const [scrollId, setScrollId] = useRecoilState(scrollIdState)
+  const resetScrollId = useResetRecoilState(scrollIdState)
+  const resetId = useResetRecoilState(idState)
   const { refetch } = useTaskDetailQuery({ lazy: true })
 
   const onClose = useCallback(async () => {

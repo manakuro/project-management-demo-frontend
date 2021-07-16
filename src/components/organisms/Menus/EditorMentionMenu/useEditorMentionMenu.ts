@@ -5,6 +5,9 @@ import { calculateModalPosition } from 'src/shared/calculateModalPosition'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
 import { MentionItem, MentionType } from './types'
 
+const key = (str: string) =>
+  `src/components/organisms/Menus/EditorMentionMenu/useEditorMentionMenu/${str}`
+
 type Id = number | null
 type State = {
   isOpen: boolean
@@ -16,8 +19,8 @@ type State = {
   containerRef: HTMLDivElement | null
 }
 
-const atomState = atom<State>({
-  key: 'editorMentionModalState',
+const modalState = atom<State>({
+  key: key('editorMentionModalState'),
   default: {
     isOpen: false,
     x: 0,
@@ -144,8 +147,8 @@ export type SetValueParam = {
 }
 
 export const useEditorMentionMenu = () => {
-  const [state, setState] = useRecoilState(atomState)
-  const resetState = useResetRecoilState(atomState)
+  const [state, setState] = useRecoilState(modalState)
+  const resetState = useResetRecoilState(modalState)
 
   const reset = useCallback(() => {
     setMentionIdRef(null)
@@ -193,7 +196,7 @@ function useOnKeyBindings(props: {
   mentions: MentionItem[]
   setValue: (val: SetValueParam) => void
 }) {
-  const [state, setState] = useRecoilState(atomState)
+  const [state, setState] = useRecoilState(modalState)
 
   const scrollTo = useCallback(
     (index: number) => {
@@ -243,7 +246,7 @@ function useOnKeyBindings(props: {
 }
 
 function useDisclosure(props: { reset: () => void }) {
-  const [state, setState] = useRecoilState(atomState)
+  const [state, setState] = useRecoilState(modalState)
 
   getCurrentCaretPosition = useCallback(() => {
     const position = getCaretPosition()
@@ -286,7 +289,7 @@ function useDisclosure(props: { reset: () => void }) {
 }
 
 function useQuery() {
-  const [state, setState] = useRecoilState(atomState)
+  const [state, setState] = useRecoilState(modalState)
 
   setQuery = useCallback(
     (query) => {
@@ -298,7 +301,7 @@ function useQuery() {
 }
 
 function useContainer() {
-  const [state, setState] = useRecoilState(atomState)
+  const [state, setState] = useRecoilState(modalState)
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {

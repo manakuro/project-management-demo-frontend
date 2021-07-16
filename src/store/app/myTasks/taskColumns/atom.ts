@@ -1,7 +1,9 @@
 import { atom, useRecoilValue } from 'recoil'
 
+const key = (str: string) => `src/store/app/myTasks/taskColumns/${str}`
+
 export const myTaskTaskColumnIdsState = atom<string[]>({
-  key: 'myTaskTaskColumnIdsState',
+  key: key('myTaskTaskColumnIdsState'),
   default: [],
 })
 

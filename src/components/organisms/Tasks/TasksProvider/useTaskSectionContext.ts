@@ -3,7 +3,8 @@ import { atom, useRecoilState } from 'recoil'
 import { useMyTaskCommands, useMyTasks } from 'src/store/app/myTasks'
 import { useTasksContext } from './TasksProvider'
 
-const FILE_NAME = 'src/components/organisms/Tasks/TasksProvider/useTaskSection'
+const key = (str: string) =>
+  `src/components/organisms/Tasks/TasksProvider/useTaskSection/${str}`
 
 type Result = {
   taskSectionIds: string[]
@@ -23,7 +24,7 @@ export const initialUseTaskSection = (): Result => ({
 })
 
 const addedTaskSectionIdState = atom<string>({
-  key: `${FILE_NAME}/addedTaskSectionIdState`,
+  key: key('addedTaskSectionIdState'),
   default: '',
 })
 

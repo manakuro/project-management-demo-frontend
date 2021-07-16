@@ -9,17 +9,19 @@ import {
 import { uniqBy } from 'src/shared/utils'
 import { ProjectTask, ProjectTaskResponse } from './type'
 
+const key = (str: string) => `src/store/entities/projectTasks/${str}`
+
 export const projectTaskIdsState = atom<string[]>({
-  key: 'projectTaskIdsState',
+  key: key('projectTaskIdsState'),
   default: [],
 })
 export const projectTasksState = atom<ProjectTask[]>({
-  key: 'projectTasksState',
+  key: key('projectTasksState'),
   default: [],
 })
 
 const projectTaskState = atomFamily<ProjectTask, string>({
-  key: 'projectTaskState',
+  key: key('projectTaskState'),
   default: {
     id: '',
     projectId: '',
@@ -33,7 +35,7 @@ export const projectTasksByTaskIdSelector = selectorFamily<
   ProjectTask[],
   string
 >({
-  key: 'projectTasksByTaskIdSelector',
+  key: key('projectTasksByTaskIdSelector'),
   get:
     (taskId: string) =>
     ({ get }) => {
@@ -46,7 +48,7 @@ export const projectTaskIdsByProjectIdSelector = selectorFamily<
   string[],
   string
 >({
-  key: 'projectTaskIdsByProjectIdSelector',
+  key: key('projectTaskIdsByProjectIdSelector'),
   get:
     (projectId: string) =>
     ({ get }) => {
@@ -58,7 +60,7 @@ export const projectTaskIdsByProjectIdSelector = selectorFamily<
 })
 
 export const projectTaskSelector = selectorFamily<ProjectTask, string>({
-  key: 'projectTaskSelector',
+  key: key('projectTaskSelector'),
   get:
     (projectTaskId) =>
     ({ get }) =>

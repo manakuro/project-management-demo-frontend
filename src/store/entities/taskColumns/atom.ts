@@ -9,12 +9,14 @@ import {
 import { uniqBy } from 'src/shared/utils'
 import { TaskColumn } from './type'
 
+const key = (str: string) => `src/store/entities/taskColumns/${str}`
+
 export const taskColumnIdsState = atom<string[]>({
-  key: 'taskColumnIdsState',
+  key: key('taskColumnIdsState'),
   default: [],
 })
 export const taskColumnsState = atom<TaskColumn[]>({
-  key: 'taskColumnsState',
+  key: key('taskColumnsState'),
   default: [],
 })
 
@@ -30,12 +32,12 @@ const defaultStateValue = (): TaskColumn => ({
   updatedAt: '',
 })
 const taskColumnState = atomFamily<TaskColumn, string>({
-  key: 'taskColumnState',
+  key: key('taskColumnState'),
   default: defaultStateValue(),
 })
 
 export const taskColumnSelector = selectorFamily<TaskColumn, string>({
-  key: 'taskColumnSelector',
+  key: key('taskColumnSelector'),
   get:
     (taskColumnId) =>
     ({ get }) =>

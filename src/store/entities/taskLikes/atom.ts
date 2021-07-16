@@ -12,13 +12,15 @@ import { uniqBy } from 'src/shared/utils'
 import { uuid } from 'src/shared/uuid'
 import { TaskLike } from './type'
 
+const key = (str: string) => `src/store/entities/taskLikes/${str}`
+
 export const taskLikeIdsState = atom<string[]>({
-  key: 'taskLikeIdsState',
+  key: key('taskLikeIdsState'),
   default: [],
 })
 
 export const taskLikesState = atom<TaskLike[]>({
-  key: 'taskLikesState',
+  key: key('taskLikesState'),
   default: [],
 })
 
@@ -30,11 +32,11 @@ export const defaultTaskLikeStateValue = (): TaskLike => ({
   updatedAt: '',
 })
 const taskLikeState = atomFamily<TaskLike, string>({
-  key: 'taskLikeState',
+  key: key('taskLikeState'),
   default: defaultTaskLikeStateValue(),
 })
 export const taskLikesByTaskIdSelector = selectorFamily<TaskLike[], string>({
-  key: 'taskLikesByTaskIdSelector',
+  key: key('taskLikesByTaskIdSelector'),
   get:
     (taskId: string) =>
     ({ get }) => {
@@ -44,7 +46,7 @@ export const taskLikesByTaskIdSelector = selectorFamily<TaskLike[], string>({
 })
 
 export const taskLikeSelector = selectorFamily<TaskLike, string>({
-  key: 'taskLikeSelector',
+  key: key('taskLikeSelector'),
   get:
     (taskLikeId) =>
     ({ get }) =>

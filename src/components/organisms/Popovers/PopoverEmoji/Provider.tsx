@@ -1,31 +1,11 @@
 import { BaseEmoji } from 'emoji-mart'
-import React, { createContext, useCallback, useContext, useState } from 'react'
-
-type ContextProps = {
-  isOpen: boolean
-  emoji: BaseEmoji | null
-  onClose: (data?: BaseEmoji) => void
-  onOpen: () => Promise<BaseEmoji>
-}
-
-const Context = createContext<ContextProps>({
-  isOpen: false,
-  emoji: null,
-  onClose: () => void {},
-  onOpen: (() => {}) as any,
-})
-export const usePopoverEmojiContext = () => {
-  const context = useContext(Context)
-  if (!context)
-    throw new Error('usePopoverEmoji is only available inside PopoverEmoji')
-
-  return context
-}
+import { useCallback, useState } from 'react'
+import { createProvider } from 'src/shared/react/createProvider'
 
 type Props = {
   onChange?: (emoji?: BaseEmoji) => void
 }
-export const Provider: React.FC<Props> = (props) => {
+const useValue = (props: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [emoji, setEmoji] = useState<BaseEmoji | null>(null)
   const [callback, setCallback] = useState<(val?: BaseEmoji) => void>()
@@ -47,16 +27,13 @@ export const Provider: React.FC<Props> = (props) => {
     })
   }, [setIsOpen, setCallback])
 
-  return (
-    <Context.Provider
-      value={{
-        isOpen,
-        emoji,
-        onClose,
-        onOpen,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+  return {
+    isOpen,
+    emoji,
+    onClose,
+    onOpen,
+  }
 }
+
+export const { Provider, useContext: usePopoverEmojiContext } =
+  createProvider(useValue)

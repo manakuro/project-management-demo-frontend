@@ -1,29 +1,14 @@
-import React, { createContext, useCallback, useContext, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useHover } from 'src/hooks/useHover'
+import { createProvider } from 'src/shared/react/createProvider'
 import { Attachment, useAttachment } from 'src/store/entities/attachments'
-
-type ContextProps = {
-  ref: React.MutableRefObject<HTMLElement | null>
-  isHovering: boolean
-  thumbnailMenuOpened: boolean
-  setThumbnailMenuOpened: React.Dispatch<React.SetStateAction<boolean>>
-  onDelete: (e: React.MouseEvent<HTMLElement>) => void
-}
-
-const Context = createContext<ContextProps>({
-  ref: null as any,
-  isHovering: false,
-  thumbnailMenuOpened: false,
-  setThumbnailMenuOpened: () => {},
-  onDelete: () => void {},
-})
-export const useThumbnailAttachmentContext = () => useContext(Context)
 
 type Props = {
   attachmentId: string
   onDelete: (attachment: Attachment) => void
 }
-export const Provider: React.FC<Props> = (props) => {
+
+const useValue = (props: Props) => {
   const { ref, isHovering } = useHover()
   const [thumbnailMenuOpened, setThumbnailMenuOpened] = useState<boolean>(false)
   const { attachment } = useAttachment(props.attachmentId)
@@ -36,17 +21,14 @@ export const Provider: React.FC<Props> = (props) => {
     [attachment, props],
   )
 
-  return (
-    <Context.Provider
-      value={{
-        ref,
-        isHovering,
-        thumbnailMenuOpened,
-        setThumbnailMenuOpened,
-        onDelete,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+  return {
+    ref,
+    isHovering,
+    thumbnailMenuOpened,
+    setThumbnailMenuOpened,
+    onDelete,
+  }
 }
+
+export const { Provider, useContext: useThumbnailAttachmentContext } =
+  createProvider(useValue)

@@ -1,23 +1,12 @@
-import React, { createContext, useContext, useMemo } from 'react'
+import { useMemo } from 'react'
 import {
   useTasksListContentScroll,
   useTaskStatusContext,
 } from 'src/components/organisms'
 import { ChakraProps } from 'src/shared/chakra'
+import { createProvider } from 'src/shared/react/createProvider'
 
-type ContextProps = {
-  sortedStyle: ChakraProps
-  scrollingStyle: ChakraProps
-}
-
-type Props = {}
-const Context = createContext<ContextProps>({
-  sortedStyle: {},
-  scrollingStyle: {},
-})
-export const useTasksListHeaderContext = () => useContext(Context)
-
-export const Provider: React.FC<Props> = (props) => {
+const useValue = () => {
   const { isSorted } = useTaskStatusContext()
   const { isScrolling } = useTasksListContentScroll()
 
@@ -33,14 +22,11 @@ export const Provider: React.FC<Props> = (props) => {
     return {}
   }, [isScrolling])
 
-  return (
-    <Context.Provider
-      value={{
-        sortedStyle,
-        scrollingStyle,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+  return {
+    sortedStyle,
+    scrollingStyle,
+  }
 }
+
+export const { Provider, useContext: useTasksListHeaderContext } =
+  createProvider(useValue)

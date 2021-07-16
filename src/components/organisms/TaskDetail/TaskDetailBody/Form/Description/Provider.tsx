@@ -1,20 +1,8 @@
-import React, { createContext, useCallback, useContext, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useClickOutside } from 'src/hooks'
+import { createProvider } from 'src/shared/react/createProvider'
 
-type ContextProps = {
-  focused: boolean
-  ref: React.MutableRefObject<HTMLElement | null>
-  onFocus: () => void
-}
-
-const Context = createContext<ContextProps>({
-  ref: null as any,
-  focused: false,
-  onFocus: () => void {},
-})
-export const useDescriptionContext = () => useContext(Context)
-
-export const Provider: React.FC = (props) => {
+const useValue = () => {
   const [focused, setFocused] = useState(false)
 
   const { ref } = useClickOutside(() => {
@@ -25,15 +13,12 @@ export const Provider: React.FC = (props) => {
     setFocused(true)
   }, [])
 
-  return (
-    <Context.Provider
-      value={{
-        focused,
-        onFocus,
-        ref,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+  return {
+    focused,
+    onFocus,
+    ref,
+  }
 }
+
+export const { Provider, useContext: useDescriptionContext } =
+  createProvider(useValue)

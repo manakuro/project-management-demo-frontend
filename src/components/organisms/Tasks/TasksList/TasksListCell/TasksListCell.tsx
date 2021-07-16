@@ -14,7 +14,7 @@ type Props = {
 } & FlexProps
 export type TasksListCellProps = Props
 
-export const TasksListCell: React.FC<Props> = memo<Props>(
+export const TasksListCell: React.FC<Props> = memo(
   forwardRef((props, ref) => {
     const {
       hover,

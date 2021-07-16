@@ -62,10 +62,10 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
           w: props.width,
           minW: '400px',
           maxW: '800px',
-          bg: 'inherit',
           ...stickyStyle,
-          ref,
+          bg: 'inherit',
         }}
+        ref={ref}
       >
         <TasksNameGrabIconContainer>
           <TasksNameGrabIcon />

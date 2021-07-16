@@ -25,12 +25,13 @@ export const TasksNameCell: React.FC<Props> = memo(
           onClick={props.onClick}
           hover
           justifyContent="flex-end"
+          ref={ref}
+          {...props}
           containerStyle={{
             position: 'relative',
-            ref,
+            ...props.containerStyle,
             ...cellStyleContainerStyle,
           }}
-          {...props}
           {...cellStyleRest}
           {...indentedStyle}
         >

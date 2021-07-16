@@ -21,7 +21,10 @@ export const useInputFocus = (): UseInputFocus => {
       },
       containerStyle: {
         bg: 'white',
-        zIndex: (stickyStyle.zIndex as number) + 1,
+        zIndex: (stickyStyle.zIndex as number) + 100,
+        _hover: {
+          zIndex: (stickyStyle.zIndex as number) + 100,
+        },
       },
     })
     setFocused(true)

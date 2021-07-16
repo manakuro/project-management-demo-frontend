@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useTasksListContentSticky } from 'src/components/organisms'
 import { ChakraProps } from 'src/shared/chakra'
+import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
   taskColumnIds: string[]
@@ -10,13 +11,8 @@ type ContextProps = {
 type Props = {
   taskColumnIds: string[]
 }
-const Context = createContext<ContextProps>({
-  taskColumnIds: [],
-  stickyStyle: {},
-})
-export const useTasksListContext = () => useContext(Context)
 
-export const Provider: React.FC<Props> = (props) => {
+const useValue = (props: Props): ContextProps => {
   const { isStickyVertical } = useTasksListContentSticky()
   const stickyStyle = useMemo((): ChakraProps => {
     if (isStickyVertical)
@@ -31,14 +27,12 @@ export const Provider: React.FC<Props> = (props) => {
   }, [isStickyVertical])
   const { taskColumnIds } = props
 
-  return (
-    <Context.Provider
-      value={{
-        taskColumnIds,
-        stickyStyle,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+  console.log('useTasksListContext: ', stickyStyle)
+
+  return {
+    taskColumnIds,
+    stickyStyle,
+  } as const
 }
+export const { Provider, useContext: useTasksListContext } =
+  createProvider(useValue)

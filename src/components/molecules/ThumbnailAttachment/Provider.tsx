@@ -3,12 +3,20 @@ import { useHover } from 'src/hooks/useHover'
 import { createProvider } from 'src/shared/react/createProvider'
 import { Attachment, useAttachment } from 'src/store/entities/attachments'
 
+type ContextProps = {
+  ref: React.MutableRefObject<HTMLElement | null>
+  isHovering: boolean
+  thumbnailMenuOpened: boolean
+  setThumbnailMenuOpened: React.Dispatch<React.SetStateAction<boolean>>
+  onDelete: (e: React.MouseEvent<HTMLElement>) => void
+}
+
 type Props = {
   attachmentId: string
   onDelete: (attachment: Attachment) => void
 }
 
-const useValue = (props: Props) => {
+const useValue = (props: Props): ContextProps => {
   const { ref, isHovering } = useHover()
   const [thumbnailMenuOpened, setThumbnailMenuOpened] = useState<boolean>(false)
   const { attachment } = useAttachment(props.attachmentId)

@@ -1,8 +1,14 @@
-import { useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useClickOutside } from 'src/hooks'
 import { createProvider } from 'src/shared/react/createProvider'
 
-const useValue = () => {
+type ContextProps = {
+  focused: boolean
+  onFocus: () => void
+  ref: React.MutableRefObject<HTMLElement | null>
+}
+
+const useValue = (): ContextProps => {
   const [focused, setFocused] = useState(false)
 
   const { ref } = useClickOutside(() => {

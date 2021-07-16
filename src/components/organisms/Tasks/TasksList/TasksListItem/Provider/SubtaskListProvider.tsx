@@ -3,11 +3,17 @@ import { useTasksContext } from 'src/components/organisms'
 import { createProvider } from 'src/shared/react/createProvider'
 import { useTask, useTaskIdsByTaskParentId } from 'src/store/entities/tasks'
 
+type ContextProps = {
+  isSubtaskExpanded: boolean
+  showExpandIcon: boolean
+  onToggleExpandSubtask: () => void
+}
+
 type Props = {
   taskId: string
 }
 
-const useValue = (props: Props) => {
+const useValue = (props: Props): ContextProps => {
   const { isProjectsPage } = useTasksContext()
   const { task } = useTask(props.taskId)
   const { taskIds } = useTaskIdsByTaskParentId(props.taskId)

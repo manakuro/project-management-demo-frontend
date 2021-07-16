@@ -1,12 +1,19 @@
-import { useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { createProvider } from 'src/shared/react/createProvider'
+
+type ContextProps = {
+  count: number
+  setCount: React.Dispatch<React.SetStateAction<number>>
+  currentIndex: number
+  setCurrentIndex: (currentIndex: number) => void
+}
 
 type Props = {
   onChange?: (currentIndex: number) => void
   defaultIndex?: number
 }
 
-const useValue = (props: Props) => {
+const useValue = (props: Props): ContextProps => {
   const [currentIndex, setCurrentIndex] = useState<number>(
     props.defaultIndex ?? 0,
   )

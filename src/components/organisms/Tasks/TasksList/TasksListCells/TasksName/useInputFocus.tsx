@@ -13,6 +13,7 @@ export const useInputFocus = (): UseInputFocus => {
   const [focused, setFocused] = useState(false)
   const [cellStyle, setCellStyle] = useState<TasksListCellProps>()
   const { stickyStyle } = useTasksListContext()
+  console.log('stickyStyle: ', stickyStyle)
   const onInputFocus = useCallback(() => {
     setCellStyle({
       borderColor: 'cyan.400',

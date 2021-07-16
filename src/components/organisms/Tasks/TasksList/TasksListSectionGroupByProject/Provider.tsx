@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react'
+import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
   projectId: string
@@ -7,20 +7,13 @@ type ContextProps = {
 type Props = {
   projectId: string
 }
-const Context = createContext<ContextProps>({
-  projectId: '',
-})
-export const useTasksListSectionGroupByProjectContext = () =>
-  useContext(Context)
 
-export const Provider: React.FC<Props> = (props) => {
-  return (
-    <Context.Provider
-      value={{
-        projectId: props.projectId,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+const useValue = (props: Props): ContextProps => {
+  return {
+    projectId: props.projectId,
+  } as const
 }
+export const {
+  Provider,
+  useContext: useTasksListSectionGroupByProjectContext,
+} = createProvider(useValue)

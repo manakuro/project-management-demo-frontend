@@ -1,25 +1,17 @@
-import React, { createContext, useContext } from 'react'
+import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
   loading: boolean
 }
 
-const Context = createContext<ContextProps>({
-  loading: false,
-})
-export const useMyTasksContext = () => useContext(Context)
-
 type Props = {
   loading: boolean
 }
-export const Provider: React.FC<Props> = (props) => {
-  return (
-    <Context.Provider
-      value={{
-        loading: props.loading,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+
+const useValue = (props: Props): ContextProps => {
+  return {
+    loading: props.loading,
+  } as const
 }
+export const { Provider, useContext: useMyTasksContext } =
+  createProvider(useValue)

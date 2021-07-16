@@ -1,4 +1,5 @@
-import React, { createContext, useCallback, useContext, useState } from 'react'
+import { useCallback, useState } from 'react'
+import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
   onInputFocus: () => void
@@ -6,28 +7,17 @@ type ContextProps = {
   isInputFocused: boolean
 }
 
-const Context = createContext<ContextProps>({
-  onInputFocus: () => void {},
-  onInputUnfocus: () => void {},
-  isInputFocused: false,
-})
-export const useCollaboratorsContext = () => useContext(Context)
-
-export const Provider: React.FC = (props) => {
+const useValue = (): ContextProps => {
   const { onInputFocus, onInputUnfocus, isInputFocused } = useInput()
 
-  return (
-    <Context.Provider
-      value={{
-        isInputFocused,
-        onInputFocus,
-        onInputUnfocus,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+  return {
+    isInputFocused,
+    onInputFocus,
+    onInputUnfocus,
+  } as const
 }
+export const { Provider, useContext: useCollaboratorsContext } =
+  createProvider(useValue)
 
 function useInput() {
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false)

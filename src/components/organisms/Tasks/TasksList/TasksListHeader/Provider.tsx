@@ -6,7 +6,12 @@ import {
 import { ChakraProps } from 'src/shared/chakra'
 import { createProvider } from 'src/shared/react/createProvider'
 
-const useValue = () => {
+type ContextProps = {
+  sortedStyle: ChakraProps
+  scrollingStyle: ChakraProps
+}
+
+const useValue = (): ContextProps => {
   const { isSorted } = useTaskStatusContext()
   const { isScrolling } = useTasksListContentScroll()
 
@@ -25,7 +30,7 @@ const useValue = () => {
   return {
     sortedStyle,
     scrollingStyle,
-  }
+  } as const
 }
 
 export const { Provider, useContext: useTasksListHeaderContext } =

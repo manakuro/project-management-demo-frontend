@@ -1,63 +1,11 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { useToast } from 'src/hooks'
 import { useRouter } from 'src/router'
-import { Feed, defaultFeedStateValue, useFeed } from 'src/store/entities/feeds'
+import { createProvider } from 'src/shared/react/createProvider'
+import { useFeed } from 'src/store/entities/feeds'
 import { useFeedsAttachmentIds } from 'src/store/entities/feeds/attachmentIds'
-import {
-  Teammate,
-  defaultTeammateStateValue,
-  useTeammate,
-} from 'src/store/entities/teammates'
+import { useTeammate } from 'src/store/entities/teammates'
 import { Provider as ProviderContainer } from './ProviderContainer'
-
-type ContextProps = {
-  description: string
-  editable: () => boolean
-  feed: Feed
-  hasAttachment: boolean
-  isPinned: boolean
-  hasText: boolean
-  onCancel: () => void
-  onChangeDescription: (val: string) => void
-  onCopyCommentLink: () => void
-  onEdit: () => void
-  onPin: () => void
-  onSave: () => void
-  onUnpin: () => void
-  showFeedOptionMenu: boolean
-  showLike: boolean
-  taskId: string
-  teammate: Teammate
-  attachmentIds: string[]
-}
-
-const Context = createContext<ContextProps>({
-  description: '',
-  editable: () => false,
-  feed: defaultFeedStateValue(),
-  hasAttachment: false,
-  isPinned: false,
-  hasText: false,
-  onCancel: () => {},
-  onChangeDescription: () => {},
-  onCopyCommentLink: () => {},
-  onEdit: () => {},
-  onPin: () => void {},
-  onSave: () => {},
-  onUnpin: () => void {},
-  showFeedOptionMenu: false,
-  showLike: false,
-  taskId: '',
-  teammate: defaultTeammateStateValue(),
-  attachmentIds: [],
-})
-export const useFeedListItemContext = () => useContext(Context)
 
 type Props = {
   feedId: string
@@ -72,7 +20,7 @@ export const Provider: React.FC<Props> = (props) => {
   )
 }
 
-const ProviderBase: React.FC<Props> = (props) => {
+const useValue = (props: Props) => {
   const { feed } = useFeed(props.feedId)
   const { attachmentIds } = useFeedsAttachmentIds(props.feedId)
   const { teammate } = useTeammate(feed.teammateId)
@@ -98,34 +46,30 @@ const ProviderBase: React.FC<Props> = (props) => {
     () => !!JSON.parse(feed.description).content.length,
     [feed.description],
   )
-
-  return (
-    <Context.Provider
-      value={{
-        feed,
-        teammate,
-        editable,
-        onEdit,
-        onCancel,
-        description,
-        onChangeDescription,
-        onSave,
-        showFeedOptionMenu,
-        showLike,
-        onPin,
-        onUnpin,
-        onCopyCommentLink,
-        isPinned: props.isPinned || false,
-        hasAttachment,
-        hasText,
-        taskId: props.taskId,
-        attachmentIds,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+  return {
+    feed,
+    teammate,
+    editable,
+    onEdit,
+    onCancel,
+    description,
+    onChangeDescription,
+    onSave,
+    showFeedOptionMenu,
+    showLike,
+    onPin,
+    onUnpin,
+    onCopyCommentLink,
+    isPinned: props.isPinned || false,
+    hasAttachment,
+    hasText,
+    taskId: props.taskId,
+    attachmentIds,
+  }
 }
+
+const { Provider: ProviderBase, useContext: useFeedListItemContext } =
+  createProvider(useValue)
 
 function useFeedOptionMenu(props: Props) {
   const { feed, setFeed } = useFeed(props.feedId)
@@ -206,3 +150,5 @@ function useEditor(
     description,
   }
 }
+
+export { useFeedListItemContext }

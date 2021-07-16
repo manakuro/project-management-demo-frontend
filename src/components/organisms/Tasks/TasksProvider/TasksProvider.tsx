@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react'
+import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
   isMyTasksPage: boolean
@@ -11,21 +11,11 @@ type Props = {
 }
 export type TasksProviderProps = Props
 
-const Context = createContext<ContextProps>({
-  isMyTasksPage: false,
-  isProjectsPage: false,
-})
-export const useTasksContext = () => useContext(Context)
-
-export const TasksProvider: React.FC<Props> = (props) => {
-  return (
-    <Context.Provider
-      value={{
-        isMyTasksPage: !!props.isMyTasksPage,
-        isProjectsPage: !!props.isProjectsPage,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+const useValue = (props: Props): ContextProps => {
+  return {
+    isMyTasksPage: !!props.isMyTasksPage,
+    isProjectsPage: !!props.isProjectsPage,
+  } as const
 }
+export const { Provider: TasksProvider, useContext: useTasksContext } =
+  createProvider(useValue)

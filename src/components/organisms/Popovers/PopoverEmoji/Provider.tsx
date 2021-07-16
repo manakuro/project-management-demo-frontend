@@ -2,10 +2,17 @@ import { BaseEmoji } from 'emoji-mart'
 import { useCallback, useState } from 'react'
 import { createProvider } from 'src/shared/react/createProvider'
 
+type ContextProps = {
+  isOpen: boolean
+  emoji: BaseEmoji | null
+  onClose: (data?: BaseEmoji) => void
+  onOpen: () => Promise<BaseEmoji>
+}
+
 type Props = {
   onChange?: (emoji?: BaseEmoji) => void
 }
-const useValue = (props: Props) => {
+const useValue = (props: Props): ContextProps => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [emoji, setEmoji] = useState<BaseEmoji | null>(null)
   const [callback, setCallback] = useState<(val?: BaseEmoji) => void>()

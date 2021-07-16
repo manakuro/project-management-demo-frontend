@@ -1,10 +1,8 @@
-import React, { createContext, useContext } from 'react'
+import React from 'react'
 import { TasksNameProvider } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
+import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {}
-
-const Context = createContext<ContextProps>({})
-export const useSubtaskNameContext = () => useContext(Context)
 
 type Props = {
   taskId: string
@@ -17,6 +15,9 @@ export const SubtaskNameProvider: React.FC<Props> = (props) => {
   )
 }
 
-const Provider: React.FC = (props) => {
-  return <Context.Provider value={{}}>{props.children}</Context.Provider>
+const useValue = (): ContextProps => {
+  return {}
 }
+
+export const { Provider, useContext: useSubtaskNameContext } =
+  createProvider(useValue)

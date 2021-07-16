@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { useHover } from 'src/hooks/useHover'
+import { createProvider } from 'src/shared/react/createProvider'
 import { useInputFocus, UseInputFocus } from './useInputFocus'
 import { useMarkMenuFocus, UseMarkMenuFocus } from './useMarkMenuFocus'
 
@@ -11,29 +12,11 @@ type ContextProps = UseInputFocus &
     showMark: boolean
     taskId: string
   }
-export type TasksNameContextProps = ContextProps
-
-const Context = createContext<ContextProps>({
-  inputFocused: false,
-  setInputFocused: () => void {},
-  cellStyle: {},
-  onInputBlur: () => {},
-  onInputFocus: () => {},
-  markMenuFocused: false,
-  onMarkMenuClosed: () => {},
-  onMarkMenuOpened: () => {},
-  isHovering: false,
-  showIcon: false,
-  showMark: false,
-  ref: null as any,
-  taskId: '',
-})
-export const useTasksNameContext = () => useContext(Context)
 
 type Props = {
   taskId: string
 }
-export const TasksNameProvider: React.FC<Props> = (props) => {
+const useValue = (props: Props): ContextProps => {
   const useInputFocusResult = useInputFocus()
   const { markMenuFocused, onMarkMenuClosed, onMarkMenuOpened } =
     useMarkMenuFocus()
@@ -49,21 +32,18 @@ export const TasksNameProvider: React.FC<Props> = (props) => {
     [isHovering, markMenuFocused],
   )
 
-  return (
-    <Context.Provider
-      value={{
-        ...useInputFocusResult,
-        markMenuFocused,
-        onMarkMenuClosed,
-        onMarkMenuOpened,
-        ref,
-        isHovering,
-        showIcon,
-        showMark,
-        taskId: props.taskId,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+  return {
+    ...useInputFocusResult,
+    markMenuFocused,
+    onMarkMenuClosed,
+    onMarkMenuOpened,
+    ref,
+    isHovering,
+    showIcon,
+    showMark,
+    taskId: props.taskId,
+  }
 }
+
+export const { Provider: TasksNameProvider, useContext: useTasksNameContext } =
+  createProvider(useValue)

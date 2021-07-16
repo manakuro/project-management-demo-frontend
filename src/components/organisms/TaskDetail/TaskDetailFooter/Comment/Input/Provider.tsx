@@ -1,24 +1,14 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { FileUploaderParams, UploadedFile } from 'src/components/atoms'
 import { useTasksListDetail } from 'src/components/organisms'
 import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 import { useClickOutside, useToast } from 'src/hooks'
 import { getAttachmentTypeFromFile } from 'src/shared/getAttachmentTypeFromFile'
 import { getScrollBottom } from 'src/shared/getScrollBottom'
+import { createProvider } from 'src/shared/react/createProvider'
 import { Attachment } from 'src/store/entities/attachments'
 import { ATTACHMENT_STATUS_UNATTACHED } from 'src/store/entities/attachments/types'
-import {
-  defaultFeedStateValue,
-  Feed,
-  useFeed,
-  useFeedsByTask,
-} from 'src/store/entities/feeds'
+import { Feed, useFeed, useFeedsByTask } from 'src/store/entities/feeds'
 import { useMe } from 'src/store/entities/me'
 import { useTasksAttachments } from 'src/store/entities/tasks/attachmentIds'
 
@@ -39,22 +29,7 @@ type ContextProps = {
   onDeleteAttachment: (attachment: Attachment) => void
 }
 
-const Context = createContext<ContextProps>({
-  feed: defaultFeedStateValue(),
-  focused: false,
-  onChangeDescription: () => void {},
-  onFocus: () => void {},
-  onSave: () => void {},
-  onUploadFile: () => void {},
-  ref: null as any,
-  attachmentIds: [],
-  uploadingFiles: [],
-  hasAttachment: false,
-  onDeleteAttachment: () => void {},
-})
-export const useInputContext = () => useContext(Context)
-
-export const Provider: React.FC = (props) => {
+const useValue = (): ContextProps => {
   const { focused, setFocused, onFocus, ref } = useFocus()
   const [feedId, setFeedId] = useState<string>('')
   const { feed } = useFeed(feedId)
@@ -70,26 +45,22 @@ export const Provider: React.FC = (props) => {
     },
   })
 
-  return (
-    <Context.Provider
-      value={{
-        focused,
-        onFocus,
-        ref,
-        onSave,
-        onChangeDescription,
-        feed,
-        onUploadFile,
-        attachmentIds,
-        uploadingFiles,
-        hasAttachment,
-        onDeleteAttachment,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+  return {
+    focused,
+    onFocus,
+    ref,
+    onSave,
+    onChangeDescription,
+    feed,
+    onUploadFile,
+    attachmentIds,
+    uploadingFiles,
+    hasAttachment,
+    onDeleteAttachment,
+  }
 }
+export const { Provider, useContext: useInputContext } =
+  createProvider(useValue)
 
 function useAttachmentFile() {
   const [attachmentIds, setAttachmentIds] = useState<string[]>([])

@@ -6,7 +6,14 @@ export function createProvider<
   Props extends object,
 >(useValue: (props: Props) => ContextProps) {
   const Context = createContext<ContextProps>({} as ContextProps)
-  const useContext = () => React.useContext(Context)
+  const useContext = () => {
+    const context = React.useContext(Context)
+    if (!Object.keys(context).length) {
+      throw new Error('Context needs to be consumed in Provider')
+    }
+
+    return context
+  }
 
   const Provider: React.FC<Props> = memo<Props>(
     forwardRef((props, ref) => (

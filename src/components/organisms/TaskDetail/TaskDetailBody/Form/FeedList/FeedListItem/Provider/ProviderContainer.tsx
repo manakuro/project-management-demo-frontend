@@ -1,14 +1,8 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 import { getTaskDetailFeedId, useRouter } from 'src/router'
 import { isHTMLElement } from 'src/shared/isHTMLElement'
+import { createProvider } from 'src/shared/react/createProvider'
 import { useFeed } from 'src/store/entities/feeds'
 
 type ContextProps = {
@@ -16,17 +10,11 @@ type ContextProps = {
   isReferenced: boolean
 }
 
-const Context = createContext<ContextProps>({
-  containerRef: null as any,
-  isReferenced: false,
-})
-export const useFeedListItemContainerContext = () => useContext(Context)
-
 type Props = {
   feedId: string
   isPinned?: boolean
 }
-export const Provider: React.FC<Props> = (props) => {
+const useValue = (props: Props): ContextProps => {
   const { feed } = useFeed(props.feedId)
   const ref = useRef<HTMLElement | null>(null)
   const { router } = useRouter()
@@ -59,14 +47,11 @@ export const Provider: React.FC<Props> = (props) => {
     scrollToFeedItem()
   }, [feed.id, props.isPinned, router, scrollToFeedItem])
 
-  return (
-    <Context.Provider
-      value={{
-        containerRef: ref,
-        isReferenced,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+  return {
+    containerRef: ref,
+    isReferenced,
+  } as const
 }
+
+export const { Provider, useContext: useFeedListItemContainerContext } =
+  createProvider(useValue)

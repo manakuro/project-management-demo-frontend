@@ -1,11 +1,6 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { FlexProps } from 'src/components/atoms'
+import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
   focused: boolean
@@ -20,17 +15,8 @@ type Props = {
   taskSectionId: string
   indented?: boolean
 }
-const Context = createContext<ContextProps>({
-  focused: false,
-  onFocusInput: () => void {},
-  onUnfocusInput: () => void {},
-  taskSectionId: '',
-  indented: false,
-  indentedStyle: {},
-})
-export const useTasksListSectionContext = () => useContext(Context)
 
-export const Provider: React.FC<Props> = (props) => {
+const useValue = (props: Props): ContextProps => {
   const [focused, setFocused] = useState(false)
 
   const onFocusInput = useCallback(() => {
@@ -46,18 +32,14 @@ export const Provider: React.FC<Props> = (props) => {
     [props.indented],
   )
 
-  return (
-    <Context.Provider
-      value={{
-        focused,
-        onFocusInput,
-        onUnfocusInput,
-        taskSectionId: props.taskSectionId,
-        indented: props.indented,
-        indentedStyle,
-      }}
-    >
-      {props.children}
-    </Context.Provider>
-  )
+  return {
+    focused,
+    onFocusInput,
+    onUnfocusInput,
+    taskSectionId: props.taskSectionId,
+    indented: props.indented,
+    indentedStyle,
+  } as const
 }
+export const { Provider, useContext: useTasksListSectionContext } =
+  createProvider(useValue)

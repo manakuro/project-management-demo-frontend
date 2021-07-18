@@ -6,6 +6,7 @@ import {
 } from 'src/components/organisms'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
+import { TasksListSectionProvider } from 'src/components/organisms/Tasks/TasksList/TasksListSection'
 
 export const ListSortByDueDate: React.VFC = memo(() => {
   const { taskIds, taskSectionIds } = useTaskSectionContext()
@@ -20,7 +21,9 @@ export const ListSortByDueDate: React.VFC = memo(() => {
     <Flex flexDirection="column">
       <Flex flexDirection="column">
         {taskIds.map((id) => (
-          <TasksListItem taskId={id} key={id} />
+          <TasksListSectionProvider key={id} taskSectionId="">
+            <TasksListItem taskId={id} />
+          </TasksListSectionProvider>
         ))}
       </Flex>
       <Flex>

@@ -3,6 +3,7 @@ import { Box, Flex, Icon, IconButton } from 'src/components/atoms'
 import { TasksListSectionGroupByProject } from 'src/components/organisms'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
+import { TasksListSectionProvider } from 'src/components/organisms/Tasks/TasksList/TasksListSection'
 import {
   useMyTasksProjectIds,
   useMyTasksTaskIdsWithNoProject,
@@ -39,7 +40,9 @@ export const ListSortByProject: React.VFC = memo(() => {
       {isExpanded && (
         <Flex flexDirection="column">
           {taskIds.map((id) => (
-            <TasksListItem taskId={id} key={id} />
+            <TasksListSectionProvider key={id} taskSectionId="">
+              <TasksListItem taskId={id} />
+            </TasksListSectionProvider>
           ))}
         </Flex>
       )}

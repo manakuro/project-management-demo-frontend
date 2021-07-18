@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useState } from 'react'
 import { Flex } from 'src/components/atoms'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
+import { TasksListSectionProvider } from 'src/components/organisms/Tasks/TasksList/TasksListSection'
 import { useMyTasksTaskIdsByProject } from 'src/store/app/myTasks/projects'
 import { Header } from './Header'
 import { Provider } from './Provider'
@@ -37,7 +38,9 @@ const Component: React.FC<Props> = memo<Props>((props) => {
         {isExpanded && (
           <Flex flexDirection="column">
             {taskIds.map((id) => (
-              <TasksListItem taskId={id} key={id} />
+              <TasksListSectionProvider taskSectionId="" key={id}>
+                <TasksListItem taskId={id} />
+              </TasksListSectionProvider>
             ))}
           </Flex>
         )}

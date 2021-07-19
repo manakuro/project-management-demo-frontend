@@ -14,7 +14,7 @@ const state = atom<boolean>({
 type Props = {
   listenOnEvent?: boolean
 }
-export const useTasksListContentScroll = (props?: Props) => {
+export const useTasksListContentVerticalScroll = (props?: Props) => {
   const { dom } = useTasksListContent()
   const [isScrolling, setIsScrolling] = useRecoilState(state)
 

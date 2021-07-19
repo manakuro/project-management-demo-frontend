@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import {
   atomFamily,
   selectorFamily,
@@ -7,6 +8,7 @@ import {
   useRecoilValue,
 } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
+import { TaskColumnType } from 'src/store/entities/taskColumns/types'
 import { TaskColumn } from './type'
 
 const key = (str: string) => `src/store/entities/taskColumns/${str}`
@@ -18,6 +20,15 @@ export const taskColumnIdsState = atom<string[]>({
 export const taskColumnsState = atom<TaskColumn[]>({
   key: key('taskColumnsState'),
   default: [],
+})
+const taskColumnByTypeState = selectorFamily<TaskColumn, TaskColumnType>({
+  key: key('taskColumnByTypeState'),
+  get:
+    (type: TaskColumnType) =>
+    ({ get }) => {
+      const taskColumns = get(taskColumnsState)
+      return taskColumns.find((t) => t.type === type)!
+    },
 })
 
 const defaultStateValue = (): TaskColumn => ({
@@ -92,6 +103,15 @@ export const useTaskColumns = () => {
     taskColumnIds,
     taskColumns,
     setTaskColumn,
+  }
+}
+
+export const useTaskColumnByType = (type: TaskColumnType) => {
+  const val = useRecoilValue(taskColumnByTypeState(type))
+  const taskColumn = useMemo(() => val, [val])
+
+  return {
+    taskColumn,
   }
 }
 

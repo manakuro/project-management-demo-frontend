@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import {
-  useTasksListContentScroll,
+  useTasksListContentVerticalScroll,
   useTaskStatusContext,
 } from 'src/components/organisms'
 import { ChakraProps } from 'src/shared/chakra'
@@ -13,7 +13,7 @@ type ContextProps = {
 
 const useValue = (): ContextProps => {
   const { isSorted } = useTaskStatusContext()
-  const { isScrolling } = useTasksListContentScroll()
+  const { isScrolling } = useTasksListContentVerticalScroll()
 
   const sortedStyle = useMemo((): ChakraProps => {
     if (!isSorted('none') && !isSorted('project'))

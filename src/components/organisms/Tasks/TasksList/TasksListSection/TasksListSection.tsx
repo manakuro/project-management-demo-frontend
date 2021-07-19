@@ -30,7 +30,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <>
-      <Flex flex={1} flexDirection="column">
+      <Flex flexDirection="column">
         <Header
           taskSectionId={props.taskSectionId}
           onToggle={handleToggle}

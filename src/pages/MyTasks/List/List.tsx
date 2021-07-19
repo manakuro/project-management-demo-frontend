@@ -13,6 +13,7 @@ import {
   TasksListLayout,
   TasksListContent,
   TasksProvider,
+  TasksListHorizontalScrollBorder,
 } from 'src/components/organisms'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { useMyTasksTaskColumns } from 'src/store/app/myTasks/taskColumns'
@@ -42,6 +43,7 @@ export const List: React.VFC = memo(() => {
           <TasksListBody>
             <TasksListLayout />
           </TasksListBody>
+          <TasksListHorizontalScrollBorder />
         </TasksListContent>
       </TasksList>
     </TasksProvider>

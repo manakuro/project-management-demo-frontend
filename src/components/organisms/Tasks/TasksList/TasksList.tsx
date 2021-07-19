@@ -18,5 +18,5 @@ export const TasksList: React.FC<Props> = (props) => {
 }
 
 const Component: React.FC<ComponentProps> = forwardRef((props, ref) => (
-  <Flex flex={1} flexDirection="column" {...props} ref={ref} />
+  <Flex flex={1} h="full" flexDirection="column" {...props} ref={ref} />
 ))

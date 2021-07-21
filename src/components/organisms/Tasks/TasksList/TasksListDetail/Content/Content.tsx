@@ -22,7 +22,10 @@ export const Content: React.VFC<Props> = memo((props) => {
 
   const skipElement = useCallback(
     (e: Event) => {
-      return getTasksListBodyElement()?.contains(e.target as Node) ?? false
+      if (e.target === getTasksListBodyElement()) return false
+      if (getTasksListBodyElement()?.contains(e.target as Node) ?? false)
+        return true
+      return false
     },
     [getTasksListBodyElement],
   )

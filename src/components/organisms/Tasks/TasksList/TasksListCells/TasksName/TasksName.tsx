@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { CheckIcon, FlexProps, Icon, Stack, Text } from 'src/components/atoms'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { useRouter } from 'src/router'
@@ -14,6 +14,7 @@ import { TasksNameGrabIcon } from './TasksNameGrabIcon'
 import { TasksNameGrabIconContainer } from './TasksNameGrabIconContainer'
 import { TasksNameProvider, useTasksNameContext } from './TasksNameProvider'
 import { TasksNameRightContainer } from './TasksNameRightContainer'
+import { TasksNameTransition } from './TasksNameTransition'
 
 type Props = FlexProps & {
   taskId: string
@@ -34,6 +35,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
   const { navigateToTaskDetail } = useRouter()
   const { task, setTask, deleteTask, setTaskName } = useTask(props.taskId)
   const { stickyStyle } = useTasksListContext()
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
   const handleClick = useCallback(async () => {
     await navigateToTaskDetail(task.id)
@@ -48,7 +50,17 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
   const handleToggleDone = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
       e.stopPropagation()
+      if (!task.isDone) {
+        setIsTransitioning(true)
+        setTimeout(async () => {
+          await setTask({ isDone: !task.isDone })
+          setIsTransitioning(false)
+        }, 1000)
+        return
+      }
+
       await setTask({ isDone: !task.isDone })
+      setIsTransitioning(false)
     },
     [setTask, task.isDone],
   )
@@ -67,11 +79,18 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
         }}
         ref={ref}
       >
+        <TasksNameTransition isTransitioning={isTransitioning} />
         <TasksNameGrabIconContainer>
           <TasksNameGrabIcon />
         </TasksNameGrabIconContainer>
         <ExpandIcon />
-        <CheckIcon isDone={task.isDone} ml={1} onClick={handleToggleDone} />
+        <CheckIcon
+          isDone={task.isDone}
+          ml={1}
+          onClick={handleToggleDone}
+          zIndex={2}
+          isTransitioning={isTransitioning}
+        />
         <TasksNameField
           value={task.name}
           isNew={task.isNew}

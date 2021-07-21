@@ -1,5 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { CheckIcon, Flex, FlexProps, Stack } from 'src/components/atoms'
+import { TasksNameTransition } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName/TasksNameTransition'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
 import { useTask } from 'src/store/entities/tasks'
 import { Assignee } from './Assignee'
@@ -23,7 +24,8 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
 })
 
 export const Component: React.FC<Props> = memo<Props>((props) => {
-  const { ref } = useSubtasksNameContext()
+  const { ref, isTransitioning, onStartTransition, onEndTransition } =
+    useSubtasksNameContext()
   const { task, setTaskName, setTask, deleteTask } = useTask(props.taskId)
 
   const handleChange = useCallback(
@@ -34,14 +36,30 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
   )
 
   const handleToggleDone = useCallback(async () => {
+    if (!task.isDone) {
+      onStartTransition()
+      setTimeout(async () => {
+        await setTask({ isDone: !task.isDone })
+        onEndTransition()
+      }, 1000)
+      return
+    }
+
     await setTask({ isDone: !task.isDone })
-  }, [setTask, task.isDone])
+    onEndTransition()
+  }, [onEndTransition, onStartTransition, setTask, task.isDone])
 
   return (
     <TasksListRow w="full">
       <TasksNameCell ref={ref} borderRight="none" containerStyle={{ flex: 1 }}>
+        <TasksNameTransition isTransitioning={isTransitioning} />
         <TasksNameGrabIcon />
-        <CheckIcon isDone={task.isDone} ml={2} onClick={handleToggleDone} />
+        <CheckIcon
+          isDone={task.isDone}
+          ml={2}
+          onClick={handleToggleDone}
+          isTransitioning={isTransitioning}
+        />
         <TasksNameField
           value={task.name}
           isNew={task.isNew}

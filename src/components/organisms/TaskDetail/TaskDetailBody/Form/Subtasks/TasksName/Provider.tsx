@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { useHover } from 'src/hooks/useHover'
 import { createProvider } from 'src/shared/react/createProvider'
 import { useInputFocus, UseInputFocus } from './useInputFocus'
@@ -8,6 +8,9 @@ type ContextProps = UseInputFocus & {
   isHovering: boolean
   showIcon: boolean
   taskId: string
+  isTransitioning: boolean
+  onStartTransition: () => void
+  onEndTransition: () => void
 }
 
 type Props = {
@@ -16,8 +19,16 @@ type Props = {
 const useValue = (props: Props): ContextProps => {
   const useInputFocusResult = useInputFocus()
   const { ref, isHovering } = useHover()
-
+  const [isTransitioning, setIsTransitioning] = useState(false)
   const showIcon = useMemo(() => isHovering, [isHovering])
+
+  const onStartTransition = useCallback(() => {
+    setIsTransitioning(true)
+  }, [])
+
+  const onEndTransition = useCallback(() => {
+    setIsTransitioning(false)
+  }, [])
 
   return {
     ...useInputFocusResult,
@@ -25,6 +36,9 @@ const useValue = (props: Props): ContextProps => {
     isHovering,
     showIcon,
     taskId: props.taskId,
+    isTransitioning,
+    onStartTransition,
+    onEndTransition,
   }
 }
 useValue.__PROVIDER__ =

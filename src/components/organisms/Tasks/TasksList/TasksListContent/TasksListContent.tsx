@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { useMainStyle } from 'src/hooks'
 import { useTasksListContent } from './useTasksListContent'
+import { useTasksListContentHorizontalScroll } from './useTasksListContentHorizontalScroll'
 import { useTasksListContentSticky } from './useTasksListContentSticky'
 import { useTasksListContentVerticalScroll } from './useTasksListContentVerticalScroll'
 
@@ -14,6 +15,7 @@ export const TasksListContent: React.FC<Props> = memo<Props>((props) => {
 
   useTasksListContentVerticalScroll({ listenOnEvent: true })
   useTasksListContentSticky({ listenOnEvent: true })
+  useTasksListContentHorizontalScroll({ listenOnEvent: true })
 
   return (
     <Flex

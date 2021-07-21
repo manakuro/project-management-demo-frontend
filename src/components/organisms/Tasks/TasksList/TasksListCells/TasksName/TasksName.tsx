@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react'
+import React, { memo, useCallback } from 'react'
 import { CheckIcon, FlexProps, Icon, Stack, Text } from 'src/components/atoms'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { useRouter } from 'src/router'
@@ -31,11 +31,17 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
 })
 
 const Component: React.VFC<Props> = memo<Props>((props) => {
-  const { ref, onMarkMenuOpened, onMarkMenuClosed } = useTasksNameContext()
+  const {
+    ref,
+    onMarkMenuOpened,
+    onMarkMenuClosed,
+    onEndTransition,
+    onStartTransition,
+    isTransitioning,
+  } = useTasksNameContext()
   const { navigateToTaskDetail } = useRouter()
   const { task, setTask, deleteTask, setTaskName } = useTask(props.taskId)
   const { stickyStyle } = useTasksListContext()
-  const [isTransitioning, setIsTransitioning] = useState(false)
 
   const handleClick = useCallback(async () => {
     await navigateToTaskDetail(task.id)
@@ -51,18 +57,18 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
     async (e: React.MouseEvent<SVGElement>) => {
       e.stopPropagation()
       if (!task.isDone) {
-        setIsTransitioning(true)
+        onStartTransition()
         setTimeout(async () => {
           await setTask({ isDone: !task.isDone })
-          setIsTransitioning(false)
+          onEndTransition()
         }, 1000)
         return
       }
 
       await setTask({ isDone: !task.isDone })
-      setIsTransitioning(false)
+      onEndTransition()
     },
-    [setTask, task.isDone],
+    [onEndTransition, onStartTransition, setTask, task.isDone],
   )
 
   return (

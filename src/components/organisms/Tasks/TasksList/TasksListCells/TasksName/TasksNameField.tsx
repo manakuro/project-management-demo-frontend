@@ -19,10 +19,10 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
     onInputFocus,
     onInputBlur,
     inputFocused,
+    isTransitioning,
   } = useTasksNameContext()
   const { taskDetailListDetailRef } = useTaskDetailListDetailRef()
   const autoFocus = useMemo(() => props.isNew, [props.isNew])
-
   const skipElement = useCallback(
     (e: Event) => {
       if (containerRef.current?.contains(e.target as Node) ?? false) return true
@@ -63,8 +63,8 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
 
   useDebounce(value, props.onChange, 500)
 
-  const style = useMemo<InputProps>(
-    () => ({
+  const style = useMemo<InputProps>(() => {
+    let val: InputProps = {
       ml: 1,
       fontSize: 'sm',
       color: 'text.base',
@@ -72,21 +72,26 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
       h: 5,
       paddingInlineStart: 2,
       paddingInlineEnd: 2,
-      ...(props.focusedBorder
-        ? {
-            border: '1px',
-            borderColor: 'transparent',
-            borderRadius: 'sm',
-            _hover: {
-              borderColor: 'gray.400',
-            },
-          }
-        : {
-            border: 'none',
-          }),
-    }),
-    [props.focusedBorder],
-  )
+      border: 'none',
+    }
+    if (isTransitioning)
+      val = {
+        ...val,
+        color: 'gray.50',
+      }
+
+    if (props.focusedBorder)
+      val = {
+        ...val,
+        border: '1px',
+        borderColor: 'transparent',
+        borderRadius: 'sm',
+        _hover: {
+          borderColor: 'gray.400',
+        },
+      }
+    return val
+  }, [isTransitioning, props.focusedBorder])
 
   return (
     <Flex

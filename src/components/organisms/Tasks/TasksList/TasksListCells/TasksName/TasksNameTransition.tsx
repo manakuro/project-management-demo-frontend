@@ -48,7 +48,7 @@ export const TasksNameTransition: React.VFC<Props> = memo<Props>((props) => {
       bg="inherit"
       visibility="hidden"
       opacity={0}
-      bgGradient="linear(to-r, teal.50, teal.100, teal.100, teal.100, teal.50)"
+      bgGradient="linear(to-r, teal.50, teal.100, teal.200, teal.200, teal.100, teal.50)"
       transition="visibility 0s .25s, opacity .25s linear"
       pointerEvents="none"
       overflow="hidden"

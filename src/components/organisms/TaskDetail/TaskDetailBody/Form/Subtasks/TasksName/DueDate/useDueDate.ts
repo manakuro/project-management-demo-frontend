@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react'
-import { useTasksNameContext } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
+import { useSubtasksNameContext } from '../Provider'
 
 export type UseDueDate = {
   onDueDateOpened: () => void
@@ -8,7 +8,7 @@ export type UseDueDate = {
   showIcon: boolean
 }
 export const useDueDate = (): UseDueDate => {
-  const { isHovering } = useTasksNameContext()
+  const { isHovering } = useSubtasksNameContext()
   const [focused, setFocused] = useState(false)
 
   const onDueDateOpened = useCallback(() => {

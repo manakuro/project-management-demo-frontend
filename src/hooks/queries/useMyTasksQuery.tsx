@@ -434,7 +434,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
         dueDate: new Date(dateFns.addDays(new Date(), 6)).toISOString(),
         isDone: false,
         subTasks: [],
-        assigneeId: '',
+        assigneeId: '1',
         attachments: [],
         feeds: [],
         teammates: [],

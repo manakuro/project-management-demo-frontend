@@ -20,3 +20,4 @@ export const AddSubtaskButton: React.FC<Props> = memo<Props>((props) => {
     </Button>
   )
 })
+AddSubtaskButton.displayName = 'AddSubtaskButton'

@@ -50,6 +50,10 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
     },
     [setTaskColumn],
   )
+  const handleHideColumn = useCallback(async () => {
+    await setTaskColumn({ disabled: true })
+  }, [setTaskColumn])
+
   const {
     showMoreActionIcon,
     onMoreActionOpened,
@@ -84,7 +88,7 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
             onSort={onSort}
             onMoveRight={onMoveRight}
             onMoveLeft={onMoveLeft}
-            onHideColumn={onHideColumn}
+            onHideColumn={handleHideColumn}
           />
         </Flex>
       )}

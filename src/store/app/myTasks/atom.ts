@@ -10,7 +10,6 @@ import {
   useTaskSections,
   useTaskSectionsCommand,
 } from 'src/store/entities/taskSections'
-import { myTaskTaskColumnIdsState } from './taskColumns'
 import { myTaskTaskStatusState } from './taskListStatus'
 import { useMyTasksTaskSectionIds } from './taskSections'
 import { MyTaskResponse } from './type'
@@ -77,10 +76,6 @@ function useSetters() {
   const setTaskColumns = useRecoilCallback(
     ({ set }) =>
       (data: MyTaskResponse) => {
-        set(
-          myTaskTaskColumnIdsState,
-          data.taskColumns.map((t) => t.id),
-        )
         data.taskColumns.forEach((t) => {
           set(taskColumnSelector(t.id), t)
         })

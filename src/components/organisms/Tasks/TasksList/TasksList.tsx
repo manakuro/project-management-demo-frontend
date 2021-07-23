@@ -3,16 +3,13 @@ import { Flex, FlexProps } from 'src/components/atoms'
 import { forwardRef } from 'src/shared/chakra'
 import { Provider } from './Provider'
 
-type Props = FlexProps & {
-  taskColumnIds: string[]
-}
+type Props = FlexProps
 type ComponentProps = Omit<Props, 'taskColumnIds'>
 
 export const TasksList: React.FC<Props> = (props) => {
-  const { taskColumnIds, ...rest } = props
   return (
-    <Provider taskColumnIds={taskColumnIds}>
-      <Component {...rest} />
+    <Provider>
+      <Component {...props} />
     </Provider>
   )
 }

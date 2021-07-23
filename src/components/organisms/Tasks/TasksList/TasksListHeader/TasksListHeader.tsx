@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
+import { useTaskColumnContext } from 'src/components/organisms/Tasks/TasksProvider'
 import { Column } from './Column'
 import { RemainingSpace } from './Columns'
 import { Provider, useTasksListHeaderContext } from './Provider'
@@ -16,7 +16,7 @@ export const TasksListHeader: React.FC<Props> = memo<Props>((props) => {
 })
 
 const Component: React.FC<Props> = memo<Props>(() => {
-  const { taskColumnIds } = useTasksListContext()
+  const { taskColumnIds } = useTaskColumnContext()
   const { scrollingStyle } = useTasksListHeaderContext()
 
   return (

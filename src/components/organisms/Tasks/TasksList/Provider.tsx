@@ -4,15 +4,10 @@ import { ChakraProps } from 'src/shared/chakra'
 import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
-  taskColumnIds: string[]
   stickyStyle: ChakraProps
 }
 
-type Props = {
-  taskColumnIds: string[]
-}
-
-const useValue = (props: Props): ContextProps => {
+const useValue = (): ContextProps => {
   const { isStickyVertical } = useTasksListContentSticky()
   const stickyStyle = useMemo((): ChakraProps => {
     if (isStickyVertical)
@@ -25,10 +20,7 @@ const useValue = (props: Props): ContextProps => {
 
     return {}
   }, [isStickyVertical])
-  const { taskColumnIds } = props
-
   return {
-    taskColumnIds,
     stickyStyle,
   } as const
 }

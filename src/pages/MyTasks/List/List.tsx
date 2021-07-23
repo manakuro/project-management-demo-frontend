@@ -16,18 +16,16 @@ import {
   TasksListHorizontalScrollBorder,
 } from 'src/components/organisms'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
-import { useMyTasksTaskColumns } from 'src/store/app/myTasks/taskColumns'
 import { SkeletonList } from './SkeletonList'
 
 export const List: React.VFC = memo(() => {
-  const { taskColumnIds } = useMyTasksTaskColumns()
   const { loading } = useMyTasksContext()
 
   if (loading) return <SkeletonList />
 
   return (
     <TasksProvider isMyTasksPage>
-      <TasksList taskColumnIds={taskColumnIds}>
+      <TasksList>
         <TasksHeader>
           <TasksHeaderLeft>
             <AddTaskButton solid />

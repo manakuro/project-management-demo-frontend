@@ -8,6 +8,8 @@ export type TaskColumn = {
   name: string
   type: TaskColumnType
   width: string
+  disabled: boolean
+  customizable: boolean
   createdAt: string
   updatedAt: string
 }

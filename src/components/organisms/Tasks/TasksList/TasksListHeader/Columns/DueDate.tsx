@@ -11,7 +11,7 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
   const { taskColumnId } = props
   const { onSort, isSorted } = useTaskStatusContext()
 
-  const handleClick = useCallback(() => {
+  const handleSort = useCallback(() => {
     if (isSorted('dueDate')) {
       onSort('none')
       return
@@ -21,7 +21,12 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
   }, [isSorted, onSort])
 
   return (
-    <Container taskColumnId={taskColumnId} clickable onClick={handleClick}>
+    <Container
+      taskColumnId={taskColumnId}
+      clickable
+      onClick={handleSort}
+      onSort={handleSort}
+    >
       {isSorted('dueDate') && <Icon icon="arrowDownAlt" color="text.muted" />}
     </Container>
   )

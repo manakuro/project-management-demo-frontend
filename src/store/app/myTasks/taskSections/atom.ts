@@ -11,11 +11,13 @@ import { useMe } from 'src/store/entities/me'
 import { TaskSection, taskSectionsState } from 'src/store/entities/taskSections'
 import { taskSectionsTasksSelector } from 'src/store/entities/taskSections/tasks'
 
+const key = (str: string) => `src/store/app/myTasks/taskSections/${str}`
+
 const filter = (teammateId: string) => (t: TaskSection) =>
   !t.isDeleted && t.teammateId === teammateId
 
 export const myTasksTaskSectionIdsSelector = selectorFamily<string[], string>({
-  key: 'tasksAttachmentIdsSelector',
+  key: key('tasksAttachmentIdsSelector'),
   get:
     (teammateId) =>
     ({ get }) => {
@@ -51,6 +53,16 @@ export const myTasksTaskSectionIdsSelector = selectorFamily<string[], string>({
     },
 })
 
+const myTasksTaskSectionsSelector = selectorFamily<TaskSection[], string>({
+  key: key('myTasksTaskSectionsSelector'),
+  get:
+    (teammateId) =>
+    ({ get }) => {
+      const taskSections = get(taskSectionsState)
+      return taskSections.filter(filter(teammateId))
+    },
+})
+
 export const useMyTasksTaskSectionIds = () => {
   const { me } = useMe()
   const ids = useRecoilValue(myTasksTaskSectionIdsSelector(me.id))
@@ -58,5 +70,14 @@ export const useMyTasksTaskSectionIds = () => {
 
   return {
     taskSectionIds,
+  }
+}
+
+export const useMyTasksTaskSections = () => {
+  const { me } = useMe()
+  const taskSections = useRecoilValue(myTasksTaskSectionsSelector(me.id))
+
+  return {
+    taskSections,
   }
 }

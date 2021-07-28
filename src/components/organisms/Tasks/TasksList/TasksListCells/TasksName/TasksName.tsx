@@ -112,9 +112,9 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
         </Stack>
         <TasksNameRightContainer>
           <Mark
-            variant="unmarked"
             onOpened={onMarkMenuOpened}
             onClosed={onMarkMenuClosed}
+            taskId={props.taskId}
           />
           <Text fontSize="xs" color="text.muted" ml={2}>
             Details

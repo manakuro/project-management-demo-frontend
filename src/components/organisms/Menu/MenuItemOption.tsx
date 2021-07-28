@@ -5,7 +5,9 @@ import {
 import React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
-type Props = ChakraMenuItemOptionProps
+type Props = ChakraMenuItemOptionProps & {
+  ref?: React.ForwardedRef<any>
+}
 export type MenuItemOptionProps = Props
 
 export const MenuItemOption: React.FC<Props> & {

@@ -10,6 +10,7 @@ export type TaskColumn = {
   width: string
   disabled: boolean
   customizable: boolean
+  order: number
   createdAt: string
   updatedAt: string
 }

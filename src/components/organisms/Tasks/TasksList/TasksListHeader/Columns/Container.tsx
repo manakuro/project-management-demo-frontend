@@ -14,9 +14,6 @@ type Props = {
   containerStyle?: FlexProps
   menu?: boolean
   onSort?: () => void
-  onMoveRight?: () => void
-  onMoveLeft?: () => void
-  onHideColumn?: () => void
 } & FlexProps
 
 export const Container: React.FC<Props> = memo<Props>((props) => {
@@ -26,9 +23,7 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
     clickable,
     containerStyle,
     onSort,
-    onMoveRight,
-    onMoveLeft,
-    onHideColumn,
+    menu,
     ...rest
   } = props
   const { taskColumn, setTaskColumn } = useTaskColumn(taskColumnId)
@@ -50,9 +45,6 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
     },
     [setTaskColumn],
   )
-  const handleHideColumn = useCallback(async () => {
-    await setTaskColumn({ disabled: true })
-  }, [setTaskColumn])
 
   const {
     showMoreActionIcon,
@@ -80,15 +72,13 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
     >
       {taskColumn.name}
       {props.children}
-      {showMoreActionIcon && (
+      {menu && showMoreActionIcon && (
         <Flex ml="auto" onClick={stopPropagation}>
           <MoreAction
             onOpened={onMoreActionOpened}
             onClosed={onMoreActionClosed}
             onSort={onSort}
-            onMoveRight={onMoveRight}
-            onMoveLeft={onMoveLeft}
-            onHideColumn={handleHideColumn}
+            taskColumnId={props.taskColumnId}
           />
         </Flex>
       )}

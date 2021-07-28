@@ -53,6 +53,7 @@ const defaultStateValue = (): TaskColumn => ({
   width: '',
   disabled: false,
   customizable: false,
+  order: 0,
   createdAt: '',
   updatedAt: '',
 })
@@ -129,9 +130,7 @@ export const useTaskColumnByType = (type: TaskColumnType) => {
   }
 }
 
-export const useTaskColumn = (taskColumnId?: string) => {
-  const taskColumn = useRecoilValue(taskColumnSelector(taskColumnId || ''))
-
+export const useTaskColumnCommands = () => {
   const upsertTaskColumn = useRecoilCallback(
     ({ set }) =>
       (taskColumn: TaskColumn) => {
@@ -139,6 +138,15 @@ export const useTaskColumn = (taskColumnId?: string) => {
       },
     [],
   )
+
+  return {
+    upsertTaskColumn,
+  }
+}
+
+export const useTaskColumn = (taskColumnId?: string) => {
+  const taskColumn = useRecoilValue(taskColumnSelector(taskColumnId || ''))
+  const { upsertTaskColumn } = useTaskColumnCommands()
 
   const setTaskColumn = useRecoilCallback(
     ({ snapshot }) =>

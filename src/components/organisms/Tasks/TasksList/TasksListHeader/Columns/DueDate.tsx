@@ -26,6 +26,7 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
       clickable
       onClick={handleSort}
       onSort={handleSort}
+      menu
     >
       {isSorted('dueDate') && <Icon icon="arrowDownAlt" color="text.muted" />}
     </Container>

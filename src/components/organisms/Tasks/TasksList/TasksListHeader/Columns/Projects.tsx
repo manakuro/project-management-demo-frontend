@@ -11,7 +11,7 @@ export const Projects: React.FC<Props> = memo<Props>((props) => {
   const { taskColumnId } = props
   const { onSort, isSorted } = useTaskStatusContext()
 
-  const handleClick = useCallback(() => {
+  const handleSort = useCallback(() => {
     if (isSorted('project')) {
       onSort('none')
       return
@@ -21,7 +21,13 @@ export const Projects: React.FC<Props> = memo<Props>((props) => {
   }, [isSorted, onSort])
 
   return (
-    <Container taskColumnId={taskColumnId} clickable onClick={handleClick}>
+    <Container
+      taskColumnId={taskColumnId}
+      clickable
+      onClick={handleSort}
+      onSort={handleSort}
+      menu
+    >
       {isSorted('project') && <Icon icon="arrowDownAlt" color="text.muted" />}
     </Container>
   )

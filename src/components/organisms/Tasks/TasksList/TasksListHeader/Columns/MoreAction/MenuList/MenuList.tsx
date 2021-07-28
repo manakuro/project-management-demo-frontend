@@ -6,6 +6,8 @@ type Props = {
   onMoveRight?: () => void
   onMoveLeft?: () => void
   onHideColumn?: () => void
+  disabledMoveLeft?: boolean
+  disabledMoveRight?: boolean
 }
 
 export const MenuList: React.FC<Props> = memo((props) => {
@@ -28,9 +30,13 @@ export const MenuList: React.FC<Props> = memo((props) => {
 
   return (
     <AtomsMenuList color="text.base">
-      <MenuItem onClick={handleSortBy}>Sort by</MenuItem>
-      <MenuItem onClick={handleMoveRight}>Move left</MenuItem>
-      <MenuItem onClick={handleMoveLeft}>Move right</MenuItem>
+      {props.onSort && <MenuItem onClick={handleSortBy}>Sort by</MenuItem>}
+      <MenuItem onClick={handleMoveLeft} isDisabled={props.disabledMoveLeft}>
+        Move left
+      </MenuItem>
+      <MenuItem onClick={handleMoveRight} isDisabled={props.disabledMoveRight}>
+        Move right
+      </MenuItem>
       <MenuItem onClick={handleHideColumn}>Hide column</MenuItem>
     </AtomsMenuList>
   )

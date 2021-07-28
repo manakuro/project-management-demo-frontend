@@ -4,6 +4,9 @@ import { useTasksContext } from './TasksProvider'
 type Result = ReturnType<typeof useMyTasksTaskColumns>
 const initialUseTaskColumn = (): Result => ({
   taskColumnIds: [],
+  setOrderTaskColumn: async () => {},
+  canMoveLeft: () => false,
+  canMoveRight: () => false,
 })
 
 export const useTaskColumnContext = (): Result => {

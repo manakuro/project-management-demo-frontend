@@ -3,13 +3,13 @@ import {
   FormLabel,
   FormControl,
   Switch,
-  FormControlProps,
   Flex,
   Icon,
+  SwitchProps,
 } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 
-type Props = FormControlProps & {
+type Props = SwitchProps & {
   label: string
 }
 export type CustomFieldProps = Props
@@ -34,7 +34,12 @@ export const CustomField: React.FC<Props> = (props) => {
         <FormLabel cursor="grab" ml={2} mb="0" flex={1} fontSize="sm">
           {props.label}
         </FormLabel>
-        <Switch colorScheme="teal" size="sm" />
+        <Switch
+          colorScheme="teal"
+          size="sm"
+          onChange={props.onChange}
+          isChecked={props.isChecked}
+        />
       </Flex>
     </FormControl>
   )

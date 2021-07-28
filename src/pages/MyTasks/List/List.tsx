@@ -15,6 +15,7 @@ import {
   TasksProvider,
   TasksListHorizontalScrollBorder,
 } from 'src/components/organisms'
+import { CustomizeMenu } from 'src/components/organisms/Tasks'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { SkeletonList } from './SkeletonList'
 
@@ -44,6 +45,7 @@ export const List: React.VFC = memo(() => {
           <TasksListHorizontalScrollBorder />
         </TasksListContent>
       </TasksList>
+      <CustomizeMenu />
     </TasksProvider>
   )
 })

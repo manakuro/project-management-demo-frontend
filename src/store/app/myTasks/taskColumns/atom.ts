@@ -33,9 +33,7 @@ export const myTaskTaskColumnIdsCustomizableSelector = selectorFamily<
     (teammateId: string) =>
     ({ get }) => {
       const taskColumns = get(taskColumnsByTeammateIdSelector(teammateId))
-
-      return taskColumns
-        .filter((t) => t.customizable)
+      return [...taskColumns]
         .sort((a, b) => (a.order > b.order ? 1 : -1))
         .map((t) => t.id)
     },
@@ -92,7 +90,24 @@ export const useMyTasksTaskColumnsCustomizable = () => {
   const { me } = useMe()
   const ids = useRecoilValue(myTaskTaskColumnIdsCustomizableSelector(me.id))
   const taskColumnIds = useMemo(() => ids, [ids])
+  const { upsertTaskColumn } = useTaskColumnCommands()
+
+  const setOrderTaskColumn = useRecoilCallback(
+    ({ snapshot }) =>
+      async (updatedIds: string[]) => {
+        await asyncForEach(updatedIds, async (id, index) => {
+          const prev = await snapshot.getPromise(taskColumnSelector(id))
+          upsertTaskColumn({
+            ...prev,
+            order: index,
+          })
+        })
+      },
+    [upsertTaskColumn],
+  )
+
   return {
     taskColumnIds,
+    setOrderTaskColumn,
   }
 }

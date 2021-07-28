@@ -6,7 +6,7 @@ import { useTask } from 'src/store/entities/tasks'
 import { ExpandIcon } from './ExpandIcon'
 import { Feed } from './Feed'
 import { Like } from './Like'
-import { Mark } from './Mark'
+import { MoveTasksBetweenSections } from './MoveTasksBetweenSections'
 import { Subtask } from './Subtask'
 import { TasksNameCell } from './TasksNameCell'
 import { TasksNameField } from './TasksNameField'
@@ -111,7 +111,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
           <Subtask />
         </Stack>
         <TasksNameRightContainer>
-          <Mark
+          <MoveTasksBetweenSections
             onOpened={onMarkMenuOpened}
             onClosed={onMarkMenuClosed}
             taskId={props.taskId}

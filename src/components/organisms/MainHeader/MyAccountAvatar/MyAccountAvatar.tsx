@@ -1,9 +1,9 @@
-import React, { useCallback } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Menu, MenuButton, MyAvatar } from 'src/components/organisms'
 import { useDisclosure } from 'src/shared/chakra'
 import { MenuList } from './MenuList'
 
-export const MyAccountAvatar: React.FC = () => {
+export const MyAccountAvatar: React.FC = memo(() => {
   const { onClose, onOpen, isOpen } = useDisclosure()
 
   const handleOpen = useCallback(() => {
@@ -24,4 +24,5 @@ export const MyAccountAvatar: React.FC = () => {
       {isOpen && <MenuList onCloseMenu={onClose} />}
     </Menu>
   )
-}
+})
+MyAccountAvatar.displayName = 'MyAccountAvatar'

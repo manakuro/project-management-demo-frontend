@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { memo, useCallback } from 'react'
 import {
   Icon,
   IconButton,
@@ -11,7 +11,7 @@ import { Menu, MenuButton, MenuList, MenuItem } from 'src/components/organisms'
 import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
 import { IconType } from 'src/shared/icons'
 
-export const AddButton: React.FC = () => {
+export const AddButton: React.FC = memo(() => {
   const inviteModal = useInviteModal()
 
   const handleInvite = useCallback(() => {
@@ -44,7 +44,8 @@ export const AddButton: React.FC = () => {
       </Portal>
     </Menu>
   )
-}
+})
+AddButton.displayName = 'AddButton'
 
 type IconTextProps = {
   icon: IconType

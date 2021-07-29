@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { InputWithIcon } from 'src/components/molecules'
 
-export const SearchInput: React.FC = () => {
+export const SearchInput: React.FC = memo(() => {
   return (
     <InputWithIcon
       icon="search"
@@ -10,4 +10,5 @@ export const SearchInput: React.FC = () => {
       size="sm"
     />
   )
-}
+})
+SearchInput.displayName = 'SearchInput'

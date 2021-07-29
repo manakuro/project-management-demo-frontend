@@ -37,6 +37,7 @@ export const Tabs: React.VFC = memo(() => {
         </Flex>
         <TabList>
           <Tab>List</Tab>
+          <Tab>Board</Tab>
           <Tab>Calendar</Tab>
           <Tab>Files</Tab>
         </TabList>

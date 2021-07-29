@@ -10,6 +10,24 @@ export const ROUTE_MY_TASKS = {
     pathname: '/my_tasks',
   },
 } as const
+export const ROUTE_MY_TASKS_BOARD = {
+  name: 'my_tasks/board',
+  href: {
+    pathname: '/my_tasks/board',
+  },
+} as const
+export const ROUTE_MY_TASKS_CALENDAR = {
+  name: 'my_tasks/calendar',
+  href: {
+    pathname: '/my_tasks/calendar',
+  },
+} as const
+export const ROUTE_MY_TASKS_FILES = {
+  name: 'my_tasks/files',
+  href: {
+    pathname: '/my_tasks/files',
+  },
+} as const
 export const ROUTE_PORTFOLIOS = {
   name: 'portfolios',
   href: {

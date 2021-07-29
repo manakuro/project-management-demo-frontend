@@ -16,3 +16,4 @@ export const Header: React.VFC = memo(() => {
     </Flex>
   )
 })
+Header.displayName = 'Header'

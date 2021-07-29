@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Flex, Stack } from 'src/components/atoms'
 import { useMainStyle } from 'src/hooks'
 import { AddButton } from './AddButton'
 import { MyAccountAvatar } from './MyAccountAvatar'
 import { SearchInput } from './SearchInput'
 
-export const MainHeader: React.FC = (props) => {
+export const MainHeader: React.FC = memo((props) => {
   const { paddingX } = useMainStyle()
 
   return (
@@ -34,4 +34,5 @@ export const MainHeader: React.FC = (props) => {
       </Flex>
     </Flex>
   )
-}
+})
+MainHeader.displayName = 'MainHeader'

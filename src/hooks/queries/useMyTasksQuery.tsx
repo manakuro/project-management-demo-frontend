@@ -1,5 +1,4 @@
-import { useCallback, useEffect } from 'react'
-import { atom, useRecoilState } from 'recoil'
+import { useCallback, useEffect, useState } from 'react'
 import { dateFns } from 'src/shared/dateFns'
 import { uuid } from 'src/shared/uuid'
 import { useMyTasks } from 'src/store/app/myTasks'
@@ -10,40 +9,33 @@ type Props = {
   lazy?: boolean
 }
 
-const myTasksQueryState = atom<{ loading: boolean }>({
-  key: 'myTasksQueryState',
-  default: {
-    loading: false,
-  },
-})
-
 export const useMyTasksQuery = (props?: Props) => {
-  const [state, setState] = useRecoilState(myTasksQueryState)
+  const [loading, setLoading] = useState(true)
   const { setMyTasks } = useMyTasks()
 
   useEffect(() => {
     ;(async () => {
       if (props?.lazy) return
 
-      setState((s) => ({ ...s, loading: true }))
+      setLoading(true)
       const res = await fetchTasks()
       setMyTasks(res)
-      setState((s) => ({ ...s, loading: false }))
+      setLoading(false)
     })()
-  }, [props?.lazy, setMyTasks, setState])
+  }, [props?.lazy, setMyTasks, setLoading])
 
   const refetch = useCallback(() => {
     ;(async () => {
-      setState((s) => ({ ...s, loading: true }))
+      setLoading(true)
       const res = await fetchTasks()
       setMyTasks(res)
-      setState((s) => ({ ...s, loading: false }))
+      setLoading(false)
     })()
-  }, [setMyTasks, setState])
+  }, [setMyTasks, setLoading])
 
   return {
     refetch,
-    ...state,
+    loading,
   }
 }
 

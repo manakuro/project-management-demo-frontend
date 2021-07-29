@@ -5,7 +5,8 @@ import { AddButton } from './AddButton'
 import { MyAccountAvatar } from './MyAccountAvatar'
 import { SearchInput } from './SearchInput'
 
-export const MainHeader: React.FC = memo((props) => {
+type Props = {}
+export const MainHeader: React.FC<Props> = memo<Props>((props) => {
   const { paddingX } = useMainStyle()
 
   return (

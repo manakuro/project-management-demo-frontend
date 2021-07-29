@@ -98,7 +98,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
         <Flex data-testid="MyTasks" flex={1} flexDirection="column">
           <Head title="My Tasks" />
           <MainHeader>
-            <Header />
+            <Header loading={props.loading} />
           </MainHeader>
           <Flex flex={1}>
             <TabPanels>

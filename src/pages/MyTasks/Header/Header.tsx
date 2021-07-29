@@ -2,9 +2,17 @@ import React, { memo } from 'react'
 import { Divider, Flex } from 'src/components/atoms'
 import { Avatar } from './Avatar'
 import { ShareButton } from './ShareButton'
+import { SkeletonHeader } from './SkeletonHeader'
 import { Tabs } from './Tabs'
 
-export const Header: React.VFC = memo(() => {
+type Props = {
+  loading?: boolean
+}
+export const Header: React.VFC<Props> = memo<Props>((props) => {
+  if (props.loading) {
+    return <SkeletonHeader />
+  }
+
   return (
     <Flex flex={1}>
       <Avatar />

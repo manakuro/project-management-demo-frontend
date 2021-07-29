@@ -22,3 +22,4 @@ export const Projects: React.VFC<Props> = memo<Props>(() => {
     </>
   )
 })
+Projects.displayName = 'Projects'

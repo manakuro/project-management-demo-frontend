@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import React, { memo } from 'react'
 import { List } from 'src/components/atoms'
 import {
@@ -18,7 +19,7 @@ const items: TNavListItem[] = [
     icon: 'home',
     pathname: ROUTE_HOME.href.pathname,
     isExternal: false,
-    isCurrentRoute: (router) => router.pathname === ROUTE_HOME.href.pathname,
+    isCurrentRoute: (pathname) => pathname === ROUTE_HOME.href.pathname,
   },
   {
     name: 'My Tasks',
@@ -26,8 +27,8 @@ const items: TNavListItem[] = [
     icon: 'checkCircle',
     pathname: ROUTE_MY_TASKS.href.pathname,
     isExternal: false,
-    isCurrentRoute: (router) => {
-      return router.pathname.includes(ROUTE_MY_TASKS.href.pathname)
+    isCurrentRoute: (pathname) => {
+      return pathname.includes(ROUTE_MY_TASKS.href.pathname)
     },
   },
   {
@@ -36,7 +37,7 @@ const items: TNavListItem[] = [
     icon: 'bell',
     pathname: ROUTE_INBOX.href.pathname,
     isExternal: false,
-    isCurrentRoute: (router) => router.pathname === ROUTE_INBOX.href.pathname,
+    isCurrentRoute: (pathname) => pathname === ROUTE_INBOX.href.pathname,
   },
   {
     name: 'Portfolios',
@@ -44,8 +45,7 @@ const items: TNavListItem[] = [
     icon: 'barChart',
     pathname: ROUTE_PORTFOLIOS.href.pathname,
     isExternal: false,
-    isCurrentRoute: (router) =>
-      router.pathname === ROUTE_PORTFOLIOS.href.pathname,
+    isCurrentRoute: (pathname) => pathname === ROUTE_PORTFOLIOS.href.pathname,
   },
   {
     name: 'Goals',
@@ -53,16 +53,23 @@ const items: TNavListItem[] = [
     icon: 'rocket',
     pathname: ROUTE_GOALS.href.pathname,
     isExternal: false,
-    isCurrentRoute: (router) => router.pathname === ROUTE_GOALS.href.pathname,
+    isCurrentRoute: (pathname) => pathname === ROUTE_GOALS.href.pathname,
   },
 ]
 
 export const MainNav: React.VFC = memo(() => {
+  const router = useRouter()
   return (
     <List w={MAX_WIDTH} mb={2}>
       {items.map((n, i) => (
-        <NavListItem key={i} item={n} selectedStyle />
+        <NavListItem
+          key={i}
+          item={n}
+          pathname={router.pathname}
+          selectedStyle
+        />
       ))}
     </List>
   )
 })
+MainNav.displayName = 'MainNav'

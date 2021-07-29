@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import {
   Flex,
   Link,
@@ -16,7 +16,7 @@ type Props = {
   projectId: string
 }
 
-export const ListItem: React.VFC<Props> = (props) => {
+export const ListItem: React.VFC<Props> = memo((props) => {
   const { isExpanded } = useNavigation()
   const { project } = useProject(props.projectId)
   const { _hover } = useLinkHoverStyle()
@@ -54,4 +54,5 @@ export const ListItem: React.VFC<Props> = (props) => {
       </PopoverProjectMenu>
     </Flex>
   )
-}
+})
+ListItem.displayName = 'ListItem'

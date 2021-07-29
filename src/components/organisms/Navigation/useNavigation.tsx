@@ -1,8 +1,11 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
 
+const key = (str: string) =>
+  `src/components/organisms/Navigation/useNavigation/${str}`
+
 const state = atom({
-  key: 'navigationState',
+  key: key('navigationState'),
   default: true,
 })
 

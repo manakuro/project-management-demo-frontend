@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Navigation } from 'src/components/organisms'
 
-export const LayoutDefault: React.FC = (props) => {
+export const LayoutDefault: React.FC = memo((props) => {
   return (
     <Flex
       w="full"
@@ -27,7 +27,8 @@ export const LayoutDefault: React.FC = (props) => {
       </Flex>
     </Flex>
   )
-}
+})
+LayoutDefault.displayName = 'LayoutDefault'
 
 export const getLayoutDefault = (page: any) => (
   <LayoutDefault>{page}</LayoutDefault>

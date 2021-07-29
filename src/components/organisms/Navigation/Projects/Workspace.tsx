@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Flex, Link, NextLink, Text, Icon, Portal } from 'src/components/atoms'
 import {
   MenuList,
@@ -16,7 +16,7 @@ import { useLinkHoverStyle, useClickableHoverStyle } from 'src/hooks'
 
 type Props = {}
 
-export const Workspace: React.VFC<Props> = () => {
+export const Workspace: React.VFC<Props> = memo(() => {
   const { isExpanded } = useNavigation()
   const { _hover } = useLinkHoverStyle()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
@@ -67,7 +67,8 @@ export const Workspace: React.VFC<Props> = () => {
       </Menu>
     </>
   )
-}
+})
+Workspace.displayName = 'Workspace'
 
 const MenuItem: React.FC<MenuItemProps> = (props) => (
   <AtomsMenuItem fontSize="sm" iconSpacing={2} {...props} />

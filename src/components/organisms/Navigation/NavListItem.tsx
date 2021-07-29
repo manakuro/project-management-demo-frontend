@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import React, { memo } from 'react'
 import {
   Text,
@@ -19,11 +18,11 @@ type Props = {
   selectedStyle: boolean
   light?: boolean
   linkStyle?: LinkProps
+  pathname?: string
 } & ListItemProps
 
 export const NavListItem: React.VFC<Props> = memo<Props>((props) => {
-  const { item, selectedStyle, linkStyle, light, ...rest } = props
-  const router = useRouter()
+  const { item, selectedStyle, linkStyle, light, pathname, ...rest } = props
   const { _hover, selected } = useLinkHoverStyle()
 
   return (
@@ -37,7 +36,9 @@ export const NavListItem: React.VFC<Props> = memo<Props>((props) => {
           px={PADDING_X}
           py={2}
           _hover={_hover}
-          {...(selectedStyle && item.isCurrentRoute?.(router) ? selected : {})}
+          {...(selectedStyle && item.isCurrentRoute?.(pathname || '')
+            ? selected
+            : {})}
           {...linkStyle}
         >
           <Icon icon={item.icon} mr={PADDING_X} mt="-2px" />
@@ -47,6 +48,7 @@ export const NavListItem: React.VFC<Props> = memo<Props>((props) => {
     </ListItem>
   )
 })
+NavListItem.displayName = 'NavListItem'
 
 const WithNextLink: React.FC<Props> = (props) => {
   return props.item.isExternal ? (

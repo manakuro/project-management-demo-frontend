@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import {
   InviteModal,
   VideoPlayer,
@@ -12,7 +12,7 @@ import {
   DeleteTaskSectionModal,
 } from 'src/components/organisms'
 
-export const Modals: React.VFC = () => {
+export const Modals: React.VFC = memo(() => {
   return (
     <>
       <InviteModal />
@@ -27,4 +27,5 @@ export const Modals: React.VFC = () => {
       <DeleteTaskSectionModal />
     </>
   )
-}
+})
+Modals.displayName = 'Modals'

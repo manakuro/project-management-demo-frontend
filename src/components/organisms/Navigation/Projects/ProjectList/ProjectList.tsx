@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { useProjectIds } from 'src/store/entities/projects'
 import { ListItem } from './ListItem'
 
 type Props = {}
 
-export const ProjectList: React.VFC<Props> = () => {
+export const ProjectList: React.VFC<Props> = memo(() => {
   const { projectIds } = useProjectIds()
 
   return (
@@ -14,4 +14,5 @@ export const ProjectList: React.VFC<Props> = () => {
       ))}
     </>
   )
-}
+})
+ProjectList.displayName = 'ProjectList'

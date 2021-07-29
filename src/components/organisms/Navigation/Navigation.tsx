@@ -35,3 +35,4 @@ export const Navigation: React.VFC = memo(() => {
     </Flex>
   )
 })
+Navigation.displayName = 'Navigation'

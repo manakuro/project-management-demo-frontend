@@ -42,18 +42,22 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
     async (index: number) => {
       switch (index as Index) {
         case TASKS_INDEX: {
+          setTabIndex(TASKS_INDEX)
           await navigateToMyTasks()
           break
         }
         case BOARD_INDEX: {
+          setTabIndex(BOARD_INDEX)
           await navigateToMyTasksBoard()
           break
         }
         case CALENDAR_INDEX: {
+          setTabIndex(CALENDAR_INDEX)
           await navigateToMyTasksCalendar()
           break
         }
         case FILES_INDEX: {
+          setTabIndex(FILES_INDEX)
           await navigateToMyTasksFiles()
           break
         }
@@ -94,6 +98,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
         flex={1}
         display="flex"
         isLazy
+        lazyBehavior="keepMounted"
       >
         <Flex data-testid="MyTasks" flex={1} flexDirection="column">
           <Head title="My Tasks" />

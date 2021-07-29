@@ -1,19 +1,13 @@
 import React, { memo } from 'react'
 import {
-  AddTaskButton,
   CustomizeButton,
   IncompleteTasksButton,
   SortButton,
   TasksHeader,
-  TasksHeaderLeft,
   TasksHeaderRight,
   TasksList,
-  TasksListBody,
-  TasksListHeader,
-  TasksListLayout,
   TasksListContent,
   TasksProvider,
-  TasksListHorizontalScrollBorder,
 } from 'src/components/organisms'
 import { CustomizeMenu } from 'src/components/organisms/Tasks'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
@@ -27,23 +21,21 @@ export const Board: React.VFC = memo(() => {
   return (
     <TasksProvider isMyTasksPage>
       <TasksList>
-        <TasksHeader>
-          <TasksHeaderLeft>
-            <AddTaskButton solid />
-          </TasksHeaderLeft>
-          <TasksHeaderRight>
+        <TasksHeader
+          h="40px"
+          boxShadow="sm"
+          borderBottom={1}
+          borderStyle="solid"
+          borderColor="gray.200"
+          alignItems="center"
+        >
+          <TasksHeaderRight ml="auto">
             <IncompleteTasksButton />
             <SortButton />
             <CustomizeButton />
           </TasksHeaderRight>
         </TasksHeader>
-        <TasksListContent>
-          <TasksListHeader />
-          <TasksListBody>
-            <TasksListLayout />
-          </TasksListBody>
-          <TasksListHorizontalScrollBorder />
-        </TasksListContent>
+        <TasksListContent></TasksListContent>
       </TasksList>
       <CustomizeMenu />
     </TasksProvider>

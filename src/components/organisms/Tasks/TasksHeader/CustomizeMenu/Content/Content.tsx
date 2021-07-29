@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo, useEffect, useMemo } from 'react'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { Box, Flex, Heading, Icon, IconButton } from 'src/components/atoms'
 import {
@@ -9,18 +9,25 @@ import {
 import { Divider } from 'src/components/organisms/Navigation/Divider'
 import { useTaskColumnCustomizableContext } from 'src/components/organisms/Tasks/TasksProvider/useTaskColumnCustomizableContext'
 import { useDnd } from 'src/hooks/dnd/useDnd'
+import { isMyTasksBoardURL, useRouter } from 'src/router'
 import { useCustomizeMenu } from '../useCustomizeMenu'
 import { ListItem } from './ListItem'
 
 const HEADER_HEIGHT = 72
 const TASKS_HEADER_HEIGHT = 60
-const TOP = HEADER_HEIGHT + TASKS_HEADER_HEIGHT
+const TASKS_HEADER_BOARD_HEIGHT = 40
 
 export const Content: React.VFC = memo(() => {
   const { onClose } = useCustomizeMenu()
   const { taskColumnIds, setOrderTaskColumn } =
     useTaskColumnCustomizableContext()
   const { list, handleDnd } = useDnd(taskColumnIds)
+  const { router } = useRouter()
+  const top = useMemo<number>(() => {
+    if (isMyTasksBoardURL(router))
+      return HEADER_HEIGHT + TASKS_HEADER_BOARD_HEIGHT
+    return HEADER_HEIGHT + TASKS_HEADER_HEIGHT
+  }, [router])
 
   useEffect(() => {
     setOrderTaskColumn(list)
@@ -29,7 +36,7 @@ export const Content: React.VFC = memo(() => {
   return (
     <DrawerContent
       flex={1}
-      top={`${TOP}px !important`}
+      top={`${top}px !important`}
       borderTop="1px"
       borderLeft="1px"
       borderColor="gray.200"

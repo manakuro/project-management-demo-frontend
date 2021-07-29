@@ -30,7 +30,7 @@ type Index =
 
 export const Component: React.VFC<Props> = memo<Props>((props) => {
   const {
-    navigateToTasks,
+    navigateToMyTasks,
     navigateToMyTasksBoard,
     navigateToMyTasksCalendar,
     navigateToMyTasksFiles,
@@ -42,7 +42,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
     async (index: number) => {
       switch (index as Index) {
         case TASKS_INDEX: {
-          await navigateToTasks()
+          await navigateToMyTasks()
           break
         }
         case BOARD_INDEX: {
@@ -63,7 +63,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
       navigateToMyTasksBoard,
       navigateToMyTasksCalendar,
       navigateToMyTasksFiles,
-      navigateToTasks,
+      navigateToMyTasks,
     ],
   )
 

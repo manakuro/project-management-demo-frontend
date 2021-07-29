@@ -12,7 +12,7 @@ type Options = Parameters<NextRouter['push']>[2]
 export const useRouter = () => {
   const router = useRouterNext()
 
-  const navigateToTasks = useCallback(
+  const navigateToMyTasks = useCallback(
     async (options?: Options) => {
       await router.push(ROUTE_MY_TASKS.href.pathname, undefined, {
         shallow: true,
@@ -82,12 +82,12 @@ export const useRouter = () => {
   )
 
   return {
-    navigateToTaskDetail,
-    navigateToTaskDetailFeed,
-    navigateToTasks,
+    navigateToMyTasks,
     navigateToMyTasksBoard,
     navigateToMyTasksCalendar,
     navigateToMyTasksFiles,
+    navigateToTaskDetail,
+    navigateToTaskDetailFeed,
     router,
     taskDetailFeedURL,
   }

@@ -33,9 +33,6 @@ export const isMyTasksFilesURL = (router: NextRouter): boolean => {
   return router.asPath === ROUTE_MY_TASKS_FILES.href.pathname
 }
 
-export const isTasksURL = (router: NextRouter): boolean => {
-  return !!router.query && !!router.query[ROUTE_MY_TASKS['name']]
-}
 export const getTaskDetailId = (router: NextRouter): string =>
   (isTaskDetailURL(router) &&
     (router.query?.[ROUTE_MY_TASKS['name']]?.[0] as string)) ||

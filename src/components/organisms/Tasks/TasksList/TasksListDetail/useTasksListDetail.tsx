@@ -30,7 +30,7 @@ type Props = {
   listenRouter?: boolean
 }
 export const useTasksListDetail = (props?: Props) => {
-  const { router, navigateToTasks } = useRouter()
+  const { router, navigateToMyTasks } = useRouter()
   const [isOpen, setIsOpen] = useRecoilState(openState)
   const [id, setId] = useRecoilState(idState)
   const [loading, setLoading] = useRecoilState(loadingState)
@@ -41,10 +41,10 @@ export const useTasksListDetail = (props?: Props) => {
 
   const onClose = useCallback(async () => {
     setIsOpen(false)
-    await navigateToTasks()
+    await navigateToMyTasks()
     resetId()
     resetScrollId()
-  }, [setIsOpen, navigateToTasks, resetId, resetScrollId])
+  }, [setIsOpen, navigateToMyTasks, resetId, resetScrollId])
 
   const onOpen = useCallback(
     (callback?: () => void) => {

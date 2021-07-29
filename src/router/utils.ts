@@ -5,7 +5,6 @@ import {
   ROUTE_MY_TASKS_CALENDAR,
   ROUTE_MY_TASKS_FILES,
 } from 'src/router/routes'
-import { isNumeric } from 'src/shared/utils/isNumeric'
 
 // TODO: Should be verified
 export const isTaskDetailURL = (router: NextRouter): boolean => {
@@ -13,7 +12,9 @@ export const isTaskDetailURL = (router: NextRouter): boolean => {
     !!router.query &&
     !!router.query[ROUTE_MY_TASKS['name']]?.length &&
     !!router.query[ROUTE_MY_TASKS['name']]?.[0] &&
-    isNumeric(router.query[ROUTE_MY_TASKS['name']]?.[0] ?? '')
+    !isMyTasksBoardURL(router) &&
+    !isMyTasksCalendarURL(router) &&
+    !isMyTasksFilesURL(router)
   )
 }
 

@@ -6,6 +6,7 @@ import { Feed } from './Feed'
 import { Like } from './Like'
 import { Projects } from './Projects'
 import { Provider } from './Provider'
+import { Subtask } from './Subtask'
 import { TasksName } from './TasksName'
 
 type Props = FlexProps & {
@@ -31,6 +32,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
         <Flex ml="auto">
           <Like taskId={props.taskId} />
           <Feed taskId={props.taskId} />
+          <Subtask taskId={props.taskId} />
         </Flex>
       </Flex>
     </Card>

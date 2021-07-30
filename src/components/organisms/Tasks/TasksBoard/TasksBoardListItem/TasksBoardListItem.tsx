@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { FlexProps, Flex } from 'src/components/atoms'
 import { transitions } from 'src/styles'
+import { Projects } from './Projects'
 import { Provider } from './Provider'
 
 type Props = FlexProps & {
@@ -15,7 +16,7 @@ export const TasksBoardListItem: React.FC<Props> = memo<Props>((props) => {
   )
 })
 
-const Component: React.FC<Props> = memo<Props>(() => {
+const Component: React.FC<Props> = memo<Props>((props) => {
   return (
     <>
       <Flex
@@ -33,7 +34,10 @@ const Component: React.FC<Props> = memo<Props>(() => {
         }}
         cursor="pointer"
         transition={transitions.base()}
-      ></Flex>
+        p={4}
+      >
+        <Projects taskId={props.taskId} />
+      </Flex>
     </>
   )
 })

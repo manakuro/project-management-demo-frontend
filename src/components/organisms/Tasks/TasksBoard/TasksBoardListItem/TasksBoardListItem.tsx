@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { Card } from './Card'
 import { DueDate } from './DueDate'
+import { Feed } from './Feed'
 import { Like } from './Like'
 import { Projects } from './Projects'
 import { Provider } from './Provider'
@@ -29,6 +30,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
         <DueDate taskId={props.taskId} />
         <Flex ml="auto">
           <Like taskId={props.taskId} />
+          <Feed taskId={props.taskId} />
         </Flex>
       </Flex>
     </Card>

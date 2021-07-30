@@ -1,16 +1,17 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { memo, useCallback, useMemo } from 'react'
 import { IconButton } from 'src/components/atoms'
 import { useTasksListDetail } from 'src/components/organisms'
 import { FEED_LIST_CONTAINER_ID } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList'
-import { useTasksNameContext } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { useRouter } from 'src/router'
 import { useTasksFeedIds } from 'src/store/entities/tasks/feedIds'
 import { Icon } from './Icon'
 
-type Props = {}
+type Props = {
+  taskId: string
+}
 
-export const Feed: React.VFC<Props> = () => {
-  const { taskId } = useTasksNameContext()
+export const Feed: React.VFC<Props> = memo((props) => {
+  const { taskId } = props
   const { feedIdsWithoutFirst } = useTasksFeedIds(taskId)
   const size = useMemo(
     () => feedIdsWithoutFirst.length,
@@ -40,4 +41,5 @@ export const Feed: React.VFC<Props> = () => {
       onClick={handleClick}
     />
   )
-}
+})
+Feed.displayName = 'Feed'

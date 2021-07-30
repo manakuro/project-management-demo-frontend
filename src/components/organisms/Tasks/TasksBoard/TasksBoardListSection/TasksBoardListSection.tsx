@@ -33,7 +33,6 @@ const Component: React.FC<Props> = memo<Props>((props) => {
         h="full"
         px={3}
         py={2}
-        ml={2}
         border={1}
         borderStyle="solid"
         borderColor="transparent"

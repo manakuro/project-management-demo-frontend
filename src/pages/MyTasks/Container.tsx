@@ -5,6 +5,7 @@ import { Component } from './Component'
 
 export const Container: React.FC = () => {
   const { refetch, loading } = useMyTasksQuery({ lazy: true })
+
   useTasksListDetail({
     listenRouter: true,
   })

@@ -93,6 +93,7 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
         onBlur={onInputBlur}
         autoFocus={autoFocus}
         borderRadius="sm"
+        minH="23px"
         containerStyle={{
           ml: 1,
           maxH: 20,

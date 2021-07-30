@@ -13,6 +13,7 @@ export const TasksBoardContent: React.FC<Props> = memo<Props>((props) => {
       flex={1}
       maxW={maxW}
       overflowX="scroll"
+      overflowY="auto"
       maxH={`calc(100vh - ${maxH}px)`}
       position="relative"
       h="full"

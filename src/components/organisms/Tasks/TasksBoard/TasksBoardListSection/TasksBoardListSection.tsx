@@ -44,7 +44,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
         transition={transitions.base()}
       >
         <Header taskSectionId={props.taskSectionId} />
-        <Flex flexDirection="column" overflowY="scroll">
+        <Flex flexDirection="column" overflowY="scroll" maxH="600px">
           {taskIds.map((id) => (
             <TasksBoardListItem taskId={id} key={id} />
           ))}

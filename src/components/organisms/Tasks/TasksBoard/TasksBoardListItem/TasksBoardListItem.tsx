@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
-import { FlexProps } from 'src/components/atoms'
+import { Flex, FlexProps } from 'src/components/atoms'
 import { Card } from './Card'
+import { DueDate } from './DueDate'
 import { Projects } from './Projects'
 import { Provider } from './Provider'
 import { TasksName } from './TasksName'
@@ -23,6 +24,9 @@ const Component: React.FC<Props> = memo<Props>((props) => {
       {/*cover image here*/}
       <Projects taskId={props.taskId} />
       <TasksName taskId={props.taskId} />
+      <Flex mt={4}>
+        <DueDate taskId={props.taskId} />
+      </Flex>
     </Card>
   )
 })

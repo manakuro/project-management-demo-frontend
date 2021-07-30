@@ -1,14 +1,16 @@
 import React, { memo } from 'react'
 import { FlexProps, Flex } from 'src/components/atoms'
 import { transitions } from 'src/styles'
+import { useTasksBoardListItemContext } from './Provider'
 
 type Props = FlexProps
 
 export const Card: React.FC<Props> = memo<Props>((props) => {
+  const { ref } = useTasksBoardListItemContext()
   return (
     <Flex
+      ref={ref}
       flexDirection="column"
-      minH="91px"
       w="full"
       bg="white"
       border={1}

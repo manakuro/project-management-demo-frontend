@@ -38,7 +38,7 @@ export const DueDate: React.VFC<Props> = memo<Props>((props) => {
         />
       )}
       {hasDueDate && (
-        <Button variant="ghost" h={5} minH={5} w="44px" minW="44px">
+        <Button variant="ghost" h={5} minH={5} w="auto" minW="44px" px={1}>
           <AtomsDueDate fontSize="xs" dueDate={task.dueDate} />
         </Button>
       )}

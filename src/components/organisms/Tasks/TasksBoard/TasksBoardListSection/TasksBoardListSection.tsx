@@ -20,6 +20,7 @@ export const TasksBoardListSection: React.FC<Props> = memo<Props>((props) => {
   )
 })
 
+const TOP = 72 + 40 + 8 + 8 + 36 // Header + List Header + padding + padding + List Section
 const Component: React.FC<Props> = memo<Props>((props) => {
   const { taskIds } = useTaskContext(props.taskSectionId)
 
@@ -37,18 +38,46 @@ const Component: React.FC<Props> = memo<Props>((props) => {
         borderStyle="solid"
         borderColor="transparent"
         borderRadius="md"
-        _hover={{
-          borderColor: 'gray.200',
-          boxShadow: 'sm',
-        }}
+        // _hover={{
+        //   borderColor: 'gray.200',
+        //   boxShadow: 'sm',
+        // }}
         transition={transitions.base()}
       >
         <Header taskSectionId={props.taskSectionId} />
-        <Flex flexDirection="column" overflowY="scroll" maxH="600px">
-          {taskIds.map((id) => (
-            <TasksBoardListItem taskId={id} key={id} />
-          ))}
-          <AddTask taskSectionId={props.taskSectionId} />
+        <Flex
+          flexDirection="column"
+          overflowY="scroll"
+          pb={20}
+          position="relative"
+          maxH={`calc(100vh - ${TOP}px)`}
+          minH={`calc(100vh - ${TOP}px)`}
+        >
+          {taskIds.length > 0 && (
+            <>
+              {taskIds.map((id) => (
+                <TasksBoardListItem taskId={id} key={id} />
+              ))}
+              <AddTask taskSectionId={props.taskSectionId} />
+            </>
+          )}
+          {taskIds.length === 0 && (
+            <>
+              <Flex
+                bgGradient="linear(to-b, help.guide.bg, gray.50)"
+                borderRadius="md"
+                w="full"
+                h="calc(100% - 8px)"
+                position="absolute"
+                top={2}
+                left={0}
+                pt={2}
+                px={2}
+              >
+                <AddTask taskSectionId={props.taskSectionId} w="full" />
+              </Flex>
+            </>
+          )}
         </Flex>
       </Flex>
       {props.showAddButton && <AddTaskSection />}

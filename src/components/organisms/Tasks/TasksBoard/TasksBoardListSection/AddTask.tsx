@@ -1,13 +1,14 @@
 import React, { memo, useCallback } from 'react'
-import { Button, Icon } from 'src/components/atoms'
+import { Button, ButtonProps, Icon } from 'src/components/atoms'
 import { useTaskContext } from 'src/components/organisms'
 
 type Props = {
   taskSectionId: string
-}
+} & ButtonProps
 
 export const AddTask: React.FC<Props> = memo<Props>((props) => {
-  const { addTask } = useTaskContext(props.taskSectionId)
+  const { taskSectionId, ...rest } = props
+  const { addTask } = useTaskContext(taskSectionId)
 
   const handleClick = useCallback(async () => {
     await addTask()
@@ -19,7 +20,9 @@ export const AddTask: React.FC<Props> = memo<Props>((props) => {
       onClick={handleClick}
       leftIcon={<Icon icon="plus" />}
       variant="ghost"
-      size="sm"
+      size="md"
+      fontSize="sm"
+      {...rest}
     >
       Add task
     </Button>

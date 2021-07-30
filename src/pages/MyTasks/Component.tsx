@@ -98,7 +98,6 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
         flex={1}
         display="flex"
         isLazy
-        lazyBehavior="keepMounted"
       >
         <Flex data-testid="MyTasks" flex={1} flexDirection="column">
           <Head title="My Tasks" />

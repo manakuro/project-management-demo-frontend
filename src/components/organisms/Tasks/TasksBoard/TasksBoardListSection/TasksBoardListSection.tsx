@@ -64,7 +64,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
           {taskIds.length === 0 && (
             <>
               <Flex
-                bgGradient="linear(to-b, help.guide.bg, gray.50)"
+                bgGradient="linear(to-b, gray.100, gray.50)"
                 borderRadius="md"
                 w="full"
                 h="calc(100% - 8px)"
@@ -74,7 +74,13 @@ const Component: React.FC<Props> = memo<Props>((props) => {
                 pt={2}
                 px={2}
               >
-                <AddTask taskSectionId={props.taskSectionId} w="full" />
+                <AddTask
+                  taskSectionId={props.taskSectionId}
+                  w="full"
+                  _hover={{
+                    bg: 'gray.200',
+                  }}
+                />
               </Flex>
             </>
           )}

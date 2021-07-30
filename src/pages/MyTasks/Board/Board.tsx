@@ -6,8 +6,9 @@ import {
   TasksHeader,
   TasksHeaderRight,
   TasksList,
-  TasksListContent,
   TasksProvider,
+  TasksBoardContent,
+  TasksBoardList,
 } from 'src/components/organisms'
 import { CustomizeMenu } from 'src/components/organisms/Tasks'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
@@ -35,7 +36,9 @@ export const Board: React.VFC = memo(() => {
             <CustomizeButton />
           </TasksHeaderRight>
         </TasksHeader>
-        <TasksListContent></TasksListContent>
+        <TasksBoardContent>
+          <TasksBoardList />
+        </TasksBoardContent>
       </TasksList>
       <CustomizeMenu />
     </TasksProvider>

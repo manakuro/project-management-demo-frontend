@@ -30,7 +30,7 @@ export const Tooltip: React.FC<Props> & { id?: string } = forwardRef<
   'div'
 >((props, ref) => {
   const { size, withIcon, ...rest } = props
-  const sizeStyle = sizes[(size as Sizes) ?? 'md']
+  const sizeStyle = size ? sizes[size as Sizes] : {}
   const tooltipProps: ChakraTooltipProps = {
     py: 2,
     px: 4,

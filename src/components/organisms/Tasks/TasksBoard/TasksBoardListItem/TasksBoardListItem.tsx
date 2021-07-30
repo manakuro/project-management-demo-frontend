@@ -1,8 +1,9 @@
 import React, { memo } from 'react'
-import { FlexProps, Flex } from 'src/components/atoms'
-import { transitions } from 'src/styles'
+import { FlexProps } from 'src/components/atoms'
+import { Card } from './Card'
 import { Projects } from './Projects'
 import { Provider } from './Provider'
+import { TasksName } from './TasksName'
 
 type Props = FlexProps & {
   taskId: string
@@ -18,27 +19,11 @@ export const TasksBoardListItem: React.FC<Props> = memo<Props>((props) => {
 
 const Component: React.FC<Props> = memo<Props>((props) => {
   return (
-    <>
-      <Flex
-        minH="91px"
-        w="full"
-        bg="white"
-        border={1}
-        borderStyle="solid"
-        borderColor="gray.200"
-        borderRadius="md"
-        mt={2}
-        _hover={{
-          borderColor: 'gray.300',
-          boxShadow: 'sm',
-        }}
-        cursor="pointer"
-        transition={transitions.base()}
-        p={4}
-      >
-        <Projects taskId={props.taskId} />
-      </Flex>
-    </>
+    <Card>
+      {/*cover image here*/}
+      <Projects taskId={props.taskId} />
+      <TasksName taskId={props.taskId} />
+    </Card>
   )
 })
 TasksBoardListItem.displayName = 'TasksBoardListItem'

@@ -13,7 +13,7 @@ export const Projects: React.FC<Props> = memo<Props>((props) => {
   if (!projectIds.length) return null
 
   return (
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" spacing={2} mb={4}>
       {projectIds.map((id) => (
         <ProjectChip projectId={id} key={id} />
       ))}

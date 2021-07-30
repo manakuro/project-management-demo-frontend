@@ -11,14 +11,28 @@ import { ChakraProps } from 'src/shared/chakra'
 type Props = {
   value: string
   onChange: TextareaProps['onChange']
+  onClick?: FlexProps['onClick']
   onKeyDown?: TextareaProps['onKeyDown']
+  onFocus?: TextareaProps['onFocus']
+  onBlur?: TextareaProps['onBlur']
+  autoFocus?: TextareaProps['autoFocus']
   containerStyle?: FlexProps
   placeholder?: string
 } & ChakraProps
 
 export const InputText: React.FC<Props> = memo<Props>((props) => {
-  const { value, onChange, onKeyDown, containerStyle, placeholder, ...rest } =
-    props
+  const {
+    value,
+    onChange,
+    onKeyDown,
+    containerStyle,
+    placeholder,
+    onClick,
+    onFocus,
+    onBlur,
+    autoFocus,
+    ...rest
+  } = props
 
   const style = useMemo<ChakraProps>(
     () => ({
@@ -43,7 +57,14 @@ export const InputText: React.FC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <Flex flex={1} position="relative" {...rest} {...containerStyle} w="full">
+    <Flex
+      flex={1}
+      position="relative"
+      onClick={onClick}
+      {...rest}
+      {...containerStyle}
+      w="full"
+    >
       <Box {...style} visibility="hidden">
         {value}
       </Box>
@@ -54,6 +75,9 @@ export const InputText: React.FC<Props> = memo<Props>((props) => {
         resize="none"
         onChange={onChange}
         onKeyDown={onKeyDown}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        autoFocus={autoFocus}
         position="absolute"
         top={0}
         left={0}

@@ -22,7 +22,7 @@ export const Header: React.FC<Props> = memo<Props>((props) => {
   return (
     <Flex
       h="50px"
-      maxW="40%"
+      maxW="60%"
       alignItems="center"
       ref={ref}
       px={6}

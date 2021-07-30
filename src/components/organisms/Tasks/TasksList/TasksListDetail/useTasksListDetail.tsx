@@ -2,6 +2,7 @@ import { useCallback, useEffect } from 'react'
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useTaskDetailQuery } from 'src/hooks/queries/useTaskDetailQuery'
 import { isTaskDetailURL, useRouter, getTaskDetailId } from 'src/router'
+import { useMyTasksTabStatus } from 'src/store/app/myTasks/taskTabStatus'
 
 const key = (str: string) =>
   `src/components/organisms/Tasks/TasksList/TasksListDetail/useTasksListDetail/${str}`
@@ -30,7 +31,12 @@ type Props = {
   listenRouter?: boolean
 }
 export const useTasksListDetail = (props?: Props) => {
-  const { router, navigateToMyTasks } = useRouter()
+  const {
+    router,
+    navigateToMyTasks,
+    navigateToMyTasksBoard,
+    navigateToMyTasksCalendar,
+  } = useRouter()
   const [isOpen, setIsOpen] = useRecoilState(openState)
   const [id, setId] = useRecoilState(idState)
   const [loading, setLoading] = useRecoilState(loadingState)
@@ -38,13 +44,32 @@ export const useTasksListDetail = (props?: Props) => {
   const resetScrollId = useResetRecoilState(scrollIdState)
   const resetId = useResetRecoilState(idState)
   const { refetch } = useTaskDetailQuery({ lazy: true })
+  const { isTaskTabStatus } = useMyTasksTabStatus()
+
+  const backToPage = useCallback(async () => {
+    switch (true) {
+      case isTaskTabStatus('list'):
+        await navigateToMyTasks()
+        break
+      case isTaskTabStatus('board'):
+        await navigateToMyTasksBoard()
+        break
+      case isTaskTabStatus('calendar'):
+        await navigateToMyTasksCalendar()
+    }
+  }, [
+    isTaskTabStatus,
+    navigateToMyTasks,
+    navigateToMyTasksBoard,
+    navigateToMyTasksCalendar,
+  ])
 
   const onClose = useCallback(async () => {
     setIsOpen(false)
-    await navigateToMyTasks()
+    await backToPage()
     resetId()
     resetScrollId()
-  }, [setIsOpen, navigateToMyTasks, resetId, resetScrollId])
+  }, [setIsOpen, backToPage, resetId, resetScrollId])
 
   const onOpen = useCallback(
     (callback?: () => void) => {

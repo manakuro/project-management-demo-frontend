@@ -23,7 +23,7 @@ export const TasksBoardListItem: React.FC<Props> = memo<Props>((props) => {
 
 const Component: React.FC<Props> = memo<Props>((props) => {
   return (
-    <Card>
+    <Card taskId={props.taskId}>
       {/*cover image here*/}
       <Projects taskId={props.taskId} />
       <TasksName taskId={props.taskId} />

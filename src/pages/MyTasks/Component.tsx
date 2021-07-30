@@ -7,8 +7,10 @@ import {
   isMyTasksCalendarURL,
   isMyTasksFilesURL,
   isMyTasksURL,
+  isTaskDetailURL,
   useRouter,
 } from 'src/router'
+import { useMyTasksTabStatus } from 'src/store/app/myTasks/taskTabStatus'
 import { Board } from './Board'
 import { Header } from './Header'
 import { List } from './List'
@@ -37,22 +39,26 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
     router,
   } = useRouter()
   const [tabIndex, setTabIndex] = React.useState<Index>(TASKS_INDEX)
+  const { setTabStatus, isTaskTabStatus } = useMyTasksTabStatus()
 
   const handleTabsChange = useCallback(
     async (index: number) => {
       switch (index as Index) {
         case TASKS_INDEX: {
           setTabIndex(TASKS_INDEX)
+          setTabStatus('list')
           await navigateToMyTasks()
           break
         }
         case BOARD_INDEX: {
           setTabIndex(BOARD_INDEX)
+          setTabStatus('board')
           await navigateToMyTasksBoard()
           break
         }
         case CALENDAR_INDEX: {
           setTabIndex(CALENDAR_INDEX)
+          setTabStatus('calendar')
           await navigateToMyTasksCalendar()
           break
         }
@@ -64,14 +70,33 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
       }
     },
     [
+      setTabStatus,
+      navigateToMyTasks,
       navigateToMyTasksBoard,
       navigateToMyTasksCalendar,
       navigateToMyTasksFiles,
-      navigateToMyTasks,
     ],
   )
 
   useEffect(() => {
+    if (isTaskDetailURL(router)) {
+      switch (true) {
+        case isTaskTabStatus('list'): {
+          setTabIndex(TASKS_INDEX)
+          break
+        }
+        case isTaskTabStatus('board'): {
+          setTabIndex(BOARD_INDEX)
+          break
+        }
+        case isTaskTabStatus('calendar'): {
+          setTabIndex(CALENDAR_INDEX)
+          break
+        }
+      }
+      return
+    }
+
     if (isMyTasksURL(router)) {
       setTabIndex(TASKS_INDEX)
       return
@@ -88,7 +113,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
       setTabIndex(FILES_INDEX)
       return
     }
-  }, [router])
+  }, [isTaskTabStatus, router])
 
   return (
     <Provider loading={props.loading}>

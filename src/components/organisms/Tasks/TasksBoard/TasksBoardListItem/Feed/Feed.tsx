@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { IconButton } from 'src/components/atoms'
-import { useTasksListDetail } from 'src/components/organisms'
+import { useTaskDetail } from 'src/components/organisms'
 import { FEED_LIST_CONTAINER_ID } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList'
 import { useRouter } from 'src/router'
 import { useTasksFeedIds } from 'src/store/entities/tasks/feedIds'
@@ -17,7 +17,7 @@ export const Feed: React.VFC<Props> = memo((props) => {
     () => feedIdsWithoutFirst.length,
     [feedIdsWithoutFirst.length],
   )
-  const { setScrollId } = useTasksListDetail()
+  const { setScrollId } = useTaskDetail()
   const { navigateToTaskDetail } = useRouter()
 
   const handleClick = useCallback(

@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Flex, Input as AtomsInput, Wrap, WrapItem } from 'src/components/atoms'
 import { AssigneeChip } from 'src/components/molecules'
-import { AssigneeMenu, useTasksListDetail } from 'src/components/organisms'
+import { AssigneeMenu, useTaskDetail } from 'src/components/organisms'
 import { useClickOutside } from 'src/hooks'
 import { ChakraProps, useStyleConfig } from 'src/shared/chakra'
 import { useTasksTeammateIds } from 'src/store/entities/tasks/teammateIds'
@@ -21,7 +21,7 @@ type InputStyle = {
 }
 
 const Component: React.VFC = memo(() => {
-  const { taskId } = useTasksListDetail()
+  const { taskId } = useTaskDetail()
   const { teammateIds } = useTasksTeammateIds(taskId)
   const { onInputUnfocus, isInputFocused } = useCollaboratorsContext()
   const { ref } = useClickOutside(onInputUnfocus)

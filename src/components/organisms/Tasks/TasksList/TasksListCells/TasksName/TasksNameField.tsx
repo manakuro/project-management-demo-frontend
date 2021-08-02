@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Box, Flex, Input, InputProps } from 'src/components/atoms'
+import { useTaskDetailDrawerRef } from 'src/components/organisms'
 import { useTasksNameContext } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName/TasksNameProvider'
-import { useTaskDetailListDetailRef } from 'src/components/organisms/Tasks/TasksList/TasksListDetail/useTaskListDetailRef'
 import { useClickOutside, useDebounce } from 'src/hooks'
 
 type Props = {
@@ -21,7 +21,7 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
     inputFocused,
     isTransitioning,
   } = useTasksNameContext()
-  const { taskDetailListDetailRef } = useTaskDetailListDetailRef()
+  const { taskDetailListDetailRef } = useTaskDetailDrawerRef()
   const autoFocus = useMemo(() => props.isNew, [props.isNew])
   const skipElement = useCallback(
     (e: Event) => {

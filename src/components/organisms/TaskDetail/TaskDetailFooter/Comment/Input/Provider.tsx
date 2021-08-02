@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { FileUploaderParams, UploadedFile } from 'src/components/atoms'
-import { useTasksListDetail } from 'src/components/organisms'
+import { useTaskDetail } from 'src/components/organisms'
 import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 import { useClickOutside, useToast } from 'src/hooks'
 import { getAttachmentTypeFromFile } from 'src/shared/getAttachmentTypeFromFile'
@@ -95,7 +95,7 @@ function useAttachmentFile() {
 function useUploadingFile(props: {
   setAttachmentIds: React.Dispatch<React.SetStateAction<string[]>>
 }) {
-  const { taskId } = useTasksListDetail()
+  const { taskId } = useTaskDetail()
   const { addAttachment } = useTasksAttachments(taskId)
   const [uploadingFiles, setUploadingFiles] = useState<
     ContextProps['uploadingFiles']
@@ -202,7 +202,7 @@ function useFocus() {
 }
 
 function useSave(props: { onSaved: (id: string) => void }) {
-  const { taskId } = useTasksListDetail()
+  const { taskId } = useTaskDetail()
   const { addFeed } = useFeedsByTask(taskId)
   const { me } = useMe()
   const { taskDetailBodyDom } = useTaskDetailBody()

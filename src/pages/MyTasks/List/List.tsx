@@ -14,18 +14,28 @@ import {
   TasksListContent,
   TasksProvider,
   TasksListHorizontalScrollBorder,
+  useTasksListDetail,
+  TaskDetailDrawer,
 } from 'src/components/organisms'
 import { CustomizeMenu } from 'src/components/organisms/Tasks'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { SkeletonList } from './SkeletonList'
 
 export const List: React.VFC = memo(() => {
+  return (
+    <TasksProvider isMyTasksPage>
+      <Component />
+    </TasksProvider>
+  )
+})
+const Component: React.VFC = memo(() => {
   const { loading } = useMyTasksContext()
+  const { skipElement, backToPage } = useTasksListDetail()
 
   if (loading) return <SkeletonList />
 
   return (
-    <TasksProvider isMyTasksPage>
+    <>
       <TasksList>
         <TasksHeader>
           <TasksHeaderLeft>
@@ -46,7 +56,8 @@ export const List: React.VFC = memo(() => {
         </TasksListContent>
       </TasksList>
       <CustomizeMenu />
-    </TasksProvider>
+      <TaskDetailDrawer backToPage={backToPage} skipElement={skipElement} />
+    </>
   )
 })
 List.displayName = 'List'

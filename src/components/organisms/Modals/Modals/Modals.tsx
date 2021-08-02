@@ -4,7 +4,6 @@ import {
   VideoPlayer,
   Help,
   ShareWorkspaceModal,
-  TasksListDetail,
   EditorLinkModal,
   EditorMentionMenu,
   EditorEmojiMenu,
@@ -18,7 +17,6 @@ export const Modals: React.VFC = memo(() => {
       <InviteModal />
       <ShareWorkspaceModal />
       <Help />
-      <TasksListDetail />
       <VideoPlayer />
       <EditorLinkModal />
       <EditorMentionMenu />

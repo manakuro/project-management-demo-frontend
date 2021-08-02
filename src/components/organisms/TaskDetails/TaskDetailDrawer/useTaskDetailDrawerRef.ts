@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { atom, useRecoilState } from 'recoil'
 
 const key = (str: string) =>
-  `src/components/organisms/Tasks/TasksList/TasksListDetail/useTaskListDetailRef/${str}`
+  `src/components/organisms/TaskDetails/TaskDetailDrawer/useTaskDetailDrawerRef/${str}`
 
 type State = HTMLElement | null
 
@@ -11,7 +11,7 @@ const refState = atom<State>({
   default: null,
 })
 
-export const useTaskDetailListDetailRef = (deps?: any) => {
+export const useTaskDetailDrawerRef = (deps?: any) => {
   const ref = useRef<HTMLElement | null>(null)
   const [state, setState] = useRecoilState(refState)
 

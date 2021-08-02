@@ -711,7 +711,7 @@ const fetchTasks = async (): Promise<MyTaskResponse> => {
         taskTabStatus: {
           id: '1',
           teammateId: '1',
-          tabStatus: 2,
+          tabStatus: 1,
         },
       })
     }, 1000)

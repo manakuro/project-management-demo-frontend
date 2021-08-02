@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex, Stack } from 'src/components/atoms'
-import { useTasksListDetail } from 'src/components/organisms'
+import { useTaskDetail } from 'src/components/organisms'
 import { dateFns } from 'src/shared/dateFns'
 import { Assignee } from './Assignee'
 import { Attachment } from './Attachment'
@@ -14,7 +14,7 @@ import { TaskName } from './TaskName'
 type Props = {}
 
 export const Form: React.FC<Props> = memo(() => {
-  const { taskId } = useTasksListDetail()
+  const { taskId } = useTaskDetail()
 
   return (
     <Flex flexDirection="column" pt={2}>

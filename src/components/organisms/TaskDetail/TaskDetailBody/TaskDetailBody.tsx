@@ -1,6 +1,6 @@
 import React, { memo, useLayoutEffect } from 'react'
 import { Flex, Skeleton, Stack } from 'src/components/atoms'
-import { useTasksListDetail } from 'src/components/organisms'
+import { useTaskDetail } from 'src/components/organisms'
 import { MakePublic } from 'src/components/organisms/TaskDetail/TaskDetailBody/MakePublic'
 import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 import { Form } from './Form'
@@ -12,7 +12,7 @@ type Props = {
 
 export const TaskDetailBody: React.FC<Props> = memo<Props>((props) => {
   const { ref } = useTaskDetailBody(props.loading)
-  const { scrollId } = useTasksListDetail()
+  const { scrollId } = useTaskDetail()
 
   useLayoutEffect(() => {
     if (props.loading) return

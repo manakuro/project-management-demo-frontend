@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Icon, IconButton, Stack } from 'src/components/atoms'
-import { useTasksListDetail } from 'src/components/organisms'
+import { useTaskDetail } from 'src/components/organisms'
 import { useTasksTeammateIds } from 'src/store/entities/tasks/teammateIds'
 import { useCollaboratorsContext } from '../Provider'
 import { Teammate } from './Teammate'
@@ -8,7 +8,7 @@ import { Teammate } from './Teammate'
 type Props = {}
 
 export const Teammates: React.FC<Props> = memo(() => {
-  const { taskId } = useTasksListDetail()
+  const { taskId } = useTaskDetail()
   const { teammateIds } = useTasksTeammateIds(taskId)
   const { isInputFocused, onInputFocus } = useCollaboratorsContext()
 

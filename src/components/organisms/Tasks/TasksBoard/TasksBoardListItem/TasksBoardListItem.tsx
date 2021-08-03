@@ -8,6 +8,7 @@ import { Projects } from './Projects'
 import { Provider } from './Provider'
 import { Subtask } from './Subtask'
 import { TasksName } from './TasksName'
+import { useTasksBoardListItemRef } from './useTasksBoardListItemRef'
 
 type Props = FlexProps & {
   taskId: string
@@ -22,8 +23,9 @@ export const TasksBoardListItem: React.FC<Props> = memo<Props>((props) => {
 })
 
 const Component: React.FC<Props> = memo<Props>((props) => {
+  const { className } = useTasksBoardListItemRef()
   return (
-    <Card taskId={props.taskId}>
+    <Card taskId={props.taskId} className={className}>
       {/*cover image here*/}
       <Projects taskId={props.taskId} />
       <TasksName taskId={props.taskId} />

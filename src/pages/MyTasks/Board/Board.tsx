@@ -9,18 +9,29 @@ import {
   TasksProvider,
   TasksBoardContent,
   TasksBoardList,
+  TaskDetailDrawer,
+  useTasksBoardDetail,
 } from 'src/components/organisms'
 import { CustomizeMenu } from 'src/components/organisms/Tasks'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { SkeletonBoard } from './SkeletonBoard'
 
 export const Board: React.VFC = memo(() => {
+  return (
+    <TasksProvider isMyTasksPage>
+      <Component />
+    </TasksProvider>
+  )
+})
+
+const Component: React.VFC = memo(() => {
   const { loading } = useMyTasksContext()
+  const { backToPage, skipElement } = useTasksBoardDetail()
 
   if (loading) return <SkeletonBoard />
 
   return (
-    <TasksProvider isMyTasksPage>
+    <>
       <TasksList>
         <TasksHeader
           h="40px"
@@ -41,7 +52,8 @@ export const Board: React.VFC = memo(() => {
         </TasksBoardContent>
       </TasksList>
       <CustomizeMenu />
-    </TasksProvider>
+      <TaskDetailDrawer backToPage={backToPage} skipElement={skipElement} />
+    </>
   )
 })
 Board.displayName = 'Board'

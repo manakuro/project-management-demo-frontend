@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useTasksListBody } from 'src/pages/MyTasks/List/useTasksListBody'
+import { useTasksListBody } from './useTasksListBody'
 
 type Props = {}
 

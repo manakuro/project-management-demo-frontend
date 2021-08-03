@@ -1,25 +1,21 @@
 import { useCallback, useEffect } from 'react'
-import {
-  useTaskDetail,
-  useTaskDetailDrawer,
-  useTasksListBody,
-} from 'src/components/organisms'
+import { useTaskDetail, useTaskDetailDrawer } from 'src/components/organisms'
+import { useTasksBoardListItemRef } from 'src/components/organisms/Tasks/TasksBoard/TasksBoardListItem'
 import { isTaskDetailURL, useRouter, getTaskDetailId } from 'src/router'
 
-export const useTasksListDetail = () => {
-  const { router, navigateToMyTasks } = useRouter()
-  const { getTasksListBodyElement } = useTasksListBody()
+export const useTasksBoardDetail = () => {
+  const { router, navigateToMyTasksBoard } = useRouter()
+  const { taskId, refetch, setId, setLoading } = useTaskDetail()
+  const { getTasksBoardListItemElements } = useTasksBoardListItemRef()
   const skipElement = useCallback(
     (e: Event): boolean => {
-      if (e.target === getTasksListBodyElement()) return false
-      if (getTasksListBodyElement()?.contains(e.target as Node) ?? false)
-        return true
-      return false
+      return getTasksBoardListItemElements().some((ele) =>
+        ele.contains(e.target as Node),
+      )
     },
-    [getTasksListBodyElement],
+    [getTasksBoardListItemElements],
   )
   const { onOpen } = useTaskDetailDrawer()
-  const { taskId, refetch, setId, setLoading } = useTaskDetail()
 
   useEffect(() => {
     if (!isTaskDetailURL(router)) return
@@ -40,6 +36,6 @@ export const useTasksListDetail = () => {
 
   return {
     skipElement,
-    backToPage: navigateToMyTasks,
+    backToPage: navigateToMyTasksBoard,
   }
 }

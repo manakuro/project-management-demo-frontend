@@ -18,7 +18,7 @@ export const TasksBoardContent: React.FC<Props> = memo<Props>((props) => {
   const ref = useRef<HTMLDivElement | null>(null)
   const [style, setStyle] = useState<FlexProps>()
   const prevIsOpen = usePrevious(isOpen)
-  const margin = useBreakpointValue({ base: 220, '2xl': 600 }) ?? 0
+  const margin = useBreakpointValue({ base: 220, '2xl': 700 }) ?? 0
 
   useEffect(() => {
     const current = ref.current

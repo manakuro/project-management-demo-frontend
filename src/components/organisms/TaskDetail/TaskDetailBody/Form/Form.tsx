@@ -17,7 +17,7 @@ export const Form: React.FC<Props> = memo(() => {
   const { taskId } = useTaskDetail()
 
   return (
-    <Flex flexDirection="column" pt={2}>
+    <Flex flexDirection="column" pt={2} flex={1}>
       <TaskName taskId={taskId} />
       <Stack px={6} mt={3}>
         <Assignee taskId={taskId} />

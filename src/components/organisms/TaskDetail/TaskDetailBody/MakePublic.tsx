@@ -7,10 +7,10 @@ export const MakePublic: React.FC<Props> = () => {
   return (
     <Flex
       h="44px"
+      maxH="44px"
       px={6}
       py={2}
       bg="gray.50"
-      flex={1}
       alignItems="center"
       fontSize="sm"
     >

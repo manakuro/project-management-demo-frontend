@@ -41,7 +41,7 @@ export const TaskDetailBody: React.FC<Props> = memo<Props>((props) => {
     )
 
   return (
-    <Flex overflowY="scroll" flexDirection="column" ref={ref}>
+    <Flex overflowY="scroll" flexDirection="column" ref={ref} flex={1}>
       {props.isMakePublic && <MakePublic />}
       <Form />
     </Flex>

@@ -10,10 +10,7 @@ export const useTasksBoardListSectionElement = () => {
     (taskId: string) => {
       const taskBoardListItem = getTasksBoardListItemElementById(taskId)
       if (!isHTMLElement(taskBoardListItem)) return
-
-      const taskBoardListSection = taskBoardListItem.closest(`.${CLASS}`)
-      console.log('taskBoardListSection: ', taskBoardListSection)
-      return taskBoardListSection
+      return taskBoardListItem.closest(`.${CLASS}`)
     },
     [getTasksBoardListItemElementById],
   )

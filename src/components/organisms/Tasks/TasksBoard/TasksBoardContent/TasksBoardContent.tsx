@@ -1,30 +1,31 @@
-import React, { memo, useEffect, useMemo, useRef } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { useTaskDetailDrawer } from 'src/components/organisms'
 import { useTasksBoardListSectionElement } from 'src/components/organisms/Tasks/TasksBoard/TasksBoardListSection'
-import { useMainStyle } from 'src/hooks'
+import { useMainStyle, usePrevious } from 'src/hooks'
 import { isHTMLElement } from 'src/shared/isHTMLElement'
+import { transitions } from 'src/styles'
 
 type Props = FlexProps
 
 const maxH = 72 + 40
-const MARGIN = 60
+const MARGIN = 220
 export const TasksBoardContent: React.FC<Props> = memo<Props>((props) => {
   const { maxW } = useMainStyle()
   const { isOpen, taskId } = useTaskDetailDrawer()
   const { getTasksBoardListSectionElementByTaskId } =
     useTasksBoardListSectionElement()
   const ref = useRef<HTMLDivElement | null>(null)
-  const style = useMemo<FlexProps>(
-    () => ({
-      ...(isOpen ? { width: '36%' } : {}),
-    }),
-    [isOpen],
-  )
+  const [style, setStyle] = useState<FlexProps>()
+  const prevIsOpen = usePrevious(isOpen)
 
   useEffect(() => {
     const current = ref.current
-    if (!isOpen) return
+    if (prevIsOpen) return
+    if (!isOpen) {
+      setStyle({})
+      return
+    }
     if (!isHTMLElement(current)) return
 
     const boardListSectionElement =
@@ -33,12 +34,17 @@ export const TasksBoardContent: React.FC<Props> = memo<Props>((props) => {
 
     setTimeout(() => {
       const left = boardListSectionElement.offsetLeft
+
+      // Skip scrolling when the first section is clicked
+      if (left < 300) return
+
+      setStyle({ width: '36%', minWidth: 'calc(100% - 670px)' })
       current.scrollTo({
         left: left - MARGIN,
         behavior: 'smooth',
       })
     }, 500)
-  }, [getTasksBoardListSectionElementByTaskId, isOpen, taskId])
+  }, [getTasksBoardListSectionElementByTaskId, isOpen, prevIsOpen, taskId])
 
   return (
     <Flex
@@ -51,6 +57,7 @@ export const TasksBoardContent: React.FC<Props> = memo<Props>((props) => {
       position="relative"
       h="full"
       bg="gray.50"
+      transition={transitions.base()}
       {...style}
       {...props}
     >

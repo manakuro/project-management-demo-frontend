@@ -39,7 +39,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
     router,
   } = useRouter()
   const [tabIndex, setTabIndex] = React.useState<Index>(TASKS_INDEX)
-  const { setTabStatus, isTaskTabStatus } = useMyTasksTabStatus()
+  const { setTabStatus, isTaskTabStatus, tabStatus } = useMyTasksTabStatus()
 
   const handleTabsChange = useCallback(
     async (index: number) => {
@@ -70,11 +70,11 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
       }
     },
     [
-      setTabStatus,
       navigateToMyTasks,
       navigateToMyTasksBoard,
       navigateToMyTasksCalendar,
       navigateToMyTasksFiles,
+      setTabStatus,
     ],
   )
 
@@ -96,7 +96,9 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
       }
       return
     }
+  }, [isTaskTabStatus, router])
 
+  useEffect(() => {
     if (isMyTasksURL(router)) {
       setTabIndex(TASKS_INDEX)
       return
@@ -113,7 +115,27 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
       setTabIndex(FILES_INDEX)
       return
     }
-  }, [isTaskTabStatus, router])
+  }, [router, setTabStatus])
+
+  // Force update tab status based on URL regardless of API data
+  useEffect(() => {
+    if (isMyTasksURL(router)) {
+      setTabStatus('list')
+      return
+    }
+    if (isMyTasksBoardURL(router)) {
+      setTabStatus('board')
+      return
+    }
+    if (isMyTasksCalendarURL(router)) {
+      setTabStatus('calendar')
+      return
+    }
+    if (isMyTasksFilesURL(router)) {
+      setTabStatus('files')
+      return
+    }
+  }, [router, setTabStatus, tabStatus])
 
   return (
     <Provider loading={props.loading}>

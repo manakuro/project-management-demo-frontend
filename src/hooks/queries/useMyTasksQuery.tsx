@@ -714,6 +714,6 @@ const fetchTasks = async (): Promise<MyTaskResponse> => {
           tabStatus: 1,
         },
       })
-    }, 1000)
+    }, 500)
   })
 }

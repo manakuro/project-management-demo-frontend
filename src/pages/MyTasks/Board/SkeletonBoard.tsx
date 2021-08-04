@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Flex, Skeleton } from 'src/components/atoms'
+import { Flex, FlexProps, Skeleton } from 'src/components/atoms'
 import {
   TasksHeader,
   TasksHeaderLeft,
@@ -8,11 +8,13 @@ import {
 } from 'src/components/organisms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 
+type Props = FlexProps
+
 const TEXT_HEIGHT = '16px'
 const BUTTON_HEIGHT = '28px'
-export const SkeletonBoard: React.VFC = memo(() => {
+export const SkeletonBoard: React.VFC<Props> = memo<Props>((props) => {
   return (
-    <Flex flex={1} flexDirection="column">
+    <Flex flex={1} flexDirection="column" {...props}>
       <TasksHeader>
         <TasksHeaderLeft>
           <Skeleton w="114px" h={BUTTON_HEIGHT} />

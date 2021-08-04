@@ -4,6 +4,7 @@ import { Card } from './Card'
 import { DueDate } from './DueDate'
 import { Feed } from './Feed'
 import { Like } from './Like'
+import { MoreAction } from './MoreAction'
 import { Projects } from './Projects'
 import { Provider } from './Provider'
 import { Subtask } from './Subtask'
@@ -41,6 +42,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
           <Subtask taskId={props.taskId} />
         </Flex>
       </Flex>
+      <MoreAction />
     </Card>
   )
 })

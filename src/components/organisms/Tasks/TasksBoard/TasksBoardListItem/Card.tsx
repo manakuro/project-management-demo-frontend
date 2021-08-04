@@ -40,6 +40,7 @@ export const Card: React.FC<Props> = memo<Props>((props) => {
       transition={transitions.base()}
       p={4}
       onClick={handleClick}
+      position="relative"
       {...rest}
     />
   )

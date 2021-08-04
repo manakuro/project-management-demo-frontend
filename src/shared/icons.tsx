@@ -84,6 +84,9 @@ import {
   BiDownload,
   BiCommentDots,
   BiDownArrowAlt,
+  BiEditAlt,
+  BiPhotoAlbum,
+  BiDetail,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon, FaRegStar, FaStar } from 'react-icons/fa'
 import { FiBold, FiItalic, FiUnderline } from 'react-icons/fi'
@@ -93,6 +96,8 @@ import { MdSort, MdTextFormat } from 'react-icons/md'
 import { TiFlowChildren } from 'react-icons/ti'
 
 export const icons = {
+  copyAlt: BiCopyAlt,
+  detail: BiDetail,
   arrowDownAlt: BiDownArrowAlt,
   arrowToRight: BiArrowToRight,
   at: BiAt,
@@ -114,10 +119,10 @@ export const icons = {
   codeAlt: BiCodeAlt,
   commentDots: BiCommentDots,
   compass: BiCompass,
-  copyAlt: BiCopyAlt,
   customize: BiCustomize,
   dotsHorizontalRounded: BiDotsHorizontalRounded,
   download: BiDownload,
+  editAlt: BiEditAlt,
   emojiHappy: HiOutlineEmojiHappy,
   fileBlank: BiFileBlank,
   fillLike: AiFillLike,
@@ -157,6 +162,7 @@ export const icons = {
   outlineLike: AiOutlineLike,
   outlineProject: AiOutlineProject,
   pause: BiPause,
+  photoAlbum: BiPhotoAlbum,
   play: BiPlay,
   playCircle: AiFillPlayCircle,
   playCircleOutline: BiPlayCircle,

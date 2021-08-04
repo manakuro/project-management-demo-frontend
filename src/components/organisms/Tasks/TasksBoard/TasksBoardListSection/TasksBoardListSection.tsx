@@ -7,6 +7,7 @@ import { AddTask } from './AddTask'
 import { AddTaskSection } from './AddTaskSection'
 import { Header } from './Header'
 import { Provider } from './Provider'
+import { useTasksBoardListSectionElement } from './useTasksBoardListSectionElement'
 
 type Props = {
   taskSectionId: string
@@ -23,10 +24,12 @@ export const TasksBoardListSection: React.FC<Props> = memo<Props>((props) => {
 const TOP = 72 + 40 + 8 + 8 + 36 // Header + List Header + padding + padding + List Section
 const Component: React.FC<Props> = memo<Props>((props) => {
   const { taskIds } = useTaskContext(props.taskSectionId)
+  const { className } = useTasksBoardListSectionElement()
 
   return (
     <>
       <Flex
+        className={className}
         flexDirection="column"
         w="304px"
         maxW="304px"

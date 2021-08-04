@@ -8,7 +8,7 @@ import { Projects } from './Projects'
 import { Provider } from './Provider'
 import { Subtask } from './Subtask'
 import { TasksName } from './TasksName'
-import { useTasksBoardListItemRef } from './useTasksBoardListItemRef'
+import { useTasksBoardListItemElement } from './useTasksBoardListItemElement'
 
 type Props = FlexProps & {
   taskId: string
@@ -23,9 +23,13 @@ export const TasksBoardListItem: React.FC<Props> = memo<Props>((props) => {
 })
 
 const Component: React.FC<Props> = memo<Props>((props) => {
-  const { className } = useTasksBoardListItemRef()
+  const { className, generateId } = useTasksBoardListItemElement()
   return (
-    <Card taskId={props.taskId} className={className}>
+    <Card
+      taskId={props.taskId}
+      className={className}
+      id={generateId(props.taskId)}
+    >
       {/*cover image here*/}
       <Projects taskId={props.taskId} />
       <TasksName taskId={props.taskId} />

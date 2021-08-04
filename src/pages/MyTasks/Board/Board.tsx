@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
+import { Flex } from 'src/components/atoms'
 import {
   CustomizeButton,
   IncompleteTasksButton,
   SortButton,
   TasksHeader,
   TasksHeaderRight,
-  TasksList,
   TasksProvider,
   TasksBoardContent,
   TasksBoardList,
@@ -32,7 +32,7 @@ const Component: React.VFC = memo(() => {
 
   return (
     <>
-      <TasksList>
+      <Flex flex={1} h="full" flexDirection="column" bg="gray.50">
         <TasksHeader
           h="40px"
           boxShadow="sm"
@@ -50,7 +50,7 @@ const Component: React.VFC = memo(() => {
         <TasksBoardContent>
           <TasksBoardList />
         </TasksBoardContent>
-      </TasksList>
+      </Flex>
       <CustomizeMenu />
       <TaskDetailDrawer backToPage={backToPage} skipElement={skipElement} />
     </>

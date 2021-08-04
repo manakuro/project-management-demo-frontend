@@ -7,7 +7,7 @@ export const TasksBoardList: React.VFC = memo(() => {
   const { taskSectionIds } = useTaskSectionContext()
 
   return (
-    <Flex direction="row" flex={1} px={2} pt={2}>
+    <Flex direction="row" flex={1} px={2} pt={2} position="relative">
       {taskSectionIds.map((id, i) => (
         <TasksBoardListSection
           taskSectionId={id}

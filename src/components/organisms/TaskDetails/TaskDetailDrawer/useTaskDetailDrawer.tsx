@@ -11,7 +11,7 @@ const openState = atom<boolean>({
 })
 
 export const useTaskDetailDrawer = () => {
-  const { resetScrollId, resetId } = useTaskDetail()
+  const { resetScrollId, resetId, taskId } = useTaskDetail()
   const [isOpen, setIsOpen] = useRecoilState(openState)
 
   const onClose = useCallback(async () => {
@@ -32,5 +32,6 @@ export const useTaskDetailDrawer = () => {
     isOpen,
     onOpen,
     onClose,
+    taskId,
   }
 }

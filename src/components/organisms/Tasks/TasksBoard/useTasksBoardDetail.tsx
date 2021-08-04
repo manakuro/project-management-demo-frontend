@@ -1,12 +1,12 @@
 import { useCallback, useEffect } from 'react'
 import { useTaskDetail, useTaskDetailDrawer } from 'src/components/organisms'
-import { useTasksBoardListItemRef } from 'src/components/organisms/Tasks/TasksBoard/TasksBoardListItem'
+import { useTasksBoardListItemElement } from 'src/components/organisms/Tasks/TasksBoard/TasksBoardListItem'
 import { isTaskDetailURL, useRouter, getTaskDetailId } from 'src/router'
 
 export const useTasksBoardDetail = () => {
   const { router, navigateToMyTasksBoard } = useRouter()
   const { taskId, refetch, setId, setLoading } = useTaskDetail()
-  const { getTasksBoardListItemElements } = useTasksBoardListItemRef()
+  const { getTasksBoardListItemElements } = useTasksBoardListItemElement()
   const skipElement = useCallback(
     (e: Event): boolean => {
       return getTasksBoardListItemElements().some((ele) =>

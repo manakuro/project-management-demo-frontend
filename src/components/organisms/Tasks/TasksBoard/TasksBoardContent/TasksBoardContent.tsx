@@ -3,13 +3,13 @@ import { Flex, FlexProps } from 'src/components/atoms'
 import { useTaskDetailDrawer } from 'src/components/organisms'
 import { useTasksBoardListSectionElement } from 'src/components/organisms/Tasks/TasksBoard/TasksBoardListSection'
 import { useMainStyle, usePrevious } from 'src/hooks'
+import { useBreakpointValue } from 'src/shared/chakra'
 import { isHTMLElement } from 'src/shared/isHTMLElement'
 import { transitions } from 'src/styles'
 
 type Props = FlexProps
 
 const maxH = 72 + 40
-const MARGIN = 220
 export const TasksBoardContent: React.FC<Props> = memo<Props>((props) => {
   const { maxW } = useMainStyle()
   const { isOpen, taskId } = useTaskDetailDrawer()
@@ -18,6 +18,7 @@ export const TasksBoardContent: React.FC<Props> = memo<Props>((props) => {
   const ref = useRef<HTMLDivElement | null>(null)
   const [style, setStyle] = useState<FlexProps>()
   const prevIsOpen = usePrevious(isOpen)
+  const margin = useBreakpointValue({ base: 220, '2xl': 600 }) ?? 0
 
   useEffect(() => {
     const current = ref.current
@@ -40,11 +41,17 @@ export const TasksBoardContent: React.FC<Props> = memo<Props>((props) => {
 
       setStyle({ width: '36%', minWidth: 'calc(100% - 670px)' })
       current.scrollTo({
-        left: left - MARGIN,
+        left: left - margin,
         behavior: 'smooth',
       })
     }, 500)
-  }, [getTasksBoardListSectionElementByTaskId, isOpen, prevIsOpen, taskId])
+  }, [
+    getTasksBoardListSectionElementByTaskId,
+    isOpen,
+    margin,
+    prevIsOpen,
+    taskId,
+  ])
 
   return (
     <Flex

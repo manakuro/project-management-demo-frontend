@@ -4,6 +4,7 @@ import {
   forwardRef as ChakraForwardRef,
   useDisclosure as ChakraUseDisclosure,
   useStyleConfig as ChakraUseStyleConfig,
+  useBreakpointValue as ChakraUseBreakpointValue,
 } from '@chakra-ui/react'
 import { Token } from '@chakra-ui/styled-system/dist/types/utils'
 import * as CSS from 'csstype'
@@ -13,4 +14,5 @@ export const chakra = ChakraUIChakra
 export const forwardRef = ChakraForwardRef
 export const useDisclosure = ChakraUseDisclosure
 export const useStyleConfig = ChakraUseStyleConfig
+export const useBreakpointValue = ChakraUseBreakpointValue
 export type Colors = Token<CSS.Property.Color, 'colors'>

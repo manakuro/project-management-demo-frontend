@@ -206,6 +206,12 @@ export const useTask = (taskId?: string) => {
     },
     [setTask],
   )
+  const undeleteTask = useRecoilCallback(
+    () => async () => {
+      await setTask({ isDeleted: false })
+    },
+    [setTask],
+  )
 
   const setTaskName = useRecoilCallback(
     ({ snapshot }) =>
@@ -237,6 +243,7 @@ export const useTask = (taskId?: string) => {
     setTask,
     setTaskFromResponse,
     deleteTask,
+    undeleteTask,
     setTaskName,
   }
 }

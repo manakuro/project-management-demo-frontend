@@ -5,9 +5,11 @@ import { useDisclosure } from 'src/shared/chakra'
 import { useTasksBoardListItemContext } from '../Provider'
 import { MenuList } from './MenuList'
 
-type Props = {}
+type Props = {
+  taskId: string
+}
 
-export const MoreAction: React.FC<Props> = memo<Props>(() => {
+export const MoreAction: React.FC<Props> = memo<Props>((props) => {
   const { onClose, onOpen, isOpen } = useDisclosure()
   const { isHovering } = useTasksBoardListItemContext()
   const show = useMemo<boolean>(() => {
@@ -45,7 +47,7 @@ export const MoreAction: React.FC<Props> = memo<Props>(() => {
           onClick={handleOpen}
           display={show ? 'block' : 'none'}
         />
-        {isOpen && <MenuList onCloseMenu={onClose} />}
+        {isOpen && <MenuList onCloseMenu={onClose} taskId={props.taskId} />}
       </Menu>
     </PortalManager>
   )

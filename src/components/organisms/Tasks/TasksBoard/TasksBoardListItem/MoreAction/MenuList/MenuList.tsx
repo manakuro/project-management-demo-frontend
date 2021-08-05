@@ -1,37 +1,26 @@
 import React, { memo, useCallback } from 'react'
-import { Flex, Icon, Portal, Text } from 'src/components/atoms'
+import { Portal } from 'src/components/atoms'
 import {
   MenuList as AtomsMenuList,
-  MenuItem,
   MenuDivider,
 } from 'src/components/organisms'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
-import { useTasksBoardListItemInputContext } from '../../Provider'
-import { PopoverAddCoverImageActions } from './PopoverAddCoverImageActions'
+import { AddCoverImage } from './AddCoverImage'
+import { CopyTask } from './CopyTask'
+import { DeleteTask } from './DeleteTask'
+import { DuplicateTask } from './DuplicateTask'
+import { EditTaskName } from './EditTaskName'
+import { MarkComplete } from './MarkComplete'
+import { OpenInNewTab } from './OpenInNewTab'
+import { ViewDetails } from './ViewDetails'
 
 type Props = {
   onCloseMenu: () => void
+  taskId: string
 }
-
 export const MenuList: React.FC<Props> = memo((props) => {
-  const { onInputSelect } = useTasksBoardListItemInputContext()
   const { onCloseMenu } = props
-
-  const handleEditTaskName = useCallback(() => {
-    onInputSelect()
-    onCloseMenu()
-  }, [onCloseMenu, onInputSelect])
-
-  return <Component onEditTaskName={handleEditTaskName} {...props} />
-})
-
-type ComponentProps = {
-  onCloseMenu: () => void
-  onEditTaskName: () => void
-}
-const Component: React.FC<ComponentProps> = memo((props) => {
-  const { onCloseMenu, onEditTaskName } = props
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { ref } = useClickOutside(() => {
     handleCloseAll()
@@ -50,64 +39,45 @@ const Component: React.FC<ComponentProps> = memo((props) => {
   return (
     <Portal>
       <AtomsMenuList ref={ref} zIndex={1} onClick={stopPropagation}>
-        <MenuItem
-          onMouseEnter={onClose}
-          icon={<Icon icon="editAlt" color="text.muted" />}
-          onClick={onEditTaskName}
-        >
-          Edit task name
-        </MenuItem>
-        <MenuItem onMouseEnter={onOpen}>
-          <PopoverAddCoverImageActions
-            isOpen={isOpen}
-            placement="right"
-            onClose={handleCloseAll}
-          >
-            <Flex flex={1}>
-              <Icon icon="photoAlbum" size="sm" color="text.muted" mt="2px" />
-              <Text fontSize="sm" flex={1} ml={2}>
-                Add cover image
-              </Text>
-              <Icon icon="chevronRight" color="text.muted" />
-            </Flex>
-          </PopoverAddCoverImageActions>
-        </MenuItem>
+        <EditTaskName onMouseEnter={onClose} onCloseMenu={onCloseMenu} />
+        <AddCoverImage
+          isOpen={isOpen}
+          onOpen={onOpen}
+          onClose={handleCloseAll}
+        />
         <MenuDivider />
-        <MenuItem
+        <MarkComplete
+          taskId={props.taskId}
           onMouseEnter={onClose}
-          icon={<Icon icon="checkCircle" color="text.muted" />}
-        >
-          Mark complete
-        </MenuItem>
-        <MenuItem
+          onCloseMenu={onCloseMenu}
+        />
+        <ViewDetails
+          taskId={props.taskId}
           onMouseEnter={onClose}
-          icon={<Icon icon="detail" color="text.muted" />}
-        >
-          View details
-        </MenuItem>
-        <MenuItem
+          onCloseMenu={onCloseMenu}
+        />
+        <OpenInNewTab
+          taskId={props.taskId}
           onMouseEnter={onClose}
-          icon={<Icon icon="linkExternal" color="text.muted" />}
-        >
-          Open in new tab
-        </MenuItem>
+          onCloseMenu={onCloseMenu}
+        />
         <MenuDivider />
-        <MenuItem
+        <DuplicateTask
+          taskId={props.taskId}
           onMouseEnter={onClose}
-          icon={<Icon icon="copyAlt" color="text.muted" />}
-        >
-          Duplicate task
-        </MenuItem>
-        <MenuItem
+          onCloseMenu={onCloseMenu}
+        />
+        <CopyTask
+          taskId={props.taskId}
           onMouseEnter={onClose}
-          icon={<Icon icon="link" color="text.muted" />}
-        >
-          Copy task link
-        </MenuItem>
+          onCloseMenu={onCloseMenu}
+        />
         <MenuDivider />
-        <MenuItem onMouseEnter={onClose} color="alert">
-          Delete task
-        </MenuItem>
+        <DeleteTask
+          taskId={props.taskId}
+          onMouseEnter={onClose}
+          onCloseMenu={onCloseMenu}
+        />
       </AtomsMenuList>
     </Portal>
   )

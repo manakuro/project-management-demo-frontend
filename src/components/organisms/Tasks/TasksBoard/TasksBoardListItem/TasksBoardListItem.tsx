@@ -42,7 +42,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
           <Subtask taskId={props.taskId} />
         </Flex>
       </Flex>
-      <MoreAction />
+      <MoreAction taskId={props.taskId} />
     </Card>
   )
 })

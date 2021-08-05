@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Flex, Icon, Portal, Text } from 'src/components/atoms'
 import {
   MenuList as AtomsMenuList,
@@ -7,14 +7,30 @@ import {
 } from 'src/components/organisms'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
+import { useTasksBoardListItemInputContext } from '../../Provider'
 import { PopoverAddCoverImageActions } from './PopoverAddCoverImageActions'
 
 type Props = {
   onCloseMenu: () => void
-  onEditTaskName: () => void
 }
 
-export const MenuList: React.FC<Props> = (props) => {
+export const MenuList: React.FC<Props> = memo((props) => {
+  const { onInputSelect } = useTasksBoardListItemInputContext()
+  const { onCloseMenu } = props
+
+  const handleEditTaskName = useCallback(() => {
+    onInputSelect()
+    onCloseMenu()
+  }, [onCloseMenu, onInputSelect])
+
+  return <Component onEditTaskName={handleEditTaskName} {...props} />
+})
+
+type ComponentProps = {
+  onCloseMenu: () => void
+  onEditTaskName: () => void
+}
+const Component: React.FC<ComponentProps> = memo((props) => {
   const { onCloseMenu, onEditTaskName } = props
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { ref } = useClickOutside(() => {
@@ -95,4 +111,6 @@ export const MenuList: React.FC<Props> = (props) => {
       </AtomsMenuList>
     </Portal>
   )
-}
+})
+
+MenuList.displayName = 'MenuList'

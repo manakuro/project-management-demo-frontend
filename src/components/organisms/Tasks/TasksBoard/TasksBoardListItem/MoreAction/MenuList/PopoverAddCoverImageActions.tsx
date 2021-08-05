@@ -1,5 +1,5 @@
 import React from 'react'
-import { FileUploader, FileUploaderParams } from 'src/components/atoms'
+import { Box, FileUploader, FileUploaderParams } from 'src/components/atoms'
 import {
   Menu,
   MenuList,
@@ -32,10 +32,10 @@ export const PopoverAddCoverImageActions: React.FC<Props> = (props) => {
         >
           Your computer
         </FileUploader>
-        <MenuItem>Dropbox</MenuItem>
-        <MenuItem>Google Drive</MenuItem>
-        <MenuItem>Box</MenuItem>
-        <MenuItem>OneDrive/SharePoint</MenuItem>
+        <MenuItem as={Box}>Dropbox</MenuItem>
+        <MenuItem as={Box}>Google Drive</MenuItem>
+        <MenuItem as={Box}>Box</MenuItem>
+        <MenuItem as={Box}>OneDrive/SharePoint</MenuItem>
       </MenuList>
     </Menu>
   )

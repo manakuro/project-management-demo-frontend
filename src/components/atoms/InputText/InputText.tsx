@@ -18,6 +18,7 @@ type Props = {
   autoFocus?: TextareaProps['autoFocus']
   containerStyle?: FlexProps
   placeholder?: string
+  textareaRef?: React.ForwardedRef<any>
 } & ChakraProps
 
 export const InputText: React.FC<Props> = memo<Props>((props) => {
@@ -31,6 +32,7 @@ export const InputText: React.FC<Props> = memo<Props>((props) => {
     onFocus,
     onBlur,
     autoFocus,
+    textareaRef,
     ...rest
   } = props
 
@@ -69,6 +71,7 @@ export const InputText: React.FC<Props> = memo<Props>((props) => {
         {value}
       </Box>
       <Textarea
+        ref={textareaRef}
         p={0}
         {...style}
         {...rest}

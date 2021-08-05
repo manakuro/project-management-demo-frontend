@@ -1,9 +1,8 @@
 import React, { useCallback, useState } from 'react'
 import { useHover } from 'src/hooks/useHover'
 import { createProvider } from 'src/shared/react/createProvider'
-import { useInputFocus, UseInputFocus } from './useInputFocus'
 
-type ContextProps = UseInputFocus & {
+type ContextProps = {
   ref: React.MutableRefObject<HTMLElement | null>
   isHovering: boolean
   taskId: string
@@ -16,7 +15,6 @@ type Props = {
   taskId: string
 }
 const useValue = (props: Props): ContextProps => {
-  const useInputFocusResult = useInputFocus()
   const { ref, isHovering } = useHover()
   const [isTransitioning, setIsTransitioning] = useState(false)
 
@@ -29,7 +27,6 @@ const useValue = (props: Props): ContextProps => {
   }, [])
 
   return {
-    ...useInputFocusResult,
     ref,
     isHovering,
     taskId: props.taskId,

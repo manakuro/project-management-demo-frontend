@@ -11,10 +11,11 @@ import { PopoverAddCoverImageActions } from './PopoverAddCoverImageActions'
 
 type Props = {
   onCloseMenu: () => void
+  onEditTaskName: () => void
 }
 
 export const MenuList: React.FC<Props> = (props) => {
-  const { onCloseMenu } = props
+  const { onCloseMenu, onEditTaskName } = props
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { ref } = useClickOutside(() => {
     handleCloseAll()
@@ -36,6 +37,7 @@ export const MenuList: React.FC<Props> = (props) => {
         <MenuItem
           onMouseEnter={onClose}
           icon={<Icon icon="editAlt" color="text.muted" />}
+          onClick={onEditTaskName}
         >
           Edit task name
         </MenuItem>

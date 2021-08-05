@@ -3,6 +3,7 @@ import { Flex, InputText, InputProps } from 'src/components/atoms'
 import { useTaskDetailDrawerRef } from 'src/components/organisms'
 import { useClickOutside, useDebounce } from 'src/hooks'
 import { ChakraProps } from 'src/shared/chakra'
+import { useTasksBoardListItemInputContext } from '../Provider'
 import { useTasksNameContext } from './Provider'
 
 type Props = {
@@ -15,12 +16,12 @@ type Props = {
 
 export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   const [value, setValue] = useState<string>(props.value)
+  const { ref: containerRef, isTransitioning } = useTasksNameContext()
   const {
-    ref: containerRef,
     onInputFocus,
     onInputBlur,
-    isTransitioning,
-  } = useTasksNameContext()
+    ref: textareaRef,
+  } = useTasksBoardListItemInputContext()
   const { taskDetailListDetailRef } = useTaskDetailDrawerRef()
   const autoFocus = useMemo(() => props.isNew, [props.isNew])
   const skipElement = useCallback(
@@ -62,12 +63,6 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
     setValue(props.value)
   }, [props.value])
 
-  useEffect(() => {
-    if (props.isNew) {
-      onInputFocus()
-    }
-  }, [onInputFocus, props.isNew])
-
   useDebounce(value, props.onChange, 500)
 
   const style = useMemo<ChakraProps>(() => {
@@ -83,6 +78,7 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   return (
     <Flex position="relative" minW="150px" ref={ref}>
       <InputText
+        textareaRef={textareaRef}
         value={value}
         onChange={handleChange}
         onClick={(e) => e.stopPropagation()}

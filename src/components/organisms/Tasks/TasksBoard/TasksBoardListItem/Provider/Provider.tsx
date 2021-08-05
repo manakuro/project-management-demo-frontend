@@ -1,38 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { useHover } from 'src/hooks/useHover'
-import { ROUTE_MY_TASKS, useRouter } from 'src/router'
-import { createProvider } from 'src/shared/react/createProvider'
-
-type ContextProps = {
-  selected: boolean
-  isHovering: boolean
-  ref: React.MutableRefObject<HTMLElement | null>
-}
+import React from 'react'
+import { Provider as InputProvider } from './InputProvider'
+import { Provider as ListItemProvider } from './ListItemProvider'
 
 type Props = {
   taskId: string
 }
 
-const useValue = (props: Props): ContextProps => {
-  const [selected, setSelected] = useState<boolean>(false)
-  const { router } = useRouter()
-  const { ref, isHovering } = useHover()
-
-  useEffect(() => {
-    if (router.query[ROUTE_MY_TASKS['name']]?.[0] === props.taskId) {
-      setSelected(true)
-      return
-    }
-    setSelected(false)
-  }, [props.taskId, router])
-
-  return {
-    selected,
-    isHovering,
-    ref,
-  }
+export const Provider: React.FC<Props> = (props) => {
+  return (
+    <ListItemProvider {...props}>
+      <InputProvider {...props}>{props.children}</InputProvider>
+    </ListItemProvider>
+  )
 }
-useValue.__PROVIDER__ =
-  'src/components/organisms/Tasks/TasksBoard/TasksBoardListItem/Provider/TasksListRowProvider.tsx'
-export const { Provider, useContext: useTasksBoardListItemContext } =
-  createProvider(useValue)

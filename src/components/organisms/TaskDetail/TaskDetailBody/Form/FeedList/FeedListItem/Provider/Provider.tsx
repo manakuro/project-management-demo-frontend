@@ -95,12 +95,7 @@ function useFeedOptionMenu(props: Props) {
       taskDetailFeedURL(props.taskId, feed.id),
     )
     toast({
-      title: 'Copied successfully',
       description: 'The comment link was copied to your clipboard.',
-      status: 'success',
-      duration: 5000,
-      isClosable: true,
-      position: 'bottom-left',
     })
   }, [feed.id, props.taskId, toast])
 

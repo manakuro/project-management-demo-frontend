@@ -16,12 +16,7 @@ export const CopyTask: React.FC<Props> = memo((props) => {
   const handleClick = useCallback(async () => {
     await navigator.clipboard.writeText(taskDetailURL(props.taskId))
     toast({
-      title: 'Copied successfully',
       description: 'The task link was copied to your clipboard.',
-      status: 'success',
-      duration: 5000,
-      isClosable: true,
-      position: 'bottom-left',
     })
     onCloseMenu()
   }, [onCloseMenu, props.taskId, toast])

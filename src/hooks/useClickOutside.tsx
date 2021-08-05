@@ -24,7 +24,8 @@ export const useClickOutside = (
           if (
             isContainInMenuList(e) ||
             isContainInModalContent(e) ||
-            isContainInPopoverContent(e)
+            isContainInPopoverContent(e) ||
+            isContainInToastContent(e)
           )
             return
 
@@ -91,5 +92,9 @@ const isContainInModalContent = (e: Event) =>
   )
 const isContainInPopoverContent = (e: Event) =>
   Array.from(document.querySelectorAll("[aria-label='popover-content']")).some(
+    (q) => q.contains(e.target as Node),
+  )
+const isContainInToastContent = (e: Event) =>
+  Array.from(document.querySelectorAll("[aria-label='toast-content']")).some(
     (q) => q.contains(e.target as Node),
   )

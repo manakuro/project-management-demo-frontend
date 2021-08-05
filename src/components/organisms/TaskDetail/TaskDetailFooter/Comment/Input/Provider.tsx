@@ -73,12 +73,7 @@ function useAttachmentFile() {
     (attachment: Attachment) => {
       setAttachmentIds((prev) => prev.filter((p) => p !== attachment.id))
       toast({
-        title: 'Deleted successfully',
         description: `${attachment.name} is deleted from this task`,
-        status: 'success',
-        duration: 5000,
-        isClosable: true,
-        position: 'bottom-left',
       })
     },
     [toast],

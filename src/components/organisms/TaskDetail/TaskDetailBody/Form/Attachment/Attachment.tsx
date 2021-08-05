@@ -30,12 +30,7 @@ export const Attachment: React.VFC<Props> = memo<Props>((props) => {
   const onDelete = useCallback(
     (attachment: TAttachment) => {
       toast({
-        title: 'Deleted successfully',
         description: `${attachment.name} is deleted from this task`,
-        status: 'success',
-        duration: 5000,
-        isClosable: true,
-        position: 'bottom-left',
       })
     },
     [toast],

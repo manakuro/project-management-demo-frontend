@@ -38,7 +38,9 @@ export const MoreAction: React.FC<Props> = memo<Props>((props) => {
         <MenuButton
           aria-label="More actions"
           as={IconButton}
-          icon={<Icon icon="dotsHorizontalRounded" color="text.muted" />}
+          icon={
+            <Icon icon="dotsHorizontalRounded" color="text.muted" ml="1px" />
+          }
           variant="ghost"
           size="sm"
           position="absolute"

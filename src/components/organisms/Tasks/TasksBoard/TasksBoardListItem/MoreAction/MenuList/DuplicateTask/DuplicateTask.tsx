@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
-import { MenuItem } from 'src/components/organisms'
+import { MenuItem, useDuplicateTaskModal } from 'src/components/organisms'
 
 type Props = {
   onMouseEnter: () => void
@@ -9,10 +9,12 @@ type Props = {
 }
 export const DuplicateTask: React.FC<Props> = memo((props) => {
   const { onMouseEnter, onCloseMenu } = props
+  const { onOpen } = useDuplicateTaskModal()
 
   const handleClick = useCallback(() => {
+    onOpen()
     onCloseMenu()
-  }, [onCloseMenu])
+  }, [onCloseMenu, onOpen])
 
   return (
     <MenuItem

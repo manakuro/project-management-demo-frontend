@@ -9,6 +9,7 @@ import {
   EditorEmojiMenu,
   FileViewerModal,
   DeleteTaskSectionModal,
+  DuplicateTaskModal,
 } from 'src/components/organisms'
 
 export const Modals: React.VFC = memo(() => {
@@ -23,6 +24,7 @@ export const Modals: React.VFC = memo(() => {
       <EditorEmojiMenu />
       <FileViewerModal />
       <DeleteTaskSectionModal />
+      <DuplicateTaskModal />
     </>
   )
 })

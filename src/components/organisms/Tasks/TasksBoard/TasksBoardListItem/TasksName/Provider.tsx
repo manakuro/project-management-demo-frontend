@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 import { useHover } from 'src/hooks/useHover'
 import { createProvider } from 'src/shared/react/createProvider'
 
@@ -6,9 +6,6 @@ type ContextProps = {
   ref: React.MutableRefObject<HTMLElement | null>
   isHovering: boolean
   taskId: string
-  isTransitioning: boolean
-  onStartTransition: () => void
-  onEndTransition: () => void
 }
 
 type Props = {
@@ -16,23 +13,11 @@ type Props = {
 }
 const useValue = (props: Props): ContextProps => {
   const { ref, isHovering } = useHover()
-  const [isTransitioning, setIsTransitioning] = useState(false)
-
-  const onStartTransition = useCallback(() => {
-    setIsTransitioning(true)
-  }, [])
-
-  const onEndTransition = useCallback(() => {
-    setIsTransitioning(false)
-  }, [])
 
   return {
     ref,
     isHovering,
     taskId: props.taskId,
-    isTransitioning,
-    onStartTransition,
-    onEndTransition,
   }
 }
 useValue.__PROVIDER__ =

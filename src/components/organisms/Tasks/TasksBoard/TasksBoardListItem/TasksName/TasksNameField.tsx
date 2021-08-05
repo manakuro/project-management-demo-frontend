@@ -12,11 +12,13 @@ type Props = {
   isNew?: boolean
   deleteTask?: () => Promise<void>
   focusedBorder?: boolean
+  isTransitioning?: boolean
 } & Omit<InputProps, 'onChange'>
 
 export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   const [value, setValue] = useState<string>(props.value)
-  const { ref: containerRef, isTransitioning } = useTasksNameContext()
+  const { isTransitioning } = props
+  const { ref: containerRef } = useTasksNameContext()
   const {
     onInputFocus,
     onInputBlur,

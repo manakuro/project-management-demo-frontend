@@ -1,7 +1,8 @@
 import React, { memo, useCallback } from 'react'
 import { CheckIcon, Flex, FlexProps } from 'src/components/atoms'
 import { useTask } from 'src/store/entities/tasks'
-import { TasksNameProvider, useTasksNameContext } from './Provider'
+import { useTasksBoardListItemContext } from '../Provider'
+import { TasksNameProvider } from './Provider'
 import { TasksNameField } from './TasksNameField'
 
 type Props = FlexProps & {
@@ -18,7 +19,7 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
 
 const Component: React.VFC<Props> = memo<Props>((props) => {
   const { onEndTransition, onStartTransition, isTransitioning } =
-    useTasksNameContext()
+    useTasksBoardListItemContext()
   const { task, setTask, deleteTask, setTaskName } = useTask(props.taskId)
 
   const handleChangeName = useCallback(
@@ -59,6 +60,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
         deleteTask={deleteTask}
         focusedBorder
         flex={1}
+        isTransitioning={isTransitioning}
       />
     </Flex>
   )

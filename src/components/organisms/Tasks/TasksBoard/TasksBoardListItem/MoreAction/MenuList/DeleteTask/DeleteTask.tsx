@@ -1,5 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { MenuItem } from 'src/components/organisms'
+import { useToast } from 'src/hooks'
+import { useTask } from 'src/store/entities/tasks'
 
 type Props = {
   onMouseEnter: () => void
@@ -8,10 +10,17 @@ type Props = {
 }
 export const DeleteTask: React.FC<Props> = memo((props) => {
   const { onMouseEnter, onCloseMenu } = props
+  const { task, deleteTask } = useTask(props.taskId)
+  const { toast } = useToast()
 
-  const handleClick = useCallback(() => {
+  const handleClick = useCallback(async () => {
+    await deleteTask()
+    toast({
+      description: `${task.name} deleted`,
+      undo: () => {},
+    })
     onCloseMenu()
-  }, [onCloseMenu])
+  }, [deleteTask, onCloseMenu, task.name, toast])
 
   return (
     <MenuItem onMouseEnter={onMouseEnter} color="alert" onClick={handleClick}>

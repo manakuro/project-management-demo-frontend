@@ -29,7 +29,7 @@ export const Toast: React.FC<Props> & { id?: string } = forwardRef<
       flexDirection="column"
       aria-label="toast-content"
     >
-      <Flex>
+      <Flex alignItems="center">
         {props.description}
         {props.isClosable && (
           <IconButton
@@ -37,12 +37,12 @@ export const Toast: React.FC<Props> & { id?: string } = forwardRef<
             aria-label="close toast"
             variant="ghost"
             onClick={props.onClose}
-            ml={2}
+            ml="auto"
           />
         )}
       </Flex>
       {props.undo && (
-        <Flex justifyContent="flex-end">
+        <Flex justifyContent="flex-end" mt={2}>
           <Button
             variant="outline"
             onClick={props.undo}

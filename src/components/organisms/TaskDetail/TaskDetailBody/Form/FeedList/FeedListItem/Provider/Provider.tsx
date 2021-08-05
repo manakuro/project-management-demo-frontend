@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { useToast } from 'src/hooks'
-import { useRouter } from 'src/router'
+import { taskDetailFeedURL } from 'src/router'
 import { createProvider } from 'src/shared/react/createProvider'
 import { useFeed } from 'src/store/entities/feeds'
 import { useFeedsAttachmentIds } from 'src/store/entities/feeds/attachmentIds'
@@ -76,7 +76,6 @@ function useFeedOptionMenu(props: Props) {
   const { feed, setFeed } = useFeed(props.feedId)
   const [isEdit, setIsEdit] = useState<boolean>(false)
   const { toast } = useToast()
-  const { taskDetailFeedURL } = useRouter()
 
   const onPin = useCallback(async () => {
     await setFeed({ isPinned: true })
@@ -103,7 +102,7 @@ function useFeedOptionMenu(props: Props) {
       isClosable: true,
       position: 'bottom-left',
     })
-  }, [feed.id, props.taskId, taskDetailFeedURL, toast])
+  }, [feed.id, props.taskId, toast])
 
   return {
     onPin,

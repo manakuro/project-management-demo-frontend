@@ -75,13 +75,6 @@ export const useRouter = () => {
     [push],
   )
 
-  const taskDetailFeedURL = useCallback(
-    (taskId: string, feedId: string): string => {
-      return `${window.location.origin}/${ROUTE_MY_TASKS.name}/${taskId}/${feedId}`
-    },
-    [],
-  )
-
   return {
     navigateToMyTasks,
     navigateToMyTasksBoard,
@@ -90,6 +83,5 @@ export const useRouter = () => {
     navigateToTaskDetail,
     navigateToTaskDetailFeed,
     router,
-    taskDetailFeedURL,
   }
 }

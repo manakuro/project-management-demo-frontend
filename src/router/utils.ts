@@ -57,3 +57,11 @@ export const getTaskDetailFeedId = (router: NextRouter): string =>
   (isTaskDetailURL(router) &&
     (router.query?.[ROUTE_MY_TASKS['name']]?.[1] as string)) ||
   ''
+
+export const taskDetailFeedURL = (taskId: string, feedId: string): string => {
+  return `${window.location.origin}/${ROUTE_MY_TASKS.name}/${taskId}/${feedId}`
+}
+
+export const taskDetailURL = (taskId: string): string => {
+  return `${window.location.origin}/${taskId}/f`
+}

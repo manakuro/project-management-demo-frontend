@@ -35,6 +35,7 @@
     "emoji-mart": "^3.0.1",
     "emotion-theming": "^11.0.0",
     "focus-visible": "^5.2.0",
+    "formik": "^2.2.9",
     "framer-motion": "^4.1.0",
     "next": "^11.0.1",
     "pdfjs-dist": "2.7.570",

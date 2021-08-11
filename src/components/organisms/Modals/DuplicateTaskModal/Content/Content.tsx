@@ -1,14 +1,12 @@
-import { useFormik, FormikConfig } from 'formik'
-import React, { memo } from 'react'
+import { FormikConfig, Formik, Form } from 'formik'
+import React, { memo, useCallback, useMemo } from 'react'
 import {
-  Button,
-  Checkbox,
   Divider,
   Flex,
-  FormControl,
-  FormErrorMessage,
-  Input,
   Stack,
+  SubmitButton,
+  TextField,
+  CheckboxField,
 } from 'src/components/atoms'
 import {
   ModalBody,
@@ -17,139 +15,122 @@ import {
   ModalHeader,
   ModalCloseButton,
 } from 'src/components/organisms'
-import { useCheckBoxMultiple, useInputText } from 'src/hooks/forms'
+import { useTask } from 'src/store/entities/tasks'
 import { Label } from './Label'
 
-type Props = {}
+type Props = {
+  taskId: string
+}
 
 type Values = {
   name: string
   includeOption: string[]
 }
 
-export const Content: React.VFC<Props> = memo(() => {
-  const formik = useFormik<Values>({
-    initialValues: {
-      name: 'Duplicate of 1111',
-      includeOption: ['1'],
-    },
-    onSubmit: (values) => {
-      console.log('values: ', values)
-    },
-    validate,
-  })
-  const { handleCheckBox, isChecked } = useCheckBoxMultiple<Values>({
-    formik,
-    name: 'includeOption',
-  })
-  const { fieldProps: taskNameFieldProps, isInvalid: isInvalidTaskName } =
-    useInputText({
-      formik,
-      name: 'name',
-    })
+const INCLUDE_OPTION_TASK_DESCRIPTION = '1'
+const INCLUDE_OPTION_ASSIGNEE = '2'
+const INCLUDE_OPTION_SUBTASKS = '3'
+const INCLUDE_OPTION_TAGS = '4'
+const INCLUDE_OPTION_COLLABORATORS = '5'
+const INCLUDE_OPTION_PROJECTS = '6'
+const INCLUDE_OPTION_DUE_DATE = '7'
+const INCLUDE_OPTION_PARENT_TASK = '8'
+
+export const Content: React.VFC<Props> = memo((props) => {
+  const { task } = useTask(props.taskId)
+  const initialValues = useMemo(
+    () => ({
+      name: `Duplicate of ${task.name}`,
+      includeOption: [
+        INCLUDE_OPTION_TASK_DESCRIPTION,
+        INCLUDE_OPTION_ASSIGNEE,
+        INCLUDE_OPTION_SUBTASKS,
+        INCLUDE_OPTION_TAGS,
+        INCLUDE_OPTION_COLLABORATORS,
+        INCLUDE_OPTION_DUE_DATE,
+        INCLUDE_OPTION_PARENT_TASK,
+      ],
+    }),
+    [task.name],
+  )
+
+  const handleSubmit = useCallback((values: Values) => {
+    console.log('values: ', values)
+  }, [])
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <ModalContent>
-        <ModalHeader>Duplicate Task</ModalHeader>
-        <ModalCloseButton />
-        <Divider />
-        <ModalBody py={4}>
-          <Flex flexDirection="column">
-            <Label>Task Name</Label>
-            <FormControl isInvalid={isInvalidTaskName}>
-              <Input {...taskNameFieldProps} fontSize="sm" />
-              <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
-            </FormControl>
-          </Flex>
-          <Flex flexDirection="column" mt={6}>
-            <Label>Include</Label>
-            <Stack spacing={2} alignItems="flex-start">
-              <Checkbox
-                size="sm"
-                value="1"
-                isChecked={isChecked('1')}
-                onChange={handleCheckBox}
-              >
-                Task Description
-              </Checkbox>
-              <Checkbox
-                value="2"
-                isChecked={isChecked('2')}
-                onChange={handleCheckBox}
-                size="sm"
-              >
-                Assignee
-              </Checkbox>
-              <Checkbox
-                name="includeOption"
-                value="3"
-                isChecked={isChecked('3')}
-                onChange={handleCheckBox}
-                size="sm"
-              >
-                Subtasks
-              </Checkbox>
-              <Checkbox
-                name="includeOption"
-                value="4"
-                isChecked={isChecked('4')}
-                onChange={handleCheckBox}
-                size="sm"
-              >
-                Tags
-              </Checkbox>
-              <Checkbox
-                name="includeOption"
-                value="5"
-                isChecked={isChecked('5')}
-                onChange={handleCheckBox}
-                size="sm"
-              >
-                Collaborators
-              </Checkbox>
-              <Checkbox
-                name="includeOption"
-                value="6"
-                isChecked={isChecked('6')}
-                onChange={handleCheckBox}
-                size="sm"
-              >
-                Projects
-              </Checkbox>
-              <Checkbox
-                name="includeOption"
-                value="7"
-                isChecked={isChecked('7')}
-                onChange={handleCheckBox}
-                size="sm"
-              >
-                Due Date
-              </Checkbox>
-              <Checkbox
-                name="includeOption"
-                value="8"
-                isChecked={isChecked('8')}
-                onChange={handleCheckBox}
-                size="sm"
-              >
-                Parent Task
-              </Checkbox>
-            </Stack>
-          </Flex>
-        </ModalBody>
-        <ModalFooter>
-          <Button
-            colorScheme="teal"
-            size="sm"
-            type="submit"
-            isDisabled={!formik.isValid}
-          >
-            Create New Task
-          </Button>
-        </ModalFooter>
-      </ModalContent>
-    </form>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validate={validate}
+    >
+      <Form>
+        <ModalContent>
+          <ModalHeader>Duplicate Task</ModalHeader>
+          <ModalCloseButton />
+          <Divider />
+          <ModalBody py={4}>
+            <Flex flexDirection="column">
+              <Label>Task Name</Label>
+              <TextField name="name" />
+            </Flex>
+            <Flex flexDirection="column" mt={6}>
+              <Label>Include</Label>
+              <Stack spacing={2} alignItems="flex-start">
+                <CheckboxField
+                  value={INCLUDE_OPTION_TASK_DESCRIPTION}
+                  name="includeOption"
+                >
+                  Task Description
+                </CheckboxField>
+                <CheckboxField
+                  value={INCLUDE_OPTION_ASSIGNEE}
+                  name="includeOption"
+                >
+                  Assignee
+                </CheckboxField>
+                <CheckboxField
+                  value={INCLUDE_OPTION_SUBTASKS}
+                  name="includeOption"
+                >
+                  Subtasks
+                </CheckboxField>
+                <CheckboxField value={INCLUDE_OPTION_TAGS} name="includeOption">
+                  Tags
+                </CheckboxField>
+                <CheckboxField
+                  value={INCLUDE_OPTION_COLLABORATORS}
+                  name="includeOption"
+                >
+                  Collaborators
+                </CheckboxField>
+                <CheckboxField
+                  value={INCLUDE_OPTION_PROJECTS}
+                  name="includeOption"
+                >
+                  Projects
+                </CheckboxField>
+                <CheckboxField
+                  value={INCLUDE_OPTION_DUE_DATE}
+                  name="includeOption"
+                >
+                  Due Date
+                </CheckboxField>
+                <CheckboxField
+                  value={INCLUDE_OPTION_PARENT_TASK}
+                  name="includeOption"
+                >
+                  Parent Task
+                </CheckboxField>
+              </Stack>
+            </Flex>
+          </ModalBody>
+          <ModalFooter>
+            <SubmitButton>Create New Task</SubmitButton>
+          </ModalFooter>
+        </ModalContent>
+      </Form>
+    </Formik>
   )
 })
 

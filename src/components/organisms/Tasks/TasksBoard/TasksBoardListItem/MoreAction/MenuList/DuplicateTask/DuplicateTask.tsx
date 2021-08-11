@@ -8,13 +8,14 @@ type Props = {
   taskId: string
 }
 export const DuplicateTask: React.FC<Props> = memo((props) => {
-  const { onMouseEnter, onCloseMenu } = props
-  const { onOpen } = useDuplicateTaskModal()
+  const { onMouseEnter, onCloseMenu, taskId } = props
+  const { onOpen, setTaskId } = useDuplicateTaskModal()
 
   const handleClick = useCallback(() => {
+    setTaskId(taskId)
     onOpen()
     onCloseMenu()
-  }, [onCloseMenu, onOpen])
+  }, [onCloseMenu, onOpen, setTaskId, taskId])
 
   return (
     <MenuItem

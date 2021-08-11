@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { atom, useRecoilState } from 'recoil'
+import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 
 const key = (str: string) =>
   `src/components/organisms/Modals/DuplicateTaskModal/useDuplicateTaskModal/${str}`
@@ -9,12 +9,20 @@ const state = atom({
   default: false,
 })
 
+const taskIdState = atom<string>({
+  key: key('taskIdState'),
+  default: '',
+})
+
 export const useDuplicateTaskModal = () => {
   const [isOpen, setIsOpen] = useRecoilState(state)
+  const [taskId, setTaskId] = useRecoilState(taskIdState)
+  const resetTaskId = useResetRecoilState(taskIdState)
 
   const onClose = useCallback(() => {
     setIsOpen(false)
-  }, [setIsOpen])
+    resetTaskId()
+  }, [resetTaskId, setIsOpen])
 
   const onOpen = useCallback(() => {
     setIsOpen(true)
@@ -24,5 +32,7 @@ export const useDuplicateTaskModal = () => {
     isOpen,
     onOpen,
     onClose,
+    taskId,
+    setTaskId,
   }
 }

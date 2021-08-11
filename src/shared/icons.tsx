@@ -11,6 +11,7 @@ import {
   AiOutlineLike,
 } from 'react-icons/ai'
 import {
+  BiTrash,
   BiHome,
   BiSun,
   BiSort,
@@ -96,8 +97,6 @@ import { MdSort, MdTextFormat } from 'react-icons/md'
 import { TiFlowChildren } from 'react-icons/ti'
 
 export const icons = {
-  copyAlt: BiCopyAlt,
-  detail: BiDetail,
   arrowDownAlt: BiDownArrowAlt,
   arrowToRight: BiArrowToRight,
   at: BiAt,
@@ -119,7 +118,9 @@ export const icons = {
   codeAlt: BiCodeAlt,
   commentDots: BiCommentDots,
   compass: BiCompass,
+  copyAlt: BiCopyAlt,
   customize: BiCustomize,
+  detail: BiDetail,
   dotsHorizontalRounded: BiDotsHorizontalRounded,
   download: BiDownload,
   editAlt: BiEditAlt,
@@ -186,6 +187,7 @@ export const icons = {
   task: BiTask,
   textFormat: MdTextFormat,
   time: BiTime,
+  trash: BiTrash,
   trashAlt: BiTrashAlt,
   twitter: FaTwitter,
   underline: FiUnderline,

@@ -1,4 +1,5 @@
 import React, { memo, useCallback } from 'react'
+import { Icon } from 'src/components/atoms'
 import { MenuItem } from 'src/components/organisms'
 import { useToast } from 'src/hooks'
 import { useTask } from 'src/store/entities/tasks'
@@ -23,7 +24,12 @@ export const DeleteTask: React.FC<Props> = memo((props) => {
   }, [deleteTask, undeleteTask, onCloseMenu, task.name, toast])
 
   return (
-    <MenuItem onMouseEnter={onMouseEnter} color="alert" onClick={handleClick}>
+    <MenuItem
+      onMouseEnter={onMouseEnter}
+      icon={<Icon icon="trash" color="alert" />}
+      color="alert"
+      onClick={handleClick}
+    >
       Delete task
     </MenuItem>
   )

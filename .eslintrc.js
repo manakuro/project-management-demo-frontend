@@ -1,5 +1,10 @@
 module.exports = {
-  extends: ['react-app', 'eslint:recommended', 'plugin:prettier/recommended'],
+  extends: [
+    'react-app',
+    'eslint:recommended',
+    'plugin:prettier/recommended',
+    'plugin:@next/next/recommended',
+  ],
   plugins: ['babel'],
   settings: {
     'import/resolver': {

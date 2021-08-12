@@ -4,6 +4,7 @@ import {
   Icon,
   DueDate as AtomsDueDate,
   Button,
+  Flex,
 } from 'src/components/atoms'
 import { PopoverDueDatePicker } from 'src/components/organisms'
 import { useClickableHoverStyle } from 'src/hooks'
@@ -28,21 +29,23 @@ export const DueDate: React.VFC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <PopoverDueDatePicker date={task.dueDate} onChange={handleChange}>
-      {!hasDueDate && (
-        <Icon
-          icon="calendarAlt"
-          color="text.muted"
-          visibility={isHovering ? 'visible' : 'hidden'}
-          {...clickableHoverLightStyle}
-        />
-      )}
-      {hasDueDate && (
-        <Button variant="ghost" h={5} minH={5} w="auto" minW="44px" px={1}>
-          <AtomsDueDate fontSize="xs" dueDate={task.dueDate} />
-        </Button>
-      )}
-    </PopoverDueDatePicker>
+    <Flex onClick={(e) => e.stopPropagation()}>
+      <PopoverDueDatePicker date={task.dueDate} onChange={handleChange}>
+        {!hasDueDate && (
+          <Icon
+            icon="calendarAlt"
+            color="text.muted"
+            visibility={isHovering ? 'visible' : 'hidden'}
+            {...clickableHoverLightStyle}
+          />
+        )}
+        {hasDueDate && (
+          <Button variant="ghost" h={5} minH={5} w="auto" minW="44px" px={1}>
+            <AtomsDueDate fontSize="xs" dueDate={task.dueDate} />
+          </Button>
+        )}
+      </PopoverDueDatePicker>
+    </Flex>
   )
 })
 DueDate.displayName = 'TasksDueDate'

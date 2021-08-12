@@ -1,70 +1,41 @@
 import React, { memo } from 'react'
-import { Flex, FlexProps, Skeleton } from 'src/components/atoms'
-import {
-  TasksHeader,
-  TasksHeaderLeft,
-  TasksHeaderRight,
-  TasksListRow,
-} from 'src/components/organisms'
-import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
+import { Flex, FlexProps, Skeleton, Stack } from 'src/components/atoms'
+import { TasksHeader, TasksHeaderRight } from 'src/components/organisms'
 
 type Props = FlexProps
 
 const TEXT_HEIGHT = '16px'
 const BUTTON_HEIGHT = '28px'
+const CARD_HEIGHT = '97px'
 export const SkeletonBoard: React.VFC<Props> = memo<Props>((props) => {
   return (
     <Flex flex={1} flexDirection="column" {...props}>
-      <TasksHeader>
-        <TasksHeaderLeft>
-          <Skeleton w="114px" h={BUTTON_HEIGHT} />
-        </TasksHeaderLeft>
-        <TasksHeaderRight>
+      <TasksHeader
+        h="40px"
+        boxShadow="sm"
+        borderBottom={1}
+        borderStyle="solid"
+        borderColor="gray.200"
+        alignItems="center"
+      >
+        <TasksHeaderRight ml="auto">
           <Skeleton h={BUTTON_HEIGHT} w="126px" />
           <Skeleton h={BUTTON_HEIGHT} w="57px" />
           <Skeleton h={BUTTON_HEIGHT} w="91px" />
         </TasksHeaderRight>
       </TasksHeader>
-      <Flex px={6} flex={1}>
-        <Flex flex={1} flexDirection="column">
-          <Flex flex={1}>
-            <TasksListCell
-              containerStyle={{ w: 'calc(600px - 24px)' }}
-              pl={0}
-              borderLeft="none"
-            />
-            <TasksListCell containerStyle={{ w: '120px' }} />
-            <TasksListCell containerStyle={{ w: '120px' }} />
-            <TasksListCell containerStyle={{ w: '120px' }} />
-            <TasksListCell containerStyle={{ flex: 1 }} borderRight="none" />
+      <Flex flex={1} p={2}>
+        {[...new Array(3)].map((_, i) => (
+          <Flex flexDirection="column" w="304px" px={3} py={2} key={i}>
+            <Flex h="36px" alignItems="center">
+              <Skeleton h={TEXT_HEIGHT} w="100px" borderRadius="full" />
+            </Flex>
+            <Stack spacing={2}>
+              <Skeleton h={CARD_HEIGHT} w="full" borderRadius="md" />
+              <Skeleton h={CARD_HEIGHT} w="full" borderRadius="md" />
+            </Stack>
           </Flex>
-          <Flex flex={1} flexDirection="column">
-            <Flex h="50px" alignItems="center">
-              <Skeleton h={TEXT_HEIGHT} w="20px" borderRadius="full" ml={2} />
-              <Skeleton h={TEXT_HEIGHT} w="138px" borderRadius="full" ml={3} />
-            </Flex>
-            <Flex flexDirection="column" ml={8}>
-              {['40%', '32%', '38%', '42%', '50%', '40%', '41%'].map((w, i) => (
-                <TasksListRow key={i} alignItems="center">
-                  <Skeleton h={TEXT_HEIGHT} w="20px" borderRadius="full" />
-                  <Skeleton h={TEXT_HEIGHT} w={w} ml={2} borderRadius="full" />
-                </TasksListRow>
-              ))}
-            </Flex>
-            <Flex h="50px" alignItems="center">
-              <Skeleton h={TEXT_HEIGHT} w="20px" borderRadius="full" ml={2} />
-              <Skeleton h={TEXT_HEIGHT} w="138px" borderRadius="full" ml={3} />
-            </Flex>
-            <Flex flexDirection="column" ml={8}>
-              {['39%', '30%', '38%', '42%'].map((w, i) => (
-                <TasksListRow key={i} alignItems="center">
-                  <Skeleton h={TEXT_HEIGHT} w="20px" borderRadius="full" />
-                  <Skeleton h={TEXT_HEIGHT} w={w} ml={2} borderRadius="full" />
-                </TasksListRow>
-              ))}
-            </Flex>
-          </Flex>
-        </Flex>
+        ))}
       </Flex>
     </Flex>
   )

@@ -10,6 +10,7 @@ import {
   isTaskDetailURL,
   useRouter,
 } from 'src/router'
+import { useMyTasksTaskStatus } from 'src/store/app/myTasks'
 import { useMyTasksTabStatus } from 'src/store/app/myTasks/taskTabStatus'
 import { Board } from './Board'
 import { Header } from './Header'
@@ -40,6 +41,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
   } = useRouter()
   const [tabIndex, setTabIndex] = React.useState<Index>(TASKS_INDEX)
   const { setTabStatus, isTaskTabStatus, tabStatus } = useMyTasksTabStatus()
+  const { isSorted, onSort } = useMyTasksTaskStatus()
 
   const handleTabsChange = useCallback(
     async (index: number) => {
@@ -51,6 +53,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
           break
         }
         case BOARD_INDEX: {
+          if (isSorted('project')) onSort('none')
           setTabIndex(BOARD_INDEX)
           setTabStatus('board')
           await navigateToMyTasksBoard()
@@ -70,10 +73,12 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
       }
     },
     [
+      isSorted,
       navigateToMyTasks,
       navigateToMyTasksBoard,
       navigateToMyTasksCalendar,
       navigateToMyTasksFiles,
+      onSort,
       setTabStatus,
     ],
   )
@@ -101,41 +106,27 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
   useEffect(() => {
     if (isMyTasksURL(router)) {
       setTabIndex(TASKS_INDEX)
-      return
-    }
-    if (isMyTasksBoardURL(router)) {
-      setTabIndex(BOARD_INDEX)
-      return
-    }
-    if (isMyTasksCalendarURL(router)) {
-      setTabIndex(CALENDAR_INDEX)
-      return
-    }
-    if (isMyTasksFilesURL(router)) {
-      setTabIndex(FILES_INDEX)
-      return
-    }
-  }, [router, setTabStatus])
-
-  // Force update tab status based on URL regardless of API data
-  useEffect(() => {
-    if (isMyTasksURL(router)) {
       setTabStatus('list')
       return
     }
     if (isMyTasksBoardURL(router)) {
+      if (isSorted('project')) onSort('none')
+      setTabIndex(BOARD_INDEX)
       setTabStatus('board')
       return
     }
     if (isMyTasksCalendarURL(router)) {
+      setTabIndex(CALENDAR_INDEX)
       setTabStatus('calendar')
       return
     }
     if (isMyTasksFilesURL(router)) {
+      setTabIndex(FILES_INDEX)
       setTabStatus('files')
       return
     }
-  }, [router, setTabStatus, tabStatus])
+    // Include `tabStatus` to force update tab status based on URL regardless of API data
+  }, [isSorted, onSort, router, setTabStatus, tabStatus])
 
   return (
     <Provider loading={props.loading}>

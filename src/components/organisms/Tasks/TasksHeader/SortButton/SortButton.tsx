@@ -16,9 +16,11 @@ import {
   TaskListSortStatusType,
 } from 'src/store/app/myTasks'
 
-type Props = {}
+type Props = {
+  projectSortable?: boolean
+}
 
-const items: {
+const ITEMS: {
   value: TaskListSortStatusType
   text: string
 }[] = [
@@ -44,7 +46,7 @@ const items: {
   },
 ]
 
-export const SortButton: React.VFC<Props> = memo<Props>(() => {
+export const SortButton: React.VFC<Props> = memo<Props>((props) => {
   const { onSort, isSorted, sortStatus } = useTaskStatusContext()
   const handleChange = useCallback(
     (status: ToString<TaskListSortStatusType>) => {
@@ -52,10 +54,24 @@ export const SortButton: React.VFC<Props> = memo<Props>(() => {
     },
     [onSort],
   )
+  const projectSortable = useMemo(
+    () => props.projectSortable ?? true,
+    [props.projectSortable],
+  )
+  const items = useMemo(() => {
+    return ITEMS.filter((i) => {
+      if (!projectSortable && i.value === TASK_LIST_SORT_STATUS_TYPE_PROJECT)
+        return false
+      return true
+    })
+  }, [projectSortable])
+
   const text = useMemo<string>(() => {
     if (isSorted('none')) return ''
+    if (!projectSortable && isSorted('project')) return ''
+
     return `: ${items.find((i) => i.value === sortStatus)!.text}`
-  }, [isSorted, sortStatus])
+  }, [isSorted, items, projectSortable, sortStatus])
 
   return (
     <MenuSelect<ToString<TaskListSortStatusType>>

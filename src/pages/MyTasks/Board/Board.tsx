@@ -43,7 +43,7 @@ const Component: React.VFC = memo(() => {
         >
           <TasksHeaderRight ml="auto">
             <IncompleteTasksButton />
-            <SortButton />
+            <SortButton projectSortable={false} />
             <CustomizeButton />
           </TasksHeaderRight>
         </TasksHeader>

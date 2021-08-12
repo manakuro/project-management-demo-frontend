@@ -5,7 +5,9 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:@next/next/recommended',
   ],
-  plugins: ['babel'],
+  plugins: [
+    'babel', // https://www.npmjs.com/package/eslint-plugin-babel
+  ],
   settings: {
     'import/resolver': {
       node: {

@@ -36,14 +36,6 @@ const Component: React.FC<Props> = memo<Props>((props) => {
         h="full"
         px={3}
         py={2}
-        // border={1}
-        // borderStyle="solid"
-        // borderColor="transparent"
-        // borderRadius="md"
-        // _hover={{
-        //   borderColor: 'gray.200',
-        //   boxShadow: 'sm',
-        // }}
         transition={transitions.base()}
       >
         <Header taskSectionId={props.taskSectionId} />

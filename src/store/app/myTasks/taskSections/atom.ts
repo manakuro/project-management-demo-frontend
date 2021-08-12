@@ -1,12 +1,7 @@
 import { useMemo } from 'react'
 import { selectorFamily, useRecoilValue } from 'recoil'
-import {
-  myTaskTaskStatusState,
-  TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
-  TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
-  TASK_LIST_SORT_STATUS_TYPE_LIKES,
-  TASK_LIST_SORT_STATUS_TYPE_PROJECT,
-} from 'src/store/app/myTasks'
+import { isMyTaskSortStatus } from 'src/store/app/myTasks'
+import { isMyTaskTabStatus } from 'src/store/app/myTasks/taskTabStatus'
 import { useMe } from 'src/store/entities/me'
 import { TaskSection, taskSectionsState } from 'src/store/entities/taskSections'
 import { taskSectionsTasksSelector } from 'src/store/entities/taskSections/tasks'
@@ -22,29 +17,29 @@ export const myTasksTaskSectionIdsSelector = selectorFamily<string[], string>({
     (teammateId) =>
     ({ get }) => {
       const taskSections = get(taskSectionsState)
-      const taskStatus = get(myTaskTaskStatusState)
 
       switch (true) {
-        case taskStatus.sortStatus === TASK_LIST_SORT_STATUS_TYPE_DUE_DATE: {
-          const hasTaskWithNoDueDate = !!taskSections
-            .filter(filter(teammateId))
-            .filter((taskSection) => {
-              const tasks = get(taskSectionsTasksSelector(taskSection.id))
-              return tasks.some((t) => !t.dueDate)
-            }).length
-          if (!hasTaskWithNoDueDate) return []
+        case get(isMyTaskTabStatus('list')): {
+          switch (true) {
+            case get(isMyTaskSortStatus('dueDate')): {
+              const hasTaskWithNoDueDate = !!taskSections
+                .filter(filter(teammateId))
+                .filter((taskSection) => {
+                  const tasks = get(taskSectionsTasksSelector(taskSection.id))
+                  return tasks.some((t) => !t.dueDate)
+                }).length
+              if (!hasTaskWithNoDueDate) return []
 
-          return taskSections.filter(filter(teammateId)).map((t) => t.id)
-        }
-        case taskStatus.sortStatus === TASK_LIST_SORT_STATUS_TYPE_LIKES: {
-          return []
-        }
-        case taskStatus.sortStatus ===
-          TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL: {
-          return []
-        }
-        case taskStatus.sortStatus === TASK_LIST_SORT_STATUS_TYPE_PROJECT: {
-          return []
+              return taskSections.filter(filter(teammateId)).map((t) => t.id)
+            }
+            case get(isMyTaskSortStatus('likes')):
+            case get(isMyTaskSortStatus('alphabetical')): {
+              return []
+            }
+            default: {
+              return taskSections.filter(filter(teammateId)).map((t) => t.id)
+            }
+          }
         }
         default: {
           return taskSections.filter(filter(teammateId)).map((t) => t.id)

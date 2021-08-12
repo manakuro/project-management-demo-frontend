@@ -1,15 +1,13 @@
 import { useMemo } from 'react'
 import { selectorFamily, useRecoilValue } from 'recoil'
-import {
-  myTaskTaskStatusState,
-  TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
-} from 'src/store/app/myTasks'
+import { isMyTaskSortStatus } from 'src/store/app/myTasks'
 import {
   filterByTeammateId,
   filterTasks,
   filterByTaskSectionId,
   sortTasks,
 } from 'src/store/app/myTasks/filters'
+import { isMyTaskTabStatus } from 'src/store/app/myTasks/taskTabStatus'
 import { useMe } from 'src/store/entities/me'
 import { tasksState } from 'src/store/entities/tasks'
 
@@ -23,7 +21,15 @@ export const myTasksTaskIdsSelector = selectorFamily<string[], string>({
       tasks = sortTasks({ get })(tasks)
       tasks = filterTasks({ get })(tasks)
 
-      return tasks.map((t) => t.id)
+      switch (true) {
+        case get(isMyTaskTabStatus('list')) &&
+          get(isMyTaskSortStatus('dueDate')): {
+          return tasks.filter((t) => !!t.dueDate).map((t) => t.id)
+        }
+        default: {
+          return tasks.map((t) => t.id)
+        }
+      }
     },
 })
 
@@ -36,10 +42,9 @@ export const myTasksTaskIdsByTaskSectionIdSelector = selectorFamily<
     ({ taskSectionId, teammateId }) =>
     ({ get }) => {
       let tasks = get(tasksState)
-      const taskStatus = get(myTaskTaskStatusState)
-
       switch (true) {
-        case taskStatus.sortStatus === TASK_LIST_SORT_STATUS_TYPE_DUE_DATE: {
+        case get(isMyTaskTabStatus('list')) &&
+          get(isMyTaskSortStatus('dueDate')): {
           tasks = filterByTeammateId(teammateId)(tasks)
           tasks = filterByTaskSectionId(taskSectionId)(tasks)
           tasks = filterTasks({ get })(tasks)
@@ -48,6 +53,7 @@ export const myTasksTaskIdsByTaskSectionIdSelector = selectorFamily<
         default: {
           tasks = filterByTeammateId(teammateId)(tasks)
           tasks = filterByTaskSectionId(taskSectionId)(tasks)
+          tasks = sortTasks({ get })(tasks)
           tasks = filterTasks({ get })(tasks)
           return tasks.map((t) => t.id)
         }

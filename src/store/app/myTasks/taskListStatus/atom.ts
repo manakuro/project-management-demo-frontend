@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useRecoilCallback, atom, useRecoilValue } from 'recoil'
+import { useRecoilCallback, atom, useRecoilValue, selectorFamily } from 'recoil'
 import { TaskListStatus } from './type'
 import {
   TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
@@ -28,6 +28,28 @@ export const myTaskTaskStatusState = atom<TaskListStatus>({
     taskListStatus: 1,
     sortStatus: 1,
   },
+})
+
+export const isMyTaskTaskListStatus = selectorFamily<boolean, TaskListStatuses>(
+  {
+    key: key('isMyTaskTaskListStatus'),
+    get:
+      (key) =>
+      ({ get }) => {
+        const taskStatus = get(myTaskTaskStatusState)
+        return taskStatus.taskListStatus === taskListStatues[key]
+      },
+  },
+)
+
+export const isMyTaskSortStatus = selectorFamily<boolean, SortStatuses>({
+  key: key('isMyTaskSortStatus'),
+  get:
+    (key) =>
+    ({ get }) => {
+      const taskStatus = get(myTaskTaskStatusState)
+      return taskStatus.sortStatus === sortStatues[key]
+    },
 })
 
 export const useMyTasksTaskStatus = () => {

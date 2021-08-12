@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useRecoilCallback, atom, useRecoilValue } from 'recoil'
+import { useRecoilCallback, atom, useRecoilValue, selectorFamily } from 'recoil'
 import { TaskTabStatus } from './type'
 import {
   TASK_TAB_STATUS_TYPE_BOARD,
@@ -17,6 +17,16 @@ export const myTaskTaskTabStatus = atom<TaskTabStatus>({
     teammateId: '',
     tabStatus: 1,
   },
+})
+
+export const isMyTaskTabStatus = selectorFamily<boolean, TaskTabStatuses>({
+  key: key('isMyTaskTabStatus'),
+  get:
+    (status) =>
+    ({ get }) => {
+      const taskStatus = get(myTaskTaskTabStatus)
+      return tasksTabStatues[status] === taskStatus.tabStatus
+    },
 })
 
 const tasksTabStatues = {

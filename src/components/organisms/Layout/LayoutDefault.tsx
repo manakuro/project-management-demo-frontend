@@ -1,8 +1,25 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import { Flex } from 'src/components/atoms'
+import { PageLoader } from 'src/components/molecules'
 import { Navigation } from 'src/components/organisms'
+import { useGlobalUILoading } from 'src/store/app/globalUI/loading'
 
 export const LayoutDefault: React.FC = memo((props) => {
+  const { loading, setLoading } = useGlobalUILoading()
+
+  // Authenticate user here
+  useEffect(() => {
+    if (loading) {
+      setTimeout(() => {
+        setLoading(false)
+      }, 500)
+    }
+
+    /* eslint react-hooks/exhaustive-deps: off */
+  }, [])
+
+  if (loading) return <PageLoader />
+
   return (
     <Flex
       w="full"

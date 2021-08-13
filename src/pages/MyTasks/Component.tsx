@@ -13,6 +13,7 @@ import {
 import { useMyTasksTaskStatus } from 'src/store/app/myTasks'
 import { useMyTasksTabStatus } from 'src/store/app/myTasks/taskTabStatus'
 import { Board } from './Board'
+import { Files } from './Files'
 import { Header } from './Header'
 import { List } from './List'
 import { Provider, useMyTasksContext } from './Provider'
@@ -174,7 +175,7 @@ const WrappedComponent: React.VFC = memo(() => {
               <p>Calendar!</p>
             </TabPanel>
             <TabPanel>
-              <p>Files!</p>
+              <Files />
             </TabPanel>
           </TabPanels>
         </Flex>

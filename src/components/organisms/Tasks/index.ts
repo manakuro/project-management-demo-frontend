@@ -1,4 +1,5 @@
-export * from './TasksList'
-export * from './TasksHeader'
 export * from './TasksBoard'
+export * from './TasksFiles'
+export * from './TasksHeader'
+export * from './TasksList'
 export * from './TasksProvider'

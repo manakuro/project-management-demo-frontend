@@ -5,7 +5,7 @@ import {
   TasksFilesContent,
   TasksFilesList,
 } from 'src/components/organisms'
-import { useMyTasksAttachmentsQuery } from 'src/hooks/queries/useMyTasksAttachmentsQuery'
+import { useMyTasksFilesQuery } from 'src/hooks/queries/useMyTasksFilesQuery'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { SkeletonFiles } from './SkeletonFiles'
 
@@ -19,7 +19,7 @@ export const Files: React.VFC = memo(() => {
 
 const Component: React.VFC = memo(() => {
   const { loadingPage } = useMyTasksContext()
-  const { loading: loadingQuery } = useMyTasksAttachmentsQuery()
+  const { loading: loadingQuery } = useMyTasksFilesQuery()
   const loading = useMemo(
     () => loadingPage || loadingQuery,
     [loadingPage, loadingQuery],

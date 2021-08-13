@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useMyTasksAttachmentsResponse } from 'src/store/app/myTasksAttachments'
-import { MyTaskAttachmentResponse } from 'src/store/app/myTasksAttachments/type'
+import { useMyTasksFilesResponse } from 'src/store/app/myTasksFiles'
+import { MyTaskFileResponse } from 'src/store/app/myTasksFiles/type'
 
 type Props = {
   lazy?: boolean
 }
 
-export const useMyTasksAttachmentsQuery = (props?: Props) => {
+export const useMyTasksFilesQuery = (props?: Props) => {
   const [loading, setLoading] = useState(true)
-  const { setMyTasksAttachments } = useMyTasksAttachmentsResponse()
+  const { setMyTasksAttachments } = useMyTasksFilesResponse()
 
   useEffect(() => {
     ;(async () => {
@@ -36,8 +36,8 @@ export const useMyTasksAttachmentsQuery = (props?: Props) => {
   }
 }
 
-const fetchTasks = async (): Promise<MyTaskAttachmentResponse[]> => {
-  return new Promise<MyTaskAttachmentResponse[]>((resolve) => {
+const fetchTasks = async (): Promise<MyTaskFileResponse[]> => {
+  return new Promise<MyTaskFileResponse[]>((resolve) => {
     setTimeout(() => {
       resolve([
         {

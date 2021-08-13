@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useTaskAttachmentsContext } from 'src/components/organisms'
+import { useTaskFilesContext } from 'src/components/organisms'
 
 export const TasksFilesList: React.VFC = memo(() => {
-  const { attachmentIds } = useTaskAttachmentsContext()
+  const { attachmentIds } = useTaskFilesContext()
 
   console.log('attachmentIds: ', attachmentIds)
 

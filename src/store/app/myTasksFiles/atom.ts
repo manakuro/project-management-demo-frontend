@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { selectorFamily, useRecoilCallback, useRecoilValue } from 'recoil'
 import { asyncForEach } from 'src/shared/utils'
-import { MyTaskAttachmentResponse } from 'src/store/app/myTasksAttachments/type'
+import { MyTaskFileResponse } from 'src/store/app/myTasksFiles/type'
 import {
   Attachment,
   attachmentSelector,
@@ -28,11 +28,11 @@ export const myTasksAttachmentsSelector = selectorFamily<string[], string>({
     },
 })
 
-export const useMyTasksAttachmentsResponse = () => {
+export const useMyTasksFilesResponse = () => {
   const { setAttachment, setTaskStatus } = useSetters()
 
   const setMyTasksAttachments = useRecoilCallback(
-    () => async (data: MyTaskAttachmentResponse[]) => {
+    () => async (data: MyTaskFileResponse[]) => {
       setAttachment(data)
       await setTaskStatus(data)
     },
@@ -44,7 +44,7 @@ export const useMyTasksAttachmentsResponse = () => {
   }
 }
 
-export const useMyTasksAttachments = () => {
+export const useMyTasksFiles = () => {
   const { me } = useMe()
   const ids = useRecoilValue(myTasksAttachmentsSelector(me.id))
   const attachmentIds = useMemo(() => ids, [ids])
@@ -58,7 +58,7 @@ const useSetters = () => {
   const { setTaskById } = useTasksCommand()
   const setAttachment = useRecoilCallback(
     ({ set }) =>
-      (data: MyTaskAttachmentResponse[]) => {
+      (data: MyTaskFileResponse[]) => {
         const attachments: Attachment[] = data.map(({ task, ...rest }) => rest)
 
         attachments.forEach((a) => {
@@ -69,10 +69,8 @@ const useSetters = () => {
   )
 
   const setTaskStatus = useRecoilCallback(
-    () => async (data: MyTaskAttachmentResponse[]) => {
-      const tasks: MyTaskAttachmentResponse['task'][] = data.map(
-        ({ task }) => task,
-      )
+    () => async (data: MyTaskFileResponse[]) => {
+      const tasks: MyTaskFileResponse['task'][] = data.map(({ task }) => task)
 
       await asyncForEach(tasks, async (t) => {
         await setTaskById(t.id, t)

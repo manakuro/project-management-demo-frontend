@@ -1,6 +1,6 @@
 import { Attachment } from 'src/store/entities/attachments'
 
-export type MyTaskAttachmentResponse = Attachment & {
+export type MyTaskFileResponse = Attachment & {
   task: Task
 }
 

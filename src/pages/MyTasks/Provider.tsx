@@ -1,7 +1,10 @@
+import React, { SetStateAction, useEffect, useState } from 'react'
 import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
-  loading: boolean
+  loadingHeader: boolean
+  loadingPage: boolean
+  setLoadingPage: React.Dispatch<SetStateAction<boolean>>
 }
 
 type Props = {
@@ -9,8 +12,18 @@ type Props = {
 }
 
 const useValue = (props: Props): ContextProps => {
+  const [loadingHeader, setLoadingHeader] = useState(props.loading)
+  const [loadingPage, setLoadingPage] = useState(props.loading)
+
+  useEffect(() => {
+    setLoadingHeader(props.loading)
+    setLoadingPage(props.loading)
+  }, [props.loading])
+
   return {
-    loading: props.loading,
+    loadingHeader,
+    loadingPage,
+    setLoadingPage,
   } as const
 }
 useValue.__PROVIDER__ = 'src/pages/MyTasks/Provider.tsx'

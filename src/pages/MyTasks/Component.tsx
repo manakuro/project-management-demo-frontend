@@ -15,7 +15,7 @@ import { useMyTasksTabStatus } from 'src/store/app/myTasks/taskTabStatus'
 import { Board } from './Board'
 import { Header } from './Header'
 import { List } from './List'
-import { Provider } from './Provider'
+import { Provider, useMyTasksContext } from './Provider'
 
 type Props = {
   loading: boolean
@@ -32,6 +32,14 @@ type Index =
   | typeof FILES_INDEX
 
 export const Component: React.VFC<Props> = memo<Props>((props) => {
+  return (
+    <Provider loading={props.loading}>
+      <WrappedComponent />
+    </Provider>
+  )
+})
+
+const WrappedComponent: React.VFC = memo(() => {
   const {
     navigateToMyTasks,
     navigateToMyTasksBoard,
@@ -42,11 +50,20 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
   const [tabIndex, setTabIndex] = React.useState<Index>(TASKS_INDEX)
   const { setTabStatus, isTaskTabStatus, tabStatus } = useMyTasksTabStatus()
   const { isSorted, onSort } = useMyTasksTaskStatus()
+  const { loadingHeader, setLoadingPage } = useMyTasksContext()
+
+  const setLoading = useCallback(() => {
+    setLoadingPage(true)
+    setTimeout(() => {
+      setLoadingPage(false)
+    }, 200)
+  }, [setLoadingPage])
 
   const handleTabsChange = useCallback(
     async (index: number) => {
       switch (index as Index) {
         case TASKS_INDEX: {
+          setLoading()
           setTabIndex(TASKS_INDEX)
           setTabStatus('list')
           await navigateToMyTasks()
@@ -54,18 +71,21 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
         }
         case BOARD_INDEX: {
           if (isSorted('project')) onSort('none')
+          setLoading()
           setTabIndex(BOARD_INDEX)
           setTabStatus('board')
           await navigateToMyTasksBoard()
           break
         }
         case CALENDAR_INDEX: {
+          setLoading()
           setTabIndex(CALENDAR_INDEX)
           setTabStatus('calendar')
           await navigateToMyTasksCalendar()
           break
         }
         case FILES_INDEX: {
+          setLoading()
           setTabIndex(FILES_INDEX)
           await navigateToMyTasksFiles()
           break
@@ -80,6 +100,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
       navigateToMyTasksFiles,
       onSort,
       setTabStatus,
+      setLoading,
     ],
   )
 
@@ -129,38 +150,36 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
   }, [isSorted, onSort, router, setTabStatus, tabStatus])
 
   return (
-    <Provider loading={props.loading}>
-      <Tabs
-        index={tabIndex}
-        onChange={handleTabsChange}
-        flex={1}
-        display="flex"
-        isLazy
-      >
-        <Flex data-testid="MyTasks" flex={1} flexDirection="column">
-          <Head title="My Tasks" />
-          <MainHeader>
-            <Header loading={props.loading} />
-          </MainHeader>
-          <Flex flex={1}>
-            <TabPanels>
-              <TabPanel>
-                <List />
-              </TabPanel>
-              <TabPanel>
-                <Board />
-              </TabPanel>
-              <TabPanel>
-                <p>Calendar!</p>
-              </TabPanel>
-              <TabPanel>
-                <p>Files!</p>
-              </TabPanel>
-            </TabPanels>
-          </Flex>
+    <Tabs
+      index={tabIndex}
+      onChange={handleTabsChange}
+      flex={1}
+      display="flex"
+      isLazy
+    >
+      <Flex data-testid="MyTasks" flex={1} flexDirection="column">
+        <Head title="My Tasks" />
+        <MainHeader>
+          <Header loading={loadingHeader} />
+        </MainHeader>
+        <Flex flex={1}>
+          <TabPanels>
+            <TabPanel>
+              <List />
+            </TabPanel>
+            <TabPanel>
+              <Board />
+            </TabPanel>
+            <TabPanel>
+              <p>Calendar!</p>
+            </TabPanel>
+            <TabPanel>
+              <p>Files!</p>
+            </TabPanel>
+          </TabPanels>
         </Flex>
-      </Tabs>
-    </Provider>
+      </Flex>
+    </Tabs>
   )
 })
 Component.displayName = 'Component'

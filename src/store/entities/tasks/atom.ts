@@ -52,6 +52,17 @@ export const taskIdsByTaskParentIdSelector = selectorFamily<string[], string>({
         .map((t) => t.id)
     },
 })
+export const taskIdsByAssigneeIdSelector = selectorFamily<string[], string>({
+  key: key('taskIdsByAssigneeIdSelector'),
+  get:
+    (assigneeId) =>
+    ({ get }) => {
+      const tasks = get(tasksState)
+      return tasks
+        .filter((t) => t.assigneeId === assigneeId && !t.isDeleted)
+        .map((t) => t.id)
+    },
+})
 
 const taskState = atomFamily<Task, string>({
   key: key('taskState'),
@@ -105,6 +116,18 @@ export const useTasksCommand = () => {
     [],
   )
 
+  const setTaskById = useRecoilCallback(
+    ({ snapshot }) =>
+      async (taskId: string, val: Partial<Task>) => {
+        const prev = await snapshot.getPromise(taskSelector(taskId))
+        upsert({
+          ...prev,
+          ...val,
+        })
+      },
+    [upsert],
+  )
+
   const addTask = useCallback(
     (val?: Partial<Task>) => {
       const id = uuid()
@@ -122,6 +145,7 @@ export const useTasksCommand = () => {
 
   return {
     addTask,
+    setTaskById,
   }
 }
 

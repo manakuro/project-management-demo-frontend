@@ -18,9 +18,8 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
 })
 
 const Component: React.VFC<Props> = memo<Props>((props) => {
-  const { onEndTransition, onStartTransition, isTransitioning } =
-    useTasksBoardListItemContext()
-  const { task, setTask, deleteTask, setTaskName } = useTask(props.taskId)
+  const { onToggleDone } = useTasksBoardListItemContext()
+  const { task, deleteTask, setTaskName } = useTask(props.taskId)
 
   const handleChangeName = useCallback(
     async (val: string) => {
@@ -31,28 +30,14 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
   const handleToggleDone = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
       e.stopPropagation()
-      if (!task.isDone) {
-        onStartTransition()
-        setTimeout(async () => {
-          await setTask({ isDone: !task.isDone })
-          onEndTransition()
-        }, 1000)
-        return
-      }
-
-      await setTask({ isDone: !task.isDone })
-      onEndTransition()
+      onToggleDone()
     },
-    [onEndTransition, onStartTransition, setTask, task.isDone],
+    [onToggleDone],
   )
 
   return (
     <Flex>
-      <CheckIcon
-        isDone={task.isDone}
-        onClick={handleToggleDone}
-        isTransitioning={isTransitioning}
-      />
+      <CheckIcon isDone={task.isDone} onClick={handleToggleDone} />
       <TasksNameField
         value={task.name}
         isNew={task.isNew}
@@ -60,7 +45,6 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
         deleteTask={deleteTask}
         focusedBorder
         flex={1}
-        isTransitioning={isTransitioning}
       />
     </Flex>
   )

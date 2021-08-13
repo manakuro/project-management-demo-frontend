@@ -1,15 +1,18 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { useTaskStatusContext } from 'src/components/organisms'
 import { useHover } from 'src/hooks/useHover'
 import { ROUTE_MY_TASKS, useRouter } from 'src/router'
 import { createProvider } from 'src/shared/react/createProvider'
+import { useTask } from 'src/store/entities/tasks'
 
 type ContextProps = {
   selected: boolean
   isHovering: boolean
   ref: React.MutableRefObject<HTMLElement | null>
-  isTransitioning: boolean
-  onStartTransition: () => void
-  onEndTransition: () => void
+  isOpening: boolean
+  onOpening: () => void
+  onClosing: () => void
+  onToggleDone: () => Promise<void>
 }
 
 type Props = {
@@ -20,14 +23,16 @@ const useValue = (props: Props): ContextProps => {
   const [selected, setSelected] = useState<boolean>(false)
   const { router } = useRouter()
   const { ref, isHovering } = useHover()
-  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [isOpening, setIsOpening] = useState(true)
+  const { task, setTask } = useTask(props.taskId)
+  const { isTaskListStatus } = useTaskStatusContext()
 
-  const onStartTransition = useCallback(() => {
-    setIsTransitioning(true)
+  const onOpening = useCallback(() => {
+    setIsOpening(true)
   }, [])
 
-  const onEndTransition = useCallback(() => {
-    setIsTransitioning(false)
+  const onClosing = useCallback(() => {
+    setIsOpening(false)
   }, [])
 
   useEffect(() => {
@@ -38,13 +43,40 @@ const useValue = (props: Props): ContextProps => {
     setSelected(false)
   }, [props.taskId, router])
 
+  const onToggleDone = useCallback(async () => {
+    // When incomplete tasks are listed and the user is trying to complete it
+    if (isTaskListStatus('incomplete')) {
+      if (!task.isDone) {
+        onClosing()
+        setTimeout(async () => {
+          await setTask({ isDone: !task.isDone })
+        }, 3000)
+        return
+      }
+    }
+
+    // When completed tasks are listed and the user is trying to make it as uncompleted
+    if (!isTaskListStatus('incomplete') && !isTaskListStatus('all')) {
+      if (task.isDone) {
+        onClosing()
+        setTimeout(async () => {
+          await setTask({ isDone: !task.isDone })
+        }, 3000)
+        return
+      }
+    }
+
+    await setTask({ isDone: !task.isDone })
+  }, [isTaskListStatus, onClosing, setTask, task.isDone])
+
   return {
     selected,
     isHovering,
     ref,
-    isTransitioning,
-    onStartTransition,
-    onEndTransition,
+    isOpening,
+    onOpening,
+    onClosing,
+    onToggleDone,
   }
 }
 useValue.__PROVIDER__ =

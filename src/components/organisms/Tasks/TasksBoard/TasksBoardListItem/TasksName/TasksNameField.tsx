@@ -2,7 +2,6 @@ import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Flex, InputText, InputProps } from 'src/components/atoms'
 import { useTaskDetailDrawerRef } from 'src/components/organisms'
 import { useClickOutside, useDebounce } from 'src/hooks'
-import { ChakraProps } from 'src/shared/chakra'
 import { useTasksBoardListItemInputContext } from '../Provider'
 import { useTasksNameContext } from './Provider'
 
@@ -12,12 +11,10 @@ type Props = {
   isNew?: boolean
   deleteTask?: () => Promise<void>
   focusedBorder?: boolean
-  isTransitioning?: boolean
 } & Omit<InputProps, 'onChange'>
 
 export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   const [value, setValue] = useState<string>(props.value)
-  const { isTransitioning } = props
   const { ref: containerRef } = useTasksNameContext()
   const {
     onInputFocus,
@@ -67,16 +64,6 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
 
   useDebounce(value, props.onChange, 500)
 
-  const style = useMemo<ChakraProps>(() => {
-    let val: ChakraProps = {}
-    if (isTransitioning)
-      val = {
-        ...val,
-        color: 'gray.50',
-      }
-    return val
-  }, [isTransitioning])
-
   return (
     <Flex position="relative" minW="150px" ref={ref}>
       <InputText
@@ -96,7 +83,6 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
           ml: 1,
           maxH: 20,
         }}
-        {...style}
       />
     </Flex>
   )

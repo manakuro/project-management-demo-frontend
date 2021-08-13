@@ -10,25 +10,14 @@ type Props = {
   taskId: string
 }
 export const MarkComplete: React.FC<Props> = memo((props) => {
-  const { task, setTask } = useTask(props.taskId)
-  const { onEndTransition, onStartTransition } = useTasksBoardListItemContext()
+  const { task } = useTask(props.taskId)
+  const { onToggleDone } = useTasksBoardListItemContext()
   const { onMouseEnter, onCloseMenu } = props
 
   const handleClick = useCallback(async () => {
-    if (!task.isDone) {
-      onStartTransition()
-      setTimeout(async () => {
-        await setTask({ isDone: !task.isDone })
-        onEndTransition()
-      }, 1000)
-      onCloseMenu()
-      return
-    }
-
-    await setTask({ isDone: !task.isDone })
-    onEndTransition()
+    onToggleDone()
     onCloseMenu()
-  }, [onCloseMenu, onEndTransition, onStartTransition, setTask, task.isDone])
+  }, [onToggleDone, onCloseMenu])
 
   return (
     <MenuItem

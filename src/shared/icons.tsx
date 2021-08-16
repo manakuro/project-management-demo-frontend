@@ -11,6 +11,7 @@ import {
   AiOutlineLike,
 } from 'react-icons/ai'
 import {
+  BiImageAlt,
   BiTrash,
   BiHome,
   BiSun,
@@ -139,6 +140,7 @@ export const icons = {
   help: BiHelpCircle,
   home: BiHome,
   idCard: BiIdCard,
+  imageAlt: BiImageAlt,
   italic: FiItalic,
   layerPlus: BiLayerPlus,
   layout: BiLayout,

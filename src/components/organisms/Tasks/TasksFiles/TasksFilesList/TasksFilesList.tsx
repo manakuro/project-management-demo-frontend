@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
-import { Flex } from 'src/components/atoms'
+import { Flex, Wrap, WrapItem } from 'src/components/atoms'
 import { useTaskFilesContext } from 'src/components/organisms'
+import { TasksFilesListItem } from '../TasksFilesListItem'
 
 export const TasksFilesList: React.VFC = memo(() => {
   const { attachmentIds } = useTaskFilesContext()
@@ -8,10 +9,14 @@ export const TasksFilesList: React.VFC = memo(() => {
   console.log('attachmentIds: ', attachmentIds)
 
   return (
-    <Flex flex={1} position="relative" justifyContent="center">
-      <div>hey</div>
-      <div>hey</div>
-      <div>hey</div>
+    <Flex flex={1}>
+      <Wrap spacing={10} justify="center">
+        {attachmentIds.map((id) => (
+          <WrapItem key={id}>
+            <TasksFilesListItem attachmentId={id} />
+          </WrapItem>
+        ))}
+      </Wrap>
     </Flex>
   )
 })

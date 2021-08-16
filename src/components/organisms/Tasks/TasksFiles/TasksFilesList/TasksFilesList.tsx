@@ -6,8 +6,6 @@ import { TasksFilesListItem } from '../TasksFilesListItem'
 export const TasksFilesList: React.VFC = memo(() => {
   const { attachmentIds } = useTaskFilesContext()
 
-  console.log('attachmentIds: ', attachmentIds)
-
   return (
     <Flex flex={1}>
       <Wrap spacing={10} justify="center">

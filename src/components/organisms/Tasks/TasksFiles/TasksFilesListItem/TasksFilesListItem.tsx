@@ -8,11 +8,13 @@ import {
   Image,
   Divider,
 } from 'src/components/atoms'
+import { useFileViewerModal } from 'src/components/organisms'
 import { useHover } from 'src/hooks/useHover'
 import { getAttachmentIcon } from 'src/shared/attachment'
 import { useAttachment } from 'src/store/entities/attachments'
 import { ATTACHMENT_TYPE_IMAGE } from 'src/store/entities/attachments/types'
 import { useTask } from 'src/store/entities/tasks'
+import { useTasksAttachmentIds } from 'src/store/entities/tasks/attachmentIds'
 import { transitions } from 'src/styles'
 
 type Props = {
@@ -24,6 +26,8 @@ export const TasksFilesListItem: React.VFC<Props> = memo((props) => {
   const { ref, isHovering } = useHover()
   const { attachment } = useAttachment(attachmentId)
   const { task } = useTask(attachment.taskId)
+  const { attachmentIds } = useTasksAttachmentIds(attachment.taskId)
+  const { onOpen, setState } = useFileViewerModal()
   const icon = getAttachmentIcon(attachment.type)
 
   const handleOpenTaskDetail = useCallback(
@@ -32,6 +36,14 @@ export const TasksFilesListItem: React.VFC<Props> = memo((props) => {
     },
     [],
   )
+
+  const handleOpenFileViewer = useCallback(() => {
+    setState({
+      attachmentIds,
+      currentAttachmentId: attachmentId,
+    })
+    onOpen()
+  }, [attachmentId, attachmentIds, onOpen, setState])
 
   return (
     <Flex
@@ -46,6 +58,7 @@ export const TasksFilesListItem: React.VFC<Props> = memo((props) => {
       maxW="420px"
       maxH="275px"
       bg="white"
+      onClick={handleOpenFileViewer}
       {...rest}
     >
       <Flex p={4} alignItems="center">

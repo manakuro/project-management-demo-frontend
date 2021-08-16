@@ -130,6 +130,21 @@ const fetchTasks = async (): Promise<MyTaskFileResponse[]> => {
             name: 'Resolve an issue of auto focus for tasks list detail page',
           },
         },
+        {
+          id: '7',
+          projectId: '1',
+          taskId: '2',
+          feedId: '1',
+          name: '/images/cat_img.png',
+          src: '/images/cat_img.png',
+          createdAt: new Date().toISOString(),
+          type: 1,
+          status: 1,
+          task: {
+            id: '2',
+            name: 'Implement Task Due Soon',
+          },
+        },
       ])
     }, 500)
   })

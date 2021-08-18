@@ -1,20 +1,29 @@
-import React, { memo } from 'react'
-import { Flex, Wrap, WrapItem } from 'src/components/atoms'
+import React, { memo, useMemo } from 'react'
+import { Flex, Stack } from 'src/components/atoms'
 import { useTaskFilesContext } from 'src/components/organisms'
+import { useBreakpointValue } from 'src/shared/chakra'
+import { splitByNumber } from 'src/shared/utils'
 import { TasksFilesListItem } from '../TasksFilesListItem'
 
 export const TasksFilesList: React.VFC = memo(() => {
   const { attachmentIds } = useTaskFilesContext()
+  const splitNum = useBreakpointValue({ base: 2, '2xl': 3 }) as number
+  const sections = useMemo(
+    () => splitByNumber(attachmentIds, splitNum),
+    [attachmentIds, splitNum],
+  )
 
   return (
-    <Flex flex={1}>
-      <Wrap spacing={10} justify="center">
-        {attachmentIds.map((id) => (
-          <WrapItem key={id}>
-            <TasksFilesListItem attachmentId={id} />
-          </WrapItem>
+    <Flex flex={1} pb={4}>
+      <Stack maxW="90%" mx="auto" direction="row" spacing={8}>
+        {sections.map((ids, i) => (
+          <Stack spacing={8} key={i}>
+            {ids.map((id) => (
+              <TasksFilesListItem attachmentId={id} key={id} />
+            ))}
+          </Stack>
         ))}
-      </Wrap>
+      </Stack>
     </Flex>
   )
 })

@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useRecoilCallback, atom, useRecoilValue, selectorFamily } from 'recoil'
-import { TaskTabStatus } from './type'
+import { TabStatusForMyTasks } from './type'
 import {
   TASK_TAB_STATUS_TYPE_BOARD,
   TASK_TAB_STATUS_TYPE_CALENDAR,
@@ -8,10 +8,10 @@ import {
   TASK_TAB_STATUS_TYPE_LIST,
 } from './types'
 
-const key = (str: string) => `src/store/app/myTasks/taskTabStatus/${str}`
+const key = (str: string) => `src/store/entities/tabStatusForMyTasks/${str}`
 
-export const myTaskTaskTabStatus = atom<TaskTabStatus>({
-  key: key('myTaskTaskTabStatus'),
+export const tabStatusForMyTasks = atom<TabStatusForMyTasks>({
+  key: key('tabStatusForMyTasks'),
   default: {
     id: '',
     teammateId: '',
@@ -19,12 +19,12 @@ export const myTaskTaskTabStatus = atom<TaskTabStatus>({
   },
 })
 
-export const isMyTaskTabStatus = selectorFamily<boolean, TaskTabStatuses>({
-  key: key('isMyTaskTabStatus'),
+export const isTabStatusForMyTasks = selectorFamily<boolean, TaskTabStatuses>({
+  key: key('isTabStatusForMyTasks'),
   get:
     (status) =>
     ({ get }) => {
-      const taskStatus = get(myTaskTaskTabStatus)
+      const taskStatus = get(tabStatusForMyTasks)
       return tasksTabStatues[status] === taskStatus.tabStatus
     },
 })
@@ -37,18 +37,41 @@ const tasksTabStatues = {
 } as const
 export type TaskTabStatuses = keyof typeof tasksTabStatues
 
-export const useMyTasksTabStatus = () => {
-  const state = useRecoilValue(myTaskTaskTabStatus)
+export const useTabStatusForMyTasksFromResponse = () => {
+  const { upsert } = useTabStatusForMyTasksCommands()
+
+  const setTabStatus = useCallback(
+    (val: TabStatusForMyTasks) => {
+      upsert(val)
+    },
+    [upsert],
+  )
+
+  return {
+    setTabStatus,
+  }
+}
+
+export const useTabStatusForMyTasksCommands = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
-      (val: Partial<TaskTabStatus>) => {
-        set(myTaskTaskTabStatus, (prev) => ({
+      (val: Partial<TabStatusForMyTasks>) => {
+        set(tabStatusForMyTasks, (prev) => ({
           ...prev,
           ...val,
         }))
       },
     [],
   )
+
+  return {
+    upsert,
+  }
+}
+
+export const useTabStatusForMyTasks = () => {
+  const state = useRecoilValue(tabStatusForMyTasks)
+  const { upsert } = useTabStatusForMyTasksCommands()
 
   const isTaskTabStatus = useCallback(
     (status: TaskTabStatuses) => state.tabStatus === tasksTabStatues[status],

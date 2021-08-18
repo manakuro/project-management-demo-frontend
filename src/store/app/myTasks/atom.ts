@@ -1,5 +1,4 @@
 import { useRecoilCallback } from 'recoil'
-import { myTaskTaskTabStatus } from 'src/store/app/myTasks/taskTabStatus'
 import {
   useMyTasksTaskIds,
   useMyTasksTaskIdsByTaskSection,
@@ -33,7 +32,7 @@ export const useMyTaskCommands = () => {
 
 export const useMyTasks = () => {
   const { setTaskSections } = useTaskSections()
-  const { setTaskColumns, setTaskStatus, setTaskTabStatus } = useSetters()
+  const { setTaskColumns, setTaskStatus } = useSetters()
   const { taskSectionIds } = useMyTasksTaskSectionIds()
   const { taskIds } = useMyTasksTaskIds()
 
@@ -42,9 +41,8 @@ export const useMyTasks = () => {
       setTaskSections(data.taskSections)
       setTaskColumns(data)
       setTaskStatus(data)
-      setTaskTabStatus(data)
     },
-    [setTaskColumns, setTaskSections, setTaskStatus, setTaskTabStatus],
+    [setTaskColumns, setTaskSections, setTaskStatus],
   )
 
   return {
@@ -93,17 +91,8 @@ function useSetters() {
     [],
   )
 
-  const setTaskTabStatus = useRecoilCallback(
-    ({ set }) =>
-      (data: MyTaskResponse) => {
-        set(myTaskTaskTabStatus, data.taskTabStatus)
-      },
-    [],
-  )
-
   return {
     setTaskColumns,
     setTaskStatus,
-    setTaskTabStatus,
   }
 }

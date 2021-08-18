@@ -7,8 +7,8 @@ import {
   filterByTaskSectionId,
   sortTasks,
 } from 'src/store/app/myTasks/filters'
-import { isMyTaskTabStatus } from 'src/store/app/myTasks/taskTabStatus'
 import { useMe } from 'src/store/entities/me'
+import { isTabStatusForMyTasks } from 'src/store/entities/tabStatusForMyTasks'
 import { tasksState } from 'src/store/entities/tasks'
 
 export const myTasksTaskIdsSelector = selectorFamily<string[], string>({
@@ -22,7 +22,7 @@ export const myTasksTaskIdsSelector = selectorFamily<string[], string>({
       tasks = filterTasks({ get })(tasks)
 
       switch (true) {
-        case get(isMyTaskTabStatus('list')) &&
+        case get(isTabStatusForMyTasks('list')) &&
           get(isMyTaskSortStatus('dueDate')): {
           return tasks.filter((t) => !!t.dueDate).map((t) => t.id)
         }
@@ -43,7 +43,7 @@ export const myTasksTaskIdsByTaskSectionIdSelector = selectorFamily<
     ({ get }) => {
       let tasks = get(tasksState)
       switch (true) {
-        case get(isMyTaskTabStatus('list')) &&
+        case get(isTabStatusForMyTasks('list')) &&
           get(isMyTaskSortStatus('dueDate')): {
           tasks = filterByTeammateId(teammateId)(tasks)
           tasks = filterByTaskSectionId(taskSectionId)(tasks)

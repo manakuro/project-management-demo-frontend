@@ -708,11 +708,6 @@ const fetchTasks = async (): Promise<MyTaskResponse> => {
           taskListStatus: 1,
           sortStatus: 1,
         },
-        taskTabStatus: {
-          id: '1',
-          teammateId: '1',
-          tabStatus: 4,
-        },
       })
     }, 500)
   })

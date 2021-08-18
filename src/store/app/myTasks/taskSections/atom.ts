@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
 import { selectorFamily, useRecoilValue } from 'recoil'
 import { isMyTaskSortStatus } from 'src/store/app/myTasks'
-import { isMyTaskTabStatus } from 'src/store/app/myTasks/taskTabStatus'
 import { useMe } from 'src/store/entities/me'
+import { isTabStatusForMyTasks } from 'src/store/entities/tabStatusForMyTasks'
 import { TaskSection, taskSectionsState } from 'src/store/entities/taskSections'
 import { taskSectionsTasksSelector } from 'src/store/entities/taskSections/tasks'
 
@@ -19,7 +19,7 @@ export const myTasksTaskSectionIdsSelector = selectorFamily<string[], string>({
       const taskSections = get(taskSectionsState)
 
       switch (true) {
-        case get(isMyTaskTabStatus('list')): {
+        case get(isTabStatusForMyTasks('list')): {
           switch (true) {
             case get(isMyTaskSortStatus('dueDate')): {
               const hasTaskWithNoDueDate = !!taskSections

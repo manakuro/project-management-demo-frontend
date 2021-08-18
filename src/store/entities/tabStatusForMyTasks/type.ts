@@ -1,6 +1,6 @@
 import { TaskTabStatusType } from './types'
 
-export type TaskTabStatus = {
+export type TabStatusForMyTasks = {
   id: string
   teammateId: string
   tabStatus: TaskTabStatusType

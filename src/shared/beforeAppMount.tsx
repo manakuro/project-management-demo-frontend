@@ -6,6 +6,7 @@ import {
   useMeQuery,
   useFeedLikesQuery,
   useTaskLikesQuery,
+  useTabStatusForMyTasksQuery,
 } from 'src/hooks/queries'
 
 export const BeforeAppMount: React.FC = (props) => {
@@ -25,6 +26,9 @@ export const BeforeAppMount: React.FC = (props) => {
   const taskLikesResult = useTaskLikesQuery({
     lazy: true,
   })
+  const tabStatusForMyTasksResult = useTabStatusForMyTasksQuery({
+    lazy: true,
+  })
 
   useEffect(() => {
     console.log('BeforeAppMount!!')
@@ -34,6 +38,7 @@ export const BeforeAppMount: React.FC = (props) => {
     meQueryResult.refetch()
     feedLikesResult.refetch()
     taskLikesResult.refetch()
+    tabStatusForMyTasksResult.refetch()
 
     /* eslint react-hooks/exhaustive-deps: off */
   }, [])

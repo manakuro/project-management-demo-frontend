@@ -11,7 +11,7 @@ import {
   useRouter,
 } from 'src/router'
 import { useMyTasksTaskStatus } from 'src/store/app/myTasks'
-import { useMyTasksTabStatus } from 'src/store/app/myTasks/taskTabStatus'
+import { useTabStatusForMyTasks } from 'src/store/entities/tabStatusForMyTasks'
 import { Board } from './Board'
 import { Files } from './Files'
 import { Header } from './Header'
@@ -50,7 +50,7 @@ const WrappedComponent: React.VFC = memo(() => {
     router,
   } = useRouter()
   const [tabIndex, setTabIndex] = React.useState<Index>(TASKS_INDEX)
-  const { setTabStatus, isTaskTabStatus, tabStatus } = useMyTasksTabStatus()
+  const { setTabStatus, isTaskTabStatus, tabStatus } = useTabStatusForMyTasks()
   const { isSorted, onSort } = useMyTasksTaskStatus()
   const { loadingQuery, setLoadingTabContent } = useMyTasksContext()
 

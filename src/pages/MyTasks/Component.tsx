@@ -125,7 +125,6 @@ const WrappedComponent: React.VFC = memo(() => {
           break
         }
       }
-      return
     }
   }, [isTaskTabStatus, router])
 

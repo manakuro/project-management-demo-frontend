@@ -11,15 +11,13 @@ type Props = {
 
 export const useTasksFilesDetail = (props: Props) => {
   const { router } = useRouter()
-  const { taskId, refetch, setId, setLoading } = useTaskDetail()
+  const { refetch, setId, setLoading } = useTaskDetail()
   const { onOpen } = useTaskDetailModal()
+  const { isTaskDetailURL, getTaskDetailId } = props
 
   useEffect(() => {
-    if (!props.isTaskDetailURL(router)) return
-    const newId = props.getTaskDetailId(router)
-    if (taskId === newId) return
-    console.log('render!:', taskId, newId)
-    console.log('newId!:')
+    if (!isTaskDetailURL(router)) return
+    const newId = getTaskDetailId(router)
 
     setLoading(true)
     setId(newId)
@@ -29,7 +27,15 @@ export const useTasksFilesDetail = (props: Props) => {
         setLoading(false)
       }, 200)
     })
-  }, [router, onOpen, refetch, setId, taskId, setLoading, props])
+  }, [
+    router,
+    onOpen,
+    refetch,
+    setLoading,
+    setId,
+    isTaskDetailURL,
+    getTaskDetailId,
+  ])
 
   return {
     backToPage: props.backToPage,

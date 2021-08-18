@@ -1,13 +1,14 @@
 import React, { memo } from 'react'
-import { Flex, Skeleton } from 'src/components/atoms'
+import { Flex, FlexProps, Skeleton } from 'src/components/atoms'
 import { Collaborators } from './Collaborators'
 import { Comment } from './Comment'
 
 type Props = {
   loading?: boolean
-}
+} & FlexProps
 
 export const TaskDetailFooter: React.FC<Props> = memo<Props>((props) => {
+  const { loading, ...rest } = props
   if (props.loading)
     return (
       <Flex flex={1} px={6} py={2} bg="gray.50" flexDirection="column">
@@ -30,6 +31,7 @@ export const TaskDetailFooter: React.FC<Props> = memo<Props>((props) => {
       borderTop="1px"
       borderColor="gray.100"
       flexDirection="column"
+      {...rest}
     >
       <Comment />
       <Collaborators />

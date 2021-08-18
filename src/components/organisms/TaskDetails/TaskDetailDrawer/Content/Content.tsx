@@ -52,7 +52,11 @@ export const Content: React.VFC<Props> = memo((props) => {
         flexDirection="column"
       >
         <Flex p={0}>
-          <TaskDetailHeader onClose={props.onClose} loading={props.loading} />
+          <TaskDetailHeader
+            onClose={props.onClose}
+            loading={props.loading}
+            mode="drawer"
+          />
         </Flex>
         <Divider />
         <Flex {...drawerStyle.body} display="flex" flexDirection="column" p={0}>

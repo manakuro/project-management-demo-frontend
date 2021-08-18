@@ -4,9 +4,12 @@ import {
   TasksProvider,
   TasksFilesContent,
   TasksFilesList,
+  TaskDetailModal,
 } from 'src/components/organisms'
+import { useTasksFilesDetail } from 'src/components/organisms/Tasks/TasksFiles/useTasksFilesDetail'
 import { useMyTasksFilesQuery } from 'src/hooks/queries/useMyTasksFilesQuery'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
+import { isTaskDetailURL, getTaskDetailId, useRouter } from 'src/router'
 import { SkeletonFiles } from './SkeletonFiles'
 
 export const Files: React.VFC = memo(() => {
@@ -24,6 +27,13 @@ const Component: React.VFC = memo(() => {
     () => loadingPage || loadingQuery,
     [loadingPage, loadingQuery],
   )
+  const { navigateToMyTasksFiles } = useRouter()
+
+  useTasksFilesDetail({
+    isTaskDetailURL,
+    getTaskDetailId,
+    backToPage: navigateToMyTasksFiles,
+  })
 
   if (loading) return <SkeletonFiles />
 
@@ -34,6 +44,7 @@ const Component: React.VFC = memo(() => {
           <TasksFilesList />
         </TasksFilesContent>
       </Flex>
+      <TaskDetailModal backToPage={navigateToMyTasksFiles} />
     </>
   )
 })

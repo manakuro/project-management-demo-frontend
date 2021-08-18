@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import {
   Button,
   CheckIcon,
@@ -8,6 +8,7 @@ import {
   Stack,
   Skeleton,
 } from 'src/components/atoms'
+import { IconType } from 'src/shared/icons'
 import { Attachment } from './Attachment'
 import { Copy } from './Copy'
 import { Like } from './Like'
@@ -17,9 +18,21 @@ import { SubTasks } from './Subtasks'
 type Props = {
   onClose: () => void
   loading?: boolean
+  mode: Mode
 }
 
+const closeIcons = {
+  modal: 'x',
+  drawer: 'arrowToRight',
+} as const
+type Mode = keyof typeof closeIcons
+
 export const TaskDetailHeader: React.FC<Props> = memo<Props>((props) => {
+  const closeIcon = useMemo<IconType>(
+    () => closeIcons[props.mode],
+    [props.mode],
+  )
+
   if (props.loading)
     return (
       <Flex px={6} h="57px" alignItems="center" flex={1}>
@@ -49,7 +62,7 @@ export const TaskDetailHeader: React.FC<Props> = memo<Props>((props) => {
           <MoreAction />
           <IconButton
             aria-label="Close button"
-            icon={<Icon icon="arrowToRight" color="text.muted" />}
+            icon={<Icon icon={closeIcon} color="text.muted" />}
             variant="ghost"
             onClick={props.onClose}
             size="sm"

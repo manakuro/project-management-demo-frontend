@@ -10,6 +10,7 @@ import {
 } from 'src/components/atoms'
 import { useFileViewerModal } from 'src/components/organisms'
 import { useHover } from 'src/hooks/useHover'
+import { useRouter } from 'src/router'
 import { getAttachmentIcon } from 'src/shared/attachment'
 import { useAttachment } from 'src/store/entities/attachments'
 import { ATTACHMENT_TYPE_IMAGE } from 'src/store/entities/attachments/types'
@@ -29,12 +30,14 @@ export const TasksFilesListItem: React.VFC<Props> = memo((props) => {
   const { attachmentIds } = useTasksAttachmentIds(attachment.taskId)
   const { onOpen, setState } = useFileViewerModal()
   const icon = getAttachmentIcon(attachment.type)
+  const { navigateToTaskDetail } = useRouter()
 
   const handleOpenTaskDetail = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
+    async (e: React.MouseEvent<HTMLAnchorElement>) => {
       e.stopPropagation()
+      await navigateToTaskDetail(task.id)
     },
-    [],
+    [navigateToTaskDetail, task.id],
   )
 
   const handleOpenFileViewer = useCallback(() => {

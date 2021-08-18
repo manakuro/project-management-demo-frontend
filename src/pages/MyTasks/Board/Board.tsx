@@ -25,10 +25,10 @@ export const Board: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { loadingPage } = useMyTasksContext()
+  const { loadingTabContent } = useMyTasksContext()
   const { backToPage, skipElement } = useTasksBoardDetail()
 
-  if (loadingPage) return <SkeletonBoard />
+  if (loadingTabContent) return <SkeletonBoard />
 
   return (
     <>

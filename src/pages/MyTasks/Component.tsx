@@ -16,6 +16,7 @@ import { Board } from './Board'
 import { Files } from './Files'
 import { Header } from './Header'
 import { List } from './List'
+import { SkeletonList } from './List/SkeletonList'
 import { Provider, useMyTasksContext } from './Provider'
 
 type Props = {
@@ -51,14 +52,14 @@ const WrappedComponent: React.VFC = memo(() => {
   const [tabIndex, setTabIndex] = React.useState<Index>(TASKS_INDEX)
   const { setTabStatus, isTaskTabStatus, tabStatus } = useMyTasksTabStatus()
   const { isSorted, onSort } = useMyTasksTaskStatus()
-  const { loadingHeader, setLoadingPage } = useMyTasksContext()
+  const { loadingQuery, setLoadingTabContent } = useMyTasksContext()
 
   const setLoading = useCallback(() => {
-    setLoadingPage(true)
+    setLoadingTabContent(true)
     setTimeout(() => {
-      setLoadingPage(false)
+      setLoadingTabContent(false)
     }, 200)
-  }, [setLoadingPage])
+  }, [setLoadingTabContent])
 
   const handleTabsChange = useCallback(
     async (index: number) => {
@@ -164,24 +165,30 @@ const WrappedComponent: React.VFC = memo(() => {
       <Flex data-testid="MyTasks" flex={1} flexDirection="column">
         <Head title="My Tasks" />
         <MainHeader>
-          <Header loading={loadingHeader} />
+          <Header loading={loadingQuery} />
         </MainHeader>
-        <Flex flex={1}>
-          <TabPanels>
-            <TabPanel>
-              <List />
-            </TabPanel>
-            <TabPanel>
-              <Board />
-            </TabPanel>
-            <TabPanel>
-              <p>Calendar!</p>
-            </TabPanel>
-            <TabPanel>
-              <Files />
-            </TabPanel>
-          </TabPanels>
-        </Flex>
+        {loadingQuery ? (
+          <Flex flex={1}>
+            <SkeletonList />
+          </Flex>
+        ) : (
+          <Flex flex={1}>
+            <TabPanels>
+              <TabPanel>
+                <List />
+              </TabPanel>
+              <TabPanel>
+                <Board />
+              </TabPanel>
+              <TabPanel>
+                <p>Calendar!</p>
+              </TabPanel>
+              <TabPanel>
+                <Files />
+              </TabPanel>
+            </TabPanels>
+          </Flex>
+        )}
       </Flex>
     </Tabs>
   )

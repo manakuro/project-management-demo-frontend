@@ -2,9 +2,9 @@ import React, { SetStateAction, useEffect, useState } from 'react'
 import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
-  loadingHeader: boolean
-  loadingPage: boolean
-  setLoadingPage: React.Dispatch<SetStateAction<boolean>>
+  loadingQuery: boolean
+  loadingTabContent: boolean
+  setLoadingTabContent: React.Dispatch<SetStateAction<boolean>>
 }
 
 type Props = {
@@ -12,18 +12,18 @@ type Props = {
 }
 
 const useValue = (props: Props): ContextProps => {
-  const [loadingHeader, setLoadingHeader] = useState(props.loading)
-  const [loadingPage, setLoadingPage] = useState(props.loading)
+  const [loadingQuery, setLoadingQuery] = useState(props.loading)
+  const [loadingTabContent, setLoadingTabContent] = useState(props.loading)
 
   useEffect(() => {
-    setLoadingHeader(props.loading)
-    setLoadingPage(props.loading)
+    setLoadingQuery(props.loading)
+    setLoadingTabContent(props.loading)
   }, [props.loading])
 
   return {
-    loadingHeader,
-    loadingPage,
-    setLoadingPage,
+    loadingQuery,
+    loadingTabContent,
+    setLoadingTabContent,
   } as const
 }
 useValue.__PROVIDER__ = 'src/pages/MyTasks/Provider.tsx'

@@ -29,10 +29,10 @@ export const List: React.VFC = memo(() => {
   )
 })
 const Component: React.VFC = memo(() => {
-  const { loadingPage } = useMyTasksContext()
+  const { loadingTabContent } = useMyTasksContext()
   const { skipElement, backToPage } = useTasksListDetail()
 
-  if (loadingPage) return <SkeletonList />
+  if (loadingTabContent) return <SkeletonList />
 
   return (
     <>

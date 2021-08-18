@@ -25,7 +25,7 @@ export const SkeletonList: React.VFC = memo(() => {
       </TasksHeader>
       <Flex px={6} flex={1}>
         <Flex flex={1} flexDirection="column">
-          <Flex flex={1}>
+          <Flex>
             <TasksListCell
               containerStyle={{ w: 'calc(600px - 24px)' }}
               pl={0}

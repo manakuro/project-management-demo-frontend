@@ -24,8 +24,8 @@ export const useTasksListDetail = () => {
   useEffect(() => {
     if (!isTaskDetailURL(router)) return
 
-    console.log('render!')
     const newId = getTaskDetailId(router)
+    console.log('useTasksListDetail!: ', newId)
     if (taskId === newId) return
 
     setLoading(true)

@@ -18,6 +18,7 @@ export const useTasksFilesDetail = (props: Props) => {
   useEffect(() => {
     if (!isTaskDetailURL(router)) return
     const newId = getTaskDetailId(router)
+    console.log('useTasksFilesDetail!: ', newId)
 
     setLoading(true)
     setId(newId)

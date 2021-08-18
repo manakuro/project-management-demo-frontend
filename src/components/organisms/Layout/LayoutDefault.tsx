@@ -5,13 +5,13 @@ import { Navigation } from 'src/components/organisms'
 import { useGlobalUILoading } from 'src/store/app/globalUI/loading'
 
 export const LayoutDefault: React.FC = memo((props) => {
-  const { loading, setLoading } = useGlobalUILoading()
+  const { loading, endLoading } = useGlobalUILoading()
 
   // Authenticate user here
   useEffect(() => {
     if (loading) {
       setTimeout(() => {
-        setLoading(false)
+        endLoading()
       }, 500)
     }
 

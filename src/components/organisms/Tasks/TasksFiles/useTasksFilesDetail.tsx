@@ -18,7 +18,8 @@ export const useTasksFilesDetail = (props: Props) => {
     if (!props.isTaskDetailURL(router)) return
     const newId = props.getTaskDetailId(router)
     if (taskId === newId) return
-    console.log('render!')
+    console.log('render!:', taskId, newId)
+    console.log('newId!:')
 
     setLoading(true)
     setId(newId)

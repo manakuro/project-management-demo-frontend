@@ -17,7 +17,12 @@ export const TaskDetailModal: React.VFC<Props> = memo((props) => {
   }, [onClose, props])
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="4xl" scrollBehavior="inside">
+    <Modal
+      isOpen={isOpen}
+      onClose={handleClose}
+      size="4xl"
+      scrollBehavior="inside"
+    >
       <ModalOverlay />
       {isOpen && <Content loading={loading} onClose={handleClose} />}
     </Modal>

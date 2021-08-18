@@ -17,7 +17,7 @@ type Props = {
 
 export const Content: React.VFC<Props> = memo((props) => {
   return (
-    <ModalContent minH="700px" maxH="700px">
+    <ModalContent minH="670px" maxH="670px">
       <ModalHeader p={0}>
         <TaskDetailHeader
           onClose={props.onClose}

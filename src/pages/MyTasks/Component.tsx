@@ -120,6 +120,10 @@ const WrappedComponent: React.VFC = memo(() => {
           setTabIndex(CALENDAR_INDEX)
           break
         }
+        case isTaskTabStatus('files'): {
+          setTabIndex(FILES_INDEX)
+          break
+        }
       }
       return
     }

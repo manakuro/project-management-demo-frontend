@@ -1,13 +1,22 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
+import { atom, useRecoilState } from 'recoil'
 import { useTabStatusForMyTasksFromResponse } from 'src/store/entities/tabStatusForMyTasks'
 import { TabStatusForMyTasks } from 'src/store/entities/tabStatusForMyTasks/type'
+
+const key = (str: string) =>
+  `src/hooks/queries/useTabStatusForMyTasksQuery/${str}`
+
+export const loadingState = atom<boolean>({
+  key: key('loadingState'),
+  default: true,
+})
 
 type Props = {
   lazy?: boolean
 }
 
 export const useTabStatusForMyTasksQuery = (props?: Props) => {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useRecoilState(loadingState)
   const { setTabStatus } = useTabStatusForMyTasksFromResponse()
 
   useEffect(() => {

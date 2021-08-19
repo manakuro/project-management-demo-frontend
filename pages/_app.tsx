@@ -1,10 +1,11 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import enLocale from 'date-fns/locale/en-US'
+import { NextPage } from 'next'
 import { AppProps } from 'next/app'
-import React from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import { resetServerContext } from 'react-beautiful-dnd'
 import { RecoilRoot } from 'recoil'
-import { getLayoutDefault, LayoutDefault } from 'src/components/organisms'
+import { LayoutDefault } from 'src/components/organisms'
 import { Modals } from 'src/components/organisms'
 import { BeforeAppMount } from 'src/shared/beforeAppMount'
 import {
@@ -15,14 +16,20 @@ import {
 } from 'src/shared/material-ui'
 import { theme } from 'src/styles'
 
-export type AppLayout = { getLayout: typeof getLayoutDefault }
-
 resetServerContext()
 
-const App = ({ Component, pageProps }: AppProps) => {
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout =
-    (Component as any).getLayout ||
-    ((page: any) => <LayoutDefault>{page}</LayoutDefault>)
+    Component.getLayout ||
+    ((page: ReactElement) => <LayoutDefault>{page}</LayoutDefault>)
 
   return (
     <RecoilRoot>

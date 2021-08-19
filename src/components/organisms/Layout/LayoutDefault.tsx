@@ -46,7 +46,3 @@ export const LayoutDefault: React.FC = memo((props) => {
   )
 })
 LayoutDefault.displayName = 'LayoutDefault'
-
-export const getLayoutDefault = (page: any) => (
-  <LayoutDefault>{page}</LayoutDefault>
-)

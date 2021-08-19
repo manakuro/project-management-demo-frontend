@@ -1,3 +1,4 @@
+import { NextRouter } from 'next/router'
 import React, { memo, useCallback, useEffect } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Head } from 'src/components/atoms/Head'
@@ -16,7 +17,6 @@ import { Board } from './Board'
 import { Files } from './Files'
 import { Header } from './Header'
 import { List } from './List'
-import { SkeletonList } from './List/SkeletonList'
 import { Provider, useMyTasksContext } from './Provider'
 
 type Props = {
@@ -41,6 +41,14 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
   )
 })
 
+const mapURLtoTabStatus = (router: NextRouter): Index => {
+  if (isMyTasksBoardURL(router)) return BOARD_INDEX
+  if (isMyTasksCalendarURL(router)) return CALENDAR_INDEX
+  if (isMyTasksFilesURL(router)) return FILES_INDEX
+
+  return TASKS_INDEX
+}
+
 const WrappedComponent: React.VFC = memo(() => {
   const {
     navigateToMyTasks,
@@ -49,8 +57,10 @@ const WrappedComponent: React.VFC = memo(() => {
     navigateToMyTasksFiles,
     router,
   } = useRouter()
-  const [tabIndex, setTabIndex] = React.useState<Index>(TASKS_INDEX)
-  const { setTabStatus, isTaskTabStatus, tabStatus } = useTabStatusForMyTasks()
+  const [tabIndex, setTabIndex] = React.useState<Index>(
+    mapURLtoTabStatus(router),
+  )
+  const { setTabStatus, isTaskTabStatus } = useTabStatusForMyTasks()
   const { isSorted, onSort } = useMyTasksTaskStatus()
   const { loadingQuery, setLoadingTabContent } = useMyTasksContext()
 
@@ -89,6 +99,7 @@ const WrappedComponent: React.VFC = memo(() => {
         case FILES_INDEX: {
           setLoading()
           setTabIndex(FILES_INDEX)
+          setTabStatus('files')
           await navigateToMyTasksFiles()
           break
         }
@@ -107,6 +118,7 @@ const WrappedComponent: React.VFC = memo(() => {
   )
 
   useEffect(() => {
+    // When task detail opening
     if (isTaskDetailURL(router)) {
       switch (true) {
         case isTaskTabStatus('list'): {
@@ -126,33 +138,29 @@ const WrappedComponent: React.VFC = memo(() => {
           break
         }
       }
+      return
     }
-  }, [isTaskTabStatus, router])
 
-  useEffect(() => {
     if (isMyTasksURL(router)) {
-      setTabIndex(TASKS_INDEX)
       setTabStatus('list')
       return
     }
     if (isMyTasksBoardURL(router)) {
       if (isSorted('project')) onSort('none')
-      setTabIndex(BOARD_INDEX)
       setTabStatus('board')
       return
     }
     if (isMyTasksCalendarURL(router)) {
-      setTabIndex(CALENDAR_INDEX)
       setTabStatus('calendar')
       return
     }
     if (isMyTasksFilesURL(router)) {
-      setTabIndex(FILES_INDEX)
       setTabStatus('files')
       return
     }
-    // Include `tabStatus` to force update tab status based on URL regardless of API data
-  }, [isSorted, onSort, router, setTabStatus, tabStatus])
+    // Force update tab status based on URL
+    /* eslint react-hooks/exhaustive-deps: off */
+  }, [])
 
   return (
     <Tabs
@@ -167,28 +175,22 @@ const WrappedComponent: React.VFC = memo(() => {
         <MainHeader>
           <Header loading={loadingQuery} />
         </MainHeader>
-        {loadingQuery ? (
-          <Flex flex={1}>
-            <SkeletonList />
-          </Flex>
-        ) : (
-          <Flex flex={1}>
-            <TabPanels>
-              <TabPanel>
-                <List />
-              </TabPanel>
-              <TabPanel>
-                <Board />
-              </TabPanel>
-              <TabPanel>
-                <p>Calendar!</p>
-              </TabPanel>
-              <TabPanel>
-                <Files />
-              </TabPanel>
-            </TabPanels>
-          </Flex>
-        )}
+        <Flex flex={1}>
+          <TabPanels>
+            <TabPanel>
+              <List />
+            </TabPanel>
+            <TabPanel>
+              <Board />
+            </TabPanel>
+            <TabPanel>
+              <p>Calendar!</p>
+            </TabPanel>
+            <TabPanel>
+              <Files />
+            </TabPanel>
+          </TabPanels>
+        </Flex>
       </Flex>
     </Tabs>
   )

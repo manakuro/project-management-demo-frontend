@@ -31,6 +31,7 @@ export const List: React.VFC = memo(() => {
 const Component: React.VFC = memo(() => {
   const { loadingTabContent } = useMyTasksContext()
   const { skipElement, backToPage } = useTasksListDetail()
+  console.log('List!')
 
   if (loadingTabContent) return <SkeletonList />
 

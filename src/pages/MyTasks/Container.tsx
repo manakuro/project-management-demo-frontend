@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GetLayout } from 'src/@types/next'
 import { PageLoader } from 'src/components/molecules'
 import { LayoutDefault } from 'src/components/organisms'
@@ -16,7 +16,18 @@ export const Container: React.FC & GetLayout = () => {
 }
 
 const BeforeMountComponent: React.FC = (props) => {
-  const { loading } = useTabStatusForMyTasksQuery({ lazy: true })
+  const { loading: queryLoading } = useTabStatusForMyTasksQuery({ lazy: true })
+  const [loading, setLoading] = useState(queryLoading)
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    if (loaded) return
+
+    if (!queryLoading) {
+      setLoading(queryLoading)
+      setLoaded(true)
+    }
+  }, [loaded, queryLoading])
 
   if (loading) return <PageLoader />
 

@@ -12,7 +12,10 @@ import {
   useRouter,
 } from 'src/router'
 import { useMyTasksTaskStatus } from 'src/store/app/myTasks'
-import { useTabStatusForMyTasks } from 'src/store/entities/tabStatusForMyTasks'
+import {
+  TabStatusForMyTasks,
+  useTabStatusForMyTasks,
+} from 'src/store/entities/tabStatusForMyTasks'
 import { Board } from './Board'
 import { Files } from './Files'
 import { Header } from './Header'
@@ -41,10 +44,27 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
   )
 })
 
-const mapURLtoTabStatus = (router: NextRouter): Index => {
+const mapURLtoTabStatus = ({
+  router,
+  tabStatus,
+}: {
+  router: NextRouter
+  tabStatus: TabStatusForMyTasks['tabStatus']
+}): Index => {
   if (isMyTasksBoardURL(router)) return BOARD_INDEX
   if (isMyTasksCalendarURL(router)) return CALENDAR_INDEX
   if (isMyTasksFilesURL(router)) return FILES_INDEX
+
+  switch (tabStatus) {
+    case 1:
+      return TASKS_INDEX
+    case 2:
+      return BOARD_INDEX
+    case 3:
+      return CALENDAR_INDEX
+    case 4:
+      return FILES_INDEX
+  }
 
   return TASKS_INDEX
 }
@@ -57,12 +77,12 @@ const WrappedComponent: React.VFC = memo(() => {
     navigateToMyTasksFiles,
     router,
   } = useRouter()
-  const [tabIndex, setTabIndex] = React.useState<Index>(
-    mapURLtoTabStatus(router),
-  )
-  const { setTabStatus, isTaskTabStatus } = useTabStatusForMyTasks()
+  const { setTabStatus, isTaskTabStatus, tabStatus } = useTabStatusForMyTasks()
   const { isSorted, onSort } = useMyTasksTaskStatus()
   const { loadingQuery, setLoadingTabContent } = useMyTasksContext()
+  const [tabIndex, setTabIndex] = React.useState<Index>(
+    mapURLtoTabStatus({ router, tabStatus }),
+  )
 
   const setLoading = useCallback(() => {
     setLoadingTabContent(true)

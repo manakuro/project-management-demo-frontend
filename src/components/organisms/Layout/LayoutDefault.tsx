@@ -6,6 +6,7 @@ import { useGlobalUILoading } from 'src/store/app/globalUI/loading'
 
 export const LayoutDefault: React.FC = memo((props) => {
   const { loading, endLoading } = useGlobalUILoading()
+  console.log('LayoutDefault!')
 
   // Authenticate user here
   useEffect(() => {

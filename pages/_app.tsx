@@ -2,9 +2,10 @@ import { ChakraProvider } from '@chakra-ui/react'
 import enLocale from 'date-fns/locale/en-US'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ReactElement } from 'react'
 import { resetServerContext } from 'react-beautiful-dnd'
 import { RecoilRoot } from 'recoil'
+import { GetLayout } from 'src/@types/next'
 import { LayoutDefault } from 'src/components/organisms'
 import { Modals } from 'src/components/organisms'
 import { BeforeAppMount } from 'src/shared/beforeAppMount'
@@ -18,9 +19,7 @@ import { theme } from 'src/styles'
 
 resetServerContext()
 
-type NextPageWithLayout = NextPage & {
-  getLayout?: (page: ReactElement) => ReactNode
-}
+type NextPageWithLayout = NextPage & GetLayout
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout

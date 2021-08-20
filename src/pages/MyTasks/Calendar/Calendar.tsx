@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
-import { Flex } from 'src/components/atoms'
 import {
   TasksProvider,
   TasksCalendarContent,
   TasksCalendarList,
   TasksCalendarListHeader,
   useTasksCalendarDetail,
+  TasksCalendar,
 } from 'src/components/organisms/Tasks'
 import {
   CalendarMonthPicker,
@@ -41,7 +41,7 @@ const Component: React.VFC = memo(() => {
 
   return (
     <>
-      <Flex flex={1} h="full" flexDirection="column" bg="gray.50">
+      <TasksCalendar>
         <TasksHeader
           h="40px"
           borderBottom={1}
@@ -61,7 +61,7 @@ const Component: React.VFC = memo(() => {
         <TasksCalendarContent>
           <TasksCalendarList />
         </TasksCalendarContent>
-      </Flex>
+      </TasksCalendar>
     </>
   )
 })

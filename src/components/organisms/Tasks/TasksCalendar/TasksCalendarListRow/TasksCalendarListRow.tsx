@@ -7,6 +7,7 @@ type Props = {
   observeScrollDown?: boolean
   onVisibleWhenScrollUp: () => void
   onVisibleWhenScrollDown: () => void
+  index: number
 } & FlexProps
 
 export const TasksCalendarListRow: React.FC<Props> = memo<Props>((props) => {
@@ -38,8 +39,11 @@ export const TasksCalendarListRow: React.FC<Props> = memo<Props>((props) => {
     observeScrollUp,
     onVisibleWhenScrollDown,
     onVisibleWhenScrollUp,
+    props.id,
+    props.index,
+    props.observeScrollUp,
   ])
 
   return <Flex marginBottom="3px" {...rest} ref={ref} />
 })
-TasksCalendarListRow.displayName = 'TasksCalendarListItem'
+TasksCalendarListRow.displayName = 'TasksCalendarListRow'

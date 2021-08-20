@@ -3,11 +3,12 @@ import { Flex, FlexProps, Text, TextProps } from 'src/components/atoms'
 import { dateFns } from 'src/shared/dateFns'
 
 type Props = {
-  date: Date
+  dateString: string
 } & FlexProps
 
 export const TasksCalendarListItem: React.FC<Props> = memo<Props>((props) => {
-  const { date, ...rest } = props
+  const { dateString, ...rest } = props
+  const date = useMemo(() => new Date(dateString), [dateString])
 
   const dateText = useMemo(() => {
     if (dateFns.isFirstDayOfMonth(date)) return dateFns.format(date, 'MMMM d')

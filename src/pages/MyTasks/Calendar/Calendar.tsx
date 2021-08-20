@@ -6,11 +6,12 @@ import {
   useTasksCalendarDetail,
 } from 'src/components/organisms/Tasks'
 import {
-  CustomizeButton,
-  IncompleteTasksButton,
-  SortButton,
+  CalendarMonthPicker,
+  WeekendsButton,
   TasksHeader,
   TasksHeaderRight,
+  TasksHeaderLeft,
+  TodayButton,
 } from 'src/components/organisms/Tasks/TasksHeader'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { getTaskDetailId, isTaskDetailURL, useRouter } from 'src/router'
@@ -47,10 +48,12 @@ const Component: React.VFC = memo(() => {
           borderColor="gray.200"
           alignItems="center"
         >
+          <TasksHeaderLeft>
+            <CalendarMonthPicker />
+          </TasksHeaderLeft>
           <TasksHeaderRight ml="auto">
-            <IncompleteTasksButton />
-            <SortButton projectSortable={false} />
-            <CustomizeButton />
+            <TodayButton />
+            <WeekendsButton />
           </TasksHeaderRight>
         </TasksHeader>
         <TasksCalendarContent>hey</TasksCalendarContent>

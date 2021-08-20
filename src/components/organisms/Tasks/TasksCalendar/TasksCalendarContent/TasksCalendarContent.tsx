@@ -17,7 +17,7 @@ export const TasksCalendarContent: React.FC<Props> = memo<Props>((props) => {
       maxH={`calc(100vh - ${maxH}px)`}
       position="relative"
       h="full"
-      bg="gray.50"
+      bg="gray.200"
       transition={transitions.base()}
       {...props}
     >

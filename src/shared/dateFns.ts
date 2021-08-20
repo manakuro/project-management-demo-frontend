@@ -1,14 +1,22 @@
 import DateIODateFnsAdapter from '@date-io/date-fns'
+import addMonths from 'date-fns/addMonths'
 import addYears from 'date-fns/addYears'
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
+import eachDayOfInterval from 'date-fns/eachDayOfInterval'
+import eachWeekOfInterval from 'date-fns/eachWeekOfInterval'
+import endOfISOWeek from 'date-fns/endOfISOWeek'
+import formatISO from 'date-fns/formatISO'
 import getWeek from 'date-fns/getWeek'
 import intervalToDuration from 'date-fns/intervalToDuration'
+import isFirstDayOfMonth from 'date-fns/isFirstDayOfMonth'
 import isThisWeek from 'date-fns/isThisWeek'
 import isThisYear from 'date-fns/isThisYear'
 import isToday from 'date-fns/isToday'
 import isTomorrow from 'date-fns/isTomorrow'
 import isYesterday from 'date-fns/isYesterday'
+import startOfISOWeek from 'date-fns/startOfISOWeek'
 import subDays from 'date-fns/subDays'
+import subMonths from 'date-fns/subMonths'
 
 class DateFnsAdapter extends DateIODateFnsAdapter {
   isToday(date: ArgType<typeof isToday, 0>) {
@@ -52,6 +60,45 @@ class DateFnsAdapter extends DateIODateFnsAdapter {
     amount: ArgType<typeof subDays, 1>,
   ) {
     return subDays(date, amount)
+  }
+  eachDayOfInterval(
+    interval: ArgType<typeof eachDayOfInterval, 0>,
+    options?: ArgType<typeof eachDayOfInterval, 1>,
+  ) {
+    return eachDayOfInterval(interval, options)
+  }
+  eachWeekOfInterval(
+    interval: ArgType<typeof eachWeekOfInterval, 0>,
+    options?: ArgType<typeof eachWeekOfInterval, 1>,
+  ) {
+    return eachWeekOfInterval(interval, options)
+  }
+  startOfISOWeek(date: ArgType<typeof startOfISOWeek, 0>) {
+    return startOfISOWeek(date)
+  }
+  endOfISOWeek(date: ArgType<typeof endOfISOWeek, 0>) {
+    return endOfISOWeek(date)
+  }
+  isFirstDayOfMonth(date: ArgType<typeof isFirstDayOfMonth, 0>) {
+    return isFirstDayOfMonth(date)
+  }
+  addMonths(
+    date: ArgType<typeof addMonths, 0>,
+    amount: ArgType<typeof addMonths, 1>,
+  ) {
+    return addMonths(date, amount)
+  }
+  subMonths(
+    date: ArgType<typeof subMonths, 0>,
+    amount: ArgType<typeof subMonths, 1>,
+  ) {
+    return subMonths(date, amount)
+  }
+  formatISO(
+    date: ArgType<typeof formatISO, 0>,
+    options?: ArgType<typeof formatISO, 1>,
+  ) {
+    return formatISO(date, options)
   }
 }
 

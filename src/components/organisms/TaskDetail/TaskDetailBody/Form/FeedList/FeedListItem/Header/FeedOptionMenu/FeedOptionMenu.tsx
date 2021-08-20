@@ -1,7 +1,12 @@
 import React, { memo } from 'react'
 import { Icon, IconButton, Portal } from 'src/components/atoms'
-import { Menu, MenuList, MenuGroup, MenuButton } from 'src/components/organisms'
-import { useFeedListItemContext } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
+import {
+  Menu,
+  MenuList,
+  MenuGroup,
+  MenuButton,
+} from 'src/components/organisms/Menu'
+import { useFeedListItemContext } from '../../Provider'
 import { CopyCommentLink } from './CopyCommentLink'
 import { DeleteComment } from './DeleteComment'
 import { DeleteStory } from './DeleteStory'

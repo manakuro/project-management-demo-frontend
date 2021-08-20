@@ -1,7 +1,9 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { FileUploaderParams, UploadedFile } from 'src/components/atoms'
-import { useTaskDetail } from 'src/components/organisms'
-import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
+import {
+  useTaskDetail,
+  useTaskDetailBody,
+} from 'src/components/organisms/TaskDetail'
 import { useClickOutside, useToast } from 'src/hooks'
 import { getAttachmentTypeFromFile } from 'src/shared/getAttachmentTypeFromFile'
 import { getScrollBottom } from 'src/shared/getScrollBottom'

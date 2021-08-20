@@ -2,7 +2,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import enLocale from 'date-fns/locale/en-US'
 import React from 'react'
 import { RecoilRoot } from 'recoil'
-import { Modals } from 'src/components/organisms'
+import { Modals } from 'src/components/organisms/Modals'
 import { BeforeAppMount } from 'src/shared/beforeAppMount'
 import {
   AdapterDateFns,

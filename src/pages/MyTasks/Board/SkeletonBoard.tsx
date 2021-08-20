@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex, FlexProps, Skeleton, Stack } from 'src/components/atoms'
-import { TasksHeader, TasksHeaderRight } from 'src/components/organisms'
+import { TasksHeader, TasksHeaderRight } from 'src/components/organisms/Tasks'
 
 type Props = FlexProps
 

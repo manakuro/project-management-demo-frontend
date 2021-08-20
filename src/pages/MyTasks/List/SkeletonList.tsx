@@ -5,7 +5,7 @@ import {
   TasksHeaderLeft,
   TasksHeaderRight,
   TasksListRow,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Tasks'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 
 const TEXT_HEIGHT = '16px'

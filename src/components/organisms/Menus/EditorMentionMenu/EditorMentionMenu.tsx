@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal } from 'src/components/organisms'
+import { Modal } from 'src/components/organisms/Modal'
 import { MenuList } from './MenuList'
 import { useEditorMentionMenu } from './useEditorMentionMenu'
 

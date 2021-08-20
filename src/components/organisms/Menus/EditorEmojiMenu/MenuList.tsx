@@ -1,6 +1,6 @@
 import { BaseEmoji } from 'emoji-mart'
 import React, { useCallback } from 'react'
-import { ModalBody, ModalContent } from 'src/components/organisms'
+import { ModalBody, ModalContent } from 'src/components/organisms/Modal'
 import { useMenuStyle } from 'src/hooks'
 import { EmojiItem } from './EmojiItem'
 import { useEditorEmojiMenu } from './useEditorEmojiMenu'

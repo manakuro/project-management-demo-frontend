@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { ModalBody, ModalContent } from 'src/components/organisms'
+import { ModalBody, ModalContent } from 'src/components/organisms/Modal'
 import { useMenuStyle } from 'src/hooks'
 import { MentionItem } from './MentionItem'
 import { Empty } from './MentionItem/Empty'

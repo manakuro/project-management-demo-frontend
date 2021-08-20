@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { TaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import {
   AddTaskButton,
   CustomizeButton,
@@ -14,10 +15,9 @@ import {
   TasksListContent,
   TasksProvider,
   TasksListHorizontalScrollBorder,
+  CustomizeMenu,
   useTasksListDetail,
-  TaskDetailDrawer,
-} from 'src/components/organisms'
-import { CustomizeMenu } from 'src/components/organisms/Tasks'
+} from 'src/components/organisms/Tasks'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { SkeletonList } from './SkeletonList'
 

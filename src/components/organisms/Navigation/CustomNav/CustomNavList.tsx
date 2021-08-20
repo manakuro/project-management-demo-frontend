@@ -6,7 +6,7 @@ import {
   AccordionPanel,
   AccordionButton,
   AccordionIcon,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Accordion'
 import { useNavigation } from 'src/components/organisms/Navigation'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
 import { NavListItem } from 'src/components/organisms/Navigation/NavListItem'

@@ -1,6 +1,10 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { PortalManager } from 'src/components/atoms'
-import { Popover, PopoverProps, PopoverTrigger } from 'src/components/organisms'
+import {
+  Popover,
+  PopoverProps,
+  PopoverTrigger,
+} from 'src/components/organisms/Popover'
 import { useDebounce } from 'src/hooks'
 import { Content } from './Content'
 import { useSearchTagsQuery } from './useSearchTagsQuery'

@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react'
-import { useTasksContext } from 'src/components/organisms'
+import { useTasksContext } from 'src/components/organisms/Tasks'
 import { createProvider } from 'src/shared/react/createProvider'
 import { useTask, useTaskIdsByTaskParentId } from 'src/store/entities/tasks'
 

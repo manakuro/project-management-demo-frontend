@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { Wrap, WrapItem } from 'src/components/atoms'
 import { ThumbnailAttachment } from 'src/components/molecules'
-import { useFileViewerModal } from 'src/components/organisms'
+import { useFileViewerModal } from 'src/components/organisms/Modals'
 import { useToast } from 'src/hooks'
 import { Attachment as TAttachment } from 'src/store/entities/attachments'
 import { useTasksAttachmentIds } from 'src/store/entities/tasks/attachmentIds'

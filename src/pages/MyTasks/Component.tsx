@@ -2,7 +2,8 @@ import { NextRouter } from 'next/router'
 import React, { memo, useCallback, useEffect } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Head } from 'src/components/atoms/Head'
-import { MainHeader, Tabs, TabPanels, TabPanel } from 'src/components/organisms'
+import { MainHeader } from 'src/components/organisms/MainHeader'
+import { Tabs, TabPanels, TabPanel } from 'src/components/organisms/Tabs'
 import {
   isMyTasksBoardURL,
   isMyTasksCalendarURL,
@@ -17,6 +18,7 @@ import {
   useTabStatusForMyTasks,
 } from 'src/store/entities/tabStatusForMyTasks'
 import { Board } from './Board'
+import { Calendar } from './Calendar'
 import { Files } from './Files'
 import { Header } from './Header'
 import { List } from './List'
@@ -204,7 +206,7 @@ const WrappedComponent: React.VFC = memo(() => {
               <Board />
             </TabPanel>
             <TabPanel>
-              <p>Calendar!</p>
+              <Calendar />
             </TabPanel>
             <TabPanel>
               <Files />

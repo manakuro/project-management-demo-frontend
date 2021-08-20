@@ -1,9 +1,7 @@
 import React, { memo } from 'react'
-import {
-  MenuSelectList,
-  MenuItemOption,
-  useTaskSectionsContext,
-} from 'src/components/organisms'
+import { MenuItemOption } from 'src/components/organisms/Menu'
+import { MenuSelectList } from 'src/components/organisms/Menus'
+import { useTaskSectionsContext } from 'src/components/organisms/Tasks'
 import { TaskSection } from 'src/store/entities/taskSections'
 import { useTask } from 'src/store/entities/tasks'
 

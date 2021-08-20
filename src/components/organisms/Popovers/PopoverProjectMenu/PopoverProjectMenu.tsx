@@ -1,6 +1,10 @@
 import React, { useCallback } from 'react'
 import { IconButtonProps } from 'src/components/atoms'
-import { Menu, MenuButton, MenuButtonProps } from 'src/components/organisms'
+import {
+  Menu,
+  MenuButton,
+  MenuButtonProps,
+} from 'src/components/organisms/Menu'
 import { ChakraProps, useDisclosure } from 'src/shared/chakra'
 import { useProject } from 'src/store/entities/projects'
 import { MenuList } from './MenuList'

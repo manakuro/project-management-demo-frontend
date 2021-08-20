@@ -8,7 +8,7 @@ import {
   Image,
   Divider,
 } from 'src/components/atoms'
-import { useFileViewerModal } from 'src/components/organisms'
+import { useFileViewerModal } from 'src/components/organisms/Modals'
 import { useHover } from 'src/hooks/useHover'
 import { useRouter } from 'src/router'
 import { getAttachmentIcon } from 'src/shared/attachment'

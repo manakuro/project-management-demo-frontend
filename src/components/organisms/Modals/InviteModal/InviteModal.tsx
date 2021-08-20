@@ -7,9 +7,9 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from 'src/components/organisms'
-import { ModalCloseButton } from 'src/components/organisms/Modal/ModalCloseButton'
-import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
+  ModalCloseButton,
+} from 'src/components/organisms/Modal'
+import { useInviteModal } from 'src/components/organisms/Modals'
 
 type Props = {}
 

@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { MenuItem } from 'src/components/organisms'
-import { useFeedListItemContext } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
+import { MenuItem } from 'src/components/organisms/Menu'
+import { useFeedListItemContext } from '../../Provider'
 
 type Props = {}
 

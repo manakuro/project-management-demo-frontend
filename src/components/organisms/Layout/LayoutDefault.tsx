@@ -1,7 +1,7 @@
 import React, { memo, useEffect } from 'react'
 import { Flex } from 'src/components/atoms'
 import { PageLoader } from 'src/components/molecules'
-import { Navigation } from 'src/components/organisms'
+import { Navigation } from 'src/components/organisms/Navigation'
 import { useGlobalUILoading } from 'src/store/app/globalUI/loading'
 
 export const LayoutDefault: React.FC = memo((props) => {

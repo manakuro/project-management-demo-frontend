@@ -1,6 +1,10 @@
 import React, { memo } from 'react'
 import { PortalManager } from 'src/components/atoms'
-import { Popover, PopoverProps, PopoverTrigger } from 'src/components/organisms'
+import {
+  Popover,
+  PopoverProps,
+  PopoverTrigger,
+} from 'src/components/organisms/Popover'
 import { Content } from './Content'
 
 type Props = PopoverProps & {

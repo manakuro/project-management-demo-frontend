@@ -6,7 +6,7 @@ import {
   MenuItemOption,
   MenuOptionGroup,
   Menu,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Menu'
 import { ListStatus, VIEW_AS_TILES, VIEW_AS_LIST } from './ProjectsContainer'
 
 type Props = {

@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Icon } from 'src/components/atoms'
-import { MenuItem, useTaskDetailDrawer } from 'src/components/organisms'
+import { MenuItem } from 'src/components/organisms/Menu'
+import { useTaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import { isTaskDetailURLById, useRouter } from 'src/router'
 
 type Props = {

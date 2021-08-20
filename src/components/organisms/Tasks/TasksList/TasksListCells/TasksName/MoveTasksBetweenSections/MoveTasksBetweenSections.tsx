@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
-import { MenuSelect, MenuSelectButton } from 'src/components/organisms'
+import { MenuSelect, MenuSelectButton } from 'src/components/organisms/Menus'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useTask } from 'src/store/entities/tasks'
 import { MenuList } from './MenuList'

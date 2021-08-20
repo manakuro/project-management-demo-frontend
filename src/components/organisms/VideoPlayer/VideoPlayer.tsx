@@ -7,7 +7,7 @@ import {
   ModalContent,
   ModalFooter,
   ModalOverlay,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Modal'
 import { DurationBar } from 'src/components/organisms/VideoPlayer/DurationBar'
 import { Duration } from './Duration'
 import { useVideoPlayer } from './useVideoPlayer'

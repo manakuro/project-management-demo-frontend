@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex, Icon, Text } from 'src/components/atoms'
-import { MenuItem } from 'src/components/organisms'
+import { MenuItem } from 'src/components/organisms/Menu'
 import { PopoverAddCoverImageActions } from './PopoverAddCoverImageActions'
 
 type Props = {

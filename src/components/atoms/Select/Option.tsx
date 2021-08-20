@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { MenuItem } from 'src/components/organisms'
+import { MenuItem } from 'src/components/organisms/Menu'
 
 type Props = {
   value: string

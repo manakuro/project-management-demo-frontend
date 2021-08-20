@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { Portal, Icon, Divider, Text, Spinner } from 'src/components/atoms'
-import { PopoverContent } from 'src/components/organisms'
+import { PopoverContent } from 'src/components/organisms/Popover'
 import { useClickOutside } from 'src/hooks'
 import { Tag } from 'src/store/entities/tags'
 import { ListItem, LeftContainer, RightContainer } from './ListItem'

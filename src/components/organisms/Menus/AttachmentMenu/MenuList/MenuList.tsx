@@ -4,7 +4,7 @@ import {
   MenuItem,
   MenuList as OrganismsMenuList,
   MenuGroup,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Menu'
 import { useClickOutside, useMenuStyle } from 'src/hooks'
 
 type Props = {

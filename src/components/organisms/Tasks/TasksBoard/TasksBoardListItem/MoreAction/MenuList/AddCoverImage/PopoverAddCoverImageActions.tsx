@@ -6,7 +6,7 @@ import {
   MenuItem,
   MenuButton,
   MenuProps,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Menu'
 import { useMenuStyle } from 'src/hooks'
 import { chakra } from 'src/shared/chakra'
 

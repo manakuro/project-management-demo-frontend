@@ -1,6 +1,8 @@
 import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
+import { TaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import {
+  CustomizeMenu,
   CustomizeButton,
   IncompleteTasksButton,
   SortButton,
@@ -9,10 +11,8 @@ import {
   TasksProvider,
   TasksBoardContent,
   TasksBoardList,
-  TaskDetailDrawer,
   useTasksBoardDetail,
-} from 'src/components/organisms'
-import { CustomizeMenu } from 'src/components/organisms/Tasks'
+} from 'src/components/organisms/Tasks'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { SkeletonBoard } from './SkeletonBoard'
 

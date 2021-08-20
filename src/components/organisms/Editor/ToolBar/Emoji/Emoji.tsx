@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Icon } from 'src/components/atoms'
-import { PopoverEmoji } from 'src/components/organisms'
+import { PopoverEmoji } from 'src/components/organisms/Popovers'
 import { useEmoji } from 'src/shared/prosemirror/hooks'
 import { BaseButton } from '../BaseButton'
 

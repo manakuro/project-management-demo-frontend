@@ -1,6 +1,6 @@
 import React from 'react'
 import { IconButton, Icon, IconButtonProps } from 'src/components/atoms'
-import { PopoverProjectMenu } from 'src/components/organisms'
+import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 
 type Props = Omit<IconButtonProps, 'aria-label'> & {
   projectId: string

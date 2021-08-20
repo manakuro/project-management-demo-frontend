@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { useTaskStatusContext } from 'src/components/organisms'
+import { useTaskStatusContext } from 'src/components/organisms/Tasks'
 import { ListBasic } from './ListBasic'
 import { ListSortByAlphabetical } from './ListSortByAlphabetical'
 import { ListSortByDueDate } from './ListSortByDueDate'

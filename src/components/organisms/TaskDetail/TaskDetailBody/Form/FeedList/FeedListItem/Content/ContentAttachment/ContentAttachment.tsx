@@ -1,9 +1,9 @@
 import React, { memo, useCallback } from 'react'
-import { useFileViewerModal } from 'src/components/organisms'
-import { useFeedListItemContext } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
+import { useFileViewerModal } from 'src/components/organisms/Modals'
 import { useAttachment } from 'src/store/entities/attachments'
 import { ATTACHMENT_TYPE_IMAGE } from 'src/store/entities/attachments/types'
 import { useTasksAttachmentIds } from 'src/store/entities/tasks/attachmentIds'
+import { useFeedListItemContext } from '../../Provider'
 import { File } from './File'
 import { Image } from './Image'
 

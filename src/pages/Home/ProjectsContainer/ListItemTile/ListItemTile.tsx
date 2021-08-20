@@ -6,12 +6,12 @@ import {
   AvatarGroup,
   FavoriteButton,
 } from 'src/components/atoms'
-import { TeammateAvatar } from 'src/components/organisms'
-import { MenuButton } from 'src/pages/Home/ProjectsContainer/MenuButton/MenuButton'
+import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useProject } from 'src/store/entities/projects'
 import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
 import { useProjectsTeammateIds } from 'src/store/entities/projects/teammateIds'
 import { transitions } from 'src/styles'
+import { MenuButton } from '../MenuButton'
 import { Container } from './Container'
 
 type Props = {

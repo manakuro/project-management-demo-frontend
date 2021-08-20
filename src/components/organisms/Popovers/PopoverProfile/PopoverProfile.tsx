@@ -16,7 +16,7 @@ import {
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Popover'
 
 type Props = {
   profile: {

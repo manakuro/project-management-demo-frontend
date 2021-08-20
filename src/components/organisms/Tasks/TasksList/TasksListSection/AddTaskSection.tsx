@@ -1,7 +1,9 @@
 import React, { memo, useCallback } from 'react'
 import { Button, Flex, Icon } from 'src/components/atoms'
-import { useTaskSectionContext } from 'src/components/organisms'
-import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
+import {
+  useTaskSectionContext,
+  useTasksListContext,
+} from 'src/components/organisms/Tasks'
 
 type Props = {}
 

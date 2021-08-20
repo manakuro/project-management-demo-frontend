@@ -1,10 +1,7 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Box, Icon, IconButton, PortalManager } from 'src/components/atoms'
-import {
-  Menu,
-  MenuButton,
-  useTaskColumnContext,
-} from 'src/components/organisms'
+import { Menu, MenuButton } from 'src/components/organisms/Menu'
+import { useTaskColumnContext } from 'src/components/organisms/Tasks'
 import { useTaskColumn } from 'src/store/entities/taskColumns'
 import { MenuList } from './MenuList'
 

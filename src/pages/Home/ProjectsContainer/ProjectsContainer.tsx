@@ -5,7 +5,7 @@ import {
   AccordionItem,
   AccordionPanel,
   AccordionButton,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Accordion'
 import { ListIcon } from './ListIcon'
 import { ListItemList, ListItemListNew } from './ListItemList'
 import { ListItemTile, ListItemTileNew } from './ListItemTile'

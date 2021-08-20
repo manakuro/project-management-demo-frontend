@@ -15,7 +15,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Modal'
 import { ModalCloseButton } from 'src/components/organisms/Modal/ModalCloseButton'
 import { useDeleteTaskSectionModal } from './useDeleteTaskSectionModal'
 

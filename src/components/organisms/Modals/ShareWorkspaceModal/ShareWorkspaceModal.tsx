@@ -14,8 +14,8 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-} from 'src/components/organisms'
-import { ModalCloseButton } from 'src/components/organisms/Modal/ModalCloseButton'
+  ModalCloseButton,
+} from 'src/components/organisms/Modal'
 import { useShareWorkspaceModal } from './useShareWorkspaceModal'
 
 type Props = {}

@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import {
   useTasksListContentVerticalScroll,
   useTaskStatusContext,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Tasks'
 import { ChakraProps } from 'src/shared/chakra'
 import { createProvider } from 'src/shared/react/createProvider'
 

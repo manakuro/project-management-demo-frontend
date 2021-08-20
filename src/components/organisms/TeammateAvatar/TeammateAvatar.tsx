@@ -1,6 +1,6 @@
 import React from 'react'
 import { Avatar, AvatarProps } from 'src/components/atoms'
-import { PopoverProfile } from 'src/components/organisms'
+import { PopoverProfile } from 'src/components/organisms/Popovers'
 import { useTeammate } from 'src/store/entities/teammates'
 
 type Props = {

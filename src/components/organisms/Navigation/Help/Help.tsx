@@ -6,7 +6,7 @@ import {
   DrawerCloseButton,
   DrawerContent,
   DrawerHeader,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Drawer'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
 import { Body } from './Body'
 import { Footer } from './Footer'

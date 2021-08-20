@@ -2,8 +2,8 @@ import React, { memo, useCallback } from 'react'
 import {
   MenuList as AtomsMenuList,
   MenuItem,
-  useDeleteTaskSectionModal,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Menu'
+import { useDeleteTaskSectionModal } from 'src/components/organisms/Modals'
 import { useTasksListSectionContext } from 'src/components/organisms/Tasks/TasksList/TasksListSection/Provider'
 
 type Props = {}

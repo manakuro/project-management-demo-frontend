@@ -4,7 +4,7 @@ import {
   TaskDetailBody,
   TaskDetailHeader,
   TaskDetailFooter,
-} from 'src/components/organisms'
+} from 'src/components/organisms/TaskDetail'
 import { useClickOutside, useDrawerStyle } from 'src/hooks'
 
 const HEADER_HEIGHT = 71

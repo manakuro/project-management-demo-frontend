@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { PopoverProfile } from 'src/components/organisms'
 import { useReactNodeView } from 'src/components/organisms/Editor/Editors/ReactNodeView'
+import { PopoverProfile } from 'src/components/organisms/Popovers'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
 import { useTeammate } from 'src/store/entities/teammates'
 import { MentionText } from './MentionText'

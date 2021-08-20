@@ -5,9 +5,8 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  TabList,
-  Tab,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Menu'
+import { TabList, Tab } from 'src/components/organisms/Tabs'
 
 export const Tabs: React.VFC = memo(() => {
   return (

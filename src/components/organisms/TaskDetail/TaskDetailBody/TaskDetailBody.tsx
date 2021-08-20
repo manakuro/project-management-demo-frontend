@@ -1,9 +1,9 @@
 import React, { memo, useLayoutEffect } from 'react'
 import { Flex, Skeleton, Stack } from 'src/components/atoms'
-import { useTaskDetail } from 'src/components/organisms'
-import { MakePublic } from 'src/components/organisms/TaskDetail/TaskDetailBody/MakePublic'
-import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
+import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { Form } from './Form'
+import { MakePublic } from './MakePublic'
+import { useTaskDetailBody } from './useTaskDetailBody'
 
 type Props = {
   isMakePublic?: boolean

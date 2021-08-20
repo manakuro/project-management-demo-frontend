@@ -4,7 +4,7 @@ import {
   ThumbnailAttachment,
   AttachmentUploadingBox,
 } from 'src/components/molecules'
-import { useFileViewerModal } from 'src/components/organisms'
+import { useFileViewerModal } from 'src/components/organisms/Modals'
 import { useInputContext } from 'src/components/organisms/TaskDetail/TaskDetailFooter/Comment/Input/Provider'
 
 type Props = {}

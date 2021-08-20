@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Heading, Box, Stack } from 'src/components/atoms'
 import { Head } from 'src/components/atoms/Head'
-import { MainHeader } from 'src/components/organisms'
+import { MainHeader } from 'src/components/organisms/MainHeader'
 import { FavoriteProjects } from './FavoriteProjects'
 import { RecentProjects } from './RecentProjects'
 import { TasksDueSoon } from './TasksDueSoon'

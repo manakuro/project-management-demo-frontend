@@ -1,6 +1,6 @@
 import React from 'react'
 import { LikeTaskButton } from 'src/components/molecules'
-import { useTaskDetail } from 'src/components/organisms'
+import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 
 type Props = {}
 

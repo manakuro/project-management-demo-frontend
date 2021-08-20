@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Input as AtomsInput } from 'src/components/atoms'
-import { AssigneeMenu } from 'src/components/organisms'
+import { AssigneeMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 
 type Props = {

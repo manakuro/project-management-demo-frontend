@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo, useState } from 'react'
 import { Flex, Input as AtomsInput, Wrap, WrapItem } from 'src/components/atoms'
 import { ProjectChip } from 'src/components/molecules'
-import { ProjectMenu } from 'src/components/organisms'
+import { ProjectMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import { useTasksProjectTaskIds } from 'src/store/entities/tasks/projectIds'

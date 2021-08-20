@@ -5,7 +5,7 @@ import {
   ModalBody,
   ModalContent,
   ModalHeader,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Modal'
 import { Body } from './Body'
 import { Header } from './Header'
 import { useFileViewerModal } from './useFileViewerModal'

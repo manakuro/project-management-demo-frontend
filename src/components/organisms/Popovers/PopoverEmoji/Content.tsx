@@ -1,7 +1,7 @@
 import { BaseEmoji, Picker } from 'emoji-mart'
 import React, { memo, useCallback } from 'react'
 import { Portal, Box } from 'src/components/atoms'
-import { PopoverContent } from 'src/components/organisms'
+import { PopoverContent } from 'src/components/organisms/Popover'
 import { useClickOutside } from 'src/hooks'
 import { usePopoverEmojiContext } from './Provider'
 

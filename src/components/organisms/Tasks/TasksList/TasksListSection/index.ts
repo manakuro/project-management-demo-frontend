@@ -1,2 +1,5 @@
 export * from './TasksListSection'
-export { TasksListSectionProvider } from './Provider'
+export {
+  TasksListSectionProvider,
+  useTasksListSectionContext,
+} from './Provider'

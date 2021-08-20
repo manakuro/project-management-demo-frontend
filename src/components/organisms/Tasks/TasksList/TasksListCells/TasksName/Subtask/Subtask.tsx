@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
 import { IconButton } from 'src/components/atoms'
-import { useTaskDetail } from 'src/components/organisms'
+import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { SUBTASK_LIST_CONTAINER_ID } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/Subtasks'
 import { useTasksNameContext } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { useRouter } from 'src/router'

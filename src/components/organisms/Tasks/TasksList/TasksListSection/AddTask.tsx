@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useTaskContext } from 'src/components/organisms'
+import { useTaskContext } from 'src/components/organisms/Tasks'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { useClickableHoverStyle } from 'src/hooks'
 

@@ -7,8 +7,9 @@ import {
   Icon,
   ColorBox,
 } from 'src/components/atoms'
-import { PopoverProjectMenu, useNavigation } from 'src/components/organisms'
+import { useNavigation } from 'src/components/organisms/Navigation'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
+import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 import { useLinkHoverStyle, useClickableHoverStyle } from 'src/hooks'
 import { useProject } from 'src/store/entities/projects'
 

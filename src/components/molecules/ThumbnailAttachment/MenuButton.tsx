@@ -9,7 +9,7 @@ import { useThumbnailAttachmentContext } from 'src/components/molecules/Thumbnai
 import {
   MenuButton as AtomsMenuButton,
   MenuButtonProps,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Menu'
 import { transitions } from 'src/styles'
 
 type Props = Omit<MenuButtonProps, 'children'> & {

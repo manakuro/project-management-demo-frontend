@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useTaskSectionContext } from 'src/components/organisms'
+import { useTaskSectionContext } from 'src/components/organisms/Tasks'
 import { TasksBoardListSection } from '../TasksBoardListSection'
 
 export const TasksBoardList: React.VFC = memo(() => {

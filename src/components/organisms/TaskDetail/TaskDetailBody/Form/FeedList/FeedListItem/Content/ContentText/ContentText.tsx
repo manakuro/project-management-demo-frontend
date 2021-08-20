@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useMemo, useState } from 'react'
-import { Editor, EditorContent } from 'src/components/organisms'
-import { useFeedListItemContext } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
+import { Editor, EditorContent } from 'src/components/organisms/Editor'
 import { uuid } from 'src/shared/uuid'
+import { useFeedListItemContext } from '../../Provider'
 import { Container } from './Container'
 import { ToolBar } from './ToolBar'
 

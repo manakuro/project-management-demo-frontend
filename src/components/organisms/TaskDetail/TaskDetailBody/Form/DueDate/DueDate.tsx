@@ -5,7 +5,7 @@ import {
   DueDate as AtomsDueDate,
   Box,
 } from 'src/components/atoms'
-import { PopoverDueDatePicker } from 'src/components/organisms'
+import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { Row, Label, Content } from '../Row'

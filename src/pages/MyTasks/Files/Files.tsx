@@ -1,11 +1,11 @@
 import React, { memo, useMemo } from 'react'
 import { Flex } from 'src/components/atoms'
+import { TaskDetailModal } from 'src/components/organisms/TaskDetails'
 import {
   TasksProvider,
   TasksFilesContent,
   TasksFilesList,
-  TaskDetailModal,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Tasks'
 import { useTasksFilesDetail } from 'src/components/organisms/Tasks/TasksFiles/useTasksFilesDetail'
 import { useMyTasksFilesQuery } from 'src/hooks/queries/useMyTasksFilesQuery'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'

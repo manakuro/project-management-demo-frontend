@@ -1,10 +1,10 @@
 import React, { memo, useEffect, useMemo, useState } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
+import { useNavigation } from 'src/components/organisms/Navigation'
 import {
-  useNavigation,
   useTasksListContentSticky,
-} from 'src/components/organisms'
-import { useTasksListContentHorizontalScroll } from 'src/components/organisms/Tasks/TasksList/TasksListContent/useTasksListContentHorizontalScroll'
+  useTasksListContentHorizontalScroll,
+} from 'src/components/organisms/Tasks'
 import { ChakraProps } from 'src/shared/chakra'
 import { useTaskColumnByType } from 'src/store/entities/taskColumns'
 import { TASK_COLUMN_TYPE_FIELD_NAME } from 'src/store/entities/taskColumns/types'

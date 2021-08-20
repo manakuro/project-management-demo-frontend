@@ -1,19 +1,19 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Button, Flex, Icon, Text } from 'src/components/atoms'
+import { MenuItemOption } from 'src/components/organisms/Menu'
 import {
-  MenuItemOption,
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
-  useTaskStatusContext,
-} from 'src/components/organisms'
-import { PopoverCompletedTasks } from 'src/components/organisms/Tasks/TasksHeader/IncompleteTasksButton/PopoverCompletedTasks'
+} from 'src/components/organisms/Menus'
+import { useTaskStatusContext } from 'src/components/organisms/Tasks'
 import { useDisclosure } from 'src/shared/chakra'
 import {
   TASK_LIST_STATUS_TYPE_ALL,
   TASK_LIST_STATUS_TYPE_INCOMPLETE,
   TaskListStatusType,
 } from 'src/store/app/myTasks'
+import { PopoverCompletedTasks } from './PopoverCompletedTasks'
 
 type Props = {}
 

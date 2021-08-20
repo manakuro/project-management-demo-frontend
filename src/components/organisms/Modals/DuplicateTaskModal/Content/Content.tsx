@@ -14,7 +14,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalCloseButton,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Modal'
 import { useTask } from 'src/store/entities/tasks'
 import { Label } from './Label'
 

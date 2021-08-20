@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { GetLayout } from 'src/@types/next'
 import { PageLoader } from 'src/components/molecules'
-import { LayoutDefault } from 'src/components/organisms'
+import { LayoutDefault } from 'src/components/organisms/Layout'
 import { useMyTasksQuery, useTabStatusForMyTasksQuery } from 'src/hooks/queries'
 import { Component } from './Component'
 

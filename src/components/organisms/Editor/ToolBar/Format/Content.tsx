@@ -1,12 +1,6 @@
 import React from 'react'
 import { Portal, Stack } from 'src/components/atoms'
 import {
-  PopoverContent,
-  PopoverProps,
-  PopoverBody,
-  PopoverArrow,
-} from 'src/components/organisms'
-import {
   Bold,
   BulletList,
   DecreaseListIndent,
@@ -17,6 +11,12 @@ import {
   Strikethrough,
   Underline,
 } from 'src/components/organisms/Editor/ToolBar'
+import {
+  PopoverContent,
+  PopoverProps,
+  PopoverBody,
+  PopoverArrow,
+} from 'src/components/organisms/Popover'
 import { useClickOutside } from 'src/hooks'
 
 type Props = {

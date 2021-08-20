@@ -1,6 +1,9 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Box } from 'src/components/atoms'
-import { useTaskContext, useTaskSectionContext } from 'src/components/organisms'
+import {
+  useTaskContext,
+  useTaskSectionContext,
+} from 'src/components/organisms/Tasks'
 import { useTasksBoardListSectionContext } from '../../Provider'
 import { Input } from './Input'
 

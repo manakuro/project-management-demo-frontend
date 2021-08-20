@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Flex, Image, Text } from 'src/components/atoms'
-import { PdfViewer } from 'src/components/organisms'
+import { PdfViewer } from 'src/components/organisms/PdfViewer'
 import { useAttachment } from 'src/store/entities/attachments'
 
 type Props = {

@@ -1,11 +1,11 @@
 import React, { memo, useCallback } from 'react'
 import { Button, Icon } from 'src/components/atoms'
+import { MenuItemOption } from 'src/components/organisms/Menu'
 import {
-  MenuItemOption,
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Menus'
 import {
   ListStatus,
   BACKLOG,

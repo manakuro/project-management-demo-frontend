@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { Slide } from 'src/components/atoms'
-import { useTaskDetail } from 'src/components/organisms'
+import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { Content } from './Content'
 import { useTaskDetailDrawer } from './useTaskDetailDrawer'
 import { useTaskDetailDrawerRef } from './useTaskDetailDrawerRef'

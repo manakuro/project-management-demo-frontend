@@ -6,7 +6,7 @@ import {
   MenuProps,
   MenuItem,
   MenuList,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Menu'
 import { useAttachment } from 'src/store/entities/attachments'
 
 type Props = MenuProps & {

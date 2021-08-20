@@ -1,9 +1,7 @@
 import { useCallback, useEffect } from 'react'
-import {
-  useTaskDetail,
-  useTaskDetailDrawer,
-  useTasksListBody,
-} from 'src/components/organisms'
+import { useTaskDetail } from 'src/components/organisms/TaskDetail'
+import { useTaskDetailDrawer } from 'src/components/organisms/TaskDetails'
+import { useTasksListBody } from 'src/components/organisms/Tasks'
 import { isTaskDetailURL, useRouter, getTaskDetailId } from 'src/router'
 
 export const useTasksListDetail = () => {

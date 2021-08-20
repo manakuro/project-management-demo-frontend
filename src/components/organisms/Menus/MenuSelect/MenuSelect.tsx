@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, MenuProps } from 'src/components/organisms'
+import { Menu, MenuProps } from 'src/components/organisms/Menu'
 import { MaybeRenderProp, runIfFn } from 'src/shared/utils'
 import { UseMenuSelect, useMenuSelect } from './useMenuSelect'
 import { Context } from './useMenuSelect'

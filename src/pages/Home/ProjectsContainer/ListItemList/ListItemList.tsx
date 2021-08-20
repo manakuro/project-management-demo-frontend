@@ -1,6 +1,6 @@
 import React from 'react'
 import { Flex, IconButton, Text, Icon, AvatarGroup } from 'src/components/atoms'
-import { TeammateAvatar } from 'src/components/organisms'
+import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useProject } from 'src/store/entities/projects'
 import { findProjectIcon } from 'src/store/entities/projects/projectIcons'

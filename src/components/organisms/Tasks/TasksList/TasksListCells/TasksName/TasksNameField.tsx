@@ -1,8 +1,8 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Box, Flex, Input, InputProps } from 'src/components/atoms'
-import { useTaskDetailDrawerRef } from 'src/components/organisms'
-import { useTasksNameContext } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName/TasksNameProvider'
+import { useTaskDetailDrawerRef } from 'src/components/organisms/TaskDetails'
 import { useClickOutside, useDebounce } from 'src/hooks'
+import { useTasksNameContext } from './TasksNameProvider'
 
 type Props = {
   value: string

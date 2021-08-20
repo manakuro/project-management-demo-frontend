@@ -1,6 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
-import { MenuItem, useDuplicateTaskModal } from 'src/components/organisms'
+import { MenuItem } from 'src/components/organisms/Menu'
+import { useDuplicateTaskModal } from 'src/components/organisms/Modals'
 
 type Props = {
   onMouseEnter: () => void

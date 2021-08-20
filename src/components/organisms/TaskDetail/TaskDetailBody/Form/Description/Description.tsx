@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react'
-import { Editor, EditorContent } from 'src/components/organisms'
+import { Editor, EditorContent } from 'src/components/organisms/Editor'
 import { Row, Label, Content } from '../Row'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'

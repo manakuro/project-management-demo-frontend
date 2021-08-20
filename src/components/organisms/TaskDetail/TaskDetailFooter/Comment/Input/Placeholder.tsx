@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { EditorPlaceholder } from 'src/components/organisms'
+import { EditorPlaceholder } from 'src/components/organisms/Editor'
 import { useInputContext } from './Provider'
 
 type Props = {}

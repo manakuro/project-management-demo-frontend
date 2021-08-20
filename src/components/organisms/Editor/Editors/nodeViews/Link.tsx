@@ -5,7 +5,7 @@ import {
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
   PopoverEditorLinkTrigger,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Popovers'
 import { useReactNodeView } from '../ReactNodeView'
 
 export const Link: React.FC = (props) => {

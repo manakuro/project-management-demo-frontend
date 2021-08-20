@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { TeammateAvatar } from 'src/components/organisms'
+import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 
 type Props = {
   teammateId: string

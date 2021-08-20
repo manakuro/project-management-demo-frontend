@@ -1,4 +1,5 @@
 export * from './TasksBoard'
+export * from './TasksCalendar'
 export * from './TasksFiles'
 export * from './TasksHeader'
 export * from './TasksList'

@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react'
 import { Button, Input, Portal, Stack, Text } from 'src/components/atoms'
+import { AssigneeMenu } from 'src/components/organisms/Menus'
 import {
   PopoverContent,
   PopoverProps,
   PopoverCloseButton,
   PopoverHeader,
   PopoverBody,
-  AssigneeMenu,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Popover'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 

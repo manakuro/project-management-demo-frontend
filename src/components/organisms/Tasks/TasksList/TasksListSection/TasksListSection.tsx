@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useState } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useTaskContext } from 'src/components/organisms'
+import { useTaskContext } from 'src/components/organisms/Tasks'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
 import { AddTask } from './AddTask'
 import { AddTaskSection } from './AddTaskSection'

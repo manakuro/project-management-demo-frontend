@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react'
-import { useTaskDetail, useTaskDetailDrawer } from 'src/components/organisms'
+import { useTaskDetail } from 'src/components/organisms/TaskDetail'
+import { useTaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import { useTasksBoardListItemElement } from 'src/components/organisms/Tasks/TasksBoard/TasksBoardListItem'
 import { isTaskDetailURL, useRouter, getTaskDetailId } from 'src/router'
 import { isHTMLElement } from 'src/shared/isHTMLElement'

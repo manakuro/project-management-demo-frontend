@@ -5,7 +5,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   PopoverProps,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Popover'
 import { ChakraProps, useDisclosure } from 'src/shared/chakra'
 import { Body } from './Body'
 

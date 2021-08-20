@@ -1,6 +1,6 @@
 import React from 'react'
 import { ConditionalRender, PortalManager, Flex } from 'src/components/atoms'
-import { Popover, PopoverTrigger } from 'src/components/organisms'
+import { Popover, PopoverTrigger } from 'src/components/organisms/Popover'
 import { Content } from './Content'
 import { usePopoverEmojiContext } from './Provider'
 import { Provider } from './Provider'

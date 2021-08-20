@@ -1,5 +1,8 @@
 import React, { memo, useCallback } from 'react'
-import { MenuList as AtomsMenuList, MenuItem } from 'src/components/organisms'
+import {
+  MenuList as AtomsMenuList,
+  MenuItem,
+} from 'src/components/organisms/Menu'
 
 type Props = {
   onSort?: () => void

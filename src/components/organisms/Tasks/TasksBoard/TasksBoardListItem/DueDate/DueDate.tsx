@@ -6,7 +6,7 @@ import {
   Button,
   Flex,
 } from 'src/components/atoms'
-import { PopoverDueDatePicker } from 'src/components/organisms'
+import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useTask } from 'src/store/entities/tasks'
 import { useTasksBoardListItemContext } from '../Provider'

@@ -5,9 +5,9 @@ import {
   DrawerBody,
   DrawerContent,
   DrawerHeader,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Drawer'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
-import { useTaskColumnCustomizableContext } from 'src/components/organisms/Tasks/TasksProvider/useTaskColumnCustomizableContext'
+import { useTaskColumnCustomizableContext } from 'src/components/organisms/Tasks'
 import { useDnd } from 'src/hooks/dnd/useDnd'
 import { isMyTasksBoardURL, useRouter } from 'src/router'
 import { useCustomizeMenu } from '../useCustomizeMenu'

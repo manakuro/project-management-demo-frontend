@@ -7,7 +7,7 @@ import {
   Box,
   TextProps,
 } from 'src/components/atoms'
-import { TeammateAvatar } from 'src/components/organisms'
+import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { useTask } from 'src/store/entities/tasks'

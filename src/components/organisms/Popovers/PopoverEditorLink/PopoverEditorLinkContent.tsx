@@ -1,6 +1,6 @@
 import React from 'react'
 import { Flex, Portal } from 'src/components/atoms'
-import { PopoverBody, PopoverContent } from 'src/components/organisms'
+import { PopoverBody, PopoverContent } from 'src/components/organisms/Popover'
 
 export const PopoverEditorLinkContent: React.FC = (props) => {
   return (

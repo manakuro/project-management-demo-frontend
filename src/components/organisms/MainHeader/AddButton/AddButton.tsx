@@ -7,7 +7,12 @@ import {
   Text,
   FlexProps,
 } from 'src/components/atoms'
-import { Menu, MenuButton, MenuList, MenuItem } from 'src/components/organisms'
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+} from 'src/components/organisms/Menu'
 import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
 import { IconType } from 'src/shared/icons'
 

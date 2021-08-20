@@ -1,7 +1,8 @@
 import React, { memo } from 'react'
 import { Icon, IconButton } from 'src/components/atoms'
-import { MenuButton, AttachmentMenu } from 'src/components/organisms'
-import { useInputContext } from 'src/components/organisms/TaskDetail/TaskDetailFooter/Comment/Input/Provider'
+import { MenuButton } from 'src/components/organisms/Menu'
+import { AttachmentMenu } from 'src/components/organisms/Menus'
+import { useInputContext } from '../Provider'
 
 type Props = {}
 

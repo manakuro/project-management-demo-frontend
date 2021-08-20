@@ -5,7 +5,7 @@ import {
   MenuButton,
   MenuButtonProps,
   MenuList,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Menu'
 
 type Props = {
   value: string

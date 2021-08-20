@@ -5,8 +5,8 @@ import {
   MenuItem as AtomsMenuItem,
   MenuDivider,
   MenuItemProps,
-  PopoverSetColorAndIcon,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Menu'
+import { PopoverSetColorAndIcon } from 'src/components/organisms/Popovers'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
 import { Project } from 'src/store/entities/projects'

@@ -8,9 +8,9 @@ import {
   MenuDivider,
   MenuItemProps,
   MenuGroup,
-  useNavigation,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Menu'
 import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
+import { useNavigation } from 'src/components/organisms/Navigation'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { useLinkHoverStyle, useClickableHoverStyle } from 'src/hooks'
 

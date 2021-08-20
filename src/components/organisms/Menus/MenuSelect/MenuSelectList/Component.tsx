@@ -4,7 +4,7 @@ import {
   MenuList as AtomsMenuList,
   MenuOptionGroup,
   MenuOptionGroupProps,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Menu'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useMenuSelectContext } from '../useMenuSelect'
 

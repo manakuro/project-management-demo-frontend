@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionPanel,
   AccordionButton,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Accordion'
 import { dateFns } from 'src/shared/dateFns'
 import { ListItem } from './/ListItem'
 import { TaskDueSoon } from './types'

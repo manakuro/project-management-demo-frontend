@@ -4,7 +4,7 @@ import {
   MenuList as AtomsMenuList,
   MenuItem,
   MenuDivider,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Menu'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
 import { PopoverAdvancedActions } from './PopoverAdvancedActions'

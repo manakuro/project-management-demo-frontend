@@ -1,6 +1,6 @@
 import React from 'react'
 import { Badge, Flex, Text, CheckIcon, DueDate } from 'src/components/atoms'
-import { PopoverDueDatePicker } from 'src/components/organisms'
+import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import { useClickableHoverStyle } from 'src/hooks'
 import { formatDueTime } from 'src/shared/date'
 import { useProject } from 'src/store/entities/projects'

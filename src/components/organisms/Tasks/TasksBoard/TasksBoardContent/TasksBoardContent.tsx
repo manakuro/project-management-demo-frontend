@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useTaskDetailDrawer } from 'src/components/organisms'
+import { useTaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import { useTasksBoardListSectionElement } from 'src/components/organisms/Tasks/TasksBoard/TasksBoardListSection'
 import { useMainStyle, usePrevious } from 'src/hooks'
 import { useBreakpointValue } from 'src/shared/chakra'

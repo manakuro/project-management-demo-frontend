@@ -3,7 +3,7 @@ import { Portal } from 'src/components/atoms'
 import {
   MenuList as AtomsMenuList,
   MenuDivider,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Menu'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
 import { AddCoverImage } from './AddCoverImage'

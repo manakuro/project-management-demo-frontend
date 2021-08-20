@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
-import { useTaskDetail } from 'src/components/organisms'
+import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 
 const key = (str: string) =>
   `src/components/organisms/TaskDetails/TaskDetailModal/useTaskDetailModal/${str}`

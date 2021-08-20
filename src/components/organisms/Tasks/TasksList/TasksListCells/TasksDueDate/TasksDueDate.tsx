@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { FlexProps, Icon, DueDate, Flex } from 'src/components/atoms'
-import { PopoverDueDatePicker } from 'src/components/organisms'
+import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'

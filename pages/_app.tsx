@@ -6,8 +6,8 @@ import React, { ReactElement } from 'react'
 import { resetServerContext } from 'react-beautiful-dnd'
 import { RecoilRoot } from 'recoil'
 import { GetLayout } from 'src/@types/next'
-import { LayoutDefault } from 'src/components/organisms'
-import { Modals } from 'src/components/organisms'
+import { LayoutDefault } from 'src/components/organisms/Layout'
+import { Modals } from 'src/components/organisms/Modals'
 import { BeforeAppMount } from 'src/shared/beforeAppMount'
 import {
   muiTheme,

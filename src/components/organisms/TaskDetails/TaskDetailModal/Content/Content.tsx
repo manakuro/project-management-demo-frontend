@@ -5,10 +5,12 @@ import {
   ModalHeader,
   ModalFooter,
   ModalContent,
+} from 'src/components/organisms/Modal'
+import {
   TaskDetailBody,
   TaskDetailHeader,
   TaskDetailFooter,
-} from 'src/components/organisms'
+} from 'src/components/organisms/TaskDetail'
 
 type Props = {
   loading: boolean

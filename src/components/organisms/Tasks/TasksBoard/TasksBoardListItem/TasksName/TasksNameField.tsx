@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Flex, InputText, InputProps } from 'src/components/atoms'
-import { useTaskDetailDrawerRef } from 'src/components/organisms'
+import { useTaskDetailDrawerRef } from 'src/components/organisms/TaskDetails'
 import { useClickOutside, useDebounce } from 'src/hooks'
 import { useTasksBoardListItemInputContext } from '../Provider'
 import { useTasksNameContext } from './Provider'

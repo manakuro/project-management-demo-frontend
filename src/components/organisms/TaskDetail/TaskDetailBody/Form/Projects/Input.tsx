@@ -11,7 +11,7 @@ import {
   MenuItem,
   MenuList,
   MenuListProps,
-} from 'src/components/organisms'
+} from 'src/components/organisms/Menu'
 import { useClickOutside } from 'src/hooks'
 import { useProjects } from 'src/store/entities/projects'
 

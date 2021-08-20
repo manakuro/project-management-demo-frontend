@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useTaskStatusContext } from 'src/components/organisms'
+import { useTaskStatusContext } from 'src/components/organisms/Tasks'
 import { useHover } from 'src/hooks/useHover'
 import { ROUTE_MY_TASKS, useRouter } from 'src/router'
 import { createProvider } from 'src/shared/react/createProvider'

@@ -3,6 +3,8 @@ import { Flex } from 'src/components/atoms'
 import {
   TasksProvider,
   TasksCalendarContent,
+  TasksCalendarList,
+  TasksCalendarListHeader,
   useTasksCalendarDetail,
 } from 'src/components/organisms/Tasks'
 import {
@@ -42,7 +44,6 @@ const Component: React.VFC = memo(() => {
       <Flex flex={1} h="full" flexDirection="column" bg="gray.50">
         <TasksHeader
           h="40px"
-          boxShadow="sm"
           borderBottom={1}
           borderStyle="solid"
           borderColor="gray.200"
@@ -56,7 +57,10 @@ const Component: React.VFC = memo(() => {
             <WeekendsButton />
           </TasksHeaderRight>
         </TasksHeader>
-        <TasksCalendarContent>hey</TasksCalendarContent>
+        <TasksCalendarListHeader />
+        <TasksCalendarContent>
+          <TasksCalendarList />
+        </TasksCalendarContent>
       </Flex>
     </>
   )

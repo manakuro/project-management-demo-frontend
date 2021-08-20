@@ -5,7 +5,7 @@ import { transitions } from 'src/styles'
 
 type Props = FlexProps
 
-const maxH = 72 + 40
+const maxH = 72 + 40 + 24
 export const TasksCalendarContent: React.FC<Props> = memo<Props>((props) => {
   const { maxW } = useMainStyle()
 

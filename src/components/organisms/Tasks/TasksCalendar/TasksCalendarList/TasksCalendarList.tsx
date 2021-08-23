@@ -27,7 +27,6 @@ export const TasksCalendarList: React.FC<Props> = memo<Props>(() => {
     <Flex flex={1} flexDirection="column">
       {calendarRows.map((r, i) => (
         <TasksCalendarListRow
-          index={i}
           observeScrollUp={i === 10}
           observeScrollDown={i === calendarRows.length - 10}
           onVisibleWhenScrollUp={onVisibleWhenScrollUp}

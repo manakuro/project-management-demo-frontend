@@ -6,8 +6,8 @@ import { createProvider } from 'src/shared/react/createProvider'
 type ContextProps = {
   calendarRows: Date[][]
   resetIndex: () => void
-  onVisibleWhenScrollUp: () => void
-  onVisibleWhenScrollDown: () => void
+  onVisibleWhenScrollUp: (id: string) => void
+  onVisibleWhenScrollDown: (id: string) => void
 }
 
 const useValue = (): ContextProps => {
@@ -23,16 +23,16 @@ const useValue = (): ContextProps => {
     [endIndex, startIndex],
   )
 
-  const onVisibleWhenScrollUp = useCallback(() => {
+  const onVisibleWhenScrollUp = useCallback((id: string) => {
     setStartIndex((s) => s + 3)
     setEndIndex((s) => s - 3)
-    console.log('handleVisibleWhenScrollUp')
+    console.log('handleVisibleWhenScrollUp: ', id)
   }, [])
 
-  const onVisibleWhenScrollDown = useCallback(() => {
+  const onVisibleWhenScrollDown = useCallback((id: string) => {
     setStartIndex((s) => s - 3)
     setEndIndex((s) => s + 3)
-    console.log('handleVisibleWhenScrollDown')
+    console.log('handleVisibleWhenScrollDown: ', id)
   }, [])
 
   const resetIndex = useCallback(() => {

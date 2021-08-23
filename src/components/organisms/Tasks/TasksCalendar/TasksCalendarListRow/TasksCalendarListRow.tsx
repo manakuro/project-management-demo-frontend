@@ -1,13 +1,12 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { Flex, FlexProps } from 'src/components/atoms'
 
 type Props = {
   observeScrollUp?: boolean
   observeScrollDown?: boolean
-  onVisibleWhenScrollUp: () => void
-  onVisibleWhenScrollDown: () => void
-  index: number
+  onVisibleWhenScrollUp: (id: string) => void
+  onVisibleWhenScrollDown: (id: string) => void
 } & FlexProps
 
 export const TasksCalendarListRow: React.FC<Props> = memo<Props>((props) => {
@@ -22,27 +21,34 @@ export const TasksCalendarListRow: React.FC<Props> = memo<Props>((props) => {
     skip: !observeScrollUp && !observeScrollDown,
     triggerOnce: true,
   })
+  const [scrolledUp, setScrolledUp] = useState(false)
+  const [scrolledDown, setScrolledDown] = useState(false)
 
   useEffect(() => {
     if (!inView) return
+    if (scrolledDown) return
 
-    if (observeScrollUp) {
-      onVisibleWhenScrollUp()
-      return
-    }
     if (observeScrollDown) {
-      onVisibleWhenScrollDown()
+      onVisibleWhenScrollDown(props.id || '')
+      setScrolledDown(true)
     }
   }, [
     inView,
     observeScrollDown,
-    observeScrollUp,
     onVisibleWhenScrollDown,
-    onVisibleWhenScrollUp,
     props.id,
-    props.index,
-    props.observeScrollUp,
+    scrolledDown,
   ])
+
+  useEffect(() => {
+    if (!inView) return
+    if (scrolledUp) return
+
+    if (observeScrollUp) {
+      onVisibleWhenScrollUp(props.id || '')
+      setScrolledUp(true)
+    }
+  }, [inView, observeScrollUp, onVisibleWhenScrollUp, props.id, scrolledUp])
 
   return <Flex marginBottom="3px" {...rest} ref={ref} />
 })

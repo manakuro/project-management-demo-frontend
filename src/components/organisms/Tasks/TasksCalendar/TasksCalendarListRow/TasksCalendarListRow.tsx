@@ -21,34 +21,34 @@ export const TasksCalendarListRow: React.FC<Props> = memo<Props>((props) => {
     skip: !observeScrollUp && !observeScrollDown,
     triggerOnce: true,
   })
-  const [scrolledUp, setScrolledUp] = useState(false)
-  const [scrolledDown, setScrolledDown] = useState(false)
+  const [hasScrolledUp, setHasScrolledUp] = useState(false)
+  const [hasScrolledDown, setHasScrolledDown] = useState(false)
 
   useEffect(() => {
     if (!inView) return
-    if (scrolledDown) return
+    if (hasScrolledDown) return
 
     if (observeScrollDown) {
       onVisibleWhenScrollDown(props.id || '')
-      setScrolledDown(true)
+      setHasScrolledDown(true)
     }
   }, [
     inView,
     observeScrollDown,
     onVisibleWhenScrollDown,
     props.id,
-    scrolledDown,
+    hasScrolledDown,
   ])
 
   useEffect(() => {
     if (!inView) return
-    if (scrolledUp) return
+    if (hasScrolledUp) return
 
     if (observeScrollUp) {
       onVisibleWhenScrollUp(props.id || '')
-      setScrolledUp(true)
+      setHasScrolledUp(true)
     }
-  }, [inView, observeScrollUp, onVisibleWhenScrollUp, props.id, scrolledUp])
+  }, [inView, observeScrollUp, onVisibleWhenScrollUp, props.id, hasScrolledUp])
 
   return <Flex marginBottom="3px" {...rest} ref={ref} />
 })

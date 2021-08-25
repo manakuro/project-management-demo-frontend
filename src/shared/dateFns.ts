@@ -5,10 +5,12 @@ import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
 import eachDayOfInterval from 'date-fns/eachDayOfInterval'
 import eachWeekOfInterval from 'date-fns/eachWeekOfInterval'
 import endOfISOWeek from 'date-fns/endOfISOWeek'
+import endOfMonth from 'date-fns/endOfMonth'
 import formatISO from 'date-fns/formatISO'
 import getWeek from 'date-fns/getWeek'
 import intervalToDuration from 'date-fns/intervalToDuration'
 import isFirstDayOfMonth from 'date-fns/isFirstDayOfMonth'
+import isSameDay from 'date-fns/isSameDay'
 import isThisWeek from 'date-fns/isThisWeek'
 import isThisYear from 'date-fns/isThisYear'
 import isToday from 'date-fns/isToday'
@@ -81,6 +83,10 @@ class DateFnsAdapter extends DateIODateFnsAdapter {
   }
   isFirstDayOfMonth(date: ArgType<typeof isFirstDayOfMonth, 0>) {
     return isFirstDayOfMonth(date)
+  }
+  isEndOfMonth(date: ArgType<typeof isFirstDayOfMonth, 0>) {
+    const end = endOfMonth(date)
+    return isSameDay(date, end)
   }
   addMonths(
     date: ArgType<typeof addMonths, 0>,

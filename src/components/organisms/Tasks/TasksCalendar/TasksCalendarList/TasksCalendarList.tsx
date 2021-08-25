@@ -11,8 +11,12 @@ type Props = FlexProps
 
 export const TasksCalendarList: React.FC<Props> = memo<Props>(() => {
   const { getCalendarListId, getCalendarListItemId } = useTasksCalendarId()
-  const { calendarRows, onVisibleWhenScrollDown, onVisibleWhenScrollUp } =
-    useTasksCalendarContext()
+  const {
+    calendarRows,
+    onVisibleWhenScrollDown,
+    onVisibleWhenScrollUp,
+    isSecondRowOfMonth,
+  } = useTasksCalendarContext()
 
   useEffect(() => {
     const element = document.getElementById(
@@ -31,8 +35,10 @@ export const TasksCalendarList: React.FC<Props> = memo<Props>(() => {
           observeScrollDown={i === calendarRows.length - 10}
           onVisibleWhenScrollUp={onVisibleWhenScrollUp}
           onVisibleWhenScrollDown={onVisibleWhenScrollDown}
+          isSecondRowOfMonth={isSecondRowOfMonth(r)}
           key={getCalendarListId(r[0])}
           id={getCalendarListId(r[0])}
+          dateString={dateFns.formatISO(r[0], { representation: 'date' })}
         >
           {r.map((date) => (
             <TasksCalendarListItem

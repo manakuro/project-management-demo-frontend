@@ -2,17 +2,37 @@ import { useCallback, useMemo, useState } from 'react'
 import { getCalendarMatrix } from 'src/shared/date'
 import { dateFns } from 'src/shared/dateFns'
 import { createProvider } from 'src/shared/react/createProvider'
+import { useTasksCalendarId } from './useTasksCalendarId'
 
 type ContextProps = {
   calendarRows: Date[][]
   resetIndex: () => void
   onVisibleWhenScrollUp: (id: string) => void
   onVisibleWhenScrollDown: (id: string) => void
+  isSecondRowOfMonth: (row: Date[]) => boolean
+  currentDate: Date
+  onNextMonth: () => void
+  onPrevMonth: () => void
+  resetMonth: () => void
 }
 
 const useValue = (): ContextProps => {
   const [startIndex, setStartIndex] = useState(6)
   const [endIndex, setEndIndex] = useState(6)
+  const [currentDate, setCurrentDate] = useState(new Date())
+  const { getCalendarListId } = useTasksCalendarId()
+
+  const onNextMonth = useCallback(() => {
+    setCurrentDate((s) => dateFns.addMonths(s, 1))
+  }, [])
+
+  const onPrevMonth = useCallback(() => {
+    setCurrentDate((s) => dateFns.subMonths(s, 1))
+  }, [])
+
+  const resetMonth = useCallback(() => {
+    setCurrentDate(new Date())
+  }, [])
 
   const calendarRows = useMemo<Date[][]>(
     () =>
@@ -21,6 +41,18 @@ const useValue = (): ContextProps => {
         dateFns.addMonths(new Date(), endIndex),
       ),
     [endIndex, startIndex],
+  )
+
+  const isSecondRowOfMonth = useCallback(
+    (row: Date[]) => {
+      return !!(
+        calendarRows
+          .filter((c) => c.some((date) => dateFns.isEndOfMonth(date)))
+          .find((c) => getCalendarListId(c[0]) === getCalendarListId(row[0])) ??
+        false
+      )
+    },
+    [calendarRows, getCalendarListId],
   )
 
   const onVisibleWhenScrollUp = useCallback((id: string) => {
@@ -45,6 +77,11 @@ const useValue = (): ContextProps => {
     resetIndex,
     onVisibleWhenScrollUp,
     onVisibleWhenScrollDown,
+    isSecondRowOfMonth,
+    currentDate,
+    onNextMonth,
+    onPrevMonth,
+    resetMonth,
   }
 }
 useValue.__PROVIDER__ =

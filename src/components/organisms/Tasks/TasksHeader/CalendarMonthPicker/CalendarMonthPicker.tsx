@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import {
   IconButton,
   Icon,
@@ -13,15 +13,21 @@ import {
   MenuItem,
   MenuList,
 } from 'src/components/organisms/Menu'
+import { useTasksCalendarContext } from 'src/components/organisms/Tasks'
+import { dateFns } from 'src/shared/dateFns'
 
 type Props = FlexProps
 
 export const CalendarMonthPicker: React.VFC<Props> = memo<Props>((props) => {
   const { ...rest } = props
+  const { currentDate } = useTasksCalendarContext()
+  const dateText = useMemo(() => {
+    return dateFns.format(currentDate, 'MMMM y')
+  }, [currentDate])
 
   return (
     <Flex {...rest} alignItems="center">
-      <Text fontWeight="medium">August 2021</Text>
+      <Text fontWeight="medium">{dateText}</Text>
       <Menu placement="bottom-start">
         <MenuButton
           ml={1}

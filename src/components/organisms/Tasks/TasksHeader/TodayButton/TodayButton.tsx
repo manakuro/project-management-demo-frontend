@@ -10,9 +10,11 @@ type Props = {}
 
 export const TodayButton: React.VFC<Props> = memo<Props>(() => {
   const { getCalendarListItemId } = useTasksCalendarId()
-  const { resetIndex, resetMonth } = useTasksCalendarContext()
+  const { resetIndex, resetMonth, startResetting, endResetting } =
+    useTasksCalendarContext()
 
   const handleClickToday = useCallback(() => {
+    startResetting()
     resetIndex()
     resetMonth()
     setTimeout(() => {
@@ -20,8 +22,15 @@ export const TodayButton: React.VFC<Props> = memo<Props>(() => {
       if (!isHTMLElement(element)) return
 
       element.scrollIntoView()
+      endResetting()
     })
-  }, [getCalendarListItemId, resetIndex, resetMonth])
+  }, [
+    endResetting,
+    getCalendarListItemId,
+    resetIndex,
+    resetMonth,
+    startResetting,
+  ])
 
   return (
     <Button variant="ghost" size="xs" onClick={handleClickToday}>

@@ -20,7 +20,7 @@ export const MonthObserver: React.FC<Props> = memo<Props>((props) => {
     if (!isSecondRowOfMonth) return
 
     const cleanup = () => {
-      console.log('Clean up!')
+      // console.log('Clean up!')
       isFirst.current = true
     }
 
@@ -31,7 +31,7 @@ export const MonthObserver: React.FC<Props> = memo<Props>((props) => {
       entry?.intersectionRatio === 0 &&
       entry.boundingClientRect.top < 0
     ) {
-      console.log('down!: ', id)
+      // console.log('down!: ', id)
       onNextMonth()
       return
     }
@@ -43,7 +43,7 @@ export const MonthObserver: React.FC<Props> = memo<Props>((props) => {
       entry?.intersectionRatio > 0 &&
       entry.boundingClientRect.top < 0
     ) {
-      console.log('up!: ', id)
+      // console.log('up!: ', id)
       onPrevMonth()
       return cleanup
     }

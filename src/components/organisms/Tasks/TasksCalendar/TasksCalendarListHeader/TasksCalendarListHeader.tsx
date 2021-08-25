@@ -36,4 +36,4 @@ export const TasksCalendarListHeader: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
-TasksCalendarListHeader.displayName = 'TasksCalendarList'
+TasksCalendarListHeader.displayName = 'TasksCalendarListHeader'

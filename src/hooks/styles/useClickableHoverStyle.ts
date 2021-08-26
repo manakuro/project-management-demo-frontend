@@ -37,9 +37,19 @@ export const useClickableHoverStyle = () => {
     [],
   )
 
+  const textStyle = useMemo<ChakraProps>(
+    () => ({
+      _hover: { color: 'teal.300' },
+      transition: transitions.base(),
+      cursor: 'pointer',
+    }),
+    [],
+  )
+
   return {
     clickableHoverStyle: defaultStyle,
     clickableHoverLightStyle: lightStyle,
     clickableHoverInputGrabbableStyle: inputGrabbableStyle,
+    clickableHoverTextStyle: textStyle,
   }
 }

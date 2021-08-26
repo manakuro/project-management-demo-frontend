@@ -59,7 +59,7 @@ const useValue = (): ContextProps => {
     (row: Date[]) => {
       return !!(
         calendarRows
-          .filter((c) => c.some((date) => dateFns.isEndOfMonth(date)))
+          .filter((c) => c.some((date) => dateFns.isLastDayOfMonth(date)))
           .find((c) => getCalendarListId(c[0]) === getCalendarListId(row[0])) ??
         false
       )

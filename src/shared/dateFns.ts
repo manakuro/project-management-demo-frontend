@@ -3,13 +3,16 @@ import addMonths from 'date-fns/addMonths'
 import addYears from 'date-fns/addYears'
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
 import eachDayOfInterval from 'date-fns/eachDayOfInterval'
+import eachMonthOfInterval from 'date-fns/eachMonthOfInterval'
 import eachWeekOfInterval from 'date-fns/eachWeekOfInterval'
 import endOfISOWeek from 'date-fns/endOfISOWeek'
 import endOfMonth from 'date-fns/endOfMonth'
+import endOfYear from 'date-fns/endOfYear'
 import formatISO from 'date-fns/formatISO'
 import getWeek from 'date-fns/getWeek'
 import intervalToDuration from 'date-fns/intervalToDuration'
 import isFirstDayOfMonth from 'date-fns/isFirstDayOfMonth'
+import isLastDayOfMonth from 'date-fns/isLastDayOfMonth'
 import isSameDay from 'date-fns/isSameDay'
 import isThisWeek from 'date-fns/isThisWeek'
 import isThisYear from 'date-fns/isThisYear'
@@ -17,8 +20,10 @@ import isToday from 'date-fns/isToday'
 import isTomorrow from 'date-fns/isTomorrow'
 import isYesterday from 'date-fns/isYesterday'
 import startOfISOWeek from 'date-fns/startOfISOWeek'
+import startOfYear from 'date-fns/startOfYear'
 import subDays from 'date-fns/subDays'
 import subMonths from 'date-fns/subMonths'
+import subYears from 'date-fns/subYears'
 
 class DateFnsAdapter extends DateIODateFnsAdapter {
   isToday(date: ArgType<typeof isToday, 0>) {
@@ -47,6 +52,12 @@ class DateFnsAdapter extends DateIODateFnsAdapter {
     amount: ArgType<typeof addYears, 1>,
   ) {
     return addYears(date, amount)
+  }
+  subYears(
+    date: ArgType<typeof subYears, 0>,
+    amount: ArgType<typeof subYears, 1>,
+  ) {
+    return subYears(date, amount)
   }
   differenceInCalendarDays(
     dateLeft: ArgType<typeof differenceInCalendarDays, 0>,
@@ -84,6 +95,9 @@ class DateFnsAdapter extends DateIODateFnsAdapter {
   isFirstDayOfMonth(date: ArgType<typeof isFirstDayOfMonth, 0>) {
     return isFirstDayOfMonth(date)
   }
+  isLastDayOfMonth(date: ArgType<typeof isLastDayOfMonth, 0>) {
+    return isLastDayOfMonth(date)
+  }
   isEndOfMonth(date: ArgType<typeof isFirstDayOfMonth, 0>) {
     const end = endOfMonth(date)
     return isSameDay(date, end)
@@ -105,6 +119,15 @@ class DateFnsAdapter extends DateIODateFnsAdapter {
     options?: ArgType<typeof formatISO, 1>,
   ) {
     return formatISO(date, options)
+  }
+  eachMonthOfInterval(interval: ArgType<typeof eachMonthOfInterval, 0>) {
+    return eachMonthOfInterval(interval)
+  }
+  startOfYear(date: ArgType<typeof startOfYear, 0>) {
+    return startOfYear(date)
+  }
+  endOfYear(date: ArgType<typeof endOfYear, 0>) {
+    return endOfYear(date)
   }
 }
 

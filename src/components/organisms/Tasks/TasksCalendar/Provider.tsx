@@ -16,6 +16,7 @@ type ContextProps = {
   resetMonth: () => void
   resetCount: number
   incrementResetCount: () => void
+  setMonth: (date: Date) => void
 }
 
 const useValue = (): ContextProps => {
@@ -37,9 +38,13 @@ const useValue = (): ContextProps => {
     setCurrentDate((s) => dateFns.subMonths(s, 1))
   }, [])
 
-  const resetMonth = useCallback(() => {
-    setCurrentDate(new Date())
+  const setMonth = useCallback((date: Date) => {
+    setCurrentDate(date)
   }, [])
+
+  const resetMonth = useCallback(() => {
+    setMonth(new Date())
+  }, [setMonth])
 
   const calendarRows = useMemo<Date[][]>(
     () =>
@@ -91,6 +96,7 @@ const useValue = (): ContextProps => {
     resetMonth,
     resetCount,
     incrementResetCount,
+    setMonth,
   }
 }
 useValue.__PROVIDER__ =

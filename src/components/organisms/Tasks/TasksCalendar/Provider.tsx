@@ -1,12 +1,12 @@
 import { useCallback, useMemo, useState } from 'react'
 import { getCalendarMatrix } from 'src/shared/date'
 import { dateFns } from 'src/shared/dateFns'
+import { isHTMLElement } from 'src/shared/isHTMLElement'
 import { createProvider } from 'src/shared/react/createProvider'
 import { useTasksCalendarId } from './useTasksCalendarId'
 
 type ContextProps = {
   calendarRows: Date[][]
-  resetIndex: () => void
   onVisibleWhenScrollUp: (id: string) => void
   onVisibleWhenScrollDown: (id: string) => void
   isSecondRowOfMonth: (row: Date[]) => boolean
@@ -15,15 +15,14 @@ type ContextProps = {
   onPrevMonth: () => void
   resetMonth: () => void
   resetCount: number
-  incrementResetCount: () => void
   setMonth: (date: Date) => void
+  scrollToDate: (date: Date) => void
 }
 
 const useValue = (): ContextProps => {
-  const [startIndex, setStartIndex] = useState(6)
-  const [endIndex, setEndIndex] = useState(6)
   const [currentDate, setCurrentDate] = useState(new Date())
-  const { getCalendarListId } = useTasksCalendarId()
+  const [baseDate, setBaseDate] = useState(new Date())
+  const { getCalendarListId, getCalendarListItemId } = useTasksCalendarId()
   const [resetCount, setResetCount] = useState(0)
 
   const incrementResetCount = useCallback(() => {
@@ -40,19 +39,22 @@ const useValue = (): ContextProps => {
 
   const setMonth = useCallback((date: Date) => {
     setCurrentDate(date)
+    setBaseDate(date)
   }, [])
 
   const resetMonth = useCallback(() => {
     setMonth(new Date())
-  }, [setMonth])
+    setBaseDate(new Date())
+    incrementResetCount()
+  }, [setMonth, incrementResetCount])
 
   const calendarRows = useMemo<Date[][]>(
     () =>
       getCalendarMatrix(
-        dateFns.subMonths(new Date(), startIndex),
-        dateFns.addMonths(new Date(), endIndex),
+        dateFns.subMonths(baseDate, 6),
+        dateFns.addMonths(baseDate, 6),
       ),
-    [endIndex, startIndex],
+    [baseDate],
   )
 
   const isSecondRowOfMonth = useCallback(
@@ -68,25 +70,29 @@ const useValue = (): ContextProps => {
   )
 
   const onVisibleWhenScrollUp = useCallback((id: string) => {
-    setStartIndex((s) => s + 3)
-    setEndIndex((s) => s - 3)
+    setBaseDate((s) => dateFns.subMonths(s, 3))
     console.log('handleVisibleWhenScrollUp: ', id)
   }, [])
 
   const onVisibleWhenScrollDown = useCallback((id: string) => {
-    setStartIndex((s) => s - 3)
-    setEndIndex((s) => s + 3)
+    setBaseDate((s) => dateFns.addMonths(s, 3))
     console.log('handleVisibleWhenScrollDown: ', id)
   }, [])
 
-  const resetIndex = useCallback(() => {
-    setStartIndex(6)
-    setEndIndex(6)
-  }, [])
+  const scrollToDate = useCallback(
+    (date: Date) => {
+      setTimeout(() => {
+        const element = document.getElementById(getCalendarListItemId(date))
+        if (!isHTMLElement(element)) return
+
+        element.scrollIntoView()
+      })
+    },
+    [getCalendarListItemId],
+  )
 
   return {
     calendarRows,
-    resetIndex,
     onVisibleWhenScrollUp,
     onVisibleWhenScrollDown,
     isSecondRowOfMonth,
@@ -95,8 +101,8 @@ const useValue = (): ContextProps => {
     onPrevMonth,
     resetMonth,
     resetCount,
-    incrementResetCount,
     setMonth,
+    scrollToDate,
   }
 }
 useValue.__PROVIDER__ =

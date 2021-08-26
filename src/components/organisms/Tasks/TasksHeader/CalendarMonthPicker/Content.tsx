@@ -5,13 +5,9 @@ import {
   PopoverProps,
   PopoverHeader,
 } from 'src/components/organisms/Popover'
-import {
-  useTasksCalendarContext,
-  useTasksCalendarId,
-} from 'src/components/organisms/Tasks'
+import { useTasksCalendarContext } from 'src/components/organisms/Tasks'
 import { useClickableHoverStyle, useClickOutside } from 'src/hooks'
 import { dateFns } from 'src/shared/dateFns'
-import { isHTMLElement } from 'src/shared/isHTMLElement'
 
 type Props = {
   onClose: () => void
@@ -20,9 +16,8 @@ type Props = {
 export const Content: React.FC<Props> = (props) => {
   const { onClose } = props
   const { ref } = useClickOutside(onClose)
-  const { currentDate, setMonth } = useTasksCalendarContext()
+  const { currentDate, setMonth, scrollToDate } = useTasksCalendarContext()
   const [date, setDate] = useState<Date>(currentDate)
-  const { getCalendarListItemId } = useTasksCalendarId()
 
   const handleNextYear = useCallback(() => {
     setDate((s) => dateFns.addYears(s, 1))
@@ -66,15 +61,9 @@ export const Content: React.FC<Props> = (props) => {
     (date: Date) => {
       setMonth(date)
       onClose()
-
-      setTimeout(() => {
-        const element = document.getElementById(getCalendarListItemId(date))
-        if (!isHTMLElement(element)) return
-
-        element.scrollIntoView()
-      })
+      scrollToDate(date)
     },
-    [setMonth, onClose, getCalendarListItemId],
+    [setMonth, onClose, scrollToDate],
   )
 
   return (

@@ -17,12 +17,11 @@ export const MonthObserver: React.FC<Props> = memo<Props>((props) => {
   const { onNextMonth, onPrevMonth } = useTasksCalendarContext()
 
   useEffect(() => {
-    if (!isSecondRowOfMonth) return
-
     const cleanup = () => {
-      // console.log('Clean up!')
       isFirst.current = true
     }
+
+    if (!isSecondRowOfMonth) return cleanup
 
     // When scrolling down and the calendar changes to the next month
     if (
@@ -33,7 +32,7 @@ export const MonthObserver: React.FC<Props> = memo<Props>((props) => {
     ) {
       // console.log('down!: ', id)
       onNextMonth()
-      return
+      return cleanup
     }
 
     // When scrolling up and the calendar changes to the previous month
@@ -51,6 +50,6 @@ export const MonthObserver: React.FC<Props> = memo<Props>((props) => {
     if (entry && isFirst.current) isFirst.current = false
   }, [entry, isSecondRowOfMonth, id, onNextMonth, onPrevMonth])
 
-  return <Flex {...rest} ref={ref} />
+  return <Flex {...rest} ref={ref} flex={1} />
 })
 MonthObserver.displayName = 'MonthObserver'

@@ -27,7 +27,6 @@ export const TasksCalendarListRow: React.FC<Props> = memo<Props>((props) => {
   return (
     <MonthObserver
       isSecondRowOfMonth={isSecondRowOfMonth}
-      flex={1}
       dateString={dateString}
       id={props.id}
     >

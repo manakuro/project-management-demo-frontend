@@ -48,7 +48,7 @@ export const Content: React.FC<Props> = (props) => {
             bg: 'primary',
             bottom: 1,
             content: '""',
-            height: 1,
+            height: '2px',
             left: 3,
             position: 'absolute',
             right: 3,

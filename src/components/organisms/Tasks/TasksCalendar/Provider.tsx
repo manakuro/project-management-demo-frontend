@@ -14,9 +14,8 @@ type ContextProps = {
   onNextMonth: () => void
   onPrevMonth: () => void
   resetMonth: () => void
-  resetting: boolean
-  startResetting: () => void
-  endResetting: () => void
+  resetCount: number
+  incrementResetCount: () => void
 }
 
 const useValue = (): ContextProps => {
@@ -24,14 +23,10 @@ const useValue = (): ContextProps => {
   const [endIndex, setEndIndex] = useState(6)
   const [currentDate, setCurrentDate] = useState(new Date())
   const { getCalendarListId } = useTasksCalendarId()
-  const [resetting, setResetting] = useState(false)
+  const [resetCount, setResetCount] = useState(0)
 
-  const startResetting = useCallback(() => {
-    setResetting(true)
-  }, [])
-
-  const endResetting = useCallback(() => {
-    setResetting(false)
+  const incrementResetCount = useCallback(() => {
+    setResetCount((s) => s + 1)
   }, [])
 
   const onNextMonth = useCallback(() => {
@@ -94,9 +89,8 @@ const useValue = (): ContextProps => {
     onNextMonth,
     onPrevMonth,
     resetMonth,
-    resetting,
-    startResetting,
-    endResetting,
+    resetCount,
+    incrementResetCount,
   }
 }
 useValue.__PROVIDER__ =

@@ -16,6 +16,7 @@ export const TasksCalendarList: React.FC<Props> = memo<Props>(() => {
     onVisibleWhenScrollDown,
     onVisibleWhenScrollUp,
     isSecondRowOfMonth,
+    resetCount,
   } = useTasksCalendarContext()
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export const TasksCalendarList: React.FC<Props> = memo<Props>(() => {
           onVisibleWhenScrollUp={onVisibleWhenScrollUp}
           onVisibleWhenScrollDown={onVisibleWhenScrollDown}
           isSecondRowOfMonth={isSecondRowOfMonth(r)}
-          key={getCalendarListId(r[0])}
+          key={`${getCalendarListId(r[0])}-${resetCount}`}
           id={getCalendarListId(r[0])}
           dateString={dateFns.formatISO(r[0], { representation: 'date' })}
         >

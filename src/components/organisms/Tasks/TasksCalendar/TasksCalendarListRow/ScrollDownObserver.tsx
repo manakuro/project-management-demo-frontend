@@ -17,8 +17,11 @@ export const ScrollDownObserver: React.FC<Props> = memo<Props>((props) => {
   const hasScrolledDown = useRef(false)
 
   useEffect(() => {
-    if (!inView) return
-    if (hasScrolledDown.current) return
+    const cleanup = () => {
+      hasScrolledDown.current = false
+    }
+    if (!inView) return cleanup
+    if (hasScrolledDown.current) return cleanup
 
     if (observeScrollDown) {
       onVisible(dateString)

@@ -21,10 +21,10 @@ export const ScrollDownObserver: React.FC<Props> = memo<Props>((props) => {
     if (hasScrolledDown.current) return
 
     if (observeScrollDown) {
-      onVisible(props.id || '')
+      onVisible(dateString)
       hasScrolledDown.current = true
     }
-  }, [inView, observeScrollDown, onVisible, props.id])
+  }, [inView, observeScrollDown, onVisible, dateString])
 
   return <Flex {...rest} ref={ref} flex={1} />
 })

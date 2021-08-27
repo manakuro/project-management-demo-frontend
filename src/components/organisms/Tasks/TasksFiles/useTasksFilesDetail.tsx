@@ -7,7 +7,6 @@ import { useRouter } from 'src/router'
 type Props = {
   isTaskDetailURL: (router: NextRouter) => boolean
   getTaskDetailId: (router: NextRouter) => string
-  backToPage: () => void
 }
 
 export const useTasksFilesDetail = (props: Props) => {
@@ -38,8 +37,4 @@ export const useTasksFilesDetail = (props: Props) => {
     isTaskDetailURL,
     getTaskDetailId,
   ])
-
-  return {
-    backToPage: props.backToPage,
-  }
 }

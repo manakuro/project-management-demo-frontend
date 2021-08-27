@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { TaskDetailModal } from 'src/components/organisms/TaskDetails'
 import {
   TasksProvider,
   TasksCalendarContent,
@@ -34,7 +35,6 @@ const Component: React.VFC = memo(() => {
   useTasksCalendarDetail({
     isTaskDetailURL,
     getTaskDetailId,
-    backToPage: navigateToMyTasksCalendar,
   })
 
   if (loadingTabContent) return <SkeletonCalendar />
@@ -62,6 +62,7 @@ const Component: React.VFC = memo(() => {
           <TasksCalendarList />
         </TasksCalendarContent>
       </TasksCalendar>
+      <TaskDetailModal backToPage={navigateToMyTasksCalendar} />
     </>
   )
 })

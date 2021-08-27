@@ -32,7 +32,6 @@ const Component: React.VFC = memo(() => {
   useTasksFilesDetail({
     isTaskDetailURL,
     getTaskDetailId,
-    backToPage: navigateToMyTasksFiles,
   })
 
   if (loading) return <SkeletonFiles />

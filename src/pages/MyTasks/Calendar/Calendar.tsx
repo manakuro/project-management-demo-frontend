@@ -10,7 +10,6 @@ import {
 } from 'src/components/organisms/Tasks'
 import {
   CalendarMonthPicker,
-  WeekendsButton,
   TasksHeader,
   TasksHeaderRight,
   TasksHeaderLeft,
@@ -59,7 +58,6 @@ const Component: React.VFC = memo(() => {
           </TasksHeaderLeft>
           <TasksHeaderRight ml="auto">
             <TodayButton />
-            <WeekendsButton />
           </TasksHeaderRight>
         </TasksHeader>
         <TasksCalendarListHeader />

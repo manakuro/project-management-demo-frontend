@@ -25,7 +25,14 @@ export const ListItem: React.FC<Props> = memo<Props>((props) => {
         ml={1}
         size="xs"
       />
-      <Flex noOfLines={2} flex={1} ml={1} fontSize="xs" lineHeight="14px">
+      <Flex
+        noOfLines={2}
+        flex={1}
+        ml={1}
+        fontSize="xs"
+        fontWeight="medium"
+        lineHeight="14px"
+      >
         {task.name}
       </Flex>
       <Stack direction="row" spacing={1} ml={1} mr="auto">

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Flex, FlexProps, Icon, Portal, Text } from 'src/components/atoms'
 import {
   PopoverContent,
@@ -65,6 +65,10 @@ export const Content: React.FC<Props> = (props) => {
     },
     [setMonth, onClose, scrollToDate],
   )
+
+  useEffect(() => {
+    setDate(currentDate)
+  }, [currentDate])
 
   return (
     <Portal>

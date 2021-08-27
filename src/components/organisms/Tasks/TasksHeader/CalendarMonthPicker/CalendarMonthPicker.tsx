@@ -17,15 +17,15 @@ import { Content } from './Content'
 type Props = FlexProps
 
 export const CalendarMonthPicker: React.VFC<Props> = memo<Props>((props) => {
-  const { ...rest } = props
   const { currentDate } = useTasksCalendarContext()
   const dateText = useMemo(() => {
     return dateFns.format(currentDate, 'MMMM y')
   }, [currentDate])
+
   const popoverDisclosure = useDisclosure()
 
   return (
-    <Flex {...rest} alignItems="center">
+    <Flex {...props} alignItems="center">
       <Text fontWeight="medium">{dateText}</Text>
       <PortalManager zIndex={1500}>
         <Popover

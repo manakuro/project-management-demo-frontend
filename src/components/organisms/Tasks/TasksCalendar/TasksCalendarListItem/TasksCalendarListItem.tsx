@@ -1,6 +1,7 @@
 import React, { memo, useMemo } from 'react'
 import { Flex, FlexProps, Text, TextProps } from 'src/components/atoms'
 import { dateFns } from 'src/shared/dateFns'
+import { Content } from './Content'
 
 type Props = {
   dateString: string
@@ -36,6 +37,8 @@ export const TasksCalendarListItem: React.FC<Props> = memo<Props>((props) => {
       marginRight="3px"
       minH="185px"
       w="full"
+      maxW="full"
+      minW={0}
       p={2}
       {...style}
       {...rest}
@@ -43,6 +46,7 @@ export const TasksCalendarListItem: React.FC<Props> = memo<Props>((props) => {
       <Text fontSize="xs" fontWeight="medium" color="text.muted" {...textStyle}>
         {dateText}
       </Text>
+      <Content dateString={dateString} />
     </Flex>
   )
 })

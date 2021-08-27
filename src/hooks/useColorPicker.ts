@@ -6,6 +6,7 @@ type Color = {
   name: string
   base: Colors
   light: Colors
+  text: Colors
 }
 
 export const COLORS: Color[] = [
@@ -14,6 +15,7 @@ export const COLORS: Color[] = [
     name: 'gray',
     base: 'gray.400',
     light: 'gray.200',
+    text: 'white',
   },
 
   {
@@ -21,6 +23,7 @@ export const COLORS: Color[] = [
     name: 'red',
     base: 'red.400',
     light: 'red.200',
+    text: 'white',
   },
 
   {
@@ -28,6 +31,7 @@ export const COLORS: Color[] = [
     name: 'orange',
     base: 'orange.400',
     light: 'orange.200',
+    text: 'white',
   },
 
   {
@@ -35,6 +39,7 @@ export const COLORS: Color[] = [
     name: 'yellow',
     base: 'yellow.400',
     light: 'yellow.200',
+    text: 'text.base',
   },
 
   {
@@ -42,6 +47,7 @@ export const COLORS: Color[] = [
     name: 'green',
     base: 'green.400',
     light: 'green.200',
+    text: 'white',
   },
 
   {
@@ -49,6 +55,7 @@ export const COLORS: Color[] = [
     name: 'teal',
     base: 'teal.400',
     light: 'teal.200',
+    text: 'white',
   },
 
   {
@@ -56,6 +63,7 @@ export const COLORS: Color[] = [
     name: 'blue',
     base: 'blue.400',
     light: 'blue.200',
+    text: 'white',
   },
 
   {
@@ -63,6 +71,7 @@ export const COLORS: Color[] = [
     name: 'cyan',
     base: 'cyan.400',
     light: 'cyan.200',
+    text: 'text.base',
   },
 
   {
@@ -70,6 +79,7 @@ export const COLORS: Color[] = [
     name: 'purple',
     base: 'purple.400',
     light: 'purple.200',
+    text: 'white',
   },
 
   {
@@ -77,6 +87,7 @@ export const COLORS: Color[] = [
     name: 'pink',
     base: 'pink.400',
     light: 'pink.200',
+    text: 'white',
   },
 ]
 

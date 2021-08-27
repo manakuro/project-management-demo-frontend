@@ -1,8 +1,4 @@
 import { useRecoilCallback } from 'recoil'
-import {
-  useMyTasksTaskIds,
-  useMyTasksTaskIdsByTaskSection,
-} from 'src/store/app/myTasks/tasks'
 import { useMe } from 'src/store/entities/me'
 import { taskColumnSelector } from 'src/store/entities/taskColumns'
 import {
@@ -12,6 +8,7 @@ import {
 } from 'src/store/entities/taskSections'
 import { myTaskTaskStatusState } from './taskListStatus'
 import { useMyTasksTaskSectionIds } from './taskSections'
+import { useMyTasksTaskIds, useMyTasksTaskIdsByTaskSection } from './tasks'
 import { MyTaskResponse } from './type'
 
 export const useMyTaskCommands = () => {
@@ -72,7 +69,7 @@ export const useMyTask = (taskSectionId: string) => {
   }
 }
 
-function useSetters() {
+const useSetters = () => {
   const setTaskColumns = useRecoilCallback(
     ({ set }) =>
       (data: MyTaskResponse) => {

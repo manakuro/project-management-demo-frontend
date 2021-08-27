@@ -1,12 +1,15 @@
 import React, { memo } from 'react'
-import { Flex, FlexProps, Skeleton, Stack } from 'src/components/atoms'
-import { TasksHeader, TasksHeaderRight } from 'src/components/organisms/Tasks'
+import { Flex, FlexProps, Skeleton } from 'src/components/atoms'
+import {
+  TasksCalendarContent,
+  TasksHeader,
+  TasksHeaderLeft,
+  TasksHeaderRight,
+} from 'src/components/organisms/Tasks'
 
 type Props = FlexProps
 
-const TEXT_HEIGHT = '16px'
 const BUTTON_HEIGHT = '28px'
-const CARD_HEIGHT = '97px'
 export const SkeletonCalendar: React.VFC<Props> = memo<Props>((props) => {
   return (
     <Flex flex={1} flexDirection="column" {...props}>
@@ -18,24 +21,27 @@ export const SkeletonCalendar: React.VFC<Props> = memo<Props>((props) => {
         borderColor="gray.200"
         alignItems="center"
       >
+        <TasksHeaderLeft>
+          <Skeleton h={BUTTON_HEIGHT} w="127px" />
+        </TasksHeaderLeft>
         <TasksHeaderRight ml="auto">
-          <Skeleton h={BUTTON_HEIGHT} w="126px" />
           <Skeleton h={BUTTON_HEIGHT} w="57px" />
           <Skeleton h={BUTTON_HEIGHT} w="91px" />
         </TasksHeaderRight>
       </TasksHeader>
-      <Flex flex={1} p={2}>
-        {[...new Array(3)].map((_, i) => (
-          <Flex flexDirection="column" w="304px" px={3} py={2} key={i}>
-            <Flex h="36px" alignItems="center">
-              <Skeleton h={TEXT_HEIGHT} w="100px" borderRadius="full" />
-            </Flex>
-            <Stack spacing={2}>
-              <Skeleton h={CARD_HEIGHT} w="full" borderRadius="md" />
-              <Skeleton h={CARD_HEIGHT} w="full" borderRadius="md" />
-            </Stack>
-          </Flex>
-        ))}
+      <Flex flex={1} flexDirection="column">
+        <Flex
+          flexShrink={0}
+          fontSize="xs"
+          color="text.muted"
+          fontWeight="medium"
+          h={6}
+          borderBottom={1}
+          borderStyle="solid"
+          borderColor="gray.200"
+          bg="white"
+        />
+        <TasksCalendarContent bg="gray.50" />
       </Flex>
     </Flex>
   )

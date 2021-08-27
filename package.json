@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "start:local": "yarn build && yarn start",
-    "commit": "git-cz",
+    "commit": "yarn precommit && git-cz",
     "precommit": "tsc && lint-staged",
     "lint": "eslint --ext .js,.ts,.tsx 'src/**'",
     "lint:fix": "eslint --ext .js,.ts,.tsx 'src/**' --fix",

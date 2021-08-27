@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { TaskDetailModal } from 'src/components/organisms/TaskDetails'
 import {
   TasksProvider,
@@ -31,6 +31,11 @@ export const Calendar: React.VFC = memo(() => {
 const Component: React.VFC = memo(() => {
   const { loadingTabContent } = useMyTasksContext()
   const { navigateToMyTasksCalendar } = useRouter()
+  const [loading, setLoading] = useState(true)
+
+  const endLoading = useCallback(() => {
+    setLoading(false)
+  }, [])
 
   useTasksCalendarDetail({
     isTaskDetailURL,
@@ -58,8 +63,8 @@ const Component: React.VFC = memo(() => {
           </TasksHeaderRight>
         </TasksHeader>
         <TasksCalendarListHeader />
-        <TasksCalendarContent>
-          <TasksCalendarList />
+        <TasksCalendarContent visibility={loading ? 'hidden' : 'visible'}>
+          <TasksCalendarList onScrolled={endLoading} />
         </TasksCalendarContent>
       </TasksCalendar>
       <TaskDetailModal backToPage={navigateToMyTasksCalendar} />

@@ -4,7 +4,7 @@ import { Flex, FlexProps } from 'src/components/atoms'
 type Props = FlexProps
 
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fir', 'Sat']
-export const TasksCalendarListHeader: React.FC<Props> = memo<Props>(() => {
+export const TasksCalendarListHeader: React.FC<Props> = memo<Props>((props) => {
   const weekdays = useMemo(() => {
     return WEEKDAYS
   }, [])
@@ -20,6 +20,7 @@ export const TasksCalendarListHeader: React.FC<Props> = memo<Props>(() => {
       borderStyle="solid"
       borderColor="gray.200"
       bg="white"
+      {...props}
     >
       {weekdays.map((w) => (
         <Flex

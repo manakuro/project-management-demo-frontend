@@ -6791,6 +6791,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"husky@npm:^7.0.2":
+  version: 7.0.2
+  resolution: "husky@npm:7.0.2"
+  bin:
+    husky: lib/bin.js
+  checksum: 2ccfe6ddc51dc05ae8ea1e2fbb893344e93a813e00c595d6b5f5e704b7b998d6b0e2adda7c57f99b5e46a60dc07c7d860269a2ea91661c6bacef0eca8e0b8e96
+  languageName: node
+  linkType: hard
+
 "hygen@npm:^6.1.0":
   version: 6.1.0
   resolution: "hygen@npm:6.1.0"
@@ -9805,6 +9814,7 @@ __metadata:
     focus-visible: ^5.2.0
     formik: ^2.2.9
     framer-motion: ^4.1.0
+    husky: ^7.0.2
     hygen: ^6.1.0
     jest: ^27.0.6
     jest-dom: ^4.0.0

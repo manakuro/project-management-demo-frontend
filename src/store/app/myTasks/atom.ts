@@ -49,7 +49,7 @@ export const useMyTasks = () => {
   }
 }
 
-export const useMyTask = (taskSectionId: string) => {
+export const useMyTaskByTaskSectionId = (taskSectionId: string) => {
   const { me } = useMe()
   const { setSectionName, addTask, taskSection } = useTaskSection(taskSectionId)
   const { taskIds } = useMyTasksTaskIdsByTaskSection(taskSectionId)

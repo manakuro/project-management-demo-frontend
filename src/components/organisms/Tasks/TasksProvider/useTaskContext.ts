@@ -1,4 +1,4 @@
-import { useMyTask } from 'src/store/app/myTasks'
+import { useMyTaskByTaskSectionId } from 'src/store/app/myTasks'
 import {
   TaskSection,
   defaultTaskSectionStateValue,
@@ -21,7 +21,7 @@ export const initialUseTask = (): Result => ({
 
 export const useTaskContext = (taskSectionId: string): Result => {
   const { isMyTasksPage } = useTasksContext()
-  const useMyTasksResult = useMyTask(taskSectionId)
+  const useMyTasksResult = useMyTaskByTaskSectionId(taskSectionId)
 
   if (isMyTasksPage) {
     return {

@@ -5,6 +5,7 @@ import { useHover } from 'src/hooks/useHover'
 import { useTask } from 'src/store/entities/tasks'
 import { CheckIcon } from './CheckIcon'
 import { Container } from './Container'
+import { Input } from './Input'
 import { Subtask } from './Subtask'
 
 type Props = {
@@ -16,15 +17,21 @@ export const ListItem: React.FC<Props> = memo<Props>((props) => {
   const { task } = useTask(taskId)
   const { ref, isHovering } = useHover()
 
+  if (task.isNew) {
+    return <Input taskId={taskId} />
+  }
+
   return (
     <Container taskId={taskId} ref={ref}>
       <CheckIcon taskId={taskId} isHovering={isHovering} />
-      <TeammateAvatar
-        teammateId={task.assigneeId}
-        showProfile={false}
-        ml={1}
-        size="xs"
-      />
+      {task.assigneeId && (
+        <TeammateAvatar
+          teammateId={task.assigneeId}
+          showProfile={false}
+          ml={1}
+          size="xs"
+        />
+      )}
       <Flex
         noOfLines={2}
         flex={1}

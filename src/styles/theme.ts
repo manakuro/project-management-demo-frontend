@@ -9,7 +9,7 @@ import 'focus-visible/dist/focus-visible'
 
 export const theme = extendTheme({
   styles: {
-    global: (props) => ({
+    global: (props: any) => ({
       '*': {
         WebkitFontSmoothing: 'antialiased',
         fontSmoothing: 'antialiased',

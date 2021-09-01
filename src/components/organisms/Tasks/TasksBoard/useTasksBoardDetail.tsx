@@ -1,12 +1,19 @@
+import { NextRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { useTaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import { useTasksBoardListItemElement } from 'src/components/organisms/Tasks/TasksBoard/TasksBoardListItem'
-import { isTaskDetailURL, useRouter, getTaskDetailId } from 'src/router'
+import { useRouter } from 'src/router'
 import { isHTMLElement } from 'src/shared/isHTMLElement'
 
-export const useTasksBoardDetail = () => {
-  const { router, navigateToMyTasksBoard } = useRouter()
+type Props = {
+  isTaskDetailURL: (router: NextRouter) => boolean
+  getTaskDetailId: (router: NextRouter) => string
+}
+
+export const useTasksBoardDetail = (props: Props) => {
+  const { isTaskDetailURL, getTaskDetailId } = props
+  const { router } = useRouter()
   const { taskId, refetch, setId, setLoading } = useTaskDetail()
   const { className } = useTasksBoardListItemElement()
   const skipElement = useCallback(
@@ -33,10 +40,18 @@ export const useTasksBoardDetail = () => {
         setLoading(false)
       }, 200)
     })
-  }, [router, onOpen, refetch, setId, taskId, setLoading])
+  }, [
+    router,
+    onOpen,
+    refetch,
+    setId,
+    taskId,
+    setLoading,
+    isTaskDetailURL,
+    getTaskDetailId,
+  ])
 
   return {
     skipElement,
-    backToPage: navigateToMyTasksBoard,
   }
 }

@@ -1,27 +1,13 @@
-import { useCallback, useMemo, useState } from 'react'
-import { useTasksContext } from 'src/components/organisms/Tasks'
+import { useCallback, useState } from 'react'
 import { createProvider } from 'src/shared/react/createProvider'
-import { useTask, useTaskIdsByTaskParentId } from 'src/store/entities/tasks'
 
 type ContextProps = {
   isSubtaskExpanded: boolean
-  showExpandIcon: boolean
   onToggleExpandSubtask: () => void
 }
 
-type Props = {
-  taskId: string
-}
-
-const useValue = (props: Props): ContextProps => {
-  const { isProjectsPage } = useTasksContext()
-  const { task } = useTask(props.taskId)
-  const { taskIds } = useTaskIdsByTaskParentId(props.taskId)
+const useValue = (): ContextProps => {
   const [isSubtaskExpanded, setIsSubtaskExpanded] = useState(false)
-  const showExpandIcon = useMemo(
-    () => isProjectsPage && !!taskIds.length && !task.taskParentId,
-    [isProjectsPage, taskIds.length, task.taskParentId],
-  )
 
   const onToggleExpandSubtask = useCallback(() => {
     setIsSubtaskExpanded((s) => !s)
@@ -29,7 +15,6 @@ const useValue = (props: Props): ContextProps => {
 
   return {
     isSubtaskExpanded,
-    showExpandIcon,
     onToggleExpandSubtask,
   } as const
 }

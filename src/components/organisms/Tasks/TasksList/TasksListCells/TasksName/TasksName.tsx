@@ -89,7 +89,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
         <TasksNameGrabIconContainer>
           <TasksNameGrabIcon />
         </TasksNameGrabIconContainer>
-        <ExpandIcon />
+        <ExpandIcon taskId={props.taskId} />
         <CheckIcon
           isDone={task.isDone}
           ml={1}

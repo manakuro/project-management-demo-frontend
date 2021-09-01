@@ -4,12 +4,18 @@ import { ChakraProps } from 'src/shared/chakra'
 import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
-  stickyStyle: ChakraProps
+  stickyStyle: StickyStyle
 }
+type StickyStyle = Override<
+  ChakraProps,
+  {
+    zIndex?: number
+  }
+>
 
 const useValue = (): ContextProps => {
   const { isStickyVertical } = useTasksListContentSticky()
-  const stickyStyle = useMemo((): ChakraProps => {
+  const stickyStyle = useMemo((): StickyStyle => {
     if (isStickyVertical)
       return {
         position: 'sticky',

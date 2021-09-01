@@ -7,14 +7,14 @@ import { useTasksContext } from './TasksProvider'
 
 type Result = {
   taskIds: string[]
-  addTask: () => Promise<string>
+  addTask: () => string
   taskSection: TaskSection
   setSectionName: (val: string) => Promise<void>
 }
 
 export const initialUseTask = (): Result => ({
   taskIds: [],
-  addTask: async () => '',
+  addTask: () => '',
   taskSection: defaultTaskSectionStateValue(),
   setSectionName: async () => {},
 })

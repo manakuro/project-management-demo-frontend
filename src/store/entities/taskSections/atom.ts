@@ -9,7 +9,7 @@ import {
 } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import { uuid } from 'src/shared/uuid'
-import { Task, useTasks, useTasksCommand } from 'src/store/entities/tasks'
+import { useTasksResponse } from 'src/store/entities/tasks'
 import { TaskSection, TaskSectionResponse } from './type'
 
 const key = (str: string) => `src/store/entities/taskSections/${str}`
@@ -79,7 +79,7 @@ export const taskSectionSelector = selectorFamily<TaskSection, string>({
 
 export const useTaskSections = () => {
   const taskSectionIds = useRecoilValue(taskSectionIdsState)
-  const { setTasksFromResponse } = useTasks()
+  const { setTasksFromResponse } = useTasksResponse()
 
   const setTaskSections = useRecoilCallback(
     ({ set }) =>
@@ -129,7 +129,6 @@ export const useTaskSectionsCommand = () => {
 export const useTaskSection = (taskSectionId?: string) => {
   const taskSection = useRecoilValue(taskSectionSelector(taskSectionId || ''))
   const { upsert } = useTaskSectionsCommand()
-  const useTasksCommandResult = useTasksCommand()
 
   const setTaskSection = useRecoilCallback(
     ({ snapshot }) =>
@@ -142,12 +141,6 @@ export const useTaskSection = (taskSectionId?: string) => {
     [upsert, taskSection.id],
   )
 
-  const addTask = useRecoilCallback(
-    () => async (val?: Partial<Task>) => {
-      return useTasksCommandResult.addTask({ ...val, taskSectionId })
-    },
-    [useTasksCommandResult, taskSectionId],
-  )
   const setSectionName = useRecoilCallback(
     () => async (val: string) => {
       if (taskSection.name === val) return
@@ -161,7 +154,6 @@ export const useTaskSection = (taskSectionId?: string) => {
   return {
     taskSection,
     setTaskSection,
-    addTask,
     setSectionName,
   }
 }

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { dateFns } from 'src/shared/dateFns'
 import { uuid } from 'src/shared/uuid'
-import { useMyTasks } from 'src/store/app/myTasks'
+import { useMyTasksResponse } from 'src/store/app/myTasks'
 import { MyTaskResponse } from 'src/store/app/myTasks'
 import { teammates } from 'src/store/entities/teammates/data'
 
@@ -11,7 +11,7 @@ type Props = {
 
 export const useMyTasksQuery = (props?: Props) => {
   const [loading, setLoading] = useState(true)
-  const { setMyTasks } = useMyTasks()
+  const { setMyTasks } = useMyTasksResponse()
 
   useEffect(() => {
     ;(async () => {

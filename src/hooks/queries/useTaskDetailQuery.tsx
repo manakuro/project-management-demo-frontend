@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { taskSections } from 'src/hooks/queries/useMyTasksQuery'
 import { dateFns } from 'src/shared/dateFns'
-import { TaskResponse, useTask } from 'src/store/entities/tasks'
+import { TaskResponse, useTaskResponse } from 'src/store/entities/tasks'
 
 type Props = {
   lazy?: boolean
@@ -17,7 +17,7 @@ const taskDetailQueryState = atom<{ loading: boolean }>({
 
 export const useTaskDetailQuery = (props?: Props) => {
   const [state, setState] = useRecoilState(taskDetailQueryState)
-  const { setTaskFromResponse } = useTask()
+  const { setTaskFromResponse } = useTaskResponse()
 
   useEffect(() => {
     ;(async () => {

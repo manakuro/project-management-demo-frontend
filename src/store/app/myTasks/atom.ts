@@ -6,6 +6,7 @@ import {
   useTaskSections,
   useTaskSectionsCommand,
 } from 'src/store/entities/taskSections'
+import { useTasksCommand } from 'src/store/entities/tasks'
 import { myTaskTaskStatusState } from './taskListStatus'
 import { useMyTasksTaskSectionIds } from './taskSections'
 import { useMyTasksTaskIds, useMyTasksTaskIdsByTaskSection } from './tasks'
@@ -27,12 +28,9 @@ export const useMyTaskCommands = () => {
   }
 }
 
-export const useMyTasks = () => {
+export const useMyTasksResponse = () => {
   const { setTaskSections } = useTaskSections()
   const { setTaskColumns, setTaskStatus } = useSetters()
-  const { taskSectionIds } = useMyTasksTaskSectionIds()
-  const { taskIds } = useMyTasksTaskIds()
-
   const setMyTasks = useRecoilCallback(
     () => (data: MyTaskResponse) => {
       setTaskSections(data.taskSections)
@@ -43,22 +41,31 @@ export const useMyTasks = () => {
   )
 
   return {
-    taskSectionIds,
     setMyTasks,
+  }
+}
+
+export const useMyTasks = () => {
+  const { taskSectionIds } = useMyTasksTaskSectionIds()
+  const { taskIds } = useMyTasksTaskIds()
+
+  return {
+    taskSectionIds,
     taskIds,
   }
 }
 
 export const useMyTaskByTaskSectionId = (taskSectionId: string) => {
   const { me } = useMe()
-  const { setSectionName, addTask, taskSection } = useTaskSection(taskSectionId)
+  const { addTask } = useTasksCommand()
+  const { setSectionName, taskSection } = useTaskSection(taskSectionId)
   const { taskIds } = useMyTasksTaskIdsByTaskSection(taskSectionId)
 
   const addMyTask = useRecoilCallback(
-    () => async () => {
-      return await addTask({ assigneeId: me.id })
+    () => () => {
+      return addTask({ assigneeId: me.id, taskSectionId })
     },
-    [me.id, addTask],
+    [me.id, addTask, taskSectionId],
   )
 
   return {

@@ -7,7 +7,7 @@ describe('Home', () => {
   it('renders Home component successfully', () => {
     render(
       <WrappedComponent>
-        <Component />
+        <Component loading={false} />
       </WrappedComponent>,
     )
 

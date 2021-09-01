@@ -1,18 +1,20 @@
-import React from 'react'
-import { Badge, Flex, Text, CheckIcon, DueDate } from 'src/components/atoms'
+import React, { memo } from 'react'
+import { Flex, Text, CheckIcon, DueDate, Stack } from 'src/components/atoms'
+import { ProjectChip } from 'src/components/molecules'
 import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import { useClickableHoverStyle } from 'src/hooks'
 import { formatDueTime } from 'src/shared/date'
-import { useProject } from 'src/store/entities/projects'
-import { TaskDueSoon } from './types'
+import { useTask } from 'src/store/entities/tasks'
+import { useTasksProjectTaskIds } from 'src/store/entities/tasks/projectIds'
 
 type Props = {
-  task: TaskDueSoon
+  taskId: string
 }
 
-export const ListItem: React.VFC<Props> = (props) => {
+export const ListItem: React.VFC<Props> = memo((props) => {
+  const { task } = useTask(props.taskId)
   const { clickableHoverStyle } = useClickableHoverStyle()
-  const { project } = useProject(props.task.projectId)
+  const { projectIds } = useTasksProjectTaskIds(props.taskId)
 
   return (
     <Flex
@@ -25,9 +27,9 @@ export const ListItem: React.VFC<Props> = (props) => {
       {...clickableHoverStyle}
     >
       <Flex alignItems="center" flex={1}>
-        <CheckIcon isDone={props.task.isDone} />
+        <CheckIcon isDone={task.isDone} />
         <Text fontSize="sm" ml={2} isTruncated>
-          {props.task.name}
+          {task.name}
         </Text>
       </Flex>
       <Flex
@@ -36,12 +38,14 @@ export const ListItem: React.VFC<Props> = (props) => {
         alignItems="center"
         justifyContent="flex-end"
       >
-        <Badge variant="solid" bg={project.color.color} textAlign="center">
-          {project.name}
-        </Badge>
+        <Stack direction="row" spacing={2}>
+          {projectIds.map((id) => (
+            <ProjectChip projectId={id} key={id} />
+          ))}
+        </Stack>
         <PopoverDueDatePicker
-          date={props.task.dueDate}
-          time={props.task.dueTime}
+          date={task.dueDate}
+          time={task.dueTime}
           onChange={(date) => console.log(date)}
         >
           <DueDate
@@ -49,11 +53,11 @@ export const ListItem: React.VFC<Props> = (props) => {
             fontSize="xs"
             color="text.muted"
             textAlign="right"
-            dueDate={props.task.dueDate}
+            dueDate={task.dueDate}
           >
-            {props.task.dueTime && (
+            {task.dueTime && (
               <Text as="span" fontSize="xs" color="text.muted" ml={1}>
-                {formatDueTime(props.task.dueTime)}
+                {formatDueTime(task.dueTime)}
               </Text>
             )}
           </DueDate>
@@ -61,4 +65,5 @@ export const ListItem: React.VFC<Props> = (props) => {
       </Flex>
     </Flex>
   )
-}
+})
+ListItem.displayName = 'ListItem'

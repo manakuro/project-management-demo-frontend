@@ -4,11 +4,14 @@ import { Head } from 'src/components/atoms/Head'
 import { MainHeader } from 'src/components/organisms/MainHeader'
 import { FavoriteProjects } from './FavoriteProjects'
 import { RecentProjects } from './RecentProjects'
+import { SkeletonHome } from './SkeletonHome'
 import { TasksDueSoon } from './TasksDueSoon'
 
-type Props = {}
+type Props = {
+  loading: boolean
+}
 
-export const Component: React.VFC<Props> = memo<Props>(() => {
+export const Component: React.VFC<Props> = memo<Props>((props) => {
   return (
     <Box data-testid="Home">
       <Head title="Home" />
@@ -17,13 +20,18 @@ export const Component: React.VFC<Props> = memo<Props>(() => {
           Home
         </Heading>
       </MainHeader>
-      <Box w="840px" mx="auto" py={10}>
-        <Stack spacing={10}>
-          <TasksDueSoon />
-          <FavoriteProjects />
-          <RecentProjects />
-        </Stack>
-      </Box>
+      {props.loading ? (
+        <SkeletonHome />
+      ) : (
+        <Box w="840px" mx="auto" py={10}>
+          <Stack spacing={10}>
+            <TasksDueSoon />
+            <FavoriteProjects />
+            <RecentProjects />
+          </Stack>
+        </Box>
+      )}
     </Box>
   )
 })
+Component.displayName = 'Component'

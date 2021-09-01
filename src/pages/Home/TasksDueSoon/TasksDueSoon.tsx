@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo } from 'react'
 import { Box, Button, Flex, Heading, Icon, Stack } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import {
@@ -7,66 +7,13 @@ import {
   AccordionPanel,
   AccordionButton,
 } from 'src/components/organisms/Accordion'
-import { dateFns } from 'src/shared/dateFns'
-import { ListItem } from './/ListItem'
-import { TaskDueSoon } from './types'
+import { useTasksDueSoonIds } from 'src/store/app/home/tasksDueSoon'
+import { ListItem } from './ListItem'
 
 type Props = {}
 
-const fetchTasksDueSoon = (): Promise<TaskDueSoon[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: '1',
-          projectId: '1',
-          name: 'Implement home page',
-          dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
-          dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
-          isDone: true,
-        },
-        {
-          id: '2',
-          projectId: '1',
-          name: 'Implement Task Due Soon',
-          dueDate: new Date(dateFns.addDays(new Date(), 4)).toISOString(),
-          isDone: false,
-        },
-        {
-          id: '3',
-          projectId: '2',
-          name: 'Implement Recent Projects',
-          dueDate: new Date(dateFns.addDays(new Date(), 5)).toISOString(),
-          isDone: false,
-        },
-        {
-          id: '4',
-          projectId: '1',
-          name: 'Implement Date picker',
-          dueDate: new Date(dateFns.addDays(new Date(), 6)).toISOString(),
-          isDone: false,
-        },
-      ])
-    }, 1000)
-  })
-}
-const useTasksDueSoonQuery = () => {
-  const [tasks, setTasks] = useState<TaskDueSoon[]>()
-
-  useEffect(() => {
-    ;(async () => {
-      const res = await fetchTasksDueSoon()
-      setTasks(res)
-    })()
-  }, [])
-
-  return {
-    tasks,
-  }
-}
-
 export const TasksDueSoon: React.VFC<Props> = memo<Props>(() => {
-  const { tasks } = useTasksDueSoonQuery()
+  const { taskIds } = useTasksDueSoonIds()
 
   return (
     <Accordion allowToggle defaultIndex={0}>
@@ -108,8 +55,8 @@ export const TasksDueSoon: React.VFC<Props> = memo<Props>(() => {
             <AccordionPanel p={0}>
               <Box py={4}>
                 <Stack spacing={2}>
-                  {tasks?.map((t) => (
-                    <ListItem task={t} key={t.id} />
+                  {taskIds?.map((id) => (
+                    <ListItem taskId={id} key={id} />
                   ))}
                 </Stack>
               </Box>

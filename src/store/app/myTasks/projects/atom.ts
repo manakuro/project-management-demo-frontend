@@ -2,14 +2,13 @@ import { useMemo } from 'react'
 import { selector, selectorFamily, useRecoilValue } from 'recoil'
 import { uniq } from 'src/shared/utils'
 import {
-  filterByTeammateId,
   filterTasks,
   filterByProjectTasks,
   filterByNoProject,
 } from 'src/store/app/myTasks/filters'
 import { useMe } from 'src/store/entities/me'
 import { projectTasksState } from 'src/store/entities/projectTasks'
-import { tasksState } from 'src/store/entities/tasks'
+import { tasksState, filterByTeammateId } from 'src/store/entities/tasks'
 
 export const myTasksProjectIdsSelector = selector<string[]>({
   key: 'myTasksProjectIdsSelector',

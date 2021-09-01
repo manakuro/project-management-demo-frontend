@@ -1,16 +1,15 @@
 import { useMemo } from 'react'
 import { selectorFamily, useRecoilValue } from 'recoil'
 import { isMyTaskSortStatus } from 'src/store/app/myTasks'
-import {
-  filterByTeammateId,
-  filterTasks,
-  filterByTaskSectionId,
-  sortTasks,
-  filterByDueDate,
-} from 'src/store/app/myTasks/filters'
+import { filterTasks, sortTasks } from 'src/store/app/myTasks/filters'
 import { useMe } from 'src/store/entities/me'
 import { isTabStatusForMyTasks } from 'src/store/entities/tabStatusForMyTasks'
-import { tasksState } from 'src/store/entities/tasks'
+import {
+  tasksState,
+  filterByTeammateId,
+  filterByDueDate,
+  filterByTaskSectionId,
+} from 'src/store/entities/tasks'
 
 const key = (str: string) => `src/store/app/myTasks/tasks/${str}`
 

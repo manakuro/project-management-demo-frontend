@@ -56,19 +56,6 @@ export const sortByAlphabetical =
     )
   }
 
-export const filterByTeammateId = (teammateId: string) => (tasks: Task[]) =>
-  tasks.filter((t) => !t.isDeleted && t.assigneeId === teammateId)
-
-export const filterByDueDate = (dueDate: string) => (tasks: Task[]) =>
-  tasks.filter(
-    (t) =>
-      !t.isDeleted && dateFns.isSameDay(new Date(t.dueDate), new Date(dueDate)),
-  )
-
-export const filterByTaskSectionId =
-  (taskSectionId: string) => (tasks: Task[]) =>
-    tasks.filter((t) => !t.isDeleted && t.taskSectionId === taskSectionId)
-
 export const filterByProjectTasks =
   ({ get, projectId }: Params & { projectId: string }) =>
   (tasks: Task[]) => {

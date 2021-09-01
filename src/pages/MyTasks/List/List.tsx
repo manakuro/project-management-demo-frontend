@@ -19,6 +19,7 @@ import {
   useTasksListDetail,
 } from 'src/components/organisms/Tasks'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
+import { getTaskDetailId, isTaskDetailURL, useRouter } from 'src/router'
 import { SkeletonList } from './SkeletonList'
 
 export const List: React.VFC = memo(() => {
@@ -30,8 +31,11 @@ export const List: React.VFC = memo(() => {
 })
 const Component: React.VFC = memo(() => {
   const { loadingTabContent } = useMyTasksContext()
-  const { skipElement, backToPage } = useTasksListDetail()
-  console.log('List!')
+  const { navigateToMyTasks } = useRouter()
+  const { skipElement } = useTasksListDetail({
+    isTaskDetailURL,
+    getTaskDetailId,
+  })
 
   if (loadingTabContent) return <SkeletonList />
 
@@ -57,7 +61,10 @@ const Component: React.VFC = memo(() => {
         </TasksListContent>
       </TasksList>
       <CustomizeMenu />
-      <TaskDetailDrawer backToPage={backToPage} skipElement={skipElement} />
+      <TaskDetailDrawer
+        backToPage={navigateToMyTasks}
+        skipElement={skipElement}
+      />
     </>
   )
 })

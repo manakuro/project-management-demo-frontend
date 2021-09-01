@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Flex, FlexProps, Skeleton } from 'src/components/atoms'
+import { Flex, FlexProps, Skeleton, Stack } from 'src/components/atoms'
 import {
   TasksCalendarContent,
   TasksHeader,
@@ -41,7 +41,13 @@ export const SkeletonCalendar: React.VFC<Props> = memo<Props>((props) => {
           borderColor="gray.200"
           bg="white"
         />
-        <TasksCalendarContent bg="gray.50" />
+        <TasksCalendarContent bg="gray.50">
+          <Stack spacing={4} direction="row" p={2}>
+            {[...new Array(3)].map((_, i) => (
+              <Skeleton h="185px" w="120px" key={i} />
+            ))}
+          </Stack>
+        </TasksCalendarContent>
       </Flex>
     </Flex>
   )

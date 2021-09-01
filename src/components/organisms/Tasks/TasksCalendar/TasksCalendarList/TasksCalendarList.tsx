@@ -7,12 +7,9 @@ import { TasksCalendarListItem } from '../TasksCalendarListItem'
 import { TasksCalendarListRow } from '../TasksCalendarListRow'
 import { useTasksCalendarId } from '../useTasksCalendarId'
 
-type Props = FlexProps & {
-  onScrolled: () => void
-}
+type Props = FlexProps
 
-export const TasksCalendarList: React.FC<Props> = memo<Props>((props) => {
-  const { onScrolled } = props
+export const TasksCalendarList: React.FC<Props> = memo<Props>(() => {
   const { getCalendarListId, getCalendarListItemId } = useTasksCalendarId()
   const {
     calendarRows,
@@ -29,8 +26,7 @@ export const TasksCalendarList: React.FC<Props> = memo<Props>((props) => {
     if (!isHTMLElement(element)) return
 
     element.scrollIntoView()
-    onScrolled()
-  }, [getCalendarListItemId, onScrolled])
+  }, [getCalendarListItemId])
 
   return (
     <Flex flex={1} flexDirection="column">

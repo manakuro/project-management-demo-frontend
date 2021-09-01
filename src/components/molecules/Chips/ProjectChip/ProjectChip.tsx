@@ -1,16 +1,20 @@
 import React, { memo, useCallback } from 'react'
-import { Box, Button, ColorBox, Icon, Text } from 'src/components/atoms'
+import { Badge, Box, Button, ColorBox, Icon, Text } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useProject } from 'src/store/entities/projects'
 
+type Variant = 'badge' | 'button'
+
 type Props = {
   projectId: string
+  variant: Variant
   onDelete?: () => void
   deletable?: boolean
+  onClick?: () => void
 }
 
 export const ProjectChip: React.VFC<Props> = memo((props) => {
-  const { projectId } = props
+  const { projectId, onClick } = props
   const { project } = useProject(projectId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
@@ -21,6 +25,27 @@ export const ProjectChip: React.VFC<Props> = memo((props) => {
     },
     [props],
   )
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      e.stopPropagation()
+      onClick?.()
+    },
+    [onClick],
+  )
+
+  if (props.variant === 'badge') {
+    return (
+      <Badge
+        variant="solid"
+        bg={project.color.color}
+        textAlign="center"
+        onClick={handleClick}
+      >
+        {project.name}
+      </Badge>
+    )
+  }
 
   return (
     <Button

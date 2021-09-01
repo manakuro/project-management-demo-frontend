@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Flex, Text, CheckIcon, DueDate, Stack } from 'src/components/atoms'
 import { ProjectChip } from 'src/components/molecules'
 import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
@@ -12,9 +12,16 @@ type Props = {
 }
 
 export const ListItem: React.VFC<Props> = memo((props) => {
-  const { task } = useTask(props.taskId)
+  const { task, setTask } = useTask(props.taskId)
   const { clickableHoverStyle } = useClickableHoverStyle()
   const { projectIds } = useTasksProjectTaskIds(props.taskId)
+
+  const handleChange = useCallback(
+    async (date: Date) => {
+      await setTask({ dueDate: date.toISOString() })
+    },
+    [setTask],
+  )
 
   return (
     <Flex
@@ -32,21 +39,16 @@ export const ListItem: React.VFC<Props> = memo((props) => {
           {task.name}
         </Text>
       </Flex>
-      <Flex
-        w="200px"
-        flex="0 0 auto"
-        alignItems="center"
-        justifyContent="flex-end"
-      >
+      <Flex flex="0 0 auto" alignItems="center" justifyContent="flex-end">
         <Stack direction="row" spacing={2}>
           {projectIds.map((id) => (
-            <ProjectChip projectId={id} key={id} />
+            <ProjectChip variant="badge" projectId={id} key={id} />
           ))}
         </Stack>
         <PopoverDueDatePicker
           date={task.dueDate}
           time={task.dueTime}
-          onChange={(date) => console.log(date)}
+          onChange={handleChange}
         >
           <DueDate
             ml={2}

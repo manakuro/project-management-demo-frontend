@@ -38,7 +38,7 @@ export const TasksProjects: React.VFC<Props> = memo<Props>((props) => {
       {!focused && (
         <Stack direction="row" spacing={1} overflow="hidden">
           {projectIds.map((id) => (
-            <ProjectChip key={id} projectId={id} />
+            <ProjectChip variant="button" key={id} projectId={id} />
           ))}
         </Stack>
       )}

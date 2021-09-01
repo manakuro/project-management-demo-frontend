@@ -68,7 +68,7 @@ export const Input: React.VFC<Props> = memo((props) => {
         <Wrap minH={HEIGHT} py={2} justifyItems="center" display="flex">
           {projectIds.map((id) => (
             <WrapItem key={id}>
-              <ProjectChip projectId={id} deletable />
+              <ProjectChip variant="button" projectId={id} deletable />
             </WrapItem>
           ))}
           <WrapItem>

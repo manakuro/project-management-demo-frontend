@@ -14,7 +14,7 @@ import {
   useTasksBoardDetail,
 } from 'src/components/organisms/Tasks'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
-import { getTaskDetailId, isTaskDetailURL, useRouter } from 'src/router'
+import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router'
 import { SkeletonBoard } from './SkeletonBoard'
 
 export const Board: React.VFC = memo(() => {
@@ -29,8 +29,8 @@ const Component: React.VFC = memo(() => {
   const { loadingTabContent } = useMyTasksContext()
   const { navigateToMyTasksBoard } = useRouter()
   const { skipElement } = useTasksBoardDetail({
-    isTaskDetailURL,
-    getTaskDetailId,
+    isTaskDetailURL: isMyTasksDetailURL,
+    getTaskDetailId: getMyTasksDetailId,
   })
 
   if (loadingTabContent) return <SkeletonBoard />

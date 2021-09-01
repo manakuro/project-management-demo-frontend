@@ -1,6 +1,7 @@
 import { useRouter as useRouterNext, NextRouter } from 'next/router'
 import { useCallback } from 'react'
 import {
+  ROUTE_HOME,
   ROUTE_MY_TASKS,
   ROUTE_MY_TASKS_BOARD,
   ROUTE_MY_TASKS_CALENDAR,
@@ -12,6 +13,26 @@ type Options = Parameters<NextRouter['push']>[2]
 export const useRouter = () => {
   const router = useRouterNext()
   const { push } = router
+
+  const navigateToHome = useCallback(
+    async (options?: Options) => {
+      await push(ROUTE_HOME.href.pathname, undefined, {
+        shallow: true,
+        ...options,
+      })
+    },
+    [push],
+  )
+
+  const navigateToHomeDetail = useCallback(
+    async (id: string, options?: Options) => {
+      await push(`${ROUTE_HOME.href.pathname}${id}`, undefined, {
+        shallow: true,
+        ...options,
+      })
+    },
+    [push],
+  )
 
   const navigateToMyTasks = useCallback(
     async (options?: Options) => {
@@ -76,6 +97,8 @@ export const useRouter = () => {
   )
 
   return {
+    navigateToHome,
+    navigateToHomeDetail,
     navigateToMyTasks,
     navigateToMyTasksBoard,
     navigateToMyTasksCalendar,

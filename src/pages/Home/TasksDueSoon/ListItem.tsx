@@ -3,6 +3,7 @@ import { Flex, Text, CheckIcon, DueDate, Stack } from 'src/components/atoms'
 import { ProjectChip } from 'src/components/molecules'
 import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import { useClickableHoverStyle } from 'src/hooks'
+import { useRouter } from 'src/router'
 import { formatDueTime } from 'src/shared/date'
 import { useTask } from 'src/store/entities/tasks'
 import { useTasksProjectTaskIds } from 'src/store/entities/tasks/projectIds'
@@ -12,15 +13,25 @@ type Props = {
 }
 
 export const ListItem: React.VFC<Props> = memo((props) => {
-  const { task, setTask } = useTask(props.taskId)
+  const { taskId } = props
+  const { task, setTask } = useTask(taskId)
   const { clickableHoverStyle } = useClickableHoverStyle()
-  const { projectIds } = useTasksProjectTaskIds(props.taskId)
+  const { projectIds } = useTasksProjectTaskIds(taskId)
+  const { navigateToHomeDetail } = useRouter()
 
   const handleChange = useCallback(
     async (date: Date) => {
       await setTask({ dueDate: date.toISOString() })
     },
     [setTask],
+  )
+
+  const handleClick = useCallback(
+    async (e: React.MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation()
+      await navigateToHomeDetail(taskId)
+    },
+    [navigateToHomeDetail, taskId],
   )
 
   return (
@@ -31,6 +42,7 @@ export const ListItem: React.VFC<Props> = memo((props) => {
       px={4}
       py={2}
       h={10}
+      onClick={handleClick}
       {...clickableHoverStyle}
     >
       <Flex alignItems="center" flex={1}>

@@ -9,7 +9,7 @@ import {
   isMyTasksCalendarURL,
   isMyTasksFilesURL,
   isMyTasksURL,
-  isTaskDetailURL,
+  isMyTasksDetailURL,
   useRouter,
 } from 'src/router'
 import { useMyTasksTaskStatus } from 'src/store/app/myTasks'
@@ -141,7 +141,7 @@ const WrappedComponent: React.VFC = memo(() => {
 
   useEffect(() => {
     // When task detail opening
-    if (isTaskDetailURL(router)) {
+    if (isMyTasksDetailURL(router)) {
       switch (true) {
         case isTaskTabStatus('list'): {
           setTabIndex(TASKS_INDEX)

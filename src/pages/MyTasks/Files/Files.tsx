@@ -9,7 +9,7 @@ import {
 import { useTasksFilesDetail } from 'src/components/organisms/Tasks/TasksFiles/useTasksFilesDetail'
 import { useMyTasksFilesQuery } from 'src/hooks/queries/useMyTasksFilesQuery'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
-import { isTaskDetailURL, getTaskDetailId, useRouter } from 'src/router'
+import { isMyTasksDetailURL, getMyTasksDetailId, useRouter } from 'src/router'
 import { SkeletonFiles } from './SkeletonFiles'
 
 export const Files: React.VFC = memo(() => {
@@ -30,8 +30,8 @@ const Component: React.VFC = memo(() => {
   const { navigateToMyTasksFiles } = useRouter()
 
   useTasksFilesDetail({
-    isTaskDetailURL,
-    getTaskDetailId,
+    isTaskDetailURL: isMyTasksDetailURL,
+    getTaskDetailId: getMyTasksDetailId,
   })
 
   if (loading) return <SkeletonFiles />

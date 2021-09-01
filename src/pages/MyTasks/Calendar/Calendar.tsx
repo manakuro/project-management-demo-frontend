@@ -16,7 +16,7 @@ import {
   TodayButton,
 } from 'src/components/organisms/Tasks/TasksHeader'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
-import { getTaskDetailId, isTaskDetailURL, useRouter } from 'src/router'
+import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router'
 import { SkeletonCalendar } from './SkeletonCalendar'
 
 export const Calendar: React.VFC = memo(() => {
@@ -32,8 +32,8 @@ const Component: React.VFC = memo(() => {
   const { navigateToMyTasksCalendar } = useRouter()
 
   useTasksCalendarDetail({
-    isTaskDetailURL,
-    getTaskDetailId,
+    isTaskDetailURL: isMyTasksDetailURL,
+    getTaskDetailId: getMyTasksDetailId,
   })
 
   if (loadingTabContent) return <SkeletonCalendar />

@@ -3,6 +3,7 @@ export const ROUTE_HOME = {
   href: {
     pathname: '/',
   },
+  queryName: 'index',
 } as const
 export const ROUTE_MY_TASKS = {
   name: 'my_tasks',

@@ -16,9 +16,13 @@ export const CheckIcon: React.FC<Props> = memo<Props>((props) => {
   const { projectIds } = useTasksProjectTaskIds(props.taskId)
   const { project } = useProject(projectIds[0])
 
-  const handleToggleDone = useCallback(async () => {
-    await setTask({ isDone: !task.isDone })
-  }, [task, setTask])
+  const handleToggleDone = useCallback(
+    async (e: React.MouseEvent<SVGElement>) => {
+      e.stopPropagation()
+      await setTask({ isDone: !task.isDone })
+    },
+    [task, setTask],
+  )
 
   const colorStyle = useMemo((): ChakraProps => {
     if (!project.id) return {}

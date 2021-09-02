@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
-import { getTaskDetailFeedId, useRouter } from 'src/router'
+import { getMyTasksDetailFeedId, useRouter } from 'src/router'
 import { isHTMLElement } from 'src/shared/isHTMLElement'
 import { createProvider } from 'src/shared/react/createProvider'
 import { useFeed } from 'src/store/entities/feeds'
@@ -39,7 +39,7 @@ const useValue = (props: Props): ContextProps => {
   }, [setReference, taskDetailBodyDom])
 
   useEffect(() => {
-    const id = getTaskDetailFeedId(router)
+    const id = getMyTasksDetailFeedId(router)
     if (!id) return
     if (props.isPinned) return
     if (id !== feed.id) return

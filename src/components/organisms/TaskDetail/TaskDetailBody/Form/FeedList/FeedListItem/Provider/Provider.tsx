@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { useToast } from 'src/hooks'
-import { taskDetailFeedURL } from 'src/router'
+import { getMyTasksDetailFeedURL } from 'src/router'
 import { createProvider } from 'src/shared/react/createProvider'
 import { useFeed } from 'src/store/entities/feeds'
 import { useFeedsAttachmentIds } from 'src/store/entities/feeds/attachmentIds'
@@ -92,7 +92,7 @@ function useFeedOptionMenu(props: Props) {
 
   const onCopyCommentLink = useCallback(async () => {
     await navigator.clipboard.writeText(
-      taskDetailFeedURL(props.taskId, feed.id),
+      getMyTasksDetailFeedURL(props.taskId, feed.id),
     )
     toast({
       description: 'The comment link was copied to your clipboard.',

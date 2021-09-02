@@ -68,12 +68,15 @@ export const getMyTasksDetailId = (router: NextRouter): string =>
     (router.query?.[ROUTE_MY_TASKS.name]?.[0] as string)) ||
   ''
 
-export const getTaskDetailFeedId = (router: NextRouter): string =>
+export const getMyTasksDetailFeedId = (router: NextRouter): string =>
   (isMyTasksDetailURL(router) &&
     (router.query?.[ROUTE_MY_TASKS.name]?.[1] as string)) ||
   ''
 
-export const taskDetailFeedURL = (taskId: string, feedId: string): string => {
+export const getMyTasksDetailFeedURL = (
+  taskId: string,
+  feedId: string,
+): string => {
   return `${window.location.origin}/${ROUTE_MY_TASKS.name}/${taskId}/${feedId}`
 }
 

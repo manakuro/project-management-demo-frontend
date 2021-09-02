@@ -1,4 +1,4 @@
-import { selectorFamily, useRecoilValue } from 'recoil'
+import { selectorFamily } from 'recoil'
 import { projectTeammatesState } from 'src/store/entities/projectTeammates'
 
 export const projectsTeammateIdsSelector = selectorFamily<string[], string>({
@@ -12,10 +12,3 @@ export const projectsTeammateIdsSelector = selectorFamily<string[], string>({
         .map((p) => p.teammateId)
     },
 })
-export const useProjectsTeammateIds = (projectId: string) => {
-  const teammateIds = useRecoilValue(projectsTeammateIdsSelector(projectId))
-
-  return {
-    teammateIds,
-  }
-}

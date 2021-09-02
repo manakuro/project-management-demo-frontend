@@ -15,6 +15,16 @@ export const attachmentIdsByTaskIdSelector = selectorFamily<string[], string>({
     },
 })
 
+export const attachmentIdsByFeedIdSelector = selectorFamily<string[], string>({
+  key: key('attachmentIdsByFeedIdSelector'),
+  get:
+    (feedId) =>
+    ({ get }) => {
+      const attachments = get(attachmentsState)
+      return attachments.filter((p) => p.feedId === feedId).map((p) => p.id)
+    },
+})
+
 export const attachmentIdsState = atom<string[]>({
   key: key('attachmentIdsState'),
   default: [],

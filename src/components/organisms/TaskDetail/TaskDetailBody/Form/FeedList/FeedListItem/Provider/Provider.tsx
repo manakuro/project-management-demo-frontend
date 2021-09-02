@@ -2,8 +2,8 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { useToast } from 'src/hooks'
 import { getMyTasksDetailFeedURL } from 'src/router'
 import { createProvider } from 'src/shared/react/createProvider'
+import { useAttachmentIdsByFeedId } from 'src/store/entities/attachments'
 import { useFeed } from 'src/store/entities/feeds'
-import { useFeedsAttachmentIds } from 'src/store/entities/feeds/attachmentIds'
 import { useTeammate } from 'src/store/entities/teammates'
 import { Provider as ProviderContainer } from './ProviderContainer'
 
@@ -22,7 +22,7 @@ export const Provider: React.FC<Props> = (props) => {
 
 const useValue = (props: Props) => {
   const { feed } = useFeed(props.feedId)
-  const { attachmentIds } = useFeedsAttachmentIds(props.feedId)
+  const { attachmentIds } = useAttachmentIdsByFeedId(props.feedId)
   const { teammate } = useTeammate(feed.teammateId)
   const {
     onPin,

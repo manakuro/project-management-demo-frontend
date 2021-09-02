@@ -1,7 +1,5 @@
-import { useMemo } from 'react'
-import { selectorFamily, useRecoilValue } from 'recoil'
+import { selectorFamily } from 'recoil'
 import { isMyTaskSortStatus } from 'src/store/app/myTasks'
-import { useMe } from 'src/store/entities/me'
 import { isTabStatusForMyTasks } from 'src/store/entities/tabStatusForMyTasks'
 import { TaskSection, taskSectionsState } from 'src/store/entities/taskSections'
 import { tasksByTaskSectionIdSelector } from 'src/store/entities/tasks'
@@ -50,8 +48,8 @@ export const myTasksTaskSectionIdsSelector = selectorFamily<string[], string>({
     },
 })
 
-const myTasksTaskSectionsSelector = selectorFamily<TaskSection[], string>({
-  key: key('myTasksTaskSectionsSelector'),
+export const taskSectionsSelector = selectorFamily<TaskSection[], string>({
+  key: key('taskSectionsSelector'),
   get:
     (teammateId) =>
     ({ get }) => {
@@ -59,22 +57,3 @@ const myTasksTaskSectionsSelector = selectorFamily<TaskSection[], string>({
       return taskSections.filter(filter(teammateId))
     },
 })
-
-export const useMyTasksTaskSectionIds = () => {
-  const { me } = useMe()
-  const ids = useRecoilValue(myTasksTaskSectionIdsSelector(me.id))
-  const taskSectionIds = useMemo(() => ids, [ids])
-
-  return {
-    taskSectionIds,
-  }
-}
-
-export const useMyTasksTaskSections = () => {
-  const { me } = useMe()
-  const taskSections = useRecoilValue(myTasksTaskSectionsSelector(me.id))
-
-  return {
-    taskSections,
-  }
-}

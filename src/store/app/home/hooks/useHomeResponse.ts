@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { useTasksResponse } from 'src/store/entities/tasks'
-import { HomeResponse } from './type'
+import { HomeResponse } from '../type'
 
 export const useHomeResponse = () => {
   const { setTasksFromResponse } = useTasksResponse()

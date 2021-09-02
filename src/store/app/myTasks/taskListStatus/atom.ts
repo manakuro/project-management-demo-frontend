@@ -1,5 +1,4 @@
-import { useCallback } from 'react'
-import { useRecoilCallback, atom, useRecoilValue, selectorFamily } from 'recoil'
+import { atom, selectorFamily } from 'recoil'
 import { TaskListStatus } from './type'
 import {
   TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
@@ -15,8 +14,6 @@ import {
   TASK_LIST_STATUS_TYPE_COMPLETED_TODAY,
   TASK_LIST_STATUS_TYPE_COMPLETED_YESTERDAY,
   TASK_LIST_STATUS_TYPE_INCOMPLETE,
-  TaskListSortStatusType,
-  TaskListStatusType,
 } from './types'
 
 const key = (str: string) => `src/store/app/myTasks/taskListStatus/${str}`
@@ -52,40 +49,7 @@ export const isMyTaskSortStatus = selectorFamily<boolean, SortStatuses>({
     },
 })
 
-export const useMyTasksTaskStatus = () => {
-  const { state } = useMyTaskTaskStatusState()
-  const { onSort, isSorted } = useSort()
-  const { onSetTaskListStatus, isTaskListStatus } = useTaskListStatus()
-
-  return {
-    ...state,
-    onSort,
-    isSorted,
-    onSetTaskListStatus,
-    isTaskListStatus,
-  }
-}
-
-function useMyTaskTaskStatusState() {
-  const state = useRecoilValue(myTaskTaskStatusState)
-  const setTaskStatus = useRecoilCallback(
-    ({ set }) =>
-      (val: Partial<TaskListStatus>) => {
-        set(myTaskTaskStatusState, (prev) => ({
-          ...prev,
-          ...val,
-        }))
-      },
-    [],
-  )
-
-  return {
-    state,
-    setTaskStatus,
-  }
-}
-
-const sortStatues = {
+export const sortStatues = {
   none: TASK_LIST_SORT_STATUS_TYPE_NONE,
   dueDate: TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
   likes: TASK_LIST_SORT_STATUS_TYPE_LIKES,
@@ -94,31 +58,7 @@ const sortStatues = {
 } as const
 export type SortStatuses = keyof typeof sortStatues
 
-function useSort() {
-  const { setTaskStatus, state } = useMyTaskTaskStatusState()
-  const isSorted = useCallback(
-    (status: SortStatuses) => state.sortStatus === sortStatues[status],
-    [state.sortStatus],
-  )
-  const isSortStatusKey = useCallback(
-    (val: any): val is SortStatuses => typeof val === 'string',
-    [],
-  )
-
-  const onSort = useCallback(
-    (status: TaskListSortStatusType | SortStatuses) => {
-      const val = isSortStatusKey(status) ? sortStatues[status] : status
-      setTaskStatus({ sortStatus: val })
-    },
-    [setTaskStatus, isSortStatusKey],
-  )
-
-  return {
-    onSort,
-    isSorted,
-  }
-}
-const taskListStatues = {
+export const taskListStatues = {
   incomplete: TASK_LIST_STATUS_TYPE_INCOMPLETE,
   completed: TASK_LIST_STATUS_TYPE_COMPLETED,
   completedToday: TASK_LIST_STATUS_TYPE_COMPLETED_TODAY,
@@ -129,25 +69,3 @@ const taskListStatues = {
   all: TASK_LIST_STATUS_TYPE_ALL,
 } as const
 export type TaskListStatuses = keyof typeof taskListStatues
-
-function useTaskListStatus() {
-  const { setTaskStatus, state } = useMyTaskTaskStatusState()
-
-  const isTaskListStatus = useCallback(
-    (status: TaskListStatuses) =>
-      state.taskListStatus === taskListStatues[status],
-    [state.taskListStatus],
-  )
-
-  const onSetTaskListStatus = useCallback(
-    (status: TaskListStatusType) => {
-      setTaskStatus({ taskListStatus: status })
-    },
-    [setTaskStatus],
-  )
-
-  return {
-    onSetTaskListStatus,
-    isTaskListStatus,
-  }
-}

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
-import { useMyTaskCommands, useMyTasks } from 'src/store/app/myTasks'
+import { useMyTaskCommand, useMyTasks } from 'src/store/app/myTasks'
 import { useTasksContext } from './TasksProvider'
 
 const key = (str: string) =>
@@ -32,7 +32,7 @@ export const useTaskSectionContext = () => {
   const { isMyTasksPage } = useTasksContext()
 
   const myTasks = useMyTasks()
-  const myTaskCommands = useMyTaskCommands()
+  const myTaskCommands = useMyTaskCommand()
   const [addedTaskSectionId, setAddedTaskSectionId] = useRecoilState(
     addedTaskSectionIdState,
   )

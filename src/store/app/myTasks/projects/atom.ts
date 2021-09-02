@@ -1,12 +1,10 @@
-import { useMemo } from 'react'
-import { selector, selectorFamily, useRecoilValue } from 'recoil'
+import { selector, selectorFamily } from 'recoil'
 import { uniq } from 'src/shared/utils'
 import {
   filterTasks,
   filterByProjectTasks,
   filterByNoProject,
 } from 'src/store/app/myTasks/filters'
-import { useMe } from 'src/store/entities/me'
 import { projectTasksState } from 'src/store/entities/projectTasks'
 import { tasksState, filterByTeammateId } from 'src/store/entities/tasks'
 
@@ -46,31 +44,3 @@ export const myTasksTaskIdsWithNoProjectSelector = selectorFamily<
       return tasks.map((t) => t.id)
     },
 })
-
-export const useMyTasksProjectIds = () => {
-  const ids = useRecoilValue(myTasksProjectIdsSelector)
-  const projectIds = useMemo(() => ids, [ids])
-
-  return {
-    projectIds,
-  }
-}
-
-export const useMyTasksTaskIdsWithNoProject = () => {
-  const { me } = useMe()
-  const ids = useRecoilValue(myTasksTaskIdsWithNoProjectSelector(me.id))
-  const taskIds = useMemo(() => ids, [ids])
-
-  return {
-    taskIds,
-  }
-}
-
-export const useMyTasksTaskIdsByProject = (projectId: string) => {
-  const ids = useRecoilValue(myTasksProjectTaskIdsSelector(projectId))
-  const taskIds = useMemo(() => ids, [ids])
-
-  return {
-    taskIds,
-  }
-}

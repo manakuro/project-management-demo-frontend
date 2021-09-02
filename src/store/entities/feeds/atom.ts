@@ -8,15 +8,31 @@ export const feedIdsState = atom<string[]>({
   key: key('feedIdsState'),
   default: [],
 })
-export const feedIdsGroupByTaskState = atom<Record<string, string[]>>({
-  key: key('feedIdsGroupByTaskState'),
-  default: {},
-})
+
 export const feedsState = atom<Feed[]>({
   key: key('feedsState'),
   default: [],
 })
-
+export const feedIdsByTaskIdSelector = selectorFamily<string[], string>({
+  key: 'feedIdsByTaskIdSelector',
+  get:
+    (taskId) =>
+    ({ get }) => {
+      const feeds = get(feedsState)
+      return feeds.filter((p) => p.taskId === taskId).map((p) => p.id)
+    },
+})
+export const feedIdsWithoutFirstSelector = selectorFamily<string[], string>({
+  key: key('feedIdsWithoutFirstSelector'),
+  get:
+    (taskId) =>
+    ({ get }) => {
+      const feeds = get(feedsState)
+      return feeds
+        .filter((p) => p.taskId === taskId && !p.isFirst)
+        .map((p) => p.id)
+    },
+})
 export const defaultFeedStateValue = (): Feed => ({
   id: '',
   taskId: '',
@@ -82,11 +98,5 @@ export const feedSelector = selectorFamily<Feed, string>({
       if (get(feedIdsState).find((feedId) => feedId === newVal.id)) return
 
       set(feedIdsState, (prev) => [...prev, newVal.id])
-      set(feedIdsGroupByTaskState, (prev) => {
-        return {
-          ...prev,
-          [newVal.taskId]: [...(prev[newVal.taskId] || []), newVal.id],
-        }
-      })
     },
 })

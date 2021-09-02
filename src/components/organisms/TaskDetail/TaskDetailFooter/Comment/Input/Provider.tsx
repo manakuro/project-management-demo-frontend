@@ -13,7 +13,7 @@ import {
   useAttachmentCommand,
 } from 'src/store/entities/attachments'
 import { ATTACHMENT_STATUS_UNATTACHED } from 'src/store/entities/attachments/types'
-import { Feed, useFeed, useFeedsByTask } from 'src/store/entities/feeds'
+import { Feed, useFeed, useFeedCommand } from 'src/store/entities/feeds'
 import { useMe } from 'src/store/entities/me'
 
 type ContextProps = {
@@ -203,7 +203,7 @@ function useFocus() {
 
 function useSave(props: { onSaved: (id: string) => void }) {
   const { taskId } = useTaskDetail()
-  const { addFeed } = useFeedsByTask(taskId)
+  const { addFeed } = useFeedCommand()
   const { me } = useMe()
   const { taskDetailBodyDom } = useTaskDetailBody()
   const [description, setDescription] = useState<string>('')
@@ -215,13 +215,14 @@ function useSave(props: { onSaved: (id: string) => void }) {
 
   const onSave = useCallback(() => {
     const id = addFeed({
+      taskId,
       description,
       teammateId: me.id,
       createdAt: new Date().toISOString(),
     })
     props.onSaved(id)
     scrollToBottom()
-  }, [addFeed, description, me.id, props, scrollToBottom])
+  }, [addFeed, description, me.id, props, scrollToBottom, taskId])
 
   const onChangeDescription = useCallback((val: string) => {
     setDescription(val)

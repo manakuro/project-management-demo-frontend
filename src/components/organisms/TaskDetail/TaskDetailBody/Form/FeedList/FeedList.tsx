@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useFeedsByTask, useFeedsPinnedIds } from 'src/store/entities/feeds'
+import { useFeedIdsByTaskId, useFeedsPinnedIds } from 'src/store/entities/feeds'
 import { FeedListItem } from './FeedListItem'
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 export const FEED_LIST_CONTAINER_ID = 'FEED_LIST_CONTAINER_ID'
 
 export const FeedList: React.VFC<Props> = memo<Props>((props) => {
-  const { feedIds } = useFeedsByTask(props.taskId)
+  const { feedIds } = useFeedIdsByTaskId(props.taskId)
   const { feedPinnedIds } = useFeedsPinnedIds(props.taskId)
   const anyFeedIds = useMemo(
     () => !!feedIds.length || !!feedPinnedIds.length,

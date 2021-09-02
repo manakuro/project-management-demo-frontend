@@ -4,14 +4,14 @@ import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { FEED_LIST_CONTAINER_ID } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList'
 import { useTasksNameContext } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { useRouter } from 'src/router'
-import { useTasksFeedIds } from 'src/store/entities/tasks/feedIds'
+import { useFeedIdsWithoutFirstByTaskId } from 'src/store/entities/feeds'
 import { Icon } from './Icon'
 
 type Props = {}
 
 export const Feed: React.VFC<Props> = () => {
   const { taskId } = useTasksNameContext()
-  const { feedIdsWithoutFirst } = useTasksFeedIds(taskId)
+  const { feedIdsWithoutFirst } = useFeedIdsWithoutFirstByTaskId(taskId)
   const size = useMemo(
     () => feedIdsWithoutFirst.length,
     [feedIdsWithoutFirst.length],

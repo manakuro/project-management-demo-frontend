@@ -43,7 +43,7 @@ export const useMyTasksTaskColumns = () => {
   const { me } = useMe()
   const ids = useRecoilValue(myTaskTaskColumnIdsSelector(me.id))
   const taskColumnIds = useMemo(() => ids, [ids])
-  const { upsertTaskColumn } = useTaskColumnCommands()
+  const { upsert: upsertTaskColumn } = useTaskColumnCommands()
 
   const setOrderTaskColumn = useRecoilCallback(
     ({ snapshot }) =>
@@ -90,7 +90,7 @@ export const useMyTasksTaskColumnsCustomizable = () => {
   const { me } = useMe()
   const ids = useRecoilValue(myTaskTaskColumnIdsCustomizableSelector(me.id))
   const taskColumnIds = useMemo(() => ids, [ids])
-  const { upsertTaskColumn } = useTaskColumnCommands()
+  const { upsert: upsertTaskColumn } = useTaskColumnCommands()
 
   const setOrderTaskColumn = useRecoilCallback(
     ({ snapshot }) =>

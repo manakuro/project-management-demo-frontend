@@ -1,11 +1,4 @@
-import {
-  atomFamily,
-  selectorFamily,
-  useRecoilCallback,
-  DefaultValue,
-  atom,
-  useRecoilValue,
-} from 'recoil'
+import { atomFamily, selectorFamily, DefaultValue, atom } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import { Tag } from './type'
 
@@ -69,54 +62,3 @@ export const tagSelector = selectorFamily<Tag, string>({
       set(tagIdsState, (prev) => [...prev, newVal.id])
     },
 })
-
-export const useTags = () => {
-  const tagIds = useRecoilValue(tagIdsState)
-  const tags = useRecoilValue(tagsState)
-
-  const setTag = useRecoilCallback(
-    ({ set }) =>
-      (tags: Tag[]) => {
-        tags.forEach((p) => {
-          set(tagSelector(p.id), p)
-        })
-      },
-    [],
-  )
-
-  return {
-    tagIds,
-    tags,
-    setTag,
-  }
-}
-
-export const useTag = (tagId?: string) => {
-  const tag = useRecoilValue(tagSelector(tagId || ''))
-
-  const upsertTag = useRecoilCallback(
-    ({ set }) =>
-      (tag: Tag) => {
-        set(tagSelector(tag.id), tag)
-      },
-    [],
-  )
-
-  const setTag = useRecoilCallback(
-    ({ snapshot }) =>
-      async (val: Partial<Tag>) => {
-        const prev = await snapshot.getPromise(tagSelector(tag.id))
-        upsertTag({
-          ...prev,
-          ...val,
-        })
-      },
-    [upsertTag, tag.id],
-  )
-
-  return {
-    tag,
-    upsertTag,
-    setTag,
-  }
-}

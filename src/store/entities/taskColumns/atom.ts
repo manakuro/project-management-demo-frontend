@@ -1,12 +1,4 @@
-import { useMemo } from 'react'
-import {
-  atomFamily,
-  selectorFamily,
-  useRecoilCallback,
-  DefaultValue,
-  atom,
-  useRecoilValue,
-} from 'recoil'
+import { atomFamily, selectorFamily, DefaultValue, atom } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import { TaskColumnType } from 'src/store/entities/taskColumns/types'
 import { TaskColumn } from './type'
@@ -21,15 +13,17 @@ export const taskColumnsState = atom<TaskColumn[]>({
   key: key('taskColumnsState'),
   default: [],
 })
-const taskColumnByTypeState = selectorFamily<TaskColumn, TaskColumnType>({
-  key: key('taskColumnByTypeState'),
-  get:
-    (type: TaskColumnType) =>
-    ({ get }) => {
-      const taskColumns = get(taskColumnsState)
-      return taskColumns.find((t) => t.type === type)!
-    },
-})
+export const taskColumnByTypeState = selectorFamily<TaskColumn, TaskColumnType>(
+  {
+    key: key('taskColumnByTypeState'),
+    get:
+      (type: TaskColumnType) =>
+      ({ get }) => {
+        const taskColumns = get(taskColumnsState)
+        return taskColumns.find((t) => t.type === type)!
+      },
+  },
+)
 export const taskColumnsByTeammateIdSelector = selectorFamily<
   TaskColumn[],
   string
@@ -99,72 +93,3 @@ export const taskColumnSelector = selectorFamily<TaskColumn, string>({
       set(taskColumnIdsState, (prev) => [...prev, newVal.id])
     },
 })
-
-export const useTaskColumns = () => {
-  const taskColumnIds = useRecoilValue(taskColumnIdsState)
-  const taskColumns = useRecoilValue(taskColumnsState)
-
-  const setTaskColumn = useRecoilCallback(
-    ({ set }) =>
-      (taskColumns: TaskColumn[]) => {
-        taskColumns.forEach((p) => {
-          set(taskColumnSelector(p.id), p)
-        })
-      },
-    [],
-  )
-
-  return {
-    taskColumnIds,
-    taskColumns,
-    setTaskColumn,
-  }
-}
-
-export const useTaskColumnByType = (type: TaskColumnType) => {
-  const val = useRecoilValue(taskColumnByTypeState(type))
-  const taskColumn = useMemo(() => val, [val])
-
-  return {
-    taskColumn,
-  }
-}
-
-export const useTaskColumnCommands = () => {
-  const upsertTaskColumn = useRecoilCallback(
-    ({ set }) =>
-      (taskColumn: TaskColumn) => {
-        set(taskColumnSelector(taskColumn.id), taskColumn)
-      },
-    [],
-  )
-
-  return {
-    upsertTaskColumn,
-  }
-}
-
-export const useTaskColumn = (taskColumnId?: string) => {
-  const taskColumn = useRecoilValue(taskColumnSelector(taskColumnId || ''))
-  const { upsertTaskColumn } = useTaskColumnCommands()
-
-  const setTaskColumn = useRecoilCallback(
-    ({ snapshot }) =>
-      async (val: Partial<TaskColumn>) => {
-        const prev = await snapshot.getPromise(
-          taskColumnSelector(taskColumn.id),
-        )
-        upsertTaskColumn({
-          ...prev,
-          ...val,
-        })
-      },
-    [upsertTaskColumn, taskColumn.id],
-  )
-
-  return {
-    taskColumn,
-    upsertTaskColumn,
-    setTaskColumn,
-  }
-}

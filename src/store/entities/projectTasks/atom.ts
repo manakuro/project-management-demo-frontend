@@ -1,13 +1,6 @@
-import {
-  atomFamily,
-  selectorFamily,
-  useRecoilCallback,
-  DefaultValue,
-  atom,
-  useRecoilValue,
-} from 'recoil'
+import { atomFamily, selectorFamily, DefaultValue, atom } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
-import { ProjectTask, ProjectTaskResponse } from './type'
+import { ProjectTask } from './type'
 
 const key = (str: string) => `src/store/entities/projectTasks/${str}`
 
@@ -95,53 +88,3 @@ export const projectTaskSelector = selectorFamily<ProjectTask, string>({
       set(projectTaskIdsState, (prev) => [...prev, newVal.id])
     },
 })
-
-export const useProjectTasks = () => {
-  const projectTasks = useRecoilValue(projectTasksState)
-
-  const setProjectTasks = useRecoilCallback(
-    ({ set }) =>
-      (data: ProjectTaskResponse[]) => {
-        data.forEach((p) => {
-          set(projectTaskSelector(p.id), p)
-        })
-      },
-    [],
-  )
-
-  return {
-    projectTasks,
-    setProjectTasks,
-  }
-}
-
-export const useProjectTask = (projectTaskId: string) => {
-  const projectTask = useRecoilValue(projectTaskSelector(projectTaskId))
-
-  const upsert = useRecoilCallback(
-    ({ set }) =>
-      (projectTask: ProjectTask) => {
-        set(projectTaskSelector(projectTask.id), projectTask)
-      },
-    [],
-  )
-
-  const setProjectTask = useRecoilCallback(
-    ({ snapshot }) =>
-      async (val: Partial<ProjectTask>) => {
-        const prev = await snapshot.getPromise(
-          projectTaskSelector(projectTask.id),
-        )
-        upsert({
-          ...prev,
-          ...val,
-        })
-      },
-    [projectTask.id, upsert],
-  )
-
-  return {
-    projectTask,
-    setProjectTask,
-  }
-}

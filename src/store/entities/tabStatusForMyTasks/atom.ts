@@ -1,5 +1,4 @@
-import { useCallback } from 'react'
-import { useRecoilCallback, atom, useRecoilValue, selectorFamily } from 'recoil'
+import { atom, selectorFamily } from 'recoil'
 import { TabStatusForMyTasks } from './type'
 import {
   TASK_TAB_STATUS_TYPE_BOARD,
@@ -29,65 +28,11 @@ export const isTabStatusForMyTasks = selectorFamily<boolean, TaskTabStatuses>({
     },
 })
 
-const tasksTabStatues = {
+export const tasksTabStatues = {
   list: TASK_TAB_STATUS_TYPE_LIST,
   board: TASK_TAB_STATUS_TYPE_BOARD,
   calendar: TASK_TAB_STATUS_TYPE_CALENDAR,
   files: TASK_TAB_STATUS_TYPE_FILES,
 } as const
+
 export type TaskTabStatuses = keyof typeof tasksTabStatues
-
-export const useTabStatusForMyTasksFromResponse = () => {
-  const { upsert } = useTabStatusForMyTasksCommands()
-
-  const setTabStatus = useCallback(
-    (val: TabStatusForMyTasks) => {
-      upsert(val)
-    },
-    [upsert],
-  )
-
-  return {
-    setTabStatus,
-  }
-}
-
-export const useTabStatusForMyTasksCommands = () => {
-  const upsert = useRecoilCallback(
-    ({ set }) =>
-      (val: Partial<TabStatusForMyTasks>) => {
-        set(tabStatusForMyTasks, (prev) => ({
-          ...prev,
-          ...val,
-        }))
-      },
-    [],
-  )
-
-  return {
-    upsert,
-  }
-}
-
-export const useTabStatusForMyTasks = () => {
-  const state = useRecoilValue(tabStatusForMyTasks)
-  const { upsert } = useTabStatusForMyTasksCommands()
-
-  const isTaskTabStatus = useCallback(
-    (status: TaskTabStatuses) => state.tabStatus === tasksTabStatues[status],
-    [state.tabStatus],
-  )
-
-  const setTabStatus = useCallback(
-    (status: TaskTabStatuses) => {
-      upsert({ tabStatus: tasksTabStatues[status] })
-    },
-    [upsert],
-  )
-
-  return {
-    ...state,
-    setTabStatus,
-    isTaskTabStatus,
-  }
-}

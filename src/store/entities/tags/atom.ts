@@ -30,6 +30,16 @@ const tagState = atomFamily<Tag, string>({
   default: defaultStateValue(),
 })
 
+export const tagIdsByTaskIdSelector = selectorFamily<string[], string>({
+  key: key('tagIdsByTaskIdSelector'),
+  get:
+    (taskId) =>
+    ({ get }) => {
+      const tags = get(tagsState)
+      return tags.filter((t) => t.taskId === taskId).map((p) => p.id)
+    },
+})
+
 export const tagSelector = selectorFamily<Tag, string>({
   key: key('tagSelector'),
   get:

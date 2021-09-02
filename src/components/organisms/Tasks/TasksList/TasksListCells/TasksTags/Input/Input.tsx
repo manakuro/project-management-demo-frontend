@@ -4,7 +4,7 @@ import { TagChip } from 'src/components/molecules'
 import { TagMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
-import { useTasksTagIds } from 'src/store/entities/tasks/tagIds'
+import { useTagIdsByTaskId } from 'src/store/entities/tags'
 
 type Props = {
   taskId: string
@@ -16,7 +16,7 @@ const HEIGHT = '37px'
 export const Input: React.VFC<Props> = memo((props) => {
   const { taskId, onClose } = props
   const popoverDisclosure = useDisclosure()
-  const { tagIds } = useTasksTagIds(taskId)
+  const { tagIds } = useTagIdsByTaskId(taskId)
   const { ref } = useClickOutside(onClose)
   const [value, setValue] = useState<string>('')
   const hasMultipleTags = useMemo<boolean>(

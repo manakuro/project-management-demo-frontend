@@ -1,7 +1,10 @@
 import { useCallback, useEffect } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { uuid } from 'src/shared/uuid'
-import { ProjectResponse, useProjects } from 'src/store/entities/projects'
+import {
+  ProjectResponse,
+  useProjectsResponse,
+} from 'src/store/entities/projects'
 import { teammates } from 'src/store/entities/teammates/data'
 
 type Props = {
@@ -17,7 +20,7 @@ const projectsQueryState = atom<{ loading: boolean }>({
 
 export const useProjectsQuery = (props?: Props) => {
   const [state, setState] = useRecoilState(projectsQueryState)
-  const { setProjects } = useProjects()
+  const { setProjects } = useProjectsResponse()
 
   useEffect(() => {
     ;(async () => {

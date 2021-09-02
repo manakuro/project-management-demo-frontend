@@ -4,7 +4,7 @@ import { isMyTaskSortStatus } from 'src/store/app/myTasks'
 import { useMe } from 'src/store/entities/me'
 import { isTabStatusForMyTasks } from 'src/store/entities/tabStatusForMyTasks'
 import { TaskSection, taskSectionsState } from 'src/store/entities/taskSections'
-import { taskSectionsTasksSelector } from 'src/store/entities/taskSections/tasks'
+import { tasksByTaskSectionIdSelector } from 'src/store/entities/tasks'
 
 const key = (str: string) => `src/store/app/myTasks/taskSections/${str}`
 
@@ -25,7 +25,9 @@ export const myTasksTaskSectionIdsSelector = selectorFamily<string[], string>({
               const hasTaskWithNoDueDate = !!taskSections
                 .filter(filter(teammateId))
                 .filter((taskSection) => {
-                  const tasks = get(taskSectionsTasksSelector(taskSection.id))
+                  const tasks = get(
+                    tasksByTaskSectionIdSelector(taskSection.id),
+                  )
                   return tasks.some((t) => !t.dueDate)
                 }).length
               if (!hasTaskWithNoDueDate) return []

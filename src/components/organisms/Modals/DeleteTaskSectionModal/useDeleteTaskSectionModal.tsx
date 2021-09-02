@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react'
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useTaskSection } from 'src/store/entities/taskSections'
-import { useTaskSectionTasks } from 'src/store/entities/taskSections/tasks'
+import { useTasksByTaskSectionId } from 'src/store/entities/tasks'
 
 const deleteTaskSectionModalOpenState = atom({
   key: 'deleteTaskSectionModalOpenState',
@@ -19,7 +19,7 @@ export const useDeleteTaskSectionModal = () => {
   const [state, setState] = useRecoilState(deleteTaskSectionModalState)
   const resetState = useResetRecoilState(deleteTaskSectionModalState)
   const { taskSection } = useTaskSection(state.taskSectionId)
-  const { tasks } = useTaskSectionTasks(state.taskSectionId)
+  const { tasks } = useTasksByTaskSectionId(state.taskSectionId)
 
   const inCompletedTaskSize = useMemo(
     () => tasks.filter((t) => !t.isDone).length,

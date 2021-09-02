@@ -3,7 +3,7 @@ import { useMe } from 'src/store/entities/me'
 import { taskColumnSelector } from 'src/store/entities/taskColumns'
 import {
   useTaskSection,
-  useTaskSections,
+  useTaskSectionsResponse,
   useTaskSectionsCommand,
 } from 'src/store/entities/taskSections'
 import { useTasksCommand } from 'src/store/entities/tasks'
@@ -29,7 +29,7 @@ export const useMyTaskCommands = () => {
 }
 
 export const useMyTasksResponse = () => {
-  const { setTaskSections } = useTaskSections()
+  const { setTaskSections } = useTaskSectionsResponse()
   const { setTaskColumns, setTaskStatus } = useSetters()
   const setMyTasks = useRecoilCallback(
     () => (data: MyTaskResponse) => {

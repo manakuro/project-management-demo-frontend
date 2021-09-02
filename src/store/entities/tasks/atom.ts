@@ -49,6 +49,19 @@ export const taskIdsByAssigneeIdSelector = selectorFamily<string[], string>({
     },
 })
 
+export const tasksByTaskSectionIdSelector = selectorFamily<Task[], string>({
+  key: key('tasksByTaskSectionIdSelector'),
+  get:
+    (taskSectionId) =>
+    ({ get }) => {
+      const tasks = get(tasksState)
+      const filterByTaskSectionId = (taskSectionId: string) => (t: Task) =>
+        !t.isDeleted && taskSectionId === t.taskSectionId && !t.taskParentId
+
+      return tasks.filter(filterByTaskSectionId(taskSectionId))
+    },
+})
+
 export const taskState = atomFamily<Task, string>({
   key: key('taskState'),
   default: defaultTaskState(),

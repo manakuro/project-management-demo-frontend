@@ -1,6 +1,11 @@
 import { selectorFamily } from 'recoil'
 import { isMyTaskSortStatus } from 'src/store/app/myTasks'
-import { filterTasks, sortTasks } from 'src/store/app/myTasks/filters'
+import {
+  filterByNoProject,
+  filterByProjectTasks,
+  filterTasks,
+  sortTasks,
+} from 'src/store/app/myTasks/filters'
 import { isTabStatusForMyTasks } from 'src/store/entities/tabStatusForMyTasks'
 import {
   tasksState,
@@ -73,6 +78,32 @@ export const taskIdsByDueDateSelector = selectorFamily<
 
       tasks = filterByTeammateId(teammateId)(tasks)
       tasks = filterByDueDate(dueDate)(tasks)
+
+      return tasks.map((t) => t.id)
+    },
+})
+
+export const taskIdsByProjectIdSelector = selectorFamily<string[], string>({
+  key: key('taskIdsByProjectIdSelector'),
+  get:
+    (projectId: string) =>
+    ({ get }) => {
+      let tasks = get(tasksState)
+      tasks = filterByProjectTasks({ get, projectId })(tasks)
+      tasks = filterTasks({ get })(tasks)
+
+      return tasks.map((t) => t.id)
+    },
+})
+
+export const taskIdsWithNoProjectSelector = selectorFamily<string[], string>({
+  key: key('taskIdsWithNoProjectSelector'),
+  get:
+    (teammateId: string) =>
+    ({ get }) => {
+      let tasks = get(tasksState)
+      tasks = filterByTeammateId(teammateId)(tasks)
+      tasks = filterByNoProject({ get })(tasks)
 
       return tasks.map((t) => t.id)
     },

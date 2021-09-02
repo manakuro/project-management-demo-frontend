@@ -4,10 +4,8 @@ import { TasksListSectionGroupByProject } from 'src/components/organisms/Tasks'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
 import { TasksListSectionProvider } from 'src/components/organisms/Tasks/TasksList/TasksListSection'
-import {
-  useMyTasksProjectIds,
-  useMyTasksTaskIdsWithNoProject,
-} from 'src/store/app/myTasks/projects'
+import { useMyTasksProjectIds } from 'src/store/app/myTasks/projects'
+import { useMyTasksTaskIdsWithNoProject } from 'src/store/app/myTasks/tasks'
 
 export const ListSortByProject: React.VFC = memo(() => {
   const { projectIds } = useMyTasksProjectIds()

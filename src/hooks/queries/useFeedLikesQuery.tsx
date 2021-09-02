@@ -1,12 +1,12 @@
 import { useCallback, useEffect } from 'react'
-import { useFeedLikes, FeedLike } from 'src/store/entities/feedLikes'
+import { useFeedLikesResponse, FeedLike } from 'src/store/entities/feedLikes'
 
 type Props = {
   lazy?: boolean
 }
 
 export const useFeedLikesQuery = (props?: Props) => {
-  const { setFeedLikes } = useFeedLikes()
+  const { setFeedLikes } = useFeedLikesResponse()
 
   useEffect(() => {
     ;(async () => {

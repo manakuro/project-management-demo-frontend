@@ -1,13 +1,6 @@
-import {
-  atomFamily,
-  selectorFamily,
-  useRecoilCallback,
-  DefaultValue,
-  atom,
-  useRecoilValue,
-} from 'recoil'
+import { atomFamily, selectorFamily, DefaultValue, atom } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
-import { TaskTeammate, TaskTeammateResponse } from './type'
+import { TaskTeammate } from './type'
 
 const key = (str: string) => `src/store/entities/taskTeammates/${str}`
 
@@ -67,53 +60,3 @@ export const taskTeammateSelector = selectorFamily<TaskTeammate, string>({
       set(taskTeammateIdsState, (prev) => [...prev, newVal.id])
     },
 })
-
-export const useTaskTeammates = () => {
-  const taskTeammates = useRecoilValue(taskTeammatesState)
-
-  const setTaskTeammates = useRecoilCallback(
-    ({ set }) =>
-      (data: TaskTeammateResponse[]) => {
-        data.forEach((p) => {
-          set(taskTeammateSelector(p.id), p)
-        })
-      },
-    [],
-  )
-
-  return {
-    taskTeammates,
-    setTaskTeammates,
-  }
-}
-
-export const useTaskTeammate = (taskTeammateId: string) => {
-  const taskTeammate = useRecoilValue(taskTeammateSelector(taskTeammateId))
-
-  const upsert = useRecoilCallback(
-    ({ set }) =>
-      (taskTeammate: TaskTeammate) => {
-        set(taskTeammateSelector(taskTeammate.id), taskTeammate)
-      },
-    [],
-  )
-
-  const setTaskTeammate = useRecoilCallback(
-    ({ snapshot }) =>
-      async (val: Partial<TaskTeammate>) => {
-        const prev = await snapshot.getPromise(
-          taskTeammateSelector(taskTeammate.id),
-        )
-        upsert({
-          ...prev,
-          ...val,
-        })
-      },
-    [taskTeammate.id, upsert],
-  )
-
-  return {
-    taskTeammate,
-    setTaskTeammate,
-  }
-}

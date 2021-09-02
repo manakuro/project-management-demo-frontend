@@ -1,4 +1,4 @@
-import { atom, useRecoilState } from 'recoil'
+import { atom } from 'recoil'
 import { Workspace } from './type'
 
 const key = (str: string) => `src/store/entities/workspace/${str}`
@@ -11,12 +11,3 @@ export const workspaceState = atom<Workspace>({
     description: '',
   },
 })
-
-export const useWorkspace = () => {
-  const [workspace, setWorkspace] = useRecoilState(workspaceState)
-
-  return {
-    workspace,
-    setWorkspace,
-  }
-}

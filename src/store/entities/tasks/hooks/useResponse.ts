@@ -6,7 +6,7 @@ import { feedSelector } from 'src/store/entities/feeds'
 import { projectTaskSelector } from 'src/store/entities/projectTasks'
 import { tagSelector } from 'src/store/entities/tags'
 import { taskTeammateSelector } from 'src/store/entities/taskTeammates'
-import { useTeammateCommand } from 'src/store/entities/teammates'
+import { useTeammatesResponse } from 'src/store/entities/teammates'
 import { taskSelector } from '../atom'
 import { TaskResponse } from '../type'
 
@@ -58,7 +58,7 @@ export const useTaskResponse = () => {
 }
 
 const useSetters = () => {
-  const { setTeammatesFromResponse } = useTeammateCommand()
+  const { setTeammates: setTeammatesFromResponse } = useTeammatesResponse()
 
   const setTaskValue = useRecoilCallback(
     ({ set }) =>

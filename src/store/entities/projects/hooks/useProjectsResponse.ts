@@ -1,12 +1,12 @@
 import { useRecoilCallback } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import { projectTeammateSelector } from 'src/store/entities/projectTeammates'
-import { useTeammateCommand } from 'src/store/entities/teammates'
+import { useTeammatesResponse } from 'src/store/entities/teammates'
 import { projectSelector } from '../atom'
 import { Project, ProjectResponse } from '../type'
 
 export const useProjectsResponse = () => {
-  const { setTeammatesFromResponse } = useTeammateCommand()
+  const { setTeammates: setTeammatesFromResponse } = useTeammatesResponse()
 
   const setTeammates = useRecoilCallback(
     ({ set }) =>

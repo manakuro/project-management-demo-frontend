@@ -1,12 +1,4 @@
-import { useCallback } from 'react'
-import {
-  atomFamily,
-  selectorFamily,
-  useRecoilCallback,
-  DefaultValue,
-  atom,
-  useRecoilValue,
-} from 'recoil'
+import { atomFamily, selectorFamily, DefaultValue, atom } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import { Teammate } from './type'
 
@@ -64,61 +56,3 @@ export const teammateSelector = selectorFamily<Teammate, string>({
       set(teammateIdsState, (prev) => [...prev, newVal.id])
     },
 })
-
-export const useTeammateCommand = () => {
-  const setTeammatesFromResponse = useRecoilCallback(
-    ({ set }) =>
-      (teammates: (Teammate & { teammateId: string })[]) => {
-        teammates
-          .map<Teammate>((t) => ({
-            id: t.teammateId,
-            name: t.name,
-            email: t.email,
-            image: t.image,
-          }))
-          .forEach((p) => {
-            set(teammateSelector(p.id), p)
-          })
-      },
-    [],
-  )
-
-  return {
-    setTeammatesFromResponse,
-  }
-}
-
-export const useTeammates = () => {
-  const teammateIds = useRecoilValue(teammateIdsState)
-  const teammates = useRecoilValue(teammatesState)
-
-  const getTeammatesById = useCallback(
-    (teammateIds: string[]) => {
-      return teammates.filter((t) => teammateIds.includes(t.id))
-    },
-    [teammates],
-  )
-
-  return {
-    teammateIds,
-    teammates,
-    getTeammatesById,
-  }
-}
-
-export const useTeammate = (teammateId?: string) => {
-  const teammate = useRecoilValue(teammateSelector(teammateId || ''))
-
-  const upsertTeammate = useRecoilCallback(
-    ({ set }) =>
-      (teammate: Teammate) => {
-        set(teammateSelector(teammate.id), teammate)
-      },
-    [],
-  )
-
-  return {
-    teammate,
-    upsertTeammate,
-  }
-}

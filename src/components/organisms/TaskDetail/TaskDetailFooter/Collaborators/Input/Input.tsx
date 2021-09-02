@@ -5,7 +5,7 @@ import { AssigneeMenu } from 'src/components/organisms/Menus'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { useClickOutside } from 'src/hooks'
 import { ChakraProps, useStyleConfig } from 'src/shared/chakra'
-import { useTasksTeammateIds } from 'src/store/entities/tasks/teammateIds'
+import { useTeammateIdsByTaskId } from 'src/store/entities/teammates'
 import { useCollaboratorsContext } from '../Provider'
 
 export const Input: React.VFC = () => {
@@ -23,7 +23,7 @@ type InputStyle = {
 
 const Component: React.VFC = memo(() => {
   const { taskId } = useTaskDetail()
-  const { teammateIds } = useTasksTeammateIds(taskId)
+  const { teammateIds } = useTeammateIdsByTaskId(taskId)
   const { onInputUnfocus, isInputFocused } = useCollaboratorsContext()
   const { ref } = useClickOutside(onInputUnfocus)
   const style = useStyleConfig('Input') as InputStyle

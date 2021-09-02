@@ -24,6 +24,18 @@ const projectTeammateState = atomFamily<ProjectTeammate, string>({
   },
 })
 
+export const teammateIdsByProjectIdSelector = selectorFamily<string[], string>({
+  key: 'projectsTeammateIdsSelector',
+  get:
+    (projectId) =>
+    ({ get }) => {
+      const projects = get(projectTeammatesState)
+      return projects
+        .filter((t) => t.projectId === projectId)
+        .map((p) => p.teammateId)
+    },
+})
+
 export const projectTeammateSelector = selectorFamily<ProjectTeammate, string>({
   key: key('projectTeammateSelector'),
   get:

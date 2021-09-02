@@ -7,9 +7,9 @@ import {
   FavoriteButton,
 } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammates'
 import { useProject } from 'src/store/entities/projects'
 import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
-import { useProjectsTeammateIds } from 'src/store/entities/projects/teammateIds'
 import { transitions } from 'src/styles'
 import { MenuButton } from '../MenuButton'
 import { Container } from './Container'
@@ -20,7 +20,7 @@ type Props = {
 
 export const ListItemTile: React.VFC<Props> = (props) => {
   const { project } = useProject(props.projectId)
-  const { teammateIds } = useProjectsTeammateIds(props.projectId)
+  const { teammateIds } = useTeammateIdsByProjectId(props.projectId)
 
   return (
     <Container name={project.name}>

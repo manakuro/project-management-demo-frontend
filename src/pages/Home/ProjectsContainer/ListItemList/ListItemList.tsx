@@ -2,9 +2,9 @@ import React from 'react'
 import { Flex, IconButton, Text, Icon, AvatarGroup } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useClickableHoverStyle } from 'src/hooks'
+import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammates'
 import { useProject } from 'src/store/entities/projects'
 import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
-import { useProjectsTeammateIds } from 'src/store/entities/projects/teammateIds'
 import { MenuButton } from '../MenuButton/MenuButton'
 import { Container } from './Container'
 
@@ -14,7 +14,7 @@ type Props = {
 
 export const ListItemList: React.VFC<Props> = (props) => {
   const { project } = useProject(props.projectId)
-  const { teammateIds } = useProjectsTeammateIds(props.projectId)
+  const { teammateIds } = useTeammateIdsByProjectId(props.projectId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   return (

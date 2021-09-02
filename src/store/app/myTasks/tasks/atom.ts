@@ -1,8 +1,6 @@
-import { useMemo } from 'react'
-import { selectorFamily, useRecoilValue } from 'recoil'
+import { selectorFamily } from 'recoil'
 import { isMyTaskSortStatus } from 'src/store/app/myTasks'
 import { filterTasks, sortTasks } from 'src/store/app/myTasks/filters'
-import { useMe } from 'src/store/entities/me'
 import { isTabStatusForMyTasks } from 'src/store/entities/tabStatusForMyTasks'
 import {
   tasksState,
@@ -13,7 +11,7 @@ import {
 
 const key = (str: string) => `src/store/app/myTasks/tasks/${str}`
 
-const taskIdsSelector = selectorFamily<string[], string>({
+export const taskIdsSelector = selectorFamily<string[], string>({
   key: key('taskIdsSelector'),
   get:
     (teammateId) =>
@@ -35,7 +33,7 @@ const taskIdsSelector = selectorFamily<string[], string>({
     },
 })
 
-const taskIdsByTaskSectionIdSelector = selectorFamily<
+export const taskIdsByTaskSectionIdSelector = selectorFamily<
   string[],
   { taskSectionId: string; teammateId: string }
 >({
@@ -63,7 +61,7 @@ const taskIdsByTaskSectionIdSelector = selectorFamily<
     },
 })
 
-const taskIdsByDueDateSelector = selectorFamily<
+export const taskIdsByDueDateSelector = selectorFamily<
   string[],
   { dueDate: string; teammateId: string }
 >({
@@ -79,37 +77,3 @@ const taskIdsByDueDateSelector = selectorFamily<
       return tasks.map((t) => t.id)
     },
 })
-
-export const useMyTasksTaskIds = () => {
-  const { me } = useMe()
-  const ids = useRecoilValue(taskIdsSelector(me.id))
-  const taskIds = useMemo(() => ids, [ids])
-
-  return {
-    taskIds,
-  }
-}
-
-export const useMyTasksTaskIdsByTaskSection = (taskSectionId: string) => {
-  const { me } = useMe()
-  const ids = useRecoilValue(
-    taskIdsByTaskSectionIdSelector({ taskSectionId, teammateId: me.id }),
-  )
-  const taskIds = useMemo(() => ids, [ids])
-
-  return {
-    taskIds,
-  }
-}
-
-export const useMyTasksTaskIdsByDueDate = (dueDate: string) => {
-  const { me } = useMe()
-  const ids = useRecoilValue(
-    taskIdsByDueDateSelector({ dueDate, teammateId: me.id }),
-  )
-  const taskIds = useMemo(() => ids, [ids])
-
-  return {
-    taskIds,
-  }
-}

@@ -1,10 +1,11 @@
 import { NextRouter } from 'next/router'
 import {
   ROUTE_HOME,
-  ROUTE_MY_TASKS,
+  ROUTE_MY_TASKS_LIST,
   ROUTE_MY_TASKS_BOARD,
   ROUTE_MY_TASKS_CALENDAR,
   ROUTE_MY_TASKS_FILES,
+  ROUTE_MY_TASKS,
 } from 'src/router/routes'
 
 export const isHomeDetailURL = (router: NextRouter): boolean => {
@@ -25,6 +26,7 @@ export const isMyTasksDetailURL = (router: NextRouter): boolean => {
     !!router.query &&
     !!router.query[ROUTE_MY_TASKS.name]?.length &&
     !!router.query[ROUTE_MY_TASKS.name]?.[0] &&
+    !isMyTasksListURL(router) &&
     !isMyTasksBoardURL(router) &&
     !isMyTasksCalendarURL(router) &&
     !isMyTasksFilesURL(router)
@@ -45,8 +47,8 @@ export const isTaskDetailURLById = (
   )
 }
 
-export const isMyTasksURL = (router: NextRouter): boolean => {
-  return router.asPath === ROUTE_MY_TASKS.href.pathname
+export const isMyTasksListURL = (router: NextRouter): boolean => {
+  return router.asPath === ROUTE_MY_TASKS_LIST.href.pathname
 }
 
 export const isMyTasksBoardURL = (router: NextRouter): boolean => {
@@ -63,12 +65,12 @@ export const isMyTasksFilesURL = (router: NextRouter): boolean => {
 
 export const getMyTasksDetailId = (router: NextRouter): string =>
   (isMyTasksDetailURL(router) &&
-    (router.query?.[ROUTE_MY_TASKS['name']]?.[0] as string)) ||
+    (router.query?.[ROUTE_MY_TASKS.name]?.[0] as string)) ||
   ''
 
 export const getTaskDetailFeedId = (router: NextRouter): string =>
   (isMyTasksDetailURL(router) &&
-    (router.query?.[ROUTE_MY_TASKS['name']]?.[1] as string)) ||
+    (router.query?.[ROUTE_MY_TASKS.name]?.[1] as string)) ||
   ''
 
 export const taskDetailFeedURL = (taskId: string, feedId: string): string => {

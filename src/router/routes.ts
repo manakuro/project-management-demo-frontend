@@ -11,6 +11,12 @@ export const ROUTE_MY_TASKS = {
     pathname: '/my_tasks',
   },
 } as const
+export const ROUTE_MY_TASKS_LIST = {
+  name: 'my_tasks/list',
+  href: {
+    pathname: '/my_tasks/list',
+  },
+} as const
 export const ROUTE_MY_TASKS_BOARD = {
   name: 'my_tasks/board',
   href: {
@@ -71,7 +77,7 @@ export const ROUTE_TASKS_IVE_CHANGED = {
 
 export const routes = [
   ROUTE_HOME,
-  ROUTE_MY_TASKS,
+  ROUTE_MY_TASKS_LIST,
   ROUTE_MY_TASKS_BOARD,
   ROUTE_MY_TASKS_CALENDAR,
   ROUTE_MY_TASKS_FILES,

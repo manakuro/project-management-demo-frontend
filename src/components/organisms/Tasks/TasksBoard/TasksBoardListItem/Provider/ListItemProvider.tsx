@@ -36,7 +36,7 @@ const useValue = (props: Props): ContextProps => {
   }, [])
 
   useEffect(() => {
-    if (router.query[ROUTE_MY_TASKS['name']]?.[0] === props.taskId) {
+    if (router.query[ROUTE_MY_TASKS.name]?.[0] === props.taskId) {
       setSelected(true)
       return
     }

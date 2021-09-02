@@ -51,7 +51,7 @@ const fetch = async (): Promise<TabStatusForMyTasks> => {
       resolve({
         id: '1',
         teammateId: '1',
-        tabStatus: 4,
+        tabStatus: 1,
       })
     }, 500)
   })

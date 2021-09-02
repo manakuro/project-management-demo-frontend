@@ -8,7 +8,7 @@ import {
   isMyTasksBoardURL,
   isMyTasksCalendarURL,
   isMyTasksFilesURL,
-  isMyTasksURL,
+  isMyTasksListURL,
   isMyTasksDetailURL,
   useRouter,
 } from 'src/router'
@@ -53,6 +53,7 @@ const mapURLtoTabStatus = ({
   router: NextRouter
   tabStatus: TabStatusForMyTasks['tabStatus']
 }): Index => {
+  if (isMyTasksListURL(router)) return TASKS_INDEX
   if (isMyTasksBoardURL(router)) return BOARD_INDEX
   if (isMyTasksCalendarURL(router)) return CALENDAR_INDEX
   if (isMyTasksFilesURL(router)) return FILES_INDEX
@@ -73,7 +74,7 @@ const mapURLtoTabStatus = ({
 
 const WrappedComponent: React.VFC = memo(() => {
   const {
-    navigateToMyTasks,
+    navigateToMyTasksList,
     navigateToMyTasksBoard,
     navigateToMyTasksCalendar,
     navigateToMyTasksFiles,
@@ -100,7 +101,7 @@ const WrappedComponent: React.VFC = memo(() => {
           setLoading()
           setTabIndex(TASKS_INDEX)
           setTabStatus('list')
-          await navigateToMyTasks()
+          await navigateToMyTasksList()
           break
         }
         case BOARD_INDEX: {
@@ -129,7 +130,7 @@ const WrappedComponent: React.VFC = memo(() => {
     },
     [
       isSorted,
-      navigateToMyTasks,
+      navigateToMyTasksList,
       navigateToMyTasksBoard,
       navigateToMyTasksCalendar,
       navigateToMyTasksFiles,
@@ -163,7 +164,7 @@ const WrappedComponent: React.VFC = memo(() => {
       return
     }
 
-    if (isMyTasksURL(router)) {
+    if (isMyTasksListURL(router)) {
       setTabStatus('list')
       return
     }

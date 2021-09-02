@@ -2,10 +2,11 @@ import { useRouter as useRouterNext, NextRouter } from 'next/router'
 import { useCallback } from 'react'
 import {
   ROUTE_HOME,
-  ROUTE_MY_TASKS,
+  ROUTE_MY_TASKS_LIST,
   ROUTE_MY_TASKS_BOARD,
   ROUTE_MY_TASKS_CALENDAR,
   ROUTE_MY_TASKS_FILES,
+  ROUTE_MY_TASKS,
 } from 'src/router/routes'
 
 type Options = Parameters<NextRouter['push']>[2]
@@ -34,9 +35,9 @@ export const useRouter = () => {
     [push],
   )
 
-  const navigateToMyTasks = useCallback(
+  const navigateToMyTasksList = useCallback(
     async (options?: Options) => {
-      await push(ROUTE_MY_TASKS.href.pathname, undefined, {
+      await push(ROUTE_MY_TASKS_LIST.href.pathname, undefined, {
         shallow: true,
         ...options,
       })
@@ -99,7 +100,7 @@ export const useRouter = () => {
   return {
     navigateToHome,
     navigateToHomeDetail,
-    navigateToMyTasks,
+    navigateToMyTasksList,
     navigateToMyTasksBoard,
     navigateToMyTasksCalendar,
     navigateToMyTasksFiles,

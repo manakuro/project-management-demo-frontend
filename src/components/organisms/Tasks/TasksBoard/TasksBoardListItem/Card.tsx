@@ -25,14 +25,15 @@ export const Card: React.FC<Props> = memo<Props>((props) => {
 
 const Component: React.FC<Props> = memo<Props>((props) => {
   const { taskId, ...rest } = props
-  const { ref } = useTasksBoardListItemContext()
+  const { ref, selected } = useTasksBoardListItemContext()
   const { navigateToTaskDetail } = useRouter()
   const { task } = useTask(taskId)
   const style = useMemo(
-    () => ({
+    (): FlexProps => ({
       ...(task.isDone ? { opacity: 0.6 } : {}),
+      ...(selected ? { bg: 'teal.100', borderColor: 'teal.400' } : {}),
     }),
-    [task.isDone],
+    [selected, task.isDone],
   )
   const handleClick = useCallback(
     async (e: React.MouseEvent<HTMLDivElement>) => {

@@ -3,9 +3,9 @@ import { Flex, FlexProps } from 'src/components/atoms'
 import { useColorPicker } from 'src/hooks'
 import { useRouter } from 'src/router'
 import { forwardRef } from 'src/shared/chakra'
+import { useProjectIdsByTaskId } from 'src/store/entities/projectTasks'
 import { useProject } from 'src/store/entities/projects'
 import { useTask } from 'src/store/entities/tasks'
-import { useTasksProjectTaskIds } from 'src/store/entities/tasks/projectIds'
 import { transitions } from 'src/styles'
 
 type Props = {
@@ -16,7 +16,7 @@ export const Container: React.FC<Props> = memo<Props>(
   forwardRef((props, ref) => {
     const { taskId, ...rest } = props
     const { task } = useTask(taskId)
-    const { projectIds } = useTasksProjectTaskIds(props.taskId)
+    const { projectIds } = useProjectIdsByTaskId(props.taskId)
     const { project } = useProject(projectIds[0])
     const { findColor } = useColorPicker()
     const { navigateToTaskDetail } = useRouter()

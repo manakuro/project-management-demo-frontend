@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { CheckIcon as AtomsCheckIcon, IconProps } from 'src/components/atoms'
 import { ChakraProps } from 'src/shared/chakra'
+import { useProjectIdsByTaskId } from 'src/store/entities/projectTasks'
 import { useProject } from 'src/store/entities/projects'
 import { useTask } from 'src/store/entities/tasks'
-import { useTasksProjectTaskIds } from 'src/store/entities/tasks/projectIds'
 
 type Props = {
   taskId: string
@@ -13,7 +13,7 @@ type Props = {
 export const CheckIcon: React.FC<Props> = memo<Props>((props) => {
   const { taskId, isHovering } = props
   const { task, setTask } = useTask(taskId)
-  const { projectIds } = useTasksProjectTaskIds(props.taskId)
+  const { projectIds } = useProjectIdsByTaskId(props.taskId)
   const { project } = useProject(projectIds[0])
 
   const handleToggleDone = useCallback(

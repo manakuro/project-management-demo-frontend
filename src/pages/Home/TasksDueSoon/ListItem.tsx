@@ -5,8 +5,8 @@ import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useRouter } from 'src/router'
 import { formatDueTime } from 'src/shared/date'
+import { useProjectIdsByTaskId } from 'src/store/entities/projectTasks'
 import { useTask } from 'src/store/entities/tasks'
-import { useTasksProjectTaskIds } from 'src/store/entities/tasks/projectIds'
 
 type Props = {
   taskId: string
@@ -16,7 +16,7 @@ export const ListItem: React.VFC<Props> = memo((props) => {
   const { taskId } = props
   const { task, setTask } = useTask(taskId)
   const { clickableHoverStyle } = useClickableHoverStyle()
-  const { projectIds } = useTasksProjectTaskIds(taskId)
+  const { projectIds } = useProjectIdsByTaskId(taskId)
   const { navigateToHomeDetail } = useRouter()
 
   const handleChange = useCallback(

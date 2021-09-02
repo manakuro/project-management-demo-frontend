@@ -4,7 +4,7 @@ import { ProjectChip } from 'src/components/molecules'
 import { ProjectMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
-import { useTasksProjectTaskIds } from 'src/store/entities/tasks/projectIds'
+import { useProjectIdsByTaskId } from 'src/store/entities/projectTasks'
 
 type Props = {
   taskId: string
@@ -16,7 +16,7 @@ const HEIGHT = '37px'
 export const Input: React.VFC<Props> = memo((props) => {
   const { taskId, onClose } = props
   const popoverDisclosure = useDisclosure()
-  const { projectIds } = useTasksProjectTaskIds(taskId)
+  const { projectIds } = useProjectIdsByTaskId(taskId)
   const { ref } = useClickOutside(onClose)
   const [value, setValue] = useState<string>('')
   const hasMultipleProjects = useMemo<boolean>(

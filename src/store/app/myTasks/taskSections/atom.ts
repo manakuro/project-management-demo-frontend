@@ -12,7 +12,7 @@ const filter = (teammateId: string) => (t: TaskSection) =>
   !t.isDeleted && t.teammateId === teammateId
 
 export const myTasksTaskSectionIdsSelector = selectorFamily<string[], string>({
-  key: key('tasksAttachmentIdsSelector'),
+  key: key('myTasksTaskSectionIdsSelector'),
   get:
     (teammateId) =>
     ({ get }) => {

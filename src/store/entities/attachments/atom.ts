@@ -5,6 +5,16 @@ import { Attachment } from './type'
 
 const key = (str: string) => `src/store/entities/attachments/${str}`
 
+export const attachmentIdsByTaskIdSelector = selectorFamily<string[], string>({
+  key: key('attachmentIdsByTaskIdSelector'),
+  get:
+    (taskId) =>
+    ({ get }) => {
+      const attachments = get(attachmentsState)
+      return attachments.filter((p) => p.taskId === taskId).map((p) => p.id)
+    },
+})
+
 export const attachmentIdsState = atom<string[]>({
   key: key('attachmentIdsState'),
   default: [],

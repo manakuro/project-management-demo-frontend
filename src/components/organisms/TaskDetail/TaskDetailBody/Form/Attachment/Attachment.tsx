@@ -3,8 +3,10 @@ import { Wrap, WrapItem } from 'src/components/atoms'
 import { ThumbnailAttachment } from 'src/components/molecules'
 import { useFileViewerModal } from 'src/components/organisms/Modals'
 import { useToast } from 'src/hooks'
-import { Attachment as TAttachment } from 'src/store/entities/attachments'
-import { useTasksAttachmentIds } from 'src/store/entities/tasks/attachmentIds'
+import {
+  Attachment as TAttachment,
+  useAttachmentIdsByTaskId,
+} from 'src/store/entities/attachments'
 import { NewButton } from './NewButton'
 
 type Props = {
@@ -12,7 +14,7 @@ type Props = {
 }
 
 export const Attachment: React.VFC<Props> = memo<Props>((props) => {
-  const { attachmentIds } = useTasksAttachmentIds(props.taskId)
+  const { attachmentIds } = useAttachmentIdsByTaskId(props.taskId)
   const { onOpen, setState } = useFileViewerModal()
   const { toast } = useToast()
 

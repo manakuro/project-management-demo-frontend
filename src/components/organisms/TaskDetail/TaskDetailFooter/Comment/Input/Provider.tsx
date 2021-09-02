@@ -8,11 +8,13 @@ import { useClickOutside, useToast } from 'src/hooks'
 import { getAttachmentTypeFromFile } from 'src/shared/getAttachmentTypeFromFile'
 import { getScrollBottom } from 'src/shared/getScrollBottom'
 import { createProvider } from 'src/shared/react/createProvider'
-import { Attachment } from 'src/store/entities/attachments'
+import {
+  Attachment,
+  useAttachmentCommand,
+} from 'src/store/entities/attachments'
 import { ATTACHMENT_STATUS_UNATTACHED } from 'src/store/entities/attachments/types'
 import { Feed, useFeed, useFeedsByTask } from 'src/store/entities/feeds'
 import { useMe } from 'src/store/entities/me'
-import { useTasksAttachments } from 'src/store/entities/tasks/attachmentIds'
 
 type ContextProps = {
   feed: Feed
@@ -93,7 +95,7 @@ function useUploadingFile(props: {
   setAttachmentIds: React.Dispatch<React.SetStateAction<string[]>>
 }) {
   const { taskId } = useTaskDetail()
-  const { addAttachment } = useTasksAttachments(taskId)
+  const { addAttachment } = useAttachmentCommand()
   const [uploadingFiles, setUploadingFiles] = useState<
     ContextProps['uploadingFiles']
   >([])
@@ -143,6 +145,7 @@ function useUploadingFile(props: {
 
           setTimeout(() => {
             const createdAttachmentId = addAttachment({
+              taskId,
               src: file.data,
               name: file.name,
               type: getAttachmentTypeFromFile(file.type),
@@ -170,7 +173,7 @@ function useUploadingFile(props: {
       ])
       setUploadingFiles([])
     },
-    [addAttachment, props, removeUploadingFile, upsertUploadingFile],
+    [addAttachment, props, removeUploadingFile, taskId, upsertUploadingFile],
   )
 
   return {

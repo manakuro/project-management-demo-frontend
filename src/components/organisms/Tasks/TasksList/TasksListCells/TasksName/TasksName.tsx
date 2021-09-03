@@ -100,6 +100,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
         <TasksNameField
           value={task.name}
           isNew={task.isNew}
+          isDone={task.isDone}
           onChange={handleChangeName}
           deleteTask={deleteTask}
           focusedBorder

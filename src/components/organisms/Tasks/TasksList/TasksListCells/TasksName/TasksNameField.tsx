@@ -8,6 +8,7 @@ type Props = {
   value: string
   onChange: (val: string) => void
   isNew?: boolean
+  isDone?: boolean
   deleteTask?: () => Promise<void>
   focusedBorder?: boolean
 } & Omit<InputProps, 'onChange'>
@@ -90,8 +91,15 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
           borderColor: 'gray.400',
         },
       }
+
+    if (props.isDone)
+      val = {
+        ...val,
+        opacity: 0.4,
+      }
+
     return val
-  }, [isTransitioning, props.focusedBorder])
+  }, [isTransitioning, props.focusedBorder, props.isDone])
 
   return (
     <Flex

@@ -17,7 +17,8 @@ export const CheckIcon: React.FC<Props> = (props) => {
         color: 'teal.100',
         _hover: { color: 'teal.100' },
       }
-    if (isDone) return { icon: 'checkCircleFilled', color: 'teal.400' }
+    if (isDone)
+      return { icon: 'checkCircleFilled', color: 'teal.400', opacity: 0.6 }
     return { icon: 'checkCircle', color: color ?? 'gray.500' }
   }, [isDone, isTransitioning, color])
 

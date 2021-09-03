@@ -6,6 +6,7 @@ import {
   ROUTE_MY_TASKS_CALENDAR,
   ROUTE_MY_TASKS_FILES,
   ROUTE_MY_TASKS,
+  ROUTE_INBOX,
 } from 'src/router/routes'
 
 export const isHomeDetailURL = (router: NextRouter): boolean => {
@@ -83,3 +84,15 @@ export const getMyTasksDetailFeedURL = (
 export const taskDetailURL = (taskId: string): string => {
   return `${window.location.origin}/${taskId}/f`
 }
+
+export const isInboxDetailURL = (router: NextRouter): boolean => {
+  return (
+    !!router.query &&
+    !!router.query[ROUTE_INBOX.name]?.length &&
+    !!router.query[ROUTE_INBOX.name]?.[0]
+  )
+}
+export const getInboxDetailId = (router: NextRouter): string =>
+  (isHomeDetailURL(router) &&
+    (router.query?.[ROUTE_INBOX.name]?.[0] as string)) ||
+  ''

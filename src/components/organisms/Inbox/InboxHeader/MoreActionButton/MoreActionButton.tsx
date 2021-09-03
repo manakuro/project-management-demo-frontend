@@ -15,6 +15,7 @@ export const MoreActionButton: React.FC<Props> = memo<Props>(() => {
           icon={<Icon icon="dotsHorizontalRounded" color="text.muted" />}
           variant="ghost"
           size="sm"
+          h="28px"
         />
         <MenuList />
       </Menu>

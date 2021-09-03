@@ -7,6 +7,7 @@ import {
   IconButton,
   Stack,
   Skeleton,
+  FlexProps,
 } from 'src/components/atoms'
 import { IconType } from 'src/shared/icons'
 import { Attachment } from './Attachment'
@@ -16,10 +17,10 @@ import { MoreAction } from './MoreAction'
 import { SubTasks } from './Subtasks'
 
 type Props = {
-  onClose: () => void
+  mode?: Mode
+  onClose?: () => void
   loading?: boolean
-  mode: Mode
-}
+} & FlexProps
 
 const closeIcons = {
   modal: 'x',
@@ -28,12 +29,11 @@ const closeIcons = {
 type Mode = keyof typeof closeIcons
 
 export const TaskDetailHeader: React.FC<Props> = memo<Props>((props) => {
-  const closeIcon = useMemo<IconType>(
-    () => closeIcons[props.mode],
-    [props.mode],
-  )
+  const { mode, onClose, loading, ...rest } = props
 
-  if (props.loading)
+  const closeIcon = useMemo<IconType>(() => closeIcons[mode ?? 'modal'], [mode])
+
+  if (loading)
     return (
       <Flex px={6} h="57px" alignItems="center" flex={1}>
         <Skeleton h="28px" w="117px" />
@@ -42,7 +42,7 @@ export const TaskDetailHeader: React.FC<Props> = memo<Props>((props) => {
     )
 
   return (
-    <Flex px={6} h="57px" alignItems="center" flex={1}>
+    <Flex px={6} h="57px" alignItems="center" flex={1} {...rest}>
       <Flex flex={1}>
         <Button
           leftIcon={<CheckIcon isDone mt="0.75px" />}
@@ -60,13 +60,15 @@ export const TaskDetailHeader: React.FC<Props> = memo<Props>((props) => {
           <SubTasks />
           <Copy />
           <MoreAction />
-          <IconButton
-            aria-label="Close button"
-            icon={<Icon icon={closeIcon} color="text.muted" />}
-            variant="ghost"
-            onClick={props.onClose}
-            size="sm"
-          />
+          {onClose && (
+            <IconButton
+              aria-label="Close button"
+              icon={<Icon icon={closeIcon} color="text.muted" />}
+              variant="ghost"
+              onClick={onClose}
+              size="sm"
+            />
+          )}
         </Stack>
       </Flex>
     </Flex>

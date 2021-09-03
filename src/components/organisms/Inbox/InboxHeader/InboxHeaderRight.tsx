@@ -10,7 +10,7 @@ export const InboxHeaderRight: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <Flex {...rest}>
-      <Stack spacing={props.spacing ?? 2} direction="row">
+      <Stack spacing={props.spacing ?? 4} direction="row">
         {children}
       </Stack>
     </Flex>

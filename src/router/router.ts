@@ -7,6 +7,7 @@ import {
   ROUTE_MY_TASKS_CALENDAR,
   ROUTE_MY_TASKS_FILES,
   ROUTE_MY_TASKS,
+  ROUTE_INBOX,
 } from 'src/router/routes'
 
 type Options = Parameters<NextRouter['push']>[2]
@@ -97,6 +98,26 @@ export const useRouter = () => {
     [push],
   )
 
+  const navigateToInbox = useCallback(
+    async (options?: Options) => {
+      await push(ROUTE_INBOX.href.pathname, undefined, {
+        shallow: true,
+        ...options,
+      })
+    },
+    [push],
+  )
+
+  const navigateToInboxDetail = useCallback(
+    async (id: string, options?: Options) => {
+      await push(`${ROUTE_INBOX.href.pathname}${id}`, undefined, {
+        shallow: true,
+        ...options,
+      })
+    },
+    [push],
+  )
+
   return {
     navigateToHome,
     navigateToHomeDetail,
@@ -106,6 +127,8 @@ export const useRouter = () => {
     navigateToMyTasksFiles,
     navigateToTaskDetail,
     navigateToTaskDetailFeed,
+    navigateToInbox,
+    navigateToInboxDetail,
     router,
   }
 }

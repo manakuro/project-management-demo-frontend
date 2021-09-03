@@ -8,6 +8,9 @@ import {
   MoreActionButton,
   FilterButton,
 } from 'src/components/organisms/Inbox'
+import { useInboxDetail } from 'src/components/organisms/Inbox'
+import { TaskDetailSide } from 'src/components/organisms/TaskDetails'
+import { getInboxDetailId, isInboxDetailURL } from 'src/router'
 import { useInboxPageContext } from '../Provider'
 import { SkeletonActivity } from './SkeletonActivity'
 
@@ -17,6 +20,11 @@ export const Activity: React.VFC = memo(() => {
 
 const Component: React.VFC = memo(() => {
   const { loadingTabContent } = useInboxPageContext()
+
+  useInboxDetail({
+    isTaskDetailURL: isInboxDetailURL,
+    getTaskDetailId: getInboxDetailId,
+  })
 
   if (loadingTabContent) return <SkeletonActivity />
 
@@ -31,7 +39,9 @@ const Component: React.VFC = memo(() => {
             </InboxHeaderRight>
           </InboxHeader>
         </InboxLeft>
-        <InboxRight>hey</InboxRight>
+        <InboxRight>
+          <TaskDetailSide />
+        </InboxRight>
       </Inbox>
     </>
   )

@@ -22,9 +22,8 @@ class MyDocument extends Document {
           />
           <link rel="manifest" href="/icon/manifest.json" />
           <link
-            rel="preload stylesheet"
+            rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:400,500,600,700|Poppins:300,400,600,700&display=swap"
-            as="style"
           />
         </Head>
         <body>

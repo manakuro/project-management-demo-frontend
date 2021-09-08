@@ -1,10 +1,12 @@
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { uuid } from 'src/shared/uuid'
+import { useMe } from 'src/store/entities/me'
 import { Task } from 'src/store/entities/tasks'
 import { taskSelector, defaultTaskState } from '../atom'
 
 export const useTasksCommand = () => {
+  const { me } = useMe()
   const upsert = useRecoilCallback(
     ({ set }) =>
       (task: Task) => {
@@ -33,11 +35,12 @@ export const useTasksCommand = () => {
         ...val,
         isNew: true,
         id,
+        createdBy: me.id,
       })
 
       return id
     },
-    [upsert],
+    [me.id, upsert],
   )
 
   return {

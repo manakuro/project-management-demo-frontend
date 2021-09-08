@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo, useEffect, useMemo } from 'react'
 import {
   Inbox,
   InboxLeft,
@@ -11,6 +11,7 @@ import {
 import { useInboxDetail } from 'src/components/organisms/Inbox'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { TaskDetailSide } from 'src/components/organisms/TaskDetails'
+import { useInboxActivityQuery } from 'src/hooks/queries/useInboxActivityQuery'
 import { getInboxDetailId, isInboxDetailURL } from 'src/router'
 import { useInboxPageContext } from '../Provider'
 import { SkeletonActivity } from './SkeletonActivity'
@@ -21,6 +22,11 @@ export const Activity: React.VFC = memo(() => {
 
 const Component: React.VFC = memo(() => {
   const { loadingTabContent } = useInboxPageContext()
+  const { loading: loadingQuery } = useInboxActivityQuery()
+  const loading = useMemo(
+    () => loadingTabContent || loadingQuery,
+    [loadingTabContent, loadingQuery],
+  )
   const { setId } = useTaskDetail()
 
   useEffect(() => {
@@ -32,7 +38,7 @@ const Component: React.VFC = memo(() => {
     getTaskDetailId: getInboxDetailId,
   })
 
-  if (loadingTabContent) return <SkeletonActivity />
+  if (loading) return <SkeletonActivity />
 
   return (
     <>

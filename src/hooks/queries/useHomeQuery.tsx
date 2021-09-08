@@ -74,6 +74,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             isDeleted: false,
             taskParentId: '',
             doneAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
+            createdBy: '1',
           },
           {
             id: '2',
@@ -101,6 +102,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             isDeleted: false,
             taskParentId: '',
             doneAt: new Date(dateFns.subDays(new Date(), 3)).toISOString(),
+            createdBy: '1',
           },
           {
             id: '3',
@@ -127,6 +129,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             isDeleted: false,
             taskParentId: '',
             doneAt: '',
+            createdBy: '1',
           },
           {
             id: '4',
@@ -153,6 +156,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             isDeleted: false,
             taskParentId: '',
             doneAt: '',
+            createdBy: '1',
           },
           {
             id: '5',
@@ -179,6 +183,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             isDeleted: false,
             taskParentId: '',
             doneAt: '',
+            createdBy: '1',
           },
           {
             id: '10',
@@ -206,6 +211,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             isDeleted: false,
             taskParentId: '',
             doneAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
+            createdBy: '1',
           },
         ],
       })

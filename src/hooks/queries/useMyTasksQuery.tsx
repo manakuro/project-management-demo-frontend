@@ -89,6 +89,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
             teammates: [],
             taskParentId: '1',
             doneAt: '',
+            createdBy: '1',
           },
           {
             assigneeId: '',
@@ -108,6 +109,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
             teammates: [],
             taskParentId: '1',
             doneAt: '',
+            createdBy: '1',
           },
           {
             assigneeId: '1',
@@ -127,6 +129,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
             teammates: [],
             taskParentId: '1',
             doneAt: '',
+            createdBy: '1',
           },
         ],
         assigneeId: '1',
@@ -274,6 +277,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
         isDeleted: false,
         taskParentId: '',
         doneAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
+        createdBy: '1',
       },
       {
         id: '2',
@@ -357,6 +361,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
         isDeleted: false,
         taskParentId: '',
         doneAt: new Date(dateFns.subDays(new Date(), 3)).toISOString(),
+        createdBy: '1',
       },
       {
         id: '3',
@@ -383,6 +388,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
         isDeleted: false,
         taskParentId: '',
         doneAt: '',
+        createdBy: '1',
       },
       {
         id: '4',
@@ -409,6 +415,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
         isDeleted: false,
         taskParentId: '',
         doneAt: '',
+        createdBy: '1',
       },
       {
         id: '5',
@@ -435,6 +442,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
         isDeleted: false,
         taskParentId: '',
         doneAt: '',
+        createdBy: '1',
       },
     ],
     isDeleted: false,
@@ -481,6 +489,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
             teammates: [],
             taskParentId: '10',
             doneAt: '',
+            createdBy: '1',
           },
           {
             assigneeId: '',
@@ -500,6 +509,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
             teammates: [],
             taskParentId: '10',
             doneAt: '',
+            createdBy: '1',
           },
         ],
         assigneeId: '1',
@@ -634,6 +644,7 @@ export const taskSections: MyTaskResponse['taskSections'] = [
         isDeleted: false,
         taskParentId: '',
         doneAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
+        createdBy: '1',
       },
     ],
     isDeleted: false,

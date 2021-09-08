@@ -25,6 +25,7 @@ export const defaultTaskState = (): Task => ({
   name: '',
   taskParentId: '',
   taskSectionId: '',
+  createdBy: '',
 })
 export const taskIdsByTaskParentIdSelector = selectorFamily<string[], string>({
   key: key('taskIdsByTaskParentIdSelector'),

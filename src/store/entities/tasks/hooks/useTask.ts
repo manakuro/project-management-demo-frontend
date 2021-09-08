@@ -1,9 +1,11 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
+import { useMe } from 'src/store/entities/me'
 import { taskSelector } from '../atom'
 import { Task } from '../type'
 
 export const useTask = (taskId?: string) => {
   const task = useRecoilValue(taskSelector(taskId || ''))
+  const { me } = useMe()
 
   const upsert = useRecoilCallback(
     ({ set }) =>
@@ -19,9 +21,10 @@ export const useTask = (taskId?: string) => {
         upsert({
           ...prev,
           ...val,
+          createdBy: me.id,
         })
       },
-    [upsert, task.id],
+    [task.id, upsert, me.id],
   )
   const deleteTask = useRecoilCallback(
     () => async () => {

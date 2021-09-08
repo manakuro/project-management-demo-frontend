@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import {
   Inbox,
   InboxLeft,
@@ -9,6 +9,7 @@ import {
   FilterButton,
 } from 'src/components/organisms/Inbox'
 import { useInboxDetail } from 'src/components/organisms/Inbox'
+import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { TaskDetailSide } from 'src/components/organisms/TaskDetails'
 import { getInboxDetailId, isInboxDetailURL } from 'src/router'
 import { useInboxPageContext } from '../Provider'
@@ -20,6 +21,11 @@ export const Activity: React.VFC = memo(() => {
 
 const Component: React.VFC = memo(() => {
   const { loadingTabContent } = useInboxPageContext()
+  const { setId } = useTaskDetail()
+
+  useEffect(() => {
+    setId('1')
+  }, [setId])
 
   useInboxDetail({
     isTaskDetailURL: isInboxDetailURL,

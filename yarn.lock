@@ -9943,7 +9943,7 @@ __metadata:
     react-icons: ^4.2.0
     react-intersection-observer: ^8.32.0
     react-player: ^2.8.2
-    recoil: ^0.4.0
+    recoil: ^0.4.1
     resize-observer-polyfill: ^1.5.1
     shortid: ^2.2.16
     ts-jest: ^27.0.5
@@ -10571,7 +10571,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"recoil@npm:^0.4.0":
+"recoil@npm:^0.4.1":
   version: 0.4.1
   resolution: "recoil@npm:0.4.1"
   dependencies:

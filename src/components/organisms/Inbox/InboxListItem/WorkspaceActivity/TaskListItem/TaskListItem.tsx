@@ -39,8 +39,9 @@ export const TaskListItem: React.FC<Props> = memo<Props>((props) => {
         isTransitioning={isTransitioning}
         onEndTransition={endTransition}
         onStartTransition={startTransition}
+        zIndex={1}
       />
-      <TaskName taskId={taskId} isTransitioning={isTransitioning} />
+      <TaskName taskId={taskId} isTransitioning={isTransitioning} zIndex={1} />
       <Stack direction="row" spacing={1} ml="auto" alignItems="center">
         <DueDate fontSize="xs" dueDate={task.dueDate} />
         <Like taskId={taskId} />

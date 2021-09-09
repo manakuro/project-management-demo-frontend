@@ -110,7 +110,7 @@ export const useRouter = () => {
 
   const navigateToInboxDetail = useCallback(
     async (id: string, options?: Options) => {
-      await push(`${ROUTE_INBOX.href.pathname}${id}`, undefined, {
+      await push(`${ROUTE_INBOX.href.pathname}/${id}`, undefined, {
         shallow: true,
         ...options,
       })

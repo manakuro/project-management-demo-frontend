@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useState } from 'react'
 import { DueDate, FlexProps, Stack } from 'src/components/atoms'
 import { TaskDoneTransition } from 'src/components/molecules'
+import { useRouter } from 'src/router'
 import { useTask } from 'src/store/entities/tasks'
 import { CheckIcon } from './CheckIcon'
 import { Feed } from './Feed'
@@ -18,6 +19,7 @@ export const TaskListItem: React.FC<Props> = memo<Props>((props) => {
   const { taskId, isFirst, isLast } = props
   const { task } = useTask(taskId)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const { navigateToInboxDetail } = useRouter()
 
   const startTransition = useCallback(() => {
     setIsTransitioning(true)
@@ -27,9 +29,13 @@ export const TaskListItem: React.FC<Props> = memo<Props>((props) => {
     setIsTransitioning(false)
   }, [])
 
-  const handleClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation()
-  }, [])
+  const handleClick = useCallback(
+    async (e: React.MouseEvent<HTMLElement>) => {
+      e.stopPropagation()
+      await navigateToInboxDetail(taskId)
+    },
+    [navigateToInboxDetail, taskId],
+  )
 
   return (
     <Row isFirst={isFirst} isLast={isLast} onClick={handleClick}>

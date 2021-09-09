@@ -93,6 +93,6 @@ export const isInboxDetailURL = (router: NextRouter): boolean => {
   )
 }
 export const getInboxDetailId = (router: NextRouter): string =>
-  (isHomeDetailURL(router) &&
+  (isInboxDetailURL(router) &&
     (router.query?.[ROUTE_INBOX.name]?.[0] as string)) ||
   ''

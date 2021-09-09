@@ -1,3 +1,4 @@
+import { WorkspaceActivityTasksResponse } from 'src/store/app/inbox/activity/workspaceActivityTasks'
 import { ACTIVITY_TYPE_WORKSPACE } from 'src/store/entities/activityTypes'
 
 export type WorkspaceActivityResponse = {
@@ -13,6 +14,7 @@ export type WorkspaceActivityResponse = {
     id: string
     name: string
   }
+  tasks: WorkspaceActivityTasksResponse[]
   teammateId: string
   createdAt: string
   updatedAt: string

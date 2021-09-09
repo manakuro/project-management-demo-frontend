@@ -1,8 +1,10 @@
 import React, { memo, useCallback, useState } from 'react'
-import { DueDate, FlexProps, Stack } from 'src/components/atoms'
+import { DueDate, Flex, FlexProps, Stack } from 'src/components/atoms'
 import { TaskDoneTransition } from 'src/components/molecules'
+import { useHover } from 'src/hooks/useHover'
 import { useRouter } from 'src/router'
 import { useTask } from 'src/store/entities/tasks'
+import { ArchiveButton } from './ArchiveButton'
 import { CheckIcon } from './CheckIcon'
 import { Feed } from './Feed'
 import { Like } from './Like'
@@ -20,6 +22,7 @@ export const TaskListItem: React.FC<Props> = memo<Props>((props) => {
   const { task } = useTask(taskId)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const { navigateToInboxDetail } = useRouter()
+  const { ref, isHovering } = useHover()
 
   const startTransition = useCallback(() => {
     setIsTransitioning(true)
@@ -38,22 +41,33 @@ export const TaskListItem: React.FC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <Row isFirst={isFirst} isLast={isLast} onClick={handleClick}>
-      <TaskDoneTransition isTransitioning={isTransitioning} />
-      <CheckIcon
+    <Flex alignItems="center" ref={ref}>
+      <Row isFirst={isFirst} isLast={isLast} onClick={handleClick}>
+        <TaskDoneTransition isTransitioning={isTransitioning} />
+        <CheckIcon
+          taskId={taskId}
+          isTransitioning={isTransitioning}
+          onEndTransition={endTransition}
+          onStartTransition={startTransition}
+          zIndex={1}
+        />
+        <TaskName
+          taskId={taskId}
+          isTransitioning={isTransitioning}
+          zIndex={1}
+        />
+        <Stack direction="row" spacing={1} ml="auto" alignItems="center">
+          <DueDate fontSize="xs" dueDate={task.dueDate} />
+          <Like taskId={taskId} />
+          <Feed taskId={taskId} />
+        </Stack>
+      </Row>
+      <ArchiveButton
         taskId={taskId}
-        isTransitioning={isTransitioning}
-        onEndTransition={endTransition}
-        onStartTransition={startTransition}
-        zIndex={1}
+        ml={3}
+        visibility={isHovering ? 'visible' : 'hidden'}
       />
-      <TaskName taskId={taskId} isTransitioning={isTransitioning} zIndex={1} />
-      <Stack direction="row" spacing={1} ml="auto" alignItems="center">
-        <DueDate fontSize="xs" dueDate={task.dueDate} />
-        <Like taskId={taskId} />
-        <Feed taskId={taskId} />
-      </Stack>
-    </Row>
+    </Flex>
   )
 })
 

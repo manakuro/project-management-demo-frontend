@@ -20,6 +20,7 @@ export const Row: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <Flex
+      maxW="90%"
       flex={1}
       h="36px"
       minH="36px"

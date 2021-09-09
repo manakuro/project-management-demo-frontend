@@ -6,7 +6,7 @@ import {
   TaskDetailFooter,
 } from 'src/components/organisms/TaskDetail'
 
-const HEADER_HEIGHT = 71
+const HEADER_HEIGHT = 72
 const TOP = HEADER_HEIGHT
 
 type Props = {

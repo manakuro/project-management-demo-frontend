@@ -1,9 +1,13 @@
 import React, { memo, useEffect, useMemo } from 'react'
+import { Flex } from 'src/components/atoms'
 import {
   Inbox,
   InboxLeft,
   InboxRight,
   InboxHeader,
+  InboxList,
+  InboxListContent,
+  InboxListHeader,
   InboxHeaderRight,
   MoreActionButton,
   FilterButton,
@@ -50,6 +54,12 @@ const Component: React.VFC = memo(() => {
               <MoreActionButton />
             </InboxHeaderRight>
           </InboxHeader>
+          <InboxListContent>
+            <InboxListHeader />
+            <Flex>
+              <InboxList />
+            </Flex>
+          </InboxListContent>
         </InboxLeft>
         <InboxRight>
           <TaskDetailSide />

@@ -53,11 +53,6 @@ const fetch = async (): Promise<ActivityResponse> => {
             type: 2,
             updatedAt: new Date(dateFns.subDays(new Date(), 4)).toISOString(),
           },
-          {
-            id: '3',
-            type: 2,
-            updatedAt: new Date(dateFns.subDays(new Date(), 5)).toISOString(),
-          },
         ],
         workspaceActivities: [
           {

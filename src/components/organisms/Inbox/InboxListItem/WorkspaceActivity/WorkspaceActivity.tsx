@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { useWorkspaceActivity } from 'src/store/app/inbox/activity'
 import { Container } from '../Container'
+import { InfoText } from './InfoText'
 import { Project } from './Project'
 import { Workspace } from './Workspace'
 
@@ -18,6 +19,7 @@ export const WorkspaceActivity: React.FC<Props> = memo<Props>((props) => {
       <Flex py={4} flex={1} flexDirection="column">
         <Workspace workspaceId={workspaceActivity.workspaceId} />
         <Project projectId={workspaceActivity.projectId} />
+        <InfoText workspaceActivityId={workspaceActivityId} />
       </Flex>
     </Container>
   )

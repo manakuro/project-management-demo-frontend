@@ -1,10 +1,4 @@
-import {
-  atom,
-  atomFamily,
-  DefaultValue,
-  selectorFamily,
-  selector,
-} from 'recoil'
+import { atom, atomFamily, DefaultValue, selectorFamily } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import { WorkspaceActivityTask } from './type'
 
@@ -19,12 +13,19 @@ export const workspaceActivityTasksState = atom<WorkspaceActivityTask[]>({
   key: key('workspaceActivityTasksState'),
   default: [],
 })
-export const workspaceActivityTasksTaskIdsSelector = selector<string[]>({
+export const taskIdsByWorkspaceActivityIdSelector = selectorFamily<
+  string[],
+  string
+>({
   key: key('workspaceActivityTasksTaskIdsSelector'),
-  get: ({ get }) => {
-    const workspaceActivityTasks = get(workspaceActivityTasksState)
-    return workspaceActivityTasks.map((w) => w.taskId)
-  },
+  get:
+    (workspaceActivityId: string) =>
+    ({ get }) => {
+      const workspaceActivityTasks = get(workspaceActivityTasksState)
+      return workspaceActivityTasks
+        .filter((w) => w.workspaceActivityId === workspaceActivityId)
+        .map((w) => w.taskId)
+    },
 })
 
 export const workspaceActivityTaskState = atomFamily<

@@ -14,7 +14,7 @@ export type WorkspaceActivityResponse = {
     id: string
     name: string
   }
-  tasks: WorkspaceActivityTasksResponse[]
+  workspaceActivityTasks: WorkspaceActivityTasksResponse[]
   teammateId: string
   createdAt: string
   updatedAt: string

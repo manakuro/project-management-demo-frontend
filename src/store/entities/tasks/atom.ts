@@ -63,6 +63,26 @@ export const tasksByTaskSectionIdSelector = selectorFamily<Task[], string>({
     },
 })
 
+export const tasksByTaskIds = selectorFamily<Task[], string[]>({
+  key: key('tasksByTaskIds'),
+  get:
+    (taskIds) =>
+    ({ get }) => {
+      const tasks = get(tasksState)
+      return tasks.filter((t) => taskIds.includes(t.id))
+    },
+})
+
+export const createdByIdsByTaskIds = selectorFamily<string[], string[]>({
+  key: key('createdByIdsByTaskIds'),
+  get:
+    (taskIds) =>
+    ({ get }) => {
+      const tasks = get(tasksState)
+      return tasks.filter((t) => taskIds.includes(t.id)).map((t) => t.createdBy)
+    },
+})
+
 export const taskState = atomFamily<Task, string>({
   key: key('taskState'),
   default: defaultTaskState(),

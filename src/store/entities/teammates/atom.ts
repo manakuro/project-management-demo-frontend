@@ -24,6 +24,17 @@ const teammateState = atomFamily<Teammate, string>({
   key: key('teammateState'),
   default: defaultTeammateStateValue(),
 })
+export const namesByTeammateIdSelector = selectorFamily<string[], string[]>({
+  key: key('namesByTeammateIdSelector'),
+  get:
+    (teammateIds) =>
+    ({ get }) => {
+      const teammates = get(teammatesState)
+      return teammates
+        .filter((t) => teammateIds.includes(t.id))
+        .map((t) => t.name)
+    },
+})
 
 export const teammateIdsByTaskIdSelector = selectorFamily<string[], string>({
   key: key('teammateIdsByTaskIdSelector'),

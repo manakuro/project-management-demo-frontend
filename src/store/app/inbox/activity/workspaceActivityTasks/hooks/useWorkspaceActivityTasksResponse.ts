@@ -10,7 +10,7 @@ export const useWorkspaceActivityTasksResponse = () => {
     ({ set }) =>
       (data: ActivityResponse) => {
         data.workspaceActivities.forEach((w) => {
-          w.tasks.forEach((t) => {
+          w.workspaceActivityTasks.forEach((t) => {
             set(workspaceActivityTaskSelector(t.id), t)
 
             setTasksFromResponse([t.task])

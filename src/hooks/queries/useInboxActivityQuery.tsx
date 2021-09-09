@@ -69,7 +69,7 @@ const fetch = async (): Promise<ActivityResponse> => {
             },
             projectId: '1',
             teammateId: '1',
-            tasks: [
+            workspaceActivityTasks: [
               {
                 id: uuid(),
                 workspaceActivityId: '1',
@@ -152,7 +152,7 @@ const fetch = async (): Promise<ActivityResponse> => {
                   doneAt: new Date(
                     dateFns.subDays(new Date(), 3),
                   ).toISOString(),
-                  createdBy: '1',
+                  createdBy: '2',
                 },
                 createdAt: '',
                 updatedAt: '',
@@ -175,7 +175,7 @@ const fetch = async (): Promise<ActivityResponse> => {
             },
             projectId: '2',
             teammateId: '1',
-            tasks: [
+            workspaceActivityTasks: [
               {
                 id: uuid(),
                 workspaceActivityId: '2',
@@ -207,7 +207,7 @@ const fetch = async (): Promise<ActivityResponse> => {
                   isDeleted: false,
                   taskParentId: '',
                   doneAt: '',
-                  createdBy: '1',
+                  createdBy: '2',
                 },
                 createdAt: '',
                 updatedAt: '',

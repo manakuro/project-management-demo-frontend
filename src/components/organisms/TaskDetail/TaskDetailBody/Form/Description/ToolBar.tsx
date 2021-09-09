@@ -24,13 +24,14 @@ export const ToolBar: React.FC<Props> = memo<Props>(() => {
     <Stack
       flex={1}
       direction="row"
-      spacing={1}
+      spacing={0}
       minH={8}
       alignItems="center"
       // TODO: Find a workaround to make tool bar sticky at bottom
       // position="sticky"
       // bottom={0}
       bg="white"
+      flexWrap="wrap"
     >
       {focused && (
         <>

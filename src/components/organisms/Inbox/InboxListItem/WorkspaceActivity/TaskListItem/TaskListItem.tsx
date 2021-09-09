@@ -42,7 +42,12 @@ export const TaskListItem: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <Flex alignItems="center" ref={ref}>
-      <Row isFirst={isFirst} isLast={isLast} onClick={handleClick}>
+      <Row
+        isFirst={isFirst}
+        isLast={isLast}
+        onClick={handleClick}
+        taskId={taskId}
+      >
         <TaskDoneTransition isTransitioning={isTransitioning} />
         <CheckIcon
           taskId={taskId}

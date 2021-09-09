@@ -9,7 +9,7 @@ type Props = {
   getTaskDetailId: (router: NextRouter) => string
 }
 
-export const useInboxDetail = (props: Props) => {
+export const useInboxTaskDetail = (props: Props) => {
   const { router } = useRouter()
   const { refetch, setId, setLoading, taskId } = useTaskDetail()
   const { onOpen } = useTaskDetailSide()
@@ -19,7 +19,7 @@ export const useInboxDetail = (props: Props) => {
     if (!isTaskDetailURL(router)) return
     const newId = getTaskDetailId(router)
     if (taskId === newId) return
-    console.log('useInboxDetail!: ', newId)
+    console.log('useInboxTaskDetail!: ', newId)
 
     setLoading(true)
     setId(newId)

@@ -24,7 +24,7 @@ const useValue = (props: Props): ContextProps => {
     loadingQuery,
     loadingTabContent,
     setLoadingTabContent,
-  } as const
+  }
 }
 useValue.__PROVIDER__ = 'src/pages/Inbox/Provider.tsx'
 export const { Provider, useContext: useInboxPageContext } =

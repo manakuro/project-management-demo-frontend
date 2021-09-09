@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useMemo } from 'react'
+import React, { memo, useMemo } from 'react'
 import { Flex } from 'src/components/atoms'
 import {
   Inbox,
@@ -12,8 +12,7 @@ import {
   MoreActionButton,
   FilterButton,
 } from 'src/components/organisms/Inbox'
-import { useInboxDetail } from 'src/components/organisms/Inbox'
-import { useTaskDetail } from 'src/components/organisms/TaskDetail'
+import { useInboxTaskDetail } from 'src/components/organisms/Inbox'
 import { TaskDetailSide } from 'src/components/organisms/TaskDetails'
 import { useInboxActivityQuery } from 'src/hooks/queries/useInboxActivityQuery'
 import { getInboxDetailId, isInboxDetailURL } from 'src/router'
@@ -31,13 +30,8 @@ const Component: React.VFC = memo(() => {
     () => loadingTabContent || loadingQuery,
     [loadingTabContent, loadingQuery],
   )
-  const { setId } = useTaskDetail()
 
-  useEffect(() => {
-    setId('1')
-  }, [setId])
-
-  useInboxDetail({
+  useInboxTaskDetail({
     isTaskDetailURL: isInboxDetailURL,
     getTaskDetailId: getInboxDetailId,
   })

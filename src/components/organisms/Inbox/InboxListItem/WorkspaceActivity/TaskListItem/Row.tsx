@@ -10,11 +10,11 @@ type Props = FlexProps & {
 }
 
 export const Row: React.FC<Props> = memo<Props>((props) => {
-  const { isFirst, isLast, ...rest } = props
-  const { taskId } = useTaskDetail()
+  const { isFirst, isLast, taskId, ...rest } = props
+  const { taskId: taskDetailTaskId } = useTaskDetail()
   const selected = useMemo(
-    () => taskId === props.taskId,
-    [props.taskId, taskId],
+    () => taskDetailTaskId === taskId,
+    [taskDetailTaskId, taskId],
   )
   const containerStyle = useMemo(
     (): FlexProps => ({

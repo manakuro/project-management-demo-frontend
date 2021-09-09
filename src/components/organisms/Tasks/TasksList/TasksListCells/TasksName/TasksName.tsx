@@ -1,5 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { CheckIcon, FlexProps, Icon, Stack, Text } from 'src/components/atoms'
+import { TaskDoneTransition } from 'src/components/molecules'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { useRouter } from 'src/router'
 import { useTask } from 'src/store/entities/tasks'
@@ -14,7 +15,6 @@ import { TasksNameGrabIcon } from './TasksNameGrabIcon'
 import { TasksNameGrabIconContainer } from './TasksNameGrabIconContainer'
 import { TasksNameProvider, useTasksNameContext } from './TasksNameProvider'
 import { TasksNameRightContainer } from './TasksNameRightContainer'
-import { TasksNameTransition } from './TasksNameTransition'
 
 type Props = FlexProps & {
   taskId: string
@@ -85,7 +85,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
         }}
         ref={ref}
       >
-        <TasksNameTransition isTransitioning={isTransitioning} />
+        <TaskDoneTransition isTransitioning={isTransitioning} />
         <TasksNameGrabIconContainer>
           <TasksNameGrabIcon />
         </TasksNameGrabIconContainer>

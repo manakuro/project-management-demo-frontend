@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
 import { dateFns } from 'src/shared/dateFns'
-import { uuid } from 'src/shared/uuid'
 import { useActivityResponse } from 'src/store/app/inbox/activity'
 import { ActivityResponse } from 'src/store/app/inbox/activity/'
 
@@ -71,7 +70,7 @@ const fetch = async (): Promise<ActivityResponse> => {
             teammateId: '1',
             workspaceActivityTasks: [
               {
-                id: uuid(),
+                id: '1',
                 workspaceActivityId: '1',
                 taskId: '1',
                 task: {
@@ -119,7 +118,7 @@ const fetch = async (): Promise<ActivityResponse> => {
                 updatedAt: '',
               },
               {
-                id: uuid(),
+                id: '2',
                 workspaceActivityId: '1',
                 taskId: '2',
                 task: {
@@ -177,7 +176,7 @@ const fetch = async (): Promise<ActivityResponse> => {
             teammateId: '1',
             workspaceActivityTasks: [
               {
-                id: uuid(),
+                id: '3',
                 workspaceActivityId: '2',
                 taskId: '3',
                 task: {

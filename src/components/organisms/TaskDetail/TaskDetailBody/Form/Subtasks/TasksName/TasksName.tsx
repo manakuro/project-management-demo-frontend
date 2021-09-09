@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { CheckIcon, Flex, FlexProps, Stack } from 'src/components/atoms'
-import { TasksNameTransition } from 'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName/TasksNameTransition'
+import { TaskDoneTransition } from 'src/components/molecules'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
 import { useTask } from 'src/store/entities/tasks'
 import { Assignee } from './Assignee'
@@ -52,7 +52,7 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
   return (
     <TasksListRow w="full">
       <TasksNameCell ref={ref} borderRight="none" containerStyle={{ flex: 1 }}>
-        <TasksNameTransition isTransitioning={isTransitioning} />
+        <TaskDoneTransition isTransitioning={isTransitioning} />
         <TasksNameGrabIcon />
         <CheckIcon
           isDone={task.isDone}

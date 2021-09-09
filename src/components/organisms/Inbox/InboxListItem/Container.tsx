@@ -10,6 +10,7 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <Flex
+      maxW="inherit"
       ref={ref}
       flex={1}
       px={6}

@@ -4,6 +4,7 @@ import { useWorkspaceActivity } from 'src/store/app/inbox/activity'
 import { Container } from '../Container'
 import { InfoText } from './InfoText'
 import { Project } from './Project'
+import { TaskList } from './TaskList'
 import { Workspace } from './Workspace'
 
 type Props = FlexProps & {
@@ -16,10 +17,11 @@ export const WorkspaceActivity: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <Container>
-      <Flex py={4} flex={1} flexDirection="column">
+      <Flex py={4} flex={1} flexDirection="column" maxW="inherit">
         <Workspace workspaceId={workspaceActivity.workspaceId} />
         <Project projectId={workspaceActivity.projectId} />
         <InfoText workspaceActivityId={workspaceActivityId} />
+        <TaskList workspaceActivityId={workspaceActivityId} />
       </Flex>
     </Container>
   )

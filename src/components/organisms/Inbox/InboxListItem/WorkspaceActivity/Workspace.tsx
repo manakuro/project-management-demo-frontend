@@ -8,8 +8,7 @@ type Props = FlexProps & {
   workspaceId: string
 }
 
-export const Workspace: React.FC<Props> = memo<Props>((props) => {
-  const { workspaceId } = props
+export const Workspace: React.FC<Props> = memo<Props>(() => {
   const { workspace } = useWorkspace()
   const { isHovering } = useInboxListItemContext()
   const textStyle = useMemo(
@@ -18,7 +17,6 @@ export const Workspace: React.FC<Props> = memo<Props>((props) => {
     }),
     [isHovering],
   )
-  console.log('workspaceId: ', workspaceId)
 
   return (
     <Flex flex={1}>

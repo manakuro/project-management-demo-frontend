@@ -9,7 +9,7 @@ export const InboxList: React.FC<Props> = memo((props) => {
   const { activityIds } = useActivityIds()
 
   return (
-    <Flex {...props} flexDirection="column" flex={1}>
+    <Flex {...props} flexDirection="column" flex={1} maxWidth="full">
       {activityIds.map((id) => (
         <InboxListItem activityId={id} key={id} />
       ))}

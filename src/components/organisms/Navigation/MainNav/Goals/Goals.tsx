@@ -17,6 +17,6 @@ export const Goals: React.VFC = memo(() => {
     [router.pathname],
   )
 
-  return <NavListItem item={item} selectedStyle />
+  return <NavListItem item={item} selectedStyle disabled />
 })
 Goals.displayName = 'router'

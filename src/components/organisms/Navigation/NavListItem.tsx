@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import {
   Text,
   ListItem,
@@ -19,14 +19,24 @@ type Props = {
   light?: boolean
   linkStyle?: LinkProps
   pathname?: string
+  disabled?: boolean
 } & ListItemProps
 
 export const NavListItem: React.VFC<Props> = memo<Props>((props) => {
-  const { item, selectedStyle, linkStyle, light, pathname, ...rest } = props
+  const { item, selectedStyle, linkStyle, light, pathname, disabled, ...rest } =
+    props
   const { _hover, selected } = useLinkHoverStyle()
+  const listItemStyle = useMemo(
+    (): ListItemProps => ({
+      ...(disabled
+        ? { opacity: 0.6, pointerEvents: 'none', cursor: 'not-allowed' }
+        : {}),
+    }),
+    [disabled],
+  )
 
   return (
-    <ListItem {...rest}>
+    <ListItem {...listItemStyle} {...rest}>
       <WithNextLink {...props}>
         <Link
           href={item.href}

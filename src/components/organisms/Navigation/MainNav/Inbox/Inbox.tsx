@@ -12,7 +12,7 @@ export const Inbox: React.VFC = memo(() => {
       name: 'Inbox',
       href: ROUTE_INBOX.name,
       icon: 'bell',
-      isCurrentRoute: () => router.pathname === ROUTE_INBOX.href.pathname,
+      isCurrentRoute: () => router.pathname.includes(ROUTE_INBOX.href.pathname),
     }),
     [router.pathname],
   )

@@ -472,7 +472,7 @@ const fetch = async (): Promise<ActivityResponse> => {
         inboxListStatus: {
           id: '1',
           teammateId: '1',
-          sortStatus: 1,
+          filterStatus: 1,
           createdAt: '',
           updatedAt: '',
         },

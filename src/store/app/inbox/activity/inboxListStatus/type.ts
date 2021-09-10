@@ -1,9 +1,9 @@
-import { InboxListSortStatuses } from './types'
+import { InboxListFilterStatuses } from './types'
 
 export type InboxListStatus = {
   id: string
   teammateId: string
-  sortStatus: InboxListSortStatuses
+  filterStatus: InboxListFilterStatuses
   createdAt: string
   updatedAt: string
 }

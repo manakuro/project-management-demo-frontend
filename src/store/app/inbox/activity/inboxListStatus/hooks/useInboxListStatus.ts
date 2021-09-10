@@ -1,32 +1,32 @@
 import { useCallback } from 'react'
 import { useRecoilValue } from 'recoil'
-import { inboxStatusState, sortStatues, SortStatuses } from '../atom'
-import { InboxListSortStatuses } from '../types'
+import { inboxStatusState, filterStatues, FilterStatuses } from '../atom'
+import { InboxListFilterStatuses } from '../types'
 import { useInboxListStatusCommand } from './useInboxListStatusCommand'
 
-const isSortStatusKey = (val: any): val is SortStatuses =>
+const isSortStatusKey = (val: any): val is FilterStatuses =>
   typeof val === 'string'
 
 export const useInboxListStatus = () => {
-  const { sortStatus } = useRecoilValue(inboxStatusState)
+  const { filterStatus } = useRecoilValue(inboxStatusState)
   const { upsert } = useInboxListStatusCommand()
 
-  const isSorted = useCallback(
-    (status: SortStatuses) => sortStatus === sortStatues[status],
-    [sortStatus],
+  const isFiltered = useCallback(
+    (status: FilterStatuses) => filterStatus === filterStatues[status],
+    [filterStatus],
   )
 
-  const onSort = useCallback(
-    (status: InboxListSortStatuses | SortStatuses) => {
-      const val = isSortStatusKey(status) ? sortStatues[status] : status
-      upsert({ sortStatus: val })
+  const onFilter = useCallback(
+    (status: InboxListFilterStatuses | FilterStatuses) => {
+      const val = isSortStatusKey(status) ? filterStatues[status] : status
+      upsert({ filterStatus: val })
     },
     [upsert],
   )
 
   return {
-    sortStatus,
-    isSorted,
-    onSort,
+    filterStatus,
+    isFiltered,
+    onFilter,
   }
 }

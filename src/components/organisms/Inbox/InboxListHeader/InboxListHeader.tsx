@@ -1,19 +1,19 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { transitions } from 'src/styles'
-import { useInboxListContentVerticalScroll } from '../InboxListContent'
+// import { useInboxListContentVerticalScroll } from '../InboxListContent'
 
 type Props = FlexProps
 
 export const InboxListHeader: React.FC<Props> = memo((props) => {
-  const { isScrolling } = useInboxListContentVerticalScroll()
-  const text = useMemo(() => 'Today', [])
-  const style = useMemo(
-    (): FlexProps => ({
-      ...(isScrolling ? { boxShadow: 'sm' } : {}),
-    }),
-    [isScrolling],
-  )
+  // const { isScrolling } = useInboxListContentVerticalScroll()
+  // const style = useMemo(
+  //   (): FlexProps => ({
+  //     ...(isScrolling ? { boxShadow: 'sm' } : {}),
+  //   }),
+  //   [isScrolling],
+  // )
+  const style = {}
 
   return (
     <Flex
@@ -34,7 +34,7 @@ export const InboxListHeader: React.FC<Props> = memo((props) => {
       {...style}
       {...props}
     >
-      {text}
+      {props.children}
     </Flex>
   )
 })

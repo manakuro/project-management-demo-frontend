@@ -7,7 +7,6 @@ import {
   InboxHeader,
   InboxList,
   InboxListContent,
-  InboxListHeader,
   InboxHeaderRight,
   MoreActionButton,
   FilterButton,
@@ -49,7 +48,6 @@ const Component: React.VFC = memo(() => {
             </InboxHeaderRight>
           </InboxHeader>
           <InboxListContent>
-            <InboxListHeader />
             <Flex>
               <InboxList />
             </Flex>

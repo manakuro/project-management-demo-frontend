@@ -5,6 +5,7 @@ import {
   selectorFamily,
   selector,
 } from 'recoil'
+import { dateFns } from 'src/shared/dateFns'
 import { uniqBy } from 'src/shared/utils'
 import { Activity } from './type'
 
@@ -28,17 +29,54 @@ export const activityState = atomFamily<Activity, string>({
   },
 })
 
-export const activityIdsSortByUpdatedAtSelector = selector<string[]>({
-  key: key('activityIdsSortByUpdatedAtSelector'),
-  get: ({ get }) => {
-    const activities = [...get(activitiesState)]
-    return activities
-      .sort((a, b) => {
-        return a.updatedAt < b.updatedAt ? -1 : 1
-      })
-      .map((a) => a.id)
-  },
-})
+type ActivityIdsSortByUpdatedAt = {
+  today: string[]
+  yesterday: string[]
+  pastSevenDays: string[]
+  earlier: string[]
+}
+export type ActivityIdsSortByUpdatedAtKeys = keyof ActivityIdsSortByUpdatedAt
+export const activityIdsSortByUpdatedAtSelector =
+  selector<ActivityIdsSortByUpdatedAt>({
+    key: key('activityIdsSortByUpdatedAtSelector'),
+    get: ({ get }) => {
+      const activities = [...get(activitiesState)]
+      return activities
+        .sort((a, b) => {
+          return a.updatedAt < b.updatedAt ? -1 : 1
+        })
+        .reduce<ActivityIdsSortByUpdatedAt>(
+          (acc, a) => {
+            const duration = dateFns.intervalToDuration({
+              start: new Date(),
+              end: new Date(a.updatedAt),
+            })
+
+            if (dateFns.isToday(new Date(a.updatedAt))) {
+              acc.today.push(a.id)
+            }
+            if (dateFns.isYesterday(new Date(a.updatedAt))) {
+              acc.yesterday.push(a.id)
+            }
+            if (duration?.days && duration.days <= 7) {
+              acc.pastSevenDays.push(a.id)
+            }
+
+            if (duration?.days && duration.days > 7) {
+              acc.earlier.push(a.id)
+            }
+
+            return acc
+          },
+          {
+            today: [],
+            yesterday: [],
+            pastSevenDays: [],
+            earlier: [],
+          },
+        )
+    },
+  })
 
 export const activitySelector = selectorFamily<Activity, string>({
   key: key('activitySelector'),

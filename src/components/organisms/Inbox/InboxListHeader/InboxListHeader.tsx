@@ -1,28 +1,39 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect, useMemo, useState } from 'react'
+import { useInView } from 'react-intersection-observer'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { transitions } from 'src/styles'
-// import { useInboxListContentVerticalScroll } from '../InboxListContent'
 
 type Props = FlexProps
 
 export const InboxListHeader: React.FC<Props> = memo((props) => {
-  // const { isScrolling } = useInboxListContentVerticalScroll()
-  // const style = useMemo(
-  //   (): FlexProps => ({
-  //     ...(isScrolling ? { boxShadow: 'sm' } : {}),
-  //   }),
-  //   [isScrolling],
-  // )
-  const style = {}
+  const [isScrolling, setIsScrolling] = useState(false)
+  const { ref, entry } = useInView({ threshold: [1] })
+
+  const style = useMemo(
+    (): FlexProps => ({
+      ...(isScrolling ? { boxShadow: 'sm' } : {}),
+    }),
+    [isScrolling],
+  )
+
+  useEffect(() => {
+    if ((entry?.intersectionRatio ?? 0) < 1) {
+      setIsScrolling(true)
+    } else {
+      setIsScrolling(false)
+    }
+  }, [entry?.intersectionRatio])
 
   return (
     <Flex
+      ref={ref}
       minH="36px"
       maxH="36px"
       fontSize="sm"
       px={6}
       position="sticky"
-      top={0}
+      top="-1px"
+      pt="1px"
       left={0}
       alignItems="center"
       borderBottom="1px"

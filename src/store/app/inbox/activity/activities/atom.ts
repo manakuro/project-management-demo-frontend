@@ -1,4 +1,10 @@
-import { atom, atomFamily, DefaultValue, selectorFamily } from 'recoil'
+import {
+  atom,
+  atomFamily,
+  DefaultValue,
+  selectorFamily,
+  selector,
+} from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import { Activity } from './type'
 
@@ -19,6 +25,18 @@ export const activityState = atomFamily<Activity, string>({
     id: '',
     type: 1,
     updatedAt: '',
+  },
+})
+
+export const activityIdsSortByUpdatedAtSelector = selector<string[]>({
+  key: key('activityIdsSortByUpdatedAtSelector'),
+  get: ({ get }) => {
+    const activities = [...get(activitiesState)]
+    return activities
+      .sort((a, b) => {
+        return a.updatedAt < b.updatedAt ? -1 : 1
+      })
+      .map((a) => a.id)
   },
 })
 

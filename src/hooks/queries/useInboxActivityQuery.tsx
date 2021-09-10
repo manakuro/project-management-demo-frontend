@@ -52,6 +52,16 @@ const fetch = async (): Promise<ActivityResponse> => {
             type: 2,
             updatedAt: new Date(dateFns.subDays(new Date(), 4)).toISOString(),
           },
+          {
+            id: '3',
+            type: 1,
+            updatedAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
+          },
+          {
+            id: '4',
+            type: 1,
+            updatedAt: new Date(dateFns.subDays(new Date(), 5)).toISOString(),
+          },
         ],
         workspaceActivities: [
           {
@@ -216,7 +226,149 @@ const fetch = async (): Promise<ActivityResponse> => {
             updatedAt: new Date(dateFns.subDays(new Date(), 5)).toISOString(),
           },
         ],
-        taskActivities: [],
+        taskActivities: [
+          {
+            id: '3',
+            activityType: 1,
+            teammateId: '1',
+            taskActivityTasks: [
+              {
+                id: '1',
+                workspaceActivityId: '1',
+                taskId: '1',
+                task: {
+                  id: '1',
+                  taskSectionId: '1',
+                  projects: [
+                    {
+                      id: '1',
+                      taskId: '1',
+                      projectId: '1',
+                      createdAt: '',
+                      updatedAt: '',
+                    },
+                    {
+                      id: '2',
+                      taskId: '1',
+                      projectId: '2',
+                      createdAt: '',
+                      updatedAt: '',
+                    },
+                  ],
+                  name: 'Resolve an issue of auto focus for tasks list detail page',
+                  dueDate: new Date(
+                    dateFns.addDays(new Date(), 3),
+                  ).toISOString(),
+                  dueTime: new Date(
+                    dateFns.addDays(new Date(), 3),
+                  ).toISOString(),
+                  isDone: true,
+                  subTasks: [],
+                  assigneeId: '1',
+                  attachments: [],
+                  feeds: [],
+                  teammates: [],
+                  tags: [],
+                  isNew: false,
+                  isDeleted: false,
+                  taskParentId: '',
+                  doneAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
+                  createdBy: '1',
+                },
+                createdAt: '',
+                updatedAt: '',
+              },
+              {
+                id: '2',
+                workspaceActivityId: '1',
+                taskId: '2',
+                task: {
+                  id: '2',
+                  taskSectionId: '1',
+                  projects: [
+                    {
+                      id: '3',
+                      taskId: '2',
+                      projectId: '1',
+                      createdAt: '',
+                      updatedAt: '',
+                    },
+                  ],
+                  name: 'Implement Task Due Soon',
+                  dueDate: new Date(
+                    dateFns.addDays(new Date(), 4),
+                  ).toISOString(),
+                  dueTime: '',
+                  isDone: true,
+                  subTasks: [],
+                  assigneeId: '1',
+                  attachments: [],
+                  feeds: [],
+                  teammates: [],
+                  tags: [],
+                  isNew: false,
+                  isDeleted: false,
+                  taskParentId: '',
+                  doneAt: new Date(
+                    dateFns.subDays(new Date(), 3),
+                  ).toISOString(),
+                  createdBy: '2',
+                },
+                createdAt: '',
+                updatedAt: '',
+              },
+            ],
+            createdAt: new Date(dateFns.subDays(new Date(), 5)).toISOString(),
+            updatedAt: new Date(dateFns.subDays(new Date(), 5)).toISOString(),
+          },
+          {
+            id: '4',
+            activityType: 1,
+            teammateId: '1',
+            taskActivityTasks: [
+              {
+                id: '3',
+                workspaceActivityId: '2',
+                taskId: '3',
+                task: {
+                  id: '3',
+                  taskSectionId: '1',
+                  projects: [
+                    {
+                      id: '4',
+                      taskId: '3',
+                      projectId: '1',
+                      createdAt: '',
+                      updatedAt: '',
+                    },
+                  ],
+                  name: 'Implement Recent Projects',
+                  dueDate: new Date(
+                    dateFns.addDays(new Date(), 5),
+                  ).toISOString(),
+                  isDone: false,
+                  subTasks: [],
+                  assigneeId: '1',
+                  attachments: [],
+                  feeds: [],
+                  teammates: [],
+                  tags: [],
+                  isNew: false,
+                  isDeleted: false,
+                  taskParentId: '',
+                  doneAt: '',
+                  createdBy: '2',
+                },
+                createdAt: '',
+                updatedAt: '',
+              },
+            ],
+            createdAt: new Date(dateFns.subDays(new Date(), 5)).toISOString(),
+            updatedAt: new Date(dateFns.subDays(new Date(), 5)).toISOString(),
+          },
+        ],
       })
     }, 500)
   })

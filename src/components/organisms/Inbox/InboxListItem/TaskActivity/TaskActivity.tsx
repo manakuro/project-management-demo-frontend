@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { Container } from '../Container'
+import { ActionButtons } from './ActionButtons'
 import { ClickHandler } from './ClickHandler'
 import { TaskList } from './TaskList'
 import { Title } from './Title'
@@ -20,6 +21,7 @@ export const TaskActivity: React.FC<Props> = memo<Props>((props) => {
           <TaskList taskActivityId={taskActivityId} />
         </Flex>
       </ClickHandler>
+      <ActionButtons />
     </Container>
   )
 })

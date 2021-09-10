@@ -17,11 +17,7 @@ export const InboxListHeader: React.FC<Props> = memo((props) => {
   )
 
   useEffect(() => {
-    if ((entry?.intersectionRatio ?? 0) < 1) {
-      setIsScrolling(true)
-    } else {
-      setIsScrolling(false)
-    }
+    setIsScrolling((entry?.intersectionRatio ?? 0) < 1)
   }, [entry?.intersectionRatio])
 
   return (

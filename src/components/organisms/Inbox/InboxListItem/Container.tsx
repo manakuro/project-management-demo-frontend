@@ -20,6 +20,7 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
       borderStyle="solid"
       borderColor="gray.200"
       cursor="pointer"
+      position="relative"
       _hover={{
         borderColor: 'gray.300',
       }}

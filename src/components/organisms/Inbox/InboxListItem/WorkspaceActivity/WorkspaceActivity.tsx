@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { useWorkspaceActivity } from 'src/store/app/inbox/activity'
 import { Container } from '../Container'
+import { ActionButtons } from './ActionButtons'
 import { ClickHandler } from './ClickHandler'
 import { InfoText } from './InfoText'
 import { Project } from './Project'
@@ -26,6 +27,7 @@ export const WorkspaceActivity: React.FC<Props> = memo<Props>((props) => {
           <TaskList workspaceActivityId={workspaceActivityId} />
         </Flex>
       </ClickHandler>
+      <ActionButtons />
     </Container>
   )
 })

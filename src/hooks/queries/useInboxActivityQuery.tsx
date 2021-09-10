@@ -62,6 +62,11 @@ const fetch = async (): Promise<ActivityResponse> => {
             type: 1,
             updatedAt: new Date(dateFns.subDays(new Date(), 5)).toISOString(),
           },
+          {
+            id: '5',
+            type: 1,
+            updatedAt: new Date(dateFns.subDays(new Date(), 6)).toISOString(),
+          },
         ],
         workspaceActivities: [
           {
@@ -331,6 +336,51 @@ const fetch = async (): Promise<ActivityResponse> => {
               {
                 id: '3',
                 taskActivityId: '4',
+                taskId: '3',
+                task: {
+                  id: '3',
+                  taskSectionId: '1',
+                  projects: [
+                    {
+                      id: '4',
+                      taskId: '3',
+                      projectId: '1',
+                      createdAt: '',
+                      updatedAt: '',
+                    },
+                  ],
+                  name: 'Implement Recent Projects',
+                  dueDate: new Date(
+                    dateFns.addDays(new Date(), 5),
+                  ).toISOString(),
+                  isDone: false,
+                  subTasks: [],
+                  assigneeId: '1',
+                  attachments: [],
+                  feeds: [],
+                  teammates: [],
+                  tags: [],
+                  isNew: false,
+                  isDeleted: false,
+                  taskParentId: '',
+                  doneAt: '',
+                  createdBy: '2',
+                },
+                createdAt: '',
+                updatedAt: '',
+              },
+            ],
+            createdAt: new Date(dateFns.subDays(new Date(), 5)).toISOString(),
+            updatedAt: new Date(dateFns.subDays(new Date(), 5)).toISOString(),
+          },
+          {
+            id: '5',
+            activityType: 1,
+            teammateId: '1',
+            taskActivityTasks: [
+              {
+                id: '4',
+                taskActivityId: '5',
                 taskId: '3',
                 task: {
                   id: '3',

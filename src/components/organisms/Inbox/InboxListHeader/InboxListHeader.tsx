@@ -9,8 +9,8 @@ export const InboxListHeader: React.FC<Props> = memo((props) => {
 
   return (
     <Flex
+      minH="36px"
       maxH="36px"
-      h="36px"
       fontSize="sm"
       px={6}
       position="sticky"
@@ -21,6 +21,7 @@ export const InboxListHeader: React.FC<Props> = memo((props) => {
       borderStyle="solid"
       borderColor="gray.200"
       bg="white"
+      zIndex="docked"
       transition={transitions.base()}
       {...props}
     >

@@ -14,6 +14,7 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
       ref={ref}
       flex={1}
       px={6}
+      pb={2}
       transition={transitions.base()}
       borderBottom="1px"
       borderStyle="solid"

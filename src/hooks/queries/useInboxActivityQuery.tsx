@@ -469,6 +469,13 @@ const fetch = async (): Promise<ActivityResponse> => {
             updatedAt: new Date(dateFns.subDays(new Date(), 5)).toISOString(),
           },
         ],
+        inboxListStatus: {
+          id: '1',
+          teammateId: '1',
+          sortStatus: 1,
+          createdAt: '',
+          updatedAt: '',
+        },
       })
     }, 500)
   })

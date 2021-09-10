@@ -6,76 +6,70 @@ import {
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms/Menus'
+import { ChakraProps } from 'src/shared/chakra'
 import {
-  TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
-  TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
-  TASK_LIST_SORT_STATUS_TYPE_LIKES,
-  TASK_LIST_SORT_STATUS_TYPE_NONE,
-  TASK_LIST_SORT_STATUS_TYPE_PROJECT,
-  TaskListSortStatusType,
-} from 'src/store/app/myTasks'
+  InboxListSortStatuses,
+  INBOX_LIST_SORT_STATUS_TYPE_ASSIGNED_TO_ME,
+  INBOX_LIST_SORT_STATUS_TYPE_MENTIONED,
+  INBOX_LIST_SORT_STATUS_TYPE_ASSIGNED_BY_ME,
+  INBOX_LIST_SORT_STATUS_TYPE_UNREAD_ONLY,
+  INBOX_LIST_SORT_STATUS_TYPE_ALL,
+  useInboxListStatus,
+} from 'src/store/app/inbox/activity/inboxListStatus'
 
-type Props = {
-  projectSortable?: boolean
-}
+type Props = {}
 
-const ITEMS: {
-  value: TaskListSortStatusType
+const items: {
+  value: InboxListSortStatuses
   text: string
 }[] = [
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_NONE,
-    text: 'None',
+    value: INBOX_LIST_SORT_STATUS_TYPE_ALL,
+    text: 'All',
   },
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
-    text: 'Due Date',
+    value: INBOX_LIST_SORT_STATUS_TYPE_ASSIGNED_TO_ME,
+    text: 'Assigned To Me',
   },
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_LIKES,
-    text: 'Likes',
+    value: INBOX_LIST_SORT_STATUS_TYPE_MENTIONED,
+    text: '@Mentioned',
   },
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
-    text: 'Alphabetical',
+    value: INBOX_LIST_SORT_STATUS_TYPE_ASSIGNED_BY_ME,
+    text: 'Assigned By Me',
   },
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_PROJECT,
-    text: 'Project',
+    value: INBOX_LIST_SORT_STATUS_TYPE_UNREAD_ONLY,
+    text: 'Unread only',
   },
 ]
 
-export const FilterButton: React.VFC<Props> = memo<Props>((props) => {
-  const { onSort, sortStatus } = {
-    onSort: () => true,
-    isSorted: () => {},
-    sortStatus: {},
-  } as any
+export const FilterButton: React.VFC<Props> = memo<Props>(() => {
+  const { onSort, sortStatus, isSorted } = useInboxListStatus()
+
   const handleChange = useCallback(
-    (status: ToString<TaskListSortStatusType>) => {
-      onSort(Number(status) as TaskListSortStatusType)
+    (status: ToString<InboxListSortStatuses>) => {
+      onSort(Number(status) as InboxListSortStatuses)
     },
     [onSort],
   )
-  const projectSortable = useMemo(
-    () => props.projectSortable ?? true,
-    [props.projectSortable],
+  const isActiveButton = useMemo(() => !isSorted('all'), [isSorted])
+  const buttonStyle = useMemo(
+    (): ChakraProps => ({
+      ...(isActiveButton ? { bg: 'teal.100', _hover: { bg: 'teal.100' } } : {}),
+    }),
+    [isActiveButton],
   )
-  const items = useMemo(() => {
-    return ITEMS.filter((i) => {
-      if (!projectSortable && i.value === TASK_LIST_SORT_STATUS_TYPE_PROJECT)
-        return false
-      return true
-    })
-  }, [projectSortable])
 
   const text = useMemo<string>(() => {
-    return ''
-    // return `: ${items.find((i) => i.value === sortStatus)!.text}`
-  }, [])
+    if (isSorted('all')) return ''
+
+    return `: ${items.find((i) => i.value === sortStatus)!.text}`
+  }, [isSorted, sortStatus])
 
   return (
-    <MenuSelect<ToString<TaskListSortStatusType>>
+    <MenuSelect<ToString<InboxListSortStatuses>>
       onChange={handleChange}
       placement="bottom-start"
     >
@@ -85,6 +79,7 @@ export const FilterButton: React.VFC<Props> = memo<Props>((props) => {
         as={Button}
         leftIcon={<Icon icon="filter" />}
         size="xs"
+        {...buttonStyle}
       >
         Filter{text}
       </MenuSelectButton>

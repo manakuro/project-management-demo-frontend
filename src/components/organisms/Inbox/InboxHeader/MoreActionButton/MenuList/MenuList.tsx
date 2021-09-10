@@ -11,8 +11,8 @@ export const MenuList: React.FC<Props> = () => {
   return (
     <Portal>
       <AtomsMenuList>
-        <MenuItem>Manage notifications</MenuItem>
         <MenuItem>Archive all</MenuItem>
+        <MenuItem isDisabled>Manage notifications</MenuItem>
       </AtomsMenuList>
     </Portal>
   )

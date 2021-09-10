@@ -234,7 +234,7 @@ const fetch = async (): Promise<ActivityResponse> => {
             taskActivityTasks: [
               {
                 id: '1',
-                workspaceActivityId: '1',
+                taskActivityId: '3',
                 taskId: '1',
                 task: {
                   id: '1',
@@ -282,7 +282,7 @@ const fetch = async (): Promise<ActivityResponse> => {
               },
               {
                 id: '2',
-                workspaceActivityId: '1',
+                taskActivityId: '3',
                 taskId: '2',
                 task: {
                   id: '2',
@@ -330,7 +330,7 @@ const fetch = async (): Promise<ActivityResponse> => {
             taskActivityTasks: [
               {
                 id: '3',
-                workspaceActivityId: '2',
+                taskActivityId: '4',
                 taskId: '3',
                 task: {
                   id: '3',

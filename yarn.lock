@@ -2994,10 +2994,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16.7.13":
-  version: 16.7.13
-  resolution: "@types/node@npm:16.7.13"
-  checksum: 15dc28aa44674d3f49dcca4a6523b6ab1ef9bbea5c659057bec13153e1873718d6b62ab0ea57a3d57ee37f0f1136ae30e3ea503df43b0afa3ae437c8750be7f5
+"@types/node@npm:^16.9.1":
+  version: 16.9.1
+  resolution: "@types/node@npm:16.9.1"
+  checksum: 41afcf183a22d59323a0199dd7e0f46591247f45fc08a4434edb26d56dc279ae4fdb80f37989ddd7a0f45e3857c4933e6e82057ede09c5a829f77e373e680375
   languageName: node
   linkType: hard
 
@@ -9933,7 +9933,7 @@ __metadata:
     "@types/eslint": ^7.28.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest-plugin-context": ^2.9.4
-    "@types/node": ^16.7.13
+    "@types/node": ^16.9.1
     "@types/prettier": ^2.3.2
     "@types/prosemirror-commands": ^1.0.4
     "@types/prosemirror-history": ^1.0.2

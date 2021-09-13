@@ -4,6 +4,7 @@ import { Head } from 'src/components/atoms/Head'
 import { MainHeader } from 'src/components/organisms/MainHeader'
 import { Tabs, TabPanels, TabPanel } from 'src/components/organisms/Tabs'
 import { Activity } from './Activity'
+import { Archive } from './Archive'
 import { Header } from './Header'
 import { Provider, useInboxPageContext } from './Provider'
 
@@ -72,7 +73,7 @@ const WrappedComponent: React.VFC = memo(() => {
               <Activity />
             </TabPanel>
             <TabPanel>
-              <div>hey</div>
+              <Archive />
             </TabPanel>
           </TabPanels>
         </Flex>

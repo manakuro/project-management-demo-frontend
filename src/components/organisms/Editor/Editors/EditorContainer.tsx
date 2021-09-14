@@ -54,6 +54,7 @@ export const Container = <P extends unknown>(
   props: PropsWithChildren<ContainerProps<P>>,
 ) => {
   const state = useEditorStateContext()
+
   useDebounce(
     state.doc,
     (val) => {

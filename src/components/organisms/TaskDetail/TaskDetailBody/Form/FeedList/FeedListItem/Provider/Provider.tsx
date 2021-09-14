@@ -60,7 +60,7 @@ const useValue = (props: Props) => {
     onPin,
     onUnpin,
     onCopyCommentLink,
-    isPinned: props.isPinned || false,
+    isPinned: props.isPinned ?? false,
     hasAttachment,
     hasText,
     taskId: props.taskId,
@@ -72,7 +72,7 @@ useValue.__PROVIDER__ =
 const { Provider: ProviderBase, useContext: useFeedListItemContext } =
   createProvider(useValue)
 
-function useFeedOptionMenu(props: Props) {
+const useFeedOptionMenu = (props: Props) => {
   const { feed, setFeed } = useFeed(props.feedId)
   const [isEdit, setIsEdit] = useState<boolean>(false)
   const { toast } = useToast()
@@ -111,7 +111,7 @@ function useFeedOptionMenu(props: Props) {
   }
 }
 
-function useEditor(
+const useEditor = (
   props: Props,
   {
     setIsEdit,
@@ -120,7 +120,7 @@ function useEditor(
     setIsEdit: React.Dispatch<React.SetStateAction<boolean>>
     isEdit: boolean
   },
-) {
+) => {
   const { setFeed } = useFeed(props.feedId)
   const [description, setDescription] = useState<string>('')
 

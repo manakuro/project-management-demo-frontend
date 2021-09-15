@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { useMountedRef } from 'src/hooks'
 import { dateFns } from 'src/shared/dateFns'
 import { uuid } from 'src/shared/uuid'
 import { useMyTasksResponse } from 'src/store/app/myTasks'
@@ -12,11 +13,11 @@ type Props = {
 export const useMyTasksQuery = (props?: Props) => {
   const [loading, setLoading] = useState(true)
   const { setMyTasks } = useMyTasksResponse()
+  const { mountedRef } = useMountedRef()
 
   useEffect(() => {
     ;(async () => {
       if (props?.lazy) return
-
       setLoading(true)
       const res = await fetchTasks()
       setMyTasks(res)
@@ -24,14 +25,17 @@ export const useMyTasksQuery = (props?: Props) => {
     })()
   }, [props?.lazy, setMyTasks, setLoading])
 
-  const refetch = useCallback(() => {
-    ;(async () => {
-      setLoading(true)
-      const res = await fetchTasks()
+  const refetch = useCallback(async () => {
+    setLoading(true)
+    const res = await fetchTasks()
+
+    if (mountedRef.current) {
       setMyTasks(res)
       setLoading(false)
-    })()
-  }, [setMyTasks, setLoading])
+    }
+
+    return res
+  }, [setMyTasks, setLoading, mountedRef])
 
   return {
     refetch,

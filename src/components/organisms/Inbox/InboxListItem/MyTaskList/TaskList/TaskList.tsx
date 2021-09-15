@@ -1,15 +1,15 @@
 import React, { memo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useMyTaskActivityTasksTaskIds } from 'src/store/app/inbox/activity/myTaskActivityTasks'
+import { useMyTaskListTaskIds } from 'src/components/organisms/Inbox'
 import { TaskListItem } from '../TaskListItem'
 
 type Props = FlexProps & {
-  taskActivityId: string
+  myTaskListId: string
 }
 
 export const TaskList: React.FC<Props> = memo<Props>((props) => {
-  const { taskActivityId } = props
-  const { taskIds } = useMyTaskActivityTasksTaskIds(taskActivityId)
+  const { myTaskListId } = props
+  const { taskIds } = useMyTaskListTaskIds(myTaskListId)
 
   return (
     <Flex flex={1} mt={4} flexDirection="column">

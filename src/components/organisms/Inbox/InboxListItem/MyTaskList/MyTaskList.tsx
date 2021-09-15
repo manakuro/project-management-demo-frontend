@@ -7,18 +7,18 @@ import { TaskList } from './TaskList'
 import { Title } from './Title'
 
 type Props = FlexProps & {
-  taskActivityId: string
+  myTaskListId: string
 }
 
-export const TaskActivity: React.FC<Props> = memo<Props>((props) => {
-  const { taskActivityId } = props
+export const MyTaskList: React.FC<Props> = memo<Props>((props) => {
+  const { myTaskListId } = props
 
   return (
     <Container>
-      <ClickHandler taskActivityId={taskActivityId}>
+      <ClickHandler myTaskListId={myTaskListId}>
         <Flex py={4} flex={1} flexDirection="column" maxW="inherit">
-          <Title taskActivityId={taskActivityId} />
-          <TaskList taskActivityId={taskActivityId} />
+          <Title myTaskListId={myTaskListId} />
+          <TaskList myTaskListId={myTaskListId} />
         </Flex>
       </ClickHandler>
       <ActionButtons />
@@ -26,4 +26,4 @@ export const TaskActivity: React.FC<Props> = memo<Props>((props) => {
   )
 })
 
-TaskActivity.displayName = 'TaskActivity'
+MyTaskList.displayName = 'MyTaskList'

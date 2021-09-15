@@ -1,17 +1,17 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Flex, FlexProps, Icon, Link } from 'src/components/atoms'
+import { useMyTaskListTaskIds } from 'src/components/organisms/Inbox'
 import { formatDueDate } from 'src/shared/date'
-import { useMyTaskActivityTasksTaskIds } from 'src/store/app/inbox/activity/myTaskActivityTasks'
 import { useTask } from 'src/store/entities/tasks'
 import { transitions } from 'src/styles'
 
 type Props = FlexProps & {
-  taskActivityId: string
+  myTaskListId: string
 }
 
 export const Title: React.FC<Props> = memo<Props>((props) => {
-  const { taskActivityId } = props
-  const { taskIds } = useMyTaskActivityTasksTaskIds(taskActivityId)
+  const { myTaskListId } = props
+  const { taskIds } = useMyTaskListTaskIds(myTaskListId)
   const { task } = useTask(taskIds[0])
   const text = useMemo(
     () => `Your tasks for ${formatDueDate(task.dueDate)}`,

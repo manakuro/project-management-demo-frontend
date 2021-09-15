@@ -11,9 +11,15 @@ type Props = {
 
 export const useInboxTaskDetail = (props: Props) => {
   const { router } = useRouter()
-  const { refetch, setId, setLoading, taskId } = useTaskDetail()
+  const { refetch, setId, setLoading, taskId, resetId } = useTaskDetail()
   const { onOpen } = useTaskDetailSide()
   const { isTaskDetailURL, getTaskDetailId } = props
+
+  useEffect(() => {
+    return () => {
+      resetId()
+    }
+  }, [resetId])
 
   useEffect(() => {
     if (!isTaskDetailURL(router)) return

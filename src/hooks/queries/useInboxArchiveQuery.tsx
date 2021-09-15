@@ -470,6 +470,6 @@ const fetch = async (): Promise<ArchiveResponse> => {
           },
         ],
       })
-    }, 500)
+    }, 250)
   })
 }

@@ -3,6 +3,7 @@ import { Flex } from 'src/components/atoms'
 import { Head } from 'src/components/atoms/Head'
 import { MainHeader } from 'src/components/organisms/MainHeader'
 import { Tabs, TabPanels, TabPanel } from 'src/components/organisms/Tabs'
+import { useRouter } from 'src/router'
 import { Activity } from './Activity'
 import { Archive } from './Archive'
 import { Header } from './Header'
@@ -28,6 +29,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
 const WrappedComponent: React.VFC = memo(() => {
   const { loadingQuery, setLoadingTabContent } = useInboxPageContext()
   const [tabIndex, setTabIndex] = React.useState<Index>(ACTIVITY_INDEX)
+  const { navigateToInbox } = useRouter()
 
   const setLoading = useCallback(() => {
     setLoadingTabContent(true)
@@ -41,17 +43,20 @@ const WrappedComponent: React.VFC = memo(() => {
       switch (index as Index) {
         case ACTIVITY_INDEX: {
           setLoading()
+          await navigateToInbox()
           setTabIndex(ACTIVITY_INDEX)
+
           break
         }
         case ARCHIVE_INDEX: {
           setLoading()
+          await navigateToInbox()
           setTabIndex(ARCHIVE_INDEX)
           break
         }
       }
     },
-    [setLoading],
+    [setLoading, navigateToInbox],
   )
 
   return (

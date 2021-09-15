@@ -477,6 +477,6 @@ const fetch = async (): Promise<ActivityResponse> => {
           updatedAt: '',
         },
       })
-    }, 500)
+    }, 250)
   })
 }

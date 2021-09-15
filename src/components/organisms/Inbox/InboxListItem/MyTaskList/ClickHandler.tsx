@@ -22,7 +22,7 @@ export const ClickHandler: React.FC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <Flex flex={1} onClick={handleClick}>
+    <Flex flex={1} onClick={handleClick} maxW="full">
       {props.children}
     </Flex>
   )

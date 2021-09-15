@@ -11,6 +11,7 @@ import {
   AiOutlineLike,
 } from 'react-icons/ai'
 import {
+  BiLeftArrowAlt,
   BiImageAlt,
   BiTrash,
   BiHome,
@@ -100,6 +101,7 @@ import { TiFlowChildren } from 'react-icons/ti'
 
 export const icons = {
   arrowDownAlt: BiDownArrowAlt,
+  arrowLeftAlt: BiLeftArrowAlt,
   arrowToRight: BiArrowToRight,
   at: BiAt,
   attach: IoMdAttach,
@@ -129,8 +131,8 @@ export const icons = {
   emojiHappy: HiOutlineEmojiHappy,
   fileBlank: BiFileBlank,
   fillLike: AiFillLike,
-  filterAlt: BiFilterAlt,
   filter: BiFilter,
+  filterAlt: BiFilterAlt,
   flowChildren: TiFlowChildren,
   fullscreenOutline: BiExpand,
   gitPullRequest: BiGitPullRequest,

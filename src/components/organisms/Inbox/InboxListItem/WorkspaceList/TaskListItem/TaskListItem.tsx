@@ -4,7 +4,7 @@ import { TaskDoneTransition } from 'src/components/molecules'
 import { useHover } from 'src/hooks/useHover'
 import { useRouter } from 'src/router'
 import { useTask } from 'src/store/entities/tasks'
-import { ArchiveButton } from './ArchiveButton'
+import { ActionButton } from './ActionButton'
 import { CheckIcon } from './CheckIcon'
 import { Feed } from './Feed'
 import { Like } from './Like'
@@ -67,7 +67,7 @@ export const TaskListItem: React.FC<Props> = memo<Props>((props) => {
           <Feed taskId={taskId} />
         </Stack>
       </Row>
-      <ArchiveButton
+      <ActionButton
         taskId={taskId}
         ml={3}
         visibility={isHovering ? 'visible' : 'hidden'}

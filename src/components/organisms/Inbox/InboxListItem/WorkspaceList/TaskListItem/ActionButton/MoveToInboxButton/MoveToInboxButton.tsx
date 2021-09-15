@@ -6,19 +6,15 @@ type Props = {
   taskId: string
 } & Omit<IconButtonProps, 'aria-label'>
 
-export const ArchiveButton: React.VFC<Props> = memo<Props>((props) => {
+export const MoveToInboxButton: React.VFC<Props> = memo<Props>((props) => {
   const { taskId, ...rest } = props
   const handleClick = useCallback(() => {}, [])
 
   return (
-    <Tooltip
-      hasArrow
-      label="Archive notification"
-      aria-label="A due time description"
-    >
+    <Tooltip hasArrow label="Move to Inbox" aria-label="Move to Inbox">
       <IconButton
-        aria-label="Archive notifications"
-        icon={<Icon icon="trashAlt" color="text.muted" size="xs" />}
+        aria-label="Move to Inbox"
+        icon={<Icon icon="arrowLeftAlt" color="text.muted" size="xs" />}
         variant="ghost"
         {...rest}
         onClick={handleClick}
@@ -27,4 +23,4 @@ export const ArchiveButton: React.VFC<Props> = memo<Props>((props) => {
   )
 })
 
-ArchiveButton.displayName = 'ArchiveButton'
+MoveToInboxButton.displayName = 'MoveToInboxButton'

@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { isInboxDetailURL, useRouter } from 'src/router'
 import { useActivity } from 'src/store/app/inbox/activity/activities'
-import { useTaskActivityTasksTaskIds } from 'src/store/app/inbox/activity/taskActivityTasks'
+import { useMyTaskActivityTasksTaskIds } from 'src/store/app/inbox/activity/myTaskActivityTasks'
 import { useWorkspaceActivityTasksTaskIds } from 'src/store/app/inbox/activity/workspaceActivityTasks'
 import { useActivityTypes } from 'src/store/entities/activityTypes'
 
@@ -19,7 +19,7 @@ export const useInboxList = (props: Props) => {
   const workspaceActivityTasksTaskIdsResult = useWorkspaceActivityTasksTaskIds(
     activity.id,
   )
-  const taskActivityTasksTaskIdsResult = useTaskActivityTasksTaskIds(
+  const taskActivityTasksTaskIdsResult = useMyTaskActivityTasksTaskIds(
     activity.id,
   )
 

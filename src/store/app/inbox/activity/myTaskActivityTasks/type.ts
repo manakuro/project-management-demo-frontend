@@ -1,17 +1,17 @@
 import { TaskResponse } from 'src/store/entities/tasks'
 
-export type TaskActivityTasksResponse = {
+export type MyTaskActivityTasksResponse = {
   id: string
-  taskActivityId: string
+  myTaskActivityId: string
   taskId: string
   task: TaskResponse
   createdAt: string
   updatedAt: string
 }
 
-export type TaskActivityTask = {
+export type MyTaskActivityTask = {
   id: string
-  taskActivityId: string
+  myTaskActivityId: string
   taskId: string
   createdAt: string
   updatedAt: string

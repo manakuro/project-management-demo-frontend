@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react'
 import {
   useInboxListItem,
   useWorkspaceListTaskIds,
-  useTaskListTaskIds,
+  useMyTaskListTaskIds,
 } from 'src/components/organisms/Inbox'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { isInboxDetailURL, useRouter } from 'src/router'
@@ -19,7 +19,7 @@ export const useInboxList = (props: Props) => {
   const { listItem } = useInboxListItem(listItemId || '')
   const { isWorkspaceType, isTaskType } = useActivityTypes()
   const workspaceListTaskIdsResult = useWorkspaceListTaskIds(listItem.id)
-  const taskListTaskIdsResult = useTaskListTaskIds(listItem.id)
+  const myTaskListTaskIdsResult = useMyTaskListTaskIds(listItem.id)
 
   useEffect(() => {
     if (isInboxDetailURL(router)) return
@@ -29,7 +29,7 @@ export const useInboxList = (props: Props) => {
       setId(workspaceListTaskIdsResult.taskIds[0])
     }
     if (isTaskType(listItem.type)) {
-      setId(taskListTaskIdsResult.taskIds[0])
+      setId(myTaskListTaskIdsResult.taskIds[0])
     }
   }, [
     listItemId,
@@ -38,7 +38,7 @@ export const useInboxList = (props: Props) => {
     isWorkspaceType,
     router,
     setId,
-    taskListTaskIdsResult.taskIds,
+    myTaskListTaskIdsResult.taskIds,
     workspaceListTaskIdsResult.taskIds,
   ])
 }

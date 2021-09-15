@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { useRouter } from 'src/router'
-import { useTaskActivityTasksTaskIds } from 'src/store/app/inbox/activity/taskActivityTasks'
+import { useMyTaskActivityTasksTaskIds } from 'src/store/app/inbox/activity/myTaskActivityTasks'
 
 type Props = FlexProps & {
   taskActivityId: string
@@ -9,7 +9,7 @@ type Props = FlexProps & {
 
 export const ClickHandler: React.FC<Props> = memo<Props>((props) => {
   const { taskActivityId } = props
-  const { taskIds } = useTaskActivityTasksTaskIds(taskActivityId)
+  const { taskIds } = useMyTaskActivityTasksTaskIds(taskActivityId)
   const taskId = useMemo(() => taskIds[0], [taskIds])
   const { navigateToInboxDetail } = useRouter()
 

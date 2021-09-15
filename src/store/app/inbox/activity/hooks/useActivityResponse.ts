@@ -1,8 +1,8 @@
 import { useRecoilCallback } from 'recoil'
 import { useActivitiesResponse } from '../activities'
 import { useInboxListStatusResponse } from '../inboxListStatus'
-import { useTaskActivitiesResponse } from '../taskActivities'
-import { useTaskActivityTasksResponse } from '../taskActivityTasks'
+import { useMyTaskActivitiesResponse } from '../myTaskActivities'
+import { useMyTaskActivityTasksResponse } from '../myTaskActivityTasks'
 import { ActivityResponse } from '../type'
 import { useWorkspaceActivitiesResponse } from '../workspaceActivities'
 import { useWorkspaceActivityTasksResponse } from '../workspaceActivityTasks'
@@ -11,8 +11,8 @@ export const useActivityResponse = () => {
   const { setActivities } = useActivitiesResponse()
   const { setWorkspaceActivities } = useWorkspaceActivitiesResponse()
   const { setWorkspaceActivityTasks } = useWorkspaceActivityTasksResponse()
-  const { setTaskActivities } = useTaskActivitiesResponse()
-  const { setTaskActivityTasks } = useTaskActivityTasksResponse()
+  const { setMyTaskActivities } = useMyTaskActivitiesResponse()
+  const { setMyTaskActivityTasks } = useMyTaskActivityTasksResponse()
   const { setInboxListStatus } = useInboxListStatusResponse()
 
   const setActivity = useRecoilCallback(
@@ -22,15 +22,15 @@ export const useActivityResponse = () => {
       setWorkspaceActivities(data)
       setWorkspaceActivityTasks(data)
 
-      setTaskActivities(data)
-      setTaskActivityTasks(data)
+      setMyTaskActivities(data)
+      setMyTaskActivityTasks(data)
 
       setInboxListStatus(data)
     },
     [
       setActivities,
-      setTaskActivities,
-      setTaskActivityTasks,
+      setMyTaskActivities,
+      setMyTaskActivityTasks,
       setWorkspaceActivities,
       setWorkspaceActivityTasks,
       setInboxListStatus,

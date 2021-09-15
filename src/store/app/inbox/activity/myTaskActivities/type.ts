@@ -1,16 +1,16 @@
 import { ACTIVITY_TYPE_TASK } from 'src/store/entities/activityTypes'
-import { TaskActivityTasksResponse } from '../taskActivityTasks'
+import { MyTaskActivityTasksResponse } from '../myTaskActivityTasks'
 
-export type TaskActivityResponse = {
+export type MyTaskActivityResponse = {
   id: string
   activityType: typeof ACTIVITY_TYPE_TASK
-  taskActivityTasks: TaskActivityTasksResponse[]
+  myTaskActivityTasks: MyTaskActivityTasksResponse[]
   teammateId: string
   createdAt: string
   updatedAt: string
 }
 
-export type TaskActivity = {
+export type MyTaskActivity = {
   id: string
   activityType: typeof ACTIVITY_TYPE_TASK
   teammateId: string

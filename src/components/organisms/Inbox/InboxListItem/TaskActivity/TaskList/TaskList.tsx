@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useTaskActivityTasksTaskIds } from 'src/store/app/inbox/activity/taskActivityTasks'
+import { useMyTaskActivityTasksTaskIds } from 'src/store/app/inbox/activity/myTaskActivityTasks'
 import { TaskListItem } from '../TaskListItem'
 
 type Props = FlexProps & {
@@ -9,7 +9,7 @@ type Props = FlexProps & {
 
 export const TaskList: React.FC<Props> = memo<Props>((props) => {
   const { taskActivityId } = props
-  const { taskIds } = useTaskActivityTasksTaskIds(taskActivityId)
+  const { taskIds } = useMyTaskActivityTasksTaskIds(taskActivityId)
 
   return (
     <Flex flex={1} mt={4} flexDirection="column">

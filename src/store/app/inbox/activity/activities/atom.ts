@@ -35,7 +35,6 @@ type ActivityIdsSortByUpdatedAt = {
   pastSevenDays: string[]
   earlier: string[]
 }
-export type ActivityIdsSortByUpdatedAtKeys = keyof ActivityIdsSortByUpdatedAt
 export const activityIdsSortByUpdatedAtSelector =
   selector<ActivityIdsSortByUpdatedAt>({
     key: key('activityIdsSortByUpdatedAtSelector'),

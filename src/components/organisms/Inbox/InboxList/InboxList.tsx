@@ -1,39 +1,39 @@
 import React, { memo, useMemo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import {
-  ActivityIdsSortByUpdatedAtKeys,
-  useActivityIdsSortByUpdatedAt,
-} from 'src/store/app/inbox/activity/activities'
+  useInboxListItemIds,
+  UseInboxListItemIdsKeys,
+} from 'src/components/organisms/Inbox'
 import { InboxListSection } from '../InboxListSection'
 import { useInboxList } from './useInboxList'
 
 type Props = FlexProps
 
 export const InboxList: React.FC<Props> = memo<Props>((props) => {
-  const { activityIds } = useActivityIdsSortByUpdatedAt()
-  const firstActivityId = useMemo(() => {
+  const { listItemIds } = useInboxListItemIds()
+  const firstListItemId = useMemo(() => {
     const key =
-      (Object.keys(activityIds) as ActivityIdsSortByUpdatedAtKeys[]).find(
-        (k) => !!activityIds[k].length,
+      (Object.keys(listItemIds) as UseInboxListItemIdsKeys[]).find(
+        (k) => !!listItemIds[k].length,
       ) || 'today'
-    return activityIds[key][0]
-  }, [activityIds])
+    return listItemIds[key][0]
+  }, [listItemIds])
 
-  useInboxList({ activityId: firstActivityId })
+  useInboxList({ listItemId: firstListItemId })
 
   return (
-    <Flex {...props} flexDirection="column" flex={1} maxWidth="full">
-      <InboxListSection activityIds={activityIds.today} sectionText="Today" />
+    <Flex flexDirection="column" flex={1} maxWidth="full" {...props}>
+      <InboxListSection listItemIds={listItemIds.today} sectionText="Today" />
       <InboxListSection
-        activityIds={activityIds.yesterday}
+        listItemIds={listItemIds.yesterday}
         sectionText="Yesterday"
       />
       <InboxListSection
-        activityIds={activityIds.pastSevenDays}
+        listItemIds={listItemIds.pastSevenDays}
         sectionText="Past 7 days"
       />
       <InboxListSection
-        activityIds={activityIds.earlier}
+        listItemIds={listItemIds.earlier}
         sectionText="Earlier"
       />
     </Flex>

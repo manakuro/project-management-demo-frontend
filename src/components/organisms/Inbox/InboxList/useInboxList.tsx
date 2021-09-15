@@ -1,46 +1,44 @@
 import { useEffect, useMemo } from 'react'
+import {
+  useInboxListItem,
+  useWorkspaceListTaskIds,
+  useTaskListTaskIds,
+} from 'src/components/organisms/Inbox'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { isInboxDetailURL, useRouter } from 'src/router'
-import { useActivity } from 'src/store/app/inbox/activity/activities'
-import { useTaskActivityTasksTaskIds } from 'src/store/app/inbox/activity/taskActivityTasks'
-import { useWorkspaceActivityTasksTaskIds } from 'src/store/app/inbox/activity/workspaceActivityTasks'
 import { useActivityTypes } from 'src/store/entities/activityTypes'
 
 type Props = {
-  activityId?: string
+  listItemId?: string
 }
 
 export const useInboxList = (props: Props) => {
-  const activityId = useMemo(() => props.activityId, [props.activityId])
+  const listItemId = useMemo(() => props.listItemId, [props.listItemId])
   const { router } = useRouter()
   const { setId } = useTaskDetail()
-  const { activity } = useActivity(activityId || '')
+  const { listItem } = useInboxListItem(listItemId || '')
   const { isWorkspaceType, isTaskType } = useActivityTypes()
-  const workspaceActivityTasksTaskIdsResult = useWorkspaceActivityTasksTaskIds(
-    activity.id,
-  )
-  const taskActivityTasksTaskIdsResult = useTaskActivityTasksTaskIds(
-    activity.id,
-  )
+  const workspaceListTaskIdsResult = useWorkspaceListTaskIds(listItem.id)
+  const taskListTaskIdsResult = useTaskListTaskIds(listItem.id)
 
   useEffect(() => {
     if (isInboxDetailURL(router)) return
-    if (!activityId) return
+    if (!listItemId) return
 
-    if (isWorkspaceType(activity.type)) {
-      setId(workspaceActivityTasksTaskIdsResult.taskIds[0])
+    if (isWorkspaceType(listItem.type)) {
+      setId(workspaceListTaskIdsResult.taskIds[0])
     }
-    if (isTaskType(activity.type)) {
-      setId(taskActivityTasksTaskIdsResult.taskIds[0])
+    if (isTaskType(listItem.type)) {
+      setId(taskListTaskIdsResult.taskIds[0])
     }
   }, [
-    activityId,
-    activity.type,
+    listItemId,
+    listItem.type,
     isTaskType,
     isWorkspaceType,
     router,
     setId,
-    taskActivityTasksTaskIdsResult.taskIds,
-    workspaceActivityTasksTaskIdsResult.taskIds,
+    taskListTaskIdsResult.taskIds,
+    workspaceListTaskIdsResult.taskIds,
   ])
 }

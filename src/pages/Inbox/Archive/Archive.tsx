@@ -7,9 +7,6 @@ import {
   InboxHeader,
   InboxList,
   InboxListContent,
-  InboxHeaderRight,
-  MoreActionButton,
-  FilterButton,
 } from 'src/components/organisms/Inbox'
 import { useInboxTaskDetail } from 'src/components/organisms/Inbox'
 import { TaskDetailSide } from 'src/components/organisms/TaskDetails'
@@ -38,26 +35,19 @@ const Component: React.VFC = memo(() => {
   if (loading) return <SkeletonArchive />
 
   return (
-    <>
-      <Inbox>
-        <InboxLeft>
-          <InboxHeader>
-            <InboxHeaderRight ml="auto">
-              <FilterButton />
-              <MoreActionButton />
-            </InboxHeaderRight>
-          </InboxHeader>
-          <InboxListContent>
-            <Flex>
-              <InboxList />
-            </Flex>
-          </InboxListContent>
-        </InboxLeft>
-        <InboxRight>
-          <TaskDetailSide />
-        </InboxRight>
-      </Inbox>
-    </>
+    <Inbox isArchive>
+      <InboxLeft>
+        <InboxHeader />
+        <InboxListContent>
+          <Flex>
+            <InboxList />
+          </Flex>
+        </InboxListContent>
+      </InboxLeft>
+      <InboxRight>
+        <TaskDetailSide />
+      </InboxRight>
+    </Inbox>
   )
 })
-Archive.displayName = 'Activity'
+Archive.displayName = 'Archive'

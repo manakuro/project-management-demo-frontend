@@ -1,14 +1,15 @@
 import React, { memo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { forwardRef } from 'src/shared/chakra'
-import { Provider } from './Provider'
+import { InboxProviderProps, Provider } from './Provider'
 
-type Props = FlexProps
+type Props = FlexProps & InboxProviderProps
 
-export const Inbox: React.FC<Props> = memo((props) => {
+export const Inbox: React.FC<Props> = memo<Props>((props) => {
+  const { isActivity, isArchive, ...rest } = props
   return (
-    <Provider>
-      <Component {...props} />
+    <Provider isActivity={isActivity} isArchive={isArchive}>
+      <Component {...rest} />
     </Provider>
   )
 })

@@ -38,26 +38,24 @@ const Component: React.VFC = memo(() => {
   if (loading) return <SkeletonActivity />
 
   return (
-    <>
-      <Inbox>
-        <InboxLeft>
-          <InboxHeader>
-            <InboxHeaderRight ml="auto">
-              <FilterButton />
-              <MoreActionButton />
-            </InboxHeaderRight>
-          </InboxHeader>
-          <InboxListContent>
-            <Flex>
-              <InboxList />
-            </Flex>
-          </InboxListContent>
-        </InboxLeft>
-        <InboxRight>
-          <TaskDetailSide />
-        </InboxRight>
-      </Inbox>
-    </>
+    <Inbox isActivity>
+      <InboxLeft>
+        <InboxHeader>
+          <InboxHeaderRight>
+            <FilterButton />
+            <MoreActionButton />
+          </InboxHeaderRight>
+        </InboxHeader>
+        <InboxListContent>
+          <Flex>
+            <InboxList />
+          </Flex>
+        </InboxListContent>
+      </InboxLeft>
+      <InboxRight>
+        <TaskDetailSide />
+      </InboxRight>
+    </Inbox>
   )
 })
 Activity.displayName = 'Activity'

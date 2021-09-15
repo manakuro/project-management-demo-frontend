@@ -236,15 +236,15 @@ const fetch = async (): Promise<ArchiveResponse> => {
             updatedAt: new Date(dateFns.subDays(new Date(), 5)).toISOString(),
           },
         ],
-        archivedTaskActivities: [
+        archivedMyTaskActivities: [
           {
             id: '3',
             activityType: 1,
             teammateId: '1',
-            taskActivityTasks: [
+            archivedMyTaskActivityTasks: [
               {
                 id: '1',
-                taskActivityId: '3',
+                archivedMyTaskActivityId: '3',
                 taskId: '1',
                 task: {
                   id: '1',
@@ -292,7 +292,7 @@ const fetch = async (): Promise<ArchiveResponse> => {
               },
               {
                 id: '2',
-                taskActivityId: '3',
+                archivedMyTaskActivityId: '3',
                 taskId: '2',
                 task: {
                   id: '2',
@@ -337,10 +337,10 @@ const fetch = async (): Promise<ArchiveResponse> => {
             id: '4',
             activityType: 1,
             teammateId: '1',
-            taskActivityTasks: [
+            archivedMyTaskActivityTasks: [
               {
                 id: '3',
-                taskActivityId: '4',
+                archivedMyTaskActivityId: '4',
                 taskId: '3',
                 task: {
                   id: '3',
@@ -382,10 +382,10 @@ const fetch = async (): Promise<ArchiveResponse> => {
             id: '5',
             activityType: 1,
             teammateId: '1',
-            taskActivityTasks: [
+            archivedMyTaskActivityTasks: [
               {
                 id: '4',
-                taskActivityId: '5',
+                archivedMyTaskActivityId: '5',
                 taskId: '3',
                 task: {
                   id: '3',
@@ -427,10 +427,10 @@ const fetch = async (): Promise<ArchiveResponse> => {
             id: '6',
             activityType: 1,
             teammateId: '1',
-            taskActivityTasks: [
+            archivedMyTaskActivityTasks: [
               {
                 id: '5',
-                taskActivityId: '6',
+                archivedMyTaskActivityId: '6',
                 taskId: '3',
                 task: {
                   id: '3',

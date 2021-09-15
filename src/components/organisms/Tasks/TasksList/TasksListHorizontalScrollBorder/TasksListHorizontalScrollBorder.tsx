@@ -5,6 +5,7 @@ import {
   useTasksListContentSticky,
   useTasksListContentHorizontalScroll,
 } from 'src/components/organisms/Tasks'
+import { useMountedRef } from 'src/hooks'
 import { ChakraProps } from 'src/shared/chakra'
 import { useTaskColumnByType } from 'src/store/entities/taskColumns'
 import { TASK_COLUMN_TYPE_FIELD_NAME } from 'src/store/entities/taskColumns/types'
@@ -24,15 +25,23 @@ export const TasksListHorizontalScrollBorder: React.FC<Props> = memo<Props>(
       if (isScrolling) return { shadow: 'md' }
       return {}
     }, [isScrolling])
+    const { mountedRef } = useMountedRef()
 
     // Use setTimeout to prevent border line from flashing  when navigation expands
     useEffect(() => {
       setOpacity('0')
+      mountedRef.current = true
 
       setTimeout(() => {
-        setOpacity('1')
+        if (mountedRef.current) {
+          setOpacity('1')
+        }
       }, 100)
-    }, [isExpanded])
+
+      return () => {
+        mountedRef.current = false
+      }
+    }, [isExpanded, mountedRef])
 
     if (!isStickyVertical) return null
 

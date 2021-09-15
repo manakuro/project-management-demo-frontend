@@ -1,15 +1,15 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
+import { useWorkspaceListTaskIds } from 'src/components/organisms/Inbox'
 import { useRouter } from 'src/router'
-import { useWorkspaceActivityTasksTaskIds } from 'src/store/app/inbox/activity/workspaceActivityTasks'
 
 type Props = FlexProps & {
-  workspaceActivityId: string
+  workspaceListId: string
 }
 
 export const ClickHandler: React.FC<Props> = memo<Props>((props) => {
-  const { workspaceActivityId } = props
-  const { taskIds } = useWorkspaceActivityTasksTaskIds(workspaceActivityId)
+  const { workspaceListId } = props
+  const { taskIds } = useWorkspaceListTaskIds(workspaceListId)
   const taskId = useMemo(() => taskIds[0], [taskIds])
   const { navigateToInboxDetail } = useRouter()
 

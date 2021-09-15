@@ -10,21 +10,21 @@ import { TaskList } from './TaskList'
 import { Workspace } from './Workspace'
 
 type Props = FlexProps & {
-  workspaceActivityId: string
+  workspaceListId: string
 }
 
-export const WorkspaceActivity: React.FC<Props> = memo<Props>((props) => {
-  const { workspaceActivityId } = props
-  const { workspaceActivity } = useWorkspaceActivity(workspaceActivityId)
+export const WorkspaceList: React.FC<Props> = memo<Props>((props) => {
+  const { workspaceListId } = props
+  const { workspaceActivity } = useWorkspaceActivity(workspaceListId)
 
   return (
     <Container>
-      <ClickHandler workspaceActivityId={workspaceActivityId}>
+      <ClickHandler workspaceListId={workspaceListId}>
         <Flex py={4} flex={1} flexDirection="column" maxW="inherit">
           <Workspace workspaceId={workspaceActivity.workspaceId} />
           <Project projectId={workspaceActivity.projectId} />
-          <InfoText workspaceActivityId={workspaceActivityId} />
-          <TaskList workspaceActivityId={workspaceActivityId} />
+          <InfoText workspaceListId={workspaceListId} />
+          <TaskList workspaceListId={workspaceListId} />
         </Flex>
       </ClickHandler>
       <ActionButtons />
@@ -32,4 +32,4 @@ export const WorkspaceActivity: React.FC<Props> = memo<Props>((props) => {
   )
 })
 
-WorkspaceActivity.displayName = 'WorkspaceActivity'
+WorkspaceList.displayName = 'WorkspaceActivity'

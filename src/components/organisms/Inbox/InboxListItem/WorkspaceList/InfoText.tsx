@@ -1,16 +1,16 @@
 import React, { memo, useMemo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useWorkspaceActivityTasksTaskIds } from 'src/store/app/inbox/activity/workspaceActivityTasks'
+import { useWorkspaceListTaskIds } from 'src/components/organisms/Inbox'
 import { useCreatedByIdsByTaskIds } from 'src/store/entities/tasks'
 import { useTeammateNamesByTeammateIds } from 'src/store/entities/teammates'
 
 type Props = FlexProps & {
-  workspaceActivityId: string
+  workspaceListId: string
 }
 
 export const InfoText: React.FC<Props> = memo<Props>((props) => {
-  const { workspaceActivityId } = props
-  const { taskIds } = useWorkspaceActivityTasksTaskIds(workspaceActivityId)
+  const { workspaceListId } = props
+  const { taskIds } = useWorkspaceListTaskIds(workspaceListId)
   const { createdByIds } = useCreatedByIdsByTaskIds(taskIds)
   const { teammateNames } = useTeammateNamesByTeammateIds(createdByIds)
   const text = useMemo(() => {

@@ -4,7 +4,7 @@ import { useInboxListItem } from 'src/components/organisms/Inbox'
 import { useActivityTypes } from 'src/store/entities/activityTypes'
 import { Provider } from './Provider'
 import { TaskActivity } from './TaskActivity'
-import { WorkspaceActivity } from './WorkspaceActivity'
+import { WorkspaceList } from './WorkspaceList'
 
 type Props = FlexProps & {
   listItemId: string
@@ -25,7 +25,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
 
   switch (true) {
     case isWorkspaceType(listItem.type):
-      return <WorkspaceActivity workspaceActivityId={listItem.id} />
+      return <WorkspaceList workspaceListId={listItem.id} />
     case isTaskType(listItem.type):
       return <TaskActivity taskActivityId={listItem.id} />
     default:

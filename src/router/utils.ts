@@ -34,10 +34,7 @@ export const convertPathnameObjToPathname = (urlObject: UrlObject): string => {
     .replace(/[[\]]/g, '')
     .split('/')
     .filter((t) => !!t)
-    .map((t) => {
-      if ((query as any)[t]) return (query as any)[t]
-      return t
-    })
+    .map((t) => ((query as any)[t] ? (query as any)[t] : t))
     .join('/')
 
   return `/${url}`

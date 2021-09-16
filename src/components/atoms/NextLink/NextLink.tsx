@@ -18,11 +18,7 @@ export const NextLink: React.FC<Props> = memo<Props>((props) => {
       : props.href
   }, [props.href])
 
-  const route = useMemo(() => {
-    return routes.find((r) => {
-      return r.regex.test(href)
-    })
-  }, [href])
+  const route = useMemo(() => routes.find((r) => r.regex.test(href)), [href])
 
   if (!route) {
     console.error('There is no link: ', props.href)

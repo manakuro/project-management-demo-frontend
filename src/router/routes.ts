@@ -65,3 +65,7 @@ export const routes = [...staticRoutes, ...dynamicRoutes] as const
 export type StaticRoutes = ReturnType<
   typeof staticRoutes[number]['href']['pathname']
 >
+
+export type DynamicRoutes = ReturnType<
+  typeof dynamicRoutes[number]['href']['pathnameObj']
+>

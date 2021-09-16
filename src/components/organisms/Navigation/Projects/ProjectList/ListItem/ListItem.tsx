@@ -27,7 +27,7 @@ export const ListItem: React.VFC<Props> = memo((props) => {
 
   return (
     <Flex p={2} px={PADDING_X} _hover={_hover} alignItems="center">
-      <NextLink href={ROUTE_PROJECTS_LIST.href.pathname(projectId)} passHref>
+      <NextLink href={ROUTE_PROJECTS_LIST.href.pathnameObj(projectId)} passHref>
         <Link w="full">
           {isExpanded ? (
             <Flex alignItems="center">

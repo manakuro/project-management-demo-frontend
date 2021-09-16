@@ -11,7 +11,7 @@ import {
 } from 'src/components/organisms/Inbox'
 import { useInboxTaskDetail } from 'src/components/organisms/Inbox'
 import { TaskDetailSide } from 'src/components/organisms/TaskDetails'
-import { useInboxArchiveQuery } from 'src/hooks/queries/useInboxArchiveQuery'
+import { useInboxArchivePageQuery } from 'src/hooks/queries/app'
 import { getInboxDetailId, isInboxDetailURL } from 'src/router'
 import { useInboxPageContext } from '../Provider'
 
@@ -21,7 +21,7 @@ export const Archive: React.VFC = memo(() => {
 
 const Component: React.VFC = memo(() => {
   const { loadingTabContent } = useInboxPageContext()
-  const { loading: loadingQuery } = useInboxArchiveQuery()
+  const { loading: loadingQuery } = useInboxArchivePageQuery()
   const loading = useMemo(
     () => loadingTabContent || loadingQuery,
     [loadingTabContent, loadingQuery],

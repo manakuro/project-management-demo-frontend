@@ -1,9 +1,9 @@
 import React, { memo, useEffect } from 'react'
-import { useHomeQuery } from 'src/hooks/queries/useHomeQuery'
+import { useHomePageQuery } from 'src/hooks/queries/app'
 import { Component } from './Component'
 
 export const Container: React.FC = memo(() => {
-  const { refetch, loading } = useHomeQuery({ lazy: true })
+  const { refetch, loading } = useHomePageQuery({ lazy: true })
 
   useEffect(() => {
     refetch()

@@ -1,5 +1,5 @@
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
-import { useTaskDetailQuery } from 'src/hooks/queries/useTaskDetailQuery'
+import { useTaskDetailPageQuery } from 'src/hooks/queries/app'
 
 const key = (str: string) =>
   `src/components/organisms/TaskDetail/useTaskDetail/${str}`
@@ -23,7 +23,7 @@ export const useTaskDetail = () => {
   const [id, setId] = useRecoilState(idState)
   const [loading, setLoading] = useRecoilState(loadingState)
   const [scrollId, setScrollId] = useRecoilState(scrollIdState)
-  const { refetch } = useTaskDetailQuery({ lazy: true })
+  const { refetch } = useTaskDetailPageQuery({ lazy: true })
   const resetScrollId = useResetRecoilState(scrollIdState)
   const resetId = useResetRecoilState(idState)
 

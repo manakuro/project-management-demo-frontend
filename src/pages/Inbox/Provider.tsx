@@ -1,27 +1,15 @@
-import React, { SetStateAction, useEffect, useState } from 'react'
+import React, { SetStateAction, useState } from 'react'
 import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
-  loadingQuery: boolean
   loadingTabContent: boolean
   setLoadingTabContent: React.Dispatch<SetStateAction<boolean>>
 }
 
-type Props = {
-  loading: boolean
-}
-
-const useValue = (props: Props): ContextProps => {
-  const [loadingQuery, setLoadingQuery] = useState(props.loading)
-  const [loadingTabContent, setLoadingTabContent] = useState(props.loading)
-
-  useEffect(() => {
-    setLoadingQuery(props.loading)
-    setLoadingTabContent(props.loading)
-  }, [props.loading])
+const useValue = (): ContextProps => {
+  const [loadingTabContent, setLoadingTabContent] = useState(false)
 
   return {
-    loadingQuery,
     loadingTabContent,
     setLoadingTabContent,
   }

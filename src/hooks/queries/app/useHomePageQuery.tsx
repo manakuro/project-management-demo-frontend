@@ -6,7 +6,7 @@ type Props = {
   lazy?: boolean
 }
 
-export const useHomeQuery = (props?: Props) => {
+export const useHomePageQuery = (props?: Props) => {
   const [loading, setLoading] = useState(true)
   const { setHome } = useHomeResponse()
 

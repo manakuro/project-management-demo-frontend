@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { GetLayout } from 'src/@types/next'
 import { PageLoader } from 'src/components/molecules'
 import { LayoutDefault } from 'src/components/organisms/Layout'
-import { useMyTasksQuery, useTabStatusForMyTasksQuery } from 'src/hooks/queries'
+import { useMyTasksPageQuery } from 'src/hooks/queries/app'
+import { useTabStatusForMyTasksQuery } from 'src/hooks/queries/entities'
 import { Component } from './Component'
 
 export const Container: React.FC & GetLayout = () => {
-  const { refetch, loading } = useMyTasksQuery({ lazy: true })
+  const { refetch, loading } = useMyTasksPageQuery({ lazy: true })
 
   useEffect(() => {
     refetch()

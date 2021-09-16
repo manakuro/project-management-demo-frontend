@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from 'react'
-import { useProjectsPageQuery } from 'src/hooks/queries'
+import { useProjectsPageQuery } from 'src/hooks/queries/app'
 import { Component } from './Component'
 
 export const Container: React.FC = memo(() => {

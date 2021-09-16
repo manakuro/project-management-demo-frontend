@@ -10,7 +10,7 @@ type Props = {
   lazy?: boolean
 }
 
-export const useMyTasksQuery = (props?: Props) => {
+export const useMyTasksPageQuery = (props?: Props) => {
   const [loading, setLoading] = useState(true)
   const { setMyTasks } = useMyTasksResponse()
   const { mountedRef } = useMountedRef()

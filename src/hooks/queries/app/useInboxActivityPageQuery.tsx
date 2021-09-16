@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from 'react'
 import { dateFns } from 'src/shared/dateFns'
-import { useArchiveResponse } from 'src/store/app/inbox/archive'
-import { ArchiveResponse } from 'src/store/app/inbox/archive'
+import { useActivityResponse } from 'src/store/app/inbox/activity'
+import { ActivityResponse } from 'src/store/app/inbox/activity/'
 
 type Props = {
   lazy?: boolean
 }
 
-export const useInboxArchiveQuery = (props?: Props) => {
+export const useInboxActivityPageQuery = (props?: Props) => {
   const [loading, setLoading] = useState(true)
-  const { setArchive } = useArchiveResponse()
+  const { setActivity } = useActivityResponse()
 
   useEffect(() => {
     ;(async () => {
@@ -17,19 +17,19 @@ export const useInboxArchiveQuery = (props?: Props) => {
 
       setLoading(true)
       const res = await fetch()
-      await setArchive(res)
+      await setActivity(res)
       setLoading(false)
     })()
-  }, [props?.lazy, setArchive])
+  }, [props?.lazy, setActivity])
 
   const refetch = useCallback(() => {
     ;(async () => {
       setLoading(true)
       const res = await fetch()
-      await setArchive(res)
+      await setActivity(res)
       setLoading(false)
     })()
-  }, [setArchive])
+  }, [setActivity])
 
   return {
     refetch,
@@ -37,11 +37,11 @@ export const useInboxArchiveQuery = (props?: Props) => {
   }
 }
 
-const fetch = async (): Promise<ArchiveResponse> => {
-  return new Promise<ArchiveResponse>((resolve) => {
+const fetch = async (): Promise<ActivityResponse> => {
+  return new Promise<ActivityResponse>((resolve) => {
     setTimeout(() => {
       resolve({
-        archives: [
+        activities: [
           {
             id: '1',
             type: 2,
@@ -73,7 +73,7 @@ const fetch = async (): Promise<ArchiveResponse> => {
             updatedAt: new Date(new Date()).toISOString(),
           },
         ],
-        archivedWorkspaceActivities: [
+        workspaceActivities: [
           {
             id: '1',
             activityType: 2,
@@ -88,10 +88,10 @@ const fetch = async (): Promise<ArchiveResponse> => {
             },
             projectId: '1',
             teammateId: '1',
-            archivedWorkspaceActivityTasks: [
+            workspaceActivityTasks: [
               {
                 id: '1',
-                archivedWorkspaceActivityId: '1',
+                workspaceActivityId: '1',
                 taskId: '1',
                 task: {
                   id: '1',
@@ -139,7 +139,7 @@ const fetch = async (): Promise<ArchiveResponse> => {
               },
               {
                 id: '2',
-                archivedWorkspaceActivityId: '1',
+                workspaceActivityId: '1',
                 taskId: '2',
                 task: {
                   id: '2',
@@ -194,10 +194,10 @@ const fetch = async (): Promise<ArchiveResponse> => {
             },
             projectId: '2',
             teammateId: '1',
-            archivedWorkspaceActivityTasks: [
+            workspaceActivityTasks: [
               {
                 id: '3',
-                archivedWorkspaceActivityId: '2',
+                workspaceActivityId: '2',
                 taskId: '3',
                 task: {
                   id: '3',
@@ -236,15 +236,15 @@ const fetch = async (): Promise<ArchiveResponse> => {
             updatedAt: new Date(dateFns.subDays(new Date(), 5)).toISOString(),
           },
         ],
-        archivedMyTaskActivities: [
+        myTaskActivities: [
           {
             id: '3',
             activityType: 1,
             teammateId: '1',
-            archivedMyTaskActivityTasks: [
+            myTaskActivityTasks: [
               {
                 id: '1',
-                archivedMyTaskActivityId: '3',
+                myTaskActivityId: '3',
                 taskId: '1',
                 task: {
                   id: '1',
@@ -292,7 +292,7 @@ const fetch = async (): Promise<ArchiveResponse> => {
               },
               {
                 id: '2',
-                archivedMyTaskActivityId: '3',
+                myTaskActivityId: '3',
                 taskId: '2',
                 task: {
                   id: '2',
@@ -337,10 +337,10 @@ const fetch = async (): Promise<ArchiveResponse> => {
             id: '4',
             activityType: 1,
             teammateId: '1',
-            archivedMyTaskActivityTasks: [
+            myTaskActivityTasks: [
               {
                 id: '3',
-                archivedMyTaskActivityId: '4',
+                myTaskActivityId: '4',
                 taskId: '3',
                 task: {
                   id: '3',
@@ -382,10 +382,10 @@ const fetch = async (): Promise<ArchiveResponse> => {
             id: '5',
             activityType: 1,
             teammateId: '1',
-            archivedMyTaskActivityTasks: [
+            myTaskActivityTasks: [
               {
                 id: '4',
-                archivedMyTaskActivityId: '5',
+                myTaskActivityId: '5',
                 taskId: '3',
                 task: {
                   id: '3',
@@ -427,10 +427,10 @@ const fetch = async (): Promise<ArchiveResponse> => {
             id: '6',
             activityType: 1,
             teammateId: '1',
-            archivedMyTaskActivityTasks: [
+            myTaskActivityTasks: [
               {
                 id: '5',
-                archivedMyTaskActivityId: '6',
+                myTaskActivityId: '6',
                 taskId: '3',
                 task: {
                   id: '3',
@@ -469,6 +469,13 @@ const fetch = async (): Promise<ArchiveResponse> => {
             updatedAt: new Date(dateFns.subDays(new Date(), 5)).toISOString(),
           },
         ],
+        inboxListStatus: {
+          id: '1',
+          teammateId: '1',
+          filterStatus: 1,
+          createdAt: '',
+          updatedAt: '',
+        },
       })
     }, 250)
   })

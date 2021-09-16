@@ -9,25 +9,23 @@ import { Archive } from './Archive'
 import { Header } from './Header'
 import { Provider, useInboxPageContext } from './Provider'
 
-type Props = {
-  loading: boolean
-}
+type Props = {}
 
 const ACTIVITY_INDEX = 0 as const
 const ARCHIVE_INDEX = 1 as const
 
 type Index = typeof ACTIVITY_INDEX | typeof ARCHIVE_INDEX
 
-export const Component: React.VFC<Props> = memo<Props>((props) => {
+export const Component: React.VFC<Props> = memo<Props>(() => {
   return (
-    <Provider loading={props.loading}>
+    <Provider>
       <WrappedComponent />
     </Provider>
   )
 })
 
 const WrappedComponent: React.VFC = memo(() => {
-  const { loadingQuery, setLoadingTabContent } = useInboxPageContext()
+  const { setLoadingTabContent } = useInboxPageContext()
   const [tabIndex, setTabIndex] = React.useState<Index>(ACTIVITY_INDEX)
   const { navigateToInbox } = useRouter()
 
@@ -70,7 +68,7 @@ const WrappedComponent: React.VFC = memo(() => {
       <Flex data-testid="Inbox" flex={1} flexDirection="column">
         <Head title="inbox" />
         <MainHeader>
-          <Header loading={loadingQuery} />
+          <Header />
         </MainHeader>
         <Flex flex={1}>
           <TabPanels>

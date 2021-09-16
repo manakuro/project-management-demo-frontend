@@ -7,7 +7,7 @@ type Props = {
   lazy?: boolean
 }
 
-export const useMyTasksFilesQuery = (props?: Props) => {
+export const useMyTasksFilesPageQuery = (props?: Props) => {
   const [loading, setLoading] = useState(true)
   const { setMyTasksAttachments } = useMyTasksFilesResponse()
   const { mountedRef } = useMountedRef()

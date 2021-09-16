@@ -7,7 +7,7 @@ import {
   useFeedLikesQuery,
   useTaskLikesQuery,
   useTabStatusForMyTasksQuery,
-} from 'src/hooks/queries'
+} from 'src/hooks/queries/entities'
 
 export const BeforeAppMount: React.FC = (props) => {
   const projectQueryResult = useProjectsQuery({ lazy: true })

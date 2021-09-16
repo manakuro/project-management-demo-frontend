@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { useMountedRef } from 'src/hooks'
 import { useMyTasksFilesResponse } from 'src/store/app/myTasksFiles'
 import { MyTaskFileResponse } from 'src/store/app/myTasksFiles/type'
 
@@ -9,6 +10,7 @@ type Props = {
 export const useMyTasksFilesQuery = (props?: Props) => {
   const [loading, setLoading] = useState(true)
   const { setMyTasksAttachments } = useMyTasksFilesResponse()
+  const { mountedRef } = useMountedRef()
 
   useEffect(() => {
     ;(async () => {
@@ -16,19 +18,23 @@ export const useMyTasksFilesQuery = (props?: Props) => {
 
       setLoading(true)
       const res = await fetchTasks()
-      await setMyTasksAttachments(res)
-      setLoading(false)
+      if (mountedRef.current) {
+        await setMyTasksAttachments(res)
+        setLoading(false)
+      }
     })()
-  }, [props?.lazy, setMyTasksAttachments])
+  }, [props?.lazy, setMyTasksAttachments, mountedRef])
 
-  const refetch = useCallback(() => {
-    ;(async () => {
-      setLoading(true)
-      const res = await fetchTasks()
+  const refetch = useCallback(async () => {
+    setLoading(true)
+    const res = await fetchTasks()
+    if (mountedRef.current) {
       await setMyTasksAttachments(res)
       setLoading(false)
-    })()
-  }, [setMyTasksAttachments])
+    }
+
+    return res
+  }, [mountedRef, setMyTasksAttachments])
 
   return {
     refetch,

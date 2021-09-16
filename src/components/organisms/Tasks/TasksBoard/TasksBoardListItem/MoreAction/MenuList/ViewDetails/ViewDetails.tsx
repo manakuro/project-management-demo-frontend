@@ -2,7 +2,7 @@ import React, { memo, useCallback, useMemo } from 'react'
 import { Icon } from 'src/components/atoms'
 import { MenuItem } from 'src/components/organisms/Menu'
 import { useTaskDetailDrawer } from 'src/components/organisms/TaskDetails'
-import { isTaskDetailURLById, useRouter } from 'src/router'
+import { isMyTasksDetailURLById, useRouter } from 'src/router'
 
 type Props = {
   onMouseEnter: () => void
@@ -14,7 +14,7 @@ export const ViewDetails: React.FC<Props> = memo((props) => {
   const { onClose } = useTaskDetailDrawer()
   const { navigateToMyTasksBoard, navigateToTaskDetail, router } = useRouter()
   const isOpen = useMemo(
-    () => isTaskDetailURLById(router, props.taskId),
+    () => isMyTasksDetailURLById(router, props.taskId),
     [props.taskId, router],
   )
 

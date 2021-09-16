@@ -16,7 +16,7 @@ export const Reports: React.VFC<Props> = () => {
             name: "Tasks I've changed",
             href: 'reports/tasks-ive-changed',
             icon: 'idCard',
-            pathname: '/reports/tasks-ive-changed',
+            pathname: '/',
           },
         ],
       }}

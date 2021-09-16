@@ -1,16 +1,22 @@
 import Link, { LinkProps } from 'next/link'
-import React from 'react'
-import { Routes, routes } from 'src/router'
+import React, { memo, useMemo } from 'react'
+import { StaticRoutes, routes } from 'src/router'
 
 type Props = Omit<LinkProps, 'href'> & {
-  href: Routes
+  href: StaticRoutes | string
 }
 
-export const NextLink: React.FC<Props> = (props) => {
-  const route = routes.find((r) => r.name === props.href)
+export const NextLink: React.FC<Props> = memo<Props>((props) => {
+  const route = useMemo(() => {
+    return routes.find((r) => {
+      return r.regex.test(props.href)
+    })
+  }, [props.href])
+
   if (!route) {
-    console.warn('There is no link: ', props.href)
+    console.error('There is no link: ', props.href)
   }
 
-  return <Link {...props} href={route?.href ?? '/'} />
-}
+  return <Link {...props} href={props.href} />
+})
+NextLink.displayName = 'NextLink'

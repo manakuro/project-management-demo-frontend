@@ -1,6 +1,7 @@
 export const ROUTE_INBOX = {
-  name: 'inbox',
+  regex: /^\/inbox\/?$/iu,
   href: {
-    pathname: '/inbox',
+    pathname: () => '/inbox' as const,
   },
+  query: 'inbox',
 } as const

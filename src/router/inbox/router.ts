@@ -9,7 +9,7 @@ export const useRouterInbox = () => {
 
   const navigateToInbox = useCallback(
     async (options?: Options) => {
-      await push(ROUTE_INBOX.href.pathname, undefined, {
+      await push(ROUTE_INBOX.href.pathname(), undefined, {
         shallow: true,
         ...options,
       })
@@ -19,7 +19,7 @@ export const useRouterInbox = () => {
 
   const navigateToInboxDetail = useCallback(
     async (id: string, options?: Options) => {
-      await push(`${ROUTE_INBOX.href.pathname}/${id}`, undefined, {
+      await push(`${ROUTE_INBOX.href.pathname()}/${id}`, undefined, {
         shallow: true,
         ...options,
       })

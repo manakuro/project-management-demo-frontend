@@ -1,7 +1,7 @@
 export const ROUTE_HOME = {
-  name: 'home',
+  regex: /^\/$/iu,
   href: {
-    pathname: '/',
+    pathname: () => '/' as const,
   },
-  queryName: 'index',
+  query: 'index',
 } as const

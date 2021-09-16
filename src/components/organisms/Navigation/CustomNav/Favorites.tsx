@@ -14,21 +14,18 @@ export const Favorites: React.VFC<Props> = () => {
         listItems: [
           {
             name: 'Engineering',
-            href: 'home',
+            href: '/',
             icon: 'idCard',
-            pathname: '/',
           },
           {
             name: 'All Items',
-            href: 'home',
+            href: '/',
             icon: 'gridAlt',
-            pathname: '/',
           },
           {
             name: 'Deleted Items',
-            href: 'home',
+            href: '/',
             icon: 'trashAlt',
-            pathname: '/',
           },
         ],
       }}

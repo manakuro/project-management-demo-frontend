@@ -1,33 +1,34 @@
 export const ROUTE_MY_TASKS = {
-  name: 'my_tasks',
+  regex: /^\/my_tasks\/?$/iu,
   href: {
-    pathname: '/my_tasks',
+    pathname: () => '/my_tasks' as const,
   },
+  query: 'my_tasks',
 } as const
 export const ROUTE_MY_TASKS_LIST = {
-  name: 'my_tasks/list',
+  regex: /^\/my_tasks\/list\/?$/iu,
   href: {
-    pathname: '/my_tasks/list',
+    pathname: () => '/my_tasks/list' as const,
   },
 } as const
 export const ROUTE_MY_TASKS_BOARD = {
-  name: 'my_tasks/board',
+  regex: /^\/my_tasks\/board\/?$/iu,
   href: {
-    pathname: '/my_tasks/board',
+    pathname: () => '/my_tasks/board' as const,
   },
   query: 'board',
 } as const
 export const ROUTE_MY_TASKS_CALENDAR = {
-  name: 'my_tasks/calendar',
+  regex: /^\/my_tasks\/calendar\/?$/iu,
   href: {
-    pathname: '/my_tasks/calendar',
+    pathname: () => '/my_tasks/calendar' as const,
   },
   query: 'calendar',
 } as const
 export const ROUTE_MY_TASKS_FILES = {
-  name: 'my_tasks/files',
+  regex: /^\/my_tasks\/files\/?$/iu,
   href: {
-    pathname: '/my_tasks/files',
+    pathname: () => '/my_tasks/files' as const,
   },
   query: 'files',
 } as const

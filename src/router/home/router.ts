@@ -9,7 +9,7 @@ export const useRouterHome = () => {
 
   const navigateToHome = useCallback(
     async (options?: Options) => {
-      await push(ROUTE_HOME.href.pathname, undefined, {
+      await push(ROUTE_HOME.href.pathname(), undefined, {
         shallow: true,
         ...options,
       })
@@ -19,7 +19,7 @@ export const useRouterHome = () => {
 
   const navigateToHomeDetail = useCallback(
     async (id: string, options?: Options) => {
-      await push(`${ROUTE_HOME.href.pathname}${id}`, undefined, {
+      await push(`${ROUTE_HOME.href.pathname()}${id}`, undefined, {
         shallow: true,
         ...options,
       })

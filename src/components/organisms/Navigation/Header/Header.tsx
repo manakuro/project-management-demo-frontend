@@ -8,6 +8,7 @@ import {
   IconButton,
 } from 'src/components/atoms'
 import { PADDING_X, useNavigation } from 'src/components/organisms/Navigation'
+import { ROUTE_HOME } from 'src/router'
 
 type Props = {}
 
@@ -25,7 +26,7 @@ export const Header: React.VFC<Props> = memo<Props>(() => {
       ml={isExpanded ? 0 : '-3px'}
     >
       {isExpanded && (
-        <NextLink href="home" passHref>
+        <NextLink href={ROUTE_HOME.href.pathname()} passHref>
           <Link mr="auto">
             <Logo />
           </Link>

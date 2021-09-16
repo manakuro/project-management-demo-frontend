@@ -9,7 +9,7 @@ import {
   LinkProps,
 } from 'src/components/atoms'
 import { useLinkHoverStyle } from 'src/hooks'
-import { Routes } from 'src/router'
+import { StaticRoutes } from 'src/router'
 import { PADDING_X } from './Navigation'
 import { NavListItem as TNavListItem } from './type'
 
@@ -18,13 +18,11 @@ type Props = {
   selectedStyle: boolean
   light?: boolean
   linkStyle?: LinkProps
-  pathname?: string
   disabled?: boolean
 } & ListItemProps
 
 export const NavListItem: React.VFC<Props> = memo<Props>((props) => {
-  const { item, selectedStyle, linkStyle, light, pathname, disabled, ...rest } =
-    props
+  const { item, selectedStyle, linkStyle, light, disabled, ...rest } = props
   const { _hover, selected } = useLinkHoverStyle()
   const listItemStyle = useMemo(
     (): ListItemProps => ({
@@ -46,9 +44,7 @@ export const NavListItem: React.VFC<Props> = memo<Props>((props) => {
           px={PADDING_X}
           py={2}
           _hover={_hover}
-          {...(selectedStyle && item.isCurrentRoute?.(pathname || '')
-            ? selected
-            : {})}
+          {...(selectedStyle && item.isCurrentRoute?.() ? selected : {})}
           {...linkStyle}
         >
           <Icon icon={item.icon} mr={PADDING_X} mt="-2px" />
@@ -64,7 +60,7 @@ const WithNextLink: React.FC<Props> = (props) => {
   return props.item.isExternal ? (
     <>{props.children}</>
   ) : (
-    <NextLink href={props.item.href as Routes} passHref>
+    <NextLink href={props.item.href as StaticRoutes} passHref>
       {props.children}
     </NextLink>
   )

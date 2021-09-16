@@ -10,9 +10,9 @@ export const Home: React.VFC = memo(() => {
   const item = useMemo<TNavListItem>(
     () => ({
       name: 'Home',
-      href: ROUTE_HOME.name,
+      href: ROUTE_HOME.href.pathname(),
       icon: 'home',
-      isCurrentRoute: () => router.pathname === ROUTE_HOME.href.pathname,
+      isCurrentRoute: () => router.pathname === ROUTE_HOME.href.pathname(),
     }),
     [router.pathname],
   )

@@ -1,14 +1,13 @@
-import { Pathname, Routes } from 'src/router'
+import { StaticRoutes } from 'src/router'
 import { IconType } from 'src/shared/icons'
 
 export type NavListItem = {
   name: string
   icon: IconType
-  pathname?: Pathname
-  isCurrentRoute?: (pathname: string) => boolean
+  isCurrentRoute?: () => boolean
 } & (
   | {
-      href: Routes
+      href: StaticRoutes
       isExternal?: false | undefined | null
     }
   | {

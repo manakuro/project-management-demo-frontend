@@ -10,9 +10,10 @@ export const Portfolios: React.VFC = memo(() => {
   const item = useMemo<TNavListItem>(
     () => ({
       name: 'Portfolios',
-      href: ROUTE_PORTFOLIOS.name,
+      href: ROUTE_PORTFOLIOS.href.pathname(),
       icon: 'barChart',
-      isCurrentRoute: () => router.pathname === ROUTE_PORTFOLIOS.href.pathname,
+      isCurrentRoute: () =>
+        router.pathname === ROUTE_PORTFOLIOS.href.pathname(),
     }),
     [router.pathname],
   )

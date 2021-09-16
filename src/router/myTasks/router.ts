@@ -15,7 +15,7 @@ export const useRouterMyTasks = () => {
 
   const navigateToMyTasksList = useCallback(
     async (options?: Options) => {
-      await push(ROUTE_MY_TASKS_LIST.href.pathname, undefined, {
+      await push(ROUTE_MY_TASKS_LIST.href.pathname(), undefined, {
         shallow: true,
         ...options,
       })
@@ -25,7 +25,7 @@ export const useRouterMyTasks = () => {
 
   const navigateToTaskDetail = useCallback(
     async (id: string, options?: Options) => {
-      await push(`${ROUTE_MY_TASKS.href.pathname}/${id}`, undefined, {
+      await push(`${ROUTE_MY_TASKS.href.pathname()}/${id}`, undefined, {
         shallow: true,
         ...options,
       })
@@ -36,7 +36,7 @@ export const useRouterMyTasks = () => {
   const navigateToTaskDetailFeed = useCallback(
     async (taskId: string, feedId: string, options?: Options) => {
       await push(
-        `${ROUTE_MY_TASKS.href.pathname}/${taskId}/${feedId}`,
+        `${ROUTE_MY_TASKS.href.pathname()}/${taskId}/${feedId}`,
         undefined,
         {
           shallow: true,
@@ -49,7 +49,7 @@ export const useRouterMyTasks = () => {
 
   const navigateToMyTasksBoard = useCallback(
     async (options?: Options) => {
-      await push(ROUTE_MY_TASKS_BOARD.href.pathname, undefined, {
+      await push(ROUTE_MY_TASKS_BOARD.href.pathname(), undefined, {
         shallow: true,
         ...options,
       })
@@ -58,7 +58,7 @@ export const useRouterMyTasks = () => {
   )
   const navigateToMyTasksCalendar = useCallback(
     async (options?: Options) => {
-      await push(ROUTE_MY_TASKS_CALENDAR.href.pathname, undefined, {
+      await push(ROUTE_MY_TASKS_CALENDAR.href.pathname(), undefined, {
         shallow: true,
         ...options,
       })
@@ -67,7 +67,7 @@ export const useRouterMyTasks = () => {
   )
   const navigateToMyTasksFiles = useCallback(
     async (options?: Options) => {
-      await push(ROUTE_MY_TASKS_FILES.href.pathname, undefined, {
+      await push(ROUTE_MY_TASKS_FILES.href.pathname(), undefined, {
         shallow: true,
         ...options,
       })

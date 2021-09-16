@@ -17,13 +17,13 @@ export const MyTasks: React.VFC = memo(() => {
   const href = useMemo(() => {
     switch (true) {
       case isTaskTabStatus('list'):
-        return ROUTE_MY_TASKS_LIST.name
+        return ROUTE_MY_TASKS_LIST.href.pathname()
       case isTaskTabStatus('board'):
-        return ROUTE_MY_TASKS_BOARD.name
+        return ROUTE_MY_TASKS_BOARD.href.pathname()
       case isTaskTabStatus('calendar'):
-        return ROUTE_MY_TASKS_CALENDAR.name
+        return ROUTE_MY_TASKS_CALENDAR.href.pathname()
       case isTaskTabStatus('files'):
-        return ROUTE_MY_TASKS_FILES.name
+        return ROUTE_MY_TASKS_FILES.href.pathname()
     }
   }, [isTaskTabStatus])!
 
@@ -33,7 +33,7 @@ export const MyTasks: React.VFC = memo(() => {
       href: href,
       icon: 'checkCircle',
       isCurrentRoute: () => {
-        return router.pathname.includes(ROUTE_MY_TASKS.href.pathname)
+        return router.pathname.includes(ROUTE_MY_TASKS.href.pathname())
       },
     }),
     [router.pathname, href],

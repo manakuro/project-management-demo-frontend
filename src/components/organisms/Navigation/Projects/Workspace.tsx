@@ -13,6 +13,7 @@ import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useI
 import { useNavigation } from 'src/components/organisms/Navigation'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { useLinkHoverStyle, useClickableHoverStyle } from 'src/hooks'
+import { ROUTE_HOME } from 'src/router'
 
 type Props = {}
 
@@ -31,7 +32,7 @@ export const Workspace: React.VFC<Props> = memo(() => {
     <>
       <Menu placement="bottom-end">
         <Flex p={2} px={PADDING_X} _hover={_hover} alignItems="center">
-          <NextLink href="home" passHref>
+          <NextLink href={ROUTE_HOME.href.pathname()} passHref>
             <Link w="full">
               {isExpanded && (
                 <Text fontSize="sm" flex={1}>

@@ -6,6 +6,12 @@ import {
   ROUTE_MY_TASKS_BOARD,
   ROUTE_MY_TASKS_LIST,
 } from './myTasks'
+import {
+  ROUTE_PROJECTS_LIST,
+  ROUTE_PROJECTS_BOARD,
+  ROUTE_PROJECTS_CALENDAR,
+  ROUTE_PROJECTS_FILES,
+} from './projects'
 
 export { ROUTE_HOME } from './home'
 export { ROUTE_INBOX } from './inbox'
@@ -24,19 +30,26 @@ export {
 } from './projects'
 
 export const ROUTE_PORTFOLIOS = {
-  name: 'portfolios',
+  regex: /^\/portfolios\/?$/iu,
   href: {
-    pathname: '/portfolios',
+    pathname: () => '/portfolios' as const,
   },
 } as const
 export const ROUTE_GOALS = {
-  name: 'goals',
+  regex: /^\/goals\/?$/iu,
   href: {
-    pathname: '/goals',
+    pathname: () => '/goals' as const,
   },
 } as const
 
-export const routes = [
+const dynamicRoutes = [
+  ROUTE_PROJECTS_LIST,
+  ROUTE_PROJECTS_BOARD,
+  ROUTE_PROJECTS_CALENDAR,
+  ROUTE_PROJECTS_FILES,
+] as const
+
+const staticRoutes = [
   ROUTE_HOME,
   ROUTE_MY_TASKS_LIST,
   ROUTE_MY_TASKS_BOARD,
@@ -47,5 +60,8 @@ export const routes = [
   ROUTE_GOALS,
 ] as const
 
-export type Routes = typeof routes[number]['name']
-export type Pathname = typeof routes[number]['href']['pathname']
+export const routes = [...staticRoutes, ...dynamicRoutes] as const
+
+export type StaticRoutes = ReturnType<
+  typeof staticRoutes[number]['href']['pathname']
+>

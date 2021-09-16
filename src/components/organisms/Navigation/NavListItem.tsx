@@ -15,15 +15,14 @@ import { NavListItem as TNavListItem } from './type'
 
 type Props = {
   item: TNavListItem
-  selectedStyle: boolean
   light?: boolean
   linkStyle?: LinkProps
   disabled?: boolean
 } & ListItemProps
 
 export const NavListItem: React.VFC<Props> = memo<Props>((props) => {
-  const { item, selectedStyle, linkStyle, light, disabled, ...rest } = props
-  const { _hover, selected } = useLinkHoverStyle()
+  const { item, linkStyle, light, disabled, ...rest } = props
+  const { _hover, selectedStyle } = useLinkHoverStyle()
   const listItemStyle = useMemo(
     (): ListItemProps => ({
       ...(disabled
@@ -44,7 +43,7 @@ export const NavListItem: React.VFC<Props> = memo<Props>((props) => {
           px={PADDING_X}
           py={2}
           _hover={_hover}
-          {...(selectedStyle && item.isCurrentRoute?.() ? selected : {})}
+          {...(item.isCurrentRoute?.() ? selectedStyle : {})}
           {...linkStyle}
         >
           <Icon icon={item.icon} mr={PADDING_X} mt="-2px" />

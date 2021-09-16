@@ -16,7 +16,7 @@ export const Button: React.FC<Props> & {
   id?: string
 } = forwardRef((props, ref) => {
   const { lightBg, ...rest } = props
-  const linkHoverStyle = useLinkHoverStyle()
+  const { selectedStyle, ...linkHoverStyle } = useLinkHoverStyle()
   const style = useMemo(
     () => ({
       ...(lightBg ? linkHoverStyle : {}),

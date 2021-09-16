@@ -14,7 +14,7 @@ export const AddTaskButton: React.FC<Props> = memo((props) => {
 
   const handleClick = useCallback(async () => {
     onClose()
-    await addTask()
+    addTask()
   }, [addTask, onClose])
 
   return (

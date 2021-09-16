@@ -9,7 +9,7 @@ export type UseHoverProps = {
 
 export const useLinkHoverStyle = (
   props?: UseHoverProps,
-): ChakraProps & { selected: { bg: 'navigation.selected' } } => {
+): ChakraProps & { selectedStyle: { bg: 'navigation.selected' } } => {
   const bg =
     props?.color ||
     (props?.light ? 'navigation.hover.light' : 'navigation.hover.dark')
@@ -19,7 +19,7 @@ export const useLinkHoverStyle = (
       _hover: {
         bg,
       },
-      selected: { bg: 'navigation.selected' },
+      selectedStyle: { bg: 'navigation.selected' },
       _active: { bg: 'navigation.selected' },
       transition: transitions.base(),
     }),

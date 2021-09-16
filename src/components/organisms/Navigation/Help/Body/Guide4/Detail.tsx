@@ -29,7 +29,6 @@ export const Detail: React.VFC = () => {
       <List w="full">
         {items.map((n, i) => (
           <NavListItem
-            selectedStyle={false}
             key={i}
             item={n}
             light

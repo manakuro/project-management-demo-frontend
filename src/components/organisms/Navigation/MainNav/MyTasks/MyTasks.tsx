@@ -39,6 +39,6 @@ export const MyTasks: React.VFC = memo(() => {
     [router.pathname, href],
   )
 
-  return <NavListItem item={item} selectedStyle />
+  return <NavListItem item={item} />
 })
 MyTasks.displayName = 'MyTasks'

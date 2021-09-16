@@ -18,6 +18,6 @@ export const Portfolios: React.VFC = memo(() => {
     [router.pathname],
   )
 
-  return <NavListItem item={item} selectedStyle disabled />
+  return <NavListItem item={item} disabled />
 })
 Portfolios.displayName = 'Portfolios'

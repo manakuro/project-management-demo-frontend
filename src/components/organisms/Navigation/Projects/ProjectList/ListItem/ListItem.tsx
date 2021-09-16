@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import {
   Flex,
   Link,
@@ -11,7 +11,8 @@ import { useNavigation } from 'src/components/organisms/Navigation'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 import { useLinkHoverStyle, useClickableHoverStyle } from 'src/hooks'
-import { ROUTE_PROJECTS_LIST } from 'src/router'
+import { ROUTE_PROJECTS_LIST, useRouter } from 'src/router'
+import { ROUTE_PROJECTS } from 'src/router/projects'
 import { useProject } from 'src/store/entities/projects'
 
 type Props = {
@@ -22,11 +23,22 @@ export const ListItem: React.VFC<Props> = memo((props) => {
   const { isExpanded } = useNavigation()
   const { projectId } = props
   const { project } = useProject(projectId)
-  const { _hover } = useLinkHoverStyle()
+  const { _hover, selectedStyle } = useLinkHoverStyle()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
+  const { router } = useRouter()
+  const selected = useMemo(
+    () => router.asPath.includes(ROUTE_PROJECTS.href.pathname(projectId)),
+    [projectId, router.asPath],
+  )
 
   return (
-    <Flex p={2} px={PADDING_X} _hover={_hover} alignItems="center">
+    <Flex
+      p={2}
+      px={PADDING_X}
+      _hover={_hover}
+      alignItems="center"
+      {...(selected ? selectedStyle : {})}
+    >
       <NextLink href={ROUTE_PROJECTS_LIST.href.pathnameObj(projectId)} passHref>
         <Link w="full">
           {isExpanded ? (

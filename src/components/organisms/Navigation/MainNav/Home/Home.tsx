@@ -17,6 +17,6 @@ export const Home: React.VFC = memo(() => {
     [router.pathname],
   )
 
-  return <NavListItem item={item} selectedStyle />
+  return <NavListItem item={item} />
 })
 Home.displayName = 'Home'

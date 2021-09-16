@@ -39,7 +39,7 @@ export const Footer: React.VFC = () => {
   return (
     <List w="full" mb={3}>
       {items.map((n, i) => (
-        <NavListItem selectedStyle={false} key={i} item={n} />
+        <NavListItem key={i} item={n} />
       ))}
     </List>
   )

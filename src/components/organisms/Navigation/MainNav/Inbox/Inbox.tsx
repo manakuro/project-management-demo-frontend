@@ -18,6 +18,6 @@ export const Inbox: React.VFC = memo(() => {
     [router.pathname],
   )
 
-  return <NavListItem item={item} selectedStyle />
+  return <NavListItem item={item} />
 })
 Inbox.displayName = 'Inbox'

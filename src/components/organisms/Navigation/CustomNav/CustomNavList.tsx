@@ -49,7 +49,7 @@ export const CustomNavList: React.VFC<Props> = ({ item }) => {
             <AccordionPanel p={0}>
               <List mb={2}>
                 {item.listItems.map((listItem, i) => (
-                  <NavListItem item={listItem} key={i} selectedStyle />
+                  <NavListItem item={listItem} key={i} />
                 ))}
               </List>
             </AccordionPanel>

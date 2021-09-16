@@ -23,6 +23,7 @@ export const getHomeDetailId = (router: NextRouter): string =>
 
 // TODO: Should be verified
 export const isMyTasksDetailURL = (router: NextRouter): boolean => {
+  console.log(router)
   return (
     !!router.query &&
     !!router.query[ROUTE_MY_TASKS.name]?.length &&

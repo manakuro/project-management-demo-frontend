@@ -35,6 +35,7 @@ export const Tabs: React.VFC = memo(() => {
           </Menu>
         </Flex>
         <TabList>
+          <Tab>Overview</Tab>
           <Tab>List</Tab>
           <Tab>Board</Tab>
           <Tab>Calendar</Tab>
@@ -44,3 +45,4 @@ export const Tabs: React.VFC = memo(() => {
     </Flex>
   )
 })
+Tabs.displayName = 'Tabs'

@@ -3,22 +3,19 @@ import { useTasksContext } from '../TasksProvider'
 
 type Result = {
   taskIds: string[]
-  addTask: () => void
 }
 
 const initialValue = (): Result => ({
   taskIds: [],
-  addTask: () => {},
 })
 
-export const useTasksTasksByDueDate = (dueDate: string): Result => {
+export const useTasksTaskIdsByDueDate = (dueDate: string): Result => {
   const { isMyTasksPage } = useTasksContext()
   const useMyTasksTaskIdsByDueDateResult = useMyTasksTaskIdsByDueDate(dueDate)
 
   if (isMyTasksPage) {
     return {
       taskIds: useMyTasksTaskIdsByDueDateResult.taskIds,
-      addTask: () => {},
     }
   }
 

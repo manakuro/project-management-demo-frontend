@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Stack } from 'src/components/atoms'
-import { useTasksTasksByDueDate } from 'src/components/organisms/Tasks/hooks'
+import { useTasksTaskIdsByDueDate } from 'src/components/organisms/Tasks/hooks'
 import { ListItem } from './ListItem'
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 
 export const Content: React.FC<Props> = memo<Props>((props) => {
   const { dateString } = props
-  const { taskIds } = useTasksTasksByDueDate(dateString)
+  const { taskIds } = useTasksTaskIdsByDueDate(dateString)
 
   if (!taskIds.length) return null
 

@@ -3,7 +3,7 @@ import { TaskResponse } from 'src/store/entities/tasks'
 export type TaskSectionResponse = {
   id: string
   name: string
-  teammateId: string // TODO: change to `userId`
+  teammateId: string
   tasks: TaskResponse[]
   createdAt: string
   updatedAt: string
@@ -13,7 +13,7 @@ export type TaskSectionResponse = {
 export type TaskSection = {
   id: string
   name: string
-  teammateId: string // TODO: change to `userId`
+  teammateId: string
   createdAt: string
   updatedAt: string
   isDeleted: boolean

@@ -9,7 +9,7 @@ type Props = {
 }
 
 export const AddTaskButton: React.FC<Props> = memo((props) => {
-  const { ref, isOpen, onClose } = useTooltip({ openDelay: 250 })
+  const { ref, isOpen, onClose } = useTooltip({ openDelay: 500 })
   const { addTask } = useTasksTask()
 
   const handleClick = useCallback(() => {

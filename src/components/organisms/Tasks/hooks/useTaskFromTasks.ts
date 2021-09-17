@@ -1,4 +1,4 @@
-import { useMyTaskTask } from 'src/store/app/myTasks/tasks'
+import { useMyTasksTask } from 'src/store/app/myTasks/tasks'
 import { Task } from 'src/store/entities/tasks'
 import { useTasksContext } from '../TasksProvider'
 
@@ -12,7 +12,7 @@ export const initialValue = (): Result => ({
 
 export const useTaskFromTasks = (): Result => {
   const { isMyTasksPage } = useTasksContext()
-  const myTaskTask = useMyTaskTask()
+  const myTaskTask = useMyTasksTask()
 
   if (isMyTasksPage) {
     return {

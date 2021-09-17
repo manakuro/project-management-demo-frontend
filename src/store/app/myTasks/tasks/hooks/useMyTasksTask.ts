@@ -2,7 +2,7 @@ import { useRecoilCallback } from 'recoil'
 import { useMe } from 'src/store/entities/me'
 import { Task, useTasksCommand } from 'src/store/entities/tasks'
 
-export const useMyTaskTask = () => {
+export const useMyTasksTask = () => {
   const { me } = useMe()
   const { addTask } = useTasksCommand()
 

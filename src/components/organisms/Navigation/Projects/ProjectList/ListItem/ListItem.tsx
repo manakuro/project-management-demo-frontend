@@ -32,42 +32,42 @@ export const ListItem: React.VFC<Props> = memo((props) => {
   )
 
   return (
-    <Flex
-      p={2}
-      px={PADDING_X}
-      _hover={_hover}
-      alignItems="center"
-      {...(selected ? selectedStyle : {})}
-    >
-      <NextLink href={ROUTE_PROJECTS_LIST.href.pathnameObj(projectId)} passHref>
-        <Link w="full">
+    <NextLink href={ROUTE_PROJECTS_LIST.href.pathnameObj(projectId)} passHref>
+      <Link
+        w="full"
+        p={2}
+        px={PADDING_X}
+        _hover={_hover}
+        {...(selected ? selectedStyle : {})}
+      >
+        <Flex alignItems="center">
           {isExpanded ? (
-            <Flex alignItems="center">
+            <Flex alignItems="center" flex={1}>
               <ColorBox size="xs" color={project.color.color} />
               <Text fontSize="sm" flex={1} ml={2}>
                 {project.name}
               </Text>
             </Flex>
           ) : (
-            <Flex alignItems="center" justifyContent="center">
+            <Flex alignItems="center" justifyContent="center" flex={1}>
               <Text fontSize="sm" flex={1}>
                 {project.name.slice(0, 3)}
               </Text>
             </Flex>
           )}
-        </Link>
-      </NextLink>
-      <PopoverProjectMenu
-        addFavorite
-        duplicateProject
-        archiveProject
-        deleteProject
-        projectId={props.projectId}
-        menuButtonStyle={{ ...clickableHoverLightStyle }}
-      >
-        <Icon icon="dotsHorizontalRounded" />
-      </PopoverProjectMenu>
-    </Flex>
+          <PopoverProjectMenu
+            addFavorite
+            duplicateProject
+            archiveProject
+            deleteProject
+            projectId={props.projectId}
+            menuButtonStyle={{ ...clickableHoverLightStyle }}
+          >
+            <Icon icon="dotsHorizontalRounded" />
+          </PopoverProjectMenu>
+        </Flex>
+      </Link>
+    </NextLink>
   )
 })
 ListItem.displayName = 'ListItem'

@@ -51,10 +51,15 @@ export const PopoverProjectMenu: React.VFC<Props> = (props) => {
     onClosed?.()
   }, [onClose, onClosed])
 
-  const handleOpen = useCallback(() => {
-    onOpen()
-    onOpened?.()
-  }, [onOpen, onOpened])
+  const handleOpen = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation()
+      e.preventDefault()
+      onOpen()
+      onOpened?.()
+    },
+    [onOpen, onOpened],
+  )
 
   const handleAddFavorite = useCallback(() => {
     console.log('handleAddFavorite!')

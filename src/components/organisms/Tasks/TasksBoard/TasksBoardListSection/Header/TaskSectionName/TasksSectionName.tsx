@@ -3,7 +3,7 @@ import { Box } from 'src/components/atoms'
 import {
   useTaskContext,
   useTaskSectionContext,
-} from 'src/components/organisms/Tasks'
+} from 'src/components/organisms/Tasks/hooks'
 import { useTasksBoardListSectionContext } from '../../Provider'
 import { Input } from './Input'
 

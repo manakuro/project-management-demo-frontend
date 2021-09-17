@@ -6,7 +6,7 @@ import {
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms/Menus'
-import { useTaskStatusContext } from 'src/components/organisms/Tasks'
+import { useTaskStatusContext } from 'src/components/organisms/Tasks/hooks'
 import {
   TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
   TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,

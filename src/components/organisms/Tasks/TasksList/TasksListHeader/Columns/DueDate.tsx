@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
-import { useTaskStatusContext } from 'src/components/organisms/Tasks'
+import { useTaskStatusContext } from 'src/components/organisms/Tasks/hooks'
 import { Container } from './Container'
 
 type Props = {

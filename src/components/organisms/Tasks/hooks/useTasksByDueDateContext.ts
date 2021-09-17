@@ -1,5 +1,5 @@
 import { useMyTasksTaskIdsByDueDate } from 'src/store/app/myTasks/tasks'
-import { useTasksContext } from './TasksProvider'
+import { useTasksContext } from '../TasksProvider'
 
 type Result = {
   taskIds: string[]

@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useTaskColumnContext } from 'src/components/organisms/Tasks/TasksProvider'
+import { useTaskColumnContext } from 'src/components/organisms/Tasks/hooks'
 import { Column } from './Column'
 import { RemainingSpace } from './Columns'
 import { Provider, useTasksListHeaderContext } from './Provider'

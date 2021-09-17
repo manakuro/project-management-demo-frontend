@@ -17,7 +17,7 @@ import {
 import {
   useTaskContext,
   useTaskSectionContext,
-} from 'src/components/organisms/Tasks'
+} from 'src/components/organisms/Tasks/hooks'
 import { ChakraProps } from 'src/shared/chakra'
 
 type Props = ButtonGroupProps & {

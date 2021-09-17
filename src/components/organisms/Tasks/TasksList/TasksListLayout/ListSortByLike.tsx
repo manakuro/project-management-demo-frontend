@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useTaskSectionContext } from 'src/components/organisms/Tasks'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
 import { TasksListSectionProvider } from 'src/components/organisms/Tasks/TasksList/TasksListSection'
+import { useTaskSectionContext } from 'src/components/organisms/Tasks/hooks'
 
 export const ListSortByLike: React.VFC = memo(() => {
   const { taskIds } = useTaskSectionContext()

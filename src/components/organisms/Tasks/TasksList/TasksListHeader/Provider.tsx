@@ -1,8 +1,6 @@
 import { useMemo } from 'react'
-import {
-  useTasksListContentVerticalScroll,
-  useTaskStatusContext,
-} from 'src/components/organisms/Tasks'
+import { useTasksListContentVerticalScroll } from 'src/components/organisms/Tasks'
+import { useTaskStatusContext } from 'src/components/organisms/Tasks/hooks'
 import { ChakraProps } from 'src/shared/chakra'
 import { createProvider } from 'src/shared/react/createProvider'
 

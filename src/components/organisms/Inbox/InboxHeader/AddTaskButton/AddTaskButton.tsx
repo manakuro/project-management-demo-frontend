@@ -14,10 +14,8 @@ import {
   MenuItem,
   MenuList,
 } from 'src/components/organisms/Menu'
-import {
-  useTaskContext,
-  useTaskSectionContext,
-} from 'src/components/organisms/Tasks'
+import { useTaskSectionContext } from 'src/components/organisms/Tasks/hooks'
+import { useTaskContext } from 'src/components/organisms/Tasks/hooks'
 import { ChakraProps } from 'src/shared/chakra'
 
 type Props = ButtonGroupProps & {

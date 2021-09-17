@@ -3,7 +3,7 @@ import {
   TaskSection,
   defaultTaskSectionStateValue,
 } from 'src/store/entities/taskSections'
-import { useTasksContext } from './TasksProvider'
+import { useTasksContext } from '../TasksProvider'
 
 type Result = {
   taskIds: string[]

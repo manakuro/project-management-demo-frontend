@@ -1,5 +1,5 @@
 import { useMyTasksTaskStatus } from 'src/store/app/myTasks'
-import { useTasksContext } from './TasksProvider'
+import { useTasksContext } from '../TasksProvider'
 
 type Result = Omit<ReturnType<typeof useMyTasksTaskStatus>, 'id'>
 export const initialUseTaskStatus = (): Result => ({

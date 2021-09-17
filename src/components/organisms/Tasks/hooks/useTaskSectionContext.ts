@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { useMyTaskCommand, useMyTasks } from 'src/store/app/myTasks'
-import { useTasksContext } from './TasksProvider'
+import { useTasksContext } from '../TasksProvider'
 
 const key = (str: string) =>
   `src/components/organisms/Tasks/TasksProvider/useTaskSection/${str}`

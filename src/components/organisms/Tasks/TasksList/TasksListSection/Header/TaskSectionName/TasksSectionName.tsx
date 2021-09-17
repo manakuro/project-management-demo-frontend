@@ -1,10 +1,10 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Box } from 'src/components/atoms'
+import { useTasksListSectionContext } from 'src/components/organisms/Tasks'
 import {
   useTaskContext,
   useTaskSectionContext,
-  useTasksListSectionContext,
-} from 'src/components/organisms/Tasks'
+} from 'src/components/organisms/Tasks/hooks'
 import { Input } from './Input'
 
 type Props = {

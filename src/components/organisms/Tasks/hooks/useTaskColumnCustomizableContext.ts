@@ -1,5 +1,5 @@
 import { useMyTasksTaskColumnsCustomizable } from 'src/store/app/myTasks/taskColumns'
-import { useTasksContext } from './TasksProvider'
+import { useTasksContext } from '../TasksProvider'
 
 type Result = ReturnType<typeof useMyTasksTaskColumnsCustomizable>
 const initialUseTaskColumnCustomizable = (): Result => ({

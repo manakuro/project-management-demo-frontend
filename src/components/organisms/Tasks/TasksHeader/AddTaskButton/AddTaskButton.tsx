@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo, useCallback, useMemo } from 'react'
 import {
   ButtonGroup,
   ButtonGroupProps,
@@ -16,7 +16,8 @@ import {
 } from 'src/components/organisms/Menu'
 import {
   useTaskFromTasks,
-  useTaskSectionFromTasks,
+  useTaskSectionCommandFromTasks,
+  useTaskSectionIdsFromTasks,
 } from 'src/components/organisms/Tasks/hooks'
 import { ChakraProps } from 'src/shared/chakra'
 
@@ -27,9 +28,16 @@ type Props = ButtonGroupProps & {
 
 export const AddTaskButton: React.VFC<Props> = memo<Props>((props) => {
   const { solid, outlined, ...rest } = props
-  const { taskSectionIds, addTaskSection, setAddedTaskSectionId } =
-    useTaskSectionFromTasks()
-  const { addTask } = useTaskFromTasks(taskSectionIds[0])
+  const { addTaskSection, setAddedTaskSectionId } =
+    useTaskSectionCommandFromTasks()
+  const { taskSectionIds } = useTaskSectionIdsFromTasks()
+  const firstTaskSectionId = useMemo(() => taskSectionIds[0], [taskSectionIds])
+  const { addTask } = useTaskFromTasks()
+
+  const handleAddTask = useCallback(() => {
+    addTask({ taskSectionId: firstTaskSectionId })
+  }, [addTask, firstTaskSectionId])
+
   const buttonGroupProps: ButtonGroupProps = props.solid
     ? { variant: 'solid', colorScheme: 'teal' }
     : { variant: 'outline' }
@@ -48,7 +56,7 @@ export const AddTaskButton: React.VFC<Props> = memo<Props>((props) => {
         mr="-px"
         borderRightRadius="none"
         leftIcon={<Icon icon="plus" {...iconStyle} />}
-        onClick={addTask}
+        onClick={handleAddTask}
       >
         Add task
       </Button>

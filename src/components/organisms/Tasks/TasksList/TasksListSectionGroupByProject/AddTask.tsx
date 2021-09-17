@@ -8,12 +8,12 @@ type Props = {
 }
 
 export const AddTask: React.FC<Props> = memo<Props>((props) => {
-  const { addTask } = useTaskFromTasks(props.taskSectionId)
+  const { addTask } = useTaskFromTasks()
   const { clickableHoverStyle } = useClickableHoverStyle()
 
-  const handleClick = useCallback(async () => {
-    await addTask()
-  }, [addTask])
+  const handleClick = useCallback(() => {
+    addTask({ taskSectionId: props.taskSectionId })
+  }, [addTask, props.taskSectionId])
 
   return (
     <Flex

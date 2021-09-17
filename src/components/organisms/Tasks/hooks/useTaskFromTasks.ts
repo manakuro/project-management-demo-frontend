@@ -1,34 +1,22 @@
-import { useMyTaskByTaskSectionId } from 'src/store/app/myTasks'
-import {
-  TaskSection,
-  defaultTaskSectionStateValue,
-} from 'src/store/entities/taskSections'
+import { useMyTaskTask } from 'src/store/app/myTasks/tasks'
+import { Task } from 'src/store/entities/tasks'
 import { useTasksContext } from '../TasksProvider'
 
 type Result = {
-  taskIds: string[]
-  addTask: () => string
-  taskSection: TaskSection
-  setSectionName: (val: string) => Promise<void>
+  addTask: (val: Partial<Task>) => string
 }
 
 export const initialUseTask = (): Result => ({
-  taskIds: [],
   addTask: () => '',
-  taskSection: defaultTaskSectionStateValue(),
-  setSectionName: async () => {},
 })
 
-export const useTaskFromTasks = (taskSectionId: string): Result => {
+export const useTaskFromTasks = (): Result => {
   const { isMyTasksPage } = useTasksContext()
-  const useMyTasksResult = useMyTaskByTaskSectionId(taskSectionId)
+  const myTaskTask = useMyTaskTask()
 
   if (isMyTasksPage) {
     return {
-      taskIds: useMyTasksResult.taskIds,
-      addTask: useMyTasksResult.addTask,
-      taskSection: useMyTasksResult.taskSection,
-      setSectionName: useMyTasksResult.setSectionName,
+      addTask: myTaskTask.addTask,
     }
   }
 

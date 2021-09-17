@@ -2,10 +2,10 @@ import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
 import { TasksListSectionProvider } from 'src/components/organisms/Tasks/TasksList/TasksListSection'
-import { useTaskSectionFromTasks } from 'src/components/organisms/Tasks/hooks'
+import { useTaskIdsFromTasks } from 'src/components/organisms/Tasks/hooks'
 
 export const ListSortByAlphabetical: React.VFC = memo(() => {
-  const { taskIds } = useTaskSectionFromTasks()
+  const { taskIds } = useTaskIdsFromTasks()
 
   return (
     <Flex flexDirection="column">

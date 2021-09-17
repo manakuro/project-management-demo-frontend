@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useState } from 'react'
 import { Flex } from 'src/components/atoms'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
-import { useTaskFromTasks } from 'src/components/organisms/Tasks/hooks'
+import { useTaskIdsByTaskSectionIdFromTasks } from 'src/components/organisms/Tasks/hooks'
 import { AddTask } from './AddTask'
 import { AddTaskSection } from './AddTaskSection'
 import { Header } from './Header'
@@ -21,7 +21,7 @@ export const TasksListSection: React.FC<Props> = memo<Props>((props) => {
 })
 
 const Component: React.FC<Props> = memo<Props>((props) => {
-  const { taskIds } = useTaskFromTasks(props.taskSectionId)
+  const { taskIds } = useTaskIdsByTaskSectionIdFromTasks(props.taskSectionId)
   const [isExpanded, setIsExpanded] = useState(true)
 
   const handleToggle = useCallback(() => {

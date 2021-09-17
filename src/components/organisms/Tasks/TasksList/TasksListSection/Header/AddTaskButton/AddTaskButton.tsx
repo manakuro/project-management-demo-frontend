@@ -10,12 +10,12 @@ type Props = {
 
 export const AddTaskButton: React.FC<Props> = memo((props) => {
   const { ref, isOpen, onClose } = useTooltip({ openDelay: 250 })
-  const { addTask } = useTaskFromTasks(props.taskSectionId)
+  const { addTask } = useTaskFromTasks()
 
-  const handleClick = useCallback(async () => {
+  const handleClick = useCallback(() => {
     onClose()
-    addTask()
-  }, [addTask, onClose])
+    addTask({ taskSectionId: props.taskSectionId })
+  }, [addTask, onClose, props.taskSectionId])
 
   return (
     <Tooltip

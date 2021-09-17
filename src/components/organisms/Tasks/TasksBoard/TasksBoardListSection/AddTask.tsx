@@ -8,11 +8,11 @@ type Props = {
 
 export const AddTask: React.FC<Props> = memo<Props>((props) => {
   const { taskSectionId, ...rest } = props
-  const { addTask } = useTaskFromTasks(taskSectionId)
+  const { addTask } = useTaskFromTasks()
 
-  const handleClick = useCallback(async () => {
-    await addTask()
-  }, [addTask])
+  const handleClick = useCallback(() => {
+    addTask({ taskSectionId })
+  }, [addTask, taskSectionId])
 
   return (
     <Button

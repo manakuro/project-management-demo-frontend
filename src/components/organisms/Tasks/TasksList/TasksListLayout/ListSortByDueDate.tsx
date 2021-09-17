@@ -4,10 +4,14 @@ import { TasksListSection } from 'src/components/organisms/Tasks'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
 import { TasksListSectionProvider } from 'src/components/organisms/Tasks/TasksList/TasksListSection'
-import { useTaskSectionFromTasks } from 'src/components/organisms/Tasks/hooks'
+import {
+  useTaskIdsFromTasks,
+  useTaskSectionIdsFromTasks,
+} from 'src/components/organisms/Tasks/hooks'
 
 export const ListSortByDueDate: React.VFC = memo(() => {
-  const { taskIds, taskSectionIds } = useTaskSectionFromTasks()
+  const { taskIds } = useTaskIdsFromTasks()
+  const { taskSectionIds } = useTaskSectionIdsFromTasks()
   const [isExpanded, setIsExpanded] = useState(true)
   const { stickyStyle } = useTasksListContext()
 

@@ -1,4 +1,4 @@
-import { useMyTaskByTaskSectionId } from 'src/store/app/myTasks'
+import { useMyTasksTaskSection } from 'src/store/app/myTasks/taskSections'
 import {
   TaskSection,
   defaultTaskSectionStateValue,
@@ -17,12 +17,12 @@ export const initialUseTask = (): Result => ({
 
 export const useTaskSectionFromTasks = (taskSectionId: string): Result => {
   const { isMyTasksPage } = useTasksContext()
-  const useMyTasksResult = useMyTaskByTaskSectionId(taskSectionId)
+  const useMyTasksTaskSectionResult = useMyTasksTaskSection(taskSectionId)
 
   if (isMyTasksPage) {
     return {
-      taskSection: useMyTasksResult.taskSection,
-      setSectionName: useMyTasksResult.setSectionName,
+      taskSection: useMyTasksTaskSectionResult.taskSection,
+      setSectionName: useMyTasksTaskSectionResult.setSectionName,
     }
   }
 

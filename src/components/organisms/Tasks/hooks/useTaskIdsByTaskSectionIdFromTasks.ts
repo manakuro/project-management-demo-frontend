@@ -1,4 +1,4 @@
-import { useMyTaskByTaskSectionId } from 'src/store/app/myTasks'
+import { useMyTasksTaskIdsByTaskSectionId } from 'src/store/app/myTasks/tasks'
 import { useTasksContext } from '../TasksProvider'
 
 type Result = {
@@ -13,11 +13,12 @@ export const useTaskIdsByTaskSectionIdFromTasks = (
   taskSectionId: string,
 ): Result => {
   const { isMyTasksPage } = useTasksContext()
-  const useMyTasksResult = useMyTaskByTaskSectionId(taskSectionId)
+  const useMyTasksTaskIdsByTaskSectionIdResult =
+    useMyTasksTaskIdsByTaskSectionId(taskSectionId)
 
   if (isMyTasksPage) {
     return {
-      taskIds: useMyTasksResult.taskIds,
+      taskIds: useMyTasksTaskIdsByTaskSectionIdResult.taskIds,
     }
   }
 

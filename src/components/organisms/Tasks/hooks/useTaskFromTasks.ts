@@ -6,7 +6,7 @@ type Result = {
   addTask: (val: Partial<Task>) => string
 }
 
-export const initialUseTask = (): Result => ({
+export const initialValue = (): Result => ({
   addTask: () => '',
 })
 
@@ -20,5 +20,5 @@ export const useTaskFromTasks = (): Result => {
     }
   }
 
-  return initialUseTask()
+  return initialValue()
 }

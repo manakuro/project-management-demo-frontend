@@ -6,7 +6,7 @@ import {
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms/Menus'
-import { useTaskStatusFromTasks } from 'src/components/organisms/Tasks/hooks'
+import { useTasksTaskStatus } from 'src/components/organisms/Tasks/hooks'
 import {
   TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
   TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
@@ -47,7 +47,7 @@ const ITEMS: {
 ]
 
 export const SortButton: React.VFC<Props> = memo<Props>((props) => {
-  const { onSort, isSorted, sortStatus } = useTaskStatusFromTasks()
+  const { onSort, isSorted, sortStatus } = useTasksTaskStatus()
   const handleChange = useCallback(
     (status: ToString<TaskListSortStatusType>) => {
       onSort(Number(status) as TaskListSortStatusType)

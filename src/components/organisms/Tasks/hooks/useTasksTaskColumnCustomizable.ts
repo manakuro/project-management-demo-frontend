@@ -7,7 +7,7 @@ const initialUseTaskColumnCustomizable = (): Result => ({
   setOrderTaskColumn: async () => {},
 })
 
-export const useTaskColumnCustomizableFromTasks = (): Result => {
+export const useTasksTaskColumnCustomizable = (): Result => {
   const { isMyTasksPage } = useTasksContext()
   const myTasksTaskColumns = useMyTasksTaskColumnsCustomizable()
 

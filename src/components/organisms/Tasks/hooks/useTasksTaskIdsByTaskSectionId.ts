@@ -9,7 +9,7 @@ export const initialUseTask = (): Result => ({
   taskIds: [],
 })
 
-export const useTaskIdsByTaskSectionIdFromTasks = (
+export const useTasksTaskIdsByTaskSectionId = (
   taskSectionId: string,
 ): Result => {
   const { isMyTasksPage } = useTasksContext()

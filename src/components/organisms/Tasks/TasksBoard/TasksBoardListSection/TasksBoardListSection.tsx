@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useTaskIdsByTaskSectionIdFromTasks } from 'src/components/organisms/Tasks/hooks'
+import { useTasksTaskIdsByTaskSectionId } from 'src/components/organisms/Tasks/hooks'
 import { transitions } from 'src/styles'
 import { TasksBoardListItem } from '../TasksBoardListItem'
 import { AddTask } from './AddTask'
@@ -23,7 +23,7 @@ export const TasksBoardListSection: React.FC<Props> = memo<Props>((props) => {
 
 const TOP = 72 + 40 + 8 + 8 + 36 // Header + List Header + padding + padding + List Section
 const Component: React.FC<Props> = memo<Props>((props) => {
-  const { taskIds } = useTaskIdsByTaskSectionIdFromTasks(props.taskSectionId)
+  const { taskIds } = useTasksTaskIdsByTaskSectionId(props.taskSectionId)
   const { className } = useTasksBoardListSectionElement()
 
   return (

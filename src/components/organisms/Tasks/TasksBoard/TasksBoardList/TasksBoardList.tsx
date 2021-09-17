@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useTaskSectionIdsFromTasks } from 'src/components/organisms/Tasks/hooks'
+import { useTasksTaskSectionIds } from 'src/components/organisms/Tasks/hooks'
 import { TasksBoardListSection } from '../TasksBoardListSection'
 
 export const TasksBoardList: React.VFC = memo(() => {
-  const { taskSectionIds } = useTaskSectionIdsFromTasks()
+  const { taskSectionIds } = useTasksTaskSectionIds()
 
   return (
     <Flex direction="row" flex={1} px={2} pt={2} position="relative">

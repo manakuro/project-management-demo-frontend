@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useTasksListContentVerticalScroll } from 'src/components/organisms/Tasks'
-import { useTaskStatusFromTasks } from 'src/components/organisms/Tasks/hooks'
+import { useTasksTaskStatus } from 'src/components/organisms/Tasks/hooks'
 import { ChakraProps } from 'src/shared/chakra'
 import { createProvider } from 'src/shared/react/createProvider'
 
@@ -10,7 +10,7 @@ type ContextProps = {
 }
 
 const useValue = (): ContextProps => {
-  const { isSorted } = useTaskStatusFromTasks()
+  const { isSorted } = useTasksTaskStatus()
   const { isScrolling } = useTasksListContentVerticalScroll()
 
   const sortedStyle = useMemo((): ChakraProps => {

@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react'
 import { Icon, IconButton } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { useTooltip } from 'src/components/molecules/Tooltip/useTooltip'
-import { useTaskFromTasks } from 'src/components/organisms/Tasks/hooks'
+import { useTasksTask } from 'src/components/organisms/Tasks/hooks'
 
 type Props = {
   taskSectionId: string
@@ -10,7 +10,7 @@ type Props = {
 
 export const AddTaskButton: React.FC<Props> = memo((props) => {
   const { ref, isOpen, onClose } = useTooltip({ openDelay: 250 })
-  const { addTask } = useTaskFromTasks()
+  const { addTask } = useTasksTask()
 
   const handleClick = useCallback(() => {
     onClose()

@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { Flex } from 'src/components/atoms'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
-import { useTaskFromTasks } from 'src/components/organisms/Tasks/hooks'
+import { useTasksTask } from 'src/components/organisms/Tasks/hooks'
 import { useClickableHoverStyle } from 'src/hooks'
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 }
 
 export const AddTask: React.FC<Props> = memo<Props>((props) => {
-  const { addTask } = useTaskFromTasks()
+  const { addTask } = useTasksTask()
   const { clickableHoverStyle } = useClickableHoverStyle()
   const { stickyStyle } = useTasksListContext()
 

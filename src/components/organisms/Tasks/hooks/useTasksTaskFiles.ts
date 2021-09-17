@@ -6,7 +6,7 @@ export const initialValue = (): Result => ({
   attachmentIds: [],
 })
 
-export const useTaskFilesFromTasks = (): Result => {
+export const useTasksTaskFiles = (): Result => {
   const { isMyTasksPage } = useTasksContext()
   const useMyTasksFilesResult = useMyTasksFiles()
 

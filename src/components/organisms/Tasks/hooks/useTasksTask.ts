@@ -10,7 +10,7 @@ export const initialValue = (): Result => ({
   addTask: () => '',
 })
 
-export const useTaskFromTasks = (): Result => {
+export const useTasksTask = (): Result => {
   const { isMyTasksPage } = useTasksContext()
   const myTaskTask = useMyTasksTask()
 

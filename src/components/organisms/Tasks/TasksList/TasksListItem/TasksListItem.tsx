@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { FlexProps } from 'src/components/atoms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
-import { useTaskColumnFromTasks } from 'src/components/organisms/Tasks/hooks'
+import { useTasksTaskColumn } from 'src/components/organisms/Tasks/hooks'
 import { Cell } from './Cell'
 import { Provider, useTasksListItemRowContext } from './Provider'
 import { TasksListSubtaskList } from './TasksListSubtaskList'
@@ -21,7 +21,7 @@ export const TasksListItem: React.FC<Props> = memo<Props>((props) => {
 
 const Component: React.FC<Props> = memo<Props>((props) => {
   const { selected } = useTasksListItemRowContext()
-  const { taskColumnIds } = useTaskColumnFromTasks()
+  const { taskColumnIds } = useTasksTaskColumn()
 
   return (
     <>

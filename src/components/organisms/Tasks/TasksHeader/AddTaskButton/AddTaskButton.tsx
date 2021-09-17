@@ -15,9 +15,9 @@ import {
   MenuList,
 } from 'src/components/organisms/Menu'
 import {
-  useTaskFromTasks,
-  useTaskSectionCommandFromTasks,
-  useTaskSectionIdsFromTasks,
+  useTasksTask,
+  useTasksTaskSectionCommand,
+  useTasksTaskSectionIds,
 } from 'src/components/organisms/Tasks/hooks'
 import { ChakraProps } from 'src/shared/chakra'
 
@@ -28,11 +28,10 @@ type Props = ButtonGroupProps & {
 
 export const AddTaskButton: React.VFC<Props> = memo<Props>((props) => {
   const { solid, outlined, ...rest } = props
-  const { addTaskSection, setAddedTaskSectionId } =
-    useTaskSectionCommandFromTasks()
-  const { taskSectionIds } = useTaskSectionIdsFromTasks()
+  const { addTaskSection, setAddedTaskSectionId } = useTasksTaskSectionCommand()
+  const { taskSectionIds } = useTasksTaskSectionIds()
   const firstTaskSectionId = useMemo(() => taskSectionIds[0], [taskSectionIds])
-  const { addTask } = useTaskFromTasks()
+  const { addTask } = useTasksTask()
 
   const handleAddTask = useCallback(() => {
     addTask({ taskSectionId: firstTaskSectionId })

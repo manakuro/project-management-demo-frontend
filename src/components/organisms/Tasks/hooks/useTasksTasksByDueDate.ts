@@ -11,7 +11,7 @@ const initialValue = (): Result => ({
   addTask: () => {},
 })
 
-export const useTasksByDueDateFromTasks = (dueDate: string): Result => {
+export const useTasksTasksByDueDate = (dueDate: string): Result => {
   const { isMyTasksPage } = useTasksContext()
   const useMyTasksTaskIdsByDueDateResult = useMyTasksTaskIdsByDueDate(dueDate)
 

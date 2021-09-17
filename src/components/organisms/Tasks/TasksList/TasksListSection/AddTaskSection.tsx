@@ -1,13 +1,12 @@
 import React, { memo, useCallback } from 'react'
 import { Button, Flex, Icon } from 'src/components/atoms'
 import { useTasksListContext } from 'src/components/organisms/Tasks'
-import { useTaskSectionCommandFromTasks } from 'src/components/organisms/Tasks/hooks'
+import { useTasksTaskSectionCommand } from 'src/components/organisms/Tasks/hooks'
 
 type Props = {}
 
 export const AddTaskSection: React.FC<Props> = memo<Props>(() => {
-  const { addTaskSection, setAddedTaskSectionId } =
-    useTaskSectionCommandFromTasks()
+  const { addTaskSection, setAddedTaskSectionId } = useTasksTaskSectionCommand()
   const { stickyStyle } = useTasksListContext()
 
   const handleClick = useCallback(() => {

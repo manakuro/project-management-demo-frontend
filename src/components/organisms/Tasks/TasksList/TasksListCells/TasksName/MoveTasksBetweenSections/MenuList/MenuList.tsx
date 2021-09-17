@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { MenuItemOption } from 'src/components/organisms/Menu'
 import { MenuSelectList } from 'src/components/organisms/Menus'
-import { useTaskSectionsFromTasks } from 'src/components/organisms/Tasks/hooks'
+import { useTasksTaskSections } from 'src/components/organisms/Tasks/hooks'
 import { TaskSection } from 'src/store/entities/taskSections'
 import { useTask } from 'src/store/entities/tasks'
 
@@ -10,7 +10,7 @@ type Props = {
 }
 
 export const MenuList: React.FC<Props> = memo<Props>((props) => {
-  const { taskSections } = useTaskSectionsFromTasks()
+  const { taskSections } = useTasksTaskSections()
   const { task } = useTask(props.taskId)
 
   return (

@@ -1,8 +1,8 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Box } from 'src/components/atoms'
 import {
-  useTaskSectionCommandFromTasks,
-  useTaskSectionFromTasks,
+  useTasksTaskSectionCommand,
+  useTasksTaskSection,
 } from 'src/components/organisms/Tasks/hooks'
 import { useTasksBoardListSectionContext } from '../../Provider'
 import { Input } from './Input'
@@ -13,8 +13,8 @@ type Props = {
 
 export const TaskSectionName: React.FC<Props> = memo<Props>((props) => {
   const { addedTaskSectionId, resetAddedTaskSectionId } =
-    useTaskSectionCommandFromTasks()
-  const { taskSection, setSectionName } = useTaskSectionFromTasks(
+    useTasksTaskSectionCommand()
+  const { taskSection, setSectionName } = useTasksTaskSection(
     props.taskSectionId,
   )
   const { focused, onFocusInput, onUnfocusInput } =

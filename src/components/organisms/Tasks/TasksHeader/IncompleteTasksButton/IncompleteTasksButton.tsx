@@ -6,7 +6,7 @@ import {
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms/Menus'
-import { useTaskStatusFromTasks } from 'src/components/organisms/Tasks/hooks'
+import { useTasksTaskStatus } from 'src/components/organisms/Tasks/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import {
   TASK_LIST_STATUS_TYPE_ALL,
@@ -19,7 +19,7 @@ type Props = {}
 
 export const IncompleteTasksButton: React.VFC<Props> = memo<Props>(() => {
   const { onSetTaskListStatus, isTaskListStatus, taskListStatus } =
-    useTaskStatusFromTasks()
+    useTasksTaskStatus()
   const popoverDisclosure = useDisclosure()
 
   const handleChange = useCallback(

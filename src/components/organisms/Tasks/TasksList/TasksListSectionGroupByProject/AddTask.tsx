@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useTaskContext } from 'src/components/organisms/Tasks/hooks'
+import { useTaskFromTasks } from 'src/components/organisms/Tasks/hooks'
 import { useClickableHoverStyle } from 'src/hooks'
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 }
 
 export const AddTask: React.FC<Props> = memo<Props>((props) => {
-  const { addTask } = useTaskContext(props.taskSectionId)
+  const { addTask } = useTaskFromTasks(props.taskSectionId)
   const { clickableHoverStyle } = useClickableHoverStyle()
 
   const handleClick = useCallback(async () => {

@@ -7,7 +7,7 @@ import {
   DrawerHeader,
 } from 'src/components/organisms/Drawer'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
-import { useTaskColumnCustomizableContext } from 'src/components/organisms/Tasks/hooks'
+import { useTaskColumnCustomizableFromTasks } from 'src/components/organisms/Tasks/hooks'
 import { useDnd } from 'src/hooks/dnd/useDnd'
 import { isMyTasksBoardURL, useRouter } from 'src/router'
 import { useCustomizeMenu } from '../useCustomizeMenu'
@@ -20,7 +20,7 @@ const TASKS_HEADER_BOARD_HEIGHT = 40
 export const Content: React.VFC = memo(() => {
   const { onClose } = useCustomizeMenu()
   const { taskColumnIds, setOrderTaskColumn } =
-    useTaskColumnCustomizableContext()
+    useTaskColumnCustomizableFromTasks()
   const { list, handleDnd } = useDnd(taskColumnIds)
   const { router } = useRouter()
   const top = useMemo<number>(() => {

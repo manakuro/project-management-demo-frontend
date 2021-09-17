@@ -28,7 +28,7 @@ const addedTaskSectionIdState = atom<string>({
   default: '',
 })
 
-export const useTaskSectionContext = () => {
+export const useTaskSectionFromTasks = () => {
   const { isMyTasksPage } = useTasksContext()
 
   const myTasks = useMyTasks()

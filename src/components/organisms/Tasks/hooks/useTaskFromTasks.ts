@@ -19,7 +19,7 @@ export const initialUseTask = (): Result => ({
   setSectionName: async () => {},
 })
 
-export const useTaskContext = (taskSectionId: string): Result => {
+export const useTaskFromTasks = (taskSectionId: string): Result => {
   const { isMyTasksPage } = useTasksContext()
   const useMyTasksResult = useMyTaskByTaskSectionId(taskSectionId)
 

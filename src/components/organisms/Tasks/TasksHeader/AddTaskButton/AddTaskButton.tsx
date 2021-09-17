@@ -15,8 +15,8 @@ import {
   MenuList,
 } from 'src/components/organisms/Menu'
 import {
-  useTaskContext,
-  useTaskSectionContext,
+  useTaskFromTasks,
+  useTaskSectionFromTasks,
 } from 'src/components/organisms/Tasks/hooks'
 import { ChakraProps } from 'src/shared/chakra'
 
@@ -28,8 +28,8 @@ type Props = ButtonGroupProps & {
 export const AddTaskButton: React.VFC<Props> = memo<Props>((props) => {
   const { solid, outlined, ...rest } = props
   const { taskSectionIds, addTaskSection, setAddedTaskSectionId } =
-    useTaskSectionContext()
-  const { addTask } = useTaskContext(taskSectionIds[0])
+    useTaskSectionFromTasks()
+  const { addTask } = useTaskFromTasks(taskSectionIds[0])
   const buttonGroupProps: ButtonGroupProps = props.solid
     ? { variant: 'solid', colorScheme: 'teal' }
     : { variant: 'outline' }

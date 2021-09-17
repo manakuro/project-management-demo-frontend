@@ -11,7 +11,7 @@ export const initialUseTaskStatus = (): Result => ({
   isSorted: () => false,
 })
 
-export const useTaskStatusContext = (): Result => {
+export const useTaskStatusFromTasks = (): Result => {
   const { isMyTasksPage } = useTasksContext()
   const useMyTasksTaskStatusResult = useMyTasksTaskStatus()
 

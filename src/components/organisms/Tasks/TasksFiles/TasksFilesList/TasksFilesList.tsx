@@ -1,12 +1,12 @@
 import React, { memo, useMemo } from 'react'
 import { Flex, Stack } from 'src/components/atoms'
-import { useTaskFilesContext } from 'src/components/organisms/Tasks/hooks'
+import { useTaskFilesFromTasks } from 'src/components/organisms/Tasks/hooks'
 import { useBreakpointValue } from 'src/shared/chakra'
 import { splitByNumber } from 'src/shared/utils'
 import { TasksFilesListItem } from '../TasksFilesListItem'
 
 export const TasksFilesList: React.VFC = memo(() => {
-  const { attachmentIds } = useTaskFilesContext()
+  const { attachmentIds } = useTaskFilesFromTasks()
   const splitNum = useBreakpointValue({ base: 2, '2xl': 3 }) as number
   const sections = useMemo(
     () => splitByNumber(attachmentIds, splitNum),

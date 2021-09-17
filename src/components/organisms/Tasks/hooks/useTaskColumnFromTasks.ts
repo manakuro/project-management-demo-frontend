@@ -9,7 +9,7 @@ const initialUseTaskColumn = (): Result => ({
   canMoveRight: () => false,
 })
 
-export const useTaskColumnContext = (): Result => {
+export const useTaskColumnFromTasks = (): Result => {
   const { isMyTasksPage } = useTasksContext()
   const myTasksTaskColumns = useMyTasksTaskColumns()
 

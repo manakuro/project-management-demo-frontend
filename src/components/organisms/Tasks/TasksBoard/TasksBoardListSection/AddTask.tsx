@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { Button, ButtonProps, Icon } from 'src/components/atoms'
-import { useTaskContext } from 'src/components/organisms/Tasks/hooks'
+import { useTaskFromTasks } from 'src/components/organisms/Tasks/hooks'
 
 type Props = {
   taskSectionId: string
@@ -8,7 +8,7 @@ type Props = {
 
 export const AddTask: React.FC<Props> = memo<Props>((props) => {
   const { taskSectionId, ...rest } = props
-  const { addTask } = useTaskContext(taskSectionId)
+  const { addTask } = useTaskFromTasks(taskSectionId)
 
   const handleClick = useCallback(async () => {
     await addTask()

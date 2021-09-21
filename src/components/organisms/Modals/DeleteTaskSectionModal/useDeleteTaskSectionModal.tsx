@@ -3,21 +3,24 @@ import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useTaskSection } from 'src/store/entities/taskSections'
 import { useTasksByTaskSectionId } from 'src/store/entities/tasks'
 
-const deleteTaskSectionModalOpenState = atom({
-  key: 'deleteTaskSectionModalOpenState',
+const key = (str: string) =>
+  `src/components/organisms/Modals/DeleteTaskSectionModal/useDeleteTaskSectionModal/${str}`
+
+const openState = atom({
+  key: key('openState'),
   default: false,
 })
-const deleteTaskSectionModalState = atom({
-  key: 'deleteTaskSectionModalState',
+const modalState = atom({
+  key: key('modalState'),
   default: {
     taskSectionId: '',
   },
 })
 
 export const useDeleteTaskSectionModal = () => {
-  const [isOpen, setIsOpen] = useRecoilState(deleteTaskSectionModalOpenState)
-  const [state, setState] = useRecoilState(deleteTaskSectionModalState)
-  const resetState = useResetRecoilState(deleteTaskSectionModalState)
+  const [isOpen, setIsOpen] = useRecoilState(openState)
+  const [state, setState] = useRecoilState(modalState)
+  const resetState = useResetRecoilState(modalState)
   const { taskSection } = useTaskSection(state.taskSectionId)
   const { tasks } = useTasksByTaskSectionId(state.taskSectionId)
 

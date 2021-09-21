@@ -15,13 +15,14 @@ export const DeleteTask: React.FC<Props> = memo((props) => {
   const { toast } = useToast()
 
   const handleClick = useCallback(async () => {
+    onCloseMenu()
+
     await deleteTask()
     toast({
       description: `${task.name} deleted`,
       undo: undeleteTask,
     })
-    onCloseMenu()
-  }, [deleteTask, undeleteTask, onCloseMenu, task.name, toast])
+  }, [deleteTask, toast, task.name, undeleteTask, onCloseMenu])
 
   return (
     <MenuItem

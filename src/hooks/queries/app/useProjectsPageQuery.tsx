@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { useMountedRef } from 'src/hooks'
 import { dateFns } from 'src/shared/dateFns'
 import { uuid } from 'src/shared/uuid'
-import { useMyTasksResponse } from 'src/store/app/myTasks'
-import { MyTaskResponse } from 'src/store/app/myTasks'
+import { useProjectsResponse } from 'src/store/app/projects'
+import { ProjectsResponse } from 'src/store/app/projects'
 import { TaskSectionResponse } from 'src/store/entities/taskSections'
 import { teammates } from 'src/store/entities/teammates/data'
 
@@ -13,7 +13,7 @@ type Props = {
 
 export const useProjectsPageQuery = (props?: Props) => {
   const [loading, setLoading] = useState(true)
-  const { setMyTasks } = useMyTasksResponse()
+  const { setProjects } = useProjectsResponse()
   const { mountedRef } = useMountedRef()
 
   useEffect(() => {
@@ -21,22 +21,22 @@ export const useProjectsPageQuery = (props?: Props) => {
       if (props?.lazy) return
       setLoading(true)
       const res = await fetchTasks()
-      setMyTasks(res)
+      setProjects(res)
       setLoading(false)
     })()
-  }, [props?.lazy, setMyTasks, setLoading])
+  }, [props?.lazy, setProjects, setLoading])
 
   const refetch = useCallback(async () => {
     setLoading(true)
     const res = await fetchTasks()
 
     if (mountedRef.current) {
-      setMyTasks(res)
+      setProjects(res)
       setLoading(false)
     }
 
     return res
-  }, [setMyTasks, setLoading, mountedRef])
+  }, [setProjects, setLoading, mountedRef])
 
   return {
     refetch,
@@ -654,15 +654,15 @@ const taskSections: TaskSectionResponse[] = [
   },
 ]
 
-const fetchTasks = async (): Promise<MyTaskResponse> => {
-  return new Promise<MyTaskResponse>((resolve) => {
+const fetchTasks = async (): Promise<ProjectsResponse> => {
+  return new Promise<ProjectsResponse>((resolve) => {
     setTimeout(() => {
       resolve({
         taskSections: [
           {
             id: '1',
             taskSectionId: taskSections[0].id,
-            teammateId: '1',
+            projectId: '1',
             taskSection: taskSections[0],
             createdAt: '',
             updatedAt: '',
@@ -670,7 +670,7 @@ const fetchTasks = async (): Promise<MyTaskResponse> => {
           {
             id: '2',
             taskSectionId: taskSections[1].id,
-            teammateId: '1',
+            projectId: '1',
             taskSection: taskSections[1],
             createdAt: '',
             updatedAt: '',

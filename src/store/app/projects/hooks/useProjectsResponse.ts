@@ -1,23 +1,23 @@
 import { useRecoilCallback } from 'recoil'
+import { useProjectsTaskSectionsResponse } from 'src/store/entities/projectsTaskSections'
 import { taskColumnSelector } from 'src/store/entities/taskColumns'
-import { useTaskSectionsResponse } from 'src/store/entities/taskSections'
 import { projectsTaskStatusState } from '../taskListStatus'
 import { ProjectsResponse } from '../type'
 
 export const useProjectsResponse = () => {
-  const { setTaskSections } = useTaskSectionsResponse()
+  const { setProjectsTaskSections } = useProjectsTaskSectionsResponse()
   const { setTaskColumns, setTaskStatus } = useSetters()
-  const setMyTasks = useRecoilCallback(
+  const setProjects = useRecoilCallback(
     () => (data: ProjectsResponse) => {
-      setTaskSections(data.taskSections)
+      setProjectsTaskSections(data.taskSections)
       setTaskColumns(data)
       setTaskStatus(data)
     },
-    [setTaskColumns, setTaskSections, setTaskStatus],
+    [setTaskColumns, setProjectsTaskSections, setTaskStatus],
   )
 
   return {
-    setMyTasks,
+    setProjects,
   }
 }
 

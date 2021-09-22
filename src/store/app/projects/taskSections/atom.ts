@@ -1,5 +1,6 @@
 import { selectorFamily } from 'recoil'
-import { TaskSection, taskSectionsState } from 'src/store/entities/taskSections'
+import { taskSectionsByProjectIdSelector } from 'src/store/entities/projectsTaskSections'
+import { TaskSection } from 'src/store/entities/taskSections'
 import { tasksByTaskSectionIdSelector } from 'src/store/entities/tasks'
 import { isProjectsSortStatus } from '../taskListStatus'
 
@@ -8,9 +9,9 @@ const key = (str: string) => `src/store/app/projects/taskSections/${str}`
 export const projectsTaskSectionIdsSelector = selectorFamily<string[], string>({
   key: key('projectsTaskSectionIdsSelector'),
   get:
-    (_) =>
+    (projectId) =>
     ({ get }) => {
-      const taskSections = get(taskSectionsState)
+      const taskSections = get(taskSectionsByProjectIdSelector(projectId))
 
       switch (true) {
         case get(isProjectsSortStatus('dueDate')): {
@@ -36,9 +37,9 @@ export const projectsTaskSectionIdsSelector = selectorFamily<string[], string>({
 export const taskSectionsSelector = selectorFamily<TaskSection[], string>({
   key: key('taskSectionsSelector'),
   get:
-    (_) =>
+    (projectId) =>
     ({ get }) => {
-      const taskSections = get(taskSectionsState)
+      const taskSections = get(taskSectionsByProjectIdSelector(projectId))
       return [...taskSections]
     },
 })

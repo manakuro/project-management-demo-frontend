@@ -1,14 +1,16 @@
 import { useRecoilCallback } from 'recoil'
-import { useTaskSectionsCommand } from 'src/store/entities/taskSections'
+import { useProjectsTaskSectionsCommand } from 'src/store/entities/projectsTaskSections'
+import { useProjectsProjectId } from '../../project'
 
 export const useProjectsTaskSectionCommand = () => {
-  const { addTaskSection } = useTaskSectionsCommand()
+  const { addProjectsTaskSection } = useProjectsTaskSectionsCommand()
+  const { projectId } = useProjectsProjectId()
 
   const addProjectsSection = useRecoilCallback(
     () => () => {
-      return addTaskSection()
+      return addProjectsTaskSection({ projectId })
     },
-    [addTaskSection],
+    [addProjectsTaskSection, projectId],
   )
 
   return {

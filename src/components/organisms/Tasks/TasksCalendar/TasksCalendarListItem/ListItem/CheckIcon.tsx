@@ -1,8 +1,8 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { CheckIcon as AtomsCheckIcon, IconProps } from 'src/components/atoms'
 import { ChakraProps } from 'src/shared/chakra'
-import { useProjectIdsByTaskId } from 'src/store/entities/projectTasks'
 import { useProject } from 'src/store/entities/projects'
+import { useProjectIdsByTaskId } from 'src/store/entities/projectsTasks'
 import { useTask } from 'src/store/entities/tasks'
 
 type Props = {

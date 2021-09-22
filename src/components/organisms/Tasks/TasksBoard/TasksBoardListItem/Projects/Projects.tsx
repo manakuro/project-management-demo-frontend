@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { FlexProps, Stack } from 'src/components/atoms'
-import { useProjectIdsByTaskId } from 'src/store/entities/projectTasks'
+import { useProjectIdsByTaskId } from 'src/store/entities/projectsTasks'
 import { ProjectChip } from './ProjectChip'
 
 type Props = FlexProps & {

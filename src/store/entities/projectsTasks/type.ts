@@ -1,4 +1,4 @@
-export type ProjectTaskResponse = {
+export type ProjectsTaskResponse = {
   id: string
   projectId: string
   taskId: string

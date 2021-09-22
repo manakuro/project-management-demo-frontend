@@ -5,7 +5,7 @@ import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useRouter } from 'src/router'
 import { formatDueTime } from 'src/shared/date'
-import { useProjectIdsByTaskId } from 'src/store/entities/projectTasks'
+import { useProjectIdsByTaskId } from 'src/store/entities/projectsTasks'
 import { useTask } from 'src/store/entities/tasks'
 
 type Props = {

@@ -4,7 +4,7 @@ import { ProjectChip } from 'src/components/molecules'
 import { ProjectMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
-import { useProjectIdsByTaskId } from 'src/store/entities/projectTasks'
+import { useProjectIdsByTaskId } from 'src/store/entities/projectsTasks'
 
 type Props = {
   taskId: string

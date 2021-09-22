@@ -2,7 +2,7 @@ import React, { memo, useCallback, useState } from 'react'
 import { FlexProps, Stack } from 'src/components/atoms'
 import { ProjectChip } from 'src/components/molecules'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
-import { useProjectIdsByTaskId } from 'src/store/entities/projectTasks'
+import { useProjectIdsByTaskId } from 'src/store/entities/projectsTasks'
 import { Input } from './Input'
 
 type Props = FlexProps & {

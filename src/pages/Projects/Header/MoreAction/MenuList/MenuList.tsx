@@ -9,6 +9,7 @@ import { PopoverSetColorAndIcon } from 'src/components/organisms/Popovers'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
 import { useProject } from 'src/store/entities/projects'
+import { EditProjectDetails } from './EditProjectDetails'
 import { PopoverAdvancedActions } from './PopoverAdvancedActions'
 
 type Props = {
@@ -19,40 +20,60 @@ type Props = {
 export const MenuList: React.FC<Props> = (props) => {
   const { projectId } = props
   const { project } = useProject(projectId)
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const disclosureForPopoverSetColorAndIcon = useDisclosure()
+  const disclosureForPopoverAdvancedActions = useDisclosure()
+  const disclosureForPopoverAdvancedActions2 = useDisclosure()
   const { ref } = useClickOutside(() => {
     handleCloseAll()
   })
 
-  const handleOpen = useCallback(() => {
-    onOpen()
-  }, [onOpen])
-
   const handleClose = useCallback(() => {
-    onClose()
-  }, [onClose])
+    disclosureForPopoverSetColorAndIcon.onClose()
+    disclosureForPopoverAdvancedActions.onClose()
+    disclosureForPopoverAdvancedActions2.onClose()
+  }, [
+    disclosureForPopoverAdvancedActions,
+    disclosureForPopoverAdvancedActions2,
+    disclosureForPopoverSetColorAndIcon,
+  ])
 
   const handleCloseAll = useCallback(() => {
-    onClose()
+    handleClose()
     props.onCloseMenu()
-  }, [onClose, props])
+  }, [handleClose, props])
+
+  const handleOpenPopoverSetColorAndIcon = useCallback(() => {
+    handleClose()
+
+    disclosureForPopoverSetColorAndIcon.onOpen()
+  }, [disclosureForPopoverSetColorAndIcon, handleClose])
+
+  const handleOpenPopoverAdvancedActions = useCallback(() => {
+    handleClose()
+
+    disclosureForPopoverAdvancedActions.onOpen()
+  }, [disclosureForPopoverAdvancedActions, handleClose])
+
+  const handleOpenPopoverAdvancedActions2 = useCallback(() => {
+    handleClose()
+
+    disclosureForPopoverAdvancedActions2.onOpen()
+  }, [disclosureForPopoverAdvancedActions2, handleClose])
 
   return (
     <Portal>
       <AtomsMenuList ref={ref} zIndex={1}>
-        <MenuItem
+        <EditProjectDetails
+          onClose={handleCloseAll}
           onMouseEnter={handleClose}
-          icon={<Icon icon="pencil" color="text.muted" />}
-        >
-          Edit Project details
-        </MenuItem>
+        />
         <MenuItem
           icon={<ColorBox size="md" color={project.color.color} mt="-1px" />}
-          onMouseEnter={handleOpen}
+          onMouseEnter={handleOpenPopoverSetColorAndIcon}
         >
           <PopoverSetColorAndIcon
             project={project}
-            isOpen={isOpen}
+            isOpen={disclosureForPopoverSetColorAndIcon.isOpen}
             placement="right-end"
           >
             <Flex>
@@ -98,9 +119,9 @@ export const MenuList: React.FC<Props> = (props) => {
           Add to Portfolio
         </MenuItem>
         <MenuDivider />
-        <MenuItem onMouseEnter={handleOpen}>
+        <MenuItem onMouseEnter={handleOpenPopoverAdvancedActions}>
           <PopoverAdvancedActions
-            isOpen={isOpen}
+            isOpen={disclosureForPopoverAdvancedActions.isOpen}
             placement="right"
             onClose={handleCloseAll}
           >
@@ -112,9 +133,9 @@ export const MenuList: React.FC<Props> = (props) => {
             </Flex>
           </PopoverAdvancedActions>
         </MenuItem>
-        <MenuItem onMouseEnter={handleOpen}>
+        <MenuItem onMouseEnter={handleOpenPopoverAdvancedActions2}>
           <PopoverAdvancedActions
-            isOpen={isOpen}
+            isOpen={disclosureForPopoverAdvancedActions2.isOpen}
             placement="right"
             onClose={handleCloseAll}
           >

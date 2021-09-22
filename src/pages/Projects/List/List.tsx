@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { TaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import {
   AddTaskButton,
@@ -19,6 +19,7 @@ import {
   useTasksListDetail,
 } from 'src/components/organisms/Tasks'
 import { getProjectsDetailId, isProjectsDetailURL, useRouter } from 'src/router'
+import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useProjectsPageContext } from '../Provider'
 import { SkeletonList } from './SkeletonList'
 
@@ -31,11 +32,16 @@ export const List: React.VFC = memo(() => {
 })
 const Component: React.VFC = memo(() => {
   const { loadingTabContent } = useProjectsPageContext()
-  const { navigateToMyTasksList } = useRouter()
+  const { projectId } = useProjectsProjectId()
+  const { navigateToProjectsList } = useRouter()
   const { skipElement } = useTasksListDetail({
     isTaskDetailURL: isProjectsDetailURL,
     getTaskDetailId: getProjectsDetailId,
   })
+
+  const backToPage = useCallback(async () => {
+    await navigateToProjectsList(projectId)
+  }, [navigateToProjectsList, projectId])
 
   if (loadingTabContent) return <SkeletonList />
 
@@ -61,10 +67,7 @@ const Component: React.VFC = memo(() => {
         </TasksListContent>
       </TasksList>
       <CustomizeMenu />
-      <TaskDetailDrawer
-        backToPage={navigateToMyTasksList}
-        skipElement={skipElement}
-      />
+      <TaskDetailDrawer backToPage={backToPage} skipElement={skipElement} />
     </>
   )
 })

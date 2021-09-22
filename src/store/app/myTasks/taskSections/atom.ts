@@ -1,5 +1,5 @@
 import { selectorFamily } from 'recoil'
-import { isMyTaskSortStatus } from 'src/store/app/myTasks'
+import { isMyTaskSortStatus } from 'src/store/app/myTasks/taskListStatus'
 import { isTabStatusForMyTasks } from 'src/store/entities/tabStatusForMyTasks'
 import { TaskSection } from 'src/store/entities/taskSections'
 import { tasksByTaskSectionIdSelector } from 'src/store/entities/tasks'

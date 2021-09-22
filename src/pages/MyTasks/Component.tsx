@@ -12,7 +12,7 @@ import {
   isMyTasksDetailURL,
   useRouter,
 } from 'src/router'
-import { useMyTasksTaskStatus } from 'src/store/app/myTasks'
+import { useMyTasksTaskStatus } from 'src/store/app/myTasks/taskListStatus'
 import {
   TabStatusForMyTasks,
   useTabStatusForMyTasks,

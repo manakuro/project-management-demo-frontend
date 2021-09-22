@@ -1,19 +1,16 @@
-import { useMyTasksTaskStatus } from 'src/store/app/myTasks'
+import { useMyTasksTaskStatus } from 'src/store/app/myTasks/taskListStatus'
+import { useProjectsTaskStatus } from 'src/store/app/projects/taskListStatus'
 import { useTasksContext } from '../TasksProvider'
 
-type Result = Omit<ReturnType<typeof useMyTasksTaskStatus>, 'id'>
-export const initialUseTaskStatus = (): Result => ({
-  taskListStatus: 1,
-  sortStatus: 1,
-  onSetTaskListStatus: () => {},
-  onSort: () => {},
-  isTaskListStatus: () => false,
-  isSorted: () => false,
-})
+type Result = Omit<
+  ReturnType<typeof useMyTasksTaskStatus | typeof useProjectsTaskStatus>,
+  'id'
+>
 
 export const useTasksTaskStatus = (): Result => {
   const { isMyTasksPage } = useTasksContext()
   const useMyTasksTaskStatusResult = useMyTasksTaskStatus()
+  const useProjectsTaskStatusResult = useProjectsTaskStatus()
 
   if (isMyTasksPage) {
     return {
@@ -21,5 +18,7 @@ export const useTasksTaskStatus = (): Result => {
     }
   }
 
-  return initialUseTaskStatus()
+  return {
+    ...useProjectsTaskStatusResult,
+  }
 }

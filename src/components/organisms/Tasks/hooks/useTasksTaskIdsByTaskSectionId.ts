@@ -1,13 +1,10 @@
 import { useMyTasksTaskIdsByTaskSectionId } from 'src/store/app/myTasks/tasks'
+import { useProjectsTaskIdsByTaskSectionId } from 'src/store/app/projects/tasks'
 import { useTasksContext } from '../TasksProvider'
 
 type Result = {
   taskIds: string[]
 }
-
-export const initialUseTask = (): Result => ({
-  taskIds: [],
-})
 
 export const useTasksTaskIdsByTaskSectionId = (
   taskSectionId: string,
@@ -15,6 +12,8 @@ export const useTasksTaskIdsByTaskSectionId = (
   const { isMyTasksPage } = useTasksContext()
   const useMyTasksTaskIdsByTaskSectionIdResult =
     useMyTasksTaskIdsByTaskSectionId(taskSectionId)
+  const useProjectsTaskIdsByTaskSectionIdResult =
+    useProjectsTaskIdsByTaskSectionId(taskSectionId)
 
   if (isMyTasksPage) {
     return {
@@ -22,5 +21,7 @@ export const useTasksTaskIdsByTaskSectionId = (
     }
   }
 
-  return initialUseTask()
+  return {
+    taskIds: useProjectsTaskIdsByTaskSectionIdResult.taskIds,
+  }
 }

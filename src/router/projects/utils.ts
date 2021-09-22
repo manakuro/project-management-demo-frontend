@@ -7,6 +7,10 @@ import {
   ROUTE_PROJECTS_FILES,
 } from './routes'
 
+export const isProjectsURL = (router: NextRouter): boolean => {
+  return ROUTE_PROJECTS.regex.test(router.asPath)
+}
+
 export const isProjectsListURL = (id: string, router: NextRouter): boolean => {
   return router.asPath === ROUTE_PROJECTS_LIST.href.pathname(id)
 }
@@ -34,8 +38,8 @@ export const isProjectsDetailURL = (
   console.log(router)
   return (
     !!router.query &&
-    !!router.query[ROUTE_PROJECTS.query]?.length &&
-    !!router.query[ROUTE_PROJECTS.query]?.[0] &&
+    !!router.query[ROUTE_PROJECTS.query.projects]?.length &&
+    !!router.query[ROUTE_PROJECTS.query.projects]?.[0] &&
     !isProjectsListURL(id, router) &&
     !isProjectsBoardURL(id, router) &&
     !isProjectsCalendarURL(id, router) &&
@@ -49,18 +53,23 @@ export const isProjectsDetailURLById = (
 ): boolean => {
   return (
     !!router.query &&
-    !!router.query[ROUTE_PROJECTS.query]?.length &&
-    !!router.query[ROUTE_PROJECTS.query]?.[0] &&
-    router.query[ROUTE_PROJECTS.query]?.[0] === taskId &&
+    !!router.query[ROUTE_PROJECTS.query.projects]?.length &&
+    !!router.query[ROUTE_PROJECTS.query.projects]?.[0] &&
+    router.query[ROUTE_PROJECTS.query.projects]?.[0] === taskId &&
     !isProjectsBoardURL(id, router) &&
     !isProjectsCalendarURL(id, router) &&
     !isProjectsFilesURL(id, router)
   )
 }
 
+export const getProjectsIdFromURL = (router: NextRouter): string =>
+  (isProjectsURL(router) &&
+    (router.query?.[ROUTE_PROJECTS.query.projectId] as string)) ||
+  ''
+
 export const getProjectsDetailId = (id: string, router: NextRouter): string =>
   (isProjectsDetailURL(id, router) &&
-    (router.query?.[ROUTE_PROJECTS.query]?.[0] as string)) ||
+    (router.query?.[ROUTE_PROJECTS.query.projects]?.[0] as string)) ||
   ''
 
 export const getProjectsDetailFeedId = (
@@ -68,7 +77,7 @@ export const getProjectsDetailFeedId = (
   router: NextRouter,
 ): string =>
   (isProjectsDetailURL(id, router) &&
-    (router.query?.[ROUTE_PROJECTS.query]?.[1] as string)) ||
+    (router.query?.[ROUTE_PROJECTS.query.projects]?.[1] as string)) ||
   ''
 
 export const getProjectsDetailFeedURL = (

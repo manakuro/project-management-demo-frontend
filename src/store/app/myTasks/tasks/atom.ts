@@ -1,11 +1,11 @@
 import { selectorFamily } from 'recoil'
-import { isMyTaskSortStatus } from 'src/store/app/myTasks'
 import {
   filterByNoProject,
   filterByProjectTasks,
   filterTasks,
   sortTasks,
 } from 'src/store/app/myTasks/filters'
+import { isMyTaskSortStatus } from 'src/store/app/myTasks/taskListStatus'
 import { isTabStatusForMyTasks } from 'src/store/entities/tabStatusForMyTasks'
 import {
   tasksState,

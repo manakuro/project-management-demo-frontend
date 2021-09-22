@@ -12,7 +12,7 @@ import {
   TASK_LIST_STATUS_TYPE_ALL,
   TASK_LIST_STATUS_TYPE_INCOMPLETE,
   TaskListStatusType,
-} from 'src/store/app/myTasks'
+} from 'src/store/app/myTasks/taskListStatus'
 import { PopoverCompletedTasks } from './PopoverCompletedTasks'
 
 type Props = {}

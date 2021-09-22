@@ -1,23 +1,23 @@
 import { useMyTasksTaskColumns } from 'src/store/app/myTasks/taskColumns'
+import { useProjectsTaskColumns } from 'src/store/app/projects/taskColumns'
 import { useTasksContext } from '../TasksProvider'
 
-type Result = ReturnType<typeof useMyTasksTaskColumns>
-const initialUseTaskColumn = (): Result => ({
-  taskColumnIds: [],
-  setOrderTaskColumn: async () => {},
-  canMoveLeft: () => false,
-  canMoveRight: () => false,
-})
+type Result = ReturnType<
+  typeof useMyTasksTaskColumns | typeof useProjectsTaskColumns
+>
 
 export const useTasksTaskColumn = (): Result => {
   const { isMyTasksPage } = useTasksContext()
-  const myTasksTaskColumns = useMyTasksTaskColumns()
+  const useMyTasksTaskColumnsResult = useMyTasksTaskColumns()
+  const useProjectsTaskColumnsResult = useProjectsTaskColumns()
 
   if (isMyTasksPage) {
     return {
-      ...myTasksTaskColumns,
+      ...useMyTasksTaskColumnsResult,
     }
   }
 
-  return initialUseTaskColumn()
+  return {
+    ...useProjectsTaskColumnsResult,
+  }
 }

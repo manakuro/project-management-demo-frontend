@@ -4,7 +4,7 @@ import { uniq } from 'src/shared/utils'
 import {
   isMyTaskSortStatus,
   isMyTaskTaskListStatus,
-} from 'src/store/app/myTasks'
+} from 'src/store/app/myTasks/taskListStatus'
 import { projectTasksState } from 'src/store/entities/projectTasks'
 import { taskLikesByTaskIdSelector } from 'src/store/entities/taskLikes'
 import { Task } from 'src/store/entities/tasks'

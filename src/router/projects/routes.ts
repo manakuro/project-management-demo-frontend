@@ -1,5 +1,5 @@
 export const ROUTE_PROJECTS = {
-  regex: /^\/projects\/\d*\/?$/iu,
+  regex: /^\/projects\/\d*\/?/iu,
   href: {
     pathname: (id: string) => `/projects/${id}`,
     pathnameObj: (id: string) =>
@@ -8,7 +8,10 @@ export const ROUTE_PROJECTS = {
         query: { projectId: id },
       } as const),
   },
-  query: 'projects',
+  query: {
+    projectId: 'projectId',
+    projects: 'projects',
+  },
 } as const
 
 export const ROUTE_PROJECTS_LIST = {

@@ -1,8 +1,6 @@
 import { useMyTasksTaskSection } from 'src/store/app/myTasks/taskSections'
-import {
-  TaskSection,
-  defaultTaskSectionStateValue,
-} from 'src/store/entities/taskSections'
+import { useProjectsTaskSection } from 'src/store/app/projects/taskSections'
+import { TaskSection } from 'src/store/entities/taskSections'
 import { useTasksContext } from '../TasksProvider'
 
 type Result = {
@@ -10,14 +8,10 @@ type Result = {
   setSectionName: (val: string) => Promise<void>
 }
 
-export const initialUseTask = (): Result => ({
-  taskSection: defaultTaskSectionStateValue(),
-  setSectionName: async () => {},
-})
-
 export const useTasksTaskSection = (taskSectionId: string): Result => {
   const { isMyTasksPage } = useTasksContext()
   const useMyTasksTaskSectionResult = useMyTasksTaskSection(taskSectionId)
+  const useProjectsTaskSectionResult = useProjectsTaskSection(taskSectionId)
 
   if (isMyTasksPage) {
     return {
@@ -26,5 +20,8 @@ export const useTasksTaskSection = (taskSectionId: string): Result => {
     }
   }
 
-  return initialUseTask()
+  return {
+    taskSection: useProjectsTaskSectionResult.taskSection,
+    setSectionName: useProjectsTaskSectionResult.setSectionName,
+  }
 }

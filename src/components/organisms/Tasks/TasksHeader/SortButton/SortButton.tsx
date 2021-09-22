@@ -14,7 +14,7 @@ import {
   TASK_LIST_SORT_STATUS_TYPE_NONE,
   TASK_LIST_SORT_STATUS_TYPE_PROJECT,
   TaskListSortStatusType,
-} from 'src/store/app/myTasks'
+} from 'src/store/app/myTasks/taskListStatus'
 
 type Props = {
   projectSortable?: boolean

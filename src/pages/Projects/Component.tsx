@@ -11,7 +11,9 @@ import {
   isMyTasksListURL,
   useRouter,
 } from 'src/router'
-import { useMyTasksTaskStatus } from 'src/store/app/myTasks'
+import { getProjectsIdFromURL } from 'src/router/projects'
+import { useMyTasksTaskStatus } from 'src/store/app/myTasks/taskListStatus'
+import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { Board } from './Board'
 import { Calendar } from './Calendar'
 import { Files } from './Files'
@@ -64,6 +66,15 @@ const WrappedComponent: React.VFC = memo(() => {
   const [tabIndex, setTabIndex] = React.useState<Index>(
     mapURLtoTabIndex({ router }),
   )
+  const { setProjectId } = useProjectsProjectId()
+
+  useEffect(() => {
+    const projectId = getProjectsIdFromURL(router)
+    console.log('projectId: ', projectId)
+    if (!projectId) return
+
+    setProjectId(projectId)
+  }, [router, setProjectId])
 
   const setLoading = useCallback(() => {
     setLoadingTabContent(true)
@@ -128,7 +139,7 @@ const WrappedComponent: React.VFC = memo(() => {
       return
     }
     // Force update tab status based on URL
-    /* eslint react-hooks/exhaustive-deps: off */
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [])
 
   return (

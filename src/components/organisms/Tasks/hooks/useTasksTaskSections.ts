@@ -1,24 +1,25 @@
 import { useMyTasksTaskSections } from 'src/store/app/myTasks/taskSections'
+import { useProjectsTaskSections } from 'src/store/app/projects/taskSections'
 import { TaskSection } from 'src/store/entities/taskSections'
 import { useTasksContext } from '../TasksProvider'
 
 type Result = {
   taskSections: TaskSection[]
 }
-export const initialUseTaskSections = (): Result => ({
-  taskSections: [],
-})
 
-export const useTasksTaskSections = () => {
+export const useTasksTaskSections = (): Result => {
   const { isMyTasksPage } = useTasksContext()
 
-  const myTaskSections = useMyTasksTaskSections()
+  const useMyTasksTaskSectionsResult = useMyTasksTaskSections()
+  const useProjectsTaskSectionsResult = useProjectsTaskSections()
 
   if (isMyTasksPage) {
     return {
-      ...myTaskSections,
+      taskSections: useMyTasksTaskSectionsResult.taskSections,
     }
   }
 
-  return initialUseTaskSections()
+  return {
+    taskSections: useProjectsTaskSectionsResult.taskSections,
+  }
 }

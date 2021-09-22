@@ -55,6 +55,7 @@ export const MenuList: React.VFC<Props> = (props) => {
             <ColorBox size="md" color={props.project.color.color} mt="-1px" />
           }
           onMouseEnter={handleOpen}
+          onClick={(e) => e.stopPropagation()}
         >
           <PopoverSetColorAndIcon
             project={props.project}

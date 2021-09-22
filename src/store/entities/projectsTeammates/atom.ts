@@ -2,7 +2,7 @@ import { atomFamily, selectorFamily, DefaultValue, atom } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import { ProjectTeammate } from './type'
 
-const key = (str: string) => `src/store/entities/projectTeammates/${str}`
+const key = (str: string) => `src/store/entities/projectsTeammates/${str}`
 
 export const projectTeammateIdsState = atom<string[]>({
   key: key('projectTeammateIdsState'),

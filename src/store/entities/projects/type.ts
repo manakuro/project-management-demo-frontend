@@ -1,5 +1,5 @@
 import { Colors } from 'src/shared/chakra'
-import { ProjectTeammateResponse } from 'src/store/entities/projectTeammates'
+import { ProjectsTeammateResponse } from 'src/store/entities/projectsTeammates'
 
 export type ProjectResponse = {
   id: string
@@ -12,7 +12,7 @@ export type ProjectResponse = {
   icon: {
     id: string
   }
-  teammates: ProjectTeammateResponse[]
+  teammates: ProjectsTeammateResponse[]
 }
 
 export type Project = {

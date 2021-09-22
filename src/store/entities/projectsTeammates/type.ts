@@ -1,6 +1,6 @@
 import { Teammate } from 'src/store/entities/teammates'
 
-export type ProjectTeammateResponse = Teammate & {
+export type ProjectsTeammateResponse = Teammate & {
   id: string
   teammateId: string
   projectId: string

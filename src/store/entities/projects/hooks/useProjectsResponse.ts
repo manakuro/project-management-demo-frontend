@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
-import { projectTeammateSelector } from 'src/store/entities/projectTeammates'
+import { projectTeammateSelector } from 'src/store/entities/projectsTeammates'
 import { useTeammatesResponse } from 'src/store/entities/teammates'
 import { projectSelector } from '../atom'
 import { Project, ProjectResponse } from '../type'

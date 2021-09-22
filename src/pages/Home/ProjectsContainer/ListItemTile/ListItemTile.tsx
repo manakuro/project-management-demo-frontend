@@ -7,9 +7,9 @@ import {
   FavoriteButton,
 } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
-import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammates'
 import { useProject } from 'src/store/entities/projects'
 import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
+import { useTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
 import { transitions } from 'src/styles'
 import { MenuButton } from '../MenuButton'
 import { Container } from './Container'

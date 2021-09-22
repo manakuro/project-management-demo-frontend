@@ -9,8 +9,8 @@ import {
   Divider,
 } from 'src/components/atoms'
 import { useFileViewerModal } from 'src/components/organisms/Modals'
+import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
 import { useHover } from 'src/hooks/useHover'
-import { useRouter } from 'src/router'
 import { getAttachmentIcon } from 'src/shared/attachment'
 import {
   useAttachment,
@@ -32,7 +32,7 @@ export const TasksFilesListItem: React.VFC<Props> = memo((props) => {
   const { attachmentIds } = useAttachmentIdsByTaskId(attachment.taskId)
   const { onOpen, setState } = useFileViewerModal()
   const icon = getAttachmentIcon(attachment.type)
-  const { navigateToTaskDetail } = useRouter()
+  const { navigateToTaskDetail } = useTasksRouter()
 
   const handleOpenTaskDetail = useCallback(
     async (e: React.MouseEvent<HTMLAnchorElement>) => {

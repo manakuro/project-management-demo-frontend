@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
+import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
 import { useColorPicker } from 'src/hooks'
-import { useRouter } from 'src/router'
 import { forwardRef } from 'src/shared/chakra'
 import { useProject } from 'src/store/entities/projects'
 import { useProjectIdsByTaskId } from 'src/store/entities/projectsTasks'
@@ -19,7 +19,7 @@ export const Container: React.FC<Props> = memo<Props>(
     const { projectIds } = useProjectIdsByTaskId(props.taskId)
     const { project } = useProject(projectIds[0])
     const { findColor } = useColorPicker()
-    const { navigateToTaskDetail } = useRouter()
+    const { navigateToTaskDetail } = useTasksRouter()
 
     const handleOpenTaskDetail = useCallback(
       async (e: React.MouseEvent<HTMLElement>) => {

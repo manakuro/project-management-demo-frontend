@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react'
 import { CheckIcon, FlexProps, Icon, Stack, Text } from 'src/components/atoms'
 import { TaskDoneTransition } from 'src/components/molecules'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
-import { useRouter } from 'src/router'
+import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
 import { useTask } from 'src/store/entities/tasks'
 import { ExpandIcon } from './ExpandIcon'
 import { Feed } from './Feed'
@@ -39,7 +39,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
     onStartTransition,
     isTransitioning,
   } = useTasksNameContext()
-  const { navigateToTaskDetail } = useRouter()
+  const { navigateToTaskDetail } = useTasksRouter()
   const { task, setTask, deleteTask, setTaskName } = useTask(props.taskId)
   const { stickyStyle } = useTasksListContext()
 

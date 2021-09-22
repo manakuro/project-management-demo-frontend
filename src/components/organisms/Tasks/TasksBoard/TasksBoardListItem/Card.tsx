@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { FlexProps, Flex, Collapse } from 'src/components/atoms'
-import { useRouter } from 'src/router'
+import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
 import { useTask } from 'src/store/entities/tasks'
 import { transitions } from 'src/styles'
 import { useTasksBoardListItemContext } from './Provider'
@@ -26,7 +26,7 @@ export const Card: React.FC<Props> = memo<Props>((props) => {
 const Component: React.FC<Props> = memo<Props>((props) => {
   const { taskId, ...rest } = props
   const { ref, selected } = useTasksBoardListItemContext()
-  const { navigateToTaskDetail } = useRouter()
+  const { navigateToTaskDetail } = useTasksRouter()
   const { task } = useTask(taskId)
   const style = useMemo(
     (): FlexProps => ({

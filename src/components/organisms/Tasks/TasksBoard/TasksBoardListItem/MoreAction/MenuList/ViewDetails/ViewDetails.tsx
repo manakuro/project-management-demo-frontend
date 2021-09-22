@@ -2,7 +2,7 @@ import React, { memo, useCallback, useMemo } from 'react'
 import { Icon } from 'src/components/atoms'
 import { MenuItem } from 'src/components/organisms/Menu'
 import { useTaskDetailDrawer } from 'src/components/organisms/TaskDetails'
-import { isMyTasksDetailURLById, useRouter } from 'src/router'
+import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
 
 type Props = {
   onMouseEnter: () => void
@@ -12,15 +12,16 @@ type Props = {
 export const ViewDetails: React.FC<Props> = memo((props) => {
   const { onMouseEnter, onCloseMenu } = props
   const { onClose } = useTaskDetailDrawer()
-  const { navigateToMyTasksBoard, navigateToTaskDetail, router } = useRouter()
+  const { navigateToTaskDetail, navigateToTaskBoard, isTaskDetailURLById } =
+    useTasksRouter()
   const isOpen = useMemo(
-    () => isMyTasksDetailURLById(router, props.taskId),
-    [props.taskId, router],
+    () => isTaskDetailURLById(props.taskId),
+    [isTaskDetailURLById, props.taskId],
   )
 
   const handleClick = useCallback(async () => {
     if (isOpen) {
-      await navigateToMyTasksBoard()
+      await navigateToTaskBoard()
       await onClose()
     } else {
       await navigateToTaskDetail(props.taskId)
@@ -28,7 +29,7 @@ export const ViewDetails: React.FC<Props> = memo((props) => {
     onCloseMenu()
   }, [
     isOpen,
-    navigateToMyTasksBoard,
+    navigateToTaskBoard,
     navigateToTaskDetail,
     onClose,
     onCloseMenu,

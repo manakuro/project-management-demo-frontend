@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { LikeTaskButton } from 'src/components/molecules'
 import { useTasksNameContext } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
-import { useTaskLikesByTaskId } from 'src/store/entities/taskLikes'
+import { useTaskLikesByTaskId } from 'src/store/entities/tasksLikes'
 
 type Props = {}
 

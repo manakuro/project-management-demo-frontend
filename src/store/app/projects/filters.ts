@@ -1,7 +1,7 @@
 import { GetRecoilValue } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
-import { taskLikesByTaskIdSelector } from 'src/store/entities/taskLikes'
 import { Task } from 'src/store/entities/tasks'
+import { taskLikesByTaskIdSelector } from 'src/store/entities/tasksLikes'
 import {
   isProjectsSortStatus,
   isProjectsTaskListStatus,

@@ -2,10 +2,10 @@ import { useCallback, useMemo } from 'react'
 import { useRecoilCallback, useRecoilState } from 'recoil'
 import { uuid } from 'src/shared/uuid'
 import { defaultTaskLikeStateValue, taskLikesState } from '../atom'
-import { useTaskLikeCommand } from './useTaskLikeCommand'
+import { useTasksLikeCommand } from './useTasksLikeCommand'
 
 export const useTaskLikesByTaskId = (taskId: string) => {
-  const { upsert } = useTaskLikeCommand()
+  const { upsert } = useTasksLikeCommand()
   const [taskLikesAll, setTaskLikesAll] = useRecoilState(taskLikesState)
 
   const addTaskLike = useCallback(

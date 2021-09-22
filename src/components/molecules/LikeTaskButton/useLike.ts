@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { useMe } from 'src/store/entities/me'
-import { useTaskLikesByTaskId } from 'src/store/entities/taskLikes'
+import { useTaskLikesByTaskId } from 'src/store/entities/tasksLikes'
 import { useTeammates } from 'src/store/entities/teammates'
 
 type Props = {

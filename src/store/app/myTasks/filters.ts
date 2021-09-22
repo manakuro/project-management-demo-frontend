@@ -6,8 +6,8 @@ import {
   isMyTaskTaskListStatus,
 } from 'src/store/app/myTasks/taskListStatus'
 import { projectTasksState } from 'src/store/entities/projectsTasks'
-import { taskLikesByTaskIdSelector } from 'src/store/entities/taskLikes'
 import { Task } from 'src/store/entities/tasks'
+import { taskLikesByTaskIdSelector } from 'src/store/entities/tasksLikes'
 
 type Params = {
   get: GetRecoilValue

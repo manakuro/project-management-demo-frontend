@@ -5,7 +5,7 @@ import { AssigneeMenu } from 'src/components/organisms/Menus'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { useClickOutside } from 'src/hooks'
 import { ChakraProps, useStyleConfig } from 'src/shared/chakra'
-import { useTeammateIdsByTaskId } from 'src/store/entities/teammates'
+import { useTeammateIdsByTaskId } from 'src/store/entities/tasksTeammates'
 import { useCollaboratorsContext } from '../Provider'
 
 export const Input: React.VFC = () => {

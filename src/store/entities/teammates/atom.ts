@@ -1,6 +1,5 @@
 import { atomFamily, selectorFamily, DefaultValue, atom } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
-import { taskTeammatesState } from 'src/store/entities/taskTeammates'
 import { Teammate } from './type'
 
 const key = (str: string) => `src/store/entities/teammates/${str}`
@@ -33,18 +32,6 @@ export const namesByTeammateIdSelector = selectorFamily<string[], string[]>({
       return teammates
         .filter((t) => teammateIds.includes(t.id))
         .map((t) => t.name)
-    },
-})
-
-export const teammateIdsByTaskIdSelector = selectorFamily<string[], string>({
-  key: key('teammateIdsByTaskIdSelector'),
-  get:
-    (taskId) =>
-    ({ get }) => {
-      const teammates = get(taskTeammatesState)
-      return teammates
-        .filter((t) => t.taskId === taskId)
-        .map((p) => p.teammateId)
     },
 })
 

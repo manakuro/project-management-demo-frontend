@@ -1,19 +1,15 @@
 import { atomFamily, selectorFamily, DefaultValue, atom } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
-import { TaskTeammate } from './type'
+import { TasksTeammate } from './type'
 
 const key = (str: string) => `src/store/entities/taskTeammates/${str}`
 
-export const taskTeammateIdsState = atom<string[]>({
-  key: key('taskTeammateIdsState'),
-  default: [],
-})
-export const taskTeammatesState = atom<TaskTeammate[]>({
+export const taskTeammatesState = atom<TasksTeammate[]>({
   key: key('taskTeammatesState'),
   default: [],
 })
 
-const taskTeammateState = atomFamily<TaskTeammate, string>({
+const taskTeammateState = atomFamily<TasksTeammate, string>({
   key: key('taskTeammateState'),
   default: {
     id: '',
@@ -24,7 +20,19 @@ const taskTeammateState = atomFamily<TaskTeammate, string>({
   },
 })
 
-export const taskTeammateSelector = selectorFamily<TaskTeammate, string>({
+export const teammateIdsByTaskIdSelector = selectorFamily<string[], string>({
+  key: key('teammateIdsByTaskIdSelector'),
+  get:
+    (taskId) =>
+    ({ get }) => {
+      const teammates = get(taskTeammatesState)
+      return teammates
+        .filter((t) => t.taskId === taskId)
+        .map((p) => p.teammateId)
+    },
+})
+
+export const taskTeammateSelector = selectorFamily<TasksTeammate, string>({
   key: key('taskTeammateSelector'),
   get:
     (taskTeammateId) =>
@@ -32,7 +40,7 @@ export const taskTeammateSelector = selectorFamily<TaskTeammate, string>({
       get(taskTeammateState(taskTeammateId)),
   set:
     (taskTeammateId) =>
-    ({ get, set, reset }, newVal) => {
+    ({ set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
         reset(taskTeammateState(taskTeammateId))
         return
@@ -50,13 +58,5 @@ export const taskTeammateSelector = selectorFamily<TaskTeammate, string>({
           return p
         }),
       )
-
-      if (
-        get(taskTeammateIdsState).find(
-          (taskTeammateId) => taskTeammateId === newVal.id,
-        )
-      )
-        return
-      set(taskTeammateIdsState, (prev) => [...prev, newVal.id])
     },
 })

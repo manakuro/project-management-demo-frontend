@@ -4,6 +4,7 @@ import { dateFns } from 'src/shared/dateFns'
 import { uuid } from 'src/shared/uuid'
 import { useMyTasksResponse } from 'src/store/app/myTasks'
 import { MyTaskResponse } from 'src/store/app/myTasks'
+import { TaskSectionResponse } from 'src/store/entities/taskSections'
 import { teammates } from 'src/store/entities/teammates/data'
 
 type Props = {
@@ -43,11 +44,10 @@ export const useMyTasksPageQuery = (props?: Props) => {
   }
 }
 
-export const taskSections: MyTaskResponse['taskSections'] = [
+export const taskSections: TaskSectionResponse[] = [
   {
     id: '1',
     name: 'Recently assigned',
-    teammateId: '1',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     tasks: [
@@ -454,7 +454,6 @@ export const taskSections: MyTaskResponse['taskSections'] = [
   {
     id: '2',
     name: 'Today',
-    teammateId: '1',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     tasks: [
@@ -659,7 +658,24 @@ const fetchTasks = async (): Promise<MyTaskResponse> => {
   return new Promise<MyTaskResponse>((resolve) => {
     setTimeout(() => {
       resolve({
-        taskSections,
+        taskSections: [
+          {
+            id: '1',
+            taskSectionId: taskSections[0].id,
+            teammateId: '1',
+            taskSection: taskSections[0],
+            createdAt: '',
+            updatedAt: '',
+          },
+          {
+            id: '2',
+            taskSectionId: taskSections[1].id,
+            teammateId: '1',
+            taskSection: taskSections[1],
+            createdAt: '',
+            updatedAt: '',
+          },
+        ],
         taskColumns: [
           {
             id: '1',

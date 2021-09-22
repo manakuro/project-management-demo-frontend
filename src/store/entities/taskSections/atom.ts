@@ -19,7 +19,6 @@ export const taskSectionsState = atom<TaskSection[]>({
 export const defaultTaskSectionStateValue = (): TaskSection => ({
   id: '',
   name: DEFAULT_TITLE_NAME,
-  teammateId: '',
   createdAt: '',
   updatedAt: '',
   isDeleted: false,

@@ -1,14 +1,9 @@
 import React, { memo } from 'react'
-import { Flex, Heading, Icon, IconButton, Portal } from 'src/components/atoms'
-import {
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-} from 'src/components/organisms/Menu'
+import { Flex, Heading } from 'src/components/atoms'
 import { TabList, Tab } from 'src/components/organisms/Tabs'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useProject } from 'src/store/entities/projects'
+import { MoreAction } from './MoreAction'
 
 export const Tabs: React.VFC = memo(() => {
   const { projectId } = useProjectsProjectId()
@@ -21,23 +16,7 @@ export const Tabs: React.VFC = memo(() => {
           <Heading as="h2" size="md" fontWeight="semibold">
             {project.name}
           </Heading>
-          <Menu placement="bottom-start">
-            <MenuButton
-              ml={1}
-              aria-label="expand button"
-              as={IconButton}
-              icon={<Icon icon="chevronDown" color="text.muted" />}
-              variant="ghost"
-            />
-            <Portal>
-              <MenuList color="text.base">
-                <MenuItem>Sync to Calendar</MenuItem>
-                <MenuItem>Add tasks via Email</MenuItem>
-                <MenuItem>Export CSV</MenuItem>
-                <MenuItem>Print</MenuItem>
-              </MenuList>
-            </Portal>
-          </Menu>
+          <MoreAction projectId={projectId} />
         </Flex>
         <TabList>
           <Tab>Overview</Tab>

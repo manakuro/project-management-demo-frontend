@@ -11,6 +11,7 @@ import {
   AiOutlineLike,
 } from 'react-icons/ai'
 import {
+  BiPencil,
   BiLeftArrowAlt,
   BiImageAlt,
   BiTrash,
@@ -91,6 +92,7 @@ import {
   BiEditAlt,
   BiPhotoAlbum,
   BiDetail,
+  BiSave,
 } from 'react-icons/bi'
 import { FaTwitter, FaGithub, FaMoon, FaRegStar, FaStar } from 'react-icons/fa'
 import { FiBold, FiItalic, FiUnderline } from 'react-icons/fi'
@@ -100,6 +102,7 @@ import { MdSort, MdTextFormat } from 'react-icons/md'
 import { TiFlowChildren } from 'react-icons/ti'
 
 export const icons = {
+  save: BiSave,
   arrowDownAlt: BiDownArrowAlt,
   arrowLeftAlt: BiLeftArrowAlt,
   arrowToRight: BiArrowToRight,
@@ -169,6 +172,7 @@ export const icons = {
   outlineLike: AiOutlineLike,
   outlineProject: AiOutlineProject,
   pause: BiPause,
+  pencil: BiPencil,
   photoAlbum: BiPhotoAlbum,
   play: BiPlay,
   playCircle: AiFillPlayCircle,

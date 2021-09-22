@@ -1,16 +1,22 @@
 import React, { useCallback } from 'react'
-import { ColorBox, Flex, Icon, Portal, Text } from 'src/components/atoms'
+import { Portal } from 'src/components/atoms'
 import {
   MenuList as AtomsMenuList,
-  MenuItem,
   MenuDivider,
 } from 'src/components/organisms/Menu'
-import { PopoverSetColorAndIcon } from 'src/components/organisms/Popovers'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
-import { useProject } from 'src/store/entities/projects'
+import { AddToPortfolio } from './AddToPortfolio'
+import { Archive } from './Archive'
+import { ConvertToTemplate } from './ConvertToTemplate'
+import { CopyProjectLink } from './CopyProjectLink'
+import { DeleteProject } from './DeleteProject'
+import { Duplicate } from './Duplicate'
 import { EditProjectDetails } from './EditProjectDetails'
-import { PopoverAdvancedActions } from './PopoverAdvancedActions'
+import { ExportAndPrint } from './ExportAndPrint'
+import { Import } from './Import'
+import { SaveLayoutAsDefault } from './SaveLayoutAsDefault'
+import { SetColorAndIcon } from './SetColorAndIcon'
 
 type Props = {
   onCloseMenu: () => void
@@ -19,21 +25,20 @@ type Props = {
 
 export const MenuList: React.FC<Props> = (props) => {
   const { projectId } = props
-  const { project } = useProject(projectId)
   const disclosureForPopoverSetColorAndIcon = useDisclosure()
-  const disclosureForPopoverAdvancedActions = useDisclosure()
-  const disclosureForPopoverAdvancedActions2 = useDisclosure()
+  const disclosureForPopoverImportActions = useDisclosure()
+  const disclosureForPopoverExportAndPrintActions = useDisclosure()
   const { ref } = useClickOutside(() => {
     handleCloseAll()
   })
 
   const handleClose = useCallback(() => {
     disclosureForPopoverSetColorAndIcon.onClose()
-    disclosureForPopoverAdvancedActions.onClose()
-    disclosureForPopoverAdvancedActions2.onClose()
+    disclosureForPopoverImportActions.onClose()
+    disclosureForPopoverExportAndPrintActions.onClose()
   }, [
-    disclosureForPopoverAdvancedActions,
-    disclosureForPopoverAdvancedActions2,
+    disclosureForPopoverImportActions,
+    disclosureForPopoverExportAndPrintActions,
     disclosureForPopoverSetColorAndIcon,
   ])
 
@@ -48,17 +53,17 @@ export const MenuList: React.FC<Props> = (props) => {
     disclosureForPopoverSetColorAndIcon.onOpen()
   }, [disclosureForPopoverSetColorAndIcon, handleClose])
 
-  const handleOpenPopoverAdvancedActions = useCallback(() => {
+  const handleOpenPopoverImportActions = useCallback(() => {
     handleClose()
 
-    disclosureForPopoverAdvancedActions.onOpen()
-  }, [disclosureForPopoverAdvancedActions, handleClose])
+    disclosureForPopoverImportActions.onOpen()
+  }, [disclosureForPopoverImportActions, handleClose])
 
-  const handleOpenPopoverAdvancedActions2 = useCallback(() => {
+  const handleOpenPopoverExportAndPrintActions = useCallback(() => {
     handleClose()
 
-    disclosureForPopoverAdvancedActions2.onOpen()
-  }, [disclosureForPopoverAdvancedActions2, handleClose])
+    disclosureForPopoverExportAndPrintActions.onOpen()
+  }, [disclosureForPopoverExportAndPrintActions, handleClose])
 
   return (
     <Portal>
@@ -67,90 +72,61 @@ export const MenuList: React.FC<Props> = (props) => {
           onClose={handleCloseAll}
           onMouseEnter={handleClose}
         />
-        <MenuItem
-          icon={<ColorBox size="md" color={project.color.color} mt="-1px" />}
+        <SetColorAndIcon
+          projectId={projectId}
+          onClose={handleCloseAll}
           onMouseEnter={handleOpenPopoverSetColorAndIcon}
-        >
-          <PopoverSetColorAndIcon
-            project={project}
-            isOpen={disclosureForPopoverSetColorAndIcon.isOpen}
-            placement="right-end"
-          >
-            <Flex>
-              <Text fontSize="sm" flex={1}>
-                Set Color & icon
-              </Text>
-              <Icon icon="chevronRight" />
-            </Flex>
-          </PopoverSetColorAndIcon>
-        </MenuItem>
+          isOpen={disclosureForPopoverSetColorAndIcon.isOpen}
+        />
         <MenuDivider />
-        <MenuItem
+        <CopyProjectLink
+          onClose={handleCloseAll}
           onMouseEnter={handleClose}
-          icon={<Icon icon="link" color="text.muted" />}
-        >
-          Copy project link
-        </MenuItem>
-        <MenuItem
+          projectId={projectId}
+        />
+        <SaveLayoutAsDefault
+          onClose={handleCloseAll}
           onMouseEnter={handleClose}
-          icon={<Icon icon="save" color="text.muted" />}
-        >
-          Save layout as default
-        </MenuItem>
-        <MenuItem
+          projectId={projectId}
+        />
+        <Duplicate
+          onClose={handleCloseAll}
           onMouseEnter={handleClose}
-          icon={<Icon icon="copyAlt" color="text.muted" />}
-          isDisabled
-        >
-          Duplicate
-        </MenuItem>
-        <MenuItem
+          projectId={projectId}
+        />
+        <ConvertToTemplate
+          onClose={handleCloseAll}
           onMouseEnter={handleClose}
-          icon={<Icon icon="layout" color="text.muted" />}
-          isDisabled
-        >
-          Convert to template
-        </MenuItem>
-        <MenuItem
+          projectId={projectId}
+        />
+        <AddToPortfolio
+          onClose={handleCloseAll}
           onMouseEnter={handleClose}
-          icon={<Icon icon="plus" color="text.muted" />}
-          isDisabled
-        >
-          Add to Portfolio
-        </MenuItem>
+          projectId={projectId}
+        />
         <MenuDivider />
-        <MenuItem onMouseEnter={handleOpenPopoverAdvancedActions}>
-          <PopoverAdvancedActions
-            isOpen={disclosureForPopoverAdvancedActions.isOpen}
-            placement="right"
-            onClose={handleCloseAll}
-          >
-            <Flex flex={1}>
-              <Text fontSize="sm" flex={1}>
-                Import
-              </Text>
-              <Icon icon="chevronRight" />
-            </Flex>
-          </PopoverAdvancedActions>
-        </MenuItem>
-        <MenuItem onMouseEnter={handleOpenPopoverAdvancedActions2}>
-          <PopoverAdvancedActions
-            isOpen={disclosureForPopoverAdvancedActions2.isOpen}
-            placement="right"
-            onClose={handleCloseAll}
-          >
-            <Flex flex={1}>
-              <Text fontSize="sm" flex={1}>
-                Export/Print
-              </Text>
-              <Icon icon="chevronRight" />
-            </Flex>
-          </PopoverAdvancedActions>
-        </MenuItem>
-        <MenuItem onMouseEnter={handleClose}>Archive</MenuItem>
-        <MenuItem onMouseEnter={handleClose} color="alert">
-          Delete project
-        </MenuItem>
+        <Import
+          onClose={handleCloseAll}
+          onMouseEnter={handleOpenPopoverImportActions}
+          isOpen={disclosureForPopoverImportActions.isOpen}
+          projectId={projectId}
+        />
+        <ExportAndPrint
+          onClose={handleCloseAll}
+          onMouseEnter={handleOpenPopoverExportAndPrintActions}
+          isOpen={disclosureForPopoverExportAndPrintActions.isOpen}
+          projectId={projectId}
+        />
+        <Archive
+          onClose={handleCloseAll}
+          onMouseEnter={handleClose}
+          projectId={projectId}
+        />
+        <DeleteProject
+          onClose={handleCloseAll}
+          onMouseEnter={handleClose}
+          projectId={projectId}
+        />
       </AtomsMenuList>
     </Portal>
   )

@@ -1,27 +1,26 @@
 import { atomFamily, selectorFamily, DefaultValue, atom } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
+import { Task, taskSelector } from 'src/store/entities/tasks'
 import { ProjectTask } from './type'
 
 const key = (str: string) => `src/store/entities/projectTasks/${str}`
 
-export const projectTaskIdsState = atom<string[]>({
-  key: key('projectTaskIdsState'),
-  default: [],
-})
 export const projectTasksState = atom<ProjectTask[]>({
   key: key('projectTasksState'),
   default: [],
 })
 
+export const initialProjectsTaskState = (): ProjectTask => ({
+  id: '',
+  projectId: '',
+  taskId: '',
+  createdAt: '',
+  updatedAt: '',
+})
+
 const projectTaskState = atomFamily<ProjectTask, string>({
   key: key('projectTaskState'),
-  default: {
-    id: '',
-    projectId: '',
-    taskId: '',
-    createdAt: '',
-    updatedAt: '',
-  },
+  default: initialProjectsTaskState(),
 })
 
 export const projectIdsByTaskIdSelector = selectorFamily<string[], string>({
@@ -36,16 +35,16 @@ export const projectIdsByTaskIdSelector = selectorFamily<string[], string>({
     },
 })
 
-export const projectTasksByTaskIdSelector = selectorFamily<
-  ProjectTask[],
-  string
->({
-  key: key('projectTasksByTaskIdSelector'),
+export const tasksByProjectIdSelector = selectorFamily<Task[], string>({
+  key: key('tasksByProjectIdSelector'),
   get:
-    (taskId: string) =>
+    (projectId: string) =>
     ({ get }) => {
       const projectTasks = get(projectTasksState)
-      return projectTasks.filter((p) => p.taskId === taskId)
+      const taskIds = projectTasks
+        .filter((p) => p.projectId === projectId)
+        .map((p) => p.taskId)
+      return taskIds.map((id) => get(taskSelector(id)))
     },
 })
 
@@ -72,7 +71,7 @@ export const projectTaskSelector = selectorFamily<ProjectTask, string>({
       get(projectTaskState(projectTaskId)),
   set:
     (projectTaskId) =>
-    ({ get, set, reset }, newVal) => {
+    ({ set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
         reset(projectTaskState(projectTaskId))
         return
@@ -90,13 +89,5 @@ export const projectTaskSelector = selectorFamily<ProjectTask, string>({
           return p
         }),
       )
-
-      if (
-        get(projectTaskIdsState).find(
-          (projectTaskId) => projectTaskId === newVal.id,
-        )
-      )
-        return
-      set(projectTaskIdsState, (prev) => [...prev, newVal.id])
     },
 })

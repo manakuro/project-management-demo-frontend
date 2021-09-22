@@ -13,7 +13,7 @@ export const tasksState = atom<Task[]>({
   default: [],
 })
 
-export const defaultTaskState = (): Task => ({
+export const initialTaskState = (): Task => ({
   assigneeId: '',
   dueDate: '',
   dueTime: '',
@@ -85,7 +85,7 @@ export const createdByIdsByTaskIds = selectorFamily<string[], string[]>({
 
 export const taskState = atomFamily<Task, string>({
   key: key('taskState'),
-  default: defaultTaskState(),
+  default: initialTaskState(),
 })
 
 export const taskSelector = selectorFamily<Task, string>({

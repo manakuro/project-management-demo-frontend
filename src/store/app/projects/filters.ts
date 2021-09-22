@@ -1,7 +1,5 @@
 import { GetRecoilValue } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
-import { uniq } from 'src/shared/utils'
-import { projectTasksState } from 'src/store/entities/projectTasks'
 import { taskLikesByTaskIdSelector } from 'src/store/entities/taskLikes'
 import { Task } from 'src/store/entities/tasks'
 import {
@@ -54,27 +52,6 @@ export const sortByAlphabetical =
     return tasks.sort((a, b) =>
       a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1,
     )
-  }
-
-export const filterByProjectId =
-  ({ get, projectId }: Params & { projectId: string }) =>
-  (tasks: Task[]) => {
-    const projectTasks = get(projectTasksState)
-    const taskIdsWithProject = uniq(
-      projectTasks
-        .filter((p) => p.projectId === projectId)
-        .map((p) => p.taskId),
-    )
-    return tasks.filter((t) => taskIdsWithProject.includes(t.id))
-  }
-
-export const filterByNoProject =
-  ({ get }: Params) =>
-  (tasks: Task[]) => {
-    const projectTasks = get(projectTasksState)
-    const taskIdsWithProject = uniq(projectTasks.map((p) => p.taskId))
-
-    return tasks.filter((t) => !taskIdsWithProject.includes(t.id))
   }
 
 export const filterTasks = (params: Params) => (t: Task[]) => {

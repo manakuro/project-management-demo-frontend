@@ -29,7 +29,6 @@ export const isProjectsFilesURL = (router: NextRouter): boolean => {
 
 // TODO: Should be verified
 export const isProjectsDetailURL = (router: NextRouter): boolean => {
-  console.log(router)
   return (
     !!router.query &&
     !!router.query[ROUTE_PROJECTS.query.projects]?.length &&

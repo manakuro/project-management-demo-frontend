@@ -11,43 +11,36 @@ export const isProjectsURL = (router: NextRouter): boolean => {
   return ROUTE_PROJECTS.regex.test(router.asPath)
 }
 
-export const isProjectsListURL = (id: string, router: NextRouter): boolean => {
-  return router.asPath === ROUTE_PROJECTS_LIST.href.pathname(id)
+export const isProjectsListURL = (router: NextRouter): boolean => {
+  return ROUTE_PROJECTS_LIST.regex.test(router.asPath)
 }
 
-export const isProjectsBoardURL = (id: string, router: NextRouter): boolean => {
-  return router.asPath === ROUTE_PROJECTS_BOARD.href.pathname(id)
+export const isProjectsBoardURL = (router: NextRouter): boolean => {
+  return ROUTE_PROJECTS_BOARD.regex.test(router.asPath)
 }
 
-export const isProjectsCalendarURL = (
-  id: string,
-  router: NextRouter,
-): boolean => {
-  return router.asPath === ROUTE_PROJECTS_CALENDAR.href.pathname(id)
+export const isProjectsCalendarURL = (router: NextRouter): boolean => {
+  return ROUTE_PROJECTS_CALENDAR.regex.test(router.asPath)
 }
 
-export const isProjectsFilesURL = (id: string, router: NextRouter): boolean => {
-  return router.asPath === ROUTE_PROJECTS_FILES.href.pathname(id)
+export const isProjectsFilesURL = (router: NextRouter): boolean => {
+  return ROUTE_PROJECTS_FILES.regex.test(router.asPath)
 }
 
 // TODO: Should be verified
-export const isProjectsDetailURL = (
-  id: string,
-  router: NextRouter,
-): boolean => {
+export const isProjectsDetailURL = (router: NextRouter): boolean => {
   console.log(router)
   return (
     !!router.query &&
     !!router.query[ROUTE_PROJECTS.query.projects]?.length &&
     !!router.query[ROUTE_PROJECTS.query.projects]?.[0] &&
-    !isProjectsListURL(id, router) &&
-    !isProjectsBoardURL(id, router) &&
-    !isProjectsCalendarURL(id, router) &&
-    !isProjectsFilesURL(id, router)
+    !isProjectsListURL(router) &&
+    !isProjectsBoardURL(router) &&
+    !isProjectsCalendarURL(router) &&
+    !isProjectsFilesURL(router)
   )
 }
 export const isProjectsDetailURLById = (
-  id: string,
   router: NextRouter,
   taskId: string,
 ): boolean => {
@@ -56,9 +49,9 @@ export const isProjectsDetailURLById = (
     !!router.query[ROUTE_PROJECTS.query.projects]?.length &&
     !!router.query[ROUTE_PROJECTS.query.projects]?.[0] &&
     router.query[ROUTE_PROJECTS.query.projects]?.[0] === taskId &&
-    !isProjectsBoardURL(id, router) &&
-    !isProjectsCalendarURL(id, router) &&
-    !isProjectsFilesURL(id, router)
+    !isProjectsBoardURL(router) &&
+    !isProjectsCalendarURL(router) &&
+    !isProjectsFilesURL(router)
   )
 }
 
@@ -67,16 +60,13 @@ export const getProjectsIdFromURL = (router: NextRouter): string =>
     (router.query?.[ROUTE_PROJECTS.query.projectId] as string)) ||
   ''
 
-export const getProjectsDetailId = (id: string, router: NextRouter): string =>
-  (isProjectsDetailURL(id, router) &&
+export const getProjectsDetailId = (router: NextRouter): string =>
+  (isProjectsDetailURL(router) &&
     (router.query?.[ROUTE_PROJECTS.query.projects]?.[0] as string)) ||
   ''
 
-export const getProjectsDetailFeedId = (
-  id: string,
-  router: NextRouter,
-): string =>
-  (isProjectsDetailURL(id, router) &&
+export const getProjectsDetailFeedId = (router: NextRouter): string =>
+  (isProjectsDetailURL(router) &&
     (router.query?.[ROUTE_PROJECTS.query.projects]?.[1] as string)) ||
   ''
 

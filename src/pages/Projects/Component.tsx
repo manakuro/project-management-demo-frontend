@@ -5,10 +5,10 @@ import { Head } from 'src/components/atoms/Head'
 import { MainHeader } from 'src/components/organisms/MainHeader'
 import { Tabs, TabPanels, TabPanel } from 'src/components/organisms/Tabs'
 import {
-  isMyTasksBoardURL,
-  isMyTasksCalendarURL,
-  isMyTasksFilesURL,
-  isMyTasksListURL,
+  isProjectsBoardURL,
+  isProjectsCalendarURL,
+  isProjectsFilesURL,
+  isProjectsListURL,
   useRouter,
 } from 'src/router'
 import { getProjectsIdFromURL } from 'src/router/projects'
@@ -46,10 +46,10 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
 })
 
 const mapURLtoTabIndex = ({ router }: { router: NextRouter }): Index => {
-  if (isMyTasksListURL(router)) return LIST_INDEX
-  if (isMyTasksBoardURL(router)) return BOARD_INDEX
-  if (isMyTasksCalendarURL(router)) return CALENDAR_INDEX
-  if (isMyTasksFilesURL(router)) return FILES_INDEX
+  if (isProjectsListURL(router)) return LIST_INDEX
+  if (isProjectsBoardURL(router)) return BOARD_INDEX
+  if (isProjectsCalendarURL(router)) return CALENDAR_INDEX
+  if (isProjectsFilesURL(router)) return FILES_INDEX
   return OVERVIEW_INDEX
 }
 
@@ -86,6 +86,11 @@ const WrappedComponent: React.VFC = memo(() => {
   const handleTabsChange = useCallback(
     async (index: number) => {
       switch (index as Index) {
+        case OVERVIEW_INDEX: {
+          setLoading()
+          setTabIndex(OVERVIEW_INDEX)
+          break
+        }
         case LIST_INDEX: {
           setLoading()
           setTabIndex(LIST_INDEX)
@@ -124,24 +129,6 @@ const WrappedComponent: React.VFC = memo(() => {
     ],
   )
 
-  useEffect(() => {
-    if (isMyTasksListURL(router)) {
-      return
-    }
-    if (isMyTasksBoardURL(router)) {
-      if (isSorted('project')) onSort('none')
-      return
-    }
-    if (isMyTasksCalendarURL(router)) {
-      return
-    }
-    if (isMyTasksFilesURL(router)) {
-      return
-    }
-    // Force update tab status based on URL
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, [])
-
   return (
     <Tabs
       index={tabIndex}
@@ -157,6 +144,7 @@ const WrappedComponent: React.VFC = memo(() => {
         </MainHeader>
         <Flex flex={1}>
           <TabPanels>
+            <TabPanel>hey</TabPanel>
             <TabPanel>
               <List />
             </TabPanel>

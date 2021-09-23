@@ -5,7 +5,7 @@ import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useProject } from 'src/store/entities/projects'
 import { FavoriteIconButton } from './FavoriteIconButton'
 import { MoreActionIconButton } from './MoreActionIconButton'
-import { ProjectDetailIcon } from './ProjectDetailIcon'
+import { ProjectDetailIconButton } from './ProjectDetailIconButton'
 
 export const Tabs: React.VFC = memo(() => {
   const { projectId } = useProjectsProjectId()
@@ -19,7 +19,7 @@ export const Tabs: React.VFC = memo(() => {
             {project.name}
           </Heading>
           <MoreActionIconButton projectId={projectId} />
-          <ProjectDetailIcon projectId={projectId} />
+          <ProjectDetailIconButton projectId={projectId} />
           <FavoriteIconButton projectId={projectId} />
         </Flex>
         <TabList>

@@ -32,6 +32,8 @@ export const MoreAction: React.FC<Props> = memo<Props>((props) => {
           icon={<Icon icon="chevronDown" color="text.muted" />}
           variant="ghost"
           onClick={handleOpen}
+          h={6}
+          w={6}
         />
         {isOpen && <MenuList onCloseMenu={onClose} projectId={projectId} />}
       </Menu>

@@ -3,7 +3,9 @@ import { Flex, Heading } from 'src/components/atoms'
 import { TabList, Tab } from 'src/components/organisms/Tabs'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useProject } from 'src/store/entities/projects'
+import { FavoriteIconButton } from './FavoriteIconButton'
 import { MoreAction } from './MoreAction'
+import { ProjectDetailIcon } from './ProjectDetailIcon'
 
 export const Tabs: React.VFC = memo(() => {
   const { projectId } = useProjectsProjectId()
@@ -17,6 +19,8 @@ export const Tabs: React.VFC = memo(() => {
             {project.name}
           </Heading>
           <MoreAction projectId={projectId} />
+          <ProjectDetailIcon projectId={projectId} />
+          <FavoriteIconButton projectId={projectId} />
         </Flex>
         <TabList>
           <Tab>Overview</Tab>

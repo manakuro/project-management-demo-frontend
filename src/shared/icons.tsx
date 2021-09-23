@@ -11,6 +11,7 @@ import {
   AiOutlineLike,
 } from 'react-icons/ai'
 import {
+  BiInfoCircle,
   BiPencil,
   BiLeftArrowAlt,
   BiImageAlt,
@@ -102,7 +103,6 @@ import { MdSort, MdTextFormat } from 'react-icons/md'
 import { TiFlowChildren } from 'react-icons/ti'
 
 export const icons = {
-  save: BiSave,
   arrowDownAlt: BiDownArrowAlt,
   arrowLeftAlt: BiLeftArrowAlt,
   arrowToRight: BiArrowToRight,
@@ -148,6 +148,7 @@ export const icons = {
   home: BiHome,
   idCard: BiIdCard,
   imageAlt: BiImageAlt,
+  infoCircle: BiInfoCircle,
   italic: FiItalic,
   layerPlus: BiLayerPlus,
   layout: BiLayout,
@@ -180,6 +181,7 @@ export const icons = {
   plus: BiPlus,
   rightIndent: BiRightIndent,
   rocket: BiRocket,
+  save: BiSave,
   search: BiSearch,
   shapePolygon: BiShapePolygon,
   sliderAlt: BiSliderAlt,

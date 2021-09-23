@@ -9,6 +9,7 @@ import { IconType, icons } from 'src/shared/icons'
 type Props = ChakraIconProps & {
   icon: IconType
   size?: Sizes
+  ref?: React.ForwardedRef<any>
 }
 export type IconProps = Props
 

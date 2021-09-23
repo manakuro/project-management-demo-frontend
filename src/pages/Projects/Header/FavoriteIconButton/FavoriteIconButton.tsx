@@ -1,6 +1,9 @@
 import React, { memo } from 'react'
-import { FavoriteButton, IconButtonProps } from 'src/components/atoms'
-import { Tooltip } from 'src/components/molecules'
+import { IconButtonProps } from 'src/components/atoms'
+import {
+  Tooltip,
+  FavoriteIconButton as MoleculesFavoriteIconButton,
+} from 'src/components/molecules'
 import { useProject } from 'src/store/entities/projects'
 
 type Props = {
@@ -20,7 +23,7 @@ export const FavoriteIconButton: React.VFC<Props> = memo<Props>((props) => {
       withIcon
       openDelay={500}
     >
-      <FavoriteButton
+      <MoleculesFavoriteIconButton
         favoriteProjectId={projectId}
         h={6}
         w={6}

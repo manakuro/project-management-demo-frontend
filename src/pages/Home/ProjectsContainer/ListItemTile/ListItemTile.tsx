@@ -1,11 +1,6 @@
 import React from 'react'
-import {
-  Flex,
-  Icon,
-  Fade,
-  AvatarGroup,
-  FavoriteButton,
-} from 'src/components/atoms'
+import { Flex, Icon, Fade, AvatarGroup } from 'src/components/atoms'
+import { FavoriteIconButton } from 'src/components/molecules'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useProject } from 'src/store/entities/projects'
@@ -45,7 +40,7 @@ export const ListItemTile: React.VFC<Props> = (props) => {
         >
           <Flex position="absolute" top={2} left={2}>
             <Fade in={showTransition}>
-              <FavoriteButton
+              <FavoriteIconButton
                 favoriteProjectId={props.projectId}
                 {...clickableHoverLightStyle}
               />

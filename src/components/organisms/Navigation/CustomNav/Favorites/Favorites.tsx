@@ -12,6 +12,7 @@ import {
   CustomNavListAccordionPanelList,
   CustomNavListHeader,
 } from '../CustomNavList'
+import { Projects } from './Projects'
 
 type Props = {}
 
@@ -48,6 +49,7 @@ export const Favorites: React.VFC<Props> = memo(() => {
             </CustomNavListAccordionButton>
             <CustomNavListAccordionPanel>
               <CustomNavListAccordionPanelList>
+                <Projects />
                 {listItems.map((listItem, i) => (
                   <NavListItem item={listItem} key={i} />
                 ))}

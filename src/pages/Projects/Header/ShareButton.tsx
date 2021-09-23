@@ -3,18 +3,22 @@ import { Button, Flex, FlexProps, Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { useTooltip } from 'src/components/molecules/Tooltip/useTooltip'
 import { useShareProjectModal } from 'src/components/organisms/Modals/ShareProjectModal'
+import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useWorkspace } from 'src/store/entities/workspace'
 
 type Props = FlexProps
 
 export const ShareButton: React.VFC<Props> = memo<Props>((props) => {
-  const { onOpen } = useShareProjectModal()
+  const { projectId } = useProjectsProjectId()
+  const { onOpen, setProjectId, setShareTab } = useShareProjectModal()
   const { isOpen, ref } = useTooltip()
   const { workspace } = useWorkspace()
 
   const handleClick = useCallback(() => {
+    setProjectId(projectId)
+    setShareTab()
     onOpen()
-  }, [onOpen])
+  }, [onOpen, projectId, setProjectId, setShareTab])
 
   return (
     <Flex alignItems="center" {...props}>

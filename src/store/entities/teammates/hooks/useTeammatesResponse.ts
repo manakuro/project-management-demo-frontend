@@ -12,6 +12,8 @@ export const useTeammatesResponse = () => {
             name: t.name,
             email: t.email,
             image: t.image,
+            createdAt: '',
+            updatedAt: '',
           }))
           .forEach((p) => {
             set(teammateSelector(p.id), p)

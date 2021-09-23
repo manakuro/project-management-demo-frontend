@@ -1,5 +1,5 @@
 import { NextRouter } from 'next/router'
-import React, { memo, useCallback, useEffect } from 'react'
+import React, { memo, useCallback, useEffect, useState } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Head } from 'src/components/atoms/Head'
 import { MainHeader } from 'src/components/organisms/MainHeader'
@@ -63,9 +63,7 @@ const WrappedComponent: React.VFC = memo(() => {
   } = useRouter()
   const { isSorted, onSort } = useMyTasksTaskStatus()
   const { loadingQuery, setLoadingTabContent } = useProjectsPageContext()
-  const [tabIndex, setTabIndex] = React.useState<Index>(
-    mapURLtoTabIndex({ router }),
-  )
+  const [tabIndex, setTabIndex] = useState<Index>(mapURLtoTabIndex({ router }))
   const { setProjectId } = useProjectsProjectId()
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { Teammate } from 'src/store/entities/teammates'
 
-export type TasksTeammateResponse = Teammate & {
+export type TasksTeammateResponse = Omit<Teammate, 'createAt' | 'updatedAt'> & {
   id: string
   teammateId: string
   taskId: string

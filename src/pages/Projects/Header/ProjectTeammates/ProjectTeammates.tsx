@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react'
 import { Flex, AvatarGroup } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { useTooltip } from 'src/components/molecules/Tooltip/useTooltip'
-import { useShareProjectModal } from 'src/components/organisms/Modals'
+import { useShareProjectModal } from 'src/components/organisms/Modals/ShareProjectModal'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
@@ -15,12 +15,14 @@ export const ProjectTeammates: React.VFC<Props> = memo<Props>(() => {
   const { projectId } = useProjectsProjectId()
   const { teammateIds } = useTeammateIdsByProjectId(projectId)
   const { isOpen, ref } = useTooltip()
-  const { onOpen } = useShareProjectModal()
+  const { onOpen, setProjectId, setMemberTab } = useShareProjectModal()
   const { workspace } = useWorkspace()
 
   const handleClick = useCallback(() => {
+    setProjectId(projectId)
+    setMemberTab()
     onOpen()
-  }, [onOpen])
+  }, [setProjectId, projectId, setMemberTab, onOpen])
 
   return (
     <Flex alignItems="center">

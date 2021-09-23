@@ -3,4 +3,6 @@ export type Teammate = {
   name: string
   image: string
   email: string
+  createdAt: string
+  updatedAt: string
 }

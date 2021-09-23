@@ -1,7 +1,11 @@
-import { Stack as ChakraStack, StackProps } from '@chakra-ui/react'
+import {
+  Stack as ChakraStack,
+  StackProps as ChakraStackProps,
+} from '@chakra-ui/react'
 import React from 'react'
 
-type Props = StackProps
+type Props = ChakraStackProps
+export type StackProps = Props
 
 export const Stack: React.FC<Props> = (props) => {
   return <ChakraStack {...props} />

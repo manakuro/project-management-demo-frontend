@@ -18,6 +18,8 @@ export const defaultTeammateStateValue = (): Teammate => ({
   image: '',
   email: '',
   name: '',
+  createdAt: '',
+  updatedAt: '',
 })
 const teammateState = atomFamily<Teammate, string>({
   key: key('teammateState'),

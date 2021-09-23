@@ -50,7 +50,7 @@ const Component: React.VFC = memo(() => {
       <TasksList>
         <TasksHeader>
           <TasksHeaderLeft>
-            <AddTaskButton solid />
+            <AddTaskButton />
           </TasksHeaderLeft>
           <TasksHeaderRight>
             <IncompleteTasksButton />

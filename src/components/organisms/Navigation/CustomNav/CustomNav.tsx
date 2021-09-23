@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Favorites } from './Favorites'
-import { Reports } from './Reports'
+import { SavedSearches } from './SavedSearches'
 
 type Props = {}
 
@@ -8,7 +8,8 @@ export const CustomNav: React.VFC<Props> = memo(() => {
   return (
     <>
       <Favorites />
-      <Reports />
+      <SavedSearches />
     </>
   )
 })
+CustomNav.displayName = 'CustomNav'

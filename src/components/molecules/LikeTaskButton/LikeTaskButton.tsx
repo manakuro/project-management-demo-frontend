@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { IconButtonProps, TextProps } from 'src/components/atoms'
-import { LikeButton } from 'src/components/molecules'
+import { LikeIconButton } from 'src/components/molecules'
 import { useLike } from './useLike'
 
 type Props = {
@@ -14,7 +14,7 @@ export const LikeTaskButton: React.VFC<Props> = memo<Props>((props) => {
   const { hasAnyoneLiked, label, likeLength, onToggleLike } = useLike(props)
 
   return (
-    <LikeButton
+    <LikeIconButton
       show={show}
       hasAnyoneLiked={hasAnyoneLiked}
       label={label}

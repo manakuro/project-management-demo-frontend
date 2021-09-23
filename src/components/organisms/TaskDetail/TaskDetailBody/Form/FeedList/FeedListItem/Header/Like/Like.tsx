@@ -1,5 +1,5 @@
 import React from 'react'
-import { LikeButton } from 'src/components/molecules'
+import { LikeIconButton } from 'src/components/molecules'
 import { useFeedListItemContext } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
 import { useLike } from './useLike'
 
@@ -10,7 +10,7 @@ export const Like: React.VFC<Props> = () => {
   const { hasAnyoneLiked, label, likeLength, onToggleLike } = useLike()
 
   return (
-    <LikeButton
+    <LikeIconButton
       show={showLike}
       hasAnyoneLiked={hasAnyoneLiked}
       label={label}

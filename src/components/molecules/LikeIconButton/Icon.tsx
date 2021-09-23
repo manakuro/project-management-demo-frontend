@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Flex, Icon as AtomsIcon, Text } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
-import { LikeButtonProps } from './LikeButton'
+import { LikeButtonProps } from './LikeIconButton'
 
 type Props = Pick<
   LikeButtonProps,

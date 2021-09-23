@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { Divider, Flex } from 'src/components/atoms'
 import { ProjectIcon } from './ProjectIcon'
+import { ProjectTeammates } from './ProjectTeammates'
 import { ShareButton } from './ShareButton'
 import { SkeletonHeader } from './SkeletonHeader'
 import { Tabs } from './Tabs'
@@ -17,7 +18,8 @@ export const Header: React.VFC<Props> = memo<Props>((props) => {
     <Flex flex={1}>
       <ProjectIcon />
       <Tabs />
-      <ShareButton />
+      <ProjectTeammates />
+      <ShareButton ml={2} />
       <Flex mx={3} my={4}>
         <Divider orientation="vertical" />
       </Flex>

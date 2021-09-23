@@ -1,23 +1,27 @@
 import React, { memo, useCallback } from 'react'
-import { Button, Flex, Icon } from 'src/components/atoms'
+import { Button, Flex, FlexProps, Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { useTooltip } from 'src/components/molecules/Tooltip/useTooltip'
 import { useShareWorkspaceModal } from 'src/components/organisms/Modals/ShareWorkspaceModal'
+import { useWorkspace } from 'src/store/entities/workspace'
 
-export const ShareButton: React.VFC = memo(() => {
+type Props = FlexProps
+
+export const ShareButton: React.VFC<Props> = memo<Props>((props) => {
   const { setIsOpen } = useShareWorkspaceModal()
   const { isOpen, ref } = useTooltip()
+  const { workspace } = useWorkspace()
 
   const handleShareWorkspace = useCallback(() => {
     setIsOpen(true)
   }, [setIsOpen])
 
   return (
-    <Flex alignItems="center">
+    <Flex alignItems="center" {...props}>
       <Tooltip
         isOpen={isOpen}
         hasArrow
-        label="Share this space with teammates to let them organize your work."
+        label={`Members of this ${workspace.name} team can find this project`}
         aria-label="A share button description"
         size="md"
       >

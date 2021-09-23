@@ -6,6 +6,7 @@ import {
 import {
   InviteModal,
   ShareWorkspaceModal,
+  ShareProjectModal,
   FileViewerModal,
   EditorLinkModal,
   DeleteTaskSectionModal,
@@ -27,6 +28,7 @@ export const Modals: React.VFC = memo(() => {
       <FileViewerModal />
       <DeleteTaskSectionModal />
       <DuplicateTaskModal />
+      <ShareProjectModal />
     </>
   )
 })

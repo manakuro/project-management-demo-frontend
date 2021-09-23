@@ -2,19 +2,19 @@ import React, { memo, useCallback } from 'react'
 import { Button, Flex, FlexProps, Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { useTooltip } from 'src/components/molecules/Tooltip/useTooltip'
-import { useShareWorkspaceModal } from 'src/components/organisms/Modals/ShareWorkspaceModal'
+import { useShareProjectModal } from 'src/components/organisms/Modals/ShareProjectModal'
 import { useWorkspace } from 'src/store/entities/workspace'
 
 type Props = FlexProps
 
 export const ShareButton: React.VFC<Props> = memo<Props>((props) => {
-  const { setIsOpen } = useShareWorkspaceModal()
+  const { onOpen } = useShareProjectModal()
   const { isOpen, ref } = useTooltip()
   const { workspace } = useWorkspace()
 
-  const handleShareWorkspace = useCallback(() => {
-    setIsOpen(true)
-  }, [setIsOpen])
+  const handleClick = useCallback(() => {
+    onOpen()
+  }, [onOpen])
 
   return (
     <Flex alignItems="center" {...props}>
@@ -30,7 +30,7 @@ export const ShareButton: React.VFC<Props> = memo<Props>((props) => {
           leftIcon={<Icon icon="lockAlt" mt="-1px" size="xs" />}
           variant="outline"
           size="xs"
-          onClick={handleShareWorkspace}
+          onClick={handleClick}
         >
           Share
         </Button>
@@ -38,3 +38,4 @@ export const ShareButton: React.VFC<Props> = memo<Props>((props) => {
     </Flex>
   )
 })
+ShareButton.displayName = 'ShareButton'

@@ -1,37 +1,48 @@
-import React, { useCallback } from 'react'
-import { Icon, IconButton, IconProps } from 'src/components/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
+import React, { memo, useCallback } from 'react'
+import {
+  Icon,
+  IconButton,
+  IconButtonProps,
+  IconProps,
+} from 'src/components/atoms'
 import { useFavoriteProjectIds } from 'src/store/entities/favoriteProjectIds'
 
 type Props = {
   favoriteProjectId: string
-}
+  iconStyle?: {
+    favorite: Omit<IconProps, 'icon'>
+    none: Omit<IconProps, 'icon'>
+  }
+} & Omit<IconButtonProps, 'aria-label'>
 export type FavoriteButtonProps = Props
 
-export const FavoriteButton: React.FC<Props> = (props) => {
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
+export const FavoriteButton: React.FC<Props> = memo<Props>((props) => {
+  const { favoriteProjectId, iconStyle, ...rest } = props
   const { isFavorite, setFavoriteProjectId } = useFavoriteProjectIds()
 
-  const iconStyle: IconProps = isFavorite(props.favoriteProjectId)
+  const favoriteIconStyle: IconProps = isFavorite(favoriteProjectId)
     ? {
         icon: 'starFilled',
         color: 'yellow.300',
+        ...iconStyle?.favorite,
       }
     : {
         icon: 'starOutline',
+        ...iconStyle?.none,
       }
 
   const handleClick = useCallback(() => {
-    setFavoriteProjectId(props.favoriteProjectId)
-  }, [props.favoriteProjectId, setFavoriteProjectId])
+    setFavoriteProjectId(favoriteProjectId)
+  }, [favoriteProjectId, setFavoriteProjectId])
 
   return (
     <IconButton
       onClick={handleClick}
       aria-label="favorite button"
-      icon={<Icon {...iconStyle} size="xs" />}
+      icon={<Icon {...favoriteIconStyle} size="xs" />}
       variant="ghost"
-      {...clickableHoverLightStyle}
+      {...rest}
     />
   )
-}
+})
+FavoriteButton.displayName = 'FavoriteButton'

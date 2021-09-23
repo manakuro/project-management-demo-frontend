@@ -1,20 +1,15 @@
-import React, { memo, useCallback } from 'react'
-import { IconButton, IconButtonProps, TextProps } from 'src/components/atoms'
+import React, { memo } from 'react'
+import { FavoriteButton, IconButtonProps } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
-import { Icon } from './Icon'
+import { useProject } from 'src/store/entities/projects'
 
 type Props = {
   projectId: string
-  textStyle?: TextProps
 } & Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>
 
 export const FavoriteIconButton: React.VFC<Props> = memo<Props>((props) => {
-  const { textStyle, projectId, ...rest } = props
-
-  const handleClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation()
-    // onToggle()
-  }, [])
+  const { projectId } = props
+  const { project } = useProject(projectId)
 
   return (
     <Tooltip
@@ -25,15 +20,14 @@ export const FavoriteIconButton: React.VFC<Props> = memo<Props>((props) => {
       withIcon
       openDelay={500}
     >
-      <IconButton
-        aria-label="Favorite project"
-        icon={<Icon isFavorite={true} />}
-        variant="ghost"
-        size="sm"
-        onClick={handleClick}
+      <FavoriteButton
+        favoriteProjectId={projectId}
         h={6}
         w={6}
-        {...rest}
+        iconStyle={{
+          favorite: { color: project.color.color },
+          none: { color: 'text.muted' },
+        }}
       />
     </Tooltip>
   )

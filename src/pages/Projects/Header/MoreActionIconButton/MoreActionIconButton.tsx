@@ -8,7 +8,7 @@ type Props = {
   projectId: string
 }
 
-export const MoreAction: React.FC<Props> = memo<Props>((props) => {
+export const MoreActionIconButton: React.FC<Props> = memo<Props>((props) => {
   const { projectId } = props
   const { onClose, onOpen, isOpen } = useDisclosure()
 

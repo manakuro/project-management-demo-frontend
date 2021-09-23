@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { LikeTaskButton } from 'src/components/molecules'
+import { LikeTaskIconButton } from 'src/components/molecules'
 import { useTasksNameContext } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { useTaskLikesByTaskId } from 'src/store/entities/tasksLikes'
 
@@ -11,7 +11,7 @@ export const Like: React.VFC<Props> = () => {
   const show = useMemo(() => !!taskLikes.length, [taskLikes.length])
 
   return (
-    <LikeTaskButton
+    <LikeTaskIconButton
       taskId={taskId}
       show={show}
       size="xs"

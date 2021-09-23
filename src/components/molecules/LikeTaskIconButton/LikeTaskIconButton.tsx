@@ -9,7 +9,7 @@ type Props = {
   textStyle?: TextProps
 } & Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>
 
-export const LikeTaskButton: React.VFC<Props> = memo<Props>((props) => {
+export const LikeTaskIconButton: React.VFC<Props> = memo<Props>((props) => {
   const { taskId, show, ...rest } = props
   const { hasAnyoneLiked, label, likeLength, onToggleLike } = useLike(props)
 
@@ -24,4 +24,4 @@ export const LikeTaskButton: React.VFC<Props> = memo<Props>((props) => {
     />
   )
 })
-LikeTaskButton.displayName = 'LikeTaskButton'
+LikeTaskIconButton.displayName = 'LikeTaskIconButton'

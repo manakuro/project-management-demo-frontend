@@ -3,6 +3,7 @@ import { useCallback, useEffect } from 'react'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { useTaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import { useTasksBoardListItemElement } from 'src/components/organisms/Tasks/TasksBoard/TasksBoardListItem'
+import { UseClickOutsideOptionsHasClickedOutside } from 'src/hooks'
 import { useRouter } from 'src/router'
 import { isHTMLElement } from 'src/shared/isHTMLElement'
 
@@ -16,13 +17,16 @@ export const useTasksBoardDetail = (props: Props) => {
   const { router } = useRouter()
   const { taskId, refetch, setId, setLoading } = useTaskDetail()
   const { className } = useTasksBoardListItemElement()
-  const skipElement = useCallback(
-    (e: Event): boolean => {
-      if (!isHTMLElement(e.target)) return false
-      return !!e.target.closest(`.${className}`)
-    },
-    [className],
-  )
+  const hasClickedOutside =
+    useCallback<UseClickOutsideOptionsHasClickedOutside>(
+      (e) => {
+        if (!isHTMLElement(e.target)) return false
+        if (e.target.closest(`.${className}`)) return false
+
+        return true
+      },
+      [className],
+    )
   const { onOpen } = useTaskDetailDrawer()
 
   useEffect(() => {
@@ -52,6 +56,6 @@ export const useTasksBoardDetail = (props: Props) => {
   ])
 
   return {
-    skipElement,
+    hasClickedOutside,
   }
 }

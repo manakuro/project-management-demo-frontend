@@ -1,17 +1,18 @@
 import React, { memo, useCallback } from 'react'
 import { Slide } from 'src/components/atoms'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
+import { UseClickOutsideOptionsHasClickedOutside } from 'src/hooks/useClickOutside'
 import { Content } from './Content'
 import { useTaskDetailDrawer } from './useTaskDetailDrawer'
 import { useTaskDetailDrawerRef } from './useTaskDetailDrawerRef'
 
 type Props = {
   backToPage: () => Promise<void>
-  skipElement: (e: Event) => boolean
+  hasClickedOutside: UseClickOutsideOptionsHasClickedOutside
 }
 
 export const TaskDetailDrawer: React.VFC<Props> = memo((props) => {
-  const { skipElement, backToPage } = props
+  const { hasClickedOutside, backToPage } = props
   const { isOpen, onClose } = useTaskDetailDrawer()
   const { loading } = useTaskDetail()
   const { ref } = useTaskDetailDrawerRef()
@@ -43,7 +44,7 @@ export const TaskDetailDrawer: React.VFC<Props> = memo((props) => {
         <Content
           loading={loading}
           onClose={handleClose}
-          skipElement={skipElement}
+          hasClickedOutside={hasClickedOutside}
         />
       )}
     </Slide>

@@ -28,7 +28,7 @@ export const Board: React.VFC = memo(() => {
 const Component: React.VFC = memo(() => {
   const { loadingTabContent } = useMyTasksContext()
   const { navigateToMyTasksBoard } = useRouter()
-  const { skipElement } = useTasksBoardDetail({
+  const { hasClickedOutside } = useTasksBoardDetail({
     isTaskDetailURL: isMyTasksDetailURL,
     getTaskDetailId: getMyTasksDetailId,
   })
@@ -59,7 +59,7 @@ const Component: React.VFC = memo(() => {
       <CustomizeMenu />
       <TaskDetailDrawer
         backToPage={navigateToMyTasksBoard}
-        skipElement={skipElement}
+        hasClickedOutside={hasClickedOutside}
       />
     </>
   )

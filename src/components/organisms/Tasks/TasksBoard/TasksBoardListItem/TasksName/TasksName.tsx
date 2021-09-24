@@ -39,6 +39,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
     <Flex>
       <CheckIcon isDone={task.isDone} onClick={handleToggleDone} />
       <TasksNameField
+        taskId={task.id}
         value={task.name}
         isNew={task.isNew}
         onChange={handleChangeName}

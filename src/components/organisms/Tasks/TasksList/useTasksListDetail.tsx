@@ -3,6 +3,7 @@ import { useCallback, useEffect } from 'react'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { useTaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import { useTasksListBody } from 'src/components/organisms/Tasks'
+import { UseClickOutsideOptionsHasClickedOutside } from 'src/hooks/useClickOutside'
 import { useRouter } from 'src/router'
 
 type Props = {
@@ -14,15 +15,18 @@ export const useTasksListDetail = (props: Props) => {
   const { isTaskDetailURL, getTaskDetailId } = props
   const { router } = useRouter()
   const { getTasksListBodyElement } = useTasksListBody()
-  const skipElement = useCallback(
-    (e: Event): boolean => {
-      if (e.target === getTasksListBodyElement()) return false
-      if (getTasksListBodyElement()?.contains(e.target as Node) ?? false)
-        return true
-      return false
-    },
-    [getTasksListBodyElement],
-  )
+  const hasClickedOutside =
+    useCallback<UseClickOutsideOptionsHasClickedOutside>(
+      (e, helpers): boolean => {
+        if (helpers.isContainInModalContent(e)) return false
+        if (e.target === getTasksListBodyElement()) return false
+        if (getTasksListBodyElement()?.contains(e.target as Node) ?? false)
+          return true
+
+        return false
+      },
+      [getTasksListBodyElement],
+    )
   const { onOpen } = useTaskDetailDrawer()
   const { taskId, refetch, setId, setLoading } = useTaskDetail()
 
@@ -53,6 +57,6 @@ export const useTasksListDetail = (props: Props) => {
   ])
 
   return {
-    skipElement,
+    hasClickedOutside,
   }
 }

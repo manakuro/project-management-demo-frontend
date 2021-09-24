@@ -1,11 +1,16 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Flex, InputText, InputProps } from 'src/components/atoms'
 import { useTaskDetailDrawerRef } from 'src/components/organisms/TaskDetails'
-import { useClickOutside, useDebounce } from 'src/hooks'
+import {
+  useClickOutside,
+  UseClickOutsideOptionsHasClickedOutside,
+  useDebounce,
+} from 'src/hooks'
+import { useTasksBoardListItemElement } from '../../TasksBoardListItem'
 import { useTasksBoardListItemInputContext } from '../Provider'
-import { useTasksNameContext } from './Provider'
 
 type Props = {
+  taskId: string
   value: string
   onChange: (val: string) => void
   isNew?: boolean
@@ -15,7 +20,7 @@ type Props = {
 
 export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   const [value, setValue] = useState<string>(props.value)
-  const { ref: containerRef } = useTasksNameContext()
+  const { getTasksBoardListItemElementById } = useTasksBoardListItemElement()
   const {
     onInputFocus,
     onInputBlur,
@@ -23,23 +28,30 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   } = useTasksBoardListItemInputContext()
   const { taskDetailListDetailRef } = useTaskDetailDrawerRef()
   const autoFocus = useMemo(() => props.isNew, [props.isNew])
-  const skipElement = useCallback(
-    (e: Event) => {
-      if (containerRef.current?.contains(e.target as Node) ?? false) return true
-      if (taskDetailListDetailRef?.contains(e.target as Node) ?? false)
-        return true
+  const hasClickedOutside =
+    useCallback<UseClickOutsideOptionsHasClickedOutside>(
+      (e) => {
+        if (
+          getTasksBoardListItemElementById(props.taskId)?.contains(
+            e.target as Node,
+          ) ??
+          false
+        )
+          return false
+        if (taskDetailListDetailRef?.contains(e.target as Node) ?? false)
+          return false
 
-      return false
-    },
-    [containerRef, taskDetailListDetailRef],
-  )
+        return true
+      },
+      [getTasksBoardListItemElementById, props.taskId, taskDetailListDetailRef],
+    )
   const { ref, removeEventListener } = useClickOutside(
     async () => {
       if (!value) await props.deleteTask?.()
     },
     {
       skip: !props.isNew,
-      skipElement,
+      hasClickedOutside,
     },
   )
 

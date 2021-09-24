@@ -1,10 +1,20 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 
 type Options = {
-  skipElement?: (e: Event) => boolean
   skip?: boolean
-  hasClickedOutside?: (e: Event) => void
+  hasClickedOutside?: (
+    e: Event,
+    helpers: {
+      isContainInMenuList: (e: Event) => boolean
+      isContainInModalContent: (e: Event) => boolean
+      isContainInPopoverContent: (e: Event) => boolean
+      isContainInToastContent: (e: Event) => boolean
+    },
+  ) => boolean
 }
+export type UseClickOutsideOptions = Options
+export type UseClickOutsideOptionsHasClickedOutside =
+  Required<UseClickOutsideOptions>['hasClickedOutside']
 export const useClickOutside = (
   onClickOutside?: () => void,
   options: Options = {},
@@ -13,7 +23,7 @@ export const useClickOutside = (
   const [state, setState] = useState({
     hasClickedOutside: false,
   })
-  const { skipElement, skip, hasClickedOutside } = options
+  const { skip, hasClickedOutside } = options
 
   const handleEvent = useCallback(
     (e: Event) => {
@@ -22,27 +32,31 @@ export const useClickOutside = (
           setState({ hasClickedOutside: false })
         } else {
           // Manually check to see if the element has clicked outside
-          if (hasClickedOutside?.(e)) {
-            setState({ hasClickedOutside: true })
+          if (hasClickedOutside) {
+            const clicked = hasClickedOutside(e, {
+              isContainInMenuList,
+              isContainInModalContent,
+              isContainInPopoverContent,
+              isContainInToastContent,
+            })
+            console.log('hey')
+            setState({ hasClickedOutside: clicked })
             return
           }
 
           // Ignore when click menu list inside popover modal
           if (
             isContainInMenuList(e) ||
-            isContainInModalContent(e) ||
             isContainInPopoverContent(e) ||
             isContainInToastContent(e)
           )
             return
 
-          if (skipElement?.(e)) return
-
           setState({ hasClickedOutside: true })
         }
       }
     },
-    [skipElement, hasClickedOutside],
+    [hasClickedOutside],
   )
 
   const removeEventListener = useCallback(() => {

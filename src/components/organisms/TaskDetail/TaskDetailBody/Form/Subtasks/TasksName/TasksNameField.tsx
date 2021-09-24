@@ -1,6 +1,10 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Box, Flex, Input, InputProps } from 'src/components/atoms'
-import { useClickOutside, useDebounce } from 'src/hooks'
+import {
+  useClickOutside,
+  UseClickOutsideOptionsHasClickedOutside,
+  useDebounce,
+} from 'src/hooks'
 import { useSubtasksNameContext } from './Provider'
 
 type Props = {
@@ -21,20 +25,22 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
     isTransitioning,
   } = useSubtasksNameContext()
   const autoFocus = useMemo(() => props.isNew, [props.isNew])
-  const skipElement = useCallback(
-    (e: Event) => {
-      if (containerRef.current?.contains(e.target as Node) ?? false) return true
-      return false
-    },
-    [containerRef],
-  )
+  const hasClickedOutside =
+    useCallback<UseClickOutsideOptionsHasClickedOutside>(
+      (e) => {
+        if (containerRef.current?.contains(e.target as Node) ?? false)
+          return false
+        return true
+      },
+      [containerRef],
+    )
   const { ref, removeEventListener } = useClickOutside(
     async () => {
       if (!value) await props.deleteTask?.()
     },
     {
       skip: !props.isNew,
-      skipElement,
+      hasClickedOutside,
     },
   )
   useEffect(() => {

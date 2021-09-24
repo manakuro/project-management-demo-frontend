@@ -34,7 +34,7 @@ const Component: React.VFC = memo(() => {
   const { loadingTabContent } = useProjectsPageContext()
   const { projectId } = useProjectsProjectId()
   const { navigateToProjectsList } = useRouter()
-  const { skipElement } = useTasksListDetail({
+  const { hasClickedOutside } = useTasksListDetail({
     isTaskDetailURL: isProjectsDetailURL,
     getTaskDetailId: getProjectsDetailId,
   })
@@ -67,7 +67,10 @@ const Component: React.VFC = memo(() => {
         </TasksListContent>
       </TasksList>
       <CustomizeMenu />
-      <TaskDetailDrawer backToPage={backToPage} skipElement={skipElement} />
+      <TaskDetailDrawer
+        backToPage={backToPage}
+        hasClickedOutside={hasClickedOutside}
+      />
     </>
   )
 })

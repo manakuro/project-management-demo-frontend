@@ -1,7 +1,11 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Box, Flex, Input, InputProps } from 'src/components/atoms'
 import { useTaskDetailDrawerRef } from 'src/components/organisms/TaskDetails'
-import { useClickOutside, useDebounce } from 'src/hooks'
+import {
+  useClickOutside,
+  UseClickOutsideOptionsHasClickedOutside,
+  useDebounce,
+} from 'src/hooks'
 import { useTasksNameContext } from './TasksNameProvider'
 
 type Props = {
@@ -24,23 +28,25 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   } = useTasksNameContext()
   const { taskDetailListDetailRef } = useTaskDetailDrawerRef()
   const autoFocus = useMemo(() => props.isNew, [props.isNew])
-  const skipElement = useCallback(
-    (e: Event) => {
-      if (containerRef.current?.contains(e.target as Node) ?? false) return true
-      if (taskDetailListDetailRef?.contains(e.target as Node) ?? false)
-        return true
+  const hasClickedOutside =
+    useCallback<UseClickOutsideOptionsHasClickedOutside>(
+      (e) => {
+        if (containerRef.current?.contains(e.target as Node) ?? false)
+          return false
+        if (taskDetailListDetailRef?.contains(e.target as Node) ?? false)
+          return false
 
-      return false
-    },
-    [containerRef, taskDetailListDetailRef],
-  )
+        return true
+      },
+      [containerRef, taskDetailListDetailRef],
+    )
   const { ref, removeEventListener } = useClickOutside(
     async () => {
       if (!value) await props.deleteTask?.()
     },
     {
       skip: !props.isNew,
-      skipElement,
+      hasClickedOutside,
     },
   )
 

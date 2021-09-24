@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Modal } from 'src/components/organisms/Modal'
 import { MenuList } from './MenuList'
 import { useEditorMentionMenu } from './useEditorMentionMenu'
 
 type Props = {}
 
-export const EditorMentionMenu: React.VFC<Props> = () => {
+export const EditorMentionMenu: React.VFC<Props> = memo<Props>(() => {
   const { isOpen, onClose } = useEditorMentionMenu()
 
   return (
@@ -20,4 +20,5 @@ export const EditorMentionMenu: React.VFC<Props> = () => {
       {isOpen && <MenuList />}
     </Modal>
   )
-}
+})
+EditorMentionMenu.displayName = 'EditorMentionMenu'

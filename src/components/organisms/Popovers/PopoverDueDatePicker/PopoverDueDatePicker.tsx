@@ -23,10 +23,14 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
   const popoverDisclosure = useDisclosure()
   const closeOnChange = props.closeOnChange ?? true
 
-  const handleOpen = useCallback(() => {
-    popoverDisclosure.onOpen()
-    props.onOpened?.()
-  }, [popoverDisclosure, props])
+  const handleOpen = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      e.stopPropagation()
+      popoverDisclosure.onOpen()
+      props.onOpened?.()
+    },
+    [popoverDisclosure, props],
+  )
 
   const handleClose = useCallback(() => {
     popoverDisclosure.onClose()

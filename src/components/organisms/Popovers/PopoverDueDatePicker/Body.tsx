@@ -40,7 +40,7 @@ export const Body: React.FC<Props> = (props) => {
   }, [dueTimeDisclosure])
 
   return (
-    <PopoverBody p={4} ref={ref}>
+    <PopoverBody p={4} ref={ref} onClick={(e) => e.stopPropagation()}>
       <DatePicker
         value={value}
         onChange={(newValue) => {

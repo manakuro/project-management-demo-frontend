@@ -4,7 +4,7 @@ import { TaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import {
   CustomizeMenu,
   CustomizeButton,
-  IncompleteTasksButton,
+  IncompleteTasksMenu,
   SortMenu,
   TasksHeader,
   TasksHeaderRight,
@@ -47,7 +47,7 @@ const Component: React.VFC = memo(() => {
           alignItems="center"
         >
           <TasksHeaderRight ml="auto">
-            <IncompleteTasksButton />
+            <IncompleteTasksMenu />
             <SortMenu projectSortable={false} />
             <CustomizeButton />
           </TasksHeaderRight>

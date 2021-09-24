@@ -17,7 +17,7 @@ import { PopoverCompletedTasks } from './PopoverCompletedTasks'
 
 type Props = {}
 
-export const IncompleteTasksButton: React.VFC<Props> = memo<Props>(() => {
+export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>(() => {
   const { onSetTaskListStatus, isTaskListStatus, taskListStatus } =
     useTasksTaskStatus()
   const popoverDisclosure = useDisclosure()
@@ -99,4 +99,4 @@ export const IncompleteTasksButton: React.VFC<Props> = memo<Props>(() => {
     </MenuSelect>
   )
 })
-IncompleteTasksButton.displayName = 'IncompleteTasksButton'
+IncompleteTasksMenu.displayName = 'IncompleteTasksButton'

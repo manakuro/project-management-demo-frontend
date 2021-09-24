@@ -3,7 +3,7 @@ import { TaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import {
   AddTaskButton,
   CustomizeButton,
-  IncompleteTasksButton,
+  IncompleteTasksMenu,
   SortMenu,
   TasksHeader,
   TasksHeaderLeft,
@@ -47,7 +47,7 @@ const Component: React.VFC = memo(() => {
             <AddTaskButton solid />
           </TasksHeaderLeft>
           <TasksHeaderRight>
-            <IncompleteTasksButton />
+            <IncompleteTasksMenu />
             <SortMenu />
             <CustomizeButton />
           </TasksHeaderRight>

@@ -5,7 +5,7 @@ import {
   CustomizeMenu,
   CustomizeButton,
   IncompleteTasksButton,
-  SortButton,
+  SortMenu,
   TasksHeader,
   TasksHeaderRight,
   TasksProvider,
@@ -48,7 +48,7 @@ const Component: React.VFC = memo(() => {
         >
           <TasksHeaderRight ml="auto">
             <IncompleteTasksButton />
-            <SortButton projectSortable={false} />
+            <SortMenu projectSortable={false} />
             <CustomizeButton />
           </TasksHeaderRight>
         </TasksHeader>

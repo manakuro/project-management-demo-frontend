@@ -46,7 +46,7 @@ const ITEMS: {
   },
 ]
 
-export const SortButton: React.VFC<Props> = memo<Props>((props) => {
+export const SortMenu: React.VFC<Props> = memo<Props>((props) => {
   const { onSort, isSorted, sortStatus } = useTasksTaskStatus()
   const handleChange = useCallback(
     (status: ToString<TaskListSortStatusType>) => {
@@ -97,3 +97,4 @@ export const SortButton: React.VFC<Props> = memo<Props>((props) => {
     </MenuSelect>
   )
 })
+SortMenu.displayName = 'SortMenu'

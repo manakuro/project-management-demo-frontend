@@ -11,5 +11,5 @@ type Props = ChakraTextareaProps & {
 export type TextareaProps = Props
 
 export const Textarea: React.FC<Props> = forwardRef((props, ref) => (
-  <ChakraTextarea {...props} ref={ref} />
+  <ChakraTextarea {...props} focusBorderColor="none" ref={ref} />
 ))

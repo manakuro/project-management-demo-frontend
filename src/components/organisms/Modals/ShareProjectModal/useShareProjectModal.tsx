@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { Index, MEMBERS_INDEX, SHARE_INDEX } from './types'
+import { useShareProjectModalInvitedTeammates } from './useShareProjectModalInvitedTeammates'
 
 const key = (str: string) =>
   `src/components/organisms/Modals/ShareProjectModal/useShareProjectModal/${str}`
@@ -21,12 +22,13 @@ const tabIndexState = atom<Index>({
 })
 
 export const useShareProjectModal = () => {
+  const { resetInvitedTeammates } = useShareProjectModalInvitedTeammates()
   const [isOpen, setIsOpen] = useRecoilState(openState)
   const [projectId, setProjectId] = useRecoilState(projectIdState)
   const resetProjectId = useResetRecoilState(projectIdState)
 
   const [tabIndex, setTabIndex] = useRecoilState(tabIndexState)
-  const resetTabIndex = useResetRecoilState(projectIdState)
+  const resetTabIndex = useResetRecoilState(tabIndexState)
 
   const onOpen = useCallback(() => {
     setIsOpen(true)
@@ -36,7 +38,8 @@ export const useShareProjectModal = () => {
     setIsOpen(false)
     resetProjectId()
     resetTabIndex()
-  }, [setIsOpen, resetProjectId, resetTabIndex])
+    resetInvitedTeammates()
+  }, [setIsOpen, resetProjectId, resetTabIndex, resetInvitedTeammates])
 
   const setShareTab = useCallback(() => {
     setTabIndex(SHARE_INDEX)

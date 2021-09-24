@@ -49,7 +49,7 @@ export const Share: React.VFC<Props> = memo<Props>((props) => {
   }, [])
 
   return (
-    <BodyStack flex={1}>
+    <BodyStack flex={1} px={6}>
       <BodyHeader>Invite with email</BodyHeader>
       <ProjectTeammateMenu
         isOpen={popoverDisclosure.isOpen}

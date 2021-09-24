@@ -42,7 +42,7 @@ export const useShareProjectModal = () => {
     setTabIndex(SHARE_INDEX)
   }, [setTabIndex])
 
-  const setMemberTab = useCallback(() => {
+  const setMembersTab = useCallback(() => {
     setTabIndex(MEMBERS_INDEX)
   }, [setTabIndex])
 
@@ -53,7 +53,7 @@ export const useShareProjectModal = () => {
     projectId,
     setProjectId,
     setShareTab,
-    setMemberTab,
+    setMembersTab,
     tabIndex,
   }
 }

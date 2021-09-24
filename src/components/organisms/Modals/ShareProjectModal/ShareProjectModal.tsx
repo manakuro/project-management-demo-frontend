@@ -1,5 +1,4 @@
 import React, { memo } from 'react'
-import { Divider } from 'src/components/atoms'
 import {
   Modal,
   ModalContent,
@@ -14,7 +13,7 @@ import { useShareProjectModal } from './useShareProjectModal'
 type Props = {}
 
 export const ShareProjectModal: React.VFC<Props> = memo<Props>(() => {
-  const { isOpen, onClose, projectId, tabIndex } = useShareProjectModal()
+  const { isOpen, onClose, projectId } = useShareProjectModal()
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl">
@@ -22,8 +21,7 @@ export const ShareProjectModal: React.VFC<Props> = memo<Props>(() => {
       <ModalContent>
         {isOpen && <Header projectId={projectId} />}
         <ModalCloseButton />
-        {isOpen && <Body projectId={projectId} initialTabIndex={tabIndex} />}
-        <Divider />
+        {isOpen && <Body projectId={projectId} />}
         {isOpen && <Footer />}
       </ModalContent>
     </Modal>

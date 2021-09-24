@@ -9,16 +9,17 @@ import {
   Tabs,
 } from 'src/components/organisms/Tabs'
 import { Index, MEMBERS_INDEX, SHARE_INDEX } from '../types'
+import { useShareProjectModal } from '../useShareProjectModal'
+import { Members } from './Members'
 import { Share } from './Share'
 
 type Props = {
   projectId: string
-  initialTabIndex: Index
 }
 
 export const Body: React.VFC<Props> = memo<Props>((props) => {
-  const { projectId, initialTabIndex } = props
-  const [tabIndex, setTabIndex] = useState<Index>(initialTabIndex)
+  const { projectId } = props
+  const { tabIndex, setMembersTab, setShareTab } = useShareProjectModal()
   const [loadingTabContent, setLoadingTabContent] = useState<boolean>(true)
 
   const setLoading = useCallback(() => {
@@ -28,30 +29,22 @@ export const Body: React.VFC<Props> = memo<Props>((props) => {
     }, 200)
   }, [setLoadingTabContent])
 
-  const setShareTab = useCallback(() => {
-    setLoading()
-    setTabIndex(SHARE_INDEX)
-  }, [setLoading])
-
-  const setMembersTab = useCallback(() => {
-    setLoading()
-    setTabIndex(MEMBERS_INDEX)
-  }, [setLoading])
-
   const handleTabsChange = useCallback(
     async (index: number) => {
       switch (index as Index) {
         case SHARE_INDEX: {
+          setLoading()
           setShareTab()
           break
         }
         case MEMBERS_INDEX: {
+          setLoading()
           setMembersTab()
           break
         }
       }
     },
-    [setMembersTab, setShareTab],
+    [setLoading, setMembersTab, setShareTab],
   )
 
   return (
@@ -70,7 +63,7 @@ export const Body: React.VFC<Props> = memo<Props>((props) => {
               <Tab>Members</Tab>
             </TabList>
           </Flex>
-          <Flex flex={1} px={6} py={4} minH="300px">
+          <Flex flex={1} py={4} minH="300px" maxH="300px" overflow="scroll">
             <TabPanels>
               <TabPanel>
                 <Share
@@ -79,7 +72,13 @@ export const Body: React.VFC<Props> = memo<Props>((props) => {
                   onSetMembersTab={setMembersTab}
                 />
               </TabPanel>
-              <TabPanel>hey2</TabPanel>
+              <TabPanel>
+                <Members
+                  projectId={projectId}
+                  loading={loadingTabContent}
+                  onSetShareTab={setShareTab}
+                />
+              </TabPanel>
             </TabPanels>
           </Flex>
         </Flex>

@@ -15,14 +15,14 @@ export const ProjectTeammates: React.VFC<Props> = memo<Props>(() => {
   const { projectId } = useProjectsProjectId()
   const { teammateIds } = useTeammateIdsByProjectId(projectId)
   const { isOpen, ref } = useTooltip()
-  const { onOpen, setProjectId, setMemberTab } = useShareProjectModal()
+  const { onOpen, setProjectId, setMembersTab } = useShareProjectModal()
   const { workspace } = useWorkspace()
 
   const handleClick = useCallback(() => {
     setProjectId(projectId)
-    setMemberTab()
+    setMembersTab()
     onOpen()
-  }, [setProjectId, projectId, setMemberTab, onOpen])
+  }, [setProjectId, projectId, setMembersTab, onOpen])
 
   return (
     <Flex alignItems="center">

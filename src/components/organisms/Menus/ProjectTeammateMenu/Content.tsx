@@ -9,7 +9,7 @@ import { ProjectTeammateItem } from './ProjectTeammateItem'
 type Props = {
   onClose?: () => void
   onClosed?: () => void
-  onSelect: (val: string) => void
+  onSelect: (val: Teammate) => void
   teammates: Teammate[]
   loading: boolean
   queryText: string
@@ -20,7 +20,7 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
   const { ref } = useClickOutside(onClose)
 
   const handleSelect = useCallback(
-    (val: string) => {
+    (val: Teammate) => {
       onSelect(val)
       onClose?.()
       onClosed?.()

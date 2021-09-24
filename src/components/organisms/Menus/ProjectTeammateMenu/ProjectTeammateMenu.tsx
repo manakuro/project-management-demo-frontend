@@ -6,11 +6,12 @@ import {
   PopoverTrigger,
 } from 'src/components/organisms/Popover'
 import { useDebounce } from 'src/hooks'
+import { Teammate } from 'src/store/entities/teammates'
 import { Content } from './Content'
 import { useSearchProjectTeammatesQuery } from './useSearchProjectTeammatesQuery'
 
 type Props = PopoverProps & {
-  onSelect: (val: string) => void
+  onSelect: (val: Teammate) => void
   queryText: string
   onClosed?: () => void
 }

@@ -3,6 +3,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 type Options = {
   skipElement?: (e: Event) => boolean
   skip?: boolean
+  hasClickedOutside?: (e: Event) => void
 }
 export const useClickOutside = (
   onClickOutside?: () => void,
@@ -12,7 +13,7 @@ export const useClickOutside = (
   const [state, setState] = useState({
     hasClickedOutside: false,
   })
-  const { skipElement, skip } = options
+  const { skipElement, skip, hasClickedOutside } = options
 
   const handleEvent = useCallback(
     (e: Event) => {
@@ -20,6 +21,12 @@ export const useClickOutside = (
         if (ref.current.contains(e.target as Node)) {
           setState({ hasClickedOutside: false })
         } else {
+          // Manually check to see if the element has clicked outside
+          if (hasClickedOutside?.(e)) {
+            setState({ hasClickedOutside: true })
+            return
+          }
+
           // Ignore when click menu list inside popover modal
           if (
             isContainInMenuList(e) ||
@@ -35,7 +42,7 @@ export const useClickOutside = (
         }
       }
     },
-    [skipElement],
+    [skipElement, hasClickedOutside],
   )
 
   const removeEventListener = useCallback(() => {

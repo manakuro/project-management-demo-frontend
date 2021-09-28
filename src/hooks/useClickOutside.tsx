@@ -43,9 +43,6 @@ export const useClickOutside = (
             return
           }
 
-          // Ignore when click menu list inside popover modal
-          if (isContainInMenuList(e) || isContainInToastContent(e)) return
-
           setState({ hasClickedOutside: true })
         }
       }

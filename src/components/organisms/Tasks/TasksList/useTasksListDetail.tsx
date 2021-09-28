@@ -19,11 +19,14 @@ export const useTasksListDetail = (props: Props) => {
     useCallback<UseClickOutsideOptionsHasClickedOutside>(
       (e, helpers): boolean => {
         if (helpers.isContainInModalContent(e)) return false
+        if (helpers.isContainInMenuList(e)) return false
+        if (helpers.isContainInToastContent(e)) return false
+        if (helpers.isContainInPopoverContent(e)) return false
         if (e.target === getTasksListBodyElement()) return false
         if (getTasksListBodyElement()?.contains(e.target as Node) ?? false)
-          return true
+          return false
 
-        return false
+        return true
       },
       [getTasksListBodyElement],
     )

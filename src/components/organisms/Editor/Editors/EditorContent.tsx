@@ -1,19 +1,26 @@
-import React, { useEffect, useRef } from 'react'
-import { Box, BoxProps } from 'src/components/atoms'
+import React, { CSSProperties, useEffect, useRef } from 'react'
+import { Box } from 'src/components/atoms'
 import { useEditorViewContext } from 'src/components/organisms/Editor/Editors/EdiorProvider'
 import 'prosemirror-view/style/prosemirror.css'
 
-// import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
+type Props = {
+  style?: CSSProperties
+}
 
-type Props = BoxProps
 export const EditorContent: React.FC<Props> = React.memo<Props>((props) => {
+  const { style } = props
   const view = useEditorViewContext()
   const ref = useRef<HTMLDivElement | null>(null)
-  // const { taskDetailBodyDom } = useTaskDetailBody()
 
   useEffect(() => {
     const current = ref.current
     if (current && view) {
+      if (style) {
+        Object.keys(style).map((k: any) => {
+          ;(view.dom as HTMLElement).style[k] = (style as any)[k]
+        })
+      }
+
       current.appendChild(view.dom)
     }
     return () => {
@@ -21,7 +28,7 @@ export const EditorContent: React.FC<Props> = React.memo<Props>((props) => {
         current.removeChild(view.dom)
       }
     }
-  }, [view])
+  }, [style, view])
 
   useEffect(() => {
     setTimeout(() => {
@@ -32,16 +39,5 @@ export const EditorContent: React.FC<Props> = React.memo<Props>((props) => {
     }, 300)
   }, [view])
 
-  // TODO: Find a workaround to make tool bar sticky at bottom
-  // const handleKeyDown = useCallback(
-  //   (e: React.KeyboardEvent) => {
-  //     if (e.code === 'Enter') {
-  //       if (!taskDetailBodyDom) return
-  //       taskDetailBodyDom.scrollTop += 50
-  //     }
-  //   },
-  //   [taskDetailBodyDom],
-  // )
-
-  return <Box {...props} ref={ref} />
+  return <Box ref={ref} />
 })

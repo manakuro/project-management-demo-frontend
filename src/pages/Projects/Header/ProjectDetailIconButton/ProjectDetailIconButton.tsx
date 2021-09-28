@@ -1,5 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { Icon, IconButton, IconButtonProps } from 'src/components/atoms'
+import { useProjectDetailModal } from 'src/components/organisms/Modals'
 
 type Props = {
   projectId: string
@@ -8,7 +9,12 @@ type Props = {
 export const ProjectDetailIconButton: React.VFC<Props> = memo<Props>(
   (props) => {
     const { projectId, ...rest } = props
-    const handleClick = useCallback(() => {}, [])
+    const { onOpen, setProjectId } = useProjectDetailModal()
+
+    const handleClick = useCallback(() => {
+      setProjectId(projectId)
+      onOpen()
+    }, [onOpen, projectId, setProjectId])
 
     return (
       <IconButton

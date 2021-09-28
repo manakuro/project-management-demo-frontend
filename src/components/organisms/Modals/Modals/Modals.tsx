@@ -11,6 +11,7 @@ import {
   EditorLinkModal,
   DeleteTaskSectionModal,
   DuplicateTaskModal,
+  ProjectDetailModal,
 } from 'src/components/organisms/Modals'
 import { Help } from 'src/components/organisms/Navigation'
 import { VideoPlayer } from 'src/components/organisms/VideoPlayer'
@@ -29,6 +30,7 @@ export const Modals: React.VFC = memo(() => {
       <DeleteTaskSectionModal />
       <DuplicateTaskModal />
       <ShareProjectModal />
+      <ProjectDetailModal />
     </>
   )
 })

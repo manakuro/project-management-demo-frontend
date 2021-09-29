@@ -70,6 +70,6 @@ const fetch = (): Promise<Teammate[]> => {
           updatedAt: '',
         },
       ])
-    }, 300)
+    }, 200)
   })
 }

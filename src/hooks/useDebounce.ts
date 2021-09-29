@@ -5,17 +5,21 @@ export const useDebounce = <T extends any>(
   value: T,
   callback: (value: T) => void,
   delay: number,
+  options?: {
+    skip?: boolean
+  },
 ) => {
   const timer = useRef<number | null>(null)
   const { mountedRef } = useMountedRef()
 
   useEffect(() => {
     if (timer.current) window.clearInterval(timer.current)
+    if (options?.skip) return
 
     timer.current = window.setTimeout(() => {
       if (!mountedRef.current) return
 
       callback(value)
     }, delay)
-  }, [callback, delay, mountedRef, timer, value])
+  }, [callback, delay, mountedRef, options?.skip, timer, value])
 }

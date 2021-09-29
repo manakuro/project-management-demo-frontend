@@ -10,6 +10,7 @@ import { useProject } from 'src/store/entities/projects'
 import { Description } from './Description'
 import { Label } from './Label'
 import { NameField } from './NameField'
+import { ProjectOwner } from './ProjectOwner'
 
 type Props = {
   projectId: string
@@ -35,8 +36,13 @@ export const Content: React.VFC<Props> = memo<Props>((props) => {
       <ModalBody py={4}>
         <Stack spacing={6}>
           <Flex flexDirection="column">
-            <Label>Name</Label>
-            <NameField value={project.name} onChange={handleChangeName} />
+            <Flex flexDirection="column">
+              <Label>Name</Label>
+              <NameField value={project.name} onChange={handleChangeName} />
+            </Flex>
+            <Flex mt={4}>
+              <ProjectOwner projectId={projectId} />
+            </Flex>
           </Flex>
           <Divider />
           <Description />

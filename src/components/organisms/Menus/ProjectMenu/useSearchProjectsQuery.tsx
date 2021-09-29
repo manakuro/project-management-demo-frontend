@@ -1,6 +1,5 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
-import { uuid } from 'src/shared/uuid'
 import { ProjectResponse } from 'src/store/entities/projects'
 import { teammates } from 'src/store/entities/teammates/data'
 
@@ -57,22 +56,24 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
           },
           teammates: [
             {
-              id: uuid(),
+              id: '1',
               teammateId: teammates.manato.id,
               projectId: '2',
               name: teammates.manato.name,
               image: teammates.manato.image,
               email: teammates.manato.email,
+              isOwner: true,
               createdAt: '',
               updatedAt: '',
             },
             {
-              id: uuid(),
+              id: '2',
               teammateId: teammates.dan.id,
               projectId: '2',
               name: teammates.dan.name,
               image: teammates.dan.image,
               email: teammates.dan.email,
+              isOwner: false,
               createdAt: '',
               updatedAt: '',
             },
@@ -91,32 +92,35 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
           },
           teammates: [
             {
-              id: uuid(),
+              id: '1',
               teammateId: teammates.manato.id,
               projectId: '2',
               name: teammates.manato.name,
               image: teammates.manato.image,
               email: teammates.manato.email,
+              isOwner: true,
               createdAt: '',
               updatedAt: '',
             },
             {
-              id: uuid(),
+              id: '2',
               teammateId: teammates.dan.id,
               projectId: '2',
               name: teammates.dan.name,
               image: teammates.dan.image,
               email: teammates.dan.email,
+              isOwner: false,
               createdAt: '',
               updatedAt: '',
             },
             {
-              id: uuid(),
+              id: '3',
               teammateId: teammates.kent.id,
               projectId: '1',
               name: teammates.kent.name,
               image: teammates.kent.image,
               email: teammates.kent.email,
+              isOwner: false,
               createdAt: '',
               updatedAt: '',
             },

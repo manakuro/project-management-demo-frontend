@@ -2,6 +2,7 @@ import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { PortalManager } from 'src/components/atoms'
 import {
   Popover,
+  PopoverContentProps,
   PopoverProps,
   PopoverTrigger,
 } from 'src/components/organisms/Popover'
@@ -14,10 +15,12 @@ type Props = PopoverProps & {
   onSelect: (val: Teammate) => void
   queryText: string
   onClosed?: () => void
+  contentStyle?: PopoverContentProps
+  initialTeammates?: Teammate[]
 }
 
 export const ProjectTeammateMenu: React.FC<Props> = memo<Props>((props) => {
-  const { onClosed, queryText, ...rest } = props
+  const { onClosed, queryText, contentStyle, initialTeammates, ...rest } = props
   const {
     refetch,
     teammates,
@@ -65,6 +68,7 @@ export const ProjectTeammateMenu: React.FC<Props> = memo<Props>((props) => {
           teammates={teammates}
           loading={loading}
           queryText={value}
+          contentStyle={contentStyle}
         />
       </Popover>
     </PortalManager>

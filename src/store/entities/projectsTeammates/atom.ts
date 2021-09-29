@@ -19,6 +19,7 @@ const projectTeammateState = atomFamily<ProjectTeammate, string>({
     id: '',
     projectId: '',
     teammateId: '',
+    isOwner: false,
     createdAt: '',
     updatedAt: '',
   },
@@ -33,6 +34,22 @@ export const teammateIdsByProjectIdSelector = selectorFamily<string[], string>({
       return projects
         .filter((t) => t.projectId === projectId)
         .map((p) => p.teammateId)
+    },
+})
+
+export const ownerTeammateIdByProjectIdSelector = selectorFamily<
+  string,
+  string
+>({
+  key: 'projectsTeammateIdsSelector',
+  get:
+    (projectId) =>
+    ({ get }) => {
+      const projects = get(projectTeammatesState)
+      return (
+        projects.filter((t) => t.projectId === projectId && t.isOwner)[0]
+          ?.teammateId ?? ''
+      )
     },
 })
 

@@ -7,7 +7,7 @@ import {
   WrapItem,
 } from 'src/components/atoms'
 import { InvitedTeammateChip } from 'src/components/molecules'
-import { ProjectTeammateMenu } from 'src/components/organisms/Menus'
+import { InviteProjectTeammateMenu } from 'src/components/organisms/Menus'
 import { useDisclosure } from 'src/shared/chakra'
 import { Teammate } from 'src/store/entities/teammates'
 import { PermissionMenu } from '../PermissionMenu'
@@ -49,7 +49,7 @@ export const SendForm: React.VFC<Props> = memo<Props>((props) => {
 
   return (
     <>
-      <ProjectTeammateMenu
+      <InviteProjectTeammateMenu
         isOpen={popoverDisclosure.isOpen}
         onClose={popoverDisclosure.onClose}
         onSelect={handleSelect}
@@ -92,7 +92,7 @@ export const SendForm: React.VFC<Props> = memo<Props>((props) => {
             <PermissionMenu />
           </Flex>
         </Flex>
-      </ProjectTeammateMenu>
+      </InviteProjectTeammateMenu>
       <Flex alignItems="center">
         <Textarea
           minH="120px"

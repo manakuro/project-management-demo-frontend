@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo, useState } from 'react'
 import { AvatarGroup, Flex, Input, Text } from 'src/components/atoms'
-import { ProjectTeammateMenu } from 'src/components/organisms/Menus'
+import { InviteProjectTeammateMenu } from 'src/components/organisms/Menus'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useLinkStyle } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
@@ -52,7 +52,7 @@ export const InviteForm: React.VFC<Props> = memo<Props>((props) => {
 
   return (
     <>
-      <ProjectTeammateMenu
+      <InviteProjectTeammateMenu
         isOpen={popoverDisclosure.isOpen}
         onClose={popoverDisclosure.onClose}
         onSelect={handleSelect}
@@ -69,7 +69,7 @@ export const InviteForm: React.VFC<Props> = memo<Props>((props) => {
             onChange={handleChange}
           />
         </Flex>
-      </ProjectTeammateMenu>
+      </InviteProjectTeammateMenu>
       <Flex alignItems="center">
         <AvatarGroup size="xs" max={3} spacing={1} fontSize="xs">
           {teammateIds.map((id) => (

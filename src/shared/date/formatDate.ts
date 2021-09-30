@@ -15,6 +15,12 @@ export const formatDueDate = (date: string): string => {
   return dateFns.format(dateObj, 'MMM d')
 }
 
+export const formatDueDateInput = (date: string): string => {
+  if (!date) return ''
+  const dateObj = new Date(date)
+  return dateFns.format(dateObj, 'dd/MM/yy')
+}
+
 export const formatDueTime = (date: string): string =>
   dateFns.format(new Date(date), 'H:mm aaa')
 

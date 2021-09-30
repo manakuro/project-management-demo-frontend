@@ -55,6 +55,8 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
         isLazy
         lazyBehavior="keepMounted"
         closeOnBlur={false}
+        autoFocus={false}
+        returnFocusOnClose={false}
       >
         <PopoverTrigger>
           <Link {...props.linkStyle} onClick={handleOpen}>

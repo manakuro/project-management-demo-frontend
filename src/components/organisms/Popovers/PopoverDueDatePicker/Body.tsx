@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { memo, useCallback, useEffect } from 'react'
 import { Button, Divider, Flex, FlexProps } from 'src/components/atoms'
 import { DatePicker } from 'src/components/organisms/DatePicker'
 import { PopoverBody, PopoverProps } from 'src/components/organisms/Popover'
@@ -10,17 +10,21 @@ import { DueTime } from './DueTime'
 type Props = {
   date: string
   onChange: (date: Date) => void
-  time?: string
   onCloseMenu: () => void
+  time?: string
 } & PopoverProps
 
 const MIN_DATE = dateFns.addYears(new Date(), -1)
 const MAX_DATE = dateFns.addYears(new Date(), 1)
 
-export const Body: React.FC<Props> = (props) => {
+export const Body: React.FC<Props> = memo((props) => {
   const [value, setValue] = React.useState<Date | null>(new Date(props.date))
   const dueTimeDisclosure = useDisclosure()
   const { ref } = useClickOutside(props.onCloseMenu)
+
+  useEffect(() => {
+    setValue(new Date(props.date))
+  }, [props.date])
 
   const handleAccept = useCallback(
     (newValue) => {
@@ -68,4 +72,5 @@ export const Body: React.FC<Props> = (props) => {
       </Flex>
     </PopoverBody>
   )
-}
+})
+Body.displayName = 'Body'

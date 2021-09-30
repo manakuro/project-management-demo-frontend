@@ -3,6 +3,7 @@ import { Input as AtomsInput } from 'src/components/atoms'
 import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
+import { formatDueDateInput } from 'src/shared/date'
 import { useProject } from 'src/store/entities/projects'
 
 type Props = {
@@ -19,8 +20,10 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
     },
   })
   const popoverDisclosure = useDisclosure({ defaultIsOpen: true })
-  const [, setValue] = useState<string>('')
   const { setProject, project } = useProject(projectId)
+  const [value, setValue] = useState<string>(
+    formatDueDateInput(project.dueDate),
+  )
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,17 +48,14 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <PopoverDueDatePicker
-      date={project.dueDate}
-      onChange={handleSelect}
-      defaultIsOpen
-    >
+    <PopoverDueDatePicker date={value} onChange={handleSelect} defaultIsOpen>
       <AtomsInput
         ref={ref}
         autoFocus
         variant="unstyled"
         fontSize="sm"
         onChange={handleChange}
+        value={value}
         ml={2}
       />
     </PopoverDueDatePicker>

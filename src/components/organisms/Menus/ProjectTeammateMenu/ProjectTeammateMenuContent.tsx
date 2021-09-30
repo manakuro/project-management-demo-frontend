@@ -1,10 +1,11 @@
 import React, { memo } from 'react'
-import { Portal } from 'src/components/atoms'
+import { Flex, Portal } from 'src/components/atoms'
 import {
   PopoverContent,
   PopoverContentProps,
 } from 'src/components/organisms/Popover'
 import { useClickOutside } from 'src/hooks'
+import { useProjectTeammateMenuRef } from './useProjectTeammateMenuRef'
 
 type Props = PopoverContentProps & {
   onClose: () => void
@@ -12,17 +13,24 @@ type Props = PopoverContentProps & {
 
 export const ProjectTeammateMenuContent: React.FC<Props> = memo<Props>(
   (props) => {
-    const { onClose, ...rest } = props
+    const { onClose, children, ...rest } = props
     const { ref } = useClickOutside(onClose)
+    const { ref: containerRef } = useProjectTeammateMenuRef()
 
     return (
       <Portal>
         <PopoverContent
           className="focus-visible"
           w="450px"
-          ref={ref}
+          maxH={56}
+          ref={containerRef}
+          overflowY="scroll"
           {...rest}
-        />
+        >
+          <Flex flexDirection="column" ref={ref}>
+            {children}
+          </Flex>
+        </PopoverContent>
       </Portal>
     )
   },

@@ -4,6 +4,7 @@ import {
   ProjectTeammateMenuLoading,
   useProjectTeammateMenu,
 } from 'src/components/organisms/Menus/ProjectTeammateMenu'
+import { useProjectTeammateMenuOnKeyBindings } from 'src/components/organisms/Menus/ProjectTeammateMenu/useProjectTeammateMenuOnKeyBindings'
 import { PopoverProps } from 'src/components/organisms/Popover'
 import { Teammate } from 'src/store/entities/teammates'
 
@@ -28,6 +29,11 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
     },
     [onClose, onClosed, onSelect],
   )
+
+  useProjectTeammateMenuOnKeyBindings({
+    items: teammates,
+    onSetValue: handleSelect,
+  })
 
   useEffect(() => {
     fetchTeammates('')

@@ -1,12 +1,12 @@
 import React, { memo, useCallback } from 'react'
 import { Text } from 'src/components/atoms'
+import {
+  SearchMenuLeftContainer,
+  SearchMenuListItem,
+  SearchMenuRightContainer,
+} from 'src/components/organisms/Menus/SearchMenu'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { Teammate } from 'src/store/entities/teammates'
-import {
-  ProjectTeammateMenuListItem,
-  ProjectTeammateMenuLeftContainer,
-  ProjectTeammateMenuRightContainer,
-} from '../ProjectTeammateMenuListItem'
 
 type Props = {
   onClick: (teammate: Teammate) => void
@@ -22,17 +22,17 @@ export const ProjectTeammateMenuItem: React.FC<Props> = memo<Props>((props) => {
   }, [onClick, teammate])
 
   return (
-    <ProjectTeammateMenuListItem index={props.index} onClick={handleClick}>
-      <ProjectTeammateMenuLeftContainer>
+    <SearchMenuListItem index={props.index} onClick={handleClick}>
+      <SearchMenuLeftContainer>
         <TeammateAvatar teammateId={teammate.id} size="xs" />
-      </ProjectTeammateMenuLeftContainer>
-      <ProjectTeammateMenuRightContainer>
+      </SearchMenuLeftContainer>
+      <SearchMenuRightContainer>
         <Text fontSize="sm">{teammate.name}</Text>
         <Text ml={5} fontSize="xs" color="text.muted">
           {teammate.email}
         </Text>
-      </ProjectTeammateMenuRightContainer>
-    </ProjectTeammateMenuListItem>
+      </SearchMenuRightContainer>
+    </SearchMenuListItem>
   )
 })
 ProjectTeammateMenuItem.displayName = 'ProjectTeammateMenuItem'

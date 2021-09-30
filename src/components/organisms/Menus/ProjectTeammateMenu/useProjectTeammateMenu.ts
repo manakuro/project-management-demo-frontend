@@ -1,13 +1,18 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useSearchMenuOnKeyBindings } from 'src/components/organisms/Menus/SearchMenu'
 import { useDebounce } from 'src/hooks'
+import { Teammate } from 'src/store/entities/teammates'
 import { useSearchProjectTeammatesQuery } from './useSearchProjectTeammatesQuery'
 
 type Props = {
+  onSelect: (val: Teammate) => void
   queryText: string
+  onClose: () => void
+  onClosed?: () => void
 }
 
 export const useProjectTeammateMenu = (props: Props) => {
-  const { queryText } = props
+  const { queryText, onClose, onClosed, onSelect } = props
   const {
     refetch,
     teammates,
@@ -37,6 +42,21 @@ export const useProjectTeammateMenu = (props: Props) => {
     [fetchTeammates],
   )
 
+  const onSelectTeammate = useCallback(
+    (val: Teammate) => {
+      onSelect(val)
+      onClose()
+      onClosed?.()
+      setLoadingText(false)
+    },
+    [onClose, onClosed, onSelect],
+  )
+
+  useSearchMenuOnKeyBindings({
+    items: teammates,
+    onSetValue: onSelectTeammate,
+  })
+
   useEffect(() => {
     setLoadingText(true)
     setValue(queryText)
@@ -48,5 +68,6 @@ export const useProjectTeammateMenu = (props: Props) => {
     teammates,
     loading,
     fetchTeammates,
+    onSelectTeammate,
   }
 }

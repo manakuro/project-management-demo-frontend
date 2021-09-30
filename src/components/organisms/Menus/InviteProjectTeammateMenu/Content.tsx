@@ -1,13 +1,15 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo } from 'react'
 import { Divider, Icon, Text } from 'src/components/atoms'
 import {
   ProjectTeammateMenuItem,
-  ProjectTeammateMenuLeftContainer,
-  ProjectTeammateMenuListItem,
   ProjectTeammateMenuLoading,
-  ProjectTeammateMenuRightContainer,
   useProjectTeammateMenu,
 } from 'src/components/organisms/Menus/ProjectTeammateMenu'
+import {
+  SearchMenuLeftContainer,
+  SearchMenuListItem,
+  SearchMenuRightContainer,
+} from 'src/components/organisms/Menus/SearchMenu'
 import { PopoverProps } from 'src/components/organisms/Popover'
 import { Teammate } from 'src/store/entities/teammates'
 
@@ -19,17 +21,7 @@ type Props = PopoverProps & {
 }
 
 export const Content: React.FC<Props> = memo<Props>((props) => {
-  const { onClosed, queryText, onSelect, onClose } = props
-  const { teammates, loading } = useProjectTeammateMenu({ queryText })
-
-  const handleSelect = useCallback(
-    (val: Teammate) => {
-      onSelect(val)
-      onClose()
-      onClosed?.()
-    },
-    [onClose, onClosed, onSelect],
-  )
+  const { teammates, loading, onSelectTeammate } = useProjectTeammateMenu(props)
 
   if (loading) return <ProjectTeammateMenuLoading />
 
@@ -38,22 +30,22 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
       {teammates.map((t, i) => (
         <ProjectTeammateMenuItem
           key={t.id}
-          onClick={handleSelect}
+          onClick={onSelectTeammate}
           teammate={t}
           index={i}
         />
       ))}
       <Divider />
-      <ProjectTeammateMenuListItem index={teammates.length}>
-        <ProjectTeammateMenuLeftContainer>
+      <SearchMenuListItem index={teammates.length}>
+        <SearchMenuLeftContainer>
           <Icon icon="userPlus" color="primary" />
-        </ProjectTeammateMenuLeftContainer>
-        <ProjectTeammateMenuRightContainer>
+        </SearchMenuLeftContainer>
+        <SearchMenuRightContainer>
           <Text fontSize="sm" color="primary" fontWeight="medium">
             {`Invite '${props.queryText}' via email`}
           </Text>
-        </ProjectTeammateMenuRightContainer>
-      </ProjectTeammateMenuListItem>
+        </SearchMenuRightContainer>
+      </SearchMenuListItem>
     </>
   )
 })

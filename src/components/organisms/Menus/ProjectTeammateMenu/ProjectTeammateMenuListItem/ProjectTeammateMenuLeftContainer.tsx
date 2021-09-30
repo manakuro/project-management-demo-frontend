@@ -1,10 +1,13 @@
 import React, { memo } from 'react'
-import { Flex, FlexProps } from 'src/components/atoms'
+import { FlexProps } from 'src/components/atoms'
+import { SearchMenuLeftContainer } from 'src/components/organisms/Menus/SearchMenu'
 
 type Props = FlexProps
 
 export const ProjectTeammateMenuLeftContainer: React.FC<Props> = memo<Props>(
   (props) => {
-    return <Flex alignItems="center" justifyContent="center" w={8} {...props} />
+    return <SearchMenuLeftContainer {...props} />
   },
 )
+ProjectTeammateMenuLeftContainer.displayName =
+  'ProjectTeammateMenuLeftContainer'

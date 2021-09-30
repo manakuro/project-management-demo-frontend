@@ -1,14 +1,12 @@
-import React, { memo, useCallback, useEffect } from 'react'
+import React, { memo, useEffect } from 'react'
 import {
   ProjectTeammateMenuItem,
   ProjectTeammateMenuLoading,
   useProjectTeammateMenu,
 } from 'src/components/organisms/Menus/ProjectTeammateMenu'
-import { useProjectTeammateMenuOnKeyBindings } from 'src/components/organisms/Menus/ProjectTeammateMenu/useProjectTeammateMenuOnKeyBindings'
-import { PopoverProps } from 'src/components/organisms/Popover'
 import { Teammate } from 'src/store/entities/teammates'
 
-type Props = PopoverProps & {
+type Props = {
   onSelect: (val: Teammate) => void
   queryText: string
   onClose: () => void
@@ -16,24 +14,8 @@ type Props = PopoverProps & {
 }
 
 export const Content: React.FC<Props> = memo<Props>((props) => {
-  const { onClosed, queryText, onSelect, onClose } = props
-  const { teammates, loading, fetchTeammates } = useProjectTeammateMenu({
-    queryText,
-  })
-
-  const handleSelect = useCallback(
-    (val: Teammate) => {
-      onSelect(val)
-      onClose()
-      onClosed?.()
-    },
-    [onClose, onClosed, onSelect],
-  )
-
-  useProjectTeammateMenuOnKeyBindings({
-    items: teammates,
-    onSetValue: handleSelect,
-  })
+  const { teammates, loading, fetchTeammates, onSelectTeammate } =
+    useProjectTeammateMenu(props)
 
   useEffect(() => {
     fetchTeammates('')
@@ -46,7 +28,7 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
       {teammates.map((t, i) => (
         <ProjectTeammateMenuItem
           key={t.id}
-          onClick={handleSelect}
+          onClick={onSelectTeammate}
           teammate={t}
           index={i}
         />

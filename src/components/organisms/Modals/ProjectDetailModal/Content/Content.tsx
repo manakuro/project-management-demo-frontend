@@ -10,6 +10,7 @@ import { useProject } from 'src/store/entities/projects'
 import { Description } from './Description'
 import { Label } from './Label'
 import { NameField } from './NameField'
+import { ProjectDueDate } from './ProjectDueDate'
 import { ProjectOwner } from './ProjectOwner'
 
 type Props = {
@@ -41,7 +42,12 @@ export const Content: React.VFC<Props> = memo<Props>((props) => {
               <NameField value={project.name} onChange={handleChangeName} />
             </Flex>
             <Flex mt={4}>
-              <ProjectOwner projectId={projectId} />
+              <Flex flex={1}>
+                <ProjectOwner projectId={projectId} />
+              </Flex>
+              <Flex flex={1}>
+                <ProjectDueDate projectId={projectId} />
+              </Flex>
             </Flex>
           </Flex>
           <Divider />

@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
+import { dateFns } from 'src/shared/dateFns'
 import { ProjectResponse } from 'src/store/entities/projects'
 import { teammates } from 'src/store/entities/teammates/data'
 
@@ -78,6 +79,7 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
               updatedAt: '',
             },
           ],
+          dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
         },
         {
           id: '2',
@@ -125,6 +127,7 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
               updatedAt: '',
             },
           ],
+          dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
         },
       ])
     }, 300)

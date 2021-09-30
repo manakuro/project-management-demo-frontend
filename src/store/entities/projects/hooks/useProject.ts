@@ -43,5 +43,6 @@ export const useProject = (projectId: string) => {
     project,
     setColor,
     setProjectName,
+    setProject,
   }
 }

@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react'
 import { atom, useRecoilState } from 'recoil'
+import { dateFns } from 'src/shared/dateFns'
 import { uuid } from 'src/shared/uuid'
 import {
   ProjectResponse,
@@ -87,6 +88,7 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
               updatedAt: '',
             },
           ],
+          dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
         },
         {
           id: '2',
@@ -134,6 +136,7 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
               updatedAt: '',
             },
           ],
+          dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
         },
       ])
     }, 1000)

@@ -13,6 +13,7 @@ export type ProjectResponse = {
     id: string
   }
   teammates: ProjectsTeammateResponse[]
+  dueDate: string
 }
 
 export type Project = {
@@ -26,4 +27,5 @@ export type Project = {
   icon: {
     id: string
   }
+  dueDate: string
 }

@@ -17,10 +17,13 @@ type Props = {
   onClosed?: () => void
   linkStyle?: ChakraProps
   closeOnChange?: boolean
+  defaultIsOpen?: boolean
 } & PopoverProps
 
 export const PopoverDueDatePicker: React.FC<Props> = (props) => {
-  const popoverDisclosure = useDisclosure()
+  const popoverDisclosure = useDisclosure({
+    defaultIsOpen: props.defaultIsOpen,
+  })
   const closeOnChange = props.closeOnChange ?? true
 
   const handleOpen = useCallback(

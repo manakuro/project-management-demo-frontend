@@ -26,6 +26,7 @@ const projectState = atomFamily<Project, string>({
     icon: {
       id: '',
     },
+    dueDate: '',
   },
 })
 

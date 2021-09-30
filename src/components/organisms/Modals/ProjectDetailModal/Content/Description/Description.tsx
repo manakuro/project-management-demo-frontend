@@ -1,4 +1,5 @@
 import React, { memo, useState } from 'react'
+import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
@@ -33,8 +34,10 @@ const Component: React.FC<Props> = memo<Props>(() => {
   return (
     <Container>
       <Editor onChange={setValue} value={initialValue}>
-        <EditorContent style={{ minHeight: '200px' }} />
-        <Placeholder />
+        <Flex maxH="300px" overflow="scroll" flex={1} flexDirection="column">
+          <EditorContent style={{ minHeight: '200px' }} />
+          <Placeholder />
+        </Flex>
         <ToolBar />
       </Editor>
     </Container>

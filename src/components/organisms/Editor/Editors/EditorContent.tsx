@@ -28,7 +28,8 @@ export const EditorContent: React.FC<Props> = React.memo<Props>((props) => {
         current.removeChild(view.dom)
       }
     }
-  }, [style, view])
+    /* eslint react-hooks/exhaustive-deps: off */
+  }, [view])
 
   useEffect(() => {
     setTimeout(() => {

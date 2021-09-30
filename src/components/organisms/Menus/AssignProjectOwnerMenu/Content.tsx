@@ -1,9 +1,9 @@
 import React, { memo, useEffect } from 'react'
 import {
   ProjectTeammateMenuItem,
-  ProjectTeammateMenuLoading,
   useProjectTeammateMenu,
 } from 'src/components/organisms/Menus/ProjectTeammateMenu'
+import { SearchMenuLoading } from 'src/components/organisms/Menus/SearchMenu'
 import { Teammate } from 'src/store/entities/teammates'
 
 type Props = {
@@ -21,7 +21,7 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
     fetchTeammates('')
   }, [fetchTeammates])
 
-  if (loading) return <ProjectTeammateMenuLoading />
+  if (loading) return <SearchMenuLoading />
 
   return (
     <>

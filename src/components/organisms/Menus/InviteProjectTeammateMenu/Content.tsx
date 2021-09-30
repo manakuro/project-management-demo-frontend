@@ -2,13 +2,13 @@ import React, { memo } from 'react'
 import { Divider, Icon, Text } from 'src/components/atoms'
 import {
   ProjectTeammateMenuItem,
-  ProjectTeammateMenuLoading,
   useProjectTeammateMenu,
 } from 'src/components/organisms/Menus/ProjectTeammateMenu'
 import {
   SearchMenuLeftContainer,
   SearchMenuListItem,
   SearchMenuRightContainer,
+  SearchMenuLoading,
 } from 'src/components/organisms/Menus/SearchMenu'
 import { PopoverProps } from 'src/components/organisms/Popover'
 import { Teammate } from 'src/store/entities/teammates'
@@ -23,7 +23,7 @@ type Props = PopoverProps & {
 export const Content: React.FC<Props> = memo<Props>((props) => {
   const { teammates, loading, onSelectTeammate } = useProjectTeammateMenu(props)
 
-  if (loading) return <ProjectTeammateMenuLoading />
+  if (loading) return <SearchMenuLoading />
 
   return (
     <>

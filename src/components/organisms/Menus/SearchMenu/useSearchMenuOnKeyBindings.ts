@@ -5,6 +5,7 @@ import { useSearchMenuRef } from './useSearchMenuRef'
 
 type Props<Item> = {
   items: Item[]
+  indexLength: number
   onSetValue: (item: Item) => void
 }
 
@@ -27,7 +28,7 @@ export const useSearchMenuOnKeyBindings = <Item>(props: Props<Item>) => {
 
   const onArrowDown = useCallback(() => {
     const index = selectedIndex + 1
-    if (index > props.items.length) {
+    if (index > props.indexLength) {
       setSelectedIndex(0)
       scrollTo(0)
       return
@@ -35,19 +36,19 @@ export const useSearchMenuOnKeyBindings = <Item>(props: Props<Item>) => {
 
     setSelectedIndex(index)
     scrollTo(index)
-  }, [props.items.length, scrollTo, setSelectedIndex, selectedIndex])
+  }, [props.indexLength, scrollTo, setSelectedIndex, selectedIndex])
 
   const onArrowUp = useCallback(() => {
     const index = selectedIndex - 1
     if (index < 0) {
-      setSelectedIndex(props.items.length)
-      scrollTo(props.items.length)
+      setSelectedIndex(props.indexLength)
+      scrollTo(props.indexLength)
       return
     }
 
     setSelectedIndex(index)
     scrollTo(-index)
-  }, [props.items.length, scrollTo, setSelectedIndex, selectedIndex])
+  }, [props.indexLength, scrollTo, setSelectedIndex, selectedIndex])
 
   const onEnter = useCallback(() => {
     const item = props.items.find((_, i) => i === selectedIndex)

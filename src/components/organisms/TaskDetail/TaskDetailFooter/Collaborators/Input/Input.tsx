@@ -1,11 +1,12 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { Flex, Input as AtomsInput, Wrap, WrapItem } from 'src/components/atoms'
 import { AssigneeChip } from 'src/components/molecules'
-import { AssigneeMenu } from 'src/components/organisms/Menus'
+import { InviteCollaboratorMenu } from 'src/components/organisms/Menus'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { useClickOutside } from 'src/hooks'
-import { ChakraProps, useStyleConfig } from 'src/shared/chakra'
+import { ChakraProps, useDisclosure, useStyleConfig } from 'src/shared/chakra'
 import { useTeammateIdsByTaskId } from 'src/store/entities/tasksTeammates'
+import { Teammate } from 'src/store/entities/teammates'
 import { useCollaboratorsContext } from '../Provider'
 
 export const Input: React.VFC = () => {
@@ -24,15 +25,38 @@ type InputStyle = {
 const Component: React.VFC = memo(() => {
   const { taskId } = useTaskDetail()
   const { teammateIds } = useTeammateIdsByTaskId(taskId)
-  const { onInputUnfocus, isInputFocused } = useCollaboratorsContext()
+  const { onInputUnfocus } = useCollaboratorsContext()
   const { ref } = useClickOutside(onInputUnfocus)
   const style = useStyleConfig('Input') as InputStyle
 
+  const popoverDisclosure = useDisclosure()
+  const [value, setValue] = useState<string>('')
+
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const val = e.target.value
+      setValue(val)
+      if (val) {
+        popoverDisclosure.onOpen()
+        return
+      }
+      popoverDisclosure.onClose()
+    },
+    [popoverDisclosure],
+  )
+
+  const handleSelect = useCallback((val: Teammate) => {
+    console.log(val)
+    setValue('')
+  }, [])
+
   return (
-    <AssigneeMenu
-      defaultIsOpen={false}
-      isOpen={isInputFocused}
+    <InviteCollaboratorMenu
+      isOpen={popoverDisclosure.isOpen}
+      onClose={popoverDisclosure.onClose}
+      onSelect={handleSelect}
       placement="top-start"
+      queryText={value}
     >
       <Flex
         ref={ref}
@@ -45,6 +69,7 @@ const Component: React.VFC = memo(() => {
         {...style.field}
         h="auto"
         maxH="none"
+        onChange={handleChange}
       >
         <Wrap py={teammateIds.length ? 2 : 0}>
           {teammateIds.map((id) => (
@@ -64,6 +89,6 @@ const Component: React.VFC = memo(() => {
           </WrapItem>
         </Wrap>
       </Flex>
-    </AssigneeMenu>
+    </InviteCollaboratorMenu>
   )
 })

@@ -9,10 +9,12 @@ type Props = {
   queryText: string
   onClose: () => void
   onClosed?: () => void
+  additionalIndexLength?: number
 }
 
 export const useProjectTeammateMenu = (props: Props) => {
-  const { queryText, onClose, onClosed, onSelect } = props
+  const { queryText, onClose, onClosed, onSelect, additionalIndexLength } =
+    props
   const {
     refetch,
     teammates,
@@ -54,6 +56,7 @@ export const useProjectTeammateMenu = (props: Props) => {
 
   useSearchMenuOnKeyBindings({
     items: teammates,
+    indexLength: teammates.length + (additionalIndexLength ?? 0),
     onSetValue: onSelectTeammate,
   })
 

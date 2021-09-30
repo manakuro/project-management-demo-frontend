@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 import {
   ProjectTeammateMenu,
-  ProjectTeammateMenuContent,
   ProjectTeammateMenuTrigger,
+  ProjectTeammateMenuContent,
 } from 'src/components/organisms/Menus/ProjectTeammateMenu'
 import {
   PopoverContentProps,
@@ -19,7 +19,7 @@ type Props = PopoverProps & {
   contentStyle?: PopoverContentProps
 }
 
-export const AssigneeMenu: React.FC<Props> = memo<Props>((props) => {
+export const InviteCollaboratorMenu: React.FC<Props> = memo<Props>((props) => {
   const {
     onClosed,
     queryText,
@@ -46,4 +46,4 @@ export const AssigneeMenu: React.FC<Props> = memo<Props>((props) => {
     </ProjectTeammateMenu>
   )
 })
-AssigneeMenu.displayName = 'AssigneeMenu'
+InviteCollaboratorMenu.displayName = 'InviteCollaboratorMenu'

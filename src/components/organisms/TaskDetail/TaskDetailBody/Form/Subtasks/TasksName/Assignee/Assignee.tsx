@@ -8,39 +8,41 @@ import { useTeammate } from 'src/store/entities/teammates'
 import { useAssignee } from './useAssignee'
 
 type Props = {
+  taskId: string
   assigneeId?: string
 }
 
 export const Assignee: React.FC<Props> = memo<Props>((props) => {
+  const { taskId, assigneeId } = props
   const { clickableHoverLightStyle } = useClickableHoverStyle()
   const { onAssigneeClosed, onAssigneeOpened, showIcon } = useAssignee()
-  const { teammate } = useTeammate(props.assigneeId)
-
-  if (teammate.id) {
-    return <TeammateAvatar teammateId={teammate.id} size="xs" />
-  }
+  const { teammate } = useTeammate(assigneeId)
 
   return (
     <PopoverAssigneeInput
-      onChange={() => {}}
+      taskId={taskId}
       onOpened={onAssigneeOpened}
       onClosed={onAssigneeClosed}
     >
-      <Tooltip
-        hasArrow
-        label="Assign this task"
-        aria-label="Assign this task"
-        size="sm"
-        withIcon
-      >
-        <Icon
-          visibility={showIcon ? 'visible' : 'hidden'}
-          pointerEvents={showIcon ? 'auto' : 'none'}
-          icon="user"
-          color="text.muted"
-          {...clickableHoverLightStyle}
-        />
-      </Tooltip>
+      {teammate.id ? (
+        <TeammateAvatar teammateId={teammate.id} size="xs" />
+      ) : (
+        <Tooltip
+          hasArrow
+          label="Assign this task"
+          aria-label="Assign this task"
+          size="sm"
+          withIcon
+        >
+          <Icon
+            visibility={showIcon ? 'visible' : 'hidden'}
+            pointerEvents={showIcon ? 'auto' : 'none'}
+            icon="user"
+            color="text.muted"
+            {...clickableHoverLightStyle}
+          />
+        </Tooltip>
+      )}
     </PopoverAssigneeInput>
   )
 })

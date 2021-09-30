@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo } from 'react'
 import { Divider, Icon, Text } from 'src/components/atoms'
 import {
   ProjectTeammateMenuItem,
@@ -7,12 +7,13 @@ import {
 import {
   SearchMenuLeftContainer,
   SearchMenuListItem,
-  SearchMenuLoading,
   SearchMenuRightContainer,
+  SearchMenuLoading,
 } from 'src/components/organisms/Menus/SearchMenu'
+import { PopoverProps } from 'src/components/organisms/Popover'
 import { Teammate } from 'src/store/entities/teammates'
 
-type Props = {
+type Props = PopoverProps & {
   onSelect: (val: Teammate) => void
   queryText: string
   onClose: () => void
@@ -20,15 +21,7 @@ type Props = {
 }
 
 export const Content: React.FC<Props> = memo<Props>((props) => {
-  const { teammates, loading, fetchTeammates, onSelectTeammate } =
-    useProjectTeammateMenu({
-      ...props,
-      additionalIndexLength: 1,
-    })
-
-  useEffect(() => {
-    fetchTeammates('')
-  }, [fetchTeammates])
+  const { teammates, loading, onSelectTeammate } = useProjectTeammateMenu(props)
 
   if (loading) return <SearchMenuLoading />
 
@@ -50,17 +43,6 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
         <SearchMenuRightContainer>
           <Text fontSize="sm" color="primary" fontWeight="medium">
             {`Invite '${props.queryText}' via email`}
-          </Text>
-        </SearchMenuRightContainer>
-      </SearchMenuListItem>
-      <Divider />
-      <SearchMenuListItem index={teammates.length + 1}>
-        <SearchMenuLeftContainer>
-          <Icon icon="plus" color="primary" />
-        </SearchMenuLeftContainer>
-        <SearchMenuRightContainer>
-          <Text fontSize="sm" color="primary" fontWeight="medium">
-            Assign duplicate tasks
           </Text>
         </SearchMenuRightContainer>
       </SearchMenuListItem>

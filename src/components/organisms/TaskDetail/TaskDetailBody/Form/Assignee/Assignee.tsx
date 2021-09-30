@@ -1,18 +1,11 @@
 import React, { memo, useCallback, useMemo, useState } from 'react'
-import {
-  Button,
-  ButtonProps,
-  Icon,
-  Text,
-  Box,
-  TextProps,
-} from 'src/components/atoms'
+import { Button, ButtonProps, Text, Box, TextProps } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
-import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { useTask } from 'src/store/entities/tasks'
 import { useTeammate } from 'src/store/entities/teammates'
 import { Row, Label, Content } from '../Row'
+import { DeleteButton } from './DeleteButton'
 import { Input } from './Input'
 
 type Props = {
@@ -28,11 +21,11 @@ const focusedStyle: ButtonProps = {
   },
 }
 
-export const Assignee: React.FC<Props> = memo((props) => {
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
+export const Assignee: React.FC<Props> = memo<Props>((props) => {
+  const { taskId } = props
   const { ref, isHovering } = useHover()
   const [focused, setFocused] = useState(false)
-  const { task } = useTask(props.taskId)
+  const { task } = useTask(taskId)
   const { teammate } = useTeammate(task.assigneeId)
   const isAssigned = useMemo(() => !!teammate.id, [teammate.id])
   const name = useMemo(
@@ -76,26 +69,14 @@ export const Assignee: React.FC<Props> = memo((props) => {
         >
           <TeammateAvatar teammateId={teammate.id} size="xs" />
           {focused ? (
-            <Input onClickOutside={handleClickInputOutside} />
+            <Input taskId={taskId} onClose={handleClickInputOutside} />
           ) : (
             <>
               <Text ml={2} fontSize="sm" {...nameStyle}>
                 {name}
               </Text>
               {isAssigned && (
-                <Icon
-                  ml={2}
-                  mt="1px"
-                  icon="x"
-                  color="text.muted"
-                  size="sm"
-                  visibility={isHovering ? 'visible' : 'hidden'}
-                  {...clickableHoverLightStyle}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    console.log('click!')
-                  }}
-                />
+                <DeleteButton isHovering={isHovering} taskId={taskId} />
               )}
             </>
           )}

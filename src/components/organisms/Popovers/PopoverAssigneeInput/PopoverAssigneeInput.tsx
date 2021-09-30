@@ -9,12 +9,13 @@ import { useDisclosure } from 'src/shared/chakra'
 import { Content } from './Content'
 
 type Props = {
-  onChange: () => void
+  taskId: string
   onOpened?: () => void
   onClosed?: () => void
 } & PopoverProps
 
 export const PopoverAssigneeInput: React.FC<Props> = (props) => {
+  const { taskId } = props
   const popoverDisclosure = useDisclosure()
   const inputRef = React.useRef<HTMLInputElement | null>(null)
 
@@ -43,7 +44,9 @@ export const PopoverAssigneeInput: React.FC<Props> = (props) => {
         <PopoverTrigger>
           <Link onClick={handleOpen}>{props.children}</Link>
         </PopoverTrigger>
-        {popoverDisclosure.isOpen && <Content onClose={handleClose} />}
+        {popoverDisclosure.isOpen && (
+          <Content taskId={taskId} onClose={handleClose} />
+        )}
       </Popover>
     </PortalManager>
   )

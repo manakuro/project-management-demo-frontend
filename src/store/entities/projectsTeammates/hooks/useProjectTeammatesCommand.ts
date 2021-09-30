@@ -1,5 +1,9 @@
 import { useRecoilCallback } from 'recoil'
-import { projectTeammateSelector } from '../atom'
+import {
+  projectTeammateSelector,
+  projectTeammateByProjectIdAndTeammateIdSelector,
+  ownerProjectTeammateByProjectIdSelector,
+} from '../atom'
 import { ProjectTeammate } from '../type'
 
 export const useProjectTeammatesCommand = () => {
@@ -11,21 +15,69 @@ export const useProjectTeammatesCommand = () => {
     [],
   )
 
-  const setProjectTeammateIdById = useRecoilCallback(
+  const setProjectTeammateById = useRecoilCallback(
     ({ snapshot }) =>
       async (projectTeammateId: string, val: Partial<ProjectTeammate>) => {
-        const prev = await snapshot.getPromise(
+        const current = await snapshot.getPromise(
           projectTeammateSelector(projectTeammateId),
         )
         upsert({
-          ...prev,
+          ...current,
           ...val,
         })
       },
     [upsert],
   )
 
+  const setProjectTeammateByProjectIdAndTeammateId = useRecoilCallback(
+    ({ snapshot }) =>
+      async (
+        projectId: string,
+        teammateId: string,
+        val: Partial<ProjectTeammate>,
+      ) => {
+        const current = await snapshot.getPromise(
+          projectTeammateByProjectIdAndTeammateIdSelector({
+            projectId,
+            teammateId,
+          }),
+        )
+        upsert({
+          ...current,
+          ...val,
+        })
+      },
+    [upsert],
+  )
+
+  const setOwnerByProjectIdAndTeammateId = useRecoilCallback(
+    ({ snapshot }) =>
+      async (projectId: string, teammateId: string) => {
+        const currentOwner = await snapshot.getPromise(
+          ownerProjectTeammateByProjectIdSelector(projectId),
+        )
+        upsert({
+          ...currentOwner,
+          isOwner: false,
+        })
+
+        const nextOwner = await snapshot.getPromise(
+          projectTeammateByProjectIdAndTeammateIdSelector({
+            projectId,
+            teammateId,
+          }),
+        )
+        upsert({
+          ...nextOwner,
+          isOwner: true,
+        })
+      },
+    [upsert],
+  )
+
   return {
-    setProjectTeammateIdById,
+    setProjectTeammateById,
+    setProjectTeammateByProjectIdAndTeammateId,
+    setOwnerByProjectIdAndTeammateId,
   }
 }

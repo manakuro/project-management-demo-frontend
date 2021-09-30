@@ -54,6 +54,23 @@ export const ownerProjectTeammateByProjectIdSelector = selectorFamily<
     },
 })
 
+export const projectTeammateByProjectIdAndTeammateIdSelector = selectorFamily<
+  ProjectTeammate,
+  { projectId: string; teammateId: string }
+>({
+  key: 'projectTeammateByProjectIdAndTeammateIdSelector',
+  get:
+    ({ projectId, teammateId }) =>
+    ({ get }) => {
+      const projects = get(projectTeammatesState)
+      return (
+        projects.find(
+          (t) => t.projectId === projectId && t.teammateId === teammateId,
+        ) ?? initialProjectTeammateState()
+      )
+    },
+})
+
 export const projectTeammateSelector = selectorFamily<ProjectTeammate, string>({
   key: key('projectTeammateSelector'),
   get:

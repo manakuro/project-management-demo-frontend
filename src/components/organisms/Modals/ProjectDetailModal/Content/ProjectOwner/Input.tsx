@@ -3,16 +3,25 @@ import { Input as AtomsInput } from 'src/components/atoms'
 import { AssignProjectOwnerMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
+import { useProjectTeammatesCommand } from 'src/store/entities/projectsTeammates'
 import { Teammate } from 'src/store/entities/teammates'
 
 type Props = {
-  onClickOutside: () => void
+  projectId: string
+  onClose: () => void
 }
 
 export const Input: React.FC<Props> = memo<Props>((props) => {
-  const { ref } = useClickOutside(props.onClickOutside)
+  const { projectId, onClose } = props
+  const { ref } = useClickOutside(onClose, {
+    hasClickedOutside: (e, helpers) => {
+      if (helpers.isContainInPopoverContent(e)) return false
+      return true
+    },
+  })
   const popoverDisclosure = useDisclosure({ defaultIsOpen: true })
   const [value, setValue] = useState<string>('')
+  const { setOwnerByProjectIdAndTeammateId } = useProjectTeammatesCommand()
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,10 +36,14 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
     [popoverDisclosure],
   )
 
-  const handleSelect = useCallback((val: Teammate) => {
-    console.log(val)
-    setValue('')
-  }, [])
+  const handleSelect = useCallback(
+    async (val: Teammate) => {
+      await setOwnerByProjectIdAndTeammateId(projectId, val.id)
+      setValue('')
+      onClose()
+    },
+    [projectId, setOwnerByProjectIdAndTeammateId, onClose],
+  )
 
   return (
     <AssignProjectOwnerMenu

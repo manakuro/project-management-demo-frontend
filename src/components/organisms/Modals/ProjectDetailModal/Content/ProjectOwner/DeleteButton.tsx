@@ -10,18 +10,18 @@ type Props = {
 
 export const DeleteButton: React.FC<Props> = memo<Props>((props) => {
   const { isHovering, projectTeammateId } = props
-  const { setProjectTeammateIdById } = useProjectTeammatesCommand()
+  const { setProjectTeammateById } = useProjectTeammatesCommand()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   const handleClick = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
       e.stopPropagation()
 
-      await setProjectTeammateIdById(projectTeammateId, {
+      await setProjectTeammateById(projectTeammateId, {
         isOwner: false,
       })
     },
-    [projectTeammateId, setProjectTeammateIdById],
+    [projectTeammateId, setProjectTeammateById],
   )
 
   return (

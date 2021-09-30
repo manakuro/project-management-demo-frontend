@@ -65,7 +65,7 @@ export const ProjectOwner: React.FC<Props> = memo<Props>((props) => {
     >
       <TeammateAvatar teammateId={teammate.id} size="xs" />
       {focused ? (
-        <Input onClickOutside={handleClickInputOutside} />
+        <Input projectId={projectId} onClose={handleClickInputOutside} />
       ) : (
         <>
           <Text ml={2} fontSize="sm" {...nameStyle}>

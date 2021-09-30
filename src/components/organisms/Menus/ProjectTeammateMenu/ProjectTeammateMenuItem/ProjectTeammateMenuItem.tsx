@@ -35,4 +35,4 @@ export const ProjectTeammateMenuItem: React.FC<Props> = memo<Props>((props) => {
     </ProjectTeammateMenuListItem>
   )
 })
-ProjectTeammateMenuItem.displayName = 'ProjectTeammateItem'
+ProjectTeammateMenuItem.displayName = 'ProjectTeammateMenuItem'

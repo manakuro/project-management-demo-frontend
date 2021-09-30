@@ -1,17 +1,10 @@
 import React, { memo, useCallback, useMemo, useState } from 'react'
-import {
-  Button,
-  ButtonProps,
-  Icon,
-  Text,
-  Box,
-  TextProps,
-} from 'src/components/atoms'
+import { Button, ButtonProps, Text, Box, TextProps } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
-import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { useOwnerTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
 import { useTeammate } from 'src/store/entities/teammates'
+import { DeleteButton } from './DeleteButton'
 import { Input } from './Input'
 
 type Props = {
@@ -29,11 +22,10 @@ const focusedStyle: ButtonProps = {
 
 export const ProjectOwner: React.FC<Props> = memo<Props>((props) => {
   const { projectId } = props
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
   const { ref, isHovering } = useHover()
   const [focused, setFocused] = useState(false)
-  const { teammateId } = useOwnerTeammateIdsByProjectId(projectId)
-  const { teammate } = useTeammate(teammateId)
+  const { projectTeammate } = useOwnerTeammateIdsByProjectId(projectId)
+  const { teammate } = useTeammate(projectTeammate.teammateId)
   const hasOwner = useMemo(() => !!teammate.id, [teammate.id])
   const name = useMemo(
     () => (hasOwner ? teammate.name : 'No Owner'),
@@ -80,18 +72,9 @@ export const ProjectOwner: React.FC<Props> = memo<Props>((props) => {
             {name}
           </Text>
           {hasOwner && (
-            <Icon
-              ml={2}
-              mt="1px"
-              icon="x"
-              color="text.muted"
-              size="sm"
-              visibility={isHovering ? 'visible' : 'hidden'}
-              {...clickableHoverLightStyle}
-              onClick={(e) => {
-                e.stopPropagation()
-                console.log('click!')
-              }}
+            <DeleteButton
+              isHovering={isHovering}
+              projectTeammateId={projectTeammate.id}
             />
           )}
         </>

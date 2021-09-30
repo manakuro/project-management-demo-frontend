@@ -35,7 +35,7 @@ const Component: React.FC<Props> = memo<Props>(() => {
     <Container>
       <Editor onChange={setValue} value={initialValue}>
         <Flex maxH="300px" overflow="scroll" flex={1} flexDirection="column">
-          <EditorContent style={{ minHeight: '200px' }} />
+          <EditorContent style={{ minHeight: '150px' }} />
           <Placeholder />
         </Flex>
         <ToolBar />

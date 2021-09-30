@@ -12,12 +12,15 @@ type Props = {
   onChange: (date: Date) => void
   onCloseMenu: () => void
   time?: string
+  includeDueTime?: boolean
 } & PopoverProps
 
 const MIN_DATE = dateFns.addYears(new Date(), -1)
 const MAX_DATE = dateFns.addYears(new Date(), 1)
 
-export const Body: React.FC<Props> = memo((props) => {
+export const Body: React.FC<Props> = memo<Props>((props) => {
+  const { onChange } = props
+  const includeDueTime = props.includeDueTime ?? true
   const [value, setValue] = React.useState<Date | null>(new Date(props.date))
   const dueTimeDisclosure = useDisclosure()
   const { ref } = useClickOutside(props.onCloseMenu)
@@ -28,9 +31,9 @@ export const Body: React.FC<Props> = memo((props) => {
 
   const handleAccept = useCallback(
     (newValue) => {
-      props.onChange(newValue as Date)
+      onChange(newValue as Date)
     },
-    [props],
+    [onChange],
   )
   const optionContainerStyle: FlexProps = dueTimeDisclosure.isOpen
     ? {
@@ -54,22 +57,26 @@ export const Body: React.FC<Props> = memo((props) => {
         minDate={MIN_DATE}
         maxDate={MAX_DATE}
       />
-      <Divider />
-      <Flex mt={2} {...optionContainerStyle} cursor="auto">
-        <DueTime
-          onClick={handleDueTimeClick}
-          isEditing={dueTimeDisclosure.isOpen}
-          time={props.time}
-        />
-        <Button
-          variant="ghost"
-          size="sm"
-          ml="auto"
-          mt={dueTimeDisclosure.isOpen ? 3 : 0}
-        >
-          Clear
-        </Button>
-      </Flex>
+      {includeDueTime && (
+        <>
+          <Divider />
+          <Flex mt={2} {...optionContainerStyle} cursor="auto">
+            <DueTime
+              onClick={handleDueTimeClick}
+              isEditing={dueTimeDisclosure.isOpen}
+              time={props.time}
+            />
+            <Button
+              variant="ghost"
+              size="sm"
+              ml="auto"
+              mt={dueTimeDisclosure.isOpen ? 3 : 0}
+            >
+              Clear
+            </Button>
+          </Flex>
+        </>
+      )}
     </PopoverBody>
   )
 })

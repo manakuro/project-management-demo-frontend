@@ -18,6 +18,7 @@ type Props = {
   linkStyle?: ChakraProps
   closeOnChange?: boolean
   defaultIsOpen?: boolean
+  includeDueTime?: boolean
 } & PopoverProps
 
 export const PopoverDueDatePicker: React.FC<Props> = (props) => {
@@ -66,7 +67,7 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
         <Portal>
           <PopoverContent
             w="276px"
-            minH="311px"
+            minH="300px"
             className="PopoverDueDatePicker"
             pointerEvents="auto"
           >
@@ -76,6 +77,7 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
                 onChange={handleChange}
                 time={props.time}
                 onCloseMenu={handleClose}
+                includeDueTime={props.includeDueTime}
               />
             )}
           </PopoverContent>

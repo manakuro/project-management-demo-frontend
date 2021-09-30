@@ -48,7 +48,12 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <PopoverDueDatePicker date={value} onChange={handleSelect} defaultIsOpen>
+    <PopoverDueDatePicker
+      date={value}
+      onChange={handleSelect}
+      defaultIsOpen
+      includeDueTime={false}
+    >
       <AtomsInput
         ref={ref}
         autoFocus

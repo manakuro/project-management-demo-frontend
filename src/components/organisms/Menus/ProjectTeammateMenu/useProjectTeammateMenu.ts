@@ -20,14 +20,8 @@ export const useProjectTeammateMenu = (props: Props) => {
   )
   const [value, setValue] = useState<string>('')
 
-  useEffect(() => {
-    setLoadingText(true)
-    setValue(queryText)
-  }, [queryText])
-
-  const handleDebounce = useCallback(
+  const fetchTeammates = useCallback(
     async (val: string) => {
-      if (!val) return
       console.log(val)
       await refetch({ queryText: val })
       setLoadingText(false)
@@ -35,10 +29,24 @@ export const useProjectTeammateMenu = (props: Props) => {
     [refetch],
   )
 
+  const handleDebounce = useCallback(
+    async (val: string) => {
+      if (!val) return
+      await fetchTeammates(val)
+    },
+    [fetchTeammates],
+  )
+
+  useEffect(() => {
+    setLoadingText(true)
+    setValue(queryText)
+  }, [queryText])
+
   useDebounce(value, handleDebounce, 500)
 
   return {
     teammates,
     loading,
+    fetchTeammates,
   }
 }

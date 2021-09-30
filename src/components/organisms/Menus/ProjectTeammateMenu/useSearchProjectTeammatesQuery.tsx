@@ -35,8 +35,24 @@ export const useSearchProjectTeammatesQuery = () => {
     [setState],
   )
 
+  const setTeammates = useCallback(
+    (val: Teammate[]) => {
+      setState((s) => ({ ...s, teammates: val }))
+    },
+    [setState],
+  )
+
+  const setLoading = useCallback(
+    (val: boolean) => {
+      setState((s) => ({ ...s, loading: val }))
+    },
+    [setState],
+  )
+
   return {
     refetch,
+    setTeammates,
+    setLoading,
     ...state,
   }
 }

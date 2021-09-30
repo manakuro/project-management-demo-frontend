@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useState } from 'react'
 import { Input as AtomsInput } from 'src/components/atoms'
-import { InviteProjectTeammateMenu } from 'src/components/organisms/Menus'
+import { AssignProjectOwnerMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import { Teammate } from 'src/store/entities/teammates'
@@ -11,7 +11,7 @@ type Props = {
 
 export const Input: React.FC<Props> = memo<Props>((props) => {
   const { ref } = useClickOutside(props.onClickOutside)
-  const popoverDisclosure = useDisclosure({ isOpen: true })
+  const popoverDisclosure = useDisclosure({ defaultIsOpen: true })
   const [value, setValue] = useState<string>('')
 
   const handleChange = useCallback(
@@ -33,7 +33,7 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
   }, [])
 
   return (
-    <InviteProjectTeammateMenu
+    <AssignProjectOwnerMenu
       isOpen={popoverDisclosure.isOpen}
       onClose={popoverDisclosure.onClose}
       onSelect={handleSelect}
@@ -52,6 +52,6 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
         onChange={handleChange}
         ml={2}
       />
-    </InviteProjectTeammateMenu>
+    </AssignProjectOwnerMenu>
   )
 })

@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react'
 import { useRecoilCallback, useRecoilState } from 'recoil'
 import { uuid } from 'src/shared/uuid'
-import { defaultFeedLikeStateValue, feedLikesState } from '../atom'
+import { initialState, feedLikesState } from '../atom'
 import { useFeedLikeCommand } from './useFeedLikeCommand'
 
 export const useFeedLikesByFeedId = (feedId: string) => {
@@ -12,7 +12,7 @@ export const useFeedLikesByFeedId = (feedId: string) => {
     (teammateId: string) => {
       const id = uuid()
       upsert({
-        ...defaultFeedLikeStateValue(),
+        ...initialState(),
         id,
         feedId,
         teammateId,

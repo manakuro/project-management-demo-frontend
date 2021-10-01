@@ -2,12 +2,12 @@ import React, { memo } from 'react'
 import { Container } from './Container'
 
 type Props = {
-  taskColumnId: string
+  tasksTaskColumnId: string
 }
 
 export const Tags: React.FC<Props> = memo<Props>((props) => {
-  const { taskColumnId } = props
+  const { tasksTaskColumnId } = props
 
-  return <Container clickable taskColumnId={taskColumnId} menu />
+  return <Container clickable tasksTaskColumnId={tasksTaskColumnId} menu />
 })
 Tags.displayName = 'Tags'

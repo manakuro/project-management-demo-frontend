@@ -1,9 +1,9 @@
 import { TaskListStatus } from 'src/store/app/myTasks/taskListStatus'
-import { TaskColumn } from 'src/store/entities/taskColumns'
+import { TeammatesTaskColumnResponse } from 'src/store/entities/teammatesTaskColumns'
 import { TeammatesTaskSectionResponse } from 'src/store/entities/teammatesTaskSections'
 
 export type MyTaskResponse = {
   taskSections: TeammatesTaskSectionResponse[]
-  taskColumns: TaskColumn[]
+  taskColumns: TeammatesTaskColumnResponse[]
   taskStatus: TaskListStatus
 }

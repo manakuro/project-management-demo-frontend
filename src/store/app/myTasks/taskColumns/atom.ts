@@ -1,14 +1,14 @@
 import { selectorFamily } from 'recoil'
-import { taskColumnsByTeammateIdSelector } from 'src/store/entities/taskColumns'
+import { teammatesTaskColumnsByTeammateId } from 'src/store/entities/teammatesTaskColumns'
 
 const key = (str: string) => `src/store/app/myTasks/taskColumns/${str}`
 
-export const myTaskTaskColumnIdsSelector = selectorFamily<string[], string>({
+export const taskColumnIdsSelector = selectorFamily<string[], string>({
   key: key('myTaskTaskColumnIdsSelector'),
   get:
     (teammateId: string) =>
     ({ get }) => {
-      const taskColumns = get(taskColumnsByTeammateIdSelector(teammateId))
+      const taskColumns = get(teammatesTaskColumnsByTeammateId(teammateId))
 
       return taskColumns
         .filter((t) => !t.disabled)
@@ -17,7 +17,7 @@ export const myTaskTaskColumnIdsSelector = selectorFamily<string[], string>({
     },
 })
 
-export const myTaskTaskColumnIdsCustomizableSelector = selectorFamily<
+export const taskColumnIdsCustomizableSelector = selectorFamily<
   string[],
   string
 >({
@@ -25,7 +25,7 @@ export const myTaskTaskColumnIdsCustomizableSelector = selectorFamily<
   get:
     (teammateId: string) =>
     ({ get }) => {
-      const taskColumns = get(taskColumnsByTeammateIdSelector(teammateId))
+      const taskColumns = get(teammatesTaskColumnsByTeammateId(teammateId))
       return [...taskColumns]
         .sort((a, b) => (a.order > b.order ? 1 : -1))
         .map((t) => t.id)

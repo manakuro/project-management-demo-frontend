@@ -1,35 +1,41 @@
-import { useMemo } from 'react'
+import { useCallback } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { asyncForEach } from 'src/shared/utils'
 import { useMe } from 'src/store/entities/me'
 import {
-  taskColumnSelector,
-  useTaskColumnCommands,
-} from 'src/store/entities/taskColumns'
+  useProjectsTaskColumnsCommand,
+  useProjectsTaskColumn,
+} from 'src/store/entities/projectsTaskColumns'
 import { projectsTaskColumnIdsSelector } from '../atom'
+import { ProjectTaskColumn } from '../type'
 
-export const useProjectsTaskColumns = () => {
+export const useProjectsTaskColumns = (tasksTaskColumnId: string) => {
   const { me } = useMe()
   const ids = useRecoilValue(projectsTaskColumnIdsSelector(me.id))
-  const taskColumnIds = useMemo(() => ids, [ids])
-  const { upsert: upsertTaskColumn } = useTaskColumnCommands()
+  const { projectsTaskColumn } = useProjectsTaskColumn(tasksTaskColumnId)
+  const { setProjectsTaskColumn } = useProjectsTaskColumnsCommand()
+
+  const setTasksTaskColumn = useCallback(
+    async (val: Partial<ProjectTaskColumn>) => {
+      await setProjectsTaskColumn({ id: tasksTaskColumnId, ...val })
+    },
+    [setProjectsTaskColumn, tasksTaskColumnId],
+  )
 
   const setOrderTaskColumn = useRecoilCallback(
-    ({ snapshot }) =>
-      async (startIndex: number, endIndex: number) => {
-        const newIds = Array.from(ids)
-        const [deleted] = newIds.splice(startIndex, 1)
-        newIds.splice(endIndex, 0, deleted)
+    () => async (startIndex: number, endIndex: number) => {
+      const newIds = Array.from(ids)
+      const [deleted] = newIds.splice(startIndex, 1)
+      newIds.splice(endIndex, 0, deleted)
 
-        await asyncForEach(newIds, async (id, index) => {
-          const prev = await snapshot.getPromise(taskColumnSelector(id))
-          upsertTaskColumn({
-            ...prev,
-            order: index,
-          })
+      await asyncForEach(newIds, async (id, index) => {
+        await setProjectsTaskColumn({
+          id,
+          order: index,
         })
-      },
-    [ids, upsertTaskColumn],
+      })
+    },
+    [ids, setProjectsTaskColumn],
   )
 
   const canMoveLeft = useRecoilCallback(
@@ -49,7 +55,8 @@ export const useProjectsTaskColumns = () => {
   )
 
   return {
-    taskColumnIds,
+    tasksTaskColumn: projectsTaskColumn,
+    setTasksTaskColumn: setTasksTaskColumn,
     setOrderTaskColumn,
     canMoveLeft,
     canMoveRight,

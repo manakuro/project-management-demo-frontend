@@ -19,8 +19,9 @@ const TASKS_HEADER_BOARD_HEIGHT = 40
 
 export const Content: React.VFC = memo(() => {
   const { onClose } = useCustomizeMenu()
-  const { taskColumnIds, setOrderTaskColumn } = useTasksTaskColumnCustomizable()
-  const { list, handleDnd } = useDnd(taskColumnIds)
+  const { tasksTaskColumnIds, setOrderTaskColumn } =
+    useTasksTaskColumnCustomizable()
+  const { list, handleDnd } = useDnd(tasksTaskColumnIds)
   const { router } = useRouter()
   const top = useMemo<number>(() => {
     if (isMyTasksBoardURL(router))
@@ -69,7 +70,7 @@ export const Content: React.VFC = memo(() => {
                   mt={2}
                 >
                   {list.map((id, i) => (
-                    <ListItem taskColumnId={id} key={id} index={i} />
+                    <ListItem tasksTaskColumnId={id} key={id} index={i} />
                   ))}
                   {provided.placeholder}
                 </Box>

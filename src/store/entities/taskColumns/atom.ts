@@ -24,30 +24,11 @@ export const taskColumnByTypeState = selectorFamily<TaskColumn, TaskColumnType>(
       },
   },
 )
-export const taskColumnsByTeammateIdSelector = selectorFamily<
-  TaskColumn[],
-  string
->({
-  key: key('taskColumnByTeammateIdSelector'),
-  get:
-    (teammateId: string) =>
-    ({ get }) => {
-      const taskColumns = get(taskColumnsState)
-      return taskColumns.filter((t) => t.teammateId === teammateId)
-    },
-})
 
 const defaultStateValue = (): TaskColumn => ({
   id: '',
-  fieldId: '',
-  projectId: '',
-  teammateId: '',
   name: '',
   type: 1,
-  width: '',
-  disabled: false,
-  customizable: false,
-  order: 0,
   createdAt: '',
   updatedAt: '',
 })

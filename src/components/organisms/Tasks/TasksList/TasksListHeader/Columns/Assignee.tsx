@@ -4,11 +4,11 @@ import { useTasksTaskStatus } from 'src/components/organisms/Tasks/hooks'
 import { Container } from './Container'
 
 type Props = {
-  taskColumnId: string
+  tasksTaskColumnId: string
 }
 
 export const Assignee: React.FC<Props> = memo<Props>((props) => {
-  const { taskColumnId } = props
+  const { tasksTaskColumnId } = props
   const { onSort, isSorted } = useTasksTaskStatus()
 
   const handleSort = useCallback(() => {
@@ -22,7 +22,7 @@ export const Assignee: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <Container
-      taskColumnId={taskColumnId}
+      tasksTaskColumnId={tasksTaskColumnId}
       clickable
       onClick={handleSort}
       onSort={handleSort}

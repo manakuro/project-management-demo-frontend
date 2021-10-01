@@ -2,10 +2,12 @@ import { useMyTasksTaskColumnsCustomizable } from 'src/store/app/myTasks/taskCol
 import { useProjectsTaskColumnsCustomizable } from 'src/store/app/projects/taskColumns'
 import { useTasksContext } from '../TasksProvider'
 
-type Result = ReturnType<
-  | typeof useMyTasksTaskColumnsCustomizable
-  | typeof useProjectsTaskColumnsCustomizable
->
+type Result = {
+  tasksTaskColumnIds: string[]
+  setOrderTaskColumn: ReturnType<
+    typeof useMyTasksTaskColumnsCustomizable
+  >['setOrderTaskColumn']
+}
 
 export const useTasksTaskColumnCustomizable = (): Result => {
   const { isMyTasksPage } = useTasksContext()

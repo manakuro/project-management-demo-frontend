@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { FlexProps } from 'src/components/atoms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
-import { useTasksTaskColumn } from 'src/components/organisms/Tasks/hooks'
+import { useTasksTaskColumnIds } from 'src/components/organisms/Tasks/hooks'
 import { Cell } from './Cell'
 import { Provider, useTasksListItemRowContext } from './Provider'
 import { TasksListSubtaskList } from './TasksListSubtaskList'
@@ -21,13 +21,13 @@ export const TasksListItem: React.FC<Props> = memo<Props>((props) => {
 
 const Component: React.FC<Props> = memo<Props>((props) => {
   const { selected } = useTasksListItemRowContext()
-  const { taskColumnIds } = useTasksTaskColumn()
+  const { tasksTaskColumnIds } = useTasksTaskColumnIds()
 
   return (
     <>
       <TasksListRow selected={selected} pr={6}>
-        {taskColumnIds.map((id) => (
-          <Cell taskId={props.taskId} taskColumnId={id} key={id} />
+        {tasksTaskColumnIds.map((id) => (
+          <Cell taskId={props.taskId} tasksTaskColumnId={id} key={id} />
         ))}
         <TasksListCell containerStyle={{ flex: 1 }} borderRight="none" />
       </TasksListRow>

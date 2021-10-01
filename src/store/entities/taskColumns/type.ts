@@ -1,16 +1,17 @@
 import { TaskColumnType } from './types'
 
-export type TaskColumn = {
+export type TaskColumnResponse = {
   id: string
-  fieldId: string
-  projectId: string
-  teammateId: string
   name: string
   type: TaskColumnType
-  width: string
-  disabled: boolean
-  customizable: boolean
-  order: number
+  createdAt: string
+  updatedAt: string
+}
+
+export type TaskColumn = {
+  id: string
+  name: string
+  type: TaskColumnType
   createdAt: string
   updatedAt: string
 }

@@ -7,6 +7,7 @@ import {
   TasksTags,
   TasksAssignee,
 } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
+import { useTasksTaskColumn } from 'src/components/organisms/Tasks/hooks'
 import { useTaskColumn } from 'src/store/entities/taskColumns'
 import {
   TASK_COLUMN_TYPE_FIELD_NAME,
@@ -20,16 +21,17 @@ import {
 
 type Props = FlexProps & {
   taskId: string
-  taskColumnId: string
+  tasksTaskColumnId: string
   isSubtask?: boolean
 }
 
 export const Cell: React.FC<Props> = memo<Props>((props) => {
-  const { taskColumn } = useTaskColumn(props.taskColumnId)
+  const { tasksTaskColumn } = useTasksTaskColumn(props.tasksTaskColumnId)
+  const { taskColumn } = useTaskColumn(tasksTaskColumn.taskColumnId)
 
   const width = useMemo(() => {
-    return taskColumn.width
-  }, [taskColumn.width])
+    return tasksTaskColumn.width
+  }, [tasksTaskColumn.width])
 
   switch (taskColumn.type) {
     case TASK_COLUMN_TYPE_FIELD_NAME: {

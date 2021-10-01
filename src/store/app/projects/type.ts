@@ -1,9 +1,9 @@
+import { ProjectsTaskColumnResponse } from 'src/store/entities/projectsTaskColumns'
 import { ProjectsTaskSectionResponse } from 'src/store/entities/projectsTaskSections'
-import { TaskColumn } from 'src/store/entities/taskColumns'
 import { TaskListStatus } from './taskListStatus'
 
 export type ProjectsResponse = {
   taskSections: ProjectsTaskSectionResponse[]
-  taskColumns: TaskColumn[]
+  taskColumns: ProjectsTaskColumnResponse[]
   taskStatus: TaskListStatus
 }

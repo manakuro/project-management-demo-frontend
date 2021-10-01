@@ -2,24 +2,31 @@ import React, { memo, useCallback, useMemo } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import { Box } from 'src/components/atoms'
 import { CustomField } from 'src/components/molecules'
+import { useTasksTaskColumn } from 'src/components/organisms/Tasks/hooks'
 import { useDraggableInPortal } from 'src/hooks/useDraggableInPortal'
 import { useTaskColumn } from 'src/store/entities/taskColumns'
 
 type Props = {
-  taskColumnId: string
+  tasksTaskColumnId: string
   index: number
 }
 
 export const ListItem: React.VFC<Props> = memo<Props>((props) => {
-  const { taskColumn, setTaskColumn } = useTaskColumn(props.taskColumnId)
+  const { tasksTaskColumn, setTasksTaskColumn } = useTasksTaskColumn(
+    props.tasksTaskColumnId,
+  )
   const renderDraggable = useDraggableInPortal()
+  const { taskColumn } = useTaskColumn(tasksTaskColumn.taskColumnId)
 
-  const isChecked = useMemo(() => !taskColumn.disabled, [taskColumn.disabled])
+  const isChecked = useMemo(
+    () => !tasksTaskColumn.disabled,
+    [tasksTaskColumn.disabled],
+  )
   const handleChange = useCallback(async () => {
-    await setTaskColumn({ disabled: !taskColumn.disabled })
-  }, [setTaskColumn, taskColumn.disabled])
+    await setTasksTaskColumn({ disabled: !tasksTaskColumn.disabled })
+  }, [setTasksTaskColumn, tasksTaskColumn.disabled])
 
-  if (!taskColumn.customizable) return null
+  if (!tasksTaskColumn.customizable) return null
 
   return (
     <Draggable

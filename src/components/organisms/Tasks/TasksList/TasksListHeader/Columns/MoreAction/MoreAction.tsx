@@ -1,43 +1,47 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Box, Icon, IconButton, PortalManager } from 'src/components/atoms'
 import { Menu, MenuButton } from 'src/components/organisms/Menu'
-import { useTasksTaskColumn } from 'src/components/organisms/Tasks/hooks'
-import { useTaskColumn } from 'src/store/entities/taskColumns'
+import {
+  useTasksTaskColumn,
+  useTasksTaskColumnIds,
+} from 'src/components/organisms/Tasks/hooks'
 import { MenuList } from './MenuList'
 
 type Props = {
   onClosed?: () => void
   onOpened?: () => void
   onSort?: () => void
-  taskColumnId: string
+  tasksTaskColumnId: string
 }
 
 export const MoreAction: React.FC<Props> = memo<Props>((props) => {
-  const { setOrderTaskColumn, taskColumnIds, canMoveLeft, canMoveRight } =
-    useTasksTaskColumn()
-  const { taskColumn, setTaskColumn } = useTaskColumn(props.taskColumnId)
+  const { tasksTaskColumnId } = props
+  const { tasksTaskColumnIds } = useTasksTaskColumnIds()
+  const { setOrderTaskColumn, canMoveLeft, canMoveRight, setTasksTaskColumn } =
+    useTasksTaskColumn(tasksTaskColumnId)
+
   const handleHideColumn = useCallback(async () => {
-    await setTaskColumn({ disabled: true })
-  }, [setTaskColumn])
+    await setTasksTaskColumn({ disabled: true })
+  }, [setTasksTaskColumn])
 
   const handleMoveRight = useCallback(async () => {
-    const currentIndex = taskColumnIds.indexOf(taskColumn.id)
+    const currentIndex = tasksTaskColumnIds.indexOf(tasksTaskColumnId)
     await setOrderTaskColumn(currentIndex, currentIndex + 1)
-  }, [setOrderTaskColumn, taskColumn.id, taskColumnIds])
+  }, [setOrderTaskColumn, tasksTaskColumnId, tasksTaskColumnIds])
 
   const handleMoveLeft = useCallback(async () => {
-    const currentIndex = taskColumnIds.indexOf(taskColumn.id)
+    const currentIndex = tasksTaskColumnIds.indexOf(tasksTaskColumnId)
     await setOrderTaskColumn(currentIndex, currentIndex - 1)
-  }, [setOrderTaskColumn, taskColumn.id, taskColumnIds])
+  }, [setOrderTaskColumn, tasksTaskColumnId, tasksTaskColumnIds])
 
-  const disabledMoveLeft = useMemo<boolean>(
-    () => !canMoveLeft(props.taskColumnId),
-    [canMoveLeft, props.taskColumnId],
+  const disabledMoveLeft = useMemo(
+    () => !canMoveLeft(tasksTaskColumnId),
+    [canMoveLeft, tasksTaskColumnId],
   )
 
-  const disabledMoveRight = useMemo<boolean>(
-    () => !canMoveRight(props.taskColumnId),
-    [canMoveRight, props.taskColumnId],
+  const disabledMoveRight = useMemo(
+    () => !canMoveRight(tasksTaskColumnId),
+    [canMoveRight, tasksTaskColumnId],
   )
 
   return (

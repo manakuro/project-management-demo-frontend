@@ -1,5 +1,5 @@
 import { useRecoilCallback } from 'recoil'
-import { taskColumnSelector } from 'src/store/entities/taskColumns'
+import { useTeammatesTaskColumnsResponse } from 'src/store/entities/teammatesTaskColumns'
 import { useTeammatesTaskSectionsResponse } from 'src/store/entities/teammatesTaskSections'
 import { myTaskTaskStatusState } from '../taskListStatus'
 import { MyTaskResponse } from '../type'
@@ -22,14 +22,13 @@ export const useMyTasksResponse = () => {
 }
 
 const useSetters = () => {
+  const { setTeammatesTaskColumns } = useTeammatesTaskColumnsResponse()
+
   const setTaskColumns = useRecoilCallback(
-    ({ set }) =>
-      (data: MyTaskResponse) => {
-        data.taskColumns.forEach((t) => {
-          set(taskColumnSelector(t.id), t)
-        })
-      },
-    [],
+    () => (data: MyTaskResponse) => {
+      setTeammatesTaskColumns(data.taskColumns)
+    },
+    [setTeammatesTaskColumns],
   )
 
   const setTaskStatus = useRecoilCallback(

@@ -2,13 +2,14 @@ import React, { memo, useCallback, useMemo, useState } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { useTasksListHeaderContext } from 'src/components/organisms/Tasks/TasksList/TasksListHeader/Provider'
+import { useTasksTaskColumn } from 'src/components/organisms/Tasks/hooks'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { useTaskColumn } from 'src/store/entities/taskColumns'
 import { MoreAction } from './MoreAction'
 
 type Props = {
-  taskColumnId: string
+  tasksTaskColumnId: string
   isFirst?: boolean
   clickable?: boolean
   containerStyle?: FlexProps
@@ -18,7 +19,7 @@ type Props = {
 
 export const Container: React.FC<Props> = memo<Props>((props) => {
   const {
-    taskColumnId,
+    tasksTaskColumnId,
     isFirst,
     clickable,
     containerStyle,
@@ -26,7 +27,9 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
     menu,
     ...rest
   } = props
-  const { taskColumn, setTaskColumn } = useTaskColumn(taskColumnId)
+  const { tasksTaskColumn, setTasksTaskColumn } =
+    useTasksTaskColumn(tasksTaskColumnId)
+  const { taskColumn } = useTaskColumn(tasksTaskColumn.taskColumnId)
   const { clickableHoverStyle } = useClickableHoverStyle()
   const { sortedStyle } = useTasksListHeaderContext()
   const minW = useMemo(() => (isFirst ? 400 : 120), [isFirst])
@@ -41,9 +44,9 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
 
   const handleChangeSize = useCallback(
     async (size: string) => {
-      await setTaskColumn({ width: size })
+      await setTasksTaskColumn({ width: size })
     },
-    [setTaskColumn],
+    [setTasksTaskColumn],
   )
 
   const {
@@ -60,7 +63,7 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
       resizedMaxW={maxW}
       onChangeSize={handleChangeSize}
       containerStyle={{
-        w: taskColumn.width,
+        w: tasksTaskColumn.width,
         minW: `${minW}px`,
         maxW: `${maxW}px`,
         ...containerStyle,
@@ -78,7 +81,7 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
             onOpened={onMoreActionOpened}
             onClosed={onMoreActionClosed}
             onSort={onSort}
-            taskColumnId={props.taskColumnId}
+            tasksTaskColumnId={tasksTaskColumnId}
           />
         </Flex>
       )}

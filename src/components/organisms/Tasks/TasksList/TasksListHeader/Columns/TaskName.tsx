@@ -3,17 +3,17 @@ import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Pr
 import { Container } from './Container'
 
 type Props = {
-  taskColumnId: string
+  tasksTaskColumnId: string
 }
 
 export const TaskName: React.FC<Props> = memo<Props>((props) => {
-  const { taskColumnId } = props
+  const { tasksTaskColumnId } = props
   const { stickyStyle } = useTasksListContext()
 
   return (
     <Container
       ml={6}
-      taskColumnId={taskColumnId}
+      tasksTaskColumnId={tasksTaskColumnId}
       isFirst
       containerStyle={{ ...stickyStyle }}
     />

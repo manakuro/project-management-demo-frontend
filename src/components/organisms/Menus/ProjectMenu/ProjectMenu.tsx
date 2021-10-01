@@ -2,8 +2,8 @@ import React, { memo } from 'react'
 import {
   SearchMenuContent,
   SearchMenuTrigger,
+  SearchMenu,
 } from 'src/components/organisms/Menus/SearchMenu'
-import { SearchMenu } from 'src/components/organisms/Menus/SearchMenu/SearchMenu'
 import { PopoverProps } from 'src/components/organisms/Popover'
 import { Content } from './Content'
 

@@ -1,3 +1,4 @@
+export * from './SearchMenu'
 export * from './SearchMenuListItem'
 export * from './SearchMenuLoading'
 export * from './SearchMenuTrigger'

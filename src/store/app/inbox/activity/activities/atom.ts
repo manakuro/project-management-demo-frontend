@@ -1,24 +1,20 @@
-import {
-  atom,
-  atomFamily,
-  DefaultValue,
-  selectorFamily,
-  selector,
-} from 'recoil'
+import { selector } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
-import { uniqBy } from 'src/shared/utils'
+import { createState } from 'src/store/util'
 import { Activity } from './type'
 
 const key = (str: string) => `src/store/app/inbox/activity/activities/${str}`
 
-export const activityIdsState = atom<string[]>({
-  key: key('activityIdsState'),
-  default: [],
+export const initialState = (): Activity => ({
+  id: '',
+  type: 1,
+  updatedAt: '',
 })
-export const activitiesState = atom<Activity[]>({
-  key: key('activitiesState'),
-  default: [],
-})
+export const {
+  state: activityState,
+  listState: activitiesState,
+  idsState: activityIdsState,
+} = createState({ key, initialState })
 
 type ActivityIdsSortByUpdatedAt = {
   today: string[]
@@ -67,44 +63,3 @@ export const activityIdsSortByUpdatedAtState =
         )
     },
   })
-
-const state = atomFamily<Activity, string>({
-  key: key('state'),
-  default: {
-    id: '',
-    type: 1,
-    updatedAt: '',
-  },
-})
-export const activityState = selectorFamily<Activity, string>({
-  key: key('activityState'),
-  get:
-    (activityId) =>
-    ({ get }) =>
-      get(state(activityId)),
-  set:
-    (activityId) =>
-    ({ get, set, reset }, newVal) => {
-      if (newVal instanceof DefaultValue) {
-        reset(state(activityId))
-        return
-      }
-
-      set(state(activityId), newVal)
-      set(activitiesState, (prev) =>
-        uniqBy([...prev, newVal], 'id').map((p) => {
-          if (p.id === newVal.id) {
-            return {
-              ...p,
-              ...newVal,
-            }
-          }
-          return p
-        }),
-      )
-
-      if (get(activityIdsState).find((activityId) => activityId === newVal.id))
-        return
-      set(activityIdsState, (prev) => [...prev, newVal.id])
-    },
-})

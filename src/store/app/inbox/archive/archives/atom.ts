@@ -1,24 +1,20 @@
-import {
-  atom,
-  atomFamily,
-  DefaultValue,
-  selectorFamily,
-  selector,
-} from 'recoil'
+import { selector } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
-import { uniqBy } from 'src/shared/utils'
+import { createState } from 'src/store/util'
 import { Archive } from './type'
 
 const key = (str: string) => `src/store/app/inbox/archive/archives/${str}`
 
-export const archiveIdsState = atom<string[]>({
-  key: key('archiveIdsState'),
-  default: [],
+export const initialState = (): Archive => ({
+  id: '',
+  type: 1,
+  updatedAt: '',
 })
-export const archivesState = atom<Archive[]>({
-  key: key('archivesState'),
-  default: [],
-})
+export const {
+  state: archiveState,
+  listState: archivesState,
+  idsState: archiveIdsState,
+} = createState({ key, initialState })
 
 type ArchiveIdsSortByUpdatedAt = {
   today: string[]
@@ -69,45 +65,3 @@ export const archiveIdsSortByUpdatedAtState =
         )
     },
   })
-
-const state = atomFamily<Archive, string>({
-  key: key('state'),
-  default: {
-    id: '',
-    type: 1,
-    updatedAt: '',
-  },
-})
-
-export const archiveState = selectorFamily<Archive, string>({
-  key: key('archiveState'),
-  get:
-    (archiveId) =>
-    ({ get }) =>
-      get(state(archiveId)),
-  set:
-    (archiveId) =>
-    ({ get, set, reset }, newVal) => {
-      if (newVal instanceof DefaultValue) {
-        reset(state(archiveId))
-        return
-      }
-
-      set(state(archiveId), newVal)
-      set(archivesState, (prev) =>
-        uniqBy([...prev, newVal], 'id').map((p) => {
-          if (p.id === newVal.id) {
-            return {
-              ...p,
-              ...newVal,
-            }
-          }
-          return p
-        }),
-      )
-
-      if (get(archiveIdsState).find((archiveId) => archiveId === newVal.id))
-        return
-      set(archiveIdsState, (prev) => [...prev, newVal.id])
-    },
-})

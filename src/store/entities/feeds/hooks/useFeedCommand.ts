@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { uuid } from 'src/shared/uuid'
-import { defaultFeedStateValue, feedState } from '../atom'
+import { initialState, feedState } from '../atom'
 import { Feed } from '../type'
 
 export const useFeedCommand = () => {
@@ -17,7 +17,7 @@ export const useFeedCommand = () => {
     (val: Partial<Feed>) => {
       const id = uuid()
       upsert({
-        ...defaultFeedStateValue(),
+        ...initialState(),
         ...val,
         id,
       })

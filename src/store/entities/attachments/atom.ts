@@ -38,7 +38,7 @@ export const attachmentsState = atom<Attachment[]>({
   default: [],
 })
 
-export const defaultStateValue = (): Attachment => ({
+export const initialState = (): Attachment => ({
   id: '',
   projectId: '',
   taskId: '',
@@ -51,7 +51,7 @@ export const defaultStateValue = (): Attachment => ({
 })
 const state = atomFamily<Attachment, string>({
   key: key('state'),
-  default: defaultStateValue(),
+  default: initialState(),
 })
 
 export const attachmentState = selectorFamily<Attachment, string>({

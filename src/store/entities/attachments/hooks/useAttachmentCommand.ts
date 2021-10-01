@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { uuid } from 'src/shared/uuid'
-import { attachmentState, defaultStateValue } from '../atom'
+import { attachmentState, initialState } from '../atom'
 import { Attachment } from '../type'
 
 export const useAttachmentCommand = () => {
@@ -17,7 +17,7 @@ export const useAttachmentCommand = () => {
     (val: Partial<Attachment>) => {
       const id = uuid()
       upsert({
-        ...defaultStateValue(),
+        ...initialState(),
         ...val,
         id,
       })

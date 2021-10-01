@@ -17,6 +17,6 @@ export const {
   listState: feedLikesState,
   idsState: feedLikeIdsState,
 } = createState({
-  key: key('feedLikes'),
+  key,
   initialState,
 })

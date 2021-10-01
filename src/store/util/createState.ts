@@ -2,8 +2,9 @@ import { atom, atomFamily, DefaultValue, selectorFamily } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 
 type Props<T> = {
-  key: string
+  key: (str: string) => string
   initialState: () => T
+  set?: (params: { newVal: T }) => void
 }
 
 type State = {
@@ -11,22 +12,22 @@ type State = {
 }
 export const createState = <T extends State>(props: Props<T>) => {
   const atomState = atomFamily<T, string>({
-    key: `${props.key}/atomState`,
+    key: props.key('atomState'),
     default: props.initialState(),
   })
 
   const listState = atom<T[]>({
-    key: `${props.key}/listState`,
+    key: props.key('listState'),
     default: [],
   })
 
   const idsState = atom<string[]>({
-    key: `${props.key}/idsState`,
+    key: props.key('idsState'),
     default: [],
   })
 
   const state = selectorFamily<T, string>({
-    key: `${props.key}/state`,
+    key: props.key('state'),
     get:
       (id) =>
       ({ get }) =>
@@ -48,6 +49,7 @@ export const createState = <T extends State>(props: Props<T>) => {
 
         if (get(idsState).find((projectId) => projectId === newVal.id)) return
         set(idsState, (prev) => [...prev, newVal.id])
+        props.set?.({ newVal })
       },
   })
 

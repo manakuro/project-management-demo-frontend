@@ -21,7 +21,4 @@ export const {
   state: projectState,
   listState: projectsState,
   idsState: projectIdsState,
-} = createState({
-  key: key('projects'),
-  initialState,
-})
+} = createState({ key, initialState })

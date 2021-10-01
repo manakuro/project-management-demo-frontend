@@ -13,11 +13,11 @@ export const workspaceActivityTasksState = atom<WorkspaceActivityTask[]>({
   key: key('workspaceActivityTasksState'),
   default: [],
 })
-export const taskIdsByWorkspaceActivityIdSelector = selectorFamily<
+export const taskIdsByWorkspaceActivityIdState = selectorFamily<
   string[],
   string
 >({
-  key: key('workspaceActivityTasksTaskIdsSelector'),
+  key: key('taskIdsByWorkspaceActivityIdState'),
   get:
     (workspaceActivityId: string) =>
     ({ get }) => {
@@ -28,11 +28,8 @@ export const taskIdsByWorkspaceActivityIdSelector = selectorFamily<
     },
 })
 
-export const workspaceActivityTaskState = atomFamily<
-  WorkspaceActivityTask,
-  string
->({
-  key: key('workspaceActivityTaskState'),
+const state = atomFamily<WorkspaceActivityTask, string>({
+  key: key('state'),
   default: {
     id: '',
     workspaceActivityId: '',
@@ -42,24 +39,24 @@ export const workspaceActivityTaskState = atomFamily<
   },
 })
 
-export const workspaceActivityTaskSelector = selectorFamily<
+export const workspaceActivityTaskState = selectorFamily<
   WorkspaceActivityTask,
   string
 >({
-  key: key('workspaceActivityTaskSelector'),
+  key: key('workspaceActivityTaskState'),
   get:
     (workspaceActivityTaskId) =>
     ({ get }) =>
-      get(workspaceActivityTaskState(workspaceActivityTaskId)),
+      get(state(workspaceActivityTaskId)),
   set:
     (workspaceActivityTaskId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(workspaceActivityTaskState(workspaceActivityTaskId))
+        reset(state(workspaceActivityTaskId))
         return
       }
 
-      set(workspaceActivityTaskState(workspaceActivityTaskId), newVal)
+      set(state(workspaceActivityTaskId), newVal)
       set(workspaceActivityTasksState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

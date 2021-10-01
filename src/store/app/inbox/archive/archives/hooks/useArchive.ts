@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil'
-import { archiveSelector } from '../atom'
+import { archiveState } from '../atom'
 
 export const useArchive = (archiveId: string) => {
-  const archive = useRecoilValue(archiveSelector(archiveId))
+  const archive = useRecoilValue(archiveState(archiveId))
 
   return {
     archive,

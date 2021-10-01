@@ -1,9 +1,9 @@
 import { useRecoilValue } from 'recoil'
-import { ownerProjectTeammateByProjectIdSelector } from '../atom'
+import { ownerProjectTeammateByProjectIdState } from '../atom'
 
 export const useOwnerTeammateIdsByProjectId = (projectId: string) => {
   const projectTeammate = useRecoilValue(
-    ownerProjectTeammateByProjectIdSelector(projectId),
+    ownerProjectTeammateByProjectIdState(projectId),
   )
 
   return {

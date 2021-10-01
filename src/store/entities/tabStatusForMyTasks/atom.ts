@@ -9,8 +9,8 @@ import {
 
 const key = (str: string) => `src/store/entities/tabStatusForMyTasks/${str}`
 
-export const tabStatusForMyTasks = atom<TabStatusForMyTasks>({
-  key: key('tabStatusForMyTasks'),
+export const tabStatusForMyTasksState = atom<TabStatusForMyTasks>({
+  key: key('tabStatusForMyTasksState'),
   default: {
     id: '',
     teammateId: '',
@@ -18,12 +18,15 @@ export const tabStatusForMyTasks = atom<TabStatusForMyTasks>({
   },
 })
 
-export const isTabStatusForMyTasks = selectorFamily<boolean, TaskTabStatuses>({
-  key: key('isTabStatusForMyTasks'),
+export const isTabStatusForMyTasksState = selectorFamily<
+  boolean,
+  TaskTabStatuses
+>({
+  key: key('isTabStatusForMyTasksState'),
   get:
     (status) =>
     ({ get }) => {
-      const taskStatus = get(tabStatusForMyTasks)
+      const taskStatus = get(tabStatusForMyTasksState)
       return tasksTabStatues[status] === taskStatus.tabStatus
     },
 })

@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
-import { feedIdsWithoutFirstSelector } from 'src/store/entities/feeds'
+import { feedIdsWithoutFirstState } from 'src/store/entities/feeds'
 
 export const useFeedIdsWithoutFirstByTaskId = (taskId: string) => {
-  const ids = useRecoilValue(feedIdsWithoutFirstSelector(taskId))
+  const ids = useRecoilValue(feedIdsWithoutFirstState(taskId))
 
   const feedIds = useMemo(() => {
     return ids

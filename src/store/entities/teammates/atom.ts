@@ -13,7 +13,7 @@ export const teammatesState = atom<Teammate[]>({
   default: [],
 })
 
-export const defaultTeammateStateValue = (): Teammate => ({
+export const initialTeammateStateValue = (): Teammate => ({
   id: '',
   image: '',
   email: '',
@@ -21,12 +21,8 @@ export const defaultTeammateStateValue = (): Teammate => ({
   createdAt: '',
   updatedAt: '',
 })
-const teammateState = atomFamily<Teammate, string>({
-  key: key('teammateState'),
-  default: defaultTeammateStateValue(),
-})
-export const namesByTeammateIdSelector = selectorFamily<string[], string[]>({
-  key: key('namesByTeammateIdSelector'),
+export const namesByTeammateIdState = selectorFamily<string[], string[]>({
+  key: key('namesByTeammateIdState'),
   get:
     (teammateIds) =>
     ({ get }) => {
@@ -37,21 +33,25 @@ export const namesByTeammateIdSelector = selectorFamily<string[], string[]>({
     },
 })
 
-export const teammateSelector = selectorFamily<Teammate, string>({
-  key: key('teammateSelector'),
+const state = atomFamily<Teammate, string>({
+  key: key('state'),
+  default: initialTeammateStateValue(),
+})
+export const teammateState = selectorFamily<Teammate, string>({
+  key: key('teammateState'),
   get:
     (teammateId) =>
     ({ get }) =>
-      get(teammateState(teammateId)),
+      get(state(teammateId)),
   set:
     (teammateId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(teammateState(teammateId))
+        reset(state(teammateId))
         return
       }
 
-      set(teammateState(teammateId), newVal)
+      set(state(teammateId), newVal)
       set(teammatesState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

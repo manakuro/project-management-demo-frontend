@@ -6,39 +6,39 @@ import { TeammatesTaskColumn } from './type'
 
 const key = (str: string) => `src/store/entities/teammatesTaskColumns/${str}`
 
-export const teammatesTaskColumnIds = atom<string[]>({
+export const teammatesTaskColumnIdsState = atom<string[]>({
   key: key('teammatesTaskColumnIds'),
   default: [],
 })
 
-export const teammatesTaskColumns = atom<TeammatesTaskColumn[]>({
+export const teammatesTaskColumnsState = atom<TeammatesTaskColumn[]>({
   key: key('teammatesTaskColumns'),
   default: [],
 })
 
-export const teammatesTaskColumnsByTeammateId = selectorFamily<
+export const teammatesTaskColumnsByTeammateIdState = selectorFamily<
   TeammatesTaskColumn[],
   string
 >({
-  key: key('teammatesTaskColumnsByTeammateId'),
+  key: key('teammatesTaskColumnsByTeammateIdState'),
   get:
     (teammateId: string) =>
     ({ get }) => {
-      const taskColumns = get(teammatesTaskColumns)
+      const taskColumns = get(teammatesTaskColumnsState)
       return taskColumns.filter((t) => t.teammateId === teammateId)
     },
 })
 
-export const teammatesTaskColumnByType = selectorFamily<
+export const teammatesTaskColumnByTypeState = selectorFamily<
   TeammatesTaskColumn,
   { teammateId: string; type: TaskColumnType }
 >({
-  key: key('teammatesTaskColumnByType'),
+  key: key('teammatesTaskColumnByTypeState'),
   get:
     ({ teammateId, type }) =>
     ({ get }) => {
       const taskColumn = get(taskColumnByTypeState(type))
-      const taskColumns = get(teammatesTaskColumns)
+      const taskColumns = get(teammatesTaskColumnsState)
       return (
         taskColumns.find(
           (t) =>
@@ -83,15 +83,17 @@ export const teammatesTaskColumnState = selectorFamily<
       }
 
       set(state(teammatesTaskColumnId), newVal)
-      set(teammatesTaskColumns, (prev) =>
+      set(teammatesTaskColumnsState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) =>
           p.id === newVal.id ? { ...p, ...newVal } : p,
         ),
       )
 
-      if (get(teammatesTaskColumnIds).find((taskId) => taskId === newVal.id))
+      if (
+        get(teammatesTaskColumnIdsState).find((taskId) => taskId === newVal.id)
+      )
         return
 
-      set(teammatesTaskColumnIds, (prev) => [...prev, newVal.id])
+      set(teammatesTaskColumnIdsState, (prev) => [...prev, newVal.id])
     },
 })

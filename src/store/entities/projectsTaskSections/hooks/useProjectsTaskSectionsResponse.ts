@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { useTaskSectionsResponse } from 'src/store/entities/taskSections'
-import { projectsTaskSectionSelector } from '../atom'
+import { projectsTaskSectionState } from '../atom'
 import { ProjectsTaskSectionResponse } from '../type'
 
 export const useProjectsTaskSectionsResponse = () => {
@@ -10,7 +10,7 @@ export const useProjectsTaskSectionsResponse = () => {
     ({ set }) =>
       (data: ProjectsTaskSectionResponse[]) => {
         data.forEach((d) => {
-          set(projectsTaskSectionSelector(d.id), d)
+          set(projectsTaskSectionState(d.id), d)
           setTaskSections([d.taskSection])
         })
       },

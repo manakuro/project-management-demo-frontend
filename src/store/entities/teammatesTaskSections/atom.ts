@@ -1,9 +1,6 @@
 import { atomFamily, selectorFamily, DefaultValue, atom } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
-import {
-  taskSectionSelector,
-  TaskSection,
-} from 'src/store/entities/taskSections'
+import { taskSectionState, TaskSection } from 'src/store/entities/taskSections'
 import { TeammatesTaskSection } from './type'
 
 const key = (str: string) => `src/store/entities/teammatesTaskSections/${str}`
@@ -15,7 +12,7 @@ export const teammatesTaskSectionsState = atom<TeammatesTaskSection[]>({
   default: [],
 })
 
-export const defaultTeammatesTaskSectionState = (): TeammatesTaskSection => ({
+export const initialTeammatesTaskSectionState = (): TeammatesTaskSection => ({
   id: '',
   taskSectionId: '',
   teammateId: '',
@@ -23,59 +20,57 @@ export const defaultTeammatesTaskSectionState = (): TeammatesTaskSection => ({
   updatedAt: '',
 })
 
-const teammatesTaskSectionState = atomFamily<TeammatesTaskSection, string>({
-  key: key('teammatesTaskSectionState'),
-  default: defaultTeammatesTaskSectionState(),
-})
+export const taskSectionIdsByTeammateIdState = selectorFamily<string[], string>(
+  {
+    key: key('taskSectionIdsByTeammateIdState'),
+    get:
+      (teammateId) =>
+      ({ get }) => {
+        const teammatesTaskSections = get(teammatesTaskSectionsState)
+        return teammatesTaskSections
+          .filter((t) => t.teammateId === teammateId)
+          .map((p) => p.taskSectionId)
+      },
+  },
+)
 
-export const taskSectionIdsByTeammateIdSelector = selectorFamily<
-  string[],
-  string
->({
-  key: key('taskSectionIdsByTeammateIdSelector'),
-  get:
-    (teammateId) =>
-    ({ get }) => {
-      const teammatesTaskSections = get(teammatesTaskSectionsState)
-      return teammatesTaskSections
-        .filter((t) => t.teammateId === teammateId)
-        .map((p) => p.taskSectionId)
-    },
-})
-
-export const taskSectionsByTeammateIdSelector = selectorFamily<
+export const taskSectionsByTeammateIdState = selectorFamily<
   TaskSection[],
   string
 >({
-  key: key('taskSectionsByTeammateIdSelector'),
+  key: key('taskSectionsByTeammateIdState'),
   get:
     (teammateId) =>
     ({ get }) => {
       const teammatesTaskSections = get(teammatesTaskSectionsState)
       return teammatesTaskSections
         .filter((t) => t.teammateId === teammateId)
-        .map((p) => get(taskSectionSelector(p.taskSectionId)))
+        .map((p) => get(taskSectionState(p.taskSectionId)))
     },
 })
 
-export const teammatesTaskSectionSelector = selectorFamily<
+const state = atomFamily<TeammatesTaskSection, string>({
+  key: key('state'),
+  default: initialTeammatesTaskSectionState(),
+})
+export const teammatesTaskSectionState = selectorFamily<
   TeammatesTaskSection,
   string
 >({
-  key: key('teammatesTaskSectionSelector'),
+  key: key('teammatesTaskSectionState'),
   get:
     (teammatesTaskSectionId) =>
     ({ get }) =>
-      get(teammatesTaskSectionState(teammatesTaskSectionId)),
+      get(state(teammatesTaskSectionId)),
   set:
     (teammatesTaskSectionId) =>
     ({ set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(teammatesTaskSectionState(teammatesTaskSectionId))
+        reset(state(teammatesTaskSectionId))
         return
       }
 
-      set(teammatesTaskSectionState(teammatesTaskSectionId), newVal)
+      set(state(teammatesTaskSectionId), newVal)
       set(teammatesTaskSectionsState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

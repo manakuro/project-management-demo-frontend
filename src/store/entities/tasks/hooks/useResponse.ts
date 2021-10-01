@@ -1,13 +1,13 @@
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
-import { attachmentSelector } from 'src/store/entities/attachments'
-import { feedSelector } from 'src/store/entities/feeds'
-import { projectTaskSelector } from 'src/store/entities/projectsTasks'
-import { tagSelector } from 'src/store/entities/tags'
-import { taskTeammateSelector } from 'src/store/entities/tasksTeammates'
+import { attachmentState } from 'src/store/entities/attachments'
+import { feedState } from 'src/store/entities/feeds'
+import { projectTaskState } from 'src/store/entities/projectsTasks'
+import { tagState } from 'src/store/entities/tags'
+import { taskTeammateState } from 'src/store/entities/tasksTeammates'
 import { useTeammatesResponse } from 'src/store/entities/teammates'
-import { taskSelector } from '../atom'
+import { taskState } from '../atom'
 import { TaskResponse } from '../type'
 
 export const useTasksResponse = () => {
@@ -63,7 +63,7 @@ const useSetters = () => {
   const setTaskValue = useRecoilCallback(
     ({ set }) =>
       (data: TaskResponse) => {
-        set(taskSelector(data.id), data)
+        set(taskState(data.id), data)
       },
     [],
   )
@@ -98,7 +98,7 @@ const useSetters = () => {
             (acc, p) => uniqBy([...acc, ...p.attachments], 'id'),
             [],
           )
-          .forEach((t) => set(attachmentSelector(t.id), t))
+          .forEach((t) => set(attachmentState(t.id), t))
       },
     [],
   )
@@ -110,7 +110,7 @@ const useSetters = () => {
             (acc, p) => uniqBy([...acc, ...p.feeds], 'id'),
             [],
           )
-          .forEach((f) => set(feedSelector(f.id), f))
+          .forEach((f) => set(feedState(f.id), f))
       },
     [],
   )
@@ -121,7 +121,7 @@ const useSetters = () => {
           (acc, d) => [...acc, ...d.teammates],
           [],
         )
-        taskTeammates.forEach((t) => set(taskTeammateSelector(t.id), t))
+        taskTeammates.forEach((t) => set(taskTeammateState(t.id), t))
 
         setTeammatesFromResponse(taskTeammates)
       },
@@ -135,7 +135,7 @@ const useSetters = () => {
             (acc, p) => uniqBy([...acc, ...p.tags], 'id'),
             [],
           )
-          .forEach((f) => set(tagSelector(f.id), f))
+          .forEach((f) => set(tagState(f.id), f))
       },
     [],
   )
@@ -148,7 +148,7 @@ const useSetters = () => {
             (acc, p) => uniqBy([...acc, ...p.projects], 'id'),
             [],
           )
-          .forEach((p) => set(projectTaskSelector(p.id), p))
+          .forEach((p) => set(projectTaskState(p.id), p))
       },
     [],
   )

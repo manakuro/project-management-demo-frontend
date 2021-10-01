@@ -20,15 +20,6 @@ export const archivesState = atom<Archive[]>({
   default: [],
 })
 
-export const archiveState = atomFamily<Archive, string>({
-  key: key('archiveState'),
-  default: {
-    id: '',
-    type: 1,
-    updatedAt: '',
-  },
-})
-
 type ArchiveIdsSortByUpdatedAt = {
   today: string[]
   yesterday: string[]
@@ -36,9 +27,10 @@ type ArchiveIdsSortByUpdatedAt = {
   earlier: string[]
 }
 export type ArchiveIdsSortByUpdatedAtKeys = keyof ArchiveIdsSortByUpdatedAt
-export const archiveIdsSortByUpdatedAtSelector =
+
+export const archiveIdsSortByUpdatedAtState =
   selector<ArchiveIdsSortByUpdatedAt>({
-    key: key('archiveIdsSortByUpdatedAtSelector'),
+    key: key('archiveIdsSortByUpdatedAtState'),
     get: ({ get }) => {
       const archives = [...get(archivesState)]
       return archives
@@ -78,21 +70,30 @@ export const archiveIdsSortByUpdatedAtSelector =
     },
   })
 
-export const archiveSelector = selectorFamily<Archive, string>({
-  key: key('archiveSelector'),
+const state = atomFamily<Archive, string>({
+  key: key('state'),
+  default: {
+    id: '',
+    type: 1,
+    updatedAt: '',
+  },
+})
+
+export const archiveState = selectorFamily<Archive, string>({
+  key: key('archiveState'),
   get:
     (archiveId) =>
     ({ get }) =>
-      get(archiveState(archiveId)),
+      get(state(archiveId)),
   set:
     (archiveId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(archiveState(archiveId))
+        reset(state(archiveId))
         return
       }
 
-      set(archiveState(archiveId), newVal)
+      set(state(archiveId), newVal)
       set(archivesState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

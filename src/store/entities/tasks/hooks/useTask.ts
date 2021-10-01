@@ -1,21 +1,21 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { taskSelector } from '../atom'
+import { taskState } from '../atom'
 import { Task } from '../type'
 
 export const useTask = (taskId?: string) => {
-  const task = useRecoilValue(taskSelector(taskId || ''))
+  const task = useRecoilValue(taskState(taskId || ''))
 
   const upsert = useRecoilCallback(
     ({ set }) =>
       (task: Task) => {
-        set(taskSelector(task.id), task)
+        set(taskState(task.id), task)
       },
     [],
   )
   const setTask = useRecoilCallback(
     ({ snapshot }) =>
       async (val: Partial<Task>) => {
-        const prev = await snapshot.getPromise(taskSelector(task.id))
+        const prev = await snapshot.getPromise(taskState(task.id))
         upsert({
           ...prev,
           ...val,
@@ -39,7 +39,7 @@ export const useTask = (taskId?: string) => {
   const setTaskName = useRecoilCallback(
     ({ snapshot }) =>
       async (val: string) => {
-        const current = await snapshot.getPromise(taskSelector(task.id))
+        const current = await snapshot.getPromise(taskState(task.id))
         // Skip when touching input for the first time
         if (current.isNew && !current.name && !val) return
 

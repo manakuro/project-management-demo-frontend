@@ -25,33 +25,33 @@ export const taskColumnByTypeState = selectorFamily<TaskColumn, TaskColumnType>(
   },
 )
 
-const defaultStateValue = (): TaskColumn => ({
+const initialStateValue = (): TaskColumn => ({
   id: '',
   name: '',
   type: 1,
   createdAt: '',
   updatedAt: '',
 })
-const taskColumnState = atomFamily<TaskColumn, string>({
-  key: key('taskColumnState'),
-  default: defaultStateValue(),
+const state = atomFamily<TaskColumn, string>({
+  key: key('state'),
+  default: initialStateValue(),
 })
 
-export const taskColumnSelector = selectorFamily<TaskColumn, string>({
-  key: key('taskColumnSelector'),
+export const taskColumnState = selectorFamily<TaskColumn, string>({
+  key: key('taskColumnState'),
   get:
     (taskColumnId) =>
     ({ get }) =>
-      get(taskColumnState(taskColumnId)),
+      get(state(taskColumnId)),
   set:
     (taskColumnId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(taskColumnState(taskColumnId))
+        reset(state(taskColumnId))
         return
       }
 
-      set(taskColumnState(taskColumnId), newVal)
+      set(state(taskColumnId), newVal)
       set(taskColumnsState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

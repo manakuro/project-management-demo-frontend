@@ -14,19 +14,16 @@ export const taskLikesState = atom<TaskLike[]>({
   default: [],
 })
 
-export const defaultTaskLikeStateValue = (): TaskLike => ({
+export const initialTaskLikeStateValue = (): TaskLike => ({
   id: '',
   taskId: '',
   teammateId: '',
   createdAt: '',
   updatedAt: '',
 })
-const taskLikeState = atomFamily<TaskLike, string>({
-  key: key('taskLikeState'),
-  default: defaultTaskLikeStateValue(),
-})
-export const taskLikesByTaskIdSelector = selectorFamily<TaskLike[], string>({
-  key: key('taskLikesByTaskIdSelector'),
+
+export const taskLikesByTaskIdState = selectorFamily<TaskLike[], string>({
+  key: key('taskLikesByTaskIdState'),
   get:
     (taskId: string) =>
     ({ get }) => {
@@ -35,21 +32,25 @@ export const taskLikesByTaskIdSelector = selectorFamily<TaskLike[], string>({
     },
 })
 
-export const taskLikeSelector = selectorFamily<TaskLike, string>({
-  key: key('taskLikeSelector'),
+const state = atomFamily<TaskLike, string>({
+  key: key('state'),
+  default: initialTaskLikeStateValue(),
+})
+export const taskLikeState = selectorFamily<TaskLike, string>({
+  key: key('taskLikeState'),
   get:
     (taskLikeId) =>
     ({ get }) =>
-      get(taskLikeState(taskLikeId)),
+      get(state(taskLikeId)),
   set:
     (taskLikeId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(taskLikeState(taskLikeId))
+        reset(state(taskLikeId))
         return
       }
 
-      set(taskLikeState(taskLikeId), newVal)
+      set(state(taskLikeId), newVal)
       set(taskLikesState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

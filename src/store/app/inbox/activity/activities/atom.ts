@@ -20,24 +20,15 @@ export const activitiesState = atom<Activity[]>({
   default: [],
 })
 
-export const activityState = atomFamily<Activity, string>({
-  key: key('activityState'),
-  default: {
-    id: '',
-    type: 1,
-    updatedAt: '',
-  },
-})
-
 type ActivityIdsSortByUpdatedAt = {
   today: string[]
   yesterday: string[]
   pastSevenDays: string[]
   earlier: string[]
 }
-export const activityIdsSortByUpdatedAtSelector =
+export const activityIdsSortByUpdatedAtState =
   selector<ActivityIdsSortByUpdatedAt>({
-    key: key('activityIdsSortByUpdatedAtSelector'),
+    key: key('activityIdsSortByUpdatedAtState'),
     get: ({ get }) => {
       const activities = [...get(activitiesState)]
       return activities
@@ -77,21 +68,29 @@ export const activityIdsSortByUpdatedAtSelector =
     },
   })
 
-export const activitySelector = selectorFamily<Activity, string>({
-  key: key('activitySelector'),
+const state = atomFamily<Activity, string>({
+  key: key('state'),
+  default: {
+    id: '',
+    type: 1,
+    updatedAt: '',
+  },
+})
+export const activityState = selectorFamily<Activity, string>({
+  key: key('activityState'),
   get:
     (activityId) =>
     ({ get }) =>
-      get(activityState(activityId)),
+      get(state(activityId)),
   set:
     (activityId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(activityState(activityId))
+        reset(state(activityId))
         return
       }
 
-      set(activityState(activityId), newVal)
+      set(state(activityId), newVal)
       set(activitiesState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

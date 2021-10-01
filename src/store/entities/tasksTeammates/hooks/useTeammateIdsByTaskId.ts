@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil'
-import { teammateIdsByTaskIdSelector } from '../atom'
+import { teammateIdsByTaskIdState } from '../atom'
 
 export const useTeammateIdsByTaskId = (taskId: string) => {
-  const teammateIds = useRecoilValue(teammateIdsByTaskIdSelector(taskId))
+  const teammateIds = useRecoilValue(teammateIdsByTaskIdState(taskId))
 
   return {
     teammateIds,

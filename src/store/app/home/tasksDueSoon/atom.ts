@@ -8,8 +8,8 @@ import { tasksState } from 'src/store/entities/tasks'
 
 const key = (str: string) => `src/store/app/home/tasks/${str}`
 
-export const taskIdsSelector = selectorFamily<string[], string>({
-  key: key('taskIdsSelector'),
+export const taskIdsState = selectorFamily<string[], string>({
+  key: key('taskIdsState'),
   get:
     (teammateId) =>
     ({ get }) => {

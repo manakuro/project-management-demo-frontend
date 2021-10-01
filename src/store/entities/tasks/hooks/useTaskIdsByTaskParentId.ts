@@ -1,16 +1,16 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { Task } from 'src/store/entities/tasks'
-import { taskIdsByTaskParentIdSelector, taskSelector } from '../atom'
+import { taskIdsByTaskParentIdState, taskState } from '../atom'
 import { useTasksCommand } from './useTasksCommand'
 
 export const useTaskIdsByTaskParentId = (taskParentId: string) => {
-  const taskIds = useRecoilValue(taskIdsByTaskParentIdSelector(taskParentId))
+  const taskIds = useRecoilValue(taskIdsByTaskParentIdState(taskParentId))
   const taskCommand = useTasksCommand()
 
   const addTask = useRecoilCallback(
     ({ snapshot }) =>
       async (val?: Partial<Task>) => {
-        const parentTask = await snapshot.getPromise(taskSelector(taskParentId))
+        const parentTask = await snapshot.getPromise(taskState(taskParentId))
 
         taskCommand.addTask({
           ...val,

@@ -13,8 +13,8 @@ export const feedsState = atom<Feed[]>({
   key: key('feedsState'),
   default: [],
 })
-export const feedIdsByTaskIdSelector = selectorFamily<string[], string>({
-  key: 'feedIdsByTaskIdSelector',
+export const feedIdsByTaskIdState = selectorFamily<string[], string>({
+  key: 'feedIdsByTaskIdState',
   get:
     (taskId) =>
     ({ get }) => {
@@ -22,8 +22,8 @@ export const feedIdsByTaskIdSelector = selectorFamily<string[], string>({
       return feeds.filter((p) => p.taskId === taskId).map((p) => p.id)
     },
 })
-export const feedIdsWithoutFirstSelector = selectorFamily<string[], string>({
-  key: key('feedIdsWithoutFirstSelector'),
+export const feedIdsWithoutFirstState = selectorFamily<string[], string>({
+  key: key('feedIdsWithoutFirstState'),
   get:
     (taskId) =>
     ({ get }) => {
@@ -50,39 +50,39 @@ export const defaultFeedStateValue = (): Feed => ({
   isFirst: false,
   isPinned: false,
 })
-const feedState = atomFamily<Feed, string>({
-  key: key('feedState'),
+const state = atomFamily<Feed, string>({
+  key: key('state'),
   default: defaultFeedStateValue(),
 })
 
-export const feedPinnedIdsSelector = selectorFamily<string[], string>({
-  key: key('feedPinnedIdsSelector'),
+export const feedPinnedIdsState = selectorFamily<string[], string>({
+  key: key('feedPinnedIdsState'),
   get:
     (taskId) =>
     ({ get }) => {
       const ids = get(feedIdsState)
       return ids.filter((id) => {
-        const feed = get(feedSelector(id))
+        const feed = get(feedState(id))
         return feed.isPinned && feed.taskId === taskId
       })
     },
 })
 
-export const feedSelector = selectorFamily<Feed, string>({
-  key: key('feedSelector'),
+export const feedState = selectorFamily<Feed, string>({
+  key: key('feedState'),
   get:
     (feedId) =>
     ({ get }) =>
-      get(feedState(feedId)),
+      get(state(feedId)),
   set:
     (feedId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(feedState(feedId))
+        reset(state(feedId))
         return
       }
 
-      set(feedState(feedId), newVal)
+      set(state(feedId), newVal)
       set(feedsState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

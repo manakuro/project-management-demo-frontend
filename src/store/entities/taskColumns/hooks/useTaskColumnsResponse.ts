@@ -1,5 +1,5 @@
 import { useRecoilCallback } from 'recoil'
-import { taskColumnSelector } from '../atom'
+import { taskColumnState } from '../atom'
 import { TaskColumnResponse } from '../type'
 
 export const useTaskColumnsResponse = () => {
@@ -7,7 +7,7 @@ export const useTaskColumnsResponse = () => {
     ({ set }) =>
       (data: TaskColumnResponse[]) => {
         data.forEach((d) => {
-          set(taskColumnSelector(d.id), d)
+          set(taskColumnState(d.id), d)
         })
       },
     [],

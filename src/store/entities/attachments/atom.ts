@@ -5,8 +5,8 @@ import { Attachment } from './type'
 
 const key = (str: string) => `src/store/entities/attachments/${str}`
 
-export const attachmentIdsByTaskIdSelector = selectorFamily<string[], string>({
-  key: key('attachmentIdsByTaskIdSelector'),
+export const attachmentIdsByTaskIdState = selectorFamily<string[], string>({
+  key: key('attachmentIdsByTaskIdState'),
   get:
     (taskId) =>
     ({ get }) => {
@@ -15,8 +15,8 @@ export const attachmentIdsByTaskIdSelector = selectorFamily<string[], string>({
     },
 })
 
-export const attachmentIdsByFeedIdSelector = selectorFamily<string[], string>({
-  key: key('attachmentIdsByFeedIdSelector'),
+export const attachmentIdsByFeedIdState = selectorFamily<string[], string>({
+  key: key('attachmentIdsByFeedIdState'),
   get:
     (feedId) =>
     ({ get }) => {
@@ -49,26 +49,26 @@ export const defaultStateValue = (): Attachment => ({
   type: 1,
   status: 2,
 })
-const attachmentState = atomFamily<Attachment, string>({
-  key: key('attachmentState'),
+const state = atomFamily<Attachment, string>({
+  key: key('state'),
   default: defaultStateValue(),
 })
 
-export const attachmentSelector = selectorFamily<Attachment, string>({
-  key: key('attachmentSelector'),
+export const attachmentState = selectorFamily<Attachment, string>({
+  key: key('attachmentState'),
   get:
     (attachmentId) =>
     ({ get }) =>
-      get(attachmentState(attachmentId)),
+      get(state(attachmentId)),
   set:
     (attachmentId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(attachmentState(attachmentId))
+        reset(state(attachmentId))
         return
       }
 
-      set(attachmentState(attachmentId), newVal)
+      set(state(attachmentId), newVal)
       set(attachmentsState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

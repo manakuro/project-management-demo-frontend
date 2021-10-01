@@ -1,7 +1,7 @@
 import { useRecoilCallback } from 'recoil'
 import { useTasksResponse } from 'src/store/entities/tasks'
 import { ArchiveResponse } from '../../type'
-import { archivedMyTaskActivityTaskSelector } from '../atom'
+import { archivedMyTaskActivityTaskState } from '../atom'
 
 export const useArchivedMyTaskActivityTasksResponse = () => {
   const { setTasksFromResponse } = useTasksResponse()
@@ -11,7 +11,7 @@ export const useArchivedMyTaskActivityTasksResponse = () => {
       (data: ArchiveResponse) => {
         data.archivedMyTaskActivities.forEach((d) => {
           d.archivedMyTaskActivityTasks.forEach((t) => {
-            set(archivedMyTaskActivityTaskSelector(t.id), t)
+            set(archivedMyTaskActivityTaskState(t.id), t)
 
             setTasksFromResponse([t.task])
           })

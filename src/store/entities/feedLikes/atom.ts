@@ -22,26 +22,26 @@ export const defaultFeedLikeStateValue = (): FeedLike => ({
   createdAt: '',
   updatedAt: '',
 })
-const feedLikeState = atomFamily<FeedLike, string>({
-  key: key('feedLikeState'),
+const state = atomFamily<FeedLike, string>({
+  key: key('state'),
   default: defaultFeedLikeStateValue(),
 })
 
-export const feedLikeSelector = selectorFamily<FeedLike, string>({
-  key: key('feedLikeSelector'),
+export const feedLikeState = selectorFamily<FeedLike, string>({
+  key: key('feedLikeState'),
   get:
     (feedLikeId) =>
     ({ get }) =>
-      get(feedLikeState(feedLikeId)),
+      get(state(feedLikeId)),
   set:
     (feedLikeId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(feedLikeState(feedLikeId))
+        reset(state(feedLikeId))
         return
       }
 
-      set(feedLikeState(feedLikeId), newVal)
+      set(state(feedLikeId), newVal)
       set(feedLikesState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

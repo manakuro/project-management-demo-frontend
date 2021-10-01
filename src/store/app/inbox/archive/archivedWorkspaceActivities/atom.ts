@@ -16,11 +16,8 @@ export const archivedWorkspaceActivitiesState = atom<
   default: [],
 })
 
-export const archivedWorkspaceActivityState = atomFamily<
-  ArchivedWorkspaceActivity,
-  string
->({
-  key: key('archivedWorkspaceActivityState'),
+const state = atomFamily<ArchivedWorkspaceActivity, string>({
+  key: key('state'),
   default: {
     id: '',
     activityType: 2,
@@ -32,24 +29,24 @@ export const archivedWorkspaceActivityState = atomFamily<
   },
 })
 
-export const archivedWorkspaceActivitySelector = selectorFamily<
+export const archivedWorkspaceActivityState = selectorFamily<
   ArchivedWorkspaceActivity,
   string
 >({
-  key: key('archivedWorkspaceActivitySelector'),
+  key: key('archivedWorkspaceActivityState'),
   get:
     (archivedWorkspaceActivityId) =>
     ({ get }) =>
-      get(archivedWorkspaceActivityState(archivedWorkspaceActivityId)),
+      get(state(archivedWorkspaceActivityId)),
   set:
     (archivedWorkspaceActivityId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(archivedWorkspaceActivityState(archivedWorkspaceActivityId))
+        reset(state(archivedWorkspaceActivityId))
         return
       }
 
-      set(archivedWorkspaceActivityState(archivedWorkspaceActivityId), newVal)
+      set(state(archivedWorkspaceActivityId), newVal)
       set(archivedWorkspaceActivitiesState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

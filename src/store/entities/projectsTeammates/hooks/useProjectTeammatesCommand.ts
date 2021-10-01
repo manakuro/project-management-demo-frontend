@@ -1,8 +1,8 @@
 import { useRecoilCallback } from 'recoil'
 import {
-  projectTeammateSelector,
-  projectTeammateByProjectIdAndTeammateIdSelector,
-  ownerProjectTeammateByProjectIdSelector,
+  projectTeammateState,
+  projectTeammateByProjectIdAndTeammateIdState,
+  ownerProjectTeammateByProjectIdState,
 } from '../atom'
 import { ProjectTeammate } from '../type'
 
@@ -10,7 +10,7 @@ export const useProjectTeammatesCommand = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
       (projectTeammate: ProjectTeammate) => {
-        set(projectTeammateSelector(projectTeammate.id), projectTeammate)
+        set(projectTeammateState(projectTeammate.id), projectTeammate)
       },
     [],
   )
@@ -19,7 +19,7 @@ export const useProjectTeammatesCommand = () => {
     ({ snapshot }) =>
       async (projectTeammateId: string, val: Partial<ProjectTeammate>) => {
         const current = await snapshot.getPromise(
-          projectTeammateSelector(projectTeammateId),
+          projectTeammateState(projectTeammateId),
         )
         upsert({
           ...current,
@@ -37,7 +37,7 @@ export const useProjectTeammatesCommand = () => {
         val: Partial<ProjectTeammate>,
       ) => {
         const current = await snapshot.getPromise(
-          projectTeammateByProjectIdAndTeammateIdSelector({
+          projectTeammateByProjectIdAndTeammateIdState({
             projectId,
             teammateId,
           }),
@@ -54,7 +54,7 @@ export const useProjectTeammatesCommand = () => {
     ({ snapshot }) =>
       async (projectId: string, teammateId: string) => {
         const currentOwner = await snapshot.getPromise(
-          ownerProjectTeammateByProjectIdSelector(projectId),
+          ownerProjectTeammateByProjectIdState(projectId),
         )
         upsert({
           ...currentOwner,
@@ -62,7 +62,7 @@ export const useProjectTeammatesCommand = () => {
         })
 
         const nextOwner = await snapshot.getPromise(
-          projectTeammateByProjectIdAndTeammateIdSelector({
+          projectTeammateByProjectIdAndTeammateIdState({
             projectId,
             teammateId,
           }),

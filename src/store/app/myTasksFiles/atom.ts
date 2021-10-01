@@ -1,16 +1,16 @@
 import { selectorFamily } from 'recoil'
 import { attachmentsState } from 'src/store/entities/attachments'
-import { taskIdsByAssigneeIdSelector } from 'src/store/entities/tasks'
+import { taskIdsByAssigneeIdState } from 'src/store/entities/tasks'
 
 const key = (str: string) => `src/store/app/myTasks/attachments/${str}`
 
-export const attachmentIdsSelector = selectorFamily<string[], string>({
-  key: key('attachmentIdsSelector'),
+export const attachmentIdsState = selectorFamily<string[], string>({
+  key: key('attachmentIdsState'),
   get:
     (teammateId: string) =>
     ({ get }) => {
       const attachments = get(attachmentsState)
-      const taskIds = get(taskIdsByAssigneeIdSelector(teammateId))
+      const taskIds = get(taskIdsByAssigneeIdState(teammateId))
       return attachments
         .filter((a) => taskIds.includes(a.taskId))
         .map((a) => a.id)

@@ -13,7 +13,7 @@ export const tagsState = atom<Tag[]>({
   default: [],
 })
 
-const defaultStateValue = (): Tag => ({
+const initialStateValue = (): Tag => ({
   id: '',
   name: '',
   taskId: '',
@@ -25,13 +25,9 @@ const defaultStateValue = (): Tag => ({
   createdAt: '',
   updatedAt: '',
 })
-const tagState = atomFamily<Tag, string>({
-  key: key('tagState'),
-  default: defaultStateValue(),
-})
 
-export const tagIdsByTaskIdSelector = selectorFamily<string[], string>({
-  key: key('tagIdsByTaskIdSelector'),
+export const tagIdsByTaskIdState = selectorFamily<string[], string>({
+  key: key('tagIdsByTaskIdState'),
   get:
     (taskId) =>
     ({ get }) => {
@@ -40,21 +36,25 @@ export const tagIdsByTaskIdSelector = selectorFamily<string[], string>({
     },
 })
 
-export const tagSelector = selectorFamily<Tag, string>({
-  key: key('tagSelector'),
+const state = atomFamily<Tag, string>({
+  key: key('state'),
+  default: initialStateValue(),
+})
+export const tagState = selectorFamily<Tag, string>({
+  key: key('tagState'),
   get:
     (tagId) =>
     ({ get }) =>
-      get(tagState(tagId)),
+      get(state(tagId)),
   set:
     (tagId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(tagState(tagId))
+        reset(state(tagId))
         return
       }
 
-      set(tagState(tagId), newVal)
+      set(state(tagId), newVal)
       set(tagsState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

@@ -1,5 +1,5 @@
 import { useRecoilCallback } from 'recoil'
-import { teammateSelector } from '../atom'
+import { teammateState } from '../atom'
 import { Teammate } from '../type'
 
 export const useTeammatesResponse = () => {
@@ -16,7 +16,7 @@ export const useTeammatesResponse = () => {
             updatedAt: '',
           }))
           .forEach((p) => {
-            set(teammateSelector(p.id), p)
+            set(teammateState(p.id), p)
           })
       },
     [],

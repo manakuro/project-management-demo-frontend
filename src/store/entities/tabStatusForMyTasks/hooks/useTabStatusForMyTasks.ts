@@ -1,10 +1,14 @@
 import { useCallback } from 'react'
 import { useRecoilValue } from 'recoil'
-import { tabStatusForMyTasks, tasksTabStatues, TaskTabStatuses } from '../atom'
+import {
+  tabStatusForMyTasksState,
+  tasksTabStatues,
+  TaskTabStatuses,
+} from '../atom'
 import { useTabStatusForMyTasksCommands } from './useTabStatusForMyTasksCommands'
 
 export const useTabStatusForMyTasks = () => {
-  const state = useRecoilValue(tabStatusForMyTasks)
+  const state = useRecoilValue(tabStatusForMyTasksState)
   const { upsert } = useTabStatusForMyTasksCommands()
 
   const isTaskTabStatus = useCallback(

@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil'
-import { activitySelector } from '../atom'
+import { activityState } from '../atom'
 
 export const useActivity = (activityId: string) => {
-  const activity = useRecoilValue(activitySelector(activityId))
+  const activity = useRecoilValue(activityState(activityId))
 
   return {
     activity,

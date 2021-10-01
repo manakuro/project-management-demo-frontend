@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
-import { activityIdsSortByUpdatedAtSelector } from '../atom'
+import { activityIdsSortByUpdatedAtState } from '../atom'
 
 export const useActivityIdsSortByUpdatedAt = () => {
-  const ids = useRecoilValue(activityIdsSortByUpdatedAtSelector)
+  const ids = useRecoilValue(activityIdsSortByUpdatedAtState)
   const activityIds = useMemo(() => ids, [ids])
 
   return {

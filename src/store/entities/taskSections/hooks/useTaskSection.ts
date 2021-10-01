@@ -1,18 +1,16 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { DEFAULT_TITLE_NAME, taskSectionSelector } from '../atom'
+import { DEFAULT_TITLE_NAME, taskSectionState } from '../atom'
 import { TaskSection } from '../type'
 import { useTaskSectionsCommand } from './useTaskSectionsCommand'
 
 export const useTaskSection = (taskSectionId?: string) => {
-  const taskSection = useRecoilValue(taskSectionSelector(taskSectionId || ''))
+  const taskSection = useRecoilValue(taskSectionState(taskSectionId || ''))
   const { upsert } = useTaskSectionsCommand()
 
   const setTaskSection = useRecoilCallback(
     ({ snapshot }) =>
       async (val: Partial<TaskSection>) => {
-        const prev = await snapshot.getPromise(
-          taskSectionSelector(taskSection.id),
-        )
+        const prev = await snapshot.getPromise(taskSectionState(taskSection.id))
         upsert({ ...prev, ...val })
       },
     [upsert, taskSection.id],

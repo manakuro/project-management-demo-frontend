@@ -14,8 +14,8 @@ export const workspaceActivitiesState = atom<WorkspaceActivity[]>({
   default: [],
 })
 
-export const workspaceActivityState = atomFamily<WorkspaceActivity, string>({
-  key: key('workspaceActivityState'),
+const state = atomFamily<WorkspaceActivity, string>({
+  key: key('state'),
   default: {
     id: '',
     activityType: 2,
@@ -27,42 +27,41 @@ export const workspaceActivityState = atomFamily<WorkspaceActivity, string>({
   },
 })
 
-export const workspaceActivitySelector = selectorFamily<
-  WorkspaceActivity,
-  string
->({
-  key: key('workspaceActivitySelector'),
-  get:
-    (workspaceActivityId) =>
-    ({ get }) =>
-      get(workspaceActivityState(workspaceActivityId)),
-  set:
-    (workspaceActivityId) =>
-    ({ get, set, reset }, newVal) => {
-      if (newVal instanceof DefaultValue) {
-        reset(workspaceActivityState(workspaceActivityId))
-        return
-      }
+export const workspaceActivityState = selectorFamily<WorkspaceActivity, string>(
+  {
+    key: key('workspaceActivityState'),
+    get:
+      (workspaceActivityId) =>
+      ({ get }) =>
+        get(state(workspaceActivityId)),
+    set:
+      (workspaceActivityId) =>
+      ({ get, set, reset }, newVal) => {
+        if (newVal instanceof DefaultValue) {
+          reset(state(workspaceActivityId))
+          return
+        }
 
-      set(workspaceActivityState(workspaceActivityId), newVal)
-      set(workspaceActivitiesState, (prev) =>
-        uniqBy([...prev, newVal], 'id').map((p) => {
-          if (p.id === newVal.id) {
-            return {
-              ...p,
-              ...newVal,
+        set(state(workspaceActivityId), newVal)
+        set(workspaceActivitiesState, (prev) =>
+          uniqBy([...prev, newVal], 'id').map((p) => {
+            if (p.id === newVal.id) {
+              return {
+                ...p,
+                ...newVal,
+              }
             }
-          }
-          return p
-        }),
-      )
-
-      if (
-        get(workspaceActivityIdsState).find(
-          (workspaceActivityId) => workspaceActivityId === newVal.id,
+            return p
+          }),
         )
-      )
-        return
-      set(workspaceActivityIdsState, (prev) => [...prev, newVal.id])
-    },
-})
+
+        if (
+          get(workspaceActivityIdsState).find(
+            (workspaceActivityId) => workspaceActivityId === newVal.id,
+          )
+        )
+          return
+        set(workspaceActivityIdsState, (prev) => [...prev, newVal.id])
+      },
+  },
+)

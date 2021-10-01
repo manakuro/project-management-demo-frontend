@@ -6,12 +6,12 @@ import {
   useProjectsTaskColumnsCommand,
   useProjectsTaskColumn,
 } from 'src/store/entities/projectsTaskColumns'
-import { projectsTaskColumnIdsSelector } from '../atom'
+import { projectsTaskColumnIdsState } from '../atom'
 import { ProjectTaskColumn } from '../type'
 
 export const useProjectsTaskColumns = (tasksTaskColumnId: string) => {
   const { me } = useMe()
-  const ids = useRecoilValue(projectsTaskColumnIdsSelector(me.id))
+  const ids = useRecoilValue(projectsTaskColumnIdsState(me.id))
   const { projectsTaskColumn } = useProjectsTaskColumn(tasksTaskColumnId)
   const { setProjectsTaskColumn } = useProjectsTaskColumnsCommand()
 

@@ -1,14 +1,14 @@
 import { selectorFamily } from 'recoil'
-import { projectsTaskColumnsByProjectId } from 'src/store/entities/projectsTaskColumns'
+import { projectsTaskColumnsByProjectIdState } from 'src/store/entities/projectsTaskColumns'
 
 const key = (str: string) => `src/store/app/projects/taskColumns/${str}`
 
-export const projectsTaskColumnIdsSelector = selectorFamily<string[], string>({
-  key: key('projectsTaskColumnIdsSelector'),
+export const projectsTaskColumnIdsState = selectorFamily<string[], string>({
+  key: key('projectsTaskColumnIdsState'),
   get:
     (projectId: string) =>
     ({ get }) => {
-      const taskColumns = get(projectsTaskColumnsByProjectId(projectId))
+      const taskColumns = get(projectsTaskColumnsByProjectIdState(projectId))
 
       return taskColumns
         .filter((t) => !t.disabled)
@@ -17,15 +17,15 @@ export const projectsTaskColumnIdsSelector = selectorFamily<string[], string>({
     },
 })
 
-export const projectsTaskColumnIdsCustomizableSelector = selectorFamily<
+export const projectsTaskColumnIdsCustomizableState = selectorFamily<
   string[],
   string
 >({
-  key: key('projectsTaskColumnIdsCustomizableSelector'),
+  key: key('projectsTaskColumnIdsCustomizableState'),
   get:
     (projectId: string) =>
     ({ get }) => {
-      const taskColumns = get(projectsTaskColumnsByProjectId(projectId))
+      const taskColumns = get(projectsTaskColumnsByProjectIdState(projectId))
       return [...taskColumns]
         .sort((a, b) => (a.order > b.order ? 1 : -1))
         .map((t) => t.id)

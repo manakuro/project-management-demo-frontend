@@ -1,13 +1,13 @@
 import { useRecoilCallback } from 'recoil'
 import { ActivityResponse } from '../../type'
-import { myTaskActivitySelector } from '../atom'
+import { myTaskActivityState } from '../atom'
 
 export const useMyTaskActivitiesResponse = () => {
   const setMyTaskActivities = useRecoilCallback(
     ({ set }) =>
       (data: ActivityResponse) => {
         data.myTaskActivities.forEach((d) => {
-          set(myTaskActivitySelector(d.id), d)
+          set(myTaskActivityState(d.id), d)
         })
       },
     [],

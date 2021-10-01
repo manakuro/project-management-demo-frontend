@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil'
-import { tasksByTaskIds } from '../atom'
+import { tasksByTaskIdsState } from '../atom'
 
 export const useTasksByTaskIds = (taskIds: string[]) => {
-  const tasks = useRecoilValue(tasksByTaskIds(taskIds))
+  const tasks = useRecoilValue(tasksByTaskIdsState(taskIds))
 
   return {
     tasks,

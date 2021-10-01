@@ -21,13 +21,9 @@ const initialProjectTeammateState = (): ProjectTeammate => ({
   createdAt: '',
   updatedAt: '',
 })
-const projectTeammateState = atomFamily<ProjectTeammate, string>({
-  key: key('projectTeammateState'),
-  default: initialProjectTeammateState(),
-})
 
-export const teammateIdsByProjectIdSelector = selectorFamily<string[], string>({
-  key: 'projectsTeammateIdsSelector',
+export const teammateIdsByProjectIdState = selectorFamily<string[], string>({
+  key: 'teammateIdsByProjectIdState',
   get:
     (projectId) =>
     ({ get }) => {
@@ -38,11 +34,11 @@ export const teammateIdsByProjectIdSelector = selectorFamily<string[], string>({
     },
 })
 
-export const ownerProjectTeammateByProjectIdSelector = selectorFamily<
+export const ownerProjectTeammateByProjectIdState = selectorFamily<
   ProjectTeammate,
   string
 >({
-  key: 'ownerProjectTeammateByProjectIdSelector',
+  key: 'ownerProjectTeammateByProjectIdState',
   get:
     (projectId) =>
     ({ get }) => {
@@ -54,11 +50,11 @@ export const ownerProjectTeammateByProjectIdSelector = selectorFamily<
     },
 })
 
-export const projectTeammateByProjectIdAndTeammateIdSelector = selectorFamily<
+export const projectTeammateByProjectIdAndTeammateIdState = selectorFamily<
   ProjectTeammate,
   { projectId: string; teammateId: string }
 >({
-  key: 'projectTeammateByProjectIdAndTeammateIdSelector',
+  key: 'projectTeammateByProjectIdAndTeammateIdState',
   get:
     ({ projectId, teammateId }) =>
     ({ get }) => {
@@ -71,21 +67,26 @@ export const projectTeammateByProjectIdAndTeammateIdSelector = selectorFamily<
     },
 })
 
-export const projectTeammateSelector = selectorFamily<ProjectTeammate, string>({
-  key: key('projectTeammateSelector'),
+const state = atomFamily<ProjectTeammate, string>({
+  key: key('state'),
+  default: initialProjectTeammateState(),
+})
+
+export const projectTeammateState = selectorFamily<ProjectTeammate, string>({
+  key: key('projectTeammateState'),
   get:
     (projectTeammateId) =>
     ({ get }) =>
-      get(projectTeammateState(projectTeammateId)),
+      get(state(projectTeammateId)),
   set:
     (projectTeammateId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(projectTeammateState(projectTeammateId))
+        reset(state(projectTeammateId))
         return
       }
 
-      set(projectTeammateState(projectTeammateId), newVal)
+      set(state(projectTeammateId), newVal)
       set(projectTeammatesState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

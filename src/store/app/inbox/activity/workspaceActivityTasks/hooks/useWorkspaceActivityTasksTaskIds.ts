@@ -1,11 +1,11 @@
 import { useRecoilValue } from 'recoil'
-import { taskIdsByWorkspaceActivityIdSelector } from '../atom'
+import { taskIdsByWorkspaceActivityIdState } from '../atom'
 
 export const useWorkspaceActivityTasksTaskIds = (
   workspaceActivityId: string,
 ) => {
   const taskIds = useRecoilValue(
-    taskIdsByWorkspaceActivityIdSelector(workspaceActivityId),
+    taskIdsByWorkspaceActivityIdState(workspaceActivityId),
   )
 
   return {

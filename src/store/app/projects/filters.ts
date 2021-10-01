@@ -1,7 +1,7 @@
 import { GetRecoilValue } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
 import { Task } from 'src/store/entities/tasks'
-import { taskLikesByTaskIdSelector } from 'src/store/entities/tasksLikes'
+import { taskLikesByTaskIdState } from 'src/store/entities/tasksLikes'
 import {
   isProjectsSortStatus,
   isProjectsTaskListStatus,
@@ -38,8 +38,8 @@ export const sortByLikes =
     if (!get(isProjectsSortStatus('likes'))) return tasks
 
     return tasks.sort((a, b) => {
-      const taskLikesA = get(taskLikesByTaskIdSelector(a.id))
-      const taskLikesB = get(taskLikesByTaskIdSelector(b.id))
+      const taskLikesA = get(taskLikesByTaskIdState(a.id))
+      const taskLikesB = get(taskLikesByTaskIdState(b.id))
       return taskLikesA.length < taskLikesB.length ? 1 : -1
     })
   }

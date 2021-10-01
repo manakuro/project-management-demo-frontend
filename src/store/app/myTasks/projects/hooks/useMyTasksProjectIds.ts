@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
-import { myTasksProjectIdsSelector } from '../atom'
+import { projectIdsState } from '../atom'
 
 export const useMyTasksProjectIds = () => {
-  const ids = useRecoilValue(myTasksProjectIdsSelector)
+  const ids = useRecoilValue(projectIdsState)
   const projectIds = useMemo(() => ids, [ids])
 
   return {

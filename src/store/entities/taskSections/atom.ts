@@ -16,33 +16,33 @@ export const taskSectionsState = atom<TaskSection[]>({
   default: [],
 })
 
-export const defaultTaskSectionStateValue = (): TaskSection => ({
+export const initialTaskSectionStateValue = (): TaskSection => ({
   id: '',
   name: DEFAULT_TITLE_NAME,
   createdAt: '',
   updatedAt: '',
   isDeleted: false,
 })
-const taskSectionState = atomFamily<TaskSection, string>({
-  key: key('taskSectionState'),
-  default: defaultTaskSectionStateValue(),
+const state = atomFamily<TaskSection, string>({
+  key: key('state'),
+  default: initialTaskSectionStateValue(),
 })
 
-export const taskSectionSelector = selectorFamily<TaskSection, string>({
-  key: key('taskSectionSelector'),
+export const taskSectionState = selectorFamily<TaskSection, string>({
+  key: key('taskSectionState'),
   get:
     (taskSectionId) =>
     ({ get }) =>
-      get(taskSectionState(taskSectionId)),
+      get(state(taskSectionId)),
   set:
     (taskSectionId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(taskSectionState(taskSectionId))
+        reset(state(taskSectionId))
         return
       }
 
-      set(taskSectionState(taskSectionId), newVal)
+      set(state(taskSectionId), newVal)
       set(taskSectionsState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

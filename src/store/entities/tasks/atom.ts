@@ -27,8 +27,8 @@ export const initialTaskState = (): Task => ({
   taskSectionId: '',
   createdBy: '',
 })
-export const taskIdsByTaskParentIdSelector = selectorFamily<string[], string>({
-  key: key('taskIdsByTaskParentIdSelector'),
+export const taskIdsByTaskParentIdState = selectorFamily<string[], string>({
+  key: key('taskIdsByTaskParentIdState'),
   get:
     (taskParentId) =>
     ({ get }) => {
@@ -38,8 +38,8 @@ export const taskIdsByTaskParentIdSelector = selectorFamily<string[], string>({
         .map((t) => t.id)
     },
 })
-export const taskIdsByAssigneeIdSelector = selectorFamily<string[], string>({
-  key: key('taskIdsByAssigneeIdSelector'),
+export const taskIdsByAssigneeIdState = selectorFamily<string[], string>({
+  key: key('taskIdsByAssigneeIdState'),
   get:
     (assigneeId) =>
     ({ get }) => {
@@ -50,8 +50,8 @@ export const taskIdsByAssigneeIdSelector = selectorFamily<string[], string>({
     },
 })
 
-export const tasksByTaskSectionIdSelector = selectorFamily<Task[], string>({
-  key: key('tasksByTaskSectionIdSelector'),
+export const tasksByTaskSectionIdState = selectorFamily<Task[], string>({
+  key: key('tasksByTaskSectionIdState'),
   get:
     (taskSectionId) =>
     ({ get }) => {
@@ -63,8 +63,8 @@ export const tasksByTaskSectionIdSelector = selectorFamily<Task[], string>({
     },
 })
 
-export const tasksByTaskIds = selectorFamily<Task[], string[]>({
-  key: key('tasksByTaskIds'),
+export const tasksByTaskIdsState = selectorFamily<Task[], string[]>({
+  key: key('tasksByTaskIdsState'),
   get:
     (taskIds) =>
     ({ get }) => {
@@ -73,8 +73,8 @@ export const tasksByTaskIds = selectorFamily<Task[], string[]>({
     },
 })
 
-export const createdByIdsByTaskIds = selectorFamily<string[], string[]>({
-  key: key('createdByIdsByTaskIds'),
+export const createdByIdsByTaskIdsState = selectorFamily<string[], string[]>({
+  key: key('createdByIdsByTaskIdsState'),
   get:
     (taskIds) =>
     ({ get }) => {
@@ -83,26 +83,26 @@ export const createdByIdsByTaskIds = selectorFamily<string[], string[]>({
     },
 })
 
-export const taskState = atomFamily<Task, string>({
-  key: key('taskState'),
+const state = atomFamily<Task, string>({
+  key: key('state'),
   default: initialTaskState(),
 })
 
-export const taskSelector = selectorFamily<Task, string>({
-  key: key('taskSelector'),
+export const taskState = selectorFamily<Task, string>({
+  key: key('taskState'),
   get:
     (taskId) =>
     ({ get }) =>
-      get(taskState(taskId)),
+      get(state(taskId)),
   set:
     (taskId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(taskState(taskId))
+        reset(state(taskId))
         return
       }
 
-      set(taskState(taskId), newVal)
+      set(state(taskId), newVal)
       set(tasksState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

@@ -15,11 +15,11 @@ export const archivedWorkspaceActivityTasksState = atom<
   key: key('archivedWorkspaceActivityTasksState'),
   default: [],
 })
-export const taskIdsByArchivedWorkspaceActivityIdSelector = selectorFamily<
+export const taskIdsByArchivedWorkspaceActivityIdState = selectorFamily<
   string[],
   string
 >({
-  key: key('taskIdsByArchivedWorkspaceActivityIdSelector'),
+  key: key('taskIdsByArchivedWorkspaceActivityIdState'),
   get:
     (archivedWorkspaceActivityId: string) =>
     ({ get }) => {
@@ -34,11 +34,8 @@ export const taskIdsByArchivedWorkspaceActivityIdSelector = selectorFamily<
     },
 })
 
-export const archivedWorkspaceActivityTaskState = atomFamily<
-  ArchivedWorkspaceActivityTask,
-  string
->({
-  key: key('archivedWorkspaceActivityTaskState'),
+const state = atomFamily<ArchivedWorkspaceActivityTask, string>({
+  key: key('state'),
   default: {
     id: '',
     archivedWorkspaceActivityId: '',
@@ -48,29 +45,24 @@ export const archivedWorkspaceActivityTaskState = atomFamily<
   },
 })
 
-export const archivedWorkspaceActivityTaskSelector = selectorFamily<
+export const archivedWorkspaceActivityTaskState = selectorFamily<
   ArchivedWorkspaceActivityTask,
   string
 >({
-  key: key('archivedWorkspaceActivityTaskSelector'),
+  key: key('archivedWorkspaceActivityTaskState'),
   get:
     (archivedWorkspaceActivityTaskId) =>
     ({ get }) =>
-      get(archivedWorkspaceActivityTaskState(archivedWorkspaceActivityTaskId)),
+      get(state(archivedWorkspaceActivityTaskId)),
   set:
     (archivedWorkspaceActivityTaskId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(
-          archivedWorkspaceActivityTaskState(archivedWorkspaceActivityTaskId),
-        )
+        reset(state(archivedWorkspaceActivityTaskId))
         return
       }
 
-      set(
-        archivedWorkspaceActivityTaskState(archivedWorkspaceActivityTaskId),
-        newVal,
-      )
+      set(state(archivedWorkspaceActivityTaskId), newVal)
       set(archivedWorkspaceActivityTasksState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

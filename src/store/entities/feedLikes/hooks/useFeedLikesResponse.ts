@@ -1,5 +1,5 @@
 import { useRecoilCallback } from 'recoil'
-import { feedLikeSelector } from '../atom'
+import { feedLikeState } from '../atom'
 import { FeedLike } from '../type'
 
 export const useFeedLikesResponse = () => {
@@ -7,7 +7,7 @@ export const useFeedLikesResponse = () => {
     ({ set }) =>
       (data: FeedLike[]) => {
         data.forEach((d) => {
-          set(feedLikeSelector(d.id), d)
+          set(feedLikeState(d.id), d)
         })
       },
     [],

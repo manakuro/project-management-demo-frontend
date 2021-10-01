@@ -13,8 +13,8 @@ export const projectsState = atom<Project[]>({
   default: [],
 })
 
-const projectState = atomFamily<Project, string>({
-  key: key('projectState'),
+const state = atomFamily<Project, string>({
+  key: key('state'),
   default: {
     id: '',
     name: '',
@@ -30,21 +30,21 @@ const projectState = atomFamily<Project, string>({
   },
 })
 
-export const projectSelector = selectorFamily<Project, string>({
-  key: key('projectSelector'),
+export const projectState = selectorFamily<Project, string>({
+  key: key('projectState'),
   get:
     (projectId) =>
     ({ get }) =>
-      get(projectState(projectId)),
+      get(state(projectId)),
   set:
     (projectId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(projectState(projectId))
+        reset(state(projectId))
         return
       }
 
-      set(projectState(projectId), newVal)
+      set(state(projectId), newVal)
       set(projectsState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

@@ -1,9 +1,9 @@
 import { useRecoilValue } from 'recoil'
-import { workspaceActivitySelector } from '../atom'
+import { workspaceActivityState } from '../atom'
 
 export const useWorkspaceActivity = (workspaceActivityId: string) => {
   const workspaceActivity = useRecoilValue(
-    workspaceActivitySelector(workspaceActivityId),
+    workspaceActivityState(workspaceActivityId),
   )
 
   return {

@@ -14,11 +14,8 @@ export const archivedMyTaskActivitiesState = atom<ArchivedMyTaskActivity[]>({
   default: [],
 })
 
-export const archivedMyTaskActivityState = atomFamily<
-  ArchivedMyTaskActivity,
-  string
->({
-  key: key('archivedMyTaskActivityState'),
+const state = atomFamily<ArchivedMyTaskActivity, string>({
+  key: key('state'),
   default: {
     id: '',
     activityType: 1,
@@ -28,24 +25,24 @@ export const archivedMyTaskActivityState = atomFamily<
   },
 })
 
-export const archivedMyTaskActivitySelector = selectorFamily<
+export const archivedMyTaskActivityState = selectorFamily<
   ArchivedMyTaskActivity,
   string
 >({
-  key: key('archivedMyTaskActivitySelector'),
+  key: key('archivedMyTaskActivityState'),
   get:
     (archivedMyTaskActivityId) =>
     ({ get }) =>
-      get(archivedMyTaskActivityState(archivedMyTaskActivityId)),
+      get(state(archivedMyTaskActivityId)),
   set:
     (archivedMyTaskActivityId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(archivedMyTaskActivityState(archivedMyTaskActivityId))
+        reset(state(archivedMyTaskActivityId))
         return
       }
 
-      set(archivedMyTaskActivityState(archivedMyTaskActivityId), newVal)
+      set(state(archivedMyTaskActivityId), newVal)
       set(archivedMyTaskActivitiesState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

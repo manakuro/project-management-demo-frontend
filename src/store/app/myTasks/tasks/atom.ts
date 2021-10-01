@@ -6,7 +6,7 @@ import {
   sortTasks,
 } from 'src/store/app/myTasks/filters'
 import { isMyTaskSortStatus } from 'src/store/app/myTasks/taskListStatus'
-import { isTabStatusForMyTasks } from 'src/store/entities/tabStatusForMyTasks'
+import { isTabStatusForMyTasksState } from 'src/store/entities/tabStatusForMyTasks'
 import {
   tasksState,
   filterByTeammateId,
@@ -16,8 +16,8 @@ import {
 
 const key = (str: string) => `src/store/app/myTasks/tasks/${str}`
 
-export const taskIdsSelector = selectorFamily<string[], string>({
-  key: key('taskIdsSelector'),
+export const taskIdsState = selectorFamily<string[], string>({
+  key: key('taskIdsState'),
   get:
     (teammateId) =>
     ({ get }) => {
@@ -27,7 +27,7 @@ export const taskIdsSelector = selectorFamily<string[], string>({
       tasks = filterTasks({ get })(tasks)
 
       switch (true) {
-        case get(isTabStatusForMyTasks('list')) &&
+        case get(isTabStatusForMyTasksState('list')) &&
           get(isMyTaskSortStatus('dueDate')): {
           return tasks.filter((t) => !!t.dueDate).map((t) => t.id)
         }
@@ -38,17 +38,17 @@ export const taskIdsSelector = selectorFamily<string[], string>({
     },
 })
 
-export const taskIdsByTaskSectionIdSelector = selectorFamily<
+export const taskIdsByTaskSectionIdState = selectorFamily<
   string[],
   { taskSectionId: string; teammateId: string }
 >({
-  key: key('taskIdsByTaskSectionIdSelector'),
+  key: key('taskIdsByTaskSectionIdState'),
   get:
     ({ taskSectionId, teammateId }) =>
     ({ get }) => {
       let tasks = get(tasksState)
       switch (true) {
-        case get(isTabStatusForMyTasks('list')) &&
+        case get(isTabStatusForMyTasksState('list')) &&
           get(isMyTaskSortStatus('dueDate')): {
           tasks = filterByTeammateId(teammateId)(tasks)
           tasks = filterByTaskSectionId(taskSectionId)(tasks)
@@ -66,11 +66,11 @@ export const taskIdsByTaskSectionIdSelector = selectorFamily<
     },
 })
 
-export const taskIdsByDueDateSelector = selectorFamily<
+export const taskIdsByDueDateState = selectorFamily<
   string[],
   { dueDate: string; teammateId: string }
 >({
-  key: key('taskIdsByDueDateSelector'),
+  key: key('taskIdsByDueDateState'),
   get:
     ({ dueDate, teammateId }) =>
     ({ get }) => {
@@ -83,8 +83,8 @@ export const taskIdsByDueDateSelector = selectorFamily<
     },
 })
 
-export const taskIdsByProjectIdSelector = selectorFamily<string[], string>({
-  key: key('taskIdsByProjectIdSelector'),
+export const taskIdsByProjectIdState = selectorFamily<string[], string>({
+  key: key('taskIdsByProjectIdState'),
   get:
     (projectId: string) =>
     ({ get }) => {
@@ -96,8 +96,8 @@ export const taskIdsByProjectIdSelector = selectorFamily<string[], string>({
     },
 })
 
-export const taskIdsWithNoProjectSelector = selectorFamily<string[], string>({
-  key: key('taskIdsWithNoProjectSelector'),
+export const taskIdsWithNoProjectState = selectorFamily<string[], string>({
+  key: key('taskIdsWithNoProjectState'),
   get:
     (teammateId: string) =>
     ({ get }) => {

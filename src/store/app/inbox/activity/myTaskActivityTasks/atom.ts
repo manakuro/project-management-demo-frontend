@@ -13,11 +13,8 @@ export const myTaskActivityTasksState = atom<MyTaskActivityTask[]>({
   key: key('myTaskActivityTasksState'),
   default: [],
 })
-export const taskIdsByMyTaskActivityIdSelector = selectorFamily<
-  string[],
-  string
->({
-  key: key('taskIdsByMyTaskActivityIdSelector'),
+export const taskIdsByMyTaskActivityIdState = selectorFamily<string[], string>({
+  key: key('taskIdsByMyTaskActivityIdState'),
   get:
     (myTaskActivityId: string) =>
     ({ get }) => {
@@ -28,8 +25,8 @@ export const taskIdsByMyTaskActivityIdSelector = selectorFamily<
     },
 })
 
-export const myTaskActivityTaskState = atomFamily<MyTaskActivityTask, string>({
-  key: key('myTaskActivityTaskState'),
+const state = atomFamily<MyTaskActivityTask, string>({
+  key: key('state'),
   default: {
     id: '',
     myTaskActivityId: '',
@@ -39,24 +36,24 @@ export const myTaskActivityTaskState = atomFamily<MyTaskActivityTask, string>({
   },
 })
 
-export const myTaskActivityTaskSelector = selectorFamily<
+export const myTaskActivityTaskState = selectorFamily<
   MyTaskActivityTask,
   string
 >({
-  key: key('myTaskActivityTaskSelector'),
+  key: key('myTaskActivityTaskState'),
   get:
     (myTaskActivityTaskId) =>
     ({ get }) =>
-      get(myTaskActivityTaskState(myTaskActivityTaskId)),
+      get(state(myTaskActivityTaskId)),
   set:
     (myTaskActivityTaskId) =>
     ({ get, set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(myTaskActivityTaskState(myTaskActivityTaskId))
+        reset(state(myTaskActivityTaskId))
         return
       }
 
-      set(myTaskActivityTaskState(myTaskActivityTaskId), newVal)
+      set(state(myTaskActivityTaskId), newVal)
       set(myTaskActivityTasksState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

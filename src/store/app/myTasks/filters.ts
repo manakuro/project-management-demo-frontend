@@ -7,7 +7,7 @@ import {
 } from 'src/store/app/myTasks/taskListStatus'
 import { projectTasksState } from 'src/store/entities/projectsTasks'
 import { Task } from 'src/store/entities/tasks'
-import { taskLikesByTaskIdSelector } from 'src/store/entities/tasksLikes'
+import { taskLikesByTaskIdState } from 'src/store/entities/tasksLikes'
 
 type Params = {
   get: GetRecoilValue
@@ -40,8 +40,8 @@ export const sortByLikes =
     if (!get(isMyTaskSortStatus('likes'))) return tasks
 
     return tasks.sort((a, b) => {
-      const taskLikesA = get(taskLikesByTaskIdSelector(a.id))
-      const taskLikesB = get(taskLikesByTaskIdSelector(b.id))
+      const taskLikesA = get(taskLikesByTaskIdState(a.id))
+      const taskLikesB = get(taskLikesByTaskIdState(b.id))
       return taskLikesA.length < taskLikesB.length ? 1 : -1
     })
   }

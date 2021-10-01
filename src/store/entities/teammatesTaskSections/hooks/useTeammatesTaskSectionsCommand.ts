@@ -2,8 +2,8 @@ import { useRecoilCallback } from 'recoil'
 import { uuid } from 'src/shared/uuid'
 import { useTaskSectionsCommand } from 'src/store/entities/taskSections'
 import {
-  teammatesTaskSectionSelector,
-  defaultTeammatesTaskSectionState,
+  teammatesTaskSectionState,
+  initialTeammatesTaskSectionState,
 } from '../atom'
 import { TeammatesTaskSection } from '../type'
 
@@ -13,7 +13,7 @@ export const useTeammatesTaskSectionsCommand = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
       (val: TeammatesTaskSection) => {
-        set(teammatesTaskSectionSelector(val.id), val)
+        set(teammatesTaskSectionState(val.id), val)
       },
     [],
   )
@@ -23,7 +23,7 @@ export const useTeammatesTaskSectionsCommand = () => {
       const id = uuid()
       const taskSectionId = addTaskSection()
       upsert({
-        ...defaultTeammatesTaskSectionState(),
+        ...initialTeammatesTaskSectionState(),
         ...val,
         taskSectionId,
         id,

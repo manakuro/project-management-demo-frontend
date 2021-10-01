@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil'
-import { teammatesTaskColumnIds } from '../atom'
+import { teammatesTaskColumnIdsState } from '../atom'
 
 export const useTeammatesTaskColumnIds = () => {
-  const ids = useRecoilValue(teammatesTaskColumnIds)
+  const ids = useRecoilValue(teammatesTaskColumnIdsState)
 
   return {
     teammatesTaskColumnIds: ids,

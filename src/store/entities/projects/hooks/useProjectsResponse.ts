@@ -1,8 +1,8 @@
 import { useRecoilCallback } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
-import { projectTeammateSelector } from 'src/store/entities/projectsTeammates'
+import { projectTeammateState } from 'src/store/entities/projectsTeammates'
 import { useTeammatesResponse } from 'src/store/entities/teammates'
-import { projectSelector } from '../atom'
+import { projectState } from '../atom'
 import { Project, ProjectResponse } from '../type'
 
 export const useProjectsResponse = () => {
@@ -15,7 +15,7 @@ export const useProjectsResponse = () => {
           (acc, p) => uniqBy([...acc, ...p.teammates], 'id'),
           [],
         )
-        projectTeammates.forEach((t) => set(projectTeammateSelector(t.id), t))
+        projectTeammates.forEach((t) => set(projectTeammateState(t.id), t))
 
         setTeammatesFromResponse(projectTeammates)
       },
@@ -31,7 +31,7 @@ export const useProjectsResponse = () => {
         }))
 
         projects.forEach((p) => {
-          set(projectSelector(p.id), p)
+          set(projectState(p.id), p)
         })
 
         setTeammates(data)

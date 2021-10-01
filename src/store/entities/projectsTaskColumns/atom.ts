@@ -6,39 +6,39 @@ import { ProjectsTaskColumn } from './type'
 
 const key = (str: string) => `src/store/entities/projectsTaskColumns/${str}`
 
-export const projectsTaskColumnIds = atom<string[]>({
-  key: key('projectsTaskColumnIds'),
+export const projectsTaskColumnIdsState = atom<string[]>({
+  key: key('projectsTaskColumnIdsState'),
   default: [],
 })
 
-export const projectsTaskColumns = atom<ProjectsTaskColumn[]>({
-  key: key('projectsTaskColumns'),
+export const projectsTaskColumnsState = atom<ProjectsTaskColumn[]>({
+  key: key('projectsTaskColumnsState'),
   default: [],
 })
 
-export const projectsTaskColumnsByProjectId = selectorFamily<
+export const projectsTaskColumnsByProjectIdState = selectorFamily<
   ProjectsTaskColumn[],
   string
 >({
-  key: key('projectsTaskColumnsByProjectId'),
+  key: key('projectsTaskColumnsByProjectIdState'),
   get:
     (projectId: string) =>
     ({ get }) => {
-      const taskColumns = get(projectsTaskColumns)
+      const taskColumns = get(projectsTaskColumnsState)
       return taskColumns.filter((t) => t.projectId === projectId)
     },
 })
 
-export const projectsTaskColumnByType = selectorFamily<
+export const projectsTaskColumnByTypeState = selectorFamily<
   ProjectsTaskColumn,
   { projectId: string; type: TaskColumnType }
 >({
-  key: key('projectsTaskColumnByType'),
+  key: key('projectsTaskColumnByTypeState'),
   get:
     ({ projectId, type }) =>
     ({ get }) => {
       const taskColumn = get(taskColumnByTypeState(type))
-      const taskColumns = get(projectsTaskColumns)
+      const taskColumns = get(projectsTaskColumnsState)
       return (
         taskColumns.find(
           (t) => t.projectId === projectId && t.taskColumnId === taskColumn.id,
@@ -82,15 +82,17 @@ export const projectsTaskColumnState = selectorFamily<
       }
 
       set(state(projectsTaskColumnId), newVal)
-      set(projectsTaskColumns, (prev) =>
+      set(projectsTaskColumnsState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) =>
           p.id === newVal.id ? { ...p, ...newVal } : p,
         ),
       )
 
-      if (get(projectsTaskColumnIds).find((taskId) => taskId === newVal.id))
+      if (
+        get(projectsTaskColumnIdsState).find((taskId) => taskId === newVal.id)
+      )
         return
 
-      set(projectsTaskColumnIds, (prev) => [...prev, newVal.id])
+      set(projectsTaskColumnIdsState, (prev) => [...prev, newVal.id])
     },
 })

@@ -9,19 +9,8 @@ export const taskTeammatesState = atom<TasksTeammate[]>({
   default: [],
 })
 
-const taskTeammateState = atomFamily<TasksTeammate, string>({
-  key: key('taskTeammateState'),
-  default: {
-    id: '',
-    taskId: '',
-    teammateId: '',
-    createdAt: '',
-    updatedAt: '',
-  },
-})
-
-export const teammateIdsByTaskIdSelector = selectorFamily<string[], string>({
-  key: key('teammateIdsByTaskIdSelector'),
+export const teammateIdsByTaskIdState = selectorFamily<string[], string>({
+  key: key('teammateIdsByTaskIdState'),
   get:
     (taskId) =>
     ({ get }) => {
@@ -32,21 +21,31 @@ export const teammateIdsByTaskIdSelector = selectorFamily<string[], string>({
     },
 })
 
-export const taskTeammateSelector = selectorFamily<TasksTeammate, string>({
-  key: key('taskTeammateSelector'),
+const state = atomFamily<TasksTeammate, string>({
+  key: key('state'),
+  default: {
+    id: '',
+    taskId: '',
+    teammateId: '',
+    createdAt: '',
+    updatedAt: '',
+  },
+})
+export const taskTeammateState = selectorFamily<TasksTeammate, string>({
+  key: key('taskTeammateState'),
   get:
     (taskTeammateId) =>
     ({ get }) =>
-      get(taskTeammateState(taskTeammateId)),
+      get(state(taskTeammateId)),
   set:
     (taskTeammateId) =>
     ({ set, reset }, newVal) => {
       if (newVal instanceof DefaultValue) {
-        reset(taskTeammateState(taskTeammateId))
+        reset(state(taskTeammateId))
         return
       }
 
-      set(taskTeammateState(taskTeammateId), newVal)
+      set(state(taskTeammateId), newVal)
       set(taskTeammatesState, (prev) =>
         uniqBy([...prev, newVal], 'id').map((p) => {
           if (p.id === newVal.id) {

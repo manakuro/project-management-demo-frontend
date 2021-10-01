@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil'
-import { namesByTeammateIdSelector } from '../atom'
+import { namesByTeammateIdState } from '../atom'
 
 export const useTeammateNamesByTeammateIds = (teammateIds: string[]) => {
-  const teammateNames = useRecoilValue(namesByTeammateIdSelector(teammateIds))
+  const teammateNames = useRecoilValue(namesByTeammateIdState(teammateIds))
 
   return {
     teammateNames,

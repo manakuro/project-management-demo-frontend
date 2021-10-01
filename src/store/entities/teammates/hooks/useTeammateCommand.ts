@@ -1,12 +1,12 @@
 import { useRecoilCallback } from 'recoil'
-import { teammateSelector } from '../atom'
+import { teammateState } from '../atom'
 import { Teammate } from '../type'
 
 export const useTeammateCommand = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
       (teammate: Teammate) => {
-        set(teammateSelector(teammate.id), teammate)
+        set(teammateState(teammate.id), teammate)
       },
     [],
   )

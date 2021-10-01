@@ -1,5 +1,5 @@
 import { selectorFamily } from 'recoil'
-import { tasksByProjectIdSelector } from 'src/store/entities/projectsTasks'
+import { tasksByProjectIdState } from 'src/store/entities/projectsTasks'
 import {
   filterByDueDate,
   filterByTaskSectionId,
@@ -9,12 +9,12 @@ import { isProjectsSortStatus } from '../taskListStatus'
 
 const key = (str: string) => `src/store/app/projects/tasks/${str}`
 
-export const taskIdsSelector = selectorFamily<string[], string>({
-  key: key('taskIdsSelector'),
+export const taskIdsState = selectorFamily<string[], string>({
+  key: key('taskIdsState'),
   get:
     (projectId) =>
     ({ get }) => {
-      let tasks = get(tasksByProjectIdSelector(projectId))
+      let tasks = get(tasksByProjectIdState(projectId))
       tasks = sortTasks({ get })(tasks)
       tasks = filterTasks({ get })(tasks)
 
@@ -29,15 +29,15 @@ export const taskIdsSelector = selectorFamily<string[], string>({
     },
 })
 
-export const taskIdsByTaskSectionIdSelector = selectorFamily<
+export const taskIdsByTaskSectionIdState = selectorFamily<
   string[],
   { taskSectionId: string; projectId: string }
 >({
-  key: key('taskIdsByTaskSectionIdSelector'),
+  key: key('taskIdsByTaskSectionIdState'),
   get:
     ({ taskSectionId, projectId }) =>
     ({ get }) => {
-      let tasks = get(tasksByProjectIdSelector(projectId))
+      let tasks = get(tasksByProjectIdState(projectId))
       switch (true) {
         case get(isProjectsSortStatus('dueDate')): {
           tasks = filterByTaskSectionId(taskSectionId)(tasks)
@@ -54,27 +54,27 @@ export const taskIdsByTaskSectionIdSelector = selectorFamily<
     },
 })
 
-export const taskIdsByDueDateSelector = selectorFamily<
+export const taskIdsByDueDateState = selectorFamily<
   string[],
   { dueDate: string; projectId: string }
 >({
-  key: key('taskIdsByDueDateSelector'),
+  key: key('taskIdsByDueDateState'),
   get:
     ({ dueDate, projectId }) =>
     ({ get }) => {
-      let tasks = get(tasksByProjectIdSelector(projectId))
+      let tasks = get(tasksByProjectIdState(projectId))
       tasks = filterByDueDate(dueDate)(tasks)
 
       return tasks.map((t) => t.id)
     },
 })
 
-export const taskIdsByProjectIdSelector = selectorFamily<string[], string>({
-  key: key('taskIdsByProjectIdSelector'),
+export const taskIdsByProjectIdState = selectorFamily<string[], string>({
+  key: key('taskIdsByProjectIdState'),
   get:
     (projectId: string) =>
     ({ get }) => {
-      let tasks = get(tasksByProjectIdSelector(projectId))
+      let tasks = get(tasksByProjectIdState(projectId))
       tasks = filterTasks({ get })(tasks)
 
       return tasks.map((t) => t.id)

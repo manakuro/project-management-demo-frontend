@@ -7,13 +7,13 @@ import {
   useTeammatesTaskColumn,
   TeammatesTaskColumn,
 } from 'src/store/entities/teammatesTaskColumns'
-import { taskColumnIdsSelector } from '../atom'
+import { taskColumnIdsState } from '../atom'
 
 export const useMyTasksTaskColumn = (tasksTaskColumnId: string) => {
   const { me } = useMe()
   const { teammatesTaskColumn } = useTeammatesTaskColumn(tasksTaskColumnId)
   const { setTeammatesTaskColumn } = useTeammatesTaskColumnsCommand()
-  const ids = useRecoilValue(taskColumnIdsSelector(me.id))
+  const ids = useRecoilValue(taskColumnIdsState(me.id))
   const setTasksTaskColumn = useCallback(
     async (val: Partial<TeammatesTaskColumn>) => {
       await setTeammatesTaskColumn({ id: tasksTaskColumnId, ...val })

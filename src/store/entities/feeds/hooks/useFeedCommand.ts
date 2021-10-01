@@ -1,14 +1,14 @@
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { uuid } from 'src/shared/uuid'
-import { defaultFeedStateValue, feedSelector } from '../atom'
+import { defaultFeedStateValue, feedState } from '../atom'
 import { Feed } from '../type'
 
 export const useFeedCommand = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
       (feed: Feed) => {
-        set(feedSelector(feed.id), feed)
+        set(feedState(feed.id), feed)
       },
     [],
   )

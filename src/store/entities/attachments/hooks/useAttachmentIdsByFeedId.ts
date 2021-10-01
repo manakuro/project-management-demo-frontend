@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil'
-import { attachmentIdsByFeedIdSelector } from '../atom'
+import { attachmentIdsByFeedIdState } from '../atom'
 
 export const useAttachmentIdsByFeedId = (feedId: string) => {
-  const attachmentIds = useRecoilValue(attachmentIdsByFeedIdSelector(feedId))
+  const attachmentIds = useRecoilValue(attachmentIdsByFeedIdState(feedId))
 
   return {
     attachmentIds,

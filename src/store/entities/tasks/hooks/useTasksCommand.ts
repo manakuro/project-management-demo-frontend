@@ -3,7 +3,7 @@ import { useRecoilCallback } from 'recoil'
 import { uuid } from 'src/shared/uuid'
 import { useMe } from 'src/store/entities/me'
 import { Task } from 'src/store/entities/tasks'
-import { taskState, initialTaskState } from '../atom'
+import { taskState, initialState } from '../atom'
 
 export const useTasksCommand = () => {
   const { me } = useMe()
@@ -31,7 +31,7 @@ export const useTasksCommand = () => {
     (val?: Partial<Task>) => {
       const id = uuid()
       upsert({
-        ...initialTaskState(),
+        ...initialState(),
         ...val,
         isNew: true,
         id,

@@ -1,18 +1,24 @@
-import { atomFamily, selectorFamily, DefaultValue, atom } from 'recoil'
-import { uniqBy } from 'src/shared/utils'
+import { selectorFamily } from 'recoil'
 import { TaskColumnType } from 'src/store/entities/taskColumns/types'
+import { createState } from 'src/store/util'
 import { TaskColumn } from './type'
 
 const key = (str: string) => `src/store/entities/taskColumns/${str}`
 
-export const taskColumnIdsState = atom<string[]>({
-  key: key('taskColumnIdsState'),
-  default: [],
+const initialState = (): TaskColumn => ({
+  id: '',
+  name: '',
+  type: 1,
+  createdAt: '',
+  updatedAt: '',
 })
-export const taskColumnsState = atom<TaskColumn[]>({
-  key: key('taskColumnsState'),
-  default: [],
-})
+
+export const {
+  state: taskColumnState,
+  listState: taskColumnsState,
+  idsState: taskColumnIdsState,
+} = createState({ key, initialState })
+
 export const taskColumnByTypeState = selectorFamily<TaskColumn, TaskColumnType>(
   {
     key: key('taskColumnByTypeState'),
@@ -24,53 +30,3 @@ export const taskColumnByTypeState = selectorFamily<TaskColumn, TaskColumnType>(
       },
   },
 )
-
-const initialStateValue = (): TaskColumn => ({
-  id: '',
-  name: '',
-  type: 1,
-  createdAt: '',
-  updatedAt: '',
-})
-const state = atomFamily<TaskColumn, string>({
-  key: key('state'),
-  default: initialStateValue(),
-})
-
-export const taskColumnState = selectorFamily<TaskColumn, string>({
-  key: key('taskColumnState'),
-  get:
-    (taskColumnId) =>
-    ({ get }) =>
-      get(state(taskColumnId)),
-  set:
-    (taskColumnId) =>
-    ({ get, set, reset }, newVal) => {
-      if (newVal instanceof DefaultValue) {
-        reset(state(taskColumnId))
-        return
-      }
-
-      set(state(taskColumnId), newVal)
-      set(taskColumnsState, (prev) =>
-        uniqBy([...prev, newVal], 'id').map((p) => {
-          if (p.id === newVal.id) {
-            return {
-              ...p,
-              ...newVal,
-            }
-          }
-          return p
-        }),
-      )
-
-      if (
-        get(taskColumnIdsState).find(
-          (taskColumnId) => taskColumnId === newVal.id,
-        )
-      )
-        return
-
-      set(taskColumnIdsState, (prev) => [...prev, newVal.id])
-    },
-})

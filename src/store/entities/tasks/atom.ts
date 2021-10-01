@@ -1,19 +1,10 @@
-import { atomFamily, selectorFamily, DefaultValue, atom } from 'recoil'
-import { uniqBy } from 'src/shared/utils'
+import { selectorFamily } from 'recoil'
+import { createState } from 'src/store/util'
 import { Task } from './type'
 
 const key = (str: string) => `src/store/entities/tasks/${str}`
 
-export const taskIdsState = atom<string[]>({
-  key: key('taskIdsState'),
-  default: [],
-})
-export const tasksState = atom<Task[]>({
-  key: key('tasksState'),
-  default: [],
-})
-
-export const initialTaskState = (): Task => ({
+export const initialState = (): Task => ({
   assigneeId: '',
   dueDate: '',
   dueTime: '',
@@ -27,6 +18,12 @@ export const initialTaskState = (): Task => ({
   taskSectionId: '',
   createdBy: '',
 })
+export const {
+  state: taskState,
+  listState: tasksState,
+  idsState: taskIdsState,
+} = createState({ key, initialState })
+
 export const taskIdsByTaskParentIdState = selectorFamily<string[], string>({
   key: key('taskIdsByTaskParentIdState'),
   get:
@@ -80,48 +77,5 @@ export const createdByIdsByTaskIdsState = selectorFamily<string[], string[]>({
     ({ get }) => {
       const tasks = get(tasksState)
       return tasks.filter((t) => taskIds.includes(t.id)).map((t) => t.createdBy)
-    },
-})
-
-const state = atomFamily<Task, string>({
-  key: key('state'),
-  default: initialTaskState(),
-})
-
-export const taskState = selectorFamily<Task, string>({
-  key: key('taskState'),
-  get:
-    (taskId) =>
-    ({ get }) =>
-      get(state(taskId)),
-  set:
-    (taskId) =>
-    ({ get, set, reset }, newVal) => {
-      if (newVal instanceof DefaultValue) {
-        reset(state(taskId))
-        return
-      }
-
-      set(state(taskId), newVal)
-      set(tasksState, (prev) =>
-        uniqBy([...prev, newVal], 'id').map((p) => {
-          if (p.id === newVal.id) {
-            return {
-              ...p,
-              ...newVal,
-            }
-          }
-          return p
-        }),
-      )
-
-      if (newVal.isDeleted) {
-        set(taskIdsState, (prev) => prev.filter((id) => id !== newVal.id))
-        return
-      }
-
-      if (get(taskIdsState).find((taskId) => taskId === newVal.id)) return
-
-      set(taskIdsState, (prev) => [...prev, newVal.id])
     },
 })

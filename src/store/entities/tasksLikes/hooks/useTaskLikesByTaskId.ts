@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react'
 import { useRecoilCallback, useRecoilState } from 'recoil'
 import { uuid } from 'src/shared/uuid'
-import { initialTaskLikeStateValue, taskLikesState } from '../atom'
+import { initialState, taskLikesState } from '../atom'
 import { useTasksLikeCommand } from './useTasksLikeCommand'
 
 export const useTaskLikesByTaskId = (taskId: string) => {
@@ -12,7 +12,7 @@ export const useTaskLikesByTaskId = (taskId: string) => {
     (teammateId: string) => {
       const id = uuid()
       upsert({
-        ...initialTaskLikeStateValue(),
+        ...initialState(),
         id,
         taskId,
         teammateId,

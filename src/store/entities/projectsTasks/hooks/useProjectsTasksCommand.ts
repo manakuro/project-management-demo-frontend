@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { uuid } from 'src/shared/uuid'
-import { projectTaskState, initialProjectsTaskState } from '../atom'
+import { projectTaskState, initialState } from '../atom'
 import { ProjectTask } from '../type'
 
 export const useProjectsTasksCommand = () => {
@@ -16,7 +16,7 @@ export const useProjectsTasksCommand = () => {
     () => (val?: Partial<ProjectTask>) => {
       const id = uuid()
       upsert({
-        ...initialProjectsTaskState(),
+        ...initialState(),
         ...val,
         id,
       })

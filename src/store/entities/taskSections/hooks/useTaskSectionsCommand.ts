@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { uuid } from 'src/shared/uuid'
-import { initialTaskSectionStateValue, taskSectionState } from '../atom'
+import { initialState, taskSectionState } from '../atom'
 import { TaskSection } from '../type'
 
 export const useTaskSectionsCommand = () => {
@@ -17,7 +17,7 @@ export const useTaskSectionsCommand = () => {
     (val?: Partial<TaskSection>) => {
       const id = uuid()
       upsert({
-        ...initialTaskSectionStateValue(),
+        ...initialState(),
         ...val,
         id,
       })

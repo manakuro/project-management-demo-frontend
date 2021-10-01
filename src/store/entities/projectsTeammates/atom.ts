@@ -1,19 +1,10 @@
-import { atomFamily, selectorFamily, DefaultValue, atom } from 'recoil'
-import { uniqBy } from 'src/shared/utils'
+import { selectorFamily } from 'recoil'
+import { createState } from 'src/store/util'
 import { ProjectTeammate } from './type'
 
 const key = (str: string) => `src/store/entities/projectsTeammates/${str}`
 
-export const projectTeammateIdsState = atom<string[]>({
-  key: key('projectTeammateIdsState'),
-  default: [],
-})
-export const projectTeammatesState = atom<ProjectTeammate[]>({
-  key: key('projectTeammatesState'),
-  default: [],
-})
-
-const initialProjectTeammateState = (): ProjectTeammate => ({
+const initialState = (): ProjectTeammate => ({
   id: '',
   projectId: '',
   teammateId: '',
@@ -21,6 +12,11 @@ const initialProjectTeammateState = (): ProjectTeammate => ({
   createdAt: '',
   updatedAt: '',
 })
+export const {
+  state: projectTeammateState,
+  listState: projectTeammatesState,
+  idsState: projectTeammateIdsState,
+} = createState({ key, initialState })
 
 export const teammateIdsByProjectIdState = selectorFamily<string[], string>({
   key: 'teammateIdsByProjectIdState',
@@ -45,7 +41,7 @@ export const ownerProjectTeammateByProjectIdState = selectorFamily<
       const projects = get(projectTeammatesState)
       return (
         projects.filter((t) => t.projectId === projectId && t.isOwner)[0] ??
-        initialProjectTeammateState()
+        initialState()
       )
     },
 })
@@ -62,49 +58,7 @@ export const projectTeammateByProjectIdAndTeammateIdState = selectorFamily<
       return (
         projects.find(
           (t) => t.projectId === projectId && t.teammateId === teammateId,
-        ) ?? initialProjectTeammateState()
+        ) ?? initialState()
       )
-    },
-})
-
-const state = atomFamily<ProjectTeammate, string>({
-  key: key('state'),
-  default: initialProjectTeammateState(),
-})
-
-export const projectTeammateState = selectorFamily<ProjectTeammate, string>({
-  key: key('projectTeammateState'),
-  get:
-    (projectTeammateId) =>
-    ({ get }) =>
-      get(state(projectTeammateId)),
-  set:
-    (projectTeammateId) =>
-    ({ get, set, reset }, newVal) => {
-      if (newVal instanceof DefaultValue) {
-        reset(state(projectTeammateId))
-        return
-      }
-
-      set(state(projectTeammateId), newVal)
-      set(projectTeammatesState, (prev) =>
-        uniqBy([...prev, newVal], 'id').map((p) => {
-          if (p.id === newVal.id) {
-            return {
-              ...p,
-              ...newVal,
-            }
-          }
-          return p
-        }),
-      )
-
-      if (
-        get(projectTeammateIdsState).find(
-          (projectTeammateId) => projectTeammateId === newVal.id,
-        )
-      )
-        return
-      set(projectTeammateIdsState, (prev) => [...prev, newVal.id])
     },
 })

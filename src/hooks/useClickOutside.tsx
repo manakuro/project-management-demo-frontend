@@ -9,6 +9,7 @@ type Options = {
       isContainInModalContent: (e: Event) => boolean
       isContainInPopoverContent: (e: Event) => boolean
       isContainInToastContent: (e: Event) => boolean
+      isContainInPopoverTrigger: (e: Event) => boolean
     },
   ) => boolean
 }
@@ -38,6 +39,7 @@ export const useClickOutside = (
               isContainInModalContent,
               isContainInPopoverContent,
               isContainInToastContent,
+              isContainInPopoverTrigger,
             })
             setState({ hasClickedOutside: clicked })
             return
@@ -108,5 +110,9 @@ const isContainInPopoverContent = (e: Event) =>
   )
 const isContainInToastContent = (e: Event) =>
   Array.from(document.querySelectorAll("[aria-label='toast-content']")).some(
+    (q) => q.contains(e.target as Node),
+  )
+const isContainInPopoverTrigger = (e: Event) =>
+  Array.from(document.querySelectorAll("[aria-label='popover-trigger']")).some(
     (q) => q.contains(e.target as Node),
   )

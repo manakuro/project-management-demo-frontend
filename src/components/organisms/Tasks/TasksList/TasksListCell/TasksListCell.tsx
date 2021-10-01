@@ -48,6 +48,7 @@ export const TasksListCell: React.FC<Props> = memo(
       >
         <Flex
           w="100%"
+          maxW="100%"
           fontWeight="normal"
           border={1}
           borderStyle="solid"

@@ -5,6 +5,7 @@ import {
   TasksDueDate,
   TasksProjects,
   TasksTags,
+  TasksAssignee,
 } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { useTaskColumn } from 'src/store/entities/taskColumns'
 import {
@@ -14,6 +15,7 @@ import {
   TASK_COLUMN_TYPE_PROJECT,
   TASK_COLUMN_TYPE_DUE_DATE,
   TASK_COLUMN_TYPE_CUSTOM,
+  TASK_COLUMN_TYPE_PRIORITY,
 } from 'src/store/entities/taskColumns/types'
 
 type Props = FlexProps & {
@@ -40,7 +42,7 @@ export const Cell: React.FC<Props> = memo<Props>((props) => {
       )
     }
     case TASK_COLUMN_TYPE_ASSIGNMENT: {
-      return null
+      return <TasksAssignee taskId={props.taskId} width={width} />
     }
     case TASK_COLUMN_TYPE_DUE_DATE: {
       return <TasksDueDate taskId={props.taskId} width={width} />
@@ -50,6 +52,9 @@ export const Cell: React.FC<Props> = memo<Props>((props) => {
     }
     case TASK_COLUMN_TYPE_TAGS: {
       return <TasksTags taskId={props.taskId} width={width} />
+    }
+    case TASK_COLUMN_TYPE_PRIORITY: {
+      return null
     }
     case TASK_COLUMN_TYPE_CUSTOM: {
       return null

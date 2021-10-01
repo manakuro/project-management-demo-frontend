@@ -17,9 +17,13 @@ type Props = {
 export const ProjectTeammateMenuItem: React.FC<Props> = memo<Props>((props) => {
   const { teammate, onClick } = props
 
-  const handleClick = useCallback(() => {
-    onClick(teammate)
-  }, [onClick, teammate])
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      e.stopPropagation()
+      onClick(teammate)
+    },
+    [onClick, teammate],
+  )
 
   return (
     <SearchMenuListItem index={props.index} onClick={handleClick}>

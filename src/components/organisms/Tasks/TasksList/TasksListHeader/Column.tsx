@@ -5,10 +5,11 @@ import {
   TASK_COLUMN_TYPE_CUSTOM,
   TASK_COLUMN_TYPE_DUE_DATE,
   TASK_COLUMN_TYPE_FIELD_NAME,
+  TASK_COLUMN_TYPE_PRIORITY,
   TASK_COLUMN_TYPE_PROJECT,
   TASK_COLUMN_TYPE_TAGS,
 } from 'src/store/entities/taskColumns/types'
-import { Tags, TaskName, DueDate, Projects } from './Columns'
+import { Tags, TaskName, DueDate, Projects, Assignee } from './Columns'
 
 type Props = {
   taskColumnId: string
@@ -23,7 +24,7 @@ export const Column: React.FC<Props> = memo<Props>((props) => {
       return <TaskName taskColumnId={props.taskColumnId} />
     }
     case TASK_COLUMN_TYPE_ASSIGNMENT: {
-      return null
+      return <Assignee taskColumnId={props.taskColumnId} />
     }
     case TASK_COLUMN_TYPE_DUE_DATE: {
       return <DueDate taskColumnId={props.taskColumnId} />
@@ -33,6 +34,9 @@ export const Column: React.FC<Props> = memo<Props>((props) => {
     }
     case TASK_COLUMN_TYPE_TAGS: {
       return <Tags taskColumnId={props.taskColumnId} />
+    }
+    case TASK_COLUMN_TYPE_PRIORITY: {
+      return null
     }
     case TASK_COLUMN_TYPE_CUSTOM: {
       return null

@@ -44,8 +44,8 @@ export const TasksDueDate: React.VFC<Props> = memo<Props>((props) => {
         w: props.width,
         minW: '120px',
         maxW: '280px',
-        ref,
       }}
+      ref={ref}
       cursor="pointer"
       hover
     >

@@ -1,67 +1,35 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
-import { PortalManager } from 'src/components/atoms'
+import React, { memo } from 'react'
 import {
-  Popover,
-  PopoverProps,
-  PopoverTrigger,
-} from 'src/components/organisms/Popover'
-import { useDebounce } from 'src/hooks'
+  SearchMenuContent,
+  SearchMenuTrigger,
+} from 'src/components/organisms/Menus/SearchMenu'
+import { SearchMenu } from 'src/components/organisms/Menus/SearchMenu/SearchMenu'
+import { PopoverProps } from 'src/components/organisms/Popover'
 import { Content } from './Content'
-import { useSearchProjectsQuery } from './useSearchProjectsQuery'
 
 type Props = PopoverProps & {
   onSelect: (val: string) => void
   queryText: string
+  onClose: () => void
   onClosed?: () => void
 }
 
 export const ProjectMenu: React.FC<Props> = memo<Props>((props) => {
-  const { onClosed, queryText, ...rest } = props
-  const { refetch, projects, loading: loadingQuery } = useSearchProjectsQuery()
-  const [loadingText, setLoadingText] = useState<boolean>(false)
-  const loading = useMemo(
-    () => loadingText || loadingQuery,
-    [loadingQuery, loadingText],
-  )
-  const [value, setValue] = useState<string>('')
-
-  useEffect(() => {
-    setLoadingText(true)
-    setValue(queryText)
-  }, [queryText])
-
-  const handleDebounce = useCallback(
-    async (val: string) => {
-      if (!val) return
-      console.log(val)
-      await refetch({ queryText: val })
-      setLoadingText(false)
-    },
-    [refetch],
-  )
-
-  useDebounce(value, handleDebounce, 500)
+  const { onClosed, queryText, isOpen, onClose, ...rest } = props
 
   return (
-    <PortalManager zIndex={1500}>
-      <Popover
-        closeOnBlur={false}
-        autoFocus={false}
-        returnFocusOnClose={false}
-        isLazy
-        lazyBehavior="keepMounted"
-        {...rest}
-      >
-        <PopoverTrigger>{props.children}</PopoverTrigger>
-        <Content
-          onClosed={onClosed}
-          onClose={props.onClose}
-          onSelect={props.onSelect}
-          projects={projects}
-          loading={loading}
-          queryText={value}
-        />
-      </Popover>
-    </PortalManager>
+    <SearchMenu isOpen={isOpen} {...rest}>
+      <SearchMenuTrigger>{props.children}</SearchMenuTrigger>
+      {isOpen && (
+        <SearchMenuContent mr={-3} onClose={onClose}>
+          <Content
+            onClosed={onClosed}
+            onClose={props.onClose}
+            onSelect={props.onSelect}
+            queryText={queryText}
+          />
+        </SearchMenuContent>
+      )}
+    </SearchMenu>
   )
 })

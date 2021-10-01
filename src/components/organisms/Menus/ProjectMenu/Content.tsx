@@ -1,63 +1,68 @@
 import React, { memo, useCallback } from 'react'
-import { Portal, Icon, Divider, Text, Spinner } from 'src/components/atoms'
-import { PopoverContent } from 'src/components/organisms/Popover'
-import { useClickOutside } from 'src/hooks'
-import { Project } from 'src/store/entities/projects'
-import { ListItem, LeftContainer, RightContainer } from './ListItem'
+import { Icon, Divider, Text } from 'src/components/atoms'
+import { useSearchProjectsQuery } from 'src/components/organisms/Menus/ProjectMenu/useSearchProjectsQuery'
+import {
+  SearchMenuLeftContainer,
+  SearchMenuListItem,
+  SearchMenuLoading,
+  SearchMenuRightContainer,
+  useSearchMenu,
+} from 'src/components/organisms/Menus/SearchMenu'
 import { ProjectItem } from './ProjectItem'
 
 type Props = {
-  onClose?: () => void
-  onClosed?: () => void
   onSelect: (val: string) => void
-  projects: Project[]
-  loading: boolean
   queryText: string
+  onClose: () => void
+  onClosed?: () => void
 }
 
 export const Content: React.FC<Props> = memo<Props>((props) => {
-  const { ref } = useClickOutside(props.onClose)
+  const { queryText, onSelect, onClose, onClosed } = props
+  const { refetch, projects, loading: loadingQuery } = useSearchProjectsQuery()
+
+  const handleDebounce = useCallback(
+    async (val: string) => {
+      await refetch({ queryText: val })
+    },
+    [refetch],
+  )
 
   const handleSelect = useCallback(
     (val: string) => {
-      props.onSelect(val)
-      props.onClose?.()
-      props.onClosed?.()
+      onSelect(val)
+      onClose()
+      onClosed?.()
     },
-    [props],
+    [onClose, onClosed, onSelect],
   )
 
+  const { loading } = useSearchMenu({
+    items: projects,
+    loadingQuery,
+    queryText,
+    onSelect: handleSelect,
+    onDebounce: handleDebounce,
+  })
+
+  if (loading) return <SearchMenuLoading />
+
   return (
-    <Portal>
-      <PopoverContent className="focus-visible" w="450px" ref={ref} mr={-3}>
-        {props.loading ? (
-          <ListItem index={-1} alignItems="center" justifyContent="center">
-            <Spinner size="sm" color="gray.400" emptyColor="gray.200" />
-          </ListItem>
-        ) : (
-          <>
-            {props.projects.map((p, i) => (
-              <ProjectItem
-                key={p.id}
-                onClick={handleSelect}
-                project={p}
-                index={i}
-              />
-            ))}
-            <Divider />
-            <ListItem index={props.projects.length}>
-              <LeftContainer>
-                <Icon icon="plus" color="primary" />
-              </LeftContainer>
-              <RightContainer>
-                <Text fontSize="sm" color="primary" fontWeight="medium">
-                  {`Create project for '${props.queryText}'`}
-                </Text>
-              </RightContainer>
-            </ListItem>
-          </>
-        )}
-      </PopoverContent>
-    </Portal>
+    <>
+      {projects.map((p, i) => (
+        <ProjectItem key={p.id} onClick={handleSelect} project={p} index={i} />
+      ))}
+      <Divider />
+      <SearchMenuListItem index={projects.length}>
+        <SearchMenuLeftContainer>
+          <Icon icon="plus" color="primary" />
+        </SearchMenuLeftContainer>
+        <SearchMenuRightContainer>
+          <Text fontSize="sm" color="primary" fontWeight="medium">
+            {`Create project for '${queryText}'`}
+          </Text>
+        </SearchMenuRightContainer>
+      </SearchMenuListItem>
+    </>
   )
 })

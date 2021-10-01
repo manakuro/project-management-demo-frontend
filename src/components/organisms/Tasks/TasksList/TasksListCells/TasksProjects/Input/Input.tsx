@@ -17,7 +17,12 @@ export const Input: React.VFC<Props> = memo((props) => {
   const { taskId, onClose } = props
   const popoverDisclosure = useDisclosure()
   const { projectIds } = useProjectIdsByTaskId(taskId)
-  const { ref } = useClickOutside(onClose)
+  const { ref } = useClickOutside(onClose, {
+    hasClickedOutside: (e, helper) => {
+      if (helper.isContainInPopoverContent(e)) return false
+      return true
+    },
+  })
   const [value, setValue] = useState<string>('')
   const hasMultipleProjects = useMemo<boolean>(
     () => projectIds.length > 1,
@@ -37,9 +42,13 @@ export const Input: React.VFC<Props> = memo((props) => {
     [popoverDisclosure],
   )
 
-  const handleSelect = useCallback((val: string) => {
-    console.log(val)
-  }, [])
+  const handleSelect = useCallback(
+    (val: string) => {
+      console.log(val)
+      onClose()
+    },
+    [onClose],
+  )
 
   return (
     <ProjectMenu

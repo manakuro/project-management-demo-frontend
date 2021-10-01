@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
+import { SearchMenuListItem } from 'src/components/organisms/Menus/SearchMenu'
 import { Project } from 'src/store/entities/projects'
-import { ListItem } from '../ListItem'
 
 type Props = {
   onClick: (project: string) => void
@@ -10,13 +10,18 @@ type Props = {
 
 export const ProjectItem: React.FC<Props> = memo<Props>((props) => {
   const { project } = props
-  const handleClick = useCallback(() => {
-    props.onClick(project.id)
-  }, [project.id, props])
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      e.stopPropagation()
+      props.onClick(project.id)
+    },
+    [project.id, props],
+  )
 
   return (
-    <ListItem index={props.index} onClick={handleClick}>
+    <SearchMenuListItem index={props.index} onClick={handleClick}>
       {project.name}
-    </ListItem>
+    </SearchMenuListItem>
   )
 })

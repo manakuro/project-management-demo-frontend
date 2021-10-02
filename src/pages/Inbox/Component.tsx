@@ -65,7 +65,7 @@ const WrappedComponent: React.VFC = memo(() => {
       display="flex"
       isLazy
     >
-      <Flex data-testid="Inbox" flex={1} flexDirection="column">
+      <Flex data-testid="Inbox" flex={1} flexDirection="column" maxW="full">
         <Head title="inbox" />
         <MainHeader>
           <Header />

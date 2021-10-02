@@ -6,7 +6,6 @@ import {
   Icon,
   Portal,
   Text,
-  Link,
   Image,
   PortalManager,
 } from 'src/components/atoms'
@@ -31,7 +30,7 @@ export const PopoverProfile: React.FC<Props> = (props) => {
     <PortalManager zIndex={1600}>
       <Popover trigger="hover" isLazy>
         <PopoverTrigger>
-          <Link>{props.children}</Link>
+          <Flex>{props.children}</Flex>
         </PopoverTrigger>
         <Portal>
           <PopoverContent w={56} border="none">

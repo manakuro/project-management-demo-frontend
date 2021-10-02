@@ -1,7 +1,7 @@
 import { useRecoilCallback } from 'recoil'
 import { useTeammatesTaskColumnsResponse } from 'src/store/entities/teammatesTaskColumns'
 import { useTeammatesTaskSectionsResponse } from 'src/store/entities/teammatesTaskSections'
-import { myTaskTaskStatusState } from '../taskListStatus'
+import { taskListStatusState } from '../taskListStatus'
 import { MyTaskResponse } from '../type'
 
 export const useMyTasksResponse = () => {
@@ -34,7 +34,7 @@ const useSetters = () => {
   const setTaskStatus = useRecoilCallback(
     ({ set }) =>
       (data: MyTaskResponse) => {
-        set(myTaskTaskStatusState, data.taskStatus)
+        set(taskListStatusState, data.taskStatus)
       },
     [],
   )

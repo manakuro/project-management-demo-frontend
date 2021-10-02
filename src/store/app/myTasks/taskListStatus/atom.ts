@@ -18,8 +18,8 @@ import {
 
 const key = (str: string) => `src/store/app/myTasks/taskListStatus/${str}`
 
-export const myTaskTaskStatusState = atom<TaskListStatus>({
-  key: key('myTaskTaskStatusState'),
+export const taskListStatusState = atom<TaskListStatus>({
+  key: key('taskListStatusState'),
   default: {
     id: '',
     taskListStatus: 1,
@@ -27,24 +27,22 @@ export const myTaskTaskStatusState = atom<TaskListStatus>({
   },
 })
 
-export const isMyTaskTaskListStatus = selectorFamily<boolean, TaskListStatuses>(
-  {
-    key: key('isMyTaskTaskListStatus'),
-    get:
-      (key) =>
-      ({ get }) => {
-        const taskStatus = get(myTaskTaskStatusState)
-        return taskStatus.taskListStatus === taskListStatues[key]
-      },
-  },
-)
-
-export const isMyTaskSortStatus = selectorFamily<boolean, SortStatuses>({
-  key: key('isMyTaskSortStatus'),
+export const isTaskListStatusState = selectorFamily<boolean, TaskListStatuses>({
+  key: key('isTaskListStatusState'),
   get:
     (key) =>
     ({ get }) => {
-      const taskStatus = get(myTaskTaskStatusState)
+      const taskStatus = get(taskListStatusState)
+      return taskStatus.taskListStatus === taskListStatues[key]
+    },
+})
+
+export const isTaskListSortStatusState = selectorFamily<boolean, SortStatuses>({
+  key: key('isTaskListSortStatusState'),
+  get:
+    (key) =>
+    ({ get }) => {
+      const taskStatus = get(taskListStatusState)
       return taskStatus.sortStatus === sortStatues[key]
     },
 })

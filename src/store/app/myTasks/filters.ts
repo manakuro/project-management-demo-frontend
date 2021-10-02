@@ -2,8 +2,8 @@ import { GetRecoilValue } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
 import { uniq } from 'src/shared/utils'
 import {
-  isMyTaskSortStatus,
-  isMyTaskTaskListStatus,
+  isTaskListSortStatusState,
+  isTaskListStatusState,
 } from 'src/store/app/myTasks/taskListStatus'
 import { projectTasksState } from 'src/store/entities/projectsTasks'
 import { Task } from 'src/store/entities/tasks'
@@ -24,7 +24,7 @@ export const sortTasks = (params: Params) => (t: Task[]) => {
 export const sortByDueDate =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isMyTaskSortStatus('dueDate'))) return tasks
+    if (!get(isTaskListSortStatusState('dueDate'))) return tasks
 
     return tasks.sort((a, b) => {
       if (!a.dueDate) return 1
@@ -37,7 +37,7 @@ export const sortByDueDate =
 export const sortByLikes =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isMyTaskSortStatus('likes'))) return tasks
+    if (!get(isTaskListSortStatusState('likes'))) return tasks
 
     return tasks.sort((a, b) => {
       const taskLikesA = get(taskLikesByTaskIdState(a.id))
@@ -49,7 +49,7 @@ export const sortByLikes =
 export const sortByAlphabetical =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isMyTaskSortStatus('alphabetical'))) return tasks
+    if (!get(isTaskListSortStatusState('alphabetical'))) return tasks
 
     return tasks.sort((a, b) =>
       a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1,
@@ -91,14 +91,14 @@ export const filterTasks = (params: Params) => (t: Task[]) => {
 export const filterByIncomplete =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isMyTaskTaskListStatus('incomplete'))) return tasks
+    if (!get(isTaskListStatusState('incomplete'))) return tasks
     return tasks.filter((t) => !t.isDone)
   }
 
 export const filterByAllCompleted =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isMyTaskTaskListStatus('completed'))) return tasks
+    if (!get(isTaskListStatusState('completed'))) return tasks
     return tasks.filter((t) => t.isDone)
   }
 
@@ -111,7 +111,7 @@ const getDuration = (date: string) => {
 export const filterByCompletedSinceToday =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isMyTaskTaskListStatus('completedToday'))) return tasks
+    if (!get(isTaskListStatusState('completedToday'))) return tasks
 
     return tasks.filter((t) => {
       if (!t.doneAt) return false
@@ -124,7 +124,7 @@ export const filterByCompletedSinceToday =
 export const filterByCompletedSinceYesterday =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isMyTaskTaskListStatus('completedYesterday'))) return tasks
+    if (!get(isTaskListStatusState('completedYesterday'))) return tasks
 
     return tasks.filter((t) => {
       if (!t.doneAt) return false
@@ -137,7 +137,7 @@ export const filterByCompletedSinceYesterday =
 export const filterByCompletedSince1Week =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isMyTaskTaskListStatus('completed1Week'))) return tasks
+    if (!get(isTaskListStatusState('completed1Week'))) return tasks
 
     return tasks.filter((t) => {
       if (!t.doneAt) return false
@@ -150,7 +150,7 @@ export const filterByCompletedSince1Week =
 export const filterByCompletedSince2Weeks =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isMyTaskTaskListStatus('completed2Weeks'))) return tasks
+    if (!get(isTaskListStatusState('completed2Weeks'))) return tasks
 
     return tasks.filter((t) => {
       if (!t.doneAt) return false
@@ -163,7 +163,7 @@ export const filterByCompletedSince2Weeks =
 export const filterByCompletedSince3Weeks =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isMyTaskTaskListStatus('completed3Weeks'))) return tasks
+    if (!get(isTaskListStatusState('completed3Weeks'))) return tasks
 
     return tasks.filter((t) => {
       if (!t.doneAt) return false

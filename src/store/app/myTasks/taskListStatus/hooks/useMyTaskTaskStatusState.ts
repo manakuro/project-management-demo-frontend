@@ -1,13 +1,13 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { myTaskTaskStatusState } from '../atom'
+import { taskListStatusState } from '../atom'
 import { TaskListStatus } from '../type'
 
 export const useMyTaskTaskStatusState = () => {
-  const state = useRecoilValue(myTaskTaskStatusState)
+  const state = useRecoilValue(taskListStatusState)
   const setTaskStatus = useRecoilCallback(
     ({ set }) =>
       (val: Partial<TaskListStatus>) => {
-        set(myTaskTaskStatusState, (prev) => ({
+        set(taskListStatusState, (prev) => ({
           ...prev,
           ...val,
         }))

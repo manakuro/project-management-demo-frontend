@@ -1,19 +1,19 @@
 import { useCallback } from 'react'
-import { taskListStatues, TaskListStatuses } from '../atom'
-import { TaskListStatusType } from '../types'
+import { taskListCompletedStatues, TaskListCompletedStatuses } from '../atom'
+import { TaskListCompletedStatusType } from '../types'
 import { useMyTaskTaskStatusState } from './useMyTaskTaskStatusState'
 
 export const useTaskListStatus = () => {
   const { setTaskStatus, state } = useMyTaskTaskStatusState()
 
   const isTaskListStatus = useCallback(
-    (status: TaskListStatuses) =>
-      state.taskListStatus === taskListStatues[status],
+    (status: TaskListCompletedStatuses) =>
+      state.taskListStatus === taskListCompletedStatues[status],
     [state.taskListStatus],
   )
 
   const onSetTaskListStatus = useCallback(
-    (status: TaskListStatusType) => {
+    (status: TaskListCompletedStatusType) => {
       setTaskStatus({ taskListStatus: status })
     },
     [setTaskStatus],

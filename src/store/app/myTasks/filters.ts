@@ -3,7 +3,7 @@ import { dateFns } from 'src/shared/dateFns'
 import { uniq } from 'src/shared/utils'
 import {
   isTaskListSortStatusState,
-  isTaskListStatusState,
+  isTaskListCompletedStatusState,
 } from 'src/store/app/myTasks/taskListStatus'
 import { projectTasksState } from 'src/store/entities/projectsTasks'
 import { Task } from 'src/store/entities/tasks'
@@ -91,14 +91,14 @@ export const filterTasks = (params: Params) => (t: Task[]) => {
 export const filterByIncomplete =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isTaskListStatusState('incomplete'))) return tasks
+    if (!get(isTaskListCompletedStatusState('incomplete'))) return tasks
     return tasks.filter((t) => !t.isDone)
   }
 
 export const filterByAllCompleted =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isTaskListStatusState('completed'))) return tasks
+    if (!get(isTaskListCompletedStatusState('completed'))) return tasks
     return tasks.filter((t) => t.isDone)
   }
 
@@ -111,7 +111,7 @@ const getDuration = (date: string) => {
 export const filterByCompletedSinceToday =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isTaskListStatusState('completedToday'))) return tasks
+    if (!get(isTaskListCompletedStatusState('completedToday'))) return tasks
 
     return tasks.filter((t) => {
       if (!t.doneAt) return false
@@ -124,7 +124,7 @@ export const filterByCompletedSinceToday =
 export const filterByCompletedSinceYesterday =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isTaskListStatusState('completedYesterday'))) return tasks
+    if (!get(isTaskListCompletedStatusState('completedYesterday'))) return tasks
 
     return tasks.filter((t) => {
       if (!t.doneAt) return false
@@ -137,7 +137,7 @@ export const filterByCompletedSinceYesterday =
 export const filterByCompletedSince1Week =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isTaskListStatusState('completed1Week'))) return tasks
+    if (!get(isTaskListCompletedStatusState('completed1Week'))) return tasks
 
     return tasks.filter((t) => {
       if (!t.doneAt) return false
@@ -150,7 +150,7 @@ export const filterByCompletedSince1Week =
 export const filterByCompletedSince2Weeks =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isTaskListStatusState('completed2Weeks'))) return tasks
+    if (!get(isTaskListCompletedStatusState('completed2Weeks'))) return tasks
 
     return tasks.filter((t) => {
       if (!t.doneAt) return false
@@ -163,7 +163,7 @@ export const filterByCompletedSince2Weeks =
 export const filterByCompletedSince3Weeks =
   ({ get }: Params) =>
   (tasks: Task[]) => {
-    if (!get(isTaskListStatusState('completed3Weeks'))) return tasks
+    if (!get(isTaskListCompletedStatusState('completed3Weeks'))) return tasks
 
     return tasks.filter((t) => {
       if (!t.doneAt) return false

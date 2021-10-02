@@ -9,25 +9,25 @@ import {
 } from 'src/components/organisms/Menu'
 import { chakra } from 'src/shared/chakra'
 import {
-  TASK_LIST_STATUS_TYPE_COMPLETED,
-  TASK_LIST_STATUS_TYPE_COMPLETED_1_WEEK,
-  TASK_LIST_STATUS_TYPE_COMPLETED_2_WEEKS,
-  TASK_LIST_STATUS_TYPE_COMPLETED_3_WEEKS,
-  TASK_LIST_STATUS_TYPE_COMPLETED_TODAY,
-  TASK_LIST_STATUS_TYPE_COMPLETED_YESTERDAY,
-  TaskListStatusType,
+  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED,
+  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_1_WEEK,
+  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_2_WEEKS,
+  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_3_WEEKS,
+  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_TODAY,
+  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_YESTERDAY,
+  TaskListCompletedStatusType,
 } from 'src/store/app/myTasks/taskListStatus'
 
 type Props = {
   onClose: () => void
-  listStatus?: ToString<TaskListStatusType>
-  onChange: (listStatus: ToString<TaskListStatusType>) => void
+  listStatus?: ToString<TaskListCompletedStatusType>
+  onChange: (listStatus: ToString<TaskListCompletedStatusType>) => void
 } & MenuProps
 
 export const PopoverCompletedTasks: React.FC<Props> = (props) => {
   const handleChange = useCallback(
     (listStatus?: string | string[]) => {
-      props.onChange(listStatus as ToString<TaskListStatusType>)
+      props.onChange(listStatus as ToString<TaskListCompletedStatusType>)
       props.onClose()
     },
     [props],
@@ -45,7 +45,7 @@ export const PopoverCompletedTasks: React.FC<Props> = (props) => {
           onChange={handleChange}
         >
           <MenuItemOption
-            value={TASK_LIST_STATUS_TYPE_COMPLETED.toString()}
+            value={TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED.toString()}
             as="div"
           >
             All Completed Tasks
@@ -59,31 +59,31 @@ export const PopoverCompletedTasks: React.FC<Props> = (props) => {
           >
             <MenuItemOption
               as="div"
-              value={TASK_LIST_STATUS_TYPE_COMPLETED_TODAY.toString()}
+              value={TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_TODAY.toString()}
             >
               Today
             </MenuItemOption>
             <MenuItemOption
               as="div"
-              value={TASK_LIST_STATUS_TYPE_COMPLETED_YESTERDAY.toString()}
+              value={TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_YESTERDAY.toString()}
             >
               Yesterday
             </MenuItemOption>
             <MenuItemOption
               as="div"
-              value={TASK_LIST_STATUS_TYPE_COMPLETED_1_WEEK.toString()}
+              value={TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_1_WEEK.toString()}
             >
               1 week
             </MenuItemOption>
             <MenuItemOption
               as="div"
-              value={TASK_LIST_STATUS_TYPE_COMPLETED_2_WEEKS.toString()}
+              value={TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_2_WEEKS.toString()}
             >
               2 weeks
             </MenuItemOption>
             <MenuItemOption
               as="div"
-              value={TASK_LIST_STATUS_TYPE_COMPLETED_3_WEEKS.toString()}
+              value={TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_3_WEEKS.toString()}
             >
               3 weeks
             </MenuItemOption>

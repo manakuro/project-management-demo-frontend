@@ -9,9 +9,9 @@ import {
 import { useTasksTaskStatus } from 'src/components/organisms/Tasks/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import {
-  TASK_LIST_STATUS_TYPE_ALL,
-  TASK_LIST_STATUS_TYPE_INCOMPLETE,
-  TaskListStatusType,
+  TASK_LIST_COMPLETED_STATUS_TYPE_ALL,
+  TASK_LIST_COMPLETED_STATUS_TYPE_INCOMPLETE,
+  TaskListCompletedStatusType,
 } from 'src/store/app/myTasks/taskListStatus'
 import { PopoverCompletedTasks } from './PopoverCompletedTasks'
 
@@ -23,8 +23,8 @@ export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>(() => {
   const popoverDisclosure = useDisclosure()
 
   const handleChange = useCallback(
-    (status: ToString<TaskListStatusType>) => {
-      onSetTaskListStatus(Number(status) as TaskListStatusType)
+    (status: ToString<TaskListCompletedStatusType>) => {
+      onSetTaskListStatus(Number(status) as TaskListCompletedStatusType)
     },
     [onSetTaskListStatus],
   )
@@ -48,7 +48,7 @@ export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>(() => {
   }, [isTaskListStatus])
 
   return (
-    <MenuSelect<ToString<TaskListStatusType>>
+    <MenuSelect<ToString<TaskListCompletedStatusType>>
       onChange={handleChange}
       placement="bottom-end"
     >
@@ -64,7 +64,9 @@ export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>(() => {
             {buttonText}
           </MenuSelectButton>
           <MenuSelectList defaultValue={taskListStatus.toString()}>
-            <MenuItemOption value={TASK_LIST_STATUS_TYPE_INCOMPLETE.toString()}>
+            <MenuItemOption
+              value={TASK_LIST_COMPLETED_STATUS_TYPE_INCOMPLETE.toString()}
+            >
               <Flex onMouseEnter={popoverDisclosure.onClose}>
                 Incomplete tasks
               </Flex>
@@ -90,7 +92,9 @@ export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>(() => {
                 </PopoverCompletedTasks>
               </Flex>
             </MenuItemOption>
-            <MenuItemOption value={TASK_LIST_STATUS_TYPE_ALL.toString()}>
+            <MenuItemOption
+              value={TASK_LIST_COMPLETED_STATUS_TYPE_ALL.toString()}
+            >
               <Flex onMouseEnter={popoverDisclosure.onClose}>All tasks</Flex>
             </MenuItemOption>
           </MenuSelectList>

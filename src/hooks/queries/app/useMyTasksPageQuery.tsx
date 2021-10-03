@@ -752,7 +752,7 @@ const fetchTasks = async (): Promise<MyTaskResponse> => {
         ],
         taskStatus: {
           id: '1',
-          taskListStatus: 1,
+          taskListCompletedStatus: 1,
           sortStatus: 1,
         },
       })

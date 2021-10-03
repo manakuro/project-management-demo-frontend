@@ -2,6 +2,6 @@ import { TaskListStatusType, TaskListSortStatusType } from './types'
 
 export type TaskListStatus = {
   id: string
-  taskListStatus: TaskListStatusType
+  taskListCompletedStatus: TaskListStatusType
   sortStatus: TaskListSortStatusType
 }

@@ -770,7 +770,7 @@ const fetchTasks = async (): Promise<ProjectsResponse> => {
         ],
         taskStatus: {
           id: '1',
-          taskListStatus: 1,
+          taskListCompletedStatus: 1,
           sortStatus: 1,
         },
       })

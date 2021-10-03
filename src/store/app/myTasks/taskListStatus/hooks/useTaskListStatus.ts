@@ -8,13 +8,13 @@ export const useTaskListStatus = () => {
 
   const isTaskListStatus = useCallback(
     (status: TaskListCompletedStatuses) =>
-      state.taskListStatus === taskListCompletedStatues[status],
-    [state.taskListStatus],
+      state.taskListCompletedStatus === taskListCompletedStatues[status],
+    [state.taskListCompletedStatus],
   )
 
   const onSetTaskListStatus = useCallback(
     (status: TaskListCompletedStatusType) => {
-      setTaskStatus({ taskListStatus: status })
+      setTaskStatus({ taskListCompletedStatus: status })
     },
     [setTaskStatus],
   )

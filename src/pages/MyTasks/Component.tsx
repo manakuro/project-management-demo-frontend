@@ -12,7 +12,7 @@ import {
   isMyTasksDetailURL,
   useRouter,
 } from 'src/router'
-import { useMyTasksTaskStatus } from 'src/store/app/myTasks/taskListStatus'
+import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus'
 import {
   TabStatusForMyTasks,
   useTabStatusForMyTasks,
@@ -81,7 +81,7 @@ const WrappedComponent: React.VFC = memo(() => {
     router,
   } = useRouter()
   const { setTabStatus, isTaskTabStatus, tabStatus } = useTabStatusForMyTasks()
-  const { isSorted, onSort } = useMyTasksTaskStatus()
+  const { isSorted, onSort } = useMyTasksTaskListStatus()
   const { loadingQuery, setLoadingTabContent } = useMyTasksContext()
   const [tabIndex, setTabIndex] = React.useState<Index>(
     mapURLtoTabStatus({ router, tabStatus }),

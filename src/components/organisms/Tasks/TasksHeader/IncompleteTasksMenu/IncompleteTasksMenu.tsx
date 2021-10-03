@@ -6,7 +6,7 @@ import {
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms/Menus'
-import { useTasksTaskStatus } from 'src/components/organisms/Tasks/hooks'
+import { useTasksTaskListStatus } from 'src/components/organisms/Tasks/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import {
   TASK_LIST_COMPLETED_STATUS_TYPE_ALL,
@@ -18,8 +18,8 @@ import { PopoverCompletedTasks } from './PopoverCompletedTasks'
 type Props = {}
 
 export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>(() => {
-  const { onSetTaskListStatus, isTaskListStatus, taskListCompletedStatus } =
-    useTasksTaskStatus()
+  const { onSetTaskListStatus, isTaskListCompletedStatus, taskListStatus } =
+    useTasksTaskListStatus()
   const popoverDisclosure = useDisclosure()
 
   const handleChange = useCallback(
@@ -31,21 +31,21 @@ export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>(() => {
 
   const buttonText = useMemo<string>(() => {
     switch (true) {
-      case isTaskListStatus('incomplete'):
+      case isTaskListCompletedStatus('incomplete'):
         return 'Incomplete tasks'
-      case isTaskListStatus('completed'):
-      case isTaskListStatus('completedToday'):
-      case isTaskListStatus('completedYesterday'):
-      case isTaskListStatus('completed1Week'):
-      case isTaskListStatus('completed2Weeks'):
-      case isTaskListStatus('completed3Weeks'):
+      case isTaskListCompletedStatus('completed'):
+      case isTaskListCompletedStatus('completedToday'):
+      case isTaskListCompletedStatus('completedYesterday'):
+      case isTaskListCompletedStatus('completed1Week'):
+      case isTaskListCompletedStatus('completed2Weeks'):
+      case isTaskListCompletedStatus('completed3Weeks'):
         return 'Completed tasks'
-      case isTaskListStatus('all'):
+      case isTaskListCompletedStatus('all'):
         return 'All tasks'
       default:
         return ''
     }
-  }, [isTaskListStatus])
+  }, [isTaskListCompletedStatus])
 
   return (
     <MenuSelect<ToString<TaskListCompletedStatusType>>
@@ -63,7 +63,9 @@ export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>(() => {
           >
             {buttonText}
           </MenuSelectButton>
-          <MenuSelectList defaultValue={taskListCompletedStatus.toString()}>
+          <MenuSelectList
+            defaultValue={taskListStatus.taskListCompletedStatus.toString()}
+          >
             <MenuItemOption
               value={TASK_LIST_COMPLETED_STATUS_TYPE_INCOMPLETE.toString()}
             >

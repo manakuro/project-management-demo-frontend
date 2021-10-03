@@ -12,7 +12,7 @@ import {
   useRouter,
 } from 'src/router'
 import { getProjectsIdFromURL } from 'src/router/projects'
-import { useMyTasksTaskStatus } from 'src/store/app/myTasks/taskListStatus'
+import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { Board } from './Board'
 import { Calendar } from './Calendar'
@@ -61,7 +61,7 @@ const WrappedComponent: React.VFC = memo(() => {
     navigateToMyTasksFiles,
     router,
   } = useRouter()
-  const { isSorted, onSort } = useMyTasksTaskStatus()
+  const { isSorted, onSort } = useMyTasksTaskListStatus()
   const { loadingQuery, setLoadingTabContent } = useProjectsPageContext()
   const [tabIndex, setTabIndex] = useState<Index>(mapURLtoTabIndex({ router }))
   const { setProjectId } = useProjectsProjectId()

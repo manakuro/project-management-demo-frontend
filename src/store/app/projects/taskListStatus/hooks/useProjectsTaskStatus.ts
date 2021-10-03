@@ -8,10 +8,10 @@ export const useProjectsTaskStatus = () => {
   const { onSetTaskListStatus, isTaskListStatus } = useTaskListStatus()
 
   return {
-    ...state,
+    taskListStatus: state,
     onSort,
     isSorted,
     onSetTaskListStatus,
-    isTaskListStatus,
+    isTaskListCompletedStatus: isTaskListStatus,
   }
 }

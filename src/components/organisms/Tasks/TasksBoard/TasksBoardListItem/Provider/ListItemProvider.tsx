@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useTasksTaskStatus } from 'src/components/organisms/Tasks/hooks'
+import { useTasksTaskListStatus } from 'src/components/organisms/Tasks/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { ROUTE_MY_TASKS, useRouter } from 'src/router'
 import { createProvider } from 'src/shared/react/createProvider'
@@ -25,7 +25,7 @@ const useValue = (props: Props): ContextProps => {
   const { ref, isHovering } = useHover()
   const [isOpening, setIsOpening] = useState(true)
   const { task, setTask } = useTask(props.taskId)
-  const { isTaskListStatus } = useTasksTaskStatus()
+  const { isTaskListCompletedStatus } = useTasksTaskListStatus()
 
   const onOpening = useCallback(() => {
     setIsOpening(true)
@@ -45,7 +45,7 @@ const useValue = (props: Props): ContextProps => {
 
   const onToggleDone = useCallback(async () => {
     // When incomplete tasks are listed and the user is trying to complete it
-    if (isTaskListStatus('incomplete')) {
+    if (isTaskListCompletedStatus('incomplete')) {
       if (!task.isDone) {
         onClosing()
         setTimeout(async () => {
@@ -56,7 +56,10 @@ const useValue = (props: Props): ContextProps => {
     }
 
     // When completed tasks are listed and the user is trying to make it as uncompleted
-    if (!isTaskListStatus('incomplete') && !isTaskListStatus('all')) {
+    if (
+      !isTaskListCompletedStatus('incomplete') &&
+      !isTaskListCompletedStatus('all')
+    ) {
       if (task.isDone) {
         onClosing()
         setTimeout(async () => {
@@ -67,7 +70,7 @@ const useValue = (props: Props): ContextProps => {
     }
 
     await setTask({ isDone: !task.isDone })
-  }, [isTaskListStatus, onClosing, setTask, task.isDone])
+  }, [isTaskListCompletedStatus, onClosing, setTask, task.isDone])
 
   return {
     selected,

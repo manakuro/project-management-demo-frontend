@@ -23,7 +23,7 @@ export const taskListStatusState = atom<TaskListStatus>({
   default: {
     id: '',
     taskListCompletedStatus: 1,
-    sortStatus: 1,
+    taskListSortStatus: 1,
   },
 })
 
@@ -42,24 +42,27 @@ export const isTaskListCompletedStatusState = selectorFamily<
     },
 })
 
-export const isTaskListSortStatusState = selectorFamily<boolean, SortStatuses>({
+export const isTaskListSortStatusState = selectorFamily<
+  boolean,
+  TaskListSortStatuses
+>({
   key: key('isTaskListSortStatusState'),
   get:
     (key) =>
     ({ get }) => {
       const taskStatus = get(taskListStatusState)
-      return taskStatus.sortStatus === sortStatues[key]
+      return taskStatus.taskListSortStatus === taskListSortStatues[key]
     },
 })
 
-export const sortStatues = {
+export const taskListSortStatues = {
   none: TASK_LIST_SORT_STATUS_TYPE_NONE,
   dueDate: TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
   likes: TASK_LIST_SORT_STATUS_TYPE_LIKES,
   alphabetical: TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
   project: TASK_LIST_SORT_STATUS_TYPE_PROJECT,
 } as const
-export type SortStatuses = keyof typeof sortStatues
+export type TaskListSortStatuses = keyof typeof taskListSortStatues
 
 export const taskListCompletedStatues = {
   incomplete: TASK_LIST_COMPLETED_STATUS_TYPE_INCOMPLETE,

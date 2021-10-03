@@ -23,7 +23,7 @@ export const projectsTaskStatusState = atom<TaskListStatus>({
   default: {
     id: '',
     taskListCompletedStatus: 1,
-    sortStatus: 1,
+    taskListSortStatus: 1,
   },
 })
 
@@ -46,7 +46,7 @@ export const isProjectsSortStatus = selectorFamily<boolean, SortStatuses>({
     (key) =>
     ({ get }) => {
       const taskStatus = get(projectsTaskStatusState)
-      return taskStatus.sortStatus === sortStatues[key]
+      return taskStatus.taskListSortStatus === sortStatues[key]
     },
 })
 

@@ -47,7 +47,7 @@ const ITEMS: {
 ]
 
 export const SortMenu: React.VFC<Props> = memo<Props>((props) => {
-  const { onSort, isSorted, sortStatus } = useTasksTaskStatus()
+  const { onSort, isSorted, taskListSortStatus } = useTasksTaskStatus()
   const handleChange = useCallback(
     (status: ToString<TaskListSortStatusType>) => {
       onSort(Number(status) as TaskListSortStatusType)
@@ -70,8 +70,8 @@ export const SortMenu: React.VFC<Props> = memo<Props>((props) => {
     if (isSorted('none')) return ''
     if (!projectSortable && isSorted('project')) return ''
 
-    return `: ${items.find((i) => i.value === sortStatus)!.text}`
-  }, [isSorted, items, projectSortable, sortStatus])
+    return `: ${items.find((i) => i.value === taskListSortStatus)!.text}`
+  }, [isSorted, items, projectSortable, taskListSortStatus])
 
   return (
     <MenuSelect<ToString<TaskListSortStatusType>>
@@ -87,7 +87,7 @@ export const SortMenu: React.VFC<Props> = memo<Props>((props) => {
       >
         Sort{text}
       </MenuSelectButton>
-      <MenuSelectList defaultValue={sortStatus.toString()}>
+      <MenuSelectList defaultValue={taskListSortStatus.toString()}>
         {items.map((item, i) => (
           <MenuItemOption value={item.value.toString()} key={i}>
             {item.text}

@@ -6,8 +6,8 @@ import { useProjectsTaskStatusState } from './useProjectsTaskStatusState'
 export const useSort = () => {
   const { setTaskStatus, state } = useProjectsTaskStatusState()
   const isSorted = useCallback(
-    (status: SortStatuses) => state.sortStatus === sortStatues[status],
-    [state.sortStatus],
+    (status: SortStatuses) => state.taskListSortStatus === sortStatues[status],
+    [state.taskListSortStatus],
   )
   const isSortStatusKey = useCallback(
     (val: any): val is SortStatuses => typeof val === 'string',
@@ -17,7 +17,7 @@ export const useSort = () => {
   const onSort = useCallback(
     (status: TaskListSortStatusType | SortStatuses) => {
       const val = isSortStatusKey(status) ? sortStatues[status] : status
-      setTaskStatus({ sortStatus: val })
+      setTaskStatus({ taskListSortStatus: val })
     },
     [setTaskStatus, isSortStatusKey],
   )

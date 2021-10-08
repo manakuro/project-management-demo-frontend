@@ -14,7 +14,7 @@ export const taskIdsState = selectorFamily<string[], string>({
   get:
     (projectId) =>
     ({ get }) => {
-      let tasks = get(tasksByProjectIdState(projectId))
+      let tasks = [...get(tasksByProjectIdState(projectId))]
       tasks = sortTasks({ get })(tasks)
       tasks = filterTasks({ get })(tasks)
 

@@ -5,6 +5,7 @@ import {
   TASK_LIST_SORT_STATUS_TYPE_LIKES,
   TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
   TASK_LIST_SORT_STATUS_TYPE_PROJECT,
+  TASK_LIST_SORT_STATUS_TYPE_ASSIGNEE,
   TaskListSortStatusType,
   TaskListCompletedStatusType,
   TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED,
@@ -17,7 +18,7 @@ import {
   TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_YESTERDAY,
 } from '../types'
 
-const isSort = (
+const isSortedBy = (
   status: TaskListSortStatusType,
   targetStatus: TaskListSortStatusType,
 ) => status === targetStatus
@@ -28,29 +29,34 @@ const isCompleted = (
 ) => status === targetStatus
 
 export const useTaskListStatus = () => {
-  const isSortNone = useCallback(
+  const isSortedByNone = useCallback(
     (status: TaskListSortStatusType) =>
-      isSort(status, TASK_LIST_SORT_STATUS_TYPE_NONE),
+      isSortedBy(status, TASK_LIST_SORT_STATUS_TYPE_NONE),
     [],
   )
-  const isSortDueDate = useCallback(
+  const isSortedByDueDate = useCallback(
     (status: TaskListSortStatusType) =>
-      isSort(status, TASK_LIST_SORT_STATUS_TYPE_DUE_DATE),
+      isSortedBy(status, TASK_LIST_SORT_STATUS_TYPE_DUE_DATE),
     [],
   )
-  const isSortLikes = useCallback(
+  const isSortedByLikes = useCallback(
     (status: TaskListSortStatusType) =>
-      isSort(status, TASK_LIST_SORT_STATUS_TYPE_LIKES),
+      isSortedBy(status, TASK_LIST_SORT_STATUS_TYPE_LIKES),
     [],
   )
-  const isSortAlphabetical = useCallback(
+  const isSortedByAlphabetical = useCallback(
     (status: TaskListSortStatusType) =>
-      isSort(status, TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL),
+      isSortedBy(status, TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL),
     [],
   )
-  const isSortProject = useCallback(
+  const isSortedByProject = useCallback(
     (status: TaskListSortStatusType) =>
-      isSort(status, TASK_LIST_SORT_STATUS_TYPE_PROJECT),
+      isSortedBy(status, TASK_LIST_SORT_STATUS_TYPE_PROJECT),
+    [],
+  )
+  const isSortedByAssignee = useCallback(
+    (status: TaskListSortStatusType) =>
+      isSortedBy(status, TASK_LIST_SORT_STATUS_TYPE_ASSIGNEE),
     [],
   )
 
@@ -96,11 +102,12 @@ export const useTaskListStatus = () => {
   )
 
   return {
-    isSortNone,
-    isSortDueDate,
-    isSortLikes,
-    isSortAlphabetical,
-    isSortProject,
+    isSortedByNone,
+    isSortedByDueDate,
+    isSortedByLikes,
+    isSortedByAlphabetical,
+    isSortedByProject,
+    isSortedByAssignee,
     isTaskListCompleted,
     isTaskListCompletedAll,
     isTaskListInComplete,

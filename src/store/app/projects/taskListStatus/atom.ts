@@ -12,6 +12,7 @@ import {
   TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_TODAY,
   TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_YESTERDAY,
   TASK_LIST_COMPLETED_STATUS_TYPE_INCOMPLETE,
+  TASK_LIST_SORT_STATUS_TYPE_ASSIGNEE,
 } from 'src/store/entities/taskListStatus'
 import { TaskListStatus } from './type'
 
@@ -59,6 +60,7 @@ export const taskListSortStatues = {
   dueDate: TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
   likes: TASK_LIST_SORT_STATUS_TYPE_LIKES,
   alphabetical: TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
+  assignee: TASK_LIST_SORT_STATUS_TYPE_ASSIGNEE,
 } as const
 export type TaskListSortStatuses = keyof typeof taskListSortStatues
 

@@ -2,6 +2,7 @@ import { GetRecoilValue } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
 import { Task } from 'src/store/entities/tasks'
 import { taskLikesByTaskIdState } from 'src/store/entities/tasksLikes'
+import { teammateState } from 'src/store/entities/teammates'
 import {
   isTaskListCompletedStatusState,
   isTaskListSortStatusState,
@@ -15,6 +16,7 @@ export const sortTasks = (params: Params) => (t: Task[]) => {
   let tasks = sortByDueDate(params)(t)
   tasks = sortByLikes(params)(tasks)
   tasks = sortByAlphabetical(params)(tasks)
+  tasks = sortByAssignee(params)(tasks)
 
   return tasks
 }
@@ -52,6 +54,25 @@ export const sortByAlphabetical =
     return tasks.sort((a, b) =>
       a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1,
     )
+  }
+
+export const sortByAssignee =
+  ({ get }: Params) =>
+  (tasks: Task[]) => {
+    if (!get(isTaskListSortStatusState('assignee'))) return tasks
+
+    return tasks.sort((a, b) => {
+      const teammateA = get(teammateState(a.assigneeId))
+      const teammateB = get(teammateState(b.assigneeId))
+      const nameA = teammateA.name.toLowerCase()
+      const nameB = teammateB.name.toLowerCase()
+
+      if (!nameA) return 1
+      if (!nameB) return -1
+      if (nameA === nameB) return 0
+
+      return nameA < nameB ? -1 : 1
+    })
   }
 
 export const filterTasks = (params: Params) => (t: Task[]) => {

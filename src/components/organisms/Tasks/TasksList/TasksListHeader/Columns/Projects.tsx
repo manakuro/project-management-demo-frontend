@@ -11,17 +11,17 @@ type Props = {
 export const Projects: React.FC<Props> = memo<Props>((props) => {
   const { tasksTaskColumnId } = props
   const { sortByProject, sortByNone, taskListStatus } = useTasksTaskListStatus()
-  const { isSortProject } = useTaskListStatus()
+  const { isSortedByProject } = useTaskListStatus()
 
   const handleSort = useCallback(() => {
-    if (isSortProject(taskListStatus.taskListSortStatus)) {
+    if (isSortedByProject(taskListStatus.taskListSortStatus)) {
       sortByNone()
       return
     }
 
     sortByProject?.()
   }, [
-    isSortProject,
+    isSortedByProject,
     sortByNone,
     sortByProject,
     taskListStatus.taskListSortStatus,
@@ -35,7 +35,7 @@ export const Projects: React.FC<Props> = memo<Props>((props) => {
       onSort={handleSort}
       menu
     >
-      {isSortProject(taskListStatus.taskListSortStatus) && (
+      {isSortedByProject(taskListStatus.taskListSortStatus) && (
         <Icon icon="arrowDownAlt" color="text.muted" />
       )}
     </Container>

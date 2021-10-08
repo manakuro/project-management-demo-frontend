@@ -16,6 +16,7 @@ type Result = {
   sortByLikes: () => void
   sortByDueDate: () => void
   sortByProject?: () => void
+  sortByAssignee?: () => void
   setTaskListCompletedStatus: (status: TaskListCompletedStatusType) => void
 }
 
@@ -25,12 +26,8 @@ export const useTasksTaskListStatus = (): Result => {
   const useProjectsTaskListStatusResult = useProjectsTaskListStatus()
 
   if (isMyTasksPage) {
-    return {
-      ...useMyTasksTaskListStatusResult,
-    }
+    return { ...useMyTasksTaskListStatusResult }
   }
 
-  return {
-    ...useProjectsTaskListStatusResult,
-  }
+  return { ...useProjectsTaskListStatusResult }
 }

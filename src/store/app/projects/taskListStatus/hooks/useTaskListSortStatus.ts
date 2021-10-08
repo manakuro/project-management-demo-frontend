@@ -4,6 +4,9 @@ import { TaskListSortStatusType } from '../types'
 import { useTaskListStatus } from './useTaskListStatus'
 import { useTaskListStatusCommand } from './useTaskListStatusCommand'
 
+const isSortStatusKey = (val: any): val is TaskListSortStatuses =>
+  typeof val === 'string'
+
 export const useTaskListSortStatus = () => {
   const { setTaskStatus } = useTaskListStatusCommand()
   const { taskListStatus } = useTaskListStatus()
@@ -13,17 +16,13 @@ export const useTaskListSortStatus = () => {
       taskListStatus.taskListSortStatus === taskListSortStatues[status],
     [taskListStatus.taskListSortStatus],
   )
-  const isSortStatusKey = useCallback(
-    (val: any): val is TaskListSortStatuses => typeof val === 'string',
-    [],
-  )
 
   const sortBy = useCallback(
     (status: TaskListSortStatusType | TaskListSortStatuses) => {
       const val = isSortStatusKey(status) ? taskListSortStatues[status] : status
       setTaskStatus({ taskListSortStatus: val })
     },
-    [setTaskStatus, isSortStatusKey],
+    [setTaskStatus],
   )
 
   const sortByNone = useCallback(() => {
@@ -42,6 +41,10 @@ export const useTaskListSortStatus = () => {
     sortBy('dueDate')
   }, [sortBy])
 
+  const sortByAssignee = useCallback(() => {
+    sortBy('assignee')
+  }, [sortBy])
+
   return {
     sortBy,
     isSorted,
@@ -49,5 +52,6 @@ export const useTaskListSortStatus = () => {
     sortByAlphabetical,
     sortByLikes,
     sortByDueDate,
+    sortByAssignee,
   }
 }

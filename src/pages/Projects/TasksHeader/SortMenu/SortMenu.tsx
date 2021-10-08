@@ -9,6 +9,7 @@ import {
   TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
   TASK_LIST_SORT_STATUS_TYPE_LIKES,
   TASK_LIST_SORT_STATUS_TYPE_NONE,
+  TASK_LIST_SORT_STATUS_TYPE_ASSIGNEE,
 } from 'src/store/entities/taskListStatus'
 
 type Props = {}
@@ -32,6 +33,10 @@ const ITEMS: {
   {
     value: TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
     text: 'Alphabetical',
+  },
+  {
+    value: TASK_LIST_SORT_STATUS_TYPE_ASSIGNEE,
+    text: 'Assignee',
   },
 ]
 

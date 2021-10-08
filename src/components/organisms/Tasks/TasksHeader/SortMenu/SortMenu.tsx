@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import React from 'react'
 import { Button, Icon } from 'src/components/atoms'
 import { MenuItemOption } from 'src/components/organisms/Menu'
 import {
@@ -6,80 +6,23 @@ import {
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms/Menus'
-import { useTasksTaskListStatus } from 'src/components/organisms/Tasks/hooks'
-import {
-  TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
-  TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
-  TASK_LIST_SORT_STATUS_TYPE_LIKES,
-  TASK_LIST_SORT_STATUS_TYPE_NONE,
-  TASK_LIST_SORT_STATUS_TYPE_PROJECT,
-  TaskListSortStatusType,
-} from 'src/store/app/myTasks/taskListStatus'
+import { TaskListSortStatusType } from 'src/store/entities/taskListStatus'
 
-type Props = {
-  projectSortable?: boolean
+type Props<T extends TaskListSortStatusType> = {
+  items: {
+    value: T
+    text: string
+  }[]
+  onChange: (status: ToString<T>) => void
+  text: string
+  defaultValue: string
 }
 
-const ITEMS: {
-  value: TaskListSortStatusType
-  text: string
-}[] = [
-  {
-    value: TASK_LIST_SORT_STATUS_TYPE_NONE,
-    text: 'None',
-  },
-  {
-    value: TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
-    text: 'Due Date',
-  },
-  {
-    value: TASK_LIST_SORT_STATUS_TYPE_LIKES,
-    text: 'Likes',
-  },
-  {
-    value: TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
-    text: 'Alphabetical',
-  },
-  {
-    value: TASK_LIST_SORT_STATUS_TYPE_PROJECT,
-    text: 'Project',
-  },
-]
-
-export const SortMenu: React.VFC<Props> = memo<Props>((props) => {
-  const { onSort, isSorted, taskListStatus } = useTasksTaskListStatus()
-  const handleChange = useCallback(
-    (status: ToString<TaskListSortStatusType>) => {
-      onSort(Number(status) as TaskListSortStatusType)
-    },
-    [onSort],
-  )
-  const projectSortable = useMemo(
-    () => props.projectSortable ?? true,
-    [props.projectSortable],
-  )
-  const items = useMemo(() => {
-    return ITEMS.filter((i) => {
-      if (!projectSortable && i.value === TASK_LIST_SORT_STATUS_TYPE_PROJECT)
-        return false
-      return true
-    })
-  }, [projectSortable])
-
-  const text = useMemo<string>(() => {
-    if (isSorted('none')) return ''
-    if (!projectSortable && isSorted('project')) return ''
-
-    return `: ${
-      items.find((i) => i.value === taskListStatus.taskListSortStatus)!.text
-    }`
-  }, [isSorted, items, projectSortable, taskListStatus.taskListSortStatus])
+export const SortMenu = <T extends TaskListSortStatusType>(props: Props<T>) => {
+  const { items, onChange, text, defaultValue } = props
 
   return (
-    <MenuSelect<ToString<TaskListSortStatusType>>
-      onChange={handleChange}
-      placement="bottom-end"
-    >
+    <MenuSelect<ToString<T>> onChange={onChange} placement="bottom-end">
       <MenuSelectButton
         variant="ghost"
         aria-label="Sort tasks"
@@ -89,9 +32,7 @@ export const SortMenu: React.VFC<Props> = memo<Props>((props) => {
       >
         Sort{text}
       </MenuSelectButton>
-      <MenuSelectList
-        defaultValue={taskListStatus.taskListSortStatus.toString()}
-      >
+      <MenuSelectList defaultValue={defaultValue}>
         {items.map((item, i) => (
           <MenuItemOption value={item.value.toString()} key={i}>
             {item.text}
@@ -100,5 +41,5 @@ export const SortMenu: React.VFC<Props> = memo<Props>((props) => {
       </MenuSelectList>
     </MenuSelect>
   )
-})
+}
 SortMenu.displayName = 'SortMenu'

@@ -1,5 +1,4 @@
 import { atom, selectorFamily } from 'recoil'
-import { TaskListStatus } from './type'
 import {
   TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
   TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
@@ -14,7 +13,8 @@ import {
   TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_TODAY,
   TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_YESTERDAY,
   TASK_LIST_COMPLETED_STATUS_TYPE_INCOMPLETE,
-} from './types'
+} from 'src/store/entities/taskListStatus'
+import { TaskListStatus } from './type'
 
 const key = (str: string) => `src/store/app/myTasks/taskListStatus/${str}`
 

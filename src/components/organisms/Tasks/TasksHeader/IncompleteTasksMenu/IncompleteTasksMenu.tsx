@@ -12,40 +12,61 @@ import {
   TASK_LIST_COMPLETED_STATUS_TYPE_ALL,
   TASK_LIST_COMPLETED_STATUS_TYPE_INCOMPLETE,
   TaskListCompletedStatusType,
-} from 'src/store/app/myTasks/taskListStatus'
+  useTaskListStatus,
+} from 'src/store/entities/taskListStatus'
 import { PopoverCompletedTasks } from './PopoverCompletedTasks'
 
 type Props = {}
 
 export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>(() => {
-  const { onSetTaskListStatus, isTaskListCompletedStatus, taskListStatus } =
+  const { setTaskListCompletedStatus, taskListStatus } =
     useTasksTaskListStatus()
+  const {
+    isTaskListCompleted,
+    isTaskListInComplete,
+    isTaskListCompleted1Week,
+    isTaskListCompleted2Weeks,
+    isTaskListCompletedToday,
+    isTaskListCompleted3Weeks,
+    isTaskListCompletedYesterday,
+    isTaskListCompletedAll,
+  } = useTaskListStatus()
   const popoverDisclosure = useDisclosure()
 
   const handleChange = useCallback(
     (status: ToString<TaskListCompletedStatusType>) => {
-      onSetTaskListStatus(Number(status) as TaskListCompletedStatusType)
+      setTaskListCompletedStatus(Number(status) as TaskListCompletedStatusType)
     },
-    [onSetTaskListStatus],
+    [setTaskListCompletedStatus],
   )
 
   const buttonText = useMemo<string>(() => {
     switch (true) {
-      case isTaskListCompletedStatus('incomplete'):
+      case isTaskListInComplete(taskListStatus.taskListCompletedStatus):
         return 'Incomplete tasks'
-      case isTaskListCompletedStatus('completed'):
-      case isTaskListCompletedStatus('completedToday'):
-      case isTaskListCompletedStatus('completedYesterday'):
-      case isTaskListCompletedStatus('completed1Week'):
-      case isTaskListCompletedStatus('completed2Weeks'):
-      case isTaskListCompletedStatus('completed3Weeks'):
+      case isTaskListCompleted(taskListStatus.taskListCompletedStatus):
+      case isTaskListCompletedToday(taskListStatus.taskListCompletedStatus):
+      case isTaskListCompletedYesterday(taskListStatus.taskListCompletedStatus):
+      case isTaskListCompleted1Week(taskListStatus.taskListCompletedStatus):
+      case isTaskListCompleted2Weeks(taskListStatus.taskListCompletedStatus):
+      case isTaskListCompleted3Weeks(taskListStatus.taskListCompletedStatus):
         return 'Completed tasks'
-      case isTaskListCompletedStatus('all'):
+      case isTaskListCompletedAll(taskListStatus.taskListCompletedStatus):
         return 'All tasks'
       default:
         return ''
     }
-  }, [isTaskListCompletedStatus])
+  }, [
+    isTaskListCompleted,
+    isTaskListCompleted1Week,
+    isTaskListCompleted2Weeks,
+    isTaskListCompleted3Weeks,
+    isTaskListCompletedAll,
+    isTaskListCompletedToday,
+    isTaskListCompletedYesterday,
+    isTaskListInComplete,
+    taskListStatus.taskListCompletedStatus,
+  ])
 
   return (
     <MenuSelect<ToString<TaskListCompletedStatusType>>

@@ -9,3 +9,4 @@ export const TasksHeader: React.FC<Props> = memo<Props>((props) => {
 
   return <Flex maxH="60px" px={paddingX} py={4} bg="white" {...props} />
 })
+TasksHeader.displayName = 'TasksHeader'

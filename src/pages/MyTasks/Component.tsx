@@ -81,7 +81,7 @@ const WrappedComponent: React.VFC = memo(() => {
     router,
   } = useRouter()
   const { setTabStatus, isTaskTabStatus, tabStatus } = useTabStatusForMyTasks()
-  const { isSorted, onSort } = useMyTasksTaskListStatus()
+  const { isSorted, sortBy } = useMyTasksTaskListStatus()
   const { loadingQuery, setLoadingTabContent } = useMyTasksContext()
   const [tabIndex, setTabIndex] = React.useState<Index>(
     mapURLtoTabStatus({ router, tabStatus }),
@@ -105,7 +105,7 @@ const WrappedComponent: React.VFC = memo(() => {
           break
         }
         case BOARD_INDEX: {
-          if (isSorted('project')) onSort('none')
+          if (isSorted('project')) sortBy('none')
           setLoading()
           setTabIndex(BOARD_INDEX)
           setTabStatus('board')
@@ -134,7 +134,7 @@ const WrappedComponent: React.VFC = memo(() => {
       navigateToMyTasksBoard,
       navigateToMyTasksCalendar,
       navigateToMyTasksFiles,
-      onSort,
+      sortBy,
       setTabStatus,
       setLoading,
     ],
@@ -169,7 +169,7 @@ const WrappedComponent: React.VFC = memo(() => {
       return
     }
     if (isMyTasksBoardURL(router)) {
-      if (isSorted('project')) onSort('none')
+      if (isSorted('project')) sortBy('none')
       setTabStatus('board')
       return
     }

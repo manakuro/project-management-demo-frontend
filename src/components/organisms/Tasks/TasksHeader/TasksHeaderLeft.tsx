@@ -6,3 +6,4 @@ type Props = FlexProps
 export const TasksHeaderLeft: React.FC<Props> = memo<Props>((props) => {
   return <Flex flex={1} {...props} />
 })
+TasksHeaderLeft.displayName = 'TasksHeaderLeft'

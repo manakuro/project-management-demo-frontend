@@ -5,7 +5,6 @@ import {
   CustomizeMenu,
   CustomizeButton,
   IncompleteTasksMenu,
-  SortMenu,
   TasksHeader,
   TasksHeaderRight,
   TasksProvider,
@@ -15,6 +14,7 @@ import {
 } from 'src/components/organisms/Tasks'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router'
+import { SortMenu } from '../TasksHeader'
 import { SkeletonBoard } from './SkeletonBoard'
 
 export const Board: React.VFC = memo(() => {
@@ -48,7 +48,7 @@ const Component: React.VFC = memo(() => {
         >
           <TasksHeaderRight ml="auto">
             <IncompleteTasksMenu />
-            <SortMenu projectSortable={false} />
+            <SortMenu />
             <CustomizeButton />
           </TasksHeaderRight>
         </TasksHeader>

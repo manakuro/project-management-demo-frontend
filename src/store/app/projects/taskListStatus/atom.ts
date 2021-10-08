@@ -1,11 +1,9 @@
 import { atom, selectorFamily } from 'recoil'
-import { TaskListStatus } from './type'
 import {
   TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
   TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
   TASK_LIST_SORT_STATUS_TYPE_LIKES,
   TASK_LIST_SORT_STATUS_TYPE_NONE,
-  TASK_LIST_SORT_STATUS_TYPE_PROJECT,
   TASK_LIST_COMPLETED_STATUS_TYPE_ALL,
   TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED,
   TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_1_WEEK,
@@ -14,7 +12,8 @@ import {
   TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_TODAY,
   TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_YESTERDAY,
   TASK_LIST_COMPLETED_STATUS_TYPE_INCOMPLETE,
-} from './types'
+} from 'src/store/entities/taskListStatus'
+import { TaskListStatus } from './type'
 
 const key = (str: string) => `src/store/app/projects/taskListStatus/${str}`
 
@@ -60,7 +59,6 @@ export const taskListSortStatues = {
   dueDate: TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
   likes: TASK_LIST_SORT_STATUS_TYPE_LIKES,
   alphabetical: TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
-  project: TASK_LIST_SORT_STATUS_TYPE_PROJECT,
 } as const
 export type TaskListSortStatuses = keyof typeof taskListSortStatues
 

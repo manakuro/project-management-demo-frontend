@@ -1,8 +1,6 @@
-import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { TaskListStatus } from 'src/store/app/myTasks/taskListStatus'
 import { taskListStatusState } from '../atom'
-import { TaskListCompletedStatusType } from '../types'
 
 export const useTaskListStatusCommand = () => {
   const setTaskStatus = useRecoilCallback(
@@ -16,15 +14,7 @@ export const useTaskListStatusCommand = () => {
     [],
   )
 
-  const onSetTaskListStatus = useCallback(
-    (status: TaskListCompletedStatusType) => {
-      setTaskStatus({ taskListCompletedStatus: status })
-    },
-    [setTaskStatus],
-  )
-
   return {
     setTaskStatus,
-    onSetTaskListStatus,
   }
 }

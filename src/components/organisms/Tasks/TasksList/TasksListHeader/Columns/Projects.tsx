@@ -1,6 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
 import { useTasksTaskListStatus } from 'src/components/organisms/Tasks/hooks'
+import { useTaskListStatus } from 'src/store/entities/taskListStatus'
 import { Container } from './Container'
 
 type Props = {
@@ -9,16 +10,22 @@ type Props = {
 
 export const Projects: React.FC<Props> = memo<Props>((props) => {
   const { tasksTaskColumnId } = props
-  const { onSort, isSorted } = useTasksTaskListStatus()
+  const { sortByProject, sortByNone, taskListStatus } = useTasksTaskListStatus()
+  const { isSortProject } = useTaskListStatus()
 
   const handleSort = useCallback(() => {
-    if (isSorted('project')) {
-      onSort('none')
+    if (isSortProject(taskListStatus.taskListSortStatus)) {
+      sortByNone()
       return
     }
 
-    onSort('project')
-  }, [isSorted, onSort])
+    sortByProject?.()
+  }, [
+    isSortProject,
+    sortByNone,
+    sortByProject,
+    taskListStatus.taskListSortStatus,
+  ])
 
   return (
     <Container
@@ -28,7 +35,9 @@ export const Projects: React.FC<Props> = memo<Props>((props) => {
       onSort={handleSort}
       menu
     >
-      {isSorted('project') && <Icon icon="arrowDownAlt" color="text.muted" />}
+      {isSortProject(taskListStatus.taskListSortStatus) && (
+        <Icon icon="arrowDownAlt" color="text.muted" />
+      )}
     </Container>
   )
 })

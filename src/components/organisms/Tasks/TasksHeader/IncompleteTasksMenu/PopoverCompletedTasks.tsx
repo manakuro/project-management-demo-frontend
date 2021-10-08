@@ -16,7 +16,7 @@ import {
   TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_TODAY,
   TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_YESTERDAY,
   TaskListCompletedStatusType,
-} from 'src/store/app/myTasks/taskListStatus'
+} from 'src/store/entities/taskListStatus'
 
 type Props = {
   onClose: () => void

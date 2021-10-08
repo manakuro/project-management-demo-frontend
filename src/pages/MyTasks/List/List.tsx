@@ -4,7 +4,6 @@ import {
   AddTaskButton,
   CustomizeButton,
   IncompleteTasksMenu,
-  SortMenu,
   TasksHeader,
   TasksHeaderLeft,
   TasksHeaderRight,
@@ -20,6 +19,7 @@ import {
 } from 'src/components/organisms/Tasks'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router'
+import { SortMenu } from '../TasksHeader'
 import { SkeletonList } from './SkeletonList'
 
 export const List: React.VFC = memo(() => {

@@ -4,7 +4,6 @@ import {
   AddTaskButton,
   CustomizeButton,
   IncompleteTasksMenu,
-  SortMenu,
   TasksHeader,
   TasksHeaderLeft,
   TasksHeaderRight,
@@ -21,6 +20,7 @@ import {
 import { getProjectsDetailId, isProjectsDetailURL, useRouter } from 'src/router'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useProjectsPageContext } from '../Provider'
+import { SortMenu } from '../TasksHeader'
 import { SkeletonList } from './SkeletonList'
 
 export const List: React.VFC = memo(() => {

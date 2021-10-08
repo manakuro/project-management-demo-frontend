@@ -18,7 +18,7 @@ export const useTaskListSortStatus = () => {
     [],
   )
 
-  const onSort = useCallback(
+  const sortBy = useCallback(
     (status: TaskListSortStatusType | TaskListSortStatuses) => {
       const val = isSortStatusKey(status) ? taskListSortStatues[status] : status
       setTaskStatus({ taskListSortStatus: val })
@@ -26,8 +26,33 @@ export const useTaskListSortStatus = () => {
     [setTaskStatus, isSortStatusKey],
   )
 
+  const sortByProject = useCallback(() => {
+    sortBy('project')
+  }, [sortBy])
+
+  const sortByNone = useCallback(() => {
+    sortBy('none')
+  }, [sortBy])
+
+  const sortByAlphabetical = useCallback(() => {
+    sortBy('alphabetical')
+  }, [sortBy])
+
+  const sortByLikes = useCallback(() => {
+    sortBy('likes')
+  }, [sortBy])
+
+  const sortByDueDate = useCallback(() => {
+    sortBy('dueDate')
+  }, [sortBy])
+
   return {
-    onSort,
+    sortBy,
     isSorted,
+    sortByProject,
+    sortByNone,
+    sortByAlphabetical,
+    sortByLikes,
+    sortByDueDate,
   }
 }

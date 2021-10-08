@@ -16,3 +16,4 @@ export const TasksHeaderRight: React.FC<Props> = memo<Props>((props) => {
     </Flex>
   )
 })
+TasksHeaderRight.displayName = 'TasksHeaderRight'

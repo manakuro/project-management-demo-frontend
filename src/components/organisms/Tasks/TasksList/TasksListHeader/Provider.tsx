@@ -3,6 +3,7 @@ import { useTasksListContentVerticalScroll } from 'src/components/organisms/Task
 import { useTasksTaskListStatus } from 'src/components/organisms/Tasks/hooks'
 import { ChakraProps } from 'src/shared/chakra'
 import { createProvider } from 'src/shared/react/createProvider'
+import { useTaskListStatus } from 'src/store/entities/taskListStatus'
 
 type ContextProps = {
   sortedStyle: ChakraProps
@@ -10,15 +11,24 @@ type ContextProps = {
 }
 
 const useValue = (): ContextProps => {
-  const { isSorted } = useTasksTaskListStatus()
+  const { taskListStatus } = useTasksTaskListStatus()
+  const { isSortProject, isSortNone } = useTaskListStatus()
   const { isScrolling } = useTasksListContentVerticalScroll()
 
   const sortedStyle = useMemo((): ChakraProps => {
-    if (!isSorted('none') && !isSorted('project'))
+    if (
+      !isSortNone(taskListStatus.taskListSortStatus) &&
+      !isSortProject(taskListStatus.taskListSortStatus)
+    )
       return { borderBottom: 'none' }
     if (isScrolling) return { borderBottom: 'none' }
     return {}
-  }, [isSorted, isScrolling])
+  }, [
+    isScrolling,
+    isSortNone,
+    isSortProject,
+    taskListStatus.taskListSortStatus,
+  ])
 
   const scrollingStyle = useMemo((): ChakraProps => {
     if (isScrolling) return { shadow: 'sm' }

@@ -1,16 +1,18 @@
 import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus'
-import { useProjectsTaskStatus } from 'src/store/app/projects/taskListStatus'
+import { useProjectsTaskListStatus } from 'src/store/app/projects/taskListStatus'
 import { useTasksContext } from '../TasksProvider'
 
 type Result = Omit<
-  ReturnType<typeof useMyTasksTaskListStatus | typeof useProjectsTaskStatus>,
+  ReturnType<
+    typeof useMyTasksTaskListStatus | typeof useProjectsTaskListStatus
+  >,
   'id'
 >
 
 export const useTasksTaskListStatus = (): Result => {
   const { isMyTasksPage } = useTasksContext()
   const useMyTasksTaskListStatusResult = useMyTasksTaskListStatus()
-  const useProjectsTaskStatusResult = useProjectsTaskStatus()
+  const useProjectsTaskListStatusResult = useProjectsTaskListStatus()
 
   if (isMyTasksPage) {
     return {
@@ -19,6 +21,6 @@ export const useTasksTaskListStatus = (): Result => {
   }
 
   return {
-    ...useProjectsTaskStatusResult,
+    ...useProjectsTaskListStatusResult,
   }
 }

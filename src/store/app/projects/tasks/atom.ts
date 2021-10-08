@@ -5,7 +5,7 @@ import {
   filterByTaskSectionId,
 } from 'src/store/entities/tasks'
 import { filterTasks, sortTasks } from '../filters'
-import { isProjectsSortStatus } from '../taskListStatus'
+import { isTaskListSortStatusState } from '../taskListStatus'
 
 const key = (str: string) => `src/store/app/projects/tasks/${str}`
 
@@ -19,7 +19,7 @@ export const taskIdsState = selectorFamily<string[], string>({
       tasks = filterTasks({ get })(tasks)
 
       switch (true) {
-        case get(isProjectsSortStatus('dueDate')): {
+        case get(isTaskListSortStatusState('dueDate')): {
           return tasks.filter((t) => !!t.dueDate).map((t) => t.id)
         }
         default: {
@@ -39,7 +39,7 @@ export const taskIdsByTaskSectionIdState = selectorFamily<
     ({ get }) => {
       let tasks = get(tasksByProjectIdState(projectId))
       switch (true) {
-        case get(isProjectsSortStatus('dueDate')): {
+        case get(isTaskListSortStatusState('dueDate')): {
           tasks = filterByTaskSectionId(taskSectionId)(tasks)
           tasks = filterTasks({ get })(tasks)
           return tasks.filter((t) => !t.dueDate).map((t) => t.id)

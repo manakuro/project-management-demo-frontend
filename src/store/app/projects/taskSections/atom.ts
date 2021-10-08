@@ -2,7 +2,7 @@ import { selectorFamily } from 'recoil'
 import { taskSectionsByProjectIdState } from 'src/store/entities/projectsTaskSections'
 import { TaskSection } from 'src/store/entities/taskSections'
 import { tasksByTaskSectionIdState } from 'src/store/entities/tasks'
-import { isProjectsSortStatus } from '../taskListStatus'
+import { isTaskListSortStatusState } from '../taskListStatus'
 
 const key = (str: string) => `src/store/app/projects/taskSections/${str}`
 
@@ -14,7 +14,7 @@ export const projectsTaskSectionIdsState = selectorFamily<string[], string>({
       const taskSections = get(taskSectionsByProjectIdState(projectId))
 
       switch (true) {
-        case get(isProjectsSortStatus('dueDate')): {
+        case get(isTaskListSortStatusState('dueDate')): {
           const hasTaskWithNoDueDate = !!taskSections.filter((taskSection) => {
             const tasks = get(tasksByTaskSectionIdState(taskSection.id))
             return tasks.some((t) => !t.dueDate)
@@ -23,8 +23,8 @@ export const projectsTaskSectionIdsState = selectorFamily<string[], string>({
 
           return taskSections.map((t) => t.id)
         }
-        case get(isProjectsSortStatus('likes')):
-        case get(isProjectsSortStatus('alphabetical')): {
+        case get(isTaskListSortStatusState('likes')):
+        case get(isTaskListSortStatusState('alphabetical')): {
           return []
         }
         default: {

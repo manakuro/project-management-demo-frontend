@@ -1,7 +1,7 @@
 import { useRecoilCallback } from 'recoil'
 import { useProjectsTaskColumnsResponse } from 'src/store/entities/projectsTaskColumns'
 import { useProjectsTaskSectionsResponse } from 'src/store/entities/projectsTaskSections'
-import { projectsTaskStatusState } from '../taskListStatus'
+import { taskListStatusState } from '../taskListStatus'
 import { ProjectsResponse } from '../type'
 
 export const useProjectsResponse = () => {
@@ -36,7 +36,7 @@ const useSetters = () => {
   const setTaskStatus = useRecoilCallback(
     ({ set }) =>
       (data: ProjectsResponse) => {
-        set(projectsTaskStatusState, data.taskStatus)
+        set(taskListStatusState, data.taskStatus)
       },
     [],
   )

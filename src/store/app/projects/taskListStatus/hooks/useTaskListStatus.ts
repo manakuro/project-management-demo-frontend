@@ -1,26 +1,10 @@
-import { useCallback } from 'react'
-import { taskListStatues, TaskListStatuses } from '../atom'
-import { TaskListStatusType } from '../types'
-import { useProjectsTaskStatusState } from './useProjectsTaskStatusState'
+import { useRecoilValue } from 'recoil'
+import { taskListStatusState } from '../atom'
 
 export const useTaskListStatus = () => {
-  const { setTaskStatus, state } = useProjectsTaskStatusState()
-
-  const isTaskListStatus = useCallback(
-    (status: TaskListStatuses) =>
-      state.taskListCompletedStatus === taskListStatues[status],
-    [state.taskListCompletedStatus],
-  )
-
-  const onSetTaskListStatus = useCallback(
-    (status: TaskListStatusType) => {
-      setTaskStatus({ taskListCompletedStatus: status })
-    },
-    [setTaskStatus],
-  )
+  const taskListStatus = useRecoilValue(taskListStatusState)
 
   return {
-    onSetTaskListStatus,
-    isTaskListStatus,
+    taskListStatus,
   }
 }

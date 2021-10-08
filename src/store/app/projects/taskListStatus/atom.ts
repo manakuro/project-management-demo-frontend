@@ -6,20 +6,20 @@ import {
   TASK_LIST_SORT_STATUS_TYPE_LIKES,
   TASK_LIST_SORT_STATUS_TYPE_NONE,
   TASK_LIST_SORT_STATUS_TYPE_PROJECT,
-  TASK_LIST_STATUS_TYPE_ALL,
-  TASK_LIST_STATUS_TYPE_COMPLETED,
-  TASK_LIST_STATUS_TYPE_COMPLETED_1_WEEK,
-  TASK_LIST_STATUS_TYPE_COMPLETED_2_WEEKS,
-  TASK_LIST_STATUS_TYPE_COMPLETED_3_WEEKS,
-  TASK_LIST_STATUS_TYPE_COMPLETED_TODAY,
-  TASK_LIST_STATUS_TYPE_COMPLETED_YESTERDAY,
-  TASK_LIST_STATUS_TYPE_INCOMPLETE,
+  TASK_LIST_COMPLETED_STATUS_TYPE_ALL,
+  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED,
+  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_1_WEEK,
+  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_2_WEEKS,
+  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_3_WEEKS,
+  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_TODAY,
+  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_YESTERDAY,
+  TASK_LIST_COMPLETED_STATUS_TYPE_INCOMPLETE,
 } from './types'
 
-const key = (str: string) => `src/store/app/projectss/taskListStatus/${str}`
+const key = (str: string) => `src/store/app/projects/taskListStatus/${str}`
 
-export const projectsTaskStatusState = atom<TaskListStatus>({
-  key: key('projectsTaskStatusState'),
+export const taskListStatusState = atom<TaskListStatus>({
+  key: key('taskListStatusState'),
   default: {
     id: '',
     taskListCompletedStatus: 1,
@@ -27,46 +27,51 @@ export const projectsTaskStatusState = atom<TaskListStatus>({
   },
 })
 
-export const isProjectsTaskListStatus = selectorFamily<
+export const isTaskListCompletedStatusState = selectorFamily<
   boolean,
-  TaskListStatuses
+  TaskListCompletedStatuses
 >({
-  key: key('isProjectsTaskListStatus'),
+  key: key('isTaskListCompletedStatusState'),
   get:
     (key) =>
     ({ get }) => {
-      const taskStatus = get(projectsTaskStatusState)
-      return taskStatus.taskListCompletedStatus === taskListStatues[key]
+      const taskStatus = get(taskListStatusState)
+      return (
+        taskStatus.taskListCompletedStatus === taskListCompletedStatues[key]
+      )
     },
 })
 
-export const isProjectsSortStatus = selectorFamily<boolean, SortStatuses>({
-  key: key('isProjectsSortStatus'),
+export const isTaskListSortStatusState = selectorFamily<
+  boolean,
+  TaskListSortStatuses
+>({
+  key: key('isTaskListSortStatusState'),
   get:
     (key) =>
     ({ get }) => {
-      const taskStatus = get(projectsTaskStatusState)
-      return taskStatus.taskListSortStatus === sortStatues[key]
+      const taskStatus = get(taskListStatusState)
+      return taskStatus.taskListSortStatus === taskListSortStatues[key]
     },
 })
 
-export const sortStatues = {
+export const taskListSortStatues = {
   none: TASK_LIST_SORT_STATUS_TYPE_NONE,
   dueDate: TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
   likes: TASK_LIST_SORT_STATUS_TYPE_LIKES,
   alphabetical: TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
   project: TASK_LIST_SORT_STATUS_TYPE_PROJECT,
 } as const
-export type SortStatuses = keyof typeof sortStatues
+export type TaskListSortStatuses = keyof typeof taskListSortStatues
 
-export const taskListStatues = {
-  incomplete: TASK_LIST_STATUS_TYPE_INCOMPLETE,
-  completed: TASK_LIST_STATUS_TYPE_COMPLETED,
-  completedToday: TASK_LIST_STATUS_TYPE_COMPLETED_TODAY,
-  completedYesterday: TASK_LIST_STATUS_TYPE_COMPLETED_YESTERDAY,
-  completed1Week: TASK_LIST_STATUS_TYPE_COMPLETED_1_WEEK,
-  completed2Weeks: TASK_LIST_STATUS_TYPE_COMPLETED_2_WEEKS,
-  completed3Weeks: TASK_LIST_STATUS_TYPE_COMPLETED_3_WEEKS,
-  all: TASK_LIST_STATUS_TYPE_ALL,
+export const taskListCompletedStatues = {
+  incomplete: TASK_LIST_COMPLETED_STATUS_TYPE_INCOMPLETE,
+  completed: TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED,
+  completedToday: TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_TODAY,
+  completedYesterday: TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_YESTERDAY,
+  completed1Week: TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_1_WEEK,
+  completed2Weeks: TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_2_WEEKS,
+  completed3Weeks: TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_3_WEEKS,
+  all: TASK_LIST_COMPLETED_STATUS_TYPE_ALL,
 } as const
-export type TaskListStatuses = keyof typeof taskListStatues
+export type TaskListCompletedStatuses = keyof typeof taskListCompletedStatues

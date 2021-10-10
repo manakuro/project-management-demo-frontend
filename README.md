@@ -2,3 +2,7 @@
 Project management tool demo app
 
 ## Usage
+
+```
+yarn dev
+```

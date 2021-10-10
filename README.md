@@ -6,3 +6,8 @@ Project management tool demo app
 ```
 yarn dev
 ```
+
+## Test
+```
+yarn test
+```

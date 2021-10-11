@@ -11,3 +11,8 @@ yarn dev
 ```
 yarn test
 ```
+
+## Build
+```
+yarn build
+```

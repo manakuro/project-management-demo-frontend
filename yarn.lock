@@ -3003,10 +3003,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16.10.3":
-  version: 16.10.3
-  resolution: "@types/node@npm:16.10.3"
-  checksum: 3fd429bce8a4acb497dcc62b536782a5e87ccf7cd91d64a78b263ae5d66cb72bf84be9eeeff6f84ae0567b065a40b267caa66d311f9e094990a5847bbd168a29
+"@types/node@npm:^16.10.4":
+  version: 16.10.4
+  resolution: "@types/node@npm:16.10.4"
+  checksum: 0ed43dd58af42da2c6a695459dd502a6e189be51710145a443a621c1e91d38abc55436c8e48a243edc611fa4b934d94c972c3729b0575deeb47784873aaa54ae
   languageName: node
   linkType: hard
 
@@ -3248,14 +3248,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^17.0.27":
-  version: 17.0.27
-  resolution: "@types/react@npm:17.0.27"
+"@types/react@npm:^17.0.29":
+  version: 17.0.29
+  resolution: "@types/react@npm:17.0.29"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 3a1147d963c16dc9bbea5afb20c4be94f2389cf4eca4c5fbe9b02f3406bd9957602c0459ea017c95f8c3d523221f572e8bd842f94654835776d4c2923357f9dc
+  checksum: 39280743f6fec1bbc5c8e705976c1738a5526aaa0e693052badf5cd2dd599b6536dd815b651017737a533bf1c03db6a5738498796ff44f806e55324dc7867723
   languageName: node
   linkType: hard
 
@@ -10015,7 +10015,7 @@ __metadata:
     "@types/eslint": ^7.28.0
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest-plugin-context": ^2.9.4
-    "@types/node": ^16.10.3
+    "@types/node": ^16.10.4
     "@types/prettier": ^2.4.1
     "@types/prosemirror-commands": ^1.0.4
     "@types/prosemirror-history": ^1.0.2
@@ -10027,7 +10027,7 @@ __metadata:
     "@types/prosemirror-state": ^1.2.6
     "@types/prosemirror-view": ^1.17.1
     "@types/raf-schd": ^4.0.1
-    "@types/react": ^17.0.27
+    "@types/react": ^17.0.29
     "@types/react-beautiful-dnd": ^13.1.1
     "@types/react-dom": 17.0.9
     "@types/shortid": ^0.0.29

@@ -16,7 +16,7 @@ export const EditorContent: React.FC<Props> = React.memo<Props>((props) => {
     const current = ref.current
     if (current && view) {
       if (style) {
-        Object.keys(style).map((k: any) => {
+        Object.keys(style).forEach((k: any) => {
           ;(view.dom as HTMLElement).style[k] = (style as any)[k]
         })
       }

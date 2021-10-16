@@ -9,3 +9,4 @@ export const Avatar: React.VFC = memo(() => {
     </Flex>
   )
 })
+Avatar.displayName = 'Avatar'

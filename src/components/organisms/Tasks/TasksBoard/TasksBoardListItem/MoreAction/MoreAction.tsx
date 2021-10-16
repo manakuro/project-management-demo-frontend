@@ -54,3 +54,4 @@ export const MoreAction: React.FC<Props> = memo<Props>((props) => {
     </PortalManager>
   )
 })
+MoreAction.displayName = 'MoreAction'

@@ -25,3 +25,4 @@ export const BulletList: React.FC<Props> = memo<Props>((props) => {
     />
   )
 })
+BulletList.displayName = 'BulletList'

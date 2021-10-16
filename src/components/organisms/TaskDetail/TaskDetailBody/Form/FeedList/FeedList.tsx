@@ -39,3 +39,4 @@ export const FeedList: React.VFC<Props> = memo<Props>((props) => {
     </Flex>
   )
 })
+FeedList.displayName = 'FeedList'

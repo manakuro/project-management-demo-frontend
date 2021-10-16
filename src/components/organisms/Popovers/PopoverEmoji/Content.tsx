@@ -30,3 +30,4 @@ export const Content: React.FC<Props> = memo<Props>(() => {
     </Portal>
   )
 })
+Content.displayName = 'Content'

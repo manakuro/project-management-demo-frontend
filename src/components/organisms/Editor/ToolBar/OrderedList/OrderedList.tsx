@@ -26,3 +26,4 @@ export const OrderedList: React.FC<Props> = memo<Props>((props) => {
     />
   )
 })
+OrderedList.displayName = 'OrderedList'

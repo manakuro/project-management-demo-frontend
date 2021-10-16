@@ -39,3 +39,4 @@ export const MenuList: React.FC<Props> = memo((props) => {
     </Portal>
   )
 })
+MenuList.displayName = 'MenuList'

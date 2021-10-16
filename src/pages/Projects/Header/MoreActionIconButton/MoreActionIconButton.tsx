@@ -40,3 +40,4 @@ export const MoreActionIconButton: React.FC<Props> = memo<Props>((props) => {
     </PortalManager>
   )
 })
+MoreActionIconButton.displayName = 'MoreActionIconButton'

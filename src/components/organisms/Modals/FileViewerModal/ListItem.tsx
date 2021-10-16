@@ -13,7 +13,7 @@ export const ListItem: React.VFC<Props> = (props) => {
 
   switch (attachment.type) {
     case 1: {
-      return <Image src={attachment.src} objectFit="contain" />
+      return <Image src={attachment.src} objectFit="contain" alt="attachment" />
     }
     case 2: {
       return <PdfViewer fileUrl={attachment.src} />
@@ -26,7 +26,11 @@ export const ListItem: React.VFC<Props> = (props) => {
           flexDirection="column"
         >
           <Box w="40%">
-            <Image src="/images/not_preview_file.svg" objectFit="contain" />
+            <Image
+              src="/images/not_preview_file.svg"
+              objectFit="contain"
+              alt="not preview"
+            />
           </Box>
           <Text fontSize="xl" mt={4}>
             We're not able to preview this file

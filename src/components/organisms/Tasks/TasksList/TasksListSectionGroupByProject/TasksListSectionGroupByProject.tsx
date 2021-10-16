@@ -48,4 +48,5 @@ const Component: React.FC<Props> = memo<Props>((props) => {
     </>
   )
 })
+Component.displayName = 'Component'
 TasksListSectionGroupByProject.displayName = 'TasksListSectionGroupByProject'

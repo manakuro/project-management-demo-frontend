@@ -50,4 +50,5 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
     </Flex>
   )
 })
+Component.displayName = 'Component'
 TasksName.displayName = 'TasksName'

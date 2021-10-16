@@ -27,4 +27,5 @@ const Component: React.VFC<Props> = memo<Props>(() => {
     </Stack>
   )
 })
+Component.displayName = 'Component'
 Content.displayName = 'Content'

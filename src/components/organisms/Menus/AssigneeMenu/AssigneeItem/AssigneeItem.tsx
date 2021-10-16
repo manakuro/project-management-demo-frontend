@@ -34,3 +34,4 @@ export const AssigneeItem: React.FC<Props> = memo<Props>((props) => {
     </ListItem>
   )
 })
+AssigneeItem.displayName = 'AssigneeItem'

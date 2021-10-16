@@ -47,4 +47,5 @@ const Component: React.VFC = memo(() => {
     </>
   )
 })
+Component.displayName = 'Component'
 Files.displayName = 'Files'

@@ -26,3 +26,4 @@ export const IncreaseListIndent: React.FC<Props> = memo<Props>((props) => {
     />
   )
 })
+IncreaseListIndent.displayName = 'IncreaseListIndent'

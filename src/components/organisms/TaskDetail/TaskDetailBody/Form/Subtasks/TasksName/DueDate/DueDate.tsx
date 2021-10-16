@@ -56,3 +56,4 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
     </PopoverDueDatePicker>
   )
 })
+DueDate.displayName = 'DueDate'

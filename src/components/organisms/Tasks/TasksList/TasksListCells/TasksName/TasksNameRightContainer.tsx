@@ -15,3 +15,4 @@ export const TasksNameRightContainer: React.FC<Props> = memo<Props>((props) => {
     />
   )
 })
+TasksNameRightContainer.displayName = 'TasksNameRightContainer'

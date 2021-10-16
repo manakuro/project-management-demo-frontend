@@ -29,3 +29,4 @@ export const Teammate: React.FC<Props> = memo<Props>((props) => {
     </Flex>
   )
 })
+Teammate.displayName = 'Teammate'

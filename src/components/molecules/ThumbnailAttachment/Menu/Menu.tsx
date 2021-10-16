@@ -48,3 +48,4 @@ export const Menu: React.FC<Props> = memo((props) => {
     </OrganismsMenu>
   )
 })
+Menu.displayName = 'Menu'

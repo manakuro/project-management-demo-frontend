@@ -21,4 +21,5 @@ type ComponentProps = Props & FieldInputProps<string>
 const Component: React.FC<ComponentProps> = memo((props) => {
   return <Checkbox size="sm" isChecked={props.checked} {...props} />
 })
+Component.displayName = 'Component'
 CheckboxField.displayName = 'CheckboxField'

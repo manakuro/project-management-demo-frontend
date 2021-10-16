@@ -22,3 +22,4 @@ export const Teammate: React.FC = memo(() => {
     </PopoverProfile>
   )
 })
+Teammate.displayName = 'Teammate'

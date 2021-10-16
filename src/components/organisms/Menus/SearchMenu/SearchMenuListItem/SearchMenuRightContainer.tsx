@@ -8,3 +8,4 @@ export const SearchMenuRightContainer: React.FC<Props> = memo<Props>(
     return <Flex alignItems="center" flex={1} ml={2} {...props} />
   },
 )
+SearchMenuRightContainer.displayName = 'SearchMenuRightContainer'

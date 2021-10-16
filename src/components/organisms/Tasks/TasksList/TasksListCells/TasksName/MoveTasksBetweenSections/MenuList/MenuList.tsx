@@ -34,4 +34,5 @@ const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
     </MenuSelectList>
   )
 })
+Component.displayName = 'Component'
 MenuList.displayName = 'MenuList'

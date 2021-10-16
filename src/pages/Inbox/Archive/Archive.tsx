@@ -50,4 +50,5 @@ const Component: React.VFC = memo(() => {
     </Inbox>
   )
 })
+Component.displayName = 'Component'
 Archive.displayName = 'Archive'

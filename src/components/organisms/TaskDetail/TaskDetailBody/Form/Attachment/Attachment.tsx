@@ -53,3 +53,4 @@ export const Attachment: React.VFC<Props> = memo<Props>((props) => {
     </Wrap>
   )
 })
+Attachment.displayName = 'Attachment'

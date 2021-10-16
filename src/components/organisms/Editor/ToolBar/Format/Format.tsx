@@ -72,3 +72,4 @@ export const Format: React.FC<Props> = memo<Props>(() => {
     </PortalManager>
   )
 })
+Format.displayName = 'Format'

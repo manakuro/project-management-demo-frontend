@@ -52,3 +52,4 @@ export const ListIcon: React.VFC<Props> = memo<Props>((props) => {
     </Menu>
   )
 })
+ListIcon.displayName = 'ListIcon'

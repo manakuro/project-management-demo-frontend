@@ -8,3 +8,4 @@ export const RightItem: React.FC<Props> = memo<Props>((props) => {
     <Flex minW={6} justifyContent="center" alignItems="center" {...props} />
   )
 })
+RightItem.displayName = 'RightItem'

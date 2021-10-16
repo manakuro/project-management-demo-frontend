@@ -29,3 +29,4 @@ export const LeaveTask: React.VFC = memo(() => {
     </Flex>
   )
 })
+LeaveTask.displayName = 'LeaveTask'

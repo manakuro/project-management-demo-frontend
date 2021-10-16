@@ -27,3 +27,4 @@ export const Link: React.FC<Props> = memo<Props>((props) => {
     />
   )
 })
+Link.displayName = 'Link'

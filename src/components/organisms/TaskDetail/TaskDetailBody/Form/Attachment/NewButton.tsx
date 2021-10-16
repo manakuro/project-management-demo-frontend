@@ -14,3 +14,4 @@ export const NewButton: React.VFC<Props> = memo<Props>(() => {
     </AttachmentMenu>
   )
 })
+NewButton.displayName = 'NewButton'

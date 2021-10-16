@@ -52,3 +52,4 @@ export const MentionItemBase: React.FC<Props> = memo<Props>((props) => {
     </Flex>
   )
 })
+MentionItemBase.displayName = 'MentionItemBase'

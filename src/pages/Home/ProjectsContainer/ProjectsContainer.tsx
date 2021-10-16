@@ -74,3 +74,4 @@ export const ProjectsContainer: React.VFC<Props> = memo<Props>((props) => {
     </Accordion>
   )
 })
+ProjectsContainer.displayName = 'ProjectsContainer'

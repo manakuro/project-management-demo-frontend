@@ -10,3 +10,4 @@ export const AddToProject: React.FC<Props> = memo<Props>(() => {
     </Button>
   )
 })
+AddToProject.displayName = 'AddToProject'

@@ -31,3 +31,4 @@ export const AttachmentMenu: React.FC<Props> = memo((props) => {
     </Menu>
   )
 })
+AttachmentMenu.displayName = 'AttachmentMenu'

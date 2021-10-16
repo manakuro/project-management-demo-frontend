@@ -23,3 +23,4 @@ export const Editor: React.FC<Props> = memo<Props>((props) => {
     </EditorContainer>
   )
 })
+Editor.displayName = 'Editor'

@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { memo } from 'react'
 import ReactDOM from 'react-dom'
 import { useReactNodeViewPortals } from './ReactNodeViewPortals'
 
-export const Portals: React.FC = React.memo(() => {
+export const Portals: React.FC = memo(() => {
   const portals = useReactNodeViewPortals()
 
   return (
@@ -13,3 +13,4 @@ export const Portals: React.FC = React.memo(() => {
     </>
   )
 })
+Portals.displayName = 'Portals'

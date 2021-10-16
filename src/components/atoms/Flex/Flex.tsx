@@ -12,3 +12,4 @@ export type FlexProps = Props
 export const Flex: React.FC<Props> = forwardRef((props, ref) => (
   <ChakraFlex {...props} ref={ref} />
 ))
+Flex.displayName = 'Flex'

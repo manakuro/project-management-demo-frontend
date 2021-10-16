@@ -41,4 +41,5 @@ export const Component: React.VFC<Props> = memo((props) => {
     }
   }
 })
+Component.displayName = 'Component'
 ThumbnailAttachment.displayName = 'ThumbnailAttachment'

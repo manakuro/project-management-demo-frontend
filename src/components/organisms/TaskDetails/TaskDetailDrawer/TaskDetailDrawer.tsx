@@ -50,3 +50,4 @@ export const TaskDetailDrawer: React.VFC<Props> = memo((props) => {
     </Slide>
   )
 })
+TaskDetailDrawer.displayName = 'TaskDetailDrawer'

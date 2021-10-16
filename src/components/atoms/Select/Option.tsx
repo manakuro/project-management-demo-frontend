@@ -19,3 +19,4 @@ export const Option: React.FC<Props> = memo<Props>((props) => {
     <MenuItem onClick={() => handleChange(props.value)}>{props.text}</MenuItem>
   )
 })
+Option.displayName = 'Option'

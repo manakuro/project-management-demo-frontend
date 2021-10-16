@@ -25,3 +25,4 @@ export const Underline: React.FC<Props> = memo<Props>((props) => {
     />
   )
 })
+Underline.displayName = 'Underline'

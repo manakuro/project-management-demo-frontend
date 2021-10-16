@@ -45,3 +45,4 @@ export const Section: React.FC<Props> = memo<Props>(() => {
     </MenuSelect>
   )
 })
+Section.displayName = 'Section'

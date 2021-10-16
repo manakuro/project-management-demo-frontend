@@ -25,3 +25,4 @@ export const Project: React.FC<Props> = memo<Props>((props) => {
     </Flex>
   )
 })
+Project.displayName = 'Project'

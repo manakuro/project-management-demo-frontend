@@ -25,3 +25,4 @@ export const ProjectItem: React.FC<Props> = memo<Props>((props) => {
     </SearchMenuListItem>
   )
 })
+ProjectItem.displayName = 'ProjectItem'

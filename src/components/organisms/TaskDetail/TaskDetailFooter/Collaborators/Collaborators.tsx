@@ -27,4 +27,5 @@ const Component: React.FC<Props> = memo(() => {
     </Flex>
   )
 })
+Component.displayName = 'Component'
 Collaborators.displayName = 'Collaborators'

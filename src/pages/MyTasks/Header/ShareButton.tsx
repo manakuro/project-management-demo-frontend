@@ -34,3 +34,4 @@ export const ShareButton: React.VFC = memo(() => {
     </Flex>
   )
 })
+ShareButton.displayName = 'ShareButton'

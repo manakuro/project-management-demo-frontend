@@ -33,3 +33,4 @@ export const TagMenu: React.FC<Props> = memo<Props>((props) => {
     </SearchMenu>
   )
 })
+TagMenu.displayName = 'TagMenu'

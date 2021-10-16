@@ -26,3 +26,5 @@ const Component: React.VFC = memo(() => {
     </Container>
   )
 })
+Component.displayName = 'Component'
+FeedListItem.displayName = 'FeedListItem'

@@ -25,3 +25,4 @@ export const ProjectIcon: React.VFC = memo(() => {
     </Flex>
   )
 })
+ProjectIcon.displayName = 'ProjectIcon'

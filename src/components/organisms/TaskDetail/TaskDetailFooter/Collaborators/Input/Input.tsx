@@ -92,3 +92,4 @@ const Component: React.VFC = memo(() => {
     </InviteCollaboratorMenu>
   )
 })
+Component.displayName = 'Component'

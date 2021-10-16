@@ -67,3 +67,4 @@ export const TasksDueSoon: React.VFC<Props> = memo<Props>(() => {
     </Accordion>
   )
 })
+TasksDueSoon.displayName = 'TasksDueSoon'

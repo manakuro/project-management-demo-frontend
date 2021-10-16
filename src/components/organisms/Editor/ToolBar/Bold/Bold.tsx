@@ -26,3 +26,4 @@ export const Bold: React.FC<Props> = memo<Props>((props) => {
     />
   )
 })
+Bold.displayName = 'Bold'

@@ -17,3 +17,4 @@ export const FavoriteProjects: React.VFC<Props> = memo<Props>(() => {
     />
   )
 })
+FavoriteProjects.displayName = 'FavoriteProjects'

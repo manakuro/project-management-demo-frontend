@@ -35,3 +35,4 @@ export const ListItem: React.FC<Props> = memo<Props>((props) => {
     />
   )
 })
+ListItem.displayName = 'ListItem'

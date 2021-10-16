@@ -33,3 +33,4 @@ export const ProjectMenu: React.FC<Props> = memo<Props>((props) => {
     </SearchMenu>
   )
 })
+ProjectMenu.displayName = 'ProjectMenu'

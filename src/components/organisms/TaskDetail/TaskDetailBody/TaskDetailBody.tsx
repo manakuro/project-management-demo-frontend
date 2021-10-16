@@ -47,3 +47,4 @@ export const TaskDetailBody: React.FC<Props> = memo<Props>((props) => {
     </Flex>
   )
 })
+TaskDetailBody.displayName = 'TaskDetailBody'

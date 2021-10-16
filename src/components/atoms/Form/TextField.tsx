@@ -29,4 +29,5 @@ const Component: React.FC<ComponentProps> = memo((props) => {
     </FormControl>
   )
 })
+Component.displayName = 'Component'
 TextField.displayName = 'TextField'

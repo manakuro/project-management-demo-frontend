@@ -80,4 +80,5 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
     </TasksListRow>
   )
 })
+Component.displayName = 'Component'
 TasksName.displayName = 'TasksName'

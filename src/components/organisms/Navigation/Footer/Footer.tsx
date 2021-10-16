@@ -12,3 +12,4 @@ export const Footer: React.VFC = memo(() => {
     </List>
   )
 })
+Footer.displayName = 'Footer'

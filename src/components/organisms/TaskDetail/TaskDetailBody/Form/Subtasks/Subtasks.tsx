@@ -34,3 +34,4 @@ export const Subtasks: React.FC<Props> = memo<Props>((props) => {
     </Row>
   )
 })
+Subtasks.displayName = 'Subtasks'

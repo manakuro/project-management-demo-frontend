@@ -19,3 +19,4 @@ export const Empty: React.FC<Props> = memo<Props>((props) => {
     </Flex>
   )
 })
+Empty.displayName = 'Empty'

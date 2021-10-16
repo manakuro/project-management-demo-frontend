@@ -20,3 +20,4 @@ export const AtMention: React.FC<Props> = memo<Props>(() => {
     />
   )
 })
+AtMention.displayName = 'AtMention'

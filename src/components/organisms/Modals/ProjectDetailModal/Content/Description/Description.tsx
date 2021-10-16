@@ -43,4 +43,5 @@ const Component: React.FC<Props> = memo<Props>(() => {
     </Container>
   )
 })
+Component.displayName = 'Component'
 Description.displayName = 'Description'

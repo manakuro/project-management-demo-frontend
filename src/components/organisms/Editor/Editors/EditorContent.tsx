@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useRef } from 'react'
+import React, { CSSProperties, useEffect, useRef, memo } from 'react'
 import { Box } from 'src/components/atoms'
 import { useEditorViewContext } from 'src/components/organisms/Editor/Editors/EdiorProvider'
 import 'prosemirror-view/style/prosemirror.css'
@@ -7,7 +7,7 @@ type Props = {
   style?: CSSProperties
 }
 
-export const EditorContent: React.FC<Props> = React.memo<Props>((props) => {
+export const EditorContent: React.FC<Props> = memo<Props>((props) => {
   const { style } = props
   const view = useEditorViewContext()
   const ref = useRef<HTMLDivElement | null>(null)
@@ -42,3 +42,4 @@ export const EditorContent: React.FC<Props> = React.memo<Props>((props) => {
 
   return <Box ref={ref} />
 })
+EditorContent.displayName = 'EditorContent'

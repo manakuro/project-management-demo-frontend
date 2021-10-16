@@ -53,3 +53,4 @@ export const EmojiItem: React.FC<Props> = memo<Props>((props) => {
     </Flex>
   )
 })
+EmojiItem.displayName = 'EmojiItem'

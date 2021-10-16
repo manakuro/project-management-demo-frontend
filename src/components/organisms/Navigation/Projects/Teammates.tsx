@@ -35,3 +35,4 @@ export const Teammates: React.VFC<Props> = memo(() => {
     </Wrap>
   )
 })
+Teammates.displayName = 'Teammates'

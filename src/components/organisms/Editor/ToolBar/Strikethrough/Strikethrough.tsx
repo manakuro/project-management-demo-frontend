@@ -25,3 +25,4 @@ export const Strikethrough: React.FC<Props> = memo<Props>((props) => {
     />
   )
 })
+Strikethrough.displayName = 'Strikethrough'

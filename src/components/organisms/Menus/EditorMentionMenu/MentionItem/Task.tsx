@@ -25,3 +25,4 @@ export const Task: React.FC<Props> = memo<Props>((props) => {
     </Flex>
   )
 })
+Task.displayName = 'Task'

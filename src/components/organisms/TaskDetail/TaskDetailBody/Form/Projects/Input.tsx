@@ -66,3 +66,4 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
     </Flex>
   )
 })
+Input.displayName = 'Input'

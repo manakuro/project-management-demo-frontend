@@ -23,3 +23,4 @@ export const Workspace: React.FC = memo(() => {
     </PopoverEditorLink>
   )
 })
+Workspace.displayName = 'Workspace'

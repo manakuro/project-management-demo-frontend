@@ -58,3 +58,4 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
     </Row>
   )
 })
+DueDate.displayName = 'DueDate'

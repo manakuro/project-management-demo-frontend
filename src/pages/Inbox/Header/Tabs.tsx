@@ -19,3 +19,4 @@ export const Tabs: React.VFC = memo(() => {
     </Flex>
   )
 })
+Tabs.displayName = 'Tabs'

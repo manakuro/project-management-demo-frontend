@@ -25,3 +25,4 @@ export const TagItem: React.FC<Props> = memo<Props>((props) => {
     </SearchMenuListItem>
   )
 })
+TagItem.displayName = 'TagItem'

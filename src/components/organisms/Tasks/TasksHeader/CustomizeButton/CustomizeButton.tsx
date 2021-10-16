@@ -23,3 +23,4 @@ export const CustomizeButton: React.VFC<Props> = memo<Props>(() => {
     </Button>
   )
 })
+CustomizeButton.displayName = 'CustomizeButton'

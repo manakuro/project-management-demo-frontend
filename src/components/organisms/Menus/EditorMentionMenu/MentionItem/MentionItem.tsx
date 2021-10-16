@@ -55,3 +55,4 @@ export const MentionItem: React.FC<Props> = memo<Props>((props) => {
       )
   }
 })
+MentionItem.displayName = 'MentionItem'

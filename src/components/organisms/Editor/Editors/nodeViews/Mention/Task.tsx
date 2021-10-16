@@ -25,3 +25,4 @@ export const Task: React.FC = memo(() => {
     </PopoverEditorLink>
   )
 })
+Task.displayName = 'Task'

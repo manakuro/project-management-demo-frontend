@@ -8,3 +8,4 @@ export const Emoji: React.FC = memo(() => {
 
   return <>{attrs.emoji}</>
 })
+Emoji.displayName = 'Emoji'

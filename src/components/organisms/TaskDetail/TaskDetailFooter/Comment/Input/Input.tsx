@@ -52,3 +52,4 @@ const Component: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
+Component.displayName = 'Component'

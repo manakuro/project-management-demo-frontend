@@ -119,3 +119,4 @@ const Component: React.FC<Props> = memo<Props>(() => {
     </Row>
   )
 })
+Component.displayName = 'Component'

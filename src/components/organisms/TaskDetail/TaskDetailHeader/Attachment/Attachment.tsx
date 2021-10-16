@@ -18,3 +18,4 @@ export const Attachment: React.VFC<Props> = memo<Props>(() => {
     </AttachmentMenu>
   )
 })
+Attachment.displayName = 'Attachment'

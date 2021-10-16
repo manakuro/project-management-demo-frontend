@@ -64,4 +64,5 @@ const Component: React.VFC = memo(() => {
     </>
   )
 })
+Component.displayName = 'Component'
 Calendar.displayName = 'Calendar'

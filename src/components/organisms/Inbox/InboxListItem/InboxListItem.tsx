@@ -32,5 +32,6 @@ const Component: React.FC<Props> = memo<Props>((props) => {
       return null
   }
 })
+Component.displayName = 'Component'
 
 InboxListItem.displayName = 'InboxListItem'

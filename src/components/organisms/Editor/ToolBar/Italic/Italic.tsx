@@ -26,3 +26,4 @@ export const Italic: React.FC<Props> = memo<Props>((props) => {
     />
   )
 })
+Italic.displayName = 'Italic'

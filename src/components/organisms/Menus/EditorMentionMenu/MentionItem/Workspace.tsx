@@ -22,3 +22,4 @@ export const Workspace: React.FC<Props> = memo<Props>((props) => {
     </Flex>
   )
 })
+Workspace.displayName = 'Workspace'

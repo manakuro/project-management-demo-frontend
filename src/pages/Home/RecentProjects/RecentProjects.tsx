@@ -15,3 +15,4 @@ export const RecentProjects: React.VFC<Props> = memo<Props>(() => {
     />
   )
 })
+RecentProjects.displayName = 'RecentProjects'

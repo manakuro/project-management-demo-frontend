@@ -4,6 +4,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:prettier/recommended',
     'plugin:@next/next/recommended',
+    'plugin:@next/next/core-web-vitals',
   ],
   plugins: [
     'babel', // https://www.npmjs.com/package/eslint-plugin-babel
@@ -49,6 +50,8 @@ module.exports = {
         trailingComma: 'all',
       },
     ],
+
+    'react/display-name': 'error',
   },
   globals: {
     context: false,

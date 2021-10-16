@@ -161,4 +161,5 @@ const WrappedComponent: React.VFC = memo(() => {
     </Tabs>
   )
 })
+WrappedComponent.displayName = 'WrappedComponent'
 Component.displayName = 'Component'

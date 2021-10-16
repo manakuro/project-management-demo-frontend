@@ -68,4 +68,5 @@ const Component: React.FC<Props> = memo<Props>((props) => {
     />
   )
 })
+Component.displayName = 'Component'
 Card.displayName = 'Card'

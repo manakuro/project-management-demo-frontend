@@ -31,3 +31,4 @@ export const Component: React.FC<Props> = memo<Props>(() => {
     </PopoverEmoji>
   )
 })
+Component.displayName = 'Component'

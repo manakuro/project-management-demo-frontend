@@ -126,4 +126,5 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
     </>
   )
 })
+Component.displayName = 'Component'
 TasksName.displayName = 'TasksName'

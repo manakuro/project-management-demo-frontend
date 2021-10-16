@@ -16,3 +16,4 @@ export const Projects: React.FC<Props> = memo<Props>(() => {
     </Row>
   )
 })
+Projects.displayName = 'Projects'

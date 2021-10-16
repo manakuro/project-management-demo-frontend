@@ -15,3 +15,4 @@ export const Comment: React.FC<Props> = memo(() => {
     </Flex>
   )
 })
+Comment.displayName = 'Comment'

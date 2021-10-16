@@ -46,3 +46,4 @@ export const Assignee: React.FC<Props> = memo<Props>((props) => {
     </PopoverAssigneeInput>
   )
 })
+Assignee.displayName = 'Assignee'

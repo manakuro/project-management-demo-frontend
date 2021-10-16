@@ -133,6 +133,12 @@ const fetch = async (): Promise<ActivityResponse> => {
                     dateFns.subDays(new Date(), 1),
                   ).toISOString(),
                   createdBy: '1',
+                  createdAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
+                  updatedAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
                 },
                 createdAt: '',
                 updatedAt: '',
@@ -172,6 +178,12 @@ const fetch = async (): Promise<ActivityResponse> => {
                     dateFns.subDays(new Date(), 3),
                   ).toISOString(),
                   createdBy: '2',
+                  createdAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
+                  updatedAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
                 },
                 createdAt: '',
                 updatedAt: '',
@@ -227,6 +239,12 @@ const fetch = async (): Promise<ActivityResponse> => {
                   taskParentId: '',
                   doneAt: '',
                   createdBy: '2',
+                  createdAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
+                  updatedAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
                 },
                 createdAt: '',
                 updatedAt: '',
@@ -286,6 +304,12 @@ const fetch = async (): Promise<ActivityResponse> => {
                     dateFns.subDays(new Date(), 1),
                   ).toISOString(),
                   createdBy: '1',
+                  createdAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
+                  updatedAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
                 },
                 createdAt: '',
                 updatedAt: '',
@@ -325,6 +349,12 @@ const fetch = async (): Promise<ActivityResponse> => {
                     dateFns.subDays(new Date(), 3),
                   ).toISOString(),
                   createdBy: '2',
+                  createdAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
+                  updatedAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
                 },
                 createdAt: '',
                 updatedAt: '',
@@ -370,6 +400,12 @@ const fetch = async (): Promise<ActivityResponse> => {
                   taskParentId: '',
                   doneAt: '',
                   createdBy: '2',
+                  createdAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
+                  updatedAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
                 },
                 createdAt: '',
                 updatedAt: '',
@@ -415,6 +451,12 @@ const fetch = async (): Promise<ActivityResponse> => {
                   taskParentId: '',
                   doneAt: '',
                   createdBy: '2',
+                  createdAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
+                  updatedAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
                 },
                 createdAt: '',
                 updatedAt: '',
@@ -460,6 +502,12 @@ const fetch = async (): Promise<ActivityResponse> => {
                   taskParentId: '',
                   doneAt: '',
                   createdBy: '2',
+                  createdAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
+                  updatedAt: new Date(
+                    dateFns.subDays(new Date(), 1),
+                  ).toISOString(),
                 },
                 createdAt: '',
                 updatedAt: '',

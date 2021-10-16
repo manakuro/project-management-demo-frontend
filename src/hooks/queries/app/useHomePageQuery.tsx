@@ -75,6 +75,8 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             taskParentId: '',
             doneAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
             createdBy: '1',
+            createdAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
+            updatedAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
           },
           {
             id: '2',
@@ -103,6 +105,8 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             taskParentId: '',
             doneAt: new Date(dateFns.subDays(new Date(), 3)).toISOString(),
             createdBy: '1',
+            createdAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
+            updatedAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
           },
           {
             id: '3',
@@ -130,6 +134,8 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             taskParentId: '',
             doneAt: '',
             createdBy: '1',
+            createdAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
+            updatedAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
           },
           {
             id: '4',
@@ -157,6 +163,8 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             taskParentId: '',
             doneAt: '',
             createdBy: '1',
+            createdAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
+            updatedAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
           },
           {
             id: '5',
@@ -184,6 +192,8 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             taskParentId: '',
             doneAt: '',
             createdBy: '1',
+            createdAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
+            updatedAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
           },
           {
             id: '10',
@@ -212,6 +222,8 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             taskParentId: '',
             doneAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
             createdBy: '1',
+            createdAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
+            updatedAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
           },
         ],
       })

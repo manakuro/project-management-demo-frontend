@@ -10,6 +10,7 @@ import {
   TASK_LIST_SORT_STATUS_TYPE_LIKES,
   TASK_LIST_SORT_STATUS_TYPE_NONE,
   TASK_LIST_SORT_STATUS_TYPE_ASSIGNEE,
+  TASK_LIST_SORT_STATUS_TYPE_CREATION_TIME,
 } from 'src/store/entities/taskListStatus'
 
 type Props = {}
@@ -37,6 +38,10 @@ const ITEMS: {
   {
     value: TASK_LIST_SORT_STATUS_TYPE_ASSIGNEE,
     text: 'Assignee',
+  },
+  {
+    value: TASK_LIST_SORT_STATUS_TYPE_CREATION_TIME,
+    text: 'Creation Time',
   },
 ]
 

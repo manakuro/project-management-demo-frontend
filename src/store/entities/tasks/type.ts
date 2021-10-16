@@ -17,6 +17,8 @@ export type Task = {
   taskParentId: string
   taskSectionId: string
   createdBy: string
+  createdAt: string
+  updatedAt: string
 }
 
 export type TaskResponse = {
@@ -38,4 +40,6 @@ export type TaskResponse = {
   taskSectionId: string
   teammates: TasksTeammateResponse[] // collaborators
   createdBy: string
+  createdAt: string
+  updatedAt: string
 }

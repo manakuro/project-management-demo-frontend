@@ -76,6 +76,8 @@ const fetchTask = async (): Promise<TaskResponse> => {
             taskParentId: '1',
             doneAt: '',
             createdBy: '1',
+            createdAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
+            updatedAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
           },
           {
             assigneeId: '1',
@@ -96,6 +98,8 @@ const fetchTask = async (): Promise<TaskResponse> => {
             taskParentId: '1',
             doneAt: '',
             createdBy: '1',
+            createdAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
+            updatedAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
           },
           {
             assigneeId: '1',
@@ -116,6 +120,8 @@ const fetchTask = async (): Promise<TaskResponse> => {
             taskParentId: '1',
             doneAt: '',
             createdBy: '1',
+            createdAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
+            updatedAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
           },
         ],
         assigneeId: '1',
@@ -328,6 +334,8 @@ const fetchTask = async (): Promise<TaskResponse> => {
         taskParentId: '',
         doneAt: new Date(dateFns.subDays(new Date(), 3)).toISOString(),
         createdBy: '1',
+        createdAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
+        updatedAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
       })
     }, 300)
   })

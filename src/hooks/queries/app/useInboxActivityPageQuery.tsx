@@ -129,6 +129,7 @@ const fetch = async (): Promise<ActivityResponse> => {
                   isNew: false,
                   isDeleted: false,
                   taskParentId: '',
+                  priority: 0,
                   doneAt: new Date(
                     dateFns.subDays(new Date(), 1),
                   ).toISOString(),
@@ -174,6 +175,7 @@ const fetch = async (): Promise<ActivityResponse> => {
                   isNew: false,
                   isDeleted: false,
                   taskParentId: '',
+                  priority: 0,
                   doneAt: new Date(
                     dateFns.subDays(new Date(), 3),
                   ).toISOString(),
@@ -237,6 +239,7 @@ const fetch = async (): Promise<ActivityResponse> => {
                   isNew: false,
                   isDeleted: false,
                   taskParentId: '',
+                  priority: 0,
                   doneAt: '',
                   createdBy: '2',
                   createdAt: new Date(
@@ -300,6 +303,7 @@ const fetch = async (): Promise<ActivityResponse> => {
                   isNew: false,
                   isDeleted: false,
                   taskParentId: '',
+                  priority: 0,
                   doneAt: new Date(
                     dateFns.subDays(new Date(), 1),
                   ).toISOString(),
@@ -345,6 +349,7 @@ const fetch = async (): Promise<ActivityResponse> => {
                   isNew: false,
                   isDeleted: false,
                   taskParentId: '',
+                  priority: 0,
                   doneAt: new Date(
                     dateFns.subDays(new Date(), 3),
                   ).toISOString(),
@@ -398,6 +403,7 @@ const fetch = async (): Promise<ActivityResponse> => {
                   isNew: false,
                   isDeleted: false,
                   taskParentId: '',
+                  priority: 0,
                   doneAt: '',
                   createdBy: '2',
                   createdAt: new Date(
@@ -449,6 +455,7 @@ const fetch = async (): Promise<ActivityResponse> => {
                   isNew: false,
                   isDeleted: false,
                   taskParentId: '',
+                  priority: 0,
                   doneAt: '',
                   createdBy: '2',
                   createdAt: new Date(
@@ -500,6 +507,7 @@ const fetch = async (): Promise<ActivityResponse> => {
                   isNew: false,
                   isDeleted: false,
                   taskParentId: '',
+                  priority: 0,
                   doneAt: '',
                   createdBy: '2',
                   createdAt: new Date(

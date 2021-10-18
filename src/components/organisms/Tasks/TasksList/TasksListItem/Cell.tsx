@@ -1,12 +1,5 @@
 import React, { memo, useMemo } from 'react'
 import { FlexProps } from 'src/components/atoms'
-import {
-  TasksName,
-  TasksDueDate,
-  TasksProjects,
-  TasksTags,
-  TasksAssignee,
-} from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { useTasksTaskColumn } from 'src/components/organisms/Tasks/hooks'
 import { useTaskColumn } from 'src/store/entities/taskColumns'
 import {
@@ -18,6 +11,14 @@ import {
   TASK_COLUMN_TYPE_CUSTOM,
   TASK_COLUMN_TYPE_PRIORITY,
 } from 'src/store/entities/taskColumns/types'
+import {
+  TasksName,
+  TasksDueDate,
+  TasksProjects,
+  TasksTags,
+  TasksAssignee,
+  TasksPriority,
+} from '../TasksListCells'
 
 type Props = FlexProps & {
   taskId: string
@@ -56,7 +57,7 @@ export const Cell: React.FC<Props> = memo<Props>((props) => {
       return <TasksTags taskId={props.taskId} width={width} />
     }
     case TASK_COLUMN_TYPE_PRIORITY: {
-      return null
+      return <TasksPriority taskId={props.taskId} width={width} />
     }
     case TASK_COLUMN_TYPE_CUSTOM: {
       return null

@@ -10,7 +10,14 @@ import {
   TASK_COLUMN_TYPE_PROJECT,
   TASK_COLUMN_TYPE_TAGS,
 } from 'src/store/entities/taskColumns/types'
-import { Tags, TaskName, DueDate, Projects, Assignee } from './Columns'
+import {
+  Tags,
+  TaskName,
+  DueDate,
+  Projects,
+  Assignee,
+  Priority,
+} from './Columns'
 
 type Props = {
   tasksTaskColumnId: string
@@ -38,7 +45,7 @@ export const Column: React.FC<Props> = memo<Props>((props) => {
       return <Tags tasksTaskColumnId={tasksTaskColumnId} />
     }
     case TASK_COLUMN_TYPE_PRIORITY: {
-      return null
+      return <Priority tasksTaskColumnId={tasksTaskColumnId} />
     }
     case TASK_COLUMN_TYPE_CUSTOM: {
       return null

@@ -27,9 +27,12 @@ export const PriorityChip: React.VFC<Props> = memo((props) => {
 
   return (
     <Badge
+      h={5}
       variant="solid"
       bg={taskPriority.color}
       textAlign="center"
+      fontWeight="medium"
+      lineHeight={1.7}
       onClick={handleClick}
     >
       {taskPriority.text}

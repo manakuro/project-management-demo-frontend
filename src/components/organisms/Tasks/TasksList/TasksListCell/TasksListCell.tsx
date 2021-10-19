@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo, useCallback, useMemo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { forwardRef } from 'src/shared/chakra'
 import { pxToNum } from 'src/shared/pxToNum'
@@ -11,6 +11,7 @@ type Props = {
   resizedMaxW?: number
   onChangeSize?: (size: string) => void
   containerStyle?: FlexProps
+  focused?: boolean
 } & FlexProps
 export type TasksListCellProps = Props
 
@@ -23,6 +24,7 @@ export const TasksListCell: React.FC<Props> = memo(
       resizedMinW,
       resizedMaxW,
       containerStyle,
+      focused,
       ...rest
     } = props
 
@@ -33,6 +35,28 @@ export const TasksListCell: React.FC<Props> = memo(
         onChangeSize?.(`${width + margin}px`)
       },
       [onChangeSize, containerStyle?.w],
+    )
+
+    const cellStyle = useMemo(
+      (): FlexProps => ({
+        ...(hover
+          ? {
+              zIndex: 0,
+              _hover: {
+                borderColor: 'gray.400',
+                zIndex: 1,
+              },
+            }
+          : {}),
+        ...(focused
+          ? {
+              borderColor: 'cyan.400',
+              zIndex: 1,
+              _hover: { borderColor: 'cyan.400' },
+            }
+          : {}),
+      }),
+      [focused, hover],
     )
 
     return (
@@ -58,15 +82,7 @@ export const TasksListCell: React.FC<Props> = memo(
           color="text.muted"
           py={0}
           px={2}
-          {...(hover
-            ? {
-                zIndex: 0,
-                _hover: {
-                  borderColor: 'gray.400',
-                  zIndex: 1,
-                },
-              }
-            : {})}
+          {...cellStyle}
           {...rest}
         >
           {props.children}

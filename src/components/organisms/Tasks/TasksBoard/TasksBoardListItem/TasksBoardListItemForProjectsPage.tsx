@@ -8,6 +8,7 @@ import { DueDate } from './DueDate'
 import { Feed } from './Feed'
 import { Like } from './Like'
 import { MoreAction } from './MoreAction'
+import { Priority } from './Priority'
 import { Projects } from './Projects'
 import { Subtask } from './Subtask'
 import { TasksName } from './TasksName'
@@ -34,6 +35,9 @@ export const TasksBoardListItemForProjectsPage: React.FC<Props> = memo<Props>(
         {/*cover image here*/}
         <Projects projectIds={projectIds} />
         <TasksName taskId={props.taskId} />
+        <Stack spacing={1} direction="row" mt={4}>
+          <Priority taskId={props.taskId} />
+        </Stack>
         <Flex mt={4} alignItems="center">
           <Stack spacing={1} direction="row">
             <Assignee taskId={props.taskId} />

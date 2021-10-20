@@ -9,18 +9,21 @@ type Props = {
   taskPriorityType: TasksPriorityTypes
   onDelete?: () => void
   onClick?: () => void
+  disableStopPropagation?: boolean
 }
 
 export const PriorityChip: React.VFC<Props> = memo((props) => {
-  const { taskPriorityType, onClick } = props
+  const { taskPriorityType, onClick, disableStopPropagation } = props
   const { taskPriority } = useTasksPriority(taskPriorityType)
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
-      e.stopPropagation()
+      if (!disableStopPropagation) {
+        e.stopPropagation()
+      }
       onClick?.()
     },
-    [onClick],
+    [onClick, disableStopPropagation],
   )
 
   if (!taskPriority) return null

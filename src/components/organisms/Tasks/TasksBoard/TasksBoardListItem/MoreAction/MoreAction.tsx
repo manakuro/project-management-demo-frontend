@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo } from 'react'
-import { Icon, IconButton, PortalManager } from 'src/components/atoms'
+import { Flex, Icon, IconButton, PortalManager } from 'src/components/atoms'
 import { Menu, MenuButton } from 'src/components/organisms/Menu'
 import { useDisclosure } from 'src/shared/chakra'
 import {
@@ -15,16 +15,14 @@ type Props = {
 export const MoreAction: React.FC<Props> = memo<Props>((props) => {
   const { onClose, onOpen, isOpen } = useDisclosure()
   const { isHovering } = useTasksBoardListItemContext()
-  const { inputFocused, isHovering: isHoveringInput } =
-    useTasksBoardListItemInputContext()
+  const { inputFocused } = useTasksBoardListItemInputContext()
 
   const show = useMemo<boolean>(() => {
-    if (inputFocused) return false
-    if (isHoveringInput) return false
     if (isOpen) return true
+    if (inputFocused) return false
     if (isHovering) return true
     return false
-  }, [isHovering, isOpen, inputFocused, isHoveringInput])
+  }, [isHovering, isOpen, inputFocused])
 
   const handleOpen = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -43,20 +41,18 @@ export const MoreAction: React.FC<Props> = memo<Props>((props) => {
         isOpen={isOpen}
         isLazy
       >
-        <MenuButton
-          aria-label="More actions"
-          as={IconButton}
-          icon={
-            <Icon icon="dotsHorizontalRounded" color="text.muted" ml="1px" />
-          }
-          variant="ghost"
-          size="sm"
-          position="absolute"
-          top={2}
-          right={2}
-          onClick={handleOpen}
-          display={show ? 'block' : 'none'}
-        />
+        <Flex position="absolute" top={2} right={2}>
+          <MenuButton
+            aria-label="More actions"
+            as={IconButton}
+            icon={
+              <Icon icon="dotsHorizontalRounded" color="text.muted" ml="1px" />
+            }
+            size="sm"
+            onClick={handleOpen}
+            display={show ? 'flex' : 'none'}
+          />
+        </Flex>
         {isOpen && <MenuList onCloseMenu={onClose} taskId={props.taskId} />}
       </Menu>
     </PortalManager>

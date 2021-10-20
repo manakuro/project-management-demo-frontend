@@ -32,14 +32,7 @@ export const ProjectOwner: React.FC<Props> = memo<Props>((props) => {
     [hasOwner, teammate.name],
   )
   const nameStyle = useMemo<TextProps>(
-    () =>
-      hasOwner
-        ? {
-            color: 'text.base',
-          }
-        : {
-            color: 'text.muted',
-          },
+    () => (hasOwner ? { color: 'text.base' } : { color: 'text.muted' }),
     [hasOwner],
   )
 

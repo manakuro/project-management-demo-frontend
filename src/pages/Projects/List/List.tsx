@@ -16,6 +16,7 @@ import {
   TasksListHorizontalScrollBorder,
   CustomizeMenu,
   useTasksListDetail,
+  MoreActionMenu,
 } from 'src/components/organisms/Tasks'
 import { getProjectsDetailId, isProjectsDetailURL, useRouter } from 'src/router'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
@@ -56,6 +57,7 @@ const Component: React.VFC = memo(() => {
             <IncompleteTasksMenu />
             <SortMenu />
             <CustomizeButton />
+            <MoreActionMenu />
           </TasksHeaderRight>
         </TasksHeader>
         <TasksListContent>

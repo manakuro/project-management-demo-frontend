@@ -17,6 +17,7 @@ import {
   TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_TODAY,
   TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_YESTERDAY,
   TASK_LIST_SORT_STATUS_TYPE_PRIORITY,
+  TASK_LIST_SORT_STATUS_TYPE_CREATION_TIME,
 } from '../types'
 
 const isSortedBy = (
@@ -63,6 +64,11 @@ export const useTaskListStatus = () => {
   const isSortedByPriority = useCallback(
     (status: TaskListSortStatusType) =>
       isSortedBy(status, TASK_LIST_SORT_STATUS_TYPE_PRIORITY),
+    [],
+  )
+  const isSortedByCreationTime = useCallback(
+    (status: TaskListSortStatusType) =>
+      isSortedBy(status, TASK_LIST_SORT_STATUS_TYPE_CREATION_TIME),
     [],
   )
 
@@ -115,6 +121,7 @@ export const useTaskListStatus = () => {
     isSortedByProject,
     isSortedByAssignee,
     isSortedByPriority,
+    isSortedByCreationTime,
     isTaskListCompleted,
     isTaskListCompletedAll,
     isTaskListInComplete,

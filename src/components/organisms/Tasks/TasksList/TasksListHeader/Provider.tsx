@@ -12,20 +12,32 @@ type ContextProps = {
 
 const useValue = (): ContextProps => {
   const { taskListStatus } = useTasksTaskListStatus()
-  const { isSortedByProject, isSortedByNone } = useTaskListStatus()
+  const {
+    isSortedByProject,
+    isSortedByNone,
+    isSortedByPriority,
+    isSortedByAssignee,
+    isSortedByCreationTime,
+  } = useTaskListStatus()
   const { isScrolling } = useTasksListContentVerticalScroll()
 
   const sortedStyle = useMemo((): ChakraProps => {
     if (
       !isSortedByNone(taskListStatus.taskListSortStatus) &&
-      !isSortedByProject(taskListStatus.taskListSortStatus)
+      !isSortedByProject(taskListStatus.taskListSortStatus) &&
+      !isSortedByPriority(taskListStatus.taskListSortStatus) &&
+      !isSortedByAssignee(taskListStatus.taskListSortStatus) &&
+      !isSortedByCreationTime(taskListStatus.taskListSortStatus)
     )
       return { borderBottom: 'none' }
     if (isScrolling) return { borderBottom: 'none' }
     return {}
   }, [
     isScrolling,
+    isSortedByAssignee,
+    isSortedByCreationTime,
     isSortedByNone,
+    isSortedByPriority,
     isSortedByProject,
     taskListStatus.taskListSortStatus,
   ])

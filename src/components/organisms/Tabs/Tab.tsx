@@ -6,7 +6,7 @@ import { forwardRef } from 'src/shared/chakra'
 type Props = ChakraTabProps
 export type TabProps = Props
 
-export const Tab: React.FC<Props> = forwardRef((props, ref) => {
+export const Tab: React.FC<Props> = forwardRef<Props, 'div'>((props, ref) => {
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   return (
@@ -14,7 +14,7 @@ export const Tab: React.FC<Props> = forwardRef((props, ref) => {
       px={0}
       mr={4}
       mb={0}
-      {...clickableHoverLightStyle}
+      {...(props.isDisabled ? {} : clickableHoverLightStyle)}
       fontWeight="medium"
       {...props}
       ref={ref}

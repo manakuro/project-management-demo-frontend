@@ -28,13 +28,17 @@ type Props = {
 const OVERVIEW_INDEX = 0 as const
 const LIST_INDEX = 1 as const
 const BOARD_INDEX = 2 as const
-const CALENDAR_INDEX = 3 as const
-const FILES_INDEX = 4 as const
+const BOARD_TIMELINE = 3 as const
+const CALENDAR_INDEX = 4 as const
+const CALENDAR_DASHBOARD = 5 as const
+const FILES_INDEX = 6 as const
 type Index =
   | typeof OVERVIEW_INDEX
   | typeof LIST_INDEX
   | typeof BOARD_INDEX
+  | typeof BOARD_TIMELINE
   | typeof CALENDAR_INDEX
+  | typeof CALENDAR_DASHBOARD
   | typeof FILES_INDEX
 
 export const Component: React.VFC<Props> = memo<Props>((props) => {

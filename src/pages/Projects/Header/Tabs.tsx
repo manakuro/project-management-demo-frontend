@@ -26,7 +26,13 @@ export const Tabs: React.VFC = memo(() => {
           <Tab>Overview</Tab>
           <Tab>List</Tab>
           <Tab>Board</Tab>
+          <Tab isDisabled cursor="auto !important">
+            Timeline
+          </Tab>
           <Tab>Calendar</Tab>
+          <Tab isDisabled cursor="auto !important">
+            Dashboard
+          </Tab>
           <Tab>Files</Tab>
         </TabList>
       </Flex>

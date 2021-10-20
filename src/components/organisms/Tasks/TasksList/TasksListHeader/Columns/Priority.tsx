@@ -10,19 +10,20 @@ type Props = {
 
 export const Priority: React.FC<Props> = memo<Props>((props) => {
   const { tasksTaskColumnId } = props
-  const { sortByDueDate, sortByNone, taskListStatus } = useTasksTaskListStatus()
-  const { isSortedByDueDate } = useTaskListStatus()
+  const { sortByNone, taskListStatus, sortByPriority } =
+    useTasksTaskListStatus()
+  const { isSortedByPriority } = useTaskListStatus()
 
   const handleSort = useCallback(() => {
-    if (isSortedByDueDate(taskListStatus.taskListSortStatus)) {
+    if (isSortedByPriority(taskListStatus.taskListSortStatus)) {
       sortByNone()
       return
     }
 
-    sortByDueDate()
+    sortByPriority?.()
   }, [
-    isSortedByDueDate,
-    sortByDueDate,
+    isSortedByPriority,
+    sortByPriority,
     sortByNone,
     taskListStatus.taskListSortStatus,
   ])
@@ -35,7 +36,7 @@ export const Priority: React.FC<Props> = memo<Props>((props) => {
       onSort={handleSort}
       menu
     >
-      {isSortedByDueDate(taskListStatus.taskListSortStatus) && (
+      {isSortedByPriority(taskListStatus.taskListSortStatus) && (
         <Icon icon="arrowDownAlt" color="text.muted" />
       )}
     </Container>

@@ -45,6 +45,10 @@ export const useTaskListSortStatus = () => {
     sortBy('assignee')
   }, [sortBy])
 
+  const sortByPriority = useCallback(() => {
+    sortBy('priority')
+  }, [sortBy])
+
   return {
     sortBy,
     isSorted,
@@ -53,5 +57,6 @@ export const useTaskListSortStatus = () => {
     sortByLikes,
     sortByDueDate,
     sortByAssignee,
+    sortByPriority,
   }
 }

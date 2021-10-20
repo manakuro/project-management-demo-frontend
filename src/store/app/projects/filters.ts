@@ -18,6 +18,7 @@ export const sortTasks = (params: Params) => (t: Task[]) => {
   tasks = sortByAlphabetical(params)(tasks)
   tasks = sortByAssignee(params)(tasks)
   tasks = sortByCreationTime(params)(tasks)
+  tasks = sortByPriority(params)(tasks)
 
   return tasks
 }
@@ -86,6 +87,16 @@ export const sortByCreationTime =
       if (!b.createdAt) return -1
 
       return a.createdAt < b.createdAt ? -1 : 1
+    })
+  }
+
+export const sortByPriority =
+  ({ get }: Params) =>
+  (tasks: Task[]) => {
+    if (!get(isTaskListSortStatusState('priority'))) return tasks
+
+    return tasks.sort((a, b) => {
+      return a.priority > b.priority ? -1 : 1
     })
   }
 

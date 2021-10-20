@@ -17,6 +17,7 @@ type Result = {
   sortByDueDate: () => void
   sortByProject?: () => void
   sortByAssignee?: () => void
+  sortByPriority?: () => void
   setTaskListCompletedStatus: (status: TaskListCompletedStatusType) => void
 }
 

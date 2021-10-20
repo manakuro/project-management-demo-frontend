@@ -24,6 +24,7 @@ export const TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL = 4 as const
 export const TASK_LIST_SORT_STATUS_TYPE_PROJECT = 5 as const
 export const TASK_LIST_SORT_STATUS_TYPE_ASSIGNEE = 6 as const
 export const TASK_LIST_SORT_STATUS_TYPE_CREATION_TIME = 7 as const
+export const TASK_LIST_SORT_STATUS_TYPE_PRIORITY = 8 as const
 
 export type TaskListSortStatusType =
   | typeof TASK_LIST_SORT_STATUS_TYPE_NONE
@@ -33,3 +34,4 @@ export type TaskListSortStatusType =
   | typeof TASK_LIST_SORT_STATUS_TYPE_PROJECT
   | typeof TASK_LIST_SORT_STATUS_TYPE_ASSIGNEE
   | typeof TASK_LIST_SORT_STATUS_TYPE_CREATION_TIME
+  | typeof TASK_LIST_SORT_STATUS_TYPE_PRIORITY

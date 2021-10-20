@@ -11,6 +11,7 @@ import {
   TASK_LIST_SORT_STATUS_TYPE_NONE,
   TASK_LIST_SORT_STATUS_TYPE_ASSIGNEE,
   TASK_LIST_SORT_STATUS_TYPE_CREATION_TIME,
+  TASK_LIST_SORT_STATUS_TYPE_PRIORITY,
 } from 'src/store/entities/taskListStatus'
 
 type Props = {}
@@ -42,6 +43,10 @@ const ITEMS: {
   {
     value: TASK_LIST_SORT_STATUS_TYPE_CREATION_TIME,
     text: 'Creation Time',
+  },
+  {
+    value: TASK_LIST_SORT_STATUS_TYPE_PRIORITY,
+    text: 'Priority',
   },
 ]
 

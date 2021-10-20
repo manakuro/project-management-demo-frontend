@@ -38,7 +38,7 @@ export const TasksTags: React.VFC<Props> = memo<Props>((props) => {
       {!focused && (
         <Stack direction="row" spacing={1} overflow="hidden">
           {tagIds.map((id) => (
-            <TagChip key={id} tagId={id} />
+            <TagChip key={id} tagId={id} variant="button" />
           ))}
         </Stack>
       )}

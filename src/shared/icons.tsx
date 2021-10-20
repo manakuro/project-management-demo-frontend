@@ -73,7 +73,6 @@ import {
   BiGitPullRequest,
   BiExpand,
   BiBeenHere,
-  BiTag,
   BiCalendar,
   BiStrikethrough,
   BiListUl,
@@ -95,6 +94,7 @@ import {
   BiDetail,
   BiSave,
 } from 'react-icons/bi'
+import { BsTagFill } from 'react-icons/bs'
 import { FaTwitter, FaGithub, FaMoon, FaRegStar, FaStar } from 'react-icons/fa'
 import { FiBold, FiItalic, FiUnderline } from 'react-icons/fi'
 import { HiOutlineMail, HiOutlineEmojiHappy } from 'react-icons/hi'
@@ -179,6 +179,7 @@ export const icons = {
   playCircle: AiFillPlayCircle,
   playCircleOutline: BiPlayCircle,
   plus: BiPlus,
+  tag: BsTagFill,
   rightIndent: BiRightIndent,
   rocket: BiRocket,
   save: BiSave,
@@ -195,7 +196,6 @@ export const icons = {
   subdirectoryRight: BiSubdirectoryRight,
   sun: BiSun,
   table: BiTable,
-  tag: BiTag,
   task: BiTask,
   textFormat: MdTextFormat,
   time: BiTime,

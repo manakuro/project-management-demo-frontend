@@ -1,16 +1,20 @@
 import React, { memo, useCallback } from 'react'
-import { Box, Button, Icon, Text } from 'src/components/atoms'
+import { Box, Button, Icon, IconProps, Text } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useTag } from 'src/store/entities/tags'
 
+type Variant = 'button' | 'icon'
+
 type Props = {
   tagId: string
+  variant: Variant
   onDelete?: () => void
   deletable?: boolean
+  iconProps?: Omit<IconProps, 'icon'>
 }
 
-export const TagChip: React.VFC<Props> = memo((props) => {
-  const { tagId } = props
+export const TagChip: React.VFC<Props> = memo<Props>((props) => {
+  const { tagId, variant, iconProps } = props
   const { tag } = useTag(tagId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
@@ -21,6 +25,10 @@ export const TagChip: React.VFC<Props> = memo((props) => {
     },
     [props],
   )
+
+  if (variant === 'icon') {
+    return <Icon icon="tag" color={tag.color.color} size="sm" {...iconProps} />
+  }
 
   return (
     <Button

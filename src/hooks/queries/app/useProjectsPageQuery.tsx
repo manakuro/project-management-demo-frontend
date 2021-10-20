@@ -279,8 +279,8 @@ const taskSections: TaskSectionResponse[] = [
             name: 'Medium',
             color: {
               id: '1',
-              name: 'gray.200',
-              color: 'gray.200',
+              name: 'green.300',
+              color: 'green.300',
             },
             createdAt: '',
             updatedAt: '',
@@ -354,8 +354,8 @@ const taskSections: TaskSectionResponse[] = [
             name: 'Medium',
             color: {
               id: '1',
-              name: 'gray.200',
-              color: 'gray.200',
+              name: 'green.400',
+              color: 'green.400',
             },
             createdAt: '',
             updatedAt: '',
@@ -366,8 +366,8 @@ const taskSections: TaskSectionResponse[] = [
             name: 'Asana',
             color: {
               id: '2',
-              name: 'pink.200',
-              color: 'pink.200',
+              name: 'red.400',
+              color: 'red.400',
             },
             createdAt: '',
             updatedAt: '',

@@ -279,8 +279,8 @@ export const taskSections: TaskSectionResponse[] = [
             name: 'Medium',
             color: {
               id: '1',
-              name: 'gray.200',
-              color: 'gray.200',
+              name: 'green.400',
+              color: 'green.400',
             },
             createdAt: '',
             updatedAt: '',
@@ -354,8 +354,8 @@ export const taskSections: TaskSectionResponse[] = [
             name: 'Medium',
             color: {
               id: '1',
-              name: 'gray.200',
-              color: 'gray.200',
+              name: 'green.400',
+              color: 'green.400',
             },
             createdAt: '',
             updatedAt: '',

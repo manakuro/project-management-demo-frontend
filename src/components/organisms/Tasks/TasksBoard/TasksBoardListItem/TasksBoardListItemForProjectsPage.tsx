@@ -11,6 +11,7 @@ import { MoreAction } from './MoreAction'
 import { Priority } from './Priority'
 import { Projects } from './Projects'
 import { Subtask } from './Subtask'
+import { Tags } from './Tags'
 import { TasksName } from './TasksName'
 import { useTasksBoardListItemElement } from './useTasksBoardListItemElement'
 
@@ -35,8 +36,9 @@ export const TasksBoardListItemForProjectsPage: React.FC<Props> = memo<Props>(
         {/*cover image here*/}
         <Projects projectIds={projectIds} />
         <TasksName taskId={props.taskId} />
-        <Stack spacing={1} direction="row" mt={4}>
+        <Stack spacing={2} direction="row" mt={4} alignItems="center">
           <Priority taskId={props.taskId} />
+          <Tags taskId={props.taskId} />
         </Stack>
         <Flex mt={4} alignItems="center">
           <Stack spacing={1} direction="row">

@@ -59,16 +59,16 @@ const mapURLtoTabIndex = ({ router }: { router: NextRouter }): Index => {
 
 const WrappedComponent: React.VFC = memo(() => {
   const {
-    navigateToMyTasksList,
-    navigateToMyTasksBoard,
-    navigateToMyTasksCalendar,
-    navigateToMyTasksFiles,
+    navigateToProjectsList,
+    navigateToProjectsBoard,
+    navigateToProjectsCalendar,
+    navigateToProjectsFiles,
     router,
   } = useRouter()
   const { isSorted, sortBy } = useMyTasksTaskListStatus()
   const { loadingQuery, setLoadingTabContent } = useProjectsPageContext()
   const [tabIndex, setTabIndex] = useState<Index>(mapURLtoTabIndex({ router }))
-  const { setProjectId } = useProjectsProjectId()
+  const { projectId, setProjectId } = useProjectsProjectId()
 
   useEffect(() => {
     const projectId = getProjectsIdFromURL(router)
@@ -85,6 +85,22 @@ const WrappedComponent: React.VFC = memo(() => {
     }, 200)
   }, [setLoadingTabContent])
 
+  const navigateToFiles = useCallback(async () => {
+    await navigateToProjectsFiles(projectId)
+  }, [navigateToProjectsFiles, projectId])
+
+  const navigateToList = useCallback(async () => {
+    await navigateToProjectsList(projectId)
+  }, [navigateToProjectsList, projectId])
+
+  const navigateToBoard = useCallback(async () => {
+    await navigateToProjectsBoard(projectId)
+  }, [navigateToProjectsBoard, projectId])
+
+  const navigateToCalendar = useCallback(async () => {
+    await navigateToProjectsCalendar(projectId)
+  }, [navigateToProjectsCalendar, projectId])
+
   const handleTabsChange = useCallback(
     async (index: number) => {
       switch (index as Index) {
@@ -96,36 +112,36 @@ const WrappedComponent: React.VFC = memo(() => {
         case LIST_INDEX: {
           setLoading()
           setTabIndex(LIST_INDEX)
-          await navigateToMyTasksList()
+          await navigateToList()
           break
         }
         case BOARD_INDEX: {
           if (isSorted('project')) sortBy('none')
           setLoading()
           setTabIndex(BOARD_INDEX)
-          await navigateToMyTasksBoard()
+          await navigateToBoard()
           break
         }
         case CALENDAR_INDEX: {
           setLoading()
           setTabIndex(CALENDAR_INDEX)
-          await navigateToMyTasksCalendar()
+          await navigateToCalendar()
           break
         }
         case FILES_INDEX: {
           setLoading()
           setTabIndex(FILES_INDEX)
-          await navigateToMyTasksFiles()
+          await navigateToFiles()
           break
         }
       }
     },
     [
       isSorted,
-      navigateToMyTasksList,
-      navigateToMyTasksBoard,
-      navigateToMyTasksCalendar,
-      navigateToMyTasksFiles,
+      navigateToList,
+      navigateToBoard,
+      navigateToCalendar,
+      navigateToFiles,
       sortBy,
       setLoading,
     ],
@@ -153,9 +169,11 @@ const WrappedComponent: React.VFC = memo(() => {
             <TabPanel>
               <Board />
             </TabPanel>
+            <TabPanel />
             <TabPanel>
               <Calendar />
             </TabPanel>
+            <TabPanel />
             <TabPanel>
               <Files />
             </TabPanel>

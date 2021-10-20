@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo, useCallback, useMemo } from 'react'
 import { Flex } from 'src/components/atoms'
 import { TaskDetailModal } from 'src/components/organisms/TaskDetails'
 import {
@@ -8,8 +8,9 @@ import {
 } from 'src/components/organisms/Tasks'
 import { useTasksFilesDetail } from 'src/components/organisms/Tasks/TasksFiles/useTasksFilesDetail'
 import { useProjectsFilesPageQuery } from 'src/hooks/queries/app'
-import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
-import { isMyTasksDetailURL, getMyTasksDetailId, useRouter } from 'src/router'
+import { useProjectsPageContext } from 'src/pages/Projects/Provider'
+import { useRouter, isProjectsDetailURL, getProjectsDetailId } from 'src/router'
+import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { SkeletonFiles } from './SkeletonFiles'
 
 export const Files: React.VFC = memo(() => {
@@ -21,17 +22,22 @@ export const Files: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent } = useMyTasksContext()
+  const { loadingTabContent } = useProjectsPageContext()
+  const { projectId } = useProjectsProjectId()
   const { loading: loadingQuery } = useProjectsFilesPageQuery()
   const loading = useMemo(
     () => loadingTabContent || loadingQuery,
     [loadingTabContent, loadingQuery],
   )
-  const { navigateToMyTasksFiles } = useRouter()
+  const { navigateToProjectsFiles } = useRouter()
+
+  const backToPage = useCallback(async () => {
+    await navigateToProjectsFiles(projectId)
+  }, [navigateToProjectsFiles, projectId])
 
   useTasksFilesDetail({
-    isTaskDetailURL: isMyTasksDetailURL,
-    getTaskDetailId: getMyTasksDetailId,
+    isTaskDetailURL: isProjectsDetailURL,
+    getTaskDetailId: getProjectsDetailId,
   })
 
   if (loading) return <SkeletonFiles />
@@ -43,7 +49,7 @@ const Component: React.VFC = memo(() => {
           <TasksFilesList />
         </TasksFilesContent>
       </Flex>
-      <TaskDetailModal backToPage={navigateToMyTasksFiles} />
+      <TaskDetailModal backToPage={backToPage} />
     </>
   )
 })

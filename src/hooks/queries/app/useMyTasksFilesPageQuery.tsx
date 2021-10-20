@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useMountedRef } from 'src/hooks'
-import { useMyTasksFilesResponse } from 'src/store/app/myTasksFiles'
-import { MyTaskFileResponse } from 'src/store/app/myTasksFiles/type'
+import {
+  useMyTasksFilesResponse,
+  MyTaskFileResponse,
+} from 'src/store/app/myTasksFiles'
 
 type Props = {
   lazy?: boolean

@@ -1,14 +1,13 @@
 import React, { memo } from 'react'
 import { FlexProps, Stack } from 'src/components/atoms'
-import { useProjectIdsByTaskId } from 'src/store/entities/projectsTasks'
 import { ProjectChip } from './ProjectChip'
 
 type Props = FlexProps & {
-  taskId: string
+  projectIds: string[]
 }
 
 export const Projects: React.FC<Props> = memo<Props>((props) => {
-  const { projectIds } = useProjectIdsByTaskId(props.taskId)
+  const { projectIds } = props
 
   if (!projectIds.length) return null
 

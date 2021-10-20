@@ -1,0 +1,57 @@
+import React, { memo, useMemo } from 'react'
+import { Flex, FlexProps, Stack } from 'src/components/atoms'
+import { useProjectsProjectId } from 'src/store/app/projects/project'
+import { useProjectIdsByTaskId } from 'src/store/entities/projectsTasks'
+import { Assignee } from './Assignee'
+import { Card } from './Card'
+import { DueDate } from './DueDate'
+import { Feed } from './Feed'
+import { Like } from './Like'
+import { MoreAction } from './MoreAction'
+import { Projects } from './Projects'
+import { Subtask } from './Subtask'
+import { TasksName } from './TasksName'
+import { useTasksBoardListItemElement } from './useTasksBoardListItemElement'
+
+type Props = FlexProps & {
+  taskId: string
+}
+
+export const TasksBoardListItemForProjectsPage: React.FC<Props> = memo<Props>(
+  (props) => {
+    const { className, generateId } = useTasksBoardListItemElement()
+    const useProjectIdsByTaskIdResult = useProjectIdsByTaskId(props.taskId)
+    const { projectId } = useProjectsProjectId()
+    const projectIds = useMemo(() => {
+      return useProjectIdsByTaskIdResult.projectIds.filter(
+        (id) => id !== projectId,
+      )
+    }, [projectId, useProjectIdsByTaskIdResult.projectIds])
+
+    return (
+      <Card
+        taskId={props.taskId}
+        className={className}
+        id={generateId(props.taskId)}
+      >
+        {/*cover image here*/}
+        <Projects projectIds={projectIds} />
+        <TasksName taskId={props.taskId} />
+        <Flex mt={4} alignItems="center">
+          <Stack spacing={1} direction="row">
+            <Assignee taskId={props.taskId} />
+            <DueDate taskId={props.taskId} />
+          </Stack>
+          <Flex ml="auto">
+            <Like taskId={props.taskId} />
+            <Feed taskId={props.taskId} />
+            <Subtask taskId={props.taskId} />
+          </Flex>
+        </Flex>
+        <MoreAction taskId={props.taskId} />
+      </Card>
+    )
+  },
+)
+TasksBoardListItemForProjectsPage.displayName =
+  'TasksBoardListItemForProjectsPage'

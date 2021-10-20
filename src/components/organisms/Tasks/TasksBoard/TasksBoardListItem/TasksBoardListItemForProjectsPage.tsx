@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo } from 'react'
 import { Flex, FlexProps, Stack } from 'src/components/atoms'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useProjectIdsByTaskId } from 'src/store/entities/projectsTasks'
@@ -20,13 +20,10 @@ type Props = FlexProps & {
 export const TasksBoardListItemForProjectsPage: React.FC<Props> = memo<Props>(
   (props) => {
     const { className, generateId } = useTasksBoardListItemElement()
-    const useProjectIdsByTaskIdResult = useProjectIdsByTaskId(props.taskId)
     const { projectId } = useProjectsProjectId()
-    const projectIds = useMemo(() => {
-      return useProjectIdsByTaskIdResult.projectIds.filter(
-        (id) => id !== projectId,
-      )
-    }, [projectId, useProjectIdsByTaskIdResult.projectIds])
+    const { projectIds } = useProjectIdsByTaskId(props.taskId, {
+      excluded: [projectId],
+    })
 
     return (
       <Card

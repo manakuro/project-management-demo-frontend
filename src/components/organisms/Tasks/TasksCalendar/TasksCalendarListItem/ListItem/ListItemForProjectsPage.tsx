@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo } from 'react'
 import { FlexProps, Stack } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useHover } from 'src/hooks/useHover'
@@ -21,11 +21,10 @@ export const ListItemForProjectsPage: React.FC<Props> = memo<Props>((props) => {
   const { task } = useTask(taskId)
   const { ref, isHovering } = useHover()
   const { onOpenTaskDetail } = useListItem({ taskId })
-  const { projectIds } = useProjectIdsByTaskId(taskId)
   const { projectId } = useProjectsProjectId()
-  const targetProjectId = useMemo(() => {
-    return projectIds.filter((id) => id !== projectId)[0]
-  }, [projectId, projectIds])
+  const { projectIds } = useProjectIdsByTaskId(props.taskId, {
+    excluded: [projectId],
+  })
 
   if (task.isNew) {
     return <Input taskId={taskId} />
@@ -36,12 +35,12 @@ export const ListItemForProjectsPage: React.FC<Props> = memo<Props>((props) => {
       taskId={taskId}
       ref={ref}
       onClick={onOpenTaskDetail}
-      projectId={targetProjectId}
+      projectId={projectIds[0]}
     >
       <CheckIcon
         taskId={taskId}
         isHovering={isHovering}
-        projectId={targetProjectId}
+        projectId={projectIds[0]}
       />
       {task.assigneeId && (
         <TeammateAvatar

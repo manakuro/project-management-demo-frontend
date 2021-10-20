@@ -61,4 +61,4 @@ export const TasksPriority: React.VFC<Props> = memo<Props>((props) => {
     </TasksListCell>
   )
 })
-TasksPriority.displayName = 'TasksProjects'
+TasksPriority.displayName = 'TasksPriority'

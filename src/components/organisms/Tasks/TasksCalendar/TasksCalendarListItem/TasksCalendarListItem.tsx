@@ -1,7 +1,8 @@
-import React, { memo, useMemo } from 'react'
-import { Flex, FlexProps, Text, TextProps } from 'src/components/atoms'
-import { dateFns } from 'src/shared/dateFns'
+import React, { memo } from 'react'
+import { Flex, FlexProps, Text } from 'src/components/atoms'
 import { Content } from './Content'
+import { Info } from './Info'
+import { useListItemStyle } from './hooks'
 
 type Props = {
   dateString: string
@@ -9,23 +10,9 @@ type Props = {
 
 export const TasksCalendarListItem: React.FC<Props> = memo<Props>((props) => {
   const { dateString, ...rest } = props
-  const date = useMemo(() => new Date(dateString), [dateString])
-
-  const dateText = useMemo(() => {
-    if (dateFns.isFirstDayOfMonth(date)) return dateFns.format(date, 'MMMM d')
-    return dateFns.format(date, 'd')
-  }, [date])
-
-  const style = useMemo<FlexProps>(() => {
-    if (dateFns.isToday(date)) return { borderTopColor: 'cyan.400' }
-    if (dateFns.isFirstDayOfMonth(date)) return { borderTopColor: 'gray.400' }
-    return {}
-  }, [date])
-
-  const textStyle = useMemo<TextProps>(() => {
-    if (dateFns.isToday(date)) return { color: 'cyan.400', fontWeight: 'bold' }
-    return {}
-  }, [date])
+  const { dateText, borderStyle, textStyle } = useListItemStyle({
+    dateString,
+  })
 
   return (
     <Flex
@@ -40,12 +27,20 @@ export const TasksCalendarListItem: React.FC<Props> = memo<Props>((props) => {
       maxW="full"
       minW={0}
       p={2}
-      {...style}
+      {...borderStyle}
       {...rest}
     >
-      <Text fontSize="xs" fontWeight="medium" color="text.muted" {...textStyle}>
-        {dateText}
-      </Text>
+      <Flex>
+        <Text
+          fontSize="xs"
+          fontWeight="medium"
+          color="text.muted"
+          {...textStyle}
+        >
+          {dateText}
+        </Text>
+        <Info dateString={dateString} />
+      </Flex>
       <Content dateString={dateString} />
     </Flex>
   )

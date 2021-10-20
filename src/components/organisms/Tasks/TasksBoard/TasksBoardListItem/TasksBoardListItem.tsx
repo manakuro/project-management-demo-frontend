@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
-import { Flex, FlexProps } from 'src/components/atoms'
+import { Flex, FlexProps, Stack } from 'src/components/atoms'
+import { Assignee } from './Assignee'
 import { Card } from './Card'
 import { DueDate } from './DueDate'
 import { Feed } from './Feed'
@@ -35,7 +36,10 @@ const Component: React.FC<Props> = memo<Props>((props) => {
       <Projects taskId={props.taskId} />
       <TasksName taskId={props.taskId} />
       <Flex mt={4} alignItems="center">
-        <DueDate taskId={props.taskId} />
+        <Stack spacing={1} direction="row">
+          <Assignee taskId={props.taskId} />
+          <DueDate taskId={props.taskId} />
+        </Stack>
         <Flex ml="auto">
           <Like taskId={props.taskId} />
           <Feed taskId={props.taskId} />

@@ -19,10 +19,14 @@ export const PopoverAssigneeInput: React.FC<Props> = (props) => {
   const popoverDisclosure = useDisclosure()
   const inputRef = React.useRef<HTMLInputElement | null>(null)
 
-  const handleOpen = useCallback(() => {
-    popoverDisclosure.onOpen()
-    props.onOpened?.()
-  }, [popoverDisclosure, props])
+  const handleOpen = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.stopPropagation()
+      popoverDisclosure.onOpen()
+      props.onOpened?.()
+    },
+    [popoverDisclosure, props],
+  )
 
   const handleClose = useCallback(() => {
     popoverDisclosure.onClose()

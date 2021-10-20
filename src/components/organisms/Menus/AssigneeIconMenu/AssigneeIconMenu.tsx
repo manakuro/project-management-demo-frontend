@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { PopoverAssigneeInput } from 'src/components/organisms/Popovers'
@@ -19,13 +19,16 @@ export const AssigneeIconMenu: React.FC<Props> = memo<Props>((props) => {
     props
   const { clickableHoverLightStyle } = useClickableHoverStyle()
   const { teammate } = useTeammate(assigneeId)
+  const [showProfile, setShowProfile] = useState(true)
 
   const handleOpened = useCallback(() => {
+    setShowProfile(false)
     onAssigneeOpened()
   }, [onAssigneeOpened])
 
   const handleClosed = useCallback(() => {
     onAssigneeClosed()
+    setShowProfile(true)
   }, [onAssigneeClosed])
 
   return (
@@ -35,7 +38,12 @@ export const AssigneeIconMenu: React.FC<Props> = memo<Props>((props) => {
       onClosed={handleClosed}
     >
       {teammate.id ? (
-        <TeammateAvatar teammateId={teammate.id} size="xs" />
+        <TeammateAvatar
+          teammateId={teammate.id}
+          size="xs"
+          ignoreFallback
+          showProfile={showProfile}
+        />
       ) : (
         <Tooltip
           hasArrow

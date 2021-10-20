@@ -1,12 +1,8 @@
 import React, { memo } from 'react'
-import { Flex, FlexProps, Stack } from 'src/components/atoms'
-import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
-import { useHover } from 'src/hooks/useHover'
-import { useTask } from 'src/store/entities/tasks'
-import { CheckIcon } from './CheckIcon'
-import { Container } from './Container'
-import { Input } from './Input'
-import { Subtask } from './Subtask'
+import { FlexProps } from 'src/components/atoms'
+import { useTasksContext } from 'src/components/organisms/Tasks'
+import { ListItemForMyTasksPage } from './ListItemForMyTasksPage'
+import { ListItemForProjectsPage } from './ListItemForProjectsPage'
 
 type Props = {
   taskId: string
@@ -14,38 +10,12 @@ type Props = {
 
 export const ListItem: React.FC<Props> = memo<Props>((props) => {
   const { taskId } = props
-  const { task } = useTask(taskId)
-  const { ref, isHovering } = useHover()
+  const { isMyTasksPage } = useTasksContext()
 
-  if (task.isNew) {
-    return <Input taskId={taskId} />
+  if (isMyTasksPage) {
+    return <ListItemForMyTasksPage taskId={taskId} />
   }
 
-  return (
-    <Container taskId={taskId} ref={ref}>
-      <CheckIcon taskId={taskId} isHovering={isHovering} />
-      {task.assigneeId && (
-        <TeammateAvatar
-          teammateId={task.assigneeId}
-          showProfile={false}
-          ml={1}
-          size="xs"
-        />
-      )}
-      <Flex
-        noOfLines={2}
-        flex={1}
-        ml={1}
-        fontSize="xs"
-        fontWeight="medium"
-        lineHeight="14px"
-      >
-        {task.name}
-      </Flex>
-      <Stack direction="row" spacing={1} ml={1} mr="auto">
-        <Subtask taskId={taskId} />
-      </Stack>
-    </Container>
-  )
+  return <ListItemForProjectsPage taskId={taskId} />
 })
 ListItem.displayName = 'ListItem'

@@ -1,33 +1,22 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import React, { memo, useMemo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
 import { useColorPicker } from 'src/hooks'
 import { forwardRef } from 'src/shared/chakra'
 import { useProject } from 'src/store/entities/projects'
-import { useProjectIdsByTaskId } from 'src/store/entities/projectsTasks'
 import { useTask } from 'src/store/entities/tasks'
 import { transitions } from 'src/styles'
 
 type Props = {
   taskId: string
+  projectId: string
 } & FlexProps
 
 export const Container: React.FC<Props> = memo<Props>(
   forwardRef((props, ref) => {
-    const { taskId, ...rest } = props
+    const { taskId, projectId, ...rest } = props
+    const { project } = useProject(projectId)
     const { task } = useTask(taskId)
-    const { projectIds } = useProjectIdsByTaskId(props.taskId)
-    const { project } = useProject(projectIds[0])
     const { findColor } = useColorPicker()
-    const { navigateToTaskDetail } = useTasksRouter()
-
-    const handleOpenTaskDetail = useCallback(
-      async (e: React.MouseEvent<HTMLElement>) => {
-        e.stopPropagation()
-        await navigateToTaskDetail(taskId)
-      },
-      [navigateToTaskDetail, taskId],
-    )
 
     const colorStyle = useMemo((): FlexProps => {
       if (!project.id)
@@ -68,9 +57,8 @@ export const Container: React.FC<Props> = memo<Props>(
         transition={transitions.base()}
         boxShadow="sm"
         overflow="hidden"
-        onClick={handleOpenTaskDetail}
-        {...colorStyle}
         {...style}
+        {...colorStyle}
         {...rest}
       />
     )

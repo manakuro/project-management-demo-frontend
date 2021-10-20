@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { TaskDetailModal } from 'src/components/organisms/TaskDetails'
 import {
   TasksProvider,
@@ -15,8 +15,9 @@ import {
   TasksHeaderLeft,
   TodayButton,
 } from 'src/components/organisms/Tasks/TasksHeader'
-import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
-import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router'
+import { useProjectsPageContext } from 'src/pages/Projects/Provider'
+import { getProjectsDetailId, isProjectsDetailURL, useRouter } from 'src/router'
+import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { SkeletonCalendar } from './SkeletonCalendar'
 
 export const Calendar: React.VFC = memo(() => {
@@ -28,13 +29,18 @@ export const Calendar: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent } = useMyTasksContext()
-  const { navigateToMyTasksCalendar } = useRouter()
+  const { loadingTabContent } = useProjectsPageContext()
+  const { navigateToProjectsCalendar } = useRouter()
+  const { projectId } = useProjectsProjectId()
 
   useTasksCalendarDetail({
-    isTaskDetailURL: isMyTasksDetailURL,
-    getTaskDetailId: getMyTasksDetailId,
+    isTaskDetailURL: isProjectsDetailURL,
+    getTaskDetailId: getProjectsDetailId,
   })
+
+  const backToPage = useCallback(async () => {
+    await navigateToProjectsCalendar(projectId)
+  }, [navigateToProjectsCalendar, projectId])
 
   if (loadingTabContent) return <SkeletonCalendar />
 
@@ -60,7 +66,7 @@ const Component: React.VFC = memo(() => {
           <TasksCalendarList />
         </TasksCalendarContent>
       </TasksCalendar>
-      <TaskDetailModal backToPage={navigateToMyTasksCalendar} />
+      <TaskDetailModal backToPage={backToPage} />
     </>
   )
 })

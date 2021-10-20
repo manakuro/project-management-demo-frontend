@@ -2,7 +2,10 @@ import React, { memo, useCallback, useMemo } from 'react'
 import { Icon, IconButton, PortalManager } from 'src/components/atoms'
 import { Menu, MenuButton } from 'src/components/organisms/Menu'
 import { useDisclosure } from 'src/shared/chakra'
-import { useTasksBoardListItemContext } from '../Provider'
+import {
+  useTasksBoardListItemContext,
+  useTasksBoardListItemInputContext,
+} from '../Provider'
 import { MenuList } from './MenuList'
 
 type Props = {
@@ -12,11 +15,16 @@ type Props = {
 export const MoreAction: React.FC<Props> = memo<Props>((props) => {
   const { onClose, onOpen, isOpen } = useDisclosure()
   const { isHovering } = useTasksBoardListItemContext()
+  const { inputFocused, isHovering: isHoveringInput } =
+    useTasksBoardListItemInputContext()
+
   const show = useMemo<boolean>(() => {
+    if (inputFocused) return false
+    if (isHoveringInput) return false
     if (isOpen) return true
     if (isHovering) return true
     return false
-  }, [isHovering, isOpen])
+  }, [isHovering, isOpen, inputFocused, isHoveringInput])
 
   const handleOpen = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {

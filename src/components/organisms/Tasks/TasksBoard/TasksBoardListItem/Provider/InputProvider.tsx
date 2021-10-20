@@ -1,17 +1,13 @@
-import React, {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useRef,
-  useState,
-} from 'react'
+import React, { Dispatch, SetStateAction, useCallback, useState } from 'react'
 import { FlexProps } from 'src/components/atoms'
+import { useHover } from 'src/hooks/useHover'
 import { isHTMLElement } from 'src/shared/isHTMLElement'
 import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
-  ref: React.MutableRefObject<HTMLTextAreaElement | null>
+  ref: React.MutableRefObject<HTMLElement | null>
   inputFocused: boolean
+  isHovering: boolean
   setInputFocused: Dispatch<SetStateAction<boolean>>
   cellStyle?: FlexProps
   onInputFocus: () => void
@@ -20,7 +16,7 @@ type ContextProps = {
 }
 
 const useValue = (): ContextProps => {
-  const ref = useRef<HTMLTextAreaElement | null>(null)
+  const { ref, isHovering } = useHover<HTMLTextAreaElement>()
   const [focused, setFocused] = useState(false)
   const [cellStyle, setCellStyle] = useState<FlexProps>()
   const onInputFocus = useCallback(() => {
@@ -41,7 +37,7 @@ const useValue = (): ContextProps => {
     if (!isHTMLElement(ref.current)) return
     ref.current.focus()
     ref.current.select()
-  }, [])
+  }, [ref])
 
   return {
     ref,
@@ -51,6 +47,7 @@ const useValue = (): ContextProps => {
     onInputFocus,
     onInputBlur,
     onInputSelect,
+    isHovering,
   }
 }
 useValue.__PROVIDER__ =

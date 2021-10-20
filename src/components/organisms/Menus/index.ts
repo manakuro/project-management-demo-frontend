@@ -1,5 +1,6 @@
 export * from './AssignProjectOwnerMenu'
 export * from './AssignTaskMenu'
+export * from './AssigneeIconMenu'
 export * from './AssigneeMenu'
 export * from './AttachmentMenu'
 export * from './EditorEmojiMenu'

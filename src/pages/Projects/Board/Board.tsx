@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Flex } from 'src/components/atoms'
 import { TaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import {
@@ -12,8 +12,9 @@ import {
   TasksBoardList,
   useTasksBoardDetail,
 } from 'src/components/organisms/Tasks'
-import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
-import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router'
+import { useProjectsPageContext } from 'src/pages/Projects/Provider'
+import { getProjectsDetailId, isProjectsDetailURL, useRouter } from 'src/router'
+import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { SortMenu } from '../TasksHeader'
 import { SkeletonBoard } from './SkeletonBoard'
 
@@ -26,12 +27,17 @@ export const Board: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent } = useMyTasksContext()
-  const { navigateToMyTasksBoard } = useRouter()
+  const { loadingTabContent } = useProjectsPageContext()
+  const { projectId } = useProjectsProjectId()
+  const { navigateToProjectsBoard } = useRouter()
   const { hasClickedOutside } = useTasksBoardDetail({
-    isTaskDetailURL: isMyTasksDetailURL,
-    getTaskDetailId: getMyTasksDetailId,
+    isTaskDetailURL: isProjectsDetailURL,
+    getTaskDetailId: getProjectsDetailId,
   })
+
+  const backToPage = useCallback(async () => {
+    await navigateToProjectsBoard(projectId)
+  }, [navigateToProjectsBoard, projectId])
 
   if (loadingTabContent) return <SkeletonBoard />
 
@@ -58,7 +64,7 @@ const Component: React.VFC = memo(() => {
       </Flex>
       <CustomizeMenu />
       <TaskDetailDrawer
-        backToPage={navigateToMyTasksBoard}
+        backToPage={backToPage}
         hasClickedOutside={hasClickedOutside}
       />
     </>

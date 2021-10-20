@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
-import { useTasksBoardListItemElement } from 'src/components/organisms/Tasks/TasksBoard/TasksBoardListItem'
 import { isHTMLElement } from 'src/shared/isHTMLElement'
+import { useTasksBoardListItemElement } from '../TasksBoardListItem'
 
 const CLASS = 'tasks-board-list-section'
 export const useTasksBoardListSectionElement = () => {

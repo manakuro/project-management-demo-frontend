@@ -79,6 +79,8 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
               updatedAt: '',
             },
           ],
+          description: '',
+          descriptionTitle: '',
           dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
         },
         {
@@ -127,6 +129,8 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
               updatedAt: '',
             },
           ],
+          description: '',
+          descriptionTitle: '',
           dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
         },
       ])

@@ -88,11 +88,13 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
               updatedAt: '',
             },
           ],
+          description: '',
+          descriptionTitle: '',
           dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
         },
         {
           id: '2',
-          name: 'Asana 2',
+          name: 'Marketing',
           color: {
             id: '10',
             name: 'pink',
@@ -136,6 +138,8 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
               updatedAt: '',
             },
           ],
+          description: '',
+          descriptionTitle: '',
           dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
         },
       ])

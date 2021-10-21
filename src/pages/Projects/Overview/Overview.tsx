@@ -22,7 +22,7 @@ const Component: React.VFC = memo(() => {
   if (loadingTabContent) return <SkeletonOverview />
 
   return (
-    <Flex flex={1} h="full">
+    <Flex flex={1} h="full" maxW="full">
       <OverviewLeft>
         <OverviewLeftContent>left</OverviewLeftContent>
       </OverviewLeft>

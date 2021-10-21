@@ -14,6 +14,8 @@ const initialState = (): Project => ({
   icon: {
     id: '',
   },
+  description: '',
+  descriptionTitle: '',
   dueDate: '',
 })
 

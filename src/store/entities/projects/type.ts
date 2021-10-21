@@ -12,6 +12,8 @@ export type ProjectResponse = {
   icon: {
     id: string
   }
+  description: string
+  descriptionTitle: string
   teammates: ProjectsTeammateResponse[]
   dueDate: string
 }
@@ -27,5 +29,7 @@ export type Project = {
   icon: {
     id: string
   }
+  description: string
+  descriptionTitle: string
   dueDate: string
 }

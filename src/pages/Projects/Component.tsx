@@ -11,7 +11,10 @@ import {
   isProjectsListURL,
   useRouter,
 } from 'src/router'
-import { getProjectsIdFromURL } from 'src/router/projects'
+import {
+  getProjectsIdFromURL,
+  isProjectsOverviewURL,
+} from 'src/router/projects'
 import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { Board } from './Board'
@@ -55,7 +58,8 @@ const mapURLtoTabIndex = ({ router }: { router: NextRouter }): Index => {
   if (isProjectsBoardURL(router)) return BOARD_INDEX
   if (isProjectsCalendarURL(router)) return CALENDAR_INDEX
   if (isProjectsFilesURL(router)) return FILES_INDEX
-  return OVERVIEW_INDEX
+  if (isProjectsOverviewURL(router)) return OVERVIEW_INDEX
+  return LIST_INDEX
 }
 
 const WrappedComponent: React.VFC = memo(() => {
@@ -64,6 +68,7 @@ const WrappedComponent: React.VFC = memo(() => {
     navigateToProjectsBoard,
     navigateToProjectsCalendar,
     navigateToProjectsFiles,
+    navigateToProjectsOverview,
     router,
   } = useRouter()
   const { isSorted, sortBy } = useMyTasksTaskListStatus()
@@ -85,6 +90,10 @@ const WrappedComponent: React.VFC = memo(() => {
       setLoadingTabContent(false)
     }, 200)
   }, [setLoadingTabContent])
+
+  const navigateToOverview = useCallback(async () => {
+    await navigateToProjectsOverview(projectId)
+  }, [navigateToProjectsOverview, projectId])
 
   const navigateToFiles = useCallback(async () => {
     await navigateToProjectsFiles(projectId)
@@ -108,6 +117,7 @@ const WrappedComponent: React.VFC = memo(() => {
         case OVERVIEW_INDEX: {
           setLoading()
           setTabIndex(OVERVIEW_INDEX)
+          await navigateToOverview()
           break
         }
         case LIST_INDEX: {
@@ -139,6 +149,7 @@ const WrappedComponent: React.VFC = memo(() => {
     },
     [
       isSorted,
+      navigateToOverview,
       navigateToList,
       navigateToBoard,
       navigateToCalendar,
@@ -156,7 +167,7 @@ const WrappedComponent: React.VFC = memo(() => {
       display="flex"
       isLazy
     >
-      <Flex data-testid="Projects" flex={1} flexDirection="column">
+      <Flex data-testid="Projects" flex={1} flexDirection="column" maxW="full">
         <Head title="Projects" />
         <MainHeader>
           <Header loading={loadingQuery} />

@@ -12,6 +12,7 @@ export const OverviewRightContent: React.FC<Props> = memo((props) => {
       p={6}
       overflowY="scroll"
       flexDirection="column"
+      bg="gray.50"
       {...props}
     />
   )

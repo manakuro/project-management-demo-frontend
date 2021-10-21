@@ -5,6 +5,7 @@ import {
   ROUTE_PROJECTS_BOARD,
   ROUTE_PROJECTS_CALENDAR,
   ROUTE_PROJECTS_FILES,
+  ROUTE_PROJECTS_OVERVIEW,
 } from './routes'
 
 export const isProjectsURL = (router: NextRouter): boolean => {
@@ -27,6 +28,10 @@ export const isProjectsFilesURL = (router: NextRouter): boolean => {
   return ROUTE_PROJECTS_FILES.regex.test(router.asPath)
 }
 
+export const isProjectsOverviewURL = (router: NextRouter): boolean => {
+  return ROUTE_PROJECTS_OVERVIEW.regex.test(router.asPath)
+}
+
 // TODO: Should be verified
 export const isProjectsDetailURL = (router: NextRouter): boolean => {
   return (
@@ -36,7 +41,8 @@ export const isProjectsDetailURL = (router: NextRouter): boolean => {
     !isProjectsListURL(router) &&
     !isProjectsBoardURL(router) &&
     !isProjectsCalendarURL(router) &&
-    !isProjectsFilesURL(router)
+    !isProjectsFilesURL(router) &&
+    !isProjectsOverviewURL(router)
   )
 }
 export const isProjectsDetailURLById = (
@@ -50,7 +56,8 @@ export const isProjectsDetailURLById = (
     router.query[ROUTE_PROJECTS.query.projects]?.[0] === taskId &&
     !isProjectsBoardURL(router) &&
     !isProjectsCalendarURL(router) &&
-    !isProjectsFilesURL(router)
+    !isProjectsFilesURL(router) &&
+    !isProjectsOverviewURL(router)
   )
 }
 

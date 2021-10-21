@@ -62,3 +62,16 @@ export const ROUTE_PROJECTS_FILES = {
   },
   query: 'projects',
 } as const
+
+export const ROUTE_PROJECTS_OVERVIEW = {
+  regex: /^\/projects\/\d*\/overview\/?$/iu,
+  href: {
+    pathname: (id: string) => `/projects/${id}/overview`,
+    pathnameObj: (id: string) =>
+      ({
+        pathname: '/projects/[projectId]/overview',
+        query: { projectId: id },
+      } as const),
+  },
+  query: 'projects',
+} as const

@@ -7,6 +7,7 @@ import {
   ROUTE_PROJECTS_FILES,
   ROUTE_PROJECTS_CALENDAR,
   ROUTE_PROJECTS_BOARD,
+  ROUTE_PROJECTS_OVERVIEW,
 } from './routes'
 
 export const useRouterProjects = () => {
@@ -75,6 +76,16 @@ export const useRouterProjects = () => {
     [push],
   )
 
+  const navigateToProjectsOverview = useCallback(
+    async (id: string, options?: Options) => {
+      await push(ROUTE_PROJECTS_OVERVIEW.href.pathname(id), undefined, {
+        shallow: true,
+        ...options,
+      })
+    },
+    [push],
+  )
+
   return {
     navigateToProjectsList,
     navigateToProjectsBoard,
@@ -82,5 +93,6 @@ export const useRouterProjects = () => {
     navigateToProjectsFiles,
     navigateToProjectsTaskDetail,
     navigateToProjectsTaskDetailFeed,
+    navigateToProjectsOverview,
   }
 }

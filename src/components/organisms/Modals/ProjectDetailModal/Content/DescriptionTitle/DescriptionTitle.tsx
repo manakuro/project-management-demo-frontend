@@ -1,6 +1,6 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useProject } from 'src/store/entities/projects'
+import { useDescriptionTitle } from 'src/hooks/pages/projects'
 import { Input } from './Input'
 
 type Props = {
@@ -8,18 +8,11 @@ type Props = {
 }
 
 export const DescriptionTitle: React.FC<Props> = memo<Props>((props) => {
-  const { project, setProject } = useProject(props.projectId)
-
-  const handleChange = useCallback(
-    async (val: string) => {
-      await setProject({ descriptionTitle: val })
-    },
-    [setProject],
-  )
+  const { descriptionTitle, onChange } = useDescriptionTitle(props)
 
   return (
     <Flex>
-      <Input value={project.descriptionTitle} onChange={handleChange} />
+      <Input value={descriptionTitle} onChange={onChange} />
     </Flex>
   )
 })

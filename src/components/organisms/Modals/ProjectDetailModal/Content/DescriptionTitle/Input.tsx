@@ -1,6 +1,6 @@
-import React, { memo, useCallback, useEffect, useState } from 'react'
+import React, { memo } from 'react'
 import { Flex, InputText } from 'src/components/atoms'
-import { useDebounce } from 'src/hooks'
+import { useDescriptionTitleInput } from 'src/hooks/pages/projects'
 
 type Props = {
   value: string
@@ -8,31 +8,14 @@ type Props = {
 }
 
 export const Input: React.FC<Props> = memo<Props>((props) => {
-  const [value, setValue] = useState<string>(props.value)
-
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setValue(e.target.value)
-    },
-    [],
-  )
-
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.code === 'Enter') e.preventDefault()
-  }, [])
-
-  useEffect(() => {
-    setValue(props.value)
-  }, [props.value])
-
-  useDebounce(value, props.onChange, 500)
+  const { value, onKeyDown, onChange } = useDescriptionTitleInput(props)
 
   return (
     <Flex flex={1}>
       <InputText
         value={value}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
         fontSize="md"
         fontWeight="medium"
         minH="38px"

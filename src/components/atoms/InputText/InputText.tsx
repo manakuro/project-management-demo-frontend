@@ -19,6 +19,7 @@ type Props = {
   containerStyle?: FlexProps
   placeholder?: string
   textareaRef?: React.ForwardedRef<any>
+  noBorder?: boolean
 } & ChakraProps
 
 export const InputText: React.FC<Props> = memo<Props>((props) => {
@@ -33,6 +34,7 @@ export const InputText: React.FC<Props> = memo<Props>((props) => {
     onBlur,
     autoFocus,
     textareaRef,
+    noBorder,
     ...rest
   } = props
 
@@ -46,16 +48,17 @@ export const InputText: React.FC<Props> = memo<Props>((props) => {
       border: '1px',
       borderColor: 'transparent',
       borderRadius: 'md',
-      paddingLeft: 2,
-      paddingRight: 2,
+      paddingLeft: noBorder ? 0 : 2,
+      paddingRight: noBorder ? 0 : 2,
       _hover: {
-        borderColor: 'gray.400',
+        borderColor: noBorder ? 'transparent' : 'gray.400',
       },
       _focus: {
-        borderColor: 'gray.500',
+        borderColor: noBorder ? 'transparent' : 'gray.500',
       },
+      wordBreak: 'break-all',
     }),
-    [props.minH],
+    [props.minH, noBorder],
   )
 
   return (

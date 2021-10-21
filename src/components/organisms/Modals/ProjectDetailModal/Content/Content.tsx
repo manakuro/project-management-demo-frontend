@@ -8,6 +8,7 @@ import {
 } from 'src/components/organisms/Modal'
 import { useProject } from 'src/store/entities/projects'
 import { Description } from './Description'
+import { DescriptionTitle } from './DescriptionTitle'
 import { Label } from './Label'
 import { NameField } from './NameField'
 import { ProjectDueDate } from './ProjectDueDate'
@@ -51,7 +52,10 @@ export const Content: React.VFC<Props> = memo<Props>((props) => {
             </Flex>
           </Flex>
           <Divider />
-          <Description />
+          <Flex flexDirection="column">
+            <DescriptionTitle projectId={projectId} />
+            <Description />
+          </Flex>
         </Stack>
       </ModalBody>
     </ModalContent>

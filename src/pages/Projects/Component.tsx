@@ -19,6 +19,7 @@ import { Calendar } from './Calendar'
 import { Files } from './Files'
 import { Header } from './Header'
 import { List } from './List'
+import { Overview } from './Overview'
 import { Provider, useProjectsPageContext } from './Provider'
 
 type Props = {
@@ -162,7 +163,9 @@ const WrappedComponent: React.VFC = memo(() => {
         </MainHeader>
         <Flex flex={1}>
           <TabPanels>
-            <TabPanel>hey</TabPanel>
+            <TabPanel>
+              <Overview />
+            </TabPanel>
             <TabPanel>
               <List />
             </TabPanel>

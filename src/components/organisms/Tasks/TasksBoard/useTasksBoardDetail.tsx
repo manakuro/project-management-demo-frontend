@@ -19,7 +19,11 @@ export const useTasksBoardDetail = (props: Props) => {
   const { className } = useTasksBoardListItemElement()
   const hasClickedOutside =
     useCallback<UseClickOutsideOptionsHasClickedOutside>(
-      (e) => {
+      (e, helpers) => {
+        if (helpers.isContainInModalContent(e)) return false
+        if (helpers.isContainInMenuList(e)) return false
+        if (helpers.isContainInToastContent(e)) return false
+        if (helpers.isContainInPopoverContent(e)) return false
         if (!isHTMLElement(e.target)) return false
         if (e.target.closest(`.${className}`)) return false
 

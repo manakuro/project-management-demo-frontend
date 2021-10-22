@@ -1,9 +1,13 @@
-import React, { memo } from 'react'
-import { Button, Flex, Input, Label, Portal } from 'src/components/atoms'
+import React, { memo, useCallback } from 'react'
+import { Label, Portal } from 'src/components/atoms'
 import { PopoverBody, PopoverContent } from 'src/components/organisms/Popover'
 import { useClickOutside } from 'src/hooks'
-import { useProjectTeammate } from 'src/store/entities/projectsTeammates'
+import {
+  useProjectTeammate,
+  useProjectTeammatesCommand,
+} from 'src/store/entities/projectsTeammates'
 import { useTeammate } from 'src/store/entities/teammates'
+import { Form } from './Form'
 
 type Props = {
   isOpen: boolean
@@ -15,10 +19,19 @@ type Props = {
 
 export const Content: React.FC<Props> = memo<Props>((props) => {
   const { projectTeammateId, initialFocusRef, onClose } = props
-  const { projectTeammate } = useProjectTeammate(projectTeammateId)
+  const { projectTeammate, role } = useProjectTeammate(projectTeammateId)
+  const { setProjectTeammateById } = useProjectTeammatesCommand()
   const { teammate } = useTeammate(projectTeammate.teammateId)
 
   const { ref } = useClickOutside(onClose)
+
+  const handleChangeRole = useCallback(
+    async (value: string) => {
+      await setProjectTeammateById(projectTeammate.id, { role: value })
+      onClose()
+    },
+    [projectTeammate.id, setProjectTeammateById, onClose],
+  )
 
   return (
     <Portal>
@@ -27,18 +40,11 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
           <Label fontSize="xs" fontWeight="medium" color="text.muted">
             What is {teammate.name}'s role on this project?
           </Label>
-          <Flex alignItems="center" mt={2}>
-            <Input
-              ref={initialFocusRef}
-              defaultValue=""
-              placeholder="e.g. Approver, Contributor, Tester"
-              size="sm"
-              autoFocus
-            />
-            <Button ml={2} colorScheme="teal" size="sm">
-              Done
-            </Button>
-          </Flex>
+          <Form
+            onChange={handleChangeRole}
+            defaultValue={role}
+            initialFocusRef={initialFocusRef}
+          />
         </PopoverBody>
       </PopoverContent>
     </Portal>

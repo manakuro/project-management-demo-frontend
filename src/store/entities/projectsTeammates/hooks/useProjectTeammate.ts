@@ -7,8 +7,9 @@ export const useProjectTeammate = (projectTeammateId: string) => {
     projectTeammateState(projectTeammateId),
   )
   const role = useMemo(() => {
+    if (projectTeammate.role) return projectTeammate.role
     if (projectTeammate.isOwner) return 'Project Owner'
-    return projectTeammate.role
+    return ''
   }, [projectTeammate.isOwner, projectTeammate.role])
 
   return {

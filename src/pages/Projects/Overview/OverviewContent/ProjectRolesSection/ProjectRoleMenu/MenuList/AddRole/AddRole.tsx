@@ -1,5 +1,6 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo, useCallback, useMemo } from 'react'
 import { MenuItem } from 'src/components/organisms/Menu'
+import { useProjectTeammate } from 'src/store/entities/projectsTeammates'
 
 type Props = {
   projectId: string
@@ -8,12 +9,18 @@ type Props = {
 }
 
 export const AddRole: React.FC<Props> = memo<Props>((props) => {
-  const { onOpenPopover } = props
+  const { onOpenPopover, projectTeammateId } = props
+  const { role } = useProjectTeammate(projectTeammateId)
+
+  const text = useMemo(() => {
+    if (!role) return 'Add role'
+    return 'Change role'
+  }, [role])
 
   const handleClick = useCallback(() => {
     onOpenPopover()
   }, [onOpenPopover])
 
-  return <MenuItem onClick={handleClick}>Add role</MenuItem>
+  return <MenuItem onClick={handleClick}>{text}</MenuItem>
 })
 AddRole.displayName = 'AddRole'

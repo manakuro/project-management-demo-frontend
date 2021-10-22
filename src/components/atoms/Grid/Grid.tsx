@@ -8,13 +8,5 @@ type Props = ChakraGridProps
 export type GridProps = Props
 
 export const Grid: React.FC<Props> = (props) => {
-  return (
-    <ChakraGrid
-      templateColumns="repeat(12, 1fr)"
-      gap={5}
-      px={5}
-      w="full"
-      {...props}
-    />
-  )
+  return <ChakraGrid {...props} />
 }

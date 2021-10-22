@@ -1,7 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { Icon, IconButton } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
-import { useTooltip } from 'src/components/molecules/Tooltip/useTooltip'
 import { useTasksTask } from 'src/components/organisms/Tasks/hooks'
 
 type Props = {
@@ -9,13 +8,11 @@ type Props = {
 }
 
 export const AddTaskButton: React.FC<Props> = memo((props) => {
-  const { ref, isOpen, onClose } = useTooltip({ openDelay: 500 })
   const { addTask } = useTasksTask()
 
   const handleClick = useCallback(() => {
-    onClose()
     addTask({ taskSectionId: props.taskSectionId })
-  }, [addTask, onClose, props.taskSectionId])
+  }, [addTask, props.taskSectionId])
 
   return (
     <Tooltip
@@ -23,10 +20,9 @@ export const AddTaskButton: React.FC<Props> = memo((props) => {
       label="Add a task to this section"
       aria-label="Add task button"
       size="sm"
-      isOpen={isOpen}
+      openDelay={500}
     >
       <IconButton
-        ref={ref}
         aria-label="Add task button"
         icon={<Icon icon="plus" color="text.muted" />}
         variant="ghost"

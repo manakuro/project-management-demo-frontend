@@ -7,7 +7,7 @@ import { useLinkHoverStyle } from 'src/hooks'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraButtonProps & {
-  ref?: React.MutableRefObject<any>
+  ref?: React.ForwardedRef<any>
   lightBg?: boolean
 }
 export type ButtonProps = Props

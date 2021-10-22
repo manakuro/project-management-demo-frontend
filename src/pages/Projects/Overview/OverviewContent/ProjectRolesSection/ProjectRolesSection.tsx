@@ -20,7 +20,7 @@ export const ProjectRolesSection: React.FC<Props> = () => {
         mt={4}
       >
         {teammateIds.map((id) => (
-          <ProjectRoleListItem teammateId={id} key={id} />
+          <ProjectRoleListItem teammateId={id} key={id} projectId={projectId} />
         ))}
       </Grid>
     </Flex>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Flex, PortalManager } from 'src/components/atoms'
 import {
   Popover,
@@ -10,11 +10,14 @@ import { Content } from './Content'
 type Props = PopoverProps & {
   onClose: () => void
   projectId: string
-  teammateId: string
+  projectTeammateId: string
+  isOpen: boolean
 }
 
 export const ProjectRoleInputPopover: React.FC<Props> = (props) => {
-  const { children, isOpen, onClose, projectId, teammateId, ...rest } = props
+  const { children, isOpen, onClose, projectId, projectTeammateId, ...rest } =
+    props
+  const initialFocusRef = useRef<HTMLInputElement | null>(null)
 
   return (
     <PortalManager zIndex={1500}>
@@ -22,7 +25,7 @@ export const ProjectRoleInputPopover: React.FC<Props> = (props) => {
         isLazy
         placement="bottom-start"
         isOpen={isOpen}
-        autoFocus
+        initialFocusRef={initialFocusRef}
         {...rest}
       >
         <PopoverTrigger>
@@ -30,9 +33,11 @@ export const ProjectRoleInputPopover: React.FC<Props> = (props) => {
         </PopoverTrigger>
         {isOpen && (
           <Content
+            isOpen={isOpen}
             onClose={onClose}
             projectId={projectId}
-            teammateId={teammateId}
+            projectTeammateId={projectTeammateId}
+            initialFocusRef={initialFocusRef}
           />
         )}
       </Popover>

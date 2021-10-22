@@ -6,22 +6,28 @@ import { SetProjectOwner } from './SetProjectOwner'
 
 type Props = {
   projectId: string
-  teammateId: string
+  projectTeammateId: string
   onOpenPopover: () => void
 }
 
 export const MenuList: React.FC<Props> = memo<Props>((props) => {
-  const { projectId, teammateId, onOpenPopover } = props
+  const { projectId, projectTeammateId, onOpenPopover } = props
 
   return (
     <AtomsMenuList>
       <AddRole
         projectId={projectId}
-        teammateId={teammateId}
+        projectTeammateId={projectTeammateId}
         onOpenPopover={onOpenPopover}
       />
-      <SetProjectOwner projectId={projectId} teammateId={teammateId} />
-      <RemoveFromProject projectId={projectId} teammateId={teammateId} />
+      <SetProjectOwner
+        projectId={projectId}
+        projectTeammateId={projectTeammateId}
+      />
+      <RemoveFromProject
+        projectId={projectId}
+        projectTeammateId={projectTeammateId}
+      />
     </AtomsMenuList>
   )
 })

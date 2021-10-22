@@ -1,24 +1,34 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Flex, Icon, Text } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useHover } from 'src/hooks/useHover'
+import { useProjectTeammate } from 'src/store/entities/projectsTeammates'
 import { useTeammate } from 'src/store/entities/teammates'
 import { ProjectRoleMenu } from '../ProjectRoleMenu'
 import { Button } from './Button'
 
 type Props = {
-  teammateId: string
+  projectTeammateId: string
   projectId: string
 }
 
 export const ProjectRoleListItem: React.FC<Props> = (props) => {
-  const { projectId, teammateId } = props
-  const { teammate } = useTeammate(teammateId)
+  const { projectId, projectTeammateId } = props
+  const { projectTeammate, role } = useProjectTeammate(projectTeammateId)
+  const { teammate } = useTeammate(projectTeammate.teammateId)
   const { ref, isHovering } = useHover()
+
+  const roleText = useMemo(() => {
+    if (!role) return '+ Add role'
+    return role
+  }, [role])
 
   return (
     <Flex flexDirection="column" ref={ref} cursor="pointer">
-      <ProjectRoleMenu projectId={projectId} teammateId={teammateId}>
+      <ProjectRoleMenu
+        projectId={projectId}
+        projectTeammateId={projectTeammateId}
+      >
         <Button>
           <Flex alignItems="center" textAlign="left">
             <TeammateAvatar teammateId={teammate.id} size="sm" />
@@ -33,7 +43,7 @@ export const ProjectRoleListItem: React.FC<Props> = (props) => {
                 {teammate.name}
               </Text>
               <Text fontSize="xs" color="text.muted" mt={1}>
-                Project Owner
+                {roleText}
               </Text>
             </Flex>
             {isHovering && (

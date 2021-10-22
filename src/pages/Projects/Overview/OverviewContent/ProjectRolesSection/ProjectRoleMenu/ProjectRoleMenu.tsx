@@ -7,7 +7,7 @@ import { ProjectRoleInputPopover } from './ProjectRoleInputPopover'
 
 type Props = {
   projectId: string
-  teammateId: string
+  projectTeammateId: string
 }
 
 export const ProjectRoleMenu: React.FC<Props> = memo<Props>((props) => {
@@ -18,7 +18,7 @@ export const ProjectRoleMenu: React.FC<Props> = memo<Props>((props) => {
       isOpen={disclosurePopover.isOpen}
       onClose={disclosurePopover.onClose}
       projectId={props.projectId}
-      teammateId={props.teammateId}
+      projectTeammateId={props.projectTeammateId}
     >
       <PortalManager zIndex={1500}>
         <Box w="full">
@@ -26,7 +26,7 @@ export const ProjectRoleMenu: React.FC<Props> = memo<Props>((props) => {
             {props.children}
             <MenuList
               projectId={props.projectId}
-              teammateId={props.teammateId}
+              projectTeammateId={props.projectTeammateId}
               onOpenPopover={disclosurePopover.onOpen}
             />
           </Menu>

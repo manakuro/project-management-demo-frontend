@@ -1,18 +1,19 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { MenuItem } from 'src/components/organisms/Menu'
-import { useOwnerTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
-import { useTeammate } from 'src/store/entities/teammates'
+import { useProjectTeammate } from 'src/store/entities/projectsTeammates'
 
 type Props = {
   projectId: string
-  teammateId: string
+  projectTeammateId: string
 }
 
 export const SetProjectOwner: React.FC<Props> = memo<Props>((props) => {
-  const { projectId, teammateId } = props
-  const { projectTeammate } = useOwnerTeammateIdsByProjectId(projectId)
-  const { teammate: owner } = useTeammate(projectTeammate.teammateId)
-  const isOwner = useMemo(() => owner.id === teammateId, [owner.id, teammateId])
+  const { projectTeammateId } = props
+  const { projectTeammate } = useProjectTeammate(projectTeammateId)
+  const isOwner = useMemo(
+    () => projectTeammate.isOwner,
+    [projectTeammate.isOwner],
+  )
 
   const handleRemoveAsProjectOwner = useCallback(() => {}, [])
   const handleSetAsProjectOwner = useCallback(() => {}, [])

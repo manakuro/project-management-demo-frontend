@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex, Grid } from 'src/components/atoms'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
-import { useTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
+import { useProjectTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
 import { OverviewContentHeading } from '../OverviewContentHeading'
 import { ProjectRoleListItem } from './ProjectRoleListItem'
 
@@ -9,7 +9,7 @@ type Props = {}
 
 export const ProjectRolesSection: React.FC<Props> = () => {
   const { projectId } = useProjectsProjectId()
-  const { teammateIds } = useTeammateIdsByProjectId(projectId)
+  const { projectTeammateIds } = useProjectTeammateIdsByProjectId(projectId)
 
   return (
     <Flex flexDirection="column" mt={8}>
@@ -19,8 +19,12 @@ export const ProjectRolesSection: React.FC<Props> = () => {
         gap={2}
         mt={4}
       >
-        {teammateIds.map((id) => (
-          <ProjectRoleListItem teammateId={id} key={id} projectId={projectId} />
+        {projectTeammateIds.map((id) => (
+          <ProjectRoleListItem
+            projectTeammateId={id}
+            key={id}
+            projectId={projectId}
+          />
         ))}
       </Grid>
     </Flex>

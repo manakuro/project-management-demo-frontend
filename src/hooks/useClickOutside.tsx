@@ -16,6 +16,7 @@ type Options = {
 export type UseClickOutsideOptions = Options
 export type UseClickOutsideOptionsHasClickedOutside =
   Required<UseClickOutsideOptions>['hasClickedOutside']
+
 export const useClickOutside = (
   onClickOutside?: () => void,
   options: Options = {},

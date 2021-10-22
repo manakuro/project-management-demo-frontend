@@ -9,6 +9,7 @@ const initialState = (): ProjectTeammate => ({
   projectId: '',
   teammateId: '',
   isOwner: false,
+  role: '',
   createdAt: '',
   updatedAt: '',
 })
@@ -27,6 +28,19 @@ export const teammateIdsByProjectIdState = selectorFamily<string[], string>({
       return projects
         .filter((t) => t.projectId === projectId)
         .map((p) => p.teammateId)
+    },
+})
+
+export const projectTeammateIdsByProjectIdState = selectorFamily<
+  string[],
+  string
+>({
+  key: 'projectTeammateIdsByProjectIdState',
+  get:
+    (projectId) =>
+    ({ get }) => {
+      const projects = get(projectTeammatesState)
+      return projects.filter((t) => t.projectId === projectId).map((p) => p.id)
     },
 })
 

@@ -8,6 +8,7 @@ export type ProjectsTeammateResponse = Omit<
   teammateId: string
   projectId: string
   isOwner: boolean
+  role: string
   createdAt: string
   updatedAt: string
 }
@@ -17,6 +18,7 @@ export type ProjectTeammate = {
   teammateId: string
   projectId: string
   isOwner: boolean
+  role: string
   createdAt: string
   updatedAt: string
 }

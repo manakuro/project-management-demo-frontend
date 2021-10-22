@@ -3,7 +3,7 @@ import { MenuItem } from 'src/components/organisms/Menu'
 
 type Props = {
   projectId: string
-  teammateId: string
+  projectTeammateId: string
 }
 
 export const RemoveFromProject: React.FC<Props> = memo<Props>(() => {

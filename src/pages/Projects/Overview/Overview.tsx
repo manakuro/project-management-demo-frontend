@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
 import { TasksProvider } from 'src/components/organisms/Tasks'
 import { useProjectsPageContext } from 'src/pages/Projects/Provider'
+import { OverviewContent } from './OverviewContent'
 import { OverviewLeft } from './OverviewLeft'
 import { OverviewLeftContent } from './OverviewLeftContent'
 import { OverviewRight } from './OverviewRight'
@@ -24,7 +25,9 @@ const Component: React.VFC = memo(() => {
   return (
     <Flex flex={1} h="full" maxW="full">
       <OverviewLeft>
-        <OverviewLeftContent>left</OverviewLeftContent>
+        <OverviewLeftContent>
+          <OverviewContent />
+        </OverviewLeftContent>
       </OverviewLeft>
       <OverviewRight>
         <OverviewRightContent>right</OverviewRightContent>

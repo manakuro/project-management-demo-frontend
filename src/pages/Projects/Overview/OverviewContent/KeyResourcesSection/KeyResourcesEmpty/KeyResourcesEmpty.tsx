@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Flex, Heading, Image, Stack } from 'src/components/atoms'
+import { ComingSoonTooltip } from 'src/components/molecules'
 
 type Props = {}
 
@@ -25,12 +26,16 @@ export const KeyResourcesEmpty: React.FC<Props> = () => {
           supporting resources.
         </Heading>
         <Stack mt={2} spacing={2} direction="row">
-          <Button colorScheme="teal" size="sm">
-            Create project brief
-          </Button>
-          <Button variant="outline" size="sm">
-            Add links & files
-          </Button>
+          <ComingSoonTooltip>
+            <Button colorScheme="teal" size="sm">
+              Create project brief
+            </Button>
+          </ComingSoonTooltip>
+          <ComingSoonTooltip>
+            <Button variant="outline" size="sm">
+              Add links & files
+            </Button>
+          </ComingSoonTooltip>
         </Stack>
       </Flex>
     </Flex>

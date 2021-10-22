@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex, Grid } from 'src/components/atoms'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
-import { useProjectTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
+import { useProjectTeammateIdsByProjectIdSortedByOwner } from 'src/store/entities/projectsTeammates'
 import { OverviewContentHeading } from '../OverviewContentHeading'
 import { ProjectRoleListItem } from './ProjectRoleListItem'
 
@@ -9,7 +9,8 @@ type Props = {}
 
 export const ProjectRolesSection: React.FC<Props> = () => {
   const { projectId } = useProjectsProjectId()
-  const { projectTeammateIds } = useProjectTeammateIdsByProjectId(projectId)
+  const { projectTeammateIds } =
+    useProjectTeammateIdsByProjectIdSortedByOwner(projectId)
 
   return (
     <Flex flexDirection="column" mt={8}>

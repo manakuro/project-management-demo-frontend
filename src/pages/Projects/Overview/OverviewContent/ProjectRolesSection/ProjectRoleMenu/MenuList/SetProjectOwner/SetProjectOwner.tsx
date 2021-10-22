@@ -1,6 +1,9 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { MenuItem } from 'src/components/organisms/Menu'
-import { useProjectTeammate } from 'src/store/entities/projectsTeammates'
+import {
+  useProjectTeammate,
+  useProjectTeammatesCommand,
+} from 'src/store/entities/projectsTeammates'
 
 type Props = {
   projectId: string
@@ -8,15 +11,26 @@ type Props = {
 }
 
 export const SetProjectOwner: React.FC<Props> = memo<Props>((props) => {
-  const { projectTeammateId } = props
+  const { projectTeammateId, projectId } = props
   const { projectTeammate } = useProjectTeammate(projectTeammateId)
+  const { setOwnerByProjectIdAndTeammateId, setProjectTeammateById } =
+    useProjectTeammatesCommand()
+
   const isOwner = useMemo(
     () => projectTeammate.isOwner,
     [projectTeammate.isOwner],
   )
 
-  const handleRemoveAsProjectOwner = useCallback(() => {}, [])
-  const handleSetAsProjectOwner = useCallback(() => {}, [])
+  const handleRemoveAsProjectOwner = useCallback(async () => {
+    await setProjectTeammateById(projectTeammateId, { isOwner: false })
+  }, [projectTeammateId, setProjectTeammateById])
+
+  const handleSetAsProjectOwner = useCallback(async () => {
+    await setOwnerByProjectIdAndTeammateId(
+      projectId,
+      projectTeammate.teammateId,
+    )
+  }, [projectId, projectTeammate.teammateId, setOwnerByProjectIdAndTeammateId])
 
   if (isOwner) {
     return (

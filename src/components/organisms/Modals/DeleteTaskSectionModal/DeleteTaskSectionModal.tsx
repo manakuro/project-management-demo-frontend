@@ -15,8 +15,8 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  ModalCloseButton,
 } from 'src/components/organisms/Modal'
-import { ModalCloseButton } from 'src/components/organisms/Modal/ModalCloseButton'
 import { useDeleteTaskSectionModal } from './useDeleteTaskSectionModal'
 
 export const DeleteTaskSectionModal: React.VFC<Props> = () => {

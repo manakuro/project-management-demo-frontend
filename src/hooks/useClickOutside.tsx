@@ -103,7 +103,10 @@ const isContainInMenuList = (e: Event) =>
 const isContainInModalContent = (e: Event) =>
   Array.from(document.querySelectorAll("[aria-label='modal-content']")).some(
     (q) => q.contains(e.target as Node),
-  )
+  ) ||
+  Array.from(
+    document.querySelectorAll('.chakra-modal__content-container'),
+  ).some((q) => q.contains(e.target as Node))
 const isContainInPopoverContent = (e: Event) =>
   Array.from(document.querySelectorAll("[aria-label='popover-content']")).some(
     (q) => q.contains(e.target as Node),

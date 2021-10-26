@@ -17,6 +17,9 @@ const initialState = (): Project => ({
   description: '',
   descriptionTitle: '',
   dueDate: '',
+  createdBy: '',
+  createdAt: '',
+  updatedAt: '',
 })
 
 export const {

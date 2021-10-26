@@ -16,6 +16,9 @@ export type ProjectResponse = {
   descriptionTitle: string
   teammates: ProjectsTeammateResponse[]
   dueDate: string
+  createdBy: string
+  createdAt: string
+  updatedAt: string
 }
 
 export type Project = {
@@ -32,4 +35,7 @@ export type Project = {
   description: string
   descriptionTitle: string
   dueDate: string
+  createdBy: string
+  createdAt: string
+  updatedAt: string
 }

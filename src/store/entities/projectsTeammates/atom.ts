@@ -74,7 +74,7 @@ export const projectTeammateIdsByProjectIdSortedByCreatedAtState =
         return projects
           .filter((t) => t.projectId === projectId)
           .sort((a, b) => {
-            return a.createdAt < b.createdAt ? -1 : 1
+            return a.createdAt > b.createdAt ? -1 : 1
           })
           .map((p) => p.id)
       },

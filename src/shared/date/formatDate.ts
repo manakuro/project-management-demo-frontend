@@ -15,6 +15,12 @@ export const formatDueDate = (date: string): string => {
   return dateFns.format(dateObj, 'MMM d')
 }
 
+export const formatCreatedAt = (date: string): string => {
+  if (!date) return ''
+  const dateObj = new Date(date)
+  return dateFns.format(dateObj, 'MMM d')
+}
+
 export const formatDueDateInput = (date: string): string => {
   if (!date) return ''
   const dateObj = new Date(date)
@@ -34,7 +40,7 @@ export const formatAttachmentCreatedAt = (date: string): string => {
   return `${day}, at ${time}`
 }
 
-export const formatCreatedAt = (date: string): string => {
+export const formatFeedCreatedAt = (date: string): string => {
   if (!date) return ''
 
   const dateObj = new Date(date)

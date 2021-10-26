@@ -4,15 +4,15 @@ import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import { formatDueDateInput } from 'src/shared/date'
-import { useProject } from 'src/store/entities/projects'
 
 type Props = {
-  projectId: string
   onClose: () => void
+  onSelect: (val: Date) => void
+  dueDate: string
 }
 
 export const Input: React.FC<Props> = memo<Props>((props) => {
-  const { projectId, onClose } = props
+  const { onClose, onSelect, dueDate } = props
   const { ref } = useClickOutside(onClose, {
     hasClickedOutside: (e, helpers) => {
       if (helpers.isContainInPopoverContent(e)) return false
@@ -20,10 +20,7 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
     },
   })
   const popoverDisclosure = useDisclosure({ defaultIsOpen: true })
-  const { setProject, project } = useProject(projectId)
-  const [value, setValue] = useState<string>(
-    formatDueDateInput(project.dueDate),
-  )
+  const [value, setValue] = useState<string>(formatDueDateInput(dueDate))
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,10 +38,10 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
   const handleSelect = useCallback(
     async (val: Date) => {
       setValue('')
-      await setProject({ dueDate: val.toISOString() })
+      onSelect(val)
       onClose()
     },
-    [onClose, setProject],
+    [onClose, onSelect],
   )
 
   return (

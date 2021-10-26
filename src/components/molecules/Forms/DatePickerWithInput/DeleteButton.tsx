@@ -1,25 +1,22 @@
 import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useProject } from 'src/store/entities/projects'
 
 type Props = {
-  projectId: string
+  onDelete: () => void
   isHovering: boolean
 }
 
 export const DeleteButton: React.FC<Props> = memo<Props>((props) => {
-  const { isHovering, projectId } = props
-  const { setProject } = useProject(projectId)
+  const { isHovering, onDelete } = props
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   const handleClick = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
       e.stopPropagation()
-
-      await setProject({ dueDate: '' })
+      onDelete()
     },
-    [setProject],
+    [onDelete],
   )
 
   return (

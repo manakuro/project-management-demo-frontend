@@ -17,7 +17,19 @@ export const useLinkStyle = (props?: Props) => {
     [props],
   )
 
+  const styleHover = useMemo<ChakraProps>(
+    () => ({
+      cursor: 'pointer',
+      _hover: {
+        color: 'cyan.400',
+      },
+      ...props,
+    }),
+    [props],
+  )
+
   return {
     style,
+    styleHover,
   }
 }

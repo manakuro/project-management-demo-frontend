@@ -64,6 +64,22 @@ export const projectTeammateIdsByProjectIdSortedByOwnerState = selectorFamily<
     },
 })
 
+export const projectTeammateIdsByProjectIdSortedByCreatedAtState =
+  selectorFamily<string[], string>({
+    key: 'projectTeammateIdsByProjectIdSortedByCreatedAtState',
+    get:
+      (projectId) =>
+      ({ get }) => {
+        const projects = get(projectTeammatesState)
+        return projects
+          .filter((t) => t.projectId === projectId)
+          .sort((a, b) => {
+            return a.createdAt < b.createdAt ? -1 : 1
+          })
+          .map((p) => p.id)
+      },
+  })
+
 export const ownerProjectTeammateByProjectIdState = selectorFamily<
   ProjectTeammate,
   string

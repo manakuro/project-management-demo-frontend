@@ -11,7 +11,7 @@ type Props = {
 export const ProjectCreated: React.VFC<Props> = memo<Props>((props) => {
   const { projectId } = props
   const { project } = useProject(projectId)
-  const { teammate } = useTeammate(project.createdBy ?? '1')
+  const { teammate } = useTeammate(project.createdBy)
   const name = useMemo(() => teammate.name, [teammate.name])
 
   return (

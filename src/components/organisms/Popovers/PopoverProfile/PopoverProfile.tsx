@@ -30,7 +30,7 @@ export const PopoverProfile: React.FC<Props> = (props) => {
     <PortalManager zIndex={1600}>
       <Popover trigger="hover" isLazy>
         <PopoverTrigger>
-          <Flex>{props.children}</Flex>
+          <Flex maxW="max-content">{props.children}</Flex>
         </PopoverTrigger>
         <Portal>
           <PopoverContent w={56} border="none">

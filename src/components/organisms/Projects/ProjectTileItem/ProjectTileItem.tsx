@@ -1,20 +1,20 @@
-import React from 'react'
-import { Flex, Icon, Fade, AvatarGroup } from 'src/components/atoms'
+import React, { memo } from 'react'
+import { Flex, Icon, Fade, AvatarGroup, IconButton } from 'src/components/atoms'
 import { FavoriteIconButton } from 'src/components/molecules'
+import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useProject } from 'src/store/entities/projects'
 import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
 import { useTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
 import { transitions } from 'src/styles'
-import { MenuButton } from '../MenuButton'
 import { Container } from './Container'
 
 type Props = {
   projectId: string
 }
 
-export const ListItemTile: React.VFC<Props> = (props) => {
+export const ProjectTileItem: React.VFC<Props> = memo((props) => {
   const { project } = useProject(props.projectId)
   const { teammateIds } = useTeammateIdsByProjectId(props.projectId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
@@ -49,11 +49,21 @@ export const ListItemTile: React.VFC<Props> = (props) => {
 
           <Flex position="absolute" top={2} right={2}>
             <Fade in={showTransition}>
-              <MenuButton
+              <PopoverProjectMenu
+                addFavorite
+                editNamesAndDescriptionProject
+                copyProjectLink
+                share
+                projectId={project.id}
+                iconButton={{
+                  as: IconButton,
+                  'aria-label': 'menu button',
+                  icon: <Icon icon="menu" size="xs" />,
+                  variant: 'ghost',
+                  light: true,
+                }}
                 onOpened={handlePopoverProjectMenuOpened}
                 onClosed={handlePopoverProjectMenuClosed}
-                projectId={project.id}
-                light
               />
             </Fade>
           </Flex>
@@ -85,4 +95,5 @@ export const ListItemTile: React.VFC<Props> = (props) => {
       )}
     </Container>
   )
-}
+})
+ProjectTileItem.displayName = 'ProjectTileItem'

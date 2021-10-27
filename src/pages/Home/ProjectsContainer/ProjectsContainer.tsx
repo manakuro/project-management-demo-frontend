@@ -6,9 +6,15 @@ import {
   AccordionPanel,
   AccordionButton,
 } from 'src/components/organisms/Accordion'
-import { ListIcon } from './ListIcon'
-import { ListItemList, ListItemListNew } from './ListItemList'
-import { ListItemTile, ListItemTileNew } from './ListItemTile'
+import {
+  ProjectListItem,
+  ProjectListItemNew,
+  ProjectTileItem,
+  ProjectTileItemNew,
+  ProjectListMenu,
+  ProjectListStatus,
+  PROJECT_LIST_MENU_VIEW_AS_TILES,
+} from 'src/components/organisms/Projects'
 
 type Props = {
   projectIds: string[]
@@ -16,13 +22,11 @@ type Props = {
   title: string
 }
 
-export const VIEW_AS_TILES = '1' as const
-export const VIEW_AS_LIST = '2' as const
-export type ListStatus = typeof VIEW_AS_TILES | typeof VIEW_AS_LIST
-
 export const PADDING_X = 2
 export const ProjectsContainer: React.VFC<Props> = memo<Props>((props) => {
-  const [listStatus, setListStatus] = useState<ListStatus>(VIEW_AS_TILES)
+  const [listStatus, setListStatus] = useState<ProjectListStatus>(
+    PROJECT_LIST_MENU_VIEW_AS_TILES,
+  )
 
   return (
     <Accordion allowToggle defaultIndex={0}>
@@ -45,25 +49,28 @@ export const ProjectsContainer: React.VFC<Props> = memo<Props>((props) => {
                   {props.title}
                 </Heading>
               </AccordionButton>
-              <ListIcon listStatus={listStatus} onChange={setListStatus} />
+              <ProjectListMenu
+                listStatus={listStatus}
+                onChange={setListStatus}
+              />
             </Flex>
             <AccordionPanel p={0}>
               <>
-                {listStatus === VIEW_AS_TILES ? (
+                {listStatus === PROJECT_LIST_MENU_VIEW_AS_TILES ? (
                   <Box py={4}>
                     <Stack direction="row" spacing={6}>
                       {props.projectIds.map((id) => (
-                        <ListItemTile projectId={id} key={id} />
+                        <ProjectTileItem projectId={id} key={id} />
                       ))}
-                      {props.showNewOrder && <ListItemTileNew />}
+                      {props.showNewOrder && <ProjectTileItemNew />}
                     </Stack>
                   </Box>
                 ) : (
                   <>
                     {props.projectIds.map((id) => (
-                      <ListItemList projectId={id} key={id} />
+                      <ProjectListItem projectId={id} key={id} />
                     ))}
-                    {props.showNewOrder && <ListItemListNew />}
+                    {props.showNewOrder && <ProjectListItemNew />}
                   </>
                 )}
               </>

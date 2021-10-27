@@ -1,16 +1,16 @@
 import React from 'react'
-import { Flex, Text } from 'src/components/atoms'
+import { Flex, FlexProps, Text } from 'src/components/atoms'
 import { NewBox } from 'src/components/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
 import { Container } from './Container'
 
-type Props = {}
+type Props = FlexProps
 
-export const ListItemListNew: React.VFC<Props> = () => {
+export const ProjectListItemNew: React.VFC<Props> = (props) => {
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   return (
-    <Container>
+    <Container {...props}>
       <NewBox size="md" />
       <Flex ml={3} flex={1} alignItems="center">
         <Text fontSize="sm" {...clickableHoverLightStyle}>
@@ -20,3 +20,4 @@ export const ListItemListNew: React.VFC<Props> = () => {
     </Container>
   )
 }
+ProjectListItemNew.displayName = 'ProjectListItemNew'

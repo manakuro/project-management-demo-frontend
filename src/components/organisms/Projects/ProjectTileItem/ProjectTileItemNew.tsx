@@ -5,7 +5,7 @@ import { Container } from './Container'
 
 type Props = {}
 
-export const ListItemTileNew: React.VFC<Props> = () => {
+export const ProjectTileItemNew: React.VFC<Props> = () => {
   return (
     <Container name="New Project">
       {({ showTransition }) => (

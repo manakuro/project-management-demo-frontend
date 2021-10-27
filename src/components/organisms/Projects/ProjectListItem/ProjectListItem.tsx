@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Flex, IconButton, Text, Icon, AvatarGroup } from 'src/components/atoms'
+import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useProject } from 'src/store/entities/projects'
 import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
 import { useTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
-import { MenuButton } from '../MenuButton/MenuButton'
 import { Container } from './Container'
 
 type Props = {
   projectId: string
 }
 
-export const ListItemList: React.VFC<Props> = (props) => {
+export const ProjectListItem: React.VFC<Props> = memo((props) => {
   const { project } = useProject(props.projectId)
   const { teammateIds } = useTeammateIdsByProjectId(props.projectId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
@@ -49,8 +49,22 @@ export const ListItemList: React.VFC<Props> = (props) => {
             <TeammateAvatar teammateId={id} key={id} />
           ))}
         </AvatarGroup>
-        <MenuButton projectId={project.id} ml={2} />
+        <PopoverProjectMenu
+          addFavorite
+          editNamesAndDescriptionProject
+          copyProjectLink
+          share
+          projectId={project.id}
+          iconButton={{
+            as: IconButton,
+            'aria-label': 'menu button',
+            icon: <Icon icon="menu" size="xs" />,
+            variant: 'ghost',
+            ml: 2,
+          }}
+        />
       </Flex>
     </Container>
   )
-}
+})
+ProjectListItem.displayName = 'ProjectListItem'

@@ -2,6 +2,8 @@ import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
 import { TasksProvider } from 'src/components/organisms/Tasks'
 import { useWorkspacesPageContext } from '../Provider'
+import { DescriptionSection } from './DescriptionSection'
+import { MembersSection } from './MembersSection'
 import { OverviewLeft } from './OverviewLeft'
 import { OverviewLeftContent } from './OverviewLeftContent'
 import { OverviewRight } from './OverviewRight'
@@ -22,11 +24,14 @@ const Component: React.VFC = memo(() => {
   if (loadingTabContent) return <SkeletonOverview />
 
   return (
-    <Flex flex={1} h="full" maxW="full">
-      <OverviewLeft>
-        <OverviewLeftContent>hey</OverviewLeftContent>
+    <Flex flex={1} h="full" maxW="full" justifyContent="center">
+      <OverviewLeft mt={12}>
+        <OverviewLeftContent>
+          <DescriptionSection />
+          <MembersSection />
+        </OverviewLeftContent>
       </OverviewLeft>
-      <OverviewRight>
+      <OverviewRight mt={12}>
         <OverviewRightContent>hey</OverviewRightContent>
       </OverviewRight>
     </Flex>

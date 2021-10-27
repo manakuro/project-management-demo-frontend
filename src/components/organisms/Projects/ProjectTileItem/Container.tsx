@@ -10,13 +10,14 @@ type Props = {
     handlePopoverProjectMenuOpened: () => void
     handlePopoverProjectMenuClosed: () => void
   }): ReactElement
-}
+} & Omit<FlexProps, 'children'>
 
 const focusedStyle: FlexProps = {
   bg: 'gray.50',
   transform: 'translate(0, -5px)',
 }
 export const Container: React.FC<Props> = (props) => {
+  const { children, name, ...rest } = props
   const { ref, isHovering } = useHover()
   const [focused, setFocused] = useState(false)
 
@@ -42,13 +43,14 @@ export const Container: React.FC<Props> = (props) => {
       flexDirection="column"
       ref={ref}
       {...(focused ? focusedStyle : {})}
+      {...rest}
     >
-      {props.children({
+      {children({
         showTransition,
         handlePopoverProjectMenuOpened,
         handlePopoverProjectMenuClosed,
       })}
-      <Text mt={2}>{props.name}</Text>
+      <Text mt={2}>{name}</Text>
     </Flex>
   )
 }

@@ -1,5 +1,12 @@
 import React, { memo } from 'react'
-import { Flex, Icon, Fade, AvatarGroup, IconButton } from 'src/components/atoms'
+import {
+  Flex,
+  Icon,
+  Fade,
+  AvatarGroup,
+  IconButton,
+  FlexProps,
+} from 'src/components/atoms'
 import { FavoriteIconButton } from 'src/components/molecules'
 import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
@@ -12,15 +19,17 @@ import { Container } from './Container'
 
 type Props = {
   projectId: string
+  containerStyle?: FlexProps
 }
 
 export const ProjectTileItem: React.VFC<Props> = memo((props) => {
-  const { project } = useProject(props.projectId)
-  const { teammateIds } = useTeammateIdsByProjectId(props.projectId)
+  const { projectId, containerStyle } = props
+  const { project } = useProject(projectId)
+  const { teammateIds } = useTeammateIdsByProjectId(projectId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   return (
-    <Container name={project.name}>
+    <Container name={project.name} {...containerStyle}>
       {({
         showTransition,
         handlePopoverProjectMenuClosed,
@@ -41,7 +50,7 @@ export const ProjectTileItem: React.VFC<Props> = memo((props) => {
           <Flex position="absolute" top={2} left={2}>
             <Fade in={showTransition}>
               <FavoriteIconButton
-                favoriteProjectId={props.projectId}
+                favoriteProjectId={projectId}
                 {...clickableHoverLightStyle}
               />
             </Fade>

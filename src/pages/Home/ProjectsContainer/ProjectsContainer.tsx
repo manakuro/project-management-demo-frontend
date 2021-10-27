@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react'
-import { Box, Flex, Heading, Icon, Stack } from 'src/components/atoms'
+import { Box, Flex, Grid, Heading, Icon } from 'src/components/atoms'
 import {
   Accordion,
   AccordionItem,
@@ -58,12 +58,12 @@ export const ProjectsContainer: React.VFC<Props> = memo<Props>((props) => {
               <>
                 {listStatus === PROJECT_LIST_MENU_VIEW_AS_TILES ? (
                   <Box py={4}>
-                    <Stack direction="row" spacing={6}>
+                    <Grid templateColumns="repeat(4, 1fr)" gap={6}>
                       {props.projectIds.map((id) => (
                         <ProjectTileItem projectId={id} key={id} />
                       ))}
                       {props.showNewOrder && <ProjectTileItemNew />}
-                    </Stack>
+                    </Grid>
                   </Box>
                 ) : (
                   <>

@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo, useCallback, useRef } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
 import { useProject } from 'src/store/entities/projects'
@@ -14,14 +14,15 @@ type Props = {
 export const Description: React.FC<Props> = memo((props) => {
   return (
     <Provider>
-      <Component {...props} />
+      <DescriptionHandler {...props} />
     </Provider>
   )
 })
 
-const Component: React.FC<Props> = memo<Props>((props) => {
+const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
   const { projectId } = props
   const { project, setProject } = useProject(projectId)
+  const initialValue = useRef(project.description)
 
   const handleChange = useCallback(
     async (val: string) => {
@@ -31,8 +32,28 @@ const Component: React.FC<Props> = memo<Props>((props) => {
   )
 
   return (
+    <Component onChange={handleChange} initialValue={initialValue.current} />
+  )
+})
+
+type ComponentProps = {
+  onChange: (val: string) => void
+  initialValue: string
+}
+const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
+  const { onChange, initialValue } = props
+
+  const handleChange = useCallback(
+    (val: string) => {
+      console.log('change!')
+      onChange(val)
+    },
+    [onChange],
+  )
+
+  return (
     <Container>
-      <Editor onChange={handleChange} value={project.description}>
+      <Editor onChange={handleChange} initialValue={initialValue}>
         <Flex flex={1} flexDirection="column">
           <EditorContent style={{ minHeight: '80px' }} />
           <Placeholder />
@@ -42,5 +63,6 @@ const Component: React.FC<Props> = memo<Props>((props) => {
     </Container>
   )
 })
+DescriptionHandler.displayName = 'DescriptionHandler'
 Component.displayName = 'Component'
 Description.displayName = 'Description'

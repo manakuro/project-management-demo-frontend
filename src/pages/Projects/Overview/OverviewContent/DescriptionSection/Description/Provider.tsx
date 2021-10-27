@@ -43,6 +43,6 @@ const useValue = (): ContextProps => {
   }
 }
 useValue.__PROVIDER__ =
-  'src/components/organisms/TaskDetail/TaskDetailBody/Form/Description/Provider.tsx'
+  'src/pages/Projects/Overview/OverviewContent/DescriptionSection/Description/Provider.tsx'
 export const { Provider, useContext: useDescriptionContext } =
   createProvider(useValue)

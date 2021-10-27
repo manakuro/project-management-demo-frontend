@@ -14,7 +14,7 @@ import { Portals } from './Portals'
 type Props = {
   schema: Schema
   plugins: Plugin[]
-  value: string
+  initialValue: string
   onChange?: (value: string) => void
   debounce: number
   forceUpdate?: () => string
@@ -26,8 +26,8 @@ export const EditorContainer: React.FC<Props> = (props) => {
     [props.schema],
   )
   const initialDoc = useMemo<ProsemirrorNode>(
-    () => transformer.parse(props.value),
-    [props.value, transformer],
+    () => transformer.parse(props.initialValue),
+    [props.initialValue, transformer],
   )
 
   return (
@@ -38,7 +38,14 @@ export const EditorContainer: React.FC<Props> = (props) => {
         editable={props.editable}
         forceUpdate={props.forceUpdate}
       >
-        <Container transformer={transformer} {...props} />
+        <Container
+          transformer={transformer}
+          debounce={props.debounce}
+          onChange={props.onChange}
+          initialValue={props.initialValue}
+        >
+          {props.children}
+        </Container>
         <Portals />
       </EditorProvider>
     </ConditionalRender>
@@ -49,6 +56,7 @@ type ContainerProps<P> = {
   onChange?: (value: P) => void
   transformer: ProsemirrorTransformer<P>
   debounce: number
+  initialValue: string
 }
 export const Container = <P extends unknown>(
   props: PropsWithChildren<ContainerProps<P>>,

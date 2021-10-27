@@ -22,7 +22,7 @@ export const ContentText: React.VFC<Props> = memo<Props>(() => {
   return (
     <Container>
       <Editor
-        value={value}
+        initialValue={value}
         editable={editable}
         onChange={onChangeDescription}
         forceUpdate={forceUpdate}

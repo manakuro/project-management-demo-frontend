@@ -40,7 +40,7 @@ const Component: React.FC<Props> = memo<Props>(() => {
       <Container>
         <Editor
           onChange={onChangeDescription}
-          value={initialValue}
+          initialValue={initialValue}
           forceUpdate={forceUpdate}
         >
           <EditorContent />

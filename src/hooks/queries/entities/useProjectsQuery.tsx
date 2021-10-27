@@ -102,7 +102,52 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
                     },
                   ],
                 },
-                { type: 'paragraph' },
+                {
+                  type: 'paragraph',
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: 'Project Owner: ',
+                    },
+                    {
+                      type: 'mention',
+                      attrs: {
+                        mentionId: '1',
+                        mentionType: '1',
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: 'Tech Lead:',
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'mention',
+                      attrs: {
+                        mentionId: '2',
+                        mentionType: '1',
+                      },
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                },
+                {
+                  type: 'paragraph',
+                },
               ],
             },
             null,

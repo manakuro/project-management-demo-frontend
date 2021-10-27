@@ -5,10 +5,11 @@ import { EditorContainer } from './Editors'
 
 type Props = {
   onChange?: (val: string) => void
-  value: string
+  initialValue: string
   forceUpdate?: () => string
 } & EditorProps
 
+const pluginsProp = plugins()
 export const Editor: React.FC<Props> = memo<Props>((props) => {
   return (
     <EditorContainer
@@ -16,8 +17,8 @@ export const Editor: React.FC<Props> = memo<Props>((props) => {
       {...props}
       debounce={500}
       schema={schema}
-      plugins={plugins()}
-      value={props.value}
+      plugins={pluginsProp}
+      initialValue={props.initialValue}
     >
       {props.children}
     </EditorContainer>

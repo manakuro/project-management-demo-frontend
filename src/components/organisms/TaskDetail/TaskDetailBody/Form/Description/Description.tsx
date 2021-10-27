@@ -109,7 +109,7 @@ const Component: React.FC<Props> = memo<Props>(() => {
       <Label>Description</Label>
       <Content>
         <Container>
-          <Editor onChange={setValue} value={initialValue}>
+          <Editor onChange={setValue} initialValue={initialValue}>
             <EditorContent />
             <Placeholder />
             <ToolBar />

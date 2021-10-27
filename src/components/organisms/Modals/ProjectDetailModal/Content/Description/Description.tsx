@@ -33,7 +33,7 @@ const Component: React.FC<Props> = memo<Props>(() => {
   console.log(JSON.parse(value))
   return (
     <Container>
-      <Editor onChange={setValue} value={initialValue}>
+      <Editor onChange={setValue} initialValue={initialValue}>
         <Flex maxH="300px" overflow="scroll" flex={1} flexDirection="column">
           <EditorContent style={{ minHeight: '150px' }} />
           <Placeholder />

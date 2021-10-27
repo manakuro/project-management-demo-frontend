@@ -12,6 +12,7 @@ import {
   ROUTE_PROJECTS_CALENDAR,
   ROUTE_PROJECTS_FILES,
 } from './projects'
+import { ROUTE_WORKSPACES_OVERVIEW } from './workspace'
 
 export { ROUTE_HOME } from './home'
 export { ROUTE_INBOX } from './inbox'
@@ -28,6 +29,11 @@ export {
   ROUTE_PROJECTS_CALENDAR,
   ROUTE_PROJECTS_FILES,
 } from './projects'
+export {
+  ROUTE_WORKSPACES_CALENDAR,
+  ROUTE_WORKSPACES_MESSAGES,
+  ROUTE_WORKSPACES_OVERVIEW,
+} from './workspace'
 
 export const ROUTE_PORTFOLIOS = {
   regex: /^\/portfolios\/?$/iu,
@@ -47,6 +53,7 @@ const dynamicRoutes = [
   ROUTE_PROJECTS_BOARD,
   ROUTE_PROJECTS_CALENDAR,
   ROUTE_PROJECTS_FILES,
+  ROUTE_WORKSPACES_OVERVIEW,
 ] as const
 
 const staticRoutes = [

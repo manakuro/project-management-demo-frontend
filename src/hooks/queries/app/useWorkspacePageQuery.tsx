@@ -31,6 +31,7 @@ export const useWorkspacePageQuery = (props?: Props) => {
     const res = await fetch()
     if (mountedRef.current) {
       setWorkspace(res)
+      setLoading(false)
     }
   }, [mountedRef, setWorkspace])
 

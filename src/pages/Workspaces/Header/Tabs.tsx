@@ -1,39 +1,29 @@
 import React, { memo } from 'react'
 import { Flex, Heading } from 'src/components/atoms'
 import { TabList, Tab } from 'src/components/organisms/Tabs'
-import { useProjectsProjectId } from 'src/store/app/projects/project'
-import { useProject } from 'src/store/entities/projects'
+import { useWorkspace } from 'src/store/entities/workspace'
 import { FavoriteIconButton } from './FavoriteIconButton'
-import { MoreActionIconButton } from './MoreActionIconButton'
-import { ProjectDetailIconButton } from './ProjectDetailIconButton'
 
 export const Tabs: React.VFC = memo(() => {
-  const { projectId } = useProjectsProjectId()
-  const { project } = useProject(projectId)
+  const { workspace } = useWorkspace()
 
   return (
     <Flex ml={4} mt={3} flex={1}>
       <Flex alignItems="flex-start" flexDirection="column">
         <Flex alignItems="center">
           <Heading as="h2" size="md" fontWeight="semibold">
-            {project.name}
+            {workspace.name}
           </Heading>
-          <MoreActionIconButton projectId={projectId} />
-          <ProjectDetailIconButton projectId={projectId} />
-          <FavoriteIconButton projectId={projectId} />
+          <FavoriteIconButton ml={2} projectId={workspace.id} />
         </Flex>
         <TabList>
           <Tab>Overview</Tab>
-          <Tab>List</Tab>
-          <Tab>Board</Tab>
           <Tab isDisabled cursor="auto !important">
-            Timeline
+            Messages
           </Tab>
-          <Tab>Calendar</Tab>
           <Tab isDisabled cursor="auto !important">
-            Dashboard
+            Calendar
           </Tab>
-          <Tab>Files</Tab>
         </TabList>
       </Flex>
     </Flex>

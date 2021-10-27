@@ -26,6 +26,6 @@ const useValue = (props: Props): ContextProps => {
     setLoadingTabContent,
   } as const
 }
-useValue.__PROVIDER__ = 'src/pages/Projects/Provider.tsx'
-export const { Provider, useContext: useProjectsPageContext } =
+useValue.__PROVIDER__ = 'src/pages/Workspaces/Provider.tsx'
+export const { Provider, useContext: useWorkspacesPageContext } =
   createProvider(useValue)

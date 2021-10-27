@@ -3,6 +3,7 @@ import { useRouterHome } from './home'
 import { useRouterInbox } from './inbox'
 import { useRouterMyTasks } from './myTasks'
 import { useRouterProjects } from './projects'
+import { useRouterWorkspace } from './workspace'
 
 export const useRouter = () => {
   const router = useRouterNext()
@@ -11,6 +12,7 @@ export const useRouter = () => {
     ...useRouterInbox(),
     ...useRouterMyTasks(),
     ...useRouterProjects(),
+    ...useRouterWorkspace(),
     router,
   }
 }

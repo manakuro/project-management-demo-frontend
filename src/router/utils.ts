@@ -25,6 +25,13 @@ export {
   getProjectsDetailFeedURL,
   getProjectsDetailId,
 } from './projects'
+export {
+  isWorkspacesURL,
+  isWorkspacesOverviewURL,
+  isWorkspacesMessageURL,
+  isWorkspacesCalendarURL,
+  getWorkspacesIdFromURL,
+} from './workspace'
 
 export const convertPathnameObjToPathname = (urlObject: UrlObject): string => {
   const pathname = urlObject.pathname || ''

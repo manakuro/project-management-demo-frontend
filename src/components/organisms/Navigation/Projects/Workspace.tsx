@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo, useCallback, useMemo } from 'react'
 import { Flex, Link, NextLink, Text, Icon, Portal } from 'src/components/atoms'
 import {
   MenuList,
@@ -13,7 +13,8 @@ import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useI
 import { useNavigation } from 'src/components/organisms/Navigation'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { useLinkHoverStyle, useClickableHoverStyle } from 'src/hooks'
-import { ROUTE_HOME } from 'src/router'
+import { ROUTE_WORKSPACES_OVERVIEW } from 'src/router'
+import { useWorkspace } from 'src/store/entities/workspace'
 
 type Props = {}
 
@@ -21,6 +22,11 @@ export const Workspace: React.VFC<Props> = memo(() => {
   const { isExpanded } = useNavigation()
   const { _hover } = useLinkHoverStyle()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
+  const { workspace } = useWorkspace()
+  const name = useMemo(() => {
+    if (!isExpanded) return workspace.name.slice(0, 3)
+    return workspace.name
+  }, [isExpanded, workspace.name])
 
   const { setIsOpen } = useInviteModal()
 
@@ -32,15 +38,20 @@ export const Workspace: React.VFC<Props> = memo(() => {
     <>
       <Menu placement="bottom-end">
         <Flex p={2} px={PADDING_X} _hover={_hover} alignItems="center">
-          <NextLink href={ROUTE_HOME.href.pathname()} passHref>
-            <Link w="full">
-              {isExpanded && (
-                <Text fontSize="sm" flex={1}>
-                  Workspace
-                </Text>
-              )}
-            </Link>
-          </NextLink>
+          <Flex flex={1}>
+            {!!workspace.id && (
+              <NextLink
+                href={ROUTE_WORKSPACES_OVERVIEW.href.pathnameObj(workspace.id)}
+                passHref
+              >
+                <Link w="full">
+                  <Text fontSize="sm" flex={1}>
+                    {name}
+                  </Text>
+                </Link>
+              </NextLink>
+            )}
+          </Flex>
           <MenuButton {...clickableHoverLightStyle}>
             <Icon icon="plus" />
           </MenuButton>

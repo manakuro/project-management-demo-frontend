@@ -11,7 +11,7 @@ type Props = {
 } & Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>
 
 export const FavoriteIconButton: React.VFC<Props> = memo<Props>((props) => {
-  const { projectId } = props
+  const { projectId, ...rest } = props
   const { project } = useProject(projectId)
 
   return (
@@ -31,6 +31,7 @@ export const FavoriteIconButton: React.VFC<Props> = memo<Props>((props) => {
           favorite: { color: project.color.color },
           none: { color: 'text.muted' },
         }}
+        {...rest}
       />
     </Tooltip>
   )

@@ -4,6 +4,7 @@ import {
   Tooltip,
   FavoriteIconButton as MoleculesFavoriteIconButton,
 } from 'src/components/molecules'
+import { useFavoriteProjectIds } from 'src/store/entities/favoriteProjectIds'
 import { useProject } from 'src/store/entities/projects'
 
 type Props = {
@@ -13,6 +14,7 @@ type Props = {
 export const FavoriteIconButton: React.VFC<Props> = memo<Props>((props) => {
   const { projectId, ...rest } = props
   const { project } = useProject(projectId)
+  const { isFavorite, setFavoriteProjectId } = useFavoriteProjectIds()
 
   return (
     <Tooltip
@@ -24,7 +26,9 @@ export const FavoriteIconButton: React.VFC<Props> = memo<Props>((props) => {
       openDelay={500}
     >
       <MoleculesFavoriteIconButton
-        favoriteProjectId={projectId}
+        favoriteId={projectId}
+        isFavorite={isFavorite}
+        setFavorite={setFavoriteProjectId}
         h={6}
         w={6}
         iconStyle={{

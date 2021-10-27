@@ -5,23 +5,22 @@ import {
   IconButtonProps,
   IconProps,
 } from 'src/components/atoms'
-import { useFavoriteProjectIds } from 'src/store/entities/favoriteProjectIds'
 
 type Props = {
-  favoriteProjectId: string
+  favoriteId: string
+  isFavorite: (favoriteId: string) => boolean
+  setFavorite: (favoriteId: string) => void
   iconStyle?: {
     favorite: Omit<IconProps, 'icon'>
     none: Omit<IconProps, 'icon'>
   }
-  button?: boolean
 } & Omit<IconButtonProps, 'aria-label'>
 export type FavoriteButtonProps = Props
 
 export const FavoriteIconButton: React.FC<Props> = memo<Props>((props) => {
-  const { favoriteProjectId, iconStyle, ...rest } = props
-  const { isFavorite, setFavoriteProjectId } = useFavoriteProjectIds()
+  const { favoriteId, iconStyle, isFavorite, setFavorite, ...rest } = props
 
-  const favoriteIconStyle: IconProps = isFavorite(favoriteProjectId)
+  const favoriteIconStyle: IconProps = isFavorite(favoriteId)
     ? { icon: 'starFilled', color: 'yellow.300', ...iconStyle?.favorite }
     : { icon: 'starOutline', ...iconStyle?.none }
 
@@ -30,9 +29,9 @@ export const FavoriteIconButton: React.FC<Props> = memo<Props>((props) => {
       e.stopPropagation()
       e.preventDefault()
 
-      setFavoriteProjectId(favoriteProjectId)
+      setFavorite(favoriteId)
     },
-    [favoriteProjectId, setFavoriteProjectId],
+    [favoriteId, setFavorite],
   )
 
   return (

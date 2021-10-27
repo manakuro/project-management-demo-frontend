@@ -11,6 +11,7 @@ import { FavoriteIconButton } from 'src/components/molecules'
 import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useClickableHoverStyle } from 'src/hooks'
+import { useFavoriteProjectIds } from 'src/store/entities/favoriteProjectIds'
 import { useProject } from 'src/store/entities/projects'
 import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
 import { useTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
@@ -27,6 +28,7 @@ export const ProjectTileItem: React.VFC<Props> = memo((props) => {
   const { project } = useProject(projectId)
   const { teammateIds } = useTeammateIdsByProjectId(projectId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
+  const { isFavorite, setFavoriteProjectId } = useFavoriteProjectIds()
 
   return (
     <Container name={project.name} {...containerStyle}>
@@ -50,7 +52,9 @@ export const ProjectTileItem: React.VFC<Props> = memo((props) => {
           <Flex position="absolute" top="10px" left={2}>
             <Fade in={showTransition}>
               <FavoriteIconButton
-                favoriteProjectId={projectId}
+                favoriteId={projectId}
+                isFavorite={isFavorite}
+                setFavorite={setFavoriteProjectId}
                 variant="unstyled"
                 pl={2}
                 {...clickableHoverLightStyle}

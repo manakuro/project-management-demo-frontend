@@ -3,7 +3,7 @@ import { Plugin } from 'prosemirror-state'
 import { EditorProps } from 'prosemirror-view'
 import React, { PropsWithChildren, useMemo } from 'react'
 import { ConditionalRender } from 'src/components/atoms'
-import { useDebounce } from 'src/hooks'
+import { useDebounce, usePrevious } from 'src/hooks'
 import {
   createJSONTransformer,
   ProsemirrorTransformer,
@@ -62,11 +62,18 @@ export const Container = <P extends unknown>(
   props: PropsWithChildren<ContainerProps<P>>,
 ) => {
   const state = useEditorStateContext()
+  const prevStateDoc = usePrevious<ProsemirrorNode<any>>(state.doc)
 
   useDebounce(
     state.doc,
     (val) => {
-      props.onChange?.(props.transformer.serialize(val))
+      const serializedValue = props.transformer.serialize(val)
+      if (
+        prevStateDoc &&
+        serializedValue === props.transformer.serialize(prevStateDoc)
+      )
+        return
+      props.onChange?.(serializedValue)
     },
     props.debounce,
   )

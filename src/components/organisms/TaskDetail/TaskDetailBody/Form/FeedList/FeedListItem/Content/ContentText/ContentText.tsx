@@ -8,12 +8,9 @@ import { ToolBar } from './ToolBar'
 type Props = {}
 
 export const ContentText: React.VFC<Props> = memo<Props>(() => {
-  const { feed, editable, onChangeDescription, description } =
-    useFeedListItemContext()
+  const { feed, editable, onChangeDescription } = useFeedListItemContext()
   const [forceUpdate, setForceUpdate] = useState<() => string>(() => () => '')
-  const value = useMemo(() => {
-    return editable() ? description : feed.description
-  }, [description, editable, feed.description])
+  const value = useMemo(() => feed.description, [feed.description])
 
   useEffect(() => {
     setForceUpdate(() => () => uuid())

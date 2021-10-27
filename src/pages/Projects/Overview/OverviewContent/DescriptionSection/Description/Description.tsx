@@ -1,6 +1,7 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
+import { useProject } from 'src/store/entities/projects'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
 import { Provider } from './Provider'
@@ -10,17 +11,6 @@ type Props = {
   projectId: string
 }
 
-const initialValue = JSON.stringify(
-  {
-    type: 'doc',
-    content: [
-      { type: 'paragraph', content: [{ type: 'text', text: '😜' }] },
-      { type: 'paragraph', content: [{ type: 'text', text: 'テキスト2' }] },
-    ],
-  },
-  null,
-  2,
-)
 export const Description: React.FC<Props> = memo((props) => {
   return (
     <Provider>
@@ -29,13 +19,20 @@ export const Description: React.FC<Props> = memo((props) => {
   )
 })
 
-const Component: React.FC<Props> = memo<Props>(() => {
-  const [value, setValue] = useState(initialValue)
+const Component: React.FC<Props> = memo<Props>((props) => {
+  const { projectId } = props
+  const { project, setProject } = useProject(projectId)
 
-  console.log(JSON.parse(value))
+  const handleChange = useCallback(
+    async (val: string) => {
+      await setProject({ description: val })
+    },
+    [setProject],
+  )
+
   return (
     <Container>
-      <Editor onChange={setValue} value={initialValue}>
+      <Editor onChange={handleChange} value={project.description}>
         <Flex flex={1} flexDirection="column">
           <EditorContent style={{ minHeight: '80px' }} />
           <Placeholder />

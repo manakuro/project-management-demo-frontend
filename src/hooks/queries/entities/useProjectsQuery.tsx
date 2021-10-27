@@ -89,8 +89,26 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
               updatedAt: '',
             },
           ],
-          description: '',
-          descriptionTitle: '',
+          description: JSON.stringify(
+            {
+              type: 'doc',
+              content: [
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: 'Welcome to the Marketing team! We’ll be using this project to track our progress on our Q1 product launch. Final ad designs are in the “Key Resources” section below. Use this form to submit new ideas!',
+                    },
+                  ],
+                },
+                { type: 'paragraph' },
+              ],
+            },
+            null,
+            2,
+          ),
+          descriptionTitle: "How we'll collaborate",
           dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
           createdBy: '1',
           createdAt: new Date(dateFns.subDays(new Date(), 10)).toISOString(),

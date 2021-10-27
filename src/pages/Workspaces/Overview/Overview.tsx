@@ -8,6 +8,7 @@ import { OverviewLeft } from './OverviewLeft'
 import { OverviewLeftContent } from './OverviewLeftContent'
 import { OverviewRight } from './OverviewRight'
 import { OverviewRightContent } from './OverviewRightContent'
+import { ProjectsSection } from './ProjectsSection'
 import { SkeletonOverview } from './SkeletonOverview'
 
 export const Overview: React.VFC = memo(() => {
@@ -31,8 +32,10 @@ const Component: React.VFC = memo(() => {
           <MembersSection />
         </OverviewLeftContent>
       </OverviewLeft>
-      <OverviewRight mt={12}>
-        <OverviewRightContent>hey</OverviewRightContent>
+      <OverviewRight mt={12} pl={8}>
+        <OverviewRightContent>
+          <ProjectsSection />
+        </OverviewRightContent>
       </OverviewRight>
     </Flex>
   )

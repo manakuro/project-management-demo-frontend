@@ -2,20 +2,20 @@ import React, { memo } from 'react'
 import { Flex, IconButton, Text, Icon, AvatarGroup } from 'src/components/atoms'
 import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
-import { useClickableHoverStyle } from 'src/hooks'
 import { useProject } from 'src/store/entities/projects'
 import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
 import { useTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
 import { Container } from './Container'
+import { FavoriteButton } from './FavoriteButton'
 
 type Props = {
   projectId: string
 }
 
-export const ProjectListItem: React.VFC<Props> = memo((props) => {
-  const { project } = useProject(props.projectId)
-  const { teammateIds } = useTeammateIdsByProjectId(props.projectId)
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
+export const ProjectListItem: React.VFC<Props> = memo<Props>((props) => {
+  const { projectId } = props
+  const { project } = useProject(projectId)
+  const { teammateIds } = useTeammateIdsByProjectId(projectId)
 
   return (
     <Container>
@@ -35,12 +35,7 @@ export const ProjectListItem: React.VFC<Props> = memo((props) => {
       <Flex ml={3} flex={1} alignItems="flex-start">
         <Flex alignItems="center">
           <Text fontSize="sm">{project.name}</Text>
-          <IconButton
-            aria-label="favorite button"
-            icon={<Icon icon="starOutline" size="xs" color="text.muted" />}
-            variant="ghost"
-            {...clickableHoverLightStyle}
-          />
+          <FavoriteButton projectId={projectId} />
         </Flex>
       </Flex>
       <Flex alignItems="center">

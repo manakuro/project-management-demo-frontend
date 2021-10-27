@@ -9,5 +9,8 @@ export const workspaceState = atom<Workspace>({
     id: '',
     name: '',
     description: '',
+    createdBy: '',
+    createdAt: '',
+    updatedAt: '',
   },
 })

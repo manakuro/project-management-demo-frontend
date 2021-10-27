@@ -1,0 +1,38 @@
+import React, { memo, useCallback, useState } from 'react'
+import { Button, Flex, Input as AtomsInput } from 'src/components/atoms'
+
+type Props = {
+  defaultValue: string
+  initialFocusRef: React.MutableRefObject<HTMLInputElement | null>
+  onChange: (value: string) => void
+}
+
+export const Form: React.FC<Props> = memo<Props>((props) => {
+  const { initialFocusRef, defaultValue, onChange } = props
+  const [value, setValue] = useState(defaultValue)
+
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value)
+  }, [])
+
+  const handleDone = useCallback(() => {
+    onChange(value)
+  }, [onChange, value])
+
+  return (
+    <Flex alignItems="center" mt={2}>
+      <AtomsInput
+        value={value}
+        onChange={handleChange}
+        ref={initialFocusRef}
+        placeholder="e.g. Approver, Contributor, Tester"
+        size="sm"
+        autoFocus
+      />
+      <Button ml={2} colorScheme="teal" size="sm" onClick={handleDone}>
+        Done
+      </Button>
+    </Flex>
+  )
+})
+Form.displayName = 'Form'

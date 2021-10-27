@@ -1,4 +1,5 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { useMountedRef } from 'src/hooks'
 import { useWorkspace, Workspace } from 'src/store/entities/workspace'
 
 type Props = {
@@ -6,26 +7,33 @@ type Props = {
 }
 
 export const useWorkspaceQuery = (props?: Props) => {
+  const [loading, setLoading] = useState(true)
   const { setWorkspace } = useWorkspace()
+  const { mountedRef } = useMountedRef()
 
   useEffect(() => {
     ;(async () => {
       if (props?.lazy) return
-
+      setLoading(true)
       const res = await fetchWorkspace()
       setWorkspace(res)
+      setLoading(false)
     })()
   }, [props?.lazy, setWorkspace])
 
   const refetch = useCallback(() => {
     ;(async () => {
+      setLoading(true)
       const res = await fetchWorkspace()
-      setWorkspace(res)
+      if (mountedRef.current) {
+        setWorkspace(res)
+      }
     })()
-  }, [setWorkspace])
+  }, [mountedRef, setWorkspace])
 
   return {
     refetch,
+    loading,
   }
 }
 
@@ -36,6 +44,9 @@ const fetchWorkspace = (): Promise<Workspace> => {
         id: '1',
         name: 'My Workspace',
         description: 'My Workspace description',
+        createdBy: '1',
+        createdAt: '',
+        updatedAt: '',
       })
     }, 1000)
   })

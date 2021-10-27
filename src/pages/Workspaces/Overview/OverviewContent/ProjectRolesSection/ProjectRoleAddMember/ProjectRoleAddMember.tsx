@@ -1,0 +1,40 @@
+import React, { useCallback } from 'react'
+import { Flex, Text } from 'src/components/atoms'
+import { useShareProjectModal } from 'src/components/organisms/Modals'
+import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { Button } from './Button'
+
+type Props = {
+  projectId: string
+}
+
+export const ProjectRoleAddMember: React.FC<Props> = (props) => {
+  const { projectId } = props
+  const { onOpen, setProjectId, setShareTab } = useShareProjectModal()
+
+  const handleClick = useCallback(() => {
+    setProjectId(projectId)
+    setShareTab()
+    onOpen()
+  }, [setProjectId, projectId, setShareTab, onOpen])
+
+  return (
+    <Flex flexDirection="column" cursor="pointer">
+      <Button onClick={handleClick}>
+        <TeammateAvatar teammateId="" size="sm" />
+        <Flex
+          flex={1}
+          ml={2}
+          flexDirection="column"
+          justifyContent="center"
+          minW="1px"
+        >
+          <Text fontSize="sm" fontWeight="medium" color="text.muted">
+            Add member
+          </Text>
+        </Flex>
+      </Button>
+    </Flex>
+  )
+}
+ProjectRoleAddMember.displayName = 'ProjectRoleAddMember'

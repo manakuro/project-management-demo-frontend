@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react'
-import { Box, Flex, Grid } from 'src/components/atoms'
+import { Box, Flex, Grid, Link, NextLink } from 'src/components/atoms'
 import {
   PROJECT_LIST_MENU_VIEW_AS_TILES,
   ProjectListItem,
@@ -9,6 +9,7 @@ import {
   ProjectTileItem,
   ProjectTileItemNew,
 } from 'src/components/organisms/Projects'
+import { ROUTE_PROJECTS_LIST } from 'src/router'
 import { useProjectIds } from 'src/store/entities/projects'
 import {
   OverviewSectionHeader,
@@ -39,11 +40,18 @@ export const ProjectsSection: React.VFC<Props> = memo<Props>(() => {
               <Grid templateColumns="repeat(4, 1fr)" gap={6}>
                 <ProjectTileItemNew containerStyle={{ width: 'auto' }} />
                 {projectIds.map((id) => (
-                  <ProjectTileItem
-                    projectId={id}
+                  <NextLink
+                    href={ROUTE_PROJECTS_LIST.href.pathnameObj(id)}
                     key={id}
-                    containerStyle={{ width: 'auto' }}
-                  />
+                    passHref
+                  >
+                    <Link>
+                      <ProjectTileItem
+                        projectId={id}
+                        containerStyle={{ width: 'auto' }}
+                      />
+                    </Link>
+                  </NextLink>
                 ))}
               </Grid>
             </Box>
@@ -51,7 +59,15 @@ export const ProjectsSection: React.VFC<Props> = memo<Props>(() => {
             <>
               <ProjectListItemNew />
               {projectIds.map((id) => (
-                <ProjectListItem projectId={id} key={id} />
+                <NextLink
+                  href={ROUTE_PROJECTS_LIST.href.pathnameObj(id)}
+                  key={id}
+                  passHref
+                >
+                  <Link>
+                    <ProjectListItem projectId={id} />
+                  </Link>
+                </NextLink>
               ))}
             </>
           )}

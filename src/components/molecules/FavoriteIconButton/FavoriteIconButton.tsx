@@ -13,6 +13,7 @@ type Props = {
     favorite: Omit<IconProps, 'icon'>
     none: Omit<IconProps, 'icon'>
   }
+  button?: boolean
 } & Omit<IconButtonProps, 'aria-label'>
 export type FavoriteButtonProps = Props
 
@@ -21,19 +22,18 @@ export const FavoriteIconButton: React.FC<Props> = memo<Props>((props) => {
   const { isFavorite, setFavoriteProjectId } = useFavoriteProjectIds()
 
   const favoriteIconStyle: IconProps = isFavorite(favoriteProjectId)
-    ? {
-        icon: 'starFilled',
-        color: 'yellow.300',
-        ...iconStyle?.favorite,
-      }
-    : {
-        icon: 'starOutline',
-        ...iconStyle?.none,
-      }
+    ? { icon: 'starFilled', color: 'yellow.300', ...iconStyle?.favorite }
+    : { icon: 'starOutline', ...iconStyle?.none }
 
-  const handleClick = useCallback(() => {
-    setFavoriteProjectId(favoriteProjectId)
-  }, [favoriteProjectId, setFavoriteProjectId])
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation()
+      e.preventDefault()
+
+      setFavoriteProjectId(favoriteProjectId)
+    },
+    [favoriteProjectId, setFavoriteProjectId],
+  )
 
   return (
     <IconButton

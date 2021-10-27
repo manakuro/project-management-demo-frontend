@@ -47,10 +47,12 @@ export const ProjectTileItem: React.VFC<Props> = memo((props) => {
           alignItems="center"
           flexDirection="column"
         >
-          <Flex position="absolute" top={2} left={2}>
+          <Flex position="absolute" top="10px" left={2}>
             <Fade in={showTransition}>
               <FavoriteIconButton
                 favoriteProjectId={projectId}
+                variant="unstyled"
+                pl={2}
                 {...clickableHoverLightStyle}
               />
             </Fade>

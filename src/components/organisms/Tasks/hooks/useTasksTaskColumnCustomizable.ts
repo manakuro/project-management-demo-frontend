@@ -4,9 +4,7 @@ import { useTasksContext } from '../TasksProvider'
 
 type Result = {
   tasksTaskColumnIds: string[]
-  setOrderTaskColumn: ReturnType<
-    typeof useMyTasksTaskColumnsCustomizable
-  >['setOrderTaskColumn']
+  setOrderTaskColumn: (updatedIds: string[]) => void
 }
 
 export const useTasksTaskColumnCustomizable = (): Result => {

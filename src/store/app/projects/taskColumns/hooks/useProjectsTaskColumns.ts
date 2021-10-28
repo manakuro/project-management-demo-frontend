@@ -5,9 +5,9 @@ import { useMe } from 'src/store/entities/me'
 import {
   useProjectsTaskColumnsCommand,
   useProjectsTaskColumn,
+  ProjectsTaskColumn,
 } from 'src/store/entities/projectsTaskColumns'
 import { projectsTaskColumnIdsState } from '../atom'
-import { ProjectTaskColumn } from '../type'
 
 export const useProjectsTaskColumns = (tasksTaskColumnId: string) => {
   const { me } = useMe()
@@ -16,7 +16,7 @@ export const useProjectsTaskColumns = (tasksTaskColumnId: string) => {
   const { setProjectsTaskColumn } = useProjectsTaskColumnsCommand()
 
   const setTasksTaskColumn = useCallback(
-    async (val: Partial<ProjectTaskColumn>) => {
+    async (val: Partial<ProjectsTaskColumn>) => {
       await setProjectsTaskColumn({ id: tasksTaskColumnId, ...val })
     },
     [setProjectsTaskColumn, tasksTaskColumnId],

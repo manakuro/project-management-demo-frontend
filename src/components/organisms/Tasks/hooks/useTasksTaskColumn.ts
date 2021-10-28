@@ -4,11 +4,11 @@ import { ProjectsTaskColumn } from 'src/store/entities/projectsTaskColumns'
 import { TeammatesTaskColumn } from 'src/store/entities/teammatesTaskColumns'
 import { useTasksContext } from '../TasksProvider'
 
+type TaskColumn = ProjectsTaskColumn | TeammatesTaskColumn
+
 type Result = {
-  tasksTaskColumn: TeammatesTaskColumn | ProjectsTaskColumn
-  setTasksTaskColumn:
-    | ReturnType<typeof useMyTasksTaskColumn>['setTasksTaskColumn']
-    | ReturnType<typeof useProjectsTaskColumns>['setTasksTaskColumn']
+  tasksTaskColumn: TaskColumn
+  setTasksTaskColumn: (val: Partial<TaskColumn>) => Promise<void>
   setOrderTaskColumn: (startIndex: number, endIndex: number) => Promise<void>
   canMoveLeft: (id: string) => boolean
   canMoveRight: (id: string) => boolean

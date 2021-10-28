@@ -7,10 +7,6 @@ type Result = {
   addTask: (val: Partial<Task>) => string
 }
 
-export const initialValue = (): Result => ({
-  addTask: () => '',
-})
-
 export const useTasksTask = (): Result => {
   const { isMyTasksPage } = useTasksContext()
   const useMyTasksTaskResult = useMyTasksTask()

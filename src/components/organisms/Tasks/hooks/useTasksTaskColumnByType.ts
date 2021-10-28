@@ -5,8 +5,10 @@ import { TaskColumnType } from 'src/store/entities/taskColumns/types'
 import { TeammatesTaskColumn } from 'src/store/entities/teammatesTaskColumns'
 import { useTasksContext } from '../TasksProvider'
 
+type TaskColumn = TeammatesTaskColumn | ProjectsTaskColumn
+
 type Result = {
-  tasksTaskColumn: TeammatesTaskColumn | ProjectsTaskColumn
+  tasksTaskColumn: TaskColumn
 }
 
 export const useTasksTaskColumnByType = (type: TaskColumnType): Result => {

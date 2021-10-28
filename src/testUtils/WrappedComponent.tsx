@@ -3,13 +3,13 @@ import enLocale from 'date-fns/locale/en-US'
 import React from 'react'
 import { RecoilRoot } from 'recoil'
 import { Modals } from 'src/components/organisms/Modals'
-import { BeforeAppMount } from 'src/shared/beforeAppMount'
+import { BeforeAppMount } from 'src/shared/app'
 import {
   AdapterDateFns,
   LocalizationProvider,
   muiTheme,
   MuiThemeProvider,
-} from 'src/shared/material-ui'
+} from 'src/shared/materialUI'
 import { theme } from 'src/styles'
 
 export const WrappedComponent: React.FC = (props) => {

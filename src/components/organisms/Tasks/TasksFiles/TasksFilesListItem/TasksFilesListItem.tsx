@@ -11,10 +11,10 @@ import {
 import { useFileViewerModal } from 'src/components/organisms/Modals'
 import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
 import { useHover } from 'src/hooks/useHover'
-import { getAttachmentIcon } from 'src/shared/attachment'
 import {
   useAttachment,
   useAttachmentIdsByTaskId,
+  getAttachmentIcon,
 } from 'src/store/entities/attachments'
 import { ATTACHMENT_TYPE_IMAGE } from 'src/store/entities/attachments/types'
 import { useTask } from 'src/store/entities/tasks'

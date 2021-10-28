@@ -8,13 +8,13 @@ import { RecoilRoot } from 'recoil'
 import { GetLayout } from 'src/@types/next'
 import { LayoutDefault } from 'src/components/organisms/Layout'
 import { Modals } from 'src/components/organisms/Modals'
-import { BeforeAppMount } from 'src/shared/beforeAppMount'
+import { BeforeAppMount } from 'src/shared/app'
 import {
   muiTheme,
   MuiThemeProvider,
   LocalizationProvider,
   AdapterDateFns,
-} from 'src/shared/material-ui'
+} from 'src/shared/materialUI'
 import { theme } from 'src/styles'
 
 resetServerContext()

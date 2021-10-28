@@ -5,14 +5,14 @@ import {
   useTaskDetailBody,
 } from 'src/components/organisms/TaskDetail'
 import { useClickOutside, useToast } from 'src/hooks'
-import { getAttachmentTypeFromFile } from 'src/shared/getAttachmentTypeFromFile'
 import { getScrollBottom } from 'src/shared/getScrollBottom'
 import { createProvider } from 'src/shared/react/createProvider'
 import {
   Attachment,
   useAttachmentCommand,
+  ATTACHMENT_STATUS_UNATTACHED,
+  getAttachmentTypeFromFile,
 } from 'src/store/entities/attachments'
-import { ATTACHMENT_STATUS_UNATTACHED } from 'src/store/entities/attachments/types'
 import { Feed, useFeed, useFeedCommand } from 'src/store/entities/feeds'
 import { useMe } from 'src/store/entities/me'
 

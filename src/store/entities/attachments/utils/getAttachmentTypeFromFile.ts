@@ -2,7 +2,7 @@ import {
   ATTACHMENT_TYPE_IMAGE,
   ATTACHMENT_TYPE_PDF,
   ATTACHMENT_TYPE_TEXT,
-} from 'src/store/entities/attachments/types'
+} from '../types'
 
 export const getAttachmentTypeFromFile = (
   fileType: string,

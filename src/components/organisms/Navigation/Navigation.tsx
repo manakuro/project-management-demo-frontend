@@ -5,7 +5,7 @@ import { Footer } from './Footer'
 import { Header } from './Header'
 import { MainNav } from './MainNav'
 import { Projects } from './Projects'
-import { useNavigation } from './useNavigation'
+import { useNavigation } from './hooks'
 
 export const PADDING_X = 4
 export const MAX_WIDTH = '240px'

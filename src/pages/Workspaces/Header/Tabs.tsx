@@ -14,7 +14,7 @@ export const Tabs: React.VFC = memo(() => {
           <Heading as="h2" size="md" fontWeight="semibold">
             {workspace.name}
           </Heading>
-          <FavoriteButton ml={2} projectId={workspace.id} />
+          <FavoriteButton ml={2} />
         </Flex>
         <TabList>
           <Tab>Overview</Tab>

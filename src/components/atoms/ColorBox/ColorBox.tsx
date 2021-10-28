@@ -26,7 +26,7 @@ const sizes = {
     w: 3,
     minW: 3,
     h: 3,
-    minH: 4,
+    minH: 3,
   },
   xs: {
     w: 2,

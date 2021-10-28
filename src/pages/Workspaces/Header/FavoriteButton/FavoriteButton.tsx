@@ -4,9 +4,7 @@ import { Tooltip, FavoriteIconButton } from 'src/components/molecules'
 import { useFavoriteWorkspaceIds } from 'src/store/entities/favoriteWorkspaceIds'
 import { useWorkspace } from 'src/store/entities/workspace'
 
-type Props = {
-  projectId: string
-} & Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>
+type Props = Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>
 
 export const FavoriteButton: React.VFC<Props> = memo<Props>((props) => {
   const { workspace } = useWorkspace()

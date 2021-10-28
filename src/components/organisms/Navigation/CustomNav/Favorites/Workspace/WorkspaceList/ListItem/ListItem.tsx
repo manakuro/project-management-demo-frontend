@@ -1,29 +1,32 @@
 import React, { memo, useMemo } from 'react'
-import { Flex, Link, NextLink, Text, ColorBox } from 'src/components/atoms'
+import { Flex, Link, NextLink, Text, Icon } from 'src/components/atoms'
 import { useNavigation, PADDING_X } from 'src/components/organisms/Navigation'
 import { useLinkHoverStyle } from 'src/hooks'
-import { ROUTE_PROJECTS_LIST, useRouter } from 'src/router'
-import { ROUTE_PROJECTS } from 'src/router/projects'
-import { useProject } from 'src/store/entities/projects'
-import { ProjectMenu } from './ProjectMenu'
+import {
+  ROUTE_WORKSPACES_OVERVIEW,
+  useRouter,
+  ROUTE_WORKSPACES,
+} from 'src/router'
+import { useWorkspace } from 'src/store/entities/workspace'
+import { WorkspaceMenu } from './WorkspaceMenu'
 
-type Props = {
-  projectId: string
-}
+type Props = {}
 
-export const ListItem: React.VFC<Props> = memo((props) => {
+export const ListItem: React.VFC<Props> = memo(() => {
   const { isExpanded } = useNavigation()
-  const { projectId } = props
-  const { project } = useProject(projectId)
+  const { workspace } = useWorkspace()
   const { _hover, selectedStyle } = useLinkHoverStyle()
   const { router } = useRouter()
   const selected = useMemo(
-    () => router.asPath.includes(ROUTE_PROJECTS.href.pathname(projectId)),
-    [projectId, router.asPath],
+    () => router.asPath.includes(ROUTE_WORKSPACES.href.pathname(workspace.id)),
+    [workspace.id, router.asPath],
   )
 
   return (
-    <NextLink href={ROUTE_PROJECTS_LIST.href.pathnameObj(projectId)} passHref>
+    <NextLink
+      href={ROUTE_WORKSPACES_OVERVIEW.href.pathnameObj(workspace.id)}
+      passHref
+    >
       <Link
         w="full"
         p={2}
@@ -34,19 +37,19 @@ export const ListItem: React.VFC<Props> = memo((props) => {
         <Flex alignItems="center">
           {isExpanded ? (
             <Flex alignItems="center" flex={1}>
-              <ColorBox size="xs" ml={1} color={project.color.color} />
+              <Icon icon="group" size="sm" color="text.muted" />
               <Text fontSize="sm" flex={1} ml={2}>
-                {project.name}
+                {workspace.name}
               </Text>
             </Flex>
           ) : (
             <Flex alignItems="center" justifyContent="center" flex={1}>
               <Text fontSize="sm" flex={1}>
-                {project.name.slice(0, 3)}
+                {workspace.name.slice(0, 3)}
               </Text>
             </Flex>
           )}
-          <ProjectMenu projectId={projectId} />
+          <WorkspaceMenu workspaceId={workspace.id} />
         </Flex>
       </Link>
     </NextLink>

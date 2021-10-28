@@ -1,5 +1,13 @@
 import React, { memo } from 'react'
-import { Box, Button, Flex, Heading, Icon, Stack } from 'src/components/atoms'
+import {
+  Box,
+  Flex,
+  Heading,
+  Icon,
+  Link,
+  NextLink,
+  Stack,
+} from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import {
   Accordion,
@@ -7,6 +15,8 @@ import {
   AccordionPanel,
   AccordionButton,
 } from 'src/components/organisms/Accordion'
+import { useLinkStyle } from 'src/hooks'
+import { ROUTE_MY_TASKS_LIST } from 'src/router'
 import { useTasksDueSoonIds } from 'src/store/app/home/tasksDueSoon'
 import { ListItem } from './ListItem'
 
@@ -14,6 +24,7 @@ type Props = {}
 
 export const TasksDueSoon: React.VFC<Props> = memo<Props>(() => {
   const { taskIds } = useTasksDueSoonIds()
+  const { style } = useLinkStyle()
 
   return (
     <Accordion allowToggle defaultIndex={0}>
@@ -21,7 +32,7 @@ export const TasksDueSoon: React.VFC<Props> = memo<Props>(() => {
         {({ isExpanded }) => (
           <>
             <Flex py={1} px={2} borderBottom="1px" borderColor="gray.200">
-              <AccordionButton p={0} _hover={{ bg: 'none' }}>
+              <AccordionButton p={0} _hover={{ bg: 'none' }} w="auto">
                 {isExpanded ? (
                   <Icon icon="chevronDown" mt="1px" />
                 ) : (
@@ -31,25 +42,22 @@ export const TasksDueSoon: React.VFC<Props> = memo<Props>(() => {
                   Tasks Due Soon
                 </Heading>
               </AccordionButton>
-              <Tooltip
-                hasArrow
-                label="These are your most urgent tasks due in the next five days"
-                aria-label="A tasks due soon description"
-                size="lg"
-                withIcon
-              >
-                <Icon icon="help" size="xs" color="gray.500" mt="-1px" />
-              </Tooltip>
-              <Button
-                as={Box}
-                variant="ghost"
-                size="xs"
-                ml={1}
-                colorScheme="gray"
-                cursor="pointer"
-              >
-                See all my tasks
-              </Button>
+              <Flex alignItems="center" ml="auto">
+                <Tooltip
+                  hasArrow
+                  label="These are your most urgent tasks due in the next five days"
+                  aria-label="A tasks due soon description"
+                  size="lg"
+                  withIcon
+                >
+                  <Icon icon="help" size="xs" color="gray.500" mt="-1px" />
+                </Tooltip>
+                <NextLink href={ROUTE_MY_TASKS_LIST.href.pathname()} passHref>
+                  <Link {...style} fontSize="xs" ml={1}>
+                    See all my tasks
+                  </Link>
+                </NextLink>
+              </Flex>
             </Flex>
 
             <AccordionPanel p={0}>

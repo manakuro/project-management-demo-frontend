@@ -1,14 +1,15 @@
 import React, { memo } from 'react'
-import { Heading, Box, Stack } from 'src/components/atoms'
+import { Stack, Flex } from 'src/components/atoms'
 import { Head } from 'src/components/atoms/Head'
-import { MainHeader } from 'src/components/organisms/MainHeader'
 import { TaskDetailModal } from 'src/components/organisms/TaskDetails'
-import { useHomeDetail } from 'src/pages/Home/useHomeDetail'
 import { isHomeDetailURL, useRouter, getHomeDetailId } from 'src/router'
+import { Content } from './Content'
 import { FavoriteProjects } from './FavoriteProjects'
+import { Header } from './Header'
 import { RecentProjects } from './RecentProjects'
 import { SkeletonHome } from './SkeletonHome'
 import { TasksDueSoon } from './TasksDueSoon'
+import { useHomeDetail } from './hooks'
 
 type Props = {
   loading: boolean
@@ -24,25 +25,21 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
 
   return (
     <>
-      <Box data-testid="Home">
+      <Flex data-testid="Home" flexDirection="column">
         <Head title="Home" />
-        <MainHeader>
-          <Heading as="h2" size="md" fontWeight="semibold">
-            Home
-          </Heading>
-        </MainHeader>
+        <Header />
         {props.loading ? (
           <SkeletonHome />
         ) : (
-          <Box w="840px" mx="auto" py={10}>
-            <Stack spacing={10}>
+          <Content>
+            <Stack spacing={10} w="full">
               <TasksDueSoon />
               <FavoriteProjects />
               <RecentProjects />
             </Stack>
-          </Box>
+          </Content>
         )}
-      </Box>
+      </Flex>
       <TaskDetailModal backToPage={navigateToHome} />
     </>
   )

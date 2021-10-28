@@ -39,7 +39,7 @@ export const ProjectsContainer: React.VFC<Props> = memo<Props>((props) => {
               borderBottom="1px"
               borderColor="gray.200"
             >
-              <AccordionButton p={0} _hover={{ bg: 'none' }}>
+              <AccordionButton p={0} _hover={{ bg: 'none' }} w="auto">
                 {isExpanded ? (
                   <Icon icon="chevronDown" mt="1px" />
                 ) : (
@@ -49,10 +49,12 @@ export const ProjectsContainer: React.VFC<Props> = memo<Props>((props) => {
                   {props.title}
                 </Heading>
               </AccordionButton>
-              <ProjectListMenu
-                listStatus={listStatus}
-                onChange={setListStatus}
-              />
+              <Flex ml="auto">
+                <ProjectListMenu
+                  listStatus={listStatus}
+                  onChange={setListStatus}
+                />
+              </Flex>
             </Flex>
             <AccordionPanel p={0}>
               <>

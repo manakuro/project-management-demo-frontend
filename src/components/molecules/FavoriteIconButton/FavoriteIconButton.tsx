@@ -11,8 +11,8 @@ type Props = {
   isFavorite: (favoriteId: string) => boolean
   setFavorite: (favoriteId: string) => void
   iconStyle?: {
-    favorite: Omit<IconProps, 'icon'>
-    none: Omit<IconProps, 'icon'>
+    favorite?: Omit<IconProps, 'icon'>
+    none?: Omit<IconProps, 'icon'>
   }
 } & Omit<IconButtonProps, 'aria-label'>
 export type FavoriteButtonProps = Props

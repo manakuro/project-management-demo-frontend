@@ -7,39 +7,43 @@ import {
   useFeedLikesQuery,
   useTaskLikesQuery,
   useTabStatusForMyTasksQuery,
+  useFavoriteWorkspaceIdsQuery,
 } from 'src/hooks/queries/entities'
 
 export const BeforeAppMount: React.FC = (props) => {
   const projectQueryResult = useProjectsQuery({ lazy: true })
-  const favoriteProjectIdsQueryResult = useFavoriteProjectIdsQuery({
+  const useFavoriteProjectIdsQueryResult = useFavoriteProjectIdsQuery({
     lazy: true,
   })
-  const workspaceQueryResult = useWorkspaceQuery({
+  const useFavoriteWorkspaceIdsQueryResult = useFavoriteWorkspaceIdsQuery({
     lazy: true,
   })
-  const meQueryResult = useMeQuery({
+  const useWorkspaceQueryResult = useWorkspaceQuery({
     lazy: true,
   })
-  const feedLikesResult = useFeedLikesQuery({
+  const useMeQueryResult = useMeQuery({
     lazy: true,
   })
-  const taskLikesResult = useTaskLikesQuery({
+  const useFeedLikesQueryResult = useFeedLikesQuery({
     lazy: true,
   })
-  const tabStatusForMyTasksResult = useTabStatusForMyTasksQuery({
+  const useTaskLikesQueryResult = useTaskLikesQuery({
+    lazy: true,
+  })
+  const useTabStatusForMyTasksQueryResult = useTabStatusForMyTasksQuery({
     lazy: true,
   })
 
   useEffect(() => {
     console.log('BeforeAppMount!!')
     projectQueryResult.refetch()
-    favoriteProjectIdsQueryResult.refetch()
-    workspaceQueryResult.refetch()
-    meQueryResult.refetch()
-    feedLikesResult.refetch()
-    taskLikesResult.refetch()
-    tabStatusForMyTasksResult.refetch()
-
+    useFavoriteProjectIdsQueryResult.refetch()
+    useWorkspaceQueryResult.refetch()
+    useMeQueryResult.refetch()
+    useFeedLikesQueryResult.refetch()
+    useTaskLikesQueryResult.refetch()
+    useTabStatusForMyTasksQueryResult.refetch()
+    useFavoriteWorkspaceIdsQueryResult.refetch()
     /* eslint react-hooks/exhaustive-deps: off */
   }, [])
 

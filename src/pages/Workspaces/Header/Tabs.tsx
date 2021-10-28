@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { Flex, Heading } from 'src/components/atoms'
 import { TabList, Tab } from 'src/components/organisms/Tabs'
 import { useWorkspace } from 'src/store/entities/workspace'
-import { FavoriteIconButton } from './FavoriteIconButton'
+import { FavoriteButton } from './FavoriteButton'
 
 export const Tabs: React.VFC = memo(() => {
   const { workspace } = useWorkspace()
@@ -14,7 +14,7 @@ export const Tabs: React.VFC = memo(() => {
           <Heading as="h2" size="md" fontWeight="semibold">
             {workspace.name}
           </Heading>
-          <FavoriteIconButton ml={2} projectId={workspace.id} />
+          <FavoriteButton ml={2} projectId={workspace.id} />
         </Flex>
         <TabList>
           <Tab>Overview</Tab>

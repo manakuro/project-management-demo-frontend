@@ -10258,7 +10258,7 @@ __metadata:
     react-icons: ^4.3.1
     react-intersection-observer: ^8.32.1
     react-player: ^2.9.0
-    recoil: ^0.4.1
+    recoil: ^0.5.2
     resize-observer-polyfill: ^1.5.1
     shortid: ^2.2.16
     ts-jest: ^27.0.7
@@ -10865,9 +10865,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"recoil@npm:^0.4.1":
-  version: 0.4.1
-  resolution: "recoil@npm:0.4.1"
+"recoil@npm:^0.5.2":
+  version: 0.5.2
+  resolution: "recoil@npm:0.5.2"
   dependencies:
     hamt_plus: 1.0.2
   peerDependencies:
@@ -10877,7 +10877,7 @@ __metadata:
       optional: true
     react-native:
       optional: true
-  checksum: a11a93e5168d22500b8b981b0ae9c31a81987f5d7213f8be9531c3938d1b2c192ee664d94c9a70302248a292cb21ec430b0e8113f751d0ff46185ebf32c58c95
+  checksum: 1daf09f969c2ffc0ac628dc4ac1306aef4e162506b0ed1700cc4aa1e68e921fad450d047843d49ba39510f24b87224e9d4ac74b1c6f111e1abeb5ba9cd2a3f78
   languageName: node
   linkType: hard
 

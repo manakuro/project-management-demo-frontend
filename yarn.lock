@@ -2768,9 +2768,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/dom@npm:^8.10.1":
-  version: 8.10.1
-  resolution: "@testing-library/dom@npm:8.10.1"
+"@testing-library/dom@npm:^8.11.1":
+  version: 8.11.1
+  resolution: "@testing-library/dom@npm:8.11.1"
   dependencies:
     "@babel/code-frame": ^7.10.4
     "@babel/runtime": ^7.12.5
@@ -2780,24 +2780,24 @@ __metadata:
     dom-accessibility-api: ^0.5.9
     lz-string: ^1.4.4
     pretty-format: ^27.0.2
-  checksum: c11da16d981d4479fa18b2e90a62d2c19871da414016a4f80136394cf35e833ca4de4b56a64225f6bd5d3a13842176236d3508d217e3858c5e2ef35a3f391d5b
+  checksum: 082104b104def94db071fe35f967124c52d387d995a61327cd60ed39c310126f4cde2fa51054c37977cd3a2082311795417413506ad1a14df1010bd1cbb02bc5
   languageName: node
   linkType: hard
 
-"@testing-library/jest-dom@npm:^5.14.1":
-  version: 5.14.1
-  resolution: "@testing-library/jest-dom@npm:5.14.1"
+"@testing-library/jest-dom@npm:^5.16.0":
+  version: 5.16.0
+  resolution: "@testing-library/jest-dom@npm:5.16.0"
   dependencies:
     "@babel/runtime": ^7.9.2
     "@types/testing-library__jest-dom": ^5.9.1
-    aria-query: ^4.2.2
+    aria-query: ^5.0.0
     chalk: ^3.0.0
     css: ^3.0.0
     css.escape: ^1.5.1
     dom-accessibility-api: ^0.5.6
     lodash: ^4.17.15
     redent: ^3.0.0
-  checksum: eeba37ba10be550bd9ab7dd0dda77d9011a96d9a4f75c70ed57d7bf120fe4126b251ccfb1444da1746c19773bbe4efbd96a0408f970d98c9cd1d399b2455d2c1
+  checksum: 34ccca14f6b2ea0748556548481bc4f1a979c0a918e1c14c4b9e67a1ac8c2a0c52dca8da91d56c218c779ae0e9387b041d74f585da39f757c19a472b033e2b5e
   languageName: node
   linkType: hard
 
@@ -3044,10 +3044,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16.11.7":
-  version: 16.11.7
-  resolution: "@types/node@npm:16.11.7"
-  checksum: 2706403e6efc4aa40fdce8f0b5d9884d5600c3c8610aedc7fa5e7e298d30366f7e8b7296028d52898dca3edef4c3e827b03bf20952c4780f13fa4e79864f7a86
+"@types/node@npm:^16.11.11":
+  version: 16.11.11
+  resolution: "@types/node@npm:16.11.11"
+  checksum: 1c472bd63f23ca0e4effc96e6e0c693b83b027f613a1f41b6d1bd7791f65ce171a351e0a5c92575cb59e84ad0a930875397bfbbb91a7c925ddbbb558f7461af8
   languageName: node
   linkType: hard
 
@@ -3289,14 +3289,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^17.0.34":
-  version: 17.0.34
-  resolution: "@types/react@npm:17.0.34"
+"@types/react@npm:^17.0.37":
+  version: 17.0.37
+  resolution: "@types/react@npm:17.0.37"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 16729ad7d50922ccbf8eb93874d7781dc2f1c64edc78134b5edc7154839d41e9fe320eb1c11ad2d1c9bf28b99cb1febda344509c1fda025955a5c2b43c688c8f
+  checksum: e68b0d59aa69577fc6a6d654b25d5d8408625498f4c483f160b557fac21e840f6e8807cbde93e9f039949b6d624a019b1990d18499c1d65aecf3605c25e30242
   languageName: node
   linkType: hard
 
@@ -3339,7 +3339,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/testing-library__jest-dom@npm:^5.14.1, @types/testing-library__jest-dom@npm:^5.9.1":
+"@types/testing-library__jest-dom@npm:^5.14.2":
+  version: 5.14.2
+  resolution: "@types/testing-library__jest-dom@npm:5.14.2"
+  dependencies:
+    "@types/jest": "*"
+  checksum: e08715a565cc189112a6611485d779a0f1ceb546a9d4601b21aacff7596d7acf8b7c702e4c5f825677431ff601df3e635887dc8a5735da1a263cc857eb7c3833
+  languageName: node
+  linkType: hard
+
+"@types/testing-library__jest-dom@npm:^5.9.1":
   version: 5.14.1
   resolution: "@types/testing-library__jest-dom@npm:5.14.1"
   dependencies:
@@ -3355,10 +3364,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/uuid@npm:^8.3.1":
-  version: 8.3.1
-  resolution: "@types/uuid@npm:8.3.1"
-  checksum: b41bdc5e86c6f0f1899306be10455636da0f2168c9489b869edd6837ddeb7c0e501b1ff7d857402462986bada2a379125743dd895fa801d03437cd632116a373
+"@types/uuid@npm:^8.3.3":
+  version: 8.3.3
+  resolution: "@types/uuid@npm:8.3.3"
+  checksum: 3f340155bb1161f9ffa7163926d6222fea8f3505c23619b72bcc230883354926672c08a06510c7a543f73553c792a84444cc1744cff631b4ba988763e4bd7a8f
   languageName: node
   linkType: hard
 
@@ -10185,14 +10194,14 @@ __metadata:
     "@react-hook/passive-layout-effect": ^1.2.1
     "@react-hook/resize-observer": ^1.2.4
     "@react-pdf-viewer/core": 2.8.0
-    "@testing-library/dom": ^8.10.1
-    "@testing-library/jest-dom": ^5.14.1
+    "@testing-library/dom": ^8.11.1
+    "@testing-library/jest-dom": ^5.16.0
     "@testing-library/react": ^12.1.2
     "@types/emoji-mart": ^3.0.6
     "@types/eslint": ^7.28.2
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest-plugin-context": ^2.9.4
-    "@types/node": ^16.11.7
+    "@types/node": ^16.11.11
     "@types/prettier": ^2.4.1
     "@types/prosemirror-commands": ^1.0.4
     "@types/prosemirror-history": ^1.0.2
@@ -10204,12 +10213,12 @@ __metadata:
     "@types/prosemirror-state": ^1.2.6
     "@types/prosemirror-view": ^1.17.1
     "@types/raf-schd": ^4.0.1
-    "@types/react": ^17.0.34
+    "@types/react": ^17.0.37
     "@types/react-beautiful-dnd": ^13.1.1
     "@types/react-dom": 17.0.11
     "@types/shortid": ^0.0.29
-    "@types/testing-library__jest-dom": ^5.14.1
-    "@types/uuid": ^8.3.1
+    "@types/testing-library__jest-dom": ^5.14.2
+    "@types/uuid": ^8.3.3
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": 5.0.0
     babel-eslint: ^10.1.0

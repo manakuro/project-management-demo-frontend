@@ -6,7 +6,7 @@ import {
   useStyleConfig as ChakraUseStyleConfig,
   useBreakpointValue as ChakraUseBreakpointValue,
 } from '@chakra-ui/react'
-import { Token } from '@chakra-ui/styled-system/dist/types/utils'
+import { Token } from '@chakra-ui/styled-system/dist/declarations/src/utils'
 import * as CSS from 'csstype'
 
 export type ChakraProps = ChakraUIChakraProps

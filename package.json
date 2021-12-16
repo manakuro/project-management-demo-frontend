@@ -16,7 +16,9 @@
     "new:component": "hygen new component && yarn lint:fix",
     "test:unit": "jest",
     "test:integration": "cross-env INTEGRATION=true jest",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "codegen": "graphql-codegen",
+    "codegen:lint": "prettier --config ./.prettierrc.codegen.js --ignore-path ./.prettierignore.codegen src/graphql/types/index.ts --write"
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",
@@ -67,6 +69,10 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.3.0",
+    "@graphql-codegen/typescript": "^2.4.1",
+    "@graphql-codegen/typescript-operations": "^2.2.1",
+    "@graphql-codegen/typescript-react-apollo": "^3.2.2",
     "@next/eslint-plugin-next": "^11.1.2",
     "@testing-library/dom": "^8.11.1",
     "@testing-library/jest-dom": "^5.16.0",

@@ -1,0 +1,9 @@
+subscription TestUserUpdated($id: ID!) {
+  testUserUpdated(id: $id) {
+    id
+    name
+    age
+    createdAt
+    updatedAt
+  }
+}

@@ -1,0 +1,9 @@
+query TestUser($id: ID) {
+  testUser(id: $id) {
+    id
+    name
+    age
+    createdAt
+    updatedAt
+  }
+}

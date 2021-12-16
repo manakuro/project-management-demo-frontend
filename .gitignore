@@ -43,3 +43,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# codegen
+src/graphql/types/index.ts
+src/graphql/hooks/index.ts

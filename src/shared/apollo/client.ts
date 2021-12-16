@@ -1,3 +1,4 @@
+import { config } from 'src/config'
 import {
   split,
   HttpLink,
@@ -9,13 +10,13 @@ import { WebSocketLink } from 'src/libs/apollo/ws'
 import { isClient } from 'src/shared/environment'
 
 const httpLink = new HttpLink({
-  uri: 'http://localhost:8080/query',
+  uri: config.API_URL,
 })
 
 const createLink = () => {
   if (isClient()) {
     const wsLink = new WebSocketLink({
-      uri: 'ws://localhost:8080/subscription',
+      uri: config.API_SUBSCRIPTION_URL,
       options: {
         reconnect: true,
       },

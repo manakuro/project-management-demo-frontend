@@ -1,4 +1,4 @@
-schema: http://localhost:8080/query
+schema: schema.json
 documents:
  - "./src/graphql/**/*.js"
  - "./src/graphql/**/*.gql"

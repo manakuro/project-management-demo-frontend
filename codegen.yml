@@ -26,6 +26,9 @@ generates:
       importOperationTypesFrom: import('../types')
 
 config:
+  scalars:
+    Time: string
+    Cursor: string
   skipTypename: true
   preResolveTypes: true
   maybeValue: T | null

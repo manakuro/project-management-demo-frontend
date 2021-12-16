@@ -19,7 +19,6 @@
     "tsc": "tsc",
     "codegen": "yarn codegen:download && graphql-codegen",
     "codegen:download": "node scripts/codegen/download.js",
-    "codegen:lint": "prettier --config ./.prettierrc.codegen.js --ignore-path ./.prettierignore.codegen src/graphql/types/index.ts --write"
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",

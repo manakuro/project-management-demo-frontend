@@ -1,3 +1,4 @@
+import { ApolloProvider } from '@apollo/client'
 import { ChakraProvider } from '@chakra-ui/react'
 import enLocale from 'date-fns/locale/en-US'
 import { NextPage } from 'next'
@@ -8,6 +9,7 @@ import { RecoilRoot } from 'recoil'
 import { GetLayout } from 'src/@types/next'
 import { LayoutDefault } from 'src/components/organisms/Layout'
 import { Modals } from 'src/components/organisms/Modals'
+import { client } from 'src/shared/apollo/client'
 import { BeforeAppMount } from 'src/shared/app'
 import {
   muiTheme,
@@ -32,18 +34,23 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   return (
     <RecoilRoot>
-      <MuiThemeProvider theme={muiTheme}>
-        <ChakraProvider theme={theme} resetCSS>
-          <LocalizationProvider dateAdapter={AdapterDateFns} locale={enLocale}>
-            <BeforeAppMount>
-              <>
-                {getLayout(<Component {...pageProps} />)}
-                <Modals />
-              </>
-            </BeforeAppMount>
-          </LocalizationProvider>
-        </ChakraProvider>
-      </MuiThemeProvider>
+      <ApolloProvider client={client}>
+        <MuiThemeProvider theme={muiTheme}>
+          <ChakraProvider theme={theme} resetCSS>
+            <LocalizationProvider
+              dateAdapter={AdapterDateFns}
+              locale={enLocale}
+            >
+              <BeforeAppMount>
+                <>
+                  {getLayout(<Component {...pageProps} />)}
+                  <Modals />
+                </>
+              </BeforeAppMount>
+            </LocalizationProvider>
+          </ChakraProvider>
+        </MuiThemeProvider>
+      </ApolloProvider>
     </RecoilRoot>
   )
 }

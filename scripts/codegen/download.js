@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const consola = require('consola')
 const fetchToken = require('../fetchToken/fetchToken').fetchToken
-const ENDPOINT = 'http://localhost:8080/query'
+const ENDPOINT = 'http://localhost:8080/graphql'
 const tokenJsonPath = path.resolve(__dirname, './token.json')
 const { downloadSchema } = require('./downloadSchema')
 

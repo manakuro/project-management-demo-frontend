@@ -6,21 +6,28 @@ import {
   InMemoryCache,
 } from 'src/libs/apollo/client'
 import { getMainDefinition } from 'src/libs/apollo/utilities'
-import { WebSocketLink } from 'src/libs/apollo/ws'
+// import { WebSocketLink } from 'src/libs/apollo/ws'
 import { isClient } from 'src/shared/environment'
 
-const httpLink = new HttpLink({
-  uri: config.API_URL,
-})
+type CreateLinkProps = {
+  idToken: string
+}
 
-const createLink = () => {
+const createLink = (props: CreateLinkProps) => {
+  const httpLink = new HttpLink({
+    uri: config.API_URL,
+    headers: {
+      Authorization: `Bearer ${props.idToken}`,
+    },
+  })
+
   if (isClient()) {
-    const wsLink = new WebSocketLink({
-      uri: config.API_SUBSCRIPTION_URL,
-      options: {
-        reconnect: true,
-      },
-    })
+    // const wsLink = new WebSocketLink({
+    //   uri: config.API_SUBSCRIPTION_URL,
+    //   options: {
+    //     reconnect: true,
+    //   },
+    // })
 
     return split(
       ({ query }) => {
@@ -30,7 +37,7 @@ const createLink = () => {
           definition.operation === 'subscription'
         )
       },
-      wsLink,
+      // wsLink,
       httpLink,
     )
   }
@@ -38,7 +45,17 @@ const createLink = () => {
   return httpLink
 }
 
+type CreateClientProps = {
+  idToken: string
+}
+export const createClient = (props: CreateClientProps) => {
+  return new ApolloClient({
+    link: createLink(props),
+    cache: new InMemoryCache(),
+  })
+}
+
 export const client = new ApolloClient({
-  link: createLink(),
+  link: createLink({ idToken: '' }),
   cache: new InMemoryCache(),
 })

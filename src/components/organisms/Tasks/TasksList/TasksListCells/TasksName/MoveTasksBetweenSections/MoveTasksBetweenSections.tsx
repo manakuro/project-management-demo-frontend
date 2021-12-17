@@ -41,11 +41,15 @@ export const MoveTasksBetweenSections: React.FC<Props> = memo<Props>(
               withIcon
               display={isOpen ? 'none' : 'block'}
             >
-              <MenuSelectButton>
+              <MenuSelectButton
+                spanStyle={{
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
                 <Icon
                   icon="moveVertical"
                   color="text.muted"
-                  mt="1px"
                   {...clickableHoverLightStyle}
                 />
               </MenuSelectButton>

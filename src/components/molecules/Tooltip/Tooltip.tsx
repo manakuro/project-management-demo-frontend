@@ -3,6 +3,7 @@ import {
   TooltipProps as ChakraTooltipProps,
 } from '@chakra-ui/react'
 import React from 'react'
+import { Flex } from 'src/components/atoms'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraTooltipProps & {
@@ -48,7 +49,9 @@ export const Tooltip: React.FC<Props> & { id?: string } = forwardRef<
     // @see https://github.com/chakra-ui/chakra-ui/issues/2869
     return (
       <ChakraTooltip {...tooltipProps} ref={ref}>
-        <span>{props.children}</span>
+        <Flex as="span" alignItems="center">
+          {props.children}
+        </Flex>
       </ChakraTooltip>
     )
   }

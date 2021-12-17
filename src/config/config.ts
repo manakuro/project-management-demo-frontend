@@ -1,6 +1,13 @@
 export const config = {
-  APP_ENV: process.env.APP_ENV || 'development',
-  API_URL: process.env.API_URL || 'http://localhost:8080/graphql',
-  API_SUBSCRIPTION_URL:
-    process.env.API_SUBSCRIPTION_URL || 'ws://localhost:8080/subscription',
+  APP_ENV: process.env.APP_ENV!,
+  API_URL: process.env.API_URL!,
+  API_SUBSCRIPTION_URL: process.env.API_SUBSCRIPTION_URL!,
+  FIREBASE_API_KEY: process.env.FIREBASE_API_KEY!,
+  FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN!,
+  FIREBASE_DATABASE_URL: process.env.FIREBASE_DATABASE_URL!,
+  FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID!,
+  FIREBASE_STORAGE_BUCKET: process.env.FIREBASE_STORAGE_BUCKET!,
+  FIREBASE_MESSAGING_SENDER_ID: process.env.FIREBASE_MESSAGING_SENDER_ID!,
+  FIREBASE_APPID: process.env.FIREBASE_APPID!,
+  FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID!,
 } as const

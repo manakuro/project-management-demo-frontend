@@ -95,5 +95,5 @@ export const projectIcons: Icon[] = [
     icon: 'layout',
   },
 ]
-export const findProjectIcon = (id: string) =>
-  projectIcons.find((p) => p.id === id)!
+export const findProjectIcon = (id: string): Icon =>
+  projectIcons.find((p) => p.id === id) ?? projectIcons[0]

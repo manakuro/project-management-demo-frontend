@@ -20,6 +20,11 @@ export const SkeletonHome: React.VFC = memo(() => {
             <Skeleton h={TEXT_HEIGHT} w="50%" borderRadius="full" />
             <Skeleton h={TEXT_HEIGHT} w="70%" borderRadius="full" />
             <Skeleton h={TEXT_HEIGHT} w="40%" borderRadius="full" />
+            <Skeleton h={TEXT_HEIGHT} w="80%" borderRadius="full" />
+            <Skeleton h={TEXT_HEIGHT} w="60%" borderRadius="full" />
+            <Skeleton h={TEXT_HEIGHT} w="50%" borderRadius="full" />
+            <Skeleton h={TEXT_HEIGHT} w="70%" borderRadius="full" />
+            <Skeleton h={TEXT_HEIGHT} w="40%" borderRadius="full" />
           </Stack>
         </Flex>
         <Flex flex={1} flexDirection="column">

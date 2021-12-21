@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const consola = require('consola')
 const fetchToken = require('../fetchToken/fetchToken').fetchToken
-const ENDPOINT = process.env.API_URL
+const ENDPOINT = process.env.NEXT_PUBLIC_API_URL
 const tokenJsonPath = path.resolve(__dirname, './token.json')
 const { downloadSchema } = require('./downloadSchema')
 

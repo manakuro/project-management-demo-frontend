@@ -27,13 +27,9 @@ const createLink = (props: CreateLinkProps) => {
       options: {
         lazy: true,
         reconnect: true,
-        connectionParams: () => {
-          return {
-            headers: {
-              Authorization: `Bearer ${props.idToken}`,
-            },
-          }
-        },
+        connectionParams: () => ({
+          authorization: `Bearer ${props.idToken}`,
+        }),
       },
     })
 

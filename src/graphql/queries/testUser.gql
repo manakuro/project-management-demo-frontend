@@ -1,4 +1,4 @@
-query TestUser($id: ID) {
+query TestUser($id: ID!) {
   testUser(id: $id) {
     id
     name

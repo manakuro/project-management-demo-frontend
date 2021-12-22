@@ -6,7 +6,7 @@ import {
   InMemoryCache,
 } from 'src/libs/apollo/client'
 import { getMainDefinition } from 'src/libs/apollo/utilities'
-// import { WebSocketLink } from 'src/libs/apollo/ws'
+import { WebSocketLink } from 'src/libs/apollo/ws'
 import { isClient } from 'src/shared/environment'
 
 type CreateLinkProps = {
@@ -22,12 +22,20 @@ const createLink = (props: CreateLinkProps) => {
   })
 
   if (isClient()) {
-    // const wsLink = new WebSocketLink({
-    //   uri: config.API_SUBSCRIPTION_URL,
-    //   options: {
-    //     reconnect: true,
-    //   },
-    // })
+    const wsLink = new WebSocketLink({
+      uri: config.API_SUBSCRIPTION_URL,
+      options: {
+        lazy: true,
+        reconnect: true,
+        connectionParams: () => {
+          return {
+            headers: {
+              Authorization: `Bearer ${props.idToken}`,
+            },
+          }
+        },
+      },
+    })
 
     return split(
       ({ query }) => {
@@ -37,7 +45,7 @@ const createLink = (props: CreateLinkProps) => {
           definition.operation === 'subscription'
         )
       },
-      // wsLink,
+      wsLink,
       httpLink,
     )
   }

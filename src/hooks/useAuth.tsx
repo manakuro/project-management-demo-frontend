@@ -10,6 +10,7 @@ const idTokenState = atom<string>({
   default: '',
 })
 
+let unsubscribe: ReturnType<typeof onAuthStateChanged>
 export const useAuth = () => {
   const [idToken, setIdToken] = useRecoilState(idTokenState)
 
@@ -19,7 +20,8 @@ export const useAuth = () => {
     if (isServer()) return
 
     try {
-      onAuthStateChanged(async (user) => {
+      unsubscribe = onAuthStateChanged(async (user) => {
+        console.log('user: ', user)
         if (!user) {
           await signInAnonymously()
           return
@@ -32,6 +34,10 @@ export const useAuth = () => {
       if (err instanceof Error) {
         console.dir(err)
       }
+    }
+
+    return () => {
+      if (unsubscribe) unsubscribe()
     }
   }, [setIdToken])
 

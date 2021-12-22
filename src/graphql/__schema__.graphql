@@ -30,12 +30,12 @@ type Query {
   nodes(ids: [ID!]!): [Node]!
   testTodo(id: ID): TestTodo
   testTodos: [TestTodo!]!
-  testUser(age: Int, id: ID): TestUser
+  testUser(age: Int, id: ID!): TestUser
   testUsers(after: Cursor, before: Cursor, first: Int, last: Int, where: TestUserWhereInput): TestUserConnection
 }
 
 type Subscription {
-  testUserUpdated(id: ID): TestUser!
+  testUserUpdated(id: ID!): TestUser!
 }
 
 type TestTodo {

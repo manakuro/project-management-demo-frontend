@@ -1,0 +1,17 @@
+query TestUsers($after: Cursor, $before: Cursor, $first: Int, $last: Int, $where: TestUserWhereInput) {
+  testUsers(after: $after, before: $before, first: $first, last: $last, where: $where) {
+    edges {
+      node {
+        id
+        name
+        age
+        createdAt
+        updatedAt
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

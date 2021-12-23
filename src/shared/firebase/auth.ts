@@ -23,5 +23,5 @@ export const onIdTokenChanged = (
 }
 
 export const refreshToken = () => {
-  return getAuth().currentUser?.getIdToken()
+  return getAuth().currentUser?.getIdToken(true)
 }

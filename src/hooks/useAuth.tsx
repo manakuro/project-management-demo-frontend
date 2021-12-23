@@ -42,6 +42,7 @@ export const useAuth = () => {
     try {
       return onIdTokenChanged(async (user) => {
         if (!user) return
+        console.log('onIdTokenChanged has changed!')
         const id = await user.getIdToken()
         setIdToken(id)
       })

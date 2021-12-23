@@ -4,7 +4,9 @@ import {
   HttpLink,
   ApolloClient,
   InMemoryCache,
+  from,
 } from 'src/libs/apollo/client'
+import { onError } from 'src/libs/apollo/error'
 import { getMainDefinition } from 'src/libs/apollo/utilities'
 import { WebSocketLink } from 'src/libs/apollo/ws'
 import { isClient } from 'src/shared/environment'
@@ -12,6 +14,18 @@ import { isClient } from 'src/shared/environment'
 type CreateLinkProps = {
   idToken: string
 }
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  console.log('graphQLErrors: ', graphQLErrors)
+  if (graphQLErrors)
+    graphQLErrors.forEach(({ message, locations, path }) =>
+      console.log(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+      ),
+    )
+
+  if (networkError) console.log(`[Network error]: ${networkError}`)
+})
 
 const createLink = (props: CreateLinkProps) => {
   const httpLink = new HttpLink({
@@ -30,6 +44,15 @@ const createLink = (props: CreateLinkProps) => {
         connectionParams: () => ({
           authorization: `Bearer ${props.idToken}`,
         }),
+        connectionCallback: (err) => {
+          const errors = Array.isArray(err) ? err : [err]
+          const authError = errors.find(
+            (e) => ~e?.message.indexOf('has expired at'),
+          )
+          if (authError) {
+            console.error('auth error!')
+          }
+        },
       },
     })
 
@@ -54,12 +77,7 @@ type CreateClientProps = {
 }
 export const createClient = (props: CreateClientProps) => {
   return new ApolloClient({
-    link: createLink(props),
+    link: from([errorLink, createLink(props)]),
     cache: new InMemoryCache(),
   })
 }
-
-export const client = new ApolloClient({
-  link: createLink({ idToken: '' }),
-  cache: new InMemoryCache(),
-})

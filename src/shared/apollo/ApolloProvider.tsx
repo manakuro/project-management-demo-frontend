@@ -6,11 +6,7 @@ import { createClient } from './client'
 export const ApolloProvider: React.FC = (props) => {
   const { idToken } = useAuth()
 
-  const client = useMemo(
-    () => createClient({ idToken }),
-    /* eslint react-hooks/exhaustive-deps: off */
-    [],
-  )
+  const client = useMemo(() => createClient({ idToken }), [idToken])
 
   return (
     <ApolloProviderLibs client={client}>{props.children}</ApolloProviderLibs>

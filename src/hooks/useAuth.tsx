@@ -1,7 +1,11 @@
 import { useEffect, useMemo } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { isServer } from 'src/shared/environment'
-import { onAuthStateChanged, signInAnonymously } from 'src/shared/firebase/auth'
+import {
+  onAuthStateChanged,
+  onIdTokenChanged,
+  signInAnonymously,
+} from 'src/shared/firebase/auth'
 
 const key = (str: string) => `src/hooks/useAuth/${str}`
 
@@ -10,7 +14,6 @@ const idTokenState = atom<string>({
   default: '',
 })
 
-let unsubscribe: ReturnType<typeof onAuthStateChanged>
 export const useAuth = () => {
   const [idToken, setIdToken] = useRecoilState(idTokenState)
 
@@ -20,13 +23,25 @@ export const useAuth = () => {
     if (isServer()) return
 
     try {
-      unsubscribe = onAuthStateChanged(async (user) => {
-        console.log('user: ', user)
+      return onAuthStateChanged(async (user) => {
         if (!user) {
+          console.log('signInAnonymously!')
           await signInAnonymously()
-          return
         }
+      })
+    } catch (err) {
+      if (err instanceof Error) {
+        console.dir(err)
+      }
+    }
+  }, [setIdToken])
 
+  useEffect(() => {
+    if (isServer()) return
+
+    try {
+      return onIdTokenChanged(async (user) => {
+        if (!user) return
         const id = await user.getIdToken()
         setIdToken(id)
       })
@@ -34,10 +49,6 @@ export const useAuth = () => {
       if (err instanceof Error) {
         console.dir(err)
       }
-    }
-
-    return () => {
-      if (unsubscribe) unsubscribe()
     }
   }, [setIdToken])
 

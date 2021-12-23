@@ -2,7 +2,7 @@ import { config } from 'src/config'
 import { split, HttpLink } from 'src/libs/apollo/client'
 import { getMainDefinition } from 'src/libs/apollo/utilities'
 import { WebSocketLink } from 'src/libs/apollo/ws'
-import { resetApolloLink } from 'src/shared/apollo/client'
+import { websocketErrorHandler } from 'src/shared/apollo/errorHandler'
 import { isClient } from 'src/shared/environment'
 import { SubscriptionClient } from 'subscriptions-transport-ws'
 
@@ -27,13 +27,7 @@ export const createHttpLink = (props: CreateHttpProps) => {
       }),
       connectionCallback: async (err) => {
         const errors = Array.isArray(err) ? err : [err]
-        const authError = errors.find(
-          (e) => ~e?.message.indexOf('has expired at'),
-        )
-        if (authError) {
-          console.error('auth error!')
-          await resetApolloLink()
-        }
+        await websocketErrorHandler(errors)
       },
     })
     const wsLink = new WebSocketLink(wsClient)

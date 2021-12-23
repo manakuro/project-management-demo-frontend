@@ -6,12 +6,10 @@ import { createLink, CreateLinkProps } from './createLink'
 type Props = CreateLinkProps
 let client: ApolloClient<NormalizedCacheObject>
 export const createApolloClient = (props: Props) => {
-  const link = createLink(props)
-
   if (!client) {
     console.log('apollo client created!')
     client = new ApolloClient({
-      link,
+      link: createLink(props),
       cache: new InMemoryCache(),
     })
     return client

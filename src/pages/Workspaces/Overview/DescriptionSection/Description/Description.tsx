@@ -1,7 +1,11 @@
 import React, { memo, useCallback, useRef } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
-import { useWorkspace, useWorkspaceCommand } from 'src/store/entities/workspace'
+import {
+  useWorkspace,
+  useWorkspaceCommand,
+  WorkSpaceDescription,
+} from 'src/store/entities/workspace'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
 import { Provider } from './Provider'
@@ -19,11 +23,13 @@ export const Description: React.FC<Props> = memo((props) => {
 const DescriptionHandler: React.FC<Props> = memo<Props>(() => {
   const { workspace } = useWorkspace()
   const { setWorkspace } = useWorkspaceCommand()
-  const initialValue = useRef(workspace.description)
+  const initialValue = useRef(JSON.stringify(workspace.description))
 
   const handleChange = useCallback(
     async (val: string) => {
-      await setWorkspace({ description: val })
+      await setWorkspace({
+        description: JSON.parse(val) as WorkSpaceDescription,
+      })
     },
     [setWorkspace],
   )

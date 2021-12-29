@@ -1,5 +1,7 @@
+import { ulidRegex } from 'src/shared/ulid'
+
 export const ROUTE_WORKSPACES = {
-  regex: /^\/workspaces\/\d*\/?/iu,
+  regex: new RegExp(`^/workspaces/${ulidRegex}/?$`, 'iu'),
   href: {
     pathname: (id: string) => `/workspaces/${id}`,
     pathnameObj: (id: string) =>
@@ -15,7 +17,7 @@ export const ROUTE_WORKSPACES = {
 } as const
 
 export const ROUTE_WORKSPACES_OVERVIEW = {
-  regex: /^\/workspaces\/\d*\/overview\/?$/iu,
+  regex: new RegExp(`^/workspaces/${ulidRegex}/overview/?$`, 'iu'),
   href: {
     pathname: (id: string) => `/workspaces/${id}/overview`,
     pathnameObj: (id: string) =>
@@ -28,7 +30,7 @@ export const ROUTE_WORKSPACES_OVERVIEW = {
 } as const
 
 export const ROUTE_WORKSPACES_MESSAGES = {
-  regex: /^\/workspaces\/\d*\/messages\/?$/iu,
+  regex: new RegExp(`^/workspaces/${ulidRegex}/messages/?$`, 'iu'),
   href: {
     pathname: (id: string) => `/workspaces/${id}/messages`,
     pathnameObj: (id: string) =>
@@ -40,7 +42,7 @@ export const ROUTE_WORKSPACES_MESSAGES = {
   query: 'workspaces',
 } as const
 export const ROUTE_WORKSPACES_CALENDAR = {
-  regex: /^\/workspaces\/\d*\/calendar\/?$/iu,
+  regex: new RegExp(`^/workspaces/${ulidRegex}/calendar/?$`, 'iu'),
   href: {
     pathname: (id: string) => `/workspaces/${id}/calendar`,
     pathnameObj: (id: string) =>

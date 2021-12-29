@@ -1,0 +1,23 @@
+query Workspace($where: WorkspaceWhereInput!) {
+  workspace(where: $where) {
+    id
+    name
+    description {
+      type
+      content {
+        type
+        content {
+          text
+          text
+          attrs {
+            mentionId
+            mentionType
+          }
+        }
+      }
+    }
+    createdBy
+    createdAt
+    updatedAt
+  }
+}

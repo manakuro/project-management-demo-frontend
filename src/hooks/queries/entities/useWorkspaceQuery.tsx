@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { useWorkspaceLazyQuery as useWorkspaceQueryApollo } from 'src/graphql/hooks'
 import { useMountedRef } from 'src/hooks'
 import { useWorkspace, Workspace } from 'src/store/entities/workspace'
 
@@ -7,6 +8,13 @@ type Props = {
 }
 
 export const useWorkspaceQuery = (props?: Props) => {
+  const [refetchQuery] = useWorkspaceQueryApollo({
+    variables: {
+      where: {
+        name: 'My Workspace',
+      },
+    },
+  })
   const [loading, setLoading] = useState(true)
   const { setWorkspace } = useWorkspace()
   const { mountedRef } = useMountedRef()
@@ -15,39 +23,24 @@ export const useWorkspaceQuery = (props?: Props) => {
     ;(async () => {
       if (props?.lazy) return
       setLoading(true)
-      const res = await fetchWorkspace()
-      setWorkspace(res)
+      const res = await refetchQuery()
+      setWorkspace(res.data?.workspace as Workspace)
       setLoading(false)
     })()
-  }, [props?.lazy, setWorkspace])
+  }, [props?.lazy, refetchQuery, setWorkspace])
 
   const refetch = useCallback(() => {
     ;(async () => {
       setLoading(true)
-      const res = await fetchWorkspace()
+      const res = await refetchQuery()
       if (mountedRef.current) {
-        setWorkspace(res)
+        setWorkspace(res.data?.workspace as Workspace)
       }
     })()
-  }, [mountedRef, setWorkspace])
+  }, [mountedRef, refetchQuery, setWorkspace])
 
   return {
     refetch,
     loading,
   }
-}
-
-const fetchWorkspace = (): Promise<Workspace> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        id: '1',
-        name: 'My Workspace',
-        description: 'My Workspace description',
-        createdBy: '1',
-        createdAt: '',
-        updatedAt: '',
-      })
-    }, 1000)
-  })
 }

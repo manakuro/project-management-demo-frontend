@@ -70,4 +70,5 @@ const Component: React.VFC = memo(() => {
     </>
   )
 })
+Component.displayName = 'Component'
 Board.displayName = 'Board'

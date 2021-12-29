@@ -1,17 +1,4 @@
-export type WorkspaceResponse = {
-  id: string
-  name: string
-  description: string
-  createdBy: string
-  createdAt: string
-  updatedAt: string
-}
+import type { Workspace } from 'src/graphql/types/workspace'
+export type { Workspace, WorkspaceResponse } from 'src/graphql/types/workspace'
 
-export type Workspace = {
-  id: string
-  name: string
-  description: string
-  createdBy: string
-  createdAt: string
-  updatedAt: string
-}
+export type WorkSpaceDescription = Workspace['description']

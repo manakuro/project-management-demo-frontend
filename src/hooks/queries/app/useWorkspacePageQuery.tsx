@@ -48,14 +48,10 @@ const fetch = (): Promise<WorkspaceResponse> => {
         workspace: {
           id: '1',
           name: 'My Workspace',
-          description: JSON.stringify(
-            {
-              type: 'doc',
-              content: [],
-            },
-            null,
-            2,
-          ),
+          description: {
+            type: 'doc',
+            content: [],
+          },
           createdBy: '1',
           createdAt: '',
           updatedAt: '',

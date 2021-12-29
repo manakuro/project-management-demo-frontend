@@ -49,3 +49,4 @@ src/graphql/types/index.ts
 src/graphql/hooks/index.ts
 scripts/codegen/token.json
 schema.json
+__schema__.graphql

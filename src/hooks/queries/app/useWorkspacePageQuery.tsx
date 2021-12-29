@@ -51,7 +51,38 @@ const fetch = (): Promise<WorkspaceResponse> => {
           name: 'My Workspace',
           description: {
             type: 'doc',
-            content: [],
+            content: [
+              {
+                type: 'paragraph',
+                content: [
+                  {
+                    text: 'test',
+                    type: 'text',
+                    attrs: {
+                      mentionId: '',
+                      mentionType: '',
+                    },
+                  },
+                ],
+              },
+              {
+                type: 'paragraph',
+                content: null,
+              },
+              {
+                type: 'paragraph',
+                content: [
+                  {
+                    text: '',
+                    type: 'mention',
+                    attrs: {
+                      mentionId: '1',
+                      mentionType: '1',
+                    },
+                  },
+                ],
+              },
+            ],
           },
           createdBy: '1',
           createdAt: '',

@@ -1,5 +1,5 @@
-query Workspace($where: WorkspaceWhereInput!) {
-  workspace(where: $where) {
+mutation UpdateWorkspace($input: UpdateWorkspaceInput!) {
+  updateWorkspace(input: $input) {
     id
     name
     description {
@@ -16,8 +16,8 @@ query Workspace($where: WorkspaceWhereInput!) {
         }
       }
     }
-    createdBy
     createdAt
     updatedAt
+    createdBy
   }
 }

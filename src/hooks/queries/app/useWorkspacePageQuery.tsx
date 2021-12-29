@@ -41,12 +41,13 @@ export const useWorkspacePageQuery = (props?: Props) => {
   }
 }
 
+const workspaceId = '0AD01FQNHVAWQ92D17SPY0RXRMR6A'
 const fetch = (): Promise<WorkspaceResponse> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
         workspace: {
-          id: '1',
+          id: workspaceId,
           name: 'My Workspace',
           description: {
             type: 'doc',
@@ -60,7 +61,7 @@ const fetch = (): Promise<WorkspaceResponse> => {
           {
             id: '1',
             teammateId: teammates.manato.id,
-            workspaceId: '1',
+            workspaceId,
             name: teammates.manato.name,
             image: teammates.manato.image,
             email: teammates.manato.email,
@@ -72,7 +73,7 @@ const fetch = (): Promise<WorkspaceResponse> => {
           {
             id: '2',
             teammateId: teammates.dan.id,
-            workspaceId: '1',
+            workspaceId,
             name: teammates.dan.name,
             image: teammates.dan.image,
             email: teammates.dan.email,
@@ -84,7 +85,7 @@ const fetch = (): Promise<WorkspaceResponse> => {
           {
             id: '5',
             teammateId: teammates.kent.id,
-            workspaceId: '1',
+            workspaceId,
             name: teammates.kent.name,
             image: teammates.kent.image,
             email: teammates.kent.email,

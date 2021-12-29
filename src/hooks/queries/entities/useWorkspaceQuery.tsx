@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useWorkspaceLazyQuery as useWorkspaceQueryApollo } from 'src/graphql/hooks'
 import { useMountedRef } from 'src/hooks'
-import { useWorkspace, Workspace } from 'src/store/entities/workspace'
+import { useWorkspaceResponse, Workspace } from 'src/store/entities/workspace'
 
 type Props = {
   lazy?: boolean
@@ -16,7 +16,7 @@ export const useWorkspaceQuery = (props?: Props) => {
     },
   })
   const [loading, setLoading] = useState(true)
-  const { setWorkspace } = useWorkspace()
+  const { setWorkspace } = useWorkspaceResponse()
   const { mountedRef } = useMountedRef()
 
   useEffect(() => {

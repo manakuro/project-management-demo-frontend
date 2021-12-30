@@ -5531,7 +5531,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash-es@npm:^4":
+"@types/lodash-es@npm:^4.17.5":
   version: 4.17.5
   resolution: "@types/lodash-es@npm:4.17.5"
   dependencies:
@@ -14389,7 +14389,7 @@ __metadata:
     "@types/eslint": ^8.2.1
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest-plugin-context": ^2.9.4
-    "@types/lodash-es": ^4
+    "@types/lodash-es": ^4.17.5
     "@types/node": ^16.11.17
     "@types/node-fetch": ^3.0.3
     "@types/prettier": ^2.4.2

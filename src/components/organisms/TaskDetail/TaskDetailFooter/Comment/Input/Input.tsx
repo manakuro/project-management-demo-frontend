@@ -1,7 +1,6 @@
 import React, { memo, useEffect, useState } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
-import { uuid } from 'src/shared/uuid'
 import { Attachments } from './Attachments'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
@@ -29,10 +28,10 @@ export const Input: React.FC<Props> = (props) => {
 
 const Component: React.FC<Props> = memo<Props>(() => {
   const { onChangeDescription, feed } = useInputContext()
-  const [forceUpdate, setForceUpdate] = useState<() => string>(() => () => '')
+  const [forceUpdate, setForceUpdate] = useState<number>(1)
 
   useEffect(() => {
-    setForceUpdate(() => () => uuid())
+    setForceUpdate((s) => s + 1)
   }, [feed.id])
 
   return (

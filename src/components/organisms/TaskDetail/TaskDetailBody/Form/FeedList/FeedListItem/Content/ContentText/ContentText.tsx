@@ -1,6 +1,5 @@
 import React, { memo, useEffect, useMemo, useState } from 'react'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
-import { uuid } from 'src/shared/uuid'
 import { useFeedListItemContext } from '../../Provider'
 import { Container } from './Container'
 import { ToolBar } from './ToolBar'
@@ -9,11 +8,11 @@ type Props = {}
 
 export const ContentText: React.VFC<Props> = memo<Props>(() => {
   const { feed, editable, onChangeDescription } = useFeedListItemContext()
-  const [forceUpdate, setForceUpdate] = useState<() => string>(() => () => '')
+  const [forceUpdate, setForceUpdate] = useState<number>(1)
   const value = useMemo(() => feed.description, [feed.description])
 
   useEffect(() => {
-    setForceUpdate(() => () => uuid())
+    setForceUpdate((s) => s + 1)
   }, [editable, feed.description])
 
   return (

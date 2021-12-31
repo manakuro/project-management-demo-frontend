@@ -4,7 +4,8 @@ import { workspaceState } from '../atom'
 import { Workspace } from '../type'
 
 export const useWorkspaceCommand = () => {
-  const [updateWorkspaceMutation] = useUpdateWorkspaceMutation()
+  const [updateWorkspaceMutation, { loading: updating }] =
+    useUpdateWorkspaceMutation()
 
   const upsert = useRecoilCallback(
     ({ set }) =>
@@ -39,5 +40,6 @@ export const useWorkspaceCommand = () => {
 
   return {
     setWorkspace,
+    updating,
   }
 }

@@ -6,7 +6,7 @@ import { EditorContainer } from './Editors'
 type Props = {
   onChange?: (val: string) => void
   initialValue: string
-  forceUpdate?: () => string
+  forceUpdate?: number
 } & EditorProps
 
 const pluginsProp = plugins()

@@ -1,11 +1,12 @@
-import React, { memo, useCallback, useRef } from 'react'
+import isEqual from 'lodash-es/isEqual'
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
 import {
-  useWorkspace,
-  useWorkspaceCommand,
-  WorkSpaceDescription,
-} from 'src/store/entities/workspace'
+  parseDescription,
+  stringifyDescription,
+} from 'src/shared/prosemirror/convertDescription'
+import { useWorkspace, useWorkspaceCommand } from 'src/store/entities/workspace'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
 import { Provider } from './Provider'
@@ -21,34 +22,51 @@ export const Description: React.FC<Props> = memo((props) => {
 })
 
 const DescriptionHandler: React.FC<Props> = memo<Props>(() => {
-  const { workspace } = useWorkspace()
+  const { workspace, updated } = useWorkspace()
   const { setWorkspace } = useWorkspaceCommand()
-  const initialValue = useRef(JSON.stringify(workspace.description))
+  const initialValue = useMemo(
+    () => stringifyDescription(workspace.description),
+    [workspace.description],
+  )
+  const [forceUpdate, setForceUpdate] = useState<number>(1)
 
   const handleChange = useCallback(
     async (val: string) => {
+      const description = parseDescription(val)
+      if (isEqual(description, workspace.description)) return
+
+      console.log('change!')
       await setWorkspace({
-        description: JSON.parse(val) as WorkSpaceDescription,
+        description: parseDescription(val),
       })
     },
-    [setWorkspace],
+    [setWorkspace, workspace.description],
   )
 
+  useEffect(() => {
+    console.log('updated!')
+    setForceUpdate((s) => s + 1)
+  }, [updated])
+
   return (
-    <Component onChange={handleChange} initialValue={initialValue.current} />
+    <Component
+      onChange={handleChange}
+      initialValue={initialValue}
+      forceUpdate={forceUpdate}
+    />
   )
 })
 
 type ComponentProps = {
   onChange: (val: string) => void
   initialValue: string
+  forceUpdate: number
 }
 const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
-  const { onChange, initialValue } = props
+  const { onChange, initialValue, forceUpdate } = props
 
   const handleChange = useCallback(
     (val: string) => {
-      console.log('change!')
       onChange(val)
     },
     [onChange],
@@ -56,7 +74,11 @@ const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
 
   return (
     <Container>
-      <Editor onChange={handleChange} initialValue={initialValue}>
+      <Editor
+        onChange={handleChange}
+        initialValue={initialValue}
+        forceUpdate={forceUpdate}
+      >
         <Flex flex={1} flexDirection="column">
           <EditorContent style={{ minHeight: '80px' }} />
           <Placeholder />

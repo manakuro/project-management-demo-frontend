@@ -1,3 +1,4 @@
+import isEqual from 'lodash-es/isEqual'
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
@@ -5,7 +6,6 @@ import {
   parseDescription,
   stringifyDescription,
 } from 'src/shared/prosemirror/convertDescription'
-import { uuid } from 'src/shared/uuid'
 import { useWorkspace, useWorkspaceCommand } from 'src/store/entities/workspace'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
@@ -28,21 +28,25 @@ const DescriptionHandler: React.FC<Props> = memo<Props>(() => {
     () => stringifyDescription(workspace.description),
     [workspace.description],
   )
-  const [forceUpdate, setForceUpdate] = useState<() => string>(() => () => '')
+  const [forceUpdate, setForceUpdate] = useState<number>(1)
 
   const handleChange = useCallback(
     async (val: string) => {
+      const description = parseDescription(val)
+      if (isEqual(description, workspace.description)) return
+
+      console.log('change!')
       await setWorkspace({
         description: parseDescription(val),
       })
     },
-    [setWorkspace],
+    [setWorkspace, workspace.description],
   )
 
-  // useEffect(() => {
-  //   console.log('updated!')
-  //   if (updated) setForceUpdate(() => () => uuid())
-  // }, [updated])
+  useEffect(() => {
+    console.log('updated!')
+    setForceUpdate((s) => s + 1)
+  }, [updated])
 
   return (
     <Component
@@ -56,19 +60,17 @@ const DescriptionHandler: React.FC<Props> = memo<Props>(() => {
 type ComponentProps = {
   onChange: (val: string) => void
   initialValue: string
-  forceUpdate: () => string
+  forceUpdate: number
 }
 const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
   const { onChange, initialValue, forceUpdate } = props
 
   const handleChange = useCallback(
     (val: string) => {
-      console.log('change!')
       onChange(val)
     },
     [onChange],
   )
-  console.log('Component render!!!')
 
   return (
     <Container>

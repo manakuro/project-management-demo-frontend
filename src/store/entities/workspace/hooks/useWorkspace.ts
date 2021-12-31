@@ -1,4 +1,4 @@
-import { isEqual } from 'lodash-es'
+import isEqual from 'lodash-es/isEqual'
 import { useEffect, useMemo, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { useWorkspaceUpdatedSubscription } from 'src/graphql/hooks'
@@ -17,7 +17,7 @@ export const useWorkspace = () => {
     },
     skip: skipSubscription,
   })
-  const [updated, setUpdated] = useState<boolean>(false)
+  const [updated, setUpdated] = useState<number>(1)
 
   const workspace = useMemo<Workspace>(() => {
     const workspaceUpdated = subscriptionResult.data?.workspaceUpdated
@@ -29,23 +29,18 @@ export const useWorkspace = () => {
   useEffect(() => {
     const updatedDescription =
       subscriptionResult.data?.workspaceUpdated?.description
-    if (!updatedDescription) {
-      setUpdated(false)
-      return
+    if (!updatedDescription) return
+
+    if (
+      !isEqual(
+        val.description,
+        subscriptionResult?.data?.workspaceUpdated.description,
+      )
+    ) {
+      setUpdated((s) => s + 1)
     }
-    if (subscriptionResult.loading) {
-      setUpdated(false)
-      return
-    }
-    if (!isEqual(workspace.description, updatedDescription)) {
-      console.log('updated!')
-      setUpdated(true)
-    }
-  }, [
-    subscriptionResult.data?.workspaceUpdated,
-    subscriptionResult.loading,
-    workspace.description,
-  ])
+    /* eslint react-hooks/exhaustive-deps: off */
+  }, [subscriptionResult?.data?.workspaceUpdated?.updatedAt])
 
   return {
     workspace,

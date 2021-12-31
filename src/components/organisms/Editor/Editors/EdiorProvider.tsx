@@ -33,7 +33,7 @@ export const useEditorViewContext = () => useContext(EditorViewContext)
 type Props = {
   doc?: ProsemirrorNode
   plugins?: Plugin[]
-  forceUpdate?: () => string
+  forceUpdate?: number
 } & EditorProps
 export const EditorProvider: React.FC<Props> = (props) => {
   return (
@@ -126,32 +126,6 @@ const Provider: React.FC<Props> = (props) => {
     // )
     // setState(newState)
     // view.updateState(newState)
-    // const tr = state.tr.replaceWith(
-    //   0,
-    //   state.doc.content.size,
-    //   props.doc?.content!,
-    // )
-    // view.dispatch(tr)
-
-    // setTimeout(() => {
-    //   const shouldUpdate =
-    //     view.state.doc.content.size !== props.doc?.content!.size
-    //   if (!shouldUpdate) return
-    //
-    //   const tr = view.state.tr.replaceWith(
-    //     0,
-    //     view.state.doc.content.size,
-    //     props.doc?.content!,
-    //   )
-    //   view.dispatch(tr)
-    //   console.log(
-    //     'update view state!! ',
-    //     state.doc.content.size,
-    //     props.doc?.content!.size,
-    //   )
-    // })
-
-    console.log('view.state.selection.from: ', view.state.selection.from)
 
     const tr = view.state.tr.replaceWith(
       0,
@@ -167,7 +141,7 @@ const Provider: React.FC<Props> = (props) => {
         ),
       ),
     )
-  }, [props.doc])
+  }, [props.forceUpdate])
 
   useEffect(() => {
     viewRef.current = generateView({

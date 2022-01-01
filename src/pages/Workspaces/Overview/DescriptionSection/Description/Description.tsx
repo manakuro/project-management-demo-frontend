@@ -22,7 +22,7 @@ export const Description: React.FC<Props> = memo((props) => {
 })
 
 const DescriptionHandler: React.FC<Props> = memo<Props>(() => {
-  const { workspace, updated } = useWorkspace()
+  const { workspace, hasDescriptionUpdated } = useWorkspace()
   const { setWorkspace } = useWorkspaceCommand()
   const initialValue = useMemo(
     () => stringifyDescription(workspace.description),
@@ -46,7 +46,7 @@ const DescriptionHandler: React.FC<Props> = memo<Props>(() => {
   useEffect(() => {
     console.log('updated!')
     setForceUpdate((s) => s + 1)
-  }, [updated])
+  }, [hasDescriptionUpdated])
 
   return (
     <Component

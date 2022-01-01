@@ -17,7 +17,7 @@ export const useWorkspace = () => {
     },
     skip: skipSubscription,
   })
-  const [updated, setUpdated] = useState<number>(1)
+  const [hasDescriptionUpdated, setHasDescriptionUpdated] = useState<number>(1)
 
   const workspace = useMemo<Workspace>(() => {
     const workspaceUpdated = subscriptionResult.data?.workspaceUpdated
@@ -37,7 +37,7 @@ export const useWorkspace = () => {
         subscriptionResult?.data?.workspaceUpdated.description,
       )
     ) {
-      setUpdated((s) => s + 1)
+      setHasDescriptionUpdated((s) => s + 1)
     }
     /* eslint react-hooks/exhaustive-deps: off */
   }, [subscriptionResult?.data?.workspaceUpdated?.updatedAt])
@@ -45,6 +45,6 @@ export const useWorkspace = () => {
   return {
     workspace,
     setWorkspace: setVal,
-    updated,
+    hasDescriptionUpdated,
   }
 }

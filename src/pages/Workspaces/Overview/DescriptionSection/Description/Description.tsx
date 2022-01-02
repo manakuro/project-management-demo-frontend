@@ -37,14 +37,13 @@ const DescriptionHandler: React.FC<Props> = memo<Props>(() => {
 
       console.log('change!')
       await setWorkspace({
-        description: parseDescription(val),
+        description,
       })
     },
     [setWorkspace, workspace.description],
   )
 
   useEffect(() => {
-    console.log('updated!')
     setForceUpdate((s) => s + 1)
   }, [hasDescriptionUpdated])
 

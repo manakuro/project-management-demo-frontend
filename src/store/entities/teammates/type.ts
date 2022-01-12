@@ -1,8 +1,5 @@
-export type Teammate = {
-  id: string
-  name: string
-  image: string
-  email: string
-  createdAt: string
-  updatedAt: string
-}
+import type { TeammateResponse } from 'src/graphql/types/teammate'
+
+export type { TeammateResponse } from 'src/graphql/types/teammate'
+
+export type Teammate = TeammateResponse

@@ -1,0 +1,8 @@
+fragment TeammateFragment on Teammate {
+  id
+  name
+  image
+  email
+  createdAt
+  updatedAt
+}

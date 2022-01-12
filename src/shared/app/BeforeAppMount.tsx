@@ -11,7 +11,7 @@ import {
 } from 'src/hooks/queries/entities'
 
 export const BeforeAppMount: React.FC = (props) => {
-  const projectQueryResult = useProjectsQuery({ lazy: true })
+  useProjectsQuery()
   const useFavoriteProjectIdsQueryResult = useFavoriteProjectIdsQuery({
     lazy: true,
   })
@@ -35,7 +35,6 @@ export const BeforeAppMount: React.FC = (props) => {
 
   useEffect(() => {
     console.log('BeforeAppMount!!')
-    projectQueryResult.refetch()
     useFavoriteProjectIdsQueryResult.refetch()
     useMeQueryResult.refetch()
     useFeedLikesQueryResult.refetch()

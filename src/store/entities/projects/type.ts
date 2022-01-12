@@ -1,41 +1,6 @@
-import { Colors } from 'src/shared/chakra'
-import { ProjectsTeammateResponse } from 'src/store/entities/projectsTeammates'
+import type { ProjectResponse } from 'src/graphql/types/project'
 
-export type ProjectResponse = {
-  id: string
-  name: string
-  color: {
-    id: string
-    name: string
-    color: Colors
-  }
-  icon: {
-    id: string
-  }
-  description: string
-  descriptionTitle: string
-  teammates: ProjectsTeammateResponse[]
-  dueDate: string
-  createdBy: string
-  createdAt: string
-  updatedAt: string
-}
+export type { ProjectsResponse } from 'src/graphql/types/projects'
+export type { ProjectResponse } from 'src/graphql/types/project'
 
-export type Project = {
-  id: string
-  name: string
-  color: {
-    id: string
-    name: string
-    color: Colors
-  }
-  icon: {
-    id: string
-  }
-  description: string
-  descriptionTitle: string
-  dueDate: string
-  createdBy: string
-  createdAt: string
-  updatedAt: string
-}
+export type Project = Omit<ProjectResponse, 'projectTeammates'>

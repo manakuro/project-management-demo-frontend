@@ -41,7 +41,7 @@ export const useWorkspacePageQuery = (props?: Props) => {
   }
 }
 
-const workspaceId = '0AD01FQNHVAWQ92D17SPY0RXRMR6A'
+const workspaceId = '0AD01FRSQPE8P2FWCKVTDAP5Q4GDN'
 const fetch = (): Promise<WorkspaceResponse> => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -137,15 +137,22 @@ const fetch = (): Promise<WorkspaceResponse> => {
             },
             icon: {
               id: '4',
+              name: '',
             },
-            teammates: [
+            teammateIds: [teammates.manato.id, teammates.dan.id],
+            projectTeammates: [
               {
                 id: '1',
                 teammateId: teammates.manato.id,
                 projectId: '1',
-                name: teammates.manato.name,
-                image: teammates.manato.image,
-                email: teammates.manato.email,
+                teammate: {
+                  id: teammates.manato.id,
+                  name: teammates.manato.name,
+                  image: teammates.manato.image,
+                  email: teammates.manato.email,
+                  createdAt: '',
+                  updatedAt: '',
+                },
                 isOwner: true,
                 role: '',
                 createdAt: new Date(
@@ -157,9 +164,14 @@ const fetch = (): Promise<WorkspaceResponse> => {
                 id: '2',
                 teammateId: teammates.dan.id,
                 projectId: '1',
-                name: teammates.dan.name,
-                image: teammates.dan.image,
-                email: teammates.dan.email,
+                teammate: {
+                  id: teammates.dan.id,
+                  name: teammates.dan.name,
+                  image: teammates.dan.image,
+                  email: teammates.dan.email,
+                  createdAt: '',
+                  updatedAt: '',
+                },
                 isOwner: false,
                 role: '',
                 createdAt: new Date(
@@ -168,70 +180,83 @@ const fetch = (): Promise<WorkspaceResponse> => {
                 updatedAt: '',
               },
             ],
-            description: JSON.stringify(
-              {
-                type: 'doc',
-                content: [
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'text',
-                        text: 'Welcome to the Marketing team! We’ll be using this project to track our progress on our Q1 product launch. Final ad designs are in the “Key Resources” section below. Use this form to submit new ideas!',
+            description: {
+              type: 'doc',
+              content: [
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: 'Welcome to the Marketing team! We’ll be using this project to track our progress on our Q1 product launch. Final ad designs are in the “Key Resources” section below. Use this form to submit new ideas!',
+                      attrs: {
+                        mentionId: '',
+                        mentionType: '',
                       },
-                    ],
-                  },
-                  {
-                    type: 'paragraph',
-                  },
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'text',
-                        text: 'Project Owner: ',
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: null,
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: 'Project Owner: ',
+                      attrs: {
+                        mentionId: '',
+                        mentionType: '',
                       },
-                      {
-                        type: 'mention',
-                        attrs: {
-                          mentionId: '1',
-                          mentionType: '1',
-                        },
+                    },
+                    {
+                      type: 'mention',
+                      text: '',
+                      attrs: {
+                        mentionId: '1',
+                        mentionType: '1',
                       },
-                    ],
-                  },
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'text',
-                        text: 'Tech Lead:',
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: 'Tech Lead:',
+                      attrs: {
+                        mentionId: '',
+                        mentionType: '',
                       },
-                    ],
-                  },
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'mention',
-                        attrs: {
-                          mentionId: '2',
-                          mentionType: '1',
-                        },
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'mention',
+                      text: '',
+                      attrs: {
+                        mentionId: '2',
+                        mentionType: '1',
                       },
-                    ],
-                  },
-                  {
-                    type: 'paragraph',
-                  },
-                  {
-                    type: 'paragraph',
-                  },
-                ],
-              },
-              null,
-              2,
-            ),
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: null,
+                },
+                {
+                  type: 'paragraph',
+                  content: null,
+                },
+              ],
+            },
             descriptionTitle: "How we'll collaborate",
             dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             createdBy: '1',
@@ -248,15 +273,26 @@ const fetch = (): Promise<WorkspaceResponse> => {
             },
             icon: {
               id: '3',
+              name: '',
             },
-            teammates: [
+            teammateIds: [
+              teammates.manato.id,
+              teammates.dan.id,
+              teammates.kent.id,
+            ],
+            projectTeammates: [
               {
                 id: '3',
                 teammateId: teammates.manato.id,
                 projectId: '2',
-                name: teammates.manato.name,
-                image: teammates.manato.image,
-                email: teammates.manato.email,
+                teammate: {
+                  id: teammates.manato.id,
+                  name: teammates.manato.name,
+                  image: teammates.manato.image,
+                  email: teammates.manato.email,
+                  createdAt: '',
+                  updatedAt: '',
+                },
                 isOwner: true,
                 role: '',
                 createdAt: new Date(
@@ -268,9 +304,14 @@ const fetch = (): Promise<WorkspaceResponse> => {
                 id: '4',
                 teammateId: teammates.dan.id,
                 projectId: '2',
-                name: teammates.dan.name,
-                image: teammates.dan.image,
-                email: teammates.dan.email,
+                teammate: {
+                  id: teammates.dan.id,
+                  name: teammates.dan.name,
+                  image: teammates.dan.image,
+                  email: teammates.dan.email,
+                  createdAt: '',
+                  updatedAt: '',
+                },
                 isOwner: false,
                 role: '',
                 createdAt: new Date(
@@ -282,9 +323,14 @@ const fetch = (): Promise<WorkspaceResponse> => {
                 id: '5',
                 teammateId: teammates.kent.id,
                 projectId: '1',
-                name: teammates.kent.name,
-                image: teammates.kent.image,
-                email: teammates.kent.email,
+                teammate: {
+                  id: teammates.kent.id,
+                  name: teammates.kent.name,
+                  image: teammates.kent.image,
+                  email: teammates.kent.email,
+                  createdAt: '',
+                  updatedAt: '',
+                },
                 isOwner: false,
                 role: '',
                 createdAt: new Date(
@@ -293,7 +339,10 @@ const fetch = (): Promise<WorkspaceResponse> => {
                 updatedAt: '',
               },
             ],
-            description: '',
+            description: {
+              type: '',
+              content: [],
+            },
             descriptionTitle: '',
             dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             createdBy: '1',
@@ -310,15 +359,26 @@ const fetch = (): Promise<WorkspaceResponse> => {
             },
             icon: {
               id: '2',
+              name: '',
             },
-            teammates: [
+            teammateIds: [
+              teammates.manato.id,
+              teammates.dan.id,
+              teammates.kent.id,
+            ],
+            projectTeammates: [
               {
                 id: '3',
                 teammateId: teammates.manato.id,
                 projectId: '2',
-                name: teammates.manato.name,
-                image: teammates.manato.image,
-                email: teammates.manato.email,
+                teammate: {
+                  id: teammates.manato.id,
+                  name: teammates.manato.name,
+                  image: teammates.manato.image,
+                  email: teammates.manato.email,
+                  createdAt: '',
+                  updatedAt: '',
+                },
                 isOwner: true,
                 role: '',
                 createdAt: new Date(
@@ -330,9 +390,14 @@ const fetch = (): Promise<WorkspaceResponse> => {
                 id: '4',
                 teammateId: teammates.dan.id,
                 projectId: '2',
-                name: teammates.dan.name,
-                image: teammates.dan.image,
-                email: teammates.dan.email,
+                teammate: {
+                  id: teammates.dan.id,
+                  name: teammates.dan.name,
+                  image: teammates.dan.image,
+                  email: teammates.dan.email,
+                  createdAt: '',
+                  updatedAt: '',
+                },
                 isOwner: false,
                 role: '',
                 createdAt: new Date(
@@ -344,9 +409,14 @@ const fetch = (): Promise<WorkspaceResponse> => {
                 id: '5',
                 teammateId: teammates.kent.id,
                 projectId: '1',
-                name: teammates.kent.name,
-                image: teammates.kent.image,
-                email: teammates.kent.email,
+                teammate: {
+                  id: teammates.kent.id,
+                  name: teammates.kent.name,
+                  image: teammates.kent.image,
+                  email: teammates.kent.email,
+                  createdAt: '',
+                  updatedAt: '',
+                },
                 isOwner: false,
                 role: '',
                 createdAt: new Date(
@@ -355,7 +425,10 @@ const fetch = (): Promise<WorkspaceResponse> => {
                 updatedAt: '',
               },
             ],
-            description: '',
+            description: {
+              type: '',
+              content: [],
+            },
             descriptionTitle: '',
             dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             createdBy: '1',
@@ -372,15 +445,26 @@ const fetch = (): Promise<WorkspaceResponse> => {
             },
             icon: {
               id: '5',
+              name: '',
             },
-            teammates: [
+            teammateIds: [
+              teammates.manato.id,
+              teammates.dan.id,
+              teammates.kent.id,
+            ],
+            projectTeammates: [
               {
                 id: '3',
                 teammateId: teammates.manato.id,
                 projectId: '2',
-                name: teammates.manato.name,
-                image: teammates.manato.image,
-                email: teammates.manato.email,
+                teammate: {
+                  id: teammates.manato.id,
+                  name: teammates.manato.name,
+                  image: teammates.manato.image,
+                  email: teammates.manato.email,
+                  createdAt: '',
+                  updatedAt: '',
+                },
                 isOwner: true,
                 role: '',
                 createdAt: new Date(
@@ -392,9 +476,14 @@ const fetch = (): Promise<WorkspaceResponse> => {
                 id: '4',
                 teammateId: teammates.dan.id,
                 projectId: '2',
-                name: teammates.dan.name,
-                image: teammates.dan.image,
-                email: teammates.dan.email,
+                teammate: {
+                  id: teammates.dan.id,
+                  name: teammates.dan.name,
+                  image: teammates.dan.image,
+                  email: teammates.dan.email,
+                  createdAt: '',
+                  updatedAt: '',
+                },
                 isOwner: false,
                 role: '',
                 createdAt: new Date(
@@ -406,9 +495,14 @@ const fetch = (): Promise<WorkspaceResponse> => {
                 id: '5',
                 teammateId: teammates.kent.id,
                 projectId: '1',
-                name: teammates.kent.name,
-                image: teammates.kent.image,
-                email: teammates.kent.email,
+                teammate: {
+                  id: teammates.kent.id,
+                  name: teammates.kent.name,
+                  image: teammates.kent.image,
+                  email: teammates.kent.email,
+                  createdAt: '',
+                  updatedAt: '',
+                },
                 isOwner: false,
                 role: '',
                 createdAt: new Date(
@@ -417,7 +511,10 @@ const fetch = (): Promise<WorkspaceResponse> => {
                 updatedAt: '',
               },
             ],
-            description: '',
+            description: {
+              type: '',
+              content: [],
+            },
             descriptionTitle: '',
             dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             createdBy: '1',

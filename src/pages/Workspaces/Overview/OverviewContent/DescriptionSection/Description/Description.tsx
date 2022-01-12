@@ -1,6 +1,11 @@
-import React, { memo, useCallback, useRef } from 'react'
+import isEqual from 'lodash-es/isEqual'
+import React, { memo, useCallback, useMemo } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
+import {
+  parseDescription,
+  stringifyDescription,
+} from 'src/shared/prosemirror/convertDescription'
 import { useProject } from 'src/store/entities/projects'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
@@ -22,18 +27,22 @@ export const Description: React.FC<Props> = memo((props) => {
 const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
   const { projectId } = props
   const { project, setProject } = useProject(projectId)
-  const initialValue = useRef(project.description)
+  const initialValue = useMemo(
+    () => stringifyDescription(project.description),
+    [project.description],
+  )
 
   const handleChange = useCallback(
     async (val: string) => {
-      await setProject({ description: val })
+      const description = parseDescription(val)
+      if (isEqual(description, project.description)) return
+
+      await setProject({ description })
     },
-    [setProject],
+    [project.description, setProject],
   )
 
-  return (
-    <Component onChange={handleChange} initialValue={initialValue.current} />
-  )
+  return <Component onChange={handleChange} initialValue={initialValue} />
 })
 
 type ComponentProps = {

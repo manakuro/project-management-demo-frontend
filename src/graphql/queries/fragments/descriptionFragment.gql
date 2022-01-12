@@ -1,0 +1,14 @@
+fragment DescriptionFragment on EditorDescription {
+  type
+  content {
+    type
+    content {
+      text
+      type
+      attrs {
+        mentionId
+        mentionType
+      }
+    }
+  }
+}

@@ -16,7 +16,11 @@ export const useProject = (projectId: string) => {
 
         upsert({
           ...project,
-          color: { id: color.id, name: color.name, color: color.base },
+          color: {
+            id: color.id,
+            name: color.name,
+            color: color.base as string,
+          },
         })
       },
     [upsert],

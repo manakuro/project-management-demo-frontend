@@ -1,0 +1,12 @@
+fragment ProjectTeammateFragment on ProjectTeammate {
+  id
+  isOwner
+  role
+  projectId
+  teammateId
+  teammate {
+    ...TeammateFragment
+  }
+  createdAt
+  updatedAt
+}

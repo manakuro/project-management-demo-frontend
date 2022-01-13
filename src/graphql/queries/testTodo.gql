@@ -2,5 +2,9 @@ query TestTodo($id: ID) {
   testTodo(id: $id) {
     id
     name
+    status
+    testUserID
+    updatedAt
+    createdAt
   }
 }

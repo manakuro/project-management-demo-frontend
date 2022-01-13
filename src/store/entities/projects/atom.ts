@@ -13,8 +13,13 @@ const initialState = (): Project => ({
   },
   icon: {
     id: '',
+    name: '',
   },
-  description: '',
+  teammateIds: [],
+  description: {
+    type: '',
+    content: [],
+  },
   descriptionTitle: '',
   dueDate: '',
   createdBy: '',

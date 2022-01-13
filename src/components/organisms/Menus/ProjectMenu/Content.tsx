@@ -66,3 +66,4 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
     </>
   )
 })
+Content.displayName = 'Content'

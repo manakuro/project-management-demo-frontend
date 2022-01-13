@@ -3,18 +3,7 @@ query Workspace($where: WorkspaceWhereInput!) {
     id
     name
     description {
-      type
-      content {
-        type
-        content {
-          text
-          type
-          attrs {
-            mentionId
-            mentionType
-          }
-        }
-      }
+      ...DescriptionFragment
     }
     createdBy
     createdAt

@@ -1,0 +1,25 @@
+fragment ProjectFragment on Project {
+  id
+  name
+  color {
+    id
+    name
+    color
+  }
+  icon {
+    id
+    name
+  }
+  description {
+    ...DescriptionFragment
+  }
+  descriptionTitle
+  teammateIds
+  projectTeammates {
+    ...ProjectTeammateFragment
+  }
+  dueDate
+  createdBy
+  createdAt
+  updatedAt
+}

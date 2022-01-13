@@ -37,7 +37,7 @@ const fetchFavoriteProjectIds = (): Promise<FavoriteProject[]> => {
     setTimeout(() => {
       resolve([
         {
-          id: '1',
+          id: '0AG01FRSQPE9S074GRC1HX85HGCWS',
         },
       ])
     }, 1000)

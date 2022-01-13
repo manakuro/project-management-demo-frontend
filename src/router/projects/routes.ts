@@ -1,5 +1,7 @@
+import { ulidRegex } from 'src/shared/ulid'
+
 export const ROUTE_PROJECTS = {
-  regex: /^\/projects\/\d*\/?/iu,
+  regex: new RegExp(`^/projects/${ulidRegex}/?$`, 'iu'),
   href: {
     pathname: (id: string) => `/projects/${id}`,
     pathnameObj: (id: string) =>
@@ -15,7 +17,7 @@ export const ROUTE_PROJECTS = {
 } as const
 
 export const ROUTE_PROJECTS_LIST = {
-  regex: /^\/projects\/\d*\/list\/?$/iu,
+  regex: new RegExp(`^/projects/${ulidRegex}/list/?$`, 'iu'),
   href: {
     pathname: (id: string) => `/projects/${id}/list`,
     pathnameObj: (id: string) =>
@@ -27,7 +29,7 @@ export const ROUTE_PROJECTS_LIST = {
   query: 'projects',
 } as const
 export const ROUTE_PROJECTS_BOARD = {
-  regex: /^\/projects\/\d*\/board\/?$/iu,
+  regex: new RegExp(`^/projects/${ulidRegex}/board/?$`, 'iu'),
   href: {
     pathname: (id: string) => `/projects/${id}/board`,
     pathnameObj: (id: string) =>
@@ -39,7 +41,7 @@ export const ROUTE_PROJECTS_BOARD = {
   query: 'projects',
 } as const
 export const ROUTE_PROJECTS_CALENDAR = {
-  regex: /^\/projects\/\d*\/calendar\/?$/iu,
+  regex: new RegExp(`^/projects/${ulidRegex}/calendar/?$`, 'iu'),
   href: {
     pathname: (id: string) => `/projects/${id}/calendar`,
     pathnameObj: (id: string) =>
@@ -51,7 +53,7 @@ export const ROUTE_PROJECTS_CALENDAR = {
   query: 'projects',
 } as const
 export const ROUTE_PROJECTS_FILES = {
-  regex: /^\/projects\/\d*\/files\/?$/iu,
+  regex: new RegExp(`^/projects/${ulidRegex}/files/?$`, 'iu'),
   href: {
     pathname: (id: string) => `/projects/${id}/files`,
     pathnameObj: (id: string) =>
@@ -64,7 +66,7 @@ export const ROUTE_PROJECTS_FILES = {
 } as const
 
 export const ROUTE_PROJECTS_OVERVIEW = {
-  regex: /^\/projects\/\d*\/overview\/?$/iu,
+  regex: new RegExp(`^/projects/${ulidRegex}/overview/?$`, 'iu'),
   href: {
     pathname: (id: string) => `/projects/${id}/overview`,
     pathnameObj: (id: string) =>

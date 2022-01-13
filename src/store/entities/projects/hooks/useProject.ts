@@ -1,5 +1,5 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { COLORS } from 'src/hooks'
+import { COLORS } from 'src/hooks/useColorPicker'
 import { Project } from 'src/store/entities/projects'
 import { projectState } from '../atom'
 import { useProjectCommand } from './useProjectCommand'

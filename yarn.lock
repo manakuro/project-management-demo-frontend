@@ -3724,6 +3724,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-codegen/add@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@graphql-codegen/add@npm:3.1.1"
+  dependencies:
+    "@graphql-codegen/plugin-helpers": ^2.3.2
+    tslib: ~2.3.0
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 293ed4b679dfa18ba977a6e159f0760e64bf9e153d139d4b2d6fc21f4438170a516959c7841c766f4187f17b788f569333fb4ab126c151627553724b38183101
+  languageName: node
+  linkType: hard
+
 "@graphql-codegen/cli@npm:^2.3.0":
   version: 2.3.0
   resolution: "@graphql-codegen/cli@npm:2.3.0"
@@ -3805,6 +3817,22 @@ __metadata:
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
   checksum: 666ebc2ffecd99a9c3444f3d3a77f73b4e052c555f75c1c09c31adb81bed71a75b95578d7a9a06b2198dec761a4741168073c04f94203cd2cb09b216d8099c6f
+  languageName: node
+  linkType: hard
+
+"@graphql-codegen/plugin-helpers@npm:^2.3.2":
+  version: 2.3.2
+  resolution: "@graphql-codegen/plugin-helpers@npm:2.3.2"
+  dependencies:
+    "@graphql-tools/utils": ^8.5.2
+    change-case-all: 1.0.14
+    common-tags: 1.8.2
+    import-from: 4.0.0
+    lodash: ~4.17.0
+    tslib: ~2.3.0
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 5519e89b0dff85d61ea494cb094c3868db2521524e3cf2c73c5b47ed331e1edb7d53fade2d12be5b2f7db515f0fb49bd496bfe4f197c4da9f8de71ac3b58f273
   languageName: node
   linkType: hard
 
@@ -8129,7 +8157,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"common-tags@npm:^1.8.0":
+"common-tags@npm:1.8.2, common-tags@npm:^1.8.0":
   version: 1.8.2
   resolution: "common-tags@npm:1.8.2"
   checksum: 767a6255a84bbc47df49a60ab583053bb29a7d9687066a18500a516188a062c4e4cd52de341f22de0b07062e699b1b8fe3cfa1cb55b241cb9301aeb4f45b4dff
@@ -14615,6 +14643,7 @@ __metadata:
     "@emotion/core": ^11.0.0
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.1.5
+    "@graphql-codegen/add": ^3.1.1
     "@graphql-codegen/cli": ^2.3.0
     "@graphql-codegen/typescript": ^2.4.1
     "@graphql-codegen/typescript-operations": ^2.2.1

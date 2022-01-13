@@ -10,6 +10,18 @@ generates:
     plugins:
       - typescript
       - typescript-operations
+  ./src/graphql/enums/index.ts:
+    hooks:
+      afterOneFileWrite:
+        - eslint --fix
+    plugins:
+      - add:
+          content: "/* eslint-disable @typescript-eslint/no-redeclare */"
+      - typescript
+    config:
+      enumsAsConst: true
+      typesPrefix: __SHOULD_NOT_USE__
+      enumPrefix: false
 
   ./src/graphql/hooks/index.ts:
     hooks:

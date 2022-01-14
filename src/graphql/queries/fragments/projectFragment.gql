@@ -3,10 +3,7 @@ fragment ProjectFragment on Project {
   name
   projectBaseColorId
   projectLightColorId
-  icon {
-    id
-    name
-  }
+  projectIconId
   description {
     ...DescriptionFragment
   }

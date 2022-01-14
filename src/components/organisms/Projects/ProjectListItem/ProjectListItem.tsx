@@ -2,9 +2,10 @@ import React, { memo } from 'react'
 import { Flex, IconButton, Text, Icon, AvatarGroup } from 'src/components/atoms'
 import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { IconType } from 'src/shared/icons'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
+import { useProjectIcon } from 'src/store/entities/projectIcons'
 import { useProject } from 'src/store/entities/projects'
-import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
 import { useTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
 import { Container } from './Container'
 import { FavoriteButton } from './FavoriteButton'
@@ -17,6 +18,7 @@ export const ProjectListItem: React.VFC<Props> = memo<Props>((props) => {
   const { projectId } = props
   const { project } = useProject(projectId)
   const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
+  const { projectIcon } = useProjectIcon(project.projectIconId)
   const { teammateIds } = useTeammateIdsByProjectId(projectId)
 
   return (
@@ -32,7 +34,7 @@ export const ProjectListItem: React.VFC<Props> = memo<Props>((props) => {
         alignItems="center"
         flexDirection="column"
       >
-        <Icon size="md" icon={findProjectIcon(project.icon.id).icon} />
+        <Icon size="md" icon={projectIcon.icon.icon as IconType} />
       </Flex>
       <Flex ml={3} flex={1} alignItems="flex-start">
         <Flex alignItems="center">

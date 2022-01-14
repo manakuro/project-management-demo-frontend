@@ -1,0 +1,7 @@
+fragment IconFragment on Icon {
+  id
+  name
+  icon
+  createdAt
+  updatedAt
+}

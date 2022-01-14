@@ -9,9 +9,10 @@ import {
 } from 'src/components/atoms'
 import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { IconType } from 'src/shared/icons'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
+import { useProjectIcon } from 'src/store/entities/projectIcons'
 import { useProject } from 'src/store/entities/projects'
-import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
 import { useTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
 import { transitions } from 'src/styles'
 import { Container } from './Container'
@@ -26,6 +27,7 @@ export const ProjectTileItem: React.VFC<Props> = memo((props) => {
   const { projectId, containerStyle } = props
   const { project } = useProject(projectId)
   const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
+  const { projectIcon } = useProjectIcon(project.projectIconId)
   const { teammateIds } = useTeammateIdsByProjectId(projectId)
 
   return (
@@ -83,7 +85,7 @@ export const ProjectTileItem: React.VFC<Props> = memo((props) => {
             transition={transitions.base()}
             position="relative"
           >
-            <Icon size="3xl" icon={findProjectIcon(project.icon.id).icon} />
+            <Icon size="3xl" icon={projectIcon.icon.icon as IconType} />
           </Flex>
 
           {showTransition && (

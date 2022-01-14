@@ -8,10 +8,7 @@ const initialState = (): Project => ({
   name: '',
   projectBaseColorId: '',
   projectLightColorId: '',
-  icon: {
-    id: '',
-    name: '',
-  },
+  projectIconId: '',
   teammateIds: [],
   description: {
     type: '',

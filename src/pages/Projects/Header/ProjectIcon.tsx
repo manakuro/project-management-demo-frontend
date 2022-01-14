@@ -1,14 +1,16 @@
 import React, { memo } from 'react'
 import { Flex, Icon } from 'src/components/atoms'
+import { IconType } from 'src/shared/icons'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
+import { useProjectIcon } from 'src/store/entities/projectIcons'
 import { useProject } from 'src/store/entities/projects'
-import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
 
 export const ProjectIcon: React.VFC = memo(() => {
   const { projectId } = useProjectsProjectId()
   const { project } = useProject(projectId)
   const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
+  const { projectIcon } = useProjectIcon(project.projectIconId)
 
   return (
     <Flex alignItems="center">
@@ -22,7 +24,7 @@ export const ProjectIcon: React.VFC = memo(() => {
         alignItems="center"
         flexDirection="column"
       >
-        <Icon size="lg" icon={findProjectIcon(project.icon.id).icon} />
+        <Icon size="lg" icon={projectIcon.icon.icon as IconType} />
       </Flex>
     </Flex>
   )

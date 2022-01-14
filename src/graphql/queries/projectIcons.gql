@@ -1,0 +1,9 @@
+query ProjectIcons($after: Cursor, $before: Cursor, $first: Int, $last: Int, $where: ProjectIconWhereInput) {
+  projectIcons(after: $after, before: $before, first: $first, last: $last, where: $where) {
+    edges {
+      node {
+        ...ProjectIconFragment
+      }
+    }
+  }
+}

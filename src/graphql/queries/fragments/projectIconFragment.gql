@@ -1,0 +1,8 @@
+fragment ProjectIconFragment on ProjectIcon {
+  id
+  icon {
+    ...IconFragment
+  }
+  createdAt
+  updatedAt
+}

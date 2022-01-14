@@ -132,10 +132,7 @@ const fetch = (): Promise<WorkspaceResponse> => {
             name: 'Asana',
             projectBaseColorId: '0AI01FSB3CBYDQXQAED33EJJHH4WE',
             projectLightColorId: '0AJ01FSB3CBZRJVYTHPKBM26RM0CP',
-            icon: {
-              id: '4',
-              name: '',
-            },
+            projectIconId: '0AJ01FSB3CBZRJVYTHPKBM26RM0CP',
             teammateIds: [teammates.manato.id, teammates.dan.id],
             projectTeammates: [
               {
@@ -265,10 +262,7 @@ const fetch = (): Promise<WorkspaceResponse> => {
             name: 'Marketing',
             projectBaseColorId: '0AI01FSB3CBYDQXQAED33E9PNJRXH',
             projectLightColorId: '0AJ01FSB3CBZRJVYTHPKBKTQNFACZ',
-            icon: {
-              id: '3',
-              name: '',
-            },
+            projectIconId: '0AJ01FSB3CBZRJVYTHPKBKTQNFACZ',
             teammateIds: [
               teammates.manato.id,
               teammates.dan.id,
@@ -348,10 +342,7 @@ const fetch = (): Promise<WorkspaceResponse> => {
             name: 'Customer Success',
             projectBaseColorId: '0AI01FSB3CBYDQXQAED33E1C6EB29',
             projectLightColorId: '0AJ01FSB3CBZRJVYTHPKBKMYFV5JQ',
-            icon: {
-              id: '2',
-              name: '',
-            },
+            projectIconId: '0AJ01FSB3CBZRJVYTHPKBKMYFV5JQ',
             teammateIds: [
               teammates.manato.id,
               teammates.dan.id,
@@ -431,10 +422,7 @@ const fetch = (): Promise<WorkspaceResponse> => {
             name: 'Design system',
             projectBaseColorId: '0AI01FSB3CBYDQXQAED33E9PNJRXH',
             projectLightColorId: '0AJ01FSB3CBZRJVYTHPKBKTQNFACZ',
-            icon: {
-              id: '5',
-              name: '',
-            },
+            projectIconId: '0AJ01FSB3CBZRJVYTHPKBKTQNFACZ',
             teammateIds: [
               teammates.manato.id,
               teammates.dan.id,

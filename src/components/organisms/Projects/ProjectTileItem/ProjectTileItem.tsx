@@ -9,6 +9,7 @@ import {
 } from 'src/components/atoms'
 import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
 import { useProject } from 'src/store/entities/projects'
 import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
 import { useTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
@@ -24,6 +25,7 @@ type Props = {
 export const ProjectTileItem: React.VFC<Props> = memo((props) => {
   const { projectId, containerStyle } = props
   const { project } = useProject(projectId)
+  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
   const { teammateIds } = useTeammateIdsByProjectId(projectId)
 
   return (
@@ -38,7 +40,7 @@ export const ProjectTileItem: React.VFC<Props> = memo((props) => {
           p={2}
           w="120px"
           h="120px"
-          bg={project.color.color}
+          bg={projectBaseColor.color.color}
           color="white"
           position="relative"
           justifyContent="center"

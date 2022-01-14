@@ -47,11 +47,8 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
         {
           id: '1',
           name: 'Asana',
-          color: {
-            id: '10',
-            name: 'pink',
-            color: 'pink.400',
-          },
+          projectBaseColorId: '0AI01FSB3CBYDQXQAED33EJJHH4WE',
+          projectLightColorId: '0AJ01FSB3CBZRJVYTHPKBM26RM0CP',
           icon: {
             id: '4',
             name: '',
@@ -106,11 +103,8 @@ const fetchProjects = (): Promise<ProjectResponse[]> => {
         {
           id: '2',
           name: 'Asana 2',
-          color: {
-            id: '10',
-            name: 'pink',
-            color: 'teal.400',
-          },
+          projectBaseColorId: '0AI01FSB3CBYDQXQAED33E9PNJRXH',
+          projectLightColorId: '0AJ01FSB3CBZRJVYTHPKBKTQNFACZ',
           icon: {
             id: '3',
             name: '',

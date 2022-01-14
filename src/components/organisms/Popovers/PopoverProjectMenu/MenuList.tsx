@@ -9,6 +9,7 @@ import {
 import { PopoverSetColorAndIcon } from 'src/components/organisms/Popovers'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
 import { Project } from 'src/store/entities/projects'
 
 type Props = {
@@ -38,6 +39,9 @@ export const MenuList: React.VFC<Props> = (props) => {
     onClose()
     props.onCloseMenu()
   })
+  const { projectBaseColor } = useProjectBaseColor(
+    props.project.projectBaseColorId,
+  )
 
   const handleOpen = useCallback(() => {
     onOpen()
@@ -52,7 +56,11 @@ export const MenuList: React.VFC<Props> = (props) => {
       <AtomsMenuList color="text.base" ref={ref}>
         <MenuItem
           icon={
-            <ColorBox size="md" color={props.project.color.color} mt="-1px" />
+            <ColorBox
+              size="md"
+              color={projectBaseColor.color.color}
+              mt="-1px"
+            />
           }
           onMouseEnter={handleOpen}
           onClick={(e) => e.stopPropagation()}

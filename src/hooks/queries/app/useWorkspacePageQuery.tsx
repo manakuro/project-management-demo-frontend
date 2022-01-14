@@ -130,11 +130,8 @@ const fetch = (): Promise<WorkspaceResponse> => {
           {
             id: '1',
             name: 'Asana',
-            color: {
-              id: '10',
-              name: 'pink',
-              color: 'pink.400',
-            },
+            projectBaseColorId: '0AI01FSB3CBYDQXQAED33EJJHH4WE',
+            projectLightColorId: '0AJ01FSB3CBZRJVYTHPKBM26RM0CP',
             icon: {
               id: '4',
               name: '',
@@ -266,11 +263,8 @@ const fetch = (): Promise<WorkspaceResponse> => {
           {
             id: '2',
             name: 'Marketing',
-            color: {
-              id: '10',
-              name: 'pink',
-              color: 'teal.400',
-            },
+            projectBaseColorId: '0AI01FSB3CBYDQXQAED33E9PNJRXH',
+            projectLightColorId: '0AJ01FSB3CBZRJVYTHPKBKTQNFACZ',
             icon: {
               id: '3',
               name: '',
@@ -352,11 +346,8 @@ const fetch = (): Promise<WorkspaceResponse> => {
           {
             id: '3',
             name: 'Customer Success',
-            color: {
-              id: '11',
-              name: 'orange',
-              color: 'orange.400',
-            },
+            projectBaseColorId: '0AI01FSB3CBYDQXQAED33E1C6EB29',
+            projectLightColorId: '0AJ01FSB3CBZRJVYTHPKBKMYFV5JQ',
             icon: {
               id: '2',
               name: '',
@@ -438,11 +429,8 @@ const fetch = (): Promise<WorkspaceResponse> => {
           {
             id: '4',
             name: 'Design system',
-            color: {
-              id: '11',
-              name: 'orange',
-              color: 'orange.400',
-            },
+            projectBaseColorId: '0AI01FSB3CBYDQXQAED33E9PNJRXH',
+            projectLightColorId: '0AJ01FSB3CBZRJVYTHPKBKTQNFACZ',
             icon: {
               id: '5',
               name: '',

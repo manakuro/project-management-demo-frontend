@@ -1,11 +1,8 @@
 fragment ProjectFragment on Project {
   id
   name
-  color {
-    id
-    name
-    color
-  }
+  projectBaseColorId
+  projectLightColorId
   icon {
     id
     name

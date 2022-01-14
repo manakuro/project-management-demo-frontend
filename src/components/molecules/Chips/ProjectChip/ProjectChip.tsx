@@ -1,6 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { Badge, Box, Button, ColorBox, Icon, Text } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
 import { useProject } from 'src/store/entities/projects'
 
 type Variant = 'badge' | 'button'
@@ -16,6 +17,7 @@ type Props = {
 export const ProjectChip: React.VFC<Props> = memo((props) => {
   const { projectId, onClick } = props
   const { project } = useProject(projectId)
+  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   const handleDelete = useCallback(
@@ -38,7 +40,7 @@ export const ProjectChip: React.VFC<Props> = memo((props) => {
     return (
       <Badge
         variant="solid"
-        bg={project.color.color}
+        bg={projectBaseColor.color.color}
         textAlign="center"
         onClick={handleClick}
       >
@@ -59,7 +61,7 @@ export const ProjectChip: React.VFC<Props> = memo((props) => {
       h={5}
       _hover={{ bg: 'gray.100' }}
     >
-      <ColorBox size="xs" color={project.color.color} />
+      <ColorBox size="xs" color={projectBaseColor.color.color} />
       <Text ml={2} fontSize="xs" isTruncated color="text.base">
         {project.name}
       </Text>

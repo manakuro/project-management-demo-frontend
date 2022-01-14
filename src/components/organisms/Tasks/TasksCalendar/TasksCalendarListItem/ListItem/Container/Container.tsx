@@ -1,7 +1,10 @@
 import React, { memo, useMemo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useColorPicker } from 'src/hooks'
 import { forwardRef } from 'src/shared/chakra'
+import {
+  useProjectBaseColor,
+  useProjectBaseColorText,
+} from 'src/store/entities/projectBaseColors'
 import { useProject } from 'src/store/entities/projects'
 import { useTask } from 'src/store/entities/tasks'
 import { transitions } from 'src/styles'
@@ -15,8 +18,9 @@ export const Container: React.FC<Props> = memo<Props>(
   forwardRef((props, ref) => {
     const { taskId, projectId, ...rest } = props
     const { project } = useProject(projectId)
+    const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
+    const { textColor } = useProjectBaseColorText(project.projectBaseColorId)
     const { task } = useTask(taskId)
-    const { findColor } = useColorPicker()
 
     const colorStyle = useMemo((): FlexProps => {
       if (!project.id)
@@ -28,11 +32,11 @@ export const Container: React.FC<Props> = memo<Props>(
         }
 
       return {
-        color: findColor(project.color.id).text,
-        bg: project.color.color,
+        color: textColor,
+        bg: projectBaseColor.color.color,
         _hover: { boxShadow: 'md' },
       }
-    }, [findColor, project.color.color, project.color.id, project.id])
+    }, [project.id, projectBaseColor.color.color, textColor])
 
     const style = useMemo(
       () => ({

@@ -8,10 +8,14 @@ import {
   useTaskLikesQuery,
   useTabStatusForMyTasksQuery,
   useFavoriteWorkspaceIdsQuery,
+  useProjectBaseColorsQuery,
+  useProjectLightColorsQuery,
 } from 'src/hooks/queries/entities'
 
 export const BeforeAppMount: React.FC = (props) => {
   useProjectsQuery()
+  useProjectBaseColorsQuery()
+  useProjectLightColorsQuery()
   const useFavoriteProjectIdsQueryResult = useFavoriteProjectIdsQuery({
     lazy: true,
   })

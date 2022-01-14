@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import { Flex, IconButton, Text, Icon, AvatarGroup } from 'src/components/atoms'
 import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
 import { useProject } from 'src/store/entities/projects'
 import { findProjectIcon } from 'src/store/entities/projects/projectIcons'
 import { useTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
@@ -15,6 +16,7 @@ type Props = {
 export const ProjectListItem: React.VFC<Props> = memo<Props>((props) => {
   const { projectId } = props
   const { project } = useProject(projectId)
+  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
   const { teammateIds } = useTeammateIdsByProjectId(projectId)
 
   return (
@@ -24,7 +26,7 @@ export const ProjectListItem: React.VFC<Props> = memo<Props>((props) => {
         p={2}
         w={12}
         h={12}
-        bg={project.color.color}
+        bg={projectBaseColor.color.color}
         color="white"
         justifyContent="center"
         alignItems="center"

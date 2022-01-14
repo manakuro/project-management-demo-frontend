@@ -1,5 +1,4 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { COLORS } from 'src/hooks/useColorPicker'
 import { Project } from 'src/store/entities/projects'
 import { projectState } from '../atom'
 import { useProjectCommand } from './useProjectCommand'
@@ -10,17 +9,12 @@ export const useProject = (projectId: string) => {
 
   const setColor = useRecoilCallback(
     ({ snapshot }) =>
-      async (projectId: string, colorId: string) => {
-        const color = COLORS.find((c) => c.id === colorId)!
+      async (projectId: string, projectBaseColorId: string) => {
         const project = await snapshot.getPromise(projectState(projectId))
 
         upsert({
           ...project,
-          color: {
-            id: color.id,
-            name: color.name,
-            color: color.base as string,
-          },
+          projectBaseColorId,
         })
       },
     [upsert],

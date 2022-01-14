@@ -13,6 +13,7 @@ import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 import { useLinkHoverStyle, useClickableHoverStyle } from 'src/hooks'
 import { ROUTE_PROJECTS_LIST, useRouter } from 'src/router'
 import { ROUTE_PROJECTS } from 'src/router/projects'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
 import { useProject } from 'src/store/entities/projects'
 
 type Props = {
@@ -23,6 +24,7 @@ export const ListItem: React.VFC<Props> = memo((props) => {
   const { isExpanded } = useNavigation()
   const { projectId } = props
   const { project } = useProject(projectId)
+  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
   const { _hover, selectedStyle } = useLinkHoverStyle()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
   const { router } = useRouter()
@@ -43,7 +45,7 @@ export const ListItem: React.VFC<Props> = memo((props) => {
         <Flex alignItems="center">
           {isExpanded ? (
             <Flex alignItems="center" flex={1}>
-              <ColorBox size="xs" color={project.color.color} />
+              <ColorBox size="xs" color={projectBaseColor.color.color} />
               <Text fontSize="sm" flex={1} ml={2}>
                 {project.name}
               </Text>

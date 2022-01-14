@@ -5,6 +5,7 @@ import {
   FavoriteIconButton as MoleculesFavoriteIconButton,
 } from 'src/components/molecules'
 import { useFavoriteProjectIds } from 'src/store/entities/favoriteProjectIds'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
 import { useProject } from 'src/store/entities/projects'
 
 type Props = {
@@ -14,6 +15,7 @@ type Props = {
 export const FavoriteIconButton: React.VFC<Props> = memo<Props>((props) => {
   const { projectId } = props
   const { project } = useProject(projectId)
+  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
   const { isFavorite, setFavoriteProjectId } = useFavoriteProjectIds()
 
   return (
@@ -32,7 +34,7 @@ export const FavoriteIconButton: React.VFC<Props> = memo<Props>((props) => {
         h={6}
         w={6}
         iconStyle={{
-          favorite: { color: project.color.color },
+          favorite: { color: projectBaseColor.color.color },
           none: { color: 'text.muted' },
         }}
       />

@@ -7,19 +7,25 @@ import {
   Center,
 } from 'src/components/atoms'
 import { useLinkHoverStyle } from 'src/hooks'
-import { useColorPicker } from 'src/hooks/useColorPicker'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
+import { useProjectLightColor } from 'src/store/entities/projectLightColors'
 import { projectIcons } from 'src/store/entities/projects/projectIcons'
 
 type Props = {
   currentIconId: string
-  currentColorId: string
+  currentProjectLightColorId: string
+  currentProjectBaseColorId: string
 }
 
 export const IconPicker: React.VFC<Props> = (props) => {
-  const { findColor } = useColorPicker()
-  const currentColor = findColor(props.currentColorId)
+  const { projectLightColor } = useProjectLightColor(
+    props.currentProjectLightColorId,
+  )
+  const { projectBaseColor } = useProjectBaseColor(
+    props.currentProjectBaseColorId,
+  )
   const { _hover, transition } = useLinkHoverStyle({
-    color: currentColor.light,
+    color: projectLightColor.color.color,
   })
 
   return (
@@ -28,7 +34,9 @@ export const IconPicker: React.VFC<Props> = (props) => {
         <WrapItem key={c.id}>
           <IconBox
             bg={
-              props.currentIconId === c.id ? currentColor.base : 'transparent'
+              props.currentIconId === c.id
+                ? projectBaseColor.color.color
+                : 'transparent'
             }
             _hover={_hover}
             transition={transition}

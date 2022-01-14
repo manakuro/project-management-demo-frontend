@@ -4,6 +4,7 @@ import { useNavigation, PADDING_X } from 'src/components/organisms/Navigation'
 import { useLinkHoverStyle } from 'src/hooks'
 import { ROUTE_PROJECTS_LIST, useRouter } from 'src/router'
 import { ROUTE_PROJECTS } from 'src/router/projects'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
 import { useProject } from 'src/store/entities/projects'
 import { ProjectMenu } from './ProjectMenu'
 
@@ -15,6 +16,7 @@ export const ListItem: React.VFC<Props> = memo((props) => {
   const { isExpanded } = useNavigation()
   const { projectId } = props
   const { project } = useProject(projectId)
+  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
   const { _hover, selectedStyle } = useLinkHoverStyle()
   const { router } = useRouter()
   const selected = useMemo(
@@ -34,7 +36,7 @@ export const ListItem: React.VFC<Props> = memo((props) => {
         <Flex alignItems="center">
           {isExpanded ? (
             <Flex alignItems="center" flex={1}>
-              <ColorBox size="xs" ml={1} color={project.color.color} />
+              <ColorBox size="xs" ml={1} color={projectBaseColor.color.color} />
               <Text fontSize="sm" flex={1} ml={2}>
                 {project.name}
               </Text>

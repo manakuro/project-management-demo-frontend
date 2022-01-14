@@ -70,9 +70,16 @@ export type __SHOULD_NOT_USE__ColorWhereInput = {
   createdAtLTE?: InputMaybe<Scalars['Time']>
   createdAtNEQ?: InputMaybe<Scalars['Time']>
   createdAtNotIn?: InputMaybe<Array<Scalars['Time']>>
-  /** projects edge predicates */
-  hasProjects?: InputMaybe<Scalars['Boolean']>
-  hasProjectsWith?: InputMaybe<Array<__SHOULD_NOT_USE__ProjectWhereInput>>
+  /** project_base_colors edge predicates */
+  hasProjectBaseColors?: InputMaybe<Scalars['Boolean']>
+  hasProjectBaseColorsWith?: InputMaybe<
+    Array<__SHOULD_NOT_USE__ProjectBaseColorWhereInput>
+  >
+  /** project_light_colors edge predicates */
+  hasProjectLightColors?: InputMaybe<Scalars['Boolean']>
+  hasProjectLightColorsWith?: InputMaybe<
+    Array<__SHOULD_NOT_USE__ProjectLightColorWhereInput>
+  >
   /** hex field predicates */
   hex?: InputMaybe<Scalars['String']>
   hexContains?: InputMaybe<Scalars['String']>
@@ -134,15 +141,24 @@ export type __SHOULD_NOT_USE__CreateIconInput = {
   name: Scalars['String']
 }
 
+export type __SHOULD_NOT_USE__CreateProjectBaseColorInput = {
+  colorId: Scalars['ID']
+}
+
 export type __SHOULD_NOT_USE__CreateProjectInput = {
-  colorId?: InputMaybe<Scalars['ID']>
   createdBy: Scalars['ID']
   description?: InputMaybe<__SHOULD_NOT_USE__EditorDescriptionInput>
   descriptionTitle?: InputMaybe<Scalars['String']>
   dueDate?: InputMaybe<Scalars['Time']>
   iconId?: InputMaybe<Scalars['ID']>
   name: Scalars['String']
+  projectBaseColorId?: InputMaybe<Scalars['ID']>
+  projectLightColorId?: InputMaybe<Scalars['ID']>
   workspaceId: Scalars['ID']
+}
+
+export type __SHOULD_NOT_USE__CreateProjectLightColorInput = {
+  colorId: Scalars['ID']
 }
 
 export type __SHOULD_NOT_USE__CreateProjectTeammateInput = {
@@ -316,6 +332,8 @@ export type __SHOULD_NOT_USE__Mutation = {
   createColor: __SHOULD_NOT_USE__Color
   createIcon: __SHOULD_NOT_USE__Icon
   createProject: __SHOULD_NOT_USE__Project
+  createProjectBaseColor: __SHOULD_NOT_USE__ProjectBaseColor
+  createProjectLightColor: __SHOULD_NOT_USE__ProjectLightColor
   createProjectTeammate: __SHOULD_NOT_USE__ProjectTeammate
   createTeammate: __SHOULD_NOT_USE__Teammate
   createTestTodo: __SHOULD_NOT_USE__TestTodo
@@ -325,6 +343,8 @@ export type __SHOULD_NOT_USE__Mutation = {
   updateColor: __SHOULD_NOT_USE__Color
   updateIcon: __SHOULD_NOT_USE__Icon
   updateProject: __SHOULD_NOT_USE__Project
+  updateProjectBaseColor: __SHOULD_NOT_USE__ProjectBaseColor
+  updateProjectLightColor: __SHOULD_NOT_USE__ProjectLightColor
   updateProjectTeammate: __SHOULD_NOT_USE__ProjectTeammate
   updateTeammate: __SHOULD_NOT_USE__Teammate
   updateTestTodo: __SHOULD_NOT_USE__TestTodo
@@ -342,6 +362,14 @@ export type __SHOULD_NOT_USE__MutationCreateIconArgs = {
 
 export type __SHOULD_NOT_USE__MutationCreateProjectArgs = {
   input: __SHOULD_NOT_USE__CreateProjectInput
+}
+
+export type __SHOULD_NOT_USE__MutationCreateProjectBaseColorArgs = {
+  input: __SHOULD_NOT_USE__CreateProjectBaseColorInput
+}
+
+export type __SHOULD_NOT_USE__MutationCreateProjectLightColorArgs = {
+  input: __SHOULD_NOT_USE__CreateProjectLightColorInput
 }
 
 export type __SHOULD_NOT_USE__MutationCreateProjectTeammateArgs = {
@@ -380,6 +408,14 @@ export type __SHOULD_NOT_USE__MutationUpdateProjectArgs = {
   input: __SHOULD_NOT_USE__UpdateProjectInput
 }
 
+export type __SHOULD_NOT_USE__MutationUpdateProjectBaseColorArgs = {
+  input: __SHOULD_NOT_USE__UpdateProjectBaseColorInput
+}
+
+export type __SHOULD_NOT_USE__MutationUpdateProjectLightColorArgs = {
+  input: __SHOULD_NOT_USE__UpdateProjectLightColorInput
+}
+
 export type __SHOULD_NOT_USE__MutationUpdateProjectTeammateArgs = {
   input: __SHOULD_NOT_USE__UpdateProjectTeammateInput
 }
@@ -412,7 +448,6 @@ export type __SHOULD_NOT_USE__PageInfo = {
 }
 
 export type __SHOULD_NOT_USE__Project = __SHOULD_NOT_USE__Node & {
-  color: __SHOULD_NOT_USE__Color
   createdAt: Scalars['String']
   createdBy: Scalars['ID']
   description: __SHOULD_NOT_USE__EditorDescription
@@ -421,10 +456,89 @@ export type __SHOULD_NOT_USE__Project = __SHOULD_NOT_USE__Node & {
   icon: __SHOULD_NOT_USE__Icon
   id: Scalars['ID']
   name: Scalars['String']
+  projectBaseColor: __SHOULD_NOT_USE__ProjectBaseColor
+  projectBaseColorId: Scalars['ID']
+  projectLightColor: __SHOULD_NOT_USE__ProjectLightColor
+  projectLightColorId: Scalars['ID']
   projectTeammates: Array<__SHOULD_NOT_USE__ProjectTeammate>
   teammateIds: Array<Scalars['String']>
   updatedAt: Scalars['String']
   workspaceId: Scalars['ID']
+}
+
+export type __SHOULD_NOT_USE__ProjectBaseColor = __SHOULD_NOT_USE__Node & {
+  color: __SHOULD_NOT_USE__Color
+  createdAt: Scalars['String']
+  id: Scalars['ID']
+  updatedAt: Scalars['String']
+}
+
+export type __SHOULD_NOT_USE__ProjectBaseColorConnection = {
+  edges: Maybe<Array<Maybe<__SHOULD_NOT_USE__ProjectBaseColorEdge>>>
+  pageInfo: __SHOULD_NOT_USE__PageInfo
+  totalCount: Scalars['Int']
+}
+
+export type __SHOULD_NOT_USE__ProjectBaseColorEdge = {
+  cursor: Scalars['Cursor']
+  node: Maybe<__SHOULD_NOT_USE__ProjectBaseColor>
+}
+
+/**
+ * ProjectBaseColorWhereInput is used for filtering ProjectBaseColor objects.
+ * Input was generated by ent.
+ */
+export type __SHOULD_NOT_USE__ProjectBaseColorWhereInput = {
+  and?: InputMaybe<Array<__SHOULD_NOT_USE__ProjectBaseColorWhereInput>>
+  /** color_id field predicates */
+  colorID?: InputMaybe<Scalars['ID']>
+  colorIDContains?: InputMaybe<Scalars['ID']>
+  colorIDContainsFold?: InputMaybe<Scalars['ID']>
+  colorIDEqualFold?: InputMaybe<Scalars['ID']>
+  colorIDGT?: InputMaybe<Scalars['ID']>
+  colorIDGTE?: InputMaybe<Scalars['ID']>
+  colorIDHasPrefix?: InputMaybe<Scalars['ID']>
+  colorIDHasSuffix?: InputMaybe<Scalars['ID']>
+  colorIDIn?: InputMaybe<Array<Scalars['ID']>>
+  colorIDLT?: InputMaybe<Scalars['ID']>
+  colorIDLTE?: InputMaybe<Scalars['ID']>
+  colorIDNEQ?: InputMaybe<Scalars['ID']>
+  colorIDNotIn?: InputMaybe<Array<Scalars['ID']>>
+  /** created_at field predicates */
+  createdAt?: InputMaybe<Scalars['Time']>
+  createdAtGT?: InputMaybe<Scalars['Time']>
+  createdAtGTE?: InputMaybe<Scalars['Time']>
+  createdAtIn?: InputMaybe<Array<Scalars['Time']>>
+  createdAtLT?: InputMaybe<Scalars['Time']>
+  createdAtLTE?: InputMaybe<Scalars['Time']>
+  createdAtNEQ?: InputMaybe<Scalars['Time']>
+  createdAtNotIn?: InputMaybe<Array<Scalars['Time']>>
+  /** color edge predicates */
+  hasColor?: InputMaybe<Scalars['Boolean']>
+  hasColorWith?: InputMaybe<Array<__SHOULD_NOT_USE__ColorWhereInput>>
+  /** projects edge predicates */
+  hasProjects?: InputMaybe<Scalars['Boolean']>
+  hasProjectsWith?: InputMaybe<Array<__SHOULD_NOT_USE__ProjectWhereInput>>
+  /** id field predicates */
+  id?: InputMaybe<Scalars['ID']>
+  idGT?: InputMaybe<Scalars['ID']>
+  idGTE?: InputMaybe<Scalars['ID']>
+  idIn?: InputMaybe<Array<Scalars['ID']>>
+  idLT?: InputMaybe<Scalars['ID']>
+  idLTE?: InputMaybe<Scalars['ID']>
+  idNEQ?: InputMaybe<Scalars['ID']>
+  idNotIn?: InputMaybe<Array<Scalars['ID']>>
+  not?: InputMaybe<__SHOULD_NOT_USE__ProjectBaseColorWhereInput>
+  or?: InputMaybe<Array<__SHOULD_NOT_USE__ProjectBaseColorWhereInput>>
+  /** updated_at field predicates */
+  updatedAt?: InputMaybe<Scalars['Time']>
+  updatedAtGT?: InputMaybe<Scalars['Time']>
+  updatedAtGTE?: InputMaybe<Scalars['Time']>
+  updatedAtIn?: InputMaybe<Array<Scalars['Time']>>
+  updatedAtLT?: InputMaybe<Scalars['Time']>
+  updatedAtLTE?: InputMaybe<Scalars['Time']>
+  updatedAtNEQ?: InputMaybe<Scalars['Time']>
+  updatedAtNotIn?: InputMaybe<Array<Scalars['Time']>>
 }
 
 export type __SHOULD_NOT_USE__ProjectConnection = {
@@ -436,6 +550,81 @@ export type __SHOULD_NOT_USE__ProjectConnection = {
 export type __SHOULD_NOT_USE__ProjectEdge = {
   cursor: Scalars['Cursor']
   node: Maybe<__SHOULD_NOT_USE__Project>
+}
+
+export type __SHOULD_NOT_USE__ProjectLightColor = __SHOULD_NOT_USE__Node & {
+  color: __SHOULD_NOT_USE__Color
+  createdAt: Scalars['String']
+  id: Scalars['ID']
+  updatedAt: Scalars['String']
+}
+
+export type __SHOULD_NOT_USE__ProjectLightColorConnection = {
+  edges: Maybe<Array<Maybe<__SHOULD_NOT_USE__ProjectLightColorEdge>>>
+  pageInfo: __SHOULD_NOT_USE__PageInfo
+  totalCount: Scalars['Int']
+}
+
+export type __SHOULD_NOT_USE__ProjectLightColorEdge = {
+  cursor: Scalars['Cursor']
+  node: Maybe<__SHOULD_NOT_USE__ProjectLightColor>
+}
+
+/**
+ * ProjectLightColorWhereInput is used for filtering ProjectLightColor objects.
+ * Input was generated by ent.
+ */
+export type __SHOULD_NOT_USE__ProjectLightColorWhereInput = {
+  and?: InputMaybe<Array<__SHOULD_NOT_USE__ProjectLightColorWhereInput>>
+  /** color_id field predicates */
+  colorID?: InputMaybe<Scalars['ID']>
+  colorIDContains?: InputMaybe<Scalars['ID']>
+  colorIDContainsFold?: InputMaybe<Scalars['ID']>
+  colorIDEqualFold?: InputMaybe<Scalars['ID']>
+  colorIDGT?: InputMaybe<Scalars['ID']>
+  colorIDGTE?: InputMaybe<Scalars['ID']>
+  colorIDHasPrefix?: InputMaybe<Scalars['ID']>
+  colorIDHasSuffix?: InputMaybe<Scalars['ID']>
+  colorIDIn?: InputMaybe<Array<Scalars['ID']>>
+  colorIDLT?: InputMaybe<Scalars['ID']>
+  colorIDLTE?: InputMaybe<Scalars['ID']>
+  colorIDNEQ?: InputMaybe<Scalars['ID']>
+  colorIDNotIn?: InputMaybe<Array<Scalars['ID']>>
+  /** created_at field predicates */
+  createdAt?: InputMaybe<Scalars['Time']>
+  createdAtGT?: InputMaybe<Scalars['Time']>
+  createdAtGTE?: InputMaybe<Scalars['Time']>
+  createdAtIn?: InputMaybe<Array<Scalars['Time']>>
+  createdAtLT?: InputMaybe<Scalars['Time']>
+  createdAtLTE?: InputMaybe<Scalars['Time']>
+  createdAtNEQ?: InputMaybe<Scalars['Time']>
+  createdAtNotIn?: InputMaybe<Array<Scalars['Time']>>
+  /** color edge predicates */
+  hasColor?: InputMaybe<Scalars['Boolean']>
+  hasColorWith?: InputMaybe<Array<__SHOULD_NOT_USE__ColorWhereInput>>
+  /** projects edge predicates */
+  hasProjects?: InputMaybe<Scalars['Boolean']>
+  hasProjectsWith?: InputMaybe<Array<__SHOULD_NOT_USE__ProjectWhereInput>>
+  /** id field predicates */
+  id?: InputMaybe<Scalars['ID']>
+  idGT?: InputMaybe<Scalars['ID']>
+  idGTE?: InputMaybe<Scalars['ID']>
+  idIn?: InputMaybe<Array<Scalars['ID']>>
+  idLT?: InputMaybe<Scalars['ID']>
+  idLTE?: InputMaybe<Scalars['ID']>
+  idNEQ?: InputMaybe<Scalars['ID']>
+  idNotIn?: InputMaybe<Array<Scalars['ID']>>
+  not?: InputMaybe<__SHOULD_NOT_USE__ProjectLightColorWhereInput>
+  or?: InputMaybe<Array<__SHOULD_NOT_USE__ProjectLightColorWhereInput>>
+  /** updated_at field predicates */
+  updatedAt?: InputMaybe<Scalars['Time']>
+  updatedAtGT?: InputMaybe<Scalars['Time']>
+  updatedAtGTE?: InputMaybe<Scalars['Time']>
+  updatedAtIn?: InputMaybe<Array<Scalars['Time']>>
+  updatedAtLT?: InputMaybe<Scalars['Time']>
+  updatedAtLTE?: InputMaybe<Scalars['Time']>
+  updatedAtNEQ?: InputMaybe<Scalars['Time']>
+  updatedAtNotIn?: InputMaybe<Array<Scalars['Time']>>
 }
 
 export type __SHOULD_NOT_USE__ProjectTeammate = __SHOULD_NOT_USE__Node & {
@@ -555,20 +744,6 @@ export type __SHOULD_NOT_USE__ProjectTeammateWhereInput = {
  */
 export type __SHOULD_NOT_USE__ProjectWhereInput = {
   and?: InputMaybe<Array<__SHOULD_NOT_USE__ProjectWhereInput>>
-  /** color_id field predicates */
-  colorID?: InputMaybe<Scalars['ID']>
-  colorIDContains?: InputMaybe<Scalars['ID']>
-  colorIDContainsFold?: InputMaybe<Scalars['ID']>
-  colorIDEqualFold?: InputMaybe<Scalars['ID']>
-  colorIDGT?: InputMaybe<Scalars['ID']>
-  colorIDGTE?: InputMaybe<Scalars['ID']>
-  colorIDHasPrefix?: InputMaybe<Scalars['ID']>
-  colorIDHasSuffix?: InputMaybe<Scalars['ID']>
-  colorIDIn?: InputMaybe<Array<Scalars['ID']>>
-  colorIDLT?: InputMaybe<Scalars['ID']>
-  colorIDLTE?: InputMaybe<Scalars['ID']>
-  colorIDNEQ?: InputMaybe<Scalars['ID']>
-  colorIDNotIn?: InputMaybe<Array<Scalars['ID']>>
   /** created_at field predicates */
   createdAt?: InputMaybe<Scalars['Time']>
   createdAtGT?: InputMaybe<Scalars['Time']>
@@ -615,12 +790,19 @@ export type __SHOULD_NOT_USE__ProjectWhereInput = {
   dueDateLTE?: InputMaybe<Scalars['Time']>
   dueDateNEQ?: InputMaybe<Scalars['Time']>
   dueDateNotIn?: InputMaybe<Array<Scalars['Time']>>
-  /** color edge predicates */
-  hasColor?: InputMaybe<Scalars['Boolean']>
-  hasColorWith?: InputMaybe<Array<__SHOULD_NOT_USE__ColorWhereInput>>
   /** icon edge predicates */
   hasIcon?: InputMaybe<Scalars['Boolean']>
   hasIconWith?: InputMaybe<Array<__SHOULD_NOT_USE__IconWhereInput>>
+  /** project_base_color edge predicates */
+  hasProjectBaseColor?: InputMaybe<Scalars['Boolean']>
+  hasProjectBaseColorWith?: InputMaybe<
+    Array<__SHOULD_NOT_USE__ProjectBaseColorWhereInput>
+  >
+  /** project_light_color edge predicates */
+  hasProjectLightColor?: InputMaybe<Scalars['Boolean']>
+  hasProjectLightColorWith?: InputMaybe<
+    Array<__SHOULD_NOT_USE__ProjectLightColorWhereInput>
+  >
   /** project_teammates edge predicates */
   hasProjectTeammates?: InputMaybe<Scalars['Boolean']>
   hasProjectTeammatesWith?: InputMaybe<
@@ -671,6 +853,34 @@ export type __SHOULD_NOT_USE__ProjectWhereInput = {
   nameNotIn?: InputMaybe<Array<Scalars['String']>>
   not?: InputMaybe<__SHOULD_NOT_USE__ProjectWhereInput>
   or?: InputMaybe<Array<__SHOULD_NOT_USE__ProjectWhereInput>>
+  /** project_base_color_id field predicates */
+  projectBaseColorID?: InputMaybe<Scalars['ID']>
+  projectBaseColorIDContains?: InputMaybe<Scalars['ID']>
+  projectBaseColorIDContainsFold?: InputMaybe<Scalars['ID']>
+  projectBaseColorIDEqualFold?: InputMaybe<Scalars['ID']>
+  projectBaseColorIDGT?: InputMaybe<Scalars['ID']>
+  projectBaseColorIDGTE?: InputMaybe<Scalars['ID']>
+  projectBaseColorIDHasPrefix?: InputMaybe<Scalars['ID']>
+  projectBaseColorIDHasSuffix?: InputMaybe<Scalars['ID']>
+  projectBaseColorIDIn?: InputMaybe<Array<Scalars['ID']>>
+  projectBaseColorIDLT?: InputMaybe<Scalars['ID']>
+  projectBaseColorIDLTE?: InputMaybe<Scalars['ID']>
+  projectBaseColorIDNEQ?: InputMaybe<Scalars['ID']>
+  projectBaseColorIDNotIn?: InputMaybe<Array<Scalars['ID']>>
+  /** project_light_color_id field predicates */
+  projectLightColorID?: InputMaybe<Scalars['ID']>
+  projectLightColorIDContains?: InputMaybe<Scalars['ID']>
+  projectLightColorIDContainsFold?: InputMaybe<Scalars['ID']>
+  projectLightColorIDEqualFold?: InputMaybe<Scalars['ID']>
+  projectLightColorIDGT?: InputMaybe<Scalars['ID']>
+  projectLightColorIDGTE?: InputMaybe<Scalars['ID']>
+  projectLightColorIDHasPrefix?: InputMaybe<Scalars['ID']>
+  projectLightColorIDHasSuffix?: InputMaybe<Scalars['ID']>
+  projectLightColorIDIn?: InputMaybe<Array<Scalars['ID']>>
+  projectLightColorIDLT?: InputMaybe<Scalars['ID']>
+  projectLightColorIDLTE?: InputMaybe<Scalars['ID']>
+  projectLightColorIDNEQ?: InputMaybe<Scalars['ID']>
+  projectLightColorIDNotIn?: InputMaybe<Array<Scalars['ID']>>
   /** updated_at field predicates */
   updatedAt?: InputMaybe<Scalars['Time']>
   updatedAtGT?: InputMaybe<Scalars['Time']>
@@ -704,6 +914,10 @@ export type __SHOULD_NOT_USE__Query = {
   node: Maybe<__SHOULD_NOT_USE__Node>
   nodes: Array<Maybe<__SHOULD_NOT_USE__Node>>
   project: Maybe<__SHOULD_NOT_USE__Project>
+  projectBaseColor: Maybe<__SHOULD_NOT_USE__ProjectBaseColor>
+  projectBaseColors: Maybe<__SHOULD_NOT_USE__ProjectBaseColorConnection>
+  projectLightColor: Maybe<__SHOULD_NOT_USE__ProjectLightColor>
+  projectLightColors: Maybe<__SHOULD_NOT_USE__ProjectLightColorConnection>
   projectTeammate: Maybe<__SHOULD_NOT_USE__ProjectTeammate>
   projectTeammates: Maybe<__SHOULD_NOT_USE__ProjectTeammateConnection>
   projects: Maybe<__SHOULD_NOT_USE__ProjectConnection>
@@ -751,6 +965,30 @@ export type __SHOULD_NOT_USE__QueryNodesArgs = {
 
 export type __SHOULD_NOT_USE__QueryProjectArgs = {
   where?: InputMaybe<__SHOULD_NOT_USE__ProjectWhereInput>
+}
+
+export type __SHOULD_NOT_USE__QueryProjectBaseColorArgs = {
+  where?: InputMaybe<__SHOULD_NOT_USE__ProjectBaseColorWhereInput>
+}
+
+export type __SHOULD_NOT_USE__QueryProjectBaseColorsArgs = {
+  after?: InputMaybe<Scalars['Cursor']>
+  before?: InputMaybe<Scalars['Cursor']>
+  first?: InputMaybe<Scalars['Int']>
+  last?: InputMaybe<Scalars['Int']>
+  where?: InputMaybe<__SHOULD_NOT_USE__ProjectBaseColorWhereInput>
+}
+
+export type __SHOULD_NOT_USE__QueryProjectLightColorArgs = {
+  where?: InputMaybe<__SHOULD_NOT_USE__ProjectLightColorWhereInput>
+}
+
+export type __SHOULD_NOT_USE__QueryProjectLightColorsArgs = {
+  after?: InputMaybe<Scalars['Cursor']>
+  before?: InputMaybe<Scalars['Cursor']>
+  first?: InputMaybe<Scalars['Int']>
+  last?: InputMaybe<Scalars['Int']>
+  where?: InputMaybe<__SHOULD_NOT_USE__ProjectLightColorWhereInput>
 }
 
 export type __SHOULD_NOT_USE__QueryProjectTeammateArgs = {
@@ -817,6 +1055,8 @@ export type __SHOULD_NOT_USE__QueryWorkspacesArgs = {
 export type __SHOULD_NOT_USE__Subscription = {
   colorUpdated: __SHOULD_NOT_USE__Color
   iconUpdated: __SHOULD_NOT_USE__Icon
+  projectBaseColorUpdated: __SHOULD_NOT_USE__ProjectBaseColor
+  projectLightColorUpdated: __SHOULD_NOT_USE__ProjectLightColor
   projectTeammateUpdated: __SHOULD_NOT_USE__ProjectTeammate
   projectUpdated: __SHOULD_NOT_USE__Project
   teammateUpdated: __SHOULD_NOT_USE__Teammate
@@ -829,6 +1069,14 @@ export type __SHOULD_NOT_USE__SubscriptionColorUpdatedArgs = {
 }
 
 export type __SHOULD_NOT_USE__SubscriptionIconUpdatedArgs = {
+  id: Scalars['ID']
+}
+
+export type __SHOULD_NOT_USE__SubscriptionProjectBaseColorUpdatedArgs = {
+  id: Scalars['ID']
+}
+
+export type __SHOULD_NOT_USE__SubscriptionProjectLightColorUpdatedArgs = {
   id: Scalars['ID']
 }
 
@@ -1193,8 +1441,12 @@ export type __SHOULD_NOT_USE__UpdateIconInput = {
   name?: InputMaybe<Scalars['String']>
 }
 
-export type __SHOULD_NOT_USE__UpdateProjectInput = {
+export type __SHOULD_NOT_USE__UpdateProjectBaseColorInput = {
   colorId?: InputMaybe<Scalars['ID']>
+  id: Scalars['ID']
+}
+
+export type __SHOULD_NOT_USE__UpdateProjectInput = {
   createdBy?: InputMaybe<Scalars['ID']>
   description?: InputMaybe<__SHOULD_NOT_USE__EditorDescriptionInput>
   descriptionTitle?: InputMaybe<Scalars['String']>
@@ -1202,6 +1454,13 @@ export type __SHOULD_NOT_USE__UpdateProjectInput = {
   iconId?: InputMaybe<Scalars['ID']>
   id: Scalars['ID']
   name?: InputMaybe<Scalars['String']>
+  projectBaseColorId?: InputMaybe<Scalars['ID']>
+  projectLightColorId?: InputMaybe<Scalars['ID']>
+}
+
+export type __SHOULD_NOT_USE__UpdateProjectLightColorInput = {
+  colorId?: InputMaybe<Scalars['ID']>
+  id: Scalars['ID']
 }
 
 export type __SHOULD_NOT_USE__UpdateProjectTeammateInput = {

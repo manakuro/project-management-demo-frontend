@@ -1,0 +1,8 @@
+fragment ProjectLightColorFragment on ProjectLightColor {
+  id
+  color {
+    ...ColorFragment
+  }
+  createdAt
+  updatedAt
+}

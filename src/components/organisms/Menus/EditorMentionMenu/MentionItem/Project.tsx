@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import { ColorBox, Flex, FlexProps, Text } from 'src/components/atoms'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
 import { useProject } from 'src/store/entities/projects'
 import { MentionProject } from '../types'
 import { LeftContainer } from './LeftContainer'
@@ -11,11 +12,12 @@ type Props = FlexProps & {
 
 export const Project: React.FC<Props> = memo<Props>((props) => {
   const { project } = useProject(props.mention.projectId)
+  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
 
   return (
     <Flex alignItems="center" flex={1}>
       <LeftContainer>
-        <ColorBox size="sm" color={project.color.color} />
+        <ColorBox size="sm" color={projectBaseColor.color.color} />
       </LeftContainer>
       <RightContainer>
         <Text fontSize="sm" w="80%" isTruncated>

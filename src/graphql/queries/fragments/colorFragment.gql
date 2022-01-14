@@ -1,0 +1,7 @@
+fragment ColorFragment on Color {
+  id
+  name
+  color
+  createdAt
+  updatedAt
+}

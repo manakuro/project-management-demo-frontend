@@ -6,11 +6,8 @@ const key = (str: string) => `src/store/entities/projects/${str}`
 const initialState = (): Project => ({
   id: '',
   name: '',
-  color: {
-    id: '',
-    name: '',
-    color: '',
-  },
+  projectBaseColorId: '',
+  projectLightColorId: '',
   icon: {
     id: '',
     name: '',

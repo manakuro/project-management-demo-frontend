@@ -1,0 +1,8 @@
+fragment ProjectBaseColorFragment on ProjectBaseColor {
+  id
+  color {
+    ...ColorFragment
+  }
+  createdAt
+  updatedAt
+}

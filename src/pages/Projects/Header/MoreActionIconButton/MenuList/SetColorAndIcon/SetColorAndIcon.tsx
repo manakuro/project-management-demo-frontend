@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import { ColorBox, Flex, Icon, Text } from 'src/components/atoms'
 import { MenuItem } from 'src/components/organisms/Menu'
 import { PopoverSetColorAndIcon } from 'src/components/organisms/Popovers'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
 import { useProject } from 'src/store/entities/projects'
 
 type Props = {
@@ -14,10 +15,13 @@ type Props = {
 export const SetColorAndIcon: React.FC<Props> = memo((props) => {
   const { onMouseEnter, isOpen, projectId } = props
   const { project } = useProject(projectId)
+  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
 
   return (
     <MenuItem
-      icon={<ColorBox size="md" color={project.color.color} mt="-1px" />}
+      icon={
+        <ColorBox size="md" color={projectBaseColor.color.color} mt="-1px" />
+      }
       onMouseEnter={onMouseEnter}
     >
       <PopoverSetColorAndIcon

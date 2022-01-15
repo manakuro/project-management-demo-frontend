@@ -5866,10 +5866,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16.11.17":
-  version: 16.11.17
-  resolution: "@types/node@npm:16.11.17"
-  checksum: 86ed84f79450f6aba1a6ef09f8407c10076966c3cc7cc4eb3d35b8ae4f47817e525641396ef0a667fa0a88fcdf484f6182812c074601403083bdf3b5e1ac0313
+"@types/node@npm:^16.11.19":
+  version: 16.11.19
+  resolution: "@types/node@npm:16.11.19"
+  checksum: a9ba0cd1e61c8ad50f3fc9c2b37b795bf0286dacb39dcc985da90328abf0c5151dffe9932d20bc9a6a52c3ce7bfc1e5a7c2dc1416480fb84f1c2d70e25caeba0
   languageName: node
   linkType: hard
 
@@ -6195,10 +6195,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/uuid@npm:^8.3.3":
-  version: 8.3.3
-  resolution: "@types/uuid@npm:8.3.3"
-  checksum: 3f340155bb1161f9ffa7163926d6222fea8f3505c23619b72bcc230883354926672c08a06510c7a543f73553c792a84444cc1744cff631b4ba988763e4bd7a8f
+"@types/uuid@npm:^8.3.4":
+  version: 8.3.4
+  resolution: "@types/uuid@npm:8.3.4"
+  checksum: 6f11f3ff70f30210edaa8071422d405e9c1d4e53abbe50fdce365150d3c698fe7bbff65c1e71ae080cbfb8fded860dbb5e174da96fdbbdfcaa3fb3daa474d20f
   languageName: node
   linkType: hard
 
@@ -14664,7 +14664,7 @@ __metadata:
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/jest-plugin-context": ^2.9.4
     "@types/lodash-es": ^4.17.5
-    "@types/node": ^16.11.17
+    "@types/node": ^16.11.19
     "@types/node-fetch": ^3.0.3
     "@types/prettier": ^2.4.2
     "@types/prosemirror-commands": ^1.0.4
@@ -14682,7 +14682,7 @@ __metadata:
     "@types/react-dom": 17.0.11
     "@types/shortid": ^0.0.29
     "@types/testing-library__jest-dom": ^5.14.2
-    "@types/uuid": ^8.3.3
+    "@types/uuid": ^8.3.4
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": 5.0.0
     babel-eslint: ^10.1.0
@@ -14745,7 +14745,7 @@ __metadata:
     resize-observer-polyfill: ^1.5.1
     shortid: ^2.2.16
     subscriptions-transport-ws: ^0.11.0
-    ts-jest: ^27.1.2
+    ts-jest: ^27.1.3
     typescript: ^4.5.4
     typesync: ^0.8.0
     use-prosemirror: ^1.2.1
@@ -16988,9 +16988,9 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"ts-jest@npm:^27.1.2":
-  version: 27.1.2
-  resolution: "ts-jest@npm:27.1.2"
+"ts-jest@npm:^27.1.3":
+  version: 27.1.3
+  resolution: "ts-jest@npm:27.1.3"
   dependencies:
     bs-logger: 0.x
     fast-json-stable-stringify: 2.x
@@ -17018,7 +17018,7 @@ resolve@^2.0.0-next.3:
       optional: true
   bin:
     ts-jest: cli.js
-  checksum: 2e7275f8a3545ec1340b37c458ace9244b5903e86861eb108beffff97d433f296c1254f76a41b573b1fe6245110b21bb62150bb88d55159f1dc7a929886535cb
+  checksum: eb54e5b8fc5f06e4cc20ecec7891201ddc78a3537d5eb3775e29ffbc7e83fd2a68f91db801b6a8c820c872060b24dc41fb6decac800b76256d3cdda6520b5c4f
   languageName: node
   linkType: hard
 

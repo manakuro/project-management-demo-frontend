@@ -334,6 +334,15 @@ export type __SHOULD_NOT_USE__IconWhereInput = {
   updatedAtNotIn?: InputMaybe<Array<Scalars['Time']>>
 }
 
+export type __SHOULD_NOT_USE__Me = {
+  createdAt: Scalars['String']
+  email: Scalars['String']
+  id: Scalars['ID']
+  image: Scalars['String']
+  name: Scalars['String']
+  updatedAt: Scalars['String']
+}
+
 export type __SHOULD_NOT_USE__Mutation = {
   createColor: __SHOULD_NOT_USE__Color
   createIcon: __SHOULD_NOT_USE__Icon
@@ -349,6 +358,7 @@ export type __SHOULD_NOT_USE__Mutation = {
   createWorkspace: __SHOULD_NOT_USE__Workspace
   updateColor: __SHOULD_NOT_USE__Color
   updateIcon: __SHOULD_NOT_USE__Icon
+  updateMe: __SHOULD_NOT_USE__Me
   updateProject: __SHOULD_NOT_USE__Project
   updateProjectBaseColor: __SHOULD_NOT_USE__ProjectBaseColor
   updateProjectIcon: __SHOULD_NOT_USE__ProjectIcon
@@ -414,6 +424,10 @@ export type __SHOULD_NOT_USE__MutationUpdateColorArgs = {
 
 export type __SHOULD_NOT_USE__MutationUpdateIconArgs = {
   input: __SHOULD_NOT_USE__UpdateIconInput
+}
+
+export type __SHOULD_NOT_USE__MutationUpdateMeArgs = {
+  input: __SHOULD_NOT_USE__UpdateMeInput
 }
 
 export type __SHOULD_NOT_USE__MutationUpdateProjectArgs = {
@@ -1005,6 +1019,7 @@ export type __SHOULD_NOT_USE__Query = {
   colors: Maybe<__SHOULD_NOT_USE__ColorConnection>
   icon: Maybe<__SHOULD_NOT_USE__Icon>
   icons: Maybe<__SHOULD_NOT_USE__IconConnection>
+  me: Maybe<__SHOULD_NOT_USE__Me>
   node: Maybe<__SHOULD_NOT_USE__Node>
   nodes: Array<Maybe<__SHOULD_NOT_USE__Node>>
   project: Maybe<__SHOULD_NOT_USE__Project>
@@ -1163,6 +1178,7 @@ export type __SHOULD_NOT_USE__QueryWorkspacesArgs = {
 export type __SHOULD_NOT_USE__Subscription = {
   colorUpdated: __SHOULD_NOT_USE__Color
   iconUpdated: __SHOULD_NOT_USE__Icon
+  meUpdated: __SHOULD_NOT_USE__Me
   projectBaseColorUpdated: __SHOULD_NOT_USE__ProjectBaseColor
   projectIconUpdated: __SHOULD_NOT_USE__ProjectIcon
   projectLightColorUpdated: __SHOULD_NOT_USE__ProjectLightColor
@@ -1178,6 +1194,10 @@ export type __SHOULD_NOT_USE__SubscriptionColorUpdatedArgs = {
 }
 
 export type __SHOULD_NOT_USE__SubscriptionIconUpdatedArgs = {
+  id: Scalars['ID']
+}
+
+export type __SHOULD_NOT_USE__SubscriptionMeUpdatedArgs = {
   id: Scalars['ID']
 }
 
@@ -1551,6 +1571,13 @@ export type __SHOULD_NOT_USE__UpdateColorInput = {
 export type __SHOULD_NOT_USE__UpdateIconInput = {
   icon?: InputMaybe<Scalars['String']>
   id: Scalars['ID']
+  name?: InputMaybe<Scalars['String']>
+}
+
+export type __SHOULD_NOT_USE__UpdateMeInput = {
+  email?: InputMaybe<Scalars['String']>
+  id: Scalars['ID']
+  image?: InputMaybe<Scalars['String']>
   name?: InputMaybe<Scalars['String']>
 }
 

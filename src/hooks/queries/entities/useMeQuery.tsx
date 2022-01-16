@@ -1,43 +1,31 @@
-import { useCallback, useEffect } from 'react'
-import { useMe, Me } from 'src/store/entities/me'
+import { useEffect, useState } from 'react'
+import { useMeQuery as useMeQueryApollo } from 'src/graphql/hooks'
+import { useMountedRef } from 'src/hooks'
+import { useMeResponse, initialMeState } from 'src/store/entities/me'
 
-type Props = {
-  lazy?: boolean
-}
-
-export const useMeQuery = (props?: Props) => {
-  const { setMe } = useMe()
+export const useMeQuery = () => {
+  const queryResult = useMeQueryApollo({
+    fetchPolicy: 'cache-first',
+  })
+  const { setMe } = useMeResponse()
+  const [loading, setLoading] = useState(true)
+  const { mountedRef } = useMountedRef()
 
   useEffect(() => {
-    ;(async () => {
-      if (props?.lazy) return
+    setLoading(queryResult.loading)
+  }, [queryResult.loading])
 
-      const res = await fetchMe()
-      setMe(res)
-    })()
-  }, [props?.lazy, setMe])
+  useEffect(() => {
+    if (!queryResult.data) return
+    if (loading) return
+    if (!mountedRef.current) return
 
-  const refetch = useCallback(() => {
-    ;(async () => {
-      const res = await fetchMe()
-      setMe(res)
-    })()
-  }, [setMe])
+    setMe(queryResult.data.me || initialMeState())
+    setLoading(false)
+  }, [loading, mountedRef, queryResult.data, setMe])
 
   return {
-    refetch,
+    refetch: queryResult.refetch,
+    loading,
   }
-}
-
-const fetchMe = (): Promise<Me> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        id: '1',
-        name: 'Manato Kuroda',
-        image: '/images/cat_img.png',
-        email: 'manato.kuroda@gmail.com',
-      })
-    }, 1000)
-  })
 }

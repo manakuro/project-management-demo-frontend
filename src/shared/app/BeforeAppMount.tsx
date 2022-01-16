@@ -25,10 +25,8 @@ export const BeforeAppMount: React.FC = (props) => {
     lazy: true,
   })
   useWorkspaceQuery()
+  useMeQuery()
 
-  const useMeQueryResult = useMeQuery({
-    lazy: true,
-  })
   const useFeedLikesQueryResult = useFeedLikesQuery({
     lazy: true,
   })
@@ -42,7 +40,6 @@ export const BeforeAppMount: React.FC = (props) => {
   useEffect(() => {
     console.log('BeforeAppMount!!')
     useFavoriteProjectIdsQueryResult.refetch()
-    useMeQueryResult.refetch()
     useFeedLikesQueryResult.refetch()
     useTaskLikesQueryResult.refetch()
     useTabStatusForMyTasksQueryResult.refetch()

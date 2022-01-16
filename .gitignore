@@ -47,6 +47,8 @@ yarn-error.log*
 # codegen
 src/graphql/types/index.ts
 src/graphql/hooks/index.ts
+src/graphql/types/index.ts
+src/graphql/enums/index.ts
 scripts/codegen/token.json
 schema.json
 __schema__.graphql

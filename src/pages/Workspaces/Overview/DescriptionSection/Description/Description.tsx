@@ -10,6 +10,7 @@ import { useWorkspace, useWorkspaceCommand } from 'src/store/entities/workspace'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
 import { Provider } from './Provider'
+import { SkeletonDescription } from './SkeletonDescription'
 
 type Props = {}
 
@@ -63,6 +64,7 @@ type ComponentProps = {
 }
 const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
   const { onChange, initialValue, forceUpdate } = props
+  const [loading, setLoading] = useState<boolean>(true)
 
   const handleChange = useCallback(
     (val: string) => {
@@ -71,6 +73,12 @@ const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
     [onChange],
   )
 
+  const handleRendered = useCallback(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 200)
+  }, [])
+
   return (
     <Container>
       <Editor
@@ -78,8 +86,12 @@ const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
         initialValue={initialValue}
         forceUpdate={forceUpdate}
       >
-        <Flex flex={1} flexDirection="column">
-          <EditorContent style={{ minHeight: '80px' }} />
+        <Flex flex={1} flexDirection="column" position="relative" minH="150px">
+          <EditorContent
+            style={{ minHeight: '150px' }}
+            onRendered={handleRendered}
+          />
+          {loading && <SkeletonDescription />}
           <Placeholder />
         </Flex>
       </Editor>

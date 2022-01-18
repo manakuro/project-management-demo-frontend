@@ -16,11 +16,11 @@ export const MembersSection: React.VFC<Props> = memo<Props>(() => {
   const { teammateIds } = useTeammateIdsByWorkspaceId(workspace.id)
 
   return (
-    <Flex flexDirection="column" mt={8}>
+    <Flex flexDirection="column" mt={8} minH="300px">
       <OverviewSectionHeader>
         <OverviewSectionHeaderHeading>Members</OverviewSectionHeaderHeading>
       </OverviewSectionHeader>
-      <Flex flexDirection="column">
+      <Flex flexDirection="column" minH="245px">
         <AddMemberListItem />
         {teammateIds.map((id) => (
           <MemberListItem teammateId={id} key={id} />

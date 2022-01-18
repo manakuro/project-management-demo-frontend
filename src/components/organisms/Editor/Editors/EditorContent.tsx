@@ -5,10 +5,11 @@ import 'prosemirror-view/style/prosemirror.css'
 
 type Props = {
   style?: CSSProperties
+  onRendered?: () => void
 }
 
 export const EditorContent: React.FC<Props> = memo<Props>((props) => {
-  const { style } = props
+  const { style, onRendered } = props
   const view = useEditorViewContext()
   const ref = useRef<HTMLDivElement | null>(null)
 
@@ -22,6 +23,7 @@ export const EditorContent: React.FC<Props> = memo<Props>((props) => {
       }
 
       current.appendChild(view.dom)
+      onRendered?.()
     }
     return () => {
       if (current && view) {

@@ -6,17 +6,17 @@ import { useWorkspaceTeammatesResponse } from 'src/store/entities/workspaceTeamm
 import { WorkspaceResponse } from '../type'
 
 export const useWorkspaceResponse = () => {
-  const { setWorkspace: setWorkspaceEntity } = useWorkspaceResponseEntity()
+  const workspaceResponseEntity = useWorkspaceResponseEntity()
   const { setProjects } = useProjectsResponse()
   const { setWorkspaceTeammates } = useSetters()
 
   const setWorkspace = useRecoilCallback(
     () => (data: WorkspaceResponse) => {
-      setWorkspaceEntity(data.workspace)
-      setProjects(data.projects)
+      workspaceResponseEntity.setWorkspace(data.workspace)
+      setProjects(data.workspace?.projects || [])
       setWorkspaceTeammates(data)
     },
-    [setProjects, setWorkspaceEntity, setWorkspaceTeammates],
+    [workspaceResponseEntity, setProjects, setWorkspaceTeammates],
   )
 
   return {
@@ -25,18 +25,20 @@ export const useWorkspaceResponse = () => {
 }
 
 const useSetters = () => {
-  const { setTeammates: setTeammatesFromResponse } = useTeammatesResponse()
-  const { setWorkspaceTeammates: setWorkspaceTeammatesFromResponse } =
-    useWorkspaceTeammatesResponse()
+  const teammatesResponse = useTeammatesResponse()
+  const workspaceTeammatesResponse = useWorkspaceTeammatesResponse()
 
   const setWorkspaceTeammates = useRecoilCallback(
     () => (data: WorkspaceResponse) => {
-      setWorkspaceTeammatesFromResponse(data.workspaceTeammates)
+      workspaceTeammatesResponse.setWorkspaceTeammates(
+        data.workspace?.workspaceTeammates || [],
+      )
 
-      const teammates = data.workspaceTeammates.map((w) => w.teammate)
-      setTeammatesFromResponse(teammates)
+      const teammates =
+        data.workspace?.workspaceTeammates.map((w) => w.teammate) || []
+      teammatesResponse.setTeammates(teammates)
     },
-    [setTeammatesFromResponse, setWorkspaceTeammatesFromResponse],
+    [teammatesResponse, workspaceTeammatesResponse],
   )
 
   return {

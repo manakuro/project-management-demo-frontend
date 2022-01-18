@@ -1,6 +1,6 @@
 import isEqual from 'lodash-es/isEqual'
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
-import { Flex, Skeleton, Stack } from 'src/components/atoms'
+import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
 import {
   parseDescription,
@@ -10,6 +10,7 @@ import { useWorkspace, useWorkspaceCommand } from 'src/store/entities/workspace'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
 import { Provider } from './Provider'
+import { SkeletonDescription } from './SkeletonDescription'
 
 type Props = {}
 
@@ -90,24 +91,7 @@ const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
             style={{ minHeight: '150px' }}
             onRendered={handleRendered}
           />
-          {loading && (
-            <Flex
-              position="absolute"
-              top={0}
-              left={0}
-              w="full"
-              h="full"
-              bg="white"
-              zIndex={1}
-            >
-              <Stack spacing={4} flex={1}>
-                <Skeleton h="16px" w="full" borderRadius="full" />
-                <Skeleton h="16px" w="70%" borderRadius="full" />
-                <Skeleton h="16px" w="60%" borderRadius="full" />
-                <Skeleton h="16px" w="40%" borderRadius="full" />
-              </Stack>
-            </Flex>
-          )}
+          {loading && <SkeletonDescription />}
           <Placeholder />
         </Flex>
       </Editor>

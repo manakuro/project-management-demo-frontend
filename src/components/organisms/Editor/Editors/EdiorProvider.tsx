@@ -7,7 +7,6 @@ import React, {
   SetStateAction,
   useContext,
   useEffect,
-  useRef,
   useState,
 } from 'react'
 import { createReactNodeView } from './ReactNodeView'
@@ -107,10 +106,17 @@ const generateView = (
 const Provider: React.FC<Props> = (props) => {
   const { createPortal, removePortal } = useReactNodeViewCreatePortal()
   const [state, setState] = useState(generateState(props))
-  const viewRef = useRef<EditorView | null>(null)
+  const [view, setView] = useState<EditorView>(
+    generateView({
+      ...props,
+      state,
+      setState,
+      createPortal,
+      removePortal,
+    }),
+  )
 
   useEffect(() => {
-    const view = viewRef.current
     if (!view) return
 
     // const newState = generateState({
@@ -144,19 +150,21 @@ const Provider: React.FC<Props> = (props) => {
   }, [props.forceUpdate])
 
   useEffect(() => {
-    viewRef.current = generateView({
-      ...props,
-      state,
-      setState,
-      createPortal,
-      removePortal,
-    })
+    setView(
+      generateView({
+        ...props,
+        state,
+        setState,
+        createPortal,
+        removePortal,
+      }),
+    )
     /* eslint react-hooks/exhaustive-deps: off */
   }, [props.editable])
 
   return (
     <EditorStateContext.Provider value={state}>
-      <EditorViewContext.Provider value={viewRef.current}>
+      <EditorViewContext.Provider value={view}>
         {props.children}
       </EditorViewContext.Provider>
     </EditorStateContext.Provider>

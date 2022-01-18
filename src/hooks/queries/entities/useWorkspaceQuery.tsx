@@ -10,7 +10,6 @@ export const useWorkspaceQuery = () => {
         name: 'My Workspace',
       },
     },
-    fetchPolicy: 'no-cache',
   })
   const { setWorkspace } = useWorkspaceResponse()
   const [loading, setLoading] = useState(true)

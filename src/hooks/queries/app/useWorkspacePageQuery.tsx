@@ -4,8 +4,8 @@ import { useMountedRef } from 'src/hooks'
 import { useWorkspaceResponse } from 'src/store/app/workspace'
 
 export const useWorkspacePageQuery = () => {
-  const queryResult = useQuery({ fetchPolicy: 'no-cache' })
-  const [loading, setLoading] = useState(true)
+  const queryResult = useQuery()
+  const [loading, setLoading] = useState(queryResult.loading)
   const { setWorkspace } = useWorkspaceResponse()
   const { mountedRef } = useMountedRef()
 

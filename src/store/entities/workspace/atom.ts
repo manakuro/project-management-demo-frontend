@@ -7,7 +7,7 @@ export const workspaceStateDefault = (): Workspace => ({
   id: '',
   name: '',
   description: {
-    type: '',
+    type: 'doc',
     content: [],
   },
   createdBy: '',

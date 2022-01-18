@@ -1,12 +1,5 @@
 query Workspace($where: WorkspaceWhereInput!) {
   workspace(where: $where) {
-    id
-    name
-    description {
-      ...DescriptionFragment
-    }
-    createdBy
-    createdAt
-    updatedAt
+    ...WorkspaceFragment
   }
 }

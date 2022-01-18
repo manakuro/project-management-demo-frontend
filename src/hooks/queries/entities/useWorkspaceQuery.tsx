@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
-import { useWorkspaceQuery as useWorkspaceQueryApollo } from 'src/graphql/hooks'
+import { useWorkspaceQuery as useQuery } from 'src/graphql/hooks'
 import { useMountedRef } from 'src/hooks'
 import { useWorkspaceResponse, Workspace } from 'src/store/entities/workspace'
 
 export const useWorkspaceQuery = () => {
-  const queryResult = useWorkspaceQueryApollo({
+  const queryResult = useQuery({
     variables: {
       where: {
         name: 'My Workspace',
       },
     },
-    fetchPolicy: 'cache-first',
+    fetchPolicy: 'no-cache',
   })
   const { setWorkspace } = useWorkspaceResponse()
   const [loading, setLoading] = useState(true)

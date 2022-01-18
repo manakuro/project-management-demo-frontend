@@ -1,0 +1,11 @@
+query WorkspacePage {
+  workspace(where: { name: "My Workspace" }) {
+    ...WorkspaceFragment
+    projects {
+      ...ProjectFragment
+    }
+    workspaceTeammates {
+      ...WorkspaceTeammateFragment
+    }
+  }
+}

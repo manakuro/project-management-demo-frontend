@@ -1,0 +1,12 @@
+fragment WorkspaceTeammateFragment on WorkspaceTeammate {
+  id
+  isOwner
+  role
+  workspaceId
+  teammateId
+  teammate {
+    ...TeammateFragment
+  }
+  createdAt
+  updatedAt
+}

@@ -1,0 +1,3 @@
+query FavoriteProjectIds($teammateId: ID!) {
+  favoriteProjectIds(teammateId: $teammateId)
+}

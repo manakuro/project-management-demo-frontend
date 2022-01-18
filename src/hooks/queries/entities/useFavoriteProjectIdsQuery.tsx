@@ -1,45 +1,38 @@
-import { useCallback, useEffect } from 'react'
-import {
-  useFavoriteProjectIds,
-  FavoriteProject,
-} from 'src/store/entities/favoriteProjectIds'
+import { useEffect, useMemo, useState } from 'react'
+import { useFavoriteProjectIdsQuery as useQuery } from 'src/graphql/hooks'
+import { useMountedRef } from 'src/hooks'
+import { useFavoriteProjectIdsResponse } from 'src/store/entities/favoriteProjectIds'
+import { useMe } from 'src/store/entities/me'
 
-type Props = {
-  lazy?: boolean
-}
+export const useFavoriteProjectIdsQuery = () => {
+  const { me } = useMe()
+  const skip = useMemo(() => !me.id, [me.id])
 
-export const useFavoriteProjectIdsQuery = (props?: Props) => {
-  const { setFavoriteProjectIds } = useFavoriteProjectIds()
+  const queryResult = useQuery({
+    variables: {
+      teammateId: me.id,
+    },
+    skip,
+  })
+  const { setFavoriteProjectIds } = useFavoriteProjectIdsResponse()
+  const [loading, setLoading] = useState(queryResult.loading)
+  const { mountedRef } = useMountedRef()
 
   useEffect(() => {
-    ;(async () => {
-      if (props?.lazy) return
+    setLoading(queryResult.loading)
+  }, [queryResult.loading])
 
-      const res = await fetchFavoriteProjectIds()
-      setFavoriteProjectIds(res)
-    })()
-  }, [props?.lazy, setFavoriteProjectIds])
+  useEffect(() => {
+    if (!queryResult.data) return
+    if (loading) return
+    if (!mountedRef.current) return
 
-  const refetch = useCallback(() => {
-    ;(async () => {
-      const res = await fetchFavoriteProjectIds()
-      setFavoriteProjectIds(res)
-    })()
-  }, [setFavoriteProjectIds])
+    setFavoriteProjectIds(queryResult.data.favoriteProjectIds)
+    setLoading(false)
+  }, [loading, mountedRef, queryResult.data, setFavoriteProjectIds])
 
   return {
-    refetch,
+    refetch: queryResult.refetch,
+    loading,
   }
-}
-
-const fetchFavoriteProjectIds = (): Promise<FavoriteProject[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: '0AG01FRSQPE9S074GRC1HX85HGCWS',
-        },
-      ])
-    }, 1000)
-  })
 }

@@ -32,7 +32,9 @@ const useSetters = () => {
   const setWorkspaceTeammates = useRecoilCallback(
     () => (data: WorkspaceResponse) => {
       setWorkspaceTeammatesFromResponse(data.workspaceTeammates)
-      setTeammatesFromResponse(data.workspaceTeammates)
+
+      const teammates = data.workspaceTeammates.map((w) => w.teammate)
+      setTeammatesFromResponse(teammates)
     },
     [setTeammatesFromResponse, setWorkspaceTeammatesFromResponse],
   )

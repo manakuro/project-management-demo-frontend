@@ -1,24 +1,5 @@
-import { Teammate } from 'src/store/entities/teammates'
+import { WorkspaceTeammateResponse } from 'src/graphql/types/workspaceTeammate'
 
-export type WorkspaceTeammateResponse = Omit<
-  Teammate,
-  'createAt' | 'updatedAt'
-> & {
-  id: string
-  teammateId: string
-  workspaceId: string
-  isOwner: boolean
-  role: string
-  createdAt: string
-  updatedAt: string
-}
+export type { WorkspaceTeammateResponse } from 'src/graphql/types/workspaceTeammate'
 
-export type WorkspaceTeammate = {
-  id: string
-  teammateId: string
-  workspaceId: string
-  isOwner: boolean
-  role: string
-  createdAt: string
-  updatedAt: string
-}
+export type WorkspaceTeammate = Omit<WorkspaceTeammateResponse, 'teammate'>

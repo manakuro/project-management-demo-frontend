@@ -1,3 +1,5 @@
 mutation DeleteFavoriteProject($input: DeleteFavoriteProjectInput!) {
-  deleteFavoriteProject(input: $input)
+  deleteFavoriteProject(input: $input) {
+    ...FavoriteProjectFragment
+  }
 }

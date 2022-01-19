@@ -1,9 +1,5 @@
 mutation CreateFavoriteProject($input: CreateFavoriteProjectInput!) {
   createFavoriteProject(input: $input) {
-    id
-    projectId
-    teammateId
-    createdAt
-    updatedAt
+    ...FavoriteProjectFragment
   }
 }

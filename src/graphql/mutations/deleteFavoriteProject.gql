@@ -1,0 +1,3 @@
+mutation DeleteFavoriteProject($input: DeleteFavoriteProjectInput!) {
+  deleteFavoriteProject(input: $input)
+}

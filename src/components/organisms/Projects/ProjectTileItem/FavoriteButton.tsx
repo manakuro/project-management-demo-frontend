@@ -1,7 +1,10 @@
 import React, { memo } from 'react'
 import { FavoriteIconButton } from 'src/components/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useFavoriteProjectIds } from 'src/store/entities/favoriteProjectIds'
+import {
+  useFavoriteProjectIds,
+  useFavoriteProjectIdsCommand,
+} from 'src/store/entities/favoriteProjectIds'
 
 type Props = {
   projectId: string
@@ -10,7 +13,8 @@ type Props = {
 export const FavoriteButton: React.VFC<Props> = memo((props) => {
   const { projectId } = props
   const { clickableHoverLightStyle } = useClickableHoverStyle()
-  const { isFavorite, setFavoriteProjectId } = useFavoriteProjectIds()
+  const { setFavoriteProjectId } = useFavoriteProjectIdsCommand()
+  const { isFavorite } = useFavoriteProjectIds()
 
   return (
     <FavoriteIconButton

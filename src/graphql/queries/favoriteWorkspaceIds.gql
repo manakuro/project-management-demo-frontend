@@ -1,0 +1,3 @@
+query FavoriteWorkspaceIds($teammateId: ID!, $workspaceId: ID) {
+  favoriteWorkspaceIds(teammateId: $teammateId, workspaceId: $workspaceId)
+}

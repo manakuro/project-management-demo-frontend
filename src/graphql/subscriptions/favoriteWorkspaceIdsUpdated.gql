@@ -1,0 +1,3 @@
+subscription FavoriteWorkspaceIdsUpdated($teammateId: ID!) {
+  favoriteWorkspaceIdsUpdated(teammateId: $teammateId)
+}

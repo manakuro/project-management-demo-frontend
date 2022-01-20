@@ -6,7 +6,7 @@ import {
   ModalHeader,
   ModalCloseButton,
 } from 'src/components/organisms/Modal'
-import { useProject } from 'src/store/entities/projects'
+import { useProject, useProjectCommand } from 'src/store/entities/projects'
 import { Description } from './Description'
 import { DescriptionTitle } from './DescriptionTitle'
 import { Label } from './Label'
@@ -20,14 +20,15 @@ type Props = {
 
 export const Content: React.VFC<Props> = memo<Props>((props) => {
   const { projectId } = props
-  const { project, setProjectName } = useProject(projectId)
+  const { project } = useProject(projectId)
+  const { setProject } = useProjectCommand()
 
   const handleChangeName = useCallback(
     async (val: string) => {
       if (!val) return
-      await setProjectName(val)
+      await setProject({ name: val, projectId })
     },
-    [setProjectName],
+    [setProject, projectId],
   )
 
   return (

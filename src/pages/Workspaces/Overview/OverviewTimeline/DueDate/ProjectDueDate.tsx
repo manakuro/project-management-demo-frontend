@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { ButtonProps, IconProps } from 'src/components/atoms'
 import { DatePickerWithInput } from 'src/components/molecules'
-import { useProject } from 'src/store/entities/projects'
+import { useProject, useProjectCommand } from 'src/store/entities/projects'
 
 type Props = {
   projectId: string
@@ -11,18 +11,19 @@ type Props = {
 
 export const ProjectDueDate: React.FC<Props> = memo<Props>((props) => {
   const { projectId, buttonStyle, iconStyle } = props
-  const { setProject, project } = useProject(projectId)
+  const { project } = useProject(projectId)
+  const { setProject } = useProjectCommand()
 
   const handleSelect = useCallback(
     async (val: Date) => {
-      await setProject({ dueDate: val.toISOString() })
+      await setProject({ dueDate: val.toISOString(), projectId })
     },
-    [setProject],
+    [setProject, projectId],
   )
 
   const handleDelete = useCallback(async () => {
-    await setProject({ dueDate: '' })
-  }, [setProject])
+    await setProject({ dueDate: '', projectId })
+  }, [setProject, projectId])
 
   return (
     <DatePickerWithInput

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { Wrap } from 'src/components/atoms'
 import { useProjectBaseColorIds } from 'src/store/entities/projectBaseColors'
-import { useProject } from 'src/store/entities/projects'
+import { useProjectCommand } from 'src/store/entities/projects'
 import { ColorPickerItem } from './ColorPickerItem'
 
 type Props = {
@@ -11,13 +11,16 @@ type Props = {
 
 export const ColorPicker: React.VFC<Props> = (props) => {
   const { projectBaseColorIds } = useProjectBaseColorIds()
-  const { setColor } = useProject(props.projectId)
+  const { setProject } = useProjectCommand()
 
   const handleClick = useCallback(
     async (id: string) => {
-      await setColor(props.projectId, id)
+      await setProject({
+        projectId: props.projectId,
+        projectBaseColorId: id,
+      })
     },
-    [props.projectId, setColor],
+    [props.projectId, setProject],
   )
 
   return (

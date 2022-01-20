@@ -11,7 +11,20 @@ export const useProjectCommand = () => {
     [],
   )
 
+  const setProject = useRecoilCallback(
+    ({ snapshot }) =>
+      async (payload: { projectId: string } & Partial<Omit<Project, 'id'>>) => {
+        const current = await snapshot.getPromise(
+          projectState(payload.projectId),
+        )
+
+        await upsert({ ...current, ...payload })
+      },
+    [upsert],
+  )
+
   return {
     upsert,
+    setProject,
   }
 }

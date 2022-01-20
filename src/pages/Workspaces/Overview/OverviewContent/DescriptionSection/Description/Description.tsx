@@ -6,7 +6,7 @@ import {
   parseDescription,
   stringifyDescription,
 } from 'src/shared/prosemirror/convertDescription'
-import { useProject } from 'src/store/entities/projects'
+import { useProject, useProjectCommand } from 'src/store/entities/projects'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
 import { Provider } from './Provider'
@@ -26,7 +26,8 @@ export const Description: React.FC<Props> = memo((props) => {
 
 const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
   const { projectId } = props
-  const { project, setProject } = useProject(projectId)
+  const { project } = useProject(projectId)
+  const { setProject } = useProjectCommand()
   const initialValue = useMemo(
     () => stringifyDescription(project.description),
     [project.description],
@@ -37,9 +38,9 @@ const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
       const description = parseDescription(val)
       if (isEqual(description, project.description)) return
 
-      await setProject({ description })
+      await setProject({ description, projectId })
     },
-    [project.description, setProject],
+    [project.description, setProject, projectId],
   )
 
   return <Component onChange={handleChange} initialValue={initialValue} />

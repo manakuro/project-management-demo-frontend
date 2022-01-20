@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { MenuItem } from 'src/components/organisms/Menu'
-import { useFavoriteWorkspaceIds } from 'src/store/entities/favoriteWorkspaceIds'
+import { useFavoriteWorkspaceIdsCommand } from 'src/store/entities/favoriteWorkspaceIds'
 
 type Props = {
   workspaceId: string
@@ -9,7 +9,7 @@ type Props = {
 
 export const RemoveFromFavorites: React.FC<Props> = (props) => {
   const { onClose, workspaceId } = props
-  const { setFavoriteWorkspaceId } = useFavoriteWorkspaceIds()
+  const { setFavoriteWorkspaceId } = useFavoriteWorkspaceIdsCommand()
 
   const handleClick = useCallback(() => {
     setFavoriteWorkspaceId(workspaceId)

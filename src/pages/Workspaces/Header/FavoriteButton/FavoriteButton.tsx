@@ -1,14 +1,18 @@
 import React, { memo } from 'react'
 import { IconButtonProps } from 'src/components/atoms'
 import { Tooltip, FavoriteIconButton } from 'src/components/molecules'
-import { useFavoriteWorkspaceIds } from 'src/store/entities/favoriteWorkspaceIds'
+import {
+  useFavoriteWorkspaceIds,
+  useFavoriteWorkspaceIdsCommand,
+} from 'src/store/entities/favoriteWorkspaceIds'
 import { useWorkspace } from 'src/store/entities/workspace'
 
 type Props = Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>
 
 export const FavoriteButton: React.VFC<Props> = memo<Props>((props) => {
   const { workspace } = useWorkspace()
-  const { isFavorite, setFavoriteWorkspaceId } = useFavoriteWorkspaceIds()
+  const { isFavorite } = useFavoriteWorkspaceIds()
+  const { setFavoriteWorkspaceId } = useFavoriteWorkspaceIdsCommand()
 
   return (
     <Tooltip

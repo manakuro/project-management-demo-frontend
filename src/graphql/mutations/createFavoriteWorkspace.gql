@@ -1,0 +1,5 @@
+mutation CreateFavoriteWorkspace($input: CreateFavoriteWorkspaceInput!) {
+  createFavoriteWorkspace(input: $input) {
+    ...FavoriteWorkspaceFragment
+  }
+}

@@ -1,0 +1,7 @@
+fragment FavoriteWorkspaceFragment on FavoriteWorkspace {
+  id
+  workspaceId
+  teammateId
+  createdAt
+  updatedAt
+}

@@ -1,45 +1,41 @@
-import { useCallback, useEffect } from 'react'
-import {
-  useFavoriteWorkspaceIds,
-  FavoriteWorkspace,
-} from 'src/store/entities/favoriteWorkspaceIds'
+import { useEffect, useMemo, useState } from 'react'
+import { useFavoriteWorkspaceIdsQuery as useQuery } from 'src/graphql/hooks'
+import { useMountedRef } from 'src/hooks'
+import { useFavoriteWorkspaceIdsResponse } from 'src/store/entities/favoriteWorkspaceIds'
+import { useMe } from 'src/store/entities/me'
+import { useWorkspace } from 'src/store/entities/workspace'
 
-type Props = {
-  lazy?: boolean
-}
+export const useFavoriteWorkspaceIdsQuery = () => {
+  const { me } = useMe()
+  const { workspace } = useWorkspace()
+  const skip = useMemo(() => !me.id || !workspace.id, [me.id, workspace.id])
 
-export const useFavoriteWorkspaceIdsQuery = (props?: Props) => {
-  const { setFavoriteWorkspaceIds } = useFavoriteWorkspaceIds()
+  const queryResult = useQuery({
+    variables: {
+      teammateId: me.id,
+      workspaceId: workspace.id,
+    },
+    skip,
+  })
+  const { setFavoriteWorkspaceIds } = useFavoriteWorkspaceIdsResponse()
+  const [loading, setLoading] = useState(queryResult.loading)
+  const { mountedRef } = useMountedRef()
 
   useEffect(() => {
-    ;(async () => {
-      if (props?.lazy) return
+    setLoading(queryResult.loading)
+  }, [queryResult.loading])
 
-      const res = await fetch()
-      setFavoriteWorkspaceIds(res)
-    })()
-  }, [props?.lazy, setFavoriteWorkspaceIds])
+  useEffect(() => {
+    if (!queryResult.data) return
+    if (loading) return
+    if (!mountedRef.current) return
 
-  const refetch = useCallback(() => {
-    ;(async () => {
-      const res = await fetch()
-      setFavoriteWorkspaceIds(res)
-    })()
-  }, [setFavoriteWorkspaceIds])
+    setFavoriteWorkspaceIds(queryResult.data.favoriteWorkspaceIds)
+    setLoading(false)
+  }, [loading, mountedRef, queryResult.data, setFavoriteWorkspaceIds])
 
   return {
-    refetch,
+    refetch: queryResult.refetch,
+    loading,
   }
-}
-
-const fetch = (): Promise<FavoriteWorkspace[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: '1',
-        },
-      ])
-    }, 1000)
-  })
 }

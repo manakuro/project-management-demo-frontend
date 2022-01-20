@@ -12,9 +12,8 @@ export const RemoveFromFavorites: React.FC<Props> = (props) => {
   const { setFavoriteProjectId } = useFavoriteProjectIdsCommand()
 
   const handleClick = useCallback(() => {
-    setFavoriteProjectId(projectId)
-
     onClose()
+    setFavoriteProjectId(projectId)
   }, [onClose, projectId, setFavoriteProjectId])
 
   return <MenuItem onClick={handleClick}>Remove from Favorites</MenuItem>

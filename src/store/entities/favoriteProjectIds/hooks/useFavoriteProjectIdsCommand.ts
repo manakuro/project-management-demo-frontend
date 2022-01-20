@@ -1,7 +1,10 @@
+import isEqual from 'lodash-es/isEqual'
+import { useEffect } from 'react'
 import { useRecoilCallback } from 'recoil'
 import {
   useCreateFavoriteProjectMutation,
   useDeleteFavoriteProjectMutation,
+  useFavoriteProjectIdsUpdatedSubscription,
 } from 'src/graphql/hooks'
 import { useMe } from 'src/store/entities/me'
 import { favoriteProjectIdsState } from '../atom'
@@ -11,6 +14,12 @@ export const useFavoriteProjectIdsCommand = () => {
   const { me } = useMe()
   const [createFavoriteProjectMutation] = useCreateFavoriteProjectMutation()
   const [deleteFavoriteProjectMutation] = useDeleteFavoriteProjectMutation()
+  const subscriptionResult = useFavoriteProjectIdsUpdatedSubscription({
+    variables: {
+      teammateId: me.id,
+    },
+    skip: !me.id,
+  })
 
   const upsert = useRecoilCallback(
     ({ set }) =>
@@ -18,6 +27,20 @@ export const useFavoriteProjectIdsCommand = () => {
         set(favoriteProjectIdsState, favoriteProjectId)
       },
     [],
+  )
+  const updateBySubscription = useRecoilCallback(
+    ({ snapshot }) =>
+      async (response: FavoriteProjectId[]) => {
+        const favoriteProjectIds = await snapshot.getPromise(
+          favoriteProjectIdsState,
+        )
+
+        if (isEqual([...favoriteProjectIds].sort(), [...response].sort()))
+          return
+
+        upsert(response)
+      },
+    [upsert],
   )
 
   const deleteFavoriteProjectId = useRecoilCallback(
@@ -89,6 +112,17 @@ export const useFavoriteProjectIdsCommand = () => {
       },
     [addFavoriteProjectId, deleteFavoriteProjectId],
   )
+
+  useEffect(() => {
+    if (subscriptionResult.loading) return
+    if (!subscriptionResult.data?.favoriteProjectIdsUpdated) return
+
+    updateBySubscription(subscriptionResult.data.favoriteProjectIdsUpdated)
+  }, [
+    updateBySubscription,
+    subscriptionResult.data?.favoriteProjectIdsUpdated,
+    subscriptionResult.loading,
+  ])
 
   return {
     upsert,

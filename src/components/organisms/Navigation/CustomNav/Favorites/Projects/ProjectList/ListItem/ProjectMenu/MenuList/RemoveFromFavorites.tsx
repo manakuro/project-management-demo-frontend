@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { MenuItem } from 'src/components/organisms/Menu'
-import { useFavoriteProjectIds } from 'src/store/entities/favoriteProjectIds'
+import { useFavoriteProjectIdsCommand } from 'src/store/entities/favoriteProjectIds'
 
 type Props = {
   projectId: string
@@ -9,7 +9,7 @@ type Props = {
 
 export const RemoveFromFavorites: React.FC<Props> = (props) => {
   const { onClose, projectId } = props
-  const { setFavoriteProjectId } = useFavoriteProjectIds()
+  const { setFavoriteProjectId } = useFavoriteProjectIdsCommand()
 
   const handleClick = useCallback(() => {
     setFavoriteProjectId(projectId)

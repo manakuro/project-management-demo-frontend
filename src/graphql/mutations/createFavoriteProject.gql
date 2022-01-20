@@ -1,0 +1,5 @@
+mutation CreateFavoriteProject($input: CreateFavoriteProjectInput!) {
+  createFavoriteProject(input: $input) {
+    ...FavoriteProjectFragment
+  }
+}

@@ -18,14 +18,12 @@ export const BeforeAppMount: React.FC = (props) => {
   useProjectBaseColorsQuery()
   useProjectLightColorsQuery()
   useProjectIconsQuery()
-  const useFavoriteProjectIdsQueryResult = useFavoriteProjectIdsQuery({
-    lazy: true,
-  })
   const useFavoriteWorkspaceIdsQueryResult = useFavoriteWorkspaceIdsQuery({
     lazy: true,
   })
   useWorkspaceQuery()
   useMeQuery()
+  useFavoriteProjectIdsQuery()
 
   const useFeedLikesQueryResult = useFeedLikesQuery({
     lazy: true,
@@ -39,7 +37,6 @@ export const BeforeAppMount: React.FC = (props) => {
 
   useEffect(() => {
     console.log('BeforeAppMount!!')
-    useFavoriteProjectIdsQueryResult.refetch()
     useFeedLikesQueryResult.refetch()
     useTaskLikesQueryResult.refetch()
     useTabStatusForMyTasksQueryResult.refetch()

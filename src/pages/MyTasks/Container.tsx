@@ -16,6 +16,7 @@ export const Container: React.FC & GetLayout = () => {
   return <Component loading={loading} />
 }
 
+// Set tab status before rendering in order to prevent unnecessary tab changed
 const BeforeMountComponent: React.FC = (props) => {
   const { loading: queryLoading } = useMyTasksTabStatusQuery()
   const [loading, setLoading] = useState(queryLoading)

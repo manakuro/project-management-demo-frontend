@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react'
 import { atom, useRecoilState } from 'recoil'
-import { useTabStatusForMyTasksFromResponse } from 'src/store/entities/tabStatusForMyTasks'
-import { TabStatusForMyTasks } from 'src/store/entities/tabStatusForMyTasks/type'
+import { useMyTasksTabStatusResponse } from 'src/store/entities/myTasksTabStatus'
+import { MyTasksTabStatus } from 'src/store/entities/myTasksTabStatus/type'
 
 const key = (str: string) =>
   `src/hooks/queries/useTabStatusForMyTasksQuery/${str}`
@@ -17,7 +17,7 @@ type Props = {
 
 export const useTabStatusForMyTasksQuery = (props?: Props) => {
   const [loading, setLoading] = useRecoilState(loadingState)
-  const { setTabStatus } = useTabStatusForMyTasksFromResponse()
+  const { setMyTaskTabStatus } = useMyTasksTabStatusResponse()
 
   useEffect(() => {
     ;(async () => {
@@ -25,19 +25,19 @@ export const useTabStatusForMyTasksQuery = (props?: Props) => {
 
       setLoading(true)
       const res = await fetch()
-      setTabStatus(res)
+      setMyTaskTabStatus(res)
       setLoading(false)
     })()
-  }, [props?.lazy, setTabStatus, setLoading])
+  }, [props?.lazy, setMyTaskTabStatus, setLoading])
 
   const refetch = useCallback(() => {
     ;(async () => {
       setLoading(true)
       const res = await fetch()
-      setTabStatus(res)
+      setMyTaskTabStatus(res)
       setLoading(false)
     })()
-  }, [setTabStatus, setLoading])
+  }, [setMyTaskTabStatus, setLoading])
 
   return {
     refetch,
@@ -45,8 +45,8 @@ export const useTabStatusForMyTasksQuery = (props?: Props) => {
   }
 }
 
-const fetch = async (): Promise<TabStatusForMyTasks> => {
-  return new Promise<TabStatusForMyTasks>((resolve) => {
+const fetch = async (): Promise<MyTasksTabStatus> => {
+  return new Promise<MyTasksTabStatus>((resolve) => {
     setTimeout(() => {
       resolve({
         id: '1',

@@ -1,5 +1,5 @@
 import { atom, selectorFamily } from 'recoil'
-import { TabStatusForMyTasks } from './type'
+import { MyTasksTabStatus } from './type'
 import {
   TASK_TAB_STATUS_TYPE_BOARD,
   TASK_TAB_STATUS_TYPE_CALENDAR,
@@ -7,10 +7,10 @@ import {
   TASK_TAB_STATUS_TYPE_LIST,
 } from './types'
 
-const key = (str: string) => `src/store/entities/tabStatusForMyTasks/${str}`
+const key = (str: string) => `src/store/entities/myTasksTabStatus/${str}`
 
-export const tabStatusForMyTasksState = atom<TabStatusForMyTasks>({
-  key: key('tabStatusForMyTasksState'),
+export const tabStatusState = atom<MyTasksTabStatus>({
+  key: key('tabStatusState'),
   default: {
     id: '',
     teammateId: '',
@@ -18,15 +18,12 @@ export const tabStatusForMyTasksState = atom<TabStatusForMyTasks>({
   },
 })
 
-export const isTabStatusForMyTasksState = selectorFamily<
-  boolean,
-  TaskTabStatuses
->({
-  key: key('isTabStatusForMyTasksState'),
+export const isTabStatusState = selectorFamily<boolean, TaskTabStatuses>({
+  key: key('isTabStatusState'),
   get:
     (status) =>
     ({ get }) => {
-      const taskStatus = get(tabStatusForMyTasksState)
+      const taskStatus = get(tabStatusState)
       return tasksTabStatues[status] === taskStatus.tabStatus
     },
 })

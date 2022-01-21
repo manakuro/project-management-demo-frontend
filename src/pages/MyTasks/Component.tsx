@@ -14,9 +14,9 @@ import {
 } from 'src/router'
 import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus'
 import {
-  TabStatusForMyTasks,
-  useTabStatusForMyTasks,
-} from 'src/store/entities/tabStatusForMyTasks'
+  MyTasksTabStatus,
+  useMyTasksTabStatus,
+} from 'src/store/entities/myTasksTabStatus'
 import { Board } from './Board'
 import { Calendar } from './Calendar'
 import { Files } from './Files'
@@ -51,7 +51,7 @@ const mapURLtoTabStatus = ({
   tabStatus,
 }: {
   router: NextRouter
-  tabStatus: TabStatusForMyTasks['tabStatus']
+  tabStatus: MyTasksTabStatus['tabStatus']
 }): Index => {
   if (isMyTasksListURL(router)) return TASKS_INDEX
   if (isMyTasksBoardURL(router)) return BOARD_INDEX
@@ -80,7 +80,7 @@ const WrappedComponent: React.VFC = memo(() => {
     navigateToMyTasksFiles,
     router,
   } = useRouter()
-  const { setTabStatus, isTaskTabStatus, tabStatus } = useTabStatusForMyTasks()
+  const { setTabStatus, isTabStatus, tabStatus } = useMyTasksTabStatus()
   const { isSorted, sortBy } = useMyTasksTaskListStatus()
   const { loadingQuery, setLoadingTabContent } = useMyTasksContext()
   const [tabIndex, setTabIndex] = React.useState<Index>(
@@ -144,19 +144,19 @@ const WrappedComponent: React.VFC = memo(() => {
     // When task detail opening
     if (isMyTasksDetailURL(router)) {
       switch (true) {
-        case isTaskTabStatus('list'): {
+        case isTabStatus('list'): {
           setTabIndex(TASKS_INDEX)
           break
         }
-        case isTaskTabStatus('board'): {
+        case isTabStatus('board'): {
           setTabIndex(BOARD_INDEX)
           break
         }
-        case isTaskTabStatus('calendar'): {
+        case isTabStatus('calendar'): {
           setTabIndex(CALENDAR_INDEX)
           break
         }
-        case isTaskTabStatus('files'): {
+        case isTabStatus('files'): {
           setTabIndex(FILES_INDEX)
           break
         }

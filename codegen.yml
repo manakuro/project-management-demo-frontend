@@ -8,8 +8,13 @@ generates:
       afterOneFileWrite:
         - eslint --fix
     plugins:
+      - add:
+          content: "/* eslint-disable @typescript-eslint/no-redeclare */"
       - typescript
       - typescript-operations
+    config:
+      enumsAsConst: true
+
   ./src/graphql/enums/index.ts:
     hooks:
       afterOneFileWrite:

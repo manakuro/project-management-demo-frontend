@@ -7,25 +7,25 @@ import {
   ROUTE_MY_TASKS_FILES,
   ROUTE_MY_TASKS,
 } from 'src/router'
-import { useTabStatusForMyTasks } from 'src/store/entities/tabStatusForMyTasks'
+import { useMyTasksTabStatus } from 'src/store/entities/myTasksTabStatus'
 import { NavListItem } from '../../NavListItem'
 import { NavListItem as TNavListItem } from '../../type'
 
 export const MyTasks: React.VFC = memo(() => {
   const router = useRouter()
-  const { isTaskTabStatus } = useTabStatusForMyTasks()
+  const { isTabStatus } = useMyTasksTabStatus()
   const href = useMemo(() => {
     switch (true) {
-      case isTaskTabStatus('list'):
+      case isTabStatus('List'):
         return ROUTE_MY_TASKS_LIST.href.pathname()
-      case isTaskTabStatus('board'):
+      case isTabStatus('Board'):
         return ROUTE_MY_TASKS_BOARD.href.pathname()
-      case isTaskTabStatus('calendar'):
+      case isTabStatus('Calendar'):
         return ROUTE_MY_TASKS_CALENDAR.href.pathname()
-      case isTaskTabStatus('files'):
+      case isTabStatus('Files'):
         return ROUTE_MY_TASKS_FILES.href.pathname()
     }
-  }, [isTaskTabStatus])!
+  }, [isTabStatus])!
 
   const item = useMemo<TNavListItem>(
     () => ({

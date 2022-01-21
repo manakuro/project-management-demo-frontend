@@ -1,6 +1,6 @@
 import { selectorFamily } from 'recoil'
 import { isTaskListSortStatusState } from 'src/store/app/myTasks/taskListStatus'
-import { isTabStatusForMyTasksState } from 'src/store/entities/tabStatusForMyTasks'
+import { isTabStatusState } from 'src/store/entities/myTasksTabStatus'
 import { TaskSection } from 'src/store/entities/taskSections'
 import { tasksByTaskSectionIdState } from 'src/store/entities/tasks'
 import { taskSectionsByTeammateIdState } from 'src/store/entities/teammatesTaskSections'
@@ -15,7 +15,7 @@ export const taskSectionIdsState = selectorFamily<string[], string>({
       const taskSections = get(taskSectionsByTeammateIdState(teammateId))
 
       switch (true) {
-        case get(isTabStatusForMyTasksState('list')): {
+        case get(isTabStatusState('List')): {
           switch (true) {
             case get(isTaskListSortStatusState('dueDate')): {
               const hasTaskWithNoDueDate = !!taskSections.filter(

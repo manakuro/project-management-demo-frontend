@@ -1,5 +1,5 @@
-import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
+import { useUpdateMyTasksTabStatusMutation } from 'src/graphql/hooks'
 import { tabStatusState } from '../atom'
 import {
   MyTasksTabStatus,
@@ -8,6 +8,8 @@ import {
 } from '../type'
 
 export const useMyTasksTabStatusCommand = () => {
+  const [updateMyTasksTabStatusMutation] = useUpdateMyTasksTabStatusMutation()
+
   const upsert = useRecoilCallback(
     ({ set }) =>
       (val: Partial<MyTasksTabStatus>) => {
@@ -19,11 +21,30 @@ export const useMyTasksTabStatusCommand = () => {
     [],
   )
 
-  const setTabStatus = useCallback(
-    (key: MyTasksTabStatusCodeKey) => {
-      upsert({ status: MyTasksTabStatusCode[key] })
-    },
-    [upsert],
+  const setTabStatus = useRecoilCallback(
+    ({ snapshot }) =>
+      async (key: MyTasksTabStatusCodeKey) => {
+        const current = await snapshot.getPromise(tabStatusState)
+
+        const input = { status: MyTasksTabStatusCode[key] }
+        upsert(input)
+
+        try {
+          await updateMyTasksTabStatusMutation({
+            variables: {
+              input: {
+                id: current.id,
+                ...input,
+              },
+            },
+          })
+        } catch (err) {
+          console.error(err)
+          upsert(current)
+          throw err
+        }
+      },
+    [updateMyTasksTabStatusMutation, upsert],
   )
 
   return {

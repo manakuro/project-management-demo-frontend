@@ -1,23 +1,5 @@
 mutation UpdateWorkspace($input: UpdateWorkspaceInput!) {
   updateWorkspace(input: $input) {
-    id
-    name
-    description {
-      type
-      content {
-        type
-        content {
-          text
-          type
-          attrs {
-            mentionId
-            mentionType
-          }
-        }
-      }
-    }
-    createdAt
-    updatedAt
-    createdBy
+    ...WorkspaceFragment
   }
 }

@@ -1,23 +1,5 @@
 subscription WorkspaceUpdated($id: ID!) {
   workspaceUpdated(id: $id) {
-    id
-    name
-    description {
-      type
-      content {
-        type
-        content {
-          text
-          type
-          attrs {
-            mentionId
-            mentionType
-          }
-        }
-      }
-    }
-    createdAt
-    createdBy
-    updatedAt
+    ...WorkspaceFragment
   }
 }

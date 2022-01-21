@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import {
   Icon as AtomsIcon,
   BoxProps,
@@ -16,6 +16,7 @@ type Props = {
   currentProjectIconId: string
   currentProjectLightColorId: string
   currentProjectBaseColorId: string
+  onClick: (id: string) => Promise<void>
 }
 
 export const IconPickerItem: React.VFC<Props> = memo<Props>((props) => {
@@ -24,6 +25,7 @@ export const IconPickerItem: React.VFC<Props> = memo<Props>((props) => {
     currentProjectBaseColorId,
     currentProjectLightColorId,
     currentProjectIconId,
+    onClick,
   } = props
   const { projectIcon } = useProjectIcon(projectIconId)
 
@@ -32,6 +34,13 @@ export const IconPickerItem: React.VFC<Props> = memo<Props>((props) => {
   const { _hover, transition } = useLinkHoverStyle({
     color: projectLightColor.color.color,
   })
+
+  const handlePickIcon = useCallback(
+    async (id: string) => {
+      await onClick(id)
+    },
+    [onClick],
+  )
 
   return (
     <WrapItem>
@@ -43,6 +52,7 @@ export const IconPickerItem: React.VFC<Props> = memo<Props>((props) => {
         }
         _hover={_hover}
         transition={transition}
+        onClick={() => handlePickIcon(projectIcon.id)}
       >
         <AtomsIcon icon={projectIcon.icon.icon as IconType} w={6} h={6} />
       </IconBox>

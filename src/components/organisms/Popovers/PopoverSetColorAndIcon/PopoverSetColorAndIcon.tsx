@@ -44,6 +44,7 @@ export const PopoverSetColorAndIcon: React.FC<Props> = (props) => {
           />
           <Divider />
           <IconPicker
+            projectId={props.project.id}
             currentProjectIconId={props.project.projectIconId}
             currentProjectLightColorId={props.project.projectLightColorId}
             currentProjectBaseColorId={props.project.projectBaseColorId}

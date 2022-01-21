@@ -15,7 +15,7 @@ export const taskSectionIdsState = selectorFamily<string[], string>({
       const taskSections = get(taskSectionsByTeammateIdState(teammateId))
 
       switch (true) {
-        case get(isTabStatusState('list')): {
+        case get(isTabStatusState('List')): {
           switch (true) {
             case get(isTaskListSortStatusState('dueDate')): {
               const hasTaskWithNoDueDate = !!taskSections.filter(

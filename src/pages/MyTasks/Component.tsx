@@ -15,7 +15,9 @@ import {
 import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus'
 import {
   MyTasksTabStatus,
+  MyTasksTabStatusCode,
   useMyTasksTabStatus,
+  useMyTasksTabStatusCommand,
 } from 'src/store/entities/myTasksTabStatus'
 import { Board } from './Board'
 import { Calendar } from './Calendar'
@@ -51,7 +53,7 @@ const mapURLtoTabStatus = ({
   tabStatus,
 }: {
   router: NextRouter
-  tabStatus: MyTasksTabStatus['tabStatus']
+  tabStatus: MyTasksTabStatus['status']
 }): Index => {
   if (isMyTasksListURL(router)) return TASKS_INDEX
   if (isMyTasksBoardURL(router)) return BOARD_INDEX
@@ -59,13 +61,13 @@ const mapURLtoTabStatus = ({
   if (isMyTasksFilesURL(router)) return FILES_INDEX
 
   switch (tabStatus) {
-    case 1:
+    case MyTasksTabStatusCode.List:
       return TASKS_INDEX
-    case 2:
+    case MyTasksTabStatusCode.Board:
       return BOARD_INDEX
-    case 3:
+    case MyTasksTabStatusCode.Calendar:
       return CALENDAR_INDEX
-    case 4:
+    case MyTasksTabStatusCode.Files:
       return FILES_INDEX
   }
 
@@ -80,11 +82,12 @@ const WrappedComponent: React.VFC = memo(() => {
     navigateToMyTasksFiles,
     router,
   } = useRouter()
-  const { setTabStatus, isTabStatus, tabStatus } = useMyTasksTabStatus()
+  const { isTabStatus, myTasksTabStatus } = useMyTasksTabStatus()
+  const { setTabStatus } = useMyTasksTabStatusCommand()
   const { isSorted, sortBy } = useMyTasksTaskListStatus()
   const { loadingQuery, setLoadingTabContent } = useMyTasksContext()
   const [tabIndex, setTabIndex] = React.useState<Index>(
-    mapURLtoTabStatus({ router, tabStatus }),
+    mapURLtoTabStatus({ router, tabStatus: myTasksTabStatus.status }),
   )
 
   const setLoading = useCallback(() => {
@@ -100,7 +103,7 @@ const WrappedComponent: React.VFC = memo(() => {
         case TASKS_INDEX: {
           setLoading()
           setTabIndex(TASKS_INDEX)
-          setTabStatus('list')
+          setTabStatus('List')
           await navigateToMyTasksList()
           break
         }
@@ -108,21 +111,21 @@ const WrappedComponent: React.VFC = memo(() => {
           if (isSorted('project')) sortBy('none')
           setLoading()
           setTabIndex(BOARD_INDEX)
-          setTabStatus('board')
+          setTabStatus('Board')
           await navigateToMyTasksBoard()
           break
         }
         case CALENDAR_INDEX: {
           setLoading()
           setTabIndex(CALENDAR_INDEX)
-          setTabStatus('calendar')
+          setTabStatus('Calendar')
           await navigateToMyTasksCalendar()
           break
         }
         case FILES_INDEX: {
           setLoading()
           setTabIndex(FILES_INDEX)
-          setTabStatus('files')
+          setTabStatus('Files')
           await navigateToMyTasksFiles()
           break
         }
@@ -144,19 +147,19 @@ const WrappedComponent: React.VFC = memo(() => {
     // When task detail opening
     if (isMyTasksDetailURL(router)) {
       switch (true) {
-        case isTabStatus('list'): {
+        case isTabStatus('List'): {
           setTabIndex(TASKS_INDEX)
           break
         }
-        case isTabStatus('board'): {
+        case isTabStatus('Board'): {
           setTabIndex(BOARD_INDEX)
           break
         }
-        case isTabStatus('calendar'): {
+        case isTabStatus('Calendar'): {
           setTabIndex(CALENDAR_INDEX)
           break
         }
-        case isTabStatus('files'): {
+        case isTabStatus('Files'): {
           setTabIndex(FILES_INDEX)
           break
         }
@@ -165,20 +168,20 @@ const WrappedComponent: React.VFC = memo(() => {
     }
 
     if (isMyTasksListURL(router)) {
-      setTabStatus('list')
+      setTabStatus('List')
       return
     }
     if (isMyTasksBoardURL(router)) {
       if (isSorted('project')) sortBy('none')
-      setTabStatus('board')
+      setTabStatus('Board')
       return
     }
     if (isMyTasksCalendarURL(router)) {
-      setTabStatus('calendar')
+      setTabStatus('Calendar')
       return
     }
     if (isMyTasksFilesURL(router)) {
-      setTabStatus('files')
+      setTabStatus('Files')
       return
     }
     // Force update tab status based on URL

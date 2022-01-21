@@ -1,58 +1,28 @@
-import { useCallback, useEffect } from 'react'
-import { atom, useRecoilState } from 'recoil'
+import { useEffect, useState } from 'react'
+import { useMyTasksTabStatusQuery as useQuery } from 'src/graphql/hooks'
+import { useMountedRef } from 'src/hooks'
 import { useMyTasksTabStatusResponse } from 'src/store/entities/myTasksTabStatus'
-import { MyTasksTabStatus } from 'src/store/entities/myTasksTabStatus/type'
 
-const key = (str: string) =>
-  `src/hooks/queries/useTabStatusForMyTasksQuery/${str}`
-
-export const loadingState = atom<boolean>({
-  key: key('loadingState'),
-  default: true,
-})
-
-type Props = {
-  lazy?: boolean
-}
-
-export const useTabStatusForMyTasksQuery = (props?: Props) => {
-  const [loading, setLoading] = useRecoilState(loadingState)
+export const useMyTasksTabStatusQuery = () => {
+  const queryResult = useQuery()
   const { setMyTaskTabStatus } = useMyTasksTabStatusResponse()
+  const [loading, setLoading] = useState(true)
+  const { mountedRef } = useMountedRef()
 
   useEffect(() => {
-    ;(async () => {
-      if (props?.lazy) return
+    setLoading(queryResult.loading)
+  }, [queryResult.loading])
 
-      setLoading(true)
-      const res = await fetch()
-      setMyTaskTabStatus(res)
-      setLoading(false)
-    })()
-  }, [props?.lazy, setMyTaskTabStatus, setLoading])
+  useEffect(() => {
+    if (!queryResult.data?.myTasksTabStatus) return
+    if (loading) return
+    if (!mountedRef.current) return
 
-  const refetch = useCallback(() => {
-    ;(async () => {
-      setLoading(true)
-      const res = await fetch()
-      setMyTaskTabStatus(res)
-      setLoading(false)
-    })()
-  }, [setMyTaskTabStatus, setLoading])
+    setMyTaskTabStatus(queryResult.data.myTasksTabStatus)
+  }, [loading, mountedRef, queryResult.data, setMyTaskTabStatus])
 
   return {
-    refetch,
+    refetch: queryResult.refetch,
     loading,
   }
-}
-
-const fetch = async (): Promise<MyTasksTabStatus> => {
-  return new Promise<MyTasksTabStatus>((resolve) => {
-    setTimeout(() => {
-      resolve({
-        id: '1',
-        teammateId: '1',
-        tabStatus: 1,
-      })
-    }, 500)
-  })
 }

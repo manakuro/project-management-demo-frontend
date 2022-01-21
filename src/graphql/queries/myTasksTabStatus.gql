@@ -1,0 +1,5 @@
+query MyTasksTabStatus($where: MyTasksTabStatusWhereInput) {
+  myTasksTabStatus(where: $where) {
+    ...MyTasksTabStatusFragment
+  }
+}

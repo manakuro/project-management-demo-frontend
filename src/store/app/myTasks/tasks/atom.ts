@@ -27,7 +27,7 @@ export const taskIdsState = selectorFamily<string[], string>({
       tasks = filterTasks({ get })(tasks)
 
       switch (true) {
-        case get(isTabStatusState('list')) &&
+        case get(isTabStatusState('List')) &&
           get(isTaskListSortStatusState('dueDate')): {
           return tasks.filter((t) => !!t.dueDate).map((t) => t.id)
         }
@@ -48,7 +48,7 @@ export const taskIdsByTaskSectionIdState = selectorFamily<
     ({ get }) => {
       let tasks = get(tasksState)
       switch (true) {
-        case get(isTabStatusState('list')) &&
+        case get(isTabStatusState('List')) &&
           get(isTaskListSortStatusState('dueDate')): {
           tasks = filterByTeammateId(teammateId)(tasks)
           tasks = filterByTaskSectionId(taskSectionId)(tasks)

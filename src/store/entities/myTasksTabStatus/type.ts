@@ -1,7 +1,8 @@
-import { TaskTabStatusType } from './types'
+import { MyTasksTabStatusCode } from 'src/graphql/enums'
+import type { MyTasksTabStatusResponse } from 'src/graphql/types/myTasksTabStatus'
 
-export type MyTasksTabStatus = {
-  id: string
-  teammateId: string
-  tabStatus: TaskTabStatusType
-}
+export type { MyTasksTabStatusResponse } from 'src/graphql/types/myTasksTabStatus'
+export { MyTasksTabStatusCode } from 'src/graphql/enums'
+export type MyTasksTabStatusCodeKey = keyof typeof MyTasksTabStatusCode
+
+export type MyTasksTabStatus = MyTasksTabStatusResponse

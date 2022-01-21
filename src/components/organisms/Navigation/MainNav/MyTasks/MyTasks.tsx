@@ -16,13 +16,13 @@ export const MyTasks: React.VFC = memo(() => {
   const { isTabStatus } = useMyTasksTabStatus()
   const href = useMemo(() => {
     switch (true) {
-      case isTabStatus('list'):
+      case isTabStatus('List'):
         return ROUTE_MY_TASKS_LIST.href.pathname()
-      case isTabStatus('board'):
+      case isTabStatus('Board'):
         return ROUTE_MY_TASKS_BOARD.href.pathname()
-      case isTabStatus('calendar'):
+      case isTabStatus('Calendar'):
         return ROUTE_MY_TASKS_CALENDAR.href.pathname()
-      case isTabStatus('files'):
+      case isTabStatus('Files'):
         return ROUTE_MY_TASKS_FILES.href.pathname()
     }
   }, [isTabStatus])!

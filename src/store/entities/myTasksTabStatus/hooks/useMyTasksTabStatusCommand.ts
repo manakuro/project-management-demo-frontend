@@ -1,6 +1,11 @@
+import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { tabStatusState } from '../atom'
-import { MyTasksTabStatus } from '../type'
+import {
+  MyTasksTabStatus,
+  MyTasksTabStatusCode,
+  MyTasksTabStatusCodeKey,
+} from '../type'
 
 export const useMyTasksTabStatusCommand = () => {
   const upsert = useRecoilCallback(
@@ -14,7 +19,15 @@ export const useMyTasksTabStatusCommand = () => {
     [],
   )
 
+  const setTabStatus = useCallback(
+    (key: MyTasksTabStatusCodeKey) => {
+      upsert({ status: MyTasksTabStatusCode[key] })
+    },
+    [upsert],
+  )
+
   return {
     upsert,
+    setTabStatus,
   }
 }

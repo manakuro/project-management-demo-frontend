@@ -6,7 +6,7 @@ import {
   useMeQuery,
   useFeedLikesQuery,
   useTaskLikesQuery,
-  useTabStatusForMyTasksQuery,
+  useMyTasksTabStatusQuery,
   useFavoriteWorkspaceIdsQuery,
   useProjectBaseColorsQuery,
   useProjectLightColorsQuery,
@@ -22,14 +22,11 @@ export const BeforeAppMount: React.FC = (props) => {
   useWorkspaceQuery()
   useMeQuery()
   useFavoriteProjectIdsQuery()
-
+  useMyTasksTabStatusQuery()
   const useFeedLikesQueryResult = useFeedLikesQuery({
     lazy: true,
   })
   const useTaskLikesQueryResult = useTaskLikesQuery({
-    lazy: true,
-  })
-  const useTabStatusForMyTasksQueryResult = useTabStatusForMyTasksQuery({
     lazy: true,
   })
 
@@ -37,7 +34,6 @@ export const BeforeAppMount: React.FC = (props) => {
     console.log('BeforeAppMount!!')
     useFeedLikesQueryResult.refetch()
     useTaskLikesQueryResult.refetch()
-    useTabStatusForMyTasksQueryResult.refetch()
     /* eslint react-hooks/exhaustive-deps: off */
   }, [])
 

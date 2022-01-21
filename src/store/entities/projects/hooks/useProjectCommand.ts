@@ -23,9 +23,8 @@ export const useProjectCommand = () => {
         const current = await snapshot.getPromise(
           projectState(payload.projectId),
         )
-        const input = { ...current, ...payload }
 
-        upsert(input)
+        upsert({ ...current, ...omit(payload, 'projectId') })
 
         try {
           await updateProjectMutation({
@@ -49,12 +48,7 @@ export const useProjectCommand = () => {
 
         if (isEqual(omit(current, 'updatedAt'), omit(response, 'updatedAt')))
           return
-
-        console.log(
-          'projectBaseColorId!!: ',
-          current.projectBaseColorId,
-          response.projectBaseColorId,
-        )
+        console.log('subscription updated!')
 
         upsert(response)
       },

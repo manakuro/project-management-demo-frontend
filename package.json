@@ -36,6 +36,7 @@
     "@react-hook/resize-observer": "^1.2.4",
     "@react-pdf-viewer/core": "2.8.0",
     "date-fns": "^2.23.0",
+    "deep-object-diff": "^1.1.0",
     "emoji-mart": "^3.0.1",
     "emotion-theming": "^11.0.0",
     "firebase": "^9.6.1",

@@ -473,7 +473,6 @@ export const taskSections: TaskSectionResponse[] = [
         updatedAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
       },
     ],
-    isDeleted: false,
   },
   {
     id: '2',
@@ -683,7 +682,6 @@ export const taskSections: TaskSectionResponse[] = [
         updatedAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
       },
     ],
-    isDeleted: false,
   },
 ]
 

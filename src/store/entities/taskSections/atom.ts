@@ -10,7 +10,6 @@ export const initialState = (): TaskSection => ({
   name: DEFAULT_TITLE_NAME,
   createdAt: '',
   updatedAt: '',
-  isDeleted: false,
 })
 export const {
   state: taskSectionState,

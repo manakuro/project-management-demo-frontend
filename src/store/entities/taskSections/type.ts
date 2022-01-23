@@ -6,7 +6,6 @@ export type TaskSectionResponse = {
   tasks: TaskResponse[]
   createdAt: string
   updatedAt: string
-  isDeleted: boolean
 }
 
 export type TaskSection = {
@@ -14,5 +13,4 @@ export type TaskSection = {
   name: string
   createdAt: string
   updatedAt: string
-  isDeleted: boolean
 }

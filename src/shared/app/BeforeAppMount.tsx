@@ -6,7 +6,7 @@ import {
   useMeQuery,
   useFeedLikesQuery,
   useTaskLikesQuery,
-  useMyTasksTabStatusQuery,
+  useTeammateTaskTabStatusQuery,
   useFavoriteWorkspaceIdsQuery,
   useProjectBaseColorsQuery,
   useProjectLightColorsQuery,
@@ -22,7 +22,7 @@ export const BeforeAppMount: React.FC = (props) => {
   useWorkspaceQuery()
   useMeQuery()
   useFavoriteProjectIdsQuery()
-  useMyTasksTabStatusQuery()
+  useTeammateTaskTabStatusQuery()
   const useFeedLikesQueryResult = useFeedLikesQuery({
     lazy: true,
   })

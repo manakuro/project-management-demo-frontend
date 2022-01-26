@@ -14,11 +14,11 @@ import {
 } from 'src/router'
 import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus'
 import {
-  MyTasksTabStatus,
-  MyTasksTabStatusCode,
-  useMyTasksTabStatus,
-  useMyTasksTabStatusCommand,
-} from 'src/store/entities/myTasksTabStatus'
+  TeammateTaskTabStatus,
+  TeammateTaskTabStatusCode,
+  useTeammateTaskTabStatus,
+  useTeammateTaskTabStatusCommand,
+} from 'src/store/entities/teammateTaskTabStatus'
 import { Board } from './Board'
 import { Calendar } from './Calendar'
 import { Files } from './Files'
@@ -53,7 +53,7 @@ const mapURLtoTabStatus = ({
   tabStatus,
 }: {
   router: NextRouter
-  tabStatus: MyTasksTabStatus['status']
+  tabStatus: TeammateTaskTabStatus['statusCode']
 }): Index => {
   if (isMyTasksListURL(router)) return TASKS_INDEX
   if (isMyTasksBoardURL(router)) return BOARD_INDEX
@@ -61,13 +61,13 @@ const mapURLtoTabStatus = ({
   if (isMyTasksFilesURL(router)) return FILES_INDEX
 
   switch (tabStatus) {
-    case MyTasksTabStatusCode.List:
+    case TeammateTaskTabStatusCode.List:
       return TASKS_INDEX
-    case MyTasksTabStatusCode.Board:
+    case TeammateTaskTabStatusCode.Board:
       return BOARD_INDEX
-    case MyTasksTabStatusCode.Calendar:
+    case TeammateTaskTabStatusCode.Calendar:
       return CALENDAR_INDEX
-    case MyTasksTabStatusCode.Files:
+    case TeammateTaskTabStatusCode.Files:
       return FILES_INDEX
   }
 
@@ -82,12 +82,12 @@ const WrappedComponent: React.VFC = memo(() => {
     navigateToMyTasksFiles,
     router,
   } = useRouter()
-  const { isTabStatus, myTasksTabStatus } = useMyTasksTabStatus()
-  const { setTabStatus } = useMyTasksTabStatusCommand()
+  const { isTabStatus, teammateTaskTabStatus } = useTeammateTaskTabStatus()
+  const { setTabStatus } = useTeammateTaskTabStatusCommand()
   const { isSorted, sortBy } = useMyTasksTaskListStatus()
   const { loadingQuery, setLoadingTabContent } = useMyTasksContext()
   const [tabIndex, setTabIndex] = React.useState<Index>(
-    mapURLtoTabStatus({ router, tabStatus: myTasksTabStatus.status }),
+    mapURLtoTabStatus({ router, tabStatus: teammateTaskTabStatus.statusCode }),
   )
 
   const setLoading = useCallback(() => {

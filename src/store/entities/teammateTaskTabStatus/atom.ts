@@ -1,19 +1,19 @@
 import { atom, selectorFamily } from 'recoil'
 import {
-  MyTasksTabStatus,
-  MyTasksTabStatusCode,
-  MyTasksTabStatusCodeKey,
+  TeammateTaskTabStatus,
+  TeammateTaskTabStatusCode,
+  TeammateTaskTabStatusCodeKey,
 } from './type'
 
-const key = (str: string) => `src/store/entities/myTasksTabStatus/${str}`
+const key = (str: string) => `src/store/entities/teammateTaskTabStatus/${str}`
 
-export const tabStatusState = atom<MyTasksTabStatus>({
+export const tabStatusState = atom<TeammateTaskTabStatus>({
   key: key('tabStatusState'),
   default: {
     id: '',
     teammateId: '',
     workspaceId: '',
-    status: MyTasksTabStatusCode.List,
+    statusCode: TeammateTaskTabStatusCode.List,
     createdAt: '',
     updatedAt: '',
   },
@@ -21,13 +21,13 @@ export const tabStatusState = atom<MyTasksTabStatus>({
 
 export const isTabStatusState = selectorFamily<
   boolean,
-  MyTasksTabStatusCodeKey
+  TeammateTaskTabStatusCodeKey
 >({
   key: key('isTabStatusState'),
   get:
     (key) =>
     ({ get }) => {
       const taskStatus = get(tabStatusState)
-      return MyTasksTabStatusCode[key] === taskStatus.status
+      return TeammateTaskTabStatusCode[key] === taskStatus.statusCode
     },
 })

@@ -1,0 +1,5 @@
+query TeammateTaskTabStatus($where: TeammateTaskTabStatusWhereInput) {
+  teammateTaskTabStatus(where: $where) {
+    ...TeammateTaskTabStatusFragment
+  }
+}

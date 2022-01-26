@@ -1,5 +1,0 @@
-mutation UpdateMyTasksTabStatus($input: UpdateMyTasksTabStatusInput!) {
-  updateMyTasksTabStatus(input: $input) {
-    ...MyTasksTabStatusFragment
-  }
-}

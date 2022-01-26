@@ -6,13 +6,13 @@ import {
   sortTasks,
 } from 'src/store/app/myTasks/filters'
 import { isTaskListSortStatusState } from 'src/store/app/myTasks/taskListStatus'
-import { isTabStatusState } from 'src/store/entities/myTasksTabStatus'
 import {
   tasksState,
   filterByTeammateId,
   filterByDueDate,
   filterByTaskSectionId,
 } from 'src/store/entities/tasks'
+import { isTabStatusState } from 'src/store/entities/teammateTaskTabStatus'
 
 const key = (str: string) => `src/store/app/myTasks/tasks/${str}`
 

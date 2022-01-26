@@ -7,13 +7,13 @@ import {
   ROUTE_MY_TASKS_FILES,
   ROUTE_MY_TASKS,
 } from 'src/router'
-import { useMyTasksTabStatus } from 'src/store/entities/myTasksTabStatus'
+import { useTeammateTaskTabStatus } from 'src/store/entities/teammateTaskTabStatus'
 import { NavListItem } from '../../NavListItem'
 import { NavListItem as TNavListItem } from '../../type'
 
 export const MyTasks: React.VFC = memo(() => {
   const router = useRouter()
-  const { isTabStatus } = useMyTasksTabStatus()
+  const { isTabStatus } = useTeammateTaskTabStatus()
   const href = useMemo(() => {
     switch (true) {
       case isTabStatus('List'):

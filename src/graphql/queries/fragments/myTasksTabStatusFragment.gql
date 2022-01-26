@@ -1,8 +1,0 @@
-fragment MyTasksTabStatusFragment on MyTasksTabStatus {
-  id
-  teammateId
-  workspaceId
-  status
-  createdAt
-  updatedAt
-}

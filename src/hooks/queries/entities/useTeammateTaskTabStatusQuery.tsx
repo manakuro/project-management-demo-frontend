@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { atom, useRecoilState } from 'recoil'
-import { useMyTasksTabStatusQuery as useQuery } from 'src/graphql/hooks'
+import { useTeammateTaskTabStatusQuery as useQuery } from 'src/graphql/hooks'
 import { useMountedRef } from 'src/hooks'
-import { useMyTasksTabStatusResponse } from 'src/store/entities/myTasksTabStatus'
+import { useTeammateTaskTabStatusResponse } from 'src/store/entities/teammateTaskTabStatus'
 
 const key = (str: string) =>
   `src/hooks/queries/useTabStatusForMyTasksQuery/${str}`
@@ -12,9 +12,9 @@ const loadingState = atom<boolean>({
   default: true,
 })
 
-export const useMyTasksTabStatusQuery = () => {
+export const useTeammateTaskTabStatusQuery = () => {
   const queryResult = useQuery()
-  const { setMyTaskTabStatus } = useMyTasksTabStatusResponse()
+  const { setTeammateTaskTabStatus } = useTeammateTaskTabStatusResponse()
   const [loading, setLoading] = useRecoilState(loadingState)
   const { mountedRef } = useMountedRef()
 
@@ -23,12 +23,12 @@ export const useMyTasksTabStatusQuery = () => {
   }, [queryResult.loading, setLoading])
 
   useEffect(() => {
-    if (!queryResult.data?.myTasksTabStatus) return
+    if (!queryResult.data?.teammateTaskTabStatus) return
     if (loading) return
     if (!mountedRef.current) return
 
-    setMyTaskTabStatus(queryResult.data.myTasksTabStatus)
-  }, [loading, mountedRef, queryResult.data, setMyTaskTabStatus])
+    setTeammateTaskTabStatus(queryResult.data.teammateTaskTabStatus)
+  }, [loading, mountedRef, queryResult.data, setTeammateTaskTabStatus])
 
   return {
     refetch: queryResult.refetch,

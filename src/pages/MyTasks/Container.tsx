@@ -3,7 +3,7 @@ import { GetLayout } from 'src/@types/next'
 import { PageLoader } from 'src/components/molecules'
 import { LayoutDefault } from 'src/components/organisms/Layout'
 import { useMyTasksPageQuery } from 'src/hooks/queries/app'
-import { useMyTasksTabStatusQuery } from 'src/hooks/queries/entities'
+import { useTeammateTaskTabStatusQuery } from 'src/hooks/queries/entities'
 import { Component } from './Component'
 
 export const Container: React.FC & GetLayout = () => {
@@ -18,7 +18,7 @@ export const Container: React.FC & GetLayout = () => {
 
 // Set tab status before rendering in order to prevent unnecessary tab changed
 const BeforeMountComponent: React.FC = (props) => {
-  const { loading: queryLoading } = useMyTasksTabStatusQuery()
+  const { loading: queryLoading } = useTeammateTaskTabStatusQuery()
   const [loading, setLoading] = useState(queryLoading)
   const [loaded, setLoaded] = useState(false)
 

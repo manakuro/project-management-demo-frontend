@@ -20,6 +20,9 @@ fragment TaskFragment on Task {
   subTasks {
     ...TaskFragment
   }
+  projectTasks {
+    ...ProjectTaskFragment
+  }
   isNew
   taskParentId
   completedAt

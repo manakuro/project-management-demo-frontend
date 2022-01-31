@@ -1,4 +1,4 @@
-fragment TaskFragment on Task {
+fragment SubTaskFragment on Task {
   id
   name
   assigneeId
@@ -16,9 +16,6 @@ fragment TaskFragment on Task {
   }
   taskCollaborators {
     ...TaskCollaboratorFragment
-  }
-  subTasks {
-    ...SubTaskFragment
   }
   projectTasks {
     ...ProjectTaskFragment

@@ -1,4 +1,4 @@
-query MyTasks($workspaceId: ID!, $teammateId: ID!) {
+query MyTasksPage($workspaceId: ID!, $teammateId: ID!) {
   teammateTaskSections(where: { teammateID: $teammateId, workspaceID: $workspaceId }) {
    edges {
      node {

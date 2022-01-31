@@ -1,0 +1,19 @@
+query MyTasks($workspaceId: ID!, $teammateId: ID!) {
+  teammateTaskSections(where: { teammateID: $teammateId, workspaceID: $workspaceId }) {
+   edges {
+     node {
+       ...TeammateTaskSectionFragment
+     }
+   }
+  }
+  teammateTaskColumns(where: { teammateID: $teammateId, workspaceID: $workspaceId }) {
+    edges {
+       node {
+         ...TeammateTaskColumnFragment
+       }
+    }
+  }
+  teammateTaskListStatusStatus(where: { teammateID: $teammateId, workspaceID: $workspaceId }) {
+    ...TeammateTaskListStatusStatusFragment
+  }
+}

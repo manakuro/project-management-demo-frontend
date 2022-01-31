@@ -1,0 +1,14 @@
+fragment TaskFileFragment on TaskFile {
+  id
+  projectId
+  taskId
+  taskFeedId
+  name
+  src
+  fileType {
+    ...FileTypeFragment
+  }
+  attached
+  createdAt
+  updatedAt
+}

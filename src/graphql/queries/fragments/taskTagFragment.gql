@@ -1,0 +1,10 @@
+fragment TaskTagFragment on TaskTag {
+  id
+  tagId
+  taskId
+  tag {
+    ...TagFragment
+  }
+  createdAt
+  updatedAt
+}

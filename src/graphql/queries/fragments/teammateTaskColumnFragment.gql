@@ -1,0 +1,14 @@
+fragment TeammateTaskColumnFragment on TeammateTaskColumn {
+  id
+  teammateId
+  taskColumnId
+  taskColumn {
+    id
+    name
+    type
+    createdAt
+    updatedAt
+  }
+  createdAt
+  updatedAt
+}

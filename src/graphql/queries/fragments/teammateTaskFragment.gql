@@ -1,0 +1,10 @@
+fragment TeammateTaskFragment on TeammateTask {
+  id
+  taskId
+  teammateTaskSectionId
+  task {
+    ...TaskFragment
+  }
+  createdAt
+  updatedAt
+}

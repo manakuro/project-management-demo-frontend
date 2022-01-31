@@ -1,0 +1,9 @@
+fragment TagFragment on Tag {
+  id
+  name
+  color {
+    ...ColorFragment
+  }
+  createdAt
+  updatedAt
+}

@@ -1,0 +1,10 @@
+fragment TaskPriorityFragment on TaskPriority {
+  id
+  name
+  priorityType
+  color {
+    ...ColorFragment
+  }
+  createdAt
+  updatedAt
+}

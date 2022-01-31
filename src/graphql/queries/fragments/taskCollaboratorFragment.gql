@@ -1,0 +1,10 @@
+fragment TaskCollaboratorFragment on TaskCollaborator {
+  id
+  taskId
+  teammateId
+  teammate {
+    ...TeammateFragment
+  }
+  createdAt
+  updatedAt
+}

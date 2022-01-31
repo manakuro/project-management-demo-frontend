@@ -1,0 +1,7 @@
+fragment TeammateTaskListStatusStatusFragment on TeammateTaskListStatus {
+  id
+  taskListCompletedStatusId
+  taskListSortStatusId
+  createdAt
+  updatedAt
+}

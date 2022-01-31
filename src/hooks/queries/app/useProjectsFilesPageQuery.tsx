@@ -109,21 +109,6 @@ const fetchTasks = async (): Promise<ProjectsFileResponse[]> => {
           },
         },
         {
-          id: '5',
-          projectId: '1',
-          taskId: '1',
-          feedId: '1',
-          name: 'コンピュータシステムの理論と実践',
-          src: '/files/コンピュータシステムの理論と実践.pdf',
-          createdAt: new Date().toISOString(),
-          type: 2,
-          status: 1,
-          task: {
-            id: '1',
-            name: 'Resolve an issue of auto focus for tasks list detail page',
-          },
-        },
-        {
           id: '6',
           projectId: '1',
           taskId: '1',

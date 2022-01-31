@@ -174,17 +174,6 @@ const fetchTask = async (): Promise<TaskResponse> => {
             status: 1,
           },
           {
-            id: '5',
-            taskId: taskSections[0].tasks[0].id,
-            projectId: '1',
-            feedId: '4',
-            name: 'コンピュータシステムの理論と実践',
-            src: '/files/コンピュータシステムの理論と実践.pdf',
-            createdAt: new Date().toISOString(),
-            type: 2,
-            status: 1,
-          },
-          {
             id: '6',
             taskId: taskSections[0].tasks[0].id,
             projectId: '1',
@@ -224,21 +213,40 @@ const fetchTask = async (): Promise<TaskResponse> => {
                 content: [
                   {
                     type: 'paragraph',
-                    content: [{ type: 'text', text: 'test' }],
+                    content: [
+                      {
+                        type: 'text',
+                        text: 'test',
+                        attrs: { mentionId: '', mentionType: '' },
+                      },
+                    ],
                   },
                   {
                     type: 'paragraph',
-                    content: [{ type: 'text', text: 'test' }],
+                    content: [
+                      {
+                        type: 'text',
+                        text: 'test',
+                        attrs: { mentionId: '', mentionType: '' },
+                      },
+                    ],
                   },
                   {
                     type: 'paragraph',
-                    content: [{ type: 'text', text: 'test' }],
+                    content: [
+                      {
+                        type: 'text',
+                        text: 'test',
+                        attrs: { mentionId: '', mentionType: '' },
+                      },
+                    ],
                   },
                   {
                     type: 'paragraph',
                     content: [
                       {
                         type: 'mention',
+                        text: '',
                         attrs: { mentionId: '2', mentionType: '1' },
                       },
                     ],
@@ -248,17 +256,24 @@ const fetchTask = async (): Promise<TaskResponse> => {
                     content: [
                       {
                         type: 'mention',
+                        text: '',
                         attrs: { mentionId: '1', mentionType: '1' },
                       },
                     ],
                   },
-                  { type: 'paragraph' },
+                  { type: 'paragraph', content: [] },
                   {
                     type: 'paragraph',
-                    content: [{ type: 'text', text: '🐠  ' }],
+                    content: [
+                      {
+                        type: 'text',
+                        text: '🐠  ',
+                        attrs: { mentionId: '', mentionType: '' },
+                      },
+                    ],
                   },
-                  { type: 'paragraph' },
-                  { type: 'paragraph' },
+                  { type: 'paragraph', content: [] },
+                  { type: 'paragraph', content: [] },
                 ],
               },
               null,

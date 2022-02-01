@@ -16,7 +16,7 @@ import {
   useAttachmentIdsByTaskId,
   getAttachmentIcon,
 } from 'src/store/entities/attachments'
-import { ATTACHMENT_TYPE_IMAGE } from 'src/store/entities/attachments/types'
+import { FileTypeCode } from 'src/store/entities/fileTypes'
 import { useTask } from 'src/store/entities/tasks'
 import { transitions } from 'src/styles'
 
@@ -31,7 +31,7 @@ export const TasksFilesListItem: React.VFC<Props> = memo((props) => {
   const { task } = useTask(attachment.taskId)
   const { attachmentIds } = useAttachmentIdsByTaskId(attachment.taskId)
   const { onOpen, setState } = useFileViewerModal()
-  const icon = getAttachmentIcon(attachment.type)
+  const icon = getAttachmentIcon(attachment.fileType.typeCode)
   const { navigateToTaskDetail } = useTasksRouter()
 
   const handleOpenTaskDetail = useCallback(
@@ -84,7 +84,7 @@ export const TasksFilesListItem: React.VFC<Props> = memo((props) => {
           </Flex>
         </Flex>
       </Flex>
-      {attachment.type === ATTACHMENT_TYPE_IMAGE && (
+      {attachment.fileType.typeCode === FileTypeCode.Image && (
         <>
           <Divider />
           <Image

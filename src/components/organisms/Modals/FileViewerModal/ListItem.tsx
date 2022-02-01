@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Flex, Image, Text } from 'src/components/atoms'
 import { PdfViewer } from 'src/components/organisms/PdfViewer'
 import { useAttachment } from 'src/store/entities/attachments'
+import { FileTypeCode } from 'src/store/entities/fileTypes'
 
 type Props = {
   attachmentId: string
@@ -11,14 +12,14 @@ export const ListItem: React.VFC<Props> = (props) => {
   const { attachmentId } = props
   const { attachment } = useAttachment(attachmentId)
 
-  switch (attachment.type) {
-    case 1: {
+  switch (attachment.fileType.typeCode) {
+    case FileTypeCode.Image: {
       return <Image src={attachment.src} objectFit="contain" alt="attachment" />
     }
-    case 2: {
+    case FileTypeCode.Pdf: {
       return <PdfViewer fileUrl={attachment.src} />
     }
-    case 3: {
+    case FileTypeCode.Text: {
       return (
         <Flex
           alignItems="center"

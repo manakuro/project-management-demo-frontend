@@ -1,8 +1,8 @@
-import { AttachmentType } from '../types'
+import { FileTypeCode, FileTypeCodeValue } from 'src/store/entities/fileTypes'
 
-export const getAttachmentName = (type: AttachmentType): string => {
+export const getAttachmentName = (type: FileTypeCodeValue): string => {
   switch (type) {
-    case 2:
+    case FileTypeCode.Pdf:
       return 'PDF'
     default:
       return 'Attachment'

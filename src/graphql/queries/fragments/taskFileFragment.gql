@@ -5,6 +5,7 @@ fragment TaskFileFragment on TaskFile {
   taskFeedId
   name
   src
+  fileTypeId
   fileType {
     ...FileTypeFragment
   }

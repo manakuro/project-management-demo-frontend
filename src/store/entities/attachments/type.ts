@@ -1,13 +1,5 @@
-import { AttachmentType, AttachmentStatus } from './types'
+import type { TaskFileResponse } from 'src/graphql/types/taskFile'
 
-export type Attachment = {
-  id: string
-  projectId: string
-  taskId: string
-  feedId: string
-  name: string
-  src: string
-  createdAt: string
-  type: AttachmentType
-  status: AttachmentStatus
-}
+export type { TaskFileResponse } from 'src/graphql/types/taskFile'
+
+export type TaskFile = TaskFileResponse

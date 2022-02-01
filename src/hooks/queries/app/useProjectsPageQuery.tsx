@@ -3,8 +3,6 @@ import { useMountedRef } from 'src/hooks'
 import { dateFns } from 'src/shared/dateFns'
 import { uuid } from 'src/shared/uuid'
 import { useProjectsResponse } from 'src/store/app/projects'
-import { ProjectsResponse } from 'src/store/app/projects'
-import { TaskSectionResponse } from 'src/store/entities/taskSections'
 import { teammates } from 'src/store/entities/teammates/data'
 
 type Props = {
@@ -44,7 +42,7 @@ export const useProjectsPageQuery = (props?: Props) => {
   }
 }
 
-const taskSections: TaskSectionResponse[] = [
+const taskSections: any[] = [
   {
     id: '1',
     name: 'Recently assigned',
@@ -647,8 +645,8 @@ const taskSections: TaskSectionResponse[] = [
   },
 ]
 
-const fetchTasks = async (): Promise<ProjectsResponse> => {
-  return new Promise<ProjectsResponse>((resolve) => {
+const fetchTasks = async (): Promise<any> => {
+  return new Promise<any>((resolve) => {
     setTimeout(() => {
       resolve({
         taskSections: [

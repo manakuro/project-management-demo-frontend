@@ -3,8 +3,6 @@ import { useMountedRef } from 'src/hooks'
 import { dateFns } from 'src/shared/dateFns'
 import { uuid } from 'src/shared/uuid'
 import { useMyTasksResponse } from 'src/store/app/myTasks'
-import { MyTaskResponse } from 'src/store/app/myTasks'
-import { TaskSectionResponse } from 'src/store/entities/taskSections'
 import { teammates } from 'src/store/entities/teammates/data'
 
 type Props = {
@@ -44,7 +42,7 @@ export const useMyTasksPageQuery = (props?: Props) => {
   }
 }
 
-export const taskSections: TaskSectionResponse[] = [
+export const taskSections: any[] = [
   {
     id: '1',
     name: 'Recently assigned',
@@ -151,7 +149,7 @@ export const taskSections: TaskSectionResponse[] = [
             id: '1',
             projectId: '1',
             taskId: '1',
-            feedId: '1',
+            taskFeedId: '1',
             name: '/images/cat_img.png',
             src: '/images/cat_img.png',
             createdAt: new Date().toISOString(),
@@ -162,7 +160,7 @@ export const taskSections: TaskSectionResponse[] = [
             id: '2',
             projectId: '1',
             taskId: '1',
-            feedId: '1',
+            taskFeedId: '1',
             name: '/images/screen_shot.png',
             src: '/images/screen_shot.png',
             createdAt: new Date().toISOString(),
@@ -173,7 +171,7 @@ export const taskSections: TaskSectionResponse[] = [
             id: '3',
             projectId: '1',
             taskId: '1',
-            feedId: '1',
+            taskFeedId: '1',
             name: '/files/pdf-test.pdf',
             src: '/files/pdf-test.pdf',
             createdAt: new Date().toISOString(),
@@ -184,7 +182,7 @@ export const taskSections: TaskSectionResponse[] = [
             id: '4',
             projectId: '1',
             taskId: '1',
-            feedId: '1',
+            taskFeedId: '1',
             name: '/files/pdf-test-2.pdf',
             src: '/files/pdf-test-2.pdf',
             createdAt: new Date().toISOString(),
@@ -647,8 +645,8 @@ export const taskSections: TaskSectionResponse[] = [
   },
 ]
 
-const fetchTasks = async (): Promise<MyTaskResponse> => {
-  return new Promise<MyTaskResponse>((resolve) => {
+const fetchTasks = async (): Promise<any> => {
+  return new Promise<any>((resolve) => {
     setTimeout(() => {
       resolve({
         taskSections: [

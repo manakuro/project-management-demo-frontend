@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { taskSections } from 'src/hooks/queries/app/useMyTasksPageQuery'
 import { dateFns } from 'src/shared/dateFns'
-import { TaskResponse, useTaskResponse } from 'src/store/entities/tasks'
+import { useTaskResponse } from 'src/store/entities/tasks'
 
 type Props = {
   lazy?: boolean
@@ -45,8 +45,8 @@ export const useTaskDetailPageQuery = (props?: Props) => {
   }
 }
 
-const fetchTask = async (): Promise<TaskResponse> => {
-  return new Promise<TaskResponse>((resolve) => {
+const fetchTask = async (): Promise<any> => {
+  return new Promise<any>((resolve) => {
     setTimeout(() => {
       resolve({
         id: taskSections[0].tasks[0].id,

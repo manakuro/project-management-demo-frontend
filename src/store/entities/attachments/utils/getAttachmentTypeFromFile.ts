@@ -1,17 +1,10 @@
-import {
-  ATTACHMENT_TYPE_IMAGE,
-  ATTACHMENT_TYPE_PDF,
-  ATTACHMENT_TYPE_TEXT,
-} from '../types'
+import { FileTypeCodeValue, FileTypeCode } from 'src/store/entities/fileTypes'
 
 export const getAttachmentTypeFromFile = (
   fileType: string,
-):
-  | typeof ATTACHMENT_TYPE_IMAGE
-  | typeof ATTACHMENT_TYPE_PDF
-  | typeof ATTACHMENT_TYPE_TEXT => {
-  if (fileType.includes('image')) return ATTACHMENT_TYPE_IMAGE
-  if (fileType.includes('pdf')) return ATTACHMENT_TYPE_PDF
+): FileTypeCodeValue => {
+  if (fileType.includes('image')) return FileTypeCode.Image
+  if (fileType.includes('pdf')) return FileTypeCode.Pdf
 
-  return ATTACHMENT_TYPE_TEXT
+  return FileTypeCode.Text
 }

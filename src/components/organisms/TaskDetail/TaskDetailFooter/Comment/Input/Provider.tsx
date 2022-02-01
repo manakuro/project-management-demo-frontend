@@ -9,10 +9,10 @@ import { getScrollBottom } from 'src/shared/getScrollBottom'
 import { parseDescription } from 'src/shared/prosemirror/convertDescription'
 import { createProvider } from 'src/shared/react/createProvider'
 import {
-  Attachment,
+  TaskFile,
   useAttachmentCommand,
-  ATTACHMENT_STATUS_UNATTACHED,
   getAttachmentTypeFromFile,
+  initialState,
 } from 'src/store/entities/attachments'
 import { TaskFeed, useFeed, useFeedCommand } from 'src/store/entities/feeds'
 import { useMe } from 'src/store/entities/me'
@@ -31,7 +31,7 @@ type ContextProps = {
     num: number
   }[]
   hasAttachment: boolean
-  onDeleteAttachment: (attachment: Attachment) => void
+  onDeleteAttachment: (attachment: TaskFile) => void
 }
 
 const useValue = (): ContextProps => {
@@ -75,7 +75,7 @@ function useAttachmentFile() {
   const hasAttachment = useMemo(() => !!attachmentIds.length, [attachmentIds])
 
   const onDelete = useCallback(
-    (attachment: Attachment) => {
+    (attachment: TaskFile) => {
       setAttachmentIds((prev) => prev.filter((p) => p !== attachment.id))
       toast({
         description: `${attachment.name} is deleted from this task`,
@@ -149,8 +149,10 @@ function useUploadingFile(props: {
               taskId,
               src: file.data,
               name: file.name,
-              type: getAttachmentTypeFromFile(file.type),
-              status: ATTACHMENT_STATUS_UNATTACHED,
+              fileType: {
+                ...initialState().fileType,
+                typeCode: getAttachmentTypeFromFile(file.type),
+              },
             })
 
             upsertUploadingFile(file, 100)

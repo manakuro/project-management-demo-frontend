@@ -1,13 +1,13 @@
 import { IconType } from 'src/shared/icons'
-import { AttachmentType } from '../types'
+import { FileTypeCode, FileTypeCodeValue } from 'src/store/entities/fileTypes'
 
-export const getAttachmentIcon = (type: AttachmentType): IconType => {
+export const getAttachmentIcon = (type: FileTypeCodeValue): IconType => {
   switch (type) {
-    case 1:
+    case FileTypeCode.Image:
       return 'imageAlt'
-    case 2:
+    case FileTypeCode.Pdf:
       return 'outlineFilePdf'
-    case 3:
+    case FileTypeCode.Text:
       return 'outlineFileText'
   }
 }

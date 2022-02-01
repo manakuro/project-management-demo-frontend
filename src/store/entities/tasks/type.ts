@@ -1,4 +1,4 @@
-import { Attachment } from 'src/store/entities/attachments'
+import { TaskFile } from 'src/store/entities/attachments'
 import { TaskFeed } from 'src/store/entities/feeds'
 import { ProjectsTaskResponse } from 'src/store/entities/projectsTasks'
 import { Tag } from 'src/store/entities/tags'
@@ -25,7 +25,7 @@ export type Task = {
 
 export type TaskResponse = {
   assigneeId: string
-  attachments: Attachment[]
+  attachments: TaskFile[]
   dueDate: string
   dueTime?: string
   feeds: TaskFeed[]

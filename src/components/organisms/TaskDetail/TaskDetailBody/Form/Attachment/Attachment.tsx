@@ -4,7 +4,7 @@ import { ThumbnailAttachment } from 'src/components/molecules'
 import { useFileViewerModal } from 'src/components/organisms/Modals'
 import { useToast } from 'src/hooks'
 import {
-  Attachment as TAttachment,
+  TaskFile as TAttachment,
   useAttachmentIdsByTaskId,
 } from 'src/store/entities/attachments'
 import { NewButton } from './NewButton'

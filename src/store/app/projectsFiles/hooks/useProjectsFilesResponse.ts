@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { asyncForEach } from 'src/shared/utils'
-import { Attachment, attachmentState } from 'src/store/entities/attachments'
+import { TaskFile, attachmentState } from 'src/store/entities/attachments'
 import { useTasksCommand } from 'src/store/entities/tasks'
 import { ProjectsFileResponse } from '../type'
 
@@ -25,7 +25,7 @@ const useSetters = () => {
   const setAttachment = useRecoilCallback(
     ({ set }) =>
       (data: ProjectsFileResponse[]) => {
-        const attachments: Attachment[] = data.map(({ task, ...rest }) => rest)
+        const attachments: TaskFile[] = data.map(({ task, ...rest }) => rest)
 
         attachments.forEach((a) => {
           set(attachmentState(a.id), a)

@@ -6,6 +6,7 @@ import {
 } from 'src/components/organisms/TaskDetail'
 import { useClickOutside, useToast } from 'src/hooks'
 import { getScrollBottom } from 'src/shared/getScrollBottom'
+import { parseDescription } from 'src/shared/prosemirror/convertDescription'
 import { createProvider } from 'src/shared/react/createProvider'
 import {
   Attachment,
@@ -13,11 +14,11 @@ import {
   ATTACHMENT_STATUS_UNATTACHED,
   getAttachmentTypeFromFile,
 } from 'src/store/entities/attachments'
-import { Feed, useFeed, useFeedCommand } from 'src/store/entities/feeds'
+import { TaskFeed, useFeed, useFeedCommand } from 'src/store/entities/feeds'
 import { useMe } from 'src/store/entities/me'
 
 type ContextProps = {
-  feed: Feed
+  feed: TaskFeed
   focused: boolean
   onChangeDescription: (val: string) => void
   onFocus: () => void
@@ -216,7 +217,7 @@ function useSave(props: { onSaved: (id: string) => void }) {
   const onSave = useCallback(() => {
     const id = addFeed({
       taskId,
-      description,
+      description: parseDescription(description),
       teammateId: me.id,
       createdAt: new Date().toISOString(),
     })

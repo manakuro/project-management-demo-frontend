@@ -208,14 +208,10 @@ export const taskSections: TaskSectionResponse[] = [
             id: '1',
             taskId: '1',
             teammateId: '1',
-            description: JSON.stringify(
-              {
-                type: 'doc',
-                content: [],
-              },
-              null,
-              2,
-            ),
+            description: {
+              type: 'doc',
+              content: [],
+            },
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             isFirst: true,
@@ -225,14 +221,10 @@ export const taskSections: TaskSectionResponse[] = [
             id: '2',
             taskId: '1',
             teammateId: '1',
-            description: JSON.stringify(
-              {
-                type: 'doc',
-                content: [],
-              },
-              null,
-              2,
-            ),
+            description: {
+              type: 'doc',
+              content: [],
+            },
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             isFirst: false,
@@ -596,14 +588,10 @@ export const taskSections: TaskSectionResponse[] = [
             id: '10',
             taskId: '10',
             teammateId: '1',
-            description: JSON.stringify(
-              {
-                type: 'doc',
-                content: [],
-              },
-              null,
-              2,
-            ),
+            description: {
+              type: 'doc',
+              content: [],
+            },
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             isFirst: true,
@@ -613,14 +601,10 @@ export const taskSections: TaskSectionResponse[] = [
             id: '2-2',
             taskId: '10',
             teammateId: '1',
-            description: JSON.stringify(
-              {
-                type: 'doc',
-                content: [],
-              },
-              null,
-              2,
-            ),
+            description: {
+              type: 'doc',
+              content: [],
+            },
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             isFirst: false,

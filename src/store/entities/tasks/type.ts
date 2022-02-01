@@ -1,5 +1,5 @@
 import { Attachment } from 'src/store/entities/attachments'
-import { Feed } from 'src/store/entities/feeds'
+import { TaskFeed } from 'src/store/entities/feeds'
 import { ProjectsTaskResponse } from 'src/store/entities/projectsTasks'
 import { Tag } from 'src/store/entities/tags'
 import { TasksPriorityTypes } from 'src/store/entities/tasksPriorities'
@@ -28,7 +28,7 @@ export type TaskResponse = {
   attachments: Attachment[]
   dueDate: string
   dueTime?: string
-  feeds: Feed[]
+  feeds: TaskFeed[]
   id: string
   isDeleted: boolean
   isDone: boolean

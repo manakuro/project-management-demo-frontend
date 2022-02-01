@@ -190,14 +190,10 @@ const fetchTask = async (): Promise<TaskResponse> => {
             id: '1',
             taskId: '1',
             teammateId: '1',
-            description: JSON.stringify(
-              {
-                type: 'doc',
-                content: [],
-              },
-              null,
-              2,
-            ),
+            description: {
+              type: 'doc',
+              content: [],
+            },
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             isFirst: true,
@@ -207,78 +203,74 @@ const fetchTask = async (): Promise<TaskResponse> => {
             id: '2',
             taskId: '1',
             teammateId: '1',
-            description: JSON.stringify(
-              {
-                type: 'doc',
-                content: [
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'text',
-                        text: 'test',
-                        attrs: { mentionId: '', mentionType: '' },
-                      },
-                    ],
-                  },
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'text',
-                        text: 'test',
-                        attrs: { mentionId: '', mentionType: '' },
-                      },
-                    ],
-                  },
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'text',
-                        text: 'test',
-                        attrs: { mentionId: '', mentionType: '' },
-                      },
-                    ],
-                  },
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'mention',
-                        text: '',
-                        attrs: { mentionId: '2', mentionType: '1' },
-                      },
-                    ],
-                  },
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'mention',
-                        text: '',
-                        attrs: { mentionId: '1', mentionType: '1' },
-                      },
-                    ],
-                  },
-                  { type: 'paragraph', content: [] },
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'text',
-                        text: '🐠  ',
-                        attrs: { mentionId: '', mentionType: '' },
-                      },
-                    ],
-                  },
-                  { type: 'paragraph', content: [] },
-                  { type: 'paragraph', content: [] },
-                ],
-              },
-              null,
-              2,
-            ),
+            description: {
+              type: 'doc',
+              content: [
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: 'test',
+                      attrs: { mentionId: '', mentionType: '' },
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: 'test',
+                      attrs: { mentionId: '', mentionType: '' },
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: 'test',
+                      attrs: { mentionId: '', mentionType: '' },
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'mention',
+                      text: '',
+                      attrs: { mentionId: '2', mentionType: '1' },
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'mention',
+                      text: '',
+                      attrs: { mentionId: '1', mentionType: '1' },
+                    },
+                  ],
+                },
+                { type: 'paragraph', content: [] },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: '🐠  ',
+                      attrs: { mentionId: '', mentionType: '' },
+                    },
+                  ],
+                },
+                { type: 'paragraph', content: [] },
+                { type: 'paragraph', content: [] },
+              ],
+            },
             createdAt: new Date('2021/05/20 18:12:41').toISOString(),
             updatedAt: '',
             isFirst: false,
@@ -288,23 +280,31 @@ const fetchTask = async (): Promise<TaskResponse> => {
             id: '3',
             taskId: '1',
             teammateId: '1',
-            description: JSON.stringify(
-              {
-                type: 'doc',
-                content: [
-                  {
-                    type: 'paragraph',
-                    content: [{ type: 'text', text: '😜' }],
-                  },
-                  {
-                    type: 'paragraph',
-                    content: [{ type: 'text', text: 'テキスト2' }],
-                  },
-                ],
-              },
-              null,
-              2,
-            ),
+            description: {
+              type: 'doc',
+              content: [
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: '😜',
+                      attrs: { mentionId: '', mentionType: '' },
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: 'テキスト2',
+                      attrs: { mentionId: '', mentionType: '' },
+                    },
+                  ],
+                },
+              ],
+            },
             createdAt: new Date('2021/05/21 12:00:00').toISOString(),
             updatedAt: new Date().toISOString(),
             isFirst: false,
@@ -314,14 +314,10 @@ const fetchTask = async (): Promise<TaskResponse> => {
             id: '4',
             taskId: '1',
             teammateId: '2',
-            description: JSON.stringify(
-              {
-                type: 'doc',
-                content: [{ type: 'text', text: '😜' }],
-              },
-              null,
-              2,
-            ),
+            description: {
+              type: 'doc',
+              content: [{ type: 'text', content: [] }],
+            },
             createdAt: new Date('2021/05/21 12:00:00').toISOString(),
             updatedAt: new Date().toISOString(),
             isFirst: false,
@@ -331,14 +327,10 @@ const fetchTask = async (): Promise<TaskResponse> => {
             id: '5',
             taskId: '1',
             teammateId: '3',
-            description: JSON.stringify(
-              {
-                type: 'doc',
-                content: [],
-              },
-              null,
-              2,
-            ),
+            description: {
+              type: 'doc',
+              content: [],
+            },
             createdAt: new Date('2021/05/21 12:00:00').toISOString(),
             updatedAt: new Date().toISOString(),
             isFirst: false,

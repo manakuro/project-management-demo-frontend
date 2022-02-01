@@ -1,21 +1,17 @@
 import { selectorFamily } from 'recoil'
 import { createState } from 'src/store/util'
-import { Feed } from './type'
+import { TaskFeed } from './type'
 
 const key = (str: string) => `src/store/entities/feeds/${str}`
 
-export const initialState = (): Feed => ({
+export const initialState = (): TaskFeed => ({
   id: '',
   taskId: '',
   teammateId: '',
-  description: JSON.stringify(
-    {
-      type: 'doc',
-      content: [],
-    },
-    null,
-    2,
-  ),
+  description: {
+    type: 'doc',
+    content: [],
+  },
   createdAt: '',
   updatedAt: '',
   isFirst: false,

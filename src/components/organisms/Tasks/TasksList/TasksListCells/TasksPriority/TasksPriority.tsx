@@ -46,7 +46,7 @@ export const TasksPriority: React.VFC<Props> = memo<Props>((props) => {
     >
       <Menu taskId={taskId} onOpened={handleOpened} onClosed={handleClosed}>
         <Flex h="full" flex={1} alignItems="center">
-          <PriorityChip taskPriorityType={task.priority} />
+          <PriorityChip taskId={task.id} />
           {showMenuIcon && (
             <Icon
               ml="auto"

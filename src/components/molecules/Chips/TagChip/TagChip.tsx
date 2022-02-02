@@ -15,7 +15,7 @@ type Props = {
 
 export const TagChip: React.VFC<Props> = memo<Props>((props) => {
   const { tagId, variant, iconProps } = props
-  const { tag } = useTag(tagId)
+  const { taskTag } = useTag(tagId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   const handleDelete = useCallback(
@@ -27,7 +27,14 @@ export const TagChip: React.VFC<Props> = memo<Props>((props) => {
   )
 
   if (variant === 'icon') {
-    return <Icon icon="tag" color={tag.color.color} size="sm" {...iconProps} />
+    return (
+      <Icon
+        icon="tag"
+        color={taskTag.tag.color.color}
+        size="sm"
+        {...iconProps}
+      />
+    )
   }
 
   return (
@@ -40,13 +47,13 @@ export const TagChip: React.VFC<Props> = memo<Props>((props) => {
       borderRadius="full"
       minH={5}
       h={5}
-      bg={tag.color.color}
+      bg={taskTag.tag.color.color}
       _hover={{
-        bg: tag.color.color,
+        bg: taskTag.tag.color.color,
       }}
     >
       <Text fontSize="xs" isTruncated color="text.base">
-        {tag.name}
+        {taskTag.tag.name}
       </Text>
       {props.deletable && (
         <Icon

@@ -1,11 +1,11 @@
 import { useRecoilCallback } from 'recoil'
 import { tagState } from '../atom'
-import { Tag } from '../type'
+import { TaskTag } from '../type'
 
 export const useTagCommand = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
-      (tag: Tag) => {
+      (tag: TaskTag) => {
         set(tagState(tag.id), tag)
       },
     [],

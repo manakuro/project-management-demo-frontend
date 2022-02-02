@@ -50,7 +50,7 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
   return (
     <>
       {tags.map((t, i) => (
-        <TagItem key={t.id} onClick={handleSelect} tag={t} index={i} />
+        <TagItem key={t.id} onClick={handleSelect} taskTag={t} index={i} />
       ))}
       <Divider />
       <SearchMenuListItem index={tags.length}>
@@ -66,3 +66,4 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
     </>
   )
 })
+Content.displayName = 'Content'

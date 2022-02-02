@@ -1,7 +1,7 @@
 import { TaskFile } from 'src/store/entities/attachments'
 import { TaskFeed } from 'src/store/entities/feeds'
 import { ProjectsTaskResponse } from 'src/store/entities/projectsTasks'
-import { Tag } from 'src/store/entities/tags'
+import { TaskTag } from 'src/store/entities/tags'
 import { TasksPriorityTypes } from 'src/store/entities/tasksPriorities'
 import { TasksTeammateResponse } from 'src/store/entities/tasksTeammates'
 
@@ -37,7 +37,7 @@ export type TaskResponse = {
   name: string
   projects: ProjectsTaskResponse[]
   subTasks: TaskResponse[]
-  tags: Tag[]
+  tags: TaskTag[]
   taskParentId: string
   taskSectionId: string
   teammates: TasksTeammateResponse[] // collaborators

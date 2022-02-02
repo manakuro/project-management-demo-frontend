@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
-import { Tag } from 'src/store/entities/tags'
+import { TaskTag } from 'src/store/entities/tags'
 
 const key = (str: string) =>
   `src/components/organisms/Menus/TagMenu/useSearchTagsQuery/${str}`
@@ -24,7 +24,7 @@ export const useSearchTagsQuery = () => {
       setState((s) => ({ ...s, loading: true }))
       const res = await fetchProjects()
       const filtered = res.filter((r) =>
-        r.name.toLowerCase().includes(props.queryText.toLowerCase()),
+        r.tag.name.toLowerCase().includes(props.queryText.toLowerCase()),
       )
       setState((s) => ({ ...s, tags: filtered, loading: false }))
       return filtered
@@ -38,30 +38,46 @@ export const useSearchTagsQuery = () => {
   }
 }
 
-const fetchProjects = (): Promise<Tag[]> => {
+const fetchProjects = (): Promise<TaskTag[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve([
         {
           id: '1',
           taskId: '1',
-          name: 'Medium',
-          color: {
+          tag: {
             id: '1',
-            name: 'green.400',
-            color: 'green.400',
+            name: 'Medium',
+            color: {
+              id: '1',
+              name: 'green.400',
+              color: 'green.400',
+              createdAt: '',
+              updatedAt: '',
+            },
+            createdAt: '',
+            updatedAt: '',
           },
+          tagId: '1',
           createdAt: '',
           updatedAt: '',
         },
         {
           id: '2',
           taskId: '1',
-          name: 'Asana',
-          color: {
+          tagId: '2',
+          tag: {
             id: '2',
-            name: 'pink.200',
-            color: 'pink.200',
+            name: 'Asana',
+            color: {
+              id: '2',
+              name: 'pink.200',
+              color: 'pink.200',
+              createdAt: '',
+              updatedAt: '',
+            },
+            createdAt: '',
+            updatedAt: '',
           },
           createdAt: '',
           updatedAt: '',

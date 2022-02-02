@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { dateFns } from 'src/shared/dateFns'
-import { useHomeResponse, HomeResponse } from 'src/store/app/home'
+import { useHomeResponse } from 'src/store/app/home'
 
 type Props = {
   lazy?: boolean
@@ -36,8 +36,8 @@ export const useHomePageQuery = (props?: Props) => {
   }
 }
 
-const fetchTasks = async (): Promise<HomeResponse> => {
-  return new Promise<HomeResponse>((resolve) => {
+const fetchTasks = async (): Promise<any> => {
+  return new Promise<any>((resolve) => {
     setTimeout(() => {
       resolve({
         tasksDueSoon: [
@@ -49,6 +49,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
                 id: '1',
                 taskId: '1',
                 projectId: '1',
+                project: {},
                 createdAt: '',
                 updatedAt: '',
               },
@@ -56,6 +57,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
                 id: '2',
                 taskId: '1',
                 projectId: '2',
+                project: {},
                 createdAt: '',
                 updatedAt: '',
               },

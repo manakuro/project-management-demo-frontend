@@ -1,6 +1,7 @@
 fragment ProjectTaskFragment on ProjectTask {
   id
   taskId
+  projectId
   project {
     ...ProjectFragment
   }

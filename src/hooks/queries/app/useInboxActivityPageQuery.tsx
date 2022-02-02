@@ -111,7 +111,7 @@ const fetch = async (): Promise<ActivityResponse> => {
                       createdAt: '',
                       updatedAt: '',
                     },
-                  ],
+                  ] as any,
                   name: 'Resolve an issue of auto focus for tasks list detail page',
                   dueDate: new Date(
                     dateFns.addDays(new Date(), 3),
@@ -224,7 +224,7 @@ const fetch = async (): Promise<ActivityResponse> => {
                       createdAt: '',
                       updatedAt: '',
                     },
-                  ],
+                  ] as any,
                   name: 'Implement Recent Projects',
                   dueDate: new Date(
                     dateFns.addDays(new Date(), 5),
@@ -285,7 +285,7 @@ const fetch = async (): Promise<ActivityResponse> => {
                       createdAt: '',
                       updatedAt: '',
                     },
-                  ],
+                  ] as any,
                   name: 'Resolve an issue of auto focus for tasks list detail page',
                   dueDate: new Date(
                     dateFns.addDays(new Date(), 3),
@@ -388,7 +388,7 @@ const fetch = async (): Promise<ActivityResponse> => {
                       createdAt: '',
                       updatedAt: '',
                     },
-                  ],
+                  ] as any,
                   name: 'Implement Recent Projects',
                   dueDate: new Date(
                     dateFns.addDays(new Date(), 5),

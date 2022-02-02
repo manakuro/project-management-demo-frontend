@@ -1,6 +1,6 @@
 import { TaskFile } from 'src/store/entities/attachments'
 import { TaskFeed } from 'src/store/entities/feeds'
-import { ProjectsTaskResponse } from 'src/store/entities/projectsTasks'
+import { ProjectTaskResponse } from 'src/store/entities/projectsTasks'
 import { TaskTag } from 'src/store/entities/tags'
 import { TaskCollaboratorResponse } from 'src/store/entities/tasksTeammates'
 
@@ -34,7 +34,7 @@ export type TaskResponse = {
   doneAt: string
   isNew: boolean
   name: string
-  projects: ProjectsTaskResponse[]
+  projects: ProjectTaskResponse[]
   subTasks: TaskResponse[]
   tags: TaskTag[]
   taskParentId: string

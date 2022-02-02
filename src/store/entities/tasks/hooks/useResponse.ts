@@ -123,7 +123,7 @@ const useSetters = () => {
         )
         taskTeammates.forEach((t) => set(taskTeammateState(t.id), t))
 
-        setTeammatesFromResponse(taskTeammates)
+        setTeammatesFromResponse(taskTeammates.map((t) => t.teammate))
       },
     [setTeammatesFromResponse],
   )

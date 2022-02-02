@@ -1,17 +1,5 @@
-import { Teammate } from 'src/store/entities/teammates'
+import type { TaskCollaboratorResponse } from 'src/graphql/types/taskCollaborator'
 
-export type TasksTeammateResponse = Omit<Teammate, 'createAt' | 'updatedAt'> & {
-  id: string
-  teammateId: string
-  taskId: string
-  createdAt: string
-  updatedAt: string
-}
+export type { TaskCollaboratorResponse } from 'src/graphql/types/taskCollaborator'
 
-export type TasksTeammate = {
-  id: string
-  teammateId: string
-  taskId: string
-  createdAt: string
-  updatedAt: string
-}
+export type TaskCollaborator = Omit<TaskCollaboratorResponse, 'teammate'>

@@ -2,7 +2,7 @@ import { TaskFile } from 'src/store/entities/attachments'
 import { TaskFeed } from 'src/store/entities/feeds'
 import { ProjectsTaskResponse } from 'src/store/entities/projectsTasks'
 import { TaskTag } from 'src/store/entities/tags'
-import { TasksTeammateResponse } from 'src/store/entities/tasksTeammates'
+import { TaskCollaboratorResponse } from 'src/store/entities/tasksTeammates'
 
 export type Task = {
   assigneeId: string
@@ -39,7 +39,7 @@ export type TaskResponse = {
   tags: TaskTag[]
   taskParentId: string
   taskSectionId: string
-  teammates: TasksTeammateResponse[] // collaborators
+  teammates: TaskCollaboratorResponse[] // collaborators
   priority: any
   createdBy: string
   createdAt: string

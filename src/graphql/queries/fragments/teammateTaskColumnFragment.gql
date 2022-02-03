@@ -1,13 +1,13 @@
 fragment TeammateTaskColumnFragment on TeammateTaskColumn {
   id
   teammateId
+  width
+  disabled
+  customizable
+  order
   taskColumnId
   taskColumn {
-    id
-    name
-    type
-    createdAt
-    updatedAt
+    ...TaskColumnFragment
   }
   createdAt
   updatedAt

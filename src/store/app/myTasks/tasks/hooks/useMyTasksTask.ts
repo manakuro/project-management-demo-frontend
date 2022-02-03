@@ -1,16 +1,14 @@
 import { useRecoilCallback } from 'recoil'
-import { useMe } from 'src/store/entities/me'
-import { Task, useTasksCommand } from 'src/store/entities/tasks'
+import { useTeammateTasksCommand } from 'src/store/entities/teammateTasks'
 
 export const useMyTasksTask = () => {
-  const { me } = useMe()
-  const { addTask } = useTasksCommand()
+  const { addTeammateTask } = useTeammateTasksCommand()
 
   const addMyTask = useRecoilCallback(
-    () => (val: Partial<Task>) => {
-      return addTask({ ...val, assigneeId: me.id })
+    () => (val: { taskSectionId: string }) => {
+      return addTeammateTask({ teammateTaskSectionId: val.taskSectionId })
     },
-    [me.id, addTask],
+    [addTeammateTask],
   )
 
   return {

@@ -1,8 +1,7 @@
 import { selectorFamily } from 'recoil'
 import { isTaskListSortStatusState } from 'src/store/app/myTasks/taskListStatus'
-import { TaskSection } from 'src/store/entities/taskSections'
-import { tasksByTaskSectionIdState } from 'src/store/entities/tasks'
 import { isTabStatusState } from 'src/store/entities/teammateTaskTabStatus'
+import { tasksByTeammateIdState } from 'src/store/entities/teammateTasks'
 import { taskSectionsByTeammateIdState } from 'src/store/entities/teammatesTaskSections'
 
 const key = (str: string) => `src/store/app/myTasks/taskSections/${str}`
@@ -12,44 +11,33 @@ export const taskSectionIdsState = selectorFamily<string[], string>({
   get:
     (teammateId) =>
     ({ get }) => {
-      const taskSections = get(taskSectionsByTeammateIdState(teammateId))
+      const teammateTaskSections = get(
+        taskSectionsByTeammateIdState(teammateId),
+      )
 
       switch (true) {
         case get(isTabStatusState('List')): {
           switch (true) {
             case get(isTaskListSortStatusState('dueDate')): {
-              const hasTaskWithNoDueDate = !!taskSections.filter(
-                (taskSection) => {
-                  const tasks = get(tasksByTaskSectionIdState(taskSection.id))
-                  return tasks.some((t) => !t.dueDate)
-                },
-              ).length
+              let tasks = get(tasksByTeammateIdState)
+              tasks = tasks.filter((t) => !t.taskParentId)
+              const hasTaskWithNoDueDate = tasks.some((t) => !t.dueDate)
               if (!hasTaskWithNoDueDate) return []
 
-              return taskSections.map((t) => t.id)
+              return teammateTaskSections.map((t) => t.id)
             }
             case get(isTaskListSortStatusState('likes')):
             case get(isTaskListSortStatusState('alphabetical')): {
               return []
             }
             default: {
-              return taskSections.map((t) => t.id)
+              return teammateTaskSections.map((t) => t.id)
             }
           }
         }
         default: {
-          return taskSections.map((t) => t.id)
+          return teammateTaskSections.map((t) => t.id)
         }
       }
-    },
-})
-
-export const taskSectionsState = selectorFamily<TaskSection[], string>({
-  key: key('taskSectionsState'),
-  get:
-    (teammateId) =>
-    ({ get }) => {
-      const taskSections = get(taskSectionsByTeammateIdState(teammateId))
-      return [...taskSections]
     },
 })

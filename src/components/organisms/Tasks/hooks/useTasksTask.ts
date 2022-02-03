@@ -1,10 +1,9 @@
 import { useMyTasksTask } from 'src/store/app/myTasks/tasks'
 import { useProjectsTask } from 'src/store/app/projects/tasks'
-import { Task } from 'src/store/entities/tasks'
 import { useTasksContext } from '../TasksProvider'
 
 type Result = {
-  addTask: (val: Partial<Task>) => string
+  addTask: (val: { taskSectionId: string }) => string
 }
 
 export const useTasksTask = (): Result => {

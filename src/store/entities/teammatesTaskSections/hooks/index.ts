@@ -1,2 +1,3 @@
 export * from './useTeammatesTaskSectionsResponse'
-export * from './useTeammatesTaskSectionsCommand'
+export * from './useTeammatesTaskSectionsResponse'
+export * from './useTeammateTaskSections'

@@ -1,19 +1,20 @@
 import { useRecoilCallback } from 'recoil'
 import { useTaskColumnsResponse } from 'src/store/entities/taskColumns'
 import { teammatesTaskColumnState } from '../atom'
-import { TeammatesTaskColumnResponse } from '../type'
+import { TeammateTaskColumnResponse } from '../type'
 
 export const useTeammatesTaskColumnsResponse = () => {
   const { setTaskColumns } = useTaskColumnsResponse()
 
   const setTeammatesTaskColumns = useRecoilCallback(
     ({ set }) =>
-      (data: TeammatesTaskColumnResponse[]) => {
+      (data: TeammateTaskColumnResponse[]) => {
         data.forEach((p) => {
           set(teammatesTaskColumnState(p.id), p)
-
-          setTaskColumns([p.taskColumn])
         })
+
+        const taskColumns = data.map((d) => d.taskColumn)
+        setTaskColumns(taskColumns)
       },
     [setTaskColumns],
   )

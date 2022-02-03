@@ -2,42 +2,36 @@ import React, { memo, useCallback, useMemo } from 'react'
 import { SortMenu as TasksHeaderSortMenu } from 'src/components/organisms/Tasks/TasksHeader'
 import {
   useMyTasksTaskListStatus,
-  TaskListSortStatusType,
+  TaskListSortStatusCodeValue,
 } from 'src/store/app/myTasks/taskListStatus'
-import {
-  TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
-  TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
-  TASK_LIST_SORT_STATUS_TYPE_LIKES,
-  TASK_LIST_SORT_STATUS_TYPE_NONE,
-  TASK_LIST_SORT_STATUS_TYPE_PROJECT,
-} from 'src/store/entities/taskListStatus'
+import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
 
 type Props = {
   projectSortable?: boolean
 }
 
 const ITEMS: {
-  value: TaskListSortStatusType
+  value: TaskListSortStatusCodeValue
   text: string
 }[] = [
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_NONE,
+    value: TaskListSortStatusCode.None,
     text: 'None',
   },
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
+    value: TaskListSortStatusCode.DueDate,
     text: 'Due Date',
   },
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_LIKES,
+    value: TaskListSortStatusCode.Likes,
     text: 'Likes',
   },
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
+    value: TaskListSortStatusCode.Alphabetical,
     text: 'Alphabetical',
   },
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_PROJECT,
+    value: TaskListSortStatusCode.Project,
     text: 'Project',
   },
 ]
@@ -46,8 +40,8 @@ export const SortMenu: React.VFC<Props> = memo<Props>((props) => {
   const { sortBy, isSorted, taskListStatus } = useMyTasksTaskListStatus()
 
   const handleChange = useCallback(
-    (status: ToString<TaskListSortStatusType>) => {
-      sortBy(Number(status) as TaskListSortStatusType)
+    (status: TaskListSortStatusCodeValue) => {
+      sortBy(status)
     },
     [sortBy],
   )
@@ -57,7 +51,7 @@ export const SortMenu: React.VFC<Props> = memo<Props>((props) => {
   )
   const items = useMemo(() => {
     return ITEMS.filter((i) => {
-      if (!projectSortable && i.value === TASK_LIST_SORT_STATUS_TYPE_PROJECT)
+      if (!projectSortable && i.value === TaskListSortStatusCode.Project)
         return false
       return true
     })
@@ -68,12 +62,14 @@ export const SortMenu: React.VFC<Props> = memo<Props>((props) => {
     if (!projectSortable && isSorted('project')) return ''
 
     return `: ${
-      items.find((i) => i.value === taskListStatus.taskListSortStatus)!.text
+      items.find(
+        (i) => i.value === taskListStatus.taskListSortStatus.statusCode,
+      )!.text
     }`
   }, [isSorted, items, projectSortable, taskListStatus.taskListSortStatus])
 
   return (
-    <TasksHeaderSortMenu<TaskListSortStatusType>
+    <TasksHeaderSortMenu<TaskListSortStatusCodeValue>
       items={items}
       text={text}
       onChange={handleChange}

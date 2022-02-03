@@ -1,16 +1,17 @@
 import { useCallback } from 'react'
 import { TaskListSortStatuses, taskListSortStatues } from '../atom'
-import { TaskListSortStatusType } from '../types'
+import { TaskListSortStatusCodeValue } from '../types'
 import { useTaskListStatus } from './useTaskListStatus'
 import { useTaskListStatusCommand } from './useTaskListStatusCommand'
 
 export const useTaskListSortStatus = () => {
-  const { setTaskStatus } = useTaskListStatusCommand()
+  const { setTaskListSortStatus } = useTaskListStatusCommand()
   const { taskListStatus } = useTaskListStatus()
 
   const isSorted = useCallback(
     (status: TaskListSortStatuses) =>
-      taskListStatus.taskListSortStatus === taskListSortStatues[status],
+      taskListStatus.taskListSortStatus.statusCode ===
+      taskListSortStatues[status],
     [taskListStatus.taskListSortStatus],
   )
   const isSortStatusKey = useCallback(
@@ -19,11 +20,11 @@ export const useTaskListSortStatus = () => {
   )
 
   const sortBy = useCallback(
-    (status: TaskListSortStatusType | TaskListSortStatuses) => {
+    (status: TaskListSortStatusCodeValue | TaskListSortStatuses) => {
       const val = isSortStatusKey(status) ? taskListSortStatues[status] : status
-      setTaskStatus({ taskListSortStatus: val })
+      setTaskListSortStatus({ statusCode: val })
     },
-    [setTaskStatus, isSortStatusKey],
+    [setTaskListSortStatus, isSortStatusKey],
   )
 
   const sortByProject = useCallback(() => {

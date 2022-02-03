@@ -1,4 +1,4 @@
-import { selectorFamily } from 'recoil'
+import { selectorFamily, selector } from 'recoil'
 import {
   filterByNoProject,
   filterByProjectTasks,
@@ -6,58 +6,50 @@ import {
   sortTasks,
 } from 'src/store/app/myTasks/filters'
 import { isTaskListSortStatusState } from 'src/store/app/myTasks/taskListStatus'
-import {
-  tasksState,
-  filterByTeammateId,
-  filterByDueDate,
-  filterByTaskSectionId,
-} from 'src/store/entities/tasks'
+import { filterByDueDate } from 'src/store/entities/tasks'
 import { isTabStatusState } from 'src/store/entities/teammateTaskTabStatus'
+import {
+  tasksByTeammateIdState,
+  tasksByTeammateTaskSectionIdState,
+} from 'src/store/entities/teammateTasks'
 
 const key = (str: string) => `src/store/app/myTasks/tasks/${str}`
 
-export const taskIdsState = selectorFamily<string[], string>({
+export const taskIdsState = selector<string[]>({
   key: key('taskIdsState'),
-  get:
-    (teammateId) =>
-    ({ get }) => {
-      let tasks = get(tasksState)
-      tasks = filterByTeammateId(teammateId)(tasks)
-      tasks = sortTasks({ get })(tasks)
-      tasks = filterTasks({ get })(tasks)
+  get: ({ get }) => {
+    let tasks = get(tasksByTeammateIdState)
+    tasks = sortTasks({ get })(tasks)
+    tasks = filterTasks({ get })(tasks)
 
-      switch (true) {
-        case get(isTabStatusState('List')) &&
-          get(isTaskListSortStatusState('dueDate')): {
-          return tasks.filter((t) => !!t.dueDate).map((t) => t.id)
-        }
-        default: {
-          return tasks.map((t) => t.id)
-        }
+    switch (true) {
+      case get(isTabStatusState('List')) &&
+        get(isTaskListSortStatusState('dueDate')): {
+        return tasks.filter((t) => !!t.dueDate).map((t) => t.id)
       }
-    },
+      default: {
+        return tasks.map((t) => t.id)
+      }
+    }
+  },
 })
 
 export const taskIdsByTaskSectionIdState = selectorFamily<
   string[],
-  { taskSectionId: string; teammateId: string }
+  { teammateTaskSectionId: string }
 >({
   key: key('taskIdsByTaskSectionIdState'),
   get:
-    ({ taskSectionId, teammateId }) =>
+    ({ teammateTaskSectionId }) =>
     ({ get }) => {
-      let tasks = get(tasksState)
+      let tasks = get(tasksByTeammateTaskSectionIdState(teammateTaskSectionId))
       switch (true) {
         case get(isTabStatusState('List')) &&
           get(isTaskListSortStatusState('dueDate')): {
-          tasks = filterByTeammateId(teammateId)(tasks)
-          tasks = filterByTaskSectionId(taskSectionId)(tasks)
           tasks = filterTasks({ get })(tasks)
           return tasks.filter((t) => !t.dueDate).map((t) => t.id)
         }
         default: {
-          tasks = filterByTeammateId(teammateId)(tasks)
-          tasks = filterByTaskSectionId(taskSectionId)(tasks)
           tasks = sortTasks({ get })(tasks)
           tasks = filterTasks({ get })(tasks)
           return tasks.map((t) => t.id)
@@ -68,15 +60,13 @@ export const taskIdsByTaskSectionIdState = selectorFamily<
 
 export const taskIdsByDueDateState = selectorFamily<
   string[],
-  { dueDate: string; teammateId: string }
+  { dueDate: string }
 >({
   key: key('taskIdsByDueDateState'),
   get:
-    ({ dueDate, teammateId }) =>
+    ({ dueDate }) =>
     ({ get }) => {
-      let tasks = get(tasksState)
-
-      tasks = filterByTeammateId(teammateId)(tasks)
+      let tasks = get(tasksByTeammateIdState)
       tasks = filterByDueDate(dueDate)(tasks)
 
       return tasks.map((t) => t.id)
@@ -88,7 +78,7 @@ export const taskIdsByProjectIdState = selectorFamily<string[], string>({
   get:
     (projectId: string) =>
     ({ get }) => {
-      let tasks = get(tasksState)
+      let tasks = get(tasksByTeammateIdState)
       tasks = filterByProjectTasks({ get, projectId })(tasks)
       tasks = filterTasks({ get })(tasks)
 
@@ -96,15 +86,12 @@ export const taskIdsByProjectIdState = selectorFamily<string[], string>({
     },
 })
 
-export const taskIdsWithNoProjectState = selectorFamily<string[], string>({
+export const taskIdsWithNoProjectState = selector<string[]>({
   key: key('taskIdsWithNoProjectState'),
-  get:
-    (teammateId: string) =>
-    ({ get }) => {
-      let tasks = get(tasksState)
-      tasks = filterByTeammateId(teammateId)(tasks)
-      tasks = filterByNoProject({ get })(tasks)
+  get: ({ get }) => {
+    let tasks = get(tasksByTeammateIdState)
+    tasks = filterByNoProject({ get })(tasks)
 
-      return tasks.map((t) => t.id)
-    },
+    return tasks.map((t) => t.id)
+  },
 })

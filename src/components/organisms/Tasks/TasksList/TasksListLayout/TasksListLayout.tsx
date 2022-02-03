@@ -1,11 +1,6 @@
 import React, { memo } from 'react'
 import { useTasksTaskListStatus } from 'src/components/organisms/Tasks/hooks'
-import {
-  TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
-  TASK_LIST_SORT_STATUS_TYPE_LIKES,
-  TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
-  TASK_LIST_SORT_STATUS_TYPE_PROJECT,
-} from 'src/store/entities/taskListStatus'
+import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
 import { ListBasic } from './ListBasic'
 import { ListSortByAlphabetical } from './ListSortByAlphabetical'
 import { ListSortByDueDate } from './ListSortByDueDate'
@@ -16,16 +11,16 @@ export const TasksListLayout: React.VFC = memo(() => {
   const { taskListStatus } = useTasksTaskListStatus()
 
   switch (taskListStatus.taskListSortStatus) {
-    case TASK_LIST_SORT_STATUS_TYPE_DUE_DATE: {
+    case TaskListSortStatusCode.DueDate: {
       return <ListSortByDueDate />
     }
-    case TASK_LIST_SORT_STATUS_TYPE_LIKES: {
+    case TaskListSortStatusCode.Likes: {
       return <ListSortByLike />
     }
-    case TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL: {
+    case TaskListSortStatusCode.Alphabetical: {
       return <ListSortByAlphabetical />
     }
-    case TASK_LIST_SORT_STATUS_TYPE_PROJECT: {
+    case TaskListSortStatusCode.Project: {
       return <ListSortByProject />
     }
     default: {

@@ -23,15 +23,16 @@ export const useTask = (taskId?: string) => {
       },
     [task.id, upsert],
   )
+  // TODO(deleted task): Implement deleted functionality
   const deleteTask = useRecoilCallback(
     () => async () => {
-      await setTask({ isDeleted: true })
+      await setTask({ isDeleted: true } as any)
     },
     [setTask],
   )
   const undeleteTask = useRecoilCallback(
     () => async () => {
-      await setTask({ isDeleted: false })
+      await setTask({ isDeleted: false } as any)
     },
     [setTask],
   )

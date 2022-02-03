@@ -13,7 +13,7 @@ query MyTasksPage($workspaceId: ID!, $teammateId: ID!) {
        }
     }
   }
-  teammateTaskListStatusStatus(where: { teammateID: $teammateId, workspaceID: $workspaceId }) {
-    ...TeammateTaskListStatusStatusFragment
+  teammateTaskListStatus(where: { teammateID: $teammateId, workspaceID: $workspaceId }) {
+    ...TeammateTaskListStatusFragment
   }
 }

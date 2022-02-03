@@ -1,18 +1,8 @@
-import { TaskSectionResponse } from 'src/store/entities/taskSections'
+import type { TeammateTaskSectionResponse } from 'src/graphql/types/teammateTaskSection'
 
-export type TeammatesTaskSectionResponse = {
-  id: string
-  teammateId: string
-  taskSectionId: string
-  taskSection: TaskSectionResponse
-  createdAt: string
-  updatedAt: string
-}
+export type { TeammateTaskSectionResponse } from 'src/graphql/types/teammateTaskSection'
 
-export type TeammatesTaskSection = {
-  id: string
-  teammateId: string
-  taskSectionId: string
-  createdAt: string
-  updatedAt: string
-}
+export type TeammateTaskSection = Omit<
+  TeammateTaskSectionResponse,
+  'teammateTasks'
+>

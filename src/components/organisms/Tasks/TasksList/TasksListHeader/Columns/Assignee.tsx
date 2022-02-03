@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
 import { useTasksTaskListStatus } from 'src/components/organisms/Tasks/hooks'
-import { useTaskListStatus } from 'src/store/entities/taskListStatus'
+import { useTaskListSortStatus } from 'src/store/entities/taskListSortStatus'
 import { Container } from './Container'
 
 type Props = {
@@ -12,7 +12,7 @@ export const Assignee: React.FC<Props> = memo<Props>((props) => {
   const { tasksTaskColumnId } = props
   const { sortByAssignee, sortByNone, taskListStatus } =
     useTasksTaskListStatus()
-  const { isSortedByAssignee } = useTaskListStatus()
+  const { isSortedByAssignee } = useTaskListSortStatus()
 
   const handleSort = useCallback(() => {
     if (isSortedByAssignee(taskListStatus.taskListSortStatus)) {

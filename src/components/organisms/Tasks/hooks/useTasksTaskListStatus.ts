@@ -1,15 +1,19 @@
 import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus'
 import { useProjectsTaskListStatus } from 'src/store/app/projects/taskListStatus'
 import {
-  TaskListCompletedStatusType,
-  TaskListSortStatusType,
-} from 'src/store/entities/taskListStatus'
+  TaskListCompletedStatusCode,
+  TaskListCompletedStatusCodeValue,
+} from 'src/store/entities/taskListCompletedStatus'
+import {
+  TaskListSortStatusCodeValue,
+  TaskListSortStatusCode,
+} from 'src/store/entities/taskListSortStatus'
 import { useTasksContext } from '../TasksProvider'
 
 type Result = {
   taskListStatus: {
-    taskListCompletedStatus: TaskListCompletedStatusType
-    taskListSortStatus: TaskListSortStatusType
+    taskListCompletedStatus: TaskListCompletedStatusCodeValue
+    taskListSortStatus: TaskListSortStatusCodeValue
   }
   sortByNone: () => void
   sortByAlphabetical: () => void
@@ -18,7 +22,7 @@ type Result = {
   sortByProject?: () => void
   sortByAssignee?: () => void
   sortByPriority?: () => void
-  setTaskListCompletedStatus: (status: TaskListCompletedStatusType) => void
+  setTaskListCompletedStatus: (status: TaskListCompletedStatusCodeValue) => void
 }
 
 export const useTasksTaskListStatus = (): Result => {
@@ -27,7 +31,27 @@ export const useTasksTaskListStatus = (): Result => {
   const useProjectsTaskListStatusResult = useProjectsTaskListStatus()
 
   if (isMyTasksPage) {
-    return { ...useMyTasksTaskListStatusResult }
+    const taskListCompletedStatus =
+      useMyTasksTaskListStatusResult.taskListStatus.taskListCompletedStatus
+        .statusCode || TaskListCompletedStatusCode.Incomplete
+
+    const taskListSortStatus =
+      useMyTasksTaskListStatusResult.taskListStatus.taskListSortStatus
+        .statusCode || TaskListSortStatusCode.None
+
+    return {
+      taskListStatus: {
+        taskListCompletedStatus,
+        taskListSortStatus,
+      },
+      sortByNone: useMyTasksTaskListStatusResult.sortByNone,
+      sortByAlphabetical: useMyTasksTaskListStatusResult.sortByAlphabetical,
+      sortByLikes: useMyTasksTaskListStatusResult.sortByLikes,
+      sortByDueDate: useMyTasksTaskListStatusResult.sortByDueDate,
+      sortByProject: useMyTasksTaskListStatusResult.sortByProject,
+      setTaskListCompletedStatus:
+        useMyTasksTaskListStatusResult.setTaskListCompletedStatus,
+    }
   }
 
   return { ...useProjectsTaskListStatusResult }

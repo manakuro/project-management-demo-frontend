@@ -5,7 +5,7 @@ import { useMe } from 'src/store/entities/me'
 import {
   useTeammatesTaskColumnsCommand,
   useTeammatesTaskColumn,
-  TeammatesTaskColumn,
+  TeammateTaskColumn,
 } from 'src/store/entities/teammatesTaskColumns'
 import { taskColumnIdsState } from '../atom'
 
@@ -15,7 +15,7 @@ export const useMyTasksTaskColumn = (tasksTaskColumnId: string) => {
   const { setTeammatesTaskColumn } = useTeammatesTaskColumnsCommand()
   const ids = useRecoilValue(taskColumnIdsState(me.id))
   const setTasksTaskColumn = useCallback(
-    async (val: Partial<TeammatesTaskColumn>) => {
+    async (val: Partial<TeammateTaskColumn>) => {
       await setTeammatesTaskColumn({ id: tasksTaskColumnId, ...val })
     },
     [setTeammatesTaskColumn, tasksTaskColumnId],

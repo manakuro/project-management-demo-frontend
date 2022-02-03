@@ -2,6 +2,7 @@ fragment TeammateTaskSectionFragment on TeammateTaskSection {
   id
   name
   assigned
+  teammateId
   teammateTasks {
     ...TeammateTaskFragment
   }

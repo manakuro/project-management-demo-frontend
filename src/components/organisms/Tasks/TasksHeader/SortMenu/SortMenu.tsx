@@ -6,23 +6,25 @@ import {
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms/Menus'
-import { TaskListSortStatusType } from 'src/store/entities/taskListStatus'
+import { TaskListSortStatusCodeValue } from 'src/store/entities/taskListSortStatus'
 
-type Props<T extends TaskListSortStatusType> = {
+type Props<T extends TaskListSortStatusCodeValue> = {
   items: {
     value: T
     text: string
   }[]
-  onChange: (status: ToString<T>) => void
+  onChange: (status: T) => void
   text: string
   defaultValue: string
 }
 
-export const SortMenu = <T extends TaskListSortStatusType>(props: Props<T>) => {
+export const SortMenu = <T extends TaskListSortStatusCodeValue>(
+  props: Props<T>,
+) => {
   const { items, onChange, text, defaultValue } = props
 
   return (
-    <MenuSelect<ToString<T>> onChange={onChange} placement="bottom-end">
+    <MenuSelect<T> onChange={onChange} placement="bottom-end">
       <MenuSelectButton
         variant="ghost"
         aria-label="Sort tasks"

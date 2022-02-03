@@ -1,6 +1,6 @@
 import { selectorFamily } from 'recoil'
 import { taskColumnByTypeState } from 'src/store/entities/taskColumns'
-import { TaskColumnType } from 'src/store/entities/taskColumns/types'
+import { TaskColumnTypeValue } from 'src/store/entities/taskColumns'
 import { createState } from 'src/store/util'
 import { ProjectsTaskColumn } from './type'
 
@@ -39,7 +39,7 @@ export const projectsTaskColumnsByProjectIdState = selectorFamily<
 
 export const projectsTaskColumnByTypeState = selectorFamily<
   ProjectsTaskColumn,
-  { projectId: string; type: TaskColumnType }
+  { projectId: string; type: TaskColumnTypeValue }
 >({
   key: key('projectsTaskColumnByTypeState'),
   get:

@@ -71,7 +71,7 @@ const useSetters = () => {
     (data: TaskResponse) => {
       if (data.subTasks.length) {
         data.subTasks.forEach((t) => {
-          setTask(t)
+          setTask(t as TaskResponse)
         })
         setTaskValue(data)
         return
@@ -94,8 +94,8 @@ const useSetters = () => {
     ({ set }) =>
       (data: TaskResponse[]) => {
         data
-          .reduce<TaskResponse['attachments']>(
-            (acc, p) => uniqBy([...acc, ...p.attachments], 'id'),
+          .reduce<TaskResponse['taskFiles']>(
+            (acc, p) => uniqBy([...acc, ...p.taskFiles], 'id'),
             [],
           )
           .forEach((t) => set(attachmentState(t.id), t))
@@ -106,8 +106,8 @@ const useSetters = () => {
     ({ set }) =>
       (data: TaskResponse[]) => {
         data
-          .reduce<TaskResponse['feeds']>(
-            (acc, p) => uniqBy([...acc, ...p.feeds], 'id'),
+          .reduce<TaskResponse['taskFeeds']>(
+            (acc, p) => uniqBy([...acc, ...p.taskFeeds], 'id'),
             [],
           )
           .forEach((f) => set(feedState(f.id), f))
@@ -117,8 +117,8 @@ const useSetters = () => {
   const setTeammates = useRecoilCallback(
     ({ set }) =>
       (data: TaskResponse[]) => {
-        const taskTeammates = data.reduce<TaskResponse['teammates']>(
-          (acc, d) => [...acc, ...d.teammates],
+        const taskTeammates = data.reduce<TaskResponse['taskCollaborators']>(
+          (acc, d) => [...acc, ...d.taskCollaborators],
           [],
         )
         taskTeammates.forEach((t) => set(taskTeammateState(t.id), t))
@@ -131,8 +131,8 @@ const useSetters = () => {
     ({ set }) =>
       (data: TaskResponse[]) => {
         data
-          .reduce<TaskResponse['tags']>(
-            (acc, p) => uniqBy([...acc, ...p.tags], 'id'),
+          .reduce<TaskResponse['taskTags']>(
+            (acc, p) => uniqBy([...acc, ...p.taskTags], 'id'),
             [],
           )
           .forEach((f) => set(tagState(f.id), f))
@@ -144,8 +144,8 @@ const useSetters = () => {
     ({ set }) =>
       (data: TaskResponse[]) => {
         data
-          .reduce<TaskResponse['projects']>(
-            (acc, p) => uniqBy([...acc, ...p.projects], 'id'),
+          .reduce<TaskResponse['projectTasks']>(
+            (acc, p) => uniqBy([...acc, ...p.projectTasks], 'id'),
             [],
           )
           .forEach((p) => set(projectTaskState(p.id), p))

@@ -1,8 +1,8 @@
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import * as projectsTaskColumns from 'src/store/entities/projectsTaskColumns'
-import { TaskColumnType } from 'src/store/entities/taskColumns/types'
+import { TaskColumnTypeValue } from 'src/store/entities/taskColumns'
 
-export const useProjectsTaskColumnByType = (type: TaskColumnType) => {
+export const useProjectsTaskColumnByType = (type: TaskColumnTypeValue) => {
   const { projectId } = useProjectsProjectId()
   const { projectsTaskColumn } =
     projectsTaskColumns.useProjectsTaskColumnByType({

@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { taskListCompletedStatues, TaskListCompletedStatuses } from '../atom'
-import { TaskListCompletedStatusType } from '../types'
+import { TaskListCompletedStatusCodeValue } from '../types'
 import { useTaskListStatus } from './useTaskListStatus'
 import { useTaskListStatusCommand } from './useTaskListStatusCommand'
 
@@ -16,7 +16,7 @@ export const useTaskListCompletedStatus = () => {
   )
 
   const setTaskListCompletedStatus = useCallback(
-    (status: TaskListCompletedStatusType) => {
+    (status: TaskListCompletedStatusCodeValue) => {
       setTaskStatus({ taskListCompletedStatus: status })
     },
     [setTaskStatus],

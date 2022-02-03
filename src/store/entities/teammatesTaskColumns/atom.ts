@@ -1,12 +1,14 @@
 import { selectorFamily } from 'recoil'
-import { taskColumnByTypeState } from 'src/store/entities/taskColumns'
-import { TaskColumnType } from 'src/store/entities/taskColumns/types'
+import {
+  taskColumnByTypeState,
+  TaskColumnTypeValue,
+} from 'src/store/entities/taskColumns'
 import { createState } from 'src/store/util'
-import { TeammatesTaskColumn } from './type'
+import { TeammateTaskColumn } from './type'
 
 const key = (str: string) => `src/store/entities/teammatesTaskColumns/${str}`
 
-export const initialState = (): TeammatesTaskColumn => ({
+export const initialState = (): TeammateTaskColumn => ({
   id: '',
   taskColumnId: '',
   teammateId: '',
@@ -24,7 +26,7 @@ export const {
 } = createState({ key, initialState })
 
 export const teammatesTaskColumnsByTeammateIdState = selectorFamily<
-  TeammatesTaskColumn[],
+  TeammateTaskColumn[],
   string
 >({
   key: key('teammatesTaskColumnsByTeammateIdState'),
@@ -37,8 +39,8 @@ export const teammatesTaskColumnsByTeammateIdState = selectorFamily<
 })
 
 export const teammatesTaskColumnByTypeState = selectorFamily<
-  TeammatesTaskColumn,
-  { teammateId: string; type: TaskColumnType }
+  TeammateTaskColumn,
+  { teammateId: string; type: TaskColumnTypeValue }
 >({
   key: key('teammatesTaskColumnByTypeState'),
   get:

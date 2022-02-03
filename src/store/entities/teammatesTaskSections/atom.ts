@@ -1,16 +1,16 @@
 import { selectorFamily } from 'recoil'
-import { taskSectionState, TaskSection } from 'src/store/entities/taskSections'
 import { createState } from 'src/store/util'
-import { TeammatesTaskSection } from './type'
+import { TeammateTaskSection } from './type'
 
 const key = (str: string) => `src/store/entities/teammatesTaskSections/${str}`
 
 export const DEFAULT_TITLE_NAME = 'Untitled Section'
 
-export const initialState = (): TeammatesTaskSection => ({
+export const initialState = (): TeammateTaskSection => ({
   id: '',
-  taskSectionId: '',
+  name: '',
   teammateId: '',
+  assigned: false,
   createdAt: '',
   updatedAt: '',
 })
@@ -28,13 +28,13 @@ export const taskSectionIdsByTeammateIdState = selectorFamily<string[], string>(
         const teammatesTaskSections = get(teammatesTaskSectionsState)
         return teammatesTaskSections
           .filter((t) => t.teammateId === teammateId)
-          .map((p) => p.taskSectionId)
+          .map((p) => p.id)
       },
   },
 )
 
 export const taskSectionsByTeammateIdState = selectorFamily<
-  TaskSection[],
+  TeammateTaskSection[],
   string
 >({
   key: key('taskSectionsByTeammateIdState'),
@@ -42,8 +42,6 @@ export const taskSectionsByTeammateIdState = selectorFamily<
     (teammateId) =>
     ({ get }) => {
       const teammatesTaskSections = get(teammatesTaskSectionsState)
-      return teammatesTaskSections
-        .filter((t) => t.teammateId === teammateId)
-        .map((p) => get(taskSectionState(p.taskSectionId)))
+      return teammatesTaskSections.filter((t) => t.teammateId === teammateId)
     },
 })

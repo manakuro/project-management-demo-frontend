@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { TaskListSortStatuses, taskListSortStatues } from '../atom'
-import { TaskListSortStatusType } from '../types'
+import { TaskListSortStatusCodeValue } from '../types'
 import { useTaskListStatus } from './useTaskListStatus'
 import { useTaskListStatusCommand } from './useTaskListStatusCommand'
 
@@ -18,7 +18,7 @@ export const useTaskListSortStatus = () => {
   )
 
   const sortBy = useCallback(
-    (status: TaskListSortStatusType | TaskListSortStatuses) => {
+    (status: TaskListSortStatusCodeValue | TaskListSortStatuses) => {
       const val = isSortStatusKey(status) ? taskListSortStatues[status] : status
       setTaskStatus({ taskListSortStatus: val })
     },

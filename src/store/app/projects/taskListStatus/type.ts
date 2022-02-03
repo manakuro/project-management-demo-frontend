@@ -1,7 +1,10 @@
-import { TaskListCompletedStatusType, TaskListSortStatusType } from './types'
+import {
+  TaskListCompletedStatusCodeValue,
+  TaskListSortStatusCodeValue,
+} from './types'
 
 export type TaskListStatus = {
   id: string
-  taskListCompletedStatus: TaskListCompletedStatusType
-  taskListSortStatus: TaskListSortStatusType
+  taskListCompletedStatus: TaskListCompletedStatusCodeValue
+  taskListSortStatus: TaskListSortStatusCodeValue
 }

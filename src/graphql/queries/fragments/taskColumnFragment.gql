@@ -1,0 +1,7 @@
+fragment TaskColumnFragment on TaskColumn {
+  id
+  name
+  type
+  createdAt
+  updatedAt
+}

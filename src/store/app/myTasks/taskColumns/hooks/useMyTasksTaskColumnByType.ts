@@ -1,7 +1,7 @@
-import { TaskColumnType } from 'src/store/entities/taskColumns/types'
+import { TaskColumnTypeValue } from 'src/store/entities/taskColumns'
 import { useTeammatesTaskColumnByType } from 'src/store/entities/teammatesTaskColumns'
 
-export const useMyTasksTaskColumnByType = (type: TaskColumnType) => {
+export const useMyTasksTaskColumnByType = (type: TaskColumnTypeValue) => {
   const { teammatesTaskColumn } = useTeammatesTaskColumnByType(type)
 
   return {

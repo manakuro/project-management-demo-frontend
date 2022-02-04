@@ -3,7 +3,7 @@ import { Task, taskState } from 'src/store/entities/tasks'
 import { createState } from 'src/store/util'
 import { ProjectTask } from './type'
 
-const key = (str: string) => `src/store/entities/projectTasks/${str}`
+const key = (str: string) => `src/store/entities/projectTask/${str}`
 
 export const initialState = (): ProjectTask => ({
   id: '',

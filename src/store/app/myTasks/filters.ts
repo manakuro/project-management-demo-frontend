@@ -5,7 +5,7 @@ import {
   isTaskListSortStatusState,
   isTaskListCompletedStatusState,
 } from 'src/store/app/myTasks/taskListStatus'
-import { projectTasksState } from 'src/store/entities/projectsTasks'
+import { projectTasksState } from 'src/store/entities/projectsTask'
 import { Task } from 'src/store/entities/tasks'
 import { taskLikesByTaskIdState } from 'src/store/entities/tasksLikes'
 

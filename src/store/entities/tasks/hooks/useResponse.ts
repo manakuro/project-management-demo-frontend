@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
-import { projectTaskState } from 'src/store/entities/projectsTasks'
+import { projectTaskState } from 'src/store/entities/projectsTask'
 import { taskFeedState } from 'src/store/entities/taskFeed'
 import { taskFileState } from 'src/store/entities/taskFile'
 import { taskTagState } from 'src/store/entities/taskTag'

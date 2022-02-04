@@ -4,7 +4,7 @@ import { useTasksCommand } from 'src/store/entities/tasks'
 import { projectTaskState, initialState } from '../atom'
 import { ProjectTask } from '../type'
 
-export const useProjectsTasksCommand = () => {
+export const useProjectsTaskCommand = () => {
   const { addTask } = useTasksCommand()
   const upsert = useRecoilCallback(
     ({ set }) =>

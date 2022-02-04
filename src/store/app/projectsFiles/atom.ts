@@ -1,5 +1,5 @@
 import { selectorFamily } from 'recoil'
-import { taskIdsByProjectIdState } from 'src/store/entities/projectsTasks'
+import { taskIdsByProjectIdState } from 'src/store/entities/projectsTask'
 import { taskFilesState } from 'src/store/entities/taskFile'
 
 const key = (str: string) => `src/store/app/projectsFiles/${str}`

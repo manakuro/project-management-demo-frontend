@@ -1,6 +1,6 @@
 import { selector } from 'recoil'
 import { uniq } from 'src/shared/utils'
-import { projectTasksState } from 'src/store/entities/projectsTasks'
+import { projectTasksState } from 'src/store/entities/projectsTask'
 
 export const projectIdsState = selector<string[]>({
   key: 'projectIdsState',

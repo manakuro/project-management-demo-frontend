@@ -9,27 +9,27 @@ import {
   Stack,
   Text,
 } from 'src/components/atoms'
-import { formatAttachmentCreatedAt } from 'src/shared/date'
-import { useAttachment } from 'src/store/entities/attachments'
+import { formatTaskFileCreatedAt } from 'src/shared/date'
+import { useTaskFile } from 'src/store/entities/taskFile'
 import { useFileViewerModal } from './useFileViewerModal'
 
 type Props = {}
 
 export const Header: React.VFC<Props> = memo(() => {
-  const { onClose, currentAttachmentId } = useFileViewerModal()
-  const { attachment } = useAttachment(currentAttachmentId)
-  const formattedCreateAt = formatAttachmentCreatedAt(attachment.createdAt)
+  const { onClose, currentTaskFileId } = useFileViewerModal()
+  const { taskFile } = useTaskFile(currentTaskFileId)
+  const formattedCreateAt = formatTaskFileCreatedAt(taskFile.createdAt)
 
   return (
     <Flex h="full">
       <Flex flexDirection="column" py={4} px={6}>
-        <Text fontSize="md">{attachment.name}</Text>
+        <Text fontSize="md">{taskFile.name}</Text>
         <Text fontSize="sm" color="text.muted">
           {formattedCreateAt}
         </Text>
       </Flex>
       <Stack direction="row" spacing={2} ml="auto" py={4} px={6}>
-        <Link href={attachment.src} download>
+        <Link href={taskFile.src} download>
           <Button
             leftIcon={<Icon icon="download" />}
             iconSpacing={2}

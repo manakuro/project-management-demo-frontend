@@ -3,7 +3,7 @@ import { FileTypeCode } from 'src/store/entities/fileTypes'
 import { createState } from 'src/store/util'
 import { TaskFile } from './type'
 
-const key = (str: string) => `src/store/entities/attachments/${str}`
+const key = (str: string) => `src/store/entities/taskFiles/${str}`
 
 export const initialState = (): TaskFile => ({
   id: '',
@@ -25,27 +25,27 @@ export const initialState = (): TaskFile => ({
   updatedAt: '',
 })
 export const {
-  state: attachmentState,
-  listState: attachmentsState,
-  idsState: attachmentIdsState,
+  state: taskFileState,
+  listState: taskFilesState,
+  idsState: taskFileIdsState,
 } = createState({ key, initialState })
 
-export const attachmentIdsByTaskIdState = selectorFamily<string[], string>({
-  key: key('attachmentIdsByTaskIdState'),
+export const taskFileIdsByTaskIdState = selectorFamily<string[], string>({
+  key: key('taskFileIdsByTaskIdState'),
   get:
     (taskId) =>
     ({ get }) => {
-      const attachments = get(attachmentsState)
-      return attachments.filter((p) => p.taskId === taskId).map((p) => p.id)
+      const taskFiles = get(taskFilesState)
+      return taskFiles.filter((p) => p.taskId === taskId).map((p) => p.id)
     },
 })
 
-export const attachmentIdsByFeedIdState = selectorFamily<string[], string>({
-  key: key('attachmentIdsByFeedIdState'),
+export const taskFileIdsByFeedIdState = selectorFamily<string[], string>({
+  key: key('taskFileIdsByFeedIdState'),
   get:
     (feedId) =>
     ({ get }) => {
-      const attachments = get(attachmentsState)
-      return attachments.filter((p) => p.taskFeedId === feedId).map((p) => p.id)
+      const taskFiles = get(taskFilesState)
+      return taskFiles.filter((p) => p.taskFeedId === feedId).map((p) => p.id)
     },
 })

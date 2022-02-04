@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
-import { attachmentState } from 'src/store/entities/attachments'
 import { feedState } from 'src/store/entities/feeds'
 import { projectTaskState } from 'src/store/entities/projectsTasks'
 import { tagState } from 'src/store/entities/tags'
+import { taskFileState } from 'src/store/entities/taskFile'
 import { taskTeammateState } from 'src/store/entities/tasksTeammates'
 import { useTeammatesResponse } from 'src/store/entities/teammates'
 import { taskState } from '../atom'
@@ -98,7 +98,7 @@ const useSetters = () => {
             (acc, p) => uniqBy([...acc, ...p.taskFiles], 'id'),
             [],
           )
-          .forEach((t) => set(attachmentState(t.id), t))
+          .forEach((t) => set(taskFileState(t.id), t))
       },
     [],
   )

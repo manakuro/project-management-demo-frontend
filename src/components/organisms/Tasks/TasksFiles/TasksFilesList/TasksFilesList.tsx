@@ -6,11 +6,11 @@ import { splitByNumber } from 'src/shared/utils'
 import { TasksFilesListItem } from '../TasksFilesListItem'
 
 export const TasksFilesList: React.VFC = memo(() => {
-  const { attachmentIds } = useTasksTaskFiles()
+  const { taskFileIds } = useTasksTaskFiles()
   const splitNum = useBreakpointValue({ base: 2, '2xl': 3 }) as number
   const sections = useMemo(
-    () => splitByNumber(attachmentIds, splitNum),
-    [attachmentIds, splitNum],
+    () => splitByNumber(taskFileIds, splitNum),
+    [taskFileIds, splitNum],
   )
 
   return (
@@ -19,7 +19,7 @@ export const TasksFilesList: React.VFC = memo(() => {
         {sections.map((ids, i) => (
           <Stack spacing={8} key={i}>
             {ids.map((id) => (
-              <TasksFilesListItem attachmentId={id} key={id} />
+              <TasksFilesListItem taskFileId={id} key={id} />
             ))}
           </Stack>
         ))}

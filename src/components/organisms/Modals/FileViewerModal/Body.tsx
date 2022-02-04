@@ -15,35 +15,35 @@ import { useFileViewerModal } from './useFileViewerModal'
 type Props = {}
 
 export const Body: React.VFC<Props> = memo(() => {
-  const { attachmentIds, setState, currentAttachmentId } = useFileViewerModal()
+  const { taskFileIds, setState, currentTaskFileId } = useFileViewerModal()
   const defaultIndex = useMemo(
-    () => attachmentIds.indexOf(currentAttachmentId),
-    [attachmentIds, currentAttachmentId],
+    () => taskFileIds.indexOf(currentTaskFileId),
+    [taskFileIds, currentTaskFileId],
   )
 
   const handleChangeCarousel = useCallback(
     (currentIndex: number) => {
       setState((s) => ({
         ...s,
-        currentAttachmentId: attachmentIds[currentIndex],
+        currentTaskFileId: taskFileIds[currentIndex],
       }))
     },
-    [attachmentIds, setState],
+    [taskFileIds, setState],
   )
 
   return (
     <Carousel defaultIndex={defaultIndex} onChange={handleChangeCarousel}>
       <CarouselBody>
-        {attachmentIds.map((id) => (
+        {taskFileIds.map((id) => (
           <CarouselItem key={id}>
-            <ListItem attachmentId={id} />
+            <ListItem taskFileId={id} />
           </CarouselItem>
         ))}
       </CarouselBody>
       <CarouselThumbnail>
-        {attachmentIds.map((id) => (
+        {taskFileIds.map((id) => (
           <CarouselThumbnailItem key={id}>
-            <ThumbnailListItem attachmentId={id} />
+            <ThumbnailListItem taskFileId={id} />
           </CarouselThumbnailItem>
         ))}
       </CarouselThumbnail>

@@ -14,12 +14,12 @@ const generateTitle = (
     teammate: Teammate
     feed: TaskFeed
   },
-  { hasAttachment }: { hasAttachment: boolean },
+  { hasTaskFile }: { hasTaskFile: boolean },
 ): React.ReactElement => {
   switch (true) {
     case feed.isFirst:
       return <Text>{`${teammate.name} created this task.`}</Text>
-    case Boolean(hasAttachment): {
+    case Boolean(hasTaskFile): {
       return (
         <Flex flex={1} alignItems="center">
           <Icon icon="attach" color="text.muted" />
@@ -33,8 +33,8 @@ const generateTitle = (
 }
 
 export const Title: React.VFC<Props> = memo<Props>((props) => {
-  const { teammate, feed, hasAttachment } = useFeedListItemContext()
-  const title = generateTitle({ teammate, feed }, { hasAttachment })
+  const { teammate, feed, hasTaskFile } = useFeedListItemContext()
+  const title = generateTitle({ teammate, feed }, { hasTaskFile })
 
   return (
     <Flex fontSize="sm" fontWeight="medium" ml={2} {...props}>

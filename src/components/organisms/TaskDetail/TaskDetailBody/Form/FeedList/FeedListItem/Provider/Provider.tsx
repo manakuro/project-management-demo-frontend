@@ -3,8 +3,8 @@ import { useToast } from 'src/hooks'
 import { getMyTasksDetailFeedURL } from 'src/router'
 import { parseDescription } from 'src/shared/prosemirror/convertDescription'
 import { createProvider } from 'src/shared/react/createProvider'
-import { useAttachmentIdsByFeedId } from 'src/store/entities/attachments'
 import { useFeed } from 'src/store/entities/feeds'
+import { useTaskFileIdsByTaskFeedId } from 'src/store/entities/taskFile'
 import { useTeammate } from 'src/store/entities/teammates'
 import { Provider as ProviderContainer } from './ProviderContainer'
 
@@ -23,7 +23,7 @@ export const Provider: React.FC<Props> = (props) => {
 
 const useValue = (props: Props) => {
   const { feed } = useFeed(props.feedId)
-  const { attachmentIds } = useAttachmentIdsByFeedId(props.feedId)
+  const { taskFileIds } = useTaskFileIdsByTaskFeedId(props.feedId)
   const { teammate } = useTeammate(feed.teammateId)
   const {
     onPin,
@@ -42,7 +42,7 @@ const useValue = (props: Props) => {
       isEdit,
     })
 
-  const hasAttachment = useMemo(() => !!attachmentIds.length, [attachmentIds])
+  const hasTaskFile = useMemo(() => !!taskFileIds.length, [taskFileIds])
   const hasText = useMemo(
     () => !!feed.description.content.length,
     [feed.description],
@@ -62,10 +62,10 @@ const useValue = (props: Props) => {
     onUnpin,
     onCopyCommentLink,
     isPinned: props.isPinned ?? false,
-    hasAttachment,
+    hasTaskFile,
     hasText,
     taskId: props.taskId,
-    attachmentIds,
+    taskFileIds,
   }
 }
 useValue.__PROVIDER__ =

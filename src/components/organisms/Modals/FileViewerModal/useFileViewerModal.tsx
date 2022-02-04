@@ -10,14 +10,14 @@ const openState = atom({
 })
 
 type State = {
-  currentAttachmentId: string
-  attachmentIds: string[]
+  currentTaskFileId: string
+  taskFileIds: string[]
 }
 const fileViewerState = atom<State>({
   key: key('fileViewerState'),
   default: {
-    currentAttachmentId: '',
-    attachmentIds: [],
+    currentTaskFileId: '',
+    taskFileIds: [],
   },
 })
 

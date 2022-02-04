@@ -8,22 +8,22 @@ import { useThumbnailAttachmentContext } from 'src/components/molecules/Thumbnai
 import { Tooltip } from 'src/components/molecules/ThumbnailAttachment/Tooltip'
 
 type Props = FlexProps & {
-  attachmentId: string
+  taskFileId: string
 }
 
 export const File: React.VFC<Props> = (props) => {
-  const { attachmentId, ...rest } = props
+  const { taskFileId, ...rest } = props
   const { isHovering } = useThumbnailAttachmentContext()
 
   return (
-    <Tooltip attachmentId={attachmentId} openDelay={500}>
+    <Tooltip taskFileId={taskFileId} openDelay={500}>
       <Container {...rest}>
         <AttachmentBox
           size="md"
-          attachmentId={attachmentId}
+          taskFileId={taskFileId}
           isHovering={isHovering}
         />
-        <Menu attachmentId={attachmentId}>
+        <Menu taskFileId={taskFileId}>
           <MenuButton color="text.muted" />
         </Menu>
       </Container>

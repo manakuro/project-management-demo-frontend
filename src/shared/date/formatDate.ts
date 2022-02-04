@@ -30,7 +30,7 @@ export const formatDueDateInput = (date: string): string => {
 export const formatDueTime = (date: string): string =>
   dateFns.format(new Date(date), 'H:mm aaa')
 
-export const formatAttachmentCreatedAt = (date: string): string => {
+export const formatTaskFileCreatedAt = (date: string): string => {
   if (!date) return ''
 
   const dateObj = new Date(date)

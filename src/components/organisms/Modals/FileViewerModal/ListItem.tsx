@@ -1,23 +1,23 @@
 import React from 'react'
 import { Box, Flex, Image, Text } from 'src/components/atoms'
 import { PdfViewer } from 'src/components/organisms/PdfViewer'
-import { useAttachment } from 'src/store/entities/attachments'
 import { FileTypeCode } from 'src/store/entities/fileTypes'
+import { useTaskFile } from 'src/store/entities/taskFile'
 
 type Props = {
-  attachmentId: string
+  taskFileId: string
 }
 
 export const ListItem: React.VFC<Props> = (props) => {
-  const { attachmentId } = props
-  const { attachment } = useAttachment(attachmentId)
+  const { taskFileId } = props
+  const { taskFile } = useTaskFile(taskFileId)
 
-  switch (attachment.fileType.typeCode) {
+  switch (taskFile.fileType.typeCode) {
     case FileTypeCode.Image: {
-      return <Image src={attachment.src} objectFit="contain" alt="attachment" />
+      return <Image src={taskFile.src} objectFit="contain" alt="taskFile" />
     }
     case FileTypeCode.Pdf: {
-      return <PdfViewer fileUrl={attachment.src} />
+      return <PdfViewer fileUrl={taskFile.src} />
     }
     case FileTypeCode.Text: {
       return (
@@ -37,10 +37,11 @@ export const ListItem: React.VFC<Props> = (props) => {
             We're not able to preview this file
           </Text>
           <Text fontSize="sm" color="text.muted" mt={4}>
-            {attachment.name}
+            {taskFile.name}
           </Text>
         </Flex>
       )
     }
   }
+  return null
 }

@@ -2,45 +2,39 @@ import React, { memo, useCallback } from 'react'
 import { useFileViewerModal } from 'src/components/organisms/Modals'
 import { FileTypeCode } from 'src/graphql/enums'
 import {
-  useAttachment,
-  useAttachmentIdsByTaskId,
-} from 'src/store/entities/attachments'
+  useTaskFile,
+  useTaskFileIdsByTaskId,
+} from 'src/store/entities/taskFile'
 import { useFeedListItemContext } from '../../Provider'
 import { File } from './File'
 import { Image } from './Image'
 
 type Props = {
-  attachmentId: string
+  taskFileId: string
 }
 
 export const ContentAttachment: React.VFC<Props> = memo<Props>((props) => {
   const { taskId } = useFeedListItemContext()
-  const { attachment } = useAttachment(props.attachmentId)
-  const { attachmentIds } = useAttachmentIdsByTaskId(taskId)
+  const { taskFile } = useTaskFile(props.taskFileId)
+  const { taskFileIds } = useTaskFileIdsByTaskId(taskId)
   const { onOpen, setState } = useFileViewerModal()
 
   const handleOpenFileViewer = useCallback(() => {
     setState({
-      attachmentIds,
-      currentAttachmentId: attachment.id,
+      taskFileIds,
+      currentTaskFileId: taskFile.id,
     })
     onOpen()
-  }, [attachment.id, attachmentIds, onOpen, setState])
+  }, [taskFile.id, taskFileIds, onOpen, setState])
 
-  switch (attachment.fileType.typeCode) {
+  switch (taskFile.fileType.typeCode) {
     case FileTypeCode.Image:
       return (
-        <Image
-          attachmentId={props.attachmentId}
-          onClick={handleOpenFileViewer}
-        />
+        <Image taskFileId={props.taskFileId} onClick={handleOpenFileViewer} />
       )
     default:
       return (
-        <File
-          attachmentId={props.attachmentId}
-          onClick={handleOpenFileViewer}
-        />
+        <File taskFileId={props.taskFileId} onClick={handleOpenFileViewer} />
       )
   }
 })

@@ -3,10 +3,7 @@ import { Wrap, WrapItem } from 'src/components/atoms'
 import { ThumbnailAttachment } from 'src/components/molecules'
 import { useFileViewerModal } from 'src/components/organisms/Modals'
 import { useToast } from 'src/hooks'
-import {
-  TaskFile as TAttachment,
-  useAttachmentIdsByTaskId,
-} from 'src/store/entities/attachments'
+import { TaskFile, useTaskFileIdsByTaskId } from 'src/store/entities/taskFile'
 import { NewButton } from './NewButton'
 
 type Props = {
@@ -14,25 +11,25 @@ type Props = {
 }
 
 export const Attachment: React.VFC<Props> = memo<Props>((props) => {
-  const { attachmentIds } = useAttachmentIdsByTaskId(props.taskId)
+  const { taskFileIds } = useTaskFileIdsByTaskId(props.taskId)
   const { onOpen, setState } = useFileViewerModal()
   const { toast } = useToast()
 
   const onOpenFileViewer = useCallback(
-    (attachmentId: string) => {
+    (taskFileId: string) => {
       setState({
-        attachmentIds,
-        currentAttachmentId: attachmentId,
+        taskFileIds,
+        currentTaskFileId: taskFileId,
       })
       onOpen()
     },
-    [attachmentIds, onOpen, setState],
+    [taskFileIds, onOpen, setState],
   )
 
   const onDelete = useCallback(
-    (attachment: TAttachment) => {
+    (taskFile: TaskFile) => {
       toast({
-        description: `${attachment.name} is deleted from this task`,
+        description: `${taskFile.name} is deleted from this task`,
       })
     },
     [toast],
@@ -40,10 +37,10 @@ export const Attachment: React.VFC<Props> = memo<Props>((props) => {
 
   return (
     <Wrap spacing={3}>
-      {attachmentIds.map((id) => (
+      {taskFileIds.map((id) => (
         <WrapItem key={id}>
           <ThumbnailAttachment
-            attachmentId={id}
+            taskFileId={id}
             onOpenFileViewer={onOpenFileViewer}
             onDelete={onDelete}
           />

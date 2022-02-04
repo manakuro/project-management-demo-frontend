@@ -8,7 +8,7 @@ type Props = {
 
 export const useMyTasksFilesPageQuery = (props?: Props) => {
   const [loading, setLoading] = useState(true)
-  const { setMyTasksAttachments } = useMyTasksFilesResponse()
+  const { setMyTasksTaskFiles } = useMyTasksFilesResponse()
   const { mountedRef } = useMountedRef()
 
   useEffect(() => {
@@ -18,22 +18,22 @@ export const useMyTasksFilesPageQuery = (props?: Props) => {
       setLoading(true)
       const res = await fetchTasks()
       if (mountedRef.current) {
-        await setMyTasksAttachments(res)
+        await setMyTasksTaskFiles(res)
         setLoading(false)
       }
     })()
-  }, [props?.lazy, setMyTasksAttachments, mountedRef])
+  }, [props?.lazy, setMyTasksTaskFiles, mountedRef])
 
   const refetch = useCallback(async () => {
     setLoading(true)
     const res = await fetchTasks()
     if (mountedRef.current) {
-      await setMyTasksAttachments(res)
+      await setMyTasksTaskFiles(res)
       setLoading(false)
     }
 
     return res
-  }, [mountedRef, setMyTasksAttachments])
+  }, [mountedRef, setMyTasksTaskFiles])
 
   return {
     refetch,

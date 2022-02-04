@@ -1,4 +1,4 @@
-import { TaskFile } from 'src/store/entities/attachments'
+import { TaskFile } from 'src/store/entities/taskFile'
 
 export type ProjectsFileResponse = TaskFile & {
   task: Task

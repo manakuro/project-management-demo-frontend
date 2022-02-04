@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { useHover } from 'src/hooks/useHover'
 import { createProvider } from 'src/shared/react/createProvider'
-import { TaskFile, useAttachment } from 'src/store/entities/attachments'
+import { TaskFile, useTaskFile } from 'src/store/entities/taskFile'
 
 type ContextProps = {
   ref: React.MutableRefObject<HTMLElement | null>
@@ -12,21 +12,21 @@ type ContextProps = {
 }
 
 type Props = {
-  attachmentId: string
-  onDelete: (attachment: TaskFile) => void
+  taskFileId: string
+  onDelete: (taskFile: TaskFile) => void
 }
 
 const useValue = (props: Props): ContextProps => {
   const { ref, isHovering } = useHover()
   const [thumbnailMenuOpened, setThumbnailMenuOpened] = useState<boolean>(false)
-  const { attachment } = useAttachment(props.attachmentId)
+  const { taskFile } = useTaskFile(props.taskFileId)
 
   const onDelete = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
       e.stopPropagation()
-      props.onDelete(attachment)
+      props.onDelete(taskFile)
     },
-    [attachment, props],
+    [taskFile, props],
   )
 
   return {

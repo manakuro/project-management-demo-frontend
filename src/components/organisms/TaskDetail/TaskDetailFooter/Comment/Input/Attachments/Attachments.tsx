@@ -10,31 +10,30 @@ import { useInputContext } from 'src/components/organisms/TaskDetail/TaskDetailF
 type Props = {}
 
 export const Attachments: React.FC<Props> = memo<Props>(() => {
-  const { attachmentIds, uploadingFiles, onDeleteAttachment } =
-    useInputContext()
+  const { taskFileIds, uploadingFiles, onDeleteTaskFile } = useInputContext()
   const { onOpen, setState } = useFileViewerModal()
 
   const onOpenFileViewer = useCallback(
-    (attachmentId: string) => {
+    (taskFileId: string) => {
       setState({
-        attachmentIds,
-        currentAttachmentId: attachmentId,
+        taskFileIds,
+        currentTaskFileId: taskFileId,
       })
       onOpen()
     },
-    [attachmentIds, onOpen, setState],
+    [taskFileIds, onOpen, setState],
   )
 
-  if (!attachmentIds.length && !uploadingFiles.length) return null
+  if (!taskFileIds.length && !uploadingFiles.length) return null
 
   return (
     <Wrap spacing={3} py={2}>
-      {attachmentIds.map((id) => (
+      {taskFileIds.map((id) => (
         <WrapItem key={id}>
           <ThumbnailAttachment
-            attachmentId={id}
+            taskFileId={id}
             onOpenFileViewer={onOpenFileViewer}
-            onDelete={onDeleteAttachment}
+            onDelete={onDeleteTaskFile}
           />
         </WrapItem>
       ))}

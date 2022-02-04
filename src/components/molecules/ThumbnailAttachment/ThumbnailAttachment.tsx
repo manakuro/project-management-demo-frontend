@@ -1,15 +1,15 @@
 import React, { memo, useCallback } from 'react'
 import { FlexProps } from 'src/components/atoms'
-import { TaskFile, useAttachment } from 'src/store/entities/attachments'
 import { FileTypeCode } from 'src/store/entities/fileTypes'
+import { TaskFile, useTaskFile } from 'src/store/entities/taskFile'
 import { File } from './File'
 import { Image } from './Image'
 import { Provider } from './Provider'
 
 type Props = FlexProps & {
-  attachmentId: string
-  onOpenFileViewer: (attachmentId: string) => void
-  onDelete: (attachment: TaskFile) => void
+  taskFileId: string
+  onOpenFileViewer: (taskFileId: string) => void
+  onDelete: (taskFile: TaskFile) => void
 }
 
 export const ThumbnailAttachment: React.VFC<Props> = memo<Props>((props) => {
@@ -21,24 +21,20 @@ export const ThumbnailAttachment: React.VFC<Props> = memo<Props>((props) => {
 })
 
 export const Component: React.VFC<Props> = memo((props) => {
-  const { attachmentId, onOpenFileViewer, onDelete, ...rest } = props
-  const { attachment } = useAttachment(attachmentId)
+  const { taskFileId, onOpenFileViewer, onDelete, ...rest } = props
+  const { taskFile } = useTaskFile(taskFileId)
 
   const handleClick = useCallback(() => {
-    onOpenFileViewer(attachmentId)
-  }, [attachmentId, onOpenFileViewer])
+    onOpenFileViewer(taskFileId)
+  }, [taskFileId, onOpenFileViewer])
 
-  switch (attachment.fileType.typeCode) {
+  switch (taskFile.fileType.typeCode) {
     case FileTypeCode.Image: {
-      return (
-        <Image onClick={handleClick} attachmentId={attachmentId} {...rest} />
-      )
+      return <Image onClick={handleClick} taskFileId={taskFileId} {...rest} />
     }
     case FileTypeCode.Pdf:
     case FileTypeCode.Text: {
-      return (
-        <File onClick={handleClick} attachmentId={attachmentId} {...rest} />
-      )
+      return <File onClick={handleClick} taskFileId={taskFileId} {...rest} />
     }
   }
 })

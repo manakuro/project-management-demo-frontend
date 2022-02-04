@@ -1,6 +1,6 @@
 import { FileTypeCode, FileTypeCodeValue } from 'src/store/entities/fileTypes'
 
-export const getAttachmentName = (type: FileTypeCodeValue): string => {
+export const getTaskFileName = (type: FileTypeCodeValue): string => {
   switch (type) {
     case FileTypeCode.Pdf:
       return 'PDF'

@@ -11,27 +11,27 @@ import {
 import { useFileViewerModal } from 'src/components/organisms/Modals'
 import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
 import { useHover } from 'src/hooks/useHover'
-import {
-  useAttachment,
-  useAttachmentIdsByTaskId,
-  getAttachmentIcon,
-} from 'src/store/entities/attachments'
 import { FileTypeCode } from 'src/store/entities/fileTypes'
+import {
+  useTaskFile,
+  useTaskFileIdsByTaskId,
+  getTaskFileIcon,
+} from 'src/store/entities/taskFile'
 import { useTask } from 'src/store/entities/tasks'
 import { transitions } from 'src/styles'
 
 type Props = {
-  attachmentId: string
+  taskFileId: string
 } & FlexProps
 
 export const TasksFilesListItem: React.VFC<Props> = memo((props) => {
-  const { attachmentId, ...rest } = props
+  const { taskFileId, ...rest } = props
   const { ref, isHovering } = useHover()
-  const { attachment } = useAttachment(attachmentId)
-  const { task } = useTask(attachment.taskId)
-  const { attachmentIds } = useAttachmentIdsByTaskId(attachment.taskId)
+  const { taskFile } = useTaskFile(taskFileId)
+  const { task } = useTask(taskFile.taskId)
+  const { taskFileIds } = useTaskFileIdsByTaskId(taskFile.taskId)
   const { onOpen, setState } = useFileViewerModal()
-  const icon = getAttachmentIcon(attachment.fileType.typeCode)
+  const icon = getTaskFileIcon(taskFile.fileType.typeCode)
   const { navigateToTaskDetail } = useTasksRouter()
 
   const handleOpenTaskDetail = useCallback(
@@ -44,11 +44,11 @@ export const TasksFilesListItem: React.VFC<Props> = memo((props) => {
 
   const handleOpenFileViewer = useCallback(() => {
     setState({
-      attachmentIds,
-      currentAttachmentId: attachmentId,
+      taskFileIds,
+      currentTaskFileId: taskFileId,
     })
     onOpen()
-  }, [attachmentId, attachmentIds, onOpen, setState])
+  }, [taskFileId, taskFileIds, onOpen, setState])
 
   return (
     <Flex
@@ -70,7 +70,7 @@ export const TasksFilesListItem: React.VFC<Props> = memo((props) => {
         <Icon icon={icon} color="text.muted" size="2xl" />
         <Flex ml={4} flexDirection="column" flex={1} minW={0}>
           <Text fontSize="sm" isTruncated>
-            {attachment.name}
+            {taskFile.name}
           </Text>
           <Flex>
             <Link
@@ -84,13 +84,13 @@ export const TasksFilesListItem: React.VFC<Props> = memo((props) => {
           </Flex>
         </Flex>
       </Flex>
-      {attachment.fileType.typeCode === FileTypeCode.Image && (
+      {taskFile.fileType.typeCode === FileTypeCode.Image && (
         <>
           <Divider />
           <Image
             width="auto"
             maxW="100%"
-            src={attachment.src}
+            src={taskFile.src}
             borderBottomRadius="md"
             objectFit="cover"
             overflow="hidden"

@@ -7,30 +7,30 @@ import { MenuButton } from 'src/components/molecules/ThumbnailAttachment/MenuBut
 import { Overlay } from 'src/components/molecules/ThumbnailAttachment/Overlay'
 import { useThumbnailAttachmentContext } from 'src/components/molecules/ThumbnailAttachment/Provider'
 import { Tooltip } from 'src/components/molecules/ThumbnailAttachment/Tooltip'
-import { useAttachment } from 'src/store/entities/attachments'
+import { useTaskFile } from 'src/store/entities/taskFile'
 
 type Props = FlexProps & {
-  attachmentId: string
+  taskFileId: string
 }
 
 export const Image: React.VFC<Props> = (props) => {
-  const { attachmentId, ...rest } = props
-  const { attachment } = useAttachment(attachmentId)
+  const { taskFileId, ...rest } = props
+  const { taskFile } = useTaskFile(taskFileId)
   const { isHovering } = useThumbnailAttachmentContext()
 
   return (
-    <Tooltip attachmentId={attachmentId}>
+    <Tooltip taskFileId={taskFileId}>
       <Container bg="gray.50" {...rest}>
         <AtomsImage
           width="auto"
           maxH={16}
           maxW="240px"
-          src={attachment.src}
+          src={taskFile.src}
           borderRadius="lg"
           objectFit="cover"
         />
         <Overlay isHovering={isHovering} />
-        <Menu attachmentId={attachmentId}>
+        <Menu taskFileId={taskFileId}>
           <MenuButton color="white" light />
         </Menu>
       </Container>

@@ -3,7 +3,7 @@ import { useProjectsFiles } from 'src/store/app/projectsFiles'
 import { useTasksContext } from '../TasksProvider'
 
 type Result = {
-  attachmentIds: string[]
+  taskFileIds: string[]
 }
 
 export const useTasksTaskFiles = (): Result => {
@@ -13,11 +13,11 @@ export const useTasksTaskFiles = (): Result => {
 
   if (isMyTasksPage) {
     return {
-      attachmentIds: myTasks.attachmentIds,
+      taskFileIds: myTasks.taskFileIds,
     }
   }
 
   return {
-    attachmentIds: projects.attachmentIds,
+    taskFileIds: projects.taskFileIds,
   }
 }

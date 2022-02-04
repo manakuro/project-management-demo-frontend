@@ -1,7 +1,7 @@
 import { IconType } from 'src/shared/icons'
 import { FileTypeCode, FileTypeCodeValue } from 'src/store/entities/fileTypes'
 
-export const getAttachmentIcon = (type: FileTypeCodeValue): IconType => {
+export const getTaskFileIcon = (type: FileTypeCodeValue): IconType => {
   switch (type) {
     case FileTypeCode.Image:
       return 'imageAlt'

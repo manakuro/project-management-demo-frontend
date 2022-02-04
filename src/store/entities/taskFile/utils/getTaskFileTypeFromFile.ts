@@ -1,6 +1,6 @@
 import { FileTypeCodeValue, FileTypeCode } from 'src/store/entities/fileTypes'
 
-export const getAttachmentTypeFromFile = (
+export const getTaskFileTypeFromFile = (
   fileType: string,
 ): FileTypeCodeValue => {
   if (fileType.includes('image')) return FileTypeCode.Image

@@ -6,21 +6,21 @@ import {
   Link,
   Text,
 } from 'src/components/atoms'
-import { useAttachment } from 'src/store/entities/attachments'
+import { useTaskFile } from 'src/store/entities/taskFile'
 
 type Props = FlexProps & {
-  attachmentId: string
+  taskFileId: string
 }
 
 export const Image: React.VFC<Props> = memo<Props>((props) => {
-  const { onClick, attachmentId, ...rest } = props
-  const { attachment } = useAttachment(attachmentId)
+  const { onClick, taskFileId, ...rest } = props
+  const { taskFile } = useTaskFile(taskFileId)
 
   return (
     <Flex flexDirection="column" {...rest}>
       <AtomsImage
         onClick={onClick}
-        src={attachment.src}
+        src={taskFile.src}
         bg="gray.50"
         width="auto"
         border={1}
@@ -41,9 +41,9 @@ export const Image: React.VFC<Props> = memo<Props>((props) => {
         color="text.muted"
         mt={1}
       >
-        {attachment.name}・
+        {taskFile.name}・
         <Link
-          href={attachment.src}
+          href={taskFile.src}
           fontSize="xs"
           color="text.muted"
           download

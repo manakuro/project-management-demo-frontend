@@ -5,16 +5,16 @@ import {
   TooltipProps,
 } from 'src/components/molecules'
 import { useDisclosure } from 'src/shared/chakra'
-import { useAttachment } from 'src/store/entities/attachments'
+import { useTaskFile } from 'src/store/entities/taskFile'
 import { useThumbnailAttachmentContext } from './Provider'
 
 type Props = Omit<TooltipProps, 'label' | 'size'> & {
-  attachmentId: string
+  taskFileId: string
 }
 
 export const Tooltip: React.FC<Props> = (props) => {
-  const { attachmentId, children, ...rest } = props
-  const { attachment } = useAttachment(attachmentId)
+  const { taskFileId, children, ...rest } = props
+  const { taskFile } = useTaskFile(taskFileId)
   const tooltipDisclosure = useDisclosure()
   const { isHovering, thumbnailMenuOpened } = useThumbnailAttachmentContext()
 
@@ -32,8 +32,8 @@ export const Tooltip: React.FC<Props> = (props) => {
     <MoleculesTooltip
       isOpen={tooltipDisclosure.isOpen}
       hasArrow
-      label={attachment.name}
-      aria-label={attachment.src}
+      label={taskFile.name}
+      aria-label={taskFile.src}
       size="sm"
       {...rest}
     >

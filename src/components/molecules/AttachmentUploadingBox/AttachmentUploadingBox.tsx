@@ -26,7 +26,7 @@ type Sizes = keyof typeof sizes
 export const AttachmentUploadingBox: React.FC<Props> = (props) => {
   const { size, color, ...rest } = props
   const sizeStyle = sizes[size]
-  const attachmentName = props.file.name
+  const taskFile = props.file.name
   const progressValue = props.file.num
 
   return (
@@ -48,7 +48,7 @@ export const AttachmentUploadingBox: React.FC<Props> = (props) => {
         flex={1}
         minW={0}
       >
-        <Text fontSize="sm">{attachmentName}</Text>
+        <Text fontSize="sm">{taskFile}</Text>
         <Progress
           mt={2}
           size="sm"

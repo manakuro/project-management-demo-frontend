@@ -8,14 +8,14 @@ import { useClickOutside, useToast } from 'src/hooks'
 import { getScrollBottom } from 'src/shared/getScrollBottom'
 import { parseDescription } from 'src/shared/prosemirror/convertDescription'
 import { createProvider } from 'src/shared/react/createProvider'
-import {
-  TaskFile,
-  useAttachmentCommand,
-  getAttachmentTypeFromFile,
-  initialState,
-} from 'src/store/entities/attachments'
 import { TaskFeed, useFeed, useFeedCommand } from 'src/store/entities/feeds'
 import { useMe } from 'src/store/entities/me'
+import {
+  TaskFile,
+  useTaskFileCommand,
+  getTaskFileTypeFromFile,
+  initialState,
+} from 'src/store/entities/taskFile'
 
 type ContextProps = {
   feed: TaskFeed
@@ -25,23 +25,23 @@ type ContextProps = {
   onSave: () => void
   onUploadFile: (files: FileUploaderParams) => void
   ref: React.MutableRefObject<HTMLElement | null>
-  attachmentIds: string[]
+  taskFileIds: string[]
   uploadingFiles: {
     name: string
     num: number
   }[]
-  hasAttachment: boolean
-  onDeleteAttachment: (attachment: TaskFile) => void
+  hasTaskFile: boolean
+  onDeleteTaskFile: (taskFile: TaskFile) => void
 }
 
 const useValue = (): ContextProps => {
   const { focused, setFocused, onFocus, ref } = useFocus()
   const [feedId, setFeedId] = useState<string>('')
   const { feed } = useFeed(feedId)
-  const { hasAttachment, setAttachmentIds, attachmentIds, onDeleteAttachment } =
-    useAttachmentFile()
+  const { hasTaskFile, setTaskFileIds, taskFileIds, onDeleteTaskFile } =
+    useTaskFileFile()
   const { uploadingFiles, onUploadFile } = useUploadingFile({
-    setAttachmentIds,
+    setTaskFileIds,
   })
   const { onSave, onChangeDescription } = useSave({
     onSaved: (id: string) => {
@@ -58,45 +58,45 @@ const useValue = (): ContextProps => {
     onChangeDescription,
     feed,
     onUploadFile,
-    attachmentIds,
+    taskFileIds,
     uploadingFiles,
-    hasAttachment,
-    onDeleteAttachment,
+    hasTaskFile,
+    onDeleteTaskFile,
   }
 }
 useValue.__PROVIDER__ = 'CommentInputProvider'
 export const { Provider, useContext: useInputContext } =
   createProvider(useValue)
 
-function useAttachmentFile() {
-  const [attachmentIds, setAttachmentIds] = useState<string[]>([])
+function useTaskFileFile() {
+  const [taskFileIds, setTaskFileIds] = useState<string[]>([])
   const { toast } = useToast()
 
-  const hasAttachment = useMemo(() => !!attachmentIds.length, [attachmentIds])
+  const hasTaskFile = useMemo(() => !!taskFileIds.length, [taskFileIds])
 
   const onDelete = useCallback(
-    (attachment: TaskFile) => {
-      setAttachmentIds((prev) => prev.filter((p) => p !== attachment.id))
+    (taskFile: TaskFile) => {
+      setTaskFileIds((prev) => prev.filter((p) => p !== taskFile.id))
       toast({
-        description: `${attachment.name} is deleted from this task`,
+        description: `${taskFile.name} is deleted from this task`,
       })
     },
     [toast],
   )
 
   return {
-    attachmentIds,
-    setAttachmentIds,
-    hasAttachment,
-    onDeleteAttachment: onDelete,
+    taskFileIds,
+    setTaskFileIds,
+    hasTaskFile,
+    onDeleteTaskFile: onDelete,
   }
 }
 
 function useUploadingFile(props: {
-  setAttachmentIds: React.Dispatch<React.SetStateAction<string[]>>
+  setTaskFileIds: React.Dispatch<React.SetStateAction<string[]>>
 }) {
   const { taskId } = useTaskDetail()
-  const { addAttachment } = useAttachmentCommand()
+  const { addTaskFile } = useTaskFileCommand()
   const [uploadingFiles, setUploadingFiles] = useState<
     ContextProps['uploadingFiles']
   >([])
@@ -133,7 +133,7 @@ function useUploadingFile(props: {
   const onUploadFile = useCallback(
     async (files: FileUploaderParams) => {
       const promises: Promise<{
-        createdAttachmentId: string
+        createdTaskFileId: string
       }>[] = files.map(async (f) => {
         const file = await f
 
@@ -145,13 +145,13 @@ function useUploadingFile(props: {
           }, 3000)
 
           setTimeout(() => {
-            const createdAttachmentId = addAttachment({
+            const createdTaskFileId = addTaskFile({
               taskId,
               src: file.data,
               name: file.name,
               fileType: {
                 ...initialState().fileType,
-                typeCode: getAttachmentTypeFromFile(file.type),
+                typeCode: getTaskFileTypeFromFile(file.type),
               },
             })
 
@@ -162,7 +162,7 @@ function useUploadingFile(props: {
               clearInterval(timeout)
 
               resolve({
-                createdAttachmentId,
+                createdTaskFileId,
               })
             }, 500)
           }, 2000)
@@ -170,13 +170,13 @@ function useUploadingFile(props: {
       })
 
       const result = await Promise.all(promises)
-      props.setAttachmentIds((prev) => [
+      props.setTaskFileIds((prev) => [
         ...prev,
-        ...result.map((r) => r.createdAttachmentId),
+        ...result.map((r) => r.createdTaskFileId),
       ])
       setUploadingFiles([])
     },
-    [addAttachment, props, removeUploadingFile, taskId, upsertUploadingFile],
+    [addTaskFile, props, removeUploadingFile, taskId, upsertUploadingFile],
   )
 
   return {

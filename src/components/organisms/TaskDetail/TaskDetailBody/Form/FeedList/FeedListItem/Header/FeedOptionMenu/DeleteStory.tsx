@@ -5,8 +5,8 @@ import { useFeedListItemContext } from '../../Provider'
 type Props = {}
 
 export const DeleteStory: React.FC<Props> = memo(() => {
-  const { hasAttachment, hasText } = useFeedListItemContext()
-  if (hasText || !hasAttachment) return null
+  const { hasTaskFile, hasText } = useFeedListItemContext()
+  if (hasText || !hasTaskFile) return null
 
   return <MenuItem color="alert">Delete Story</MenuItem>
 })

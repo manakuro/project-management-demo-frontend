@@ -7,16 +7,16 @@ import {
   MenuItem,
   MenuList,
 } from 'src/components/organisms/Menu'
-import { useAttachment } from 'src/store/entities/attachments'
+import { useTaskFile } from 'src/store/entities/taskFile'
 
 type Props = MenuProps & {
-  attachmentId: string
+  taskFileId: string
 }
 
 export const Menu: React.FC<Props> = memo((props) => {
-  const { attachmentId, ...rest } = props
+  const { taskFileId, ...rest } = props
   const { setThumbnailMenuOpened, onDelete } = useThumbnailAttachmentContext()
-  const { attachment } = useAttachment(attachmentId)
+  const { taskFile } = useTaskFile(taskFileId)
 
   const handleThumbnailMenuOpen = useCallback(() => {
     setThumbnailMenuOpened(true)
@@ -36,12 +36,12 @@ export const Menu: React.FC<Props> = memo((props) => {
       <Portal>
         <MenuList>
           <MenuItem>
-            <Link href={attachment.src} download>
-              Download attachment
+            <Link href={taskFile.src} download>
+              Download taskFile
             </Link>
           </MenuItem>
           <MenuItem onClick={onDelete} color="alert">
-            Delete attachment
+            Delete taskFile
           </MenuItem>
         </MenuList>
       </Portal>

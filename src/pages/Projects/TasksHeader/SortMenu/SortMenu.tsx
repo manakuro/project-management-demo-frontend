@@ -57,7 +57,9 @@ export const SortMenu: React.VFC<Props> = memo<Props>(() => {
     if (isSorted('none')) return ''
 
     return `: ${
-      items.find((i) => i.value === taskListStatus.taskListSortStatus)!.text
+      items.find(
+        (i) => i.value === taskListStatus.taskListSortStatus.statusCode,
+      )!.text
     }`
   }, [isSorted, items, taskListStatus.taskListSortStatus])
 

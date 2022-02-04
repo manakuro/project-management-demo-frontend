@@ -1,6 +1,5 @@
 import { useCallback, useEffect } from 'react'
 import { atom, useRecoilState } from 'recoil'
-import { taskSections } from 'src/hooks/queries/app/useMyTasksPageQuery'
 import { dateFns } from 'src/shared/dateFns'
 import { useTaskResponse } from 'src/store/entities/tasks'
 
@@ -49,9 +48,9 @@ const fetchTask = async (): Promise<any> => {
   return new Promise<any>((resolve) => {
     setTimeout(() => {
       resolve({
-        id: taskSections[0].tasks[0].id,
+        id: '',
         taskSectionId: '1',
-        projects: taskSections[0].tasks[0].projects,
+        projects: {},
         name: 'Resolve an issue of auto focus for tasks list detail page',
         dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
         dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
@@ -63,7 +62,7 @@ const fetchTask = async (): Promise<any> => {
             dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             feeds: [],
-            id: taskSections[0].tasks[0].subTasks[0].id,
+            id: '',
             isDeleted: false,
             completed: false,
             isNew: false,
@@ -86,7 +85,7 @@ const fetchTask = async (): Promise<any> => {
             dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             feeds: [],
-            id: taskSections[0].tasks[0].subTasks[1].id,
+            id: '',
             isDeleted: false,
             completed: false,
             isNew: false,
@@ -109,7 +108,7 @@ const fetchTask = async (): Promise<any> => {
             dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             feeds: [],
-            id: taskSections[0].tasks[0].subTasks[2].id,
+            id: '',
             isDeleted: false,
             completed: false,
             isNew: false,
@@ -131,7 +130,7 @@ const fetchTask = async (): Promise<any> => {
         attachments: [
           {
             id: '1',
-            taskId: taskSections[0].tasks[0].id,
+            taskId: '',
             projectId: '1',
             feedId: '4',
             name: '/images/cat_img.png',
@@ -142,7 +141,7 @@ const fetchTask = async (): Promise<any> => {
           },
           {
             id: '2',
-            taskId: taskSections[0].tasks[0].id,
+            taskId: '',
             projectId: '1',
             feedId: '4',
             name: '/images/screen_shot.png',
@@ -153,7 +152,7 @@ const fetchTask = async (): Promise<any> => {
           },
           {
             id: '3',
-            taskId: taskSections[0].tasks[0].id,
+            taskId: '',
             projectId: '1',
             feedId: '4',
             name: '/files/pdf-test.pdf',
@@ -164,7 +163,7 @@ const fetchTask = async (): Promise<any> => {
           },
           {
             id: '4',
-            taskId: taskSections[0].tasks[0].id,
+            taskId: '',
             projectId: '1',
             feedId: '4',
             name: '/files/pdf-test-2.pdf',
@@ -175,7 +174,7 @@ const fetchTask = async (): Promise<any> => {
           },
           {
             id: '6',
-            taskId: taskSections[0].tasks[0].id,
+            taskId: '',
             projectId: '1',
             feedId: '4',
             name: '/files/test.js',
@@ -337,8 +336,8 @@ const fetchTask = async (): Promise<any> => {
             isPinned: false,
           },
         ],
-        teammates: taskSections[0].tasks[0].teammates,
-        tags: taskSections[0].tasks[0].tags,
+        teammates: [],
+        tags: [],
         isNew: false,
         isDeleted: false,
         taskParentId: '',

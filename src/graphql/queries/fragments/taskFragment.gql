@@ -24,6 +24,7 @@ fragment TaskFragment on Task {
     id
     taskId
     projectId
+    projectTaskSectionId
     project {
       ...ProjectFragment
     }

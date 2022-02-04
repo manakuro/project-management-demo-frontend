@@ -1,6 +1,8 @@
-import type { TaskResponse } from 'src/graphql/types/task'
+import type { TaskResponse as Response } from 'src/graphql/types/task'
 
-export type { TaskResponse } from 'src/graphql/types/task'
+export type TaskResponse = Response & {
+  taskSectionId: string // Add id of task section in order to easily access its task section data.
+}
 
 export type Task = Omit<
   TaskResponse,

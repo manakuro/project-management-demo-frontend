@@ -38,14 +38,17 @@ const ITEMS: {
 
 export const Menu: React.FC<Props> = memo<Props>((props) => {
   const { taskId, onOpened, onClosed } = props
-  const { task, setTask } = useTask(taskId)
-  const defaultValue = useMemo(() => task.priority.toString(), [task.priority])
+  const { task, setTaskPriority } = useTask(taskId)
+  const defaultValue = useMemo(
+    () => task.taskPriority.priorityType?.toString(),
+    [task.taskPriority.priorityType],
+  )
 
   const handleChange = useCallback(
     async (type: TaskPriorityTypeValue) => {
-      await setTask({ priority: type })
+      await setTaskPriority({ priorityType: type })
     },
-    [setTask],
+    [setTaskPriority],
   )
 
   const items = useMemo(() => ITEMS, [])

@@ -12,6 +12,7 @@ export const useTasksTaskIdsByTaskSectionId = (
   const { isMyTasksPage } = useTasksContext()
   const useMyTasksTaskIdsByTaskSectionIdResult =
     useMyTasksTaskIdsByTaskSectionId(taskSectionId)
+
   const useProjectsTaskIdsByTaskSectionIdResult =
     useProjectsTaskIdsByTaskSectionId(taskSectionId)
 

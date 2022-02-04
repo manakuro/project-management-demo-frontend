@@ -1,5 +1,5 @@
 import { useRecoilCallback } from 'recoil'
-import { useTasksResponse } from 'src/store/entities/tasks'
+import { TaskResponse, useTasksResponse } from 'src/store/entities/tasks'
 import { projectTaskState } from '../atom'
 import { ProjectTaskResponse } from '../type'
 
@@ -12,7 +12,10 @@ export const useProjectTasksResponse = () => {
         data.forEach((d) => {
           set(projectTaskState(d.id), d)
         })
-        const tasks = data.map((d) => d.task)
+        const tasks = data.map<TaskResponse>((d) => ({
+          ...d.task,
+          taskSectionId: d.projectTaskSectionId,
+        }))
         setTasksFromResponse(tasks)
       },
     [setTasksFromResponse],

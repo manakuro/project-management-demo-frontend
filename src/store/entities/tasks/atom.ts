@@ -13,6 +13,7 @@ export const initialState = (): Task => ({
   completedAt: '',
   isNew: false,
   name: '',
+  taskSectionId: '',
   taskParentId: '',
   // taskSectionId: '',
   // priority: 0,

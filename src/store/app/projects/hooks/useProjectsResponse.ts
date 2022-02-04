@@ -2,8 +2,8 @@ import { useRecoilCallback } from 'recoil'
 import { getNodesFromEdges } from 'src/shared/apollo/util'
 import {
   ProjectTaskColumnResponse,
-  useProjectsTaskColumnsResponse,
-} from 'src/store/entities/projectsTaskColumns'
+  useProjectsTaskColumnResponse,
+} from 'src/store/entities/projectsTaskColumn'
 import { useProjectsTaskSectionsResponse } from 'src/store/entities/projectsTaskSections'
 import { ProjectTaskSectionResponse } from 'src/store/entities/projectsTaskSections/type'
 import { taskListStatusState } from '../taskListStatus'
@@ -32,7 +32,7 @@ export const useProjectsResponse = () => {
 }
 
 const useSetters = () => {
-  const { setProjectsTaskColumns } = useProjectsTaskColumnsResponse()
+  const { setProjectsTaskColumns } = useProjectsTaskColumnResponse()
 
   const setTaskColumns = useRecoilCallback(
     () => (data: ProjectsResponse) => {

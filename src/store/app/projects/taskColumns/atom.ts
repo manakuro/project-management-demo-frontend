@@ -1,5 +1,5 @@
 import { selectorFamily } from 'recoil'
-import { projectsTaskColumnsByProjectIdState } from 'src/store/entities/projectsTaskColumns'
+import { projectsTaskColumnsByProjectIdState } from 'src/store/entities/projectsTaskColumn'
 
 const key = (str: string) => `src/store/app/projects/taskColumns/${str}`
 

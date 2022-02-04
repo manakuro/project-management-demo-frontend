@@ -2,14 +2,14 @@ import { useMemo } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { asyncForEach } from 'src/shared/utils'
 import { useMe } from 'src/store/entities/me'
-import { useProjectsTaskColumnsCommand } from 'src/store/entities/projectsTaskColumns'
+import { useProjectsTaskColumnCommand } from 'src/store/entities/projectsTaskColumn'
 import { projectsTaskColumnIdsCustomizableState } from '../atom'
 
 export const useProjectsTaskColumnsCustomizable = () => {
   const { me } = useMe()
   const ids = useRecoilValue(projectsTaskColumnIdsCustomizableState(me.id))
   const tasksTaskColumnIds = useMemo(() => ids, [ids])
-  const { setProjectsTaskColumn } = useProjectsTaskColumnsCommand()
+  const { setProjectsTaskColumn } = useProjectsTaskColumnCommand()
 
   const setOrderTaskColumn = useRecoilCallback(
     () => async (updatedIds: string[]) => {

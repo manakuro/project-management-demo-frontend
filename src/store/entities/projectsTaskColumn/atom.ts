@@ -4,7 +4,7 @@ import { TaskColumnTypeValue } from 'src/store/entities/taskColumns'
 import { createState } from 'src/store/util'
 import { ProjectTaskColumn } from './type'
 
-const key = (str: string) => `src/store/entities/projectsTaskColumns/${str}`
+const key = (str: string) => `src/store/entities/projectsTaskColumn/${str}`
 
 export const initialState = (): ProjectTaskColumn => ({
   id: '',

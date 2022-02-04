@@ -1,7 +1,7 @@
 import { selectorFamily } from 'recoil'
 import { taskSectionsByProjectIdState } from 'src/store/entities/projectTaskSection'
-import { TaskSection } from 'src/store/entities/taskSections'
-import { tasksByTaskSectionIdState } from 'src/store/entities/tasks'
+import { tasksByTaskSectionIdState } from 'src/store/entities/task'
+import { TaskSection } from 'src/store/entities/taskSection'
 import { isTaskListSortStatusState } from '../taskListStatus'
 
 const key = (str: string) => `src/store/app/projects/taskSections/${str}`

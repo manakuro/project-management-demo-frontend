@@ -3,7 +3,7 @@ import { IconButton } from 'src/components/atoms'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { SUBTASK_LIST_CONTAINER_ID } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/Subtasks'
 import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
-import { useTaskIdsByTaskParentId } from 'src/store/entities/tasks'
+import { useTaskIdsByTaskParentId } from 'src/store/entities/task'
 import { Icon } from './Icon'
 
 type Props = {

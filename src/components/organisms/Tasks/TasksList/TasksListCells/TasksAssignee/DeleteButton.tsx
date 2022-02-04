@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { Flex, FlexProps, Icon } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 
 type Props = FlexProps & {
   taskId: string

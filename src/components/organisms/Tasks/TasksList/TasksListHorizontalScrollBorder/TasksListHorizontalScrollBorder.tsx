@@ -8,7 +8,7 @@ import {
 import { useTasksTaskColumnByType } from 'src/components/organisms/Tasks/hooks'
 import { useMountedRef } from 'src/hooks'
 import { ChakraProps } from 'src/shared/chakra'
-import { TaskColumnType } from 'src/store/entities/taskColumns'
+import { TaskColumnType } from 'src/store/entities/taskColumn'
 
 type Props = FlexProps
 

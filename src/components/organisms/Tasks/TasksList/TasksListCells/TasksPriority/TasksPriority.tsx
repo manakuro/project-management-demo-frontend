@@ -3,7 +3,7 @@ import { Flex, FlexProps, Icon } from 'src/components/atoms'
 import { PriorityChip } from 'src/components/molecules'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { useHover } from 'src/hooks/useHover'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 import { Menu } from './Menu'
 
 type Props = FlexProps & {

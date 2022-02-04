@@ -3,16 +3,16 @@ import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { asyncForEach } from 'src/shared/utils'
 import { useMe } from 'src/store/entities/me'
 import {
-  useTeammatesTaskColumnsCommand,
-  useTeammatesTaskColumn,
+  useTeammateTaskColumnCommand,
+  useTeammateTaskColumn,
   TeammateTaskColumn,
-} from 'src/store/entities/teammatesTaskColumns'
+} from 'src/store/entities/teammateTaskColumn'
 import { taskColumnIdsState } from '../atom'
 
 export const useMyTasksTaskColumn = (tasksTaskColumnId: string) => {
   const { me } = useMe()
-  const { teammatesTaskColumn } = useTeammatesTaskColumn(tasksTaskColumnId)
-  const { setTeammatesTaskColumn } = useTeammatesTaskColumnsCommand()
+  const { teammatesTaskColumn } = useTeammateTaskColumn(tasksTaskColumnId)
+  const { setTeammatesTaskColumn } = useTeammateTaskColumnCommand()
   const ids = useRecoilValue(taskColumnIdsState(me.id))
   const setTasksTaskColumn = useCallback(
     async (val: Partial<TeammateTaskColumn>) => {

@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { Flex, AvatarGroup } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useWorkspace } from 'src/store/entities/workspace'
-import { useTeammateIdsByWorkspaceId } from 'src/store/entities/workspaceTeammates'
+import { useTeammateIdsByWorkspaceId } from 'src/store/entities/workspaceTeammate'
 
 type Props = {}
 

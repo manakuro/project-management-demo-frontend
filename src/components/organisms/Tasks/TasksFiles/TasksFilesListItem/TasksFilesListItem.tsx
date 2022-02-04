@@ -12,12 +12,12 @@ import { useFileViewerModal } from 'src/components/organisms/Modals'
 import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { FileTypeCode } from 'src/store/entities/fileType'
+import { useTask } from 'src/store/entities/task'
 import {
   useTaskFile,
   useTaskFileIdsByTaskId,
   getTaskFileIcon,
 } from 'src/store/entities/taskFile'
-import { useTask } from 'src/store/entities/tasks'
 import { transitions } from 'src/styles'
 
 type Props = {

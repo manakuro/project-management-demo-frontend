@@ -2,7 +2,7 @@ import React, { memo, useMemo } from 'react'
 import { Flex, Heading, Icon, Text } from 'src/components/atoms'
 import { formatCreatedAt } from 'src/shared/date'
 import { useProject } from 'src/store/entities/project'
-import { useTeammate } from 'src/store/entities/teammates'
+import { useTeammate } from 'src/store/entities/teammate'
 
 type Props = {
   projectId: string

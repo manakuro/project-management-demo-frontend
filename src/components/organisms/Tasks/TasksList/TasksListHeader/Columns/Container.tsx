@@ -5,7 +5,7 @@ import { useTasksListHeaderContext } from 'src/components/organisms/Tasks/TasksL
 import { useTasksTaskColumn } from 'src/components/organisms/Tasks/hooks'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
-import { useTaskColumn } from 'src/store/entities/taskColumns'
+import { useTaskColumn } from 'src/store/entities/taskColumn'
 import { MoreAction } from './MoreAction'
 
 type Props = {

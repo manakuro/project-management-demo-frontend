@@ -15,7 +15,7 @@ import {
   ModalHeader,
   ModalCloseButton,
 } from 'src/components/organisms/Modal'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 import { Label } from './Label'
 
 type Props = {

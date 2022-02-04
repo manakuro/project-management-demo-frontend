@@ -3,7 +3,7 @@ import { Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { MenuSelect, MenuSelectButton } from 'src/components/organisms/Menus'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 import { MenuList } from './MenuList'
 
 type Props = {

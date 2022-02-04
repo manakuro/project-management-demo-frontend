@@ -8,7 +8,7 @@ import {
   PopoverContentProps,
   PopoverProps,
 } from 'src/components/organisms/Popover'
-import { Teammate } from 'src/store/entities/teammates'
+import { Teammate } from 'src/store/entities/teammate'
 import { Content } from './Content'
 
 type Props = PopoverProps & {

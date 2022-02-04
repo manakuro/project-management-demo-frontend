@@ -9,9 +9,9 @@ import { isTaskListSortStatusState } from 'src/store/app/myTasks/taskListStatus'
 import {
   filterByDueDate,
   tasksByTaskSectionIdState,
-} from 'src/store/entities/tasks'
+} from 'src/store/entities/task'
+import { tasksByTeammateIdState } from 'src/store/entities/teammateTask'
 import { isTabStatusState } from 'src/store/entities/teammateTaskTabStatus'
-import { tasksByTeammateIdState } from 'src/store/entities/teammateTasks'
 
 const key = (str: string) => `src/store/app/myTasks/tasks/${str}`
 

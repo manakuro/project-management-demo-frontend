@@ -6,7 +6,7 @@ import {
   useProjectTeammate,
   useProjectTeammatesCommand,
 } from 'src/store/entities/projectTeammate'
-import { useTeammate } from 'src/store/entities/teammates'
+import { useTeammate } from 'src/store/entities/teammate'
 import { Form } from './Form'
 
 type Props = {

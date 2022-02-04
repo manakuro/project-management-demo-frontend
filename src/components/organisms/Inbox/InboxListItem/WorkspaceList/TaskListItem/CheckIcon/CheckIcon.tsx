@@ -3,7 +3,7 @@ import {
   CheckIcon as AtomsCheckIcon,
   CheckIconProps,
 } from 'src/components/atoms'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 
 type Props = {
   taskId: string

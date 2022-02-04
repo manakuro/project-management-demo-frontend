@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react'
 import { Badge, Box, Button, Icon, Text } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useClickableHoverStyle } from 'src/hooks'
-import { Teammate } from 'src/store/entities/teammates'
+import { Teammate } from 'src/store/entities/teammate'
 
 type Variant = 'badge' | 'button'
 

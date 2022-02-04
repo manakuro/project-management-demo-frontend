@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useSearchMenuOnKeyBindings } from 'src/components/organisms/Menus/SearchMenu'
 import { useDebounce } from 'src/hooks'
-import { Teammate } from 'src/store/entities/teammates'
+import { Teammate } from 'src/store/entities/teammate'
 import { useSearchProjectTeammatesQuery } from './useSearchProjectTeammatesQuery'
 
 type Props = {

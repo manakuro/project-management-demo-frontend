@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react'
-import { useTask, useTaskIdsByTaskParentId } from 'src/store/entities/tasks'
+import { useTask, useTaskIdsByTaskParentId } from 'src/store/entities/task'
 import { Component } from './Component'
 
 type Props = {

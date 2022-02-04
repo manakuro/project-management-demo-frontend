@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react'
 import { useTaskFeedListItemContext } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
 import { useMe } from 'src/store/entities/me'
 import { useTaskFeedLikesByTaskFeedId } from 'src/store/entities/taskFeedLike'
-import { useTeammates } from 'src/store/entities/teammates'
+import { useTeammates } from 'src/store/entities/teammate'
 
 export const useLike = () => {
   const { taskFeed } = useTaskFeedListItemContext()

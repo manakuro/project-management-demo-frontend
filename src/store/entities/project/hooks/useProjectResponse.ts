@@ -4,12 +4,12 @@ import {
   projectTeammateState,
   ProjectTeammate,
 } from 'src/store/entities/projectTeammate'
-import { Teammate, useTeammatesResponse } from 'src/store/entities/teammates'
+import { Teammate, useTeammateResponse } from 'src/store/entities/teammate'
 import { projectState } from '../atom'
 import { ProjectResponse } from '../type'
 
 export const useProjectResponse = () => {
-  const { setTeammates: setTeammatesFromResponse } = useTeammatesResponse()
+  const { setTeammates: setTeammatesFromResponse } = useTeammateResponse()
 
   const setProjectTeammates = useRecoilCallback(
     ({ set }) =>

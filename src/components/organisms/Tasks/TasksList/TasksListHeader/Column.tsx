@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { useTasksTaskColumn } from 'src/components/organisms/Tasks/hooks'
-import { useTaskColumn } from 'src/store/entities/taskColumns'
-import { TaskColumnType } from 'src/store/entities/taskColumns'
+import { useTaskColumn } from 'src/store/entities/taskColumn'
+import { TaskColumnType } from 'src/store/entities/taskColumn'
 import {
   Tags,
   TaskName,

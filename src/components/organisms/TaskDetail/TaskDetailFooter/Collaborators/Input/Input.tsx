@@ -5,8 +5,8 @@ import { InviteCollaboratorMenu } from 'src/components/organisms/Menus'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { useClickOutside } from 'src/hooks'
 import { ChakraProps, useDisclosure, useStyleConfig } from 'src/shared/chakra'
-import { useTeammateIdsByTaskId } from 'src/store/entities/tasksTeammates'
-import { Teammate } from 'src/store/entities/teammates'
+import { useTeammateIdsByTaskId } from 'src/store/entities/taskTeammate'
+import { Teammate } from 'src/store/entities/teammate'
 import { useCollaboratorsContext } from '../Provider'
 
 export const Input: React.VFC = () => {

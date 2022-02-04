@@ -1,5 +1,5 @@
 import { useRecoilCallback } from 'recoil'
-import { useTaskColumnsResponse } from 'src/store/entities/taskColumns'
+import { useTaskColumnsResponse } from 'src/store/entities/taskColumn'
 import { projectTaskColumnState } from '../atom'
 import { ProjectTaskColumnResponse } from '../type'
 

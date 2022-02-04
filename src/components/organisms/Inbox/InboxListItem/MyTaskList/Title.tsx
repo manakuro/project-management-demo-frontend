@@ -2,7 +2,7 @@ import React, { memo, useCallback, useMemo } from 'react'
 import { Flex, FlexProps, Icon, Link } from 'src/components/atoms'
 import { useMyTaskListTaskIds } from 'src/components/organisms/Inbox'
 import { formatDueDate } from 'src/shared/date'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 import { transitions } from 'src/styles'
 
 type Props = FlexProps & {

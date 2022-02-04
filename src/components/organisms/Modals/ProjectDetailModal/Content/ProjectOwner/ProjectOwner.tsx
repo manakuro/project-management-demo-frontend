@@ -3,7 +3,7 @@ import { Button, ButtonProps, Text, Box, TextProps } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useHover } from 'src/hooks/useHover'
 import { useOwnerTeammateIdsByProjectId } from 'src/store/entities/projectTeammate'
-import { useTeammate } from 'src/store/entities/teammates'
+import { useTeammate } from 'src/store/entities/teammate'
 import { DeleteButton } from './DeleteButton'
 import { Input } from './Input'
 

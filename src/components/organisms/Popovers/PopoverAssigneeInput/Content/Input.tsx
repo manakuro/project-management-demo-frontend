@@ -10,8 +10,8 @@ import { AssigneeMenu } from 'src/components/organisms/Menus'
 import { PopoverProps } from 'src/components/organisms/Popover'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
-import { useTask } from 'src/store/entities/tasks'
-import { Teammate, useTeammate } from 'src/store/entities/teammates'
+import { useTask } from 'src/store/entities/task'
+import { Teammate, useTeammate } from 'src/store/entities/teammate'
 
 type Props = {
   taskId: string

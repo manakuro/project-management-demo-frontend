@@ -1,8 +1,8 @@
 import { useRecoilCallback } from 'recoil'
 import { useProjectResponse } from 'src/store/entities/project'
-import { useTeammatesResponse } from 'src/store/entities/teammates'
+import { useTeammateResponse } from 'src/store/entities/teammate'
 import { useWorkspaceResponse as useWorkspaceResponseEntity } from 'src/store/entities/workspace'
-import { useWorkspaceTeammatesResponse } from 'src/store/entities/workspaceTeammates'
+import { useWorkspaceTeammateResponse } from 'src/store/entities/workspaceTeammate'
 import { WorkspaceResponse } from '../type'
 
 export const useWorkspaceResponse = () => {
@@ -25,8 +25,8 @@ export const useWorkspaceResponse = () => {
 }
 
 const useSetters = () => {
-  const teammatesResponse = useTeammatesResponse()
-  const workspaceTeammatesResponse = useWorkspaceTeammatesResponse()
+  const teammatesResponse = useTeammateResponse()
+  const workspaceTeammatesResponse = useWorkspaceTeammateResponse()
 
   const setWorkspaceTeammates = useRecoilCallback(
     () => (data: WorkspaceResponse) => {

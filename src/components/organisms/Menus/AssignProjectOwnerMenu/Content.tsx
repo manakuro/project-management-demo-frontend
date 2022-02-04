@@ -4,7 +4,7 @@ import {
   useProjectTeammateMenu,
 } from 'src/components/organisms/Menus/ProjectTeammateMenu'
 import { SearchMenuLoading } from 'src/components/organisms/Menus/SearchMenu'
-import { Teammate } from 'src/store/entities/teammates'
+import { Teammate } from 'src/store/entities/teammate'
 
 type Props = {
   onSelect: (val: Teammate) => void

@@ -4,7 +4,7 @@ import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 
 type Props = FlexProps & {
   taskId: string

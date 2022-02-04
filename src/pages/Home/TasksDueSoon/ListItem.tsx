@@ -6,7 +6,7 @@ import { useClickableHoverStyle } from 'src/hooks'
 import { useRouter } from 'src/router'
 import { formatDueTime } from 'src/shared/date'
 import { useProjectIdsByTaskId } from 'src/store/entities/projectTask'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 
 type Props = {
   taskId: string

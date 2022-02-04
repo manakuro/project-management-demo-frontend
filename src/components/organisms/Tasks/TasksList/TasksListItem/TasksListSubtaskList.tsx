@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { useTaskIdsByTaskParentId } from 'src/store/entities/tasks'
+import { useTaskIdsByTaskParentId } from 'src/store/entities/task'
 import { useSubtaskListContext } from './Provider'
 import { TasksListSubtaskItem } from './TasksListSubtaskItem'
 

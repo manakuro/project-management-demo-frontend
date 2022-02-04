@@ -1,5 +1,5 @@
 import { selectorFamily } from 'recoil'
-import { taskSectionState, TaskSection } from 'src/store/entities/taskSections'
+import { taskSectionState, TaskSection } from 'src/store/entities/taskSection'
 import { createState } from 'src/store/util'
 import { ProjectTaskSection } from './type'
 

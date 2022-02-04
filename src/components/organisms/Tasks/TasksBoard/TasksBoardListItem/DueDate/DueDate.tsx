@@ -8,7 +8,7 @@ import {
 } from 'src/components/atoms'
 import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 import { useTasksBoardListItemContext } from '../Provider'
 
 type Props = FlexProps & {

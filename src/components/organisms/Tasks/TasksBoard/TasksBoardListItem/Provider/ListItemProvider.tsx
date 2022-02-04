@@ -3,8 +3,8 @@ import { useTasksTaskListStatus } from 'src/components/organisms/Tasks/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { ROUTE_MY_TASKS, useRouter } from 'src/router'
 import { createProvider } from 'src/shared/react/createProvider'
+import { useTask } from 'src/store/entities/task'
 import { useTaskListCompletedStatus } from 'src/store/entities/taskListCompletedStatus'
-import { useTask } from 'src/store/entities/tasks'
 
 type ContextProps = {
   selected: boolean

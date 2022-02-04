@@ -6,7 +6,7 @@ import { useLinkStyle } from 'src/hooks'
 import { formatCreatedAt } from 'src/shared/date'
 import { useMe } from 'src/store/entities/me'
 import { useProjectTeammate } from 'src/store/entities/projectTeammate'
-import { useTeammate } from 'src/store/entities/teammates'
+import { useTeammate } from 'src/store/entities/teammate'
 import { useTimelineStyle } from '../useTimelineStyle'
 
 type Props = {

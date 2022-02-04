@@ -1,8 +1,8 @@
 import React, { memo, useMemo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { useWorkspaceListTaskIds } from 'src/components/organisms/Inbox'
-import { useCreatedByIdsByTaskIds } from 'src/store/entities/tasks'
-import { useTeammateNamesByTeammateIds } from 'src/store/entities/teammates'
+import { useCreatedByIdsByTaskIds } from 'src/store/entities/task'
+import { useTeammateNamesByTeammateIds } from 'src/store/entities/teammate'
 
 type Props = FlexProps & {
   workspaceListId: string

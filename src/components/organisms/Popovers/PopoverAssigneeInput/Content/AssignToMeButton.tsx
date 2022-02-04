@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { Button } from 'src/components/atoms'
 import { PopoverProps } from 'src/components/organisms/Popover'
 import { useMe } from 'src/store/entities/me'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 
 type Props = {
   taskId: string

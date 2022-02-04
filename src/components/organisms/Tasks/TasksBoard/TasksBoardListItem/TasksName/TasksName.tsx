@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { CheckIcon, Flex, FlexProps } from 'src/components/atoms'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 import { useTasksBoardListItemContext } from '../Provider'
 import { TasksNameProvider } from './Provider'
 import { TasksNameField } from './TasksNameField'

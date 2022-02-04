@@ -4,7 +4,7 @@ import { Tooltip } from 'src/components/molecules'
 import { PopoverAssigneeInput } from 'src/components/organisms/Popovers'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useTeammate } from 'src/store/entities/teammates'
+import { useTeammate } from 'src/store/entities/teammate'
 
 type Props = {
   taskId: string

@@ -4,7 +4,7 @@ import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { SUBTASK_LIST_CONTAINER_ID } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/Subtasks'
 import { useTasksNameContext } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
-import { useTaskIdsByTaskParentId } from 'src/store/entities/tasks'
+import { useTaskIdsByTaskParentId } from 'src/store/entities/task'
 import { Icon } from './Icon'
 
 type Props = {}

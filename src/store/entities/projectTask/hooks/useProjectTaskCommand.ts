@@ -1,11 +1,11 @@
 import { useRecoilCallback } from 'recoil'
 import { uuid } from 'src/shared/uuid'
-import { useTasksCommand } from 'src/store/entities/tasks'
+import { useTaskCommand } from 'src/store/entities/task'
 import { projectTaskState, initialState } from '../atom'
 import { ProjectTask } from '../type'
 
 export const useProjectTaskCommand = () => {
-  const { addTask } = useTasksCommand()
+  const { addTask } = useTaskCommand()
   const upsert = useRecoilCallback(
     ({ set }) =>
       (val: ProjectTask) => {

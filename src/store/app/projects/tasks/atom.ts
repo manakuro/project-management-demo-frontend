@@ -1,9 +1,6 @@
 import { selectorFamily } from 'recoil'
 import { tasksByProjectIdState } from 'src/store/entities/projectTask'
-import {
-  filterByDueDate,
-  filterByTaskSectionId,
-} from 'src/store/entities/tasks'
+import { filterByDueDate, filterByTaskSectionId } from 'src/store/entities/task'
 import { filterTasks, sortTasks } from '../filters'
 import { isTaskListSortStatusState } from '../taskListStatus'
 

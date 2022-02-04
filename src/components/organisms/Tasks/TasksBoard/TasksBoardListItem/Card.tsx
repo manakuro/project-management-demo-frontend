@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { FlexProps, Flex, Collapse } from 'src/components/atoms'
 import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 import { transitions } from 'src/styles'
 import { useTasksBoardListItemContext } from './Provider'
 

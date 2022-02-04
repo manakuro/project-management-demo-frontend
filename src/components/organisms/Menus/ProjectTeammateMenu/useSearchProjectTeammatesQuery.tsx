@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
-import { Teammate } from 'src/store/entities/teammates'
-import { teammates } from 'src/store/entities/teammates/data'
+import { Teammate } from 'src/store/entities/teammate'
+import { teammates } from 'src/store/entities/teammate/data'
 
 const key = (str: string) =>
   `src/components/organisms/Menus/ProjectTeammateMenu/useSearchProjectTeammatesQuery/${str}`

@@ -4,7 +4,7 @@ import { Box } from 'src/components/atoms'
 import { CustomField } from 'src/components/molecules'
 import { useTasksTaskColumn } from 'src/components/organisms/Tasks/hooks'
 import { useDraggableInPortal } from 'src/hooks/useDraggableInPortal'
-import { useTaskColumn } from 'src/store/entities/taskColumns'
+import { useTaskColumn } from 'src/store/entities/taskColumn'
 
 type Props = {
   tasksTaskColumnId: string

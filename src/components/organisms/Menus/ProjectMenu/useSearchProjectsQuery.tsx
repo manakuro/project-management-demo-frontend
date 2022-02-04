@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
 import { ProjectResponse } from 'src/store/entities/project'
-import { teammates } from 'src/store/entities/teammates/data'
+import { teammates } from 'src/store/entities/teammate/data'
 
 const key = (str: string) =>
   `src/components/organisms/Menus/ProjectMenu/useSearchProjectsQuery/${str}`

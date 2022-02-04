@@ -2,13 +2,13 @@ import { useRecoilCallback } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import {
   TeammateTaskResponse,
-  useTeammateTasksResponse,
-} from 'src/store/entities/teammateTasks'
+  useTeammateTaskResponse,
+} from 'src/store/entities/teammateTask'
 import { teammatesTaskSectionState } from '../atom'
 import { TeammateTaskSectionResponse } from '../type'
 
 export const useTeammatesTaskSectionsResponse = () => {
-  const { setTeammateTask } = useTeammateTasksResponse()
+  const { setTeammateTask } = useTeammateTaskResponse()
 
   const setTeammatesTaskSections = useRecoilCallback(
     ({ set }) =>

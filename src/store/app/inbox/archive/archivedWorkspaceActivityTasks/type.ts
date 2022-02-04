@@ -1,4 +1,4 @@
-import { TaskResponse } from 'src/store/entities/tasks'
+import { TaskResponse } from 'src/store/entities/task'
 
 export type ArchivedWorkspaceActivityTasksResponse = {
   id: string

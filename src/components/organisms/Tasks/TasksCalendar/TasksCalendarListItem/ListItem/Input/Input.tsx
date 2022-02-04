@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { FlexProps } from 'src/components/atoms'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 import { TasksNameField } from './TasksNameField'
 
 type Props = FlexProps & {

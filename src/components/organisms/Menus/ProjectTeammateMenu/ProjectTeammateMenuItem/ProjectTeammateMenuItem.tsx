@@ -6,7 +6,7 @@ import {
   SearchMenuRightContainer,
 } from 'src/components/organisms/Menus/SearchMenu'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
-import { Teammate } from 'src/store/entities/teammates'
+import { Teammate } from 'src/store/entities/teammate'
 
 type Props = {
   onClick: (teammate: Teammate) => void

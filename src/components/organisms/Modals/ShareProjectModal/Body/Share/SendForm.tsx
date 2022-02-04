@@ -9,7 +9,7 @@ import {
 import { InvitedTeammateChip } from 'src/components/molecules'
 import { InviteProjectTeammateMenu } from 'src/components/organisms/Menus'
 import { useDisclosure } from 'src/shared/chakra'
-import { Teammate } from 'src/store/entities/teammates'
+import { Teammate } from 'src/store/entities/teammate'
 import { PermissionMenu } from '../PermissionMenu'
 
 type Props = {

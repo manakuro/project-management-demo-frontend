@@ -1,6 +1,6 @@
 import { selectorFamily } from 'recoil'
+import { taskIdsByAssigneeIdState } from 'src/store/entities/task'
 import { taskFilesState } from 'src/store/entities/taskFile'
-import { taskIdsByAssigneeIdState } from 'src/store/entities/tasks'
 
 const key = (str: string) => `src/store/app/myTasks/taskFiles/${str}`
 

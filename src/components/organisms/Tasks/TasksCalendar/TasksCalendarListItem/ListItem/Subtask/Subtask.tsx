@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { Flex, Icon, Text } from 'src/components/atoms'
-import { useTaskIdsByTaskParentId } from 'src/store/entities/tasks'
+import { useTaskIdsByTaskParentId } from 'src/store/entities/task'
 
 type Props = {
   taskId: string

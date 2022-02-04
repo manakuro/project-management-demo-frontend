@@ -2,8 +2,8 @@ import React, { memo } from 'react'
 import { MenuItemOption } from 'src/components/organisms/Menu'
 import { MenuSelectList } from 'src/components/organisms/Menus'
 import { useTasksTaskSections } from 'src/components/organisms/Tasks/hooks'
-import { TaskSection } from 'src/store/entities/taskSections'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
+import { TaskSection } from 'src/store/entities/taskSection'
 
 type Props = {
   taskId: string

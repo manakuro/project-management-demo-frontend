@@ -1,6 +1,6 @@
 import { selectorFamily } from 'recoil'
-import { taskColumnByTypeState } from 'src/store/entities/taskColumns'
-import { TaskColumnTypeValue } from 'src/store/entities/taskColumns'
+import { taskColumnByTypeState } from 'src/store/entities/taskColumn'
+import { TaskColumnTypeValue } from 'src/store/entities/taskColumn'
 import { createState } from 'src/store/util'
 import { ProjectTaskColumn } from './type'
 

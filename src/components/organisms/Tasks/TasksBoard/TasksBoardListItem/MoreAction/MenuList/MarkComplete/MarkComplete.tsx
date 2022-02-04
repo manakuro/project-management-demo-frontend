@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
 import { MenuItem } from 'src/components/organisms/Menu'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 import { useTasksBoardListItemContext } from '../../../Provider'
 
 type Props = {

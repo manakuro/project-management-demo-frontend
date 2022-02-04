@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { Flex, Text } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useTeammate } from 'src/store/entities/teammates'
+import { useTeammate } from 'src/store/entities/teammate'
 import { PermissionMenu } from '../../PermissionMenu'
 
 type Props = {

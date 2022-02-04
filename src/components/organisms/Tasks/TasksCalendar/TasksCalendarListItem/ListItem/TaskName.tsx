@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 
 type Props = {
   taskId: string

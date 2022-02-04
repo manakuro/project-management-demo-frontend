@@ -8,7 +8,7 @@ import {
   PopoverEditorLinkText,
 } from 'src/components/organisms/Popovers'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 
 export const Task: React.FC = memo(() => {
   const context = useReactNodeView()

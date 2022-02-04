@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
 import { MenuItem } from 'src/components/organisms/Menu'
 import { useToast } from 'src/hooks'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 
 type Props = {
   onMouseEnter: () => void

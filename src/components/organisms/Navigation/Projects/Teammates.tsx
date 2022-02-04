@@ -4,7 +4,7 @@ import { useInviteModal } from 'src/components/organisms/Modals'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useTeammates } from 'src/store/entities/teammates'
+import { useTeammates } from 'src/store/entities/teammate'
 import { Teammate } from './Teammate'
 
 type Props = {}

@@ -3,8 +3,8 @@ import {
   filterByTeammateId,
   sortByDueDate,
   filterByDueDateInFiveDays,
-} from 'src/store/entities/tasks'
-import { tasksState } from 'src/store/entities/tasks'
+} from 'src/store/entities/task'
+import { tasksState } from 'src/store/entities/task'
 
 const key = (str: string) => `src/store/app/home/tasks/${str}`
 

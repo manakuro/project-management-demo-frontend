@@ -3,8 +3,8 @@ import { TeammateTaskSectionResponse } from 'src/graphql/types/teammateTaskSecti
 import { getNodesFromEdges } from 'src/shared/apollo/util'
 import {
   TeammateTaskColumnResponse,
-  useTeammatesTaskColumnsResponse,
-} from 'src/store/entities/teammatesTaskColumns'
+  useTeammateTaskColumnResponse,
+} from 'src/store/entities/teammateTaskColumn'
 import { useTeammatesTaskSectionsResponse } from 'src/store/entities/teammatesTaskSections'
 import { taskListStatusState } from '../taskListStatus'
 import { MyTasksResponse } from '../type'
@@ -32,7 +32,7 @@ export const useMyTasksResponse = () => {
 }
 
 const useSetters = () => {
-  const { setTeammatesTaskColumns } = useTeammatesTaskColumnsResponse()
+  const { setTeammatesTaskColumns } = useTeammateTaskColumnResponse()
 
   const setTaskColumns = useRecoilCallback(
     () => (data: MyTasksResponse) => {

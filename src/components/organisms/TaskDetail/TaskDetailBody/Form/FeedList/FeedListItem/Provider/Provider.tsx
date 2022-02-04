@@ -5,7 +5,7 @@ import { parseDescription } from 'src/shared/prosemirror/convertDescription'
 import { createProvider } from 'src/shared/react/createProvider'
 import { useTaskFeed } from 'src/store/entities/taskFeed'
 import { useTaskFileIdsByTaskFeedId } from 'src/store/entities/taskFile'
-import { useTeammate } from 'src/store/entities/teammates'
+import { useTeammate } from 'src/store/entities/teammate'
 import { Provider as ProviderContainer } from './ProviderContainer'
 
 type Props = {

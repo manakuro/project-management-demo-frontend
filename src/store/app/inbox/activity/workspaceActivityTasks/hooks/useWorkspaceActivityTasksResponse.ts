@@ -1,5 +1,5 @@
 import { useRecoilCallback } from 'recoil'
-import { useTasksResponse } from 'src/store/entities/tasks'
+import { useTasksResponse } from 'src/store/entities/task'
 import { ActivityResponse } from '../../type'
 import { workspaceActivityTaskState } from '../atom'
 

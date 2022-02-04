@@ -3,8 +3,8 @@ import { Input as AtomsInput } from 'src/components/atoms'
 import { AssigneeMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
-import { useTask } from 'src/store/entities/tasks'
-import { Teammate } from 'src/store/entities/teammates'
+import { useTask } from 'src/store/entities/task'
+import { Teammate } from 'src/store/entities/teammate'
 
 type Props = {
   taskId: string
@@ -69,3 +69,4 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
     </AssigneeMenu>
   )
 })
+Input.displayName = 'Input'

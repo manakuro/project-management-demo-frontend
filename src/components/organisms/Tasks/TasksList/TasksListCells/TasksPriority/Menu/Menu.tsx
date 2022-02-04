@@ -5,12 +5,12 @@ import {
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms/Menus'
-import { useTask } from 'src/store/entities/tasks'
+import { useTask } from 'src/store/entities/task'
 import {
   TaskPriorityType,
   TaskPriorityTypeValue,
   findTextByCode,
-} from 'src/store/entities/tasksPriorities'
+} from 'src/store/entities/taskPriority'
 
 type Props = {
   taskId: string

@@ -3,7 +3,7 @@ import { Flex, Icon, Text } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useHover } from 'src/hooks/useHover'
 import { useProjectTeammate } from 'src/store/entities/projectTeammate'
-import { useTeammate } from 'src/store/entities/teammates'
+import { useTeammate } from 'src/store/entities/teammate'
 import { ProjectRoleMenu } from '../ProjectRoleMenu'
 import { Button } from './Button'
 

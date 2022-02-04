@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react'
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
-import { useTaskSection } from 'src/store/entities/taskSections'
-import { useTasksByTaskSectionId } from 'src/store/entities/tasks'
+import { useTasksByTaskSectionId } from 'src/store/entities/task'
+import { useTaskSection } from 'src/store/entities/taskSection'
 
 const key = (str: string) =>
   `src/components/organisms/Modals/DeleteTaskSectionModal/useDeleteTaskSectionModal/${str}`

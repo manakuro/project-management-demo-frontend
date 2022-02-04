@@ -1,16 +1,16 @@
 import { useCallback, useEffect } from 'react'
 import { uuid } from 'src/shared/uuid'
 import {
-  useTasksLikesResponse,
+  useTaskLikeResponse,
   TaskLikeResponse,
-} from 'src/store/entities/tasksLikes'
+} from 'src/store/entities/taskLike'
 
 type Props = {
   lazy?: boolean
 }
 
 export const useTaskLikesQuery = (props?: Props) => {
-  const { setTaskLikes } = useTasksLikesResponse()
+  const { setTaskLikes } = useTaskLikeResponse()
 
   useEffect(() => {
     ;(async () => {

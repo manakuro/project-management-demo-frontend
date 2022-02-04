@@ -1,9 +1,9 @@
 import { GetRecoilValue } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
-import { Task } from 'src/store/entities/tasks'
-import { taskLikesByTaskIdState } from 'src/store/entities/tasksLikes'
-import { TaskPriorityType } from 'src/store/entities/tasksPriorities'
-import { teammateState } from 'src/store/entities/teammates'
+import { Task } from 'src/store/entities/task'
+import { taskLikesByTaskIdState } from 'src/store/entities/taskLike'
+import { TaskPriorityType } from 'src/store/entities/taskPriority'
+import { teammateState } from 'src/store/entities/teammate'
 import {
   isTaskListCompletedStatusState,
   isTaskListSortStatusState,

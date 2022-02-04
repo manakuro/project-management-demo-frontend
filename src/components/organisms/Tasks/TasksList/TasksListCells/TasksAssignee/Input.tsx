@@ -3,7 +3,7 @@ import { Input as AtomsInput } from 'src/components/atoms'
 import { AssignTaskMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
-import { Teammate } from 'src/store/entities/teammates'
+import { Teammate } from 'src/store/entities/teammate'
 
 type Props = {
   onSelect: (val: Teammate) => void
@@ -66,3 +66,4 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
     </AssignTaskMenu>
   )
 })
+Input.displayName = 'Input'

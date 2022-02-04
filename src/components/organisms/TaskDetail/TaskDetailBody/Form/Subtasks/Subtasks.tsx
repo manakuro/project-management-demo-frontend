@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { useTaskIdsByTaskParentId } from 'src/store/entities/tasks'
+import { useTaskIdsByTaskParentId } from 'src/store/entities/task'
 import { Row, Label } from '../Row'
 import { AddSubtaskButton } from './AddSubtaskButton'
 import { TasksName } from './TasksName'

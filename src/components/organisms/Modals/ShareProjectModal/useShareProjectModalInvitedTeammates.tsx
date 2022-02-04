@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
-import { Teammate } from 'src/store/entities/teammates'
+import { Teammate } from 'src/store/entities/teammate'
 
 const key = (str: string) =>
   `src/components/organisms/Modals/ShareProjectModal/useShareProjectModalInvitedTeammates/${str}`

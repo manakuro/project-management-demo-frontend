@@ -29,7 +29,7 @@ export const sortByDueDate =
   (tasks: Task[]) => {
     if (!get(isTaskListSortStatusState('dueDate'))) return tasks
 
-    return tasks.sort((a, b) => {
+    return [...tasks].sort((a, b) => {
       if (!a.dueDate) return 1
       if (!b.dueDate) return -1
 
@@ -42,7 +42,7 @@ export const sortByLikes =
   (tasks: Task[]) => {
     if (!get(isTaskListSortStatusState('likes'))) return tasks
 
-    return tasks.sort((a, b) => {
+    return [...tasks].sort((a, b) => {
       const taskLikesA = get(taskLikesByTaskIdState(a.id))
       const taskLikesB = get(taskLikesByTaskIdState(b.id))
       return taskLikesA.length < taskLikesB.length ? 1 : -1
@@ -54,7 +54,7 @@ export const sortByAlphabetical =
   (tasks: Task[]) => {
     if (!get(isTaskListSortStatusState('alphabetical'))) return tasks
 
-    return tasks.sort((a, b) =>
+    return [...tasks].sort((a, b) =>
       a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1,
     )
   }
@@ -64,7 +64,7 @@ export const sortByAssignee =
   (tasks: Task[]) => {
     if (!get(isTaskListSortStatusState('assignee'))) return tasks
 
-    return tasks.sort((a, b) => {
+    return [...tasks].sort((a, b) => {
       const teammateA = get(teammateState(a.assigneeId))
       const teammateB = get(teammateState(b.assigneeId))
       const nameA = teammateA.name.toLowerCase()
@@ -83,7 +83,7 @@ export const sortByCreationTime =
   (tasks: Task[]) => {
     if (!get(isTaskListSortStatusState('creationTime'))) return tasks
 
-    return tasks.sort((a, b) => {
+    return [...tasks].sort((a, b) => {
       if (!a.createdAt) return 1
       if (!b.createdAt) return -1
 
@@ -101,7 +101,7 @@ export const sortByPriority =
   (tasks: Task[]) => {
     if (!get(isTaskListSortStatusState('priority'))) return tasks
 
-    return tasks.sort((a, b) => {
+    return [...tasks].sort((a, b) => {
       return (
         PRIORITY_LIST.indexOf(a.taskPriority.priorityType as any) -
         PRIORITY_LIST.indexOf(b.taskPriority.priorityType as any)

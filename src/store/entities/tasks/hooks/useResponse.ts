@@ -69,7 +69,7 @@ const useSetters = () => {
   )
   const setTask = useCallback(
     (data: TaskResponse) => {
-      if (data.subTasks.length) {
+      if (data?.subTasks?.length) {
         data.subTasks.forEach((t) => {
           setTask(t as TaskResponse)
         })

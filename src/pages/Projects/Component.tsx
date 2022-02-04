@@ -14,6 +14,7 @@ import {
 import { isProjectsOverviewURL } from 'src/router/projects'
 import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
+import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
 import { Board } from './Board'
 import { Calendar } from './Calendar'
 import { Files } from './Files'
@@ -116,7 +117,7 @@ const WrappedComponent: React.VFC = memo(() => {
           break
         }
         case BOARD_INDEX: {
-          if (isSorted('project')) sortBy('none')
+          if (isSorted('project')) sortBy(TaskListSortStatusCode.None)
           setLoading()
           setTabIndex(BOARD_INDEX)
           await navigateToBoard()

@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
 import { TaskListSortStatuses, taskListSortStatues } from '../atom'
 import { TaskListSortStatusCodeValue } from '../types'
 import { useTaskListStatus } from './useTaskListStatus'
@@ -14,37 +15,32 @@ export const useTaskListSortStatus = () => {
       taskListSortStatues[status],
     [taskListStatus.taskListSortStatus],
   )
-  const isSortStatusKey = useCallback(
-    (val: any): val is TaskListSortStatuses => typeof val === 'string',
-    [],
-  )
 
   const sortBy = useCallback(
-    (status: TaskListSortStatusCodeValue | TaskListSortStatuses) => {
-      const val = isSortStatusKey(status) ? taskListSortStatues[status] : status
-      setTaskListSortStatus({ statusCode: val })
+    (status: TaskListSortStatusCodeValue) => {
+      setTaskListSortStatus({ statusCode: status })
     },
-    [setTaskListSortStatus, isSortStatusKey],
+    [setTaskListSortStatus],
   )
 
   const sortByProject = useCallback(() => {
-    sortBy('project')
+    sortBy(TaskListSortStatusCode.Project)
   }, [sortBy])
 
   const sortByNone = useCallback(() => {
-    sortBy('none')
+    sortBy(TaskListSortStatusCode.None)
   }, [sortBy])
 
   const sortByAlphabetical = useCallback(() => {
-    sortBy('alphabetical')
+    sortBy(TaskListSortStatusCode.Alphabetical)
   }, [sortBy])
 
   const sortByLikes = useCallback(() => {
-    sortBy('likes')
+    sortBy(TaskListSortStatusCode.Likes)
   }, [sortBy])
 
   const sortByDueDate = useCallback(() => {
-    sortBy('dueDate')
+    sortBy(TaskListSortStatusCode.DueDate)
   }, [sortBy])
 
   return {

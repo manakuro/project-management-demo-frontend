@@ -49,8 +49,9 @@ const useSetters = () => {
   const setTaskStatus = useRecoilCallback(
     ({ set }) =>
       (data: MyTasksResponse) => {
-        if (data.teammateTaskListStatus)
+        if (data.teammateTaskListStatus) {
           set(taskListStatusState, data.teammateTaskListStatus)
+        }
       },
     [],
   )

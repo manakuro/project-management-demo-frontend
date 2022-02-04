@@ -13,6 +13,7 @@ import {
   useRouter,
 } from 'src/router'
 import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus'
+import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
 import {
   TeammateTaskTabStatus,
   TeammateTaskTabStatusCode,
@@ -108,7 +109,7 @@ const WrappedComponent: React.VFC = memo(() => {
           break
         }
         case BOARD_INDEX: {
-          if (isSorted('project')) sortBy('none')
+          if (isSorted('project')) sortBy(TaskListSortStatusCode.None)
           setLoading()
           setTabIndex(BOARD_INDEX)
           setTabStatus('Board')
@@ -172,7 +173,7 @@ const WrappedComponent: React.VFC = memo(() => {
       return
     }
     if (isMyTasksBoardURL(router)) {
-      if (isSorted('project')) sortBy('none')
+      if (isSorted('project')) sortBy(TaskListSortStatusCode.None)
       setTabStatus('Board')
       return
     }

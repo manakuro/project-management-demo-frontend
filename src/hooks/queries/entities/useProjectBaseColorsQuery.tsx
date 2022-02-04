@@ -6,7 +6,7 @@ import { getNodesFromEdges } from 'src/shared/apollo/util'
 import {
   ProjectBaseColorResponse,
   useProjectBaseColorsResponse,
-} from 'src/store/entities/projectBaseColors'
+} from 'src/store/entities/projectBaseColor'
 
 export const useProjectBaseColorsQuery = () => {
   const queryResult = useQuery()

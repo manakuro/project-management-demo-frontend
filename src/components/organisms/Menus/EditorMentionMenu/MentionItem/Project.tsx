@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { ColorBox, Flex, FlexProps, Text } from 'src/components/atoms'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 import { useProject } from 'src/store/entities/projects'
 import { MentionProject } from '../types'
 import { LeftContainer } from './LeftContainer'

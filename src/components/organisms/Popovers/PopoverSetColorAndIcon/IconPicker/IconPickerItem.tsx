@@ -7,7 +7,7 @@ import {
 } from 'src/components/atoms'
 import { useLinkHoverStyle } from 'src/hooks'
 import { IconType } from 'src/shared/icons'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 import { useProjectIcon } from 'src/store/entities/projectIcons'
 import { useProjectLightColor } from 'src/store/entities/projectLightColors'
 

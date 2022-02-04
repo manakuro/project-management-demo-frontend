@@ -9,7 +9,7 @@ import {
 import { PopoverSetColorAndIcon } from 'src/components/organisms/Popovers'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 import { Project } from 'src/store/entities/projects'
 
 type Props = {

@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { ColorBox, Flex, Icon, Text } from 'src/components/atoms'
 import { MenuItem } from 'src/components/organisms/Menu'
 import { PopoverSetColorAndIcon } from 'src/components/organisms/Popovers'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 import { useProject } from 'src/store/entities/projects'
 
 type Props = {

@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { Badge, Box, Button, ColorBox, Icon, Text } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 import { useProject } from 'src/store/entities/projects'
 
 type Variant = 'badge' | 'button'

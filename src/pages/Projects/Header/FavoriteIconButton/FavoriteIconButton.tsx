@@ -8,7 +8,7 @@ import {
   useFavoriteProjectIds,
   useFavoriteProjectIdsCommand,
 } from 'src/store/entities/favoriteProjectIds'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 import { useProject } from 'src/store/entities/projects'
 
 type Props = {

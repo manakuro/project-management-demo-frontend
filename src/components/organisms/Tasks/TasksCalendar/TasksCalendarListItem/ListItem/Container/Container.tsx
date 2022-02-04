@@ -4,7 +4,7 @@ import { forwardRef } from 'src/shared/chakra'
 import {
   useProjectBaseColor,
   useProjectBaseColorText,
-} from 'src/store/entities/projectBaseColors'
+} from 'src/store/entities/projectBaseColor'
 import { useProject } from 'src/store/entities/projects'
 import { useTask } from 'src/store/entities/tasks'
 import { transitions } from 'src/styles'

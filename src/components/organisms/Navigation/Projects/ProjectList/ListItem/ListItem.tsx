@@ -13,7 +13,7 @@ import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 import { useLinkHoverStyle, useClickableHoverStyle } from 'src/hooks'
 import { ROUTE_PROJECTS_LIST, useRouter } from 'src/router'
 import { ROUTE_PROJECTS } from 'src/router/projects'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 import { useProject } from 'src/store/entities/projects'
 
 type Props = {

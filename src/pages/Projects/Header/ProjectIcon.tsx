@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { Flex, Icon } from 'src/components/atoms'
 import { IconType } from 'src/shared/icons'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColors'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 import { useProjectIcon } from 'src/store/entities/projectIcons'
 import { useProject } from 'src/store/entities/projects'
 

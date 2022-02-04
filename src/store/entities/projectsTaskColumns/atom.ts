@@ -2,11 +2,11 @@ import { selectorFamily } from 'recoil'
 import { taskColumnByTypeState } from 'src/store/entities/taskColumns'
 import { TaskColumnTypeValue } from 'src/store/entities/taskColumns'
 import { createState } from 'src/store/util'
-import { ProjectsTaskColumn } from './type'
+import { ProjectTaskColumn } from './type'
 
 const key = (str: string) => `src/store/entities/projectsTaskColumns/${str}`
 
-export const initialState = (): ProjectsTaskColumn => ({
+export const initialState = (): ProjectTaskColumn => ({
   id: '',
   taskColumnId: '',
   projectId: '',
@@ -25,7 +25,7 @@ export const {
 } = createState({ key, initialState })
 
 export const projectsTaskColumnsByProjectIdState = selectorFamily<
-  ProjectsTaskColumn[],
+  ProjectTaskColumn[],
   string
 >({
   key: key('projectsTaskColumnsByProjectIdState'),
@@ -38,7 +38,7 @@ export const projectsTaskColumnsByProjectIdState = selectorFamily<
 })
 
 export const projectsTaskColumnByTypeState = selectorFamily<
-  ProjectsTaskColumn,
+  ProjectTaskColumn,
   { projectId: string; type: TaskColumnTypeValue }
 >({
   key: key('projectsTaskColumnByTypeState'),

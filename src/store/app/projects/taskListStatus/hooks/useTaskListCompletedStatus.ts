@@ -6,20 +6,20 @@ import { useTaskListStatusCommand } from './useTaskListStatusCommand'
 
 export const useTaskListCompletedStatus = () => {
   const { taskListStatus } = useTaskListStatus()
-  const { setTaskStatus } = useTaskListStatusCommand()
+  const { setTaskListCompletedStatus: setStatus } = useTaskListStatusCommand()
 
   const isTaskListCompletedStatus = useCallback(
     (status: TaskListCompletedStatuses) =>
-      taskListStatus.taskListCompletedStatus ===
+      taskListStatus.taskListCompletedStatus.statusCode ===
       taskListCompletedStatues[status],
     [taskListStatus.taskListCompletedStatus],
   )
 
   const setTaskListCompletedStatus = useCallback(
     (status: TaskListCompletedStatusCodeValue) => {
-      setTaskStatus({ taskListCompletedStatus: status })
+      setStatus({ statusCode: status })
     },
-    [setTaskStatus],
+    [setStatus],
   )
 
   return {

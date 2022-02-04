@@ -1,10 +1,5 @@
-import {
-  TaskListCompletedStatusCodeValue,
-  TaskListSortStatusCodeValue,
-} from './types'
+import type { ProjectTaskListStatusResponse } from 'src/graphql/types/projectTaskListStatus'
 
-export type TaskListStatus = {
-  id: string
-  taskListCompletedStatus: TaskListCompletedStatusCodeValue
-  taskListSortStatus: TaskListSortStatusCodeValue
-}
+export type { ProjectTaskListStatusResponse } from 'src/graphql/types/projectTaskListStatus'
+
+export type ProjectTaskListStatus = ProjectTaskListStatusResponse

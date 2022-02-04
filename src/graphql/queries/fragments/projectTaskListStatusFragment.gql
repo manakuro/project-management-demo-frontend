@@ -1,0 +1,15 @@
+fragment ProjectTaskListStatusFragment on ProjectTaskListStatus {
+  id
+  taskListCompletedStatusId
+  taskListCompletedStatus {
+    id
+    statusCode
+  }
+  taskListSortStatusId
+  taskListSortStatus {
+    id
+    statusCode
+  }
+  createdAt
+  updatedAt
+}

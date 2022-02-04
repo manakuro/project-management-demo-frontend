@@ -1,16 +1,26 @@
 import { atom, selectorFamily } from 'recoil'
 import { TaskListCompletedStatusCode } from 'src/store/entities/taskListCompletedStatus'
 import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
-import { TaskListStatus } from './type'
+import { ProjectTaskListStatus } from './type'
 
 const key = (str: string) => `src/store/app/projects/taskListStatus/${str}`
 
-export const taskListStatusState = atom<TaskListStatus>({
+export const taskListStatusState = atom<ProjectTaskListStatus>({
   key: key('taskListStatusState'),
   default: {
     id: '',
-    taskListCompletedStatus: 1,
-    taskListSortStatus: 1,
+    taskListCompletedStatusId: '',
+    taskListSortStatusId: '',
+    taskListCompletedStatus: {
+      id: '',
+      statusCode: TaskListCompletedStatusCode.Incomplete,
+    },
+    taskListSortStatus: {
+      id: '',
+      statusCode: TaskListSortStatusCode.None,
+    },
+    createdAt: '',
+    updatedAt: '',
   },
 })
 
@@ -24,7 +34,8 @@ export const isTaskListCompletedStatusState = selectorFamily<
     ({ get }) => {
       const taskStatus = get(taskListStatusState)
       return (
-        taskStatus.taskListCompletedStatus === taskListCompletedStatues[key]
+        taskStatus.taskListCompletedStatus.statusCode ===
+        taskListCompletedStatues[key]
       )
     },
 })
@@ -38,7 +49,9 @@ export const isTaskListSortStatusState = selectorFamily<
     (key) =>
     ({ get }) => {
       const taskStatus = get(taskListStatusState)
-      return taskStatus.taskListSortStatus === taskListSortStatues[key]
+      return (
+        taskStatus.taskListSortStatus.statusCode === taskListSortStatues[key]
+      )
     },
 })
 

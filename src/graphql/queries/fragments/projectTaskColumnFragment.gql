@@ -1,0 +1,14 @@
+fragment ProjectTaskColumnFragment on ProjectTaskColumn {
+  id
+  projectId
+  width
+  disabled
+  customizable
+  order
+  taskColumnId
+  taskColumn {
+    ...TaskColumnFragment
+  }
+  createdAt
+  updatedAt
+}

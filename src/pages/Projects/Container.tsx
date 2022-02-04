@@ -1,13 +1,26 @@
 import React, { memo, useEffect } from 'react'
 import { useProjectsPageQuery } from 'src/hooks/queries/app'
+import { useRouter } from 'src/router'
+import { getProjectsIdFromURL } from 'src/router/projects'
+import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { Component } from './Component'
 
 export const Container: React.FC = memo(() => {
-  const { refetch, loading } = useProjectsPageQuery({ lazy: true })
+  const { router } = useRouter()
+  const { projectId, setProjectId } = useProjectsProjectId()
+  const { refetch, loading } = useProjectsPageQuery({ projectId })
 
   useEffect(() => {
-    refetch()
-  }, [refetch])
+    const projectId = getProjectsIdFromURL(router)
+    console.log('projectId: ', projectId)
+    if (!projectId) return
+
+    setProjectId(projectId)
+  }, [refetch, router, setProjectId])
+
+  useEffect(() => {
+    refetch({ projectId })
+  }, [refetch, projectId])
 
   return <Component loading={loading} />
 })

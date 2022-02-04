@@ -25,11 +25,11 @@ export const useDeleteTaskSectionModal = () => {
   const { tasks } = useTasksByTaskSectionId(state.taskSectionId)
 
   const inCompletedTaskSize = useMemo(
-    () => tasks.filter((t) => !t.isDone).length,
+    () => tasks.filter((t) => !t.completed).length,
     [tasks],
   )
   const completedTaskSize = useMemo(
-    () => tasks.filter((t) => t.isDone).length,
+    () => tasks.filter((t) => t.completed).length,
     [tasks],
   )
   const taskSize = useMemo(() => tasks.length, [tasks])

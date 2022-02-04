@@ -31,18 +31,14 @@ export const useTasksTaskListStatus = (): Result => {
   const useProjectsTaskListStatusResult = useProjectsTaskListStatus()
 
   if (isMyTasksPage) {
-    const taskListCompletedStatus =
-      useMyTasksTaskListStatusResult.taskListStatus.taskListCompletedStatus
-        .statusCode || TaskListCompletedStatusCode.Incomplete
-
-    const taskListSortStatus =
-      useMyTasksTaskListStatusResult.taskListStatus.taskListSortStatus
-        .statusCode || TaskListSortStatusCode.None
-
     return {
       taskListStatus: {
-        taskListCompletedStatus,
-        taskListSortStatus,
+        taskListCompletedStatus: getTaskListCompletedStatus(
+          useMyTasksTaskListStatusResult,
+        ),
+        taskListSortStatus: getTaskListSortStatus(
+          useMyTasksTaskListStatusResult,
+        ),
       },
       sortByNone: useMyTasksTaskListStatusResult.sortByNone,
       sortByAlphabetical: useMyTasksTaskListStatusResult.sortByAlphabetical,
@@ -54,5 +50,56 @@ export const useTasksTaskListStatus = (): Result => {
     }
   }
 
-  return { ...useProjectsTaskListStatusResult }
+  return {
+    taskListStatus: {
+      taskListCompletedStatus: getTaskListCompletedStatus(
+        useProjectsTaskListStatusResult,
+      ),
+      taskListSortStatus: getTaskListSortStatus(
+        useProjectsTaskListStatusResult,
+      ),
+    },
+    sortByNone: useProjectsTaskListStatusResult.sortByNone,
+    sortByAlphabetical: useProjectsTaskListStatusResult.sortByAlphabetical,
+    sortByLikes: useProjectsTaskListStatusResult.sortByLikes,
+    sortByDueDate: useProjectsTaskListStatusResult.sortByDueDate,
+    sortByAssignee: useProjectsTaskListStatusResult.sortByAssignee,
+    sortByPriority: useProjectsTaskListStatusResult.sortByPriority,
+    setTaskListCompletedStatus:
+      useProjectsTaskListStatusResult.setTaskListCompletedStatus,
+  }
+}
+
+const getTaskListCompletedStatus = <
+  T extends {
+    taskListStatus: {
+      taskListCompletedStatus: {
+        statusCode: TaskListCompletedStatusCodeValue | null
+      }
+    }
+  },
+>(
+  data: T,
+) => {
+  return (
+    data.taskListStatus.taskListCompletedStatus.statusCode ||
+    TaskListCompletedStatusCode.Incomplete
+  )
+}
+
+const getTaskListSortStatus = <
+  T extends {
+    taskListStatus: {
+      taskListSortStatus: {
+        statusCode: TaskListSortStatusCodeValue | null
+      }
+    }
+  },
+>(
+  data: T,
+) => {
+  return (
+    data.taskListStatus.taskListSortStatus.statusCode ||
+    TaskListSortStatusCode.None
+  )
 }

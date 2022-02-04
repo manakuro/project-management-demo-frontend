@@ -21,7 +21,14 @@ fragment TaskFragment on Task {
     ...SubTaskFragment
   }
   projectTasks {
-    ...ProjectTaskFragment
+    id
+    taskId
+    projectId
+    project {
+      ...ProjectFragment
+    }
+    createdAt
+    updatedAt
   }
   isNew
   taskParentId

@@ -2,8 +2,12 @@ fragment ProjectTaskFragment on ProjectTask {
   id
   taskId
   projectId
+  projectTaskSectionId
   project {
     ...ProjectFragment
+  }
+  task {
+    ...TaskFragment
   }
   createdAt
   updatedAt

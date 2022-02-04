@@ -1,0 +1,10 @@
+fragment ProjectTaskSectionFragment on ProjectTaskSection {
+  id
+  name
+  projectId
+  projectTasks {
+    ...ProjectTaskFragment
+  }
+  createdAt
+  updatedAt
+}

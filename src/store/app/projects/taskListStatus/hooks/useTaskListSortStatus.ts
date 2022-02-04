@@ -8,21 +8,22 @@ const isSortStatusKey = (val: any): val is TaskListSortStatuses =>
   typeof val === 'string'
 
 export const useTaskListSortStatus = () => {
-  const { setTaskStatus } = useTaskListStatusCommand()
+  const { setTaskListSortStatus } = useTaskListStatusCommand()
   const { taskListStatus } = useTaskListStatus()
 
   const isSorted = useCallback(
     (status: TaskListSortStatuses) =>
-      taskListStatus.taskListSortStatus === taskListSortStatues[status],
+      taskListStatus.taskListSortStatus.statusCode ===
+      taskListSortStatues[status],
     [taskListStatus.taskListSortStatus],
   )
 
   const sortBy = useCallback(
     (status: TaskListSortStatusCodeValue | TaskListSortStatuses) => {
       const val = isSortStatusKey(status) ? taskListSortStatues[status] : status
-      setTaskStatus({ taskListSortStatus: val })
+      setTaskListSortStatus({ statusCode: val })
     },
-    [setTaskStatus],
+    [setTaskListSortStatus],
   )
 
   const sortByNone = useCallback(() => {

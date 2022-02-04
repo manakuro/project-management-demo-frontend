@@ -8,7 +8,7 @@ import {
 import { useLinkHoverStyle } from 'src/hooks'
 import { IconType } from 'src/shared/icons'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
-import { useProjectIcon } from 'src/store/entities/projectIcons'
+import { useProjectIcon } from 'src/store/entities/projectIcon'
 import { useProjectLightColor } from 'src/store/entities/projectLightColors'
 
 type Props = {

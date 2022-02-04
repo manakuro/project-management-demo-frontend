@@ -6,7 +6,7 @@ import { getNodesFromEdges } from 'src/shared/apollo/util'
 import {
   ProjectIconResponse,
   useProjectIconsResponse,
-} from 'src/store/entities/projectIcons'
+} from 'src/store/entities/projectIcon'
 
 export const useProjectIconsQuery = () => {
   const queryResult = useQuery()

@@ -10,16 +10,16 @@ type Result = {
 export const useTasksTaskSections = (): Result => {
   const { isMyTasksPage } = useTasksContext()
 
-  const useMyTasksTaskSectionsResult = useMyTasksTaskSections()
-  const useProjectsTaskSectionsResult = useProjectsTaskSections()
+  const myTasks = useMyTasksTaskSections()
+  const projects = useProjectsTaskSections()
 
   if (isMyTasksPage) {
     return {
-      taskSections: useMyTasksTaskSectionsResult.taskSections,
+      taskSections: myTasks.taskSections,
     }
   }
 
   return {
-    taskSections: useProjectsTaskSectionsResult.taskSections,
+    taskSections: projects.taskSections,
   }
 }

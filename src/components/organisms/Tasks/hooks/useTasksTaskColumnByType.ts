@@ -13,16 +13,16 @@ type Result = {
 
 export const useTasksTaskColumnByType = (type: TaskColumnTypeValue): Result => {
   const { isMyTasksPage } = useTasksContext()
-  const useMyTasksTaskColumnByTypeResult = useMyTasksTaskColumnByType(type)
-  const useProjectTaskColumnByTypeResult = useProjectsTaskColumnByType(type)
+  const myTasks = useMyTasksTaskColumnByType(type)
+  const projects = useProjectsTaskColumnByType(type)
 
   if (isMyTasksPage) {
     return {
-      ...useMyTasksTaskColumnByTypeResult,
+      tasksTaskColumn: myTasks.tasksTaskColumn,
     }
   }
 
   return {
-    ...useProjectTaskColumnByTypeResult,
+    tasksTaskColumn: projects.tasksTaskColumn,
   }
 }

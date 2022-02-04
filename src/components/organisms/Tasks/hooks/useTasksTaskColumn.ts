@@ -16,16 +16,24 @@ type Result = {
 
 export const useTasksTaskColumn = (tasksTaskColumnId: string): Result => {
   const { isMyTasksPage } = useTasksContext()
-  const useMyTasksTaskColumnsResult = useMyTasksTaskColumn(tasksTaskColumnId)
-  const useProjectsTaskColumnsResult = useProjectsTaskColumns(tasksTaskColumnId)
+  const myTasks = useMyTasksTaskColumn(tasksTaskColumnId)
+  const projects = useProjectsTaskColumns(tasksTaskColumnId)
 
   if (isMyTasksPage) {
     return {
-      ...useMyTasksTaskColumnsResult,
+      tasksTaskColumn: myTasks.tasksTaskColumn,
+      setOrderTaskColumn: myTasks.setOrderTaskColumn,
+      setTasksTaskColumn: myTasks.setTasksTaskColumn,
+      canMoveLeft: myTasks.canMoveLeft,
+      canMoveRight: myTasks.canMoveRight,
     }
   }
 
   return {
-    ...useProjectsTaskColumnsResult,
+    tasksTaskColumn: projects.tasksTaskColumn,
+    setOrderTaskColumn: projects.setOrderTaskColumn,
+    setTasksTaskColumn: projects.setTasksTaskColumn,
+    canMoveLeft: projects.canMoveLeft,
+    canMoveRight: projects.canMoveRight,
   }
 }

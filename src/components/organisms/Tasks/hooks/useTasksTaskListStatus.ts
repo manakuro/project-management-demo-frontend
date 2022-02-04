@@ -27,46 +27,36 @@ type Result = {
 
 export const useTasksTaskListStatus = (): Result => {
   const { isMyTasksPage } = useTasksContext()
-  const useMyTasksTaskListStatusResult = useMyTasksTaskListStatus()
-  const useProjectsTaskListStatusResult = useProjectsTaskListStatus()
+  const myTasks = useMyTasksTaskListStatus()
+  const projects = useProjectsTaskListStatus()
 
   if (isMyTasksPage) {
     return {
       taskListStatus: {
-        taskListCompletedStatus: getTaskListCompletedStatus(
-          useMyTasksTaskListStatusResult,
-        ),
-        taskListSortStatus: getTaskListSortStatus(
-          useMyTasksTaskListStatusResult,
-        ),
+        taskListCompletedStatus: getTaskListCompletedStatus(myTasks),
+        taskListSortStatus: getTaskListSortStatus(myTasks),
       },
-      sortByNone: useMyTasksTaskListStatusResult.sortByNone,
-      sortByAlphabetical: useMyTasksTaskListStatusResult.sortByAlphabetical,
-      sortByLikes: useMyTasksTaskListStatusResult.sortByLikes,
-      sortByDueDate: useMyTasksTaskListStatusResult.sortByDueDate,
-      sortByProject: useMyTasksTaskListStatusResult.sortByProject,
-      setTaskListCompletedStatus:
-        useMyTasksTaskListStatusResult.setTaskListCompletedStatus,
+      sortByNone: myTasks.sortByNone,
+      sortByAlphabetical: myTasks.sortByAlphabetical,
+      sortByLikes: myTasks.sortByLikes,
+      sortByDueDate: myTasks.sortByDueDate,
+      sortByProject: myTasks.sortByProject,
+      setTaskListCompletedStatus: myTasks.setTaskListCompletedStatus,
     }
   }
 
   return {
     taskListStatus: {
-      taskListCompletedStatus: getTaskListCompletedStatus(
-        useProjectsTaskListStatusResult,
-      ),
-      taskListSortStatus: getTaskListSortStatus(
-        useProjectsTaskListStatusResult,
-      ),
+      taskListCompletedStatus: getTaskListCompletedStatus(projects),
+      taskListSortStatus: getTaskListSortStatus(projects),
     },
-    sortByNone: useProjectsTaskListStatusResult.sortByNone,
-    sortByAlphabetical: useProjectsTaskListStatusResult.sortByAlphabetical,
-    sortByLikes: useProjectsTaskListStatusResult.sortByLikes,
-    sortByDueDate: useProjectsTaskListStatusResult.sortByDueDate,
-    sortByAssignee: useProjectsTaskListStatusResult.sortByAssignee,
-    sortByPriority: useProjectsTaskListStatusResult.sortByPriority,
-    setTaskListCompletedStatus:
-      useProjectsTaskListStatusResult.setTaskListCompletedStatus,
+    sortByNone: projects.sortByNone,
+    sortByAlphabetical: projects.sortByAlphabetical,
+    sortByLikes: projects.sortByLikes,
+    sortByDueDate: projects.sortByDueDate,
+    sortByAssignee: projects.sortByAssignee,
+    sortByPriority: projects.sortByPriority,
+    setTaskListCompletedStatus: projects.setTaskListCompletedStatus,
   }
 }
 

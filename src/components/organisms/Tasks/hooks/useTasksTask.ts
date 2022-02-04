@@ -8,16 +8,16 @@ type Result = {
 
 export const useTasksTask = (): Result => {
   const { isMyTasksPage } = useTasksContext()
-  const useMyTasksTaskResult = useMyTasksTask()
-  const useProjectsTaskResult = useProjectsTask()
+  const myTasks = useMyTasksTask()
+  const projects = useProjectsTask()
 
   if (isMyTasksPage) {
     return {
-      addTask: useMyTasksTaskResult.addTask,
+      addTask: myTasks.addTask,
     }
   }
 
   return {
-    addTask: useProjectsTaskResult.addTask,
+    addTask: projects.addTask,
   }
 }

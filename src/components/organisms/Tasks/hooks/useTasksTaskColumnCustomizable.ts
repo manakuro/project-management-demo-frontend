@@ -16,11 +16,17 @@ export const useTasksTaskColumnCustomizable = (): Result => {
 
   if (isMyTasksPage) {
     return {
-      ...useMyTasksTaskColumnsCustomizableResult,
+      tasksTaskColumnIds:
+        useMyTasksTaskColumnsCustomizableResult.tasksTaskColumnIds,
+      setOrderTaskColumn:
+        useMyTasksTaskColumnsCustomizableResult.setOrderTaskColumn,
     }
   }
 
   return {
-    ...useProjectsTaskColumnsCustomizableResult,
+    tasksTaskColumnIds:
+      useProjectsTaskColumnsCustomizableResult.tasksTaskColumnIds,
+    setOrderTaskColumn:
+      useProjectsTaskColumnsCustomizableResult.setOrderTaskColumn,
   }
 }

@@ -30,10 +30,11 @@ export const useTeammateTasksCommand = () => {
   )
 
   const addTeammateTask = useCallback(
-    (val?: Partial<TeammateTask>) => {
+    (val: Partial<TeammateTask> & { teammateTaskSectionId: string }) => {
       const id = uuid()
       const newTaskId = addTask({
         assigneeId: me.id,
+        taskSectionId: val.teammateTaskSectionId,
       })
       const newTeammateTask = {
         ...initialState(),

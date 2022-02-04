@@ -8,16 +8,16 @@ type Result = {
 
 export const useTasksTaskIdsByDueDate = (dueDate: string): Result => {
   const { isMyTasksPage } = useTasksContext()
-  const useMyTasksTaskIdsByDueDateResult = useMyTasksTaskIdsByDueDate(dueDate)
-  const useProjectsTaskIdsByDueDateResult = useProjectsTaskIdsByDueDate(dueDate)
+  const myTasks = useMyTasksTaskIdsByDueDate(dueDate)
+  const projects = useProjectsTaskIdsByDueDate(dueDate)
 
   if (isMyTasksPage) {
     return {
-      taskIds: useMyTasksTaskIdsByDueDateResult.taskIds,
+      taskIds: myTasks.taskIds,
     }
   }
 
   return {
-    taskIds: useProjectsTaskIdsByDueDateResult.taskIds,
+    taskIds: projects.taskIds,
   }
 }

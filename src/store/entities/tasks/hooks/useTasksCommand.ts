@@ -28,7 +28,7 @@ export const useTasksCommand = () => {
   )
 
   const addTask = useCallback(
-    (val?: Partial<Task>) => {
+    (val?: Partial<Task> & { taskSectionId: string }) => {
       const id = uuid()
       upsert({
         ...initialState(),

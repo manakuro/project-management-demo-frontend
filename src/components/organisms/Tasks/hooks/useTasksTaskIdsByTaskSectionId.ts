@@ -10,19 +10,16 @@ export const useTasksTaskIdsByTaskSectionId = (
   taskSectionId: string,
 ): Result => {
   const { isMyTasksPage } = useTasksContext()
-  const useMyTasksTaskIdsByTaskSectionIdResult =
-    useMyTasksTaskIdsByTaskSectionId(taskSectionId)
-
-  const useProjectsTaskIdsByTaskSectionIdResult =
-    useProjectsTaskIdsByTaskSectionId(taskSectionId)
+  const myTasks = useMyTasksTaskIdsByTaskSectionId(taskSectionId)
+  const projects = useProjectsTaskIdsByTaskSectionId(taskSectionId)
 
   if (isMyTasksPage) {
     return {
-      taskIds: useMyTasksTaskIdsByTaskSectionIdResult.taskIds,
+      taskIds: myTasks.taskIds,
     }
   }
 
   return {
-    taskIds: useProjectsTaskIdsByTaskSectionIdResult.taskIds,
+    taskIds: projects.taskIds,
   }
 }

@@ -1,7 +1,7 @@
 import { createState } from 'src/store/util'
 import { ProjectLightColor } from './type'
 
-const key = (str: string) => `src/store/entities/projectLightColors/${str}`
+const key = (str: string) => `src/store/entities/projectLightColor/${str}`
 
 export const initialState = (): ProjectLightColor => ({
   id: '',

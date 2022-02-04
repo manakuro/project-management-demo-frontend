@@ -5,7 +5,7 @@ import {
   useTaskFile,
   useTaskFileIdsByTaskId,
 } from 'src/store/entities/taskFile'
-import { useFeedListItemContext } from '../../Provider'
+import { useTaskFeedListItemContext } from '../../Provider'
 import { File } from './File'
 import { Image } from './Image'
 
@@ -14,7 +14,7 @@ type Props = {
 }
 
 export const ContentAttachment: React.VFC<Props> = memo<Props>((props) => {
-  const { taskId } = useFeedListItemContext()
+  const { taskId } = useTaskFeedListItemContext()
   const { taskFile } = useTaskFile(props.taskFileId)
   const { taskFileIds } = useTaskFileIdsByTaskId(taskId)
   const { onOpen, setState } = useFileViewerModal()

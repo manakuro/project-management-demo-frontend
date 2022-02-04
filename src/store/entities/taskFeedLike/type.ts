@@ -1,7 +1,7 @@
-export type FeedLike = {
+export type TaskFeedLike = {
   id: string
   taskId: string
-  feedId: string
+  taskFeedId: string
   teammateId: string // TODO: change to `userId`
   createdAt: string
   updatedAt: string

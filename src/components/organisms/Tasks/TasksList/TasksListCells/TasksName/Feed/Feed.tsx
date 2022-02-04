@@ -4,17 +4,17 @@ import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { FEED_LIST_CONTAINER_ID } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList'
 import { useTasksNameContext } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
-import { useFeedIdsWithoutFirstByTaskId } from 'src/store/entities/feeds'
+import { useTaskFeedIdsWithoutFirstByTaskId } from 'src/store/entities/taskFeed'
 import { Icon } from './Icon'
 
 type Props = {}
 
 export const Feed: React.VFC<Props> = () => {
   const { taskId } = useTasksNameContext()
-  const { feedIdsWithoutFirst } = useFeedIdsWithoutFirstByTaskId(taskId)
+  const { taskFeedIdsWithoutFirst } = useTaskFeedIdsWithoutFirstByTaskId(taskId)
   const size = useMemo(
-    () => feedIdsWithoutFirst.length,
-    [feedIdsWithoutFirst.length],
+    () => taskFeedIdsWithoutFirst.length,
+    [taskFeedIdsWithoutFirst.length],
   )
   const { setScrollId } = useTaskDetail()
   const { navigateToTaskDetail } = useTasksRouter()
@@ -32,7 +32,7 @@ export const Feed: React.VFC<Props> = () => {
 
   return (
     <IconButton
-      aria-label="The number of feed"
+      aria-label="The number of taskFeed"
       icon={<Icon size={size} />}
       variant="ghost"
       size="xs"

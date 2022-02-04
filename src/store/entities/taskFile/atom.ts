@@ -43,9 +43,11 @@ export const taskFileIdsByTaskIdState = selectorFamily<string[], string>({
 export const taskFileIdsByFeedIdState = selectorFamily<string[], string>({
   key: key('taskFileIdsByFeedIdState'),
   get:
-    (feedId) =>
+    (taskFeedId) =>
     ({ get }) => {
       const taskFiles = get(taskFilesState)
-      return taskFiles.filter((p) => p.taskFeedId === feedId).map((p) => p.id)
+      return taskFiles
+        .filter((p) => p.taskFeedId === taskFeedId)
+        .map((p) => p.id)
     },
 })

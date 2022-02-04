@@ -27,12 +27,12 @@ export const Input: React.FC<Props> = (props) => {
 }
 
 const Component: React.FC<Props> = memo<Props>(() => {
-  const { onChangeDescription, feed } = useInputContext()
+  const { onChangeDescription, taskFeed } = useInputContext()
   const [forceUpdate, setForceUpdate] = useState<number>(1)
 
   useEffect(() => {
     setForceUpdate((s) => s + 1)
-  }, [feed.id])
+  }, [taskFeed.id])
 
   return (
     <Flex ml={2} flex={1}>

@@ -1,23 +1,23 @@
 import React, { memo } from 'react'
 import { Flex, Icon, Text, TextProps } from 'src/components/atoms'
-import { TaskFeed } from 'src/store/entities/feeds'
+import { TaskFeed } from 'src/store/entities/taskFeed'
 import { Teammate } from 'src/store/entities/teammates'
-import { useFeedListItemContext } from '../Provider'
+import { useTaskFeedListItemContext } from '../Provider'
 
 type Props = TextProps
 
 const generateTitle = (
   {
     teammate,
-    feed,
+    taskFeed,
   }: {
     teammate: Teammate
-    feed: TaskFeed
+    taskFeed: TaskFeed
   },
   { hasTaskFile }: { hasTaskFile: boolean },
 ): React.ReactElement => {
   switch (true) {
-    case feed.isFirst:
+    case taskFeed.isFirst:
       return <Text>{`${teammate.name} created this task.`}</Text>
     case Boolean(hasTaskFile): {
       return (
@@ -33,8 +33,8 @@ const generateTitle = (
 }
 
 export const Title: React.VFC<Props> = memo<Props>((props) => {
-  const { teammate, feed, hasTaskFile } = useFeedListItemContext()
-  const title = generateTitle({ teammate, feed }, { hasTaskFile })
+  const { teammate, taskFeed, hasTaskFile } = useTaskFeedListItemContext()
+  const title = generateTitle({ teammate, taskFeed }, { hasTaskFile })
 
   return (
     <Flex fontSize="sm" fontWeight="medium" ml={2} {...props}>

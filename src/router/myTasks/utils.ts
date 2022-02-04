@@ -62,9 +62,9 @@ export const getMyTasksDetailFeedId = (router: NextRouter): string =>
 
 export const getMyTasksDetailFeedURL = (
   taskId: string,
-  feedId: string,
+  taskFeedId: string,
 ): string => {
   return `${
     window.location.origin
-  }/${ROUTE_MY_TASKS.href.pathname()}/${taskId}/${feedId}`
+  }/${ROUTE_MY_TASKS.href.pathname()}/${taskId}/${taskFeedId}`
 }

@@ -3,7 +3,7 @@ import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetai
 import { getMyTasksDetailFeedId, useRouter } from 'src/router'
 import { isHTMLElement } from 'src/shared/isHTMLElement'
 import { createProvider } from 'src/shared/react/createProvider'
-import { useFeed } from 'src/store/entities/feeds'
+import { useTaskFeed } from 'src/store/entities/taskFeed'
 
 type ContextProps = {
   containerRef: React.MutableRefObject<HTMLElement | null>
@@ -11,11 +11,11 @@ type ContextProps = {
 }
 
 type Props = {
-  feedId: string
+  taskFeedId: string
   isPinned?: boolean
 }
 const useValue = (props: Props): ContextProps => {
-  const { feed } = useFeed(props.feedId)
+  const { taskFeed } = useTaskFeed(props.taskFeedId)
   const ref = useRef<HTMLElement | null>(null)
   const { router } = useRouter()
   const { taskDetailBodyDom } = useTaskDetailBody()
@@ -42,10 +42,10 @@ const useValue = (props: Props): ContextProps => {
     const id = getMyTasksDetailFeedId(router)
     if (!id) return
     if (props.isPinned) return
-    if (id !== feed.id) return
+    if (id !== taskFeed.id) return
 
     scrollToFeedItem()
-  }, [feed.id, props.isPinned, router, scrollToFeedItem])
+  }, [taskFeed.id, props.isPinned, router, scrollToFeedItem])
 
   return {
     containerRef: ref,

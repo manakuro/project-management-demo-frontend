@@ -3,13 +3,13 @@ import { useToast } from 'src/hooks'
 import { getMyTasksDetailFeedURL } from 'src/router'
 import { parseDescription } from 'src/shared/prosemirror/convertDescription'
 import { createProvider } from 'src/shared/react/createProvider'
-import { useFeed } from 'src/store/entities/feeds'
+import { useTaskFeed } from 'src/store/entities/taskFeed'
 import { useTaskFileIdsByTaskFeedId } from 'src/store/entities/taskFile'
 import { useTeammate } from 'src/store/entities/teammates'
 import { Provider as ProviderContainer } from './ProviderContainer'
 
 type Props = {
-  feedId: string
+  taskFeedId: string
   taskId: string
   isPinned?: boolean
 }
@@ -22,9 +22,9 @@ export const Provider: React.FC<Props> = (props) => {
 }
 
 const useValue = (props: Props) => {
-  const { feed } = useFeed(props.feedId)
-  const { taskFileIds } = useTaskFileIdsByTaskFeedId(props.feedId)
-  const { teammate } = useTeammate(feed.teammateId)
+  const { taskFeed } = useTaskFeed(props.taskFeedId)
+  const { taskFileIds } = useTaskFileIdsByTaskFeedId(props.taskFeedId)
+  const { teammate } = useTeammate(taskFeed.teammateId)
   const {
     onPin,
     onUnpin,
@@ -44,11 +44,11 @@ const useValue = (props: Props) => {
 
   const hasTaskFile = useMemo(() => !!taskFileIds.length, [taskFileIds])
   const hasText = useMemo(
-    () => !!feed.description.content.length,
-    [feed.description],
+    () => !!taskFeed.description.content.length,
+    [taskFeed.description],
   )
   return {
-    feed,
+    taskFeed,
     teammate,
     editable,
     onEdit,
@@ -70,35 +70,38 @@ const useValue = (props: Props) => {
 }
 useValue.__PROVIDER__ =
   'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider/Provider.tsx'
-const { Provider: ProviderBase, useContext: useFeedListItemContext } =
+const { Provider: ProviderBase, useContext: useTaskFeedListItemContext } =
   createProvider(useValue)
 
 const useFeedOptionMenu = (props: Props) => {
-  const { feed, setFeed } = useFeed(props.feedId)
+  const { taskFeed, setTaskFeed } = useTaskFeed(props.taskFeedId)
   const [isEdit, setIsEdit] = useState<boolean>(false)
   const { toast } = useToast()
 
   const onPin = useCallback(async () => {
-    await setFeed({ isPinned: true })
-  }, [setFeed])
+    await setTaskFeed({ isPinned: true })
+  }, [setTaskFeed])
 
   const onUnpin = useCallback(async () => {
-    await setFeed({ isPinned: false })
-  }, [setFeed])
+    await setTaskFeed({ isPinned: false })
+  }, [setTaskFeed])
 
   const onEdit = useCallback(() => setIsEdit(true), [])
 
-  const showFeedOptionMenu = useMemo(() => !feed.isFirst, [feed.isFirst])
-  const showLike = useMemo(() => !feed.isFirst, [feed.isFirst])
+  const showFeedOptionMenu = useMemo(
+    () => !taskFeed.isFirst,
+    [taskFeed.isFirst],
+  )
+  const showLike = useMemo(() => !taskFeed.isFirst, [taskFeed.isFirst])
 
   const onCopyCommentLink = useCallback(async () => {
     await navigator.clipboard.writeText(
-      getMyTasksDetailFeedURL(props.taskId, feed.id),
+      getMyTasksDetailFeedURL(props.taskId, taskFeed.id),
     )
     toast({
       description: 'The comment link was copied to your clipboard.',
     })
-  }, [feed.id, props.taskId, toast])
+  }, [taskFeed.id, props.taskId, toast])
 
   return {
     onPin,
@@ -122,7 +125,7 @@ const useEditor = (
     isEdit: boolean
   },
 ) => {
-  const { setFeed } = useFeed(props.feedId)
+  const { setTaskFeed } = useTaskFeed(props.taskFeedId)
   const [description, setDescription] = useState<string>('')
 
   const onCancel = useCallback(() => setIsEdit(false), [setIsEdit])
@@ -132,9 +135,9 @@ const useEditor = (
   }, [])
 
   const onSave = useCallback(async () => {
-    await setFeed({ description: parseDescription(description) })
+    await setTaskFeed({ description: parseDescription(description) })
     setIsEdit(false)
-  }, [description, setFeed, setIsEdit])
+  }, [description, setTaskFeed, setIsEdit])
 
   const editable = useCallback(() => isEdit, [isEdit])
 
@@ -147,4 +150,4 @@ const useEditor = (
   }
 }
 
-export { useFeedListItemContext }
+export { useTaskFeedListItemContext }

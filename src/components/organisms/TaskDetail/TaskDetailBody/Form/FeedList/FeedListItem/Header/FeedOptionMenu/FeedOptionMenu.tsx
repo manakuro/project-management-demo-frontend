@@ -6,7 +6,7 @@ import {
   MenuGroup,
   MenuButton,
 } from 'src/components/organisms/Menu'
-import { useFeedListItemContext } from '../../Provider'
+import { useTaskFeedListItemContext } from '../../Provider'
 import { CopyCommentLink } from './CopyCommentLink'
 import { DeleteComment } from './DeleteComment'
 import { DeleteStory } from './DeleteStory'
@@ -16,7 +16,7 @@ import { Pin } from './Pin'
 type Props = {}
 
 export const FeedOptionMenu: React.FC<Props> = memo(() => {
-  const { showFeedOptionMenu } = useFeedListItemContext()
+  const { showFeedOptionMenu } = useTaskFeedListItemContext()
   if (!showFeedOptionMenu) return null
 
   return (

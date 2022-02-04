@@ -1,42 +1,45 @@
 import { useCallback, useEffect } from 'react'
-import { useFeedLikesResponse, FeedLike } from 'src/store/entities/feedLikes'
+import {
+  useTaskFeedLikesResponse,
+  TaskFeedLike,
+} from 'src/store/entities/taskFeedLike'
 
 type Props = {
   lazy?: boolean
 }
 
 export const useFeedLikesQuery = (props?: Props) => {
-  const { setFeedLikes } = useFeedLikesResponse()
+  const { setTaskFeedLikes } = useTaskFeedLikesResponse()
 
   useEffect(() => {
     ;(async () => {
       if (props?.lazy) return
 
       const res = await fetchFeedLikes()
-      setFeedLikes(res)
+      setTaskFeedLikes(res)
     })()
-  }, [props?.lazy, setFeedLikes])
+  }, [props?.lazy, setTaskFeedLikes])
 
   const refetch = useCallback(() => {
     ;(async () => {
       const res = await fetchFeedLikes()
-      setFeedLikes(res)
+      setTaskFeedLikes(res)
     })()
-  }, [setFeedLikes])
+  }, [setTaskFeedLikes])
 
   return {
     refetch,
   }
 }
 
-const fetchFeedLikes = (): Promise<FeedLike[]> => {
+const fetchFeedLikes = (): Promise<TaskFeedLike[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve([
         {
           id: '3',
           taskId: '1',
-          feedId: '2',
+          taskFeedId: '2',
           teammateId: '3',
           createdAt: '',
           updatedAt: '',
@@ -44,7 +47,7 @@ const fetchFeedLikes = (): Promise<FeedLike[]> => {
         {
           id: '4',
           taskId: '1',
-          feedId: '2',
+          taskFeedId: '2',
           teammateId: '2',
           createdAt: '',
           updatedAt: '',
@@ -52,7 +55,7 @@ const fetchFeedLikes = (): Promise<FeedLike[]> => {
         {
           id: '5',
           taskId: '1',
-          feedId: '2',
+          taskFeedId: '2',
           teammateId: '1',
           createdAt: '',
           updatedAt: '',

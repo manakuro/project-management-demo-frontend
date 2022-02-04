@@ -34,9 +34,9 @@ export const useRouterMyTasks = () => {
   )
 
   const navigateToTaskDetailFeed = useCallback(
-    async (taskId: string, feedId: string, options?: Options) => {
+    async (taskId: string, taskFeedId: string, options?: Options) => {
       await push(
-        `${ROUTE_MY_TASKS.href.pathname()}/${taskId}/${feedId}`,
+        `${ROUTE_MY_TASKS.href.pathname()}/${taskId}/${taskFeedId}`,
         undefined,
         {
           shallow: true,

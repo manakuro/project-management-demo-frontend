@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
-import { feedState } from 'src/store/entities/feeds'
 import { projectTaskState } from 'src/store/entities/projectsTasks'
 import { tagState } from 'src/store/entities/tags'
+import { taskFeedState } from 'src/store/entities/taskFeed'
 import { taskFileState } from 'src/store/entities/taskFile'
 import { taskTeammateState } from 'src/store/entities/tasksTeammates'
 import { useTeammatesResponse } from 'src/store/entities/teammates'
@@ -110,7 +110,7 @@ const useSetters = () => {
             (acc, p) => uniqBy([...acc, ...p.taskFeeds], 'id'),
             [],
           )
-          .forEach((f) => set(feedState(f.id), f))
+          .forEach((f) => set(taskFeedState(f.id), f))
       },
     [],
   )

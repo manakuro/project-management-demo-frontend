@@ -8,8 +8,12 @@ import { useClickOutside, useToast } from 'src/hooks'
 import { getScrollBottom } from 'src/shared/getScrollBottom'
 import { parseDescription } from 'src/shared/prosemirror/convertDescription'
 import { createProvider } from 'src/shared/react/createProvider'
-import { TaskFeed, useFeed, useFeedCommand } from 'src/store/entities/feeds'
 import { useMe } from 'src/store/entities/me'
+import {
+  TaskFeed,
+  useTaskFeed,
+  useTaskFeedCommand,
+} from 'src/store/entities/taskFeed'
 import {
   TaskFile,
   useTaskFileCommand,
@@ -18,7 +22,7 @@ import {
 } from 'src/store/entities/taskFile'
 
 type ContextProps = {
-  feed: TaskFeed
+  taskFeed: TaskFeed
   focused: boolean
   onChangeDescription: (val: string) => void
   onFocus: () => void
@@ -36,8 +40,8 @@ type ContextProps = {
 
 const useValue = (): ContextProps => {
   const { focused, setFocused, onFocus, ref } = useFocus()
-  const [feedId, setFeedId] = useState<string>('')
-  const { feed } = useFeed(feedId)
+  const [taskFeedId, setFeedId] = useState<string>('')
+  const { taskFeed } = useTaskFeed(taskFeedId)
   const { hasTaskFile, setTaskFileIds, taskFileIds, onDeleteTaskFile } =
     useTaskFileFile()
   const { uploadingFiles, onUploadFile } = useUploadingFile({
@@ -56,7 +60,7 @@ const useValue = (): ContextProps => {
     ref,
     onSave,
     onChangeDescription,
-    feed,
+    taskFeed,
     onUploadFile,
     taskFileIds,
     uploadingFiles,
@@ -206,7 +210,7 @@ function useFocus() {
 
 function useSave(props: { onSaved: (id: string) => void }) {
   const { taskId } = useTaskDetail()
-  const { addFeed } = useFeedCommand()
+  const { addTaskFeed } = useTaskFeedCommand()
   const { me } = useMe()
   const { taskDetailBodyDom } = useTaskDetailBody()
   const [description, setDescription] = useState<string>('')
@@ -217,7 +221,7 @@ function useSave(props: { onSaved: (id: string) => void }) {
   }, [taskDetailBodyDom])
 
   const onSave = useCallback(() => {
-    const id = addFeed({
+    const id = addTaskFeed({
       taskId,
       description: parseDescription(description),
       teammateId: me.id,
@@ -225,7 +229,7 @@ function useSave(props: { onSaved: (id: string) => void }) {
     })
     props.onSaved(id)
     scrollToBottom()
-  }, [addFeed, description, me.id, props, scrollToBottom, taskId])
+  }, [addTaskFeed, description, me.id, props, scrollToBottom, taskId])
 
   const onChangeDescription = useCallback((val: string) => {
     setDescription(val)

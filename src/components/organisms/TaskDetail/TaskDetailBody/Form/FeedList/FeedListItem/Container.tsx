@@ -1,13 +1,13 @@
 import React, { memo, useMemo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useFeedListItemContext } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
-import { useFeedListItemContainerContext } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider/ProviderContainer'
 import { transitions } from 'src/styles'
+import { useTaskFeedListItemContext } from './Provider'
+import { useFeedListItemContainerContext } from './Provider/ProviderContainer'
 
 type Props = {}
 
 export const Container: React.FC<Props> = memo((props) => {
-  const { feed, isPinned } = useFeedListItemContext()
+  const { taskFeed, isPinned } = useTaskFeedListItemContext()
   const { containerRef, isReferenced } = useFeedListItemContainerContext()
 
   const style = useMemo((): FlexProps => {
@@ -21,7 +21,7 @@ export const Container: React.FC<Props> = memo((props) => {
         bg: 'yellow.50',
       }
 
-    return feed.isPinned
+    return taskFeed.isPinned
       ? {
           borderLeft: 3,
           borderColor: 'yellow.300',
@@ -31,7 +31,7 @@ export const Container: React.FC<Props> = memo((props) => {
       : {
           bg: 'gray.50',
         }
-  }, [feed.isPinned, isPinned, isReferenced])
+  }, [taskFeed.isPinned, isPinned, isReferenced])
 
   return (
     <Flex

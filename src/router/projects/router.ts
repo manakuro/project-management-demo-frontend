@@ -35,9 +35,14 @@ export const useRouterProjects = () => {
   )
 
   const navigateToProjectsTaskDetailFeed = useCallback(
-    async (id: string, taskId: string, feedId: string, options?: Options) => {
+    async (
+      id: string,
+      taskId: string,
+      taskFeedId: string,
+      options?: Options,
+    ) => {
       await push(
-        `${ROUTE_PROJECTS.href.pathname(id)}/${taskId}/${feedId}`,
+        `${ROUTE_PROJECTS.href.pathname(id)}/${taskId}/${taskFeedId}`,
         undefined,
         {
           shallow: true,

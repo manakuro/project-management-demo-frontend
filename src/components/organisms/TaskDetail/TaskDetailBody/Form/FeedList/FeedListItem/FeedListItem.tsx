@@ -5,7 +5,7 @@ import { Header } from './Header'
 import { Provider } from './Provider'
 
 type Props = {
-  feedId: string
+  taskFeedId: string
   taskId: string
   isPinned?: boolean
 }

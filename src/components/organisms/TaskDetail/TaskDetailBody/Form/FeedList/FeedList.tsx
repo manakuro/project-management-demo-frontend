@@ -1,6 +1,9 @@
 import React, { memo, useMemo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { useFeedIdsByTaskId, useFeedsPinnedIds } from 'src/store/entities/feeds'
+import {
+  useTaskFeedIdsByTaskId,
+  useTaskFeedsPinnedIds,
+} from 'src/store/entities/taskFeed'
 import { FeedListItem } from './FeedListItem'
 
 type Props = {
@@ -10,11 +13,11 @@ type Props = {
 export const FEED_LIST_CONTAINER_ID = 'FEED_LIST_CONTAINER_ID'
 
 export const FeedList: React.VFC<Props> = memo<Props>((props) => {
-  const { feedIds } = useFeedIdsByTaskId(props.taskId)
-  const { feedPinnedIds } = useFeedsPinnedIds(props.taskId)
+  const { taskFeedIds } = useTaskFeedIdsByTaskId(props.taskId)
+  const { taskFeedPinnedIds } = useTaskFeedsPinnedIds(props.taskId)
   const anyFeedIds = useMemo(
-    () => !!feedIds.length || !!feedPinnedIds.length,
-    [feedIds.length, feedPinnedIds.length],
+    () => !!taskFeedIds.length || !!taskFeedPinnedIds.length,
+    [taskFeedIds.length, taskFeedPinnedIds.length],
   )
 
   return (
@@ -25,16 +28,16 @@ export const FeedList: React.VFC<Props> = memo<Props>((props) => {
       bg={anyFeedIds ? 'gray.50' : 'transparent'}
       flex={1}
     >
-      {feedPinnedIds.map((pinnedId) => (
+      {taskFeedPinnedIds.map((pinnedId) => (
         <FeedListItem
           key={pinnedId}
-          feedId={pinnedId}
+          taskFeedId={pinnedId}
           taskId={props.taskId}
           isPinned
         />
       ))}
-      {feedIds.map((id) => (
-        <FeedListItem key={id} feedId={id} taskId={props.taskId} />
+      {taskFeedIds.map((id) => (
+        <FeedListItem key={id} taskFeedId={id} taskId={props.taskId} />
       ))}
     </Flex>
   )

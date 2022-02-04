@@ -79,9 +79,9 @@ export const getProjectsDetailFeedId = (router: NextRouter): string =>
 export const getProjectsDetailFeedURL = (
   id: string,
   taskId: string,
-  feedId: string,
+  taskFeedId: string,
 ): string => {
   return `${window.location.origin}/${ROUTE_PROJECTS.href.pathname(
     id,
-  )}/${taskId}/${feedId}`
+  )}/${taskId}/${taskFeedId}`
 }

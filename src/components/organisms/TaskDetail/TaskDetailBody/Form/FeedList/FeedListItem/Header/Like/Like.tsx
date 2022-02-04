@@ -1,12 +1,12 @@
 import React from 'react'
 import { LikeIconButton } from 'src/components/molecules'
-import { useFeedListItemContext } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
+import { useTaskFeedListItemContext } from '../../Provider'
 import { useLike } from './useLike'
 
 type Props = {}
 
 export const Like: React.VFC<Props> = () => {
-  const { showLike } = useFeedListItemContext()
+  const { showLike } = useTaskFeedListItemContext()
   const { hasAnyoneLiked, label, likeLength, onToggleLike } = useLike()
 
   return (

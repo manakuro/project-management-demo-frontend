@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { Flex, Icon as AtomsIcon, Text } from 'src/components/atoms'
-import { useFeedIdsWithoutFirstByTaskId } from 'src/store/entities/feeds'
+import { useTaskFeedIdsWithoutFirstByTaskId } from 'src/store/entities/taskFeed'
 
 type Props = {
   taskId: string
@@ -8,10 +8,10 @@ type Props = {
 
 export const Feed: React.VFC<Props> = (props) => {
   const { taskId } = props
-  const { feedIdsWithoutFirst } = useFeedIdsWithoutFirstByTaskId(taskId)
+  const { taskFeedIdsWithoutFirst } = useTaskFeedIdsWithoutFirstByTaskId(taskId)
   const size = useMemo(
-    () => feedIdsWithoutFirst.length,
-    [feedIdsWithoutFirst.length],
+    () => taskFeedIdsWithoutFirst.length,
+    [taskFeedIdsWithoutFirst.length],
   )
 
   if (!size) return null

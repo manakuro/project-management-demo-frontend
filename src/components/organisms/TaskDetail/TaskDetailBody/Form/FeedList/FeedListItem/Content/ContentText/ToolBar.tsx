@@ -5,12 +5,12 @@ import {
   Emoji,
   AtMention,
 } from 'src/components/organisms/Editor/ToolBar'
-import { useFeedListItemContext } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
+import { useTaskFeedListItemContext } from '../../Provider'
 
 type Props = {}
 
 export const ToolBar: React.FC<Props> = memo<Props>(() => {
-  const { editable, onCancel, onSave } = useFeedListItemContext()
+  const { editable, onCancel, onSave } = useTaskFeedListItemContext()
   if (!editable()) return null
 
   return (

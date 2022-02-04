@@ -1,19 +1,19 @@
 import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { uuid } from 'src/shared/uuid'
-import { initialState, feedState } from '../atom'
+import { initialState, taskFeedState } from '../atom'
 import { TaskFeed } from '../type'
 
-export const useFeedCommand = () => {
+export const useTaskFeedCommand = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
-      (feed: TaskFeed) => {
-        set(feedState(feed.id), feed)
+      (taskFeed: TaskFeed) => {
+        set(taskFeedState(taskFeed.id), taskFeed)
       },
     [],
   )
 
-  const addFeed = useCallback(
+  const addTaskFeed = useCallback(
     (val: Partial<TaskFeed>) => {
       const id = uuid()
       upsert({
@@ -29,6 +29,6 @@ export const useFeedCommand = () => {
 
   return {
     upsert,
-    addFeed,
+    addTaskFeed,
   }
 }

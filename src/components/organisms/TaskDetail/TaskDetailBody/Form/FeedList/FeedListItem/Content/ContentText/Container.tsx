@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
-import { useFeedListItemContext } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
+import { useTaskFeedListItemContext } from '../../Provider'
 
 type Props = FlexProps
 
 export const Container: React.FC<Props> = memo<Props>((props) => {
-  const { editable } = useFeedListItemContext()
+  const { editable } = useTaskFeedListItemContext()
 
   return (
     <Flex

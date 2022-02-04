@@ -26,7 +26,7 @@ export const sortByDueDate =
   (tasks: Task[]) => {
     if (!get(isTaskListSortStatusState('dueDate'))) return tasks
 
-    return tasks.sort((a, b) => {
+    return [...tasks].sort((a, b) => {
       if (!a.dueDate) return 1
       if (!b.dueDate) return -1
 
@@ -39,7 +39,7 @@ export const sortByLikes =
   (tasks: Task[]) => {
     if (!get(isTaskListSortStatusState('likes'))) return tasks
 
-    return tasks.sort((a, b) => {
+    return [...tasks].sort((a, b) => {
       const taskLikesA = get(taskLikesByTaskIdState(a.id))
       const taskLikesB = get(taskLikesByTaskIdState(b.id))
       return taskLikesA.length < taskLikesB.length ? 1 : -1
@@ -51,7 +51,7 @@ export const sortByAlphabetical =
   (tasks: Task[]) => {
     if (!get(isTaskListSortStatusState('alphabetical'))) return tasks
 
-    return tasks.sort((a, b) =>
+    return [...tasks].sort((a, b) =>
       a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1,
     )
   }
@@ -92,14 +92,14 @@ export const filterByIncomplete =
   ({ get }: Params) =>
   (tasks: Task[]) => {
     if (!get(isTaskListCompletedStatusState('incomplete'))) return tasks
-    return tasks.filter((t) => !t.isDone)
+    return tasks.filter((t) => !t.completed)
   }
 
 export const filterByAllCompleted =
   ({ get }: Params) =>
   (tasks: Task[]) => {
     if (!get(isTaskListCompletedStatusState('completed'))) return tasks
-    return tasks.filter((t) => t.isDone)
+    return tasks.filter((t) => t.completed)
   }
 
 const getDuration = (date: string) => {
@@ -114,10 +114,10 @@ export const filterByCompletedSinceToday =
     if (!get(isTaskListCompletedStatusState('completedToday'))) return tasks
 
     return tasks.filter((t) => {
-      if (!t.doneAt) return false
+      if (!t.completedAt) return false
 
-      const duration = getDuration(t.doneAt)
-      return t.isDone && duration.days === 0
+      const duration = getDuration(t.completedAt)
+      return t.completed && duration.days === 0
     })
   }
 
@@ -127,10 +127,10 @@ export const filterByCompletedSinceYesterday =
     if (!get(isTaskListCompletedStatusState('completedYesterday'))) return tasks
 
     return tasks.filter((t) => {
-      if (!t.doneAt) return false
+      if (!t.completedAt) return false
 
-      const duration = getDuration(t.doneAt)
-      return t.isDone && Number(duration.days) <= 1
+      const duration = getDuration(t.completedAt)
+      return t.completed && Number(duration.days) <= 1
     })
   }
 
@@ -140,10 +140,10 @@ export const filterByCompletedSince1Week =
     if (!get(isTaskListCompletedStatusState('completed1Week'))) return tasks
 
     return tasks.filter((t) => {
-      if (!t.doneAt) return false
+      if (!t.completedAt) return false
 
-      const duration = getDuration(t.doneAt)
-      return t.isDone && Number(duration.days) <= 7
+      const duration = getDuration(t.completedAt)
+      return t.completed && Number(duration.days) <= 7
     })
   }
 
@@ -153,10 +153,10 @@ export const filterByCompletedSince2Weeks =
     if (!get(isTaskListCompletedStatusState('completed2Weeks'))) return tasks
 
     return tasks.filter((t) => {
-      if (!t.doneAt) return false
+      if (!t.completedAt) return false
 
-      const duration = getDuration(t.doneAt)
-      return t.isDone && Number(duration.days) <= 14
+      const duration = getDuration(t.completedAt)
+      return t.completed && Number(duration.days) <= 14
     })
   }
 
@@ -166,9 +166,9 @@ export const filterByCompletedSince3Weeks =
     if (!get(isTaskListCompletedStatusState('completed3Weeks'))) return tasks
 
     return tasks.filter((t) => {
-      if (!t.doneAt) return false
+      if (!t.completedAt) return false
 
-      const duration = getDuration(t.doneAt)
-      return t.isDone && Number(duration.days) <= 21
+      const duration = getDuration(t.completedAt)
+      return t.completed && Number(duration.days) <= 21
     })
   }

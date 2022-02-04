@@ -1,7 +1,5 @@
-import { TaskListCompletedStatusType, TaskListSortStatusType } from './types'
+import type { TeammateTaskListStatusResponse } from 'src/graphql/types/teammateTaskListStatus'
 
-export type TaskListStatus = {
-  id: string
-  taskListCompletedStatus: TaskListCompletedStatusType
-  taskListSortStatus: TaskListSortStatusType
-}
+export type { TeammateTaskListStatusResponse } from 'src/graphql/types/teammateTaskListStatus'
+
+export type TeammateTaskListStatus = TeammateTaskListStatusResponse

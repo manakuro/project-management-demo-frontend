@@ -8,12 +8,16 @@ type Result = {
 
 export const useTasksTaskFiles = (): Result => {
   const { isMyTasksPage } = useTasksContext()
-  const useMyTasksFilesResult = useMyTasksFiles()
-  const useProjectsFilesResult = useProjectsFiles()
+  const myTasks = useMyTasksFiles()
+  const projects = useProjectsFiles()
 
   if (isMyTasksPage) {
-    return useMyTasksFilesResult
+    return {
+      attachmentIds: myTasks.attachmentIds,
+    }
   }
 
-  return useProjectsFilesResult
+  return {
+    attachmentIds: projects.attachmentIds,
+  }
 }

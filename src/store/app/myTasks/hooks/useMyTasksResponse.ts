@@ -1,15 +1,25 @@
 import { useRecoilCallback } from 'recoil'
-import { useTeammatesTaskColumnsResponse } from 'src/store/entities/teammatesTaskColumns'
+import { TeammateTaskSectionResponse } from 'src/graphql/types/teammateTaskSection'
+import { getNodesFromEdges } from 'src/shared/apollo/util'
+import {
+  TeammateTaskColumnResponse,
+  useTeammatesTaskColumnsResponse,
+} from 'src/store/entities/teammatesTaskColumns'
 import { useTeammatesTaskSectionsResponse } from 'src/store/entities/teammatesTaskSections'
 import { taskListStatusState } from '../taskListStatus'
-import { MyTaskResponse } from '../type'
+import { MyTasksResponse } from '../type'
 
 export const useMyTasksResponse = () => {
   const { setTeammatesTaskSections } = useTeammatesTaskSectionsResponse()
   const { setTaskColumns, setTaskStatus } = useSetters()
   const setMyTasks = useRecoilCallback(
-    () => (data: MyTaskResponse) => {
-      setTeammatesTaskSections(data.taskSections)
+    () => (data: MyTasksResponse) => {
+      const teammateTaskSections = getNodesFromEdges<
+        TeammateTaskSectionResponse,
+        MyTasksResponse['teammateTaskSections']
+      >(data.teammateTaskSections)
+
+      setTeammatesTaskSections(teammateTaskSections)
       setTaskColumns(data)
       setTaskStatus(data)
     },
@@ -25,16 +35,23 @@ const useSetters = () => {
   const { setTeammatesTaskColumns } = useTeammatesTaskColumnsResponse()
 
   const setTaskColumns = useRecoilCallback(
-    () => (data: MyTaskResponse) => {
-      setTeammatesTaskColumns(data.taskColumns)
+    () => (data: MyTasksResponse) => {
+      const teammateTaskSections = getNodesFromEdges<
+        TeammateTaskColumnResponse,
+        MyTasksResponse['teammateTaskColumns']
+      >(data.teammateTaskColumns)
+
+      setTeammatesTaskColumns(teammateTaskSections)
     },
     [setTeammatesTaskColumns],
   )
 
   const setTaskStatus = useRecoilCallback(
     ({ set }) =>
-      (data: MyTaskResponse) => {
-        set(taskListStatusState, data.taskStatus)
+      (data: MyTasksResponse) => {
+        if (data.teammateTaskListStatus) {
+          set(taskListStatusState, data.teammateTaskListStatus)
+        }
       },
     [],
   )

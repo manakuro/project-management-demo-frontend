@@ -1,0 +1,19 @@
+query ProjectsPage($projectId: ID!) {
+  projectTaskSections(where: { projectID: $projectId }) {
+   edges {
+     node {
+       ...ProjectTaskSectionFragment
+     }
+   }
+  }
+  projectTaskColumns(where: { projectID: $projectId }) {
+    edges {
+       node {
+         ...ProjectTaskColumnFragment
+       }
+    }
+  }
+  projectTaskListStatus(where: { projectID: $projectId }) {
+    ...ProjectTaskListStatusFragment
+  }
+}

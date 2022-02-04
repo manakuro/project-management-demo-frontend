@@ -36,18 +36,18 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
   )
 
   const handleToggleDone = useCallback(async () => {
-    if (!task.isDone) {
+    if (!task.completed) {
       onStartTransition()
       setTimeout(async () => {
-        await setTask({ isDone: !task.isDone })
+        await setTask({ completed: !task.completed })
         onEndTransition()
       }, 1000)
       return
     }
 
-    await setTask({ isDone: !task.isDone })
+    await setTask({ completed: !task.completed })
     onEndTransition()
-  }, [onEndTransition, onStartTransition, setTask, task.isDone])
+  }, [onEndTransition, onStartTransition, setTask, task.completed])
 
   return (
     <TasksListRow w="full">
@@ -55,7 +55,7 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
         <TaskDoneTransition isTransitioning={isTransitioning} />
         <TasksNameGrabIcon />
         <CheckIcon
-          isDone={task.isDone}
+          completed={task.completed}
           ml={2}
           onClick={handleToggleDone}
           isTransitioning={isTransitioning}

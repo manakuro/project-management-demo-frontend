@@ -13,11 +13,11 @@ export const useTasksTaskColumnIds = (): Result => {
 
   if (isMyTasksPage) {
     return {
-      ...useMyTasksTaskColumnIdsResult,
+      tasksTaskColumnIds: useMyTasksTaskColumnIdsResult.tasksTaskColumnIds,
     }
   }
 
   return {
-    ...useProjectsTaskColumnIdsResult,
+    tasksTaskColumnIds: useProjectsTaskColumnIdsResult.tasksTaskColumnIds,
   }
 }

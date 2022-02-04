@@ -3,13 +3,13 @@ import { Icon, IconProps } from 'src/components/atoms'
 import { transitions } from 'src/styles'
 
 type Props = {
-  isDone: boolean
+  completed: boolean
   isTransitioning?: boolean
 } & Omit<IconProps, 'icon'>
 export type CheckIconProps = Props
 
 export const CheckIcon: React.FC<Props> = (props) => {
-  const { isDone, isTransitioning, color, ...rest } = props
+  const { completed, isTransitioning, color, ...rest } = props
   const iconStyle = useMemo<IconProps>(() => {
     if (isTransitioning)
       return {
@@ -17,10 +17,10 @@ export const CheckIcon: React.FC<Props> = (props) => {
         color: 'teal.100',
         _hover: { color: 'teal.100' },
       }
-    if (isDone)
+    if (completed)
       return { icon: 'checkCircleFilled', color: 'teal.400', opacity: 0.6 }
     return { icon: 'checkCircle', color: color ?? 'gray.500' }
-  }, [isDone, isTransitioning, color])
+  }, [completed, isTransitioning, color])
 
   return (
     <Icon

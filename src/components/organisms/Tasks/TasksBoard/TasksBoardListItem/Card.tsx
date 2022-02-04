@@ -30,10 +30,10 @@ const Component: React.FC<Props> = memo<Props>((props) => {
   const { task } = useTask(taskId)
   const style = useMemo(
     (): FlexProps => ({
-      ...(task.isDone ? { opacity: 0.6 } : {}),
+      ...(task.completed ? { opacity: 0.6 } : {}),
       ...(selected ? { bg: 'teal.100', borderColor: 'teal.400' } : {}),
     }),
-    [selected, task.isDone],
+    [selected, task.completed],
   )
   const handleClick = useCallback(
     async (e: React.MouseEvent<HTMLDivElement>) => {

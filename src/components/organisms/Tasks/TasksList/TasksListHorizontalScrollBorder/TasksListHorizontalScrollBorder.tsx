@@ -8,7 +8,7 @@ import {
 import { useTasksTaskColumnByType } from 'src/components/organisms/Tasks/hooks'
 import { useMountedRef } from 'src/hooks'
 import { ChakraProps } from 'src/shared/chakra'
-import { TASK_COLUMN_TYPE_FIELD_NAME } from 'src/store/entities/taskColumns/types'
+import { TaskColumnType } from 'src/store/entities/taskColumns'
 
 type Props = FlexProps
 
@@ -19,7 +19,7 @@ export const TasksListHorizontalScrollBorder: React.FC<Props> = memo<Props>(
     const { isScrolling } = useTasksListContentHorizontalScroll()
     const { isStickyVertical } = useTasksListContentSticky()
     const { tasksTaskColumn } = useTasksTaskColumnByType(
-      TASK_COLUMN_TYPE_FIELD_NAME,
+      TaskColumnType.TaskName,
     )
     const { isExpanded } = useNavigation()
     const left = useMemo(() => (isExpanded ? '240px' : '53px'), [isExpanded])

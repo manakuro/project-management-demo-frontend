@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { dateFns } from 'src/shared/dateFns'
-import { useHomeResponse, HomeResponse } from 'src/store/app/home'
+import { useHomeResponse } from 'src/store/app/home'
 
 type Props = {
   lazy?: boolean
@@ -36,8 +36,8 @@ export const useHomePageQuery = (props?: Props) => {
   }
 }
 
-const fetchTasks = async (): Promise<HomeResponse> => {
-  return new Promise<HomeResponse>((resolve) => {
+const fetchTasks = async (): Promise<any> => {
+  return new Promise<any>((resolve) => {
     setTimeout(() => {
       resolve({
         tasksDueSoon: [
@@ -49,6 +49,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
                 id: '1',
                 taskId: '1',
                 projectId: '1',
+                project: {},
                 createdAt: '',
                 updatedAt: '',
               },
@@ -56,6 +57,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
                 id: '2',
                 taskId: '1',
                 projectId: '2',
+                project: {},
                 createdAt: '',
                 updatedAt: '',
               },
@@ -63,7 +65,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             name: 'Resolve an issue of auto focus for tasks list detail page',
             dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
-            isDone: true,
+            completed: true,
             subTasks: [],
             assigneeId: '1',
             attachments: [],
@@ -94,7 +96,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             name: 'Implement Task Due Soon',
             dueDate: new Date(dateFns.addDays(new Date(), 4)).toISOString(),
             dueTime: '',
-            isDone: true,
+            completed: true,
             subTasks: [],
             assigneeId: '1',
             attachments: [],
@@ -124,7 +126,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             ],
             name: 'Implement Recent Projects',
             dueDate: new Date(dateFns.addDays(new Date(), 5)).toISOString(),
-            isDone: false,
+            completed: false,
             subTasks: [],
             assigneeId: '1',
             attachments: [],
@@ -154,7 +156,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             ],
             name: 'Implement Date picker',
             dueDate: new Date(dateFns.addDays(new Date(), 5)).toISOString(),
-            isDone: false,
+            completed: false,
             subTasks: [],
             assigneeId: '1',
             attachments: [],
@@ -184,7 +186,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             ],
             name: 'Implement Message page',
             dueDate: new Date(dateFns.addDays(new Date(), 5)).toISOString(),
-            isDone: false,
+            completed: false,
             subTasks: [],
             assigneeId: '1',
             attachments: [],
@@ -215,7 +217,7 @@ const fetchTasks = async (): Promise<HomeResponse> => {
             name: '一覧ページの実装',
             dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
-            isDone: true,
+            completed: true,
             subTasks: [],
             assigneeId: '1',
             attachments: [],

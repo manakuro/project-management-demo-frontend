@@ -12,7 +12,6 @@ export const sortByDueDate = (tasks: Task[]) => {
 export const filterByDueDateInFiveDays = (tasks: Task[]) => {
   return tasks.filter(
     (t) =>
-      !t.isDeleted &&
       (dateFns.intervalToDuration({
         start: dateFns.endOfDay(new Date()),
         end: dateFns.endOfDay(new Date(t.dueDate)),
@@ -20,14 +19,11 @@ export const filterByDueDateInFiveDays = (tasks: Task[]) => {
   )
 }
 export const filterByTeammateId = (teammateId: string) => (tasks: Task[]) =>
-  tasks.filter((t) => !t.isDeleted && t.assigneeId === teammateId)
+  tasks.filter((t) => t.assigneeId === teammateId)
 
 export const filterByDueDate = (dueDate: string) => (tasks: Task[]) =>
-  tasks.filter(
-    (t) =>
-      !t.isDeleted && dateFns.isSameDay(new Date(t.dueDate), new Date(dueDate)),
-  )
+  tasks.filter((t) => dateFns.isSameDay(new Date(t.dueDate), new Date(dueDate)))
 
 export const filterByTaskSectionId =
   (taskSectionId: string) => (tasks: Task[]) =>
-    tasks.filter((t) => !t.isDeleted && t.taskSectionId === taskSectionId)
+    tasks.filter((t) => t.taskSectionId === taskSectionId)

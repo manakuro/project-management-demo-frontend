@@ -1,0 +1,44 @@
+fragment TaskFragment on Task {
+  id
+  name
+  assigneeId
+  taskFeeds {
+    ...TaskFeedFragment
+  }
+  taskFiles {
+    ...TaskFileFragment
+  }
+  taskTags {
+    ...TaskTagFragment
+  }
+  taskPriority {
+    ...TaskPriorityFragment
+  }
+  taskCollaborators {
+    ...TaskCollaboratorFragment
+  }
+  subTasks {
+    ...SubTaskFragment
+  }
+  projectTasks {
+    id
+    taskId
+    projectId
+    projectTaskSectionId
+    project {
+      ...ProjectFragment
+    }
+    createdAt
+    updatedAt
+  }
+  isNew
+  taskParentId
+  completedAt
+  completed
+  taskPriorityId
+  dueDate
+  dueTime
+  createdBy
+  createdAt
+  updatedAt
+}

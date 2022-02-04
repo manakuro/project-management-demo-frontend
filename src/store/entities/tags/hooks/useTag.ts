@@ -1,26 +1,26 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { tagState } from '../atom'
-import { Tag } from '../type'
+import { TaskTag } from '../type'
 import { useTagCommand } from './useTagCommand'
 
 export const useTag = (tagId?: string) => {
-  const tag = useRecoilValue(tagState(tagId || ''))
+  const taskTag = useRecoilValue(tagState(tagId || ''))
   const { upsert } = useTagCommand()
 
-  const setTag = useRecoilCallback(
+  const setTaskTag = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: Partial<Tag>) => {
-        const prev = await snapshot.getPromise(tagState(tag.id))
+      async (val: Partial<TaskTag>) => {
+        const prev = await snapshot.getPromise(tagState(taskTag.id))
         upsert({
           ...prev,
           ...val,
         })
       },
-    [upsert, tag.id],
+    [upsert, taskTag.id],
   )
 
   return {
-    tag,
-    setTag,
+    taskTag,
+    setTaskTag,
   }
 }

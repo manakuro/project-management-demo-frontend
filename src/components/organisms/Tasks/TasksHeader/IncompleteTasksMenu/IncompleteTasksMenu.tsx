@@ -9,11 +9,10 @@ import {
 import { useTasksTaskListStatus } from 'src/components/organisms/Tasks/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import {
-  TASK_LIST_COMPLETED_STATUS_TYPE_ALL,
-  TASK_LIST_COMPLETED_STATUS_TYPE_INCOMPLETE,
-  TaskListCompletedStatusType,
-  useTaskListStatus,
-} from 'src/store/entities/taskListStatus'
+  TaskListCompletedStatusCode,
+  TaskListCompletedStatusCodeValue,
+  useTaskListCompletedStatus,
+} from 'src/store/entities/taskListCompletedStatus'
 import { PopoverCompletedTasks } from './PopoverCompletedTasks'
 
 type Props = {}
@@ -30,12 +29,12 @@ export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>(() => {
     isTaskListCompleted3Weeks,
     isTaskListCompletedYesterday,
     isTaskListCompletedAll,
-  } = useTaskListStatus()
+  } = useTaskListCompletedStatus()
   const popoverDisclosure = useDisclosure()
 
   const handleChange = useCallback(
-    (status: ToString<TaskListCompletedStatusType>) => {
-      setTaskListCompletedStatus(Number(status) as TaskListCompletedStatusType)
+    (status: TaskListCompletedStatusCodeValue) => {
+      setTaskListCompletedStatus(status)
     },
     [setTaskListCompletedStatus],
   )
@@ -69,7 +68,7 @@ export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>(() => {
   ])
 
   return (
-    <MenuSelect<ToString<TaskListCompletedStatusType>>
+    <MenuSelect<TaskListCompletedStatusCodeValue>
       onChange={handleChange}
       placement="bottom-end"
     >
@@ -87,9 +86,7 @@ export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>(() => {
           <MenuSelectList
             defaultValue={taskListStatus.taskListCompletedStatus.toString()}
           >
-            <MenuItemOption
-              value={TASK_LIST_COMPLETED_STATUS_TYPE_INCOMPLETE.toString()}
-            >
+            <MenuItemOption value={TaskListCompletedStatusCode.Incomplete}>
               <Flex onMouseEnter={popoverDisclosure.onClose}>
                 Incomplete tasks
               </Flex>
@@ -115,9 +112,7 @@ export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>(() => {
                 </PopoverCompletedTasks>
               </Flex>
             </MenuItemOption>
-            <MenuItemOption
-              value={TASK_LIST_COMPLETED_STATUS_TYPE_ALL.toString()}
-            >
+            <MenuItemOption value={TaskListCompletedStatusCode.All}>
               <Flex onMouseEnter={popoverDisclosure.onClose}>All tasks</Flex>
             </MenuItemOption>
           </MenuSelectList>

@@ -13,23 +13,17 @@ type Result = {
   setAddedTaskSectionId: React.Dispatch<React.SetStateAction<string>>
   resetAddedTaskSectionId: () => void
 }
-export const initialUseTaskSection = (): Result => ({
-  addTaskSection: () => '',
-  addedTaskSectionId: '',
-  setAddedTaskSectionId: () => {},
-  resetAddedTaskSectionId: () => {},
-})
 
 const addedTaskSectionIdState = atom<string>({
   key: key('addedTaskSectionIdState'),
   default: '',
 })
 
-export const useTasksTaskSectionCommand = () => {
+export const useTasksTaskSectionCommand = (): Result => {
   const { isMyTasksPage } = useTasksContext()
 
-  const useMyTasksTaskSectionCommandResult = useMyTasksTaskSectionCommand()
-  const useProjectsTaskSectionCommandResult = useProjectsTaskSectionCommand()
+  const myTasks = useMyTasksTaskSectionCommand()
+  const projects = useProjectsTaskSectionCommand()
   const [addedTaskSectionId, setAddedTaskSectionId] = useRecoilState(
     addedTaskSectionIdState,
   )
@@ -40,7 +34,7 @@ export const useTasksTaskSectionCommand = () => {
 
   if (isMyTasksPage) {
     return {
-      addTaskSection: useMyTasksTaskSectionCommandResult.addMyTaskSection,
+      addTaskSection: myTasks.addMyTaskSection,
       resetAddedTaskSectionId,
       addedTaskSectionId,
       setAddedTaskSectionId,
@@ -48,7 +42,7 @@ export const useTasksTaskSectionCommand = () => {
   }
 
   return {
-    addTaskSection: useProjectsTaskSectionCommandResult.addTaskSection,
+    addTaskSection: projects.addTaskSection,
     resetAddedTaskSectionId,
     addedTaskSectionId,
     setAddedTaskSectionId,

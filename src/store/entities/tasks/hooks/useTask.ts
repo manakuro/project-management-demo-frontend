@@ -23,15 +23,32 @@ export const useTask = (taskId?: string) => {
       },
     [task.id, upsert],
   )
+  const setTaskPriority = useRecoilCallback(
+    ({ snapshot }) =>
+      async (val: Partial<Task['taskPriority']>) => {
+        const prev = await snapshot.getPromise(taskState(task.id))
+        upsert({
+          ...prev,
+          ...val,
+          taskPriority: {
+            ...prev.taskPriority,
+            ...val,
+          },
+        })
+      },
+    [task.id, upsert],
+  )
+
+  // TODO(deleted task): Implement deleted functionality
   const deleteTask = useRecoilCallback(
     () => async () => {
-      await setTask({ isDeleted: true })
+      await setTask({ isDeleted: true } as any)
     },
     [setTask],
   )
   const undeleteTask = useRecoilCallback(
     () => async () => {
-      await setTask({ isDeleted: false })
+      await setTask({ isDeleted: false } as any)
     },
     [setTask],
   )
@@ -52,6 +69,7 @@ export const useTask = (taskId?: string) => {
   return {
     task,
     setTask,
+    setTaskPriority,
     deleteTask,
     undeleteTask,
     setTaskName,

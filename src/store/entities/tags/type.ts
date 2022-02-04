@@ -1,14 +1,5 @@
-import { Colors } from 'src/shared/chakra'
+import type { TaskTagResponse } from 'src/graphql/types/taskTag'
 
-export type Tag = {
-  id: string
-  name: string
-  taskId: string
-  color: {
-    id: string
-    name: string
-    color: Colors
-  }
-  createdAt: string
-  updatedAt: string
-}
+export type { TaskTagResponse } from 'src/graphql/types/taskTag'
+
+export type TaskTag = TaskTagResponse

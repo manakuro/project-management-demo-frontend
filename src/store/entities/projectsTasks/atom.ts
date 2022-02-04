@@ -8,6 +8,7 @@ const key = (str: string) => `src/store/entities/projectTasks/${str}`
 export const initialState = (): ProjectTask => ({
   id: '',
   projectId: '',
+  projectTaskSectionId: '',
   taskId: '',
   createdAt: '',
   updatedAt: '',

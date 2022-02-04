@@ -9,14 +9,29 @@ export const initialState = (): Task => ({
   dueDate: '',
   dueTime: '',
   id: '',
-  isDeleted: false,
-  isDone: false,
-  doneAt: '',
+  completed: false,
+  completedAt: '',
   isNew: false,
   name: '',
-  taskParentId: '',
   taskSectionId: '',
-  priority: 0,
+  taskParentId: '',
+  // taskSectionId: '',
+  // priority: 0,
+  taskPriorityId: '',
+  taskPriority: {
+    id: '',
+    name: '',
+    priorityType: null,
+    color: {
+      id: '',
+      name: '',
+      color: '',
+      createdAt: '',
+      updatedAt: '',
+    },
+    createdAt: '',
+    updatedAt: '',
+  },
   createdBy: '',
   createdAt: '',
   updatedAt: '',
@@ -34,7 +49,7 @@ export const taskIdsByTaskParentIdState = selectorFamily<string[], string>({
     ({ get }) => {
       const tasks = get(tasksState)
       return tasks
-        .filter((t) => t.taskParentId === taskParentId && !t.isDeleted)
+        .filter((t) => t.taskParentId === taskParentId)
         .map((t) => t.id)
     },
 })
@@ -44,9 +59,7 @@ export const taskIdsByAssigneeIdState = selectorFamily<string[], string>({
     (assigneeId) =>
     ({ get }) => {
       const tasks = get(tasksState)
-      return tasks
-        .filter((t) => t.assigneeId === assigneeId && !t.isDeleted)
-        .map((t) => t.id)
+      return tasks.filter((t) => t.assigneeId === assigneeId).map((t) => t.id)
     },
 })
 
@@ -57,7 +70,7 @@ export const tasksByTaskSectionIdState = selectorFamily<Task[], string>({
     ({ get }) => {
       const tasks = get(tasksState)
       const filterByTaskSectionId = (taskSectionId: string) => (t: Task) =>
-        !t.isDeleted && taskSectionId === t.taskSectionId && !t.taskParentId
+        taskSectionId === t.taskSectionId && !t.taskParentId
 
       return tasks.filter(filterByTaskSectionId(taskSectionId))
     },

@@ -1,18 +1,26 @@
 import { selectorFamily } from 'recoil'
 import { createState } from 'src/store/util'
-import { Tag } from './type'
+import { TaskTag } from './type'
 
 const key = (str: string) => `src/store/entities/tags/${str}`
 
-const initialState = (): Tag => ({
+const initialState = (): TaskTag => ({
   id: '',
-  name: '',
-  taskId: '',
-  color: {
+  tagId: '',
+  tag: {
     id: '',
     name: '',
-    color: '',
+    color: {
+      id: '',
+      name: '',
+      color: '',
+      createdAt: '',
+      updatedAt: '',
+    },
+    createdAt: '',
+    updatedAt: '',
   },
+  taskId: '',
   createdAt: '',
   updatedAt: '',
 })

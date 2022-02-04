@@ -46,7 +46,7 @@ export const ListItem: React.VFC<Props> = memo((props) => {
       {...clickableHoverStyle}
     >
       <Flex alignItems="center" flex={1}>
-        <CheckIcon isDone={task.isDone} />
+        <CheckIcon completed={task.completed} />
         <Text fontSize="sm" ml={2} isTruncated>
           {task.name}
         </Text>

@@ -1,52 +1,50 @@
 import { useCallback } from 'react'
+import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
 import { TaskListSortStatuses, taskListSortStatues } from '../atom'
-import { TaskListSortStatusType } from '../types'
+import { TaskListSortStatusCodeValue } from '../types'
 import { useTaskListStatus } from './useTaskListStatus'
 import { useTaskListStatusCommand } from './useTaskListStatusCommand'
 
-const isSortStatusKey = (val: any): val is TaskListSortStatuses =>
-  typeof val === 'string'
-
 export const useTaskListSortStatus = () => {
-  const { setTaskStatus } = useTaskListStatusCommand()
+  const { setTaskListSortStatus } = useTaskListStatusCommand()
   const { taskListStatus } = useTaskListStatus()
 
   const isSorted = useCallback(
     (status: TaskListSortStatuses) =>
-      taskListStatus.taskListSortStatus === taskListSortStatues[status],
+      taskListStatus.taskListSortStatus.statusCode ===
+      taskListSortStatues[status],
     [taskListStatus.taskListSortStatus],
   )
 
   const sortBy = useCallback(
-    (status: TaskListSortStatusType | TaskListSortStatuses) => {
-      const val = isSortStatusKey(status) ? taskListSortStatues[status] : status
-      setTaskStatus({ taskListSortStatus: val })
+    (status: TaskListSortStatusCodeValue) => {
+      setTaskListSortStatus({ statusCode: status })
     },
-    [setTaskStatus],
+    [setTaskListSortStatus],
   )
 
   const sortByNone = useCallback(() => {
-    sortBy('none')
+    sortBy(TaskListSortStatusCode.None)
   }, [sortBy])
 
   const sortByAlphabetical = useCallback(() => {
-    sortBy('alphabetical')
+    sortBy(TaskListSortStatusCode.Alphabetical)
   }, [sortBy])
 
   const sortByLikes = useCallback(() => {
-    sortBy('likes')
+    sortBy(TaskListSortStatusCode.Likes)
   }, [sortBy])
 
   const sortByDueDate = useCallback(() => {
-    sortBy('dueDate')
+    sortBy(TaskListSortStatusCode.DueDate)
   }, [sortBy])
 
   const sortByAssignee = useCallback(() => {
-    sortBy('assignee')
+    sortBy(TaskListSortStatusCode.Assignee)
   }, [sortBy])
 
   const sortByPriority = useCallback(() => {
-    sortBy('priority')
+    sortBy(TaskListSortStatusCode.Priority)
   }, [sortBy])
 
   return {

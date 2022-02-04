@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import { Center, Icon, Image } from 'src/components/atoms'
+import { FileTypeCode } from 'src/graphql/enums'
 import { ChakraProps } from 'src/shared/chakra'
 import {
   useAttachment,
@@ -24,17 +25,17 @@ export const ThumbnailListItem: React.VFC<Props> = (props) => {
     [],
   )
 
-  switch (attachment.type) {
-    case 1: {
+  switch (attachment.fileType.typeCode) {
+    case FileTypeCode.Image: {
       return (
         <Container label={attachment.name}>
           <Image src={attachment.src} objectFit="cover" {...style} />
         </Container>
       )
     }
-    case 2:
-    case 3: {
-      const icon = getAttachmentIcon(attachment.type)
+    case FileTypeCode.Pdf:
+    case FileTypeCode.Text: {
+      const icon = getAttachmentIcon(attachment.fileType.typeCode)
       return (
         <Container label={attachment.name}>
           <Center {...style}>

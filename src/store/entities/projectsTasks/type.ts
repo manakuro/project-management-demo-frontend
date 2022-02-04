@@ -1,15 +1,5 @@
-export type ProjectsTaskResponse = {
-  id: string
-  projectId: string
-  taskId: string
-  createdAt: string
-  updatedAt: string
-}
+import type { ProjectTaskResponse } from 'src/graphql/types/projectTask'
 
-export type ProjectTask = {
-  id: string
-  projectId: string
-  taskId: string
-  createdAt: string
-  updatedAt: string
-}
+export type { ProjectTaskResponse } from 'src/graphql/types/projectTask'
+
+export type ProjectTask = Omit<ProjectTaskResponse, 'task' | 'project'>

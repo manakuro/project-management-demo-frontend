@@ -1,20 +1,28 @@
 import { useRecoilCallback } from 'recoil'
-import { useTaskSectionsResponse } from 'src/store/entities/taskSections'
+import { uniqBy } from 'src/shared/utils'
+import {
+  TeammateTaskResponse,
+  useTeammateTasksResponse,
+} from 'src/store/entities/teammateTasks'
 import { teammatesTaskSectionState } from '../atom'
-import { TeammatesTaskSectionResponse } from '../type'
+import { TeammateTaskSectionResponse } from '../type'
 
 export const useTeammatesTaskSectionsResponse = () => {
-  const { setTaskSections } = useTaskSectionsResponse()
+  const { setTeammateTask } = useTeammateTasksResponse()
 
   const setTeammatesTaskSections = useRecoilCallback(
     ({ set }) =>
-      (data: TeammatesTaskSectionResponse[]) => {
+      (data: TeammateTaskSectionResponse[]) => {
         data.forEach((d) => {
           set(teammatesTaskSectionState(d.id), d)
-          setTaskSections([d.taskSection])
         })
+
+        const teammateTasks = data.reduce<TeammateTaskResponse[]>((acc, p) => {
+          return uniqBy([...acc, ...p.teammateTasks], 'id')
+        }, [])
+        setTeammateTask(teammateTasks)
       },
-    [setTaskSections],
+    [setTeammateTask],
   )
 
   return {

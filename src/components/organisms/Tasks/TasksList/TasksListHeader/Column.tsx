@@ -1,15 +1,7 @@
 import React, { memo } from 'react'
 import { useTasksTaskColumn } from 'src/components/organisms/Tasks/hooks'
 import { useTaskColumn } from 'src/store/entities/taskColumns'
-import {
-  TASK_COLUMN_TYPE_ASSIGNMENT,
-  TASK_COLUMN_TYPE_CUSTOM,
-  TASK_COLUMN_TYPE_DUE_DATE,
-  TASK_COLUMN_TYPE_FIELD_NAME,
-  TASK_COLUMN_TYPE_PRIORITY,
-  TASK_COLUMN_TYPE_PROJECT,
-  TASK_COLUMN_TYPE_TAGS,
-} from 'src/store/entities/taskColumns/types'
+import { TaskColumnType } from 'src/store/entities/taskColumns'
 import {
   Tags,
   TaskName,
@@ -29,27 +21,29 @@ export const Column: React.FC<Props> = memo<Props>((props) => {
   const { taskColumn } = useTaskColumn(tasksTaskColumn.taskColumnId)
 
   switch (taskColumn.type) {
-    case TASK_COLUMN_TYPE_FIELD_NAME: {
+    case TaskColumnType.TaskName: {
       return <TaskName tasksTaskColumnId={tasksTaskColumnId} />
     }
-    case TASK_COLUMN_TYPE_ASSIGNMENT: {
+    case TaskColumnType.Assignee: {
       return <Assignee tasksTaskColumnId={tasksTaskColumnId} />
     }
-    case TASK_COLUMN_TYPE_DUE_DATE: {
+    case TaskColumnType.DueDate: {
       return <DueDate tasksTaskColumnId={tasksTaskColumnId} />
     }
-    case TASK_COLUMN_TYPE_PROJECT: {
+    case TaskColumnType.Project: {
       return <Projects tasksTaskColumnId={tasksTaskColumnId} />
     }
-    case TASK_COLUMN_TYPE_TAGS: {
+    case TaskColumnType.Tags: {
       return <Tags tasksTaskColumnId={tasksTaskColumnId} />
     }
-    case TASK_COLUMN_TYPE_PRIORITY: {
+    case TaskColumnType.Priority: {
       return <Priority tasksTaskColumnId={tasksTaskColumnId} />
     }
-    case TASK_COLUMN_TYPE_CUSTOM: {
+    case TaskColumnType.Custom: {
       return null
     }
   }
+
+  return null
 })
 Column.displayName = 'Column'

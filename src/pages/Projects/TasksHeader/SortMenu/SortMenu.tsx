@@ -2,50 +2,42 @@ import React, { memo, useCallback, useMemo } from 'react'
 import { SortMenu as TasksHeaderSortMenu } from 'src/components/organisms/Tasks/TasksHeader'
 import {
   useProjectsTaskListStatus,
-  TaskListSortStatusType,
+  TaskListSortStatusCodeValue,
 } from 'src/store/app/projects/taskListStatus'
-import {
-  TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
-  TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
-  TASK_LIST_SORT_STATUS_TYPE_LIKES,
-  TASK_LIST_SORT_STATUS_TYPE_NONE,
-  TASK_LIST_SORT_STATUS_TYPE_ASSIGNEE,
-  TASK_LIST_SORT_STATUS_TYPE_CREATION_TIME,
-  TASK_LIST_SORT_STATUS_TYPE_PRIORITY,
-} from 'src/store/entities/taskListStatus'
+import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
 
 type Props = {}
 
 const ITEMS: {
-  value: TaskListSortStatusType
+  value: TaskListSortStatusCodeValue
   text: string
 }[] = [
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_NONE,
+    value: TaskListSortStatusCode.None,
     text: 'None',
   },
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
+    value: TaskListSortStatusCode.DueDate,
     text: 'Due Date',
   },
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_LIKES,
+    value: TaskListSortStatusCode.Likes,
     text: 'Likes',
   },
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
+    value: TaskListSortStatusCode.Alphabetical,
     text: 'Alphabetical',
   },
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_ASSIGNEE,
+    value: TaskListSortStatusCode.Assignee,
     text: 'Assignee',
   },
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_CREATION_TIME,
+    value: TaskListSortStatusCode.CreationTime,
     text: 'Creation Time',
   },
   {
-    value: TASK_LIST_SORT_STATUS_TYPE_PRIORITY,
+    value: TaskListSortStatusCode.Priority,
     text: 'Priority',
   },
 ]
@@ -54,8 +46,8 @@ export const SortMenu: React.VFC<Props> = memo<Props>(() => {
   const { sortBy, isSorted, taskListStatus } = useProjectsTaskListStatus()
 
   const handleChange = useCallback(
-    (status: ToString<TaskListSortStatusType>) => {
-      sortBy(Number(status) as TaskListSortStatusType)
+    (status: TaskListSortStatusCodeValue) => {
+      sortBy(status)
     },
     [sortBy],
   )
@@ -65,12 +57,14 @@ export const SortMenu: React.VFC<Props> = memo<Props>(() => {
     if (isSorted('none')) return ''
 
     return `: ${
-      items.find((i) => i.value === taskListStatus.taskListSortStatus)!.text
+      items.find(
+        (i) => i.value === taskListStatus.taskListSortStatus.statusCode,
+      )!.text
     }`
   }, [isSorted, items, taskListStatus.taskListSortStatus])
 
   return (
-    <TasksHeaderSortMenu<TaskListSortStatusType>
+    <TasksHeaderSortMenu<TaskListSortStatusCodeValue>
       items={items}
       text={text}
       onChange={handleChange}

@@ -1,20 +1,38 @@
 import { useRecoilCallback } from 'recoil'
-import { TaskListStatus } from 'src/store/app/projects/taskListStatus'
+import { ProjectTaskListStatus } from 'src/store/app/projects/taskListStatus'
 import { taskListStatusState } from '../atom'
 
 export const useTaskListStatusCommand = () => {
-  const setTaskStatus = useRecoilCallback(
+  const setTaskListCompletedStatus = useRecoilCallback(
     ({ set }) =>
-      (val: Partial<TaskListStatus>) => {
+      (val: Partial<ProjectTaskListStatus['taskListCompletedStatus']>) => {
         set(taskListStatusState, (prev) => ({
           ...prev,
-          ...val,
+          taskListCompletedStatus: {
+            ...prev.taskListCompletedStatus,
+            ...val,
+          },
+        }))
+      },
+    [],
+  )
+
+  const setTaskListSortStatus = useRecoilCallback(
+    ({ set }) =>
+      (val: Partial<ProjectTaskListStatus['taskListSortStatus']>) => {
+        set(taskListStatusState, (prev) => ({
+          ...prev,
+          taskListSortStatus: {
+            ...prev.taskListSortStatus,
+            ...val,
+          },
         }))
       },
     [],
   )
 
   return {
-    setTaskStatus,
+    setTaskListCompletedStatus,
+    setTaskListSortStatus,
   }
 }

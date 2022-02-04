@@ -1,9 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useMountedRef } from 'src/hooks'
-import {
-  useProjectsFilesResponse,
-  ProjectsFileResponse,
-} from 'src/store/app/projectsFiles'
+import { useProjectsFilesResponse } from 'src/store/app/projectsFiles'
 
 type Props = {
   lazy?: boolean
@@ -44,8 +41,8 @@ export const useProjectsFilesPageQuery = (props?: Props) => {
   }
 }
 
-const fetchTasks = async (): Promise<ProjectsFileResponse[]> => {
-  return new Promise<ProjectsFileResponse[]>((resolve) => {
+const fetchTasks = async (): Promise<any[]> => {
+  return new Promise<any[]>((resolve) => {
     setTimeout(() => {
       resolve([
         {

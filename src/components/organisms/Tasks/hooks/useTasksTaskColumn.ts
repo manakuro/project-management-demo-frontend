@@ -1,10 +1,10 @@
 import { useMyTasksTaskColumn } from 'src/store/app/myTasks/taskColumns'
 import { useProjectsTaskColumns } from 'src/store/app/projects/taskColumns'
-import { ProjectsTaskColumn } from 'src/store/entities/projectsTaskColumns'
-import { TeammatesTaskColumn } from 'src/store/entities/teammatesTaskColumns'
+import { ProjectTaskColumn } from 'src/store/entities/projectsTaskColumns'
+import { TeammateTaskColumn } from 'src/store/entities/teammatesTaskColumns'
 import { useTasksContext } from '../TasksProvider'
 
-type TaskColumn = ProjectsTaskColumn | TeammatesTaskColumn
+type TaskColumn = ProjectTaskColumn | TeammateTaskColumn
 
 type Result = {
   tasksTaskColumn: TaskColumn
@@ -16,16 +16,24 @@ type Result = {
 
 export const useTasksTaskColumn = (tasksTaskColumnId: string): Result => {
   const { isMyTasksPage } = useTasksContext()
-  const useMyTasksTaskColumnsResult = useMyTasksTaskColumn(tasksTaskColumnId)
-  const useProjectsTaskColumnsResult = useProjectsTaskColumns(tasksTaskColumnId)
+  const myTasks = useMyTasksTaskColumn(tasksTaskColumnId)
+  const projects = useProjectsTaskColumns(tasksTaskColumnId)
 
   if (isMyTasksPage) {
     return {
-      ...useMyTasksTaskColumnsResult,
+      tasksTaskColumn: myTasks.tasksTaskColumn,
+      setOrderTaskColumn: myTasks.setOrderTaskColumn,
+      setTasksTaskColumn: myTasks.setTasksTaskColumn,
+      canMoveLeft: myTasks.canMoveLeft,
+      canMoveRight: myTasks.canMoveRight,
     }
   }
 
   return {
-    ...useProjectsTaskColumnsResult,
+    tasksTaskColumn: projects.tasksTaskColumn,
+    setOrderTaskColumn: projects.setOrderTaskColumn,
+    setTasksTaskColumn: projects.setTasksTaskColumn,
+    canMoveLeft: projects.canMoveLeft,
+    canMoveRight: projects.canMoveRight,
   }
 }

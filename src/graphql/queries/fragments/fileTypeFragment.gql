@@ -1,0 +1,7 @@
+fragment FileTypeFragment on FileType {
+  id
+  name
+  typeCode
+  createdAt
+  updatedAt
+}

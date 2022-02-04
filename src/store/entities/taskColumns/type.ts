@@ -1,17 +1,10 @@
-import { TaskColumnType } from './types'
+import { TaskColumnType } from 'src/graphql/enums'
+import type { TaskColumnResponse } from 'src/graphql/types/taskColumn'
+export type { TaskColumnResponse } from 'src/graphql/types/taskColumn'
 
-export type TaskColumnResponse = {
-  id: string
-  name: string
-  type: TaskColumnType
-  createdAt: string
-  updatedAt: string
-}
+export type TaskColumn = TaskColumnResponse
 
-export type TaskColumn = {
-  id: string
-  name: string
-  type: TaskColumnType
-  createdAt: string
-  updatedAt: string
-}
+export { TaskColumnType } from 'src/graphql/enums'
+export type TaskColumnTypeKey = keyof typeof TaskColumnType
+
+export type TaskColumnTypeValue = ValueOf<typeof TaskColumnType>

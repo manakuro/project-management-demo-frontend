@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex, Icon, Text, TextProps } from 'src/components/atoms'
-import { Feed } from 'src/store/entities/feeds'
+import { TaskFeed } from 'src/store/entities/feeds'
 import { Teammate } from 'src/store/entities/teammates'
 import { useFeedListItemContext } from '../Provider'
 
@@ -12,7 +12,7 @@ const generateTitle = (
     feed,
   }: {
     teammate: Teammate
-    feed: Feed
+    feed: TaskFeed
   },
   { hasAttachment }: { hasAttachment: boolean },
 ): React.ReactElement => {

@@ -1,19 +1,28 @@
 import { selectorFamily } from 'recoil'
+import { FileTypeCode } from 'src/store/entities/fileTypes'
 import { createState } from 'src/store/util'
-import { Attachment } from './type'
+import { TaskFile } from './type'
 
 const key = (str: string) => `src/store/entities/attachments/${str}`
 
-export const initialState = (): Attachment => ({
+export const initialState = (): TaskFile => ({
   id: '',
   projectId: '',
   taskId: '',
-  feedId: '',
+  taskFeedId: '',
   name: '',
   src: '',
+  fileTypeId: '',
+  fileType: {
+    id: '',
+    name: '',
+    typeCode: FileTypeCode.Image,
+    createdAt: '',
+    updatedAt: '',
+  },
+  attached: false,
   createdAt: '',
-  type: 1,
-  status: 2,
+  updatedAt: '',
 })
 export const {
   state: attachmentState,
@@ -37,6 +46,6 @@ export const attachmentIdsByFeedIdState = selectorFamily<string[], string>({
     (feedId) =>
     ({ get }) => {
       const attachments = get(attachmentsState)
-      return attachments.filter((p) => p.feedId === feedId).map((p) => p.id)
+      return attachments.filter((p) => p.taskFeedId === feedId).map((p) => p.id)
     },
 })

@@ -3,7 +3,7 @@ import { useTasksTaskListStatus } from 'src/components/organisms/Tasks/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { ROUTE_MY_TASKS, useRouter } from 'src/router'
 import { createProvider } from 'src/shared/react/createProvider'
-import { useTaskListStatus } from 'src/store/entities/taskListStatus'
+import { useTaskListCompletedStatus } from 'src/store/entities/taskListCompletedStatus'
 import { useTask } from 'src/store/entities/tasks'
 
 type ContextProps = {
@@ -27,7 +27,8 @@ const useValue = (props: Props): ContextProps => {
   const [isOpening, setIsOpening] = useState(true)
   const { task, setTask } = useTask(props.taskId)
   const { taskListStatus } = useTasksTaskListStatus()
-  const { isTaskListInComplete, isTaskListCompletedAll } = useTaskListStatus()
+  const { isTaskListInComplete, isTaskListCompletedAll } =
+    useTaskListCompletedStatus()
 
   const onOpening = useCallback(() => {
     setIsOpening(true)
@@ -48,10 +49,10 @@ const useValue = (props: Props): ContextProps => {
   const onToggleDone = useCallback(async () => {
     // When incomplete tasks are listed and the user is trying to complete it
     if (isTaskListInComplete(taskListStatus.taskListCompletedStatus)) {
-      if (!task.isDone) {
+      if (!task.completed) {
         onClosing()
         setTimeout(async () => {
-          await setTask({ isDone: !task.isDone })
+          await setTask({ completed: !task.completed })
         }, 3000)
         return
       }
@@ -62,22 +63,22 @@ const useValue = (props: Props): ContextProps => {
       !isTaskListInComplete(taskListStatus.taskListCompletedStatus) &&
       !isTaskListCompletedAll(taskListStatus.taskListCompletedStatus)
     ) {
-      if (task.isDone) {
+      if (task.completed) {
         onClosing()
         setTimeout(async () => {
-          await setTask({ isDone: !task.isDone })
+          await setTask({ completed: !task.completed })
         }, 3000)
         return
       }
     }
 
-    await setTask({ isDone: !task.isDone })
+    await setTask({ completed: !task.completed })
   }, [
     isTaskListCompletedAll,
     isTaskListInComplete,
     onClosing,
     setTask,
-    task.isDone,
+    task.completed,
     taskListStatus.taskListCompletedStatus,
   ])
 

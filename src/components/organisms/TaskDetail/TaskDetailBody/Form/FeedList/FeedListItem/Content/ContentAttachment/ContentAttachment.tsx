@@ -1,10 +1,10 @@
 import React, { memo, useCallback } from 'react'
 import { useFileViewerModal } from 'src/components/organisms/Modals'
+import { FileTypeCode } from 'src/graphql/enums'
 import {
   useAttachment,
   useAttachmentIdsByTaskId,
 } from 'src/store/entities/attachments'
-import { ATTACHMENT_TYPE_IMAGE } from 'src/store/entities/attachments/types'
 import { useFeedListItemContext } from '../../Provider'
 import { File } from './File'
 import { Image } from './Image'
@@ -27,8 +27,8 @@ export const ContentAttachment: React.VFC<Props> = memo<Props>((props) => {
     onOpen()
   }, [attachment.id, attachmentIds, onOpen, setState])
 
-  switch (attachment.type) {
-    case ATTACHMENT_TYPE_IMAGE:
+  switch (attachment.fileType.typeCode) {
+    case FileTypeCode.Image:
       return (
         <Image
           attachmentId={props.attachmentId}

@@ -1,9 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useMountedRef } from 'src/hooks'
-import {
-  useMyTasksFilesResponse,
-  MyTaskFileResponse,
-} from 'src/store/app/myTasksFiles'
+import { useMyTasksFilesResponse } from 'src/store/app/myTasksFiles'
 
 type Props = {
   lazy?: boolean
@@ -44,8 +41,8 @@ export const useMyTasksFilesPageQuery = (props?: Props) => {
   }
 }
 
-const fetchTasks = async (): Promise<MyTaskFileResponse[]> => {
-  return new Promise<MyTaskFileResponse[]>((resolve) => {
+const fetchTasks = async (): Promise<any[]> => {
+  return new Promise<any[]>((resolve) => {
     setTimeout(() => {
       resolve([
         {

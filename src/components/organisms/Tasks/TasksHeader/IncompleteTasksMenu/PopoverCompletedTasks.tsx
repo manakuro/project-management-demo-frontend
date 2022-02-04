@@ -9,25 +9,20 @@ import {
 } from 'src/components/organisms/Menu'
 import { chakra } from 'src/shared/chakra'
 import {
-  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED,
-  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_1_WEEK,
-  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_2_WEEKS,
-  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_3_WEEKS,
-  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_TODAY,
-  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_YESTERDAY,
-  TaskListCompletedStatusType,
-} from 'src/store/entities/taskListStatus'
+  TaskListCompletedStatusCode,
+  TaskListCompletedStatusCodeValue,
+} from 'src/store/entities/taskListCompletedStatus'
 
 type Props = {
   onClose: () => void
-  listStatus?: ToString<TaskListCompletedStatusType>
-  onChange: (listStatus: ToString<TaskListCompletedStatusType>) => void
+  listStatus?: TaskListCompletedStatusCodeValue
+  onChange: (listStatus: TaskListCompletedStatusCodeValue) => void
 } & MenuProps
 
 export const PopoverCompletedTasks: React.FC<Props> = (props) => {
   const handleChange = useCallback(
     (listStatus?: string | string[]) => {
-      props.onChange(listStatus as ToString<TaskListCompletedStatusType>)
+      props.onChange(listStatus as TaskListCompletedStatusCodeValue)
       props.onClose()
     },
     [props],
@@ -45,7 +40,7 @@ export const PopoverCompletedTasks: React.FC<Props> = (props) => {
           onChange={handleChange}
         >
           <MenuItemOption
-            value={TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED.toString()}
+            value={TaskListCompletedStatusCode.Completed}
             as="div"
           >
             All Completed Tasks
@@ -59,31 +54,31 @@ export const PopoverCompletedTasks: React.FC<Props> = (props) => {
           >
             <MenuItemOption
               as="div"
-              value={TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_TODAY.toString()}
+              value={TaskListCompletedStatusCode.CompletedToday}
             >
               Today
             </MenuItemOption>
             <MenuItemOption
               as="div"
-              value={TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_YESTERDAY.toString()}
+              value={TaskListCompletedStatusCode.CompletedYesterday}
             >
               Yesterday
             </MenuItemOption>
             <MenuItemOption
               as="div"
-              value={TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_1_WEEK.toString()}
+              value={TaskListCompletedStatusCode.Completed_1Week}
             >
               1 week
             </MenuItemOption>
             <MenuItemOption
               as="div"
-              value={TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_2_WEEKS.toString()}
+              value={TaskListCompletedStatusCode.Completed_2Weeks}
             >
               2 weeks
             </MenuItemOption>
             <MenuItemOption
               as="div"
-              value={TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_3_WEEKS.toString()}
+              value={TaskListCompletedStatusCode.Completed_3Weeks}
             >
               3 weeks
             </MenuItemOption>

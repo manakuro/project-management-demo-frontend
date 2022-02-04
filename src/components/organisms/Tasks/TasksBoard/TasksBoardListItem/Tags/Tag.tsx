@@ -9,13 +9,13 @@ type Props = FlexProps & {
 
 export const Tag: React.VFC<Props> = memo<Props>((props) => {
   const { tagId } = props
-  const { tag } = useTag(tagId)
+  const { taskTag } = useTag(tagId)
 
   return (
     <Tooltip
       hasArrow
-      label={tag.name}
-      aria-label={tag.name}
+      label={taskTag.tag.name}
+      aria-label={taskTag.tag.name}
       withIcon
       openDelay={500}
     >

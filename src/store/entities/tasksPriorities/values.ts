@@ -1,22 +1,18 @@
-import {
-  TASKS_PRIORITY_TYPE_LOW,
-  TASKS_PRIORITY_TYPE_MEDIUM,
-  TASKS_PRIORITY_TYPE_HIGH,
-} from './types'
+import { TaskPriorityType } from './types'
 
 export const values = [
   {
-    type: TASKS_PRIORITY_TYPE_LOW,
+    type: TaskPriorityType.Low,
     text: 'Low',
     color: 'green.400',
   },
   {
-    type: TASKS_PRIORITY_TYPE_MEDIUM,
+    type: TaskPriorityType.Medium,
     text: 'Medium',
     color: 'orange.400',
   },
   {
-    type: TASKS_PRIORITY_TYPE_HIGH,
+    type: TaskPriorityType.High,
     text: 'High',
     color: 'red.400',
   },

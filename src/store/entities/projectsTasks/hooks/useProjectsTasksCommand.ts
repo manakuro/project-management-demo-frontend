@@ -1,9 +1,11 @@
 import { useRecoilCallback } from 'recoil'
 import { uuid } from 'src/shared/uuid'
+import { useTasksCommand } from 'src/store/entities/tasks'
 import { projectTaskState, initialState } from '../atom'
 import { ProjectTask } from '../type'
 
 export const useProjectsTasksCommand = () => {
+  const { addTask } = useTasksCommand()
   const upsert = useRecoilCallback(
     ({ set }) =>
       (val: ProjectTask) => {
@@ -12,20 +14,25 @@ export const useProjectsTasksCommand = () => {
     [],
   )
 
-  const addProjectsTask = useRecoilCallback(
-    () => (val?: Partial<ProjectTask>) => {
+  const addProjectTask = useRecoilCallback(
+    () => (val: Partial<ProjectTask> & { projectTaskSectionId: string }) => {
       const id = uuid()
-      upsert({
+      const newTaskId = addTask({
+        taskSectionId: val.projectTaskSectionId,
+      })
+      const newProjectTask = {
         ...initialState(),
         ...val,
-        id,
-      })
+        taskId: newTaskId,
+      }
+
+      upsert(newProjectTask)
       return id
     },
-    [upsert],
+    [addTask, upsert],
   )
 
   return {
-    addProjectsTask,
+    addProjectTask,
   }
 }

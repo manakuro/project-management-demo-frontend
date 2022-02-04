@@ -1,8 +1,7 @@
 import { useCallback, useEffect } from 'react'
 import { atom, useRecoilState } from 'recoil'
-import { taskSections } from 'src/hooks/queries/app/useMyTasksPageQuery'
 import { dateFns } from 'src/shared/dateFns'
-import { TaskResponse, useTaskResponse } from 'src/store/entities/tasks'
+import { useTaskResponse } from 'src/store/entities/tasks'
 
 type Props = {
   lazy?: boolean
@@ -45,17 +44,17 @@ export const useTaskDetailPageQuery = (props?: Props) => {
   }
 }
 
-const fetchTask = async (): Promise<TaskResponse> => {
-  return new Promise<TaskResponse>((resolve) => {
+const fetchTask = async (): Promise<any> => {
+  return new Promise<any>((resolve) => {
     setTimeout(() => {
       resolve({
-        id: taskSections[0].tasks[0].id,
+        id: '',
         taskSectionId: '1',
-        projects: taskSections[0].tasks[0].projects,
+        projects: {},
         name: 'Resolve an issue of auto focus for tasks list detail page',
         dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
         dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
-        isDone: true,
+        completed: true,
         subTasks: [
           {
             assigneeId: '1',
@@ -63,9 +62,9 @@ const fetchTask = async (): Promise<TaskResponse> => {
             dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             feeds: [],
-            id: taskSections[0].tasks[0].subTasks[0].id,
+            id: '',
             isDeleted: false,
-            isDone: false,
+            completed: false,
             isNew: false,
             name: 'Subtask 1',
             projects: [],
@@ -86,9 +85,9 @@ const fetchTask = async (): Promise<TaskResponse> => {
             dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             feeds: [],
-            id: taskSections[0].tasks[0].subTasks[1].id,
+            id: '',
             isDeleted: false,
-            isDone: false,
+            completed: false,
             isNew: false,
             name: 'Subtask 2',
             projects: [],
@@ -109,9 +108,9 @@ const fetchTask = async (): Promise<TaskResponse> => {
             dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             dueTime: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
             feeds: [],
-            id: taskSections[0].tasks[0].subTasks[2].id,
+            id: '',
             isDeleted: false,
-            isDone: false,
+            completed: false,
             isNew: false,
             name: 'Subtask 3',
             projects: [],
@@ -131,7 +130,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
         attachments: [
           {
             id: '1',
-            taskId: taskSections[0].tasks[0].id,
+            taskId: '',
             projectId: '1',
             feedId: '4',
             name: '/images/cat_img.png',
@@ -142,7 +141,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
           },
           {
             id: '2',
-            taskId: taskSections[0].tasks[0].id,
+            taskId: '',
             projectId: '1',
             feedId: '4',
             name: '/images/screen_shot.png',
@@ -153,7 +152,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
           },
           {
             id: '3',
-            taskId: taskSections[0].tasks[0].id,
+            taskId: '',
             projectId: '1',
             feedId: '4',
             name: '/files/pdf-test.pdf',
@@ -164,7 +163,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
           },
           {
             id: '4',
-            taskId: taskSections[0].tasks[0].id,
+            taskId: '',
             projectId: '1',
             feedId: '4',
             name: '/files/pdf-test-2.pdf',
@@ -175,7 +174,7 @@ const fetchTask = async (): Promise<TaskResponse> => {
           },
           {
             id: '6',
-            taskId: taskSections[0].tasks[0].id,
+            taskId: '',
             projectId: '1',
             feedId: '4',
             name: '/files/test.js',
@@ -190,14 +189,10 @@ const fetchTask = async (): Promise<TaskResponse> => {
             id: '1',
             taskId: '1',
             teammateId: '1',
-            description: JSON.stringify(
-              {
-                type: 'doc',
-                content: [],
-              },
-              null,
-              2,
-            ),
+            description: {
+              type: 'doc',
+              content: [],
+            },
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             isFirst: true,
@@ -207,78 +202,74 @@ const fetchTask = async (): Promise<TaskResponse> => {
             id: '2',
             taskId: '1',
             teammateId: '1',
-            description: JSON.stringify(
-              {
-                type: 'doc',
-                content: [
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'text',
-                        text: 'test',
-                        attrs: { mentionId: '', mentionType: '' },
-                      },
-                    ],
-                  },
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'text',
-                        text: 'test',
-                        attrs: { mentionId: '', mentionType: '' },
-                      },
-                    ],
-                  },
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'text',
-                        text: 'test',
-                        attrs: { mentionId: '', mentionType: '' },
-                      },
-                    ],
-                  },
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'mention',
-                        text: '',
-                        attrs: { mentionId: '2', mentionType: '1' },
-                      },
-                    ],
-                  },
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'mention',
-                        text: '',
-                        attrs: { mentionId: '1', mentionType: '1' },
-                      },
-                    ],
-                  },
-                  { type: 'paragraph', content: [] },
-                  {
-                    type: 'paragraph',
-                    content: [
-                      {
-                        type: 'text',
-                        text: '🐠  ',
-                        attrs: { mentionId: '', mentionType: '' },
-                      },
-                    ],
-                  },
-                  { type: 'paragraph', content: [] },
-                  { type: 'paragraph', content: [] },
-                ],
-              },
-              null,
-              2,
-            ),
+            description: {
+              type: 'doc',
+              content: [
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: 'test',
+                      attrs: { mentionId: '', mentionType: '' },
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: 'test',
+                      attrs: { mentionId: '', mentionType: '' },
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: 'test',
+                      attrs: { mentionId: '', mentionType: '' },
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'mention',
+                      text: '',
+                      attrs: { mentionId: '2', mentionType: '1' },
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'mention',
+                      text: '',
+                      attrs: { mentionId: '1', mentionType: '1' },
+                    },
+                  ],
+                },
+                { type: 'paragraph', content: [] },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: '🐠  ',
+                      attrs: { mentionId: '', mentionType: '' },
+                    },
+                  ],
+                },
+                { type: 'paragraph', content: [] },
+                { type: 'paragraph', content: [] },
+              ],
+            },
             createdAt: new Date('2021/05/20 18:12:41').toISOString(),
             updatedAt: '',
             isFirst: false,
@@ -288,23 +279,31 @@ const fetchTask = async (): Promise<TaskResponse> => {
             id: '3',
             taskId: '1',
             teammateId: '1',
-            description: JSON.stringify(
-              {
-                type: 'doc',
-                content: [
-                  {
-                    type: 'paragraph',
-                    content: [{ type: 'text', text: '😜' }],
-                  },
-                  {
-                    type: 'paragraph',
-                    content: [{ type: 'text', text: 'テキスト2' }],
-                  },
-                ],
-              },
-              null,
-              2,
-            ),
+            description: {
+              type: 'doc',
+              content: [
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: '😜',
+                      attrs: { mentionId: '', mentionType: '' },
+                    },
+                  ],
+                },
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: 'テキスト2',
+                      attrs: { mentionId: '', mentionType: '' },
+                    },
+                  ],
+                },
+              ],
+            },
             createdAt: new Date('2021/05/21 12:00:00').toISOString(),
             updatedAt: new Date().toISOString(),
             isFirst: false,
@@ -314,14 +313,10 @@ const fetchTask = async (): Promise<TaskResponse> => {
             id: '4',
             taskId: '1',
             teammateId: '2',
-            description: JSON.stringify(
-              {
-                type: 'doc',
-                content: [{ type: 'text', text: '😜' }],
-              },
-              null,
-              2,
-            ),
+            description: {
+              type: 'doc',
+              content: [{ type: 'text', content: [] }],
+            },
             createdAt: new Date('2021/05/21 12:00:00').toISOString(),
             updatedAt: new Date().toISOString(),
             isFirst: false,
@@ -331,22 +326,18 @@ const fetchTask = async (): Promise<TaskResponse> => {
             id: '5',
             taskId: '1',
             teammateId: '3',
-            description: JSON.stringify(
-              {
-                type: 'doc',
-                content: [],
-              },
-              null,
-              2,
-            ),
+            description: {
+              type: 'doc',
+              content: [],
+            },
             createdAt: new Date('2021/05/21 12:00:00').toISOString(),
             updatedAt: new Date().toISOString(),
             isFirst: false,
             isPinned: false,
           },
         ],
-        teammates: taskSections[0].tasks[0].teammates,
-        tags: taskSections[0].tasks[0].tags,
+        teammates: [],
+        tags: [],
         isNew: false,
         isDeleted: false,
         taskParentId: '',

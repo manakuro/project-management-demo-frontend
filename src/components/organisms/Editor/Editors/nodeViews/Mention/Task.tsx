@@ -19,7 +19,7 @@ export const Task: React.FC = memo(() => {
     <PopoverEditorLink>
       <PopoverEditorLinkTrigger>{task.name + ' '}</PopoverEditorLinkTrigger>
       <PopoverEditorLinkContent>
-        <CheckIcon isDone={task.isDone} size="sm" cursor="auto" />
+        <CheckIcon completed={task.completed} size="sm" cursor="auto" />
         <PopoverEditorLinkText>{task.name}</PopoverEditorLinkText>
       </PopoverEditorLinkContent>
     </PopoverEditorLink>

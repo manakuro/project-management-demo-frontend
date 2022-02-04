@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { useHover } from 'src/hooks/useHover'
 import { createProvider } from 'src/shared/react/createProvider'
-import { Attachment, useAttachment } from 'src/store/entities/attachments'
+import { TaskFile, useAttachment } from 'src/store/entities/attachments'
 
 type ContextProps = {
   ref: React.MutableRefObject<HTMLElement | null>
@@ -13,7 +13,7 @@ type ContextProps = {
 
 type Props = {
   attachmentId: string
-  onDelete: (attachment: Attachment) => void
+  onDelete: (attachment: TaskFile) => void
 }
 
 const useValue = (props: Props): ContextProps => {

@@ -1,5 +1,5 @@
 import { NextRouter } from 'next/router'
-import React, { memo, useCallback, useEffect, useState } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Head } from 'src/components/atoms/Head'
 import { MainHeader } from 'src/components/organisms/MainHeader'
@@ -11,12 +11,10 @@ import {
   isProjectsListURL,
   useRouter,
 } from 'src/router'
-import {
-  getProjectsIdFromURL,
-  isProjectsOverviewURL,
-} from 'src/router/projects'
+import { isProjectsOverviewURL } from 'src/router/projects'
 import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
+import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
 import { Board } from './Board'
 import { Calendar } from './Calendar'
 import { Files } from './Files'
@@ -74,15 +72,7 @@ const WrappedComponent: React.VFC = memo(() => {
   const { isSorted, sortBy } = useMyTasksTaskListStatus()
   const { loadingQuery, setLoadingTabContent } = useProjectsPageContext()
   const [tabIndex, setTabIndex] = useState<Index>(mapURLtoTabIndex({ router }))
-  const { projectId, setProjectId } = useProjectsProjectId()
-
-  useEffect(() => {
-    const projectId = getProjectsIdFromURL(router)
-    console.log('projectId: ', projectId)
-    if (!projectId) return
-
-    setProjectId(projectId)
-  }, [router, setProjectId])
+  const { projectId } = useProjectsProjectId()
 
   const setLoading = useCallback(() => {
     setLoadingTabContent(true)
@@ -127,7 +117,7 @@ const WrappedComponent: React.VFC = memo(() => {
           break
         }
         case BOARD_INDEX: {
-          if (isSorted('project')) sortBy('none')
+          if (isSorted('project')) sortBy(TaskListSortStatusCode.None)
           setLoading()
           setTabIndex(BOARD_INDEX)
           await navigateToBoard()

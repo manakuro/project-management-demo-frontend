@@ -1,10 +1,10 @@
 import { selectorFamily } from 'recoil'
 import { createState } from 'src/store/util'
-import { TasksTeammate } from './type'
+import { TaskCollaborator } from './type'
 
 const key = (str: string) => `src/store/entities/taskTeammates/${str}`
 
-const initialState = (): TasksTeammate => ({
+const initialState = (): TaskCollaborator => ({
   id: '',
   taskId: '',
   teammateId: '',

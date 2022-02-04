@@ -1,6 +1,6 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { feedState } from '../atom'
-import { Feed } from '../type'
+import { TaskFeed } from '../type'
 import { useFeedCommand } from './useFeedCommand'
 
 export const useFeed = (feedId?: string) => {
@@ -9,7 +9,7 @@ export const useFeed = (feedId?: string) => {
 
   const setFeed = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: Partial<Feed>) => {
+      async (val: Partial<TaskFeed>) => {
         const prev = await snapshot.getPromise(feedState(feed.id))
         upsert({
           ...prev,

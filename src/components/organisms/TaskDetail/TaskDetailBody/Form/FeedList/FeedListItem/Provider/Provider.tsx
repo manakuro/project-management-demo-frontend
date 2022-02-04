@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { useToast } from 'src/hooks'
 import { getMyTasksDetailFeedURL } from 'src/router'
+import { parseDescription } from 'src/shared/prosemirror/convertDescription'
 import { createProvider } from 'src/shared/react/createProvider'
 import { useAttachmentIdsByFeedId } from 'src/store/entities/attachments'
 import { useFeed } from 'src/store/entities/feeds'
@@ -43,7 +44,7 @@ const useValue = (props: Props) => {
 
   const hasAttachment = useMemo(() => !!attachmentIds.length, [attachmentIds])
   const hasText = useMemo(
-    () => !!JSON.parse(feed.description).content.length,
+    () => !!feed.description.content.length,
     [feed.description],
   )
   return {
@@ -131,7 +132,7 @@ const useEditor = (
   }, [])
 
   const onSave = useCallback(async () => {
-    await setFeed({ description })
+    await setFeed({ description: parseDescription(description) })
     setIsEdit(false)
   }, [description, setFeed, setIsEdit])
 

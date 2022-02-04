@@ -7,11 +7,8 @@ import {
 } from 'src/components/organisms/Menus'
 import { useTask } from 'src/store/entities/tasks'
 import {
-  TASKS_PRIORITY_TYPE_NONE,
-  TASKS_PRIORITY_TYPE_HIGH,
-  TASKS_PRIORITY_TYPE_LOW,
-  TASKS_PRIORITY_TYPE_MEDIUM,
-  TasksPriorityTypes,
+  TaskPriorityType,
+  TaskPriorityTypeValue,
   findTextByCode,
 } from 'src/store/entities/tasksPriorities'
 
@@ -22,43 +19,42 @@ type Props = {
 }
 
 const ITEMS: {
-  value: TasksPriorityTypes
+  value: TaskPriorityTypeValue
   text: string
 }[] = [
   {
-    value: TASKS_PRIORITY_TYPE_NONE,
-    text: '-',
+    value: TaskPriorityType.High,
+    text: findTextByCode(TaskPriorityType.High),
   },
   {
-    value: TASKS_PRIORITY_TYPE_HIGH,
-    text: findTextByCode(TASKS_PRIORITY_TYPE_HIGH),
+    value: TaskPriorityType.Medium,
+    text: findTextByCode(TaskPriorityType.Medium),
   },
   {
-    value: TASKS_PRIORITY_TYPE_MEDIUM,
-    text: findTextByCode(TASKS_PRIORITY_TYPE_MEDIUM),
-  },
-  {
-    value: TASKS_PRIORITY_TYPE_LOW,
-    text: findTextByCode(TASKS_PRIORITY_TYPE_LOW),
+    value: TaskPriorityType.Low,
+    text: findTextByCode(TaskPriorityType.Low),
   },
 ]
 
 export const Menu: React.FC<Props> = memo<Props>((props) => {
   const { taskId, onOpened, onClosed } = props
-  const { task, setTask } = useTask(taskId)
-  const defaultValue = useMemo(() => task.priority.toString(), [task.priority])
+  const { task, setTaskPriority } = useTask(taskId)
+  const defaultValue = useMemo(
+    () => task.taskPriority.priorityType?.toString(),
+    [task.taskPriority.priorityType],
+  )
 
   const handleChange = useCallback(
-    async (type: ToString<TasksPriorityTypes>) => {
-      await setTask({ priority: Number(type) as TasksPriorityTypes })
+    async (type: TaskPriorityTypeValue) => {
+      await setTaskPriority({ priorityType: type })
     },
-    [setTask],
+    [setTaskPriority],
   )
 
   const items = useMemo(() => ITEMS, [])
 
   return (
-    <MenuSelect<ToString<TasksPriorityTypes>>
+    <MenuSelect<TaskPriorityTypeValue>
       onChange={handleChange}
       placement="bottom-end"
       onOpened={onOpened}

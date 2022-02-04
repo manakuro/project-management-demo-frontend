@@ -1,0 +1,12 @@
+fragment TaskFeedFragment on TaskFeed {
+  id
+  taskId
+  teammateId
+  description {
+    ...DescriptionFragment
+  }
+  isPinned
+  isFirst
+  createdAt
+  updatedAt
+}

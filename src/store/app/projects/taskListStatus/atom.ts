@@ -1,31 +1,26 @@
 import { atom, selectorFamily } from 'recoil'
-import {
-  TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
-  TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
-  TASK_LIST_SORT_STATUS_TYPE_LIKES,
-  TASK_LIST_SORT_STATUS_TYPE_NONE,
-  TASK_LIST_COMPLETED_STATUS_TYPE_ALL,
-  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED,
-  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_1_WEEK,
-  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_2_WEEKS,
-  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_3_WEEKS,
-  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_TODAY,
-  TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_YESTERDAY,
-  TASK_LIST_COMPLETED_STATUS_TYPE_INCOMPLETE,
-  TASK_LIST_SORT_STATUS_TYPE_ASSIGNEE,
-  TASK_LIST_SORT_STATUS_TYPE_CREATION_TIME,
-  TASK_LIST_SORT_STATUS_TYPE_PRIORITY,
-} from 'src/store/entities/taskListStatus'
-import { TaskListStatus } from './type'
+import { TaskListCompletedStatusCode } from 'src/store/entities/taskListCompletedStatus'
+import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
+import { ProjectTaskListStatus } from './type'
 
 const key = (str: string) => `src/store/app/projects/taskListStatus/${str}`
 
-export const taskListStatusState = atom<TaskListStatus>({
+export const taskListStatusState = atom<ProjectTaskListStatus>({
   key: key('taskListStatusState'),
   default: {
     id: '',
-    taskListCompletedStatus: 1,
-    taskListSortStatus: 1,
+    taskListCompletedStatusId: '',
+    taskListSortStatusId: '',
+    taskListCompletedStatus: {
+      id: '',
+      statusCode: TaskListCompletedStatusCode.Incomplete,
+    },
+    taskListSortStatus: {
+      id: '',
+      statusCode: TaskListSortStatusCode.None,
+    },
+    createdAt: '',
+    updatedAt: '',
   },
 })
 
@@ -39,7 +34,8 @@ export const isTaskListCompletedStatusState = selectorFamily<
     ({ get }) => {
       const taskStatus = get(taskListStatusState)
       return (
-        taskStatus.taskListCompletedStatus === taskListCompletedStatues[key]
+        taskStatus.taskListCompletedStatus.statusCode ===
+        taskListCompletedStatues[key]
       )
     },
 })
@@ -53,29 +49,31 @@ export const isTaskListSortStatusState = selectorFamily<
     (key) =>
     ({ get }) => {
       const taskStatus = get(taskListStatusState)
-      return taskStatus.taskListSortStatus === taskListSortStatues[key]
+      return (
+        taskStatus.taskListSortStatus.statusCode === taskListSortStatues[key]
+      )
     },
 })
 
 export const taskListSortStatues = {
-  none: TASK_LIST_SORT_STATUS_TYPE_NONE,
-  dueDate: TASK_LIST_SORT_STATUS_TYPE_DUE_DATE,
-  likes: TASK_LIST_SORT_STATUS_TYPE_LIKES,
-  alphabetical: TASK_LIST_SORT_STATUS_TYPE_ALPHABETICAL,
-  assignee: TASK_LIST_SORT_STATUS_TYPE_ASSIGNEE,
-  creationTime: TASK_LIST_SORT_STATUS_TYPE_CREATION_TIME,
-  priority: TASK_LIST_SORT_STATUS_TYPE_PRIORITY,
+  none: TaskListSortStatusCode.None,
+  dueDate: TaskListSortStatusCode.DueDate,
+  likes: TaskListSortStatusCode.Likes,
+  alphabetical: TaskListSortStatusCode.Alphabetical,
+  assignee: TaskListSortStatusCode.Assignee,
+  creationTime: TaskListSortStatusCode.CreationTime,
+  priority: TaskListSortStatusCode.Priority,
 } as const
 export type TaskListSortStatuses = keyof typeof taskListSortStatues
 
 export const taskListCompletedStatues = {
-  incomplete: TASK_LIST_COMPLETED_STATUS_TYPE_INCOMPLETE,
-  completed: TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED,
-  completedToday: TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_TODAY,
-  completedYesterday: TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_YESTERDAY,
-  completed1Week: TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_1_WEEK,
-  completed2Weeks: TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_2_WEEKS,
-  completed3Weeks: TASK_LIST_COMPLETED_STATUS_TYPE_COMPLETED_3_WEEKS,
-  all: TASK_LIST_COMPLETED_STATUS_TYPE_ALL,
+  incomplete: TaskListCompletedStatusCode.Incomplete,
+  completed: TaskListCompletedStatusCode.Completed,
+  completedToday: TaskListCompletedStatusCode.CompletedToday,
+  completedYesterday: TaskListCompletedStatusCode.CompletedYesterday,
+  completed1Week: TaskListCompletedStatusCode.Completed_1Week,
+  completed2Weeks: TaskListCompletedStatusCode.Completed_2Weeks,
+  completed3Weeks: TaskListCompletedStatusCode.Completed_3Weeks,
+  all: TaskListCompletedStatusCode.All,
 } as const
 export type TaskListCompletedStatuses = keyof typeof taskListCompletedStatues

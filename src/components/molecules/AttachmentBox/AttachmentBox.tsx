@@ -30,8 +30,8 @@ export const AttachmentBox: React.FC<Props> = (props) => {
   const { size, color, attachmentId, isHovering, ...rest } = props
   const { attachment } = useAttachment(attachmentId)
   const sizeStyle = sizes[size]
-  const icon = getAttachmentIcon(attachment.type)
-  const attachmentName = getAttachmentName(attachment.type)
+  const icon = getAttachmentIcon(attachment.fileType.typeCode)
+  const attachmentName = getAttachmentName(attachment.fileType.typeCode)
 
   return (
     <Flex

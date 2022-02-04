@@ -6,12 +6,12 @@ import {
   sortTasks,
 } from 'src/store/app/myTasks/filters'
 import { isTaskListSortStatusState } from 'src/store/app/myTasks/taskListStatus'
-import { filterByDueDate } from 'src/store/entities/tasks'
-import { isTabStatusState } from 'src/store/entities/teammateTaskTabStatus'
 import {
-  tasksByTeammateIdState,
-  tasksByTeammateTaskSectionIdState,
-} from 'src/store/entities/teammateTasks'
+  filterByDueDate,
+  tasksByTaskSectionIdState,
+} from 'src/store/entities/tasks'
+import { isTabStatusState } from 'src/store/entities/teammateTaskTabStatus'
+import { tasksByTeammateIdState } from 'src/store/entities/teammateTasks'
 
 const key = (str: string) => `src/store/app/myTasks/tasks/${str}`
 
@@ -42,7 +42,7 @@ export const taskIdsByTaskSectionIdState = selectorFamily<
   get:
     ({ teammateTaskSectionId }) =>
     ({ get }) => {
-      let tasks = get(tasksByTeammateTaskSectionIdState(teammateTaskSectionId))
+      let tasks = get(tasksByTaskSectionIdState(teammateTaskSectionId))
       switch (true) {
         case get(isTabStatusState('List')) &&
           get(isTaskListSortStatusState('dueDate')): {

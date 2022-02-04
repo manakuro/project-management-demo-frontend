@@ -1,4 +1,4 @@
-import { selector, selectorFamily } from 'recoil'
+import { selector } from 'recoil'
 import { tasksState, Task } from 'src/store/entities/tasks'
 import { createState } from 'src/store/util'
 import { TeammateTask } from './type'
@@ -28,20 +28,3 @@ export const tasksByTeammateIdState = selector<Task[]>({
     return tasks.filter((t) => taskIds.includes(t.id))
   },
 })
-
-export const tasksByTeammateTaskSectionIdState = selectorFamily<Task[], string>(
-  {
-    key: key('tasksByTeammateTaskSectionIdState'),
-    get:
-      (teammateTaskSectionId) =>
-      ({ get }) => {
-        const teammateTasks = get(teammateTasksState)
-        const tasks = get(tasksState)
-        const taskIds = teammateTasks
-          .filter((t) => t.teammateTaskSectionId === teammateTaskSectionId)
-          .map((t) => t.taskId)
-
-        return tasks.filter((t) => taskIds.includes(t.id))
-      },
-  },
-)

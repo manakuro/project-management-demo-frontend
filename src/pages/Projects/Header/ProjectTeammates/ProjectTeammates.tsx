@@ -5,7 +5,7 @@ import { useTooltip } from 'src/components/molecules/Tooltip/useTooltip'
 import { useShareProjectModal } from 'src/components/organisms/Modals/ShareProjectModal'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
-import { useTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
+import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { transitions } from 'src/styles'
 

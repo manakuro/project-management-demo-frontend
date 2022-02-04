@@ -6,7 +6,7 @@ import { IconType } from 'src/shared/icons'
 import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 import { useProjectIcon } from 'src/store/entities/projectIcon'
-import { useTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
+import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate'
 import { Container } from './Container'
 import { FavoriteButton } from './FavoriteButton'
 

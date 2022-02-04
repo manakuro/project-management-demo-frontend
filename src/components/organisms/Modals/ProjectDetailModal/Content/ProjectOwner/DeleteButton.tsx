@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useProjectTeammatesCommand } from 'src/store/entities/projectsTeammates'
+import { useProjectTeammatesCommand } from 'src/store/entities/projectTeammate'
 
 type Props = {
   projectTeammateId: string

@@ -3,7 +3,7 @@ import { MenuItem } from 'src/components/organisms/Menu'
 import {
   useProjectTeammate,
   useProjectTeammatesCommand,
-} from 'src/store/entities/projectsTeammates'
+} from 'src/store/entities/projectTeammate'
 
 type Props = {
   projectId: string

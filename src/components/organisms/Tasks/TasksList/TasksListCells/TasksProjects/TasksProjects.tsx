@@ -4,7 +4,7 @@ import { ProjectChip } from 'src/components/molecules'
 import { useTasksContext } from 'src/components/organisms/Tasks'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
-import { useProjectIdsByTaskId } from 'src/store/entities/projectsTask'
+import { useProjectIdsByTaskId } from 'src/store/entities/projectTask'
 import { Input } from './Input'
 
 type Props = FlexProps & {

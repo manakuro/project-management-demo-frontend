@@ -4,7 +4,7 @@ import { InviteProjectTeammateMenu } from 'src/components/organisms/Menus'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { useLinkStyle } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
-import { useTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
+import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate'
 import { Teammate, useTeammate } from 'src/store/entities/teammates'
 
 type Props = {

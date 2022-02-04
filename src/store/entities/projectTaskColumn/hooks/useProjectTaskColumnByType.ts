@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil'
 import { TaskColumnTypeValue } from 'src/store/entities/taskColumns'
 import { projectsTaskColumnByTypeState } from '../atom'
 
-export const useProjectsTaskColumnByType = ({
+export const useProjectTaskColumnByType = ({
   type,
   projectId,
 }: {

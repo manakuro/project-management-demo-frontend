@@ -1,5 +1,5 @@
 import { selectorFamily } from 'recoil'
-import { tasksByProjectIdState } from 'src/store/entities/projectsTask'
+import { tasksByProjectIdState } from 'src/store/entities/projectTask'
 import {
   filterByDueDate,
   filterByTaskSectionId,

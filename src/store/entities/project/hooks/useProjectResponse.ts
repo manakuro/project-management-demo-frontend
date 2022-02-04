@@ -3,7 +3,7 @@ import { uniqBy } from 'src/shared/utils'
 import {
   projectTeammateState,
   ProjectTeammate,
-} from 'src/store/entities/projectsTeammates'
+} from 'src/store/entities/projectTeammate'
 import { Teammate, useTeammatesResponse } from 'src/store/entities/teammates'
 import { projectState } from '../atom'
 import { ProjectResponse } from '../type'

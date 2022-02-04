@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Flex, FlexProps, Stack } from 'src/components/atoms'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
-import { useProjectIdsByTaskId } from 'src/store/entities/projectsTask'
+import { useProjectIdsByTaskId } from 'src/store/entities/projectTask'
 import { Assignee } from './Assignee'
 import { Card } from './Card'
 import { DueDate } from './DueDate'

@@ -1,18 +1,18 @@
 import { useRecoilCallback } from 'recoil'
 import { ProjectTaskResponse } from 'src/graphql/types/projectTask'
 import { uniqBy } from 'src/shared/utils'
-import { useProjectTaskResponse } from 'src/store/entities/projectsTask'
-import { projectsTaskSectionState } from '../atom'
+import { useProjectTaskResponse } from 'src/store/entities/projectTask'
+import { projectTaskSectionState } from '../atom'
 import { ProjectTaskSectionResponse } from '../type'
 
-export const useProjectsTaskSectionsResponse = () => {
+export const useProjectTaskSectionResponse = () => {
   const { setProjectTask } = useProjectTaskResponse()
 
   const setProjectsTaskSections = useRecoilCallback(
     ({ set }) =>
       (data: ProjectTaskSectionResponse[]) => {
         data.forEach((d) => {
-          set(projectsTaskSectionState(d.id), d)
+          set(projectTaskSectionState(d.id), d)
         })
 
         const projectTasks = data.reduce<ProjectTaskResponse[]>((acc, p) => {

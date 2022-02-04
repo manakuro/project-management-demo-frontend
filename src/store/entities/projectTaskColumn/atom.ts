@@ -4,7 +4,7 @@ import { TaskColumnTypeValue } from 'src/store/entities/taskColumns'
 import { createState } from 'src/store/util'
 import { ProjectTaskColumn } from './type'
 
-const key = (str: string) => `src/store/entities/projectsTaskColumn/${str}`
+const key = (str: string) => `src/store/entities/projectTaskColumn/${str}`
 
 export const initialState = (): ProjectTaskColumn => ({
   id: '',
@@ -19,9 +19,9 @@ export const initialState = (): ProjectTaskColumn => ({
 })
 
 export const {
-  state: projectsTaskColumnState,
-  listState: projectsTaskColumnsState,
-  idsState: projectsTaskColumnIdsState,
+  state: projectTaskColumnState,
+  listState: projectTaskColumnsState,
+  idsState: projectTaskColumnIdsState,
 } = createState({ key, initialState })
 
 export const projectsTaskColumnsByProjectIdState = selectorFamily<
@@ -32,7 +32,7 @@ export const projectsTaskColumnsByProjectIdState = selectorFamily<
   get:
     (projectId: string) =>
     ({ get }) => {
-      const taskColumns = get(projectsTaskColumnsState)
+      const taskColumns = get(projectTaskColumnsState)
       return taskColumns.filter((t) => t.projectId === projectId)
     },
 })
@@ -46,7 +46,7 @@ export const projectsTaskColumnByTypeState = selectorFamily<
     ({ projectId, type }) =>
     ({ get }) => {
       const taskColumn = get(taskColumnByTypeState(type))
-      const taskColumns = get(projectsTaskColumnsState)
+      const taskColumns = get(projectTaskColumnsState)
       return (
         taskColumns.find(
           (t) => t.projectId === projectId && t.taskColumnId === taskColumn.id,

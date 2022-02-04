@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex, Grid } from 'src/components/atoms'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
-import { useProjectTeammateIdsByProjectIdSortedByOwner } from 'src/store/entities/projectsTeammates'
+import { useProjectTeammateIdsByProjectIdSortedByOwner } from 'src/store/entities/projectTeammate'
 import { OverviewContentHeading } from '../OverviewContentHeading'
 import { ProjectRoleAddMember } from './ProjectRoleAddMember'
 import { ProjectRoleListItem } from './ProjectRoleListItem'

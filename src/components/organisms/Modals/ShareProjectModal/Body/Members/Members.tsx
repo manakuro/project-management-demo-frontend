@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from 'react'
 import { Flex, Text } from 'src/components/atoms'
 import { useLinkStyle } from 'src/hooks'
-import { useTeammateIdsByProjectId } from 'src/store/entities/projectsTeammates'
+import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate'
 import { BodyHeader } from '../BodyHeader'
 import { BodyStack } from '../BodyStack'
 import { MemberListItem } from './MemberListItem'

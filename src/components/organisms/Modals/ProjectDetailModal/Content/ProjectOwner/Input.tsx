@@ -3,7 +3,7 @@ import { Input as AtomsInput } from 'src/components/atoms'
 import { AssignProjectOwnerMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
-import { useProjectTeammatesCommand } from 'src/store/entities/projectsTeammates'
+import { useProjectTeammatesCommand } from 'src/store/entities/projectTeammate'
 import { Teammate } from 'src/store/entities/teammates'
 
 type Props = {
@@ -68,3 +68,4 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
     </AssignProjectOwnerMenu>
   )
 })
+Input.displayName = 'Input'

@@ -1,12 +1,12 @@
 import { useRecoilCallback } from 'recoil'
-import { projectsTaskColumnState } from '../atom'
+import { projectTaskColumnState } from '../atom'
 import { ProjectTaskColumn } from '../type'
 
-export const useProjectsTaskColumnCommand = () => {
+export const useProjectTaskColumnCommand = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
       (taskColumn: ProjectTaskColumn) => {
-        set(projectsTaskColumnState(taskColumn.id), taskColumn)
+        set(projectTaskColumnState(taskColumn.id), taskColumn)
       },
     [],
   )
@@ -15,7 +15,7 @@ export const useProjectsTaskColumnCommand = () => {
     ({ snapshot }) =>
       async (val: Partial<ProjectTaskColumn> & { id: string }) => {
         const current = await snapshot.getPromise(
-          projectsTaskColumnState(val.id),
+          projectTaskColumnState(val.id),
         )
         upsert({ ...current, ...val })
       },

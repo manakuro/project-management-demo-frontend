@@ -1,5 +1,5 @@
 import { selectorFamily } from 'recoil'
-import { taskSectionsByProjectIdState } from 'src/store/entities/projectsTaskSections'
+import { taskSectionsByProjectIdState } from 'src/store/entities/projectTaskSection'
 import { TaskSection } from 'src/store/entities/taskSections'
 import { tasksByTaskSectionIdState } from 'src/store/entities/tasks'
 import { isTaskListSortStatusState } from '../taskListStatus'

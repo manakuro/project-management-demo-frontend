@@ -3,7 +3,7 @@ import { taskSectionState, TaskSection } from 'src/store/entities/taskSections'
 import { createState } from 'src/store/util'
 import { ProjectTaskSection } from './type'
 
-const key = (str: string) => `src/store/entities/projectsTaskSections/${str}`
+const key = (str: string) => `src/store/entities/projectsTaskSection/${str}`
 
 export const DEFAULT_TITLE_NAME = 'Untitled Section'
 
@@ -16,8 +16,8 @@ export const initialState = (): ProjectTaskSection => ({
 })
 
 export const {
-  state: projectsTaskSectionState,
-  listState: projectsTaskSectionsState,
+  state: projectTaskSectionState,
+  listState: projectTaskSectionsState,
 } = createState({ key, initialState })
 
 export const taskSectionsByProjectIdState = selectorFamily<
@@ -28,7 +28,7 @@ export const taskSectionsByProjectIdState = selectorFamily<
   get:
     (projectId) =>
     ({ get }) => {
-      const projectsTaskSections = get(projectsTaskSectionsState)
+      const projectsTaskSections = get(projectTaskSectionsState)
       return projectsTaskSections
         .filter((t) => t.projectId === projectId)
         .map((p) => get(taskSectionState(p.id)))

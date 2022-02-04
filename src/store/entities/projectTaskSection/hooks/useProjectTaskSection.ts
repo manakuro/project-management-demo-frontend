@@ -1,20 +1,20 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { projectsTaskSectionState } from '../atom'
+import { projectTaskSectionState } from '../atom'
 import { ProjectTaskSection } from '../type'
-import { useProjectsTaskSectionsCommand } from './useProjectsTaskSectionsCommand'
+import { useProjectTaskSectionCommand } from './useProjectTaskSectionCommand'
 
 const DEFAULT_TITLE_NAME = 'Untitled Section'
 export const useProjectTaskSection = (projectTaskSectionId: string) => {
-  const { upsert } = useProjectsTaskSectionsCommand()
+  const { upsert } = useProjectTaskSectionCommand()
   const projectTaskSection = useRecoilValue(
-    projectsTaskSectionState(projectTaskSectionId),
+    projectTaskSectionState(projectTaskSectionId),
   )
 
   const setProjectTaskSection = useRecoilCallback(
     ({ snapshot }) =>
       async (val: Partial<ProjectTaskSection>) => {
         const current = await snapshot.getPromise(
-          projectsTaskSectionState(projectTaskSectionId),
+          projectTaskSectionState(projectTaskSectionId),
         )
         upsert({ ...current, ...val })
       },

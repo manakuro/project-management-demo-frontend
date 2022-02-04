@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Flex, Image, Text } from 'src/components/atoms'
 import { PdfViewer } from 'src/components/organisms/PdfViewer'
-import { FileTypeCode } from 'src/store/entities/fileTypes'
+import { FileTypeCode } from 'src/store/entities/fileType'
 import { useTaskFile } from 'src/store/entities/taskFile'
 
 type Props = {

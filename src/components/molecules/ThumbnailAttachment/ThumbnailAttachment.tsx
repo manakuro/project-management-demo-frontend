@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { FlexProps } from 'src/components/atoms'
-import { FileTypeCode } from 'src/store/entities/fileTypes'
+import { FileTypeCode } from 'src/store/entities/fileType'
 import { TaskFile, useTaskFile } from 'src/store/entities/taskFile'
 import { File } from './File'
 import { Image } from './Image'

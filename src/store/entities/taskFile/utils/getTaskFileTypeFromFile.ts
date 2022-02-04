@@ -1,4 +1,4 @@
-import { FileTypeCodeValue, FileTypeCode } from 'src/store/entities/fileTypes'
+import { FileTypeCodeValue, FileTypeCode } from 'src/store/entities/fileType'
 
 export const getTaskFileTypeFromFile = (
   fileType: string,

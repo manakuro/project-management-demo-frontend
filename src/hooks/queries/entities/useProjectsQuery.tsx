@@ -3,14 +3,11 @@ import { useProjectsQuery as useQuery } from 'src/graphql/hooks'
 import { ProjectsQuery } from 'src/graphql/types/projects'
 import { useMountedRef } from 'src/hooks'
 import { getNodesFromEdges } from 'src/shared/apollo/util'
-import {
-  ProjectResponse,
-  useProjectsResponse,
-} from 'src/store/entities/project'
+import { ProjectResponse, useProjectResponse } from 'src/store/entities/project'
 
 export const useProjectsQuery = () => {
   const queryResult = useQuery()
-  const { setProjects } = useProjectsResponse()
+  const { setProjects } = useProjectResponse()
   const [loading, setLoading] = useState(true)
   const { mountedRef } = useMountedRef()
 

@@ -6,7 +6,7 @@ import {
 } from 'src/components/organisms/Inbox'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { isInboxDetailURL, useRouter } from 'src/router'
-import { useActivityTypes } from 'src/store/entities/activityTypes'
+import { useActivityType } from 'src/store/entities/activityType'
 
 type Props = {
   listItemId?: string
@@ -17,7 +17,7 @@ export const useInboxList = (props: Props) => {
   const { router } = useRouter()
   const { setId } = useTaskDetail()
   const { listItem } = useInboxListItem(listItemId || '')
-  const { isWorkspaceType, isTaskType } = useActivityTypes()
+  const { isWorkspaceType, isTaskType } = useActivityType()
   const workspaceListTaskIdsResult = useWorkspaceListTaskIds(listItem.id)
   const myTaskListTaskIdsResult = useMyTaskListTaskIds(listItem.id)
 

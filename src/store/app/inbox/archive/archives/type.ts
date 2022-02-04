@@ -1,4 +1,4 @@
-import { ActivityTypes } from 'src/store/entities/activityTypes'
+import { ActivityTypes } from 'src/store/entities/activityType'
 
 export type Archive = {
   id: string

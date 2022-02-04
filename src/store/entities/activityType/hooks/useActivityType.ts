@@ -5,7 +5,7 @@ import {
   ACTIVITY_TYPE_WORKSPACE,
 } from '../types'
 
-export const useActivityTypes = () => {
+export const useActivityType = () => {
   const isTaskType = useCallback(
     (type: ActivityTypes) => type === ACTIVITY_TYPE_TASK,
     [],

@@ -4,7 +4,7 @@ import { isInboxDetailURL, useRouter } from 'src/router'
 import { useActivity } from 'src/store/app/inbox/activity/activities'
 import { useMyTaskActivityTasksTaskIds } from 'src/store/app/inbox/activity/myTaskActivityTasks'
 import { useWorkspaceActivityTasksTaskIds } from 'src/store/app/inbox/activity/workspaceActivityTasks'
-import { useActivityTypes } from 'src/store/entities/activityTypes'
+import { useActivityType } from 'src/store/entities/activityType'
 
 type Props = {
   activityId?: string
@@ -15,7 +15,7 @@ export const useInboxList = (props: Props) => {
   const { router } = useRouter()
   const { setId } = useTaskDetail()
   const { activity } = useActivity(activityId || '')
-  const { isWorkspaceType, isTaskType } = useActivityTypes()
+  const { isWorkspaceType, isTaskType } = useActivityType()
   const workspaceActivityTasksTaskIdsResult = useWorkspaceActivityTasksTaskIds(
     activity.id,
   )

@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { FlexProps } from 'src/components/atoms'
 import { useInboxListItem } from 'src/components/organisms/Inbox'
-import { useActivityTypes } from 'src/store/entities/activityTypes'
+import { useActivityType } from 'src/store/entities/activityType'
 import { MyTaskList } from './MyTaskList'
 import { Provider } from './Provider'
 import { WorkspaceList } from './WorkspaceList'
@@ -21,7 +21,7 @@ export const InboxListItem: React.FC<Props> = memo<Props>((props) => {
 const Component: React.FC<Props> = memo<Props>((props) => {
   const { listItemId } = props
   const { listItem } = useInboxListItem(listItemId)
-  const { isWorkspaceType, isTaskType } = useActivityTypes()
+  const { isWorkspaceType, isTaskType } = useActivityType()
 
   switch (true) {
     case isWorkspaceType(listItem.type):

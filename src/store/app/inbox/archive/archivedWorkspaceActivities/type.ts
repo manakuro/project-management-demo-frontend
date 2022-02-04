@@ -1,4 +1,4 @@
-import { ACTIVITY_TYPE_WORKSPACE } from 'src/store/entities/activityTypes'
+import { ACTIVITY_TYPE_WORKSPACE } from 'src/store/entities/activityType'
 import { ArchivedWorkspaceActivityTasksResponse } from '../archivedWorkspaceActivityTasks'
 
 export type ArchivedWorkspaceActivityResponse = {

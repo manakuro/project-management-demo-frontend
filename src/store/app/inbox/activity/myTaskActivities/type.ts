@@ -1,4 +1,4 @@
-import { ACTIVITY_TYPE_TASK } from 'src/store/entities/activityTypes'
+import { ACTIVITY_TYPE_TASK } from 'src/store/entities/activityType'
 import { MyTaskActivityTasksResponse } from '../myTaskActivityTasks'
 
 export type MyTaskActivityResponse = {

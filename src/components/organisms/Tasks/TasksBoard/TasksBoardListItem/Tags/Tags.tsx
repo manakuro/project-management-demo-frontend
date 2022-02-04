@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { FlexProps, Stack } from 'src/components/atoms'
-import { useTagIdsByTaskId } from 'src/store/entities/tags'
+import { useTaskTagIdsByTaskId } from 'src/store/entities/taskTag'
 import { Tag } from './Tag'
 
 type Props = FlexProps & {
@@ -8,12 +8,12 @@ type Props = FlexProps & {
 }
 
 export const Tags: React.VFC<Props> = memo<Props>((props) => {
-  const { tagIds } = useTagIdsByTaskId(props.taskId)
+  const { taskTagIds } = useTaskTagIdsByTaskId(props.taskId)
 
   return (
     <Stack direction="row" spacing={1} overflow="hidden">
-      {tagIds.map((id) => (
-        <Tag tagId={id} key={id} />
+      {taskTagIds.map((id) => (
+        <Tag taskTagId={id} key={id} />
       ))}
     </Stack>
   )

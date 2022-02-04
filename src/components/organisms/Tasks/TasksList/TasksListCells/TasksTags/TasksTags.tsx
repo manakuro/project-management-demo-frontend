@@ -2,7 +2,7 @@ import React, { memo, useCallback, useState } from 'react'
 import { FlexProps, Stack } from 'src/components/atoms'
 import { TagChip } from 'src/components/molecules'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
-import { useTagIdsByTaskId } from 'src/store/entities/tags'
+import { useTaskTagIdsByTaskId } from 'src/store/entities/taskTag'
 import { Input } from './Input'
 
 type Props = FlexProps & {
@@ -11,7 +11,7 @@ type Props = FlexProps & {
 }
 
 export const TasksTags: React.VFC<Props> = memo<Props>((props) => {
-  const { tagIds } = useTagIdsByTaskId(props.taskId)
+  const { taskTagIds } = useTaskTagIdsByTaskId(props.taskId)
   const [focused, setFocused] = useState<boolean>(false)
 
   const onFocus = useCallback(() => {
@@ -37,8 +37,8 @@ export const TasksTags: React.VFC<Props> = memo<Props>((props) => {
     >
       {!focused && (
         <Stack direction="row" spacing={1} overflow="hidden">
-          {tagIds.map((id) => (
-            <TagChip key={id} tagId={id} variant="button" />
+          {taskTagIds.map((id) => (
+            <TagChip key={id} taskTagId={id} variant="button" />
           ))}
         </Stack>
       )}

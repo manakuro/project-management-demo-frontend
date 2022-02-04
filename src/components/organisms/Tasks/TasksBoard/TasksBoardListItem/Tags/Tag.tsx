@@ -1,15 +1,15 @@
 import React, { memo } from 'react'
 import { FlexProps } from 'src/components/atoms'
 import { TagChip, Tooltip } from 'src/components/molecules'
-import { useTag } from 'src/store/entities/tags'
+import { useTaskTag } from 'src/store/entities/taskTag'
 
 type Props = FlexProps & {
-  tagId: string
+  taskTagId: string
 }
 
 export const Tag: React.VFC<Props> = memo<Props>((props) => {
-  const { tagId } = props
-  const { taskTag } = useTag(tagId)
+  const { taskTagId } = props
+  const { taskTag } = useTaskTag(taskTagId)
 
   return (
     <Tooltip
@@ -19,7 +19,7 @@ export const Tag: React.VFC<Props> = memo<Props>((props) => {
       withIcon
       openDelay={500}
     >
-      <TagChip tagId={tagId} variant="icon" />
+      <TagChip taskTagId={taskTagId} variant="icon" />
     </Tooltip>
   )
 })

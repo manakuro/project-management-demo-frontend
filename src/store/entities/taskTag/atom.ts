@@ -2,7 +2,7 @@ import { selectorFamily } from 'recoil'
 import { createState } from 'src/store/util'
 import { TaskTag } from './type'
 
-const key = (str: string) => `src/store/entities/tags/${str}`
+const key = (str: string) => `src/store/entities/taskTag/${str}`
 
 const initialState = (): TaskTag => ({
   id: '',
@@ -26,17 +26,17 @@ const initialState = (): TaskTag => ({
 })
 
 export const {
-  state: tagState,
-  listState: tagsState,
-  idsState: tagIdsState,
+  state: taskTagState,
+  listState: taskTagsState,
+  idsState: taskTagIdsState,
 } = createState({ key, initialState })
 
-export const tagIdsByTaskIdState = selectorFamily<string[], string>({
-  key: key('tagIdsByTaskIdState'),
+export const taskTagIdsByTaskIdState = selectorFamily<string[], string>({
+  key: key('taskTagIdsByTaskIdState'),
   get:
     (taskId) =>
     ({ get }) => {
-      const tags = get(tagsState)
+      const tags = get(taskTagsState)
       return tags.filter((t) => t.taskId === taskId).map((p) => p.id)
     },
 })

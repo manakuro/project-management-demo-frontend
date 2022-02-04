@@ -4,7 +4,7 @@ import { TagChip } from 'src/components/molecules'
 import { TagMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
-import { useTagIdsByTaskId } from 'src/store/entities/tags'
+import { useTaskTagIdsByTaskId } from 'src/store/entities/taskTag'
 
 type Props = {
   taskId: string
@@ -16,7 +16,7 @@ const HEIGHT = '37px'
 export const Input: React.VFC<Props> = memo((props) => {
   const { taskId, onClose } = props
   const popoverDisclosure = useDisclosure()
-  const { tagIds } = useTagIdsByTaskId(taskId)
+  const { taskTagIds } = useTaskTagIdsByTaskId(taskId)
   const { ref } = useClickOutside(onClose, {
     hasClickedOutside: (e, helper) => {
       if (helper.isContainInPopoverContent(e)) return false
@@ -25,8 +25,8 @@ export const Input: React.VFC<Props> = memo((props) => {
   })
   const [value, setValue] = useState<string>('')
   const hasMultipleTags = useMemo<boolean>(
-    () => tagIds.length > 1,
-    [tagIds.length],
+    () => taskTagIds.length > 1,
+    [taskTagIds.length],
   )
 
   const handleChange = useCallback(
@@ -75,9 +75,9 @@ export const Input: React.VFC<Props> = memo((props) => {
         w="300px"
       >
         <Wrap minH={HEIGHT} py={2} justifyItems="center" display="flex">
-          {tagIds.map((id) => (
+          {taskTagIds.map((id) => (
             <WrapItem key={id}>
-              <TagChip tagId={id} deletable variant="button" />
+              <TagChip taskTagId={id} deletable variant="button" />
             </WrapItem>
           ))}
           <WrapItem>

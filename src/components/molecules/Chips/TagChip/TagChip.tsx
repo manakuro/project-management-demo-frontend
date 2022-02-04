@@ -1,12 +1,12 @@
 import React, { memo, useCallback } from 'react'
 import { Box, Button, Icon, IconProps, Text } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useTag } from 'src/store/entities/tags'
+import { useTaskTag } from 'src/store/entities/taskTag'
 
 type Variant = 'button' | 'icon'
 
 type Props = {
-  tagId: string
+  taskTagId: string
   variant: Variant
   onDelete?: () => void
   deletable?: boolean
@@ -14,8 +14,8 @@ type Props = {
 }
 
 export const TagChip: React.VFC<Props> = memo<Props>((props) => {
-  const { tagId, variant, iconProps } = props
-  const { taskTag } = useTag(tagId)
+  const { taskTagId, variant, iconProps } = props
+  const { taskTag } = useTaskTag(taskTagId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   const handleDelete = useCallback(

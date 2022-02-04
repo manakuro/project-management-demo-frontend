@@ -1,9 +1,9 @@
 import React, { memo, useCallback } from 'react'
 import { SearchMenuListItem } from 'src/components/organisms/Menus/SearchMenu'
-import { TaskTag } from 'src/store/entities/tags'
+import { TaskTag } from 'src/store/entities/taskTag'
 
 type Props = {
-  onClick: (tag: string) => void
+  onClick: (taskTag: string) => void
   taskTag: TaskTag
   index: number
 }

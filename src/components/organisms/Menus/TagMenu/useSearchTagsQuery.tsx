@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
-import { TaskTag } from 'src/store/entities/tags'
+import { TaskTag } from 'src/store/entities/taskTag'
 
 const key = (str: string) =>
   `src/components/organisms/Menus/TagMenu/useSearchTagsQuery/${str}`

@@ -1,10 +1,11 @@
-import { useTaskSection } from 'src/store/entities/taskSections'
+import { useTeammateTaskSection } from 'src/store/entities/teammatesTaskSections'
 
 export const useMyTasksTaskSection = (taskSectionId: string) => {
-  const { setSectionName, taskSection } = useTaskSection(taskSectionId)
+  const { teammateTaskSection, setTeammateTaskSectionName } =
+    useTeammateTaskSection(taskSectionId)
 
   return {
-    taskSection,
-    setSectionName,
+    taskSection: teammateTaskSection,
+    setSectionName: setTeammateTaskSectionName,
   }
 }

@@ -1,10 +1,12 @@
 import { useMyTasksTaskSection } from 'src/store/app/myTasks/taskSections'
 import { useProjectsTaskSection } from 'src/store/app/projects/taskSections'
-import { TaskSection } from 'src/store/entities/taskSections'
 import { useTasksContext } from '../TasksProvider'
 
 type Result = {
-  taskSection: TaskSection
+  taskSection: {
+    id: string
+    name: string
+  }
   setSectionName: (val: string) => Promise<void>
 }
 

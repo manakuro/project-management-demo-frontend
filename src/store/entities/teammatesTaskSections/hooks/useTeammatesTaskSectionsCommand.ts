@@ -28,5 +28,6 @@ export const useTeammatesTaskSectionsCommand = () => {
 
   return {
     addTeammatesTaskSection,
+    upsert,
   }
 }

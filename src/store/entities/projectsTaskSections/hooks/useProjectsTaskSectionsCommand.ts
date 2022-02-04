@@ -28,5 +28,6 @@ export const useProjectsTaskSectionsCommand = () => {
 
   return {
     addProjectsTaskSection,
+    upsert,
   }
 }

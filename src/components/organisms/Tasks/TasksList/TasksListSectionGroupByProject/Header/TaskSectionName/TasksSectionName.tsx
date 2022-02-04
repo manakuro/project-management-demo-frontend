@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Box } from 'src/components/atoms'
-import { useProject } from 'src/store/entities/projects'
+import { useProject } from 'src/store/entities/project'
 
 type Props = {
   projectId: string

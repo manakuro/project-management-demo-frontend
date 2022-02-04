@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { Flex, FlexProps, Icon, Link } from 'src/components/atoms'
-import { useProject } from 'src/store/entities/projects'
+import { useProject } from 'src/store/entities/project'
 import { transitions } from 'src/styles'
 
 type Props = FlexProps & {

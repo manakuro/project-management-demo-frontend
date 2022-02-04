@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { FlexProps, Flex } from 'src/components/atoms'
+import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
-import { useProject } from 'src/store/entities/projects'
 
 type Props = FlexProps & {
   projectId: string

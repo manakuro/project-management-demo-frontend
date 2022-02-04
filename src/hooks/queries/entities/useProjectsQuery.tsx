@@ -6,7 +6,7 @@ import { getNodesFromEdges } from 'src/shared/apollo/util'
 import {
   ProjectResponse,
   useProjectsResponse,
-} from 'src/store/entities/projects'
+} from 'src/store/entities/project'
 
 export const useProjectsQuery = () => {
   const queryResult = useQuery()

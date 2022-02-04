@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { SearchMenuListItem } from 'src/components/organisms/Menus/SearchMenu'
-import { Project } from 'src/store/entities/projects'
+import { Project } from 'src/store/entities/project'
 
 type Props = {
   onClick: (project: string) => void

@@ -7,7 +7,7 @@ import {
   PopoverTrigger,
   PopoverProps,
 } from 'src/components/organisms/Popover'
-import { Project } from 'src/store/entities/projects'
+import { Project } from 'src/store/entities/project'
 import { ColorPicker } from './ColorPicker'
 import { IconPicker } from './IconPicker'
 import { Setting } from './Setting'

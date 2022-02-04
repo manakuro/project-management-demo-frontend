@@ -2,8 +2,8 @@ import React, { memo } from 'react'
 import { ColorBox, Flex, Icon, Text } from 'src/components/atoms'
 import { MenuItem } from 'src/components/organisms/Menu'
 import { PopoverSetColorAndIcon } from 'src/components/organisms/Popovers'
+import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
-import { useProject } from 'src/store/entities/projects'
 
 type Props = {
   onClose: () => void

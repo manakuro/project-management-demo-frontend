@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
-import { ProjectResponse } from 'src/store/entities/projects'
+import { ProjectResponse } from 'src/store/entities/project'
 import { teammates } from 'src/store/entities/teammates/data'
 
 const key = (str: string) =>

@@ -6,7 +6,7 @@ import {
   parseDescription,
   stringifyDescription,
 } from 'src/shared/prosemirror/convertDescription'
-import { useProject, useProjectCommand } from 'src/store/entities/projects'
+import { useProject, useProjectCommand } from 'src/store/entities/project'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
 import { Provider } from './Provider'

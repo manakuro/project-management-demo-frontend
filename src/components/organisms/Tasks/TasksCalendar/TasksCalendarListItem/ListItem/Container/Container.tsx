@@ -1,11 +1,11 @@
 import React, { memo, useMemo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { forwardRef } from 'src/shared/chakra'
+import { useProject } from 'src/store/entities/project'
 import {
   useProjectBaseColor,
   useProjectBaseColorText,
 } from 'src/store/entities/projectBaseColor'
-import { useProject } from 'src/store/entities/projects'
 import { useTask } from 'src/store/entities/tasks'
 import { transitions } from 'src/styles'
 

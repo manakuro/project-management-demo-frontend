@@ -6,7 +6,7 @@ import {
   ModalHeader,
   ModalCloseButton,
 } from 'src/components/organisms/Modal'
-import { useProject, useProjectCommand } from 'src/store/entities/projects'
+import { useProject, useProjectCommand } from 'src/store/entities/project'
 import { Description } from './Description'
 import { DescriptionTitle } from './DescriptionTitle'
 import { Label } from './Label'

@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { ProjectsContainer } from 'src/pages/Home/ProjectsContainer'
-import { useProjectIds } from 'src/store/entities/projects'
+import { useProjectIds } from 'src/store/entities/project'
 
 type Props = {}
 

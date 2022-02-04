@@ -1,7 +1,7 @@
 import { createState } from '../../util'
 import { Project } from './type'
 
-const key = (str: string) => `src/store/entities/projects/${str}`
+const key = (str: string) => `src/store/entities/project/${str}`
 
 const initialState = (): Project => ({
   id: '',

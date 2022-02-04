@@ -10,7 +10,7 @@ import {
   ProjectTileItemNew,
 } from 'src/components/organisms/Projects'
 import { ROUTE_PROJECTS_LIST } from 'src/router'
-import { useProjectIds } from 'src/store/entities/projects'
+import { useProjectIds } from 'src/store/entities/project'
 import {
   OverviewSectionHeader,
   OverviewSectionHeaderHeading,

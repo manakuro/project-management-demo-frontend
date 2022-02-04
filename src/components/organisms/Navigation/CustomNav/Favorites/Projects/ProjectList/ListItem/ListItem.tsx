@@ -4,8 +4,8 @@ import { useNavigation, PADDING_X } from 'src/components/organisms/Navigation'
 import { useLinkHoverStyle } from 'src/hooks'
 import { ROUTE_PROJECTS_LIST, useRouter } from 'src/router'
 import { ROUTE_PROJECTS } from 'src/router/projects'
+import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
-import { useProject } from 'src/store/entities/projects'
 import { ProjectMenu } from './ProjectMenu'
 
 type Props = {

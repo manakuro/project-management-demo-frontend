@@ -6,7 +6,7 @@ import {
   MenuButtonProps,
 } from 'src/components/organisms/Menu'
 import { ChakraProps, useDisclosure } from 'src/shared/chakra'
-import { useProject } from 'src/store/entities/projects'
+import { useProject } from 'src/store/entities/project'
 import { MenuList } from './MenuList'
 
 type Props = MenuButtonProps & {

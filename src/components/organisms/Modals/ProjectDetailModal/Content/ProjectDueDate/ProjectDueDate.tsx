@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { DatePickerWithInput } from 'src/components/molecules'
-import { useProject, useProjectCommand } from 'src/store/entities/projects'
+import { useProject, useProjectCommand } from 'src/store/entities/project'
 
 type Props = {
   projectId: string

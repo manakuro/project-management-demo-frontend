@@ -8,8 +8,8 @@ import {
   PopoverEditorLinkText,
 } from 'src/components/organisms/Popovers'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
+import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
-import { useProject } from 'src/store/entities/projects'
 
 export const Project: React.FC = memo(() => {
   const context = useReactNodeView()

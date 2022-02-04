@@ -119,7 +119,7 @@ const fetch = async (): Promise<ArchiveResponse> => {
                   dueTime: new Date(
                     dateFns.addDays(new Date(), 3),
                   ).toISOString(),
-                  isDone: true,
+                  completed: true,
                   subTasks: [],
                   assigneeId: '1',
                   attachments: [],
@@ -165,7 +165,7 @@ const fetch = async (): Promise<ArchiveResponse> => {
                     dateFns.addDays(new Date(), 4),
                   ).toISOString(),
                   dueTime: '',
-                  isDone: true,
+                  completed: true,
                   subTasks: [],
                   assigneeId: '1',
                   attachments: [],
@@ -229,7 +229,7 @@ const fetch = async (): Promise<ArchiveResponse> => {
                   dueDate: new Date(
                     dateFns.addDays(new Date(), 5),
                   ).toISOString(),
-                  isDone: false,
+                  completed: false,
                   subTasks: [],
                   assigneeId: '1',
                   attachments: [],
@@ -293,7 +293,7 @@ const fetch = async (): Promise<ArchiveResponse> => {
                   dueTime: new Date(
                     dateFns.addDays(new Date(), 3),
                   ).toISOString(),
-                  isDone: true,
+                  completed: true,
                   subTasks: [],
                   assigneeId: '1',
                   attachments: [],
@@ -339,7 +339,7 @@ const fetch = async (): Promise<ArchiveResponse> => {
                     dateFns.addDays(new Date(), 4),
                   ).toISOString(),
                   dueTime: '',
-                  isDone: true,
+                  completed: true,
                   subTasks: [],
                   assigneeId: '1',
                   attachments: [],
@@ -393,7 +393,7 @@ const fetch = async (): Promise<ArchiveResponse> => {
                   dueDate: new Date(
                     dateFns.addDays(new Date(), 5),
                   ).toISOString(),
-                  isDone: false,
+                  completed: false,
                   subTasks: [],
                   assigneeId: '1',
                   attachments: [],
@@ -445,7 +445,7 @@ const fetch = async (): Promise<ArchiveResponse> => {
                   dueDate: new Date(
                     dateFns.addDays(new Date(), 5),
                   ).toISOString(),
-                  isDone: false,
+                  completed: false,
                   subTasks: [],
                   assigneeId: '1',
                   attachments: [],
@@ -497,7 +497,7 @@ const fetch = async (): Promise<ArchiveResponse> => {
                   dueDate: new Date(
                     dateFns.addDays(new Date(), 5),
                   ).toISOString(),
-                  isDone: false,
+                  completed: false,
                   subTasks: [],
                   assigneeId: '1',
                   attachments: [],

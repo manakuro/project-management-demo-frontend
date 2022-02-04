@@ -25,7 +25,7 @@ export const MarkComplete: React.FC<Props> = memo((props) => {
       icon={<Icon icon="checkCircle" color="text.muted" />}
       onClick={handleClick}
     >
-      {task.isDone ? 'Mark Incomplete' : 'Mark complete'}
+      {task.completed ? 'Mark Incomplete' : 'Mark complete'}
     </MenuItem>
   )
 })

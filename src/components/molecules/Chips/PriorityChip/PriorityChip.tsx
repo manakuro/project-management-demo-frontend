@@ -23,19 +23,19 @@ export const PriorityChip: React.VFC<Props> = memo((props) => {
     [onClick, disableStopPropagation],
   )
 
-  if (!task.priority) return null
+  if (!task.taskPriority) return null
 
   return (
     <Badge
       h={5}
       variant="solid"
-      bg={task.priority.color}
+      bg={task.taskPriority.color.color}
       textAlign="center"
       fontWeight="medium"
       lineHeight={1.7}
       onClick={handleClick}
     >
-      {task.priority.text}
+      {task.taskPriority.name}
     </Badge>
   )
 })

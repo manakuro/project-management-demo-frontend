@@ -24,7 +24,7 @@ export type Task = Omit<
 //   dueTime?: string
 //   id: string
 //   isDeleted: boolean
-//   isDone: boolean
+//   completed: boolean
 //   doneAt: string
 //   isNew: boolean
 //   name: string
@@ -44,7 +44,7 @@ export type Task = Omit<
 //   feeds: TaskFeed[]
 //   id: string
 //   isDeleted: boolean
-//   isDone: boolean
+//   completed: boolean
 //   doneAt: string
 //   isNew: boolean
 //   name: string

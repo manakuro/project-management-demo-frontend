@@ -37,7 +37,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
 
   return (
     <Flex>
-      <CheckIcon isDone={task.isDone} onClick={handleToggleDone} />
+      <CheckIcon completed={task.completed} onClick={handleToggleDone} />
       <TasksNameField
         taskId={task.id}
         value={task.name}

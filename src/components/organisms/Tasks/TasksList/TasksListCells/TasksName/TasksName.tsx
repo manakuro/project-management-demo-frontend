@@ -56,19 +56,19 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
   const handleToggleDone = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
       e.stopPropagation()
-      if (!task.isDone) {
+      if (!task.completed) {
         onStartTransition()
         setTimeout(async () => {
-          await setTask({ isDone: !task.isDone })
+          await setTask({ completed: !task.completed })
           onEndTransition()
         }, 1000)
         return
       }
 
-      await setTask({ isDone: !task.isDone })
+      await setTask({ completed: !task.completed })
       onEndTransition()
     },
-    [onEndTransition, onStartTransition, setTask, task.isDone],
+    [onEndTransition, onStartTransition, setTask, task.completed],
   )
 
   return (
@@ -91,7 +91,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
         </TasksNameGrabIconContainer>
         <ExpandIcon taskId={props.taskId} />
         <CheckIcon
-          isDone={task.isDone}
+          completed={task.completed}
           ml={1}
           onClick={handleToggleDone}
           zIndex={2}
@@ -100,7 +100,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
         <TasksNameField
           value={task.name}
           isNew={task.isNew}
-          isDone={task.isDone}
+          completed={task.completed}
           onChange={handleChangeName}
           deleteTask={deleteTask}
           focusedBorder

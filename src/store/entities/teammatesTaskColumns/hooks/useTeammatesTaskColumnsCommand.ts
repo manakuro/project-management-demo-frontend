@@ -1,11 +1,11 @@
 import { useRecoilCallback } from 'recoil'
 import { teammatesTaskColumnState } from '../atom'
-import { TeammatesTaskColumn } from '../type'
+import { TeammateTaskColumn } from '../type'
 
 export const useTeammatesTaskColumnsCommand = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
-      (taskColumn: TeammatesTaskColumn) => {
+      (taskColumn: TeammateTaskColumn) => {
         set(teammatesTaskColumnState(taskColumn.id), taskColumn)
       },
     [],
@@ -13,7 +13,7 @@ export const useTeammatesTaskColumnsCommand = () => {
 
   const setTeammatesTaskColumn = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: Partial<TeammatesTaskColumn> & { id: string }) => {
+      async (val: Partial<TeammateTaskColumn> & { id: string }) => {
         const current = await snapshot.getPromise(
           teammatesTaskColumnState(val.id),
         )

@@ -12,7 +12,7 @@ export const Task: React.FC<Props> = memo<Props>((props) => {
   return (
     <Flex alignItems="center" flex={1}>
       <LeftContainer>
-        <CheckIcon isDone={props.mention.idDone} />
+        <CheckIcon completed={props.mention.idDone} />
       </LeftContainer>
       <RightContainer>
         <Text fontSize="sm" maxW="80%" isTruncated>

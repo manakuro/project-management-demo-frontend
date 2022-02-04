@@ -10,7 +10,7 @@ type Props = {
   isTransitioning: boolean
   onEndTransition: () => void
   onStartTransition: () => void
-} & Omit<CheckIconProps, 'isDone'>
+} & Omit<CheckIconProps, 'completed'>
 
 export const CheckIcon: React.VFC<Props> = memo((props) => {
   const { taskId, isTransitioning, onEndTransition, onStartTransition } = props
@@ -21,24 +21,24 @@ export const CheckIcon: React.VFC<Props> = memo((props) => {
       e.stopPropagation()
       e.preventDefault()
 
-      if (!task.isDone) {
+      if (!task.completed) {
         onStartTransition()
         setTimeout(async () => {
-          await setTask({ isDone: !task.isDone })
+          await setTask({ completed: !task.completed })
           onEndTransition()
         }, 1000)
         return
       }
 
-      await setTask({ isDone: !task.isDone })
+      await setTask({ completed: !task.completed })
       onEndTransition()
     },
-    [onEndTransition, onStartTransition, setTask, task.isDone],
+    [onEndTransition, onStartTransition, setTask, task.completed],
   )
 
   return (
     <AtomsCheckIcon
-      isDone={task.isDone}
+      completed={task.completed}
       onClick={handleToggleDone}
       isTransitioning={isTransitioning}
     />

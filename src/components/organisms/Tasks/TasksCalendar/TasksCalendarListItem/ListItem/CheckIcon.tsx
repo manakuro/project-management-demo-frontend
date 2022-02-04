@@ -18,7 +18,7 @@ export const CheckIcon: React.FC<Props> = memo<Props>((props) => {
   const handleToggleDone = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
       e.stopPropagation()
-      await setTask({ isDone: !task.isDone })
+      await setTask({ completed: !task.completed })
     },
     [task, setTask],
   )
@@ -33,7 +33,7 @@ export const CheckIcon: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <AtomsCheckIcon
-      isDone={task.isDone}
+      completed={task.completed}
       onClick={handleToggleDone}
       marginLeft={isHovering ? 0 : '-25px'}
       {...colorStyle}

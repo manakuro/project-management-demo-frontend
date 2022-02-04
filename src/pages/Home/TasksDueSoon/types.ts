@@ -3,6 +3,6 @@ export type TaskDueSoon = {
   projectId: string
   name: string
   dueDate: string
-  isDone: boolean
+  completed: boolean
   dueTime?: string
 }

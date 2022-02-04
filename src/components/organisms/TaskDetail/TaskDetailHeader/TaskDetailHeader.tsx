@@ -45,7 +45,7 @@ export const TaskDetailHeader: React.FC<Props> = memo<Props>((props) => {
     <Flex px={6} h="57px" alignItems="center" flex={1} {...rest}>
       <Flex flex={1}>
         <Button
-          leftIcon={<CheckIcon isDone mt="0.75px" />}
+          leftIcon={<CheckIcon completed mt="0.75px" />}
           colorScheme="teal"
           variant="outline"
           size="xs"

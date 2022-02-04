@@ -40,9 +40,9 @@ export const Container: React.FC<Props> = memo<Props>(
 
     const style = useMemo(
       () => ({
-        ...(task.isDone ? { opacity: 0.6 } : {}),
+        ...(task.completed ? { opacity: 0.6 } : {}),
       }),
-      [task.isDone],
+      [task.completed],
     )
 
     return (

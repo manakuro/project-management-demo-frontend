@@ -1,0 +1,5 @@
+query HomePage($workspaceId: ID!, $teammateId: ID!) {
+  tasksDueSoon(workspaceId: $workspaceId, teammateId: $teammateId) {
+    ...TeammateTaskFragment
+  }
+}

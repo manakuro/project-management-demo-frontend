@@ -1,5 +1,1 @@
-import { TaskDueSoonResponse } from './tasksDueSoon'
-
-export type HomeResponse = {
-  tasksDueSoon: TaskDueSoonResponse[]
-}
+export type { HomeResponse } from 'src/graphql/types/app/home'

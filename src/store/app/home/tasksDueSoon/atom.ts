@@ -1,23 +1,19 @@
-import { selectorFamily } from 'recoil'
+import { selector } from 'recoil'
 import {
-  filterByTeammateId,
   sortByDueDate,
   filterByDueDateInFiveDays,
 } from 'src/store/entities/task'
-import { tasksState } from 'src/store/entities/task'
+import { tasksByTeammateIdState } from 'src/store/entities/teammateTask'
 
 const key = (str: string) => `src/store/app/home/tasks/${str}`
 
-export const taskIdsState = selectorFamily<string[], string>({
+export const taskIdsState = selector<string[]>({
   key: key('taskIdsState'),
-  get:
-    (teammateId) =>
-    ({ get }) => {
-      let tasks = get(tasksState)
-      tasks = filterByTeammateId(teammateId)(tasks)
-      tasks = filterByDueDateInFiveDays(tasks)
-      tasks = sortByDueDate(tasks)
+  get: ({ get }) => {
+    let tasks = get(tasksByTeammateIdState)
+    tasks = filterByDueDateInFiveDays(tasks)
+    tasks = sortByDueDate(tasks)
 
-      return tasks.map((t) => t.id)
-    },
+    return tasks.map((t) => t.id)
+  },
 })

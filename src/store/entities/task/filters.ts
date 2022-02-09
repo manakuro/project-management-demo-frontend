@@ -10,13 +10,16 @@ export const sortByDueDate = (tasks: Task[]) => {
   })
 }
 export const filterByDueDateInFiveDays = (tasks: Task[]) => {
-  return tasks.filter(
-    (t) =>
+  return tasks.filter((t) => {
+    if (!t.dueDate) return false
+
+    return (
       (dateFns.intervalToDuration({
         start: dateFns.endOfDay(new Date()),
         end: dateFns.endOfDay(new Date(t.dueDate)),
-      })?.days ?? 0) <= 5,
-  )
+      })?.days ?? 0) <= 5
+    )
+  })
 }
 export const filterByTeammateId = (teammateId: string) => (tasks: Task[]) =>
   tasks.filter((t) => t.assigneeId === teammateId)

@@ -1,5 +1,13 @@
 import React, { memo, useCallback } from 'react'
-import { Badge, Box, Button, ColorBox, Icon, Text } from 'src/components/atoms'
+import {
+  Badge,
+  BadgeProps,
+  Box,
+  Button,
+  ColorBox,
+  Icon,
+  Text,
+} from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
@@ -12,6 +20,7 @@ type Props = {
   onDelete?: () => void
   deletable?: boolean
   onClick?: () => void
+  badgeProps?: BadgeProps
 }
 
 export const ProjectChip: React.VFC<Props> = memo((props) => {
@@ -43,6 +52,7 @@ export const ProjectChip: React.VFC<Props> = memo((props) => {
         bg={projectBaseColor.color.color}
         textAlign="center"
         onClick={handleClick}
+        {...props.badgeProps}
       >
         {project.name}
       </Badge>

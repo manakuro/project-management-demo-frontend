@@ -54,7 +54,15 @@ export const ListItem: React.VFC<Props> = memo((props) => {
       <Flex flex="0 0 auto" alignItems="center" justifyContent="flex-end">
         <Stack direction="row" spacing={2}>
           {projectIds.map((id) => (
-            <ProjectChip variant="badge" projectId={id} key={id} />
+            <ProjectChip
+              variant="badge"
+              projectId={id}
+              key={id}
+              badgeProps={{
+                isTruncated: true,
+                maxW: 20,
+              }}
+            />
           ))}
         </Stack>
         <PopoverDueDatePicker

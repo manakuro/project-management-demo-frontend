@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useHomePageQuery as useQuery } from 'src/graphql/hooks'
 import { useMountedRef } from 'src/hooks'
 import { useHomeResponse } from 'src/store/app/home'
@@ -13,28 +13,39 @@ export const useHomePageQuery = () => {
   const { setHome } = useHomeResponse()
   const { mountedRef } = useMountedRef()
 
-  const queryResult = useQuery({
+  const { refetch: refetchQuery } = useQuery({
     variables: {
       teammateId: me.id,
       workspaceId: workspace.id,
     },
+    fetchPolicy: 'network-only',
+    notifyOnNetworkStatusChange: true,
+    onCompleted: (data) => {
+      if (!mountedRef.current) return
+
+      setHome(data)
+      endLoading()
+    },
     skip,
   })
 
-  useEffect(() => {
-    setLoading(queryResult.loading)
-  }, [queryResult.loading])
+  const startLoading = useCallback(() => {
+    setLoading(true)
+  }, [])
 
-  useEffect(() => {
-    if (!queryResult.data) return
-    if (loading) return
-    if (!mountedRef.current) return
-
-    setHome(queryResult.data)
+  const endLoading = useCallback(() => {
     setLoading(false)
-  }, [loading, mountedRef, queryResult.data, setHome])
+  }, [])
+
+  const refetch = useCallback(async () => {
+    startLoading()
+    setTimeout(async () => {
+      await refetchQuery()
+    })
+  }, [refetchQuery, startLoading])
 
   return {
     loading,
+    refetch,
   }
 }

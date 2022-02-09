@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useMyTasksPageQuery as useQuery } from 'src/graphql/hooks'
 import { useMountedRef } from 'src/hooks'
 import { useMyTasksResponse } from 'src/store/app/myTasks'
@@ -13,29 +13,39 @@ export const useMyTasksPageQuery = () => {
   const { setMyTasks } = useMyTasksResponse()
   const { mountedRef } = useMountedRef()
 
-  const queryResult = useQuery({
+  const { refetch: refetchQuery } = useQuery({
     variables: {
       teammateId: me.id,
       workspaceId: workspace.id,
     },
+    fetchPolicy: 'network-only',
+    notifyOnNetworkStatusChange: true,
+    onCompleted: (data) => {
+      if (!mountedRef.current) return
+
+      setMyTasks(data)
+      endLoading()
+    },
     skip,
   })
 
-  useEffect(() => {
-    setLoading(queryResult.loading)
-  }, [queryResult.loading])
+  const startLoading = useCallback(() => {
+    setLoading(true)
+  }, [])
 
-  useEffect(() => {
-    if (!queryResult.data) return
-    if (loading) return
-    if (!mountedRef.current) return
-
-    setMyTasks(queryResult.data)
+  const endLoading = useCallback(() => {
     setLoading(false)
-  }, [loading, mountedRef, queryResult.data, setMyTasks])
+  }, [])
+
+  const refetch = useCallback(async () => {
+    startLoading()
+    setTimeout(async () => {
+      await refetchQuery()
+    })
+  }, [refetchQuery, startLoading])
 
   return {
-    refetch: queryResult.refetch,
+    refetch,
     loading,
   }
 }

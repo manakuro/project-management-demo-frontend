@@ -7,11 +7,7 @@ import { useTeammateTaskTabStatusQuery } from 'src/hooks/queries/entities'
 import { Component } from './Component'
 
 export const Container: React.FC & GetLayout = () => {
-  const { refetch, loading } = useMyTasksPageQuery()
-
-  useEffect(() => {
-    refetch()
-  }, [refetch])
+  const { loading } = useMyTasksPageQuery()
 
   return <Component loading={loading} />
 }

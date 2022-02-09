@@ -7,4 +7,5 @@ export const Container: React.FC = memo(() => {
 
   return <Component loading={loading} />
 })
+
 Container.displayName = 'Container'

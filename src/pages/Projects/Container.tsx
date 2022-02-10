@@ -8,16 +8,17 @@ import { Component } from './Component'
 export const Container: React.FC = memo(() => {
   const { router } = useRouter()
   const { projectId, setProjectId } = useProjectsProjectId()
-  const { refetch, loading, startLoading } = useProjectsPageQuery({ projectId })
+  const { loading, startLoading } = useProjectsPageQuery({ projectId })
 
   useEffect(() => {
-    const projectId = getProjectsIdFromURL(router)
-    console.log('projectId: ', projectId)
-    if (!projectId) return
+    const id = getProjectsIdFromURL(router)
+    if (!id) return
+    if (projectId === id) return
 
+    console.log('projectId: ', id)
     startLoading()
-    setProjectId(projectId)
-  }, [refetch, router, setProjectId, startLoading])
+    setProjectId(id)
+  }, [router, setProjectId, startLoading, projectId])
 
   return <Component loading={loading} />
 })

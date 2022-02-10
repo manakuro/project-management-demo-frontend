@@ -1,7 +1,7 @@
 import { ulidRegex } from 'src/shared/ulid'
 
 export const ROUTE_PROJECTS = {
-  regex: new RegExp(`^/projects/${ulidRegex}/?$`, 'iu'),
+  regex: new RegExp(`^/projects/${ulidRegex}/?`, 'iu'),
   href: {
     pathname: (id: string) => `/projects/${id}`,
     pathnameObj: (id: string) =>

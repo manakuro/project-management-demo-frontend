@@ -17,8 +17,8 @@ export const TasksPriority: React.VFC<Props> = memo<Props>((props) => {
   const [focused, setFocused] = useState(false)
   const { ref, isHovering } = useHover()
   const hasPriority = useMemo(
-    () => !task.taskPriority.priorityType,
-    [task.taskPriority.priorityType],
+    () => !task.taskPriority?.priorityType,
+    [task.taskPriority?.priorityType],
   )
 
   const showMenuIcon = useMemo(

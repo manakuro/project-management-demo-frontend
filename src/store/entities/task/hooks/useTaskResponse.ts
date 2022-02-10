@@ -7,7 +7,7 @@ import { taskFileState } from 'src/store/entities/taskFile'
 import { taskTagState } from 'src/store/entities/taskTag'
 import { taskTeammateState } from 'src/store/entities/taskTeammate'
 import { useTeammateResponse } from 'src/store/entities/teammate'
-import { taskState } from '../atom'
+import { initialState, taskState } from '../atom'
 import { TaskResponse } from '../type'
 
 export const useTasksResponse = () => {
@@ -63,7 +63,12 @@ const useSetters = () => {
   const setTaskValue = useRecoilCallback(
     ({ set }) =>
       (data: TaskResponse) => {
-        set(taskState(data.id), data)
+        set(taskState(data.id), {
+          ...data,
+          taskPriority: {
+            ...(data?.taskPriority || initialState().taskPriority),
+          },
+        })
       },
     [],
   )

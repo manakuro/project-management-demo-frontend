@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useProjectsPageQuery as useQuery } from 'src/graphql/hooks'
+import { ProjectsPageQueryVariables as Variables } from 'src/graphql/types/app/projects'
 import { useMountedRef } from 'src/hooks'
 import { useProjectsResponse } from 'src/store/app/projects'
 
@@ -8,33 +9,47 @@ type Props = {
 }
 
 export const useProjectsPageQuery = (props: Props) => {
-  const skip = useMemo(() => !props.projectId, [])
+  const skip = useMemo(() => !props.projectId, [props.projectId])
   const [loading, setLoading] = useState(true)
   const { setProjects } = useProjectsResponse()
   const { mountedRef } = useMountedRef()
 
-  const queryResult = useQuery({
+  const { refetch: refetchQuery } = useQuery({
     variables: {
       projectId: props.projectId,
+    },
+    fetchPolicy: 'network-only',
+    notifyOnNetworkStatusChange: true,
+    onCompleted: (data) => {
+      if (!mountedRef.current) return
+
+      setProjects(data)
+      endLoading()
     },
     skip,
   })
 
-  useEffect(() => {
-    setLoading(queryResult.loading)
-  }, [queryResult.loading])
+  const startLoading = useCallback(() => {
+    setLoading(true)
+  }, [])
 
-  useEffect(() => {
-    if (!queryResult.data) return
-    if (loading) return
-    if (!mountedRef.current) return
-
-    setProjects(queryResult.data)
+  const endLoading = useCallback(() => {
     setLoading(false)
-  }, [loading, mountedRef, queryResult.data, setProjects])
+  }, [])
+
+  const refetch = useCallback(
+    async (variables: Variables) => {
+      startLoading()
+      setTimeout(async () => {
+        await refetchQuery(variables)
+      })
+    },
+    [refetchQuery, startLoading],
+  )
 
   return {
-    refetch: queryResult.refetch,
+    startLoading,
+    refetch,
     loading,
   }
 }

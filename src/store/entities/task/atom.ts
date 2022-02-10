@@ -15,8 +15,6 @@ export const initialState = (): Task => ({
   name: '',
   taskSectionId: '',
   taskParentId: '',
-  // taskSectionId: '',
-  // priority: 0,
   taskPriorityId: '',
   taskPriority: {
     id: '',

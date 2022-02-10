@@ -1,5 +1,4 @@
 import { selectorFamily } from 'recoil'
-import { taskSectionState, TaskSection } from 'src/store/entities/taskSection'
 import { createState } from 'src/store/util'
 import { ProjectTaskSection } from './type'
 
@@ -21,7 +20,7 @@ export const {
 } = createState({ key, initialState })
 
 export const taskSectionsByProjectIdState = selectorFamily<
-  TaskSection[],
+  ProjectTaskSection[],
   string
 >({
   key: key('taskSectionsByProjectIdState'),
@@ -29,8 +28,6 @@ export const taskSectionsByProjectIdState = selectorFamily<
     (projectId) =>
     ({ get }) => {
       const projectsTaskSections = get(projectTaskSectionsState)
-      return projectsTaskSections
-        .filter((t) => t.projectId === projectId)
-        .map((p) => get(taskSectionState(p.id)))
+      return projectsTaskSections.filter((t) => t.projectId === projectId)
     },
 })

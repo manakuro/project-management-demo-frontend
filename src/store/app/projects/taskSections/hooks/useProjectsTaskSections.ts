@@ -1,10 +1,10 @@
 import { useRecoilValue } from 'recoil'
-import { useMe } from 'src/store/entities/me'
+import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { taskSectionsState } from '../atom'
 
 export const useProjectsTaskSections = () => {
-  const { me } = useMe()
-  const taskSections = useRecoilValue(taskSectionsState(me.id))
+  const { projectId } = useProjectsProjectId()
+  const taskSections = useRecoilValue(taskSectionsState(projectId))
 
   return {
     taskSections,

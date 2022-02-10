@@ -77,3 +77,4 @@ const Component: React.VFC = memo(() => {
   )
 })
 List.displayName = 'List'
+Component.displayName = 'Component'

@@ -4,7 +4,7 @@
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
-        "url": "http://localhost:8080/api/graphql_playground",
+        "url": "http://localhost:8081/api/graphql_playground",
         "introspect": false
       }
     }

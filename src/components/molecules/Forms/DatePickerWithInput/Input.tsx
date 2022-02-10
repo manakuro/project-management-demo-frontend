@@ -63,3 +63,4 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
     </PopoverDueDatePicker>
   )
 })
+Input.displayName = 'Input'

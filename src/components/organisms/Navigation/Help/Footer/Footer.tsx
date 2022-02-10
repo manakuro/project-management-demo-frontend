@@ -24,8 +24,9 @@ const items: TNavListItem[] = [
   },
   {
     name: 'Keyboard shortcuts',
-    href: 'portfolios',
+    href: 'https://google.com',
     icon: 'gridHorizontal',
+    isExternal: true,
   },
   {
     name: 'Download mobile app',

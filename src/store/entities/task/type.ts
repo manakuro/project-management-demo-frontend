@@ -1,5 +1,7 @@
 import type { TaskResponse as Response } from 'src/graphql/types/task'
 
+export type { TaskUpdatedSubscription as TaskUpdatedSubscriptionResponse } from 'src/graphql/types/task'
+
 export type TaskResponse = Response & {
   taskSectionId: string // Add id of task section in order to easily access its task section data.
 }

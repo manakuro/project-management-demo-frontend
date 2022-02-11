@@ -1,18 +1,22 @@
+// import { useState } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useUpdateTaskMutation } from 'src/graphql/hooks'
 import { taskState } from '../atom'
 import { Task } from '../type'
+import { useSubscription } from './useSubscription'
 import { useTaskCommand } from './useTaskCommand'
 
-export const useTask = (taskId?: string) => {
-  const task = useRecoilValue(taskState(taskId || ''))
+export const useTask = (taskId: string) => {
+  const task = useRecoilValue(taskState(taskId))
   const { upsert } = useTaskCommand()
   const [updateTaskMutation] = useUpdateTaskMutation()
+  // const [hasDescriptionUpdated, setHasDescriptionUpdated] = useState<number>(1)
+
+  useSubscription(taskId)
 
   const setTask = useRecoilCallback(
     ({ snapshot }) =>
       async (val: Partial<Task>) => {
-        if (!taskId) return
         const current = await snapshot.getPromise(taskState(taskId))
 
         upsert({
@@ -38,8 +42,6 @@ export const useTask = (taskId?: string) => {
   const setTaskPriority = useRecoilCallback(
     ({ snapshot }) =>
       async (val: Partial<Task['taskPriority']>) => {
-        if (!taskId) return
-
         const prev = await snapshot.getPromise(taskState(taskId))
         await setTask({
           taskPriority: {
@@ -68,7 +70,7 @@ export const useTask = (taskId?: string) => {
   const setTaskName = useRecoilCallback(
     ({ snapshot }) =>
       async (val: string) => {
-        const current = await snapshot.getPromise(taskState(task.id))
+        const current = await snapshot.getPromise(taskState(taskId))
         // Skip when touching input for the first time
         if (current.isNew && !current.name && !val) return
         if (current.name && val && current.name === val) return
@@ -76,7 +78,7 @@ export const useTask = (taskId?: string) => {
         const isNew = current.isNew && !!val ? { isNew: false } : {}
         await setTask({ name: val, ...isNew })
       },
-    [setTask, task.id],
+    [setTask, taskId],
   )
 
   return {

@@ -1,5 +1,8 @@
-import React, { memo, useEffect } from 'react'
-import { useProjectsPageQuery } from 'src/hooks/queries/app'
+import React, { memo, useCallback, useEffect } from 'react'
+import {
+  useProjectsPageQuery,
+  useProjectsTaskDetailPageQuery,
+} from 'src/hooks/queries/app'
 import { useRouter } from 'src/router'
 import { getProjectsIdFromURL } from 'src/router/projects'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
@@ -9,6 +12,8 @@ export const Container: React.FC = memo(() => {
   const { router } = useRouter()
   const { projectId, setProjectId } = useProjectsProjectId()
   const { loading, startLoading } = useProjectsPageQuery({ projectId })
+  const { refetch: refetchProjectsTaskDetailPageQuery } =
+    useProjectsTaskDetailPageQuery()
 
   useEffect(() => {
     const id = getProjectsIdFromURL(router)
@@ -20,6 +25,18 @@ export const Container: React.FC = memo(() => {
     setProjectId(id)
   }, [router, setProjectId, startLoading, projectId])
 
-  return <Component loading={loading} />
+  const fetchTaskDetailQuery = useCallback(
+    async (variables: { taskId: string }) => {
+      await refetchProjectsTaskDetailPageQuery({
+        taskId: variables.taskId,
+        projectId: projectId,
+      })
+    },
+    [projectId, refetchProjectsTaskDetailPageQuery],
+  )
+
+  return (
+    <Component loading={loading} fetchTaskDetailQuery={fetchTaskDetailQuery} />
+  )
 })
 Container.displayName = 'Container'

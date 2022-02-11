@@ -29,13 +29,14 @@ export const Calendar: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent } = useProjectsPageContext()
+  const { loadingTabContent, fetchTaskDetailQuery } = useProjectsPageContext()
   const { navigateToProjectsCalendar } = useRouter()
   const { projectId } = useProjectsProjectId()
 
   useTasksCalendarDetail({
     isTaskDetailURL: isProjectsDetailURL,
     getTaskDetailId: getProjectsDetailId,
+    fetchQuery: fetchTaskDetailQuery,
   })
 
   const backToPage = useCallback(async () => {

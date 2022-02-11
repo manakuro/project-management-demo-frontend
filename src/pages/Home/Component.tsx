@@ -9,18 +9,21 @@ import { Header } from './Header'
 import { RecentProjects } from './RecentProjects'
 import { SkeletonHome } from './SkeletonHome'
 import { TasksDueSoon } from './TasksDueSoon'
-import { useHomeDetail } from './hooks'
+import { useHomeTaskDetail } from './hooks'
 
 type Props = {
   loading: boolean
+  fetchTaskDetailQuery: (variables: { taskId: string }) => Promise<void>
 }
 
 export const Component: React.VFC<Props> = memo<Props>((props) => {
+  const { fetchTaskDetailQuery } = props
   const { navigateToHome } = useRouter()
 
-  useHomeDetail({
+  useHomeTaskDetail({
     isTaskDetailURL: isHomeDetailURL,
     getTaskDetailId: getHomeDetailId,
+    fetchQuery: fetchTaskDetailQuery,
   })
 
   return (

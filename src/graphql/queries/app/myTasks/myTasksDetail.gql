@@ -1,0 +1,5 @@
+query MyTasksDetailPage($taskId: ID!, $teammateId: ID!) {
+  teammateTask(where: { taskID: $taskId, teammateID: $teammateId }) {
+    ...TeammateTaskFragment
+  }
+}

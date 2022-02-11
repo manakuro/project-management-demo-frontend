@@ -7,13 +7,14 @@ import { useRouter } from 'src/router'
 type Props = {
   isTaskDetailURL: (router: NextRouter) => boolean
   getTaskDetailId: (router: NextRouter) => string
+  fetchQuery: (variables: { taskId: string }) => Promise<void>
 }
 
 export const useInboxTaskDetail = (props: Props) => {
   const { router } = useRouter()
-  const { refetch, setId, setLoading, taskId, resetId } = useTaskDetail()
+  const { setId, setLoading, taskId, resetId } = useTaskDetail()
   const { onOpen } = useTaskDetailSide()
-  const { isTaskDetailURL, getTaskDetailId } = props
+  const { isTaskDetailURL, getTaskDetailId, fetchQuery } = props
 
   useEffect(() => {
     return () => {
@@ -31,18 +32,18 @@ export const useInboxTaskDetail = (props: Props) => {
     setId(newId)
     onOpen(() => {
       setTimeout(async () => {
-        await refetch()
+        await fetchQuery({ taskId: newId })
         setLoading(false)
       }, 200)
     })
   }, [
     router,
     onOpen,
-    refetch,
     setLoading,
     setId,
     isTaskDetailURL,
     getTaskDetailId,
     taskId,
+    fetchQuery,
   ])
 }

@@ -33,6 +33,7 @@ const Component: React.VFC = memo(() => {
   useInboxTaskDetail({
     isTaskDetailURL: isInboxDetailURL,
     getTaskDetailId: getInboxDetailId,
+    fetchQuery: async () => {},
   })
 
   if (loading) return <InboxSkeleton />

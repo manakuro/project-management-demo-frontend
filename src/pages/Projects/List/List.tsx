@@ -32,12 +32,13 @@ export const List: React.VFC = memo(() => {
   )
 })
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent } = useProjectsPageContext()
+  const { loadingTabContent, fetchTaskDetailQuery } = useProjectsPageContext()
   const { projectId } = useProjectsProjectId()
   const { navigateToProjectsList } = useRouter()
   const { hasClickedOutside } = useTasksListDetail({
     isTaskDetailURL: isProjectsDetailURL,
     getTaskDetailId: getProjectsDetailId,
+    fetchQuery: fetchTaskDetailQuery,
   })
 
   const backToPage = useCallback(async () => {

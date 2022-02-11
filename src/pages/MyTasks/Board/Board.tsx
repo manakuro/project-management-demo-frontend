@@ -26,11 +26,12 @@ export const Board: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent } = useMyTasksContext()
+  const { loadingTabContent, fetchTaskDetailQuery } = useMyTasksContext()
   const { navigateToMyTasksBoard } = useRouter()
   const { hasClickedOutside } = useTasksBoardDetail({
     isTaskDetailURL: isMyTasksDetailURL,
     getTaskDetailId: getMyTasksDetailId,
+    fetchQuery: fetchTaskDetailQuery,
   })
 
   if (loadingTabContent) return <SkeletonBoard />

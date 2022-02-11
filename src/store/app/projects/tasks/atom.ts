@@ -42,6 +42,7 @@ export const taskIdsByTaskSectionIdState = selectorFamily<
           return tasks.filter((t) => !t.dueDate).map((t) => t.id)
         }
         default: {
+          tasks = tasks.filter((t) => !t.taskParentId)
           tasks = filterByTaskSectionId(taskSectionId)(tasks)
           tasks = sortTasks({ get })(tasks)
           tasks = filterTasks({ get })(tasks)

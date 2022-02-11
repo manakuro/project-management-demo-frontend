@@ -22,7 +22,7 @@ export const Files: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent } = useProjectsPageContext()
+  const { loadingTabContent, fetchTaskDetailQuery } = useProjectsPageContext()
   const { projectId } = useProjectsProjectId()
   const { loading: loadingQuery } = useProjectsFilesPageQuery()
   const loading = useMemo(
@@ -38,6 +38,7 @@ const Component: React.VFC = memo(() => {
   useTasksFilesDetail({
     isTaskDetailURL: isProjectsDetailURL,
     getTaskDetailId: getProjectsDetailId,
+    fetchQuery: fetchTaskDetailQuery,
   })
 
   if (loading) return <SkeletonFiles />

@@ -7,7 +7,7 @@ describe('Home', () => {
   it('renders Home component successfully', () => {
     render(
       <WrappedComponent>
-        <Component loading={false} />
+        <Component loading={false} fetchTaskDetailQuery={async () => {}} />
       </WrappedComponent>,
     )
 

@@ -21,7 +21,7 @@ export const Files: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent } = useMyTasksContext()
+  const { loadingTabContent, fetchTaskDetailQuery } = useMyTasksContext()
   const { loading: loadingQuery } = useMyTasksFilesPageQuery()
   const loading = useMemo(
     () => loadingTabContent || loadingQuery,
@@ -32,6 +32,7 @@ const Component: React.VFC = memo(() => {
   useTasksFilesDetail({
     isTaskDetailURL: isMyTasksDetailURL,
     getTaskDetailId: getMyTasksDetailId,
+    fetchQuery: fetchTaskDetailQuery,
   })
 
   if (loading) return <SkeletonFiles />

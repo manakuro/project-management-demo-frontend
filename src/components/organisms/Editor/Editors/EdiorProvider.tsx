@@ -137,6 +137,8 @@ const Provider: React.FC<Props> = (props) => {
     // setState(newState)
     // view.updateState(newState)
 
+    if (!view.state.doc.content.size) return
+
     const tr = view.state.tr.replaceWith(
       0,
       view.state.doc.content.size,

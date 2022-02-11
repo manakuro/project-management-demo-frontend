@@ -1,115 +1,88 @@
-import React, { memo, useState } from 'react'
+import isEqual from 'lodash-es/isEqual'
+import React, { memo, useCallback, useMemo, useState } from 'react'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
+import {
+  parseDescription,
+  stringifyDescription,
+} from 'src/shared/prosemirror/convertDescription'
+import { useTask } from 'src/store/entities/task'
 import { Row, Label, Content } from '../Row'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
 import { Provider } from './Provider'
 import { ToolBar } from './ToolBar'
 
-type Props = {}
+type Props = {
+  taskId: string
+}
 
-const initialValue = JSON.stringify(
-  {
-    type: 'doc',
-    content: [
-      // {
-      //   type: 'list',
-      //   attrs: { type: 'ordered', start: 1 },
-      //   content: [
-      //     {
-      //       type: 'listItem',
-      //       content: [
-      //         {
-      //           type: 'paragraph',
-      //           content: [
-      //             {
-      //               type: 'text',
-      //               marks: [
-      //                 { type: 'bold' },
-      //                 { type: 'italic' },
-      //                 { type: 'strikethrough' },
-      //                 { type: 'underline' },
-      //               ],
-      //               text: 'Hey',
-      //             },
-      //           ],
-      //         },
-      //         {
-      //           type: 'list',
-      //           attrs: { type: 'ordered', start: 1 },
-      //           content: [
-      //             {
-      //               type: 'listItem',
-      //               content: [
-      //                 { type: 'paragraph' },
-      //                 {
-      //                   type: 'list',
-      //                   attrs: { type: 'ordered', start: 1 },
-      //                   content: [
-      //                     {
-      //                       type: 'listItem',
-      //                       content: [
-      //                         {
-      //                           type: 'paragraph',
-      //                           content: [{ type: 'text', text: 'test' }],
-      //                         },
-      //                       ],
-      //                     },
-      //                   ],
-      //                 },
-      //               ],
-      //             },
-      //           ],
-      //         },
-      //       ],
-      //     },
-      //   ],
-      // },
-      // { type: 'paragraph' },
-      // {
-      //   type: 'paragraph',
-      //   content: [
-      //     {
-      //       type: 'text',
-      //       marks: [
-      //         {
-      //           type: 'link',
-      //           attrs: { href: 'https://google.com', title: null },
-      //         },
-      //       ],
-      //       text: 'test link',
-      //     },
-      //   ],
-      // },
-      // { type: 'paragraph' },
-      { type: 'paragraph', content: [{ type: 'text', text: '😜' }] },
-      { type: 'paragraph', content: [{ type: 'text', text: 'テキスト2' }] },
-      // { type: 'paragraph' },
-      // { type: 'paragraph' },
-      // { type: 'paragraph' },
-    ],
-  },
-  null,
-  2,
-)
 export const Description: React.FC<Props> = (props) => {
   return (
     <Provider>
-      <Component {...props} />
+      <DescriptionHandler {...props} />
     </Provider>
   )
 }
 
-const Component: React.FC<Props> = memo<Props>(() => {
-  const [, setValue] = useState(initialValue)
+const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
+  const { task, setTask } = useTask(props.taskId)
+  const initialValue = useMemo(
+    () => stringifyDescription(task.description),
+    [task.description],
+  )
+  const [forceUpdate] = useState<number>(1)
 
-  // console.log(JSON.parse(value))
+  const handleChange = useCallback(
+    async (val: string) => {
+      const description = parseDescription(val)
+      if (isEqual(description, task.description)) return
+
+      console.log('change!')
+      await setTask({
+        description,
+      })
+    },
+    [setTask, task.description],
+  )
+
+  // useEffect(() => {
+  //   setForceUpdate((s) => s + 1)
+  // }, [hasDescriptionUpdated])
+
+  return (
+    <Component
+      onChange={handleChange}
+      initialValue={initialValue}
+      forceUpdate={forceUpdate}
+    />
+  )
+})
+
+type ComponentProps = {
+  onChange: (val: string) => void
+  initialValue: string
+  forceUpdate: number
+}
+const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
+  const { onChange, initialValue, forceUpdate } = props
+
+  const handleChange = useCallback(
+    (val: string) => {
+      onChange(val)
+    },
+    [onChange],
+  )
+
   return (
     <Row>
       <Label>Description</Label>
       <Content>
         <Container>
-          <Editor onChange={setValue} initialValue={initialValue}>
+          <Editor
+            onChange={handleChange}
+            initialValue={initialValue}
+            forceUpdate={forceUpdate}
+          >
             <EditorContent />
             <Placeholder />
             <ToolBar />
@@ -119,4 +92,5 @@ const Component: React.FC<Props> = memo<Props>(() => {
     </Row>
   )
 })
+DescriptionHandler.displayName = 'DescriptionHandler'
 Component.displayName = 'Component'

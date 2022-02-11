@@ -1,6 +1,9 @@
 fragment TaskFragment on Task {
   id
   name
+  description {
+    ...DescriptionFragment
+  }
   assigneeId
   taskFeeds {
     ...TaskFeedFragment

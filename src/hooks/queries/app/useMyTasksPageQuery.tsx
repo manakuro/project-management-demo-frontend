@@ -18,7 +18,6 @@ export const useMyTasksPageQuery = () => {
       teammateId: me.id,
       workspaceId: workspace.id,
     },
-    fetchPolicy: 'network-only',
     notifyOnNetworkStatusChange: true,
     onCompleted: (data) => {
       if (!mountedRef.current) return

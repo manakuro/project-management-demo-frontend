@@ -7,6 +7,7 @@ import { taskState, initialState } from '../atom'
 
 export const useTaskCommand = () => {
   const { me } = useMe()
+
   const upsert = useRecoilCallback(
     ({ set }) =>
       (task: Task) => {
@@ -44,6 +45,7 @@ export const useTaskCommand = () => {
   )
 
   return {
+    upsert,
     addTask,
     setTaskById,
   }

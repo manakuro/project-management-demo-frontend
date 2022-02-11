@@ -16,7 +16,6 @@ export const useHomeTaskDetailPageQuery =
     const { mountedRef } = useMountedRef()
 
     const [refetchQuery] = useQuery({
-      fetchPolicy: 'network-only',
       notifyOnNetworkStatusChange: true,
       onCompleted: (data) => {
         if (!mountedRef.current) return

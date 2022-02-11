@@ -18,7 +18,6 @@ export const useProjectsPageQuery = (props: Props) => {
     variables: {
       projectId: props.projectId,
     },
-    fetchPolicy: 'network-only',
     notifyOnNetworkStatusChange: true,
     onCompleted: (data) => {
       if (!mountedRef.current) return

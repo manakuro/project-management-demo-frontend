@@ -29,6 +29,7 @@ import { Provider, useMyTasksContext } from './Provider'
 
 type Props = {
   loading: boolean
+  fetchTaskDetailQuery: (variables: { taskId: string }) => Promise<void>
 }
 
 const TASKS_INDEX = 0 as const
@@ -43,7 +44,10 @@ type Index =
 
 export const Component: React.VFC<Props> = memo<Props>((props) => {
   return (
-    <Provider loading={props.loading}>
+    <Provider
+      loading={props.loading}
+      fetchTaskDetailQuery={props.fetchTaskDetailQuery}
+    >
       <WrappedComponent />
     </Provider>
   )

@@ -9,12 +9,14 @@ import { useRouter } from 'src/router'
 type Props = {
   isTaskDetailURL: (router: NextRouter) => boolean
   getTaskDetailId: (router: NextRouter) => string
+  fetchQuery: (variables: { taskId: string }) => Promise<void>
 }
 
 export const useTasksListDetail = (props: Props) => {
-  const { isTaskDetailURL, getTaskDetailId } = props
+  const { isTaskDetailURL, getTaskDetailId, fetchQuery } = props
   const { router } = useRouter()
   const { getTasksListBodyElement } = useTasksListBody()
+
   const hasClickedOutside =
     useCallback<UseClickOutsideOptionsHasClickedOutside>(
       (e, helpers): boolean => {
@@ -31,7 +33,7 @@ export const useTasksListDetail = (props: Props) => {
       [getTasksListBodyElement],
     )
   const { onOpen } = useTaskDetailDrawer()
-  const { taskId, refetch, setId, setLoading } = useTaskDetail()
+  const { taskId, setId, setLoading } = useTaskDetail()
 
   useEffect(() => {
     if (!isTaskDetailURL(router)) return
@@ -44,14 +46,14 @@ export const useTasksListDetail = (props: Props) => {
     setId(newId)
     onOpen(() => {
       setTimeout(async () => {
-        await refetch()
+        await fetchQuery({ taskId: newId })
         setLoading(false)
       }, 200)
     })
   }, [
     router,
     onOpen,
-    refetch,
+    fetchQuery,
     setId,
     taskId,
     setLoading,

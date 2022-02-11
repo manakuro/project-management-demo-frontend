@@ -30,11 +30,12 @@ export const List: React.VFC = memo(() => {
   )
 })
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent } = useMyTasksContext()
+  const { loadingTabContent, fetchTaskDetailQuery } = useMyTasksContext()
   const { navigateToMyTasksList } = useRouter()
   const { hasClickedOutside } = useTasksListDetail({
     isTaskDetailURL: isMyTasksDetailURL,
     getTaskDetailId: getMyTasksDetailId,
+    fetchQuery: fetchTaskDetailQuery,
   })
 
   if (loadingTabContent) return <SkeletonList />

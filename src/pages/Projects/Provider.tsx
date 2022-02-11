@@ -5,10 +5,12 @@ type ContextProps = {
   loadingQuery: boolean
   loadingTabContent: boolean
   setLoadingTabContent: React.Dispatch<SetStateAction<boolean>>
+  fetchTaskDetailQuery: (variables: { taskId: string }) => Promise<void>
 }
 
 type Props = {
   loading: boolean
+  fetchTaskDetailQuery: (variables: { taskId: string }) => Promise<void>
 }
 
 const useValue = (props: Props): ContextProps => {
@@ -24,6 +26,7 @@ const useValue = (props: Props): ContextProps => {
     loadingQuery,
     loadingTabContent,
     setLoadingTabContent,
+    fetchTaskDetailQuery: props.fetchTaskDetailQuery,
   } as const
 }
 useValue.__PROVIDER__ = 'src/pages/Projects/Provider.tsx'

@@ -28,12 +28,13 @@ export const Calendar: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent } = useMyTasksContext()
+  const { loadingTabContent, fetchTaskDetailQuery } = useMyTasksContext()
   const { navigateToMyTasksCalendar } = useRouter()
 
   useTasksCalendarDetail({
     isTaskDetailURL: isMyTasksDetailURL,
     getTaskDetailId: getMyTasksDetailId,
+    fetchQuery: fetchTaskDetailQuery,
   })
 
   if (loadingTabContent) return <SkeletonCalendar />

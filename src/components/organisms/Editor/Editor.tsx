@@ -4,9 +4,10 @@ import { schema, plugins } from 'src/shared/prosemirror/config'
 import { EditorContainer } from './Editors'
 
 type Props = {
-  onChange?: (val: string) => void
   initialValue: string
   forceUpdate?: number
+  onChange?: (val: string) => void
+  resetView?: number
 } & EditorProps
 
 const pluginsProp = plugins()

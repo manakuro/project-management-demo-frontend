@@ -9,14 +9,10 @@ import { ToolBar } from './ToolBar'
 
 type Props = {}
 
-const initialValue = JSON.stringify(
-  {
-    type: 'doc',
-    content: [],
-  },
-  null,
-  2,
-)
+const initialValue = JSON.stringify({
+  type: 'doc',
+  content: [],
+})
 
 export const Input: React.FC<Props> = (props) => {
   return (
@@ -28,10 +24,10 @@ export const Input: React.FC<Props> = (props) => {
 
 const Component: React.FC<Props> = memo<Props>(() => {
   const { onChangeDescription, taskFeed } = useInputContext()
-  const [forceUpdate, setForceUpdate] = useState<number>(1)
+  const [resetView, setResetView] = useState<number>(1)
 
   useEffect(() => {
-    setForceUpdate((s) => s + 1)
+    setResetView((s) => s + 1)
   }, [taskFeed.id])
 
   return (
@@ -40,7 +36,7 @@ const Component: React.FC<Props> = memo<Props>(() => {
         <Editor
           onChange={onChangeDescription}
           initialValue={initialValue}
-          forceUpdate={forceUpdate}
+          resetView={resetView}
         >
           <EditorContent />
           <Placeholder />

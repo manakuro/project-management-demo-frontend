@@ -5,6 +5,7 @@ import React, {
   createContext,
   Dispatch,
   SetStateAction,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -33,6 +34,7 @@ type Props = {
   doc?: ProsemirrorNode
   plugins?: Plugin[]
   forceUpdate?: number
+  resetView?: number
 } & EditorProps
 export const EditorProvider: React.FC<Props> = (props) => {
   return (
@@ -118,6 +120,8 @@ const Provider: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (!view) return
+    if (!props.forceUpdate) return
+    if (props.forceUpdate === 2) return
 
     // const newState = generateState({
     //   doc: props.doc,
@@ -149,18 +153,27 @@ const Provider: React.FC<Props> = (props) => {
     )
   }, [props.forceUpdate])
 
-  useEffect(() => {
+  const resetView = useCallback(() => {
     setView(
       generateView({
         ...props,
-        state,
+        state: generateState(props),
         setState,
         createPortal,
         removePortal,
       }),
     )
+  }, [props])
+
+  useEffect(() => {
+    resetView()
     /* eslint react-hooks/exhaustive-deps: off */
   }, [props.editable])
+
+  useEffect(() => {
+    resetView()
+    /* eslint react-hooks/exhaustive-deps: off */
+  }, [props.resetView])
 
   return (
     <EditorStateContext.Provider value={state}>

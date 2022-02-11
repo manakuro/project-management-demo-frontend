@@ -18,6 +18,7 @@ type Props = {
   onChange?: (value: string) => void
   debounce: number
   forceUpdate?: number
+  resetView?: number
 } & EditorProps
 
 export const EditorContainer: React.FC<Props> = (props) => {
@@ -37,6 +38,7 @@ export const EditorContainer: React.FC<Props> = (props) => {
         doc={initialDoc}
         editable={props.editable}
         forceUpdate={props.forceUpdate}
+        resetView={props.resetView}
       >
         <Container
           transformer={transformer}

@@ -11,6 +11,19 @@ export const createApolloClient = (props: Props) => {
     client = new ApolloClient({
       link: createLink(props),
       cache: new InMemoryCache(),
+      defaultOptions: {
+        // NOTE: Prevent unnecessary re-refetching after mutation.
+        // @see https://github.com/apollographql/apollo-client/issues/6833
+        watchQuery: {
+          fetchPolicy: 'no-cache',
+        },
+        query: {
+          fetchPolicy: 'no-cache',
+        },
+        mutate: {
+          fetchPolicy: 'no-cache',
+        },
+      },
     })
     return client
   }

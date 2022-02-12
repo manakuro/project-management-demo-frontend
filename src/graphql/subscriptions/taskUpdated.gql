@@ -1,0 +1,5 @@
+subscription TaskUpdated($taskId: ID!) {
+  taskUpdated(id: $taskId) {
+    ...TaskFragment
+  }
+}

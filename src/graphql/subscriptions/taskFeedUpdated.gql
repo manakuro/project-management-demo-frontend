@@ -1,0 +1,5 @@
+subscription TaskFeedUpdated($taskFeedId: ID!) {
+  taskFeedUpdated(id: $taskFeedId) {
+    ...TaskFeedFragment
+  }
+}

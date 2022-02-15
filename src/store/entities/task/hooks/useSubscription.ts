@@ -36,16 +36,16 @@ export const useSubscription = (taskId: string) => {
   const setTaskBySubscription = useRecoilCallback(
     ({ snapshot }) =>
       async (response: TaskUpdatedSubscriptionResponse) => {
-        const current = await snapshot.getPromise(taskState(taskId))
+        const prev = await snapshot.getPromise(taskState(taskId))
         const updatedTask = response.taskUpdated
 
-        if (isEqual(omit(updatedTask, 'updatedAt'), omit(current, 'updatedAt')))
+        if (isEqual(omit(updatedTask, 'updatedAt'), omit(prev, 'updatedAt')))
           return
 
         console.log('subscription updated!')
 
         upsert({
-          ...current,
+          ...prev,
           ...updatedTask,
           taskPriority: {
             ...(updatedTask.taskPriority || initialState().taskPriority),

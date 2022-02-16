@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useUpdateTaskMutation } from 'src/graphql/hooks'
 import { taskState } from '../atom'
@@ -10,9 +9,8 @@ export const useTask = (taskId: string) => {
   const task = useRecoilValue(taskState(taskId))
   const { upsert } = useTaskCommand()
   const [updateTaskMutation] = useUpdateTaskMutation()
-  // const [hasDescriptionUpdated, setHasDescriptionUpdated] = useState<number>(1)
 
-  useSubscription(taskId)
+  const { hasDescriptionUpdated } = useSubscription(taskId)
 
   const setTask = useRecoilCallback(
     ({ snapshot }) =>
@@ -88,5 +86,6 @@ export const useTask = (taskId: string) => {
     deleteTask,
     undeleteTask,
     setTaskName,
+    hasDescriptionUpdated,
   }
 }

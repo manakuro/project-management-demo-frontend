@@ -1,6 +1,6 @@
-import isEqual from 'lodash-es/isEqual'
-import React, { memo, useCallback, useMemo, useState } from 'react'
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
+import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
 import {
   parseDescription,
   stringifyDescription,
@@ -25,17 +25,17 @@ export const Description: React.FC<Props> = (props) => {
 }
 
 const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
-  const { task, setTask } = useTask(props.taskId)
+  const { task, setTask, hasDescriptionUpdated } = useTask(props.taskId)
   const initialValue = useMemo(
     () => stringifyDescription(task.description),
     [task.description],
   )
-  const [forceUpdate] = useState<number>(1)
+  const [resetView, setResetView] = useState<number>(1)
 
   const handleChange = useCallback(
     async (val: string) => {
       const description = parseDescription(val)
-      if (isEqual(description, task.description)) return
+      if (isDescriptionEqual(description, task.description)) return
 
       console.log('change!')
       await setTask({
@@ -45,15 +45,15 @@ const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
     [setTask, task.description],
   )
 
-  // useEffect(() => {
-  //   setForceUpdate((s) => s + 1)
-  // }, [hasDescriptionUpdated])
+  useEffect(() => {
+    setResetView((s) => s + 1)
+  }, [hasDescriptionUpdated])
 
   return (
     <Component
       onChange={handleChange}
       initialValue={initialValue}
-      forceUpdate={forceUpdate}
+      resetView={resetView}
     />
   )
 })
@@ -61,10 +61,10 @@ const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
 type ComponentProps = {
   onChange: (val: string) => void
   initialValue: string
-  forceUpdate: number
+  resetView: number
 }
 const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
-  const { onChange, initialValue, forceUpdate } = props
+  const { onChange, initialValue, resetView } = props
 
   const handleChange = useCallback(
     (val: string) => {
@@ -81,7 +81,7 @@ const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
           <Editor
             onChange={handleChange}
             initialValue={initialValue}
-            forceUpdate={forceUpdate}
+            resetView={resetView}
           >
             <EditorContent />
             <Placeholder />

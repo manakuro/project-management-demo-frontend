@@ -1,20 +1,24 @@
 import isEqual from 'lodash-es/isEqual'
+import { useState } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useTaskUpdatedSubscription } from 'src/graphql/hooks'
-import { omit } from 'src/shared/utils/omit'
+import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
 import {
   initialState,
+  Task,
   taskState,
   TaskUpdatedSubscriptionResponse,
   useTaskCommand,
 } from 'src/store/entities/task'
+import { isTaskEqual } from '../util'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any
 export const useSubscription = (taskId: string) => {
   const { upsert } = useTaskCommand()
+  const [hasDescriptionUpdated, setHasDescriptionUpdated] = useState<number>(1)
 
-  useTaskUpdatedSubscription({
+  const subscriptionResult = useTaskUpdatedSubscription({
     variables: {
       taskId: taskId,
     },
@@ -39,8 +43,7 @@ export const useSubscription = (taskId: string) => {
         const prev = await snapshot.getPromise(taskState(taskId))
         const updatedTask = response.taskUpdated
 
-        if (isEqual(omit(updatedTask, 'updatedAt'), omit(prev, 'updatedAt')))
-          return
+        if (isTaskEqual(prev, updatedTask as unknown as Task)) return
 
         console.log('subscription updated!')
 
@@ -51,7 +54,17 @@ export const useSubscription = (taskId: string) => {
             ...(updatedTask.taskPriority || initialState().taskPriority),
           },
         })
+
+        if (!isDescriptionEqual(prev.description, updatedTask.description)) {
+          console.log('description updated!')
+          setHasDescriptionUpdated((s) => s + 1)
+        }
       },
     [upsert, taskId],
   )
+
+  return {
+    subscriptionResult,
+    hasDescriptionUpdated,
+  }
 }

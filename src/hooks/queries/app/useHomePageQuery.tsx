@@ -18,6 +18,7 @@ export const useHomePageQuery = () => {
       teammateId: me.id,
       workspaceId: workspace.id,
     },
+    fetchPolicy: 'no-cache',
     notifyOnNetworkStatusChange: true,
     onCompleted: (data) => {
       if (!mountedRef.current) return

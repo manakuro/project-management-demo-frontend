@@ -18,6 +18,7 @@ export const useProjectsPageQuery = (props: Props) => {
     variables: {
       projectId: props.projectId,
     },
+    fetchPolicy: 'no-cache',
     notifyOnNetworkStatusChange: true,
     onCompleted: (data) => {
       if (!mountedRef.current) return

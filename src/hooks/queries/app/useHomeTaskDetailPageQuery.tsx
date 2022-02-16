@@ -17,6 +17,7 @@ export const useHomeTaskDetailPageQuery =
 
     const [refetchQuery] = useQuery({
       notifyOnNetworkStatusChange: true,
+      fetchPolicy: 'no-cache',
       onCompleted: (data) => {
         if (!mountedRef.current) return
 

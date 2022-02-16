@@ -15,20 +15,21 @@ export const useProjectTaskCommand = () => {
   )
 
   const addProjectTask = useRecoilCallback(
-    () => (val: Partial<ProjectTask> & { projectTaskSectionId: string }) => {
-      const id = uuid()
-      const newTaskId = addTask({
-        taskSectionId: val.projectTaskSectionId,
-      })
-      const newProjectTask = {
-        ...initialState(),
-        ...val,
-        taskId: newTaskId,
-      }
+    () =>
+      async (val: Partial<ProjectTask> & { projectTaskSectionId: string }) => {
+        const id = uuid()
+        const newTaskId = addTask({
+          taskSectionId: val.projectTaskSectionId,
+        })
+        const newProjectTask = {
+          ...initialState(),
+          ...val,
+          taskId: newTaskId,
+        }
 
-      upsert(newProjectTask)
-      return id
-    },
+        upsert(newProjectTask)
+        return id
+      },
     [addTask, upsert],
   )
 

@@ -1,7 +1,9 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useUpdateTaskMutation } from 'src/graphql/hooks'
+import { omit } from 'src/shared/utils/omit'
 import { taskState } from '../atom'
-import { Task } from '../type'
+import { Task, UpdateTaskInput } from '../type'
+import { hasTaskBeenPersisted } from '../util'
 import { useSubscription } from './useSubscription'
 import { useTaskCommand } from './useTaskCommand'
 
@@ -15,24 +17,22 @@ export const useTask = (taskId: string) => {
   const setTask = useRecoilCallback(
     ({ snapshot }) =>
       async (val: Partial<Task>) => {
-        const current = await snapshot.getPromise(taskState(taskId))
+        const prev = await snapshot.getPromise(taskState(taskId))
+        if (!hasTaskBeenPersisted(prev)) return
 
         upsert({
-          ...current,
+          ...prev,
           ...val,
         })
 
         const res = await updateTaskMutation({
           variables: {
-            input: {
-              id: taskId,
-              ...val,
-            },
+            input: prepareUpdateTaskInput(taskId, val),
           },
         })
 
         if (res.errors) {
-          upsert(current)
+          upsert(prev)
         }
       },
     [taskId, updateTaskMutation, upsert],
@@ -54,26 +54,28 @@ export const useTask = (taskId: string) => {
   // TODO(deleted task): Implement deleted functionality
   const deleteTask = useRecoilCallback(
     () => async () => {
-      await setTask({ isDeleted: true } as any)
+      console.log('deleteTask!')
+      // await setTask({ isDeleted: true } as any)
     },
-    [setTask],
+    [],
   )
   const undeleteTask = useRecoilCallback(
     () => async () => {
-      await setTask({ isDeleted: false } as any)
+      console.log('undeleteTask!')
+      // await setTask({ isDeleted: false } as any)
     },
-    [setTask],
+    [],
   )
 
   const setTaskName = useRecoilCallback(
     ({ snapshot }) =>
       async (val: string) => {
-        const current = await snapshot.getPromise(taskState(taskId))
+        const prev = await snapshot.getPromise(taskState(taskId))
         // Skip when touching input for the first time
-        if (current.isNew && !current.name && !val) return
-        if (current.name && val && current.name === val) return
+        if (prev.isNew && !prev.name && !val) return
+        if (prev.name && val && prev.name === val) return
 
-        const isNew = current.isNew && !!val ? { isNew: false } : {}
+        const isNew = prev.isNew && !!val ? { isNew: false } : {}
         await setTask({ name: val, ...isNew })
       },
     [setTask, taskId],
@@ -88,4 +90,28 @@ export const useTask = (taskId: string) => {
     setTaskName,
     hasDescriptionUpdated,
   }
+}
+
+const prepareUpdateTaskInput = (
+  taskId: string,
+  val: Partial<Task>,
+): UpdateTaskInput => {
+  let input: UpdateTaskInput = {
+    id: taskId,
+    ...val,
+  }
+  if (input.dueDate === '') {
+    input = omit(input, 'dueDate')
+    input.clearDueDate = true
+  }
+  if (input.dueTime === '') {
+    input = omit(input, 'dueTime')
+    input.clearDueDate = true
+  }
+  if (input.assigneeId === '') {
+    input = omit(input, 'assigneeId')
+    input.clearTeammate = true
+  }
+
+  return input
 }

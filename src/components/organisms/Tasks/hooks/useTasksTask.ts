@@ -3,7 +3,7 @@ import { useProjectsTask } from 'src/store/app/projects/tasks'
 import { useTasksContext } from '../TasksProvider'
 
 type Result = {
-  addTask: (val: { taskSectionId: string }) => string
+  addTask: (val: { taskSectionId: string }) => Promise<string>
 }
 
 export const useTasksTask = (): Result => {

@@ -1,0 +1,5 @@
+mutation CreateTeammateTask($input: CreateTeammateTaskInput!) {
+  createTeammateTask(input: $input) {
+    ...TeammateTaskFragment
+  }
+}

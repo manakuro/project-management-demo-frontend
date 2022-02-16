@@ -34,8 +34,8 @@ export const useTaskCommand = () => {
       upsert({
         ...initialState(),
         ...val,
-        isNew: true,
         id,
+        isNew: true,
         createdBy: me.id,
       })
 

@@ -33,14 +33,19 @@ export const createState = <T extends State>(props: Props<T>) => {
       ({ get }) =>
         get(atomState(id)),
     set:
-      (projectId) =>
+      (id) =>
       ({ get, set, reset }, newVal) => {
+        // Remove an item from the list when reset function will be called.
         if (newVal instanceof DefaultValue) {
-          reset(atomState(projectId))
+          reset(atomState(id))
+          set(listState, (prev) => {
+            return prev.filter((p) => p.id !== id)
+          })
+          set(idsState, (prev) => prev.filter((prevId) => prevId !== id))
           return
         }
 
-        set(atomState(projectId), newVal)
+        set(atomState(id), newVal)
         set(listState, (prev) =>
           uniqBy([...prev, newVal], 'id').map((p) =>
             p.id === newVal.id ? { ...p, ...newVal } : p,

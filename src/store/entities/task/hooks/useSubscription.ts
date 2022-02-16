@@ -22,7 +22,7 @@ export const useSubscription = (taskId: string) => {
     variables: {
       taskId: taskId,
     },
-    onSubscriptionData: (data) => {
+    onSubscriptionData: async (data) => {
       if (
         isEqual(
           data.subscriptionData.data,
@@ -32,7 +32,7 @@ export const useSubscription = (taskId: string) => {
         return
 
       if (data.subscriptionData.data)
-        setTaskBySubscription(data.subscriptionData.data)
+        await setTaskBySubscription(data.subscriptionData.data)
       previousData = data
     },
   })
@@ -56,7 +56,6 @@ export const useSubscription = (taskId: string) => {
         })
 
         if (!isDescriptionEqual(prev.description, updatedTask.description)) {
-          console.log('description updated!')
           setHasDescriptionUpdated((s) => s + 1)
         }
       },

@@ -1,0 +1,5 @@
+subscription TeammateTaskCreated($workspaceId: ID!, $teammateId: ID!) {
+  teammateTaskCreated(teammateId: $teammateId, workspaceId: $workspaceId) {
+    ...TeammateTaskFragment
+  }
+}

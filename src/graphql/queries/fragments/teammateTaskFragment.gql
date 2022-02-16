@@ -6,6 +6,7 @@ fragment TeammateTaskFragment on TeammateTask {
   task {
     ...TaskFragment
   }
+  workspaceId
   createdAt
   updatedAt
 }

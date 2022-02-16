@@ -9,6 +9,7 @@ export const initialState = (): TeammateTask => ({
   taskId: '',
   teammateId: '',
   teammateTaskSectionId: '',
+  workspaceId: '',
   createdAt: '',
   updatedAt: '',
 })

@@ -1,0 +1,5 @@
+mutation CreateProjectTask($input: CreateProjectTaskInput!) {
+  createProjectTask(input: $input) {
+    ...ProjectTaskFragment
+  }
+}

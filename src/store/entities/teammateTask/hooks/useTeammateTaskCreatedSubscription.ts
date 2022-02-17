@@ -2,7 +2,7 @@ import isEqual from 'lodash-es/isEqual'
 import { useMemo } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useTeammateTaskCreatedSubscription as useSubscription } from 'src/graphql/hooks'
-import { teammateTaskState } from '../atom'
+import { uuid } from 'src/shared/uuid'
 import { TeammateTaskCreatedSubscriptionResponse as Response } from '../type'
 import { useTeammateTaskResponse } from './useTeammateTaskResponse'
 
@@ -13,6 +13,7 @@ type Props = {
   workspaceId: string
   teammateId: string
 }
+export const TEAMMATE_TASK_CREATED_SUBSCRIPTION_REQUEST_ID = uuid()
 export const useTeammateTaskCreatedSubscription = (props: Props) => {
   const { setTeammateTask } = useTeammateTaskResponse()
 
@@ -24,8 +25,9 @@ export const useTeammateTaskCreatedSubscription = (props: Props) => {
     variables: {
       teammateId: props.teammateId,
       workspaceId: props.workspaceId,
+      requestId: TEAMMATE_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
     },
-    onSubscriptionData: async (data) => {
+    onSubscriptionData: (data) => {
       if (
         isEqual(
           data.subscriptionData.data,
@@ -35,25 +37,28 @@ export const useTeammateTaskCreatedSubscription = (props: Props) => {
         return
 
       if (data.subscriptionData.data)
-        await setBySubscription(data.subscriptionData.data)
+        setBySubscription(data.subscriptionData.data)
       previousData = data
     },
     skip: skipSubscription,
   })
 
   const setBySubscription = useRecoilCallback(
-    ({ snapshot }) =>
-      async (response: Response) => {
-        const updated = response.teammateTaskCreated
-        const prev = await snapshot.getPromise(teammateTaskState(updated.id))
-        if (prev.id) return
+    () => async (response: Response) => {
+      const updated = response.teammateTaskCreated
 
-        if (__DEV__) {
-          console.log('Teammate Task Created!: ', prev)
-        }
+      if (__DEV__) console.log('Teammate Task created!')
 
-        setTeammateTask([updated])
-      },
+      setTeammateTask([
+        {
+          ...updated,
+          task: {
+            ...updated.task,
+            isNew: false,
+          },
+        },
+      ])
+    },
     [setTeammateTask],
   )
 

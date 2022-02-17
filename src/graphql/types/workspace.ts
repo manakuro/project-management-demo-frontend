@@ -1,6 +1,10 @@
 import { WorkspaceQuery } from 'src/graphql/types'
 
-export type { WorkspaceQuery, WorkspaceQueryVariables } from 'src/graphql/types'
+export type {
+  WorkspaceQuery,
+  WorkspaceQueryVariables,
+  WorkspaceUpdatedSubscription,
+} from 'src/graphql/types'
 export type {
   WorkspaceQueryHookResult,
   WorkspaceLazyQueryHookResult,

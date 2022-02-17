@@ -1,5 +1,5 @@
-subscription TeammateTaskCreated($workspaceId: ID!, $teammateId: ID!) {
-  teammateTaskCreated(teammateId: $teammateId, workspaceId: $workspaceId) {
+subscription TeammateTaskCreated($workspaceId: ID!, $teammateId: ID!, $requestId: String!) {
+  teammateTaskCreated(teammateId: $teammateId, workspaceId: $workspaceId, requestId: $requestId) {
     ...TeammateTaskFragment
   }
 }

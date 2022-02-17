@@ -1,1 +1,5 @@
-export type { Workspace, WorkspaceResponse } from 'src/graphql/types/workspace'
+export type {
+  Workspace,
+  WorkspaceResponse,
+  WorkspaceUpdatedSubscription as WorkspaceUpdatedSubscriptionResponse,
+} from 'src/graphql/types/workspace'

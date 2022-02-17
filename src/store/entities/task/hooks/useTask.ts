@@ -4,15 +4,18 @@ import { omit } from 'src/shared/utils/omit'
 import { taskState } from '../atom'
 import { Task, UpdateTaskInput } from '../type'
 import { hasTaskBeenPersisted } from '../util'
-import { useSubscription } from './useSubscription'
 import { useTaskCommand } from './useTaskCommand'
+import {
+  TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
+  useTaskUpdatedSubscription,
+} from './useTaskUpdatedSubscription'
 
 export const useTask = (taskId: string) => {
   const task = useRecoilValue(taskState(taskId))
   const { upsert } = useTaskCommand()
   const [updateTaskMutation] = useUpdateTaskMutation()
 
-  const { hasDescriptionUpdated } = useSubscription(taskId)
+  const { hasDescriptionUpdated } = useTaskUpdatedSubscription(taskId)
 
   const setTask = useRecoilCallback(
     ({ snapshot }) =>
@@ -98,6 +101,7 @@ const prepareUpdateTaskInput = (
 ): UpdateTaskInput => {
   let input: UpdateTaskInput = {
     id: taskId,
+    requestId: TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
     ...val,
   }
   if (input.dueDate === '') {

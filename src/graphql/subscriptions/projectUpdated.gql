@@ -1,5 +1,5 @@
-subscription ProjectUpdated($id: ID!) {
-  projectUpdated(id: $id) {
+subscription ProjectUpdated($id: ID!, $requestId: String!) {
+  projectUpdated(id: $id, requestId: $requestId) {
     ...ProjectFragment
   }
 }

@@ -2,15 +2,20 @@ import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useUpdateTaskFeedMutation } from 'src/graphql/hooks'
 import { taskFeedState } from '../atom'
 import { TaskFeed } from '../type'
-import { useSubscription } from './useSubscription'
 import { useTaskFeedCommand } from './useTaskFeedCommand'
+import {
+  TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID,
+  useTaskFeedUpdatedSubscription,
+} from './useTaskFeedUpdatedSubscription'
 
 export const useTaskFeed = (taskFeedId: string) => {
   const taskFeed = useRecoilValue(taskFeedState(taskFeedId))
   const { upsert } = useTaskFeedCommand()
   const [updateTaskFeedMutation] = useUpdateTaskFeedMutation()
 
-  useSubscription(taskFeedId)
+  useTaskFeedUpdatedSubscription({
+    taskFeedId,
+  })
 
   const setTaskFeed = useRecoilCallback(
     ({ snapshot }) =>
@@ -25,6 +30,7 @@ export const useTaskFeed = (taskFeedId: string) => {
           variables: {
             input: {
               id: taskFeedId,
+              requestId: TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID,
               ...val,
             },
           },

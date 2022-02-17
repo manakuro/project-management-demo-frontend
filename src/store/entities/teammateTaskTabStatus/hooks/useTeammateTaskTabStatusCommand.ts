@@ -37,6 +37,7 @@ export const useTeammateTaskTabStatusCommand = () => {
             variables: {
               input: {
                 id: current.id,
+                requestId: '',
                 ...input,
               },
             },

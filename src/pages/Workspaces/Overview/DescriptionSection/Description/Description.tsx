@@ -1,7 +1,7 @@
-import isEqual from 'lodash-es/isEqual'
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
+import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
 import {
   parseDescription,
   stringifyDescription,
@@ -29,12 +29,12 @@ const DescriptionHandler: React.FC<Props> = memo<Props>(() => {
     () => stringifyDescription(workspace.description),
     [workspace.description],
   )
-  const [forceUpdate, setForceUpdate] = useState<number>(1)
+  const [resetView, setResetView] = useState<number>(1)
 
   const handleChange = useCallback(
     async (val: string) => {
       const description = parseDescription(val)
-      if (isEqual(description, workspace.description)) return
+      if (isDescriptionEqual(description, workspace.description)) return
 
       console.log('change!')
       await setWorkspace({
@@ -45,14 +45,14 @@ const DescriptionHandler: React.FC<Props> = memo<Props>(() => {
   )
 
   useEffect(() => {
-    setForceUpdate((s) => s + 1)
+    setResetView((s) => s + 1)
   }, [hasDescriptionUpdated])
 
   return (
     <Component
       onChange={handleChange}
       initialValue={initialValue}
-      forceUpdate={forceUpdate}
+      resetView={resetView}
     />
   )
 })
@@ -60,10 +60,10 @@ const DescriptionHandler: React.FC<Props> = memo<Props>(() => {
 type ComponentProps = {
   onChange: (val: string) => void
   initialValue: string
-  forceUpdate: number
+  resetView: number
 }
 const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
-  const { onChange, initialValue, forceUpdate } = props
+  const { onChange, initialValue, resetView } = props
   const [loading, setLoading] = useState<boolean>(true)
 
   const handleChange = useCallback(
@@ -84,7 +84,7 @@ const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
       <Editor
         onChange={handleChange}
         initialValue={initialValue}
-        forceUpdate={forceUpdate}
+        resetView={resetView}
       >
         <Flex flex={1} flexDirection="column" position="relative" minH="150px">
           <EditorContent

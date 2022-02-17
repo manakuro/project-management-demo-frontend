@@ -1,10 +1,10 @@
-import isEqual from 'lodash-es/isEqual'
 import { useRecoilCallback } from 'recoil'
 import { useUpdateProjectMutation } from 'src/graphql/hooks'
 import { UpdateProjectInput } from 'src/graphql/types'
 import { omit } from 'src/shared/utils/omit'
 import { projectState } from '../atom'
 import { Project } from '../type'
+import { PROJECT_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useProjectUpdatedSubscription'
 
 export const useProjectCommand = () => {
   const [updateProjectMutation] = useUpdateProjectMutation()
@@ -41,24 +41,9 @@ export const useProjectCommand = () => {
     [updateProjectMutation, upsert],
   )
 
-  const setProjectBySubscription = useRecoilCallback(
-    ({ snapshot }) =>
-      async (projectId: string, response: Project) => {
-        const current = await snapshot.getPromise(projectState(projectId))
-
-        if (isEqual(omit(current, 'updatedAt'), omit(response, 'updatedAt')))
-          return
-        console.log('subscription updated!')
-
-        upsert(response)
-      },
-    [upsert],
-  )
-
   return {
     upsert,
     setProject,
-    setProjectBySubscription,
   }
 }
 
@@ -67,6 +52,7 @@ const prepareUpdateProjectInput = (
 ): UpdateProjectInput => {
   return {
     id: payload.projectId,
+    requestId: PROJECT_UPDATED_SUBSCRIPTION_REQUEST_ID,
     ...omit(payload, 'projectId'),
   }
 }

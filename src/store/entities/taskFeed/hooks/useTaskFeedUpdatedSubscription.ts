@@ -1,19 +1,25 @@
 import isEqual from 'lodash-es/isEqual'
 import { useRecoilCallback } from 'recoil'
-import { useTaskFeedUpdatedSubscription } from 'src/graphql/hooks'
-import { omit } from 'src/shared/utils/omit'
-import { taskFeedState } from '../atom'
+import { useTaskFeedUpdatedSubscription as useSubscription } from 'src/graphql/hooks'
+import { uuid } from 'src/shared/uuid'
 import { TaskFeedUpdatedSubscriptionResponse } from '../type'
 import { useTaskFeedCommand } from './useTaskFeedCommand'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any
-export const useSubscription = (taskFeedId: string) => {
+
+type Props = {
+  taskFeedId: string
+}
+
+export const TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
+export const useTaskFeedUpdatedSubscription = (props: Props) => {
   const { upsert } = useTaskFeedCommand()
 
-  useTaskFeedUpdatedSubscription({
+  useSubscription({
     variables: {
-      taskFeedId,
+      taskFeedId: props.taskFeedId,
+      requestId: TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {
       if (
@@ -31,20 +37,13 @@ export const useSubscription = (taskFeedId: string) => {
   })
 
   const setTaskBySubscription = useRecoilCallback(
-    ({ snapshot }) =>
-      async (response: TaskFeedUpdatedSubscriptionResponse) => {
-        const prev = await snapshot.getPromise(taskFeedState(taskFeedId))
-        const updated = response.taskFeedUpdated
+    () => async (response: TaskFeedUpdatedSubscriptionResponse) => {
+      const updated = response.taskFeedUpdated
 
-        if (isEqual(omit(updated, 'updatedAt'), omit(prev, 'updatedAt'))) return
+      console.log('subscription updated!: ')
 
-        console.log('subscription updated!: ')
-
-        upsert({
-          ...prev,
-          ...updated,
-        })
-      },
-    [upsert, taskFeedId],
+      upsert(updated)
+    },
+    [upsert],
   )
 }

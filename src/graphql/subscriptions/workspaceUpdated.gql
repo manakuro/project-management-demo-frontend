@@ -1,5 +1,5 @@
-subscription WorkspaceUpdated($id: ID!) {
-  workspaceUpdated(id: $id) {
+subscription WorkspaceUpdated($id: ID!, $requestId: String!) {
+  workspaceUpdated(id: $id, requestId: $requestId) {
     ...WorkspaceFragment
   }
 }

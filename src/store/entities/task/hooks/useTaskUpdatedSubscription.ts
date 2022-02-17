@@ -1,28 +1,39 @@
 import isEqual from 'lodash-es/isEqual'
-import { useState } from 'react'
-import { useRecoilCallback } from 'recoil'
-import { useTaskUpdatedSubscription } from 'src/graphql/hooks'
+import { atomFamily, useRecoilCallback, useRecoilState } from 'recoil'
+import { useTaskUpdatedSubscription as useSubscription } from 'src/graphql/hooks'
 import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
+import { uuid } from 'src/shared/uuid'
 import {
   initialState,
-  Task,
   taskState,
   TaskUpdatedSubscriptionResponse,
   useTaskCommand,
 } from 'src/store/entities/task'
-import { isTaskEqual } from '../util'
+
+const key = (str: string) =>
+  `src/store/entities/task/hooks/useTaskUpdatedSubscription/${str}`
+
+const hasDescriptionUpdatedState = atomFamily<number, string>({
+  key: key('hasDescriptionUpdatedState'),
+  default: 1,
+})
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any
-export const useSubscription = (taskId: string) => {
-  const { upsert } = useTaskCommand()
-  const [hasDescriptionUpdated, setHasDescriptionUpdated] = useState<number>(1)
 
-  const subscriptionResult = useTaskUpdatedSubscription({
+export const TASK_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
+export const useTaskUpdatedSubscription = (taskId: string) => {
+  const { upsert } = useTaskCommand()
+  const [hasDescriptionUpdated, setHasDescriptionUpdated] = useRecoilState(
+    hasDescriptionUpdatedState(taskId),
+  )
+
+  const subscriptionResult = useSubscription({
     variables: {
       taskId: taskId,
+      requestId: TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
     },
-    onSubscriptionData: async (data) => {
+    onSubscriptionData: (data) => {
       if (
         isEqual(
           data.subscriptionData.data,
@@ -32,7 +43,7 @@ export const useSubscription = (taskId: string) => {
         return
 
       if (data.subscriptionData.data)
-        await setTaskBySubscription(data.subscriptionData.data)
+        setTaskBySubscription(data.subscriptionData.data)
       previousData = data
     },
   })
@@ -42,8 +53,6 @@ export const useSubscription = (taskId: string) => {
       async (response: TaskUpdatedSubscriptionResponse) => {
         const prev = await snapshot.getPromise(taskState(taskId))
         const updatedTask = response.taskUpdated
-
-        if (isTaskEqual(prev, updatedTask as unknown as Task)) return
 
         console.log('subscription updated!')
 
@@ -61,7 +70,7 @@ export const useSubscription = (taskId: string) => {
           setHasDescriptionUpdated((s) => s + 1)
         }
       },
-    [upsert, taskId],
+    [taskId, upsert, setHasDescriptionUpdated],
   )
 
   return {

@@ -6,7 +6,10 @@ import { taskState, useTaskCommand } from 'src/store/entities/task'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { teammateTaskState, initialState } from '../atom'
 import { TeammateTask } from '../type'
-import { useTeammateTaskCreatedSubscription } from './useTeammateTaskCreatedSubscription'
+import {
+  TEAMMATE_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
+  useTeammateTaskCreatedSubscription,
+} from './useTeammateTaskCreatedSubscription'
 import { useTeammateTaskResponse } from './useTeammateTaskResponse'
 
 export const useTeammateTaskCommand = () => {
@@ -66,6 +69,7 @@ export const useTeammateTaskCommand = () => {
               teammateId: me.id,
               teammateTaskSectionId: params.teammateTaskSectionId,
               workspaceId: workspace.id,
+              requestId: TEAMMATE_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
             },
           },
         })

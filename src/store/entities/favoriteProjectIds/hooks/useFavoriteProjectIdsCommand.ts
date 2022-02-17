@@ -1,68 +1,42 @@
-import isEqual from 'lodash-es/isEqual'
-import { useEffect } from 'react'
 import { useRecoilCallback } from 'recoil'
 import {
   useCreateFavoriteProjectMutation,
   useDeleteFavoriteProjectMutation,
-  useFavoriteProjectIdsUpdatedSubscription,
 } from 'src/graphql/hooks'
 import { useMe } from 'src/store/entities/me'
 import { favoriteProjectIdsState } from '../atom'
-import { FavoriteProjectId } from '../type'
+import {
+  useFavoriteProjectIdsUpdatedSubscription,
+  FAVORITE_PROJECT_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
+} from './useFavoriteProjectIdsUpdatedSubscription'
+import { useUpsert } from './useUpsert'
 
 export const useFavoriteProjectIdsCommand = () => {
   const { me } = useMe()
   const [createFavoriteProjectMutation] = useCreateFavoriteProjectMutation()
   const [deleteFavoriteProjectMutation] = useDeleteFavoriteProjectMutation()
-  const subscriptionResult = useFavoriteProjectIdsUpdatedSubscription({
-    variables: {
-      teammateId: me.id,
-    },
-    skip: !me.id,
-  })
+  const { upsert } = useUpsert()
 
-  const upsert = useRecoilCallback(
-    ({ set }) =>
-      (favoriteProjectId: FavoriteProjectId[]) => {
-        set(favoriteProjectIdsState, favoriteProjectId)
-      },
-    [],
-  )
-  const updateBySubscription = useRecoilCallback(
-    ({ snapshot }) =>
-      async (response: FavoriteProjectId[]) => {
-        const favoriteProjectIds = await snapshot.getPromise(
-          favoriteProjectIdsState,
-        )
-
-        if (isEqual([...favoriteProjectIds].sort(), [...response].sort()))
-          return
-
-        upsert(response)
-      },
-    [upsert],
-  )
+  useFavoriteProjectIdsUpdatedSubscription()
 
   const deleteFavoriteProjectId = useRecoilCallback(
     ({ snapshot }) =>
       async (favoriteProjectId: string) => {
-        const favoriteProjectIds = await snapshot.getPromise(
-          favoriteProjectIdsState,
-        )
+        const prev = await snapshot.getPromise(favoriteProjectIdsState)
 
-        upsert(favoriteProjectIds.filter((id) => id !== favoriteProjectId))
+        upsert(prev.filter((id) => id !== favoriteProjectId))
 
-        try {
-          await deleteFavoriteProjectMutation({
-            variables: {
-              input: {
-                teammateId: me.id,
-                projectId: favoriteProjectId,
-              },
+        const res = await deleteFavoriteProjectMutation({
+          variables: {
+            input: {
+              teammateId: me.id,
+              projectId: favoriteProjectId,
+              requestId: FAVORITE_PROJECT_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
             },
-          })
-        } catch (err) {
-          upsert(favoriteProjectIds)
+          },
+        })
+        if (res.errors) {
+          upsert(prev)
         }
       },
     [deleteFavoriteProjectMutation, me.id, upsert],
@@ -71,23 +45,21 @@ export const useFavoriteProjectIdsCommand = () => {
   const addFavoriteProjectId = useRecoilCallback(
     ({ snapshot }) =>
       async (favoriteProjectId: string) => {
-        const favoriteProjectIds = await snapshot.getPromise(
-          favoriteProjectIdsState,
-        )
+        const prev = await snapshot.getPromise(favoriteProjectIdsState)
 
-        upsert([...favoriteProjectIds, favoriteProjectId])
+        upsert([...prev, favoriteProjectId])
 
-        try {
-          await createFavoriteProjectMutation({
-            variables: {
-              input: {
-                teammateId: me.id,
-                projectId: favoriteProjectId,
-              },
+        const res = await createFavoriteProjectMutation({
+          variables: {
+            input: {
+              teammateId: me.id,
+              projectId: favoriteProjectId,
+              requestId: FAVORITE_PROJECT_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
             },
-          })
-        } catch (err) {
-          upsert(favoriteProjectIds)
+          },
+        })
+        if (res.errors) {
+          upsert(prev)
         }
       },
     [createFavoriteProjectMutation, me.id, upsert],
@@ -113,19 +85,7 @@ export const useFavoriteProjectIdsCommand = () => {
     [addFavoriteProjectId, deleteFavoriteProjectId],
   )
 
-  useEffect(() => {
-    if (subscriptionResult.loading) return
-    if (!subscriptionResult.data?.favoriteProjectIdsUpdated) return
-
-    updateBySubscription(subscriptionResult.data.favoriteProjectIdsUpdated)
-  }, [
-    updateBySubscription,
-    subscriptionResult.data?.favoriteProjectIdsUpdated,
-    subscriptionResult.loading,
-  ])
-
   return {
-    upsert,
     setFavoriteProjectId,
   }
 }

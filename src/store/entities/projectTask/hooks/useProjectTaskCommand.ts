@@ -78,7 +78,7 @@ export const useProjectTaskCommand = () => {
             projectId: newProjectTask.projectId,
             projectTaskSectionId: newProjectTask.projectTaskSectionId,
             createdBy: me.id,
-            requestID: PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
+            requestId: PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
           },
         },
       })

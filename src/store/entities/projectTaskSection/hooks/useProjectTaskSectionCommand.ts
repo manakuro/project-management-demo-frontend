@@ -14,11 +14,11 @@ export const useProjectTaskSectionCommand = () => {
 
   const addProjectsTaskSection = useRecoilCallback(
     ({ reset }) =>
-      async (params: { projectId: string }) => {
+      async (val: { projectId: string }) => {
         const id = uuid()
         upsert({
           ...initialState(),
-          ...params,
+          ...val,
           isNew: true,
           id,
         })
@@ -26,7 +26,7 @@ export const useProjectTaskSectionCommand = () => {
         const res = await createProjectTaskSectionMutation({
           variables: {
             input: {
-              projectId: params.projectId,
+              projectId: val.projectId,
               requestId: PROJECT_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID,
             },
           },

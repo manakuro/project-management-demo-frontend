@@ -44,14 +44,14 @@ export const useProjectTaskCommand = () => {
     [],
   )
   const addProjectTaskOptimistic = useRecoilCallback(
-    () => (params: AddProjectTaskParams) => {
+    () => (val: AddProjectTaskParams) => {
       const newProjectTaskId = uuid()
       const newTaskId = addTask({
-        taskSectionId: params.projectTaskSectionId,
+        taskSectionId: val.projectTaskSectionId,
       })
       const newProjectTask = {
         ...initialState(),
-        ...params,
+        ...val,
         id: newProjectTaskId,
         taskId: newTaskId,
       }
@@ -68,9 +68,9 @@ export const useProjectTaskCommand = () => {
   )
 
   const addProjectTask = useRecoilCallback(
-    () => async (params: AddProjectTaskParams) => {
+    () => async (val: AddProjectTaskParams) => {
       const { newTaskId, newProjectTask, newProjectTaskId } =
-        addProjectTaskOptimistic(params)
+        addProjectTaskOptimistic(val)
 
       const res = await createProjectTaskMutation({
         variables: {

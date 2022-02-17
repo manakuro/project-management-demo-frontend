@@ -47,16 +47,16 @@ export const useTeammateTaskCommand = () => {
   const addTeammateTask = useRecoilCallback(
     ({ reset }) =>
       async (
-        params: Partial<TeammateTask> & { teammateTaskSectionId: string },
+        val: Partial<TeammateTask> & { teammateTaskSectionId: string },
       ) => {
         const id = uuid()
         const newTaskId = addTask({
           assigneeId: me.id,
-          taskSectionId: params.teammateTaskSectionId,
+          taskSectionId: val.teammateTaskSectionId,
         })
         const newTeammateTask = {
           ...initialState(),
-          ...params,
+          ...val,
           id,
           taskId: newTaskId,
           teammateId: me.id,
@@ -67,7 +67,7 @@ export const useTeammateTaskCommand = () => {
           variables: {
             input: {
               teammateId: me.id,
-              teammateTaskSectionId: params.teammateTaskSectionId,
+              teammateTaskSectionId: val.teammateTaskSectionId,
               workspaceId: workspace.id,
               requestId: TEAMMATE_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
             },

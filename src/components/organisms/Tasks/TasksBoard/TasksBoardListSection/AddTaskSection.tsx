@@ -5,12 +5,11 @@ import { useTasksTaskSectionCommand } from 'src/components/organisms/Tasks/hooks
 type Props = {}
 
 export const AddTaskSection: React.FC<Props> = memo<Props>(() => {
-  const { addTaskSection, setAddedTaskSectionId } = useTasksTaskSectionCommand()
+  const { addTaskSection } = useTasksTaskSectionCommand()
 
   const handleClick = useCallback(async () => {
-    const id = await addTaskSection()
-    setAddedTaskSectionId(id)
-  }, [addTaskSection, setAddedTaskSectionId])
+    addTaskSection()
+  }, [addTaskSection])
 
   return (
     <Flex w={40} mt={3} ml={2}>

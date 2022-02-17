@@ -1,9 +1,6 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Box } from 'src/components/atoms'
-import {
-  useTasksTaskSectionCommand,
-  useTasksTaskSection,
-} from 'src/components/organisms/Tasks/hooks'
+import { useTasksTaskSection } from 'src/components/organisms/Tasks/hooks'
 import { useTasksBoardListSectionContext } from '../../Provider'
 import { Input } from './Input'
 
@@ -12,8 +9,6 @@ type Props = {
 }
 
 export const TaskSectionName: React.FC<Props> = memo<Props>((props) => {
-  const { addedTaskSectionId, resetAddedTaskSectionId } =
-    useTasksTaskSectionCommand()
   const { taskSection, setSectionName } = useTasksTaskSection(
     props.taskSectionId,
   )
@@ -21,9 +16,9 @@ export const TaskSectionName: React.FC<Props> = memo<Props>((props) => {
     useTasksBoardListSectionContext()
 
   const showInput = useMemo(() => {
-    if (addedTaskSectionId === props.taskSectionId) return true
+    if (taskSection.isNew) return true
     return focused
-  }, [addedTaskSectionId, focused, props.taskSectionId])
+  }, [focused, taskSection.isNew])
 
   const handleClick = useCallback(() => {
     onFocusInput()
@@ -31,8 +26,7 @@ export const TaskSectionName: React.FC<Props> = memo<Props>((props) => {
 
   const handleClickOutside = useCallback(() => {
     onUnfocusInput()
-    resetAddedTaskSectionId()
-  }, [onUnfocusInput, resetAddedTaskSectionId])
+  }, [onUnfocusInput])
 
   const handleChange = useCallback(
     async (val: string) => {

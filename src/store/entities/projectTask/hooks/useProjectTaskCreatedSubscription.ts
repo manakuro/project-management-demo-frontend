@@ -40,11 +40,20 @@ export const useProjectTaskCreatedSubscription = (props: Props) => {
 
   const setBySubscription = useRecoilCallback(
     () => (response: Response) => {
-      const updated = response.projectTaskCreated
+      const projectTaskCreated = response.projectTaskCreated
 
       if (__DEV__) console.log('Project Task Created!: ')
 
-      setProjectTask([updated])
+      setProjectTask([
+        {
+          ...projectTaskCreated,
+          task: {
+            ...projectTaskCreated.task,
+            // To prevent autofocus on input.
+            isNew: false,
+          },
+        },
+      ])
     },
     [setProjectTask],
   )

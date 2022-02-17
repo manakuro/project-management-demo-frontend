@@ -53,6 +53,8 @@ export const useSubscription = (taskId: string) => {
           taskPriority: {
             ...(updatedTask.taskPriority || initialState().taskPriority),
           },
+          // To prevent autofocus on input.
+          isNew: false,
         })
 
         if (!isDescriptionEqual(prev.description, updatedTask.description)) {

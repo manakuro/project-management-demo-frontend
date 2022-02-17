@@ -6,4 +6,5 @@ export type TeammateTaskSectionResponse =
 export type {
   TeammateTaskSectionUpdatedSubscription,
   TeammateTaskSectionCreatedSubscription,
+  UpdateTeammateTaskSectionInput,
 } from 'src/graphql/types'

@@ -1,9 +1,10 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useUpdateTeammateTaskSectionMutation } from 'src/graphql/hooks'
+import { omit } from 'src/shared/utils/omit'
 import { useMe } from 'src/store/entities/me'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { teammatesTaskSectionState } from '../atom'
-import { TeammateTaskSection } from '../type'
+import { TeammateTaskSection, UpdateTeammateTaskSectionInput } from '../type'
 import {
   DEFAULT_TITLE_NAME,
   hasTeammateTaskSectionBeenPersisted,
@@ -46,11 +47,10 @@ export const useTeammateTaskSection = (teammateTaskSectionId: string) => {
 
         const res = await updateTeammateTaskSectionMutation({
           variables: {
-            input: {
-              id: teammateTaskSectionId,
-              requestId: TEAMMATE_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID,
-              ...val,
-            },
+            input: prepareUpdateTeammateTaskSectionInput(
+              teammateTaskSectionId,
+              val,
+            ),
           },
         })
         if (res.errors) {
@@ -66,7 +66,7 @@ export const useTeammateTaskSection = (teammateTaskSectionId: string) => {
         return
       const name = val || DEFAULT_TITLE_NAME
 
-      await setTeammateTaskSection({ name })
+      await setTeammateTaskSection({ name, isNew: false })
     },
     [setTeammateTaskSection, teammateTaskSection.name],
   )
@@ -74,5 +74,16 @@ export const useTeammateTaskSection = (teammateTaskSectionId: string) => {
   return {
     teammateTaskSection,
     setTeammateTaskSectionName,
+  }
+}
+
+export const prepareUpdateTeammateTaskSectionInput = (
+  teammateTaskSectionId: string,
+  val: Partial<TeammateTaskSection>,
+): UpdateTeammateTaskSectionInput => {
+  return {
+    ...omit(val, 'isNew'),
+    id: teammateTaskSectionId,
+    requestId: TEAMMATE_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID,
   }
 }

@@ -28,7 +28,7 @@ type Props = ButtonGroupProps & {
 
 export const AddTaskButton: React.VFC<Props> = memo<Props>((props) => {
   const { solid, outlined, ...rest } = props
-  const { addTaskSection, setAddedTaskSectionId } = useTasksTaskSectionCommand()
+  const { addTaskSection } = useTasksTaskSectionCommand()
   const { taskSectionIds } = useTasksTaskSectionIds()
   const firstTaskSectionId = useMemo(() => taskSectionIds[0], [taskSectionIds])
   const { addTask } = useTasksTask()
@@ -44,10 +44,9 @@ export const AddTaskButton: React.VFC<Props> = memo<Props>((props) => {
     ? { color: 'white' }
     : { color: 'text.muted' }
 
-  const handleAddTaskSection = useCallback(async () => {
-    const id = await addTaskSection()
-    setAddedTaskSectionId(id)
-  }, [addTaskSection, setAddedTaskSectionId])
+  const handleAddTaskSection = useCallback(() => {
+    addTaskSection()
+  }, [addTaskSection])
 
   return (
     <ButtonGroup size="xs" isAttached {...buttonGroupProps} {...rest}>

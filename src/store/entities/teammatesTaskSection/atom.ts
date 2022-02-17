@@ -11,6 +11,7 @@ export const initialState = (): TeammateTaskSection => ({
   name: '',
   teammateId: '',
   assigned: false,
+  isNew: false,
   createdAt: '',
   updatedAt: '',
 })

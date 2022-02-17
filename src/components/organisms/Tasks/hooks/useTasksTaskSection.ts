@@ -6,6 +6,7 @@ type Result = {
   taskSection: {
     id: string
     name: string
+    isNew?: boolean
   }
   setSectionName: (val: string) => Promise<void>
 }

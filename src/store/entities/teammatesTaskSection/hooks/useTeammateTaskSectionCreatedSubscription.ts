@@ -13,7 +13,7 @@ type Props = {
   teammateId: string
   workspaceId: string
 }
-export const TEAMMATE_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
+export const TEAMMATE_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID = uuid()
 export const useTeammateTaskSectionCreatedSubscription = (props: Props) => {
   const { setTeammatesTaskSections } = useTeammatesTaskSectionResponse()
 
@@ -25,7 +25,7 @@ export const useTeammateTaskSectionCreatedSubscription = (props: Props) => {
     variables: {
       teammateId: props.teammateId,
       workspaceId: props.workspaceId,
-      requestId: TEAMMATE_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID,
+      requestId: TEAMMATE_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {
       if (

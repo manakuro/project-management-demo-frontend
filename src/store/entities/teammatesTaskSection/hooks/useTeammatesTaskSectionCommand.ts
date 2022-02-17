@@ -5,7 +5,7 @@ import { useMe } from 'src/store/entities/me'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, teammatesTaskSectionState } from '../atom'
 import { TeammateTaskSection } from '../type'
-import { TEAMMATE_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionCreatedSubscription'
+import { TEAMMATE_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionCreatedSubscription'
 import { useTeammatesTaskSectionResponse } from './useTeammatesTaskSectionResponse'
 import { useUpsert } from './useUpsert'
 
@@ -24,6 +24,7 @@ export const useTeammatesTaskSectionCommand = () => {
         upsert({
           ...initialState(),
           ...val,
+          isNew: true,
           id,
         })
 
@@ -32,7 +33,7 @@ export const useTeammatesTaskSectionCommand = () => {
             input: {
               teammateId: me.id,
               workspaceId: workspace.id,
-              requestId: TEAMMATE_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID,
+              requestId: TEAMMATE_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID,
             },
           },
         })
@@ -45,7 +46,12 @@ export const useTeammatesTaskSectionCommand = () => {
         if (!addedTeammateTaskSection) return ''
 
         reset(teammatesTaskSectionState(id))
-        setTeammatesTaskSections([addedTeammateTaskSection])
+        setTeammatesTaskSections([
+          {
+            ...addedTeammateTaskSection,
+            isNew: true,
+          },
+        ])
 
         return addedTeammateTaskSection.id
       },

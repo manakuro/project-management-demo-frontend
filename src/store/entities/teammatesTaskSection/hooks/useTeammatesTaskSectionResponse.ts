@@ -7,7 +7,7 @@ import {
 import { teammatesTaskSectionState } from '../atom'
 import { TeammateTaskSectionResponse } from '../type'
 
-export const useTeammatesTaskSectionsResponse = () => {
+export const useTeammatesTaskSectionResponse = () => {
   const { setTeammateTask } = useTeammateTaskResponse()
 
   const setTeammatesTaskSections = useRecoilCallback(

@@ -1,0 +1,5 @@
+subscription TeammateTaskSectionUpdated($id: ID!, $requestId: String!) {
+  teammateTaskSectionUpdated(id: $id, requestId: $requestId) {
+    ...TeammateTaskSectionFragment
+  }
+}

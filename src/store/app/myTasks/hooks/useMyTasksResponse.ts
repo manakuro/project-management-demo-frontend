@@ -5,12 +5,12 @@ import {
   TeammateTaskColumnResponse,
   useTeammateTaskColumnResponse,
 } from 'src/store/entities/teammateTaskColumn'
-import { useTeammatesTaskSectionsResponse } from 'src/store/entities/teammatesTaskSections'
+import { useTeammatesTaskSectionResponse } from 'src/store/entities/teammatesTaskSection'
 import { taskListStatusState } from '../taskListStatus'
 import { MyTasksResponse } from '../type'
 
 export const useMyTasksResponse = () => {
-  const { setTeammatesTaskSections } = useTeammatesTaskSectionsResponse()
+  const { setTeammatesTaskSections } = useTeammatesTaskSectionResponse()
   const { setTaskColumns, setTaskStatus } = useSetters()
   const setMyTasks = useRecoilCallback(
     () => (data: MyTasksResponse) => {

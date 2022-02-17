@@ -2,7 +2,7 @@ import { selectorFamily } from 'recoil'
 import { isTaskListSortStatusState } from 'src/store/app/myTasks/taskListStatus'
 import { tasksByTeammateIdState } from 'src/store/entities/teammateTask'
 import { isTabStatusState } from 'src/store/entities/teammateTaskTabStatus'
-import { taskSectionsByTeammateIdState } from 'src/store/entities/teammatesTaskSections'
+import { taskSectionsByTeammateIdState } from 'src/store/entities/teammatesTaskSection'
 
 const key = (str: string) => `src/store/app/myTasks/taskSections/${str}`
 

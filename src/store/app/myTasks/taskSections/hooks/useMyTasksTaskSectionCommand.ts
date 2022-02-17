@@ -1,10 +1,10 @@
 import { useRecoilCallback } from 'recoil'
 import { useMe } from 'src/store/entities/me'
-import { useTeammatesTaskSectionsCommand } from 'src/store/entities/teammatesTaskSections'
+import { useTeammatesTaskSectionCommand } from 'src/store/entities/teammatesTaskSection'
 
 export const useMyTasksTaskSectionCommand = () => {
   const { me } = useMe()
-  const { addTeammatesTaskSection } = useTeammatesTaskSectionsCommand()
+  const { addTeammatesTaskSection } = useTeammatesTaskSectionCommand()
 
   const addMyTaskSection = useRecoilCallback(
     () => () => {

@@ -1,0 +1,5 @@
+mutation UpdateTeammateTaskSection($input: UpdateTeammateTaskSectionInput!) {
+  updateTeammateTaskSection(input: $input) {
+    ...TeammateTaskSectionFragment
+  }
+}

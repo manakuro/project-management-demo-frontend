@@ -4,9 +4,10 @@ documents:
  - "./src/graphql/**/*.gql"
 generates:
   ./src/graphql/types/index.ts:
-    hooks:
-      afterOneFileWrite:
-        - eslint ./src/graphql/types/index.ts --fix
+#    Too slow when enabled
+#    hooks:
+#      afterOneFileWrite:
+#        - eslint ./src/graphql/types/index.ts --fix
     plugins:
       - add:
           content: "/* eslint-disable @typescript-eslint/no-redeclare */"
@@ -16,9 +17,9 @@ generates:
       enumsAsConst: true
 
   ./src/graphql/enums/index.ts:
-    hooks:
-      afterOneFileWrite:
-        - eslint ./src/graphql/enums/index.ts --fix
+#    hooks:
+#      afterOneFileWrite:
+#        - eslint ./src/graphql/enums/index.ts --fix
     plugins:
       - add:
           content: "/* eslint-disable @typescript-eslint/no-redeclare */"
@@ -29,9 +30,9 @@ generates:
       enumPrefix: false
 
   ./src/graphql/hooks/index.ts:
-    hooks:
-      afterOneFileWrite:
-        - eslint ./src/graphql/hooks/index.ts --fix
+#    hooks:
+#      afterOneFileWrite:
+#        - eslint ./src/graphql/hooks/index.ts --fix
     plugins:
       - typescript-react-apollo
     config:

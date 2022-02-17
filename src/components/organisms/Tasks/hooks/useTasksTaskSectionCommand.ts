@@ -8,7 +8,7 @@ const key = (str: string) =>
   `src/components/organisms/Tasks/TasksProvider/useTaskSection/${str}`
 
 type Result = {
-  addTaskSection: () => string
+  addTaskSection: () => Promise<string>
   addedTaskSectionId: string
   setAddedTaskSectionId: React.Dispatch<React.SetStateAction<string>>
   resetAddedTaskSectionId: () => void

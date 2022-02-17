@@ -9,8 +9,8 @@ export const AddTaskSection: React.FC<Props> = memo<Props>(() => {
   const { addTaskSection, setAddedTaskSectionId } = useTasksTaskSectionCommand()
   const { stickyStyle } = useTasksListContext()
 
-  const handleClick = useCallback(() => {
-    const id = addTaskSection()
+  const handleClick = useCallback(async () => {
+    const id = await addTaskSection()
     setAddedTaskSectionId(id)
   }, [addTaskSection, setAddedTaskSectionId])
 

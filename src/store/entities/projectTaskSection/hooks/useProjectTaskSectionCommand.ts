@@ -13,7 +13,7 @@ export const useProjectTaskSectionCommand = () => {
   )
 
   const addProjectsTaskSection = useRecoilCallback(
-    () => (val?: Partial<ProjectTaskSection>) => {
+    () => async (val?: Partial<ProjectTaskSection>) => {
       const id = uuid()
       upsert({
         ...initialState(),

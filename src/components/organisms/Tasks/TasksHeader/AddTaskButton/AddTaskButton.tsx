@@ -44,8 +44,8 @@ export const AddTaskButton: React.VFC<Props> = memo<Props>((props) => {
     ? { color: 'white' }
     : { color: 'text.muted' }
 
-  const handleAddTaskSection = useCallback(() => {
-    const id = addTaskSection()
+  const handleAddTaskSection = useCallback(async () => {
+    const id = await addTaskSection()
     setAddedTaskSectionId(id)
   }, [addTaskSection, setAddedTaskSectionId])
 

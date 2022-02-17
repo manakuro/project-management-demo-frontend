@@ -6,7 +6,7 @@ generates:
   ./src/graphql/types/index.ts:
     hooks:
       afterOneFileWrite:
-        - eslint --fix
+        - eslint ./src/graphql/types/index.ts --fix
     plugins:
       - add:
           content: "/* eslint-disable @typescript-eslint/no-redeclare */"
@@ -18,7 +18,7 @@ generates:
   ./src/graphql/enums/index.ts:
     hooks:
       afterOneFileWrite:
-        - eslint --fix
+        - eslint ./src/graphql/enums/index.ts --fix
     plugins:
       - add:
           content: "/* eslint-disable @typescript-eslint/no-redeclare */"
@@ -31,7 +31,7 @@ generates:
   ./src/graphql/hooks/index.ts:
     hooks:
       afterOneFileWrite:
-        - eslint --fix
+        - eslint ./src/graphql/hooks/index.ts --fix
     plugins:
       - typescript-react-apollo
     config:

@@ -3,6 +3,7 @@ import type { TeammateTaskSectionResponse } from 'src/graphql/types/teammateTask
 export type {
   TeammateTaskSectionResponse,
   TeammateTaskSectionUpdatedSubscription as TeammateTaskSectionUpdatedSubscriptionResponse,
+  TeammateTaskSectionCreatedSubscription as TeammateTaskSectionCreatedSubscriptionResponse,
 } from 'src/graphql/types/teammateTaskSection'
 
 export type TeammateTaskSection = Omit<

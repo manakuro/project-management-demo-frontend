@@ -2,7 +2,7 @@ import isEqual from 'lodash-es/isEqual'
 import { useMemo } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useProjectTaskCreatedSubscription as useSubscription } from 'src/graphql/hooks'
-import { projectTaskState } from '../atom'
+import { uuid } from 'src/shared/uuid'
 import { ProjectTaskCreatedSubscriptionResponse as Response } from '../type'
 import { useProjectTaskResponse } from './useProjectTaskResponse'
 
@@ -12,6 +12,7 @@ let previousData: any
 type Props = {
   projectId: string
 }
+export const PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID = uuid()
 export const useProjectTaskCreatedSubscription = (props: Props) => {
   const { setProjectTask } = useProjectTaskResponse()
 
@@ -19,8 +20,9 @@ export const useProjectTaskCreatedSubscription = (props: Props) => {
   const subscriptionResult = useSubscription({
     variables: {
       projectId: props.projectId,
+      requestId: PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
     },
-    onSubscriptionData: async (data) => {
+    onSubscriptionData: (data) => {
       if (
         isEqual(
           data.subscriptionData.data,
@@ -30,25 +32,20 @@ export const useProjectTaskCreatedSubscription = (props: Props) => {
         return
 
       if (data.subscriptionData.data)
-        await setBySubscription(data.subscriptionData.data)
+        setBySubscription(data.subscriptionData.data)
       previousData = data
     },
     skip: skipSubscription,
   })
 
   const setBySubscription = useRecoilCallback(
-    ({ snapshot }) =>
-      async (response: Response) => {
-        const updated = response.projectTaskCreated
-        const prev = await snapshot.getPromise(projectTaskState(updated.id))
-        if (prev.id) return
+    () => (response: Response) => {
+      const updated = response.projectTaskCreated
 
-        if (__DEV__) {
-          console.log('Project Task Created!: ', prev, updated)
-        }
+      if (__DEV__) console.log('Project Task Created!: ')
 
-        setProjectTask([updated])
-      },
+      setProjectTask([updated])
+    },
     [setProjectTask],
   )
 

@@ -1,5 +1,5 @@
-subscription ProjectTaskCreated($projectId: ID!) {
-  projectTaskCreated(projectId: $projectId) {
+subscription ProjectTaskCreated($projectId: ID!, $requestId: String!) {
+  projectTaskCreated(projectId: $projectId, requestId: $requestId) {
     ...ProjectTaskFragment
   }
 }

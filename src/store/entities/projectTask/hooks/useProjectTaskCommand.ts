@@ -6,7 +6,10 @@ import { useMe } from 'src/store/entities/me'
 import { taskState, useTaskCommand } from 'src/store/entities/task'
 import { projectTaskState, initialState } from '../atom'
 import { ProjectTask } from '../type'
-import { useProjectTaskCreatedSubscription } from './useProjectTaskCreatedSubscription'
+import {
+  PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
+  useProjectTaskCreatedSubscription,
+} from './useProjectTaskCreatedSubscription'
 import { useProjectTaskResponse } from './useProjectTaskResponse'
 
 type AddProjectTaskParams = Partial<ProjectTask> & {
@@ -75,6 +78,7 @@ export const useProjectTaskCommand = () => {
             projectId: newProjectTask.projectId,
             projectTaskSectionId: newProjectTask.projectTaskSectionId,
             createdBy: me.id,
+            requestID: PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
           },
         },
       })

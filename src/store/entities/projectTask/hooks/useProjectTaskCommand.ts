@@ -1,10 +1,12 @@
 import { useRecoilCallback } from 'recoil'
 import { useCreateProjectTaskMutation } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
+import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useMe } from 'src/store/entities/me'
 import { taskState, useTaskCommand } from 'src/store/entities/task'
 import { projectTaskState, initialState } from '../atom'
 import { ProjectTask } from '../type'
+import { useProjectTaskCreatedSubscription } from './useProjectTaskCreatedSubscription'
 import { useProjectTaskResponse } from './useProjectTaskResponse'
 
 type AddProjectTaskParams = Partial<ProjectTask> & {
@@ -16,6 +18,11 @@ export const useProjectTaskCommand = () => {
   const [createProjectTaskMutation] = useCreateProjectTaskMutation()
   const { me } = useMe()
   const { setProjectTask } = useProjectTaskResponse()
+  const { projectId } = useProjectsProjectId()
+
+  useProjectTaskCreatedSubscription({
+    projectId,
+  })
 
   const upsert = useRecoilCallback(
     ({ set }) =>

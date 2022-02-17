@@ -1,0 +1,5 @@
+subscription ProjectTaskSectionUpdated($id: ID!, $requestId: String!) {
+  projectTaskSectionUpdated(id: $id, requestId: $requestId) {
+    ...ProjectTaskSectionFragment
+  }
+}

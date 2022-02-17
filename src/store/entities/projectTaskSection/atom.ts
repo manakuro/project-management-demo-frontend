@@ -10,6 +10,7 @@ export const initialState = (): ProjectTaskSection => ({
   id: '',
   name: '',
   projectId: '',
+  isNew: false,
   createdAt: '',
   updatedAt: '',
 })

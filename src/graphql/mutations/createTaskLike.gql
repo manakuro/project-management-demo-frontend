@@ -1,0 +1,5 @@
+mutation CreateTaskLike($input: CreateTaskLikeInput!) {
+  createTaskLike(input: $input) {
+    ...TaskLikeFragment
+  }
+}

@@ -1,0 +1,5 @@
+subscription TaskLikeUpdated($workspaceId: ID!, $requestId: String!) {
+  taskLikeUpdated(workspaceId: $workspaceId, requestId: $requestId) {
+    ...TaskLikeFragment
+  }
+}

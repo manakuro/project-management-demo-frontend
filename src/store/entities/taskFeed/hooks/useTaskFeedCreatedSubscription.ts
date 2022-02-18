@@ -1,32 +1,25 @@
 import isEqual from 'lodash-es/isEqual'
-import { useMemo } from 'react'
 import { useRecoilCallback } from 'recoil'
-import { useTaskFeedUpdatedSubscription as useSubscription } from 'src/graphql/hooks'
-import { isULID } from 'src/shared/ulid'
+import { useTaskFeedCreatedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { TaskFeedUpdatedSubscriptionResponse } from '../type'
+import { TaskFeedCreatedSubscriptionResponse } from '../type'
 import { useTaskFeedResponse } from './useTaskFeedResponse'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any
 
 type Props = {
-  taskFeedId: string
+  taskId: string
 }
 
-export const TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
-export const useTaskFeedUpdatedSubscription = (props: Props) => {
+export const TASK_FEED_CREATED_SUBSCRIPTION_REQUEST_ID = uuid()
+export const useTaskFeedCreatedSubscription = (props: Props) => {
   const { setTaskFeed } = useTaskFeedResponse()
-
-  const skipSubscription = useMemo(
-    () => !props.taskFeedId || !isULID(props.taskFeedId),
-    [props.taskFeedId],
-  )
 
   useSubscription({
     variables: {
-      taskFeedId: props.taskFeedId,
-      requestId: TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID,
+      taskId: props.taskId,
+      requestId: TASK_FEED_CREATED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {
       if (
@@ -41,14 +34,13 @@ export const useTaskFeedUpdatedSubscription = (props: Props) => {
         setTaskBySubscription(data.subscriptionData.data)
       previousData = data
     },
-    skip: skipSubscription,
   })
 
   const setTaskBySubscription = useRecoilCallback(
-    () => async (response: TaskFeedUpdatedSubscriptionResponse) => {
-      const updated = response.taskFeedUpdated
+    () => async (response: TaskFeedCreatedSubscriptionResponse) => {
+      const updated = response.taskFeedCreated
 
-      console.log('subscription updated!: ')
+      console.log('subscription created! ')
 
       setTaskFeed([updated])
     },

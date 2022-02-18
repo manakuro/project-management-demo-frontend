@@ -1,0 +1,5 @@
+subscription TaskFeedCreated($taskId: ID!, $requestId: String!) {
+  taskFeedCreated(taskId: $taskId, requestId: $requestId) {
+    ...TaskFeedFragment
+  }
+}

@@ -1,0 +1,5 @@
+mutation CreateTaskFeed($input: CreateTaskFeedInput!) {
+  createTaskFeed(input: $input) {
+    ...TaskFeedFragment
+  }
+}

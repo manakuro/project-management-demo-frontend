@@ -1,0 +1,5 @@
+mutation DeleteTaskFeed($input: DeleteTaskFeedInput!) {
+  deleteTaskFeed(input: $input) {
+    ...TaskFeedFragment
+  }
+}

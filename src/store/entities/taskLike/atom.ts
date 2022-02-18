@@ -8,6 +8,7 @@ export const initialState = (): TaskLike => ({
   id: '',
   taskId: '',
   teammateId: '',
+  workspaceId: '',
   createdAt: '',
   updatedAt: '',
 })

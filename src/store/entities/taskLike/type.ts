@@ -1,15 +1,5 @@
-export type TaskLikeResponse = {
-  id: string
-  taskId: string
-  teammateId: string
-  createdAt: string
-  updatedAt: string
-}
+import type { TaskLikeResponse } from 'src/graphql/types/taskLike'
 
-export type TaskLike = {
-  id: string
-  taskId: string
-  teammateId: string
-  createdAt: string
-  updatedAt: string
-}
+export type { TaskLikeResponse } from 'src/graphql/types/taskLike'
+
+export type TaskLike = TaskLikeResponse

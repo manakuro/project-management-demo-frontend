@@ -1,0 +1,8 @@
+fragment TaskLikeFragment on TaskLike {
+  id
+  taskId
+  teammateId
+  workspaceId
+  createdAt
+  updatedAt
+}

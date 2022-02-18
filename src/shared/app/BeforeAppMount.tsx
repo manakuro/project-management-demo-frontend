@@ -26,14 +26,11 @@ export const BeforeAppMount: React.FC = (props) => {
   const useFeedLikesQueryResult = useFeedLikesQuery({
     lazy: true,
   })
-  const useTaskLikesQueryResult = useTaskLikesQuery({
-    lazy: true,
-  })
+  useTaskLikesQuery()
 
   useEffect(() => {
     console.log('BeforeAppMount!!')
     useFeedLikesQueryResult.refetch()
-    useTaskLikesQueryResult.refetch()
     /* eslint react-hooks/exhaustive-deps: off */
   }, [])
 

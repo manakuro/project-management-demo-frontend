@@ -1,0 +1,9 @@
+query TaskLikes($where: TaskLikeWhereInput) {
+  taskLikes(where: $where) {
+    edges {
+      node {
+        ...TaskLikeFragment
+      }
+    }
+  }
+}

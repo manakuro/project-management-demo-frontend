@@ -1,40 +1,98 @@
-import { useCallback, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useRecoilCallback, useRecoilState } from 'recoil'
+import {
+  useCreateTaskLikeMutation,
+  useDeleteTaskLikeMutation,
+} from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { initialState, taskLikesState } from '../atom'
+import { useWorkspace } from 'src/store/entities/workspace'
+import { initialState, taskLikesState, taskLikeState } from '../atom'
 import { useTaskLikeCommand } from './useTaskLikeCommand'
+import { useTaskLikeResponse } from './useTaskLikeResponse'
+import {
+  TASK_LIKE_UPDATED_SUBSCRIPTION_REQUEST_ID,
+  useTaskLikeUpdatedSubscription,
+} from './useTaskLikeUpdatedSubscription'
 
 export const useTaskLikesByTaskId = (taskId: string) => {
   const { upsert } = useTaskLikeCommand()
-  const [taskLikesAll, setTaskLikesAll] = useRecoilState(taskLikesState)
+  const [taskLikesAll] = useRecoilState(taskLikesState)
+  const { workspace } = useWorkspace()
+  const { setTaskLikes } = useTaskLikeResponse()
 
-  const addTaskLike = useCallback(
-    (teammateId: string) => {
-      const id = uuid()
-      upsert({
-        ...initialState(),
-        id,
-        taskId,
-        teammateId,
-      })
+  const [createTaskLikeMutation] = useCreateTaskLikeMutation()
+  const [deleteTaskLikeMutation] = useDeleteTaskLikeMutation()
 
-      return id
-    },
-    [taskId, upsert],
+  useTaskLikeUpdatedSubscription({
+    workspaceId: workspace.id,
+  })
+
+  const addTaskLike = useRecoilCallback(
+    ({ reset }) =>
+      async (teammateId: string) => {
+        const id = uuid()
+        upsert({
+          ...initialState(),
+          id,
+          taskId,
+          teammateId,
+          workspaceId: workspace.id,
+        })
+
+        const res = await createTaskLikeMutation({
+          variables: {
+            input: {
+              taskId,
+              teammateId,
+              workspaceId: workspace.id,
+              requestId: TASK_LIKE_UPDATED_SUBSCRIPTION_REQUEST_ID,
+            },
+          },
+        })
+        if (res.errors) {
+          reset(taskLikeState(id))
+          return
+        }
+
+        const data = res.data?.createTaskLike
+        if (!data) return ''
+
+        reset(taskLikeState(id))
+        setTaskLikes([data])
+
+        return data.id
+      },
+    [createTaskLikeMutation, setTaskLikes, taskId, upsert, workspace.id],
   )
 
   const deleteTaskLike = useRecoilCallback(
-    () => (teammateId: string) => {
-      const index = taskLikesAll.findIndex(
-        (f) => f.teammateId === teammateId && f.taskId === taskId,
-      )
-      const newValue = [
-        ...taskLikesAll.slice(0, index),
-        ...taskLikesAll.slice(index + 1),
-      ]
-      setTaskLikesAll(newValue)
-    },
-    [taskId, taskLikesAll, setTaskLikesAll],
+    ({ snapshot, reset }) =>
+      async (teammateId: string) => {
+        const prev = await snapshot.getPromise(taskLikesState)
+        const taskLike = prev.find(
+          (f) =>
+            f.teammateId === teammateId &&
+            f.taskId === taskId &&
+            f.workspaceId === workspace.id,
+        )
+        if (!taskLike) return
+
+        reset(taskLikeState(taskLike.id))
+
+        const res = await deleteTaskLikeMutation({
+          variables: {
+            input: {
+              id: taskLike.id,
+              requestId: TASK_LIKE_UPDATED_SUBSCRIPTION_REQUEST_ID,
+            },
+          },
+        })
+
+        if (res.errors) {
+          setTaskLikes([taskLike])
+        }
+      },
+    [deleteTaskLikeMutation, setTaskLikes, taskId, workspace.id],
   )
 
   const taskLikes = useMemo(

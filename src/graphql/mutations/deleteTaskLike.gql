@@ -1,0 +1,5 @@
+mutation DeleteTaskLike($input: DeleteTaskLikeInput!) {
+  deleteTaskLike(input: $input) {
+    ...TaskLikeFragment
+  }
+}

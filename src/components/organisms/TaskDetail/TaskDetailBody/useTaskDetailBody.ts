@@ -19,10 +19,6 @@ export const useTaskDetailBody = (deps?: any) => {
     if (ref.current) {
       setState(ref.current)
     }
-
-    return () => {
-      setState(null)
-    }
   }, [setState, deps])
 
   return {

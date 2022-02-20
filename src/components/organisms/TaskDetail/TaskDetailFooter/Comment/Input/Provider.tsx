@@ -220,8 +220,8 @@ function useSave(props: { onSaved: (id: string) => void }) {
     taskDetailBodyDom.scrollTop = getScrollBottom(taskDetailBodyDom)
   }, [taskDetailBodyDom])
 
-  const onSave = useCallback(async () => {
-    const id = await addTaskFeed({
+  const onSave = useCallback(() => {
+    const id = addTaskFeed({
       taskId,
       description: parseDescription(description),
       teammateId: me.id,

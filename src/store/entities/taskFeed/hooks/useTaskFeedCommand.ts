@@ -21,15 +21,15 @@ export const useTaskFeedCommand = () => {
   const { setTaskFeed } = useTaskFeedResponse()
 
   const addTaskFeed = useRecoilCallback(
-    () =>
-      async (val: Pick<TaskFeed, 'taskId' | 'teammateId' | 'description'>) => {
-        const id = uuid()
-        upsert({
-          ...initialState(),
-          ...val,
-          id,
-        })
+    () => (val: Pick<TaskFeed, 'taskId' | 'teammateId' | 'description'>) => {
+      const id = uuid()
+      upsert({
+        ...initialState(),
+        ...val,
+        id,
+      })
 
+      setTimeout(async () => {
         const res = await createTaskFeedMutation({
           variables: {
             input: {
@@ -42,17 +42,17 @@ export const useTaskFeedCommand = () => {
         })
         if (res.errors) {
           resetTaskFeed(id)
-          return ''
         }
 
         const data = res.data?.createTaskFeed
-        if (!data) return ''
+        if (!data) return
 
         resetTaskFeed(id)
         setTaskFeed([data])
+      })
 
-        return data.id
-      },
+      return id
+    },
     [upsert, createTaskFeedMutation, resetTaskFeed, setTaskFeed],
   )
 

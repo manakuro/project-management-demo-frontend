@@ -1,0 +1,5 @@
+subscription TaskLikeDeleted($taskId: ID!, $requestId: String!) {
+  taskLikeDeleted(taskId: $taskId, requestId: $requestId) {
+    ...TaskLikeFragment
+  }
+}

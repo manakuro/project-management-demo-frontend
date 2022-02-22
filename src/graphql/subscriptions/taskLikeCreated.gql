@@ -1,0 +1,5 @@
+subscription TaskLikeCreated($taskId: ID!, $requestId: String!) {
+  taskLikeCreated(taskId: $taskId, requestId: $requestId) {
+    ...TaskLikeFragment
+  }
+}

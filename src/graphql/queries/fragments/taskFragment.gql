@@ -8,6 +8,9 @@ fragment TaskFragment on Task {
   taskFeeds {
     ...TaskFeedFragment
   }
+  taskLikes {
+    ...TaskLikeFragment
+  }
   taskFeedLikes {
     ...TaskFeedLikeFragment
   }

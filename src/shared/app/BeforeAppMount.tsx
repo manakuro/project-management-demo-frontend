@@ -4,7 +4,6 @@ import {
   useFavoriteProjectIdsQuery,
   useWorkspaceQuery,
   useMeQuery,
-  useTaskLikesQuery,
   useTeammateTaskTabStatusQuery,
   useFavoriteWorkspaceIdsQuery,
   useProjectBaseColorsQuery,
@@ -22,7 +21,6 @@ export const BeforeAppMount: React.FC = (props) => {
   useMeQuery()
   useFavoriteProjectIdsQuery()
   useTeammateTaskTabStatusQuery()
-  useTaskLikesQuery()
 
   useEffect(() => {
     console.log('BeforeAppMount!!')

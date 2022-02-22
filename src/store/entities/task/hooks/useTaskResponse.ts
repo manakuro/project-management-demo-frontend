@@ -5,6 +5,7 @@ import { projectTaskState } from 'src/store/entities/projectTask'
 import { taskFeedState } from 'src/store/entities/taskFeed'
 import { useTaskFeedLikeResponse } from 'src/store/entities/taskFeedLike'
 import { taskFileState } from 'src/store/entities/taskFile'
+import { useTaskLikeResponse } from 'src/store/entities/taskLike'
 import { taskTagState } from 'src/store/entities/taskTag'
 import { taskTeammateState } from 'src/store/entities/taskTeammate'
 import { useTeammateResponse } from 'src/store/entities/teammate'
@@ -19,6 +20,7 @@ export const useTasksResponse = () => {
     setTags,
     setProjects,
     setTaskFeedLikes,
+    setTaskLikes,
   } = useSetters()
 
   const setTasksFromResponse = useRecoilCallback(
@@ -29,6 +31,7 @@ export const useTasksResponse = () => {
       setTags(data)
       setProjects(data)
       setTaskFeedLikes(data)
+      setTaskLikes(data)
     },
     [
       setTasks,
@@ -37,6 +40,7 @@ export const useTasksResponse = () => {
       setTags,
       setProjects,
       setTaskFeedLikes,
+      setTaskLikes,
     ],
   )
 
@@ -49,6 +53,18 @@ const useSetters = () => {
   const { setTeammates: setTeammatesResponse } = useTeammateResponse()
   const { setTaskFeedLikes: setTaskFeedLikesResponse } =
     useTaskFeedLikeResponse()
+  const { setTaskLikes: setTaskLikesResponse } = useTaskLikeResponse()
+
+  const setTaskLikes = useRecoilCallback(
+    () => (data: TaskResponse[]) => {
+      const taskLikes = data.reduce<TaskResponse['taskLikes']>(
+        (acc, p) => uniqBy([...acc, ...p.taskLikes], 'id'),
+        [],
+      )
+      setTaskLikesResponse(taskLikes)
+    },
+    [setTaskLikesResponse],
+  )
 
   const setTaskFeedLikes = useRecoilCallback(
     () => (data: TaskResponse[]) => {
@@ -167,5 +183,6 @@ const useSetters = () => {
     setTasks,
     setProjects,
     setTaskFeedLikes,
+    setTaskLikes,
   }
 }

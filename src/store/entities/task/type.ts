@@ -20,6 +20,7 @@ export type Task = Override<
     | 'projectTasks'
     | 'subTasks'
     | 'taskFeedLikes'
+    | 'taskLikes'
   >,
   {
     taskPriority: NonNullable<TaskResponse['taskPriority']>

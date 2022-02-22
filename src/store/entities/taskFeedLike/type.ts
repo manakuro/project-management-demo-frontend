@@ -1,8 +1,9 @@
-export type TaskFeedLike = {
-  id: string
-  taskId: string
-  taskFeedId: string
-  teammateId: string // TODO: change to `userId`
-  createdAt: string
-  updatedAt: string
-}
+import type { TaskFeedLikeResponse } from 'src/graphql/types/taskFeedLike'
+
+export type {
+  TaskFeedLikeResponse,
+  TaskFeedLikeCreatedSubscription as TaskFeedLikeCreatedSubscriptionResponse,
+  TaskFeedLikeDeletedSubscription as TaskFeedLikeDeletedSubscriptionResponse,
+} from 'src/graphql/types/taskFeedLike'
+
+export type TaskFeedLike = TaskFeedLikeResponse

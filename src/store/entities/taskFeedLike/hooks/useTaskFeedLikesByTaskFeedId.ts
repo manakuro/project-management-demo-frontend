@@ -1,41 +1,106 @@
-import { useCallback, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useRecoilCallback, useRecoilState } from 'recoil'
+import {
+  useCreateTaskFeedLikeMutation,
+  useDeleteTaskFeedLikeMutation,
+} from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { initialState, taskFeedLikesState } from '../atom'
+import { initialState, taskFeedLikesState, taskFeedLikeState } from '../atom'
 import { useTaskFeedLikeCommand } from './useTaskFeedLikeCommand'
+import {
+  useTaskFeedLikeCreatedSubscription,
+  TASK_FEED_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID,
+} from './useTaskFeedLikeCreatedSubscription'
+import {
+  useTaskFeedLikeDeletedSubscription,
+  TASK_FEED_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID,
+} from './useTaskFeedLikeDeletedSubscription'
+import { useTaskFeedLikeResponse } from './useTaskFeedLikeResponse'
 
-export const useTaskFeedLikesByTaskFeedId = (taskFeedId: string) => {
+export const useTaskFeedLikesByTaskFeedId = (
+  taskFeedId: string,
+  taskId: string,
+) => {
   const { upsert } = useTaskFeedLikeCommand()
-  const [taskFeedLikesAll, setTaskFeedLikesAll] =
-    useRecoilState(taskFeedLikesState)
+  const [taskFeedLikesAll] = useRecoilState(taskFeedLikesState)
+  const { setTaskFeedLikes } = useTaskFeedLikeResponse()
 
-  const addTaskFeedLike = useCallback(
-    (teammateId: string) => {
-      const id = uuid()
-      upsert({
-        ...initialState(),
-        id,
-        taskFeedId,
-        teammateId,
-      })
+  const [createTaskFeedLikeMutation] = useCreateTaskFeedLikeMutation()
+  const [deleteTaskFeedLikeMutation] = useDeleteTaskFeedLikeMutation()
 
-      return id
-    },
-    [taskFeedId, upsert],
+  useTaskFeedLikeCreatedSubscription({
+    taskFeedId,
+  })
+  useTaskFeedLikeDeletedSubscription({
+    taskFeedId,
+  })
+
+  const addTaskFeedLike = useRecoilCallback(
+    ({ reset }) =>
+      async (teammateId: string) => {
+        const id = uuid()
+        upsert({
+          ...initialState(),
+          id,
+          taskFeedId,
+          teammateId,
+          taskId,
+        })
+
+        setTimeout(async () => {
+          const res = await createTaskFeedLikeMutation({
+            variables: {
+              input: {
+                teammateId,
+                taskFeedId,
+                taskId,
+                requestId: TASK_FEED_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            reset(taskFeedLikeState(id))
+            return
+          }
+
+          const data = res.data?.createTaskFeedLike
+          if (!data) return
+
+          reset(taskFeedLikeState(id))
+          setTaskFeedLikes([data])
+        })
+
+        return id
+      },
+    [createTaskFeedLikeMutation, setTaskFeedLikes, taskFeedId, taskId, upsert],
   )
 
   const deleteTaskFeedLike = useRecoilCallback(
-    () => (teammateId: string) => {
-      const index = taskFeedLikesAll.findIndex(
-        (f) => f.teammateId === teammateId && f.taskFeedId === taskFeedId,
-      )
-      const newValue = [
-        ...taskFeedLikesAll.slice(0, index),
-        ...taskFeedLikesAll.slice(index + 1),
-      ]
-      setTaskFeedLikesAll(newValue)
-    },
-    [taskFeedId, taskFeedLikesAll, setTaskFeedLikesAll],
+    ({ snapshot, reset }) =>
+      async (teammateId: string) => {
+        const prev = await snapshot.getPromise(taskFeedLikesState)
+        const taskFeedLike = prev.find(
+          (f) => f.teammateId === teammateId && f.taskFeedId === taskFeedId,
+        )
+        if (!taskFeedLike) return
+
+        reset(taskFeedLikeState(taskFeedLike.id))
+
+        setTimeout(async () => {
+          const res = await deleteTaskFeedLikeMutation({
+            variables: {
+              input: {
+                id: taskFeedLike.id,
+                requestId: TASK_FEED_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            setTaskFeedLikes([taskFeedLike])
+          }
+        })
+      },
+    [deleteTaskFeedLikeMutation, setTaskFeedLikes, taskFeedId],
   )
 
   const taskFeedLikes = useMemo(

@@ -1,0 +1,5 @@
+mutation CreateTaskFeedLike($input: CreateTaskFeedLikeInput!) {
+  createTaskFeedLike(input: $input) {
+    ...TaskFeedLikeFragment
+  }
+}

@@ -1,14 +1,14 @@
 import { useCallback, useMemo } from 'react'
-import { useTaskFeedListItemContext } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider'
 import { useMe } from 'src/store/entities/me'
 import { useTaskFeedLikesByTaskFeedId } from 'src/store/entities/taskFeedLike'
 import { useTeammates } from 'src/store/entities/teammate'
+import { useTaskFeedListItemContext } from '../../Provider'
 
 export const useLike = () => {
   const { taskFeed } = useTaskFeedListItemContext()
   const { getTeammatesById } = useTeammates()
   const { taskFeedLikes, teammateIds, addTaskFeedLike, deleteTaskFeedLike } =
-    useTaskFeedLikesByTaskFeedId(taskFeed.id)
+    useTaskFeedLikesByTaskFeedId(taskFeed.id, taskFeed.taskId)
   const { me } = useMe()
 
   const likeLength = useMemo(() => taskFeedLikes.length, [taskFeedLikes])

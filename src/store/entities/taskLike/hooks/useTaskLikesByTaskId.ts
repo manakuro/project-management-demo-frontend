@@ -39,28 +39,30 @@ export const useTaskLikesByTaskId = (taskId: string) => {
           workspaceId: workspace.id,
         })
 
-        const res = await createTaskLikeMutation({
-          variables: {
-            input: {
-              taskId,
-              teammateId,
-              workspaceId: workspace.id,
-              requestId: TASK_LIKE_UPDATED_SUBSCRIPTION_REQUEST_ID,
+        setTimeout(async () => {
+          const res = await createTaskLikeMutation({
+            variables: {
+              input: {
+                taskId,
+                teammateId,
+                workspaceId: workspace.id,
+                requestId: TASK_LIKE_UPDATED_SUBSCRIPTION_REQUEST_ID,
+              },
             },
-          },
-        })
-        if (res.errors) {
+          })
+          if (res.errors) {
+            reset(taskLikeState(id))
+            return
+          }
+
+          const data = res.data?.createTaskLike
+          if (!data) return ''
+
           reset(taskLikeState(id))
-          return
-        }
+          setTaskLikes([data])
+        })
 
-        const data = res.data?.createTaskLike
-        if (!data) return ''
-
-        reset(taskLikeState(id))
-        setTaskLikes([data])
-
-        return data.id
+        return id
       },
     [createTaskLikeMutation, setTaskLikes, taskId, upsert, workspace.id],
   )
@@ -79,18 +81,20 @@ export const useTaskLikesByTaskId = (taskId: string) => {
 
         reset(taskLikeState(taskLike.id))
 
-        const res = await deleteTaskLikeMutation({
-          variables: {
-            input: {
-              id: taskLike.id,
-              requestId: TASK_LIKE_UPDATED_SUBSCRIPTION_REQUEST_ID,
+        setTimeout(async () => {
+          const res = await deleteTaskLikeMutation({
+            variables: {
+              input: {
+                id: taskLike.id,
+                requestId: TASK_LIKE_UPDATED_SUBSCRIPTION_REQUEST_ID,
+              },
             },
-          },
-        })
+          })
 
-        if (res.errors) {
-          setTaskLikes([taskLike])
-        }
+          if (res.errors) {
+            setTaskLikes([taskLike])
+          }
+        })
       },
     [deleteTaskLikeMutation, setTaskLikes, taskId, workspace.id],
   )

@@ -1,6 +1,5 @@
 export * from './useFavoriteProjectIdsQuery'
 export * from './useFavoriteWorkspaceIdsQuery'
-export * from './useFeedLikesQuery'
 export * from './useMeQuery'
 export * from './useProjectBaseColorsQuery'
 export * from './useProjectIconsQuery'

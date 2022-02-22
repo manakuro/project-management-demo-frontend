@@ -4,7 +4,6 @@ import {
   useFavoriteProjectIdsQuery,
   useWorkspaceQuery,
   useMeQuery,
-  useFeedLikesQuery,
   useTaskLikesQuery,
   useTeammateTaskTabStatusQuery,
   useFavoriteWorkspaceIdsQuery,
@@ -23,14 +22,10 @@ export const BeforeAppMount: React.FC = (props) => {
   useMeQuery()
   useFavoriteProjectIdsQuery()
   useTeammateTaskTabStatusQuery()
-  const useFeedLikesQueryResult = useFeedLikesQuery({
-    lazy: true,
-  })
   useTaskLikesQuery()
 
   useEffect(() => {
     console.log('BeforeAppMount!!')
-    useFeedLikesQueryResult.refetch()
     /* eslint react-hooks/exhaustive-deps: off */
   }, [])
 

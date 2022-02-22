@@ -1,0 +1,5 @@
+mutation DeleteTaskFeedLike($input: DeleteTaskFeedLikeInput!) {
+  deleteTaskFeedLike(input: $input) {
+    ...TaskFeedLikeFragment
+  }
+}

@@ -1,0 +1,8 @@
+fragment TaskFeedLikeFragment on TaskFeedLike {
+  id
+  taskId
+  teammateId
+  taskFeedId
+  createdAt
+  updatedAt
+}

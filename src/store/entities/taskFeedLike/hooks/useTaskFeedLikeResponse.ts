@@ -1,11 +1,11 @@
 import { useRecoilCallback } from 'recoil'
 import { taskFeedLikeState } from '../atom'
-import { TaskFeedLike } from '../type'
+import { TaskFeedLikeResponse } from '../type'
 
-export const useTaskFeedLikesResponse = () => {
+export const useTaskFeedLikeResponse = () => {
   const setTaskFeedLikes = useRecoilCallback(
     ({ set }) =>
-      (data: TaskFeedLike[]) => {
+      (data: TaskFeedLikeResponse[]) => {
         data.forEach((d) => {
           set(taskFeedLikeState(d.id), d)
         })

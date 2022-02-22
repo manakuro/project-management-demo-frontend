@@ -1,0 +1,5 @@
+subscription TaskFeedLikeCreated($taskFeedId: ID!, $requestId: String!) {
+  taskFeedLikeCreated(taskFeedId: $taskFeedId, requestId: $requestId) {
+    ...TaskFeedLikeFragment
+  }
+}

@@ -1,4 +1,4 @@
 export * from './useTaskFeedLikeCommand'
 export * from './useTaskFeedLikesByTaskFeedId'
-export * from './useTaskFeedLikesResponse'
+export * from './useTaskFeedLikeResponse'
 export * from './useTaskFeedLike'

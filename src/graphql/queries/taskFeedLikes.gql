@@ -1,0 +1,9 @@
+query TaskFeedLikes($where: TaskFeedLikeWhereInput) {
+  taskFeedLikes(where: $where) {
+    edges {
+      node {
+        ...TaskFeedLikeFragment
+      }
+    }
+  }
+}

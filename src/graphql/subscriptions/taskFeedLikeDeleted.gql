@@ -1,0 +1,5 @@
+subscription TaskFeedLikeDeleted($taskFeedId: ID!, $requestId: String!) {
+  taskFeedLikeDeleted(taskFeedId: $taskFeedId, requestId: $requestId) {
+    ...TaskFeedLikeFragment
+  }
+}

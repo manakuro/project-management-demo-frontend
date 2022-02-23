@@ -2,6 +2,7 @@ import type { TaskResponse as Response } from 'src/graphql/types/task'
 
 export type {
   TaskUpdatedSubscription as TaskUpdatedSubscriptionResponse,
+  TaskDeletedSubscription as TaskDeletedSubscriptionResponse,
   UpdateTaskMutationVariables,
   UpdateTaskInput,
 } from 'src/graphql/types/task'

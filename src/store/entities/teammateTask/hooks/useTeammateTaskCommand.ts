@@ -10,7 +10,6 @@ import {
   TEAMMATE_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
   useTeammateTaskCreatedSubscription,
 } from './useTeammateTaskCreatedSubscription'
-import { useTeammateTaskDeletedSubscription } from './useTeammateTaskDeletedSubscription'
 import { useTeammateTaskResponse } from './useTeammateTaskResponse'
 
 export const useTeammateTaskCommand = () => {
@@ -21,10 +20,6 @@ export const useTeammateTaskCommand = () => {
   const { setTeammateTask } = useTeammateTaskResponse()
 
   useTeammateTaskCreatedSubscription({
-    teammateId: me.id,
-    workspaceId: workspace.id,
-  })
-  useTeammateTaskDeletedSubscription({
     teammateId: me.id,
     workspaceId: workspace.id,
   })

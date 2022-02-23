@@ -21,16 +21,20 @@ const hasDescriptionUpdatedState = atomFamily<number, string>({
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any
 
+type Props = {
+  taskId: string
+}
+
 export const TASK_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
-export const useTaskUpdatedSubscription = (taskId: string) => {
+export const useTaskUpdatedSubscription = (props: Props) => {
   const { upsert } = useUpsert()
   const [hasDescriptionUpdated, setHasDescriptionUpdated] = useRecoilState(
-    hasDescriptionUpdatedState(taskId),
+    hasDescriptionUpdatedState(props.taskId),
   )
 
   const subscriptionResult = useSubscription({
     variables: {
-      taskId: taskId,
+      taskId: props.taskId,
       requestId: TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {
@@ -43,18 +47,18 @@ export const useTaskUpdatedSubscription = (taskId: string) => {
         return
 
       if (data.subscriptionData.data)
-        setTaskBySubscription(data.subscriptionData.data)
+        setBySubscription(data.subscriptionData.data)
       previousData = data
     },
   })
 
-  const setTaskBySubscription = useRecoilCallback(
+  const setBySubscription = useRecoilCallback(
     ({ snapshot }) =>
       async (response: TaskUpdatedSubscriptionResponse) => {
-        const prev = await snapshot.getPromise(taskState(taskId))
+        const prev = await snapshot.getPromise(taskState(props.taskId))
         const updatedTask = response.taskUpdated
 
-        console.log('subscription updated!')
+        console.log('task updated!')
 
         upsert({
           ...prev,
@@ -70,7 +74,7 @@ export const useTaskUpdatedSubscription = (taskId: string) => {
           setHasDescriptionUpdated((s) => s + 1)
         }
       },
-    [taskId, upsert, setHasDescriptionUpdated],
+    [props.taskId, upsert, setHasDescriptionUpdated],
   )
 
   return {

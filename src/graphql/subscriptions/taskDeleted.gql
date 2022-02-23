@@ -1,0 +1,13 @@
+subscription TaskDeleted($taskId: ID!, $requestId: String!) {
+  taskDeleted(id: $taskId, requestId: $requestId) {
+    teammateTask {
+      id
+    }
+    projectTask {
+      id
+    }
+    deletedTasks {
+      ...DeletedTaskFragment
+    }
+  }
+}

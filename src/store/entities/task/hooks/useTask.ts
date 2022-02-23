@@ -4,6 +4,7 @@ import { omit } from 'src/shared/utils/omit'
 import { taskState } from '../atom'
 import { Task, UpdateTaskInput } from '../type'
 import { hasTaskBeenPersisted } from '../util'
+import { useTaskDeletedSubscription } from './useTaskDeletedSubscription'
 import {
   TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
   useTaskUpdatedSubscription,
@@ -15,7 +16,12 @@ export const useTask = (taskId: string) => {
   const { upsert } = useUpsert()
   const [updateTaskMutation] = useUpdateTaskMutation()
 
-  const { hasDescriptionUpdated } = useTaskUpdatedSubscription(taskId)
+  const { hasDescriptionUpdated } = useTaskUpdatedSubscription({
+    taskId,
+  })
+  useTaskDeletedSubscription({
+    taskId,
+  })
 
   const setTask = useRecoilCallback(
     ({ snapshot }) =>

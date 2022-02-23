@@ -18,6 +18,7 @@ import {
   useTeammateTaskResponse,
 } from 'src/store/entities/teammateTask'
 import { taskState, initialState } from '../atom'
+import { TASK_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskDeletedSubscription'
 import { useUpsert } from './useUpsert'
 
 export const useTaskCommand = () => {
@@ -80,7 +81,7 @@ export const useTaskCommand = () => {
               teammateTaskId: teammateTask.id,
               workspaceId: teammateTask.workspaceId,
               teammateId: teammateTask.teammateId,
-              requestId: 'requestId',
+              requestId: TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
             },
           },
         })

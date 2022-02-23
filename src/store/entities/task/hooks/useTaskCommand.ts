@@ -78,9 +78,7 @@ export const useTaskCommand = () => {
           variables: {
             input: {
               taskId: val.taskId,
-              teammateTaskId: teammateTask.id,
               workspaceId: teammateTask.workspaceId,
-              teammateId: teammateTask.teammateId,
               requestId: TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
             },
           },

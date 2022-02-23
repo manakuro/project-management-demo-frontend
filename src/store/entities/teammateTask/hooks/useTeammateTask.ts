@@ -2,8 +2,8 @@ import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { teammateTaskState } from '../atom'
 import { TeammateTask } from '../type'
 
-export const useTeammateTask = (teammateTaskId?: string) => {
-  const teammateTask = useRecoilValue(teammateTaskState(teammateTaskId || ''))
+export const useTeammateTask = (teammateTaskId: string) => {
+  const teammateTask = useRecoilValue(teammateTaskState(teammateTaskId))
 
   const upsert = useRecoilCallback(
     ({ set }) =>

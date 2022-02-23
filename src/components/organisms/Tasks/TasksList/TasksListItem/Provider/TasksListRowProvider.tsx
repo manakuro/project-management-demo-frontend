@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useMountedRef } from 'src/hooks'
 import { ROUTE_MY_TASKS, useRouter } from 'src/router'
 import { createProvider } from 'src/shared/react/createProvider'
 
@@ -13,14 +14,17 @@ type Props = {
 const useValue = (props: Props): ContextProps => {
   const [selected, setSelected] = useState<boolean>(false)
   const { router } = useRouter()
+  const { mountedRef } = useMountedRef()
 
   useEffect(() => {
+    if (!mountedRef.current) return
+
     if (router.query[ROUTE_MY_TASKS.query]?.[0] === props.taskId) {
       setSelected(true)
       return
     }
     setSelected(false)
-  }, [props.taskId, router])
+  }, [mountedRef, props.taskId, router])
 
   return {
     selected,

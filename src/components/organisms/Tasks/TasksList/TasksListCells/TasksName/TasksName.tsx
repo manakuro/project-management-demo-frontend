@@ -2,7 +2,10 @@ import React, { memo, useCallback } from 'react'
 import { CheckIcon, FlexProps, Icon, Stack, Text } from 'src/components/atoms'
 import { TaskDoneTransition } from 'src/components/molecules'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
-import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
+import {
+  useTasksRouter,
+  useTasksTask,
+} from 'src/components/organisms/Tasks/hooks'
 import { useTask } from 'src/store/entities/task'
 import { ExpandIcon } from './ExpandIcon'
 import { Feed } from './Feed'
@@ -40,8 +43,13 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
     isTransitioning,
   } = useTasksNameContext()
   const { navigateToTaskDetail } = useTasksRouter()
-  const { task, setTask, deleteTask, setTaskName } = useTask(props.taskId)
+  const { deleteTask } = useTasksTask()
+  const { task, setTask, setTaskName } = useTask(props.taskId)
   const { stickyStyle } = useTasksListContext()
+
+  const handleDeleteTask = useCallback(async () => {
+    await deleteTask({ taskId: props.taskId })
+  }, [deleteTask, props.taskId])
 
   const handleClick = useCallback(async () => {
     await navigateToTaskDetail(task.id)
@@ -102,7 +110,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
           isNew={task.isNew}
           completed={task.completed}
           onChange={handleChangeName}
-          deleteTask={deleteTask}
+          deleteTask={handleDeleteTask}
           focusedBorder
           flex={1}
         />

@@ -2,6 +2,7 @@ import React, { memo, useCallback } from 'react'
 import { CheckIcon, Flex, FlexProps, Stack } from 'src/components/atoms'
 import { TaskDoneTransition } from 'src/components/molecules'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
+import { useTasksTask } from 'src/components/organisms/Tasks/hooks'
 import { useTask } from 'src/store/entities/task'
 import { Assignee } from './Assignee'
 import { DueDate } from './DueDate'
@@ -26,7 +27,8 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
 export const Component: React.FC<Props> = memo<Props>((props) => {
   const { ref, isTransitioning, onStartTransition, onEndTransition } =
     useSubtasksNameContext()
-  const { task, setTaskName, setTask, deleteTask } = useTask(props.taskId)
+  const { deleteTask } = useTasksTask()
+  const { task, setTaskName, setTask } = useTask(props.taskId)
 
   const handleChange = useCallback(
     async (val) => {
@@ -34,6 +36,10 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
     },
     [setTaskName],
   )
+
+  const handleDeleteTask = useCallback(async () => {
+    await deleteTask({ taskId: props.taskId })
+  }, [deleteTask, props.taskId])
 
   const handleToggleDone = useCallback(async () => {
     if (!task.completed) {
@@ -64,7 +70,7 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
           value={task.name}
           isNew={task.isNew}
           onChange={handleChange}
-          deleteTask={deleteTask}
+          deleteTask={handleDeleteTask}
         />
         <Flex alignItems="center" ml="auto">
           <Stack direction="row" spacing={2} alignItems="center">

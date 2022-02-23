@@ -5,6 +5,7 @@ import {
   useClickOutside,
   UseClickOutsideOptionsHasClickedOutside,
   useDebounce,
+  useMountedRef,
 } from 'src/hooks'
 import { useTasksNameContext } from './TasksNameProvider'
 
@@ -19,6 +20,7 @@ type Props = {
 
 export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   const [value, setValue] = useState<string>(props.value)
+  const { mountedRef } = useMountedRef()
   const {
     ref: containerRef,
     onInputFocus,
@@ -52,21 +54,21 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
 
   useEffect(() => {
     if (!props.isNew) removeEventListener()
-  }, [props.isNew, removeEventListener])
+  }, [mountedRef, props.isNew, removeEventListener])
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
   }, [])
 
   useEffect(() => {
+    if (!mountedRef.current) return
     setValue(props.value)
-  }, [props.value])
+  }, [mountedRef, props.value])
 
   useEffect(() => {
-    if (props.isNew) {
-      onInputFocus()
-    }
-  }, [onInputFocus, props.isNew])
+    if (!mountedRef.current) return
+    if (props.isNew) onInputFocus()
+  }, [mountedRef, onInputFocus, props.isNew])
 
   useDebounce(value, props.onChange, 500)
 

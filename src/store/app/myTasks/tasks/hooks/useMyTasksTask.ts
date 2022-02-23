@@ -2,7 +2,7 @@ import { useRecoilCallback } from 'recoil'
 import { useTeammateTaskCommand } from 'src/store/entities/teammateTask'
 
 export const useMyTasksTask = () => {
-  const { addTeammateTask } = useTeammateTaskCommand()
+  const { addTeammateTask, deleteTeammateTask } = useTeammateTaskCommand()
 
   const addMyTask = useRecoilCallback(
     () => (val: { taskSectionId: string }) => {
@@ -13,5 +13,6 @@ export const useMyTasksTask = () => {
 
   return {
     addTask: addMyTask,
+    deleteTask: deleteTeammateTask,
   }
 }

@@ -1,0 +1,5 @@
+mutation DeleteTeammateTask($input: DeleteTeammateTaskInput!) {
+  deleteTeammateTask(input: $input) {
+    ...TeammateTaskFragment
+  }
+}

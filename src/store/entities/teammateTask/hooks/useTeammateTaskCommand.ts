@@ -17,6 +17,10 @@ import {
   TEAMMATE_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
   useTeammateTaskCreatedSubscription,
 } from './useTeammateTaskCreatedSubscription'
+import {
+  useTeammateTaskDeletedSubscription,
+  TEAMMATE_TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
+} from './useTeammateTaskDeletedSubscription'
 import { useTeammateTaskResponse } from './useTeammateTaskResponse'
 
 export const useTeammateTaskCommand = () => {
@@ -28,6 +32,10 @@ export const useTeammateTaskCommand = () => {
   const { setTeammateTask } = useTeammateTaskResponse()
 
   useTeammateTaskCreatedSubscription({
+    teammateId: me.id,
+    workspaceId: workspace.id,
+  })
+  useTeammateTaskDeletedSubscription({
     teammateId: me.id,
     workspaceId: workspace.id,
   })
@@ -123,13 +131,13 @@ export const useTeammateTaskCommand = () => {
               taskId: teammateTask.taskId,
               workspaceId: teammateTask.workspaceId,
               teammateId: teammateTask.teammateId,
-              requestId: 'requestId',
+              requestId: TEAMMATE_TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
             },
           },
         })
         if (res.errors) {
           setTeammateTask([teammateTask as TeammateTaskResponse])
-          return
+          return ''
         }
 
         return teammateTask.id

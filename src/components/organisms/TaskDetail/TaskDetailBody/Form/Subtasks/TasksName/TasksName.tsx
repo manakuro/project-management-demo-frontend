@@ -2,8 +2,7 @@ import React, { memo, useCallback } from 'react'
 import { CheckIcon, Flex, FlexProps, Stack } from 'src/components/atoms'
 import { TaskDoneTransition } from 'src/components/molecules'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
-import { useTasksTask } from 'src/components/organisms/Tasks/hooks'
-import { useTask } from 'src/store/entities/task'
+import { useTask, useTaskCommand } from 'src/store/entities/task'
 import { Assignee } from './Assignee'
 import { DueDate } from './DueDate'
 import { Provider, useSubtasksNameContext } from './Provider'
@@ -27,7 +26,7 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
 export const Component: React.FC<Props> = memo<Props>((props) => {
   const { ref, isTransitioning, onStartTransition, onEndTransition } =
     useSubtasksNameContext()
-  const { deleteTask } = useTasksTask()
+  const { deleteTask } = useTaskCommand()
   const { task, setTaskName, setTask } = useTask(props.taskId)
 
   const handleChange = useCallback(

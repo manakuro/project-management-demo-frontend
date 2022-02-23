@@ -1,0 +1,10 @@
+fragment DeletedTaskFragment on DeletedTask {
+  id
+  taskId
+  task {
+    ...TaskFragment
+  }
+  workspaceId
+  createdAt
+  updatedAt
+}

@@ -7,8 +7,8 @@ import {
   initialState,
   taskState,
   TaskUpdatedSubscriptionResponse,
-  useTaskCommand,
 } from 'src/store/entities/task'
+import { useUpsert } from './useUpsert'
 
 const key = (str: string) =>
   `src/store/entities/task/hooks/useTaskUpdatedSubscription/${str}`
@@ -23,7 +23,7 @@ let previousData: any
 
 export const TASK_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
 export const useTaskUpdatedSubscription = (taskId: string) => {
-  const { upsert } = useTaskCommand()
+  const { upsert } = useUpsert()
   const [hasDescriptionUpdated, setHasDescriptionUpdated] = useRecoilState(
     hasDescriptionUpdatedState(taskId),
   )

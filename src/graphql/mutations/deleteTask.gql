@@ -1,0 +1,13 @@
+mutation DeleteTask($input: DeleteTaskInput!) {
+  deleteTask(input: $input) {
+    teammateTask {
+      id
+    }
+    projectTask {
+      id
+    }
+    deletedTasks {
+      ...DeletedTaskFragment
+    }
+  }
+}

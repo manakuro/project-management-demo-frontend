@@ -7,24 +7,21 @@ import { useTask } from 'src/store/entities/task'
 
 type Props = {
   onMouseEnter: () => void
-  onCloseMenu: () => void
   taskId: string
 }
 export const DeleteTask: React.FC<Props> = memo((props) => {
-  const { onMouseEnter, onCloseMenu, taskId } = props
+  const { onMouseEnter, taskId } = props
   const { task, undeleteTask } = useTask(props.taskId)
   const { deleteTask } = useTasksTask()
   const { toast } = useToast()
 
-  const handleClick = useCallback(async () => {
-    onCloseMenu()
-
-    await deleteTask({ taskId })
+  const handleClick = useCallback(() => {
+    deleteTask({ taskId })
     toast({
       description: `${task.name} deleted`,
       undo: undeleteTask,
     })
-  }, [onCloseMenu, deleteTask, taskId, toast, task.name, undeleteTask])
+  }, [deleteTask, taskId, toast, task.name, undeleteTask])
 
   return (
     <MenuItem

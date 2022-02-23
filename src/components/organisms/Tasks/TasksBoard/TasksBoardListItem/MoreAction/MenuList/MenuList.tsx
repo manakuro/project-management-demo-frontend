@@ -73,11 +73,7 @@ export const MenuList: React.FC<Props> = memo((props) => {
           onCloseMenu={onCloseMenu}
         />
         <MenuDivider />
-        <DeleteTask
-          taskId={props.taskId}
-          onMouseEnter={onClose}
-          onCloseMenu={onCloseMenu}
-        />
+        <DeleteTask taskId={props.taskId} onMouseEnter={onClose} />
       </AtomsMenuList>
     </Portal>
   )

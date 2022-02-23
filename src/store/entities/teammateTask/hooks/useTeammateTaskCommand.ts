@@ -116,23 +116,21 @@ export const useTeammateTaskCommand = () => {
 
         reset(teammateTaskState(teammateTask.id))
 
-        setTimeout(async () => {
-          const res = await deleteTeammateTaskMutation({
-            variables: {
-              input: {
-                id: teammateTask.id,
-                taskId: teammateTask.taskId,
-                workspaceId: teammateTask.workspaceId,
-                teammateId: teammateTask.teammateId,
-                requestId: 'requestId',
-              },
+        const res = await deleteTeammateTaskMutation({
+          variables: {
+            input: {
+              id: teammateTask.id,
+              taskId: teammateTask.taskId,
+              workspaceId: teammateTask.workspaceId,
+              teammateId: teammateTask.teammateId,
+              requestId: 'requestId',
             },
-          })
-          if (res.errors) {
-            setTeammateTask([teammateTask as TeammateTaskResponse])
-            return
-          }
+          },
         })
+        if (res.errors) {
+          setTeammateTask([teammateTask as TeammateTaskResponse])
+          return
+        }
 
         return teammateTask.id
       },

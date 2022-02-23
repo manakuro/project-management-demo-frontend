@@ -87,14 +87,14 @@ export const useTeammateTaskCommand = () => {
           return ''
         }
 
-        const addedTeammateTask = res.data?.createTeammateTask
-        if (!addedTeammateTask) return ''
+        const data = res.data?.createTeammateTask
+        if (!data) return ''
 
         reset(teammateTaskState(id))
         reset(taskState(newTaskId))
-        setTeammateTask([addedTeammateTask])
+        setTeammateTask([data])
 
-        return addedTeammateTask.id
+        return data.id
       },
     [
       addTask,

@@ -57,8 +57,9 @@ export const InputText: React.FC<Props> = memo<Props>((props) => {
         borderColor: noBorder ? 'transparent' : 'gray.500',
       },
       wordBreak: 'break-all',
+      ...(autoFocus ? { borderColor: 'gray.500' } : {}),
     }),
-    [props.minH, noBorder],
+    [props.minH, noBorder, autoFocus],
   )
 
   return (

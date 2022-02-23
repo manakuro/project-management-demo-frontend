@@ -50,7 +50,6 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
         isNew={task.isNew}
         onChange={handleChangeName}
         deleteTask={handleDeleteTask}
-        focusedBorder
         flex={1}
       />
     </Flex>

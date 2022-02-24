@@ -5,9 +5,11 @@ import { Menu, MenuButton } from 'src/components/organisms/Menu'
 import { useDisclosure } from 'src/shared/chakra'
 import { MenuList } from './MenuList'
 
-type Props = {}
+type Props = {
+  taskId: string
+}
 
-export const MoreAction: React.FC<Props> = memo<Props>(() => {
+export const MoreAction: React.FC<Props> = memo<Props>((props) => {
   const { onClose, onOpen, isOpen } = useDisclosure()
 
   const handleOpen = useCallback(() => {
@@ -39,7 +41,7 @@ export const MoreAction: React.FC<Props> = memo<Props>(() => {
             onClick={handleOpen}
           />
         </Tooltip>
-        {isOpen && <MenuList onCloseMenu={onClose} />}
+        {isOpen && <MenuList onCloseMenu={onClose} taskId={props.taskId} />}
       </Menu>
     </PortalManager>
   )

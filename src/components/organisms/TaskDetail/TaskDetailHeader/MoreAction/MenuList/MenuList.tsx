@@ -7,10 +7,12 @@ import {
 } from 'src/components/organisms/Menu'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
+import { DeleteTask } from './DeleteTask'
 import { PopoverAdvancedActions } from './PopoverAdvancedActions'
 
 type Props = {
   onCloseMenu: () => void
+  taskId: string
 }
 
 export const MenuList: React.FC<Props> = (props) => {
@@ -98,9 +100,7 @@ export const MenuList: React.FC<Props> = (props) => {
           </PopoverAdvancedActions>
         </MenuItem>
         <MenuDivider />
-        <MenuItem onMouseEnter={handleClose} command="Tab+Del" color="alert">
-          Delete task
-        </MenuItem>
+        <DeleteTask onMouseEnter={handleClose} taskId={props.taskId} />
       </AtomsMenuList>
     </Portal>
   )

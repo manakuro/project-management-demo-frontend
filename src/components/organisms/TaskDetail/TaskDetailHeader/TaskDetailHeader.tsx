@@ -9,6 +9,7 @@ import {
   Skeleton,
   FlexProps,
 } from 'src/components/atoms'
+import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { IconType } from 'src/shared/icons'
 import { Attachment } from './Attachment'
 import { Copy } from './Copy'
@@ -30,6 +31,7 @@ type Mode = keyof typeof closeIcons
 
 export const TaskDetailHeader: React.FC<Props> = memo<Props>((props) => {
   const { mode, onClose, loading, ...rest } = props
+  const { taskId } = useTaskDetail()
 
   const closeIcon = useMemo<IconType>(() => closeIcons[mode ?? 'modal'], [mode])
 
@@ -59,7 +61,7 @@ export const TaskDetailHeader: React.FC<Props> = memo<Props>((props) => {
           <Attachment />
           <SubTasks />
           <Copy />
-          <MoreAction />
+          <MoreAction taskId={taskId} />
           {onClose && (
             <IconButton
               aria-label="Close button"

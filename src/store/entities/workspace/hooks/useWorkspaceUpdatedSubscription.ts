@@ -1,20 +1,13 @@
 import isEqual from 'lodash-es/isEqual'
 import { useMemo } from 'react'
-import { atom, useRecoilCallback, useRecoilState } from 'recoil'
+import { useRecoilCallback } from 'recoil'
 import { useWorkspaceUpdatedSubscription as useSubscription } from 'src/graphql/hooks'
 import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
 import { uuid } from 'src/shared/uuid'
 import { workspaceState } from '../atom'
 import { WorkspaceUpdatedSubscriptionResponse as Response } from '../type'
+import { useHasDescriptionUpdated } from './useHasDescriptionUpdated'
 import { useWorkspaceResponse } from './useWorkspaceResponse'
-
-const key = (str: string) =>
-  `src/store/entities/workspace/hooks/useWorkspaceUpdatedSubscription/${str}`
-
-const hasDescriptionUpdatedState = atom<number>({
-  key: key('hasDescriptionUpdatedState'),
-  default: 1,
-})
 
 export const WORKSPACE_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
 
@@ -30,9 +23,7 @@ export const useWorkspaceUpdatedSubscription = (props: Props) => {
   }, [props.workspaceId])
 
   const { setWorkspace } = useWorkspaceResponse()
-  const [hasDescriptionUpdated, setHasDescriptionUpdated] = useRecoilState(
-    hasDescriptionUpdatedState,
-  )
+  const { setHasDescriptionUpdated } = useHasDescriptionUpdated()
 
   useSubscription({
     variables: {
@@ -73,8 +64,4 @@ export const useWorkspaceUpdatedSubscription = (props: Props) => {
       },
     [setHasDescriptionUpdated, setWorkspace],
   )
-
-  return {
-    hasDescriptionUpdated,
-  }
 }

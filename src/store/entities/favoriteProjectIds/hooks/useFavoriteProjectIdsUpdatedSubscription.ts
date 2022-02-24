@@ -1,22 +1,28 @@
 import isEqual from 'lodash-es/isEqual'
+import { useMemo } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useFavoriteProjectIdsUpdatedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { useMe } from 'src/store/entities/me'
 import { FavoriteProjectIdsUpdatedSubscriptionResponse as Response } from '../type'
 import { useFavoriteProjectIdsResponse } from './useFavoriteProjectIdsResponse'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any
 
+type Props = {
+  teammateId: string
+  workspaceId: string
+}
+
 export const FAVORITE_PROJECT_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
-export const useFavoriteProjectIdsUpdatedSubscription = () => {
-  const { me } = useMe()
+export const useFavoriteProjectIdsUpdatedSubscription = (props: Props) => {
   const { setFavoriteProjectIds } = useFavoriteProjectIdsResponse()
+
+  const skipSubscription = useMemo(() => !props.teammateId, [props.teammateId])
 
   useSubscription({
     variables: {
-      teammateId: me.id,
+      teammateId: props.teammateId,
       requestId: FAVORITE_PROJECT_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {
@@ -32,7 +38,7 @@ export const useFavoriteProjectIdsUpdatedSubscription = () => {
         setBySubscription(data.subscriptionData.data)
       previousData = data
     },
-    skip: !me.id,
+    skip: skipSubscription,
   })
 
   const setBySubscription = useRecoilCallback(

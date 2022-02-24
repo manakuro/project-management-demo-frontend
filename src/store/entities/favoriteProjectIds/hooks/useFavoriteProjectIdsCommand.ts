@@ -5,10 +5,7 @@ import {
 } from 'src/graphql/hooks'
 import { useMe } from 'src/store/entities/me'
 import { favoriteProjectIdsState } from '../atom'
-import {
-  useFavoriteProjectIdsUpdatedSubscription,
-  FAVORITE_PROJECT_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
-} from './useFavoriteProjectIdsUpdatedSubscription'
+import { FAVORITE_PROJECT_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useFavoriteProjectIdsUpdatedSubscription'
 import { useUpsert } from './useUpsert'
 
 export const useFavoriteProjectIdsCommand = () => {
@@ -16,8 +13,6 @@ export const useFavoriteProjectIdsCommand = () => {
   const [createFavoriteProjectMutation] = useCreateFavoriteProjectMutation()
   const [deleteFavoriteProjectMutation] = useDeleteFavoriteProjectMutation()
   const { upsert } = useUpsert()
-
-  useFavoriteProjectIdsUpdatedSubscription()
 
   const deleteFavoriteProjectId = useRecoilCallback(
     ({ snapshot }) =>

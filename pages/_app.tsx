@@ -12,6 +12,7 @@ import { Modals } from 'src/components/organisms/Modals'
 import { useAuth } from 'src/hooks/useAuth'
 import { ApolloProvider } from 'src/shared/apollo/ApolloProvider'
 import { BeforeAppMount } from 'src/shared/app'
+import { Subscription } from 'src/shared/app/Subscription'
 import {
   muiTheme,
   MuiThemeProvider,
@@ -62,10 +63,12 @@ const Inner = ({ Component, pageProps }: AppPropsWithLayout) => {
   return (
     <ApolloProvider>
       <BeforeAppMount>
-        <>
-          {getLayout(<Component {...pageProps} />)}
-          <Modals />
-        </>
+        <Subscription>
+          <>
+            {getLayout(<Component {...pageProps} />)}
+            <Modals />
+          </>
+        </Subscription>
       </BeforeAppMount>
     </ApolloProvider>
   )

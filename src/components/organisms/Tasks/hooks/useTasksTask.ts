@@ -4,7 +4,6 @@ import { useTasksContext } from '../TasksProvider'
 
 type Result = {
   addTask: (val: { taskSectionId: string }) => Promise<string>
-  deleteTask: (val: { taskId: string }) => Promise<string>
 }
 
 export const useTasksTask = (): Result => {
@@ -15,12 +14,10 @@ export const useTasksTask = (): Result => {
   if (isMyTasksPage) {
     return {
       addTask: myTasks.addTask,
-      deleteTask: myTasks.deleteTask,
     }
   }
 
   return {
     addTask: projects.addTask,
-    deleteTask: async () => '',
   }
 }

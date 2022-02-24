@@ -1,0 +1,5 @@
+mutation UpdateDeletedTask($input: UpdateDeletedTaskInput!) {
+  updateDeletedTask(input: $input) {
+    ...DeletedTaskFragment
+  }
+}

@@ -1,0 +1,13 @@
+mutation UndeleteTask($input: UndeleteTaskInput!) {
+  undeleteTask(input: $input) {
+    teammateTask {
+      ...TeammateTaskFragment
+    }
+    projectTask {
+      ...ProjectTaskFragment
+    }
+    deletedTasks {
+      id
+    }
+  }
+}

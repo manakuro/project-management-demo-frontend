@@ -1,11 +1,12 @@
 import { UseToastOptions as UseToastOptionsChakra } from '@chakra-ui/react'
 import { RenderProps } from '@chakra-ui/toast/dist/declarations/src/toast.types'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Button, Flex, Icon, IconButton } from 'src/components/atoms'
 import { forwardRef } from 'src/shared/chakra'
 
 export type ToastProps = UseToastOptionsChakra & {
-  undo?: () => void
+  undo?: (() => void) | (() => Promise<void>)
+  close?: () => void
 }
 type Props = ToastProps & RenderProps
 
@@ -13,6 +14,11 @@ export const Toast: React.FC<Props> & { id?: string } = forwardRef<
   Props,
   'div'
 >((props, ref) => {
+  const handleUndo = useCallback(() => {
+    props.undo?.()
+    props.close?.()
+  }, [props])
+
   return (
     <Flex
       ref={ref}
@@ -45,7 +51,7 @@ export const Toast: React.FC<Props> & { id?: string } = forwardRef<
         <Flex justifyContent="flex-end" mt={2}>
           <Button
             variant="outline"
-            onClick={props.undo}
+            onClick={handleUndo}
             fontSize="sm"
             size="sm"
           >

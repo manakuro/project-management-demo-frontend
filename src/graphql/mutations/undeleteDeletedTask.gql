@@ -1,0 +1,6 @@
+mutation UndeleteDeletedTask($input: UndeleteDeletedTaskInput!) {
+  undeleteDeletedTask(input: $input) {
+    id
+    taskId
+  }
+}

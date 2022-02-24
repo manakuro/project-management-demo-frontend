@@ -1,11 +1,17 @@
-import { useToast as useToastChakraUi } from '@chakra-ui/react'
-import { useCallback } from 'react'
+import { ToastId, useToast as useToastChakraUi } from '@chakra-ui/react'
+import { useCallback, useRef } from 'react'
 import { Toast, ToastProps } from 'src/components/molecules'
 
 type Props = ToastProps
 
 export const useToast = () => {
   const toastChakraUi = useToastChakraUi()
+  const toastIdRef = useRef<ToastId | undefined>()
+
+  const close = useCallback(() => {
+    if (!toastIdRef.current) return
+    toastChakraUi.close(toastIdRef.current)
+  }, [toastChakraUi])
 
   const toast = useCallback(
     (props: Props) => {
@@ -20,14 +26,16 @@ export const useToast = () => {
         duration,
       }
 
-      return toastChakraUi({
+      toastIdRef.current = toastChakraUi({
         ...toastProps,
         render: (renderProps) => {
-          return <Toast {...toastProps} {...renderProps} />
+          return <Toast {...toastProps} {...renderProps} close={close} />
         },
       })
+
+      return toastIdRef.current
     },
-    [toastChakraUi],
+    [close, toastChakraUi],
   )
 
   return {

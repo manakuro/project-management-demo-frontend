@@ -1,7 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { FlexProps } from 'src/components/atoms'
-import { useTasksTask } from 'src/components/organisms/Tasks/hooks'
-import { useTask } from 'src/store/entities/task'
+import { useTask, useTaskCommand } from 'src/store/entities/task'
 import { TasksNameField } from './TasksNameField'
 
 type Props = FlexProps & {
@@ -10,7 +9,7 @@ type Props = FlexProps & {
 
 export const Input: React.VFC<Props> = memo<Props>((props) => {
   const { task, setTaskName } = useTask(props.taskId)
-  const { deleteTask } = useTasksTask()
+  const { deleteTask } = useTaskCommand()
 
   const handleDeleteTask = useCallback(async () => {
     await deleteTask({ taskId: props.taskId })

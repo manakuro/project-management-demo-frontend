@@ -1,5 +1,5 @@
 import isEqual from 'lodash-es/isEqual'
-import { atomFamily, useRecoilCallback, useRecoilState } from 'recoil'
+import { useRecoilCallback } from 'recoil'
 import { useTaskUpdatedSubscription as useSubscription } from 'src/graphql/hooks'
 import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
 import { uuid } from 'src/shared/uuid'
@@ -8,32 +8,22 @@ import {
   taskState,
   TaskUpdatedSubscriptionResponse,
 } from 'src/store/entities/task'
+import { useSetHasDescriptionUpdated } from './useHasDescriptionUpdated'
 import { useUpsert } from './useUpsert'
-
-const key = (str: string) =>
-  `src/store/entities/task/hooks/useTaskUpdatedSubscription/${str}`
-
-const hasDescriptionUpdatedState = atomFamily<number, string>({
-  key: key('hasDescriptionUpdatedState'),
-  default: 1,
-})
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any
 
 type Props = {
   workspaceId: string
-  taskId: string
 }
 
 export const TASK_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
 export const useTaskUpdatedSubscription = (props: Props) => {
   const { upsert } = useUpsert()
-  const [hasDescriptionUpdated, setHasDescriptionUpdated] = useRecoilState(
-    hasDescriptionUpdatedState(props.workspaceId),
-  )
+  const { setHasDescriptionUpdated } = useSetHasDescriptionUpdated()
 
-  const subscriptionResult = useSubscription({
+  useSubscription({
     variables: {
       workspaceId: props.workspaceId,
       requestId: TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
@@ -56,8 +46,8 @@ export const useTaskUpdatedSubscription = (props: Props) => {
   const setBySubscription = useRecoilCallback(
     ({ snapshot }) =>
       async (response: TaskUpdatedSubscriptionResponse) => {
-        const prev = await snapshot.getPromise(taskState(props.taskId))
         const updatedTask = response.taskUpdated
+        const prev = await snapshot.getPromise(taskState(updatedTask.id))
 
         console.log('task updated!')
 
@@ -72,14 +62,9 @@ export const useTaskUpdatedSubscription = (props: Props) => {
         })
 
         if (!isDescriptionEqual(prev.description, updatedTask.description)) {
-          setHasDescriptionUpdated((s) => s + 1)
+          await setHasDescriptionUpdated(updatedTask.id)
         }
       },
-    [props.taskId, upsert, setHasDescriptionUpdated],
+    [upsert, setHasDescriptionUpdated],
   )
-
-  return {
-    subscriptionResult,
-    hasDescriptionUpdated,
-  }
 }

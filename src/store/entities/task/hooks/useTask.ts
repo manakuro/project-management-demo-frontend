@@ -5,10 +5,8 @@ import { useWorkspace } from 'src/store/entities/workspace'
 import { taskState } from '../atom'
 import { Task, UpdateTaskInput } from '../type'
 import { hasTaskBeenPersisted } from '../util'
-import {
-  TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
-  useTaskUpdatedSubscription,
-} from './useTaskUpdatedSubscription'
+import { useHasDescriptionUpdatedValue } from './useHasDescriptionUpdated'
+import { TASK_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useTaskUpdatedSubscription'
 import { useUpsert } from './useUpsert'
 
 export const useTask = (taskId: string) => {
@@ -17,10 +15,8 @@ export const useTask = (taskId: string) => {
 
   const { upsert } = useUpsert()
   const [updateTaskMutation] = useUpdateTaskMutation()
-
-  const { hasDescriptionUpdated } = useTaskUpdatedSubscription({
+  const { hasDescriptionUpdated } = useHasDescriptionUpdatedValue({
     taskId,
-    workspaceId: workspace.id,
   })
 
   const setTask = useRecoilCallback(

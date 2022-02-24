@@ -10,6 +10,7 @@ import {
 import {
   useTaskDeletedSubscription,
   useTaskUndeletedSubscription,
+  useTaskUpdatedSubscription,
 } from 'src/store/entities/task'
 import {
   useTaskFeedCreatedSubscription,
@@ -105,6 +106,10 @@ export const Subscription: React.FC = memo((props) => {
 
   useTeammateTaskCreatedSubscription({
     teammateId: me.id,
+    workspaceId: workspace.id,
+  })
+
+  useTaskUpdatedSubscription({
     workspaceId: workspace.id,
   })
 

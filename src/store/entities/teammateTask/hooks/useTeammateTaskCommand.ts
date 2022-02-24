@@ -1,26 +1,15 @@
 import { useRecoilCallback } from 'recoil'
-import {
-  useCreateTeammateTaskMutation,
-  useDeleteTeammateTaskMutation,
-} from 'src/graphql/hooks'
+import { useCreateTeammateTaskMutation } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import { useMe } from 'src/store/entities/me'
 import { taskState, useTaskCommand } from 'src/store/entities/task'
 import { useWorkspace } from 'src/store/entities/workspace'
-import {
-  teammateTaskState,
-  initialState,
-  teammateTaskByTaskIdState,
-} from '../atom'
-import { TeammateTask, TeammateTaskResponse } from '../type'
+import { teammateTaskState, initialState } from '../atom'
+import { TeammateTask } from '../type'
 import {
   TEAMMATE_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
   useTeammateTaskCreatedSubscription,
 } from './useTeammateTaskCreatedSubscription'
-import {
-  useTeammateTaskDeletedSubscription,
-  TEAMMATE_TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
-} from './useTeammateTaskDeletedSubscription'
 import { useTeammateTaskResponse } from './useTeammateTaskResponse'
 
 export const useTeammateTaskCommand = () => {
@@ -28,14 +17,9 @@ export const useTeammateTaskCommand = () => {
   const { workspace } = useWorkspace()
   const { addTask } = useTaskCommand()
   const [createTeammateTaskMutation] = useCreateTeammateTaskMutation()
-  const [deleteTeammateTaskMutation] = useDeleteTeammateTaskMutation()
   const { setTeammateTask } = useTeammateTaskResponse()
 
   useTeammateTaskCreatedSubscription({
-    teammateId: me.id,
-    workspaceId: workspace.id,
-  })
-  useTeammateTaskDeletedSubscription({
     teammateId: me.id,
     workspaceId: workspace.id,
   })
@@ -114,39 +98,8 @@ export const useTeammateTaskCommand = () => {
     ],
   )
 
-  const deleteTeammateTask = useRecoilCallback(
-    ({ snapshot, reset }) =>
-      async (val: { taskId: string }) => {
-        const teammateTask = await snapshot.getPromise(
-          teammateTaskByTaskIdState(val.taskId),
-        )
-        if (!teammateTask.id) return ''
-
-        reset(teammateTaskState(teammateTask.id))
-
-        const res = await deleteTeammateTaskMutation({
-          variables: {
-            input: {
-              id: teammateTask.id,
-              taskId: teammateTask.taskId,
-              workspaceId: teammateTask.workspaceId,
-              teammateId: teammateTask.teammateId,
-              requestId: TEAMMATE_TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-        if (res.errors) {
-          setTeammateTask([teammateTask as TeammateTaskResponse])
-          return ''
-        }
-
-        return teammateTask.id
-      },
-  )
-
   return {
     addTeammateTask,
     setTeammateTaskById,
-    deleteTeammateTask,
   }
 }

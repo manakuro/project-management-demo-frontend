@@ -4,18 +4,28 @@ import { omit } from 'src/shared/utils/omit'
 import { taskState } from '../atom'
 import { Task, UpdateTaskInput } from '../type'
 import { hasTaskBeenPersisted } from '../util'
-import { useTaskCommand } from './useTaskCommand'
+import { useTaskDeletedSubscription } from './useTaskDeletedSubscription'
+import { useTaskUndeletedSubscription } from './useTaskUndeletedSubscription'
 import {
   TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
   useTaskUpdatedSubscription,
 } from './useTaskUpdatedSubscription'
+import { useUpsert } from './useUpsert'
 
 export const useTask = (taskId: string) => {
   const task = useRecoilValue(taskState(taskId))
-  const { upsert } = useTaskCommand()
+  const { upsert } = useUpsert()
   const [updateTaskMutation] = useUpdateTaskMutation()
 
-  const { hasDescriptionUpdated } = useTaskUpdatedSubscription(taskId)
+  const { hasDescriptionUpdated } = useTaskUpdatedSubscription({
+    taskId,
+  })
+  useTaskDeletedSubscription({
+    taskId,
+  })
+  useTaskUndeletedSubscription({
+    taskId,
+  })
 
   const setTask = useRecoilCallback(
     ({ snapshot }) =>
@@ -54,22 +64,6 @@ export const useTask = (taskId: string) => {
     [taskId, setTask],
   )
 
-  // TODO(deleted task): Implement deleted functionality
-  const deleteTask = useRecoilCallback(
-    () => async () => {
-      console.log('deleteTask!')
-      // await setTask({ isDeleted: true } as any)
-    },
-    [],
-  )
-  const undeleteTask = useRecoilCallback(
-    () => async () => {
-      console.log('undeleteTask!')
-      // await setTask({ isDeleted: false } as any)
-    },
-    [],
-  )
-
   const setTaskName = useRecoilCallback(
     ({ snapshot }) =>
       async (val: string) => {
@@ -88,8 +82,6 @@ export const useTask = (taskId: string) => {
     task,
     setTask,
     setTaskPriority,
-    deleteTask,
-    undeleteTask,
     setTaskName,
     hasDescriptionUpdated,
   }

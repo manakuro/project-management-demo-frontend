@@ -1,7 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { CheckIcon, Flex, FlexProps } from 'src/components/atoms'
-import { useTasksTask } from 'src/components/organisms/Tasks/hooks'
-import { useTask } from 'src/store/entities/task'
+import { useTask, useTaskCommand } from 'src/store/entities/task'
 import { useTasksBoardListItemContext } from '../Provider'
 import { TasksNameProvider } from './Provider'
 import { TasksNameField } from './TasksNameField'
@@ -20,7 +19,7 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
 
 const Component: React.VFC<Props> = memo<Props>((props) => {
   const { onToggleDone } = useTasksBoardListItemContext()
-  const { deleteTask } = useTasksTask()
+  const { deleteTask } = useTaskCommand()
   const { task, setTaskName } = useTask(props.taskId)
 
   const handleDeleteTask = useCallback(async () => {

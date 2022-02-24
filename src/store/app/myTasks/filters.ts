@@ -15,6 +15,7 @@ type Params = {
 
 export const sortTasks = (params: Params) => (t: Task[]) => {
   let tasks = sortByDueDate(params)(t)
+  tasks = sortByCreatedAt(t)
   tasks = sortByLikes(params)(tasks)
   tasks = sortByAlphabetical(params)(tasks)
 
@@ -55,6 +56,14 @@ export const sortByAlphabetical =
       a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1,
     )
   }
+const sortByCreatedAt = (tasks: Task[]) => {
+  return [...tasks].sort((a, b) => {
+    if (!a.createdAt) return 1
+    if (!b.createdAt) return -1
+
+    return a.createdAt < b.createdAt ? -1 : 1
+  })
+}
 
 export const filterByProjectTasks =
   ({ get, projectId }: Params & { projectId: string }) =>

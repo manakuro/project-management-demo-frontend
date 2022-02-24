@@ -1,5 +1,4 @@
 import isEqual from 'lodash-es/isEqual'
-import { useMemo } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useTaskUndeletedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
@@ -19,7 +18,6 @@ export const useTaskUndeletedSubscription = (props: Props) => {
   const { setTeammateTask } = useTeammateTaskResponse()
   const { setProjectTask } = useProjectTaskResponse()
 
-  const skipSubscription = useMemo(() => !props.taskId, [props.taskId])
   const subscriptionResult = useSubscription({
     variables: {
       taskId: props.taskId,
@@ -38,7 +36,6 @@ export const useTaskUndeletedSubscription = (props: Props) => {
         setBySubscription(data.subscriptionData.data)
       previousData = data
     },
-    skip: skipSubscription,
   })
 
   const setBySubscription = useRecoilCallback(

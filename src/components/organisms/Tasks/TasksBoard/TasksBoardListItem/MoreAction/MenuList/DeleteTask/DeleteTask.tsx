@@ -15,8 +15,8 @@ export const DeleteTask: React.FC<Props> = memo((props) => {
   const { deleteTask, undeleteTask } = useTaskCommand()
   const { toast } = useToast()
 
-  const handleUndo = useCallback(() => {
-    undeleteTask({ taskId })
+  const handleUndo = useCallback(async () => {
+    await undeleteTask({ taskId })
   }, [taskId, undeleteTask])
 
   const handleClick = useCallback(async () => {

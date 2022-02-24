@@ -16,12 +16,12 @@ export const {
   idsState: deletedTaskIdsState,
 } = createState({ key, initialState })
 
-export const deletedTaskByTaskIdState = selectorFamily<DeletedTask, string>({
-  key: key('deletedTaskByTaskIdState'),
+export const deletedTasksByTaskIdState = selectorFamily<DeletedTask[], string>({
+  key: key('deletedTasksByTaskIdState'),
   get:
     (taskId) =>
     ({ get }) => {
       const deletedTasks = get(deletedTasksState)
-      return deletedTasks.find((t) => t.taskId === taskId) || initialState()
+      return deletedTasks.filter((t) => t.taskId === taskId)
     },
 })

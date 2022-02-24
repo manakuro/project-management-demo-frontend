@@ -60,14 +60,6 @@ export const useTask = (taskId: string) => {
     [taskId, setTask],
   )
 
-  const undeleteTask = useRecoilCallback(
-    () => async () => {
-      console.log('undeleteTask!')
-      // await setTask({ isDeleted: false } as any)
-    },
-    [],
-  )
-
   const setTaskName = useRecoilCallback(
     ({ snapshot }) =>
       async (val: string) => {
@@ -86,7 +78,6 @@ export const useTask = (taskId: string) => {
     task,
     setTask,
     setTaskPriority,
-    undeleteTask,
     setTaskName,
     hasDescriptionUpdated,
   }

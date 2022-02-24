@@ -9,6 +9,7 @@ type Props = {
   taskId: string
 }
 export const DeleteTask: React.FC<Props> = memo((props) => {
+  // TODO: Fix `Can't perform a React state update on an unmounted component ...` error.
   const { onMouseEnter, taskId } = props
   const { task } = useTask(props.taskId)
   const { deleteTask, undeleteTask } = useTaskCommand()

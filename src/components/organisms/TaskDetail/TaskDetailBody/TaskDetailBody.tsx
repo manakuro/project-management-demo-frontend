@@ -2,7 +2,7 @@ import React, { memo, useLayoutEffect } from 'react'
 import { Flex, Skeleton, Stack } from 'src/components/atoms'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { Form } from './Form'
-import { MakePublic } from './MakePublic'
+import { Info } from './Info'
 import { useTaskDetailBody } from './useTaskDetailBody'
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 
 export const TaskDetailBody: React.FC<Props> = memo<Props>((props) => {
   const { ref } = useTaskDetailBody(props.loading)
-  const { scrollId } = useTaskDetail()
+  const { scrollId, taskId } = useTaskDetail()
 
   useLayoutEffect(() => {
     if (props.loading) return
@@ -42,7 +42,7 @@ export const TaskDetailBody: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <Flex overflowY="scroll" flexDirection="column" ref={ref} flex={1}>
-      {props.isMakePublic && <MakePublic />}
+      <Info taskId={taskId} />
       <Form />
     </Flex>
   )

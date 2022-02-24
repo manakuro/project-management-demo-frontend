@@ -5,11 +5,12 @@ import { useTask, useTaskCommand } from 'src/store/entities/task'
 
 type Props = {
   onMouseEnter: () => void
+  onClose: () => void
   taskId: string
 }
 export const DeleteTask: React.FC<Props> = memo((props) => {
   // TODO: Fix `Can't perform a React state update on an unmounted component ...` error.
-  const { onMouseEnter, taskId } = props
+  const { onMouseEnter, taskId, onClose } = props
   const { task } = useTask(props.taskId)
   const { deleteTask, undeleteTask } = useTaskCommand()
   const { toast } = useToast()
@@ -19,13 +20,14 @@ export const DeleteTask: React.FC<Props> = memo((props) => {
   }, [taskId, undeleteTask])
 
   const handleClick = useCallback(async () => {
+    onClose()
     await deleteTask({ taskId })
     toast({
       description: `${task.name} deleted`,
       undo: handleUndo,
       duration: 10000,
     })
-  }, [deleteTask, taskId, toast, task.name, handleUndo])
+  }, [onClose, deleteTask, taskId, toast, task.name, handleUndo])
 
   return (
     <MenuItem

@@ -100,7 +100,11 @@ export const MenuList: React.FC<Props> = (props) => {
           </PopoverAdvancedActions>
         </MenuItem>
         <MenuDivider />
-        <DeleteTask onMouseEnter={handleClose} taskId={props.taskId} />
+        <DeleteTask
+          onMouseEnter={handleClose}
+          taskId={props.taskId}
+          onClose={handleCloseAll}
+        />
       </AtomsMenuList>
     </Portal>
   )

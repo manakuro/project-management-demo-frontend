@@ -28,6 +28,7 @@ import {
 import { useWorkspace } from 'src/store/entities/workspace'
 import { taskState, initialState } from '../atom'
 import { TASK_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskDeletedSubscription'
+import { TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskUndeletedSubscription'
 import { useUpsert } from './useUpsert'
 
 export const useTaskCommand = () => {
@@ -123,7 +124,7 @@ export const useTaskCommand = () => {
             input: {
               taskId: val.taskId,
               workspaceId: workspace.id,
-              requestId: '',
+              requestId: TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID,
             },
           },
         })

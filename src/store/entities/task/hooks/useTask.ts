@@ -5,6 +5,7 @@ import { taskState } from '../atom'
 import { Task, UpdateTaskInput } from '../type'
 import { hasTaskBeenPersisted } from '../util'
 import { useTaskDeletedSubscription } from './useTaskDeletedSubscription'
+import { useTaskUndeletedSubscription } from './useTaskUndeletedSubscription'
 import {
   TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
   useTaskUpdatedSubscription,
@@ -20,6 +21,9 @@ export const useTask = (taskId: string) => {
     taskId,
   })
   useTaskDeletedSubscription({
+    taskId,
+  })
+  useTaskUndeletedSubscription({
     taskId,
   })
 

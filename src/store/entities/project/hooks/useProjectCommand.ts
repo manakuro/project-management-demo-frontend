@@ -2,12 +2,14 @@ import { useRecoilCallback } from 'recoil'
 import { useUpdateProjectMutation } from 'src/graphql/hooks'
 import { UpdateProjectInput } from 'src/graphql/types'
 import { omit } from 'src/shared/utils/omit'
+import { useWorkspace } from 'src/store/entities/workspace'
 import { projectState } from '../atom'
 import { Project } from '../type'
 import { PROJECT_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useProjectUpdatedSubscription'
 
 export const useProjectCommand = () => {
   const [updateProjectMutation] = useUpdateProjectMutation()
+  const { workspace } = useWorkspace()
 
   const upsert = useRecoilCallback(
     ({ set }) =>
@@ -29,7 +31,10 @@ export const useProjectCommand = () => {
         try {
           await updateProjectMutation({
             variables: {
-              input: prepareUpdateProjectInput(payload),
+              input: prepareUpdateProjectInput({
+                ...payload,
+                workspaceId: workspace.id,
+              }),
             },
           })
         } catch (err) {
@@ -38,7 +43,7 @@ export const useProjectCommand = () => {
           throw err
         }
       },
-    [updateProjectMutation, upsert],
+    [updateProjectMutation, upsert, workspace.id],
   )
 
   return {
@@ -48,7 +53,9 @@ export const useProjectCommand = () => {
 }
 
 const prepareUpdateProjectInput = (
-  payload: { projectId: string } & Partial<Omit<Project, 'id'>>,
+  payload: { projectId: string; workspaceId: string } & Partial<
+    Omit<Project, 'id'>
+  >,
 ): UpdateProjectInput => {
   return {
     id: payload.projectId,

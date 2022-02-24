@@ -9,7 +9,7 @@ import { useTaskFeedResponse } from './useTaskFeedResponse'
 let previousData: any
 
 type Props = {
-  taskId: string
+  workspaceId: string
 }
 
 export const TASK_FEED_CREATED_SUBSCRIPTION_REQUEST_ID = uuid()
@@ -18,7 +18,7 @@ export const useTaskFeedCreatedSubscription = (props: Props) => {
 
   useSubscription({
     variables: {
-      taskId: props.taskId,
+      workspaceId: props.workspaceId,
       requestId: TASK_FEED_CREATED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {

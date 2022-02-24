@@ -1,5 +1,5 @@
-subscription TaskFeedDeleted($taskId: ID!, $requestId: String!) {
-  taskFeedDeleted(taskId: $taskId, requestId: $requestId) {
+subscription TaskFeedDeleted($workspaceId: ID!, $requestId: String!) {
+  taskFeedDeleted(workspaceId: $workspaceId, requestId: $requestId) {
     ...TaskFeedFragment
   }
 }

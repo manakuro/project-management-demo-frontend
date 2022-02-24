@@ -1,5 +1,5 @@
-subscription TaskLikeDeleted($taskId: ID!, $requestId: String!) {
-  taskLikeDeleted(taskId: $taskId, requestId: $requestId) {
+subscription TaskLikeDeleted($workspaceId: ID!, $requestId: String!) {
+  taskLikeDeleted(workspaceId: $workspaceId, requestId: $requestId) {
     ...TaskLikeFragment
   }
 }

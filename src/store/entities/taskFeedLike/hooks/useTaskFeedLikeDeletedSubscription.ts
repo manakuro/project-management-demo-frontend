@@ -12,16 +12,16 @@ export const TASK_FEED_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID = uuid()
 let previousData: any
 
 type Props = {
-  taskFeedId: string
+  workspaceId: string
 }
 export const useTaskFeedLikeDeletedSubscription = (props: Props) => {
   const skipSubscription = useMemo(() => {
-    return !props.taskFeedId
-  }, [props.taskFeedId])
+    return !props.workspaceId
+  }, [props.workspaceId])
 
   useSubscription({
     variables: {
-      taskFeedId: props.taskFeedId,
+      workspaceId: props.workspaceId,
       requestId: TASK_FEED_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {

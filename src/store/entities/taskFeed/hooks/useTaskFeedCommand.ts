@@ -4,6 +4,7 @@ import {
   useDeleteTaskFeedMutation,
 } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
+import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, taskFeedState } from '../atom'
 import { TaskFeed } from '../type'
 import { useReset } from './useReset'
@@ -14,6 +15,7 @@ import { useUpsert } from './useUpsert'
 
 export const useTaskFeedCommand = () => {
   const { upsert } = useUpsert()
+  const { workspace } = useWorkspace()
   const [createTaskFeedMutation] = useCreateTaskFeedMutation()
   const [deleteTaskFeedMutation] = useDeleteTaskFeedMutation()
 
@@ -37,6 +39,7 @@ export const useTaskFeedCommand = () => {
               teammateId: val.teammateId,
               description: val.description,
               requestId: TASK_FEED_CREATED_SUBSCRIPTION_REQUEST_ID,
+              workspaceId: workspace.id,
             },
           },
         })
@@ -53,7 +56,7 @@ export const useTaskFeedCommand = () => {
 
       return id
     },
-    [upsert, createTaskFeedMutation, resetTaskFeed, setTaskFeed],
+    [upsert, createTaskFeedMutation, resetTaskFeed, setTaskFeed, workspace.id],
   )
 
   const deleteTaskFeed = useRecoilCallback(
@@ -68,6 +71,7 @@ export const useTaskFeedCommand = () => {
             input: {
               id: val.id,
               requestId: TASK_FEED_DELETED_SUBSCRIPTION_REQUEST_ID,
+              workspaceId: workspace.id,
             },
           },
         })
@@ -78,7 +82,7 @@ export const useTaskFeedCommand = () => {
 
         return res.data?.deleteTaskFeed?.id || ''
       },
-    [resetTaskFeed, deleteTaskFeedMutation, setTaskFeed],
+    [resetTaskFeed, deleteTaskFeedMutation, setTaskFeed, workspace.id],
   )
 
   return {

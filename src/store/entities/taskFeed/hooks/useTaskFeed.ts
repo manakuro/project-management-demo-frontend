@@ -1,29 +1,16 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useUpdateTaskFeedMutation } from 'src/graphql/hooks'
+import { useWorkspace } from 'src/store/entities/workspace'
 import { taskFeedState } from '../atom'
 import { TaskFeed } from '../type'
-import { useTaskFeedCreatedSubscription } from './useTaskFeedCreatedSubscription'
-import { useTaskFeedDeletedSubscription } from './useTaskFeedDeletedSubscription'
-import {
-  TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID,
-  useTaskFeedUpdatedSubscription,
-} from './useTaskFeedUpdatedSubscription'
+import { TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useTaskFeedUpdatedSubscription'
 import { useUpsert } from './useUpsert'
 
 export const useTaskFeed = (taskFeedId: string) => {
   const taskFeed = useRecoilValue(taskFeedState(taskFeedId))
   const { upsert } = useUpsert()
+  const { workspace } = useWorkspace()
   const [updateTaskFeedMutation] = useUpdateTaskFeedMutation()
-
-  useTaskFeedUpdatedSubscription({
-    taskFeedId,
-  })
-  useTaskFeedCreatedSubscription({
-    taskId: taskFeed.taskId,
-  })
-  useTaskFeedDeletedSubscription({
-    taskId: taskFeed.taskId,
-  })
 
   const setTaskFeed = useRecoilCallback(
     ({ snapshot }) =>
@@ -39,6 +26,7 @@ export const useTaskFeed = (taskFeedId: string) => {
             input: {
               id: taskFeedId,
               requestId: TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID,
+              workspaceId: workspace.id,
               ...val,
             },
           },
@@ -48,7 +36,7 @@ export const useTaskFeed = (taskFeedId: string) => {
           upsert(prev)
         }
       },
-    [taskFeed.id, upsert, updateTaskFeedMutation, taskFeedId],
+    [taskFeed.id, upsert, updateTaskFeedMutation, taskFeedId, workspace.id],
   )
 
   return {

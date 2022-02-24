@@ -6,10 +6,7 @@ import { taskState, useTaskCommand } from 'src/store/entities/task'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { teammateTaskState, initialState } from '../atom'
 import { TeammateTask } from '../type'
-import {
-  TEAMMATE_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
-  useTeammateTaskCreatedSubscription,
-} from './useTeammateTaskCreatedSubscription'
+import { TEAMMATE_TASK_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskCreatedSubscription'
 import { useTeammateTaskResponse } from './useTeammateTaskResponse'
 
 export const useTeammateTaskCommand = () => {
@@ -18,11 +15,6 @@ export const useTeammateTaskCommand = () => {
   const { addTask } = useTaskCommand()
   const [createTeammateTaskMutation] = useCreateTeammateTaskMutation()
   const { setTeammateTask } = useTeammateTaskResponse()
-
-  useTeammateTaskCreatedSubscription({
-    teammateId: me.id,
-    workspaceId: workspace.id,
-  })
 
   const upsert = useRecoilCallback(
     ({ set }) =>

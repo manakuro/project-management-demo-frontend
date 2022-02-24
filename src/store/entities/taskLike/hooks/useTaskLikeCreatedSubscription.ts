@@ -12,18 +12,18 @@ export const TASK_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID = uuid()
 let previousData: any
 
 type Props = {
-  taskId: string
+  workspaceId: string
 }
 export const useTaskLikeCreatedSubscription = (props: Props) => {
   const skipSubscription = useMemo(() => {
-    return !props.taskId
-  }, [props.taskId])
+    return !props.workspaceId
+  }, [props.workspaceId])
 
   const { setTaskLikes } = useTaskLikeResponse()
 
   useSubscription({
     variables: {
-      taskId: props.taskId,
+      workspaceId: props.workspaceId,
       requestId: TASK_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {

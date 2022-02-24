@@ -22,6 +22,7 @@ const hasDescriptionUpdatedState = atomFamily<number, string>({
 let previousData: any
 
 type Props = {
+  workspaceId: string
   taskId: string
 }
 
@@ -29,12 +30,12 @@ export const TASK_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
 export const useTaskUpdatedSubscription = (props: Props) => {
   const { upsert } = useUpsert()
   const [hasDescriptionUpdated, setHasDescriptionUpdated] = useRecoilState(
-    hasDescriptionUpdatedState(props.taskId),
+    hasDescriptionUpdatedState(props.workspaceId),
   )
 
   const subscriptionResult = useSubscription({
     variables: {
-      taskId: props.taskId,
+      workspaceId: props.workspaceId,
       requestId: TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {

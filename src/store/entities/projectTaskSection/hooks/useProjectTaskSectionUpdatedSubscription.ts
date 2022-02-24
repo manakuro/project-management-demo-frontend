@@ -10,19 +10,19 @@ import { useProjectTaskSectionResponse } from './useProjectTaskSectionResponse'
 let previousData: any
 
 type Props = {
-  projectTaskSectionId: string
+  workspaceId: string
 }
 export const PROJECT_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
 export const useProjectTaskSectionUpdatedSubscription = (props: Props) => {
   const { setProjectsTaskSections } = useProjectTaskSectionResponse()
 
   const skipSubscription = useMemo(
-    () => !props.projectTaskSectionId,
-    [props.projectTaskSectionId],
+    () => !props.workspaceId,
+    [props.workspaceId],
   )
   const subscriptionResult = useSubscription({
     variables: {
-      id: props.projectTaskSectionId,
+      workspaceId: props.workspaceId,
       requestId: PROJECT_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {

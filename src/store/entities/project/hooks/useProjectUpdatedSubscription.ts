@@ -1,4 +1,5 @@
 import isEqual from 'lodash-es/isEqual'
+import { useMemo } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useProjectUpdatedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
@@ -10,12 +11,21 @@ let previousData: any
 
 export const PROJECT_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
 
-export const useProjectUpdatedSubscription = (projectId: string) => {
+type Props = {
+  workspaceId: string
+}
+
+export const useProjectUpdatedSubscription = (props: Props) => {
   const { setProjects } = useProjectResponse()
+
+  const skipSubscription = useMemo(
+    () => !props.workspaceId,
+    [props.workspaceId],
+  )
 
   useSubscription({
     variables: {
-      id: projectId,
+      workspaceId: props.workspaceId,
       requestId: PROJECT_UPDATED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {
@@ -31,6 +41,7 @@ export const useProjectUpdatedSubscription = (projectId: string) => {
         setBySubscription(data.subscriptionData.data)
       previousData = data
     },
+    skip: skipSubscription,
   })
 
   const setBySubscription = useRecoilCallback(

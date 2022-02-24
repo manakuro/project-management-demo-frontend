@@ -1,5 +1,5 @@
-subscription TeammateTaskSectionUpdated($id: ID!, $requestId: String!) {
-  teammateTaskSectionUpdated(id: $id, requestId: $requestId) {
+subscription TeammateTaskSectionUpdated($workspaceId: ID!, $requestId: String!) {
+  teammateTaskSectionUpdated(workspaceId: $workspaceId, requestId: $requestId) {
     ...TeammateTaskSectionFragment
   }
 }

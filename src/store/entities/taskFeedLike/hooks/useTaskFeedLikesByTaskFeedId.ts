@@ -5,16 +5,11 @@ import {
   useDeleteTaskFeedLikeMutation,
 } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
+import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, taskFeedLikesState, taskFeedLikeState } from '../atom'
 import { useTaskFeedLikeCommand } from './useTaskFeedLikeCommand'
-import {
-  useTaskFeedLikeCreatedSubscription,
-  TASK_FEED_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID,
-} from './useTaskFeedLikeCreatedSubscription'
-import {
-  useTaskFeedLikeDeletedSubscription,
-  TASK_FEED_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID,
-} from './useTaskFeedLikeDeletedSubscription'
+import { TASK_FEED_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskFeedLikeCreatedSubscription'
+import { TASK_FEED_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskFeedLikeDeletedSubscription'
 import { useTaskFeedLikeResponse } from './useTaskFeedLikeResponse'
 
 export const useTaskFeedLikesByTaskFeedId = (
@@ -23,17 +18,11 @@ export const useTaskFeedLikesByTaskFeedId = (
 ) => {
   const { upsert } = useTaskFeedLikeCommand()
   const [taskFeedLikesAll] = useRecoilState(taskFeedLikesState)
+  const { workspace } = useWorkspace()
   const { setTaskFeedLikes } = useTaskFeedLikeResponse()
 
   const [createTaskFeedLikeMutation] = useCreateTaskFeedLikeMutation()
   const [deleteTaskFeedLikeMutation] = useDeleteTaskFeedLikeMutation()
-
-  useTaskFeedLikeCreatedSubscription({
-    taskFeedId,
-  })
-  useTaskFeedLikeDeletedSubscription({
-    taskFeedId,
-  })
 
   const addTaskFeedLike = useRecoilCallback(
     ({ reset }) =>
@@ -55,6 +44,7 @@ export const useTaskFeedLikesByTaskFeedId = (
                 taskFeedId,
                 taskId,
                 requestId: TASK_FEED_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID,
+                workspaceId: workspace.id,
               },
             },
           })
@@ -72,7 +62,14 @@ export const useTaskFeedLikesByTaskFeedId = (
 
         return id
       },
-    [createTaskFeedLikeMutation, setTaskFeedLikes, taskFeedId, taskId, upsert],
+    [
+      createTaskFeedLikeMutation,
+      setTaskFeedLikes,
+      taskFeedId,
+      taskId,
+      upsert,
+      workspace.id,
+    ],
   )
 
   const deleteTaskFeedLike = useRecoilCallback(
@@ -92,6 +89,7 @@ export const useTaskFeedLikesByTaskFeedId = (
               input: {
                 id: taskFeedLike.id,
                 requestId: TASK_FEED_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID,
+                workspaceId: workspace.id,
               },
             },
           })
@@ -100,7 +98,7 @@ export const useTaskFeedLikesByTaskFeedId = (
           }
         })
       },
-    [deleteTaskFeedLikeMutation, setTaskFeedLikes, taskFeedId],
+    [deleteTaskFeedLikeMutation, setTaskFeedLikes, taskFeedId, workspace.id],
   )
 
   const taskFeedLikes = useMemo(

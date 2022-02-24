@@ -1,5 +1,5 @@
-subscription TaskDeleted($taskId: ID!, $requestId: String!) {
-  taskDeleted(id: $taskId, requestId: $requestId) {
+subscription TaskDeleted($workspaceId: ID!, $requestId: String!) {
+  taskDeleted(workspaceId: $workspaceId, requestId: $requestId) {
     teammateTask {
       id
     }

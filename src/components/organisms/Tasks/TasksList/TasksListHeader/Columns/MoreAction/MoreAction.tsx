@@ -17,7 +17,7 @@ type Props = {
 export const MoreAction: React.FC<Props> = memo<Props>((props) => {
   const { tasksTaskColumnId } = props
   const { tasksTaskColumnIds } = useTasksTaskColumnIds()
-  const { setOrderTaskColumn, canMoveLeft, canMoveRight, setTasksTaskColumn } =
+  const { setTaskColumnOrder, canMoveLeft, canMoveRight, setTasksTaskColumn } =
     useTasksTaskColumn(tasksTaskColumnId)
 
   const handleHideColumn = useCallback(async () => {
@@ -26,13 +26,13 @@ export const MoreAction: React.FC<Props> = memo<Props>((props) => {
 
   const handleMoveRight = useCallback(async () => {
     const currentIndex = tasksTaskColumnIds.indexOf(tasksTaskColumnId)
-    await setOrderTaskColumn(currentIndex, currentIndex + 1)
-  }, [setOrderTaskColumn, tasksTaskColumnId, tasksTaskColumnIds])
+    await setTaskColumnOrder(currentIndex, currentIndex + 1)
+  }, [setTaskColumnOrder, tasksTaskColumnId, tasksTaskColumnIds])
 
   const handleMoveLeft = useCallback(async () => {
     const currentIndex = tasksTaskColumnIds.indexOf(tasksTaskColumnId)
-    await setOrderTaskColumn(currentIndex, currentIndex - 1)
-  }, [setOrderTaskColumn, tasksTaskColumnId, tasksTaskColumnIds])
+    await setTaskColumnOrder(currentIndex, currentIndex - 1)
+  }, [setTaskColumnOrder, tasksTaskColumnId, tasksTaskColumnIds])
 
   const disabledMoveLeft = useMemo(
     () => !canMoveLeft(tasksTaskColumnId),

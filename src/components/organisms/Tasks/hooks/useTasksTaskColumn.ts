@@ -9,7 +9,7 @@ type TaskColumn = ProjectTaskColumn | TeammateTaskColumn
 type Result = {
   tasksTaskColumn: TaskColumn
   setTasksTaskColumn: (val: Partial<TaskColumn>) => Promise<void>
-  setOrderTaskColumn: (startIndex: number, endIndex: number) => Promise<void>
+  setTaskColumnOrder: (startIndex: number, endIndex: number) => Promise<void>
   canMoveLeft: (id: string) => boolean
   canMoveRight: (id: string) => boolean
 }
@@ -22,7 +22,7 @@ export const useTasksTaskColumn = (tasksTaskColumnId: string): Result => {
   if (isMyTasksPage) {
     return {
       tasksTaskColumn: myTasks.tasksTaskColumn,
-      setOrderTaskColumn: myTasks.setOrderTaskColumn,
+      setTaskColumnOrder: myTasks.setTaskColumnOrder,
       setTasksTaskColumn: myTasks.setTasksTaskColumn,
       canMoveLeft: myTasks.canMoveLeft,
       canMoveRight: myTasks.canMoveRight,
@@ -31,7 +31,7 @@ export const useTasksTaskColumn = (tasksTaskColumnId: string): Result => {
 
   return {
     tasksTaskColumn: projects.tasksTaskColumn,
-    setOrderTaskColumn: projects.setOrderTaskColumn,
+    setTaskColumnOrder: projects.setTaskColumnOrder,
     setTasksTaskColumn: projects.setTasksTaskColumn,
     canMoveLeft: projects.canMoveLeft,
     canMoveRight: projects.canMoveRight,

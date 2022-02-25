@@ -1,6 +1,5 @@
 import { useCallback } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { asyncForEach } from 'src/shared/utils'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import {
   useProjectTaskColumnCommand,
@@ -13,7 +12,8 @@ export const useProjectsTaskColumns = (tasksTaskColumnId: string) => {
   const { projectId } = useProjectsProjectId()
   const ids = useRecoilValue(projectsTaskColumnIdsState(projectId))
   const { projectsTaskColumn } = useProjectTaskColumn(tasksTaskColumnId)
-  const { setProjectsTaskColumn } = useProjectTaskColumnCommand()
+  const { setProjectsTaskColumn, setProjectTaskColumnOrder } =
+    useProjectTaskColumnCommand()
 
   const setTasksTaskColumn = useCallback(
     async (val: Partial<ProjectTaskColumn>) => {
@@ -22,20 +22,15 @@ export const useProjectsTaskColumns = (tasksTaskColumnId: string) => {
     [setProjectsTaskColumn, tasksTaskColumnId],
   )
 
-  const setOrderTaskColumn = useRecoilCallback(
+  const setTaskColumnOrder = useRecoilCallback(
     () => async (startIndex: number, endIndex: number) => {
       const newIds = Array.from(ids)
       const [deleted] = newIds.splice(startIndex, 1)
       newIds.splice(endIndex, 0, deleted)
 
-      await asyncForEach(newIds, async (id, index) => {
-        await setProjectsTaskColumn({
-          id,
-          order: index,
-        })
-      })
+      setProjectTaskColumnOrder(newIds)
     },
-    [ids, setProjectsTaskColumn],
+    [ids, setProjectTaskColumnOrder],
   )
 
   const canMoveLeft = useRecoilCallback(
@@ -57,7 +52,7 @@ export const useProjectsTaskColumns = (tasksTaskColumnId: string) => {
   return {
     tasksTaskColumn: projectsTaskColumn,
     setTasksTaskColumn: setTasksTaskColumn,
-    setOrderTaskColumn,
+    setTaskColumnOrder,
     canMoveLeft,
     canMoveRight,
   }

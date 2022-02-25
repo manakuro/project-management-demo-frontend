@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { TeammateTaskTabStatus } from 'src/store/entities/teammateTaskTabStatus'
-import { useTeammateTaskTabStatusCommand } from './useTeammateTaskTabStatusCommand'
+import { useUpsert } from './useUpsert'
 
 export const useTeammateTaskTabStatusResponse = () => {
-  const { upsert } = useTeammateTaskTabStatusCommand()
+  const { upsert } = useUpsert()
 
   const setTeammateTaskTabStatus = useCallback(
     (val: TeammateTaskTabStatus) => {

@@ -21,11 +21,11 @@ export const Files: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent, fetchTaskDetailQuery } = useMyTasksContext()
-  const { loading: loadingQuery } = useMyTasksFilesPageQuery()
+  const { tabContentLoading, fetchTaskDetailQuery } = useMyTasksContext()
+  const { loading: queryLoading } = useMyTasksFilesPageQuery()
   const loading = useMemo(
-    () => loadingTabContent || loadingQuery,
-    [loadingTabContent, loadingQuery],
+    () => tabContentLoading || queryLoading,
+    [tabContentLoading, queryLoading],
   )
   const { navigateToMyTasksFiles } = useRouter()
 

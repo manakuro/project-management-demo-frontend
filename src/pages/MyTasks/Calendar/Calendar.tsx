@@ -28,7 +28,7 @@ export const Calendar: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent, fetchTaskDetailQuery } = useMyTasksContext()
+  const { tabContentLoading, fetchTaskDetailQuery } = useMyTasksContext()
   const { navigateToMyTasksCalendar } = useRouter()
 
   useTasksCalendarDetail({
@@ -37,7 +37,7 @@ const Component: React.VFC = memo(() => {
     fetchQuery: fetchTaskDetailQuery,
   })
 
-  if (loadingTabContent) return <SkeletonCalendar />
+  if (tabContentLoading) return <SkeletonCalendar />
 
   return (
     <>

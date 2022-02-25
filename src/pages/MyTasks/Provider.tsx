@@ -2,9 +2,11 @@ import React, { SetStateAction, useEffect, useState } from 'react'
 import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
-  loadingQuery: boolean
-  loadingTabContent: boolean
-  setLoadingTabContent: React.Dispatch<SetStateAction<boolean>>
+  queryLoading: boolean
+  tabContentLoading: boolean
+  listContentLoading: boolean
+  setTabContentLoading: React.Dispatch<SetStateAction<boolean>>
+  setListContentLoading: React.Dispatch<SetStateAction<boolean>>
   fetchTaskDetailQuery: (variables: { taskId: string }) => Promise<void>
 }
 
@@ -14,18 +16,21 @@ type Props = {
 }
 
 const useValue = (props: Props): ContextProps => {
-  const [loadingQuery, setLoadingQuery] = useState(props.loading)
-  const [loadingTabContent, setLoadingTabContent] = useState(props.loading)
+  const [queryLoading, setQueryLoading] = useState(props.loading)
+  const [tabContentLoading, setTabContentLoading] = useState(props.loading)
+  const [listContentLoading, setListContentLoading] = useState(false)
 
   useEffect(() => {
-    setLoadingQuery(props.loading)
-    setLoadingTabContent(props.loading)
+    setQueryLoading(props.loading)
+    setTabContentLoading(props.loading)
   }, [props.loading])
 
   return {
-    loadingQuery,
-    loadingTabContent,
-    setLoadingTabContent,
+    queryLoading,
+    tabContentLoading,
+    listContentLoading,
+    setTabContentLoading,
+    setListContentLoading,
     fetchTaskDetailQuery: props.fetchTaskDetailQuery,
   } as const
 }

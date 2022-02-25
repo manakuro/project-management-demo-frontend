@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { Flex } from 'src/components/atoms'
 import { TaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import {
   AddTaskButton,
@@ -20,7 +21,7 @@ import {
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router'
 import { SortMenu } from '../TasksHeader'
-import { SkeletonList } from './SkeletonList'
+import { SkeletonListContent, SkeletonListHeader } from './SkeletonList'
 
 export const List: React.VFC = memo(() => {
   return (
@@ -30,7 +31,8 @@ export const List: React.VFC = memo(() => {
   )
 })
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent, fetchTaskDetailQuery } = useMyTasksContext()
+  const { tabContentLoading, fetchTaskDetailQuery, listContentLoading } =
+    useMyTasksContext()
   const { navigateToMyTasksList } = useRouter()
   const { hasClickedOutside } = useTasksListDetail({
     isTaskDetailURL: isMyTasksDetailURL,
@@ -38,7 +40,13 @@ const Component: React.VFC = memo(() => {
     fetchQuery: fetchTaskDetailQuery,
   })
 
-  if (loadingTabContent) return <SkeletonList />
+  if (tabContentLoading)
+    return (
+      <Flex flex={1} flexDirection="column">
+        <SkeletonListHeader />
+        <SkeletonListContent />
+      </Flex>
+    )
 
   return (
     <>
@@ -53,13 +61,17 @@ const Component: React.VFC = memo(() => {
             <CustomizeButton />
           </TasksHeaderRight>
         </TasksHeader>
-        <TasksListContent>
-          <TasksListHeader />
-          <TasksListBody>
-            <TasksListLayout />
-          </TasksListBody>
-          <TasksListHorizontalScrollBorder />
-        </TasksListContent>
+        {listContentLoading ? (
+          <SkeletonListContent />
+        ) : (
+          <TasksListContent>
+            <TasksListHeader />
+            <TasksListBody>
+              <TasksListLayout />
+            </TasksListBody>
+            <TasksListHorizontalScrollBorder />
+          </TasksListContent>
+        )}
       </TasksList>
       <CustomizeMenu />
       <TaskDetailDrawer

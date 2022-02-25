@@ -90,17 +90,17 @@ const WrappedComponent: React.VFC = memo(() => {
   const { isTabStatus, teammateTaskTabStatus } = useTeammateTaskTabStatus()
   const { setTabStatus } = useTeammateTaskTabStatusCommand()
   const { isSorted, sortBy } = useMyTasksTaskListStatus()
-  const { loadingQuery, setLoadingTabContent } = useMyTasksContext()
+  const { queryLoading, setTabContentLoading } = useMyTasksContext()
   const [tabIndex, setTabIndex] = React.useState<Index>(
     mapURLtoTabStatus({ router, tabStatus: teammateTaskTabStatus.statusCode }),
   )
 
   const setLoading = useCallback(() => {
-    setLoadingTabContent(true)
+    setTabContentLoading(true)
     setTimeout(() => {
-      setLoadingTabContent(false)
+      setTabContentLoading(false)
     }, 200)
-  }, [setLoadingTabContent])
+  }, [setTabContentLoading])
 
   const handleTabsChange = useCallback(
     async (index: number) => {
@@ -204,7 +204,7 @@ const WrappedComponent: React.VFC = memo(() => {
       <Flex data-testid="MyTasks" flex={1} flexDirection="column">
         <Head title="My Tasks" />
         <MainHeader>
-          <Header loading={loadingQuery} />
+          <Header loading={queryLoading} />
         </MainHeader>
         <Flex flex={1}>
           <TabPanels>

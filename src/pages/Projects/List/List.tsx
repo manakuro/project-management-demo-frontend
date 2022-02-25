@@ -1,4 +1,5 @@
 import React, { memo, useCallback } from 'react'
+import { Flex } from 'src/components/atoms'
 import { TaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import {
   AddTaskButton,
@@ -22,7 +23,7 @@ import { getProjectsDetailId, isProjectsDetailURL, useRouter } from 'src/router'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useProjectsPageContext } from '../Provider'
 import { SortMenu } from '../TasksHeader'
-import { SkeletonList } from './SkeletonList'
+import { SkeletonListContent, SkeletonListHeader } from './SkeletonList'
 
 export const List: React.VFC = memo(() => {
   return (
@@ -32,7 +33,13 @@ export const List: React.VFC = memo(() => {
   )
 })
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent, fetchTaskDetailQuery } = useProjectsPageContext()
+  const {
+    tabContentLoading,
+    fetchTaskDetailQuery,
+    contentLoading,
+    startContentLoading,
+    endContentLoading,
+  } = useProjectsPageContext()
   const { projectId } = useProjectsProjectId()
   const { navigateToProjectsList } = useRouter()
   const { hasClickedOutside } = useTasksListDetail({
@@ -45,7 +52,13 @@ const Component: React.VFC = memo(() => {
     await navigateToProjectsList(projectId)
   }, [navigateToProjectsList, projectId])
 
-  if (loadingTabContent) return <SkeletonList />
+  if (tabContentLoading)
+    return (
+      <Flex flex={1} flexDirection="column">
+        <SkeletonListHeader />
+        <SkeletonListContent />
+      </Flex>
+    )
 
   return (
     <>
@@ -55,19 +68,26 @@ const Component: React.VFC = memo(() => {
             <AddTaskButton />
           </TasksHeaderLeft>
           <TasksHeaderRight>
-            <IncompleteTasksMenu />
+            <IncompleteTasksMenu
+              startLoading={startContentLoading}
+              endLoading={endContentLoading}
+            />
             <SortMenu />
             <CustomizeButton />
             <MoreActionMenu />
           </TasksHeaderRight>
         </TasksHeader>
-        <TasksListContent>
-          <TasksListHeader />
-          <TasksListBody>
-            <TasksListLayout />
-          </TasksListBody>
-          <TasksListHorizontalScrollBorder />
-        </TasksListContent>
+        {contentLoading ? (
+          <SkeletonListContent />
+        ) : (
+          <TasksListContent>
+            <TasksListHeader />
+            <TasksListBody>
+              <TasksListLayout />
+            </TasksListBody>
+            <TasksListHorizontalScrollBorder />
+          </TasksListContent>
+        )}
       </TasksList>
       <CustomizeMenu />
       <TaskDetailDrawer

@@ -15,9 +15,13 @@ import {
 } from 'src/store/entities/taskListCompletedStatus'
 import { PopoverCompletedTasks } from './PopoverCompletedTasks'
 
-type Props = {}
+type Props = {
+  startLoading: () => void
+  endLoading: () => void
+}
 
-export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>(() => {
+export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>((props) => {
+  const { startLoading, endLoading } = props
   const { setTaskListCompletedStatus, taskListStatus } =
     useTasksTaskListStatus()
   const {
@@ -34,9 +38,13 @@ export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>(() => {
 
   const handleChange = useCallback(
     (status: TaskListCompletedStatusCodeValue) => {
-      setTaskListCompletedStatus(status)
+      startLoading()
+      setTimeout(() => {
+        setTaskListCompletedStatus(status)
+        endLoading()
+      }, 200)
     },
-    [setTaskListCompletedStatus],
+    [endLoading, setTaskListCompletedStatus, startLoading],
   )
 
   const buttonText = useMemo<string>(() => {

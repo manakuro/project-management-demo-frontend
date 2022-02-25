@@ -39,18 +39,18 @@ const ITEMS: {
 
 export const SortMenu: React.VFC<Props> = memo<Props>((props) => {
   const { sortBy, isSorted, taskListStatus } = useMyTasksTaskListStatus()
-  const { setListContentLoading } = useMyTasksContext()
+  const { startContentLoading, endContentLoading } = useMyTasksContext()
 
   const handleChange = useCallback(
     (status: TaskListSortStatusCodeValue) => {
-      setListContentLoading(true)
+      startContentLoading()
 
       setTimeout(() => {
         sortBy(status)
-        setListContentLoading(false)
+        endContentLoading()
       }, 200)
     },
-    [setListContentLoading, sortBy],
+    [endContentLoading, sortBy, startContentLoading],
   )
   const projectSortable = useMemo(
     () => props.projectSortable ?? true,

@@ -90,17 +90,18 @@ const WrappedComponent: React.VFC = memo(() => {
   const { isTabStatus, teammateTaskTabStatus } = useTeammateTaskTabStatus()
   const { setTabStatus } = useTeammateTaskTabStatusCommand()
   const { isSorted, sortBy } = useMyTasksTaskListStatus()
-  const { queryLoading, setTabContentLoading } = useMyTasksContext()
+  const { queryLoading, startTabContentLoading, endTabContentLoading } =
+    useMyTasksContext()
   const [tabIndex, setTabIndex] = React.useState<Index>(
     mapURLtoTabStatus({ router, tabStatus: teammateTaskTabStatus.statusCode }),
   )
 
   const setLoading = useCallback(() => {
-    setTabContentLoading(true)
+    startTabContentLoading()
     setTimeout(() => {
-      setTabContentLoading(false)
+      endTabContentLoading()
     }, 200)
-  }, [setTabContentLoading])
+  }, [])
 
   const handleTabsChange = useCallback(
     async (index: number) => {

@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { SortMenu as TasksHeaderSortMenu } from 'src/components/organisms/Tasks/TasksHeader'
+import { useProjectsPageContext } from 'src/pages/Projects/Provider'
 import {
   useProjectsTaskListStatus,
   TaskListSortStatusCodeValue,
@@ -44,12 +45,17 @@ const ITEMS: {
 
 export const SortMenu: React.VFC<Props> = memo<Props>(() => {
   const { sortBy, isSorted, taskListStatus } = useProjectsTaskListStatus()
+  const { startContentLoading, endContentLoading } = useProjectsPageContext()
 
   const handleChange = useCallback(
     (status: TaskListSortStatusCodeValue) => {
-      sortBy(status)
+      startContentLoading()
+      setTimeout(() => {
+        sortBy(status)
+        endContentLoading()
+      }, 200)
     },
-    [sortBy],
+    [endContentLoading, sortBy, startContentLoading],
   )
   const items = useMemo(() => ITEMS, [])
 

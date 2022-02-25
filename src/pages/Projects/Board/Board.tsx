@@ -16,7 +16,7 @@ import { useProjectsPageContext } from 'src/pages/Projects/Provider'
 import { getProjectsDetailId, isProjectsDetailURL, useRouter } from 'src/router'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { SortMenu } from '../TasksHeader'
-import { SkeletonBoard } from './SkeletonBoard'
+import { SkeletonBoardHeader, SkeletonBoardContent } from './SkeletonBoard'
 
 export const Board: React.VFC = memo(() => {
   return (
@@ -27,7 +27,13 @@ export const Board: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent, fetchTaskDetailQuery } = useProjectsPageContext()
+  const {
+    tabContentLoading,
+    fetchTaskDetailQuery,
+    contentLoading,
+    startContentLoading,
+    endContentLoading,
+  } = useProjectsPageContext()
   const { projectId } = useProjectsProjectId()
   const { navigateToProjectsBoard } = useRouter()
   const { hasClickedOutside } = useTasksBoardDetail({
@@ -40,7 +46,13 @@ const Component: React.VFC = memo(() => {
     await navigateToProjectsBoard(projectId)
   }, [navigateToProjectsBoard, projectId])
 
-  if (loadingTabContent) return <SkeletonBoard />
+  if (tabContentLoading)
+    return (
+      <Flex flex={1} flexDirection="column">
+        <SkeletonBoardHeader />
+        <SkeletonBoardContent />
+      </Flex>
+    )
 
   return (
     <>
@@ -54,14 +66,21 @@ const Component: React.VFC = memo(() => {
           alignItems="center"
         >
           <TasksHeaderRight ml="auto">
-            <IncompleteTasksMenu />
+            <IncompleteTasksMenu
+              startLoading={startContentLoading}
+              endLoading={endContentLoading}
+            />
             <SortMenu />
             <CustomizeButton />
           </TasksHeaderRight>
         </TasksHeader>
-        <TasksBoardContent>
-          <TasksBoardList />
-        </TasksBoardContent>
+        {contentLoading ? (
+          <SkeletonBoardContent />
+        ) : (
+          <TasksBoardContent>
+            <TasksBoardList />
+          </TasksBoardContent>
+        )}
       </Flex>
       <CustomizeMenu />
       <TaskDetailDrawer

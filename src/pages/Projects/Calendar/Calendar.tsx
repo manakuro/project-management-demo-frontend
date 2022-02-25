@@ -29,7 +29,7 @@ export const Calendar: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent, fetchTaskDetailQuery } = useProjectsPageContext()
+  const { tabContentLoading, fetchTaskDetailQuery } = useProjectsPageContext()
   const { navigateToProjectsCalendar } = useRouter()
   const { projectId } = useProjectsProjectId()
 
@@ -43,7 +43,7 @@ const Component: React.VFC = memo(() => {
     await navigateToProjectsCalendar(projectId)
   }, [navigateToProjectsCalendar, projectId])
 
-  if (loadingTabContent) return <SkeletonCalendar />
+  if (tabContentLoading) return <SkeletonCalendar />
 
   return (
     <>

@@ -31,8 +31,13 @@ export const List: React.VFC = memo(() => {
   )
 })
 const Component: React.VFC = memo(() => {
-  const { tabContentLoading, fetchTaskDetailQuery, listContentLoading } =
-    useMyTasksContext()
+  const {
+    tabContentLoading,
+    fetchTaskDetailQuery,
+    contentLoading,
+    startContentLoading,
+    endContentLoading,
+  } = useMyTasksContext()
   const { navigateToMyTasksList } = useRouter()
   const { hasClickedOutside } = useTasksListDetail({
     isTaskDetailURL: isMyTasksDetailURL,
@@ -56,12 +61,15 @@ const Component: React.VFC = memo(() => {
             <AddTaskButton solid />
           </TasksHeaderLeft>
           <TasksHeaderRight>
-            <IncompleteTasksMenu />
+            <IncompleteTasksMenu
+              startLoading={startContentLoading}
+              endLoading={endContentLoading}
+            />
             <SortMenu />
             <CustomizeButton />
           </TasksHeaderRight>
         </TasksHeader>
-        {listContentLoading ? (
+        {contentLoading ? (
           <SkeletonListContent />
         ) : (
           <TasksListContent>

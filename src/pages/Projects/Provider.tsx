@@ -1,10 +1,14 @@
-import React, { SetStateAction, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
-  loadingQuery: boolean
-  loadingTabContent: boolean
-  setLoadingTabContent: React.Dispatch<SetStateAction<boolean>>
+  queryLoading: boolean
+  tabContentLoading: boolean
+  contentLoading: boolean
+  startContentLoading: () => void
+  endContentLoading: () => void
+  startTabContentLoading: () => void
+  endTabContentLoading: () => void
   fetchTaskDetailQuery: (variables: { taskId: string }) => Promise<void>
 }
 
@@ -14,18 +18,37 @@ type Props = {
 }
 
 const useValue = (props: Props): ContextProps => {
-  const [loadingQuery, setLoadingQuery] = useState(props.loading)
-  const [loadingTabContent, setLoadingTabContent] = useState(props.loading)
+  const [queryLoading, setQueryLoading] = useState(props.loading)
+  const [tabContentLoading, setTabContentLoading] = useState(props.loading)
+  const [contentLoading, setContentLoading] = useState(false)
 
   useEffect(() => {
-    setLoadingQuery(props.loading)
-    setLoadingTabContent(props.loading)
+    setQueryLoading(props.loading)
+    setTabContentLoading(props.loading)
   }, [props.loading])
 
+  const startContentLoading = useCallback(() => {
+    setContentLoading(true)
+  }, [])
+  const endContentLoading = useCallback(() => {
+    setContentLoading(false)
+  }, [])
+
+  const startTabContentLoading = useCallback(() => {
+    setTabContentLoading(true)
+  }, [])
+  const endTabContentLoading = useCallback(() => {
+    setTabContentLoading(false)
+  }, [])
+
   return {
-    loadingQuery,
-    loadingTabContent,
-    setLoadingTabContent,
+    queryLoading,
+    tabContentLoading,
+    contentLoading,
+    startContentLoading,
+    endContentLoading,
+    startTabContentLoading,
+    endTabContentLoading,
     fetchTaskDetailQuery: props.fetchTaskDetailQuery,
   } as const
 }

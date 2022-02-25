@@ -15,7 +15,7 @@ import {
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router'
 import { SortMenu } from '../TasksHeader'
-import { SkeletonBoard } from './SkeletonBoard'
+import { SkeletonBoardContent, SkeletonBoardHeader } from './SkeletonBoard'
 
 export const Board: React.VFC = memo(() => {
   return (
@@ -26,7 +26,13 @@ export const Board: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { tabContentLoading, fetchTaskDetailQuery } = useMyTasksContext()
+  const {
+    tabContentLoading,
+    fetchTaskDetailQuery,
+    startContentLoading,
+    endContentLoading,
+    contentLoading,
+  } = useMyTasksContext()
   const { navigateToMyTasksBoard } = useRouter()
   const { hasClickedOutside } = useTasksBoardDetail({
     isTaskDetailURL: isMyTasksDetailURL,
@@ -34,7 +40,13 @@ const Component: React.VFC = memo(() => {
     fetchQuery: fetchTaskDetailQuery,
   })
 
-  if (tabContentLoading) return <SkeletonBoard />
+  if (tabContentLoading)
+    return (
+      <Flex flex={1} flexDirection="column">
+        <SkeletonBoardHeader />
+        <SkeletonBoardContent />
+      </Flex>
+    )
 
   return (
     <>
@@ -48,14 +60,21 @@ const Component: React.VFC = memo(() => {
           alignItems="center"
         >
           <TasksHeaderRight ml="auto">
-            <IncompleteTasksMenu />
+            <IncompleteTasksMenu
+              startLoading={startContentLoading}
+              endLoading={endContentLoading}
+            />
             <SortMenu projectSortable={false} />
             <CustomizeButton />
           </TasksHeaderRight>
         </TasksHeader>
-        <TasksBoardContent>
-          <TasksBoardList />
-        </TasksBoardContent>
+        {contentLoading ? (
+          <SkeletonBoardContent />
+        ) : (
+          <TasksBoardContent>
+            <TasksBoardList />
+          </TasksBoardContent>
+        )}
       </Flex>
       <CustomizeMenu />
       <TaskDetailDrawer

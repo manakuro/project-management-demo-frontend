@@ -22,12 +22,12 @@ export const Files: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent, fetchTaskDetailQuery } = useProjectsPageContext()
+  const { tabContentLoading, fetchTaskDetailQuery } = useProjectsPageContext()
   const { projectId } = useProjectsProjectId()
-  const { loading: loadingQuery } = useProjectsFilesPageQuery()
+  const { loading: queryLoading } = useProjectsFilesPageQuery()
   const loading = useMemo(
-    () => loadingTabContent || loadingQuery,
-    [loadingTabContent, loadingQuery],
+    () => tabContentLoading || queryLoading,
+    [tabContentLoading, queryLoading],
   )
   const { navigateToProjectsFiles } = useRouter()
 

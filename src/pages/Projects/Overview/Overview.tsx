@@ -19,9 +19,9 @@ export const Overview: React.VFC = memo(() => {
 })
 
 const Component: React.VFC = memo(() => {
-  const { loadingTabContent } = useProjectsPageContext()
+  const { tabContentLoading } = useProjectsPageContext()
 
-  if (loadingTabContent) return <SkeletonOverview />
+  if (tabContentLoading) return <SkeletonOverview />
 
   return (
     <Flex flex={1} h="full" maxW="full">

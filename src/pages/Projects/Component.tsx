@@ -74,7 +74,8 @@ const WrappedComponent: React.VFC = memo(() => {
     router,
   } = useRouter()
   const { isSorted, sortBy } = useMyTasksTaskListStatus()
-  const { loadingQuery, setLoadingTabContent } = useProjectsPageContext()
+  const { queryLoading, startTabContentLoading, endTabContentLoading } =
+    useProjectsPageContext()
   const [tabIndex, setTabIndex] = useState<Index>(mapURLtoTabIndex({ router }))
   const { projectId } = useProjectsProjectId()
 
@@ -83,11 +84,11 @@ const WrappedComponent: React.VFC = memo(() => {
   }, [projectId])
 
   const setLoading = useCallback(() => {
-    setLoadingTabContent(true)
+    startTabContentLoading()
     setTimeout(() => {
-      setLoadingTabContent(false)
+      endTabContentLoading()
     }, 200)
-  }, [setLoadingTabContent])
+  }, [endTabContentLoading, startTabContentLoading])
 
   const navigateToOverview = useCallback(async () => {
     await navigateToProjectsOverview(projectId)
@@ -168,7 +169,7 @@ const WrappedComponent: React.VFC = memo(() => {
       <Flex data-testid="Projects" flex={1} flexDirection="column" maxW="full">
         <Head title="Projects" />
         <MainHeader>
-          <Header loading={loadingQuery} />
+          <Header loading={queryLoading} />
         </MainHeader>
         <Flex flex={1}>
           <TabPanels>

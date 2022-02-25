@@ -2,8 +2,8 @@ import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { MenuSelect, MenuSelectButton } from 'src/components/organisms/Menus'
+import { useTasksTask } from 'src/components/organisms/Tasks/hooks'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useTask } from 'src/store/entities/task'
 import { MenuList } from './MenuList'
 
 type Props = {
@@ -15,13 +15,13 @@ type Props = {
 export const MoveTasksBetweenSections: React.FC<Props> = memo<Props>(
   (props) => {
     const { clickableHoverLightStyle } = useClickableHoverStyle()
-    const { setTask } = useTask(props.taskId)
+    const { setTaskSectionId } = useTasksTask()
 
     const handleChange = useCallback(
       async (taskSectionId: string) => {
-        await setTask({ taskSectionId })
+        await setTaskSectionId({ taskSectionId, taskId: props.taskId })
       },
-      [setTask],
+      [props.taskId, setTaskSectionId],
     )
 
     return (

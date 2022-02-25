@@ -1,10 +1,10 @@
 import isEqual from 'lodash-es/isEqual'
 import { useMemo } from 'react'
 import { useRecoilCallback } from 'recoil'
-import { useTeammateTaskDeletedSubscription as useSubscription } from 'src/graphql/hooks'
+import { useTeammateTaskUpdatedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { teammateTaskState } from 'src/store/entities/teammateTask'
-import { TeammateTaskDeletedSubscriptionResponse as Response } from '../type'
+import { TeammateTaskUpdatedSubscriptionResponse as Response } from '../type'
+import { useTeammateTaskResponse } from './useTeammateTaskResponse'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any
@@ -13,8 +13,10 @@ type Props = {
   workspaceId: string
   teammateId: string
 }
-export const TEAMMATE_TASK_DELETED_SUBSCRIPTION_REQUEST_ID = uuid()
-export const useTeammateTaskDeletedSubscription = (props: Props) => {
+export const TEAMMATE_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
+export const useTeammateTaskUpdatedSubscription = (props: Props) => {
+  const { setTeammateTask } = useTeammateTaskResponse()
+
   const skipSubscription = useMemo(
     () => !props.teammateId || !props.workspaceId,
     [props.teammateId, props.workspaceId],
@@ -23,7 +25,7 @@ export const useTeammateTaskDeletedSubscription = (props: Props) => {
     variables: {
       teammateId: props.teammateId,
       workspaceId: props.workspaceId,
-      requestId: TEAMMATE_TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
+      requestId: TEAMMATE_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {
       if (
@@ -42,15 +44,22 @@ export const useTeammateTaskDeletedSubscription = (props: Props) => {
   })
 
   const setBySubscription = useRecoilCallback(
-    ({ reset }) =>
-      async (response: Response) => {
-        const updated = response.teammateTaskDeleted
+    () => async (response: Response) => {
+      const created = response.teammateTaskUpdated
 
-        if (__DEV__) console.log('Teammate Task deleted!')
+      if (__DEV__) console.log('Teammate Task updated!')
 
-        reset(teammateTaskState(updated.id))
-      },
-    [],
+      setTeammateTask([
+        {
+          ...created,
+          task: {
+            ...created.task,
+            isNew: false,
+          },
+        },
+      ])
+    },
+    [setTeammateTask],
   )
 
   return {

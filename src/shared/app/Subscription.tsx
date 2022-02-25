@@ -2,7 +2,10 @@ import React, { memo } from 'react'
 import { useFavoriteProjectIdsUpdatedSubscription } from 'src/store/entities/favoriteProjectIds'
 import { useMe } from 'src/store/entities/me'
 import { useProjectUpdatedSubscription } from 'src/store/entities/project'
-import { useProjectTaskCreatedSubscription } from 'src/store/entities/projectTask'
+import {
+  useProjectTaskCreatedSubscription,
+  useProjectTaskUpdatedSubscription,
+} from 'src/store/entities/projectTask'
 import {
   useProjectTaskSectionCreatedSubscription,
   useProjectTaskSectionUpdatedSubscription,
@@ -25,7 +28,10 @@ import {
   useTaskLikeCreatedSubscription,
   useTaskLikeDeletedSubscription,
 } from 'src/store/entities/taskLike'
-import { useTeammateTaskCreatedSubscription } from 'src/store/entities/teammateTask'
+import {
+  useTeammateTaskCreatedSubscription,
+  useTeammateTaskUpdatedSubscription,
+} from 'src/store/entities/teammateTask'
 import {
   useTeammateTaskSectionCreatedSubscription,
   useTeammateTaskSectionUpdatedSubscription,
@@ -48,6 +54,9 @@ export const Subscription: React.FC = memo((props) => {
   })
 
   useProjectTaskCreatedSubscription({
+    workspaceId: workspace.id,
+  })
+  useProjectTaskUpdatedSubscription({
     workspaceId: workspace.id,
   })
 
@@ -105,6 +114,10 @@ export const Subscription: React.FC = memo((props) => {
   })
 
   useTeammateTaskCreatedSubscription({
+    teammateId: me.id,
+    workspaceId: workspace.id,
+  })
+  useTeammateTaskUpdatedSubscription({
     teammateId: me.id,
     workspaceId: workspace.id,
   })

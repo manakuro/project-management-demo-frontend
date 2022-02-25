@@ -1,6 +1,9 @@
 import { selectorFamily } from 'recoil'
-import { tasksByProjectIdState } from 'src/store/entities/projectTask'
-import { filterByDueDate, filterByTaskSectionId } from 'src/store/entities/task'
+import {
+  tasksByProjectIdState,
+  tasksByProjectTaskSectionIdState,
+} from 'src/store/entities/projectTask'
+import { filterByDueDate } from 'src/store/entities/task'
 import { filterTasks, sortTasks } from '../filters'
 import { isTaskListSortStatusState } from '../taskListStatus'
 
@@ -34,18 +37,21 @@ export const taskIdsByTaskSectionIdState = selectorFamily<
   get:
     ({ taskSectionId, projectId }) =>
     ({ get }) => {
-      let tasks = get(tasksByProjectIdState(projectId))
+      let tasks = get(
+        tasksByProjectTaskSectionIdState({
+          projectTaskSectionId: taskSectionId,
+          projectId,
+        }),
+      )
       switch (true) {
         case get(isTaskListSortStatusState('dueDate')): {
-          tasks = filterByTaskSectionId(taskSectionId)(tasks)
           tasks = filterTasks({ get })(tasks)
           return tasks.filter((t) => !t.dueDate).map((t) => t.id)
         }
         default: {
           tasks = tasks.filter((t) => !t.taskParentId)
-          tasks = filterByTaskSectionId(taskSectionId)(tasks)
-          tasks = sortTasks({ get })(tasks)
           tasks = filterTasks({ get })(tasks)
+          tasks = sortTasks({ get })(tasks)
           return tasks.map((t) => t.id)
         }
       }

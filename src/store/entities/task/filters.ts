@@ -26,7 +26,3 @@ export const filterByTeammateId = (teammateId: string) => (tasks: Task[]) =>
 
 export const filterByDueDate = (dueDate: string) => (tasks: Task[]) =>
   tasks.filter((t) => dateFns.isSameDay(new Date(t.dueDate), new Date(dueDate)))
-
-export const filterByTaskSectionId =
-  (taskSectionId: string) => (tasks: Task[]) =>
-    tasks.filter((t) => t.taskSectionId === taskSectionId)

@@ -14,8 +14,8 @@ type Params = {
 }
 
 export const sortTasks = (params: Params) => (t: Task[]) => {
-  let tasks = sortByDueDate(params)(t)
-  tasks = sortByCreatedAt(t)
+  let tasks = sortByCreatedAt(t)
+  tasks = sortByDueDate(params)(t)
   tasks = sortByLikes(params)(tasks)
   tasks = sortByAlphabetical(params)(tasks)
 

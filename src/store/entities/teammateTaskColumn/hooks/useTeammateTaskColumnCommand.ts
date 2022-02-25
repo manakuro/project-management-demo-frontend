@@ -1,6 +1,9 @@
 import { useRecoilCallback } from 'recoil'
-import { useUpdateTeammateTaskColumnMutation } from 'src/graphql/hooks'
-import { teammateTaskColumnState } from '../atom'
+import {
+  useUpdateTeammateTaskColumnMutation,
+  useUpdateTeammateTaskColumnOrderMutation,
+} from 'src/graphql/hooks'
+import { teammateTaskColumnsState, teammateTaskColumnState } from '../atom'
 import { TeammateTaskColumn } from '../type'
 import { useUpsert } from './useUpsert'
 
@@ -8,6 +11,8 @@ export const useTeammateTaskColumnCommand = () => {
   const { upsert } = useUpsert()
   const [updateTeammateTaskColumnMutation] =
     useUpdateTeammateTaskColumnMutation()
+  const [updateTeammateTaskColumnOrderMutation] =
+    useUpdateTeammateTaskColumnOrderMutation()
 
   const setTeammateTaskColumn = useRecoilCallback(
     ({ snapshot }) =>
@@ -32,15 +37,37 @@ export const useTeammateTaskColumnCommand = () => {
   )
 
   const setTeammateTaskColumnOrder = useRecoilCallback(
-    () => (ids: string[]) => {
-      ids.forEach((id, index) => {
-        upsert({
-          id,
-          order: index,
+    ({ snapshot }) =>
+      async (ids: string[]) => {
+        const prev = await snapshot.getPromise(teammateTaskColumnsState)
+        const prevIds = prev.map((p) => p.id)
+
+        if (JSON.stringify(prevIds) === JSON.stringify(ids)) return
+
+        ids.forEach((id, index) => {
+          upsert({
+            id,
+            order: index,
+          })
         })
-      })
-    },
-    [upsert],
+
+        const res = await updateTeammateTaskColumnOrderMutation({
+          variables: {
+            input: {
+              ids,
+            },
+          },
+        })
+        if (res.errors) {
+          prevIds.forEach((id, index) => {
+            upsert({
+              id,
+              order: index,
+            })
+          })
+        }
+      },
+    [updateTeammateTaskColumnOrderMutation, upsert],
   )
 
   return {

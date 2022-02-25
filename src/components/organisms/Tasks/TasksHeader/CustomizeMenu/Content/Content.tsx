@@ -19,7 +19,7 @@ const TASKS_HEADER_BOARD_HEIGHT = 40
 
 export const Content: React.VFC = memo(() => {
   const { onClose } = useCustomizeMenu()
-  const { tasksTaskColumnIds, setOrderTaskColumn } =
+  const { tasksTaskColumnIds, setTaskColumnOrder } =
     useTasksTaskColumnCustomizable()
   const { list, handleDnd } = useDnd(tasksTaskColumnIds)
   const { router } = useRouter()
@@ -30,8 +30,8 @@ export const Content: React.VFC = memo(() => {
   }, [router])
 
   useEffect(() => {
-    setOrderTaskColumn(list)
-  }, [list, setOrderTaskColumn])
+    setTaskColumnOrder(list)
+  }, [list, setTaskColumnOrder])
 
   return (
     <DrawerContent

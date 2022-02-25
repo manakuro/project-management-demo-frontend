@@ -6,53 +6,40 @@ import {
   TeammateTaskTabStatusCode,
   TeammateTaskTabStatusCodeKey,
 } from '../type'
+import { useUpsert } from './useUpsert'
 
 export const useTeammateTaskTabStatusCommand = () => {
   const [updateTeammateTaskTabStatusMutation] =
     useUpdateTeammateTaskTabStatusMutation()
-
-  const upsert = useRecoilCallback(
-    ({ set }) =>
-      (val: Partial<TeammateTaskTabStatus>) => {
-        set(tabStatusState, (prev) => ({
-          ...prev,
-          ...val,
-        }))
-      },
-    [],
-  )
+  const { upsert } = useUpsert()
 
   const setTabStatus = useRecoilCallback(
     ({ snapshot }) =>
       async (key: TeammateTaskTabStatusCodeKey) => {
-        const current = await snapshot.getPromise(tabStatusState)
+        const prev = await snapshot.getPromise(tabStatusState)
 
         const input: Partial<TeammateTaskTabStatus> = {
           statusCode: TeammateTaskTabStatusCode[key],
         }
         upsert(input)
 
-        try {
-          await updateTeammateTaskTabStatusMutation({
-            variables: {
-              input: {
-                id: current.id,
-                requestId: '',
-                ...input,
-              },
+        const res = await updateTeammateTaskTabStatusMutation({
+          variables: {
+            input: {
+              id: prev.id,
+              requestId: '',
+              ...input,
             },
-          })
-        } catch (err) {
-          console.error(err)
-          upsert(current)
-          throw err
+          },
+        })
+        if (res.errors) {
+          upsert(prev)
         }
       },
     [updateTeammateTaskTabStatusMutation, upsert],
   )
 
   return {
-    upsert,
     setTabStatus,
   }
 }

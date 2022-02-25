@@ -4,7 +4,7 @@ import { useTasksContext } from '../TasksProvider'
 
 type Result = {
   tasksTaskColumnIds: string[]
-  setOrderTaskColumn: (updatedIds: string[]) => void
+  setTaskColumnOrder: (updatedIds: string[]) => void
 }
 
 export const useTasksTaskColumnCustomizable = (): Result => {
@@ -18,15 +18,15 @@ export const useTasksTaskColumnCustomizable = (): Result => {
     return {
       tasksTaskColumnIds:
         useMyTasksTaskColumnsCustomizableResult.tasksTaskColumnIds,
-      setOrderTaskColumn:
-        useMyTasksTaskColumnsCustomizableResult.setOrderTaskColumn,
+      setTaskColumnOrder:
+        useMyTasksTaskColumnsCustomizableResult.setTaskColumnOrder,
     }
   }
 
   return {
     tasksTaskColumnIds:
       useProjectsTaskColumnsCustomizableResult.tasksTaskColumnIds,
-    setOrderTaskColumn:
-      useProjectsTaskColumnsCustomizableResult.setOrderTaskColumn,
+    setTaskColumnOrder:
+      useProjectsTaskColumnsCustomizableResult.setTaskColumnOrder,
   }
 }

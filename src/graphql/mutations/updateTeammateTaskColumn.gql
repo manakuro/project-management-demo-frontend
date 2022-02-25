@@ -1,0 +1,5 @@
+mutation UpdateTeammateTaskColumn($input: UpdateTeammateTaskColumnInput!) {
+  updateTeammateTaskColumn(input: $input) {
+    ...TeammateTaskColumnFragment
+  }
+}

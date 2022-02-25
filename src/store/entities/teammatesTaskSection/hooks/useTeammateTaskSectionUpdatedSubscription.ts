@@ -10,19 +10,19 @@ import { useTeammatesTaskSectionResponse } from './useTeammatesTaskSectionRespon
 let previousData: any
 
 type Props = {
-  teammateTaskSectionId: string
+  workspaceId: string
 }
 export const TEAMMATE_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
 export const useTeammateTaskSectionUpdatedSubscription = (props: Props) => {
   const { setTeammatesTaskSections } = useTeammatesTaskSectionResponse()
 
   const skipSubscription = useMemo(
-    () => !props.teammateTaskSectionId,
-    [props.teammateTaskSectionId],
+    () => !props.workspaceId,
+    [props.workspaceId],
   )
   const subscriptionResult = useSubscription({
     variables: {
-      id: props.teammateTaskSectionId,
+      workspaceId: props.workspaceId,
       requestId: TEAMMATE_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {

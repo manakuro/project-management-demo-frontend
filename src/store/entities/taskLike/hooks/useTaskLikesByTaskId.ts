@@ -8,14 +8,8 @@ import { uuid } from 'src/shared/uuid'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, taskLikesState, taskLikeState } from '../atom'
 import { useTaskLikeCommand } from './useTaskLikeCommand'
-import {
-  TASK_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID,
-  useTaskLikeCreatedSubscription,
-} from './useTaskLikeCreatedSubscription'
-import {
-  TASK_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID,
-  useTaskLikeDeletedSubscription,
-} from './useTaskLikeDeletedSubscription'
+import { TASK_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskLikeCreatedSubscription'
+import { TASK_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskLikeDeletedSubscription'
 import { useTaskLikeResponse } from './useTaskLikeResponse'
 
 export const useTaskLikesByTaskId = (taskId: string) => {
@@ -26,13 +20,6 @@ export const useTaskLikesByTaskId = (taskId: string) => {
 
   const [createTaskLikeMutation] = useCreateTaskLikeMutation()
   const [deleteTaskLikeMutation] = useDeleteTaskLikeMutation()
-
-  useTaskLikeCreatedSubscription({
-    taskId,
-  })
-  useTaskLikeDeletedSubscription({
-    taskId,
-  })
 
   const addTaskLike = useRecoilCallback(
     ({ reset }) =>
@@ -94,6 +81,7 @@ export const useTaskLikesByTaskId = (taskId: string) => {
               input: {
                 id: taskLike.id,
                 requestId: TASK_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID,
+                workspaceId: workspace.id,
               },
             },
           })

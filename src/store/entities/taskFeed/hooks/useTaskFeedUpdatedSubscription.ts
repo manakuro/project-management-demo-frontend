@@ -11,7 +11,7 @@ import { useTaskFeedResponse } from './useTaskFeedResponse'
 let previousData: any
 
 type Props = {
-  taskFeedId: string
+  workspaceId: string
 }
 
 export const TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
@@ -19,13 +19,13 @@ export const useTaskFeedUpdatedSubscription = (props: Props) => {
   const { setTaskFeed } = useTaskFeedResponse()
 
   const skipSubscription = useMemo(
-    () => !props.taskFeedId || !isULID(props.taskFeedId),
-    [props.taskFeedId],
+    () => !props.workspaceId || !isULID(props.workspaceId),
+    [props.workspaceId],
   )
 
   useSubscription({
     variables: {
-      taskFeedId: props.taskFeedId,
+      workspaceId: props.workspaceId,
       requestId: TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {

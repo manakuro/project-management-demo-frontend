@@ -1,29 +1,21 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useUpdateTaskMutation } from 'src/graphql/hooks'
 import { omit } from 'src/shared/utils/omit'
+import { useWorkspace } from 'src/store/entities/workspace'
 import { taskState } from '../atom'
 import { Task, UpdateTaskInput } from '../type'
 import { hasTaskBeenPersisted } from '../util'
-import { useTaskDeletedSubscription } from './useTaskDeletedSubscription'
-import { useTaskUndeletedSubscription } from './useTaskUndeletedSubscription'
-import {
-  TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
-  useTaskUpdatedSubscription,
-} from './useTaskUpdatedSubscription'
+import { useHasDescriptionUpdatedValue } from './useHasDescriptionUpdated'
+import { TASK_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useTaskUpdatedSubscription'
 import { useUpsert } from './useUpsert'
 
 export const useTask = (taskId: string) => {
   const task = useRecoilValue(taskState(taskId))
+  const { workspace } = useWorkspace()
+
   const { upsert } = useUpsert()
   const [updateTaskMutation] = useUpdateTaskMutation()
-
-  const { hasDescriptionUpdated } = useTaskUpdatedSubscription({
-    taskId,
-  })
-  useTaskDeletedSubscription({
-    taskId,
-  })
-  useTaskUndeletedSubscription({
+  const { hasDescriptionUpdated } = useHasDescriptionUpdatedValue({
     taskId,
   })
 
@@ -40,7 +32,7 @@ export const useTask = (taskId: string) => {
 
         const res = await updateTaskMutation({
           variables: {
-            input: prepareUpdateTaskInput(taskId, val),
+            input: prepareUpdateTaskInput(taskId, workspace.id, val),
           },
         })
 
@@ -48,7 +40,7 @@ export const useTask = (taskId: string) => {
           upsert(prev)
         }
       },
-    [taskId, updateTaskMutation, upsert],
+    [taskId, updateTaskMutation, upsert, workspace.id],
   )
   const setTaskPriority = useRecoilCallback(
     ({ snapshot }) =>
@@ -70,7 +62,7 @@ export const useTask = (taskId: string) => {
         const prev = await snapshot.getPromise(taskState(taskId))
         // Skip when touching input for the first time
         if (prev.isNew && !prev.name && !val) return
-        if (prev.name && val && prev.name === val) return
+        if (prev.name === val) return
 
         const isNew = prev.isNew && !!val ? { isNew: false } : {}
         await setTask({ name: val, ...isNew })
@@ -89,10 +81,12 @@ export const useTask = (taskId: string) => {
 
 const prepareUpdateTaskInput = (
   taskId: string,
+  workspaceId: string,
   val: Partial<Task>,
 ): UpdateTaskInput => {
   let input: UpdateTaskInput = {
     id: taskId,
+    workspaceId,
     requestId: TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
     ...val,
   }

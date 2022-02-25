@@ -1,5 +1,5 @@
-subscription ProjectTaskSectionCreated($projectId: ID!, $requestId: String!) {
-  projectTaskSectionCreated(projectId: $projectId, requestId: $requestId) {
+subscription ProjectTaskSectionCreated($workspaceId: ID!, $requestId: String!) {
+  projectTaskSectionCreated(workspaceId: $workspaceId, requestId: $requestId) {
     ...ProjectTaskSectionFragment
   }
 }

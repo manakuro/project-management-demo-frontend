@@ -2,32 +2,22 @@ import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useUpdateProjectTaskSectionMutation } from 'src/graphql/hooks'
 import { UpdateTeammateTaskSectionInput } from 'src/graphql/types'
 import { omit } from 'src/shared/utils/omit'
+import { useWorkspace } from 'src/store/entities/workspace'
 import { projectTaskSectionState } from '../atom'
 import { ProjectTaskSection } from '../type'
 import { DEFAULT_TITLE_NAME, hasProjectTaskSectionBeenPersisted } from '../util'
-import { useProjectTaskSectionCreatedSubscription } from './useProjectTaskSectionCreatedSubscription'
-import {
-  PROJECT_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID,
-  useProjectTaskSectionUpdatedSubscription,
-} from './useProjectTaskSectionUpdatedSubscription'
+import { PROJECT_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionUpdatedSubscription'
 import { useUpsert } from './useUpsert'
 
 export const useProjectTaskSection = (projectTaskSectionId: string) => {
   const { upsert } = useUpsert()
+  const { workspace } = useWorkspace()
   const projectTaskSection = useRecoilValue(
     projectTaskSectionState(projectTaskSectionId),
   )
 
   const [updateProjectTaskSectionMutation] =
     useUpdateProjectTaskSectionMutation()
-
-  useProjectTaskSectionCreatedSubscription({
-    projectId: projectTaskSection.projectId,
-  })
-
-  useProjectTaskSectionUpdatedSubscription({
-    projectTaskSectionId: projectTaskSection.id,
-  })
 
   const setProjectTaskSection = useRecoilCallback(
     ({ snapshot }) =>
@@ -43,6 +33,7 @@ export const useProjectTaskSection = (projectTaskSectionId: string) => {
           variables: {
             input: prepareUpdateTeammateTaskSectionInput(
               projectTaskSectionId,
+              workspace.id,
               val,
             ),
           },
@@ -51,7 +42,12 @@ export const useProjectTaskSection = (projectTaskSectionId: string) => {
           upsert(prev)
         }
       },
-    [projectTaskSectionId, updateProjectTaskSectionMutation, upsert],
+    [
+      projectTaskSectionId,
+      updateProjectTaskSectionMutation,
+      upsert,
+      workspace.id,
+    ],
   )
 
   const setProjectTaskSectionName = useRecoilCallback(
@@ -73,11 +69,13 @@ export const useProjectTaskSection = (projectTaskSectionId: string) => {
 
 const prepareUpdateTeammateTaskSectionInput = (
   teammateTaskSectionId: string,
+  workspaceId: string,
   val: Partial<ProjectTaskSection>,
-): UpdateTeammateTaskSectionInput => {
+): UpdateTeammateTaskSectionInput & { workspaceId: string } => {
   return {
     ...omit(val, 'isNew'),
     id: teammateTaskSectionId,
+    workspaceId,
     requestId: PROJECT_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID,
   }
 }

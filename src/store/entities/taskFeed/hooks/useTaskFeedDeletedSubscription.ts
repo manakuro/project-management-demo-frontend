@@ -9,14 +9,14 @@ import { TaskFeedDeletedSubscriptionResponse } from '../type'
 let previousData: any
 
 type Props = {
-  taskId: string
+  workspaceId: string
 }
 
 export const TASK_FEED_DELETED_SUBSCRIPTION_REQUEST_ID = uuid()
 export const useTaskFeedDeletedSubscription = (props: Props) => {
   useSubscription({
     variables: {
-      taskId: props.taskId,
+      workspaceId: props.workspaceId,
       requestId: TASK_FEED_DELETED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {

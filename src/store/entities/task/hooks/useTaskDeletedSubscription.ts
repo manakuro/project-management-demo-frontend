@@ -12,15 +12,18 @@ import { TaskDeletedSubscriptionResponse as Response } from '../type'
 let previousData: any
 
 type Props = {
-  taskId: string
+  workspaceId: string
 }
 export const TASK_DELETED_SUBSCRIPTION_REQUEST_ID = uuid()
 export const useTaskDeletedSubscription = (props: Props) => {
   const { setDeletedTask } = useDeletedTaskResponse()
-  const skipSubscription = useMemo(() => !props.taskId, [props.taskId])
+  const skipSubscription = useMemo(
+    () => !props.workspaceId,
+    [props.workspaceId],
+  )
   const subscriptionResult = useSubscription({
     variables: {
-      taskId: props.taskId,
+      workspaceId: props.workspaceId,
       requestId: TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {

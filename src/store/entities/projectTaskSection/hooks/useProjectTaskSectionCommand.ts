@@ -1,6 +1,7 @@
 import { useRecoilCallback } from 'recoil'
 import { useCreateProjectTaskSectionMutation } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
+import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, projectTaskSectionState } from '../atom'
 import { PROJECT_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionCreatedSubscription'
 import { useProjectTaskSectionResponse } from './useProjectTaskSectionResponse'
@@ -11,6 +12,7 @@ export const useProjectTaskSectionCommand = () => {
   const { setProjectsTaskSections } = useProjectTaskSectionResponse()
   const [createProjectTaskSectionMutation] =
     useCreateProjectTaskSectionMutation()
+  const { workspace } = useWorkspace()
 
   const addProjectsTaskSection = useRecoilCallback(
     ({ reset }) =>
@@ -28,6 +30,7 @@ export const useProjectTaskSectionCommand = () => {
             input: {
               projectId: val.projectId,
               requestId: PROJECT_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID,
+              workspaceId: workspace.id,
             },
           },
         })
@@ -49,7 +52,12 @@ export const useProjectTaskSectionCommand = () => {
 
         return addedProjectTaskSection.id
       },
-    [upsert, createProjectTaskSectionMutation, setProjectsTaskSections],
+    [
+      upsert,
+      createProjectTaskSectionMutation,
+      workspace.id,
+      setProjectsTaskSections,
+    ],
   )
 
   return {

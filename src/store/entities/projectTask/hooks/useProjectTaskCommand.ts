@@ -1,15 +1,12 @@
 import { useRecoilCallback } from 'recoil'
 import { useCreateProjectTaskMutation } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useMe } from 'src/store/entities/me'
 import { taskState, useTaskCommand } from 'src/store/entities/task'
+import { useWorkspace } from 'src/store/entities/workspace'
 import { projectTaskState, initialState } from '../atom'
 import { ProjectTask } from '../type'
-import {
-  PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
-  useProjectTaskCreatedSubscription,
-} from './useProjectTaskCreatedSubscription'
+import { PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskCreatedSubscription'
 import { useProjectTaskResponse } from './useProjectTaskResponse'
 
 type AddProjectTaskParams = Partial<ProjectTask> & {
@@ -20,12 +17,8 @@ export const useProjectTaskCommand = () => {
   const { addTask } = useTaskCommand()
   const [createProjectTaskMutation] = useCreateProjectTaskMutation()
   const { me } = useMe()
+  const { workspace } = useWorkspace()
   const { setProjectTask } = useProjectTaskResponse()
-  const { projectId } = useProjectsProjectId()
-
-  useProjectTaskCreatedSubscription({
-    projectId,
-  })
 
   const upsert = useRecoilCallback(
     ({ set }) =>
@@ -79,6 +72,7 @@ export const useProjectTaskCommand = () => {
             projectTaskSectionId: newProjectTask.projectTaskSectionId,
             createdBy: me.id,
             requestId: PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
+            workspaceId: workspace.id,
           },
         },
       })
@@ -96,11 +90,12 @@ export const useProjectTaskCommand = () => {
       return addedProjectTask.id
     },
     [
+      addProjectTaskOptimistic,
       createProjectTaskMutation,
       me.id,
+      workspace.id,
       resetTask,
       setProjectTask,
-      addProjectTaskOptimistic,
     ],
   )
 

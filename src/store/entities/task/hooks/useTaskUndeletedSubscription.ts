@@ -11,7 +11,7 @@ import { TaskUndeletedSubscriptionResponse as Response } from '../type'
 let previousData: any
 
 type Props = {
-  taskId: string
+  workspaceId: string
 }
 export const TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID = uuid()
 export const useTaskUndeletedSubscription = (props: Props) => {
@@ -20,7 +20,7 @@ export const useTaskUndeletedSubscription = (props: Props) => {
 
   const subscriptionResult = useSubscription({
     variables: {
-      taskId: props.taskId,
+      workspaceId: props.workspaceId,
       requestId: TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {

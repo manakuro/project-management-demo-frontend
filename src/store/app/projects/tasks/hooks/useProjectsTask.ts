@@ -1,10 +1,12 @@
 import { useRecoilCallback } from 'recoil'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useProjectTaskCommand } from 'src/store/entities/projectTask'
+import { useTaskCommand } from 'src/store/entities/task'
 
 export const useProjectsTask = () => {
-  const { addProjectTask } = useProjectTaskCommand()
+  const { addProjectTask, setProjectTaskByTaskId } = useProjectTaskCommand()
   const { projectId } = useProjectsProjectId()
+  const { setTaskSectionId: setTaskSectionIdCommand } = useTaskCommand()
 
   const addTask = useRecoilCallback(
     () => (val: { taskSectionId: string }) => {
@@ -17,8 +19,13 @@ export const useProjectsTask = () => {
   )
 
   const setTaskSectionId = useRecoilCallback(
-    () => async (_: { taskSectionId: string; taskId: string }) => {},
-    [],
+    () => async (val: { taskSectionId: string; taskId: string }) => {
+      await setProjectTaskByTaskId(val.taskId, {
+        projectTaskSectionId: val.taskSectionId,
+      })
+      await setTaskSectionIdCommand(val.taskId, val.taskSectionId)
+    },
+    [setProjectTaskByTaskId, setTaskSectionIdCommand],
   )
 
   return {

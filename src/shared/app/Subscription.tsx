@@ -2,7 +2,10 @@ import React, { memo } from 'react'
 import { useFavoriteProjectIdsUpdatedSubscription } from 'src/store/entities/favoriteProjectIds'
 import { useMe } from 'src/store/entities/me'
 import { useProjectUpdatedSubscription } from 'src/store/entities/project'
-import { useProjectTaskCreatedSubscription } from 'src/store/entities/projectTask'
+import {
+  useProjectTaskCreatedSubscription,
+  useProjectTaskUpdatedSubscription,
+} from 'src/store/entities/projectTask'
 import {
   useProjectTaskSectionCreatedSubscription,
   useProjectTaskSectionUpdatedSubscription,
@@ -51,6 +54,9 @@ export const Subscription: React.FC = memo((props) => {
   })
 
   useProjectTaskCreatedSubscription({
+    workspaceId: workspace.id,
+  })
+  useProjectTaskUpdatedSubscription({
     workspaceId: workspace.id,
   })
 

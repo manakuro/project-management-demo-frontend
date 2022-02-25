@@ -1,0 +1,5 @@
+mutation UpdateProjectTask($input: UpdateProjectTaskInput!) {
+  updateProjectTask(input: $input) {
+    ...ProjectTaskFragment
+  }
+}

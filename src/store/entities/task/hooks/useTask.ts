@@ -62,7 +62,7 @@ export const useTask = (taskId: string) => {
         const prev = await snapshot.getPromise(taskState(taskId))
         // Skip when touching input for the first time
         if (prev.isNew && !prev.name && !val) return
-        if (prev.name && val && prev.name === val) return
+        if (prev.name === val) return
 
         const isNew = prev.isNew && !!val ? { isNew: false } : {}
         await setTask({ name: val, ...isNew })

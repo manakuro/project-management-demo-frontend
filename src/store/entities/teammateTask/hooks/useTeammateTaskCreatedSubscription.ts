@@ -45,15 +45,15 @@ export const useTeammateTaskCreatedSubscription = (props: Props) => {
 
   const setBySubscription = useRecoilCallback(
     () => async (response: Response) => {
-      const updated = response.teammateTaskCreated
+      const created = response.teammateTaskCreated
 
       if (__DEV__) console.log('Teammate Task created!')
 
       setTeammateTask([
         {
-          ...updated,
+          ...created,
           task: {
-            ...updated.task,
+            ...created.task,
             isNew: false,
           },
         },

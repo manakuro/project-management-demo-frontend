@@ -30,7 +30,6 @@ export const useProjectTaskCommand = () => {
   const { workspace } = useWorkspace()
   const { setProjectTask: setProjectTaskResponse } = useProjectTaskResponse()
   const { upsert } = useUpsert()
-  const { setTaskSectionId } = useTaskCommand()
 
   const resetTask = useRecoilCallback(
     ({ reset }) =>
@@ -39,15 +38,6 @@ export const useProjectTaskCommand = () => {
         reset(taskState(params.taskId))
       },
     [],
-  )
-
-  const setProjectTaskOptimistic = useRecoilCallback(
-    ({ snapshot }) =>
-      async (taskId: string, val: Partial<ProjectTask>) => {
-        const prev = await snapshot.getPromise(projectTaskByTaskIdState(taskId))
-        upsert({ ...prev, ...val })
-      },
-    [upsert],
   )
 
   const setProjectTaskByTaskId = useRecoilCallback(
@@ -72,19 +62,6 @@ export const useProjectTaskCommand = () => {
         }
       },
     [updateProjectTaskMutation, upsert, workspace.id],
-  )
-
-  const setProjectTaskSectionId = useRecoilCallback(
-    () => async (taskId: string, val: string) => {
-      await setProjectTaskOptimistic(taskId, {
-        projectTaskSectionId: val,
-      })
-      await setTaskSectionId(taskId, val)
-      await setProjectTaskByTaskId(taskId, {
-        projectTaskSectionId: val,
-      })
-    },
-    [setProjectTaskByTaskId, setProjectTaskOptimistic, setTaskSectionId],
   )
 
   const addProjectTaskOptimistic = useRecoilCallback(
@@ -153,6 +130,5 @@ export const useProjectTaskCommand = () => {
   return {
     addProjectTask,
     setProjectTaskByTaskId,
-    setProjectTaskSectionId,
   }
 }

@@ -1,5 +1,5 @@
 import { selectorFamily } from 'recoil'
-import { Task, taskState } from 'src/store/entities/task'
+import { Task, tasksState, taskState } from 'src/store/entities/task'
 import { createState } from 'src/store/util'
 import { ProjectTask } from './type'
 
@@ -52,6 +52,28 @@ export const tasksByProjectIdState = selectorFamily<Task[], string>({
         .filter((p) => p.projectId === projectId)
         .map((p) => p.taskId)
       return taskIds.map((id) => get(taskState(id)))
+    },
+})
+
+export const tasksByProjectTaskSectionIdState = selectorFamily<
+  Task[],
+  { projectId: string; projectTaskSectionId: string }
+>({
+  key: key('tasksByProjectTaskSectionIdState'),
+  get:
+    ({ projectTaskSectionId, projectId }) =>
+    ({ get }) => {
+      const tasks = get(tasksState)
+      const projectTasks = get(projectTasksState)
+      const taskIds = projectTasks
+        .filter(
+          (p) =>
+            p.projectTaskSectionId === projectTaskSectionId &&
+            p.projectId === projectId,
+        )
+        .map((p) => p.taskId)
+
+      return tasks.filter((t) => taskIds.includes(t.id))
     },
 })
 

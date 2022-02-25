@@ -14,7 +14,8 @@ type Params = {
 }
 
 export const sortTasks = (params: Params) => (t: Task[]) => {
-  let tasks = sortByDueDate(params)(t)
+  let tasks = sortByCreatedAt(t)
+  tasks = sortByDueDate(params)(t)
   tasks = sortByLikes(params)(tasks)
   tasks = sortByAlphabetical(params)(tasks)
   tasks = sortByAssignee(params)(tasks)
@@ -22,6 +23,15 @@ export const sortTasks = (params: Params) => (t: Task[]) => {
   tasks = sortByPriority(params)(tasks)
 
   return tasks
+}
+
+const sortByCreatedAt = (tasks: Task[]) => {
+  return [...tasks].sort((a, b) => {
+    if (!a.createdAt) return 1
+    if (!b.createdAt) return -1
+
+    return new Date(a.createdAt) < new Date(b.createdAt) ? -1 : 1
+  })
 }
 
 export const sortByDueDate =
@@ -33,7 +43,7 @@ export const sortByDueDate =
       if (!a.dueDate) return 1
       if (!b.dueDate) return -1
 
-      return a.dueDate < b.dueDate ? -1 : 1
+      return new Date(a.dueDate) < new Date(b.dueDate) ? -1 : 1
     })
   }
 
@@ -87,7 +97,7 @@ export const sortByCreationTime =
       if (!a.createdAt) return 1
       if (!b.createdAt) return -1
 
-      return a.createdAt < b.createdAt ? -1 : 1
+      return new Date(a.createdAt) < new Date(b.createdAt) ? -1 : 1
     })
   }
 

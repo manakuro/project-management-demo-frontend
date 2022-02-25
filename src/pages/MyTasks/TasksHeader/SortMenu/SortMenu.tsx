@@ -85,7 +85,10 @@ export const SortMenu: React.VFC<Props> = memo<Props>((props) => {
       items={items}
       text={text}
       onChange={handleChange}
-      defaultValue={taskListStatus.taskListSortStatus.toString()}
+      defaultValue={
+        taskListStatus.taskListSortStatus.statusCode ||
+        TaskListSortStatusCode.None
+      }
     />
   )
 })

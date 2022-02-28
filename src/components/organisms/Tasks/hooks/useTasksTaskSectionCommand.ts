@@ -6,6 +6,7 @@ type Result = {
   addTaskSection: () => Promise<string>
   deleteTaskSectionAndKeepTasks: (id: string) => Promise<void>
   deleteTaskSectionAndDeleteTasks: (id: string) => Promise<void>
+  deleteTaskSection: (id: string) => Promise<void>
 }
 
 export const useTasksTaskSectionCommand = (): Result => {
@@ -19,6 +20,7 @@ export const useTasksTaskSectionCommand = (): Result => {
       addTaskSection: myTasks.addTaskSection,
       deleteTaskSectionAndKeepTasks: myTasks.deleteTaskSectionAndKeepTasks,
       deleteTaskSectionAndDeleteTasks: myTasks.deleteTaskSectionAndDeleteTask,
+      deleteTaskSection: myTasks.deleteTeammateTaskSection,
     }
   }
 
@@ -26,5 +28,6 @@ export const useTasksTaskSectionCommand = (): Result => {
     addTaskSection: projects.addTaskSection,
     deleteTaskSectionAndKeepTasks: async () => {},
     deleteTaskSectionAndDeleteTasks: async () => {},
+    deleteTaskSection: async () => {},
   }
 }

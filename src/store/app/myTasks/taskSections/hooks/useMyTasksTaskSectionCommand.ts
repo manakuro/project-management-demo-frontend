@@ -8,6 +8,7 @@ export const useMyTasksTaskSectionCommand = () => {
     addTeammatesTaskSection,
     deleteTaskSectionAndKeepTasks: deleteTaskSectionAndKeepTasksCommand,
     deleteTaskSectionAndDeleteTasks: deleteTaskSectionAndDeleteTasksCommand,
+    deleteTeammateTaskSection: deleteTeammateTaskSectionCommand,
   } = useTeammatesTaskSectionCommand()
 
   const addTaskSection = useRecoilCallback(
@@ -31,9 +32,17 @@ export const useMyTasksTaskSectionCommand = () => {
     [deleteTaskSectionAndDeleteTasksCommand],
   )
 
+  const deleteTeammateTaskSection = useRecoilCallback(
+    () => async (id: string) => {
+      await deleteTeammateTaskSectionCommand(id)
+    },
+    [deleteTeammateTaskSectionCommand],
+  )
+
   return {
     addTaskSection,
     deleteTaskSectionAndKeepTasks,
     deleteTaskSectionAndDeleteTask,
+    deleteTeammateTaskSection,
   }
 }

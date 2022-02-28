@@ -19,6 +19,7 @@ export const MenuList: React.FC<Props> = memo(() => {
     onFocusInput()
   }, [onFocusInput])
 
+  // TODO: Fix unmounted error
   const handleDeleteSection = useCallback(() => {
     setModalState({
       taskSectionId,

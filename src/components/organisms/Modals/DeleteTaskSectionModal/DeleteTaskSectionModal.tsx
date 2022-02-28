@@ -41,13 +41,13 @@ export const Component: React.VFC<Props> = () => {
   } = useDeleteTaskSectionModal()
   const [value, setValue] = React.useState('1')
 
-  const handleDelete = useCallback(() => {
+  const handleDelete = useCallback(async () => {
     if (value === '1') {
-      onDeleteAndKeepTask()
+      await onDeleteAndKeepTask()
       return
     }
 
-    onDeleteAndDeleteTask()
+    await onDeleteAndDeleteTask()
   }, [onDeleteAndDeleteTask, onDeleteAndKeepTask, value])
 
   return (

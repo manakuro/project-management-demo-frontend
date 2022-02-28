@@ -1,4 +1,4 @@
-import { selectorFamily } from 'recoil'
+import { selector, selectorFamily } from 'recoil'
 import { createState } from 'src/store/util'
 import { TeammateTaskSection } from './type'
 
@@ -45,4 +45,12 @@ export const taskSectionsByTeammateIdState = selectorFamily<
       const teammatesTaskSections = get(teammatesTaskSectionsState)
       return teammatesTaskSections.filter((t) => t.teammateId === teammateId)
     },
+})
+
+export const assignedTeammateTaskSectionState = selector<TeammateTaskSection>({
+  key: key('assignedTeammateTaskSectionState'),
+  get: ({ get }) => {
+    const teammatesTaskSections = get(teammatesTaskSectionsState)
+    return teammatesTaskSections.find((t) => t.assigned) || initialState()
+  },
 })

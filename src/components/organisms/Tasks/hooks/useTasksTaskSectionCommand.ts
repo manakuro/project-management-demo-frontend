@@ -4,8 +4,8 @@ import { useTasksContext } from '../TasksProvider'
 
 type Result = {
   addTaskSection: () => Promise<string>
-  deleteTaskSectionAndKeepTask: (id: string) => Promise<void>
-  deleteTaskSectionAndDeleteTask: (id: string) => Promise<void>
+  deleteTaskSectionAndKeepTasks: (id: string) => Promise<void>
+  deleteTaskSectionAndDeleteTasks: (id: string) => Promise<void>
 }
 
 export const useTasksTaskSectionCommand = (): Result => {
@@ -17,14 +17,14 @@ export const useTasksTaskSectionCommand = (): Result => {
   if (isMyTasksPage) {
     return {
       addTaskSection: myTasks.addTaskSection,
-      deleteTaskSectionAndKeepTask: myTasks.deleteTaskSectionAndKeepTask,
-      deleteTaskSectionAndDeleteTask: myTasks.deleteTaskSectionAndDeleteTask,
+      deleteTaskSectionAndKeepTasks: myTasks.deleteTaskSectionAndKeepTasks,
+      deleteTaskSectionAndDeleteTasks: myTasks.deleteTaskSectionAndDeleteTask,
     }
   }
 
   return {
     addTaskSection: projects.addTaskSection,
-    deleteTaskSectionAndKeepTask: async () => {},
-    deleteTaskSectionAndDeleteTask: async () => {},
+    deleteTaskSectionAndKeepTasks: async () => {},
+    deleteTaskSectionAndDeleteTasks: async () => {},
   }
 }

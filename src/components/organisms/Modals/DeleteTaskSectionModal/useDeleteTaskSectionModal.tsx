@@ -14,15 +14,15 @@ const openState = atom({
 
 type ModalState = {
   taskSectionId: string
-  deleteTaskSectionAndKeepTask: (id: string) => Promise<void>
-  deleteTaskSectionAndDeleteTask: (id: string) => Promise<void>
+  deleteTaskSectionAndKeepTasks: (id: string) => Promise<void>
+  deleteTaskSectionAndDeleteTasks: (id: string) => Promise<void>
 }
 const modalState = atom<ModalState>({
   key: key('modalState'),
   default: {
     taskSectionId: '',
-    deleteTaskSectionAndKeepTask: async () => {},
-    deleteTaskSectionAndDeleteTask: async () => {},
+    deleteTaskSectionAndKeepTasks: async () => {},
+    deleteTaskSectionAndDeleteTasks: async () => {},
   },
 })
 
@@ -64,7 +64,7 @@ export const useDeleteTaskSectionModal = () => {
 
   const onDeleteAndKeepTask = useCallback(async () => {
     setIsOpen(false)
-    await state.deleteTaskSectionAndKeepTask(state.taskSectionId)
+    await state.deleteTaskSectionAndKeepTasks(state.taskSectionId)
     toast({
       description: `${taskSection.name} was deleted and its tasks are being moved.`,
       undo: handleDeleteAndKeepTaskUndo,
@@ -80,11 +80,25 @@ export const useDeleteTaskSectionModal = () => {
     handleDeleteAndKeepTaskUndo,
   ])
 
+  const handleDeleteAndDeleteTasksUndo = useCallback(() => {}, [])
+
   const onDeleteAndDeleteTask = useCallback(async () => {
     setIsOpen(false)
-    await state.deleteTaskSectionAndDeleteTask(state.taskSectionId)
+    await state.deleteTaskSectionAndDeleteTasks(state.taskSectionId)
+    toast({
+      description: `${taskSection.name} was deleted and its tasks are being deleted.`,
+      undo: handleDeleteAndDeleteTasksUndo,
+      duration: 10000,
+    })
     resetState()
-  }, [resetState, setIsOpen, state])
+  }, [
+    handleDeleteAndDeleteTasksUndo,
+    resetState,
+    setIsOpen,
+    state,
+    taskSection.name,
+    toast,
+  ])
 
   return {
     isOpen,

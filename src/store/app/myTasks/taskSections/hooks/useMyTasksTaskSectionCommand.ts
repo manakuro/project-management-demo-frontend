@@ -4,16 +4,45 @@ import { useTeammatesTaskSectionCommand } from 'src/store/entities/teammatesTask
 
 export const useMyTasksTaskSectionCommand = () => {
   const { me } = useMe()
-  const { addTeammatesTaskSection } = useTeammatesTaskSectionCommand()
+  const {
+    addTeammatesTaskSection,
+    deleteTaskSectionAndKeepTasks: deleteTaskSectionAndKeepTasksCommand,
+    deleteTaskSectionAndDeleteTasks: deleteTaskSectionAndDeleteTasksCommand,
+    deleteTeammateTaskSection: deleteTeammateTaskSectionCommand,
+  } = useTeammatesTaskSectionCommand()
 
-  const addMyTaskSection = useRecoilCallback(
+  const addTaskSection = useRecoilCallback(
     () => () => {
       return addTeammatesTaskSection({ teammateId: me.id })
     },
     [me.id, addTeammatesTaskSection],
   )
 
+  const deleteTaskSectionAndKeepTasks = useRecoilCallback(
+    () => async (id: string) => {
+      await deleteTaskSectionAndKeepTasksCommand(id)
+    },
+    [deleteTaskSectionAndKeepTasksCommand],
+  )
+
+  const deleteTaskSectionAndDeleteTask = useRecoilCallback(
+    () => async (id: string) => {
+      await deleteTaskSectionAndDeleteTasksCommand(id)
+    },
+    [deleteTaskSectionAndDeleteTasksCommand],
+  )
+
+  const deleteTeammateTaskSection = useRecoilCallback(
+    () => async (id: string) => {
+      await deleteTeammateTaskSectionCommand(id)
+    },
+    [deleteTeammateTaskSectionCommand],
+  )
+
   return {
-    addMyTaskSection,
+    addTaskSection,
+    deleteTaskSectionAndKeepTasks,
+    deleteTaskSectionAndDeleteTask,
+    deleteTeammateTaskSection,
   }
 }

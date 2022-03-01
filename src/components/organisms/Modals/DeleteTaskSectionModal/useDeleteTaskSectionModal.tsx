@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
+import { useToast } from 'src/hooks'
 import { useTasksByTaskSectionId } from 'src/store/entities/task'
 import { useTaskSection } from 'src/store/entities/taskSection'
 
@@ -10,10 +11,18 @@ const openState = atom({
   key: key('openState'),
   default: false,
 })
-const modalState = atom({
+
+type ModalState = {
+  taskSectionId: string
+  deleteTaskSectionAndKeepTasks: (id: string) => Promise<void>
+  deleteTaskSectionAndDeleteTasks: (id: string) => Promise<void>
+}
+const modalState = atom<ModalState>({
   key: key('modalState'),
   default: {
     taskSectionId: '',
+    deleteTaskSectionAndKeepTasks: async () => {},
+    deleteTaskSectionAndDeleteTasks: async () => {},
   },
 })
 
@@ -23,6 +32,7 @@ export const useDeleteTaskSectionModal = () => {
   const resetState = useResetRecoilState(modalState)
   const { taskSection } = useTaskSection(state.taskSectionId)
   const { tasks } = useTasksByTaskSectionId(state.taskSectionId)
+  const { toast } = useToast()
 
   const inCompletedTaskSize = useMemo(
     () => tasks.filter((t) => !t.completed).length,
@@ -43,22 +53,61 @@ export const useDeleteTaskSectionModal = () => {
     setIsOpen(true)
   }, [setIsOpen])
 
-  const setTaskSectionId = useCallback(
-    (taskSectionId: string) => {
-      setState((s) => ({ ...s, taskSectionId }))
+  const setModalState = useCallback(
+    (val: ModalState) => {
+      setState(val)
     },
     [setState],
   )
 
-  const onDelete = useCallback(() => {}, [])
+  const handleDeleteAndKeepTaskUndo = useCallback(() => {}, [])
+
+  const onDeleteAndKeepTask = useCallback(async () => {
+    setIsOpen(false)
+    await state.deleteTaskSectionAndKeepTasks(state.taskSectionId)
+    toast({
+      description: `${taskSection.name} was deleted and its tasks are being moved.`,
+      undo: handleDeleteAndKeepTaskUndo,
+      duration: 10000,
+    })
+    resetState()
+  }, [
+    resetState,
+    setIsOpen,
+    state,
+    taskSection.name,
+    toast,
+    handleDeleteAndKeepTaskUndo,
+  ])
+
+  const handleDeleteAndDeleteTasksUndo = useCallback(() => {}, [])
+
+  const onDeleteAndDeleteTask = useCallback(async () => {
+    setIsOpen(false)
+    await state.deleteTaskSectionAndDeleteTasks(state.taskSectionId)
+    toast({
+      description: `${taskSection.name} was deleted and its tasks are being deleted.`,
+      undo: handleDeleteAndDeleteTasksUndo,
+      duration: 10000,
+    })
+    resetState()
+  }, [
+    handleDeleteAndDeleteTasksUndo,
+    resetState,
+    setIsOpen,
+    state,
+    taskSection.name,
+    toast,
+  ])
 
   return {
     isOpen,
     onClose,
     onOpen,
-    setTaskSectionId,
+    setModalState,
     taskSection,
-    onDelete,
+    onDeleteAndKeepTask,
+    onDeleteAndDeleteTask,
     inCompletedTaskSize,
     completedTaskSize,
     taskSize,

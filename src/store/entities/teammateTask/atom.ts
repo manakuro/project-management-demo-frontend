@@ -57,3 +57,18 @@ export const teammateTaskByTaskIdState = selectorFamily<TeammateTask, string>({
       return teammateTasks.find((t) => t.taskId === taskId) || initialState()
     },
 })
+
+export const teammateTaskByTeammateTaskSectionIdState = selectorFamily<
+  TeammateTask[],
+  string
+>({
+  key: key('teammateTaskByTeammateTaskSectionIdState'),
+  get:
+    (teammateTaskSectionId) =>
+    ({ get }) => {
+      const teammateTasks = get(teammateTasksState)
+      return teammateTasks.filter(
+        (t) => t.teammateTaskSectionId === teammateTaskSectionId,
+      )
+    },
+})

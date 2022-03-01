@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import {
   Button,
   Flex,
@@ -33,12 +33,22 @@ export const Component: React.VFC<Props> = () => {
     isOpen,
     onClose,
     taskSection,
-    onDelete,
+    onDeleteAndDeleteTask,
+    onDeleteAndKeepTask,
     inCompletedTaskSize,
     completedTaskSize,
     taskSize,
   } = useDeleteTaskSectionModal()
   const [value, setValue] = React.useState('1')
+
+  const handleDelete = useCallback(async () => {
+    if (value === '1') {
+      await onDeleteAndKeepTask()
+      return
+    }
+
+    await onDeleteAndDeleteTask()
+  }, [onDeleteAndDeleteTask, onDeleteAndKeepTask, value])
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl">
@@ -74,7 +84,7 @@ export const Component: React.VFC<Props> = () => {
         <Divider />
         <ModalFooter>
           <Button onClick={onClose}>Cancel</Button>
-          <Button ml={2} colorScheme="red" onClick={onDelete}>
+          <Button ml={2} colorScheme="red" onClick={handleDelete}>
             Delete section
           </Button>
         </ModalFooter>

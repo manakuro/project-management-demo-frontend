@@ -8,10 +8,14 @@ export const useTeammateTaskResponse = () => {
 
   const setTeammateTask = useRecoilCallback(
     ({ set }) =>
-      (data: TeammateTaskResponse[]) => {
+      (data: TeammateTaskResponse[], options?: { includeTask?: boolean }) => {
+        const includeTask = options?.includeTask ?? true
+
         data.forEach((d) => {
           set(teammateTaskState(d.id), d)
         })
+        if (!includeTask) return
+
         const tasks = data.map<TaskResponse>((d) => ({
           ...d.task,
           taskSectionId: d.teammateTaskSectionId,

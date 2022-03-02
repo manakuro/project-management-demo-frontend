@@ -42,6 +42,21 @@ export const projectTaskByTaskIdState = selectorFamily<ProjectTask, string>({
     },
 })
 
+export const projectTasksByProjectTaskSectionIdState = selectorFamily<
+  ProjectTask[],
+  string
+>({
+  key: key('projectTaskByProjectTaskSectionIdState'),
+  get:
+    (projectTaskSectionId) =>
+    ({ get }) => {
+      const projectTasks = get(projectTasksState)
+      return projectTasks.filter(
+        (p) => p.projectTaskSectionId === projectTaskSectionId,
+      )
+    },
+})
+
 export const tasksByProjectIdState = selectorFamily<Task[], string>({
   key: key('tasksByProjectIdState'),
   get:

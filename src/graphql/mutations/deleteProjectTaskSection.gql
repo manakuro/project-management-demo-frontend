@@ -1,0 +1,5 @@
+mutation DeleteProjectTaskSection($input: DeleteProjectTaskSectionInput!) {
+  deleteProjectTaskSection(input: $input) {
+    id
+  }
+}

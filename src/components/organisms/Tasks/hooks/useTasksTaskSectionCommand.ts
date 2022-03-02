@@ -26,8 +26,8 @@ export const useTasksTaskSectionCommand = (): Result => {
 
   return {
     addTaskSection: projects.addTaskSection,
-    deleteTaskSectionAndKeepTasks: async () => {},
-    deleteTaskSectionAndDeleteTasks: async () => {},
-    deleteTaskSection: async () => {},
+    deleteTaskSectionAndKeepTasks: projects.deleteTaskSectionAndKeepTasks,
+    deleteTaskSectionAndDeleteTasks: projects.deleteTaskSectionAndDeleteTask,
+    deleteTaskSection: projects.deleteProjectTaskSection,
   }
 }

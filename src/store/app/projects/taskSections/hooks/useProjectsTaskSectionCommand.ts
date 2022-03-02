@@ -3,17 +3,46 @@ import { useProjectTaskSectionCommand as useCommand } from 'src/store/entities/p
 import { useProjectsProjectId } from '../../project'
 
 export const useProjectsTaskSectionCommand = () => {
-  const { addProjectsTaskSection } = useCommand()
+  const {
+    addProjectsTaskSection,
+    deleteTaskSectionAndKeepTasks: deleteTaskSectionAndKeepTasksCommand,
+    deleteTaskSectionAndDeleteTasks: deleteTaskSectionAndDeleteTasksCommand,
+    deleteProjectTaskSection: deleteProjectTaskSectionCommand,
+  } = useCommand()
   const { projectId } = useProjectsProjectId()
 
-  const addProjectsSection = useRecoilCallback(
+  const addTaskSection = useRecoilCallback(
     () => () => {
       return addProjectsTaskSection({ projectId })
     },
     [addProjectsTaskSection, projectId],
   )
 
+  const deleteTaskSectionAndKeepTasks = useRecoilCallback(
+    () => async (id: string) => {
+      await deleteTaskSectionAndKeepTasksCommand(id)
+    },
+    [deleteTaskSectionAndKeepTasksCommand],
+  )
+
+  const deleteTaskSectionAndDeleteTask = useRecoilCallback(
+    () => async (id: string) => {
+      await deleteTaskSectionAndDeleteTasksCommand(id)
+    },
+    [deleteTaskSectionAndDeleteTasksCommand],
+  )
+
+  const deleteProjectTaskSection = useRecoilCallback(
+    () => async (id: string) => {
+      await deleteProjectTaskSectionCommand(id)
+    },
+    [deleteProjectTaskSectionCommand],
+  )
+
   return {
-    addTaskSection: addProjectsSection,
+    addTaskSection,
+    deleteTaskSectionAndKeepTasks,
+    deleteTaskSectionAndDeleteTask,
+    deleteProjectTaskSection,
   }
 }

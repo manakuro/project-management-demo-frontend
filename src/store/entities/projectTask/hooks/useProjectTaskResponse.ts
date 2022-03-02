@@ -8,10 +8,14 @@ export const useProjectTaskResponse = () => {
 
   const setProjectTask = useRecoilCallback(
     ({ set }) =>
-      (data: ProjectTaskResponse[]) => {
+      (data: ProjectTaskResponse[], options?: { includeTask?: boolean }) => {
+        const includeTask = options?.includeTask ?? true
+
         data.forEach((d) => {
           set(projectTaskState(d.id), d)
         })
+        if (!includeTask) return
+
         const tasks = data.map<TaskResponse>((d) => ({
           ...d.task,
           taskSectionId: d.projectTaskSectionId,

@@ -104,7 +104,9 @@ export const useTeammatesTaskSectionCommand = () => {
           ...t,
           teammateTaskSectionId: teammateTaskSection.id,
         }))
-        setTeammateTask(newTeammateTasks as TeammateTaskResponse[])
+        setTeammateTask(newTeammateTasks as TeammateTaskResponse[], {
+          includeTask: false,
+        })
 
         reset(teammatesTaskSectionState(id))
 

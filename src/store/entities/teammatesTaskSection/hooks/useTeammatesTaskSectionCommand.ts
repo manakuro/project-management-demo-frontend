@@ -21,6 +21,7 @@ import {
 } from '../atom'
 import { TeammateTaskSection, TeammateTaskSectionResponse } from '../type'
 import { TEAMMATE_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionCreatedSubscription'
+import { TEAMMATE_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedSubscription'
 import { useTeammatesTaskSectionResponse } from './useTeammatesTaskSectionResponse'
 import { useUpsert } from './useUpsert'
 
@@ -178,7 +179,7 @@ export const useTeammatesTaskSectionCommand = () => {
             input: {
               id,
               workspaceId: workspace.id,
-              requestId: 'requestId',
+              requestId: TEAMMATE_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID,
             },
           },
         })

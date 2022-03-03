@@ -1,0 +1,5 @@
+subscription TeammateTaskSectionDeleted($teammateId: ID!, $workspaceId: ID!, $requestId: String!) {
+  teammateTaskSectionDeleted(teammateId: $teammateId, workspaceId: $workspaceId, requestId: $requestId) {
+    id
+  }
+}

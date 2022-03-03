@@ -1,10 +1,10 @@
 import isEqual from 'lodash-es/isEqual'
 import { useMemo } from 'react'
 import { useRecoilCallback } from 'recoil'
-import { useTeammateTaskSectionUpdatedSubscription as useSubscription } from 'src/graphql/hooks'
+import { useTeammateTaskSectionDeletedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { TeammateTaskSectionUpdatedSubscriptionResponse as Response } from '../type'
-import { useTeammatesTaskSectionResponse } from './useTeammatesTaskSectionResponse'
+import { TeammateTaskSectionDeletedSubscriptionResponse as Response } from '../type'
+import { useResetTeammateTaskSectionSection } from './useResetTeammateTaskSection'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any
@@ -13,9 +13,9 @@ type Props = {
   workspaceId: string
   teammateId: string
 }
-export const TEAMMATE_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
-export const useTeammateTaskSectionUpdatedSubscription = (props: Props) => {
-  const { setTeammatesTaskSections } = useTeammatesTaskSectionResponse()
+export const TEAMMATE_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID = uuid()
+export const useTeammateTaskSectionDeletedSubscription = (props: Props) => {
+  const { resetTeammateTaskSection } = useResetTeammateTaskSectionSection()
 
   const skipSubscription = useMemo(
     () => !props.workspaceId,
@@ -25,7 +25,7 @@ export const useTeammateTaskSectionUpdatedSubscription = (props: Props) => {
     variables: {
       workspaceId: props.workspaceId,
       teammateId: props.teammateId,
-      requestId: TEAMMATE_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID,
+      requestId: TEAMMATE_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {
       if (
@@ -45,13 +45,13 @@ export const useTeammateTaskSectionUpdatedSubscription = (props: Props) => {
 
   const setBySubscription = useRecoilCallback(
     () => (response: Response) => {
-      const updated = response.teammateTaskSectionUpdated
+      const data = response.teammateTaskSectionDeleted
 
-      if (__DEV__) console.log('Teammate Task Section updated!')
+      if (__DEV__) console.log('Teammate Task Section deleted!')
 
-      setTeammatesTaskSections([updated])
+      resetTeammateTaskSection(data.id)
     },
-    [setTeammatesTaskSections],
+    [resetTeammateTaskSection],
   )
 
   return {

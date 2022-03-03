@@ -8,6 +8,7 @@ import {
 } from 'src/store/entities/projectTask'
 import {
   useProjectTaskSectionCreatedSubscription,
+  useProjectTaskSectionDeletedAndDeleteTasksSubscription,
   useProjectTaskSectionDeletedAndKeepTasksSubscription,
   useProjectTaskSectionDeletedSubscription,
   useProjectTaskSectionUpdatedSubscription,
@@ -75,6 +76,9 @@ export const Subscription: React.FC = memo((props) => {
     workspaceId: workspace.id,
   })
   useProjectTaskSectionDeletedAndKeepTasksSubscription({
+    workspaceId: workspace.id,
+  })
+  useProjectTaskSectionDeletedAndDeleteTasksSubscription({
     workspaceId: workspace.id,
   })
 

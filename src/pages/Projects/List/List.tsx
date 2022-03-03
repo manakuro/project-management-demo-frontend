@@ -13,11 +13,11 @@ import {
   TasksListHeader,
   TasksListLayout,
   TasksListContent,
-  TasksProvider,
   TasksListHorizontalScrollBorder,
   CustomizeMenu,
   useTasksListDetail,
   MoreActionMenu,
+  TasksContainer,
 } from 'src/components/organisms/Tasks'
 import { getProjectsDetailId, isProjectsDetailURL, useRouter } from 'src/router'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
@@ -27,9 +27,9 @@ import { SkeletonListContent, SkeletonListHeader } from './SkeletonList'
 
 export const List: React.VFC = memo(() => {
   return (
-    <TasksProvider isProjectsPage>
+    <TasksContainer isProjectsPage>
       <Component />
-    </TasksProvider>
+    </TasksContainer>
   )
 })
 const Component: React.VFC = memo(() => {

@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
-import { TasksProvider } from 'src/components/organisms/Tasks'
+import { TasksContainer } from 'src/components/organisms/Tasks'
 import { useWorkspacesPageContext } from '../Provider'
 import { DescriptionSection } from './DescriptionSection'
 import { MembersSection } from './MembersSection'
@@ -13,9 +13,9 @@ import { SkeletonOverview } from './SkeletonOverview'
 
 export const Overview: React.VFC = memo(() => {
   return (
-    <TasksProvider isProjectsPage>
+    <TasksContainer isProjectsPage>
       <Component />
-    </TasksProvider>
+    </TasksContainer>
   )
 })
 

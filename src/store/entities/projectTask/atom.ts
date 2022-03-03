@@ -70,11 +70,11 @@ export const tasksByProjectIdState = selectorFamily<Task[], string>({
     },
 })
 
-export const tasksByProjectTaskSectionIdState = selectorFamily<
+export const tasksByProjectTaskSectionIdAndProjectIdState = selectorFamily<
   Task[],
   { projectId: string; projectTaskSectionId: string }
 >({
-  key: key('tasksByProjectTaskSectionIdState'),
+  key: key('tasksByProjectTaskSectionIdAndProjectIdState'),
   get:
     ({ projectTaskSectionId, projectId }) =>
     ({ get }) => {

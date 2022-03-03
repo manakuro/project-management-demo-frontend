@@ -35,7 +35,7 @@ export const Component: React.VFC<Props> = () => {
     taskSection,
     onDeleteAndDeleteTask,
     onDeleteAndKeepTask,
-    inCompletedTaskSize,
+    incompleteTaskSize,
     completedTaskSize,
     taskSize,
   } = useDeleteTaskSectionModal()
@@ -65,7 +65,7 @@ export const Component: React.VFC<Props> = () => {
                 {taskSection.name}
               </Text>{' '}
               includes {completedTaskSize} completed tasks and{' '}
-              {inCompletedTaskSize} incomplete tasks.
+              {incompleteTaskSize} incomplete tasks.
             </Text>
             <Flex flexDirection="column">
               <RadioGroup onChange={setValue} value={value}>

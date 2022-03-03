@@ -2,9 +2,9 @@ import React, { memo, useMemo } from 'react'
 import { Flex } from 'src/components/atoms'
 import { TaskDetailModal } from 'src/components/organisms/TaskDetails'
 import {
-  TasksProvider,
   TasksFilesContent,
   TasksFilesList,
+  TasksContainer,
 } from 'src/components/organisms/Tasks'
 import { useTasksFilesDetail } from 'src/components/organisms/Tasks/TasksFiles/useTasksFilesDetail'
 import { useMyTasksFilesPageQuery } from 'src/hooks/queries/app'
@@ -14,9 +14,9 @@ import { SkeletonFiles } from './SkeletonFiles'
 
 export const Files: React.VFC = memo(() => {
   return (
-    <TasksProvider isMyTasksPage>
+    <TasksContainer isMyTasksPage>
       <Component />
-    </TasksProvider>
+    </TasksContainer>
   )
 })
 

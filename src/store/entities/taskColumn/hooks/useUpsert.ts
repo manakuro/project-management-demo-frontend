@@ -2,7 +2,7 @@ import { useRecoilCallback } from 'recoil'
 import { taskColumnState } from '../atom'
 import { TaskColumn } from '../type'
 
-export const useTaskColumnCommands = () => {
+export const useUpsert = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
       (taskColumn: TaskColumn) => {

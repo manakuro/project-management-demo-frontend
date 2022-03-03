@@ -7,16 +7,16 @@ import {
 import { uuid } from 'src/shared/uuid'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, taskFeedLikesState, taskFeedLikeState } from '../atom'
-import { useTaskFeedLikeCommand } from './useTaskFeedLikeCommand'
 import { TASK_FEED_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskFeedLikeCreatedSubscription'
 import { TASK_FEED_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskFeedLikeDeletedSubscription'
 import { useTaskFeedLikeResponse } from './useTaskFeedLikeResponse'
+import { useUpsert } from './useUpsert'
 
 export const useTaskFeedLikesByTaskFeedId = (
   taskFeedId: string,
   taskId: string,
 ) => {
-  const { upsert } = useTaskFeedLikeCommand()
+  const { upsert } = useUpsert()
   const [taskFeedLikesAll] = useRecoilState(taskFeedLikesState)
   const { workspace } = useWorkspace()
   const { setTaskFeedLikes } = useTaskFeedLikeResponse()
@@ -36,28 +36,37 @@ export const useTaskFeedLikesByTaskFeedId = (
           taskId,
         })
 
-        setTimeout(async () => {
-          const res = await createTaskFeedLikeMutation({
-            variables: {
-              input: {
-                teammateId,
-                taskFeedId,
-                taskId,
-                requestId: TASK_FEED_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID,
-                workspaceId: workspace.id,
-              },
-            },
-          })
-          if (res.errors) {
-            reset(taskFeedLikeState(id))
-            return
-          }
-
-          const data = res.data?.createTaskFeedLike
-          if (!data) return
-
+        const restore = () => {
           reset(taskFeedLikeState(id))
-          setTaskFeedLikes([data])
+        }
+
+        setTimeout(async () => {
+          try {
+            const res = await createTaskFeedLikeMutation({
+              variables: {
+                input: {
+                  teammateId,
+                  taskFeedId,
+                  taskId,
+                  requestId: TASK_FEED_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID,
+                  workspaceId: workspace.id,
+                },
+              },
+            })
+            if (res.errors) {
+              restore()
+              return
+            }
+
+            const data = res.data?.createTaskFeedLike
+            if (!data) return
+
+            reset(taskFeedLikeState(id))
+            setTaskFeedLikes([data])
+          } catch (e) {
+            restore()
+            throw e
+          }
         })
 
         return id
@@ -83,18 +92,27 @@ export const useTaskFeedLikesByTaskFeedId = (
 
         reset(taskFeedLikeState(taskFeedLike.id))
 
+        const restore = () => {
+          setTaskFeedLikes([taskFeedLike])
+        }
+
         setTimeout(async () => {
-          const res = await deleteTaskFeedLikeMutation({
-            variables: {
-              input: {
-                id: taskFeedLike.id,
-                requestId: TASK_FEED_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID,
-                workspaceId: workspace.id,
+          try {
+            const res = await deleteTaskFeedLikeMutation({
+              variables: {
+                input: {
+                  id: taskFeedLike.id,
+                  requestId: TASK_FEED_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID,
+                  workspaceId: workspace.id,
+                },
               },
-            },
-          })
-          if (res.errors) {
-            setTaskFeedLikes([taskFeedLike])
+            })
+            if (res.errors) {
+              restore()
+            }
+          } catch (e) {
+            restore()
+            throw e
           }
         })
       },

@@ -2,7 +2,7 @@ import { useRecoilCallback } from 'recoil'
 import { taskFeedLikeState } from '../atom'
 import { TaskFeedLike } from '../type'
 
-export const useTaskFeedLikeCommand = () => {
+export const useUpsert = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
       (taskFeedLike: TaskFeedLike) => {

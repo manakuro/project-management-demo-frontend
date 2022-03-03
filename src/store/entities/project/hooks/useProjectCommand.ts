@@ -6,30 +6,26 @@ import { useWorkspace } from 'src/store/entities/workspace'
 import { projectState } from '../atom'
 import { Project } from '../type'
 import { PROJECT_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useProjectUpdatedSubscription'
+import { useUpsert } from './useUpsert'
 
 export const useProjectCommand = () => {
   const [updateProjectMutation] = useUpdateProjectMutation()
   const { workspace } = useWorkspace()
-
-  const upsert = useRecoilCallback(
-    ({ set }) =>
-      (project: Project) => {
-        set(projectState(project.id), project)
-      },
-    [],
-  )
+  const { upsert } = useUpsert()
 
   const setProject = useRecoilCallback(
     ({ snapshot }) =>
       async (payload: { projectId: string } & Partial<Omit<Project, 'id'>>) => {
-        const current = await snapshot.getPromise(
-          projectState(payload.projectId),
-        )
+        const prev = await snapshot.getPromise(projectState(payload.projectId))
 
-        upsert({ ...current, ...omit(payload, 'projectId') })
+        upsert({ ...prev, ...omit(payload, 'projectId') })
+
+        const restore = () => {
+          upsert(prev)
+        }
 
         try {
-          await updateProjectMutation({
+          const res = await updateProjectMutation({
             variables: {
               input: prepareUpdateProjectInput({
                 ...payload,
@@ -37,9 +33,11 @@ export const useProjectCommand = () => {
               }),
             },
           })
+          if (res.errors) {
+            restore()
+          }
         } catch (err) {
-          console.error(err)
-          upsert(current)
+          restore()
           throw err
         }
       },
@@ -47,7 +45,6 @@ export const useProjectCommand = () => {
   )
 
   return {
-    upsert,
     setProject,
   }
 }

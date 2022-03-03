@@ -35,19 +35,27 @@ export const useTeammateTaskCommand = () => {
         )
         upsert({ ...prev, ...val })
 
-        const res = await updateTeammateTaskMutation({
-          variables: {
-            input: {
-              ...val,
-              id: prev.id,
-              workspaceId: prev.workspaceId,
-              requestId: TEAMMATE_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = () => {
           upsert(prev)
-          return
+        }
+
+        try {
+          const res = await updateTeammateTaskMutation({
+            variables: {
+              input: {
+                ...val,
+                id: prev.id,
+                workspaceId: prev.workspaceId,
+                requestId: TEAMMATE_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            upsert(prev)
+          }
+        } catch (e) {
+          restore()
+          throw e
         }
       },
     [updateTeammateTaskMutation, upsert],
@@ -72,30 +80,39 @@ export const useTeammateTaskCommand = () => {
         }
         upsert(newTeammateTask)
 
-        const res = await createTeammateTaskMutation({
-          variables: {
-            input: {
-              teammateId: me.id,
-              teammateTaskSectionId: val.teammateTaskSectionId,
-              workspaceId: workspace.id,
-              requestId: TEAMMATE_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = () => {
           reset(teammateTaskState(id))
           reset(taskState(newTaskId))
-          return ''
         }
 
-        const data = res.data?.createTeammateTask
-        if (!data) return ''
+        try {
+          const res = await createTeammateTaskMutation({
+            variables: {
+              input: {
+                teammateId: me.id,
+                teammateTaskSectionId: val.teammateTaskSectionId,
+                workspaceId: workspace.id,
+                requestId: TEAMMATE_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+            return ''
+          }
 
-        reset(teammateTaskState(id))
-        reset(taskState(newTaskId))
-        setTeammateTask([data])
+          const data = res.data?.createTeammateTask
+          if (!data) return ''
 
-        return data.id
+          reset(teammateTaskState(id))
+          reset(taskState(newTaskId))
+          setTeammateTask([data])
+
+          return data.id
+        } catch (e) {
+          restore()
+          throw e
+        }
       },
     [
       addTask,

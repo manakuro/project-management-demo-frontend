@@ -56,32 +56,42 @@ export const useTeammatesTaskSectionCommand = () => {
           id,
         })
 
-        const res = await createTeammateTaskSectionMutation({
-          variables: {
-            input: {
-              teammateId: me.id,
-              workspaceId: workspace.id,
-              requestId: TEAMMATE_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = () => {
           reset(teammatesTaskSectionState(id))
-          return ''
         }
 
-        const addedTeammateTaskSection = res.data?.createTeammateTaskSection
-        if (!addedTeammateTaskSection) return ''
+        try {
+          const res = await createTeammateTaskSectionMutation({
+            variables: {
+              input: {
+                teammateId: me.id,
+                workspaceId: workspace.id,
+                requestId:
+                  TEAMMATE_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+            return ''
+          }
 
-        reset(teammatesTaskSectionState(id))
-        setTeammatesTaskSections([
-          {
-            ...addedTeammateTaskSection,
-            isNew: true,
-          },
-        ])
+          const addedTeammateTaskSection = res.data?.createTeammateTaskSection
+          if (!addedTeammateTaskSection) return ''
 
-        return addedTeammateTaskSection.id
+          reset(teammatesTaskSectionState(id))
+          setTeammatesTaskSections([
+            {
+              ...addedTeammateTaskSection,
+              isNew: true,
+            },
+          ])
+
+          return addedTeammateTaskSection.id
+        } catch (e) {
+          restore()
+          throw e
+        }
       },
     [
       createTeammateTaskSectionMutation,
@@ -101,35 +111,44 @@ export const useTeammatesTaskSectionCommand = () => {
 
         resetTeammateTaskSection(id)
 
-        const res = await deleteTeammateTaskSectionAndKeepTasksMutation({
-          variables: {
-            input: {
-              id,
-              workspaceId: workspace.id,
-              requestId:
-                TEAMMATE_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = async () => {
           const prev = await snapshot.getPromise(teammatesTaskSectionState(id))
           setTeammateTask(teammateTasks as TeammateTaskResponse[])
           setTeammatesTaskSections([prev] as TeammateTaskSectionResponse[])
-          return
         }
 
-        const teammateTaskSection =
-          res.data?.deleteTeammateTaskSectionAndKeepTasks
-            .keptTeammateTaskSection
-        if (!teammateTaskSection) return
+        try {
+          const res = await deleteTeammateTaskSectionAndKeepTasksMutation({
+            variables: {
+              input: {
+                id,
+                workspaceId: workspace.id,
+                requestId:
+                  TEAMMATE_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            await restore()
+            return
+          }
 
-        const newTeammateTasks = teammateTasks.map((t) => ({
-          ...t,
-          teammateTaskSectionId: teammateTaskSection.id,
-        }))
-        setTeammateTask(newTeammateTasks as TeammateTaskResponse[], {
-          includeTask: false,
-        })
+          const teammateTaskSection =
+            res.data?.deleteTeammateTaskSectionAndKeepTasks
+              .keptTeammateTaskSection
+          if (!teammateTaskSection) return
+
+          const newTeammateTasks = teammateTasks.map((t) => ({
+            ...t,
+            teammateTaskSectionId: teammateTaskSection.id,
+          }))
+          setTeammateTask(newTeammateTasks as TeammateTaskResponse[], {
+            includeTask: false,
+          })
+        } catch (e) {
+          await restore()
+          throw e
+        }
       },
     [
       deleteTeammateTaskSectionAndKeepTasksMutation,
@@ -151,20 +170,29 @@ export const useTeammatesTaskSectionCommand = () => {
         resetTeammateTaskSection(id)
         resetTeammateTasks(teammateTaskIds)
 
-        const res = await deleteTeammateTaskSectionAndDeleteTasksMutation({
-          variables: {
-            input: {
-              id,
-              workspaceId: workspace.id,
-              requestId:
-                TEAMMATE_TASK_SECTION_DELETED_AND_DELETE_TASKS_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = async () => {
           const prev = await snapshot.getPromise(teammatesTaskSectionState(id))
           setTeammateTask(teammateTasks as TeammateTaskResponse[])
           setTeammatesTaskSections([prev] as TeammateTaskSectionResponse[])
+        }
+
+        try {
+          const res = await deleteTeammateTaskSectionAndDeleteTasksMutation({
+            variables: {
+              input: {
+                id,
+                workspaceId: workspace.id,
+                requestId:
+                  TEAMMATE_TASK_SECTION_DELETED_AND_DELETE_TASKS_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            await restore()
+          }
+        } catch (e) {
+          await restore()
+          throw e
         }
       },
     [
@@ -182,18 +210,28 @@ export const useTeammatesTaskSectionCommand = () => {
       async (id: string) => {
         resetTeammateTaskSection(id)
 
-        const res = await deleteTeammateTaskSectionMutation({
-          variables: {
-            input: {
-              id,
-              workspaceId: workspace.id,
-              requestId: TEAMMATE_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = async () => {
           const prev = await snapshot.getPromise(teammatesTaskSectionState(id))
           setTeammatesTaskSections([prev] as TeammateTaskSectionResponse[])
+        }
+
+        try {
+          const res = await deleteTeammateTaskSectionMutation({
+            variables: {
+              input: {
+                id,
+                workspaceId: workspace.id,
+                requestId:
+                  TEAMMATE_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            await restore()
+          }
+        } catch (e) {
+          await restore()
+          throw e
         }
       },
     [

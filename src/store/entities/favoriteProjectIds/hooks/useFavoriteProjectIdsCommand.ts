@@ -21,17 +21,26 @@ export const useFavoriteProjectIdsCommand = () => {
 
         upsert(prev.filter((id) => id !== favoriteProjectId))
 
-        const res = await deleteFavoriteProjectMutation({
-          variables: {
-            input: {
-              teammateId: me.id,
-              projectId: favoriteProjectId,
-              requestId: FAVORITE_PROJECT_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = () => {
           upsert(prev)
+        }
+
+        try {
+          const res = await deleteFavoriteProjectMutation({
+            variables: {
+              input: {
+                teammateId: me.id,
+                projectId: favoriteProjectId,
+                requestId: FAVORITE_PROJECT_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
         }
       },
     [deleteFavoriteProjectMutation, me.id, upsert],
@@ -44,17 +53,26 @@ export const useFavoriteProjectIdsCommand = () => {
 
         upsert([...prev, favoriteProjectId])
 
-        const res = await createFavoriteProjectMutation({
-          variables: {
-            input: {
-              teammateId: me.id,
-              projectId: favoriteProjectId,
-              requestId: FAVORITE_PROJECT_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = () => {
           upsert(prev)
+        }
+
+        try {
+          const res = await createFavoriteProjectMutation({
+            variables: {
+              input: {
+                teammateId: me.id,
+                projectId: favoriteProjectId,
+                requestId: FAVORITE_PROJECT_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
         }
       },
     [createFavoriteProjectMutation, me.id, upsert],

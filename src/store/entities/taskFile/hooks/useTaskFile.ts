@@ -1,10 +1,10 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { TaskFile, taskFileState } from 'src/store/entities/taskFile'
-import { useTaskFileCommand } from './useTaskFileCommand'
+import { useUpsert } from './useUpsert'
 
 export const useTaskFile = (taskFileId?: string) => {
   const taskFile = useRecoilValue(taskFileState(taskFileId || ''))
-  const { upsert } = useTaskFileCommand()
+  const { upsert } = useUpsert()
 
   const setTaskFile = useRecoilCallback(
     ({ snapshot }) =>

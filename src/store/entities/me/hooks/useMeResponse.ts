@@ -1,9 +1,9 @@
 import { useRecoilCallback } from 'recoil'
 import { Me } from '../type'
-import { useMeCommand } from './useMeCommand'
+import { useUpsert } from './useUpsert'
 
 export const useMeResponse = () => {
-  const { upsert } = useMeCommand()
+  const { upsert } = useUpsert()
 
   const setMe = useRecoilCallback(
     () => (me: Me) => {

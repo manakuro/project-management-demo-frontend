@@ -28,18 +28,28 @@ export const useFavoriteWorkspaceIdsCommand = () => {
 
         upsert(prev.filter((id) => id !== favoriteWorkspaceId))
 
-        const res = await deleteFavoriteWorkspaceMutation({
-          variables: {
-            input: {
-              teammateId: me.id,
-              workspaceId: favoriteWorkspaceId,
-              requestId: FAVORITE_WORKSPACE_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-
-        if (res.errors) {
+        const restore = () => {
           upsert(prev)
+        }
+
+        try {
+          const res = await deleteFavoriteWorkspaceMutation({
+            variables: {
+              input: {
+                teammateId: me.id,
+                workspaceId: favoriteWorkspaceId,
+                requestId:
+                  FAVORITE_WORKSPACE_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
         }
       },
     [deleteFavoriteWorkspaceMutation, me.id, upsert],
@@ -52,18 +62,28 @@ export const useFavoriteWorkspaceIdsCommand = () => {
 
         upsert([...prev, favoriteWorkspaceId])
 
-        const res = await createFavoriteWorkspaceMutation({
-          variables: {
-            input: {
-              teammateId: me.id,
-              workspaceId: favoriteWorkspaceId,
-              requestId: FAVORITE_WORKSPACE_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-
-        if (res.errors) {
+        const restore = () => {
           upsert(prev)
+        }
+
+        try {
+          const res = await createFavoriteWorkspaceMutation({
+            variables: {
+              input: {
+                teammateId: me.id,
+                workspaceId: favoriteWorkspaceId,
+                requestId:
+                  FAVORITE_WORKSPACE_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
         }
       },
     [createFavoriteWorkspaceMutation, me.id, upsert],

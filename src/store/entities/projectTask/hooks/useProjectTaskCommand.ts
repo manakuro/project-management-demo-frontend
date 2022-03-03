@@ -46,19 +46,27 @@ export const useProjectTaskCommand = () => {
         const prev = await snapshot.getPromise(projectTaskByTaskIdState(taskId))
         upsert({ ...prev, ...val })
 
-        const res = await updateProjectTaskMutation({
-          variables: {
-            input: {
-              ...val,
-              id: prev.id,
-              workspaceId: workspace.id,
-              requestId: PROJECT_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = () => {
           upsert(prev)
-          return
+        }
+
+        try {
+          const res = await updateProjectTaskMutation({
+            variables: {
+              input: {
+                ...val,
+                id: prev.id,
+                workspaceId: workspace.id,
+                requestId: PROJECT_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
         }
       },
     [updateProjectTaskMutation, upsert, workspace.id],
@@ -93,29 +101,38 @@ export const useProjectTaskCommand = () => {
       const { newTaskId, newProjectTask, newProjectTaskId } =
         addProjectTaskOptimistic(val)
 
-      const res = await createProjectTaskMutation({
-        variables: {
-          input: {
-            projectId: newProjectTask.projectId,
-            projectTaskSectionId: newProjectTask.projectTaskSectionId,
-            createdBy: me.id,
-            requestId: PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
-            workspaceId: workspace.id,
-          },
-        },
-      })
-      if (res.errors) {
+      const restore = () => {
         resetTask({ taskId: newTaskId, projectTaskId: newProjectTaskId })
-        return ''
       }
 
-      const addedProjectTask = res.data?.createProjectTask
-      if (!addedProjectTask) return ''
+      try {
+        const res = await createProjectTaskMutation({
+          variables: {
+            input: {
+              projectId: newProjectTask.projectId,
+              projectTaskSectionId: newProjectTask.projectTaskSectionId,
+              createdBy: me.id,
+              requestId: PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
+              workspaceId: workspace.id,
+            },
+          },
+        })
+        if (res.errors) {
+          restore()
+          return ''
+        }
 
-      resetTask({ taskId: newTaskId, projectTaskId: newProjectTaskId })
-      setProjectTaskResponse([addedProjectTask])
+        const addedProjectTask = res.data?.createProjectTask
+        if (!addedProjectTask) return ''
 
-      return addedProjectTask.id
+        resetTask({ taskId: newTaskId, projectTaskId: newProjectTaskId })
+        setProjectTaskResponse([addedProjectTask])
+
+        return addedProjectTask.id
+      } catch (e) {
+        restore()
+        throw e
+      }
     },
     [
       addProjectTaskOptimistic,

@@ -1,11 +1,11 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { taskTagState } from '../atom'
 import { TaskTag } from '../type'
-import { useTaskTagCommand } from './useTaskTagCommand'
+import { useUpsert } from './useUpsert'
 
 export const useTaskTag = (taskTagId?: string) => {
   const taskTag = useRecoilValue(taskTagState(taskTagId || ''))
-  const { upsert } = useTaskTagCommand()
+  const { upsert } = useUpsert()
 
   const setTaskTag = useRecoilCallback(
     ({ snapshot }) =>

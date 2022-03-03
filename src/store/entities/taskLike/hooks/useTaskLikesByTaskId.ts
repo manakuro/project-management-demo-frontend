@@ -7,13 +7,13 @@ import {
 import { uuid } from 'src/shared/uuid'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, taskLikesState, taskLikeState } from '../atom'
-import { useTaskLikeCommand } from './useTaskLikeCommand'
 import { TASK_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskLikeCreatedSubscription'
 import { TASK_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskLikeDeletedSubscription'
 import { useTaskLikeResponse } from './useTaskLikeResponse'
+import { useUpsert } from './useUpsert'
 
 export const useTaskLikesByTaskId = (taskId: string) => {
-  const { upsert } = useTaskLikeCommand()
+  const { upsert } = useUpsert()
   const [taskLikesAll] = useRecoilState(taskLikesState)
   const { workspace } = useWorkspace()
   const { setTaskLikes } = useTaskLikeResponse()
@@ -33,27 +33,36 @@ export const useTaskLikesByTaskId = (taskId: string) => {
           workspaceId: workspace.id,
         })
 
-        setTimeout(async () => {
-          const res = await createTaskLikeMutation({
-            variables: {
-              input: {
-                taskId,
-                teammateId,
-                workspaceId: workspace.id,
-                requestId: TASK_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID,
-              },
-            },
-          })
-          if (res.errors) {
-            reset(taskLikeState(id))
-            return
-          }
-
-          const data = res.data?.createTaskLike
-          if (!data) return ''
-
+        const restore = () => {
           reset(taskLikeState(id))
-          setTaskLikes([data])
+        }
+
+        setTimeout(async () => {
+          try {
+            const res = await createTaskLikeMutation({
+              variables: {
+                input: {
+                  taskId,
+                  teammateId,
+                  workspaceId: workspace.id,
+                  requestId: TASK_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID,
+                },
+              },
+            })
+            if (res.errors) {
+              restore()
+              return
+            }
+
+            const data = res.data?.createTaskLike
+            if (!data) return ''
+
+            reset(taskLikeState(id))
+            setTaskLikes([data])
+          } catch (e) {
+            restore()
+            throw e
+          }
         })
 
         return id
@@ -75,19 +84,28 @@ export const useTaskLikesByTaskId = (taskId: string) => {
 
         reset(taskLikeState(taskLike.id))
 
-        setTimeout(async () => {
-          const res = await deleteTaskLikeMutation({
-            variables: {
-              input: {
-                id: taskLike.id,
-                requestId: TASK_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID,
-                workspaceId: workspace.id,
-              },
-            },
-          })
+        const restore = () => {
+          setTaskLikes([taskLike])
+        }
 
-          if (res.errors) {
-            setTaskLikes([taskLike])
+        setTimeout(async () => {
+          try {
+            const res = await deleteTaskLikeMutation({
+              variables: {
+                input: {
+                  id: taskLike.id,
+                  requestId: TASK_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID,
+                  workspaceId: workspace.id,
+                },
+              },
+            })
+
+            if (res.errors) {
+              restore()
+            }
+          } catch (e) {
+            restore()
+            throw e
           }
         })
       },

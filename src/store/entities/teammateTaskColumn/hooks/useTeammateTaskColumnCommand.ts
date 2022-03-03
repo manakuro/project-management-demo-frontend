@@ -20,17 +20,26 @@ export const useTeammateTaskColumnCommand = () => {
         const prev = await snapshot.getPromise(teammateTaskColumnState(val.id))
         upsert({ ...prev, ...val })
 
-        const res = await updateTeammateTaskColumnMutation({
-          variables: {
-            input: {
-              ...val,
-              id: prev.id,
-              requestId: '',
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = () => {
           upsert(prev)
+        }
+
+        try {
+          const res = await updateTeammateTaskColumnMutation({
+            variables: {
+              input: {
+                ...val,
+                id: prev.id,
+                requestId: '',
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
         }
       },
     [updateTeammateTaskColumnMutation, upsert],
@@ -51,20 +60,29 @@ export const useTeammateTaskColumnCommand = () => {
           })
         })
 
-        const res = await updateTeammateTaskColumnOrderMutation({
-          variables: {
-            input: {
-              ids,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = () => {
           prevIds.forEach((id, index) => {
             upsert({
               id,
               order: index,
             })
           })
+        }
+
+        try {
+          const res = await updateTeammateTaskColumnOrderMutation({
+            variables: {
+              input: {
+                ids,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
         }
       },
     [updateTeammateTaskColumnOrderMutation, upsert],

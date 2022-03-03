@@ -1,17 +1,11 @@
 import { useCallback } from 'react'
-import { useRecoilCallback } from 'recoil'
 import { uuid } from 'src/shared/uuid'
-import { taskFileState, initialState } from '../atom'
+import { initialState } from '../atom'
 import { TaskFile } from '../type'
+import { useUpsert } from './useUpsert'
 
 export const useTaskFileCommand = () => {
-  const upsert = useRecoilCallback(
-    ({ set }) =>
-      (taskFile: TaskFile) => {
-        set(taskFileState(taskFile.id), taskFile)
-      },
-    [],
-  )
+  const { upsert } = useUpsert()
 
   const addTaskFile = useCallback(
     (val: Partial<TaskFile>) => {
@@ -28,6 +22,5 @@ export const useTaskFileCommand = () => {
 
   return {
     addTaskFile,
-    upsert,
   }
 }

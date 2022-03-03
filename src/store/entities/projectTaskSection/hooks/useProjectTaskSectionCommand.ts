@@ -51,32 +51,41 @@ export const useProjectTaskSectionCommand = () => {
           id,
         })
 
-        const res = await createProjectTaskSectionMutation({
-          variables: {
-            input: {
-              projectId: val.projectId,
-              requestId: PROJECT_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID,
-              workspaceId: workspace.id,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = () => {
           reset(projectTaskSectionState(id))
-          return ''
         }
 
-        const addedProjectTaskSection = res.data?.createProjectTaskSection
-        if (!addedProjectTaskSection) return ''
+        try {
+          const res = await createProjectTaskSectionMutation({
+            variables: {
+              input: {
+                projectId: val.projectId,
+                requestId: PROJECT_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID,
+                workspaceId: workspace.id,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+            return ''
+          }
 
-        reset(projectTaskSectionState(id))
-        setProjectsTaskSections([
-          {
-            ...addedProjectTaskSection,
-            isNew: true,
-          },
-        ])
+          const addedProjectTaskSection = res.data?.createProjectTaskSection
+          if (!addedProjectTaskSection) return ''
 
-        return addedProjectTaskSection.id
+          reset(projectTaskSectionState(id))
+          setProjectsTaskSections([
+            {
+              ...addedProjectTaskSection,
+              isNew: true,
+            },
+          ])
+
+          return addedProjectTaskSection.id
+        } catch (e) {
+          restore()
+          throw e
+        }
       },
     [
       upsert,
@@ -95,33 +104,43 @@ export const useProjectTaskSectionCommand = () => {
 
         reset(projectTaskSectionState(id))
 
-        const res = await deleteProjectTaskSectionAndKeepTasksMutation({
-          variables: {
-            input: {
-              id,
-              workspaceId: workspace.id,
-              requestId:
-                PROJECT_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = async () => {
           const prev = await snapshot.getPromise(projectTaskSectionState(id))
           setProjectsTaskSections([prev] as ProjectTaskSectionResponse[])
-          return
         }
 
-        const projectTaskSection =
-          res.data?.deleteProjectTaskSectionAndKeepTasks.keptProjectTaskSection
-        if (!projectTaskSection) return
+        try {
+          const res = await deleteProjectTaskSectionAndKeepTasksMutation({
+            variables: {
+              input: {
+                id,
+                workspaceId: workspace.id,
+                requestId:
+                  PROJECT_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            await restore()
+            return
+          }
 
-        const newProjectTasks = projectTasks.map((t) => ({
-          ...t,
-          projectTaskSectionId: projectTaskSection.id,
-        }))
-        setProjectTask(newProjectTasks as ProjectTaskResponse[], {
-          includeTask: false,
-        })
+          const projectTaskSection =
+            res.data?.deleteProjectTaskSectionAndKeepTasks
+              .keptProjectTaskSection
+          if (!projectTaskSection) return
+
+          const newProjectTasks = projectTasks.map((t) => ({
+            ...t,
+            projectTaskSectionId: projectTaskSection.id,
+          }))
+          setProjectTask(newProjectTasks as ProjectTaskResponse[], {
+            includeTask: false,
+          })
+        } catch (e) {
+          await restore()
+          throw e
+        }
       },
     [
       deleteProjectTaskSectionAndKeepTasksMutation,
@@ -141,20 +160,29 @@ export const useProjectTaskSectionCommand = () => {
         reset(projectTaskSectionState(id))
         resetProjectTasks(projectTasks)
 
-        const res = await deleteProjectTaskSectionAndDeleteTasksMutation({
-          variables: {
-            input: {
-              id,
-              workspaceId: workspace.id,
-              requestId:
-                PROJECT_TASK_SECTION_DELETED_AND_DELETED_TASKS_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = async () => {
           const prev = await snapshot.getPromise(projectTaskSectionState(id))
           setProjectsTaskSections([prev] as ProjectTaskSectionResponse[])
           setProjectTask(projectTasks as ProjectTaskResponse[])
+        }
+
+        try {
+          const res = await deleteProjectTaskSectionAndDeleteTasksMutation({
+            variables: {
+              input: {
+                id,
+                workspaceId: workspace.id,
+                requestId:
+                  PROJECT_TASK_SECTION_DELETED_AND_DELETED_TASKS_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            await restore()
+          }
+        } catch (e) {
+          await restore()
+          throw e
         }
       },
     [
@@ -171,18 +199,27 @@ export const useProjectTaskSectionCommand = () => {
       async (id: string) => {
         reset(projectTaskSectionState(id))
 
-        const res = await deleteProjectTaskSectionMutation({
-          variables: {
-            input: {
-              id,
-              workspaceId: workspace.id,
-              requestId: PROJECT_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = async () => {
           const prev = await snapshot.getPromise(projectTaskSectionState(id))
           setProjectsTaskSections([prev] as ProjectTaskSectionResponse[])
+        }
+
+        try {
+          const res = await deleteProjectTaskSectionMutation({
+            variables: {
+              input: {
+                id,
+                workspaceId: workspace.id,
+                requestId: PROJECT_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            await restore()
+          }
+        } catch (e) {
+          await restore()
+          throw e
         }
       },
     [deleteProjectTaskSectionMutation, setProjectsTaskSections, workspace.id],

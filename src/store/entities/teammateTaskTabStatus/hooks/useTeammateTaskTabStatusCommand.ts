@@ -23,17 +23,26 @@ export const useTeammateTaskTabStatusCommand = () => {
         }
         upsert(input)
 
-        const res = await updateTeammateTaskTabStatusMutation({
-          variables: {
-            input: {
-              id: prev.id,
-              requestId: '',
-              ...input,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = () => {
           upsert(prev)
+        }
+
+        try {
+          const res = await updateTeammateTaskTabStatusMutation({
+            variables: {
+              input: {
+                id: prev.id,
+                requestId: '',
+                ...input,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
         }
       },
     [updateTeammateTaskTabStatusMutation, upsert],

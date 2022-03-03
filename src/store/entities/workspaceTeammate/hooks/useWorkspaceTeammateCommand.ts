@@ -5,15 +5,10 @@ import {
   ownerWorkspaceTeammateByWorkspaceIdState,
 } from '../atom'
 import { WorkspaceTeammate } from '../type'
+import { useUpsert } from './useUpsert'
 
 export const useWorkspaceTeammateCommand = () => {
-  const upsert = useRecoilCallback(
-    ({ set }) =>
-      (workspaceTeammate: WorkspaceTeammate) => {
-        set(workspaceTeammateState(workspaceTeammate.id), workspaceTeammate)
-      },
-    [],
-  )
+  const { upsert } = useUpsert()
 
   const setWorkspaceTeammateById = useRecoilCallback(
     ({ snapshot }) =>

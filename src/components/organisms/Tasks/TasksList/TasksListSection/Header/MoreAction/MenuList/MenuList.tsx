@@ -14,11 +14,7 @@ type Props = {}
 
 export const MenuList: React.FC<Props> = memo(() => {
   const { setModalState, onOpen } = useDeleteTaskSectionModal()
-  const {
-    deleteTaskSectionAndDeleteTasks,
-    deleteTaskSectionAndKeepTasks,
-    deleteTaskSection,
-  } = useTasksTaskSectionCommand()
+  const { deleteTaskSection } = useTasksTaskSectionCommand()
   const { onFocusInput, taskSectionId } = useTasksListSectionContext()
   const { hasTasks } = useHasTasksByTaskSectionId(taskSectionId)
 
@@ -35,19 +31,9 @@ export const MenuList: React.FC<Props> = memo(() => {
 
     setModalState({
       taskSectionId,
-      deleteTaskSectionAndDeleteTasks,
-      deleteTaskSectionAndKeepTasks,
     })
     onOpen()
-  }, [
-    deleteTaskSection,
-    deleteTaskSectionAndDeleteTasks,
-    deleteTaskSectionAndKeepTasks,
-    hasTasks,
-    onOpen,
-    setModalState,
-    taskSectionId,
-  ])
+  }, [deleteTaskSection, hasTasks, onOpen, setModalState, taskSectionId])
 
   return (
     <AtomsMenuList>

@@ -9,7 +9,6 @@ import {
   ShareProjectModal,
   FileViewerModal,
   EditorLinkModal,
-  DeleteTaskSectionModal,
   DuplicateTaskModal,
   ProjectDetailModal,
 } from 'src/components/organisms/Modals'
@@ -27,7 +26,6 @@ export const Modals: React.VFC = memo(() => {
       <EditorMentionMenu />
       <EditorEmojiMenu />
       <FileViewerModal />
-      <DeleteTaskSectionModal />
       <DuplicateTaskModal />
       <ShareProjectModal />
       <ProjectDetailModal />

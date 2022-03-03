@@ -1,12 +1,12 @@
 import React, { memo, useCallback } from 'react'
 import { TaskDetailModal } from 'src/components/organisms/TaskDetails'
 import {
-  TasksProvider,
   TasksCalendarContent,
   TasksCalendarList,
   TasksCalendarListHeader,
   useTasksCalendarDetail,
   TasksCalendar,
+  TasksContainer,
 } from 'src/components/organisms/Tasks'
 import {
   CalendarMonthPicker,
@@ -22,9 +22,9 @@ import { SkeletonCalendar } from './SkeletonCalendar'
 
 export const Calendar: React.VFC = memo(() => {
   return (
-    <TasksProvider isProjectsPage>
+    <TasksContainer isProjectsPage>
       <Component />
-    </TasksProvider>
+    </TasksContainer>
   )
 })
 

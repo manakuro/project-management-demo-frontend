@@ -1,7 +1,7 @@
 import { selectorFamily } from 'recoil'
 import {
   tasksByProjectIdState,
-  tasksByProjectTaskSectionIdState,
+  tasksByProjectTaskSectionIdAndProjectIdState,
 } from 'src/store/entities/projectTask'
 import { filterByDueDate } from 'src/store/entities/task'
 import { filterTasks, sortTasks } from '../filters'
@@ -38,7 +38,7 @@ export const taskIdsByTaskSectionIdState = selectorFamily<
     ({ taskSectionId, projectId }) =>
     ({ get }) => {
       let tasks = get(
-        tasksByProjectTaskSectionIdState({
+        tasksByProjectTaskSectionIdAndProjectIdState({
           projectTaskSectionId: taskSectionId,
           projectId,
         }),

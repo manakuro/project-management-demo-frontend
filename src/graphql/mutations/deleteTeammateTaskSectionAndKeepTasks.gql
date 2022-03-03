@@ -4,5 +4,8 @@ mutation DeleteTeammateTaskSectionAndKeepTasks($input: DeleteTeammateTaskSection
     teammateTaskSection {
       id
     }
+    keptTeammateTaskSection {
+      id
+    }
   }
 }

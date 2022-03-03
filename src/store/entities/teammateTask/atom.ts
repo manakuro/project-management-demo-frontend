@@ -30,23 +30,22 @@ export const tasksByTeammateIdState = selector<Task[]>({
   },
 })
 
-export const taskIdsByTeammateTaskSectionIdState = selectorFamily<
-  Task[],
-  string
->({
-  key: key('taskIdsByTeammateTaskSectionIdState'),
-  get:
-    (teammateTaskSectionId) =>
-    ({ get }) => {
-      const tasks = get(tasksState)
-      const teammateTasks = get(teammateTasksState)
-      const taskIds = teammateTasks
-        .filter((t) => t.teammateTaskSectionId === teammateTaskSectionId)
-        .map((t) => t.taskId)
+export const tasksByTeammateTaskSectionIdState = selectorFamily<Task[], string>(
+  {
+    key: key('tasksByTeammateTaskSectionIdState'),
+    get:
+      (teammateTaskSectionId) =>
+      ({ get }) => {
+        const tasks = get(tasksState)
+        const teammateTasks = get(teammateTasksState)
+        const taskIds = teammateTasks
+          .filter((t) => t.teammateTaskSectionId === teammateTaskSectionId)
+          .map((t) => t.taskId)
 
-      return tasks.filter((t) => taskIds.includes(t.id))
-    },
-})
+        return tasks.filter((t) => taskIds.includes(t.id))
+      },
+  },
+)
 
 export const teammateTaskByTaskIdState = selectorFamily<TeammateTask, string>({
   key: key('teammateTaskByTaskIdState'),

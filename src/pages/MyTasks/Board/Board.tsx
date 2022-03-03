@@ -7,10 +7,10 @@ import {
   IncompleteTasksMenu,
   TasksHeader,
   TasksHeaderRight,
-  TasksProvider,
   TasksBoardContent,
   TasksBoardList,
   useTasksBoardDetail,
+  TasksContainer,
 } from 'src/components/organisms/Tasks'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router'
@@ -19,9 +19,9 @@ import { SkeletonBoardContent, SkeletonBoardHeader } from './SkeletonBoard'
 
 export const Board: React.VFC = memo(() => {
   return (
-    <TasksProvider isMyTasksPage>
+    <TasksContainer isMyTasksPage>
       <Component />
-    </TasksProvider>
+    </TasksContainer>
   )
 })
 

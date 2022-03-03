@@ -65,19 +65,6 @@ export const taskIdsByAssigneeIdState = selectorFamily<string[], string>({
     },
 })
 
-export const tasksByTaskSectionIdState = selectorFamily<Task[], string>({
-  key: key('tasksByTaskSectionIdState'),
-  get:
-    (taskSectionId) =>
-    ({ get }) => {
-      const tasks = get(tasksState)
-      const filterByTaskSectionId = (taskSectionId: string) => (t: Task) =>
-        taskSectionId === t.taskSectionId && !t.taskParentId
-
-      return tasks.filter(filterByTaskSectionId(taskSectionId))
-    },
-})
-
 export const tasksByTaskIdsState = selectorFamily<Task[], string[]>({
   key: key('tasksByTaskIdsState'),
   get:

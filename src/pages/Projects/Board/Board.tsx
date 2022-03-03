@@ -7,7 +7,7 @@ import {
   IncompleteTasksMenu,
   TasksHeader,
   TasksHeaderRight,
-  TasksProvider,
+  TasksContainer,
   TasksBoardContent,
   TasksBoardList,
   useTasksBoardDetail,
@@ -20,9 +20,9 @@ import { SkeletonBoardHeader, SkeletonBoardContent } from './SkeletonBoard'
 
 export const Board: React.VFC = memo(() => {
   return (
-    <TasksProvider isProjectsPage>
+    <TasksContainer isProjectsPage>
       <Component />
-    </TasksProvider>
+    </TasksContainer>
   )
 })
 

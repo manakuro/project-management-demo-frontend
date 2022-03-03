@@ -7,5 +7,6 @@ export type {
   TeammateTaskSectionUpdatedSubscription,
   TeammateTaskSectionCreatedSubscription,
   TeammateTaskSectionDeletedSubscription,
+  TeammateTaskSectionDeletedAndKeepTasksSubscription,
   UpdateTeammateTaskSectionInput,
 } from 'src/graphql/types'

@@ -16,7 +16,9 @@ import {
 import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, teammatesTaskSectionState } from '../atom'
 import { TeammateTaskSection, TeammateTaskSectionResponse } from '../type'
+import { useResetTeammateTaskSectionSection } from './useResetTeammateTaskSection'
 import { TEAMMATE_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionCreatedSubscription'
+import { TEAMMATE_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedAndKeepTasksSubscription'
 import { TEAMMATE_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedSubscription'
 import { useTeammatesTaskSectionResponse } from './useTeammatesTaskSectionResponse'
 import { useUpsert } from './useUpsert'
@@ -28,6 +30,7 @@ export const useTeammatesTaskSectionCommand = () => {
   const [createTeammateTaskSectionMutation] =
     useCreateTeammateTaskSectionMutation()
   const { setTeammatesTaskSections } = useTeammatesTaskSectionResponse()
+  const { resetTeammateTaskSection } = useResetTeammateTaskSectionSection()
 
   const [deleteTeammateTaskSectionAndKeepTasksMutation] =
     useDeleteTeammateTaskSectionAndKeepTasksMutation()
@@ -89,20 +92,21 @@ export const useTeammatesTaskSectionCommand = () => {
   )
 
   const deleteTaskSectionAndKeepTasks = useRecoilCallback(
-    ({ reset, snapshot }) =>
+    ({ snapshot }) =>
       async (id: string) => {
         const teammateTasks = await snapshot.getPromise(
           teammateTaskByTeammateTaskSectionIdState(id),
         )
 
-        reset(teammatesTaskSectionState(id))
+        resetTeammateTaskSection(id)
 
         const res = await deleteTeammateTaskSectionAndKeepTasksMutation({
           variables: {
             input: {
               id,
-              requestId: 'requestId',
               workspaceId: workspace.id,
+              requestId:
+                TEAMMATE_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID,
             },
           },
         })
@@ -128,6 +132,7 @@ export const useTeammatesTaskSectionCommand = () => {
       },
     [
       deleteTeammateTaskSectionAndKeepTasksMutation,
+      resetTeammateTaskSection,
       setTeammateTask,
       setTeammatesTaskSections,
       workspace.id,
@@ -135,13 +140,13 @@ export const useTeammatesTaskSectionCommand = () => {
   )
 
   const deleteTaskSectionAndDeleteTasks = useRecoilCallback(
-    ({ reset, snapshot }) =>
+    ({ snapshot }) =>
       async (id: string) => {
         const teammateTasks = await snapshot.getPromise(
           teammateTaskByTeammateTaskSectionIdState(id),
         )
 
-        reset(teammatesTaskSectionState(id))
+        resetTeammateTaskSection(id)
         resetTeammateTasks(teammateTasks)
 
         const res = await deleteTeammateTaskSectionAndDeleteTasksMutation({
@@ -161,6 +166,7 @@ export const useTeammatesTaskSectionCommand = () => {
       },
     [
       deleteTeammateTaskSectionAndDeleteTasksMutation,
+      resetTeammateTaskSection,
       resetTeammateTasks,
       setTeammateTask,
       setTeammatesTaskSections,
@@ -169,9 +175,9 @@ export const useTeammatesTaskSectionCommand = () => {
   )
 
   const deleteTeammateTaskSection = useRecoilCallback(
-    ({ reset, snapshot }) =>
+    ({ snapshot }) =>
       async (id: string) => {
-        reset(teammatesTaskSectionState(id))
+        resetTeammateTaskSection(id)
 
         const res = await deleteTeammateTaskSectionMutation({
           variables: {
@@ -187,7 +193,12 @@ export const useTeammatesTaskSectionCommand = () => {
           setTeammatesTaskSections([prev] as TeammateTaskSectionResponse[])
         }
       },
-    [deleteTeammateTaskSectionMutation, setTeammatesTaskSections, workspace.id],
+    [
+      deleteTeammateTaskSectionMutation,
+      resetTeammateTaskSection,
+      setTeammatesTaskSections,
+      workspace.id,
+    ],
   )
 
   return {

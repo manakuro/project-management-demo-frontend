@@ -14,11 +14,7 @@ import {
   useTeammateTaskResponse,
 } from 'src/store/entities/teammateTask'
 import { useWorkspace } from 'src/store/entities/workspace'
-import {
-  assignedTeammateTaskSectionState,
-  initialState,
-  teammatesTaskSectionState,
-} from '../atom'
+import { initialState, teammatesTaskSectionState } from '../atom'
 import { TeammateTaskSection, TeammateTaskSectionResponse } from '../type'
 import { TEAMMATE_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionCreatedSubscription'
 import { TEAMMATE_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedSubscription'
@@ -98,16 +94,6 @@ export const useTeammatesTaskSectionCommand = () => {
         const teammateTasks = await snapshot.getPromise(
           teammateTaskByTeammateTaskSectionIdState(id),
         )
-        const teammateTaskSection = await snapshot.getPromise(
-          assignedTeammateTaskSectionState,
-        )
-        const newTeammateTasks = teammateTasks.map((t) => ({
-          ...t,
-          teammateTaskSectionId: teammateTaskSection.id,
-        }))
-        setTeammateTask(newTeammateTasks as TeammateTaskResponse[], {
-          includeTask: false,
-        })
 
         reset(teammatesTaskSectionState(id))
 
@@ -126,6 +112,19 @@ export const useTeammatesTaskSectionCommand = () => {
           setTeammatesTaskSections([prev] as TeammateTaskSectionResponse[])
           return
         }
+
+        const teammateTaskSection =
+          res.data?.deleteTeammateTaskSectionAndKeepTasks
+            .keptTeammateTaskSection
+        if (!teammateTaskSection) return
+
+        const newTeammateTasks = teammateTasks.map((t) => ({
+          ...t,
+          teammateTaskSectionId: teammateTaskSection.id,
+        }))
+        setTeammateTask(newTeammateTasks as TeammateTaskResponse[], {
+          includeTask: false,
+        })
       },
     [
       deleteTeammateTaskSectionAndKeepTasksMutation,

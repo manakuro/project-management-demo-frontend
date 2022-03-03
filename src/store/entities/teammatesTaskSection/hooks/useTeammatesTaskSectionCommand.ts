@@ -18,6 +18,7 @@ import { initialState, teammatesTaskSectionState } from '../atom'
 import { TeammateTaskSection, TeammateTaskSectionResponse } from '../type'
 import { useResetTeammateTaskSectionSection } from './useResetTeammateTaskSection'
 import { TEAMMATE_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionCreatedSubscription'
+import { TEAMMATE_TASK_SECTION_DELETED_AND_DELETE_TASKS_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedAndDeleteTasksSubscription'
 import { TEAMMATE_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedAndKeepTasksSubscription'
 import { TEAMMATE_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedSubscription'
 import { useTeammatesTaskSectionResponse } from './useTeammatesTaskSectionResponse'
@@ -145,16 +146,18 @@ export const useTeammatesTaskSectionCommand = () => {
         const teammateTasks = await snapshot.getPromise(
           teammateTaskByTeammateTaskSectionIdState(id),
         )
+        const teammateTaskIds = teammateTasks.map((t) => t.id)
 
         resetTeammateTaskSection(id)
-        resetTeammateTasks(teammateTasks)
+        resetTeammateTasks(teammateTaskIds)
 
         const res = await deleteTeammateTaskSectionAndDeleteTasksMutation({
           variables: {
             input: {
               id,
               workspaceId: workspace.id,
-              requestId: 'requestId',
+              requestId:
+                TEAMMATE_TASK_SECTION_DELETED_AND_DELETE_TASKS_SUBSCRIPTION_REQUEST_ID,
             },
           },
         })

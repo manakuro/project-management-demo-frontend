@@ -91,27 +91,44 @@ export const useTaskCommand = () => {
           reset(projectTaskState(projectTask.id))
         }
 
-        const res = await deleteTaskMutation({
-          variables: {
-            input: {
-              taskId: val.taskId,
-              workspaceId: teammateTask.workspaceId,
-              requestId: TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-        if (res.errors) {
-          setTeammateTask([teammateTask as TeammateTaskResponse])
-          setProjectTask([projectTask as ProjectTaskResponse])
-          return
+        const restore = () => {
+          if (teammateTask.id)
+            setTeammateTask([teammateTask as TeammateTaskResponse])
+          if (projectTask.id)
+            setProjectTask([projectTask as ProjectTaskResponse])
         }
 
-        const data = res.data?.deleteTask?.deletedTasks
-        if (!data) return
+        try {
+          const res = await deleteTaskMutation({
+            variables: {
+              input: {
+                taskId: val.taskId,
+                workspaceId: workspace.id,
+                requestId: TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+            return
+          }
 
-        setDeletedTask(data)
+          const data = res.data?.deleteTask?.deletedTasks
+          if (!data) return
+
+          setDeletedTask(data)
+        } catch (e) {
+          restore()
+          throw e
+        }
       },
-    [deleteTaskMutation, setDeletedTask, setProjectTask, setTeammateTask],
+    [
+      deleteTaskMutation,
+      setDeletedTask,
+      setProjectTask,
+      setTeammateTask,
+      workspace.id,
+    ],
   )
 
   const undeleteTask = useRecoilCallback(
@@ -124,28 +141,33 @@ export const useTaskCommand = () => {
           reset(deletedTaskState(d.id))
         })
 
-        const res = await undeleteTaskMutation({
-          variables: {
-            input: {
-              taskId: val.taskId,
-              workspaceId: workspace.id,
-              requestId: TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        })
-        if (res.errors) {
+        const restore = () => {
           setDeletedTask(deletedTasks as DeletedTaskResponse[])
-          return
         }
 
-        const teammateTask = res.data?.undeleteTask?.teammateTask
-        if (teammateTask) {
-          setTeammateTask([teammateTask])
-        }
+        try {
+          const res = await undeleteTaskMutation({
+            variables: {
+              input: {
+                taskId: val.taskId,
+                workspaceId: workspace.id,
+                requestId: TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+            return
+          }
 
-        const projectTask = res.data?.undeleteTask?.projectTask
-        if (projectTask) {
-          setProjectTask([projectTask])
+          const teammateTask = res.data?.undeleteTask?.teammateTask
+          if (teammateTask) setTeammateTask([teammateTask])
+
+          const projectTask = res.data?.undeleteTask?.projectTask
+          if (projectTask) setProjectTask([projectTask])
+        } catch (e) {
+          restore()
+          throw e
         }
       },
     [

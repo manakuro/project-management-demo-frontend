@@ -16,6 +16,7 @@ import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, projectTaskSectionState } from '../atom'
 import { ProjectTaskSectionResponse } from '../type'
 import { PROJECT_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionCreatedSubscription'
+import { PROJECT_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionDeletedSubscription'
 import { useProjectTaskSectionResponse } from './useProjectTaskSectionResponse'
 import { useUpsert } from './useUpsert'
 
@@ -171,7 +172,7 @@ export const useProjectTaskSectionCommand = () => {
             input: {
               id,
               workspaceId: workspace.id,
-              requestId: 'requestId',
+              requestId: PROJECT_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID,
             },
           },
         })

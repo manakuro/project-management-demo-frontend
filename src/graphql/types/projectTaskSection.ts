@@ -6,5 +6,6 @@ export type ProjectTaskSectionResponse =
 export type {
   ProjectTaskSectionUpdatedSubscription,
   ProjectTaskSectionCreatedSubscription,
+  ProjectTaskSectionDeletedSubscription,
   UpdateTaskSectionInput,
 } from 'src/graphql/types'

@@ -2,7 +2,8 @@ import {
   MenuItem as ChakraMenuItem,
   MenuItemProps as ChakraMenuItemProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import React, { useMemo } from 'react'
+import { useDisabledStyle } from 'src/hooks'
 
 type Props = ChakraMenuItemProps & {
   link?: boolean
@@ -10,7 +11,15 @@ type Props = ChakraMenuItemProps & {
 export type MenuItemProps = Props
 
 export const MenuItem: React.FC<Props> = (props) => {
-  const { link, ...rest } = props
+  const { link, isDisabled, ...rest } = props
+  const { disabledStyle } = useDisabledStyle()
+
+  const style = useMemo(
+    () => ({
+      ...(isDisabled ? disabledStyle : {}),
+    }),
+    [disabledStyle, isDisabled],
+  )
 
   if (link) {
     if (!React.isValidElement(props.children)) {
@@ -29,5 +38,5 @@ export const MenuItem: React.FC<Props> = (props) => {
     )
   }
 
-  return <ChakraMenuItem fontSize="sm" {...rest} />
+  return <ChakraMenuItem fontSize="sm" {...rest} {...style} />
 }

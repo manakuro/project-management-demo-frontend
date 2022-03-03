@@ -1,0 +1,5 @@
+subscription ProjectTaskSectionDeleted($workspaceId: ID!, $requestId: String!) {
+  projectTaskSectionDeleted(workspaceId: $workspaceId, requestId: $requestId) {
+    id
+  }
+}

@@ -3,6 +3,9 @@ import type { ProjectTaskSectionResponse as Response } from 'src/graphql/types/p
 export type {
   ProjectTaskSectionCreatedSubscription as ProjectTaskSectionCreatedSubscriptionResponse,
   ProjectTaskSectionUpdatedSubscription as ProjectTaskSectionUpdatedSubscriptionResponse,
+  ProjectTaskSectionDeletedSubscription as ProjectTaskSectionDeletedSubscriptionResponse,
+  ProjectTaskSectionDeletedAndKeepTasksSubscription as ProjectTaskSectionDeletedAndKeepTasksSubscriptionResponse,
+  ProjectTaskSectionDeletedAndDeleteTasksSubscription as ProjectTaskSectionDeletedAndDeleteTasksSubscriptionResponse,
   UpdateTaskSectionInput,
 } from 'src/graphql/types/projectTaskSection'
 

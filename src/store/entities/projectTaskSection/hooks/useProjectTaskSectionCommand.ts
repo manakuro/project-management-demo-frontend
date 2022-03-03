@@ -16,6 +16,9 @@ import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, projectTaskSectionState } from '../atom'
 import { ProjectTaskSectionResponse } from '../type'
 import { PROJECT_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionCreatedSubscription'
+import { PROJECT_TASK_SECTION_DELETED_AND_DELETED_TASKS_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionDeletedAndDeleteTasksSubscription'
+import { PROJECT_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionDeletedAndKeepTasksSubscription'
+import { PROJECT_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionDeletedSubscription'
 import { useProjectTaskSectionResponse } from './useProjectTaskSectionResponse'
 import { useUpsert } from './useUpsert'
 
@@ -96,8 +99,9 @@ export const useProjectTaskSectionCommand = () => {
           variables: {
             input: {
               id,
-              requestId: 'requestId',
               workspaceId: workspace.id,
+              requestId:
+                PROJECT_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID,
             },
           },
         })
@@ -142,7 +146,8 @@ export const useProjectTaskSectionCommand = () => {
             input: {
               id,
               workspaceId: workspace.id,
-              requestId: 'requestId',
+              requestId:
+                PROJECT_TASK_SECTION_DELETED_AND_DELETED_TASKS_SUBSCRIPTION_REQUEST_ID,
             },
           },
         })
@@ -171,7 +176,7 @@ export const useProjectTaskSectionCommand = () => {
             input: {
               id,
               workspaceId: workspace.id,
-              requestId: 'requestId',
+              requestId: PROJECT_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID,
             },
           },
         })

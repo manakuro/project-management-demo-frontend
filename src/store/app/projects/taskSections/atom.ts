@@ -1,7 +1,6 @@
 import { selectorFamily } from 'recoil'
-import { taskSectionsByProjectIdState } from 'src/store/entities/projectTaskSection'
-import { tasksByTaskSectionIdState } from 'src/store/entities/task'
-import { TaskSection } from 'src/store/entities/taskSection'
+import { tasksByProjectTaskSectionIdState } from 'src/store/entities/projectTask'
+import { projectTaskSectionsByProjectIdState } from 'src/store/entities/projectTaskSection'
 import { isTaskListSortStatusState } from '../taskListStatus'
 
 const key = (str: string) => `src/store/app/projects/taskSections/${str}`
@@ -11,12 +10,12 @@ export const projectsTaskSectionIdsState = selectorFamily<string[], string>({
   get:
     (projectId) =>
     ({ get }) => {
-      const taskSections = get(taskSectionsByProjectIdState(projectId))
+      const taskSections = get(projectTaskSectionsByProjectIdState(projectId))
 
       switch (true) {
         case get(isTaskListSortStatusState('dueDate')): {
           const hasTaskWithNoDueDate = !!taskSections.filter((taskSection) => {
-            const tasks = get(tasksByTaskSectionIdState(taskSection.id))
+            const tasks = get(tasksByProjectTaskSectionIdState(taskSection.id))
             return tasks.some((t) => !t.dueDate)
           }).length
           if (!hasTaskWithNoDueDate) return []
@@ -31,15 +30,5 @@ export const projectsTaskSectionIdsState = selectorFamily<string[], string>({
           return taskSections.map((t) => t.id)
         }
       }
-    },
-})
-
-export const taskSectionsState = selectorFamily<TaskSection[], string>({
-  key: key('taskSectionsState'),
-  get:
-    (projectId) =>
-    ({ get }) => {
-      const taskSections = get(taskSectionsByProjectIdState(projectId))
-      return [...taskSections]
     },
 })

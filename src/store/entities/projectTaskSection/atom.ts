@@ -20,11 +20,11 @@ export const {
   listState: projectTaskSectionsState,
 } = createState({ key, initialState })
 
-export const taskSectionsByProjectIdState = selectorFamily<
+export const projectTaskSectionsByProjectIdState = selectorFamily<
   ProjectTaskSection[],
   string
 >({
-  key: key('taskSectionsByProjectIdState'),
+  key: key('projectTaskSectionsByProjectIdState'),
   get:
     (projectId) =>
     ({ get }) => {

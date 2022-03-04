@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useRef } from 'react'
 import { useRecoilCallback } from 'recoil'
 import {
   useDeleteTaskMutation,
@@ -49,17 +49,9 @@ export const useTaskCommand = () => {
       },
     [upsert],
   )
-  const setTaskSectionId = useRecoilCallback(
-    ({ snapshot }) =>
-      async (taskId: string, val: string) => {
-        const prev = await snapshot.getPromise(taskState(taskId))
-        upsert({ ...prev, taskSectionId: val })
-      },
-    [upsert],
-  )
 
   const addTask = useCallback(
-    (val?: Partial<Task> & { taskSectionId: string }) => {
+    (val?: Partial<Task>) => {
       const id = uuid()
       upsert({
         ...initialState(),
@@ -74,9 +66,14 @@ export const useTaskCommand = () => {
     [me.id, upsert],
   )
 
+  const isDeletingTask = useRef<boolean>(false)
   const deleteTask = useRecoilCallback(
     ({ snapshot, reset }) =>
       async (val: { taskId: string }) => {
+        if (isDeletingTask.current) return
+
+        isDeletingTask.current = true
+
         const teammateTask = await snapshot.getPromise(
           teammateTaskByTaskIdState(val.taskId),
         )
@@ -120,6 +117,8 @@ export const useTaskCommand = () => {
         } catch (e) {
           restore()
           throw e
+        } finally {
+          isDeletingTask.current = false
         }
       },
     [
@@ -182,7 +181,6 @@ export const useTaskCommand = () => {
   return {
     addTask,
     setTaskById,
-    setTaskSectionId,
     deleteTask,
     undeleteTask,
   }

@@ -5,9 +5,9 @@ import { useProjectsProjectId } from '../../project'
 export const useProjectsTaskSectionCommand = () => {
   const {
     addProjectsTaskSection,
-    deleteTaskSectionAndKeepTasks: deleteTaskSectionAndKeepTasksCommand,
-    deleteTaskSectionAndDeleteTasks: deleteTaskSectionAndDeleteTasksCommand,
-    deleteProjectTaskSection: deleteProjectTaskSectionCommand,
+    deleteTaskSectionAndKeepTasks,
+    deleteTaskSectionAndDeleteTasks,
+    deleteProjectTaskSection,
   } = useCommand()
   const { projectId } = useProjectsProjectId()
 
@@ -18,31 +18,10 @@ export const useProjectsTaskSectionCommand = () => {
     [addProjectsTaskSection, projectId],
   )
 
-  const deleteTaskSectionAndKeepTasks = useRecoilCallback(
-    () => async (id: string) => {
-      await deleteTaskSectionAndKeepTasksCommand(id)
-    },
-    [deleteTaskSectionAndKeepTasksCommand],
-  )
-
-  const deleteTaskSectionAndDeleteTask = useRecoilCallback(
-    () => async (id: string) => {
-      await deleteTaskSectionAndDeleteTasksCommand(id)
-    },
-    [deleteTaskSectionAndDeleteTasksCommand],
-  )
-
-  const deleteProjectTaskSection = useRecoilCallback(
-    () => async (id: string) => {
-      await deleteProjectTaskSectionCommand(id)
-    },
-    [deleteProjectTaskSectionCommand],
-  )
-
   return {
     addTaskSection,
     deleteTaskSectionAndKeepTasks,
-    deleteTaskSectionAndDeleteTask,
+    deleteTaskSectionAndDeleteTasks,
     deleteProjectTaskSection,
   }
 }

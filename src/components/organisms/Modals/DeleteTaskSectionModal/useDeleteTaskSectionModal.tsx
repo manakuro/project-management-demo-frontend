@@ -30,8 +30,11 @@ export const useDeleteTaskSectionModal = () => {
   const [state, setState] = useRecoilState(modalState)
   const resetState = useResetRecoilState(modalState)
   const { toast } = useToast()
-  const { deleteTaskSectionAndDeleteTasks, deleteTaskSectionAndKeepTasks } =
-    useTasksTaskSectionCommand()
+  const {
+    deleteTaskSectionAndDeleteTasks,
+    deleteTaskSectionAndKeepTasks,
+    undeleteTaskSectionAndKeepTasks,
+  } = useTasksTaskSectionCommand()
   const { completedTaskSize, incompleteTaskSize, taskSize } =
     useTasksCompletedTaskSizeByTaskSectionId(state.taskSectionId)
   const { taskSection } = useTasksTaskSection(state.taskSectionId)
@@ -52,14 +55,16 @@ export const useDeleteTaskSectionModal = () => {
     [setState],
   )
 
-  const handleDeleteAndKeepTaskUndo = useCallback(() => {}, [])
-
   const onDeleteAndKeepTask = useCallback(async () => {
     setIsOpen(false)
-    await deleteTaskSectionAndKeepTasks(state.taskSectionId)
+    const res = await deleteTaskSectionAndKeepTasks(state.taskSectionId)
+    if (!res) return
+
     toast({
       description: `${taskSection.name} was deleted and its tasks are being moved.`,
-      undo: handleDeleteAndKeepTaskUndo,
+      undo: async () => {
+        await undeleteTaskSectionAndKeepTasks(res)
+      },
       duration: 10000,
     })
     resetState()
@@ -69,8 +74,8 @@ export const useDeleteTaskSectionModal = () => {
     state.taskSectionId,
     toast,
     taskSection.name,
-    handleDeleteAndKeepTaskUndo,
     resetState,
+    undeleteTaskSectionAndKeepTasks,
   ])
 
   const handleDeleteAndDeleteTasksUndo = useCallback(() => {}, [])

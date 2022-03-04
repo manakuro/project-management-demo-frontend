@@ -181,7 +181,10 @@ export const useProjectTaskSectionCommand = () => {
           })
           if (res.errors) {
             await restore()
+            return null
           }
+
+          return res.data
         } catch (e) {
           await restore()
           throw e

@@ -12,7 +12,12 @@ export const useTeammateTaskResponse = () => {
         const includeTask = options?.includeTask ?? true
 
         data.forEach((d) => {
-          set(teammateTaskState(d.id), d)
+          set(teammateTaskState(d.id), (prev) => {
+            return {
+              ...prev,
+              ...d,
+            }
+          })
         })
         if (!includeTask) return
 

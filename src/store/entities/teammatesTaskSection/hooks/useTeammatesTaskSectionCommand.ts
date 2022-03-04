@@ -5,6 +5,7 @@ import {
   useDeleteTeammateTaskSectionAndDeleteTasksMutation,
   useDeleteTeammateTaskSectionMutation,
   useUndeleteTeammateTaskSectionAndKeepTasksMutation,
+  useUndeleteTeammateTaskSectionAndDeleteTasksMutation,
 } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import { useMe } from 'src/store/entities/me'
@@ -18,6 +19,7 @@ import {
 import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, teammatesTaskSectionState } from '../atom'
 import {
+  DeleteTeammateTaskSectionAndDeleteTasksMutation,
   DeleteTeammateTaskSectionAndKeepTasksMutation,
   TeammateTaskSection,
   TeammateTaskSectionResponse,
@@ -50,6 +52,9 @@ export const useTeammatesTaskSectionCommand = () => {
 
   const [undeleteTeammateTaskSectionAndKeepTasksMutation] =
     useUndeleteTeammateTaskSectionAndKeepTasksMutation()
+
+  const [undeleteTeammateTaskSectionAndDeleteTasksMutation] =
+    useUndeleteTeammateTaskSectionAndDeleteTasksMutation()
 
   const { setTeammateTask } = useTeammateTaskResponse()
   const { resetTeammateTasks } = useResetTeammateTask()
@@ -200,7 +205,10 @@ export const useTeammatesTaskSectionCommand = () => {
           })
           if (res.errors) {
             await restore()
+            return
           }
+
+          return res.data
         } catch (e) {
           await restore()
           throw e
@@ -308,11 +316,49 @@ export const useTeammatesTaskSectionCommand = () => {
     ],
   )
 
+  const undeleteTaskSectionAndDeleteTasks = useRecoilCallback(
+    () => async (val: DeleteTeammateTaskSectionAndDeleteTasksMutation) => {
+      const teammateTaskSection =
+        val.deleteTeammateTaskSectionAndDeleteTasks.teammateTaskSection
+      const teammateTaskIds =
+        val.deleteTeammateTaskSectionAndDeleteTasks.teammateTaskIds
+      const taskIds = val.deleteTeammateTaskSectionAndDeleteTasks.taskIds
+
+      const res = await undeleteTeammateTaskSectionAndDeleteTasksMutation({
+        variables: {
+          input: {
+            name: teammateTaskSection.name,
+            teammateId: teammateTaskSection.teammateId,
+            workspaceId: teammateTaskSection.workspaceId,
+            createdAt: teammateTaskSection.createdAt,
+            updatedAt: teammateTaskSection.updatedAt,
+            deletedTeammateTaskIds: teammateTaskIds,
+            deletedTaskIds: taskIds,
+            requestId: '',
+          },
+        },
+      })
+      if (res.errors) {
+        return
+      }
+
+      const data = res.data?.undeleteTeammateTaskSectionAndDeleteTasks
+      if (!data) return
+
+      setTeammatesTaskSections([data.teammateTaskSection])
+    },
+    [
+      setTeammatesTaskSections,
+      undeleteTeammateTaskSectionAndDeleteTasksMutation,
+    ],
+  )
+
   return {
     addTeammatesTaskSection,
     deleteTaskSectionAndKeepTasks,
     deleteTaskSectionAndDeleteTasks,
     deleteTeammateTaskSection,
     undeleteTaskSectionAndKeepTasks,
+    undeleteTaskSectionAndDeleteTasks,
   }
 }

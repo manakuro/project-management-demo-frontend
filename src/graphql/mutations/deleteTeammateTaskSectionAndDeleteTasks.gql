@@ -3,6 +3,13 @@ mutation DeleteTeammateTaskSectionAndDeleteTasks($input: DeleteTeammateTaskSecti
     teammateTaskIds
     teammateTaskSection {
       id
+      teammateId
+      name
+      assigned
+      workspaceId
+      createdAt
+      updatedAt
     }
+    taskIds
   }
 }

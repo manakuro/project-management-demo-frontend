@@ -16,10 +16,7 @@ export const useProjectTaskResponse = () => {
         })
         if (!includeTask) return
 
-        const tasks = data.map<TaskResponse>((d) => ({
-          ...d.task,
-          taskSectionId: d.projectTaskSectionId,
-        }))
+        const tasks = data.map<TaskResponse>((d) => d.task)
         setTasksFromResponse(tasks)
       },
     [setTasksFromResponse],

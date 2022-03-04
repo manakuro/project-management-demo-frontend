@@ -16,10 +16,7 @@ export const useTeammateTaskResponse = () => {
         })
         if (!includeTask) return
 
-        const tasks = data.map<TaskResponse>((d) => ({
-          ...d.task,
-          taskSectionId: d.teammateTaskSectionId,
-        }))
+        const tasks = data.map<TaskResponse>((d) => d.task)
 
         setTasksFromResponse(tasks)
       },

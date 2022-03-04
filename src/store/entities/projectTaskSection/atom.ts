@@ -1,4 +1,5 @@
 import { selectorFamily } from 'recoil'
+import { projectTaskByTaskIdState } from 'src/store/entities/projectTask'
 import { createState } from 'src/store/util'
 import { ProjectTaskSection } from './type'
 
@@ -30,5 +31,23 @@ export const projectTaskSectionsByProjectIdState = selectorFamily<
     ({ get }) => {
       const projectsTaskSections = get(projectTaskSectionsState)
       return projectsTaskSections.filter((t) => t.projectId === projectId)
+    },
+})
+
+export const projectTaskSectionByTaskIdState = selectorFamily<
+  ProjectTaskSection,
+  string
+>({
+  key: key('projectTaskSectionByTaskIdState'),
+  get:
+    (taskId) =>
+    ({ get }) => {
+      const projectTask = get(projectTaskByTaskIdState(taskId))
+      const projectsTaskSections = get(projectTaskSectionsState)
+      return (
+        projectsTaskSections.find(
+          (t) => t.id === projectTask.projectTaskSectionId,
+        ) || initialState()
+      )
     },
 })

@@ -4,17 +4,22 @@ import {
   useDeleteProjectTaskSectionAndKeepTasksMutation,
   useDeleteProjectTaskSectionAndDeleteTasksMutation,
   useDeleteProjectTaskSectionMutation,
+  useUndeleteProjectTaskSectionAndKeepTasksMutation,
 } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import {
   ProjectTaskResponse,
+  projectTasksByIdsState,
   projectTasksByProjectTaskSectionIdState,
   useProjectTaskResponse,
   useResetProjectTask,
 } from 'src/store/entities/projectTask'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, projectTaskSectionState } from '../atom'
-import { ProjectTaskSectionResponse } from '../type'
+import {
+  ProjectTaskSectionResponse,
+  DeleteProjectTaskSectionAndKeepTasksMutation,
+} from '../type'
 import { PROJECT_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionCreatedSubscription'
 import { PROJECT_TASK_SECTION_DELETED_AND_DELETED_TASKS_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionDeletedAndDeleteTasksSubscription'
 import { PROJECT_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionDeletedAndKeepTasksSubscription'
@@ -39,6 +44,9 @@ export const useProjectTaskSectionCommand = () => {
 
   const [deleteProjectTaskSectionMutation] =
     useDeleteProjectTaskSectionMutation()
+
+  const [undeleteProjectTaskSectionAndKeepTasksMutation] =
+    useUndeleteProjectTaskSectionAndKeepTasksMutation()
 
   const addProjectsTaskSection = useRecoilCallback(
     ({ reset }) =>
@@ -230,10 +238,67 @@ export const useProjectTaskSectionCommand = () => {
     [deleteProjectTaskSectionMutation, setProjectsTaskSections, workspace.id],
   )
 
+  const undeleteTaskSectionAndKeepTasks = useRecoilCallback(
+    ({ snapshot }) =>
+      async (val: DeleteProjectTaskSectionAndKeepTasksMutation) => {
+        const release = snapshot.retain()
+
+        const projectTaskSection =
+          val.deleteProjectTaskSectionAndKeepTasks.projectTaskSection
+        const projectTaskIds =
+          val.deleteProjectTaskSectionAndKeepTasks.projectTaskIds
+
+        try {
+          const res = await undeleteProjectTaskSectionAndKeepTasksMutation({
+            variables: {
+              input: {
+                name: projectTaskSection.name,
+                projectId: projectTaskSection.projectId,
+                workspaceId: workspace.id,
+                createdAt: projectTaskSection.createdAt,
+                updatedAt: projectTaskSection.updatedAt,
+                keptProjectTaskIds: projectTaskIds,
+                requestId: '',
+              },
+            },
+          })
+          if (res.errors) {
+            return
+          }
+
+          const data = res.data?.undeleteProjectTaskSectionAndKeepTasks
+          if (!data) return
+
+          setProjectsTaskSections([data.projectTaskSection])
+
+          const projectTasks = await snapshot.getPromise(
+            projectTasksByIdsState(data.projectTaskIds),
+          )
+
+          const newProjectTasks = projectTasks.map((t) => ({
+            ...t,
+            projectTaskSectionId: data.projectTaskSection.id,
+          }))
+          setProjectTask(newProjectTasks as ProjectTaskResponse[], {
+            includeTask: false,
+          })
+        } finally {
+          release()
+        }
+      },
+    [
+      setProjectTask,
+      setProjectsTaskSections,
+      undeleteProjectTaskSectionAndKeepTasksMutation,
+      workspace.id,
+    ],
+  )
+
   return {
     addProjectsTaskSection,
     deleteTaskSectionAndKeepTasks,
     deleteTaskSectionAndDeleteTasks,
     deleteProjectTaskSection,
+    undeleteTaskSectionAndKeepTasks,
   }
 }

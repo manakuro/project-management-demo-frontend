@@ -37,6 +37,7 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
   )
 
   const handleDeleteTask = useCallback(async () => {
+    console.log('handleDeleteTask!')
     await deleteTask({ taskId: props.taskId })
   }, [deleteTask, props.taskId])
 

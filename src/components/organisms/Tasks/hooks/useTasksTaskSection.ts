@@ -7,6 +7,7 @@ type Result = {
     id: string
     name: string
     isNew?: boolean
+    assigned?: boolean
   }
   setSectionName: (val: string) => Promise<void>
 }

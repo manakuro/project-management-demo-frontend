@@ -3,15 +3,17 @@ import { IconButton } from 'src/components/atoms'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { SUBTASK_LIST_CONTAINER_ID } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/Subtasks'
 import { useTasksNameContext } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
-import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
-import { useTaskIdsByTaskParentId } from 'src/store/entities/task'
+import {
+  useTasksRouter,
+  useTasksSubTaskIds,
+} from 'src/components/organisms/Tasks/hooks'
 import { Icon } from './Icon'
 
 type Props = {}
 
 export const Subtask: React.VFC<Props> = () => {
   const { taskId } = useTasksNameContext()
-  const { taskIds } = useTaskIdsByTaskParentId(taskId)
+  const { taskIds } = useTasksSubTaskIds(taskId)
   const size = useMemo(() => taskIds.length, [taskIds.length])
   const { setScrollId } = useTaskDetail()
   const { navigateToTaskDetail } = useTasksRouter()

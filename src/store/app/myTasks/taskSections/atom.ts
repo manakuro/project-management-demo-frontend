@@ -1,4 +1,5 @@
 import { selectorFamily } from 'recoil'
+import { sortTeammateTaskSections } from 'src/store/app/myTasks/filters'
 import { isTaskListSortStatusState } from 'src/store/app/myTasks/taskListStatus'
 import { tasksByTeammateIdState } from 'src/store/entities/teammateTask'
 import { isTabStatusState } from 'src/store/entities/teammateTaskTabStatus'
@@ -11,8 +12,9 @@ export const taskSectionIdsState = selectorFamily<string[], string>({
   get:
     (teammateId) =>
     ({ get }) => {
-      const teammateTaskSections = get(
-        taskSectionsByTeammateIdState(teammateId),
+      let teammateTaskSections = get(taskSectionsByTeammateIdState(teammateId))
+      teammateTaskSections = sortTeammateTaskSections({ get })(
+        teammateTaskSections,
       )
 
       switch (true) {

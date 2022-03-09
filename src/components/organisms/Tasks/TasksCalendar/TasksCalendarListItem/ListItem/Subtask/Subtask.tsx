@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { Flex, Icon, Text } from 'src/components/atoms'
-import { useTaskIdsByTaskParentId } from 'src/store/entities/task'
+import { useTasksSubTaskIds } from 'src/components/organisms/Tasks/hooks'
 
 type Props = {
   taskId: string
@@ -8,7 +8,7 @@ type Props = {
 
 export const Subtask: React.VFC<Props> = (props) => {
   const { taskId } = props
-  const { taskIds } = useTaskIdsByTaskParentId(taskId)
+  const { taskIds } = useTasksSubTaskIds(taskId)
   const size = useMemo(() => taskIds.length, [taskIds.length])
 
   if (!size) return null

@@ -13,7 +13,6 @@ export const initialState = (): Task => ({
   completedAt: '',
   isNew: false,
   name: '',
-  taskSectionId: '',
   taskParentId: '',
   taskPriorityId: '',
   description: {
@@ -44,17 +43,6 @@ export const {
   idsState: taskIdsState,
 } = createState({ key, initialState })
 
-export const taskIdsByTaskParentIdState = selectorFamily<string[], string>({
-  key: key('taskIdsByTaskParentIdState'),
-  get:
-    (taskParentId) =>
-    ({ get }) => {
-      const tasks = get(tasksState)
-      return tasks
-        .filter((t) => t.taskParentId === taskParentId)
-        .map((t) => t.id)
-    },
-})
 export const taskIdsByAssigneeIdState = selectorFamily<string[], string>({
   key: key('taskIdsByAssigneeIdState'),
   get:

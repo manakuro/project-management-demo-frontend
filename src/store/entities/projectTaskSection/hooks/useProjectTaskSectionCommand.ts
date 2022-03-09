@@ -122,7 +122,7 @@ export const useProjectTaskSectionCommand = () => {
           })
           if (res.errors) {
             await restore()
-            return
+            return null
           }
 
           const projectTaskSection =
@@ -137,6 +137,8 @@ export const useProjectTaskSectionCommand = () => {
           setProjectTask(newProjectTasks as ProjectTaskResponse[], {
             includeTask: false,
           })
+
+          return res.data
         } catch (e) {
           await restore()
           throw e
@@ -179,7 +181,10 @@ export const useProjectTaskSectionCommand = () => {
           })
           if (res.errors) {
             await restore()
+            return null
           }
+
+          return res.data
         } catch (e) {
           await restore()
           throw e

@@ -4,6 +4,7 @@ import {
   useClickOutside,
   UseClickOutsideOptionsHasClickedOutside,
   useDebounce,
+  useMountedRef,
 } from 'src/hooks'
 import { useSubtasksNameContext } from './Provider'
 
@@ -17,6 +18,7 @@ type Props = {
 
 export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   const [value, setValue] = useState<string>(props.value)
+  const { mountedRef } = useMountedRef()
   const {
     ref: containerRef,
     onInputFocus,
@@ -52,8 +54,9 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
   }, [])
 
   useEffect(() => {
+    if (!mountedRef.current) return
     setValue(props.value)
-  }, [props.value])
+  }, [mountedRef, props.value])
 
   useDebounce(value, props.onChange, 500)
 

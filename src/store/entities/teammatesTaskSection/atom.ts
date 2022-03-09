@@ -1,4 +1,5 @@
 import { selector, selectorFamily } from 'recoil'
+import { teammateTaskByTaskIdState } from 'src/store/entities/teammateTask'
 import { createState } from 'src/store/util'
 import { TeammateTaskSection } from './type'
 
@@ -44,6 +45,24 @@ export const taskSectionsByTeammateIdState = selectorFamily<
     ({ get }) => {
       const teammatesTaskSections = get(teammatesTaskSectionsState)
       return teammatesTaskSections.filter((t) => t.teammateId === teammateId)
+    },
+})
+
+export const teammateTaskSectionByTaskIdState = selectorFamily<
+  TeammateTaskSection,
+  string
+>({
+  key: key('teammateTaskSectionByTaskIdState'),
+  get:
+    (taskId) =>
+    ({ get }) => {
+      const teammateTask = get(teammateTaskByTaskIdState(taskId))
+      const teammatesTaskSections = get(teammatesTaskSectionsState)
+      return (
+        teammatesTaskSections.find(
+          (t) => t.id === teammateTask.teammateTaskSectionId,
+        ) || initialState()
+      )
     },
 })
 

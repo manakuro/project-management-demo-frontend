@@ -19,7 +19,9 @@ import { PROJECT_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskUp
 import { useUpsert } from './useUpsert'
 
 type AddProjectTaskParams = Partial<ProjectTask> & {
+  projectId: string
   projectTaskSectionId: string
+  taskParentId?: string
 }
 
 export const useProjectTaskCommand = () => {
@@ -76,7 +78,7 @@ export const useProjectTaskCommand = () => {
     () => (val: AddProjectTaskParams) => {
       const newProjectTaskId = uuid()
       const newTaskId = addTask({
-        taskSectionId: val.projectTaskSectionId,
+        taskParentId: val.taskParentId || '',
       })
       const newProjectTask = {
         ...initialState(),
@@ -112,6 +114,7 @@ export const useProjectTaskCommand = () => {
               projectId: newProjectTask.projectId,
               projectTaskSectionId: newProjectTask.projectTaskSectionId,
               createdBy: me.id,
+              taskParentId: val.taskParentId ?? null,
               requestId: PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
               workspaceId: workspace.id,
             },

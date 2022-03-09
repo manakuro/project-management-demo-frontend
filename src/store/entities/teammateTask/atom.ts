@@ -57,6 +57,23 @@ export const teammateTaskByTaskIdState = selectorFamily<TeammateTask, string>({
     },
 })
 
+export const taskIdsByTaskParentIdState = selectorFamily<string[], string>({
+  key: key('taskIdsByTaskParentIdState'),
+  get:
+    (taskParentId) =>
+    ({ get }) => {
+      const tasks = get(tasksState)
+      const teammateTasks = get(teammateTasksState)
+      const subTaskIds = tasks
+        .filter((t) => t.taskParentId === taskParentId)
+        .map((t) => t.id)
+
+      return teammateTasks
+        .filter((t) => subTaskIds.includes(t.taskId))
+        .map((t) => t.taskId)
+    },
+})
+
 export const teammateTaskByTeammateTaskSectionIdState = selectorFamily<
   TeammateTask[],
   string
@@ -71,3 +88,15 @@ export const teammateTaskByTeammateTaskSectionIdState = selectorFamily<
       )
     },
 })
+
+export const teammateTasksByIdsState = selectorFamily<TeammateTask[], string[]>(
+  {
+    key: key('teammateTaskByIdsState'),
+    get:
+      (ids) =>
+      ({ get }) => {
+        const teammateTasks = get(teammateTasksState)
+        return teammateTasks.filter((t) => ids.includes(t.id))
+      },
+  },
+)

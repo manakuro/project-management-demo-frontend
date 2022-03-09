@@ -12,10 +12,21 @@ export const useTeammatesTaskSectionResponse = () => {
 
   const setTeammatesTaskSections = useRecoilCallback(
     ({ set }) =>
-      (data: TeammateTaskSectionResponse[]) => {
+      (
+        data: TeammateTaskSectionResponse[],
+        options?: { includeTeammateTask?: boolean },
+      ) => {
+        const includeTeammateTask = options?.includeTeammateTask ?? true
+
         data.forEach((d) => {
-          set(teammatesTaskSectionState(d.id), d)
+          set(teammatesTaskSectionState(d.id), (prev) => {
+            return {
+              ...prev,
+              ...d,
+            }
+          })
         })
+        if (!includeTeammateTask) return
 
         const teammateTasks = data.reduce<TeammateTaskResponse[]>((acc, p) => {
           return uniqBy([...acc, ...p.teammateTasks], 'id')

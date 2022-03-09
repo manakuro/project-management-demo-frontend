@@ -3,13 +3,5 @@ mutation UndeleteProjectTaskSectionAndDeleteTasks($input: UndeleteProjectTaskSec
     projectTaskSection {
       ...ProjectTaskSectionFragment
     }
-    projectTasks {
-      id
-      taskId
-      projectId
-      projectTaskSectionId
-      createdAt
-      updatedAt
-    }
   }
 }

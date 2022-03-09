@@ -3,14 +3,5 @@ mutation UndeleteTeammateTaskSectionAndDeleteTasks($input: UndeleteTeammateTaskS
     teammateTaskSection {
       ...TeammateTaskSectionFragment
     }
-    teammateTasks {
-      id
-      taskId
-      workspaceId
-      teammateId
-      teammateTaskSectionId
-      createdAt
-      updatedAt
-    }
   }
 }

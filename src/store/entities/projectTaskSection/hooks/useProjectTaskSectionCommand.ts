@@ -5,6 +5,7 @@ import {
   useDeleteProjectTaskSectionAndDeleteTasksMutation,
   useDeleteProjectTaskSectionMutation,
   useUndeleteProjectTaskSectionAndKeepTasksMutation,
+  useUndeleteProjectTaskSectionAndDeleteTasksMutation,
 } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import {
@@ -19,6 +20,7 @@ import { initialState, projectTaskSectionState } from '../atom'
 import {
   ProjectTaskSectionResponse,
   DeleteProjectTaskSectionAndKeepTasksMutation,
+  DeleteProjectTaskSectionAndDeleteTasksMutation,
 } from '../type'
 import { PROJECT_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionCreatedSubscription'
 import { PROJECT_TASK_SECTION_DELETED_AND_DELETED_TASKS_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionDeletedAndDeleteTasksSubscription'
@@ -47,6 +49,9 @@ export const useProjectTaskSectionCommand = () => {
 
   const [undeleteProjectTaskSectionAndKeepTasksMutation] =
     useUndeleteProjectTaskSectionAndKeepTasksMutation()
+
+  const [undeleteProjectTaskSectionAndDeleteTasksMutation] =
+    useUndeleteProjectTaskSectionAndDeleteTasksMutation()
 
   const addProjectsTaskSection = useRecoilCallback(
     ({ reset }) =>
@@ -294,11 +299,50 @@ export const useProjectTaskSectionCommand = () => {
     ],
   )
 
+  const undeleteTaskSectionAndDeleteTasks = useRecoilCallback(
+    () => async (val: DeleteProjectTaskSectionAndDeleteTasksMutation) => {
+      const projectTaskSection =
+        val.deleteProjectTaskSectionAndDeleteTasks.projectTaskSection
+      const projectTaskIds =
+        val.deleteProjectTaskSectionAndDeleteTasks.projectTaskIds
+      const taskIds = val.deleteProjectTaskSectionAndDeleteTasks.taskIds
+
+      const res = await undeleteProjectTaskSectionAndDeleteTasksMutation({
+        variables: {
+          input: {
+            name: projectTaskSection.name,
+            projectId: projectTaskSection.projectId,
+            workspaceId: workspace.id,
+            createdAt: projectTaskSection.createdAt,
+            updatedAt: projectTaskSection.updatedAt,
+            deletedProjectTaskIds: projectTaskIds,
+            deletedTaskIds: taskIds,
+            requestId: '',
+          },
+        },
+      })
+      if (res.errors) {
+        return
+      }
+
+      const data = res.data?.undeleteProjectTaskSectionAndDeleteTasks
+      if (!data) return
+
+      setProjectsTaskSections([data.projectTaskSection])
+    },
+    [
+      setProjectsTaskSections,
+      undeleteProjectTaskSectionAndDeleteTasksMutation,
+      workspace.id,
+    ],
+  )
+
   return {
     addProjectsTaskSection,
     deleteTaskSectionAndKeepTasks,
     deleteTaskSectionAndDeleteTasks,
     deleteProjectTaskSection,
     undeleteTaskSectionAndKeepTasks,
+    undeleteTaskSectionAndDeleteTasks,
   }
 }

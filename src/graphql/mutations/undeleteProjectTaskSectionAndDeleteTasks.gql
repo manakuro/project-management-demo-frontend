@@ -1,0 +1,15 @@
+mutation UndeleteProjectTaskSectionAndDeleteTasks($input: UndeleteProjectTaskSectionAndDeleteTasksInput!) {
+  undeleteProjectTaskSectionAndDeleteTasks(input: $input) {
+    projectTaskSection {
+      ...ProjectTaskSectionFragment
+    }
+    projectTasks {
+      id
+      taskId
+      projectId
+      projectTaskSectionId
+      createdAt
+      updatedAt
+    }
+  }
+}

@@ -3,6 +3,11 @@ mutation DeleteProjectTaskSectionAndDeleteTasks($input: DeleteProjectTaskSection
     projectTaskIds
     projectTaskSection {
       id
+      name
+      projectId
+      createdAt
+      updatedAt
     }
+    taskIds
   }
 }

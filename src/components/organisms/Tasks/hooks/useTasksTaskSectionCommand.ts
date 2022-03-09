@@ -61,6 +61,7 @@ export const useTasksTaskSectionCommand = (): Result => {
     deleteTaskSection: projects.deleteProjectTaskSection,
     undeleteTaskSectionAndKeepTasks:
       projects.undeleteTaskSectionAndKeepTasks as Result['undeleteTaskSectionAndKeepTasks'],
-    undeleteTaskSectionAndDeleteTasks: async () => {},
+    undeleteTaskSectionAndDeleteTasks:
+      projects.undeleteTaskSectionAndDeleteTasks as Result['undeleteTaskSectionAndDeleteTasks'],
   }
 }

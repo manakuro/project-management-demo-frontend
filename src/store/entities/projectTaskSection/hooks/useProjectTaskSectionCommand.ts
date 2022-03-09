@@ -27,6 +27,7 @@ import { PROJECT_TASK_SECTION_DELETED_AND_DELETED_TASKS_SUBSCRIPTION_REQUEST_ID 
 import { PROJECT_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionDeletedAndKeepTasksSubscription'
 import { PROJECT_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionDeletedSubscription'
 import { useProjectTaskSectionResponse } from './useProjectTaskSectionResponse'
+import { PROJECT_TASK_SECTION_UNDELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskSectionUndeletedAndKeepTasksSubscription'
 import { useUpsert } from './useUpsert'
 
 export const useProjectTaskSectionCommand = () => {
@@ -263,7 +264,8 @@ export const useProjectTaskSectionCommand = () => {
                 createdAt: projectTaskSection.createdAt,
                 updatedAt: projectTaskSection.updatedAt,
                 keptProjectTaskIds: projectTaskIds,
-                requestId: '',
+                requestId:
+                  PROJECT_TASK_SECTION_UNDELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID,
               },
             },
           })
@@ -274,7 +276,9 @@ export const useProjectTaskSectionCommand = () => {
           const data = res.data?.undeleteProjectTaskSectionAndKeepTasks
           if (!data) return
 
-          setProjectsTaskSections([data.projectTaskSection])
+          setProjectsTaskSections([data.projectTaskSection], {
+            includeProjectTasks: false,
+          })
 
           const projectTasks = await snapshot.getPromise(
             projectTasksByIdsState(data.projectTaskIds),

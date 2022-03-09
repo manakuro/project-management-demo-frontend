@@ -9,6 +9,7 @@ export type {
   ProjectTaskSectionDeletedSubscription,
   ProjectTaskSectionDeletedAndKeepTasksSubscription,
   ProjectTaskSectionDeletedAndDeleteTasksSubscription,
+  ProjectTaskSectionUndeletedAndKeepTasksSubscription,
   DeleteProjectTaskSectionAndKeepTasksMutation,
   DeleteProjectTaskSectionAndDeleteTasksMutation,
   UpdateTaskSectionInput,

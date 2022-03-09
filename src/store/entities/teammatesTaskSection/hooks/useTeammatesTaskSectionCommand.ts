@@ -29,6 +29,8 @@ import { TEAMMATE_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTeam
 import { TEAMMATE_TASK_SECTION_DELETED_AND_DELETE_TASKS_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedAndDeleteTasksSubscription'
 import { TEAMMATE_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedAndKeepTasksSubscription'
 import { TEAMMATE_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedSubscription'
+import { TEAMMATE_TASK_SECTION_UNDELETED_AND_DELETE_TASKS_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionUndeletedAndDeleteTasksSubscription'
+import { TEAMMATE_TASK_SECTION_UNDELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionUndeletedAndKeepTasksSubscription'
 import { useTeammatesTaskSectionResponse } from './useTeammatesTaskSectionResponse'
 import { useUpsert } from './useUpsert'
 
@@ -281,7 +283,8 @@ export const useTeammatesTaskSectionCommand = () => {
                 createdAt: teammateTaskSection.createdAt,
                 updatedAt: teammateTaskSection.updatedAt,
                 keptTeammateTaskIds: teammateTaskIds,
-                requestId: '',
+                requestId:
+                  TEAMMATE_TASK_SECTION_UNDELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID,
               },
             },
           })
@@ -292,7 +295,17 @@ export const useTeammatesTaskSectionCommand = () => {
           const data = res.data?.undeleteTeammateTaskSectionAndKeepTasks
           if (!data) return
 
-          setTeammatesTaskSections([data.teammateTaskSection])
+          setTeammatesTaskSections(
+            [
+              {
+                ...data.teammateTaskSection,
+                teammateTasks: [],
+              },
+            ],
+            {
+              includeTeammateTask: false,
+            },
+          )
 
           const teammateTasks = await snapshot.getPromise(
             teammateTasksByIdsState(data.teammateTaskIds),
@@ -334,13 +347,12 @@ export const useTeammatesTaskSectionCommand = () => {
             updatedAt: teammateTaskSection.updatedAt,
             deletedTeammateTaskIds: teammateTaskIds,
             deletedTaskIds: taskIds,
-            requestId: '',
+            requestId:
+              TEAMMATE_TASK_SECTION_UNDELETED_AND_DELETE_TASKS_SUBSCRIPTION_REQUEST_ID,
           },
         },
       })
-      if (res.errors) {
-        return
-      }
+      if (res.errors) return
 
       const data = res.data?.undeleteTeammateTaskSectionAndDeleteTasks
       if (!data) return

@@ -1,7 +1,12 @@
 mutation UndeleteTeammateTaskSectionAndKeepTasks($input: UndeleteTeammateTaskSectionAndKeepTasksInput!) {
   undeleteTeammateTaskSectionAndKeepTasks(input: $input) {
     teammateTaskSection {
-      ...TeammateTaskSectionFragment
+      id
+      name
+      assigned
+      teammateId
+      createdAt
+      updatedAt
     }
     teammateTaskIds
   }

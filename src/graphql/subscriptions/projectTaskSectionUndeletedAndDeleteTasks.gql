@@ -1,0 +1,7 @@
+subscription ProjectTaskSectionUndeletedAndDeleteTasks($workspaceId: ID!, $requestId: String!) {
+  projectTaskSectionUndeletedAndDeleteTasks(workspaceId: $workspaceId, requestId: $requestId) {
+    projectTaskSection {
+      ...ProjectTaskSectionFragment
+    }
+  }
+}

@@ -11,6 +11,8 @@ import {
   useProjectTaskSectionDeletedAndDeleteTasksSubscription,
   useProjectTaskSectionDeletedAndKeepTasksSubscription,
   useProjectTaskSectionDeletedSubscription,
+  useProjectTaskSectionUndeletedAndDeleteTasksSubscription,
+  useProjectTaskSectionUndeletedAndKeepTasksSubscription,
   useProjectTaskSectionUpdatedSubscription,
 } from 'src/store/entities/projectTaskSection'
 import {
@@ -40,6 +42,8 @@ import {
   useTeammateTaskSectionDeletedAndDeleteTasksSubscription,
   useTeammateTaskSectionDeletedAndKeepTasksSubscription,
   useTeammateTaskSectionDeletedSubscription,
+  useTeammateTaskSectionUndeletedAndDeleteTasksSubscription,
+  useTeammateTaskSectionUndeletedAndKeepTasksSubscription,
   useTeammateTaskSectionUpdatedSubscription,
 } from 'src/store/entities/teammatesTaskSection'
 import {
@@ -79,6 +83,12 @@ export const Subscription: React.FC = memo((props) => {
     workspaceId: workspace.id,
   })
   useProjectTaskSectionDeletedAndDeleteTasksSubscription({
+    workspaceId: workspace.id,
+  })
+  useProjectTaskSectionUndeletedAndKeepTasksSubscription({
+    workspaceId: workspace.id,
+  })
+  useProjectTaskSectionUndeletedAndDeleteTasksSubscription({
     workspaceId: workspace.id,
   })
 
@@ -136,6 +146,14 @@ export const Subscription: React.FC = memo((props) => {
     workspaceId: workspace.id,
   })
   useTeammateTaskSectionDeletedAndDeleteTasksSubscription({
+    teammateId: me.id,
+    workspaceId: workspace.id,
+  })
+  useTeammateTaskSectionUndeletedAndKeepTasksSubscription({
+    teammateId: me.id,
+    workspaceId: workspace.id,
+  })
+  useTeammateTaskSectionUndeletedAndDeleteTasksSubscription({
     teammateId: me.id,
     workspaceId: workspace.id,
   })

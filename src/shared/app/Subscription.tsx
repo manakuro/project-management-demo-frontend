@@ -40,6 +40,7 @@ import {
   useTeammateTaskSectionDeletedAndDeleteTasksSubscription,
   useTeammateTaskSectionDeletedAndKeepTasksSubscription,
   useTeammateTaskSectionDeletedSubscription,
+  useTeammateTaskSectionUndeletedAndKeepTasksSubscription,
   useTeammateTaskSectionUpdatedSubscription,
 } from 'src/store/entities/teammatesTaskSection'
 import {
@@ -136,6 +137,10 @@ export const Subscription: React.FC = memo((props) => {
     workspaceId: workspace.id,
   })
   useTeammateTaskSectionDeletedAndDeleteTasksSubscription({
+    teammateId: me.id,
+    workspaceId: workspace.id,
+  })
+  useTeammateTaskSectionUndeletedAndKeepTasksSubscription({
     teammateId: me.id,
     workspaceId: workspace.id,
   })

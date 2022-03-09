@@ -9,6 +9,7 @@ export type {
   TeammateTaskSectionDeletedSubscription,
   TeammateTaskSectionDeletedAndKeepTasksSubscription,
   TeammateTaskSectionDeletedAndDeleteTasksSubscription,
+  TeammateTaskSectionUndeletedAndKeepTasksSubscription,
   DeleteTeammateTaskSectionAndKeepTasksMutation,
   DeleteTeammateTaskSectionAndDeleteTasksMutation,
   UpdateTeammateTaskSectionInput,

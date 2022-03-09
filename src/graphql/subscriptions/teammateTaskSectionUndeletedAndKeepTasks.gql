@@ -1,0 +1,13 @@
+subscription TeammateTaskSectionUndeletedAndKeepTasks($teammateId: ID!, $workspaceId: ID!, $requestId: String!) {
+  teammateTaskSectionUndeletedAndKeepTasks(teammateId: $teammateId, workspaceId: $workspaceId, requestId: $requestId) {
+    teammateTaskSection {
+      id
+      name
+      assigned
+      teammateId
+      createdAt
+      updatedAt
+    }
+    teammateTaskIds
+  }
+}

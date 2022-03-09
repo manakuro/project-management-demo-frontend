@@ -135,3 +135,13 @@ export const taskIdsByProjectIdState = selectorFamily<string[], string>({
         .map((p) => p.taskId)
     },
 })
+
+export const projectTasksByIdsState = selectorFamily<ProjectTask[], string[]>({
+  key: key('projectTaskByIdsState'),
+  get:
+    (ids) =>
+    ({ get }) => {
+      const projectTasks = get(projectTasksState)
+      return projectTasks.filter((t) => ids.includes(t.id))
+    },
+})

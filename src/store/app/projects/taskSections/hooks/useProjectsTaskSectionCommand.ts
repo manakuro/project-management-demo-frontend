@@ -8,6 +8,8 @@ export const useProjectsTaskSectionCommand = () => {
     deleteTaskSectionAndKeepTasks,
     deleteTaskSectionAndDeleteTasks,
     deleteProjectTaskSection,
+    undeleteTaskSectionAndKeepTasks,
+    undeleteTaskSectionAndDeleteTasks,
   } = useCommand()
   const { projectId } = useProjectsProjectId()
 
@@ -23,5 +25,7 @@ export const useProjectsTaskSectionCommand = () => {
     deleteTaskSectionAndKeepTasks,
     deleteTaskSectionAndDeleteTasks,
     deleteProjectTaskSection,
+    undeleteTaskSectionAndKeepTasks,
+    undeleteTaskSectionAndDeleteTasks,
   }
 }

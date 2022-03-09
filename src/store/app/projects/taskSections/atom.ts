@@ -1,4 +1,5 @@
 import { selectorFamily } from 'recoil'
+import { sortProjectTaskSections } from 'src/store/app/projects/filters'
 import { tasksByProjectTaskSectionIdState } from 'src/store/entities/projectTask'
 import { projectTaskSectionsByProjectIdState } from 'src/store/entities/projectTaskSection'
 import { isTaskListSortStatusState } from '../taskListStatus'
@@ -10,24 +11,33 @@ export const projectsTaskSectionIdsState = selectorFamily<string[], string>({
   get:
     (projectId) =>
     ({ get }) => {
-      const taskSections = get(projectTaskSectionsByProjectIdState(projectId))
+      let projectTaskSections = get(
+        projectTaskSectionsByProjectIdState(projectId),
+      )
+      projectTaskSections = sortProjectTaskSections({ get })(
+        projectTaskSections,
+      )
 
       switch (true) {
         case get(isTaskListSortStatusState('dueDate')): {
-          const hasTaskWithNoDueDate = !!taskSections.filter((taskSection) => {
-            const tasks = get(tasksByProjectTaskSectionIdState(taskSection.id))
-            return tasks.some((t) => !t.dueDate)
-          }).length
+          const hasTaskWithNoDueDate = !!projectTaskSections.filter(
+            (taskSection) => {
+              const tasks = get(
+                tasksByProjectTaskSectionIdState(taskSection.id),
+              )
+              return tasks.some((t) => !t.dueDate)
+            },
+          ).length
           if (!hasTaskWithNoDueDate) return []
 
-          return taskSections.map((t) => t.id)
+          return projectTaskSections.map((t) => t.id)
         }
         case get(isTaskListSortStatusState('likes')):
         case get(isTaskListSortStatusState('alphabetical')): {
           return []
         }
         default: {
-          return taskSections.map((t) => t.id)
+          return projectTaskSections.map((t) => t.id)
         }
       }
     },

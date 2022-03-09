@@ -1,5 +1,6 @@
 import { GetRecoilValue } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
+import { ProjectTaskSection } from 'src/store/entities/projectTaskSection'
 import { Task } from 'src/store/entities/task'
 import { taskLikesByTaskIdState } from 'src/store/entities/taskLike'
 import { TaskPriorityType } from 'src/store/entities/taskPriority'
@@ -13,6 +14,11 @@ type Params = {
   get: GetRecoilValue
 }
 
+export const sortProjectTaskSections =
+  (_: Params) => (p: ProjectTaskSection[]) => {
+    return sortByCreatedAt(p)
+  }
+
 export const sortTasks = (params: Params) => (t: Task[]) => {
   let tasks = sortByCreatedAt(t)
   tasks = sortByDueDate(params)(t)
@@ -25,8 +31,8 @@ export const sortTasks = (params: Params) => (t: Task[]) => {
   return tasks
 }
 
-const sortByCreatedAt = (tasks: Task[]) => {
-  return [...tasks].sort((a, b) => {
+const sortByCreatedAt = <T extends { createdAt: string }>(data: T[]): T[] => {
+  return [...data].sort((a, b) => {
     if (!a.createdAt) return 1
     if (!b.createdAt) return -1
 

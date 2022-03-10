@@ -39,7 +39,7 @@
     "deep-object-diff": "^1.1.0",
     "emoji-mart": "^3.0.1",
     "emotion-theming": "^11.0.0",
-    "firebase": "^9.6.7",
+    "firebase": "^9.6.8",
     "focus-visible": "^5.2.0",
     "formik": "^2.2.9",
     "framer-motion": "^4.1.0",

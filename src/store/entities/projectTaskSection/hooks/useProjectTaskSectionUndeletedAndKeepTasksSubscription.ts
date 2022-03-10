@@ -5,7 +5,7 @@ import { useProjectTaskSectionUndeletedAndKeepTasksSubscription as useSubscripti
 import { ProjectTaskResponse } from 'src/graphql/types/projectTask'
 import { uuid } from 'src/shared/uuid'
 import {
-  projectTasksByProjectTaskSectionIdState,
+  projectTasksByIdsState,
   useProjectTaskResponse,
 } from 'src/store/entities/projectTask'
 import { useProjectTaskSectionResponse } from 'src/store/entities/projectTaskSection'
@@ -56,20 +56,22 @@ export const useProjectTaskSectionUndeletedAndKeepTasksSubscription = (
       async (response: Response) => {
         if (__DEV__) console.log('Project Task Section deleted!')
 
-        const projectTaskSection =
-          response.projectTaskSectionUndeletedAndKeepTasks.projectTaskSection
+        const data = response.projectTaskSectionUndeletedAndKeepTasks
 
-        setProjectsTaskSections([{ ...projectTaskSection, projectTasks: [] }], {
-          includeProjectTasks: false,
-        })
+        setProjectsTaskSections(
+          [{ ...data.projectTaskSection, projectTasks: [] }],
+          {
+            includeProjectTasks: false,
+          },
+        )
 
         const projectTasks = await snapshot.getPromise(
-          projectTasksByProjectTaskSectionIdState(projectTaskSection.id),
+          projectTasksByIdsState(data.projectTaskIds),
         )
 
         const newProjectTasks = projectTasks.map((t) => ({
           ...t,
-          projectTaskSectionId: projectTaskSection.id,
+          projectTaskSectionId: data.projectTaskSection.id,
         }))
         setProjectTask(newProjectTasks as ProjectTaskResponse[], {
           includeTask: false,

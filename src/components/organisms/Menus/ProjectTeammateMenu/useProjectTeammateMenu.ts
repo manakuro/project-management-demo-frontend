@@ -38,7 +38,6 @@ export const useProjectTeammateMenu = (props: Props) => {
 
   const handleDebounce = useCallback(
     async (val: string) => {
-      if (!val) return
       await fetchTeammates(val)
     },
     [fetchTeammates],

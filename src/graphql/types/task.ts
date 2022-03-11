@@ -5,6 +5,7 @@ export type {
   TaskUpdatedSubscription,
   TaskDeletedSubscription,
   TaskUndeletedSubscription,
+  TaskAssignedSubscription,
   UpdateTaskMutationVariables,
   UndeleteTaskInput,
   UpdateTaskInput,

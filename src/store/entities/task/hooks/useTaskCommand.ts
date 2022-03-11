@@ -30,6 +30,7 @@ import {
 } from 'src/store/entities/teammateTask'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { taskState, initialState } from '../atom'
+import { TASK_ASSIGNED_SUBSCRIPTION_REQUEST_ID } from './useTaskAssignedSubscription'
 import { TASK_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskDeletedSubscription'
 import { TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskUndeletedSubscription'
 import { useUpsert } from './useUpsert'
@@ -117,7 +118,7 @@ export const useTaskCommand = () => {
                 id: val.id,
                 assigneeId: val.assigneeId,
                 workspaceId: workspace.id,
-                requestId: '',
+                requestId: TASK_ASSIGNED_SUBSCRIPTION_REQUEST_ID,
               },
             },
           })

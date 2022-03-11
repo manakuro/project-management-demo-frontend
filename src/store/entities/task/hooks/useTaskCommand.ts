@@ -3,6 +3,7 @@ import { useRecoilCallback } from 'recoil'
 import {
   useDeleteTaskMutation,
   useUndeleteTaskMutation,
+  useAssignTaskMutation,
 } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import {
@@ -37,6 +38,7 @@ export const useTaskCommand = () => {
   const { workspace } = useWorkspace()
   const [deleteTaskMutation] = useDeleteTaskMutation()
   const [undeleteTaskMutation] = useUndeleteTaskMutation()
+  const [assignTaskMutation] = useAssignTaskMutation()
   const { setTeammateTask } = useTeammateTaskResponse()
   const { setProjectTask } = useProjectTaskResponse()
   const { setDeletedTask } = useDeletedTaskResponse()
@@ -48,6 +50,43 @@ export const useTaskCommand = () => {
         upsert({ ...prev, ...val })
       },
     [upsert],
+  )
+
+  const assignTask = useRecoilCallback(
+    ({ snapshot }) =>
+      async (val: { id: string; assigneeId: string }) => {
+        const prev = await snapshot.getPromise(taskState(val.id))
+        await setTaskById(val.id, { assigneeId: val.assigneeId })
+
+        const restore = () => {
+          setTaskById(val.id, prev)
+        }
+
+        try {
+          const res = await assignTaskMutation({
+            variables: {
+              input: {
+                id: val.id,
+                assigneeId: val.assigneeId,
+                workspaceId: workspace.id,
+                requestId: '',
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+            return
+          }
+          const data = res.data?.assignTask
+          if (!data) return
+
+          setTeammateTask([data.teammateTask])
+        } catch (e) {
+          restore()
+          throw e
+        }
+      },
+    [assignTaskMutation, setTaskById, setTeammateTask, workspace.id],
   )
 
   const addTask = useCallback(
@@ -180,6 +219,7 @@ export const useTaskCommand = () => {
 
   return {
     addTask,
+    assignTask,
     setTaskById,
     deleteTask,
     undeleteTask,

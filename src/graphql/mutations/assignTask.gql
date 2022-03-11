@@ -1,0 +1,10 @@
+mutation AssignTask($input: AssignTaskInput!) {
+  assignTask(input: $input) {
+    task {
+      ...TaskFragment
+    }
+    teammateTask {
+      ...TeammateTaskFragment
+    }
+  }
+}

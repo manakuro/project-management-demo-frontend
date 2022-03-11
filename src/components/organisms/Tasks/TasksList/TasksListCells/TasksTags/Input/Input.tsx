@@ -5,7 +5,10 @@ import { TagMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import { Tag } from 'src/store/entities/tag'
-import { useTaskTagIdsByTaskId } from 'src/store/entities/taskTag'
+import {
+  useTaskTagCommand,
+  useTaskTagIdsByTaskId,
+} from 'src/store/entities/taskTag'
 
 type Props = {
   taskId: string
@@ -18,6 +21,8 @@ export const Input: React.VFC<Props> = memo((props) => {
   const { taskId, onClose } = props
   const popoverDisclosure = useDisclosure()
   const { taskTagIds } = useTaskTagIdsByTaskId(taskId)
+  const { addTaskTag } = useTaskTagCommand()
+
   const { ref } = useClickOutside(onClose, {
     hasClickedOutside: (e, helper) => {
       if (helper.isContainInPopoverContent(e)) return false
@@ -44,11 +49,11 @@ export const Input: React.VFC<Props> = memo((props) => {
   )
 
   const handleSelect = useCallback(
-    (tag: Tag) => {
-      console.log(tag)
+    async (tag: Tag) => {
       onClose()
+      await addTaskTag({ taskId, tag })
     },
-    [onClose],
+    [addTaskTag, onClose, taskId],
   )
 
   return (

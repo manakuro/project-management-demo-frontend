@@ -4,6 +4,7 @@ import {
   useDeleteTaskMutation,
   useUndeleteTaskMutation,
   useAssignTaskMutation,
+  useUnassignTaskMutation,
 } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import {
@@ -24,6 +25,7 @@ import {
   teammateTaskByTaskIdState,
   TeammateTaskResponse,
   teammateTaskState,
+  useResetTeammateTask,
   useTeammateTaskResponse,
 } from 'src/store/entities/teammateTask'
 import { useWorkspace } from 'src/store/entities/workspace'
@@ -39,7 +41,9 @@ export const useTaskCommand = () => {
   const [deleteTaskMutation] = useDeleteTaskMutation()
   const [undeleteTaskMutation] = useUndeleteTaskMutation()
   const [assignTaskMutation] = useAssignTaskMutation()
+  const [unassignTaskMutation] = useUnassignTaskMutation()
   const { setTeammateTask } = useTeammateTaskResponse()
+  const { resetTeammateTask } = useResetTeammateTask()
   const { setProjectTask } = useProjectTaskResponse()
   const { setDeletedTask } = useDeletedTaskResponse()
 
@@ -52,10 +56,54 @@ export const useTaskCommand = () => {
     [upsert],
   )
 
+  const unassignTask = useRecoilCallback(
+    ({ snapshot }) =>
+      async (val: { id: string }) => {
+        const prev = await snapshot.getPromise(taskState(val.id))
+        await setTaskById(val.id, { assigneeId: '' })
+
+        const restore = () => {
+          setTaskById(val.id, prev)
+        }
+
+        try {
+          const res = await unassignTaskMutation({
+            variables: {
+              input: {
+                id: val.id,
+                workspaceId: workspace.id,
+                requestId: '',
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+            return
+          }
+          const data = res.data?.unassignTask
+          if (!data) return
+
+          resetTeammateTask(data.teammateTaskId)
+        } catch (e) {
+          restore()
+          throw e
+        }
+      },
+    [resetTeammateTask, setTaskById, unassignTaskMutation, workspace.id],
+  )
+
   const assignTask = useRecoilCallback(
     ({ snapshot }) =>
       async (val: { id: string; assigneeId: string }) => {
         const prev = await snapshot.getPromise(taskState(val.id))
+
+        if (
+          prev.assigneeId &&
+          val.assigneeId &&
+          prev.assigneeId === val.assigneeId
+        )
+          return
+
         await setTaskById(val.id, { assigneeId: val.assigneeId })
 
         const restore = () => {
@@ -220,6 +268,7 @@ export const useTaskCommand = () => {
   return {
     addTask,
     assignTask,
+    unassignTask,
     setTaskById,
     deleteTask,
     undeleteTask,

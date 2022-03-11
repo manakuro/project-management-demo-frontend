@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
-import { useTask } from 'src/store/entities/task'
+import { useTaskCommand } from 'src/store/entities/task'
 
 type Props = {
   taskId: string
@@ -10,15 +10,15 @@ type Props = {
 
 export const DeleteButton: React.FC<Props> = memo<Props>((props) => {
   const { isHovering, taskId } = props
-  const { setTask } = useTask(taskId)
+  const { unassignTask } = useTaskCommand()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   const handleClick = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
       e.stopPropagation()
-      await setTask({ assigneeId: '' })
+      await unassignTask({ id: taskId })
     },
-    [setTask],
+    [taskId, unassignTask],
   )
 
   return (

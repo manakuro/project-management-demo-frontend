@@ -10,7 +10,7 @@ import { AssigneeMenu } from 'src/components/organisms/Menus'
 import { PopoverProps } from 'src/components/organisms/Popover'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
-import { useTask } from 'src/store/entities/task'
+import { useTask, useTaskCommand } from 'src/store/entities/task'
 import { Teammate, useTeammate } from 'src/store/entities/teammate'
 
 type Props = {
@@ -20,7 +20,8 @@ type Props = {
 
 export const Input: React.FC<Props> = (props) => {
   const { onClose, taskId } = props
-  const { setTask, task } = useTask(taskId)
+  const { task } = useTask(taskId)
+  const { unassignTask, assignTask } = useTaskCommand()
   const hasAssigned = useMemo(() => !!task.assigneeId, [task.assigneeId])
   const { teammate } = useTeammate(task.assigneeId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
@@ -46,16 +47,16 @@ export const Input: React.FC<Props> = (props) => {
     async (val: Teammate) => {
       setValue('')
       console.log('val: ', val)
-      await setTask({ assigneeId: val.id })
+      await assignTask({ id: taskId, assigneeId: val.id })
       onClose()
     },
-    [onClose, setTask],
+    [assignTask, onClose, taskId],
   )
 
   const handleDelete = useCallback(async () => {
-    await setTask({ assigneeId: '' })
     onClose()
-  }, [onClose, setTask])
+    await unassignTask({ id: taskId })
+  }, [onClose, taskId, unassignTask])
 
   return (
     <AssigneeMenu

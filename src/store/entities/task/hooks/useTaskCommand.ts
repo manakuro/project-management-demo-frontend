@@ -3,6 +3,8 @@ import { useRecoilCallback } from 'recoil'
 import {
   useDeleteTaskMutation,
   useUndeleteTaskMutation,
+  useAssignTaskMutation,
+  useUnassignTaskMutation,
 } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import {
@@ -23,11 +25,14 @@ import {
   teammateTaskByTaskIdState,
   TeammateTaskResponse,
   teammateTaskState,
+  useResetTeammateTask,
   useTeammateTaskResponse,
 } from 'src/store/entities/teammateTask'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { taskState, initialState } from '../atom'
+import { TASK_ASSIGNED_SUBSCRIPTION_REQUEST_ID } from './useTaskAssignedSubscription'
 import { TASK_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskDeletedSubscription'
+import { TASK_UNASSIGNED_SUBSCRIPTION_REQUEST_ID } from './useTaskUnassignedSubscription'
 import { TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskUndeletedSubscription'
 import { useUpsert } from './useUpsert'
 
@@ -37,7 +42,10 @@ export const useTaskCommand = () => {
   const { workspace } = useWorkspace()
   const [deleteTaskMutation] = useDeleteTaskMutation()
   const [undeleteTaskMutation] = useUndeleteTaskMutation()
+  const [assignTaskMutation] = useAssignTaskMutation()
+  const [unassignTaskMutation] = useUnassignTaskMutation()
   const { setTeammateTask } = useTeammateTaskResponse()
+  const { resetTeammateTask } = useResetTeammateTask()
   const { setProjectTask } = useProjectTaskResponse()
   const { setDeletedTask } = useDeletedTaskResponse()
 
@@ -48,6 +56,87 @@ export const useTaskCommand = () => {
         upsert({ ...prev, ...val })
       },
     [upsert],
+  )
+
+  const unassignTask = useRecoilCallback(
+    ({ snapshot }) =>
+      async (val: { id: string }) => {
+        const prev = await snapshot.getPromise(taskState(val.id))
+        await setTaskById(val.id, { assigneeId: '' })
+
+        const restore = () => {
+          setTaskById(val.id, prev)
+        }
+
+        try {
+          const res = await unassignTaskMutation({
+            variables: {
+              input: {
+                id: val.id,
+                workspaceId: workspace.id,
+                requestId: TASK_UNASSIGNED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+            return
+          }
+          const data = res.data?.unassignTask
+          if (!data) return
+
+          resetTeammateTask(data.teammateTaskId)
+        } catch (e) {
+          restore()
+          throw e
+        }
+      },
+    [resetTeammateTask, setTaskById, unassignTaskMutation, workspace.id],
+  )
+
+  const assignTask = useRecoilCallback(
+    ({ snapshot }) =>
+      async (val: { id: string; assigneeId: string }) => {
+        const prev = await snapshot.getPromise(taskState(val.id))
+
+        if (
+          prev.assigneeId &&
+          val.assigneeId &&
+          prev.assigneeId === val.assigneeId
+        )
+          return
+
+        await setTaskById(val.id, { assigneeId: val.assigneeId })
+
+        const restore = () => {
+          setTaskById(val.id, prev)
+        }
+
+        try {
+          const res = await assignTaskMutation({
+            variables: {
+              input: {
+                id: val.id,
+                assigneeId: val.assigneeId,
+                workspaceId: workspace.id,
+                requestId: TASK_ASSIGNED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+            return
+          }
+          const data = res.data?.assignTask
+          if (!data) return
+
+          setTeammateTask([data.teammateTask])
+        } catch (e) {
+          restore()
+          throw e
+        }
+      },
+    [assignTaskMutation, setTaskById, setTeammateTask, workspace.id],
   )
 
   const addTask = useCallback(
@@ -180,6 +269,8 @@ export const useTaskCommand = () => {
 
   return {
     addTask,
+    assignTask,
+    unassignTask,
     setTaskById,
     deleteTask,
     undeleteTask,

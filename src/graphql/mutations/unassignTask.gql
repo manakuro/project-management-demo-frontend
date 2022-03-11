@@ -1,0 +1,5 @@
+mutation UnassignTask($input: UnassignTaskInput!) {
+  unassignTask(input: $input) {
+    teammateTaskId
+  }
+}

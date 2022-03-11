@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { Button } from 'src/components/atoms'
 import { PopoverProps } from 'src/components/organisms/Popover'
 import { useMe } from 'src/store/entities/me'
-import { useTask } from 'src/store/entities/task'
+import { useTaskCommand } from 'src/store/entities/task'
 
 type Props = {
   taskId: string
@@ -11,13 +11,13 @@ type Props = {
 
 export const AssignToMeButton: React.FC<Props> = (props) => {
   const { onClose, taskId } = props
-  const { setTask } = useTask(taskId)
+  const { assignTask } = useTaskCommand()
   const { me } = useMe()
 
   const handleAssignMe = useCallback(async () => {
-    await setTask({ assigneeId: me.id })
     onClose()
-  }, [me.id, onClose, setTask])
+    await assignTask({ id: taskId, assigneeId: me.id })
+  }, [assignTask, me.id, onClose, taskId])
 
   return (
     <Button size="sm" variant="outline" onClick={handleAssignMe}>

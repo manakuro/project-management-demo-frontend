@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo } from 'react'
 import {
   ProjectTeammateMenuItem,
   useProjectTeammateMenu,
@@ -14,12 +14,7 @@ type Props = {
 }
 
 export const Content: React.FC<Props> = memo<Props>((props) => {
-  const { teammates, loading, fetchTeammates, onSelectTeammate } =
-    useProjectTeammateMenu(props)
-
-  useEffect(() => {
-    fetchTeammates('')
-  }, [fetchTeammates])
+  const { teammates, loading, onSelectTeammate } = useProjectTeammateMenu(props)
 
   if (loading) return <SearchMenuLoading />
 

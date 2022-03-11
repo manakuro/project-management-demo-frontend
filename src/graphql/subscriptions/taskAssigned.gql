@@ -1,0 +1,7 @@
+subscription TaskAssigned($workspaceId: ID!, $requestId: String!) {
+  taskAssigned(workspaceId: $workspaceId, requestId: $requestId) {
+    teammateTask {
+      ...TeammateTaskFragment
+    }
+  }
+}

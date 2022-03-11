@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useMemo } from 'react'
+import React, { memo, useMemo } from 'react'
 import { Divider, Icon, Text } from 'src/components/atoms'
 import {
   ProjectTeammateMenuItem,
@@ -20,17 +20,13 @@ type Props = {
 }
 
 export const Content: React.FC<Props> = memo<Props>((props) => {
-  const { teammates, loading, fetchTeammates, onSelectTeammate } =
-    useProjectTeammateMenu(props)
+  const { teammates, loading, onSelectTeammate } = useProjectTeammateMenu(props)
+
   const text = useMemo(() => {
     if (props.queryText) return `Invite '${props.queryText}' via email`
 
     return 'Invite teammates via email'
   }, [props.queryText])
-
-  useEffect(() => {
-    fetchTeammates('')
-  }, [fetchTeammates])
 
   if (loading) return <SearchMenuLoading />
 

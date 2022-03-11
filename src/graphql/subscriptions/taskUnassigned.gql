@@ -1,0 +1,8 @@
+subscription TaskUnassigned($workspaceId: ID!, $requestId: String!) {
+  taskUnassigned(workspaceId: $workspaceId, requestId: $requestId) {
+    task {
+      id
+    }
+    teammateTaskId
+  }
+}

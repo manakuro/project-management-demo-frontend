@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import { Flex, Text } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
-import { useTask } from 'src/store/entities/task'
+import { useTask, useTaskCommand } from 'src/store/entities/task'
 import { Teammate, useTeammate } from 'src/store/entities/teammate'
 import { DeleteButton } from './DeleteButton'
 import { Input } from './Input'
@@ -15,7 +15,8 @@ type Props = {
 
 export const Content: React.VFC<Props> = memo<Props>((props) => {
   const { isHovering, focused, onUnfocus, taskId } = props
-  const { task, setTask } = useTask(taskId)
+  const { task } = useTask(taskId)
+  const { assignTask } = useTaskCommand()
   const { teammate } = useTeammate(task.assigneeId)
   const hasAssigned = useMemo(() => !!task.assigneeId, [task.assigneeId])
   const showIcon = useMemo(
@@ -29,9 +30,9 @@ export const Content: React.VFC<Props> = memo<Props>((props) => {
 
   const handleSelect = useCallback(
     async (val: Teammate) => {
-      await setTask({ assigneeId: val.id })
+      await assignTask({ id: taskId, assigneeId: val.id })
     },
-    [setTask],
+    [assignTask, taskId],
   )
 
   if (focused) {

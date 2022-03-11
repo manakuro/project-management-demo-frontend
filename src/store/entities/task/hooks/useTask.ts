@@ -25,19 +25,25 @@ export const useTask = (taskId: string) => {
         const prev = await snapshot.getPromise(taskState(taskId))
         if (!hasTaskBeenPersisted(prev)) return
 
-        upsert({
-          ...prev,
-          ...val,
-        })
+        upsert({ ...prev, ...val })
 
-        const res = await updateTaskMutation({
-          variables: {
-            input: prepareUpdateTaskInput(taskId, workspace.id, val),
-          },
-        })
-
-        if (res.errors) {
+        const restore = () => {
           upsert(prev)
+        }
+
+        try {
+          const res = await updateTaskMutation({
+            variables: {
+              input: prepareUpdateTaskInput(taskId, workspace.id, val),
+            },
+          })
+
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
         }
       },
     [taskId, updateTaskMutation, upsert, workspace.id],

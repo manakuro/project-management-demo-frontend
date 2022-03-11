@@ -3,7 +3,7 @@ import { Input as AtomsInput } from 'src/components/atoms'
 import { AssigneeMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
-import { useTask } from 'src/store/entities/task'
+import { useTaskCommand } from 'src/store/entities/task'
 import { Teammate } from 'src/store/entities/teammate'
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 
 export const Input: React.FC<Props> = memo<Props>((props) => {
   const { taskId, onClose } = props
-  const { setTask } = useTask(taskId)
+  const { assignTask } = useTaskCommand()
   const { ref } = useClickOutside(onClose, {
     hasClickedOutside: (e, helpers) => {
       if (helpers.isContainInPopoverContent(e)) return false
@@ -39,10 +39,10 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
   const handleSelect = useCallback(
     async (val: Teammate) => {
       setValue('')
-      await setTask({ assigneeId: val.id })
       onClose()
+      await assignTask({ id: taskId, assigneeId: val.id })
     },
-    [onClose, setTask],
+    [assignTask, onClose, taskId],
   )
 
   return (

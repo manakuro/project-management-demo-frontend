@@ -19,8 +19,9 @@ import {
   useTaskDeletedSubscription,
   useTaskUndeletedSubscription,
   useTaskUpdatedSubscription,
+  useTaskAssignedSubscription,
+  useTaskUnassignedSubscription,
 } from 'src/store/entities/task'
-import { useTaskAssignedSubscription } from 'src/store/entities/task/hooks/useTaskAssignedSubscription'
 import {
   useTaskFeedCreatedSubscription,
   useTaskFeedDeletedSubscription,
@@ -104,6 +105,9 @@ export const Subscription: React.FC = memo((props) => {
     workspaceId: workspace.id,
   })
   useTaskAssignedSubscription({
+    workspaceId: workspace.id,
+  })
+  useTaskUnassignedSubscription({
     workspaceId: workspace.id,
   })
 

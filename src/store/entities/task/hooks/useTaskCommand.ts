@@ -32,6 +32,7 @@ import { useWorkspace } from 'src/store/entities/workspace'
 import { taskState, initialState } from '../atom'
 import { TASK_ASSIGNED_SUBSCRIPTION_REQUEST_ID } from './useTaskAssignedSubscription'
 import { TASK_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskDeletedSubscription'
+import { TASK_UNASSIGNED_SUBSCRIPTION_REQUEST_ID } from './useTaskUnassignedSubscription'
 import { TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskUndeletedSubscription'
 import { useUpsert } from './useUpsert'
 
@@ -73,7 +74,7 @@ export const useTaskCommand = () => {
               input: {
                 id: val.id,
                 workspaceId: workspace.id,
-                requestId: '',
+                requestId: TASK_UNASSIGNED_SUBSCRIPTION_REQUEST_ID,
               },
             },
           })

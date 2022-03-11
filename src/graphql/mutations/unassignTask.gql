@@ -1,8 +1,5 @@
 mutation UnassignTask($input: UnassignTaskInput!) {
   unassignTask(input: $input) {
-    task {
-      ...TaskFragment
-    }
     teammateTaskId
   }
 }

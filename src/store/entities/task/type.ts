@@ -5,6 +5,7 @@ export type {
   TaskDeletedSubscription as TaskDeletedSubscriptionResponse,
   TaskUndeletedSubscription as TaskUndeletedSubscriptionResponse,
   TaskAssignedSubscription as TaskAssignedSubscriptionResponse,
+  TaskUnassignedSubscription as TaskUnassignedSubscriptionResponse,
   UpdateTaskMutationVariables,
   UpdateTaskInput,
 } from 'src/graphql/types/task'

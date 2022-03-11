@@ -1,27 +1,27 @@
 import React, { memo, useCallback } from 'react'
 import { SearchMenuListItem } from 'src/components/organisms/Menus/SearchMenu'
-import { TaskTag } from 'src/store/entities/taskTag'
+import { Tag } from 'src/store/entities/tag'
 
 type Props = {
-  onClick: (taskTag: string) => void
-  taskTag: TaskTag
+  onClick: (tag: Tag) => void
+  tag: Tag
   index: number
 }
 
 export const TagItem: React.FC<Props> = memo<Props>((props) => {
-  const { taskTag } = props
+  const { tag } = props
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
       e.stopPropagation()
-      props.onClick(taskTag.tag.id)
+      props.onClick(tag)
     },
-    [taskTag.tag.id, props],
+    [tag, props],
   )
 
   return (
     <SearchMenuListItem index={props.index} onClick={handleClick}>
-      {taskTag.tag.name}
+      {tag.name}
     </SearchMenuListItem>
   )
 })

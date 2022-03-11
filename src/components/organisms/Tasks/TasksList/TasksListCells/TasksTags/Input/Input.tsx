@@ -4,6 +4,7 @@ import { TagChip } from 'src/components/molecules'
 import { TagMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
+import { Tag } from 'src/store/entities/tag'
 import { useTaskTagIdsByTaskId } from 'src/store/entities/taskTag'
 
 type Props = {
@@ -43,8 +44,8 @@ export const Input: React.VFC<Props> = memo((props) => {
   )
 
   const handleSelect = useCallback(
-    (val: string) => {
-      console.log(val)
+    (tag: Tag) => {
+      console.log(tag)
       onClose()
     },
     [onClose],

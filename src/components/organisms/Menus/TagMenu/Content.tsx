@@ -7,11 +7,12 @@ import {
   SearchMenuRightContainer,
   useSearchMenu,
 } from 'src/components/organisms/Menus/SearchMenu'
+import { Tag } from 'src/store/entities/tag'
 import { TagItem } from './TagItem'
 import { useSearchTagsQuery } from './useSearchTagsQuery'
 
 type Props = {
-  onSelect: (val: string) => void
+  onSelect: (tag: Tag) => void
   queryText: string
   onClose: () => void
   onClosed?: () => void
@@ -29,8 +30,8 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
   )
 
   const handleSelect = useCallback(
-    (val: string) => {
-      onSelect(val)
+    (tag: Tag) => {
+      onSelect(tag)
       onClose()
       onClosed?.()
     },
@@ -50,7 +51,7 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
   return (
     <>
       {tags.map((t, i) => (
-        <TagItem key={t.id} onClick={handleSelect} taskTag={t} index={i} />
+        <TagItem key={t.id} onClick={handleSelect} tag={t} index={i} />
       ))}
       <Divider />
       <SearchMenuListItem index={tags.length}>

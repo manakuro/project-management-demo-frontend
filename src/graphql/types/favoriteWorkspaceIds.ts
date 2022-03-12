@@ -4,4 +4,4 @@ export type FavoriteWorkspaceIdsResponse = NonNullable<
   FavoriteWorkspaceIdsQuery['favoriteWorkspaceIds']
 >
 
-export type { FavoriteWorkspaceIdsUpdatedSubscription } from 'src/graphql/types'
+export type { FavoriteWorkspaceIdsUpdatedSubscription as FavoriteWorkspaceIdsUpdatedSubscriptionResponse } from 'src/graphql/types'

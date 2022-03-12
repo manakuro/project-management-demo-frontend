@@ -3,7 +3,7 @@ import { WorkspaceQuery } from 'src/graphql/types'
 export type {
   WorkspaceQuery,
   WorkspaceQueryVariables,
-  WorkspaceUpdatedSubscription,
+  WorkspaceUpdatedSubscription as WorkspaceUpdatedSubscriptionResponse,
 } from 'src/graphql/types'
 export type {
   WorkspaceQueryHookResult,

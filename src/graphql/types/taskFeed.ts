@@ -2,9 +2,9 @@ import { TaskFeedFragmentFragment } from 'src/graphql/types'
 
 export type TaskFeedResponse = NonNullable<TaskFeedFragmentFragment>
 export type {
-  TaskFeedUpdatedSubscription,
-  TaskFeedCreatedSubscription,
-  TaskFeedDeletedSubscription,
+  TaskFeedUpdatedSubscription as TaskFeedUpdatedSubscriptionResponse,
+  TaskFeedCreatedSubscription as TaskFeedCreatedSubscriptionResponse,
+  TaskFeedDeletedSubscription as TaskFeedDeletedSubscriptionResponse,
   UpdateTaskFeedInput,
   CreateTaskFeedInput,
   DeleteTaskFeedInput,

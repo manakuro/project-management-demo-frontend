@@ -5,6 +5,6 @@ export type TaskLikeResponse = NonNullable<
 >
 
 export type {
-  TaskLikeCreatedSubscription,
-  TaskLikeDeletedSubscription,
+  TaskLikeCreatedSubscription as TaskLikeCreatedSubscriptionResponse,
+  TaskLikeDeletedSubscription as TaskLikeDeletedSubscriptionResponse,
 } from 'src/graphql/types'

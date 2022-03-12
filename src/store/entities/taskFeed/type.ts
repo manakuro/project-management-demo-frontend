@@ -2,9 +2,9 @@ import type { TaskFeedResponse } from 'src/graphql/types/taskFeed'
 
 export type {
   TaskFeedResponse,
-  TaskFeedUpdatedSubscription as TaskFeedUpdatedSubscriptionResponse,
-  TaskFeedCreatedSubscription as TaskFeedCreatedSubscriptionResponse,
-  TaskFeedDeletedSubscription as TaskFeedDeletedSubscriptionResponse,
+  TaskFeedUpdatedSubscriptionResponse,
+  TaskFeedCreatedSubscriptionResponse,
+  TaskFeedDeletedSubscriptionResponse,
   UpdateTaskFeedInput,
   CreateTaskFeedInput,
   DeleteTaskFeedInput,

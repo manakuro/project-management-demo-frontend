@@ -2,7 +2,7 @@ import { FavoriteWorkspaceIdsResponse } from 'src/graphql/types/favoriteWorkspac
 
 export type {
   FavoriteWorkspaceIdsResponse,
-  FavoriteWorkspaceIdsUpdatedSubscription as FavoriteWorkspaceIdsUpdatedSubscriptionResponse,
+  FavoriteWorkspaceIdsUpdatedSubscriptionResponse,
 } from 'src/graphql/types/favoriteWorkspaceIds'
 
 export type FavoriteWorkspaceId = FavoriteWorkspaceIdsResponse[number]

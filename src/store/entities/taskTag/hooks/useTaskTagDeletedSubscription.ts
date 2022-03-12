@@ -1,10 +1,10 @@
 import isEqual from 'lodash-es/isEqual'
 import { useMemo } from 'react'
 import { useRecoilCallback } from 'recoil'
-import { useTaskTagCreatedSubscription as useSubscription } from 'src/graphql/hooks'
+import { useTaskTagDeletedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { TaskTagCreatedSubscriptionResponse as Response } from '../type'
-import { useTaskTagResponse } from './useTaskTagResponse'
+import { TaskTagDeletedSubscriptionResponse as Response } from '../type'
+import { useResetTaskTag } from './useResetTaskTag'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any
@@ -12,9 +12,9 @@ let previousData: any
 type Props = {
   workspaceId: string
 }
-export const TASK_TAG_CREATED_SUBSCRIPTION_REQUEST_ID = uuid()
-export const useTaskTagCreatedSubscription = (props: Props) => {
-  const { setTaskTag } = useTaskTagResponse()
+export const TASK_TAG_DELETED_SUBSCRIPTION_REQUEST_ID = uuid()
+export const useTaskTagDeletedSubscription = (props: Props) => {
+  const { resetTaskTag } = useResetTaskTag()
 
   const skipSubscription = useMemo(
     () => !props.workspaceId,
@@ -23,7 +23,7 @@ export const useTaskTagCreatedSubscription = (props: Props) => {
   useSubscription({
     variables: {
       workspaceId: props.workspaceId,
-      requestId: TASK_TAG_CREATED_SUBSCRIPTION_REQUEST_ID,
+      requestId: TASK_TAG_DELETED_SUBSCRIPTION_REQUEST_ID,
     },
     onSubscriptionData: (data) => {
       if (
@@ -43,12 +43,12 @@ export const useTaskTagCreatedSubscription = (props: Props) => {
 
   const setBySubscription = useRecoilCallback(
     () => async (response: Response) => {
-      const data = response.taskTagCreated
+      const data = response.taskTagDeleted
 
       if (__DEV__) console.log('Teammate Task created!')
 
-      setTaskTag([data])
+      resetTaskTag(data.id)
     },
-    [setTaskTag],
+    [resetTaskTag],
   )
 }

@@ -13,6 +13,7 @@ import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState } from '../atom'
 import { useResetTaskTag } from './useResetTaskTag'
 import { TASK_TAG_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskTagCreatedSubscription'
+import { TASK_TAG_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskTagDeletedSubscription'
 import { useTaskTagResponse } from './useTaskTagResponse'
 import { useUpsert } from './useUpsert'
 
@@ -98,7 +99,7 @@ export const useTaskTagCommand = () => {
               input: {
                 id: input.id,
                 workspaceId: workspace.id,
-                requestId: '',
+                requestId: TASK_TAG_DELETED_SUBSCRIPTION_REQUEST_ID,
               },
             },
           })

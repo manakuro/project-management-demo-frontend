@@ -1,0 +1,5 @@
+subscription TaskTagDeleted($workspaceId: ID!, $requestId: String!) {
+  taskTagDeleted(workspaceId: $workspaceId, requestId: $requestId) {
+    id
+  }
+}

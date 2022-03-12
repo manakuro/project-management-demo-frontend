@@ -8,22 +8,22 @@ type Variant = 'button' | 'icon'
 type Props = {
   taskTagId: string
   variant: Variant
-  onDelete?: () => void
+  onDelete?: (id: string) => void
   deletable?: boolean
   iconProps?: Omit<IconProps, 'icon'>
 }
 
 export const TagChip: React.VFC<Props> = memo<Props>((props) => {
-  const { taskTagId, variant, iconProps } = props
+  const { taskTagId, variant, iconProps, onDelete } = props
   const { taskTag } = useTaskTag(taskTagId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   const handleDelete = useCallback(
     (e: React.MouseEvent<SVGElement>) => {
       e.stopPropagation()
-      props.onDelete?.()
+      onDelete?.(taskTagId)
     },
-    [props],
+    [onDelete, taskTagId],
   )
 
   if (variant === 'icon') {

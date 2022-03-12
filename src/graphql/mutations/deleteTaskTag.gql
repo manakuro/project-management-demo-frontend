@@ -1,0 +1,5 @@
+mutation DeleteTaskTag($input: DeleteTaskTagInput!) {
+  deleteTaskTag(input: $input) {
+    id
+  }
+}

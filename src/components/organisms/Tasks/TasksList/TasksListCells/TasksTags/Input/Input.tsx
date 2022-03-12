@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo, useState } from 'react'
+import React, { memo, useCallback, useMemo, useRef, useState } from 'react'
 import { Flex, Input as AtomsInput, Wrap, WrapItem } from 'src/components/atoms'
 import { TagChip } from 'src/components/molecules'
 import { TagMenu } from 'src/components/organisms/Menus'
@@ -21,7 +21,8 @@ export const Input: React.VFC<Props> = memo((props) => {
   const { taskId, onClose } = props
   const popoverDisclosure = useDisclosure()
   const { taskTagIds } = useTaskTagIdsByTaskId(taskId)
-  const { addTaskTag } = useTaskTagCommand()
+  const { addTaskTag, deleteTaskTag } = useTaskTagCommand()
+  const inputRef = useRef<HTMLInputElement | null>(null)
 
   const { ref } = useClickOutside(onClose, {
     hasClickedOutside: (e, helper) => {
@@ -56,6 +57,16 @@ export const Input: React.VFC<Props> = memo((props) => {
     [addTaskTag, onClose, taskId],
   )
 
+  const handleDelete = useCallback(
+    async (id: string) => {
+      await deleteTaskTag({ id })
+
+      if (!inputRef.current) return
+      inputRef.current?.focus()
+    },
+    [deleteTaskTag],
+  )
+
   return (
     <TagMenu
       isOpen={popoverDisclosure.isOpen}
@@ -83,11 +94,17 @@ export const Input: React.VFC<Props> = memo((props) => {
         <Wrap minH={HEIGHT} py={2} justifyItems="center" display="flex">
           {taskTagIds.map((id) => (
             <WrapItem key={id}>
-              <TagChip taskTagId={id} deletable variant="button" />
+              <TagChip
+                taskTagId={id}
+                deletable
+                variant="button"
+                onDelete={handleDelete}
+              />
             </WrapItem>
           ))}
           <WrapItem>
             <AtomsInput
+              ref={inputRef}
               autoFocus
               fontSize="sm"
               size="sm"

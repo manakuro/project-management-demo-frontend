@@ -5,8 +5,8 @@ import { TeammateTaskSection } from '../type'
 export const useUpsert = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
-      (val: TeammateTaskSection) => {
-        set(teammatesTaskSectionState(val.id), val)
+      (input: TeammateTaskSection) => {
+        set(teammatesTaskSectionState(input.id), input)
       },
     [],
   )

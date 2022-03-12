@@ -16,8 +16,8 @@ export const useProjectsTaskColumns = (tasksTaskColumnId: string) => {
     useProjectTaskColumnCommand()
 
   const setTasksTaskColumn = useCallback(
-    async (val: Partial<ProjectTaskColumn>) => {
-      await setProjectsTaskColumn({ id: tasksTaskColumnId, ...val })
+    async (input: Partial<ProjectTaskColumn>) => {
+      await setProjectsTaskColumn({ id: tasksTaskColumnId, ...input })
     },
     [setProjectsTaskColumn, tasksTaskColumnId],
   )

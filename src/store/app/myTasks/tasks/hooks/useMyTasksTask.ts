@@ -5,16 +5,16 @@ export const useMyTasksTask = () => {
   const { addTeammateTask, setTeammateTaskByTaskId } = useTeammateTaskCommand()
 
   const addTask = useRecoilCallback(
-    () => (val: { taskSectionId: string }) => {
-      return addTeammateTask({ teammateTaskSectionId: val.taskSectionId })
+    () => (input: { taskSectionId: string }) => {
+      return addTeammateTask({ teammateTaskSectionId: input.taskSectionId })
     },
     [addTeammateTask],
   )
 
   const setTaskSectionId = useRecoilCallback(
-    () => async (val: { taskSectionId: string; taskId: string }) => {
-      await setTeammateTaskByTaskId(val.taskId, {
-        teammateTaskSectionId: val.taskSectionId,
+    () => async (input: { taskSectionId: string; taskId: string }) => {
+      await setTeammateTaskByTaskId(input.taskId, {
+        teammateTaskSectionId: input.taskSectionId,
       })
     },
     [setTeammateTaskByTaskId],

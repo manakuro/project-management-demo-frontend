@@ -9,13 +9,13 @@ export const useMyTasksSubTask = () => {
 
   const addTask = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: { taskParentId: string }) => {
+      async (input: { taskParentId: string }) => {
         const teammateTask = await snapshot.getPromise(
-          teammateTaskByTaskIdState(val.taskParentId),
+          teammateTaskByTaskIdState(input.taskParentId),
         )
         return addTeammateTask({
           teammateTaskSectionId: teammateTask.teammateTaskSectionId,
-          taskParentId: val.taskParentId,
+          taskParentId: input.taskParentId,
         })
       },
     [addTeammateTask],

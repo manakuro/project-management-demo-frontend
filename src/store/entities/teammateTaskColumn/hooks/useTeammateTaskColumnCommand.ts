@@ -16,9 +16,11 @@ export const useTeammateTaskColumnCommand = () => {
 
   const setTeammateTaskColumn = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: Partial<TeammateTaskColumn> & { id: string }) => {
-        const prev = await snapshot.getPromise(teammateTaskColumnState(val.id))
-        upsert({ ...prev, ...val })
+      async (input: Partial<TeammateTaskColumn> & { id: string }) => {
+        const prev = await snapshot.getPromise(
+          teammateTaskColumnState(input.id),
+        )
+        upsert({ ...prev, ...input })
 
         const restore = () => {
           upsert(prev)
@@ -28,7 +30,7 @@ export const useTeammateTaskColumnCommand = () => {
           const res = await updateTeammateTaskColumnMutation({
             variables: {
               input: {
-                ...val,
+                ...input,
                 id: prev.id,
                 requestId: '',
               },

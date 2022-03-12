@@ -7,19 +7,19 @@ export const useProjectsTask = () => {
   const { projectId } = useProjectsProjectId()
 
   const addTask = useRecoilCallback(
-    () => (val: { taskSectionId: string }) => {
+    () => (input: { taskSectionId: string }) => {
       return addProjectTask({
         projectId,
-        projectTaskSectionId: val.taskSectionId,
+        projectTaskSectionId: input.taskSectionId,
       })
     },
     [addProjectTask, projectId],
   )
 
   const setTaskSectionId = useRecoilCallback(
-    () => async (val: { taskSectionId: string; taskId: string }) => {
-      await setProjectTaskByTaskId(val.taskId, {
-        projectTaskSectionId: val.taskSectionId,
+    () => async (input: { taskSectionId: string; taskId: string }) => {
+      await setProjectTaskByTaskId(input.taskId, {
+        projectTaskSectionId: input.taskSectionId,
       })
     },
     [setProjectTaskByTaskId],

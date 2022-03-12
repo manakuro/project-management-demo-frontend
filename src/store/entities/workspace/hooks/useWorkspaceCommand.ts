@@ -13,11 +13,11 @@ export const useWorkspaceCommand = () => {
 
   const setWorkspace = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: Partial<Workspace>) => {
+      async (input: Partial<Workspace>) => {
         const prev = await snapshot.getPromise(workspaceState)
         const params = {
           ...prev,
-          ...val,
+          ...input,
         }
         upsert(params)
 

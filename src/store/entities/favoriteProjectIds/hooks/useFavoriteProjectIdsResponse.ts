@@ -6,8 +6,8 @@ export const useFavoriteProjectIdsResponse = () => {
   const { upsert } = useUpsert()
 
   const setFavoriteProjectIds = useRecoilCallback(
-    () => (favoriteProjectIds: FavoriteProjectId[]) => {
-      upsert(favoriteProjectIds)
+    () => (input: FavoriteProjectId[]) => {
+      upsert(input)
     },
     [upsert],
   )

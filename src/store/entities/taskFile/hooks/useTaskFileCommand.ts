@@ -8,11 +8,11 @@ export const useTaskFileCommand = () => {
   const { upsert } = useUpsert()
 
   const addTaskFile = useCallback(
-    (val: Partial<TaskFile>) => {
+    (input: Partial<TaskFile>) => {
       const id = uuid()
       upsert({
         ...initialState(),
-        ...val,
+        ...input,
         id,
       })
       return id

@@ -14,11 +14,11 @@ export const useDeletedTask = (deletedTaskId: string) => {
   )
   const setDeletedTask = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: Partial<DeletedTask>) => {
+      async (input: Partial<DeletedTask>) => {
         const prev = await snapshot.getPromise(deletedTaskState(deletedTask.id))
         upsert({
           ...prev,
-          ...val,
+          ...input,
         })
       },
     [deletedTask.id, upsert],

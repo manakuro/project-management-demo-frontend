@@ -23,20 +23,20 @@ export const useTeammateTaskSection = (teammateTaskSectionId: string) => {
 
   const setTeammateTaskSection = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: Partial<TeammateTaskSection>) => {
+      async (input: Partial<TeammateTaskSection>) => {
         const prev = await snapshot.getPromise(
           teammatesTaskSectionState(teammateTaskSectionId),
         )
         if (!hasTeammateTaskSectionBeenPersisted(prev)) return
 
-        upsert({ ...prev, ...val })
+        upsert({ ...prev, ...input })
 
         const res = await updateTeammateTaskSectionMutation({
           variables: {
             input: prepareUpdateTeammateTaskSectionInput(
               teammateTaskSectionId,
               workspace.id,
-              val,
+              input,
             ),
           },
         })
@@ -53,10 +53,14 @@ export const useTeammateTaskSection = (teammateTaskSectionId: string) => {
   )
 
   const setTeammateTaskSectionName = useRecoilCallback(
-    () => async (val: string) => {
-      if (teammateTaskSection.name && val && teammateTaskSection.name === val)
+    () => async (input: string) => {
+      if (
+        teammateTaskSection.name &&
+        input &&
+        teammateTaskSection.name === input
+      )
         return
-      const name = val || DEFAULT_TITLE_NAME
+      const name = input || DEFAULT_TITLE_NAME
 
       await setTeammateTaskSection({ name, isNew: false })
     },
@@ -72,10 +76,10 @@ export const useTeammateTaskSection = (teammateTaskSectionId: string) => {
 export const prepareUpdateTeammateTaskSectionInput = (
   teammateTaskSectionId: string,
   workspaceId: string,
-  val: Partial<TeammateTaskSection>,
+  input: Partial<TeammateTaskSection>,
 ): UpdateTeammateTaskSectionInput => {
   return {
-    ...omit(val, 'isNew'),
+    ...omit(input, 'isNew'),
     id: teammateTaskSectionId,
     workspaceId,
     requestId: TEAMMATE_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID,

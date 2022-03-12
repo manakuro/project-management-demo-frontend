@@ -265,13 +265,13 @@ export const useTeammatesTaskSectionCommand = () => {
 
   const undeleteTaskSectionAndKeepTasks = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: DeleteTeammateTaskSectionAndKeepTasksMutation) => {
+      async (input: DeleteTeammateTaskSectionAndKeepTasksMutation) => {
         const release = snapshot.retain()
 
         const teammateTaskSection =
-          val.deleteTeammateTaskSectionAndKeepTasks.teammateTaskSection
+          input.deleteTeammateTaskSectionAndKeepTasks.teammateTaskSection
         const teammateTaskIds =
-          val.deleteTeammateTaskSectionAndKeepTasks.teammateTaskIds
+          input.deleteTeammateTaskSectionAndKeepTasks.teammateTaskIds
 
         try {
           const res = await undeleteTeammateTaskSectionAndKeepTasksMutation({
@@ -330,12 +330,12 @@ export const useTeammatesTaskSectionCommand = () => {
   )
 
   const undeleteTaskSectionAndDeleteTasks = useRecoilCallback(
-    () => async (val: DeleteTeammateTaskSectionAndDeleteTasksMutation) => {
+    () => async (input: DeleteTeammateTaskSectionAndDeleteTasksMutation) => {
       const teammateTaskSection =
-        val.deleteTeammateTaskSectionAndDeleteTasks.teammateTaskSection
+        input.deleteTeammateTaskSectionAndDeleteTasks.teammateTaskSection
       const teammateTaskIds =
-        val.deleteTeammateTaskSectionAndDeleteTasks.teammateTaskIds
-      const taskIds = val.deleteTeammateTaskSectionAndDeleteTasks.taskIds
+        input.deleteTeammateTaskSectionAndDeleteTasks.teammateTaskIds
+      const taskIds = input.deleteTeammateTaskSectionAndDeleteTasks.taskIds
 
       const res = await undeleteTeammateTaskSectionAndDeleteTasksMutation({
         variables: {

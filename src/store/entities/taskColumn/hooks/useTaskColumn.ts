@@ -9,11 +9,11 @@ export const useTaskColumn = (taskColumnId?: string) => {
 
   const setTaskColumn = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: Partial<TaskColumn>) => {
+      async (input: Partial<TaskColumn>) => {
         const prev = await snapshot.getPromise(taskColumnState(taskColumn.id))
         upsert({
           ...prev,
-          ...val,
+          ...input,
         })
       },
     [upsert, taskColumn.id],

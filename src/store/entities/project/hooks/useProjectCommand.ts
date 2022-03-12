@@ -15,10 +15,10 @@ export const useProjectCommand = () => {
 
   const setProject = useRecoilCallback(
     ({ snapshot }) =>
-      async (payload: { projectId: string } & Partial<Omit<Project, 'id'>>) => {
-        const prev = await snapshot.getPromise(projectState(payload.projectId))
+      async (input: { projectId: string } & Partial<Omit<Project, 'id'>>) => {
+        const prev = await snapshot.getPromise(projectState(input.projectId))
 
-        upsert({ ...prev, ...omit(payload, 'projectId') })
+        upsert({ ...prev, ...omit(input, 'projectId') })
 
         const restore = () => {
           upsert(prev)
@@ -28,7 +28,7 @@ export const useProjectCommand = () => {
           const res = await updateProjectMutation({
             variables: {
               input: prepareUpdateProjectInput({
-                ...payload,
+                ...input,
                 workspaceId: workspace.id,
               }),
             },
@@ -50,13 +50,13 @@ export const useProjectCommand = () => {
 }
 
 const prepareUpdateProjectInput = (
-  payload: { projectId: string; workspaceId: string } & Partial<
+  input: { projectId: string; workspaceId: string } & Partial<
     Omit<Project, 'id'>
   >,
 ): UpdateProjectInput => {
   return {
-    id: payload.projectId,
+    id: input.projectId,
     requestId: PROJECT_UPDATED_SUBSCRIPTION_REQUEST_ID,
-    ...omit(payload, 'projectId'),
+    ...omit(input, 'projectId'),
   }
 }

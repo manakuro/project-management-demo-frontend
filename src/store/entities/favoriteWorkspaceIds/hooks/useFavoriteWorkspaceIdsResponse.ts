@@ -6,8 +6,8 @@ export const useFavoriteWorkspaceIdsResponse = () => {
   const { upsert } = useUpsert()
 
   const setFavoriteWorkspaceIds = useRecoilCallback(
-    () => (favoriteWorkspaceIds: FavoriteWorkspaceId[]) => {
-      upsert(favoriteWorkspaceIds)
+    () => (input: FavoriteWorkspaceId[]) => {
+      upsert(input)
     },
     [upsert],
   )

@@ -21,11 +21,11 @@ export const useTask = (taskId: string) => {
 
   const setTask = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: Partial<Task>) => {
+      async (input: Partial<Task>) => {
         const prev = await snapshot.getPromise(taskState(taskId))
         if (!hasTaskBeenPersisted(prev)) return
 
-        upsert({ ...prev, ...val })
+        upsert({ ...prev, ...input })
 
         const restore = () => {
           upsert(prev)
@@ -34,7 +34,7 @@ export const useTask = (taskId: string) => {
         try {
           const res = await updateTaskMutation({
             variables: {
-              input: prepareUpdateTaskInput(taskId, workspace.id, val),
+              input: prepareUpdateTaskInput(taskId, workspace.id, input),
             },
           })
 
@@ -50,12 +50,12 @@ export const useTask = (taskId: string) => {
   )
   const setTaskPriority = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: Partial<Task['taskPriority']>) => {
+      async (input: Partial<Task['taskPriority']>) => {
         const prev = await snapshot.getPromise(taskState(taskId))
         await setTask({
           taskPriority: {
             ...prev.taskPriority,
-            ...val,
+            ...input,
           },
         })
       },
@@ -64,14 +64,14 @@ export const useTask = (taskId: string) => {
 
   const setTaskName = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: string) => {
+      async (input: string) => {
         const prev = await snapshot.getPromise(taskState(taskId))
         // Skip when touching input for the first time
-        if (prev.isNew && !prev.name && !val) return
-        if (prev.name === val) return
+        if (prev.isNew && !prev.name && !input) return
+        if (prev.name === input) return
 
-        const isNew = prev.isNew && !!val ? { isNew: false } : {}
-        await setTask({ name: val, ...isNew })
+        const isNew = prev.isNew && !!input ? { isNew: false } : {}
+        await setTask({ name: input, ...isNew })
       },
     [setTask, taskId],
   )

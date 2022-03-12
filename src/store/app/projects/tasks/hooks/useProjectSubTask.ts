@@ -11,14 +11,14 @@ export const useProjectSubTask = () => {
 
   const addTask = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: { taskParentId: string }) => {
+      async (input: { taskParentId: string }) => {
         const projectTask = await snapshot.getPromise(
-          projectTaskByTaskIdState(val.taskParentId),
+          projectTaskByTaskIdState(input.taskParentId),
         )
         return addProjectTask({
           projectId,
           projectTaskSectionId: projectTask.projectTaskSectionId,
-          taskParentId: val.taskParentId,
+          taskParentId: input.taskParentId,
         })
       },
     [addProjectTask, projectId],

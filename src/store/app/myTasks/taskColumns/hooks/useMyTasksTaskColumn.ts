@@ -15,8 +15,8 @@ export const useMyTasksTaskColumn = (tasksTaskColumnId: string) => {
     useTeammateTaskColumnCommand()
   const ids = useRecoilValue(taskColumnIdsState(me.id))
   const setTasksTaskColumn = useCallback(
-    async (val: Partial<TeammateTaskColumn>) => {
-      await setTeammateTaskColumn({ id: tasksTaskColumnId, ...val })
+    async (input: Partial<TeammateTaskColumn>) => {
+      await setTeammateTaskColumn({ id: tasksTaskColumnId, ...input })
     },
     [setTeammateTaskColumn, tasksTaskColumnId],
   )

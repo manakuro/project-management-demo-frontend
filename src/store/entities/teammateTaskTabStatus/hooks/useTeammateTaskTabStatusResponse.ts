@@ -6,8 +6,8 @@ export const useTeammateTaskTabStatusResponse = () => {
   const { upsert } = useUpsert()
 
   const setTeammateTaskTabStatus = useCallback(
-    (val: TeammateTaskTabStatus) => {
-      upsert(val)
+    (data: TeammateTaskTabStatus) => {
+      upsert(data)
     },
     [upsert],
   )

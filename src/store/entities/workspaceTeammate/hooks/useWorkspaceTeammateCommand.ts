@@ -12,13 +12,16 @@ export const useWorkspaceTeammateCommand = () => {
 
   const setWorkspaceTeammateById = useRecoilCallback(
     ({ snapshot }) =>
-      async (workspaceTeammateId: string, val: Partial<WorkspaceTeammate>) => {
+      async (
+        workspaceTeammateId: string,
+        input: Partial<WorkspaceTeammate>,
+      ) => {
         const current = await snapshot.getPromise(
           workspaceTeammateState(workspaceTeammateId),
         )
         upsert({
           ...current,
-          ...val,
+          ...input,
         })
       },
     [upsert],
@@ -29,7 +32,7 @@ export const useWorkspaceTeammateCommand = () => {
       async (
         workspaceId: string,
         teammateId: string,
-        val: Partial<WorkspaceTeammate>,
+        input: Partial<WorkspaceTeammate>,
       ) => {
         const current = await snapshot.getPromise(
           workspaceTeammateByWorkspaceIdAndTeammateIdState({
@@ -39,7 +42,7 @@ export const useWorkspaceTeammateCommand = () => {
         )
         upsert({
           ...current,
-          ...val,
+          ...input,
         })
       },
     [upsert],

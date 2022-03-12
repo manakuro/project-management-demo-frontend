@@ -51,28 +51,28 @@ export const useTaskCommand = () => {
 
   const setTaskById = useRecoilCallback(
     ({ snapshot }) =>
-      async (taskId: string, val: Partial<Task>) => {
+      async (taskId: string, input: Partial<Task>) => {
         const prev = await snapshot.getPromise(taskState(taskId))
-        upsert({ ...prev, ...val })
+        upsert({ ...prev, ...input })
       },
     [upsert],
   )
 
   const unassignTask = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: { id: string }) => {
-        const prev = await snapshot.getPromise(taskState(val.id))
-        await setTaskById(val.id, { assigneeId: '' })
+      async (input: { id: string }) => {
+        const prev = await snapshot.getPromise(taskState(input.id))
+        await setTaskById(input.id, { assigneeId: '' })
 
         const restore = () => {
-          setTaskById(val.id, prev)
+          setTaskById(input.id, prev)
         }
 
         try {
           const res = await unassignTaskMutation({
             variables: {
               input: {
-                id: val.id,
+                id: input.id,
                 workspaceId: workspace.id,
                 requestId: TASK_UNASSIGNED_SUBSCRIPTION_REQUEST_ID,
               },
@@ -96,28 +96,28 @@ export const useTaskCommand = () => {
 
   const assignTask = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: { id: string; assigneeId: string }) => {
-        const prev = await snapshot.getPromise(taskState(val.id))
+      async (input: { id: string; assigneeId: string }) => {
+        const prev = await snapshot.getPromise(taskState(input.id))
 
         if (
           prev.assigneeId &&
-          val.assigneeId &&
-          prev.assigneeId === val.assigneeId
+          input.assigneeId &&
+          prev.assigneeId === input.assigneeId
         )
           return
 
-        await setTaskById(val.id, { assigneeId: val.assigneeId })
+        await setTaskById(input.id, { assigneeId: input.assigneeId })
 
         const restore = () => {
-          setTaskById(val.id, prev)
+          setTaskById(input.id, prev)
         }
 
         try {
           const res = await assignTaskMutation({
             variables: {
               input: {
-                id: val.id,
-                assigneeId: val.assigneeId,
+                id: input.id,
+                assigneeId: input.assigneeId,
                 workspaceId: workspace.id,
                 requestId: TASK_ASSIGNED_SUBSCRIPTION_REQUEST_ID,
               },
@@ -158,20 +158,20 @@ export const useTaskCommand = () => {
   const isDeletingTask = useRef<boolean>(false)
   const deleteTask = useRecoilCallback(
     ({ snapshot, reset }) =>
-      async (val: { taskId: string }) => {
+      async (input: { taskId: string }) => {
         if (isDeletingTask.current) return
 
         isDeletingTask.current = true
 
         const teammateTask = await snapshot.getPromise(
-          teammateTaskByTaskIdState(val.taskId),
+          teammateTaskByTaskIdState(input.taskId),
         )
         if (teammateTask.id) {
           reset(teammateTaskState(teammateTask.id))
         }
 
         const projectTask = await snapshot.getPromise(
-          projectTaskByTaskIdState(val.taskId),
+          projectTaskByTaskIdState(input.taskId),
         )
         if (projectTask.id) {
           reset(projectTaskState(projectTask.id))
@@ -188,7 +188,7 @@ export const useTaskCommand = () => {
           const res = await deleteTaskMutation({
             variables: {
               input: {
-                taskId: val.taskId,
+                taskId: input.taskId,
                 workspaceId: workspace.id,
                 requestId: TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
               },
@@ -221,9 +221,9 @@ export const useTaskCommand = () => {
 
   const undeleteTask = useRecoilCallback(
     ({ snapshot, reset }) =>
-      async (val: { taskId: string }) => {
+      async (input: { taskId: string }) => {
         const deletedTasks = await snapshot.getPromise(
-          deletedTasksByTaskIdState(val.taskId),
+          deletedTasksByTaskIdState(input.taskId),
         )
         deletedTasks.forEach((d) => {
           reset(deletedTaskState(d.id))
@@ -237,7 +237,7 @@ export const useTaskCommand = () => {
           const res = await undeleteTaskMutation({
             variables: {
               input: {
-                taskId: val.taskId,
+                taskId: input.taskId,
                 workspaceId: workspace.id,
                 requestId: TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID,
               },

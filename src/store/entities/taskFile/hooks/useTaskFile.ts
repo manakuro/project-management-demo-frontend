@@ -8,14 +8,14 @@ export const useTaskFile = (taskFileId?: string) => {
 
   const setTaskFile = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: DeepPartial<TaskFile>) => {
+      async (input: DeepPartial<TaskFile>) => {
         const prev = await snapshot.getPromise(taskFileState(taskFile.id))
         upsert({
           ...prev,
-          ...val,
+          ...input,
           fileType: {
             ...prev.fileType,
-            ...val.fileType,
+            ...input.fileType,
           },
         })
       },

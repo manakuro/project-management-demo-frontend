@@ -9,11 +9,11 @@ export const useTaskTag = (taskTagId?: string) => {
 
   const setTaskTag = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: Partial<TaskTag>) => {
+      async (input: Partial<TaskTag>) => {
         const prev = await snapshot.getPromise(taskTagState(taskTag.id))
         upsert({
           ...prev,
-          ...val,
+          ...input,
         })
       },
     [upsert, taskTag.id],

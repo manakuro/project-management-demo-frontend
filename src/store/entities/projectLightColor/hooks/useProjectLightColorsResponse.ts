@@ -5,8 +5,8 @@ import { ProjectLightColor } from '../type'
 export const useProjectLightColorsResponse = () => {
   const setProjectLightColors = useRecoilCallback(
     ({ set }) =>
-      (projectLightColors: ProjectLightColor[]) => {
-        projectLightColors.forEach((p) => {
+      (data: ProjectLightColor[]) => {
+        data.forEach((p) => {
           set(projectLightColorState(p.id), p)
         })
       },

@@ -5,10 +5,10 @@ import { Me } from '../type'
 export const useUpsert = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
-      (val: Me) => {
+      (input: Me) => {
         set(meState, (prev) => ({
           ...prev,
-          ...val,
+          ...input,
         }))
       },
     [],

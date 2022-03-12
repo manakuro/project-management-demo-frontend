@@ -8,9 +8,9 @@ export const useProjectTaskColumnCommand = () => {
 
   const setProjectsTaskColumn = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: Partial<ProjectTaskColumn> & { id: string }) => {
-        const prev = await snapshot.getPromise(projectTaskColumnState(val.id))
-        upsert({ ...prev, ...val })
+      async (input: Partial<ProjectTaskColumn> & { id: string }) => {
+        const prev = await snapshot.getPromise(projectTaskColumnState(input.id))
+        upsert({ ...prev, ...input })
       },
     [upsert],
   )

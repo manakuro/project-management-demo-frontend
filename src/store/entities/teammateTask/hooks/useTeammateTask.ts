@@ -14,13 +14,13 @@ export const useTeammateTask = (teammateTaskId: string) => {
   )
   const setTeammateTask = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: Partial<TeammateTask>) => {
+      async (input: Partial<TeammateTask>) => {
         const prev = await snapshot.getPromise(
           teammateTaskState(teammateTask.id),
         )
         upsert({
           ...prev,
-          ...val,
+          ...input,
         })
       },
     [teammateTask.id, upsert],

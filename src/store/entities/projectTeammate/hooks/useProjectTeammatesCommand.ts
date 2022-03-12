@@ -12,13 +12,13 @@ export const useProjectTeammatesCommand = () => {
 
   const setProjectTeammateById = useRecoilCallback(
     ({ snapshot }) =>
-      async (projectTeammateId: string, val: Partial<ProjectTeammate>) => {
+      async (projectTeammateId: string, input: Partial<ProjectTeammate>) => {
         const current = await snapshot.getPromise(
           projectTeammateState(projectTeammateId),
         )
         upsert({
           ...current,
-          ...val,
+          ...input,
         })
       },
     [upsert],
@@ -29,7 +29,7 @@ export const useProjectTeammatesCommand = () => {
       async (
         projectId: string,
         teammateId: string,
-        val: Partial<ProjectTeammate>,
+        input: Partial<ProjectTeammate>,
       ) => {
         const current = await snapshot.getPromise(
           projectTeammateByProjectIdAndTeammateIdState({
@@ -39,7 +39,7 @@ export const useProjectTeammatesCommand = () => {
         )
         upsert({
           ...current,
-          ...val,
+          ...input,
         })
       },
     [upsert],

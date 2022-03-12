@@ -29,11 +29,11 @@ export const useTeammateTaskCommand = () => {
 
   const setTeammateTaskByTaskId = useRecoilCallback(
     ({ snapshot }) =>
-      async (taskId: string, val: Partial<TeammateTask>) => {
+      async (taskId: string, input: Partial<TeammateTask>) => {
         const prev = await snapshot.getPromise(
           teammateTaskByTaskIdState(taskId),
         )
-        upsert({ ...prev, ...val })
+        upsert({ ...prev, ...input })
 
         const restore = () => {
           upsert(prev)
@@ -43,7 +43,7 @@ export const useTeammateTaskCommand = () => {
           const res = await updateTeammateTaskMutation({
             variables: {
               input: {
-                ...val,
+                ...input,
                 id: prev.id,
                 workspaceId: prev.workspaceId,
                 requestId: TEAMMATE_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
@@ -64,7 +64,7 @@ export const useTeammateTaskCommand = () => {
   const addTeammateTask = useRecoilCallback(
     ({ reset }) =>
       async (
-        val: Partial<TeammateTask> & {
+        input: Partial<TeammateTask> & {
           teammateTaskSectionId: string
           taskParentId?: string
         },
@@ -72,11 +72,11 @@ export const useTeammateTaskCommand = () => {
         const id = uuid()
         const newTaskId = addTask({
           assigneeId: me.id,
-          taskParentId: val.taskParentId || '',
+          taskParentId: input.taskParentId || '',
         })
         const newTeammateTask = {
           ...initialState(),
-          ...val,
+          ...input,
           id,
           taskId: newTaskId,
           teammateId: me.id,
@@ -93,9 +93,9 @@ export const useTeammateTaskCommand = () => {
             variables: {
               input: {
                 teammateId: me.id,
-                teammateTaskSectionId: val.teammateTaskSectionId,
+                teammateTaskSectionId: input.teammateTaskSectionId,
                 workspaceId: workspace.id,
-                taskParentId: val.taskParentId ?? null,
+                taskParentId: input.taskParentId ?? null,
                 requestId: TEAMMATE_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
               },
             },

@@ -5,8 +5,8 @@ import { ProjectTaskSection } from '../type'
 export const useUpsert = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
-      (val: ProjectTaskSection) => {
-        set(projectTaskSectionState(val.id), val)
+      (input: ProjectTaskSection) => {
+        set(projectTaskSectionState(input.id), input)
       },
     [],
   )

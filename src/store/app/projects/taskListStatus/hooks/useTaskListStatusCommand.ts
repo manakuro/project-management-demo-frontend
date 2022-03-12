@@ -5,12 +5,12 @@ import { taskListStatusState } from '../atom'
 export const useTaskListStatusCommand = () => {
   const setTaskListCompletedStatus = useRecoilCallback(
     ({ set }) =>
-      (val: Partial<ProjectTaskListStatus['taskListCompletedStatus']>) => {
+      (input: Partial<ProjectTaskListStatus['taskListCompletedStatus']>) => {
         set(taskListStatusState, (prev) => ({
           ...prev,
           taskListCompletedStatus: {
             ...prev.taskListCompletedStatus,
-            ...val,
+            ...input,
           },
         }))
       },
@@ -19,12 +19,12 @@ export const useTaskListStatusCommand = () => {
 
   const setTaskListSortStatus = useRecoilCallback(
     ({ set }) =>
-      (val: Partial<ProjectTaskListStatus['taskListSortStatus']>) => {
+      (input: Partial<ProjectTaskListStatus['taskListSortStatus']>) => {
         set(taskListStatusState, (prev) => ({
           ...prev,
           taskListSortStatus: {
             ...prev.taskListSortStatus,
-            ...val,
+            ...input,
           },
         }))
       },

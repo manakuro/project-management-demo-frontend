@@ -23,11 +23,11 @@ export const useTaskFeedCommand = () => {
   const { setTaskFeed } = useTaskFeedResponse()
 
   const addTaskFeed = useRecoilCallback(
-    () => (val: Pick<TaskFeed, 'taskId' | 'teammateId' | 'description'>) => {
+    () => (input: Pick<TaskFeed, 'taskId' | 'teammateId' | 'description'>) => {
       const id = uuid()
       upsert({
         ...initialState(),
-        ...val,
+        ...input,
         id,
       })
 
@@ -40,9 +40,9 @@ export const useTaskFeedCommand = () => {
           const res = await createTaskFeedMutation({
             variables: {
               input: {
-                taskId: val.taskId,
-                teammateId: val.teammateId,
-                description: val.description,
+                taskId: input.taskId,
+                teammateId: input.teammateId,
+                description: input.description,
                 requestId: TASK_FEED_CREATED_SUBSCRIPTION_REQUEST_ID,
                 workspaceId: workspace.id,
               },
@@ -71,10 +71,10 @@ export const useTaskFeedCommand = () => {
 
   const deleteTaskFeed = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: Pick<TaskFeed, 'id'>) => {
-        const prev = await snapshot.getPromise(taskFeedState(val.id))
+      async (input: Pick<TaskFeed, 'id'>) => {
+        const prev = await snapshot.getPromise(taskFeedState(input.id))
 
-        resetTaskFeed(val.id)
+        resetTaskFeed(input.id)
 
         const restore = () => {
           setTaskFeed([prev])
@@ -84,7 +84,7 @@ export const useTaskFeedCommand = () => {
           const res = await deleteTaskFeedMutation({
             variables: {
               input: {
-                id: val.id,
+                id: input.id,
                 requestId: TASK_FEED_DELETED_SUBSCRIPTION_REQUEST_ID,
                 workspaceId: workspace.id,
               },

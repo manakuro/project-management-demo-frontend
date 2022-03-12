@@ -5,8 +5,8 @@ import { ProjectIcon } from '../type'
 export const useProjectIconsResponse = () => {
   const setProjectIcons = useRecoilCallback(
     ({ set }) =>
-      (projectIcons: ProjectIcon[]) => {
-        projectIcons.forEach((p) => {
+      (data: ProjectIcon[]) => {
+        data.forEach((p) => {
           set(projectIconState(p.id), p)
         })
       },

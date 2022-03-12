@@ -14,11 +14,11 @@ export const useTaskFeed = (taskFeedId: string) => {
 
   const setTaskFeed = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: Partial<TaskFeed>) => {
+      async (input: Partial<TaskFeed>) => {
         const prev = await snapshot.getPromise(taskFeedState(taskFeed.id))
         upsert({
           ...prev,
-          ...val,
+          ...input,
         })
 
         const res = await updateTaskFeedMutation({
@@ -27,7 +27,7 @@ export const useTaskFeed = (taskFeedId: string) => {
               id: taskFeedId,
               requestId: TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID,
               workspaceId: workspace.id,
-              ...val,
+              ...input,
             },
           },
         })

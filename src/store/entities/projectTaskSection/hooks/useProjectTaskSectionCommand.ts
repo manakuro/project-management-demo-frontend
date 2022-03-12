@@ -57,11 +57,11 @@ export const useProjectTaskSectionCommand = () => {
 
   const addProjectsTaskSection = useRecoilCallback(
     ({ reset }) =>
-      async (val: { projectId: string }) => {
+      async (input: { projectId: string }) => {
         const id = uuid()
         upsert({
           ...initialState(),
-          ...val,
+          ...input,
           isNew: true,
           id,
         })
@@ -74,7 +74,7 @@ export const useProjectTaskSectionCommand = () => {
           const res = await createProjectTaskSectionMutation({
             variables: {
               input: {
-                projectId: val.projectId,
+                projectId: input.projectId,
                 requestId: PROJECT_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID,
                 workspaceId: workspace.id,
               },
@@ -247,13 +247,13 @@ export const useProjectTaskSectionCommand = () => {
 
   const undeleteTaskSectionAndKeepTasks = useRecoilCallback(
     ({ snapshot }) =>
-      async (val: DeleteProjectTaskSectionAndKeepTasksMutation) => {
+      async (input: DeleteProjectTaskSectionAndKeepTasksMutation) => {
         const release = snapshot.retain()
 
         const projectTaskSection =
-          val.deleteProjectTaskSectionAndKeepTasks.projectTaskSection
+          input.deleteProjectTaskSectionAndKeepTasks.projectTaskSection
         const projectTaskIds =
-          val.deleteProjectTaskSectionAndKeepTasks.projectTaskIds
+          input.deleteProjectTaskSectionAndKeepTasks.projectTaskIds
 
         try {
           const res = await undeleteProjectTaskSectionAndKeepTasksMutation({
@@ -305,12 +305,12 @@ export const useProjectTaskSectionCommand = () => {
   )
 
   const undeleteTaskSectionAndDeleteTasks = useRecoilCallback(
-    () => async (val: DeleteProjectTaskSectionAndDeleteTasksMutation) => {
+    () => async (input: DeleteProjectTaskSectionAndDeleteTasksMutation) => {
       const projectTaskSection =
-        val.deleteProjectTaskSectionAndDeleteTasks.projectTaskSection
+        input.deleteProjectTaskSectionAndDeleteTasks.projectTaskSection
       const projectTaskIds =
-        val.deleteProjectTaskSectionAndDeleteTasks.projectTaskIds
-      const taskIds = val.deleteProjectTaskSectionAndDeleteTasks.taskIds
+        input.deleteProjectTaskSectionAndDeleteTasks.projectTaskIds
+      const taskIds = input.deleteProjectTaskSectionAndDeleteTasks.taskIds
 
       const res = await undeleteProjectTaskSectionAndDeleteTasksMutation({
         variables: {

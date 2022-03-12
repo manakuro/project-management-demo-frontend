@@ -5,10 +5,10 @@ import { TeammateTaskTabStatus } from '../type'
 export const useUpsert = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
-      (val: Partial<TeammateTaskTabStatus>) => {
+      (input: Partial<TeammateTaskTabStatus>) => {
         set(tabStatusState, (prev) => ({
           ...prev,
-          ...val,
+          ...input,
         }))
       },
     [],

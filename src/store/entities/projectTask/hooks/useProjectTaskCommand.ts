@@ -18,7 +18,7 @@ import { useProjectTaskResponse } from './useProjectTaskResponse'
 import { PROJECT_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskUpdatedSubscription'
 import { useUpsert } from './useUpsert'
 
-type AddProjectTaskParams = Partial<ProjectTask> & {
+type AddProjectTaskInput = Partial<ProjectTask> & {
   projectId: string
   projectTaskSectionId: string
   taskParentId?: string
@@ -44,9 +44,9 @@ export const useProjectTaskCommand = () => {
 
   const setProjectTaskByTaskId = useRecoilCallback(
     ({ snapshot }) =>
-      async (taskId: string, val: Partial<ProjectTask>) => {
+      async (taskId: string, input: Partial<ProjectTask>) => {
         const prev = await snapshot.getPromise(projectTaskByTaskIdState(taskId))
-        upsert({ ...prev, ...val })
+        upsert({ ...prev, ...input })
 
         const restore = () => {
           upsert(prev)
@@ -56,7 +56,7 @@ export const useProjectTaskCommand = () => {
           const res = await updateProjectTaskMutation({
             variables: {
               input: {
-                ...val,
+                ...input,
                 id: prev.id,
                 workspaceId: workspace.id,
                 requestId: PROJECT_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
@@ -75,14 +75,14 @@ export const useProjectTaskCommand = () => {
   )
 
   const addProjectTaskOptimistic = useRecoilCallback(
-    () => (val: AddProjectTaskParams) => {
+    () => (input: AddProjectTaskInput) => {
       const newProjectTaskId = uuid()
       const newTaskId = addTask({
-        taskParentId: val.taskParentId || '',
+        taskParentId: input.taskParentId || '',
       })
       const newProjectTask = {
         ...initialState(),
-        ...val,
+        ...input,
         id: newProjectTaskId,
         taskId: newTaskId,
       }
@@ -99,9 +99,9 @@ export const useProjectTaskCommand = () => {
   )
 
   const addProjectTask = useRecoilCallback(
-    () => async (val: AddProjectTaskParams) => {
+    () => async (input: AddProjectTaskInput) => {
       const { newTaskId, newProjectTask, newProjectTaskId } =
-        addProjectTaskOptimistic(val)
+        addProjectTaskOptimistic(input)
 
       const restore = () => {
         resetTask({ taskId: newTaskId, projectTaskId: newProjectTaskId })
@@ -114,7 +114,7 @@ export const useProjectTaskCommand = () => {
               projectId: newProjectTask.projectId,
               projectTaskSectionId: newProjectTask.projectTaskSectionId,
               createdBy: me.id,
-              taskParentId: val.taskParentId ?? null,
+              taskParentId: input.taskParentId ?? null,
               requestId: PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
               workspaceId: workspace.id,
             },

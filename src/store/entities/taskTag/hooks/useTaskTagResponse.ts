@@ -6,7 +6,7 @@ export const useTaskTagResponse = () => {
   const { upsert } = useUpsert()
 
   const setTaskTag = useRecoilCallback(
-    () => async (data: TaskTagResponse[]) => {
+    () => (data: TaskTagResponse[]) => {
       data.forEach((d) => {
         upsert(d)
       })

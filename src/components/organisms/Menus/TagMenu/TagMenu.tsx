@@ -5,10 +5,11 @@ import {
   SearchMenu,
 } from 'src/components/organisms/Menus/SearchMenu'
 import { PopoverProps } from 'src/components/organisms/Popover'
+import { Tag } from 'src/store/entities/tag'
 import { Content } from './Content'
 
 type Props = PopoverProps & {
-  onSelect: (val: string) => void
+  onSelect: (tag: Tag) => void
   queryText: string
   onClose: () => void
   onClosed?: () => void

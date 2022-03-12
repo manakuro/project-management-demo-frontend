@@ -1,10 +1,14 @@
-import React, { memo, useCallback, useMemo, useState } from 'react'
+import React, { memo, useCallback, useMemo, useRef, useState } from 'react'
 import { Flex, Input as AtomsInput, Wrap, WrapItem } from 'src/components/atoms'
 import { TagChip } from 'src/components/molecules'
 import { TagMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
-import { useTaskTagIdsByTaskId } from 'src/store/entities/taskTag'
+import { Tag } from 'src/store/entities/tag'
+import {
+  useTaskTagCommand,
+  useTaskTagIdsByTaskId,
+} from 'src/store/entities/taskTag'
 
 type Props = {
   taskId: string
@@ -17,6 +21,9 @@ export const Input: React.VFC<Props> = memo((props) => {
   const { taskId, onClose } = props
   const popoverDisclosure = useDisclosure()
   const { taskTagIds } = useTaskTagIdsByTaskId(taskId)
+  const { addTaskTag, deleteTaskTag } = useTaskTagCommand()
+  const inputRef = useRef<HTMLInputElement | null>(null)
+
   const { ref } = useClickOutside(onClose, {
     hasClickedOutside: (e, helper) => {
       if (helper.isContainInPopoverContent(e)) return false
@@ -43,11 +50,21 @@ export const Input: React.VFC<Props> = memo((props) => {
   )
 
   const handleSelect = useCallback(
-    (val: string) => {
-      console.log(val)
+    async (tag: Tag) => {
       onClose()
+      await addTaskTag({ taskId, tag })
     },
-    [onClose],
+    [addTaskTag, onClose, taskId],
+  )
+
+  const handleDelete = useCallback(
+    async (id: string) => {
+      await deleteTaskTag({ id })
+
+      if (!inputRef.current) return
+      inputRef.current?.focus()
+    },
+    [deleteTaskTag],
   )
 
   return (
@@ -77,11 +94,17 @@ export const Input: React.VFC<Props> = memo((props) => {
         <Wrap minH={HEIGHT} py={2} justifyItems="center" display="flex">
           {taskTagIds.map((id) => (
             <WrapItem key={id}>
-              <TagChip taskTagId={id} deletable variant="button" />
+              <TagChip
+                taskTagId={id}
+                deletable
+                variant="button"
+                onDelete={handleDelete}
+              />
             </WrapItem>
           ))}
           <WrapItem>
             <AtomsInput
+              ref={inputRef}
               autoFocus
               fontSize="sm"
               size="sm"

@@ -6,7 +6,12 @@ export const useUpsert = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
       (taskTag: TaskTag) => {
-        set(taskTagState(taskTag.id), taskTag)
+        set(taskTagState(taskTag.id), (prev) => {
+          return {
+            ...prev,
+            ...taskTag,
+          }
+        })
       },
     [],
   )

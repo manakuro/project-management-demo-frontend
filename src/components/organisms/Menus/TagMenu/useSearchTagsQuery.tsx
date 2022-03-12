@@ -1,6 +1,9 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
-import { TaskTag } from 'src/store/entities/taskTag'
+import { useTagsLazyQuery } from 'src/graphql/hooks'
+import { TagResponse, TagsQuery } from 'src/graphql/types/tag'
+import { getNodesFromEdges } from 'src/shared/apollo/util'
+import { useWorkspace } from 'src/store/entities/workspace'
 
 const key = (str: string) =>
   `src/components/organisms/Menus/TagMenu/useSearchTagsQuery/${str}`
@@ -18,71 +21,34 @@ type Props = {
 }
 export const useSearchTagsQuery = () => {
   const [state, setState] = useRecoilState(searchTagsQueryState)
+  const [refetchQuery] = useTagsLazyQuery()
+  const { workspace } = useWorkspace()
 
   const refetch = useCallback(
     async (props: Props) => {
       setState((s) => ({ ...s, loading: true }))
-      const res = await fetchProjects()
-      const filtered = res.filter((r) =>
-        r.tag.name.toLowerCase().includes(props.queryText.toLowerCase()),
+      const res = await refetchQuery({
+        variables: {
+          first: 10,
+          where: {
+            nameContainsFold: props.queryText,
+            workspaceID: workspace.id,
+          },
+        },
+      })
+
+      const tags = getNodesFromEdges<TagResponse, TagsQuery['tags']>(
+        res.data?.tags,
       )
-      setState((s) => ({ ...s, tags: filtered, loading: false }))
-      return filtered
+
+      setState((s) => ({ ...s, tags, loading: false }))
+      return tags
     },
-    [setState],
+    [refetchQuery, setState, workspace.id],
   )
 
   return {
     refetch,
     ...state,
   }
-}
-
-const fetchProjects = (): Promise<TaskTag[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: '1',
-          taskId: '1',
-          tag: {
-            id: '1',
-            name: 'Medium',
-            color: {
-              id: '1',
-              name: 'green.400',
-              color: 'green.400',
-              createdAt: '',
-              updatedAt: '',
-            },
-            createdAt: '',
-            updatedAt: '',
-          },
-          tagId: '1',
-          createdAt: '',
-          updatedAt: '',
-        },
-        {
-          id: '2',
-          taskId: '1',
-          tagId: '2',
-          tag: {
-            id: '2',
-            name: 'Asana',
-            color: {
-              id: '2',
-              name: 'pink.200',
-              color: 'pink.200',
-              createdAt: '',
-              updatedAt: '',
-            },
-            createdAt: '',
-            updatedAt: '',
-          },
-          createdAt: '',
-          updatedAt: '',
-        },
-      ])
-    }, 300)
-  })
 }

@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo, useState } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { Flex, Input as AtomsInput, Wrap, WrapItem } from 'src/components/atoms'
 import { ProjectChip } from 'src/components/molecules'
 import { ProjectMenu } from 'src/components/organisms/Menus'
@@ -24,10 +24,6 @@ export const Input: React.VFC<Props> = memo((props) => {
     },
   })
   const [value, setValue] = useState<string>('')
-  const hasMultipleProjects = useMemo<boolean>(
-    () => projectIds.length > 1,
-    [projectIds.length],
-  )
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +62,6 @@ export const Input: React.VFC<Props> = memo((props) => {
         alignItems="center"
         px={2}
         minH={HEIGHT}
-        maxH={hasMultipleProjects ? 'auto' : HEIGHT}
         position="absolute"
         left="0"
         top="0"

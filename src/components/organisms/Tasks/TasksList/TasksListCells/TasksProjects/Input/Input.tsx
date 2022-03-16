@@ -4,7 +4,10 @@ import { ProjectChip } from 'src/components/molecules'
 import { ProjectMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
-import { useProjectIdsByTaskId } from 'src/store/entities/projectTask'
+import {
+  useProjectIdsByTaskId,
+  useProjectTaskCommand,
+} from 'src/store/entities/projectTask'
 
 type Props = {
   taskId: string
@@ -17,6 +20,7 @@ export const Input: React.VFC<Props> = memo((props) => {
   const { taskId, onClose } = props
   const popoverDisclosure = useDisclosure()
   const { projectIds } = useProjectIdsByTaskId(taskId)
+  const { addProjectTaskByTaskId } = useProjectTaskCommand()
   const { ref } = useClickOutside(onClose, {
     hasClickedOutside: (e, helper) => {
       if (helper.isContainInPopoverContent(e)) return false
@@ -39,11 +43,12 @@ export const Input: React.VFC<Props> = memo((props) => {
   )
 
   const handleSelect = useCallback(
-    (val: string) => {
-      console.log(val)
+    async (projectId: string) => {
+      console.log(projectId)
       onClose()
+      await addProjectTaskByTaskId({ projectId, taskId })
     },
-    [onClose],
+    [addProjectTaskByTaskId, onClose, taskId],
   )
 
   return (

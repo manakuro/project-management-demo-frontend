@@ -8,7 +8,7 @@ import { useDeleteTaskSectionModal } from 'src/components/organisms/Modals'
 import { useTasksListSectionContext } from 'src/components/organisms/Tasks/TasksList/TasksListSection/Provider'
 import {
   useHasTasksByTaskSectionId,
-  useTasksTaskSection,
+  useTasksCanDeleteTaskSection,
   useTasksTaskSectionCommand,
 } from 'src/components/organisms/Tasks/hooks'
 
@@ -19,10 +19,11 @@ export const MenuList: React.FC<Props> = memo(() => {
   const { deleteTaskSection } = useTasksTaskSectionCommand()
   const { onFocusInput, taskSectionId } = useTasksListSectionContext()
   const { hasTasks } = useHasTasksByTaskSectionId(taskSectionId)
-  const { taskSection } = useTasksTaskSection(taskSectionId)
+  const { canDeleteTaskSection, message } =
+    useTasksCanDeleteTaskSection(taskSectionId)
   const deleteSectionDisabled = useMemo(
-    () => !!taskSection.assigned,
-    [taskSection.assigned],
+    () => !canDeleteTaskSection,
+    [canDeleteTaskSection],
   )
 
   const handleRenameSection = useCallback(() => {
@@ -48,8 +49,8 @@ export const MenuList: React.FC<Props> = memo(() => {
       {deleteSectionDisabled ? (
         <Tooltip
           hasArrow
-          label="This section can't be deleted because new tasks assigned to you appear here."
-          aria-label="This section can't be deleted because new tasks assigned to you appear here."
+          label={message}
+          aria-label={message}
           size="md"
           withIcon
         >

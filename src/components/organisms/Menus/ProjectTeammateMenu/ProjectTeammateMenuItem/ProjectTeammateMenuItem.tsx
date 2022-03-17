@@ -20,6 +20,7 @@ export const ProjectTeammateMenuItem: React.FC<Props> = memo<Props>((props) => {
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
       e.stopPropagation()
+      e.preventDefault()
       onClick(teammate)
     },
     [onClick, teammate],

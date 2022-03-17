@@ -1,12 +1,12 @@
 import { useRecoilCallback } from 'recoil'
-import { teammateState } from '../atom'
-import { Teammate } from '../type'
+import { taskCollaboratorState } from '../atom'
+import { TaskCollaborator } from '../type'
 
 export const useUpsert = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
-      (input: Teammate) => {
-        set(teammateState(input.id), (prev) => {
+      (input: TaskCollaborator) => {
+        set(taskCollaboratorState(input.id), (prev) => {
           return {
             ...prev,
             ...input,

@@ -2,12 +2,12 @@ import { useCallback } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import { projectTaskState } from 'src/store/entities/projectTask'
+import { useTaskCollaboratorResponse } from 'src/store/entities/taskCollaborator'
 import { taskFeedState } from 'src/store/entities/taskFeed'
 import { useTaskFeedLikeResponse } from 'src/store/entities/taskFeedLike'
 import { taskFileState } from 'src/store/entities/taskFile'
 import { useTaskLikeResponse } from 'src/store/entities/taskLike'
 import { taskTagState } from 'src/store/entities/taskTag'
-import { taskTeammateState } from 'src/store/entities/taskTeammate'
 import { useTeammateResponse } from 'src/store/entities/teammate'
 import { initialState, taskState } from '../atom'
 import { TaskResponse } from '../type'
@@ -21,6 +21,7 @@ export const useTasksResponse = () => {
     setProjects,
     setTaskFeedLikes,
     setTaskLikes,
+    setTeammates,
   } = useSetters()
 
   const setTasksFromResponse = useRecoilCallback(
@@ -32,6 +33,7 @@ export const useTasksResponse = () => {
       setProjects(data)
       setTaskFeedLikes(data)
       setTaskLikes(data)
+      setTeammates(data)
     },
     [
       setTasks,
@@ -41,6 +43,7 @@ export const useTasksResponse = () => {
       setProjects,
       setTaskFeedLikes,
       setTaskLikes,
+      setTeammates,
     ],
   )
 
@@ -54,6 +57,8 @@ const useSetters = () => {
   const { setTaskFeedLikes: setTaskFeedLikesResponse } =
     useTaskFeedLikeResponse()
   const { setTaskLikes: setTaskLikesResponse } = useTaskLikeResponse()
+  const { setTaskCollaborators: setTaskCollaboratorsResponse } =
+    useTaskCollaboratorResponse()
 
   const setTaskLikes = useRecoilCallback(
     () => (data: TaskResponse[]) => {
@@ -137,17 +142,15 @@ const useSetters = () => {
     [],
   )
   const setTeammates = useRecoilCallback(
-    ({ set }) =>
-      (data: TaskResponse[]) => {
-        const taskTeammates = data.reduce<TaskResponse['taskCollaborators']>(
-          (acc, d) => [...acc, ...d.taskCollaborators],
-          [],
-        )
-        taskTeammates.forEach((t) => set(taskTeammateState(t.id), t))
-
-        setTeammatesResponse(taskTeammates.map((t) => t.teammate))
-      },
-    [setTeammatesResponse],
+    () => (data: TaskResponse[]) => {
+      const taskCollaborators = data.reduce<TaskResponse['taskCollaborators']>(
+        (acc, d) => [...acc, ...d.taskCollaborators],
+        [],
+      )
+      setTaskCollaboratorsResponse(taskCollaborators)
+      setTeammatesResponse(taskCollaborators.map((t) => t.teammate))
+    },
+    [setTaskCollaboratorsResponse, setTeammatesResponse],
   )
   const setTags = useRecoilCallback(
     ({ set }) =>

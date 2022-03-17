@@ -14,6 +14,7 @@ import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, taskCollaboratorByTaskIdAndTeammateId } from '../atom'
 import { useResetTaskCollaborator } from './useResetTaskCollaborator'
 import { TASK_COLLABORATOR_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskCollaboratorCreatedSubscription'
+import { TASK_COLLABORATOR_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskCollaboratorDeletedSubscription'
 import { useTaskCollaboratorResponse } from './useTaskCollaboratorResponse'
 import { useUpsert } from './useUpsert'
 
@@ -113,7 +114,7 @@ export const useTaskCollaboratorCommand = () => {
               input: {
                 id: taskCollaborator.id,
                 workspaceId: workspace.id,
-                requestId: '',
+                requestId: TASK_COLLABORATOR_DELETED_SUBSCRIPTION_REQUEST_ID,
               },
             },
           })

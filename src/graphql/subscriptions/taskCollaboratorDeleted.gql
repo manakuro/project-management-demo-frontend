@@ -1,0 +1,5 @@
+subscription TaskCollaboratorDeleted($workspaceId: ID!, $requestId: String!) {
+  taskCollaboratorDeleted(workspaceId: $workspaceId, requestId: $requestId) {
+    id
+  }
+}

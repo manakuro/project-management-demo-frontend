@@ -1,0 +1,5 @@
+subscription ProjectTaskCreatedByTaskId($workspaceId: ID!, $requestId: String!) {
+  projectTaskCreatedByTaskId(workspaceId: $workspaceId, requestId: $requestId) {
+    ...ProjectTaskFragment
+  }
+}

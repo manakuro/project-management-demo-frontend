@@ -15,6 +15,7 @@ import {
   projectTaskByTaskIdState,
 } from '../atom'
 import { ProjectTask, ProjectTaskResponse } from '../type'
+import { PROJECT_TASK_CREATED_BY_TASK_ID_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskCreatedByTaskIdSubscription'
 import { PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskCreatedSubscription'
 import { useProjectTaskResponse } from './useProjectTaskResponse'
 import { PROJECT_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskUpdatedSubscription'
@@ -175,7 +176,8 @@ export const useProjectTaskCommand = () => {
             input: {
               projectId: input.projectId,
               taskId: input.taskId,
-              requestId: PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID,
+              requestId:
+                PROJECT_TASK_CREATED_BY_TASK_ID_SUBSCRIPTION_REQUEST_ID,
               workspaceId: workspace.id,
             },
           },

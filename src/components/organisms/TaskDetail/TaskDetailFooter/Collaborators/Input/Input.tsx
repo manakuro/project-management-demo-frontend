@@ -28,7 +28,8 @@ type InputStyle = {
 const Component: React.VFC = memo(() => {
   const { taskId } = useTaskDetail()
   const { teammateIds } = useTeammateIdsByTaskId(taskId)
-  const { addTaskCollaboratorByTeammate } = useTaskCollaboratorCommand()
+  const { addTaskCollaboratorByTeammate, deleteTaskCollaboratorByTeammate } =
+    useTaskCollaboratorCommand()
   const { onInputUnfocus } = useCollaboratorsContext()
   const { ref } = useClickOutside(onInputUnfocus, {
     hasClickedOutside: (e, helpers) => {
@@ -65,6 +66,16 @@ const Component: React.VFC = memo(() => {
     [addTaskCollaboratorByTeammate, taskId],
   )
 
+  const handleDelete = useCallback(
+    async (teammateId: string) => {
+      await deleteTaskCollaboratorByTeammate({
+        taskId,
+        teammateId,
+      })
+    },
+    [deleteTaskCollaboratorByTeammate, taskId],
+  )
+
   return (
     <InviteCollaboratorMenu
       isOpen={popoverDisclosure.isOpen}
@@ -88,7 +99,7 @@ const Component: React.VFC = memo(() => {
         <Wrap py={teammateIds.length ? 2 : 0}>
           {teammateIds.map((id) => (
             <WrapItem key={id}>
-              <AssigneeChip teammateId={id} key={id} />
+              <AssigneeChip teammateId={id} key={id} onDelete={handleDelete} />
             </WrapItem>
           ))}
           <WrapItem>

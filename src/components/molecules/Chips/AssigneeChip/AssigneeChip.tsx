@@ -6,20 +6,20 @@ import { useTeammate } from 'src/store/entities/teammate'
 
 type Props = {
   teammateId: string
-  onDelete?: () => void
+  onDelete?: (teammateId: string) => void
 }
 
 export const AssigneeChip: React.VFC<Props> = memo((props) => {
-  const { teammateId } = props
+  const { teammateId, onDelete } = props
   const { teammate } = useTeammate(teammateId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   const handleDelete = useCallback(
     (e: React.MouseEvent<SVGElement>) => {
       e.stopPropagation()
-      props.onDelete?.()
+      onDelete?.(teammateId)
     },
-    [props],
+    [onDelete, teammateId],
   )
 
   return (

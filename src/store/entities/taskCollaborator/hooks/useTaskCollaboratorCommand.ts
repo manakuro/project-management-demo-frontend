@@ -1,5 +1,9 @@
 import { useRecoilCallback } from 'recoil'
-import { useCreateTaskCollaboratorMutation } from 'src/graphql/hooks'
+import {
+  useCreateTaskCollaboratorMutation,
+  useDeleteTaskCollaboratorMutation,
+} from 'src/graphql/hooks'
+import { TaskCollaboratorResponse } from 'src/graphql/types/taskCollaborator'
 import { uuid } from 'src/shared/uuid'
 import {
   Teammate,
@@ -21,6 +25,7 @@ export const useTaskCollaboratorCommand = () => {
   const { workspace } = useWorkspace()
 
   const [createTaskCollaboratorMutation] = useCreateTaskCollaboratorMutation()
+  const [deleteTaskCollaboratorMutation] = useDeleteTaskCollaboratorMutation()
 
   const addTaskCollaboratorByTeammate = useRecoilCallback(
     ({ snapshot }) =>
@@ -85,7 +90,50 @@ export const useTaskCollaboratorCommand = () => {
     ],
   )
 
+  const deleteTaskCollaboratorByTeammate = useRecoilCallback(
+    ({ snapshot }) =>
+      async (input: { taskId: string; teammateId: string }) => {
+        const taskCollaborator = await snapshot.getPromise(
+          taskCollaboratorByTaskIdAndTeammateId({
+            taskId: input.taskId,
+            teammateId: input.teammateId,
+          }),
+        )
+
+        resetTaskCollaborator(taskCollaborator.id)
+
+        const restore = () => {
+          setTaskCollaborators([taskCollaborator as TaskCollaboratorResponse])
+        }
+
+        try {
+          const res = await deleteTaskCollaboratorMutation({
+            variables: {
+              input: {
+                id: taskCollaborator.id,
+                workspaceId: workspace.id,
+                requestId: '',
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
+        }
+      },
+    [
+      deleteTaskCollaboratorMutation,
+      resetTaskCollaborator,
+      setTaskCollaborators,
+      workspace.id,
+    ],
+  )
+
   return {
     addTaskCollaboratorByTeammate,
+    deleteTaskCollaboratorByTeammate,
   }
 }

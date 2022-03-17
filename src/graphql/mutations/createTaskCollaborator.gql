@@ -1,0 +1,5 @@
+mutation CreateTaskCollaborator($input: CreateTaskCollaboratorInput!) {
+  createTaskCollaborator(input: $input) {
+    ...TaskCollaboratorFragment
+  }
+}

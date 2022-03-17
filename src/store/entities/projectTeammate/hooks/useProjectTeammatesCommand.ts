@@ -31,14 +31,14 @@ export const useProjectTeammatesCommand = () => {
         teammateId: string,
         input: Partial<ProjectTeammate>,
       ) => {
-        const current = await snapshot.getPromise(
+        const prev = await snapshot.getPromise(
           projectTeammateByProjectIdAndTeammateIdState({
             projectId,
             teammateId,
           }),
         )
         upsert({
-          ...current,
+          ...prev,
           ...input,
         })
       },

@@ -1,0 +1,5 @@
+mutation DeleteTaskCollaborator($input: DeleteTaskCollaboratorInput!) {
+  deleteTaskCollaborator(input: $input) {
+    id
+  }
+}

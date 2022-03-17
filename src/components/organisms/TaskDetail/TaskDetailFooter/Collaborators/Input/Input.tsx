@@ -5,7 +5,10 @@ import { InviteCollaboratorMenu } from 'src/components/organisms/Menus'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { useClickOutside } from 'src/hooks'
 import { ChakraProps, useDisclosure, useStyleConfig } from 'src/shared/chakra'
-import { useTeammateIdsByTaskId } from 'src/store/entities/taskTeammate'
+import {
+  useTaskCollaboratorCommand,
+  useTeammateIdsByTaskId,
+} from 'src/store/entities/taskCollaborator'
 import { Teammate } from 'src/store/entities/teammate'
 import { useCollaboratorsContext } from '../Provider'
 
@@ -25,8 +28,15 @@ type InputStyle = {
 const Component: React.VFC = memo(() => {
   const { taskId } = useTaskDetail()
   const { teammateIds } = useTeammateIdsByTaskId(taskId)
+  const { addTaskCollaboratorByTeammate, deleteTaskCollaboratorByTeammate } =
+    useTaskCollaboratorCommand()
   const { onInputUnfocus } = useCollaboratorsContext()
-  const { ref } = useClickOutside(onInputUnfocus)
+  const { ref } = useClickOutside(onInputUnfocus, {
+    hasClickedOutside: (e, helpers) => {
+      if (helpers.isContainInPopoverContent(e)) return false
+      return true
+    },
+  })
   const style = useStyleConfig('Input') as InputStyle
 
   const popoverDisclosure = useDisclosure()
@@ -45,10 +55,26 @@ const Component: React.VFC = memo(() => {
     [popoverDisclosure],
   )
 
-  const handleSelect = useCallback((val: Teammate) => {
-    console.log(val)
-    setValue('')
-  }, [])
+  const handleSelect = useCallback(
+    async (input: Teammate) => {
+      setValue('')
+      await addTaskCollaboratorByTeammate({
+        taskId,
+        teammate: input,
+      })
+    },
+    [addTaskCollaboratorByTeammate, taskId],
+  )
+
+  const handleDelete = useCallback(
+    async (teammateId: string) => {
+      await deleteTaskCollaboratorByTeammate({
+        taskId,
+        teammateId,
+      })
+    },
+    [deleteTaskCollaboratorByTeammate, taskId],
+  )
 
   return (
     <InviteCollaboratorMenu
@@ -69,12 +95,11 @@ const Component: React.VFC = memo(() => {
         {...style.field}
         h="auto"
         maxH="none"
-        onChange={handleChange}
       >
         <Wrap py={teammateIds.length ? 2 : 0}>
           {teammateIds.map((id) => (
             <WrapItem key={id}>
-              <AssigneeChip teammateId={id} key={id} />
+              <AssigneeChip teammateId={id} key={id} onDelete={handleDelete} />
             </WrapItem>
           ))}
           <WrapItem>
@@ -85,6 +110,8 @@ const Component: React.VFC = memo(() => {
               size="sm"
               placeholder="Name or email"
               variant="unstyled"
+              value={value}
+              onChange={handleChange}
             />
           </WrapItem>
         </Wrap>

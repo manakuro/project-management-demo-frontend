@@ -6,8 +6,13 @@ export const useTeammateResponse = () => {
   const setTeammates = useRecoilCallback(
     ({ set }) =>
       (teammates: Teammate[]) => {
-        teammates.forEach((p) => {
-          set(teammateState(p.id), p)
+        teammates.forEach((t) => {
+          set(teammateState(t.id), (prev) => {
+            return {
+              ...prev,
+              ...t,
+            }
+          })
         })
       },
     [],

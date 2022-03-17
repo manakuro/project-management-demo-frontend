@@ -1,0 +1,5 @@
+subscription TaskCollaboratorCreated($workspaceId: ID!, $requestId: String!) {
+  taskCollaboratorCreated(workspaceId: $workspaceId, requestId: $requestId) {
+    ...TaskCollaboratorFragment
+  }
+}

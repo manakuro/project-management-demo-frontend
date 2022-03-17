@@ -25,6 +25,10 @@ import {
   useTaskUnassignedSubscription,
 } from 'src/store/entities/task'
 import {
+  useTaskCollaboratorCreatedSubscription,
+  useTaskCollaboratorDeletedSubscription,
+} from 'src/store/entities/taskCollaborator'
+import {
   useTaskFeedCreatedSubscription,
   useTaskFeedDeletedSubscription,
   useTaskFeedUpdatedSubscription,
@@ -195,6 +199,13 @@ export const Subscription: React.FC = memo((props) => {
     workspaceId: workspace.id,
   })
   useTaskTagDeletedSubscription({
+    workspaceId: workspace.id,
+  })
+
+  useTaskCollaboratorCreatedSubscription({
+    workspaceId: workspace.id,
+  })
+  useTaskCollaboratorDeletedSubscription({
     workspaceId: workspace.id,
   })
 

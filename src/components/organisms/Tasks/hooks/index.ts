@@ -20,3 +20,4 @@ export { useTasksCompletedTaskSizeByTaskSectionId } from './useTasksCompletedTas
 export { useTasksTaskSectionByTaskId } from './useTasksTaskSectionByTaskId'
 export { useTasksSubTask } from './useTasksSubTask'
 export { useTasksSubTaskIds } from './useTasksSubTaskIds'
+export { useTasksCanDeleteTaskSection } from './useTasksCanDeleteTaskSection'

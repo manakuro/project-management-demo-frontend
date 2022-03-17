@@ -1,8 +1,9 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
-import { dateFns } from 'src/shared/dateFns'
-import { ProjectResponse } from 'src/store/entities/project'
-import { teammates } from 'src/store/entities/teammate/data'
+import { useProjectsLazyQuery } from 'src/graphql/hooks'
+import { ProjectResponse, ProjectsQuery } from 'src/graphql/types/project'
+import { getNodesFromEdges } from 'src/shared/apollo/util'
+import { useWorkspace } from 'src/store/entities/workspace'
 
 const key = (str: string) =>
   `src/components/organisms/Menus/ProjectMenu/useSearchProjectsQuery/${str}`
@@ -20,137 +21,34 @@ type Props = {
 }
 export const useSearchProjectsQuery = () => {
   const [state, setState] = useRecoilState(searchProjectsQueryState)
+  const [refetchQuery] = useProjectsLazyQuery()
+  const { workspace } = useWorkspace()
 
   const refetch = useCallback(
     async (props: Props) => {
       setState((s) => ({ ...s, loading: true }))
-      const res = await fetchProjects()
-      const filtered = res.filter((r) =>
-        r.name.toLowerCase().includes(props.queryText.toLowerCase()),
-      )
-      setState((s) => ({ ...s, projects: filtered, loading: false }))
-      return filtered
+      const res = await refetchQuery({
+        variables: {
+          where: {
+            workspaceID: workspace.id,
+            nameContainsFold: props.queryText,
+          },
+        },
+      })
+
+      const projects = getNodesFromEdges<
+        ProjectResponse,
+        ProjectsQuery['projects']
+      >(res.data?.projects)
+
+      setState((s) => ({ ...s, projects, loading: false }))
+      return projects
     },
-    [setState],
+    [refetchQuery, setState, workspace.id],
   )
 
   return {
     refetch,
     ...state,
   }
-}
-
-const fetchProjects = (): Promise<ProjectResponse[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: '1',
-          name: 'Asana',
-          projectBaseColorId: '0AI01FSB3CBYDQXQAED33EJJHH4WE',
-          projectLightColorId: '0AJ01FSB3CBZRJVYTHPKBM26RM0CP',
-          projectIconId: '0AJ01FSB3CBZRJVYTHPKBM26RM0CP',
-          teammateIds: [teammates.manato.id, teammates.dan.id],
-          projectTeammates: [
-            {
-              id: '1',
-              teammateId: teammates.manato.id,
-              projectId: '2',
-              teammate: {
-                id: teammates.manato.id,
-                name: teammates.manato.name,
-                image: teammates.manato.image,
-                email: teammates.manato.email,
-                createdAt: '',
-                updatedAt: '',
-              },
-              isOwner: true,
-              role: '',
-              createdAt: '',
-              updatedAt: '',
-            },
-            {
-              id: '2',
-              teammateId: teammates.dan.id,
-              projectId: '2',
-              teammate: {
-                id: teammates.dan.id,
-                name: teammates.dan.name,
-                image: teammates.dan.image,
-                email: teammates.dan.email,
-                createdAt: '',
-                updatedAt: '',
-              },
-              isOwner: false,
-              role: '',
-              createdAt: '',
-              updatedAt: '',
-            },
-          ],
-          description: {
-            type: '',
-            content: [],
-          },
-          descriptionTitle: '',
-          dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
-          createdBy: '1',
-          createdAt: new Date(dateFns.subDays(new Date(), 10)).toISOString(),
-          updatedAt: '',
-        },
-        {
-          id: '2',
-          name: 'Asana 2',
-          projectBaseColorId: '0AI01FSB3CBYDQXQAED33E9PNJRXH',
-          projectLightColorId: '0AJ01FSB3CBZRJVYTHPKBKTQNFACZ',
-          projectIconId: '0AJ01FSB3CBZRJVYTHPKBM26RM0CP',
-          teammateIds: [teammates.manato.id, teammates.dan.id],
-          projectTeammates: [
-            {
-              id: '1',
-              teammateId: teammates.manato.id,
-              projectId: '2',
-              teammate: {
-                id: teammates.manato.id,
-                name: teammates.manato.name,
-                image: teammates.manato.image,
-                email: teammates.manato.email,
-                createdAt: '',
-                updatedAt: '',
-              },
-              isOwner: true,
-              role: '',
-              createdAt: '',
-              updatedAt: '',
-            },
-            {
-              id: '2',
-              teammateId: teammates.dan.id,
-              projectId: '2',
-              teammate: {
-                id: teammates.dan.id,
-                name: teammates.dan.name,
-                image: teammates.dan.image,
-                email: teammates.dan.email,
-                createdAt: '',
-                updatedAt: '',
-              },
-              isOwner: false,
-              role: '',
-              createdAt: '',
-              updatedAt: '',
-            },
-          ],
-          description: {
-            type: '',
-            content: [],
-          },
-          descriptionTitle: '',
-          dueDate: new Date(dateFns.addDays(new Date(), 3)).toISOString(),
-          createdBy: '1',
-          createdAt: new Date(dateFns.subDays(new Date(), 10)).toISOString(),
-          updatedAt: '',
-        },
-      ])
-    }, 300)
-  })
 }

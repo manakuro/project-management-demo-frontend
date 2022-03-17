@@ -1,10 +1,13 @@
-import React, { memo, useCallback, useMemo, useState } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { Flex, Input as AtomsInput, Wrap, WrapItem } from 'src/components/atoms'
 import { ProjectChip } from 'src/components/molecules'
 import { ProjectMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
-import { useProjectIdsByTaskId } from 'src/store/entities/projectTask'
+import {
+  useProjectIdsByTaskId,
+  useProjectTaskCommand,
+} from 'src/store/entities/projectTask'
 
 type Props = {
   taskId: string
@@ -17,6 +20,8 @@ export const Input: React.VFC<Props> = memo((props) => {
   const { taskId, onClose } = props
   const popoverDisclosure = useDisclosure()
   const { projectIds } = useProjectIdsByTaskId(taskId)
+  const { addProjectTaskByTaskId, deleteProjectTaskByTaskId } =
+    useProjectTaskCommand()
   const { ref } = useClickOutside(onClose, {
     hasClickedOutside: (e, helper) => {
       if (helper.isContainInPopoverContent(e)) return false
@@ -24,10 +29,10 @@ export const Input: React.VFC<Props> = memo((props) => {
     },
   })
   const [value, setValue] = useState<string>('')
-  const hasMultipleProjects = useMemo<boolean>(
-    () => projectIds.length > 1,
-    [projectIds.length],
-  )
+
+  const handleDelete = useCallback(async () => {
+    await deleteProjectTaskByTaskId({ taskId })
+  }, [deleteProjectTaskByTaskId, taskId])
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,11 +48,12 @@ export const Input: React.VFC<Props> = memo((props) => {
   )
 
   const handleSelect = useCallback(
-    (val: string) => {
-      console.log(val)
+    async (projectId: string) => {
+      console.log(projectId)
       onClose()
+      await addProjectTaskByTaskId({ projectId, taskId })
     },
-    [onClose],
+    [addProjectTaskByTaskId, onClose, taskId],
   )
 
   return (
@@ -66,7 +72,6 @@ export const Input: React.VFC<Props> = memo((props) => {
         alignItems="center"
         px={2}
         minH={HEIGHT}
-        maxH={hasMultipleProjects ? 'auto' : HEIGHT}
         position="absolute"
         left="0"
         top="0"
@@ -77,7 +82,12 @@ export const Input: React.VFC<Props> = memo((props) => {
         <Wrap minH={HEIGHT} py={2} justifyItems="center" display="flex">
           {projectIds.map((id) => (
             <WrapItem key={id}>
-              <ProjectChip variant="button" projectId={id} deletable />
+              <ProjectChip
+                variant="button"
+                projectId={id}
+                deletable
+                onDelete={handleDelete}
+              />
             </WrapItem>
           ))}
           <WrapItem>

@@ -35,4 +35,4 @@ export const WorkspaceMenu: React.FC<Props> = memo<Props>((props) => {
     </PortalManager>
   )
 })
-WorkspaceMenu.displayName = 'ProjectMenu'
+WorkspaceMenu.displayName = 'WorkspaceMenu'

@@ -24,7 +24,7 @@ type Props = {
 }
 
 export const ProjectChip: React.VFC<Props> = memo((props) => {
-  const { projectId, onClick } = props
+  const { projectId, onClick, onDelete } = props
   const { project } = useProject(projectId)
   const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
@@ -32,9 +32,9 @@ export const ProjectChip: React.VFC<Props> = memo((props) => {
   const handleDelete = useCallback(
     (e: React.MouseEvent<SVGElement>) => {
       e.stopPropagation()
-      props.onDelete?.()
+      onDelete?.()
     },
-    [props],
+    [onDelete],
   )
 
   const handleClick = useCallback(

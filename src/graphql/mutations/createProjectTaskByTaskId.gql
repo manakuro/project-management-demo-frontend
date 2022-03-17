@@ -1,0 +1,5 @@
+mutation CreateProjectTaskByTaskId($input: CreateProjectTaskByTaskIDInput!) {
+  createProjectTaskByTaskId(input: $input) {
+    ...ProjectTaskFragment
+  }
+}

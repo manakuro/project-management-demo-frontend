@@ -13,6 +13,7 @@ import {
 import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, taskCollaboratorByTaskIdAndTeammateId } from '../atom'
 import { useResetTaskCollaborator } from './useResetTaskCollaborator'
+import { TASK_COLLABORATOR_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskCollaboratorCreatedSubscription'
 import { useTaskCollaboratorResponse } from './useTaskCollaboratorResponse'
 import { useUpsert } from './useUpsert'
 
@@ -60,7 +61,7 @@ export const useTaskCollaboratorCommand = () => {
                 taskId: input.taskId,
                 teammateId: input.teammate.id,
                 workspaceId: workspace.id,
-                requestId: '',
+                requestId: TASK_COLLABORATOR_CREATED_SUBSCRIPTION_REQUEST_ID,
               },
             },
           })

@@ -3,6 +3,7 @@ import {
   useCreateProjectTaskMutation,
   useUpdateProjectTaskMutation,
   useCreateProjectTaskByTaskIdMutation,
+  useDeleteProjectTaskMutation,
 } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import { useMe } from 'src/store/entities/me'
@@ -13,7 +14,7 @@ import {
   initialState,
   projectTaskByTaskIdState,
 } from '../atom'
-import { ProjectTask } from '../type'
+import { ProjectTask, ProjectTaskResponse } from '../type'
 import { PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskCreatedSubscription'
 import { useProjectTaskResponse } from './useProjectTaskResponse'
 import { PROJECT_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskUpdatedSubscription'
@@ -32,6 +33,8 @@ export const useProjectTaskCommand = () => {
   const [createProjectTaskByTaskIdMutation] =
     useCreateProjectTaskByTaskIdMutation()
   const [updateProjectTaskMutation] = useUpdateProjectTaskMutation()
+  const [deleteProjectTaskMutation] = useDeleteProjectTaskMutation()
+
   const { me } = useMe()
   const { workspace } = useWorkspace()
   const { setProjectTask: setProjectTaskResponse } = useProjectTaskResponse()
@@ -203,9 +206,52 @@ export const useProjectTaskCommand = () => {
     ],
   )
 
+  const deleteProjectTaskByTaskId = useRecoilCallback(
+    ({ snapshot }) =>
+      async (input: { taskId: string }) => {
+        const projectTask = await snapshot.getPromise(
+          projectTaskByTaskIdState(input.taskId),
+        )
+
+        resetProjectTask(projectTask.id)
+
+        const restore = () => {
+          setProjectTaskResponse([projectTask as ProjectTaskResponse], {
+            includeTask: false,
+          })
+        }
+
+        try {
+          const res = await deleteProjectTaskMutation({
+            variables: {
+              input: {
+                id: projectTask.id,
+                workspaceId: workspace.id,
+                requestId: '',
+              },
+            },
+          })
+
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
+        }
+      },
+    [
+      deleteProjectTaskMutation,
+      resetProjectTask,
+      setProjectTaskResponse,
+      workspace.id,
+    ],
+  )
+
   return {
     addProjectTask,
     addProjectTaskByTaskId,
     setProjectTaskByTaskId,
+    deleteProjectTaskByTaskId,
   }
 }

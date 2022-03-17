@@ -17,6 +17,7 @@ import {
 import { ProjectTask, ProjectTaskResponse } from '../type'
 import { PROJECT_TASK_CREATED_BY_TASK_ID_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskCreatedByTaskIdSubscription'
 import { PROJECT_TASK_CREATED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskCreatedSubscription'
+import { PROJECT_TASK_DELETED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskDeletedSubscription'
 import { useProjectTaskResponse } from './useProjectTaskResponse'
 import { PROJECT_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskUpdatedSubscription'
 import { useResetProjectTask } from './useResetProjectTask'
@@ -229,7 +230,7 @@ export const useProjectTaskCommand = () => {
               input: {
                 id: projectTask.id,
                 workspaceId: workspace.id,
-                requestId: '',
+                requestId: PROJECT_TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
               },
             },
           })

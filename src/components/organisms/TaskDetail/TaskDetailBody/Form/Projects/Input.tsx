@@ -1,69 +1,82 @@
-import React, { memo } from 'react'
-import {
-  Flex,
-  Input as AtomsInput,
-  InputProps,
-  Portal,
-} from 'src/components/atoms'
-import {
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  MenuListProps,
-} from 'src/components/organisms/Menu'
+import React, { memo, useCallback, useState } from 'react'
+import { Flex, Input as AtomsInput, InputProps } from 'src/components/atoms'
+import { MenuListProps } from 'src/components/organisms/Menu'
+import { ProjectMenu } from 'src/components/organisms/Menus'
 import { useClickOutside } from 'src/hooks'
-import { useProjects } from 'src/store/entities/project'
+import { useDisclosure } from 'src/shared/chakra'
+import { useProjectTaskCommand } from 'src/store/entities/projectTask'
 
 type Props = {
-  onClickOutside?: () => void
+  onClose: () => void
   menuListStyle?: MenuListProps
+  taskId: string
 } & InputProps
 
 export const Input: React.FC<Props> = memo<Props>((props) => {
-  const { onClickOutside, menuListStyle, ...rest } = props
-  const { ref } = useClickOutside(() => {
-    onClickOutside?.()
+  const { onClose, menuListStyle, taskId, ...rest } = props
+  const popoverDisclosure = useDisclosure({ defaultIsOpen: true })
+  const { addProjectTaskByTaskId } = useProjectTaskCommand()
+  const { ref } = useClickOutside(onClose, {
+    hasClickedOutside: (e, helpers) => {
+      if (helpers.isContainInPopoverContent(e)) return false
+      return true
+    },
   })
-  const { projects } = useProjects()
+  const [value, setValue] = useState<string>('')
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const val = e.target.value
+      setValue(val)
+      if (val) {
+        popoverDisclosure.onOpen()
+        return
+      }
+      popoverDisclosure.onClose()
+    },
+    [popoverDisclosure],
+  )
+
+  const handleSelect = useCallback(
+    async (projectId: string) => {
+      console.log(projectId)
+      onClose()
+      await addProjectTaskByTaskId({ projectId, taskId })
+    },
+    [addProjectTaskByTaskId, onClose, taskId],
+  )
 
   return (
-    <Flex flexDirection="column">
-      <AtomsInput
-        ref={ref}
-        fontSize="sm"
-        placeholder="Add to a Project"
-        variant="outline"
-        size="sm"
-        border="1px"
-        borderColor="gray.400"
-        w="full"
-        _focus={{
-          border: 'gray.400',
-        }}
-        _hover={{
-          border: 'gray.400',
-        }}
-        {...rest}
-      />
-      <Menu defaultIsOpen isLazy closeOnBlur={false} closeOnSelect={false}>
-        <MenuButton />
-        <Portal>
-          <MenuList
-            {...{
-              w: '450px',
-              mt: -2,
-              ...menuListStyle,
-            }}
-            borderTop="none"
-          >
-            {projects.map((p) => (
-              <MenuItem key={p.id}>{p.name}</MenuItem>
-            ))}
-          </MenuList>
-        </Portal>
-      </Menu>
-    </Flex>
+    <ProjectMenu
+      isOpen={popoverDisclosure.isOpen}
+      onClose={popoverDisclosure.onClose}
+      onSelect={handleSelect}
+      placement="bottom-start"
+      queryText={value}
+      immediate
+    >
+      <Flex flexDirection="column">
+        <AtomsInput
+          ref={ref}
+          autoFocus
+          fontSize="sm"
+          placeholder="Add to a Project"
+          variant="outline"
+          size="sm"
+          border="1px"
+          borderColor="gray.400"
+          w="full"
+          _focus={{
+            border: 'gray.400',
+          }}
+          _hover={{
+            border: 'gray.400',
+          }}
+          {...rest}
+          value={value}
+          onChange={handleChange}
+        />
+      </Flex>
+    </ProjectMenu>
   )
 })
 Input.displayName = 'Input'

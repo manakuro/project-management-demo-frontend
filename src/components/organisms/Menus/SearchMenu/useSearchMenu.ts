@@ -44,6 +44,7 @@ export const useSearchMenu = <T>(props: Props<T>) => {
   })
 
   useEffect(() => {
+    if (!queryText) return
     setLoadingText(true)
     setValue(queryText)
   }, [queryText])

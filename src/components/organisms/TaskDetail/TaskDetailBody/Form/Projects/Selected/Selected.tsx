@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Box, Button, Flex, Icon, Stack } from 'src/components/atoms'
 import { useDisclosure } from 'src/shared/chakra'
 import { Input } from '../Input'
 import { ProjectButton } from './ProjectButton'
 import { Section } from './Section'
 
-type Props = {}
+type Props = {
+  taskId: string
+}
 
-export const Selected: React.FC<Props> = () => {
+export const Selected: React.FC<Props> = memo<Props>((props) => {
+  const { taskId } = props
   const inputDisclosure = useDisclosure()
 
   return (
@@ -37,9 +40,10 @@ export const Selected: React.FC<Props> = () => {
       </Stack>
       {inputDisclosure.isOpen && (
         <Flex flex={1}>
-          <Input onClickOutside={inputDisclosure.onClose} />
+          <Input onClose={inputDisclosure.onClose} taskId={taskId} />
         </Flex>
       )}
     </Flex>
   )
-}
+})
+Selected.displayName = 'Selected'

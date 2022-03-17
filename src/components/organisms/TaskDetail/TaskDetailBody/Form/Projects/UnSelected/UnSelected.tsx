@@ -3,15 +3,17 @@ import { Button, Box, Flex } from 'src/components/atoms'
 import { useDisclosure } from 'src/shared/chakra'
 import { Input } from '../Input'
 
-type Props = {}
+type Props = {
+  taskId: string
+}
 
-export const UnSelected: React.FC<Props> = () => {
+export const UnSelected: React.FC<Props> = (props) => {
   const inputDisclosure = useDisclosure()
 
   return (
     <Flex flex={1}>
       {inputDisclosure.isOpen ? (
-        <Input onClickOutside={inputDisclosure.onClose} />
+        <Input onClose={inputDisclosure.onClose} taskId={props.taskId} />
       ) : (
         <Button
           as={Box}

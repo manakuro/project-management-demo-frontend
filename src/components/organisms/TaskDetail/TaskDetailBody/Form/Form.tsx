@@ -25,7 +25,7 @@ export const Form: React.FC<Props> = memo(() => {
           dueDate={new Date(dateFns.addDays(new Date(), 3)).toISOString()}
           dueTime={new Date(dateFns.addDays(new Date(), 3)).toISOString()}
         />
-        <Projects />
+        <Projects taskId={taskId} />
         <Description taskId={taskId} />
         <Subtasks taskParentId={taskId} />
         <Attachment taskId={taskId} />

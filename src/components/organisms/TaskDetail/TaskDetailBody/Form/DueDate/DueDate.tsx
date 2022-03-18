@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback, useMemo } from 'react'
 import {
   Button,
   Icon,
@@ -8,25 +8,42 @@ import {
 import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
+import { useTask } from 'src/store/entities/task'
 import { Row, Label, Content } from '../Row'
 
 type Props = {
-  dueDate: string
-  dueTime: string
+  taskId: string
 }
 
 export const DueDate: React.FC<Props> = memo<Props>((props) => {
+  const { task, setTask } = useTask(props.taskId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()
   const { ref, isHovering } = useHover()
+  const hasDueDate = useMemo(() => !!task.dueDate, [task.dueDate])
+  const showResetIcon = useMemo(() => hasDueDate, [hasDueDate])
+
+  const handleChange = useCallback(
+    async (date: Date) => {
+      await setTask({ dueDate: date.toISOString() })
+    },
+    [setTask],
+  )
+  const handleReset = useCallback(
+    async (e: React.MouseEvent<SVGElement>) => {
+      e.stopPropagation()
+      await setTask({ dueDate: '' })
+    },
+    [setTask],
+  )
 
   return (
     <Row>
       <Label>Due date</Label>
       <Content>
         <PopoverDueDatePicker
-          date={props.dueDate}
-          time={props.dueTime}
-          onChange={(date) => console.log(date)}
+          date={task.dueDate}
+          time={task.dueTime}
+          onChange={handleChange}
         >
           <Button
             as={Box}
@@ -38,20 +55,19 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
             cursor="pointer"
           >
             <Icon icon="calendar" color="text.muted" size="xl" />
-            <AtomsDueDate ml={2} fontSize="xs" dueDate={props.dueDate} />
-            <Icon
-              ml={2}
-              mt="1px"
-              icon="x"
-              color="text.muted"
-              size="sm"
-              visibility={isHovering ? 'visible' : 'hidden'}
-              {...clickableHoverLightStyle}
-              onClick={(e) => {
-                e.stopPropagation()
-                console.log('click!')
-              }}
-            />
+            <AtomsDueDate ml={2} fontSize="xs" dueDate={task.dueDate} />
+            {showResetIcon && (
+              <Icon
+                ml={2}
+                mt="1px"
+                icon="x"
+                color="text.muted"
+                size="sm"
+                visibility={isHovering ? 'visible' : 'hidden'}
+                {...clickableHoverLightStyle}
+                onClick={handleReset}
+              />
+            )}
           </Button>
         </PopoverDueDatePicker>
       </Content>

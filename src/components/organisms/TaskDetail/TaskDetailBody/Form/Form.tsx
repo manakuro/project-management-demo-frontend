@@ -1,7 +1,6 @@
 import React, { memo } from 'react'
 import { Flex, Stack } from 'src/components/atoms'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
-import { dateFns } from 'src/shared/dateFns'
 import { Assignee } from './Assignee'
 import { Attachment } from './Attachment'
 import { Description } from './Description'
@@ -21,10 +20,7 @@ export const Form: React.FC<Props> = memo(() => {
       <TaskName taskId={taskId} />
       <Stack px={6} mt={3}>
         <Assignee taskId={taskId} />
-        <DueDate
-          dueDate={new Date(dateFns.addDays(new Date(), 3)).toISOString()}
-          dueTime={new Date(dateFns.addDays(new Date(), 3)).toISOString()}
-        />
+        <DueDate taskId={taskId} />
         <Projects taskId={taskId} />
         <Description taskId={taskId} />
         <Subtasks taskParentId={taskId} />

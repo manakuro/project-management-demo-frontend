@@ -1,11 +1,9 @@
-import React, { memo, useCallback, useMemo, useState } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { FlexProps, Stack } from 'src/components/atoms'
-import { ProjectChip } from 'src/components/molecules'
-import { useTasksContext } from 'src/components/organisms/Tasks'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
-import { useProjectsProjectId } from 'src/store/app/projects/project'
-import { useProjectIdsByTaskId } from 'src/store/entities/projectTask'
+import { useProjectTaskIdsByTaskId } from 'src/store/entities/projectTask'
 import { Input } from './Input'
+import { ListItem } from './ListItem'
 
 type Props = FlexProps & {
   taskId: string
@@ -13,13 +11,7 @@ type Props = FlexProps & {
 }
 
 export const TasksProjects: React.VFC<Props> = memo<Props>((props) => {
-  const { isProjectsPage } = useTasksContext()
-  const { projectId } = useProjectsProjectId()
-  const options = useMemo(() => {
-    if (isProjectsPage) return { excluded: [projectId] }
-    return {}
-  }, [isProjectsPage, projectId])
-  const { projectIds } = useProjectIdsByTaskId(props.taskId, options)
+  const { projectTaskIds } = useProjectTaskIdsByTaskId(props.taskId)
   const [focused, setFocused] = useState<boolean>(false)
 
   const onFocus = useCallback(() => {
@@ -45,8 +37,8 @@ export const TasksProjects: React.VFC<Props> = memo<Props>((props) => {
     >
       {!focused && (
         <Stack direction="row" spacing={1} overflow="hidden">
-          {projectIds.map((id) => (
-            <ProjectChip variant="button" key={id} projectId={id} />
+          {projectTaskIds.map((id) => (
+            <ListItem projectTaskId={id} key={id} />
           ))}
         </Stack>
       )}

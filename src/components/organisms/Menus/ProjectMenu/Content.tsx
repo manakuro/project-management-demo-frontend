@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo, useCallback, useEffect } from 'react'
 import { Icon, Divider, Text } from 'src/components/atoms'
 import { useSearchProjectsQuery } from 'src/components/organisms/Menus/ProjectMenu/useSearchProjectsQuery'
 import {
@@ -8,6 +8,8 @@ import {
   SearchMenuRightContainer,
   useSearchMenu,
 } from 'src/components/organisms/Menus/SearchMenu'
+import { useFirstRender } from 'src/hooks'
+import { Project } from 'src/store/entities/project'
 import { ProjectItem } from './ProjectItem'
 
 type Props = {
@@ -15,11 +17,17 @@ type Props = {
   queryText: string
   onClose: () => void
   onClosed?: () => void
+  immediate?: boolean
 }
 
 export const Content: React.FC<Props> = memo<Props>((props) => {
-  const { queryText, onSelect, onClose, onClosed } = props
+  const { queryText, onSelect, onClose, onClosed, immediate } = props
   const { refetch, projects, loading: loadingQuery } = useSearchProjectsQuery()
+  const { firstRender } = useFirstRender()
+
+  useEffect(() => {
+    if (immediate && firstRender) refetch({ queryText: '' })
+  }, [immediate, refetch, firstRender])
 
   const handleDebounce = useCallback(
     async (val: string) => {
@@ -37,11 +45,18 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
     [onClose, onClosed, onSelect],
   )
 
+  const handleSelectOnKey = useCallback(
+    (item: Project) => {
+      handleSelect(item.id)
+    },
+    [handleSelect],
+  )
+
   const { loading } = useSearchMenu({
     items: projects,
     loadingQuery,
     queryText,
-    onSelect: handleSelect,
+    onSelect: handleSelectOnKey,
     onDebounce: handleDebounce,
   })
 

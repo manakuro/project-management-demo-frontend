@@ -18,7 +18,6 @@ import {
 import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, projectTaskSectionState } from '../atom'
 import {
-  ProjectTaskSectionResponse,
   DeleteProjectTaskSectionAndKeepTasksMutation,
   DeleteProjectTaskSectionAndDeleteTasksMutation,
 } from '../type'
@@ -121,7 +120,7 @@ export const useProjectTaskSectionCommand = () => {
 
         const restore = async () => {
           const prev = await snapshot.getPromise(projectTaskSectionState(id))
-          setProjectsTaskSections([prev] as ProjectTaskSectionResponse[])
+          setProjectsTaskSections([prev])
         }
 
         try {
@@ -179,7 +178,7 @@ export const useProjectTaskSectionCommand = () => {
 
         const restore = async () => {
           const prev = await snapshot.getPromise(projectTaskSectionState(id))
-          setProjectsTaskSections([prev] as ProjectTaskSectionResponse[])
+          setProjectsTaskSections([prev])
           setProjectTask(projectTasks as ProjectTaskResponse[])
         }
 
@@ -221,7 +220,7 @@ export const useProjectTaskSectionCommand = () => {
 
         const restore = async () => {
           const prev = await snapshot.getPromise(projectTaskSectionState(id))
-          setProjectsTaskSections([prev] as ProjectTaskSectionResponse[])
+          setProjectsTaskSections([prev])
         }
 
         try {

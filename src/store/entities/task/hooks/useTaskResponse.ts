@@ -125,7 +125,14 @@ const useSetters = () => {
             (acc, p) => uniqBy([...acc, ...p.taskFiles], 'id'),
             [],
           )
-          .forEach((t) => set(taskFileState(t.id), t))
+          .forEach((t) =>
+            set(taskFileState(t.id), (prev) => {
+              return {
+                ...prev,
+                ...t,
+              }
+            }),
+          )
       },
     [],
   )
@@ -137,7 +144,14 @@ const useSetters = () => {
             (acc, p) => uniqBy([...acc, ...p.taskFeeds], 'id'),
             [],
           )
-          .forEach((f) => set(taskFeedState(f.id), f))
+          .forEach((t) =>
+            set(taskFeedState(t.id), (prev) => {
+              return {
+                ...prev,
+                ...t,
+              }
+            }),
+          )
       },
     [],
   )
@@ -160,7 +174,14 @@ const useSetters = () => {
             (acc, p) => uniqBy([...acc, ...p.taskTags], 'id'),
             [],
           )
-          .forEach((f) => set(taskTagState(f.id), f))
+          .forEach((t) =>
+            set(taskTagState(t.id), (prev) => {
+              return {
+                ...prev,
+                ...t,
+              }
+            }),
+          )
       },
     [],
   )
@@ -173,7 +194,14 @@ const useSetters = () => {
             (acc, p) => uniqBy([...acc, ...p.projectTasks], 'id'),
             [],
           )
-          .forEach((p) => set(projectTaskState(p.id), p))
+          .forEach((p) =>
+            set(projectTaskState(p.id), (prev) => {
+              return {
+                ...prev,
+                ...p,
+              }
+            }),
+          )
       },
     [],
   )

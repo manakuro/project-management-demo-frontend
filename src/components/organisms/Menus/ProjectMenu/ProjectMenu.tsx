@@ -12,10 +12,11 @@ type Props = PopoverProps & {
   queryText: string
   onClose: () => void
   onClosed?: () => void
+  immediate?: boolean
 }
 
 export const ProjectMenu: React.FC<Props> = memo<Props>((props) => {
-  const { onClosed, queryText, isOpen, onClose, ...rest } = props
+  const { onClosed, queryText, isOpen, onClose, immediate, ...rest } = props
 
   return (
     <SearchMenu isOpen={isOpen} {...rest}>
@@ -27,6 +28,7 @@ export const ProjectMenu: React.FC<Props> = memo<Props>((props) => {
             onClose={props.onClose}
             onSelect={props.onSelect}
             queryText={queryText}
+            immediate={immediate}
           />
         </SearchMenuContent>
       )}

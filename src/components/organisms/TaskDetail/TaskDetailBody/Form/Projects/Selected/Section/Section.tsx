@@ -6,24 +6,43 @@ import {
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms/Menus'
+import { useProjectTask } from 'src/store/entities/projectTask'
 import {
-  ListStatus,
-  BACKLOG,
-  DONE,
-  IN_PROGRESS,
-  IN_REVIEW,
-  READY,
-} from './listState'
+  useProjectsTaskSectionsByProjectId,
+  useProjectTaskSection,
+} from 'src/store/entities/projectTaskSection'
 
-type Props = {}
+type Props = {
+  taskId: string
+  projectTaskId: string
+  onChange: (input: {
+    projectTaskId: string
+    projectTaskSectionId: string
+  }) => void
+}
 
-export const Section: React.FC<Props> = memo<Props>(() => {
-  const handleChange = useCallback((listStatus: ListStatus) => {
-    console.log('hey: ', listStatus)
-  }, [])
+export const Section: React.FC<Props> = memo<Props>((props) => {
+  const { projectTaskId, onChange } = props
+  const { projectTask } = useProjectTask(projectTaskId)
+  const { projectTaskSection } = useProjectTaskSection(
+    projectTask.projectTaskSectionId,
+  )
+  const { projectTaskSections } = useProjectsTaskSectionsByProjectId(
+    projectTask.projectId,
+  )
+
+  const handleChange = useCallback(
+    (projectTaskSectionId: string) => {
+      onChange({
+        projectTaskId: projectTask.id,
+        projectTaskSectionId,
+      })
+    },
+    [onChange, projectTask.id],
+  )
 
   return (
-    <MenuSelect<ListStatus> onChange={handleChange} placement="bottom-start">
+    <MenuSelect onChange={handleChange} placement="bottom-start">
       <MenuSelectButton
         as={Button}
         variant="ghost"
@@ -33,14 +52,14 @@ export const Section: React.FC<Props> = memo<Props>(() => {
           <Icon mt="1px" icon="chevronDown" color="text.muted" size="md" />
         }
       >
-        Backlog
+        {projectTaskSection.name}
       </MenuSelectButton>
       <MenuSelectList>
-        <MenuItemOption value={BACKLOG}>Backlog</MenuItemOption>
-        <MenuItemOption value={DONE}>Done</MenuItemOption>
-        <MenuItemOption value={IN_PROGRESS}>In progress</MenuItemOption>
-        <MenuItemOption value={IN_REVIEW}>In review</MenuItemOption>
-        <MenuItemOption value={READY}>Ready</MenuItemOption>
+        {projectTaskSections.map((p) => (
+          <MenuItemOption value={p.id} key={p.id}>
+            {p.name}
+          </MenuItemOption>
+        ))}
       </MenuSelectList>
     </MenuSelect>
   )

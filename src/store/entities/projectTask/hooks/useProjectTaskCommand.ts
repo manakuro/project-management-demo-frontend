@@ -13,6 +13,7 @@ import {
   projectTaskState,
   initialState,
   projectTaskByTaskIdState,
+  projectTaskByTaskIdAndProjectIdState,
 } from '../atom'
 import { ProjectTask, ProjectTaskResponse } from '../type'
 import { PROJECT_TASK_CREATED_BY_TASK_ID_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskCreatedByTaskIdSubscription'
@@ -52,10 +53,47 @@ export const useProjectTaskCommand = () => {
     [],
   )
 
+  const setProjectTask = useRecoilCallback(
+    ({ snapshot }) =>
+      async (input: Override<Partial<ProjectTask>, { id: string }>) => {
+        const prev = await snapshot.getPromise(projectTaskState(input.id))
+        upsert({ ...prev, ...input })
+
+        const restore = () => {
+          upsert(prev)
+        }
+
+        try {
+          const res = await updateProjectTaskMutation({
+            variables: {
+              input: {
+                ...input,
+                id: prev.id,
+                workspaceId: workspace.id,
+                requestId: PROJECT_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
+        }
+      },
+    [updateProjectTaskMutation, upsert, workspace.id],
+  )
+
   const setProjectTaskByTaskId = useRecoilCallback(
     ({ snapshot }) =>
-      async (taskId: string, input: Partial<ProjectTask>) => {
-        const prev = await snapshot.getPromise(projectTaskByTaskIdState(taskId))
+      async (
+        { taskId, projectId }: { taskId: string; projectId: string },
+        input: Partial<ProjectTask>,
+      ) => {
+        const prev = await snapshot.getPromise(
+          projectTaskByTaskIdAndProjectIdState({ taskId, projectId }),
+        )
         upsert({ ...prev, ...input })
 
         const restore = () => {
@@ -158,53 +196,104 @@ export const useProjectTaskCommand = () => {
   )
 
   const addProjectTaskByTaskId = useRecoilCallback(
-    () => async (input: { projectId: string; taskId: string }) => {
-      const newProjectTaskId = uuid()
-      upsert({
-        ...initialState(),
-        taskId: input.taskId,
-        projectId: input.projectId,
-        id: newProjectTaskId,
-      })
+    ({ snapshot }) =>
+      async (input: { projectId: string; taskId: string }) => {
+        const projectTask = await snapshot.getPromise(
+          projectTaskByTaskIdAndProjectIdState({
+            projectId: input.projectId,
+            taskId: input.taskId,
+          }),
+        )
+        if (projectTask.id) return
 
-      const restore = () => {
-        resetProjectTask(newProjectTaskId)
-      }
-
-      try {
-        const res = await createProjectTaskByTaskIdMutation({
-          variables: {
-            input: {
-              projectId: input.projectId,
-              taskId: input.taskId,
-              requestId:
-                PROJECT_TASK_CREATED_BY_TASK_ID_SUBSCRIPTION_REQUEST_ID,
-              workspaceId: workspace.id,
-            },
-          },
+        const newProjectTaskId = uuid()
+        upsert({
+          ...initialState(),
+          taskId: input.taskId,
+          projectId: input.projectId,
+          id: newProjectTaskId,
         })
-        if (res.errors) {
-          restore()
-          return ''
+
+        const restore = () => {
+          resetProjectTask(newProjectTaskId)
         }
 
-        const addedProjectTask = res.data?.createProjectTaskByTaskId
-        if (!addedProjectTask) return ''
+        try {
+          const res = await createProjectTaskByTaskIdMutation({
+            variables: {
+              input: {
+                projectId: input.projectId,
+                taskId: input.taskId,
+                requestId:
+                  PROJECT_TASK_CREATED_BY_TASK_ID_SUBSCRIPTION_REQUEST_ID,
+                workspaceId: workspace.id,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+            return ''
+          }
 
-        resetProjectTask(newProjectTaskId)
-        setProjectTaskResponse([addedProjectTask])
+          const addedProjectTask = res.data?.createProjectTaskByTaskId
+          if (!addedProjectTask) return ''
 
-        return addedProjectTask.id
-      } catch (e) {
-        restore()
-        throw e
-      }
-    },
+          resetProjectTask(newProjectTaskId)
+          setProjectTaskResponse([addedProjectTask])
+
+          return addedProjectTask.id
+        } catch (e) {
+          restore()
+          throw e
+        }
+      },
     [
       createProjectTaskByTaskIdMutation,
       resetProjectTask,
       setProjectTaskResponse,
       upsert,
+      workspace.id,
+    ],
+  )
+
+  const deleteProjectTask = useRecoilCallback(
+    ({ snapshot }) =>
+      async (input: { id: string }) => {
+        const projectTask = await snapshot.getPromise(
+          projectTaskState(input.id),
+        )
+
+        resetProjectTask(projectTask.id)
+
+        const restore = () => {
+          setProjectTaskResponse([projectTask as ProjectTaskResponse], {
+            includeTask: false,
+          })
+        }
+
+        try {
+          const res = await deleteProjectTaskMutation({
+            variables: {
+              input: {
+                id: projectTask.id,
+                workspaceId: workspace.id,
+                requestId: PROJECT_TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
+        }
+      },
+    [
+      deleteProjectTaskMutation,
+      resetProjectTask,
+      setProjectTaskResponse,
       workspace.id,
     ],
   )
@@ -255,6 +344,8 @@ export const useProjectTaskCommand = () => {
     addProjectTask,
     addProjectTaskByTaskId,
     setProjectTaskByTaskId,
+    setProjectTask,
     deleteProjectTaskByTaskId,
+    deleteProjectTask,
   }
 }

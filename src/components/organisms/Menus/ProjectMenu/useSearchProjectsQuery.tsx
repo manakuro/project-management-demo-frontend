@@ -3,12 +3,16 @@ import { atom, useRecoilState } from 'recoil'
 import { useProjectsLazyQuery } from 'src/graphql/hooks'
 import { ProjectResponse, ProjectsQuery } from 'src/graphql/types/project'
 import { getNodesFromEdges } from 'src/shared/apollo/util'
+import { Project } from 'src/store/entities/project'
 import { useWorkspace } from 'src/store/entities/workspace'
 
 const key = (str: string) =>
   `src/components/organisms/Menus/ProjectMenu/useSearchProjectsQuery/${str}`
 
-const searchProjectsQueryState = atom<{ loading: boolean; projects: any[] }>({
+const searchProjectsQueryState = atom<{
+  loading: boolean
+  projects: Project[]
+}>({
   key: key('searchProjectsQueryState'),
   default: {
     loading: false,

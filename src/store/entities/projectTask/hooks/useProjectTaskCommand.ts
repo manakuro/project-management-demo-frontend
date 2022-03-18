@@ -13,6 +13,7 @@ import {
   projectTaskState,
   initialState,
   projectTaskByTaskIdState,
+  projectTaskByTaskIdAndProjectIdState,
 } from '../atom'
 import { ProjectTask, ProjectTaskResponse } from '../type'
 import { PROJECT_TASK_CREATED_BY_TASK_ID_SUBSCRIPTION_REQUEST_ID } from './useProjectTaskCreatedByTaskIdSubscription'
@@ -52,10 +53,47 @@ export const useProjectTaskCommand = () => {
     [],
   )
 
+  const setProjectTask = useRecoilCallback(
+    ({ snapshot }) =>
+      async (input: Override<Partial<ProjectTask>, { id: string }>) => {
+        const prev = await snapshot.getPromise(projectTaskState(input.id))
+        upsert({ ...prev, ...input })
+
+        const restore = () => {
+          upsert(prev)
+        }
+
+        try {
+          const res = await updateProjectTaskMutation({
+            variables: {
+              input: {
+                ...input,
+                id: prev.id,
+                workspaceId: workspace.id,
+                requestId: PROJECT_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
+        }
+      },
+    [updateProjectTaskMutation, upsert, workspace.id],
+  )
+
   const setProjectTaskByTaskId = useRecoilCallback(
     ({ snapshot }) =>
-      async (taskId: string, input: Partial<ProjectTask>) => {
-        const prev = await snapshot.getPromise(projectTaskByTaskIdState(taskId))
+      async (
+        { taskId, projectId }: { taskId: string; projectId: string },
+        input: Partial<ProjectTask>,
+      ) => {
+        const prev = await snapshot.getPromise(
+          projectTaskByTaskIdAndProjectIdState({ taskId, projectId }),
+        )
         upsert({ ...prev, ...input })
 
         const restore = () => {
@@ -209,6 +247,48 @@ export const useProjectTaskCommand = () => {
     ],
   )
 
+  const deleteProjectTask = useRecoilCallback(
+    ({ snapshot }) =>
+      async (input: { id: string }) => {
+        const projectTask = await snapshot.getPromise(
+          projectTaskState(input.id),
+        )
+
+        resetProjectTask(projectTask.id)
+
+        const restore = () => {
+          setProjectTaskResponse([projectTask as ProjectTaskResponse], {
+            includeTask: false,
+          })
+        }
+
+        try {
+          const res = await deleteProjectTaskMutation({
+            variables: {
+              input: {
+                id: projectTask.id,
+                workspaceId: workspace.id,
+                requestId: PROJECT_TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          })
+
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
+        }
+      },
+    [
+      deleteProjectTaskMutation,
+      resetProjectTask,
+      setProjectTaskResponse,
+      workspace.id,
+    ],
+  )
+
   const deleteProjectTaskByTaskId = useRecoilCallback(
     ({ snapshot }) =>
       async (input: { taskId: string }) => {
@@ -255,6 +335,8 @@ export const useProjectTaskCommand = () => {
     addProjectTask,
     addProjectTaskByTaskId,
     setProjectTaskByTaskId,
+    setProjectTask,
     deleteProjectTaskByTaskId,
+    deleteProjectTask,
   }
 }

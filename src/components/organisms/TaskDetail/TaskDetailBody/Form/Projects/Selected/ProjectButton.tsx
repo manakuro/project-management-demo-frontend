@@ -1,9 +1,16 @@
 import React from 'react'
 import { Button, Text, Box, Flex } from 'src/components/atoms'
+import { useProject } from 'src/store/entities/project'
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 
-type Props = {}
+type Props = {
+  projectId: string
+}
 
-export const ProjectButton: React.FC<Props> = () => {
+export const ProjectButton: React.FC<Props> = (props) => {
+  const { project } = useProject(props.projectId)
+  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
+
   return (
     <Button
       as={Box}
@@ -15,9 +22,15 @@ export const ProjectButton: React.FC<Props> = () => {
       borderRadius="full"
     >
       <Flex alignItems="center">
-        <Box ml={1} w={2} h={2} bg="pink.400" borderRadius="sm" />
+        <Box
+          ml={1}
+          w={2}
+          h={2}
+          bg={projectBaseColor.color.color}
+          borderRadius="sm"
+        />
         <Text fontSize="xs" flex={1} ml={2}>
-          Asana
+          {project.name}
         </Text>
       </Flex>
     </Button>

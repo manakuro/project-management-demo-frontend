@@ -34,20 +34,21 @@ export const projectTaskSectionsByProjectIdState = selectorFamily<
     },
 })
 
-export const projectTaskSectionByTaskIdState = selectorFamily<
+export const projectTaskSectionByTaskIdAndProjectIdState = selectorFamily<
   ProjectTaskSection,
-  string
+  { taskId: string; projectId: string }
 >({
-  key: key('projectTaskSectionByTaskIdState'),
+  key: key('projectTaskSectionByTaskIdAndProjectIdState'),
   get:
-    (taskId) =>
+    ({ taskId, projectId }) =>
     ({ get }) => {
       const projectTask = get(projectTaskByTaskIdState(taskId))
       const projectsTaskSections = get(projectTaskSectionsState)
       return (
-        projectsTaskSections.find(
-          (t) => t.id === projectTask.projectTaskSectionId,
-        ) || initialState()
+        projectsTaskSections
+          .filter((p) => p.projectId === projectId)
+          .find((p) => p.id === projectTask.projectTaskSectionId) ||
+        initialState()
       )
     },
 })

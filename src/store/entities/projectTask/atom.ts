@@ -59,6 +59,33 @@ export const projectTaskByTaskIdState = selectorFamily<ProjectTask, string>({
     },
 })
 
+export const projectTaskByTaskIdAndProjectIdState = selectorFamily<
+  ProjectTask,
+  { taskId: string; projectId: string }
+>({
+  key: key('projectTaskByTaskIdAndProjectIdState'),
+  get:
+    ({ taskId, projectId }) =>
+    ({ get }) => {
+      const projectTasks = get(projectTasksState)
+      return (
+        projectTasks.find(
+          (p) => p.taskId === taskId && p.projectId === projectId,
+        ) || initialState()
+      )
+    },
+})
+
+export const projectTaskIdsByTaskIdState = selectorFamily<string[], string>({
+  key: key('projectTaskIdsByTaskIdState'),
+  get:
+    (taskId) =>
+    ({ get }) => {
+      const projectTasks = get(projectTasksState)
+      return projectTasks.filter((p) => p.taskId === taskId).map((p) => p.id)
+    },
+})
+
 export const projectTasksByProjectTaskSectionIdState = selectorFamily<
   ProjectTask[],
   string

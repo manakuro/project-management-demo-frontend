@@ -196,48 +196,57 @@ export const useProjectTaskCommand = () => {
   )
 
   const addProjectTaskByTaskId = useRecoilCallback(
-    () => async (input: { projectId: string; taskId: string }) => {
-      const newProjectTaskId = uuid()
-      upsert({
-        ...initialState(),
-        taskId: input.taskId,
-        projectId: input.projectId,
-        id: newProjectTaskId,
-      })
+    ({ snapshot }) =>
+      async (input: { projectId: string; taskId: string }) => {
+        const projectTask = await snapshot.getPromise(
+          projectTaskByTaskIdAndProjectIdState({
+            projectId: input.projectId,
+            taskId: input.taskId,
+          }),
+        )
+        if (projectTask.id) return
 
-      const restore = () => {
-        resetProjectTask(newProjectTaskId)
-      }
-
-      try {
-        const res = await createProjectTaskByTaskIdMutation({
-          variables: {
-            input: {
-              projectId: input.projectId,
-              taskId: input.taskId,
-              requestId:
-                PROJECT_TASK_CREATED_BY_TASK_ID_SUBSCRIPTION_REQUEST_ID,
-              workspaceId: workspace.id,
-            },
-          },
+        const newProjectTaskId = uuid()
+        upsert({
+          ...initialState(),
+          taskId: input.taskId,
+          projectId: input.projectId,
+          id: newProjectTaskId,
         })
-        if (res.errors) {
-          restore()
-          return ''
+
+        const restore = () => {
+          resetProjectTask(newProjectTaskId)
         }
 
-        const addedProjectTask = res.data?.createProjectTaskByTaskId
-        if (!addedProjectTask) return ''
+        try {
+          const res = await createProjectTaskByTaskIdMutation({
+            variables: {
+              input: {
+                projectId: input.projectId,
+                taskId: input.taskId,
+                requestId:
+                  PROJECT_TASK_CREATED_BY_TASK_ID_SUBSCRIPTION_REQUEST_ID,
+                workspaceId: workspace.id,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+            return ''
+          }
 
-        resetProjectTask(newProjectTaskId)
-        setProjectTaskResponse([addedProjectTask])
+          const addedProjectTask = res.data?.createProjectTaskByTaskId
+          if (!addedProjectTask) return ''
 
-        return addedProjectTask.id
-      } catch (e) {
-        restore()
-        throw e
-      }
-    },
+          resetProjectTask(newProjectTaskId)
+          setProjectTaskResponse([addedProjectTask])
+
+          return addedProjectTask.id
+        } catch (e) {
+          restore()
+          throw e
+        }
+      },
     [
       createProjectTaskByTaskIdMutation,
       resetProjectTask,

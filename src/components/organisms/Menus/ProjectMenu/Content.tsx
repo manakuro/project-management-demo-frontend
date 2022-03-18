@@ -9,6 +9,7 @@ import {
   useSearchMenu,
 } from 'src/components/organisms/Menus/SearchMenu'
 import { useFirstRender } from 'src/hooks'
+import { Project } from 'src/store/entities/project'
 import { ProjectItem } from './ProjectItem'
 
 type Props = {
@@ -44,11 +45,18 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
     [onClose, onClosed, onSelect],
   )
 
+  const handleSelectOnKey = useCallback(
+    (item: Project) => {
+      handleSelect(item.id)
+    },
+    [handleSelect],
+  )
+
   const { loading } = useSearchMenu({
     items: projects,
     loadingQuery,
     queryText,
-    onSelect: handleSelect,
+    onSelect: handleSelectOnKey,
     onDebounce: handleDebounce,
   })
 

@@ -9,6 +9,7 @@ import {
   Stack,
   Text,
 } from 'src/components/atoms'
+import { ComingSoonTooltip } from 'src/components/molecules'
 import { formatTaskFileCreatedAt } from 'src/shared/date'
 import { useTaskFile } from 'src/store/entities/taskFile'
 import { useFileViewerModal } from './useFileViewerModal'
@@ -39,14 +40,16 @@ export const Header: React.VFC<Props> = memo(() => {
             Download
           </Button>
         </Link>
-        <Button
-          leftIcon={<Icon icon="commentDots" />}
-          iconSpacing={2}
-          variant="ghost"
-          lightBg
-        >
-          Add Feedback
-        </Button>
+        <ComingSoonTooltip>
+          <Button
+            leftIcon={<Icon icon="commentDots" />}
+            iconSpacing={2}
+            variant="ghost"
+            lightBg
+          >
+            Add Feedback
+          </Button>
+        </ComingSoonTooltip>
       </Stack>
       <Divider orientation="vertical" />
       <Flex py={4} px={6} justifyContent="center" alignItems="center">

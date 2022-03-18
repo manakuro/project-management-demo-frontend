@@ -29,10 +29,10 @@ export const PopoverMore: React.FC<Props> = (props) => {
         {props.children}
       </MenuButton>
       <MenuList pointerEvents="auto" mr="5px">
-        <MenuItem as="div" onClick={handleCreateNewWorkspace}>
+        <MenuItem as="div" onClick={handleCreateNewWorkspace} isDisabled>
           Create New Workspace
         </MenuItem>
-        <MenuItem as="div" onClick={handleRemoveMe}>
+        <MenuItem as="div" onClick={handleRemoveMe} isDisabled>
           Remove me from this Workspace
         </MenuItem>
       </MenuList>

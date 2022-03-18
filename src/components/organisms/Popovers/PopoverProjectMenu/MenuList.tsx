@@ -114,17 +114,26 @@ export const MenuList: React.VFC<Props> = (props) => {
           <MenuItem
             onMouseEnter={handleClose}
             onClick={props.onDuplicateProject}
+            isDisabled
           >
             Duplicate Project
           </MenuItem>
         )}
         {props.archiveProject && (
-          <MenuItem onMouseEnter={handleClose} onClick={props.onArchiveProject}>
+          <MenuItem
+            onMouseEnter={handleClose}
+            onClick={props.onArchiveProject}
+            isDisabled
+          >
             Archive Project
           </MenuItem>
         )}
         {props.deleteProject && (
-          <MenuItem onMouseEnter={handleClose} onClick={props.onDeleteProject}>
+          <MenuItem
+            onMouseEnter={handleClose}
+            onClick={props.onDeleteProject}
+            isDisabled
+          >
             Delete Project
           </MenuItem>
         )}

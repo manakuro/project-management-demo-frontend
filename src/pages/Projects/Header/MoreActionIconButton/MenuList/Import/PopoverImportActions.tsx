@@ -19,8 +19,12 @@ export const PopoverImportActions: React.FC<Props> = (props) => {
         {props.children}
       </MenuButton>
       <MenuList pointerEvents="auto" ml="5px">
-        <MenuItem as="div">CSV</MenuItem>
-        <MenuItem as="div">Email</MenuItem>
+        <MenuItem as="div" isDisabled>
+          CSV
+        </MenuItem>
+        <MenuItem as="div" isDisabled>
+          Email
+        </MenuItem>
       </MenuList>
     </Menu>
   )

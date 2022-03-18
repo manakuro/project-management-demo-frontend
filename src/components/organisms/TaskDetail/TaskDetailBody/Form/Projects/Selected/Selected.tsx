@@ -1,8 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { Box, Button, Flex, Icon, Stack } from 'src/components/atoms'
-import { useDisclosure } from 'src/shared/chakra'
 import { useProjectTask } from 'src/store/entities/projectTask'
-import { Input } from '../Input'
 import { ProjectButton } from './ProjectButton'
 import { Section } from './Section'
 
@@ -14,12 +12,12 @@ type Props = {
     projectTaskSectionId: string
   }) => void
   onDelete: (projectTaskId: string) => void
+  onClick: () => void
 }
 
 export const Selected: React.FC<Props> = memo<Props>((props) => {
-  const { taskId, projectTaskId, onChange, onDelete } = props
+  const { taskId, projectTaskId, onChange, onDelete, onClick } = props
   const { projectTask } = useProjectTask(projectTaskId)
-  const inputDisclosure = useDisclosure()
 
   const handleDelete = useCallback(() => {
     onDelete(projectTaskId)
@@ -55,16 +53,11 @@ export const Selected: React.FC<Props> = memo<Props>((props) => {
           variant="ghost"
           size="xs"
           cursor="pointer"
-          onClick={inputDisclosure.onOpen}
+          onClick={onClick}
         >
           <Icon icon="plus" color="text.muted" />
         </Button>
       </Stack>
-      {inputDisclosure.isOpen && (
-        <Flex flex={1}>
-          <Input onClose={inputDisclosure.onClose} taskId={taskId} />
-        </Flex>
-      )}
     </Flex>
   )
 })

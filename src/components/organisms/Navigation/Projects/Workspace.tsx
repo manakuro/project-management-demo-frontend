@@ -59,11 +59,13 @@ export const Workspace: React.VFC<Props> = memo(() => {
         <Portal>
           <MenuList color="text.base">
             <MenuGroup title="Create project">
-              <MenuItem icon={<Icon icon="layout" />}>Use a template</MenuItem>
-              <MenuItem icon={<Icon icon="spreadsheet" />}>
+              <MenuItem icon={<Icon icon="layout" />} isDisabled>
+                Use a template
+              </MenuItem>
+              <MenuItem icon={<Icon icon="spreadsheet" />} isDisabled>
                 Import spreadsheet
               </MenuItem>
-              <MenuItem icon={<Icon icon="fileBlank" />}>
+              <MenuItem icon={<Icon icon="fileBlank" />} isDisabled>
                 Blank project
               </MenuItem>
             </MenuGroup>

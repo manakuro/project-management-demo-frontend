@@ -7,8 +7,10 @@ import {
 } from 'src/components/organisms/Menu'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
+import { AddToAnotherProject } from './AddToAnotherProject'
 import { DeleteTask } from './DeleteTask'
 import { PopoverAdvancedActions } from './PopoverAdvancedActions'
+import { Print } from './Print'
 
 type Props = {
   onCloseMenu: () => void
@@ -41,16 +43,15 @@ export const MenuList: React.FC<Props> = (props) => {
           onMouseEnter={handleClose}
           icon={<Icon icon="fullscreenOutline" color="text.muted" />}
           command="Tab+X"
+          isDisabled
         >
           Full screen
         </MenuItem>
-        <MenuItem
+        <AddToAnotherProject
           onMouseEnter={handleClose}
-          icon={<Icon icon="bookAdd" color="text.muted" />}
-          command="Tab+P"
-        >
-          Add to another project
-        </MenuItem>
+          taskId={props.taskId}
+          onClose={handleCloseAll}
+        />
         <MenuItem
           onMouseEnter={handleClose}
           icon={<Icon icon="squareRounded" color="text.muted" />}
@@ -76,15 +77,22 @@ export const MenuList: React.FC<Props> = (props) => {
           onMouseEnter={handleClose}
           icon={<Icon icon="tag" color="text.muted" />}
           command="Tab+T"
+          isDisabled
         >
           Add tags
         </MenuItem>
         <MenuDivider />
-        <MenuItem onMouseEnter={handleClose}>Duplicate task</MenuItem>
-        <MenuItem onMouseEnter={handleClose} command="⌘+Tab+N">
+        <MenuItem onMouseEnter={handleClose} isDisabled>
+          Duplicate task
+        </MenuItem>
+        <MenuItem onMouseEnter={handleClose} command="⌘+Tab+N" isDisabled>
           Create follow-up task
         </MenuItem>
-        <MenuItem onMouseEnter={handleClose}>Print</MenuItem>
+        <Print
+          onMouseEnter={handleClose}
+          taskId={props.taskId}
+          onClose={handleCloseAll}
+        />
         <MenuItem onMouseEnter={handleOpen}>
           <PopoverAdvancedActions
             isOpen={isOpen}

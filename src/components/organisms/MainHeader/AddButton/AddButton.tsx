@@ -33,13 +33,13 @@ export const AddButton: React.FC = memo(() => {
       />
       <Portal>
         <MenuList>
-          <MenuItem>
+          <MenuItem isDisabled>
             <IconText icon="checkCircle">Task</IconText>
           </MenuItem>
-          <MenuItem>
+          <MenuItem isDisabled>
             <IconText icon="outlineProject">Project</IconText>
           </MenuItem>
-          <MenuItem>
+          <MenuItem isDisabled>
             <IconText icon="messageRoundedDots">Message</IconText>
           </MenuItem>
           <MenuItem onClick={handleInvite}>

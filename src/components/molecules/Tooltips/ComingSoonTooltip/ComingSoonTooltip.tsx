@@ -10,6 +10,7 @@ export const ComingSoonTooltip: React.FC<Props> = (props) => {
       label={'This feature has not been implemented yet.\n Coming soon.'}
       aria-label="This feature has not been implemented yet. Coming soon!"
       size="md"
+      withIcon
     >
       {props.children}
     </Tooltip>

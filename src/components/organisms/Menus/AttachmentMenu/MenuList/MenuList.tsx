@@ -30,10 +30,10 @@ export const MenuList: React.FC<Props> = memo((props) => {
           >
             Your computer
           </FileUploader>
-          <MenuItem>Dropbox</MenuItem>
-          <MenuItem>Google Drive</MenuItem>
-          <MenuItem>Box</MenuItem>
-          <MenuItem>OneDrive/SharePoint</MenuItem>
+          <MenuItem isDisabled>Dropbox</MenuItem>
+          <MenuItem isDisabled>Google Drive</MenuItem>
+          <MenuItem isDisabled>Box</MenuItem>
+          <MenuItem isDisabled>OneDrive/SharePoint</MenuItem>
         </MenuGroup>
       </OrganismsMenuList>
     </Portal>

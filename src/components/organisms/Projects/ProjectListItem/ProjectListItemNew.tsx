@@ -1,6 +1,6 @@
 import React from 'react'
 import { Flex, FlexProps, Text } from 'src/components/atoms'
-import { NewBox } from 'src/components/molecules'
+import { ComingSoonTooltip, NewBox } from 'src/components/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
 import { Container } from './Container'
 
@@ -11,12 +11,14 @@ export const ProjectListItemNew: React.VFC<Props> = (props) => {
 
   return (
     <Container {...props}>
-      <NewBox size="md" />
-      <Flex ml={3} flex={1} alignItems="center">
-        <Text fontSize="sm" {...clickableHoverLightStyle}>
-          New Project
-        </Text>
-      </Flex>
+      <ComingSoonTooltip>
+        <NewBox size="md" />
+        <Flex ml={3} flex={1} alignItems="center">
+          <Text fontSize="sm" {...clickableHoverLightStyle}>
+            New Project
+          </Text>
+        </Flex>
+      </ComingSoonTooltip>
     </Container>
   )
 }

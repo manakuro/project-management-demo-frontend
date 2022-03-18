@@ -32,10 +32,18 @@ export const PopoverAddCoverImageActions: React.FC<Props> = (props) => {
         >
           Your computer
         </FileUploader>
-        <MenuItem as={Box}>Dropbox</MenuItem>
-        <MenuItem as={Box}>Google Drive</MenuItem>
-        <MenuItem as={Box}>Box</MenuItem>
-        <MenuItem as={Box}>OneDrive/SharePoint</MenuItem>
+        <MenuItem as={Box} isDisabled>
+          Dropbox
+        </MenuItem>
+        <MenuItem as={Box} isDisabled>
+          Google Drive
+        </MenuItem>
+        <MenuItem as={Box} isDisabled>
+          Box
+        </MenuItem>
+        <MenuItem as={Box} isDisabled>
+          OneDrive/SharePoint
+        </MenuItem>
       </MenuList>
     </Menu>
   )

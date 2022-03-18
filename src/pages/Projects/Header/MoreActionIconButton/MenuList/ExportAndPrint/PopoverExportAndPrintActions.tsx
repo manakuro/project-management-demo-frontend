@@ -19,10 +19,18 @@ export const PopoverExportAndPrintActions: React.FC<Props> = (props) => {
         {props.children}
       </MenuButton>
       <MenuList pointerEvents="auto" ml="5px">
-        <MenuItem as="div">Sync to calendar</MenuItem>
-        <MenuItem as="div">CSV</MenuItem>
-        <MenuItem as="div">JSON</MenuItem>
-        <MenuItem as="div">Print</MenuItem>
+        <MenuItem as="div" isDisabled>
+          Sync to calendar
+        </MenuItem>
+        <MenuItem as="div" isDisabled>
+          CSV
+        </MenuItem>
+        <MenuItem as="div" isDisabled>
+          JSON
+        </MenuItem>
+        <MenuItem as="div" isDisabled>
+          Print
+        </MenuItem>
       </MenuList>
     </Menu>
   )

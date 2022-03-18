@@ -11,7 +11,7 @@ export const DeleteProject: React.FC<Props> = memo((props) => {
   const { onMouseEnter } = props
 
   return (
-    <MenuItem onMouseEnter={onMouseEnter} color="alert">
+    <MenuItem onMouseEnter={onMouseEnter} color="alert" isDisabled>
       Delete project
     </MenuItem>
   )

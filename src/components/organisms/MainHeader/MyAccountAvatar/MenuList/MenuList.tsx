@@ -35,9 +35,13 @@ export const MenuList: React.FC<Props> = (props) => {
   return (
     <Portal>
       <AtomsMenuList ref={ref}>
-        <MenuItem onMouseEnter={handleClose}>My workspace</MenuItem>
+        <MenuItem onMouseEnter={handleClose} isDisabled>
+          My workspace
+        </MenuItem>
         <MenuDivider />
-        <MenuItem onMouseEnter={handleClose}>Admin Console</MenuItem>
+        <MenuItem onMouseEnter={handleClose} isDisabled>
+          Admin Console
+        </MenuItem>
         <MenuItem onMouseEnter={handleOpen}>
           <PopoverMore
             isOpen={isOpen}
@@ -58,7 +62,9 @@ export const MenuList: React.FC<Props> = (props) => {
             Privacy Policy
           </Link>
         </MenuItem>
-        <MenuItem onMouseEnter={handleClose}>Logout</MenuItem>
+        <MenuItem onMouseEnter={handleClose} isDisabled>
+          Logout
+        </MenuItem>
       </AtomsMenuList>
     </Portal>
   )

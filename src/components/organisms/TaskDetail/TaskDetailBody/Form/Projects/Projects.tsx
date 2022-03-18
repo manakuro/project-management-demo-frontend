@@ -1,5 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { Flex } from 'src/components/atoms'
+import { Input } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/Projects/Input'
+import { useTaskDetailProjectsInput } from 'src/components/organisms/TaskDetail/hooks'
 import { useProjectTaskSectionsByProjectIdsQuery } from 'src/hooks/queries/entities'
 import {
   useProjectIdsByTaskId,
@@ -20,6 +22,7 @@ export const Projects: React.FC<Props> = memo<Props>((props) => {
   const { projectTaskIds } = useProjectTaskIdsByTaskId(taskId)
   const { setProjectTask, deleteProjectTask } = useProjectTaskCommand()
   const hasProject = projectIds.length > 0
+  const inputDisclosure = useTaskDetailProjectsInput()
 
   useProjectTaskSectionsByProjectIdsQuery(projectIds)
 
@@ -53,11 +56,22 @@ export const Projects: React.FC<Props> = memo<Props>((props) => {
                 key={id}
                 onChange={handleChange}
                 onDelete={handleDelete}
+                onClick={inputDisclosure.onOpen}
               />
             ))}
+            {inputDisclosure.isOpen && (
+              <Flex flex={1}>
+                <Input onClose={inputDisclosure.onClose} taskId={taskId} />
+              </Flex>
+            )}
           </Flex>
         ) : (
-          <UnSelected taskId={taskId} />
+          <UnSelected
+            taskId={taskId}
+            onClick={inputDisclosure.onOpen}
+            onClose={inputDisclosure.onClose}
+            isOpen={inputDisclosure.isOpen}
+          />
         )}
       </Content>
     </Row>

@@ -2,6 +2,7 @@ import React, { memo, useMemo } from 'react'
 import { AccordionIcon } from 'src/components/organisms/Accordion'
 import { useNavigation } from 'src/components/organisms/Navigation'
 import { NavListItem } from 'src/components/organisms/Navigation/NavListItem'
+import { useDisabledStyle } from 'src/hooks'
 import { Divider } from '../../Divider'
 import {
   CustomNavList,
@@ -17,7 +18,7 @@ type Props = {}
 
 export const SavedSearches: React.VFC<Props> = memo(() => {
   const { isExpanded } = useNavigation()
-
+  const { disabledStyle } = useDisabledStyle()
   const title = useMemo(
     () => (isExpanded ? 'Saved searches' : 'Sav'),
     [isExpanded],
@@ -47,7 +48,7 @@ export const SavedSearches: React.VFC<Props> = memo(() => {
             <CustomNavListAccordionPanel>
               <CustomNavListAccordionPanelList>
                 {listItems.map((listItem, i) => (
-                  <NavListItem item={listItem} key={i} />
+                  <NavListItem item={listItem} key={i} {...disabledStyle} />
                 ))}
               </CustomNavListAccordionPanelList>
             </CustomNavListAccordionPanel>

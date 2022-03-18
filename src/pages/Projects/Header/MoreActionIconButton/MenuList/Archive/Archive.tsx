@@ -10,6 +10,10 @@ type Props = {
 export const Archive: React.FC<Props> = memo((props) => {
   const { onMouseEnter } = props
 
-  return <MenuItem onMouseEnter={onMouseEnter}>Archive</MenuItem>
+  return (
+    <MenuItem onMouseEnter={onMouseEnter} isDisabled>
+      Archive
+    </MenuItem>
+  )
 })
 Archive.displayName = 'Archive'

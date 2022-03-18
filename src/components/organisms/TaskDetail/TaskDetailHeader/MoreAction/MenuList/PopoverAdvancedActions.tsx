@@ -19,9 +19,13 @@ export const PopoverAdvancedActions: React.FC<Props> = (props) => {
         {props.children}
       </MenuButton>
       <MenuList pointerEvents="auto" mr="5px">
-        <MenuItem as="div">Make a subtask of</MenuItem>
-        <MenuItem as="div">Convert to a project</MenuItem>
-        <MenuItem as="div" command="⇧+Tab+D">
+        <MenuItem as="div" isDisabled>
+          Make a subtask of
+        </MenuItem>
+        <MenuItem as="div" isDisabled>
+          Convert to a project
+        </MenuItem>
+        <MenuItem as="div" command="⇧+Tab+D" isDisabled>
           Merge duplicate tasks
         </MenuItem>
       </MenuList>

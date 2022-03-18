@@ -1,19 +1,21 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Button, Box, Flex } from 'src/components/atoms'
-import { useDisclosure } from 'src/shared/chakra'
 import { Input } from '../Input'
 
 type Props = {
   taskId: string
+  onClick: () => void
+  onClose: () => void
+  isOpen: boolean
 }
 
-export const UnSelected: React.FC<Props> = (props) => {
-  const inputDisclosure = useDisclosure()
+export const UnSelected: React.FC<Props> = memo<Props>((props) => {
+  const { isOpen, onClose, taskId, onClick } = props
 
   return (
     <Flex flex={1}>
-      {inputDisclosure.isOpen ? (
-        <Input onClose={inputDisclosure.onClose} taskId={props.taskId} />
+      {isOpen ? (
+        <Input onClose={onClose} taskId={taskId} />
       ) : (
         <Button
           as={Box}
@@ -21,7 +23,7 @@ export const UnSelected: React.FC<Props> = (props) => {
           size="sm"
           border="1px"
           borderColor="transparent"
-          onClick={inputDisclosure.onOpen}
+          onClick={onClick}
           cursor="pointer"
           fontSize="sm"
         >
@@ -30,4 +32,5 @@ export const UnSelected: React.FC<Props> = (props) => {
       )}
     </Flex>
   )
-}
+})
+UnSelected.displayName = 'UnSelected'

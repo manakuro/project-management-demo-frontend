@@ -1,5 +1,4 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
-import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
 import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
 import {
@@ -10,7 +9,6 @@ import { useWorkspace, useWorkspaceCommand } from 'src/store/entities/workspace'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
 import { Provider } from './Provider'
-import { SkeletonDescription } from './SkeletonDescription'
 
 type Props = {}
 
@@ -64,7 +62,6 @@ type ComponentProps = {
 }
 const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
   const { onChange, initialValue, resetView } = props
-  const [loading, setLoading] = useState<boolean>(true)
 
   const handleChange = useCallback(
     (val: string) => {
@@ -73,12 +70,6 @@ const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
     [onChange],
   )
 
-  const handleRendered = useCallback(() => {
-    setTimeout(() => {
-      setLoading(false)
-    }, 200)
-  }, [])
-
   return (
     <Container>
       <Editor
@@ -86,14 +77,8 @@ const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
         initialValue={initialValue}
         resetView={resetView}
       >
-        <Flex flex={1} flexDirection="column" position="relative" minH="150px">
-          <EditorContent
-            style={{ minHeight: '150px' }}
-            onRendered={handleRendered}
-          />
-          {loading && <SkeletonDescription />}
-          <Placeholder />
-        </Flex>
+        <EditorContent />
+        <Placeholder />
       </Editor>
     </Container>
   )

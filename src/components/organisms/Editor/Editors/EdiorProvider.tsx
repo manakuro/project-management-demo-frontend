@@ -108,15 +108,7 @@ const generateView = (
 const Provider: React.FC<Props> = (props) => {
   const { createPortal, removePortal } = useReactNodeViewCreatePortal()
   const [state, setState] = useState(generateState(props))
-  const [view, setView] = useState<EditorView>(
-    generateView({
-      ...props,
-      state,
-      setState,
-      createPortal,
-      removePortal,
-    }),
-  )
+  const [view, setView] = useState<EditorView | null>(null)
   //
   // useEffect(() => {
   //   if (!view) return

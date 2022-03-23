@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useTaskDetailBody } from 'src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
-import { getMyTasksDetailFeedId, useRouter } from 'src/router'
+import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
 import { isHTMLElement } from 'src/shared/isHTMLElement'
 import { createProvider } from 'src/shared/react/createProvider'
 import { useTaskFeed } from 'src/store/entities/taskFeed'
@@ -15,9 +15,9 @@ type Props = {
   isPinned?: boolean
 }
 const useValue = (props: Props): ContextProps => {
+  const { getTasksDetailFeedId } = useTasksRouter()
   const { taskFeed } = useTaskFeed(props.taskFeedId)
   const ref = useRef<HTMLElement | null>(null)
-  const { router } = useRouter()
   const { taskDetailBodyDom } = useTaskDetailBody()
   const [isReferenced, setIsReferenced] = useState<boolean>(false)
 
@@ -39,13 +39,13 @@ const useValue = (props: Props): ContextProps => {
   }, [setReference, taskDetailBodyDom])
 
   useEffect(() => {
-    const id = getMyTasksDetailFeedId(router)
+    const id = getTasksDetailFeedId()
     if (!id) return
     if (props.isPinned) return
     if (id !== taskFeed.id) return
 
     scrollToFeedItem()
-  }, [taskFeed.id, props.isPinned, router, scrollToFeedItem])
+  }, [taskFeed.id, props.isPinned, scrollToFeedItem, getTasksDetailFeedId])
 
   return {
     containerRef: ref,

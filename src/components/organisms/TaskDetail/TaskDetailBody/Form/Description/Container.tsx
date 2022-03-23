@@ -22,6 +22,7 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
       flex={1}
       position="relative"
       onFocus={onFocus}
+      minH="100px"
       {...props}
     />
   )

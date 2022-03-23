@@ -2,9 +2,7 @@ fragment TaskFeedFragment on TaskFeed {
   id
   taskId
   teammateId
-  description {
-    ...DescriptionFragment
-  }
+  description
   isPinned
   isFirst
   createdAt

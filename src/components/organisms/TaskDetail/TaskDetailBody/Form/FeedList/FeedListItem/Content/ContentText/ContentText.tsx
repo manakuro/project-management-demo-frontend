@@ -10,14 +10,14 @@ type Props = {}
 export const ContentText: React.VFC<Props> = memo<Props>(() => {
   const { taskFeed, editable, onChangeDescription } =
     useTaskFeedListItemContext()
-  const [forceUpdate, setForceUpdate] = useState<number>(1)
+  const [resetView, setResetView] = useState<number>(1)
   const value = useMemo(
     () => stringifyDescription(taskFeed.description),
     [taskFeed.description],
   )
 
   useEffect(() => {
-    setForceUpdate((s) => s + 1)
+    setResetView((s) => s + 1)
   }, [editable, taskFeed.description])
 
   return (
@@ -26,7 +26,7 @@ export const ContentText: React.VFC<Props> = memo<Props>(() => {
         initialValue={value}
         editable={editable}
         onChange={onChangeDescription}
-        forceUpdate={forceUpdate}
+        resetView={resetView}
       >
         <EditorContent />
         <ToolBar />

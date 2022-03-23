@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react'
+import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
 import { useToast } from 'src/hooks'
-import { getMyTasksDetailFeedURL } from 'src/router'
 import { parseDescription } from 'src/shared/prosemirror/convertDescription'
 import { createProvider } from 'src/shared/react/createProvider'
 import { useTaskFeed } from 'src/store/entities/taskFeed'
@@ -74,6 +74,7 @@ const { Provider: ProviderBase, useContext: useTaskFeedListItemContext } =
   createProvider(useValue)
 
 const useFeedOptionMenu = (props: Props) => {
+  const { getTasksDetailFeedURL } = useTasksRouter()
   const { taskFeed, setTaskFeed } = useTaskFeed(props.taskFeedId)
   const [isEdit, setIsEdit] = useState<boolean>(false)
   const { toast } = useToast()
@@ -96,12 +97,12 @@ const useFeedOptionMenu = (props: Props) => {
 
   const onCopyCommentLink = useCallback(async () => {
     await navigator.clipboard.writeText(
-      getMyTasksDetailFeedURL(props.taskId, taskFeed.id),
+      getTasksDetailFeedURL({ taskId: props.taskId, taskFeedId: taskFeed.id }),
     )
     toast({
       description: 'The comment link was copied to your clipboard.',
     })
-  }, [taskFeed.id, props.taskId, toast])
+  }, [getTasksDetailFeedURL, props.taskId, taskFeed.id, toast])
 
   return {
     onPin,

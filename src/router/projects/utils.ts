@@ -81,7 +81,7 @@ export const getProjectsDetailFeedURL = (
   taskId: string,
   taskFeedId: string,
 ): string => {
-  return `${window.location.origin}/${ROUTE_PROJECTS.href.pathname(
+  return `${window.location.origin}${ROUTE_PROJECTS.href.pathname(
     id,
   )}/${taskId}/${taskFeedId}`
 }

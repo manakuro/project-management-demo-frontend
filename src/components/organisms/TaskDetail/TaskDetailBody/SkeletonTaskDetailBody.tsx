@@ -1,11 +1,11 @@
 import React from 'react'
-import { Flex, Skeleton, Stack } from 'src/components/atoms'
+import { Flex, FlexProps, Skeleton, Stack } from 'src/components/atoms'
 
-type Props = {}
+type Props = FlexProps
 
-export const SkeletonTaskDetailBody: React.FC<Props> = () => {
+export const SkeletonTaskDetailBody: React.FC<Props> = (props) => {
   return (
-    <Flex flexDirection="column" flex={1}>
+    <Flex flexDirection="column" flex={1} {...props}>
       <Skeleton h="44px" />
 
       <Stack direction="column" spacing={4} mt={4} px={6}>

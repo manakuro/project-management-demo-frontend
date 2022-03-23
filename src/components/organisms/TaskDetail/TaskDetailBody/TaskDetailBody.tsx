@@ -1,4 +1,4 @@
-import React, { memo, useLayoutEffect } from 'react'
+import React, { memo, useEffect } from 'react'
 import { Flex } from 'src/components/atoms'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { Form } from './Form'
@@ -13,19 +13,23 @@ type Props = {
 
 export const TaskDetailBody: React.FC<Props> = memo<Props>((props) => {
   const { ref } = useTaskDetailBody()
-  const { scrollId, taskId } = useTaskDetail()
+  const { scrollId, taskId, resetScrollId } = useTaskDetail()
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (props.loading) return
     if (!scrollId) return
     if (!ref.current) return
 
     setTimeout(() => {
-      const rect = document.getElementById(scrollId)?.getBoundingClientRect()
-      const top = (rect?.top ?? 0) - (72 + 57)
+      const top =
+        (document.getElementById(scrollId)?.offsetTop ?? 0) - (72 + 57)
+
+      if (!ref.current) return
+
       ref.current?.scrollTo({ top, behavior: 'smooth' })
+      resetScrollId()
     })
-  }, [props.loading, ref, scrollId])
+  }, [props.loading, ref, resetScrollId, scrollId])
 
   if (props.loading) return <SkeletonTaskDetailBody />
 

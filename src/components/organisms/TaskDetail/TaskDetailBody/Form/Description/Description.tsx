@@ -73,10 +73,6 @@ const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
     [onChange],
   )
 
-  const handleRendered = useCallback(() => {
-    console.log('onRendered!')
-  }, [])
-
   return (
     <Row>
       <Label>Description</Label>
@@ -87,7 +83,7 @@ const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
             initialValue={initialValue}
             resetView={resetView}
           >
-            <EditorContent onRendered={handleRendered} />
+            <EditorContent />
             <Placeholder />
             <ToolBar />
           </Editor>

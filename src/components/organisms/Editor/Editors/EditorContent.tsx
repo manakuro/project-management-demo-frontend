@@ -1,4 +1,10 @@
-import React, { CSSProperties, useEffect, useRef, memo } from 'react'
+import React, {
+  CSSProperties,
+  useEffect,
+  useRef,
+  memo,
+  useLayoutEffect,
+} from 'react'
 import { Box } from 'src/components/atoms'
 import { useEditorViewContext } from 'src/components/organisms/Editor/Editors/EdiorProvider'
 import 'prosemirror-view/style/prosemirror.css'
@@ -13,7 +19,7 @@ export const EditorContent: React.FC<Props> = memo<Props>((props) => {
   const view = useEditorViewContext()
   const ref = useRef<HTMLDivElement | null>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const current = ref.current
     if (current && view) {
       if (style) {

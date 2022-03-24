@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { useMentionLazyQuery as useQuery } from 'src/graphql/hooks'
 import { Mention } from 'src/store/entities/mention'
@@ -7,32 +7,35 @@ import { useWorkspace } from 'src/store/entities/workspace'
 const key = (str: string) =>
   `src/hooks/queries/entities/useMentionsQuery/${str}`
 
-const mentionsQueryState = atom<{
-  loading: boolean
-}>({
-  key: key('mentionsQueryState'),
-  default: {
-    loading: false,
-  },
+const loadingState = atom<boolean>({
+  key: key('loadingState'),
+  default: false,
+})
+
+const mentionsState = atom<Mention[]>({
+  key: key('mentionsState'),
+  default: [],
 })
 
 type Props = {
   queryText: string
 }
 export const useMentionsQuery = () => {
-  const [state, setState] = useRecoilState(mentionsQueryState)
-  const [refetchQuery, res] = useQuery({
+  const [loading, setLoading] = useRecoilState(loadingState)
+  const [mentions, setMentions] = useRecoilState(mentionsState)
+  const [refetchQuery] = useQuery({
     fetchPolicy: 'no-cache',
+    onCompleted: (data) => {
+      if (!data.mentions) return
+
+      setMentions(data.mentions as Mention[])
+    },
   })
   const { workspace } = useWorkspace()
-  const mentions = useMemo<Mention[]>(
-    () => (res.data?.mentions || []) as Mention[],
-    [res.data?.mentions],
-  )
 
   const refetch = useCallback(
     async (props: Props) => {
-      setState((s) => ({ ...s, loading: true }))
+      setLoading(true)
       await refetchQuery({
         variables: {
           where: {
@@ -42,14 +45,14 @@ export const useMentionsQuery = () => {
           },
         },
       })
-      setState((s) => ({ ...s, loading: false }))
+      setLoading(false)
     },
-    [refetchQuery, setState, workspace.id],
+    [refetchQuery, setLoading, workspace.id],
   )
 
   return {
     refetch,
     mentions,
-    ...state,
+    loading,
   }
 }

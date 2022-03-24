@@ -21,13 +21,13 @@ export const suggestMention: Suggester = {
   keyBindings: {
     ArrowDown: (params) => {
       params.event.preventDefault()
-      if (!params.queryText.full) return
+      // if (!params.queryText.full) return
 
       onArrowDown()
     },
     ArrowUp: (params) => {
       params.event.preventDefault()
-      if (!params.queryText.full) return
+      // if (!params.queryText.full) return
 
       onArrowUp()
     },

@@ -1,13 +1,13 @@
 import React, { memo } from 'react'
 import { ColorBox, Flex, FlexProps, Text } from 'src/components/atoms'
+import { Mention } from 'src/store/entities/mention'
 import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
-import { MentionProject } from '../types'
 import { LeftContainer } from './LeftContainer'
 import { RightContainer } from './RightContainer'
 
 type Props = FlexProps & {
-  mention: MentionProject
+  mention: Mention
 }
 
 export const Project: React.FC<Props> = memo<Props>((props) => {

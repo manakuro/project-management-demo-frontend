@@ -1,0 +1,13 @@
+query Mention($where: MentionWhereInput!) {
+  mentions(where: $where) {
+    id
+    type
+    text
+    title
+    subtitle
+    href
+    completed
+    image
+    projectId
+  }
+}

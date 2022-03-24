@@ -1,14 +1,15 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
+import { useMentionsQuery } from 'src/hooks/queries/entities'
 import { useResizeObserver } from 'src/hooks/useResizeObserver'
 import { calculateModalPosition } from 'src/shared/calculateModalPosition'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
-import { MentionItem, MentionType } from './types'
+import { Mention, MentionTypeCode } from 'src/store/entities/mention'
 
 const key = (str: string) =>
   `src/components/organisms/Menus/EditorMentionMenu/useEditorMentionMenu/${str}`
 
-type Id = number | null
+type Id = string | null
 type State = {
   isOpen: boolean
   x: number
@@ -32,87 +33,6 @@ const modalState = atom<State>({
   },
 })
 
-export const mentionData: MentionItem[] = [
-  {
-    id: 1,
-    type: 1,
-    text: 'manato.kuroda@gmail.com',
-    title: 'Manato Kuroda',
-    subTitle: 'manato.kuroda@gmail.com',
-    href: '',
-    image: '/images/cat_img.png',
-  },
-  {
-    id: 2,
-    type: 1,
-    text: 'dan.abrahmov@gmail.com',
-    title: 'Dan Abrahmov',
-    subTitle: 'dan.abrahmov@gmail.com',
-    href: '',
-    image: 'https://bit.ly/dan-abramov',
-  },
-  {
-    id: 1,
-    type: 2,
-    text: 'Resolve an issue of auto focus for tasks list detail page',
-    title: 'Resolve an issue of auto focus for tasks list detail page',
-    subTitle: 'Asana',
-    idDone: true,
-    href: '',
-  },
-  {
-    id: 2,
-    type: 2,
-    text: 'Implement Task Due Soon',
-    title: 'Implement Task Due Soon',
-    subTitle: 'Asana',
-    idDone: true,
-    href: '',
-  },
-  {
-    id: 3,
-    type: 2,
-    text: 'Implement Recent Projects',
-    title: 'Implement Recent Projects',
-    subTitle: 'Asana',
-    idDone: true,
-    href: '',
-  },
-  {
-    id: 4,
-    type: 2,
-    text: 'Implement Date picker',
-    title: 'Implement Date picker',
-    subTitle: 'Asana',
-    idDone: true,
-    href: '',
-  },
-  {
-    id: 5,
-    type: 2,
-    text: 'Implement Message page',
-    title: 'Implement Message page',
-    subTitle: 'Asana',
-    idDone: true,
-    href: '',
-  },
-  {
-    id: 2,
-    type: 3,
-    text: 'To Do',
-    title: 'To Do',
-    projectId: '2',
-    href: '',
-  },
-  {
-    id: 1,
-    type: 4,
-    text: 'My workspace',
-    title: 'My workspace',
-    href: '',
-  },
-]
-
 // NOTE: Export functions in order to execute inside prosemirror's plugins
 // @see src/shared/prosemirror/config/plugins.ts
 let onOpen: () => Promise<void> | void
@@ -127,41 +47,35 @@ let getCurrentCaretPosition: () => { x: number; y: number } | null
 
 type IdRef = Readonly<{ current: Id }>
 const idRef: IdRef = {
-  current: 0,
+  current: '',
 }
 export const getMentionId = () => idRef.current
 const setMentionIdRef = (val: Id) =>
   void ((idRef as Writeable<IdRef>).current = val)
 
-type TypeRef = Readonly<{ current: MentionType | null }>
+type TypeRef = Readonly<{ current: MentionTypeCode | null }>
 const typeRef: IdRef = {
   current: null,
 }
 export const getMentionType = () => typeRef.current
-const setMentionTypeRef = (val: MentionType | null) =>
+const setMentionTypeRef = (val: MentionTypeCode | null) =>
   void ((typeRef as Writeable<TypeRef>).current = val)
 
 export type SetValueParam = {
   id: Id
-  type: MentionType
+  type: MentionTypeCode
 }
 
 export const useEditorMentionMenu = () => {
   const [state, setState] = useRecoilState(modalState)
   const resetState = useResetRecoilState(modalState)
+  const { refetch, mentions, loading } = useMentionsQuery()
 
   const reset = useCallback(() => {
     setMentionIdRef(null)
     setMentionTypeRef(null)
     resetState()
   }, [resetState])
-
-  const mentions = useMemo<MentionItem[]>(() => {
-    if (!state.query) return []
-    return mentionData.filter((t) =>
-      t.text.toLowerCase().includes(state.query.toLowerCase()),
-    )
-  }, [state.query])
 
   const setValue = useCallback((params: SetValueParam) => {
     setMentionIdRef(params.id)
@@ -183,6 +97,8 @@ export const useEditorMentionMenu = () => {
 
   return {
     ...state,
+    refetch,
+    loading,
     setValue,
     onOpen,
     onClose,
@@ -193,7 +109,7 @@ export const useEditorMentionMenu = () => {
 }
 
 function useOnKeyBindings(props: {
-  mentions: MentionItem[]
+  mentions: Mention[]
   setValue: (val: SetValueParam) => void
 }) {
   const [state, setState] = useRecoilState(modalState)

@@ -6997,13 +6997,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"awilix@npm:^4.2.7":
-  version: 4.3.4
-  resolution: "awilix@npm:4.3.4"
+"awilix@npm:^7.0.0":
+  version: 7.0.1
+  resolution: "awilix@npm:7.0.1"
   dependencies:
     camel-case: ^4.1.2
-    glob: ^7.1.6
-  checksum: d8cd0afd03a7920f667805d79b0fe52e69ffb453a3e127d6d6b7fa82cdc17e21e88fa620556b14db66398d9ed3fe2da90e2780fd7029f04b3d4b78fa66f3efd8
+    fast-glob: ^3.2.11
+  checksum: cf75f1e2727e2506a595de811f616aadee2df48273a4e4c53bd438a335c31b3145a4776275b774b80dcdd6019aa83655315842ffe026fb833e49ad32c35618c1
   languageName: node
   linkType: hard
 
@@ -7014,12 +7014,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.21.0":
-  version: 0.21.1
-  resolution: "axios@npm:0.21.1"
+"axios@npm:^0.26.1":
+  version: 0.26.1
+  resolution: "axios@npm:0.26.1"
   dependencies:
-    follow-redirects: ^1.10.0
-  checksum: c87915fa0b18c15c63350112b6b3563a3e2ae524d7707de0a73d2e065e0d30c5d3da8563037bc29d4cc1b7424b5a350cb7274fa52525c6c04a615fe561c6ab11
+    follow-redirects: ^1.14.8
+  checksum: d9eb58ff4bc0b36a04783fc9ff760e9245c829a5a1052ee7ca6013410d427036b1d10d04e7380c02f3508c5eaf3485b1ae67bd2adbfec3683704745c8d7a6e1a
   languageName: node
   linkType: hard
 
@@ -8336,7 +8336,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cosmiconfig@npm:7.0.1, cosmiconfig@npm:^7.0.0":
+"cosmiconfig@npm:7.0.1, cosmiconfig@npm:^7.0.0, cosmiconfig@npm:^7.0.1":
   version: 7.0.1
   resolution: "cosmiconfig@npm:7.0.1"
   dependencies:
@@ -10046,6 +10046,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-glob@npm:^3.2.11":
+  version: 3.2.11
+  resolution: "fast-glob@npm:3.2.11"
+  dependencies:
+    "@nodelib/fs.stat": ^2.0.2
+    "@nodelib/fs.walk": ^1.2.3
+    glob-parent: ^5.1.2
+    merge2: ^1.3.0
+    micromatch: ^4.0.4
+  checksum: f473105324a7780a20c06de842e15ddbb41d3cb7e71d1e4fe6e8373204f22245d54f5ab9e2061e6a1c613047345954d29b022e0e76f5c28b1df9858179a0e6d7
+  languageName: node
+  linkType: hard
+
 "fast-json-stable-stringify@npm:2.x, fast-json-stable-stringify@npm:^2.0.0":
   version: 2.1.0
   resolution: "fast-json-stable-stringify@npm:2.1.0"
@@ -10306,13 +10319,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.10.0":
-  version: 1.14.2
-  resolution: "follow-redirects@npm:1.14.2"
+"follow-redirects@npm:^1.14.8":
+  version: 1.14.9
+  resolution: "follow-redirects@npm:1.14.9"
   peerDependenciesMeta:
     debug:
       optional: true
-  checksum: 53195df4a2f36202177f40a2d59d497d630f3b20e2e51e2b697ee5f9c0a5261985f164b23d3744a574e117618af668d07c0d000c2c5cb0c1546851671585ac4e
+  checksum: f5982e0eb481818642492d3ca35a86989c98af1128b8e1a62911a3410621bc15d2b079e8170b35b19d3bdee770b73ed431a257ed86195af773771145baa57845
   languageName: node
   linkType: hard
 
@@ -10668,7 +10681,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^7.1.7":
+"glob@npm:^7.1.7, glob@npm:^7.2.0":
   version: 7.2.0
   resolution: "glob@npm:7.2.0"
   dependencies:
@@ -14864,7 +14877,7 @@ __metadata:
     subscriptions-transport-ws: ^0.11.0
     ts-jest: ^27.1.3
     typescript: ^4.6.2
-    typesync: ^0.8.0
+    typesync: ^0.9.0
     use-prosemirror: ^1.2.1
     uuid: ^8.3.2
   languageName: unknown
@@ -17325,21 +17338,21 @@ typescript@^4.6.2:
   languageName: node
   linkType: hard
 
-"typesync@npm:^0.8.0":
-  version: 0.8.0
-  resolution: "typesync@npm:0.8.0"
+"typesync@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "typesync@npm:0.9.0"
   dependencies:
-    awilix: ^4.2.7
-    axios: ^0.21.0
+    awilix: ^7.0.0
+    axios: ^0.26.1
     chalk: ^4.1.0
-    cosmiconfig: ^7.0.0
+    cosmiconfig: ^7.0.1
     detect-indent: ^6.0.0
-    glob: ^7.1.4
+    glob: ^7.2.0
     ora: ^5.1.0
-    semver: ^7.3.2
+    semver: ^7.3.5
   bin:
     typesync: bin/typesync
-  checksum: a4a193147f509c61e522eb15497b5e24dc3156b2067bf0acd2af0c8a0951f934679891facf2e04a401097e829ec3b09a4ac055eb37b01fdfb15bedf3f8f89105
+  checksum: 92cc9d6df3457ebeacbbad1bad3f67e8d2de18bbb40d4149f7f9f1ce97b3459eabc7b5735b72ff1b41c77fb7d58f359f02f6161d3a3828758e366cc94171b506
   languageName: node
   linkType: hard
 

@@ -37,7 +37,10 @@ export const MenuList: React.VFC<Props> = memo<Props>(() => {
   )
 
   if (searching) return <SearchMenuLoading />
-  if (!searching && mentions.length === 0) return <Empty />
+  if (!searching && mentions.length === 0)
+    return (
+      <Empty>Mention a teammate or link to a task, project, or message.</Empty>
+    )
 
   return (
     <>

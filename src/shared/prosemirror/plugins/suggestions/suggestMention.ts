@@ -42,8 +42,6 @@ export const suggestMention: Suggester = {
     return () => {
       if (!getMentionId()) return
 
-      console.log('getMentionId(): ', getMentionId(), getMentionType())
-
       const state = params.view.state
       const node = state.schema.nodes.mention.create({
         mentionId: String(getMentionId()),

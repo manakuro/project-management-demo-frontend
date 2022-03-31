@@ -191,17 +191,12 @@ function useDisclosure(props: { reset: () => void }) {
   onClose = useCallback(async () => {
     isOpen = false
     setState((s) => ({ ...s, isOpen: false }))
-    state.callback()
-  }, [setState, state])
-
-  useEffect(() => {
-    if (!state.isOpen) {
-      // Use setTimeout to prevent moving back to the initial position ({ top: 0, left: 0 }) before closing
-      setTimeout(() => {
-        props.reset()
-      })
-    }
-  }, [props, state.isOpen])
+    await state.callback()
+    // Use setTimeout to prevent moving back to the initial position ({ top: 0, left: 0 }) before closing
+    setTimeout(() => {
+      props.reset()
+    }, 200)
+  }, [props, setState, state])
 }
 
 function useQuery() {

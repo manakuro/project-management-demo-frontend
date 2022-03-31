@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import { Stack, Flex } from 'src/components/atoms'
 import { Head } from 'src/components/atoms/Head'
 import { TaskDetailModal } from 'src/components/organisms/TaskDetails'
+import { TasksProvider } from 'src/components/organisms/Tasks'
 import { isHomeDetailURL, useRouter, getHomeDetailId } from 'src/router'
 import { Content } from './Content'
 import { FavoriteProjects } from './FavoriteProjects'
@@ -27,7 +28,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
   })
 
   return (
-    <>
+    <TasksProvider isMyTasksPage>
       <Flex data-testid="Home" flexDirection="column">
         <Head title="Home" />
         <Header />
@@ -44,7 +45,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
         )}
       </Flex>
       <TaskDetailModal backToPage={navigateToHome} />
-    </>
+    </TasksProvider>
   )
 })
 Component.displayName = 'Component'

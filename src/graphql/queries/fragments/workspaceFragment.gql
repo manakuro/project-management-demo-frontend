@@ -1,9 +1,7 @@
 fragment WorkspaceFragment on Workspace {
   id
   name
-  description {
-    ...DescriptionFragment
-  }
+  description
   createdBy
   createdAt
   updatedAt

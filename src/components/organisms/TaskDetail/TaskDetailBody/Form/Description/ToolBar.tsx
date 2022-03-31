@@ -26,6 +26,7 @@ export const ToolBar: React.FC<Props> = memo<Props>(() => {
       direction="row"
       spacing={0}
       minH={8}
+      maxH={8}
       alignItems="center"
       // TODO: Find a workaround to make tool bar sticky at bottom
       // position="sticky"

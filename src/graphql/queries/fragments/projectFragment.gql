@@ -4,9 +4,7 @@ fragment ProjectFragment on Project {
   projectBaseColorId
   projectLightColorId
   projectIconId
-  description {
-    ...DescriptionFragment
-  }
+  description
   descriptionTitle
   teammateIds
   projectTeammates {

@@ -8,6 +8,7 @@ import {
   Text,
   Image,
   PortalManager,
+  Box,
 } from 'src/components/atoms'
 import { Flex } from 'src/components/atoms/Flex'
 import {
@@ -30,7 +31,9 @@ export const PopoverProfile: React.FC<Props> = (props) => {
     <PortalManager zIndex={1600}>
       <Popover trigger="hover" isLazy>
         <PopoverTrigger>
-          <Flex maxW="max-content">{props.children}</Flex>
+          <Box as="span" maxW="max-content">
+            {props.children}
+          </Box>
         </PopoverTrigger>
         <Portal>
           <PopoverContent w={56} border="none">

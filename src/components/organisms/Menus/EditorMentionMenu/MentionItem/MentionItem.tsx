@@ -1,14 +1,8 @@
 import React, { memo } from 'react'
 import { FlexProps } from 'src/components/atoms'
 import { SetValueParam } from 'src/components/organisms/Menus/EditorMentionMenu'
-import {
-  MENTION_TYPE,
-  MentionItem as TMentionItem,
-  MentionProject,
-  MentionTask,
-  MentionTeammate,
-  MentionWorkspace,
-} from '../types'
+import { Mention } from 'src/store/entities/mention'
+import { MentionType } from 'src/store/entities/mention'
 import { MentionItemBase } from './MentionItemBase'
 import { Project } from './Project'
 import { Task } from './Task'
@@ -21,7 +15,7 @@ type Props = Override<
     onClick: (val: SetValueParam) => void
   }
 > & {
-  mention: TMentionItem
+  mention: Mention
   index: number
 }
 
@@ -29,28 +23,28 @@ export const MentionItem: React.FC<Props> = memo<Props>((props) => {
   const { onClick, mention, ...rest } = props
 
   switch (mention.type) {
-    case MENTION_TYPE.TEAMMATE:
+    case MentionType.TEAMMATE:
       return (
         <MentionItemBase {...props}>
-          <Teammate {...rest} mention={props.mention as MentionTeammate} />
+          <Teammate {...rest} mention={props.mention} />
         </MentionItemBase>
       )
-    case MENTION_TYPE.TASK:
+    case MentionType.TASK:
       return (
         <MentionItemBase {...props}>
-          <Task {...rest} mention={props.mention as MentionTask} />
+          <Task {...rest} mention={props.mention} />
         </MentionItemBase>
       )
-    case MENTION_TYPE.PROJECT:
+    case MentionType.PROJECT:
       return (
         <MentionItemBase {...props}>
-          <Project {...rest} mention={props.mention as MentionProject} />
+          <Project {...rest} mention={props.mention} />
         </MentionItemBase>
       )
-    case MENTION_TYPE.WORKSPACE:
+    case MentionType.WORKSPACE:
       return (
         <MentionItemBase {...props}>
-          <Workspace {...rest} mention={props.mention as MentionWorkspace} />
+          <Workspace {...rest} mention={props.mention} />
         </MentionItemBase>
       )
   }

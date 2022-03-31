@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Modal } from 'src/components/organisms/Modal'
-import { MenuList } from './MenuList'
+import { MenuContent } from './MenuContent'
 import { useEditorMentionMenu } from './useEditorMentionMenu'
 
 type Props = {}
@@ -17,7 +17,7 @@ export const EditorMentionMenu: React.VFC<Props> = memo<Props>(() => {
       trapFocus={false}
       motionPreset="none"
     >
-      {isOpen && <MenuList />}
+      {isOpen && <MenuContent />}
     </Modal>
   )
 })

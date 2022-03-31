@@ -3,6 +3,7 @@ import {
   EditorDescriptionContent,
   EditorDescriptionContentContent,
 } from 'src/graphql/types'
+import { getDefaultDescription } from './getDefaultDescription'
 
 export const parseDescription = <T extends EditorDescription>(
   val: string,
@@ -48,7 +49,7 @@ export const stringifyDescription = <T extends EditorDescription>(
   val: T,
 ): string => {
   try {
-    return JSON.stringify(val)
+    return val ? JSON.stringify(val) : JSON.stringify(getDefaultDescription())
   } catch (e) {
     if (e instanceof Error) {
       console.log('stringifyDescription error: ', e)

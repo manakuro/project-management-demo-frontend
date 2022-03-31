@@ -1,4 +1,5 @@
 import { selectorFamily } from 'recoil'
+import { getDefaultDescription } from 'src/shared/prosemirror/getDefaultDescription'
 import { createState } from 'src/store/util'
 import { Task } from './type'
 
@@ -15,10 +16,7 @@ export const initialState = (): Task => ({
   name: '',
   taskParentId: '',
   taskPriorityId: '',
-  description: {
-    type: 'doc',
-    content: [],
-  },
+  description: getDefaultDescription(),
   taskPriority: {
     id: '',
     name: '',

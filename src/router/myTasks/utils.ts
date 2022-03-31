@@ -66,5 +66,5 @@ export const getMyTasksDetailFeedURL = (
 ): string => {
   return `${
     window.location.origin
-  }/${ROUTE_MY_TASKS.href.pathname()}/${taskId}/${taskFeedId}`
+  }${ROUTE_MY_TASKS.href.pathname()}/${taskId}/${taskFeedId}`
 }

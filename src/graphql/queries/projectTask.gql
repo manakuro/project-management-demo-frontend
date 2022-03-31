@@ -1,0 +1,5 @@
+query ProjectTask($where: ProjectTaskWhereInput) {
+  projectTask(where: $where) {
+    ...ProjectTaskFragment
+  }
+}

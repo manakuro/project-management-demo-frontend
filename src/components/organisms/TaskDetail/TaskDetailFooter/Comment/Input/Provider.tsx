@@ -196,9 +196,19 @@ function useFocus() {
     setFocused(true)
   }, [])
 
-  const { ref } = useClickOutside(() => {
-    setFocused(false)
-  })
+  const { ref } = useClickOutside(
+    () => {
+      setFocused(false)
+    },
+    {
+      hasClickedOutside: (e, helpers) => {
+        if (helpers.isContainInPopoverContent(e)) return false
+        if (helpers.isContainInMenuList(e)) return false
+        if (helpers.isContainInModalContent(e)) return false
+        return true
+      },
+    },
+  )
 
   return {
     focused,

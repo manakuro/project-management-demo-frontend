@@ -1,5 +1,5 @@
 import { Node as ProsemirrorNode } from 'prosemirror-model'
-import { EditorState, Plugin, TextSelection } from 'prosemirror-state'
+import { EditorState, Plugin } from 'prosemirror-state'
 import { EditorProps, EditorView } from 'prosemirror-view'
 import React, {
   createContext,
@@ -108,58 +108,54 @@ const generateView = (
 const Provider: React.FC<Props> = (props) => {
   const { createPortal, removePortal } = useReactNodeViewCreatePortal()
   const [state, setState] = useState(generateState(props))
-  const [view, setView] = useState<EditorView>(
-    generateView({
-      ...props,
-      state,
-      setState,
-      createPortal,
-      removePortal,
-    }),
-  )
-
-  useEffect(() => {
-    if (!view) return
-    if (!props.forceUpdate) return
-    if (props.forceUpdate === 2) return
-
-    // const newState = generateState({
-    //   doc: props.doc,
-    //   plugins: view.state.plugins,
-    //   selection: view.state.selection,
-    //   storedMarks: view.state.storedMarks,
-    // })
-    // view.state.tr.replace(
-    //   0,
-    //   view.state.doc.content.size,
-    //   new Slice<any>(props.doc?.content!, 0, 0),
-    // )
-    // setState(newState)
-    // view.updateState(newState)
-
-    if (!view.state.doc.content.size) return
-
-    const tr = view.state.tr.replaceWith(
-      0,
-      view.state.doc.content.size,
-      props.doc?.content!,
-    )
-    view.dispatch(
-      tr.setSelection(
-        TextSelection.create(
-          tr.doc,
-          view.state.selection.anchor,
-          view.state.selection.head,
-        ),
-      ),
-    )
-  }, [props.forceUpdate])
+  const [view, setView] = useState<EditorView | null>(null)
+  //
+  // useEffect(() => {
+  //   if (!view) return
+  //   if (!props.forceUpdate) return
+  //   if (props.forceUpdate === 2) return
+  //
+  //   // const newState = generateState({
+  //   //   doc: props.doc,
+  //   //   plugins: view.state.plugins,
+  //   //   selection: view.state.selection,
+  //   //   storedMarks: view.state.storedMarks,
+  //   // })
+  //   // view.state.tr.replace(
+  //   //   0,
+  //   //   view.state.doc.content.size,
+  //   //   new Slice<any>(props.doc?.content!, 0, 0),
+  //   // )
+  //   // setState(newState)
+  //   // view.updateState(newState)
+  //
+  //   if (!view.state.doc.content.size) return
+  //   console.log('forceUpdate!')
+  //
+  //   const tr = view.state.tr.replaceWith(
+  //     0,
+  //     view.state.doc.content.size,
+  //     props.doc?.content!,
+  //   )
+  //   view.dispatch(
+  //     tr.setSelection(
+  //       TextSelection.create(
+  //         tr.doc,
+  //         view.state.selection.anchor,
+  //         view.state.selection.head,
+  //       ),
+  //     ),
+  //   )
+  // }, [props.forceUpdate])
 
   const resetView = useCallback(() => {
     setView(
       generateView({
         ...props,
-        state: generateState(props),
+        state: generateState({
+          doc: props.doc,
+          plugins: props.plugins,
+        }),
         setState,
         createPortal,
         removePortal,

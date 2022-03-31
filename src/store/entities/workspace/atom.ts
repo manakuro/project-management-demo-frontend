@@ -1,4 +1,5 @@
 import { atom } from 'recoil'
+import { getDefaultDescription } from 'src/shared/prosemirror/getDefaultDescription'
 import { Workspace } from './type'
 
 const key = (str: string) => `src/store/entities/workspace/${str}`
@@ -6,10 +7,7 @@ const key = (str: string) => `src/store/entities/workspace/${str}`
 export const workspaceStateDefault = (): Workspace => ({
   id: '',
   name: '',
-  description: {
-    type: 'doc',
-    content: [],
-  },
+  description: getDefaultDescription(),
   createdBy: '',
   createdAt: '',
   updatedAt: '',

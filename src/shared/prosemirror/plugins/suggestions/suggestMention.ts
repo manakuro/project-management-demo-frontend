@@ -3,13 +3,11 @@ import {
   onMentionOpen as onOpen,
   onMentionClose as onClose,
   setMentionQuery as setQuery,
-  getMentionQuery as getQuery,
   getMentionId,
   onMentionArrowDown as onArrowDown,
   onMentionArrowUp as onArrowUp,
   onMentionEnter as onEnter,
   getMentionType,
-  getMentionQuery,
 } from 'src/components/organisms/Menus/EditorMentionMenu'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
 
@@ -21,19 +19,15 @@ export const suggestMention: Suggester = {
   keyBindings: {
     ArrowDown: (params) => {
       params.event.preventDefault()
-      if (!params.queryText.full) return
 
       onArrowDown()
     },
     ArrowUp: (params) => {
       params.event.preventDefault()
-      if (!params.queryText.full) return
 
       onArrowUp()
     },
     Enter: () => {
-      if (!getMentionQuery()) return false
-
       onEnter()
       return true
     },
@@ -46,7 +40,7 @@ export const suggestMention: Suggester = {
 
   createCommand: (params) => {
     return () => {
-      if (!getMentionId() || !getQuery()) return
+      if (!getMentionId()) return
 
       const state = params.view.state
       const node = state.schema.nodes.mention.create({

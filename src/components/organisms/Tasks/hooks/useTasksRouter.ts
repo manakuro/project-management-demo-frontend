@@ -1,49 +1,66 @@
 import { useCallback } from 'react'
 import {
+  getMyTasksDetailFeedId,
+  getMyTasksDetailFeedURL,
+  getProjectsDetailFeedId,
+  getProjectsDetailFeedURL,
   isMyTasksDetailURLById,
   isProjectsDetailURLById,
   useRouter,
 } from 'src/router'
 import { Options } from 'src/router/types'
+import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useTasksContext } from '../TasksProvider'
 
 type Result = {
   navigateToTaskDetail: (taskId: string, options?: Options) => Promise<void>
   navigateToTaskBoard: (options?: Options) => Promise<void>
   isTaskDetailURLById: (taskId: string) => boolean
+  getTasksDetailFeedURL: (props: {
+    taskId: string
+    taskFeedId: string
+  }) => string
+  getTasksDetailFeedId: () => string
 }
 
 export const useTasksRouter = (): Result => {
   const { isMyTasksPage } = useTasksContext()
-  const { router } = useRouter()
-  const { push } = router
+  const { projectId } = useProjectsProjectId()
+  const {
+    router,
+    navigateToMyTasksTaskDetail,
+    navigateToProjectsTaskDetail,
+    navigateToProjectsBoard,
+    navigateToMyTasksBoard,
+  } = useRouter()
 
   const navigateToTaskDetail = useCallback(
-    async (taskId, options) => {
-      const pathArray = router.asPath.split('/')
-      const excludedPath = pathArray.slice(0, -1)
-      const path = `${excludedPath.join('/')}/${taskId}`
+    async (taskId: string, options?: Options) => {
+      if (isMyTasksPage) {
+        await navigateToMyTasksTaskDetail(taskId, options)
+        return
+      }
 
-      await push(path, undefined, {
-        shallow: true,
-        ...options,
-      })
+      await navigateToProjectsTaskDetail(projectId, taskId, options)
     },
-    [push, router.asPath],
+    [
+      isMyTasksPage,
+      navigateToMyTasksTaskDetail,
+      navigateToProjectsTaskDetail,
+      projectId,
+    ],
   )
 
   const navigateToTaskBoard = useCallback(
-    async (options) => {
-      const pathArray = router.asPath.split('/')
-      const excludedPath = pathArray.slice(0, -1)
-      const path = `${excludedPath.join('/')}/board`
+    async (options?: Options) => {
+      if (isMyTasksPage) {
+        await navigateToMyTasksBoard(options)
+        return
+      }
 
-      await push(path, undefined, {
-        shallow: true,
-        ...options,
-      })
+      await navigateToProjectsBoard(projectId, options)
     },
-    [push, router.asPath],
+    [isMyTasksPage, navigateToMyTasksBoard, navigateToProjectsBoard, projectId],
   )
 
   const isTaskDetailURLById = useCallback(
@@ -55,9 +72,26 @@ export const useTasksRouter = (): Result => {
     [isMyTasksPage, router],
   )
 
+  const getTasksDetailFeedURL = useCallback(
+    ({ taskId, taskFeedId }: { taskId: string; taskFeedId: string }) => {
+      if (isMyTasksPage) return getMyTasksDetailFeedURL(taskId, taskFeedId)
+
+      return getProjectsDetailFeedURL(projectId, taskId, taskFeedId)
+    },
+    [isMyTasksPage, projectId],
+  )
+
+  const getTasksDetailFeedId = useCallback(() => {
+    if (isMyTasksPage) return getMyTasksDetailFeedId(router)
+
+    return getProjectsDetailFeedId(router)
+  }, [isMyTasksPage, router])
+
   return {
     navigateToTaskDetail,
     navigateToTaskBoard,
     isTaskDetailURLById,
+    getTasksDetailFeedURL,
+    getTasksDetailFeedId,
   }
 }

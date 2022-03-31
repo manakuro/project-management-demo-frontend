@@ -1,14 +1,17 @@
 import React, { memo } from 'react'
 import { Flex, FlexProps, Icon, Text } from 'src/components/atoms'
-import { MentionWorkspace } from '../types'
+import { Mention } from 'src/store/entities/mention'
+import { useWorkspace } from 'src/store/entities/workspace'
 import { LeftContainer } from './LeftContainer'
 import { RightContainer } from './RightContainer'
 
 type Props = FlexProps & {
-  mention: MentionWorkspace
+  mention: Mention
 }
 
-export const Workspace: React.FC<Props> = memo<Props>((props) => {
+export const Workspace: React.FC<Props> = memo<Props>(() => {
+  const { workspace } = useWorkspace()
+
   return (
     <Flex alignItems="center" flex={1}>
       <LeftContainer>
@@ -16,7 +19,7 @@ export const Workspace: React.FC<Props> = memo<Props>((props) => {
       </LeftContainer>
       <RightContainer>
         <Text fontSize="sm" w="80%" isTruncated>
-          {props.mention.title}
+          {workspace.name}
         </Text>
       </RightContainer>
     </Flex>

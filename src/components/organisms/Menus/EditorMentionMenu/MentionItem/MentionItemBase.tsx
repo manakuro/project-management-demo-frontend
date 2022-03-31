@@ -1,12 +1,12 @@
 import React, { memo, useCallback, useEffect, useMemo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import {
-  MentionItem,
   SetValueParam,
   useEditorMentionMenu,
 } from 'src/components/organisms/Menus/EditorMentionMenu'
 import { useMenuStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
+import { Mention } from 'src/store/entities/mention'
 
 type Props = Override<
   FlexProps,
@@ -14,7 +14,7 @@ type Props = Override<
     onClick: (val: SetValueParam) => void
   }
 > & {
-  mention: MentionItem
+  mention: Mention
   index: number
 }
 
@@ -27,7 +27,7 @@ export const MentionItemBase: React.FC<Props> = memo<Props>((props) => {
   delete styles._hover
 
   const handleClick = useCallback(() => {
-    onClick({ id: props.mention!.id, type: props.mention!.type })
+    onClick({ id: props.mention.id, type: props.mention.type })
   }, [onClick, props.mention])
 
   useEffect(() => {

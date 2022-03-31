@@ -1,8 +1,9 @@
-import React, { memo, useLayoutEffect } from 'react'
-import { Flex, Skeleton, Stack } from 'src/components/atoms'
+import React, { memo, useEffect } from 'react'
+import { Flex } from 'src/components/atoms'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { Form } from './Form'
 import { Info } from './Info'
+import { SkeletonTaskDetailBody } from './SkeletonTaskDetailBody'
 import { useTaskDetailBody } from './useTaskDetailBody'
 
 type Props = {
@@ -11,34 +12,26 @@ type Props = {
 }
 
 export const TaskDetailBody: React.FC<Props> = memo<Props>((props) => {
-  const { ref } = useTaskDetailBody(props.loading)
-  const { scrollId, taskId } = useTaskDetail()
+  const { ref } = useTaskDetailBody()
+  const { scrollId, taskId, resetScrollId } = useTaskDetail()
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (props.loading) return
     if (!scrollId) return
     if (!ref.current) return
 
     setTimeout(() => {
-      const rect = document.getElementById(scrollId)?.getBoundingClientRect()
-      const top = (rect?.top ?? 0) - (72 + 57)
+      const top =
+        (document.getElementById(scrollId)?.offsetTop ?? 0) - (72 + 57)
+
+      if (!ref.current) return
+
       ref.current?.scrollTo({ top, behavior: 'smooth' })
+      resetScrollId()
     })
-  }, [props.loading, ref, scrollId])
+  }, [props.loading, ref, resetScrollId, scrollId])
 
-  if (props.loading)
-    return (
-      <Flex flexDirection="column" flex={1}>
-        <Skeleton h="44px" />
-
-        <Stack direction="column" spacing={4} mt={4} px={6}>
-          <Skeleton h="16px" w="60%" borderRadius="full" />
-          <Skeleton h="16px" w="50%" borderRadius="full" />
-          <Skeleton h="16px" w="40%" borderRadius="full" />
-          <Skeleton h="16px" w="45%" borderRadius="full" />
-        </Stack>
-      </Flex>
-    )
+  if (props.loading) return <SkeletonTaskDetailBody />
 
   return (
     <Flex overflowY="scroll" flexDirection="column" ref={ref} flex={1}>

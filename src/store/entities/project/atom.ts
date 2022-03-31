@@ -1,3 +1,4 @@
+import { getDefaultDescription } from 'src/shared/prosemirror/getDefaultDescription'
 import { createState } from '../../util'
 import { Project } from './type'
 
@@ -10,10 +11,7 @@ const initialState = (): Project => ({
   projectLightColorId: '',
   projectIconId: '',
   teammateIds: [],
-  description: {
-    type: '',
-    content: [],
-  },
+  description: getDefaultDescription(),
   descriptionTitle: '',
   dueDate: '',
   createdBy: '',

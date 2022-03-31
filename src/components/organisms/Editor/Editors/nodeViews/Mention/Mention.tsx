@@ -1,7 +1,7 @@
 import React from 'react'
 import { useReactNodeView } from 'src/components/organisms/Editor/Editors'
-import { MENTION_TYPE, MentionType } from 'src/components/organisms/Menus'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
+import { MentionType, MentionTypeCode } from 'src/store/entities/mention'
 import { Project } from './Project'
 import { Task } from './Task'
 import { Teammate } from './Teammate'
@@ -10,16 +10,16 @@ import { Workspace } from './Workspace'
 export const Mention: React.FC = () => {
   const context = useReactNodeView()
   const attrs = context.node?.attrs as MentionAttrs
-  const type = Number(attrs.mentionType) as MentionType
+  const type = Number(attrs.mentionType) as MentionTypeCode
 
   switch (type) {
-    case MENTION_TYPE.TEAMMATE:
+    case MentionType.TEAMMATE:
       return <Teammate />
-    case MENTION_TYPE.TASK:
+    case MentionType.TASK:
       return <Task />
-    case MENTION_TYPE.PROJECT:
+    case MentionType.PROJECT:
       return <Project />
-    case MENTION_TYPE.WORKSPACE:
+    case MentionType.WORKSPACE:
       return <Workspace />
   }
 }

@@ -12,15 +12,8 @@ export const TasksListRow: React.FC<Props> = memo<Props>((props) => {
   const style = useMemo<FlexProps>(() => {
     return {
       ...(selected
-        ? {
-            bg: 'teal.50',
-            _hover: {
-              bg: 'teal.50',
-            },
-          }
-        : {
-            bg: 'white',
-          }),
+        ? { bg: 'teal.50', _hover: { bg: 'teal.50' } }
+        : { bg: 'white' }),
     }
   }, [selected])
 

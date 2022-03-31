@@ -23,7 +23,7 @@ export const useRouterMyTasks = () => {
     [push],
   )
 
-  const navigateToTaskDetail = useCallback(
+  const navigateToMyTasksTaskDetail = useCallback(
     async (id: string, options?: Options) => {
       await push(`${ROUTE_MY_TASKS.href.pathname()}/${id}`, undefined, {
         shallow: true,
@@ -33,7 +33,7 @@ export const useRouterMyTasks = () => {
     [push],
   )
 
-  const navigateToTaskDetailFeed = useCallback(
+  const navigateToMyTasksTaskDetailFeed = useCallback(
     async (taskId: string, taskFeedId: string, options?: Options) => {
       await push(
         `${ROUTE_MY_TASKS.href.pathname()}/${taskId}/${taskFeedId}`,
@@ -80,7 +80,7 @@ export const useRouterMyTasks = () => {
     navigateToMyTasksBoard,
     navigateToMyTasksCalendar,
     navigateToMyTasksFiles,
-    navigateToTaskDetail,
-    navigateToTaskDetailFeed,
+    navigateToMyTasksTaskDetail,
+    navigateToMyTasksTaskDetailFeed,
   }
 }

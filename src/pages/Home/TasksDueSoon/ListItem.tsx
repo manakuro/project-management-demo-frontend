@@ -14,16 +14,16 @@ type Props = {
 
 export const ListItem: React.VFC<Props> = memo((props) => {
   const { taskId } = props
-  const { task, setTask } = useTask(taskId)
+  const { task, setTaskDueDate } = useTask(taskId)
   const { clickableHoverStyle } = useClickableHoverStyle()
   const { projectIds } = useProjectIdsByTaskId(taskId)
   const { navigateToHomeDetail } = useRouter()
 
   const handleChange = useCallback(
     async (date: Date) => {
-      await setTask({ dueDate: date.toISOString() })
+      await setTaskDueDate(date)
     },
-    [setTask],
+    [setTaskDueDate],
   )
 
   const handleClick = useCallback(

@@ -6,17 +6,23 @@ export const sortByDueDate = (tasks: Task[]) => {
     if (!a.dueDate) return 1
     if (!b.dueDate) return -1
 
-    return a.dueDate < b.dueDate ? -1 : 1
+    return new Date(a.dueDate) < new Date(b.dueDate) ? -1 : 1
   })
 }
 export const filterByDueDateInFiveDays = (tasks: Task[]) => {
+  const now = new Date()
+  const start = dateFns.endOfDay(now)
+
   return tasks.filter((t) => {
     if (!t.dueDate) return false
 
+    const dueDate = new Date(t.dueDate)
+    if (dateFns.isPast(dueDate)) return false
+
     return (
       (dateFns.intervalToDuration({
-        start: dateFns.endOfDay(new Date()),
-        end: dateFns.endOfDay(new Date(t.dueDate)),
+        start,
+        end: dateFns.endOfDay(dueDate),
       })?.days ?? 0) <= 5
     )
   })

@@ -1,5 +1,9 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useUpdateTaskMutation } from 'src/graphql/hooks'
+import {
+  formatDueTimeToLocalTimezone,
+  formatDueTimeToServerTimezone,
+} from 'src/shared/date'
 import { omit } from 'src/shared/utils/omit'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { taskState } from '../atom'
@@ -76,11 +80,27 @@ export const useTask = (taskId: string) => {
     [setTask, taskId],
   )
 
+  const setTaskDueDate = useRecoilCallback(
+    () => async (input: Date) => {
+      await setTask({ dueDate: formatDueTimeToLocalTimezone(input) })
+    },
+    [setTask],
+  )
+
+  const resetTaskDueDate = useRecoilCallback(
+    () => async () => {
+      await setTask({ dueDate: '' })
+    },
+    [setTask],
+  )
+
   return {
     task,
     setTask,
     setTaskPriority,
     setTaskName,
+    setTaskDueDate,
+    resetTaskDueDate,
     hasDescriptionUpdated,
   }
 }
@@ -107,6 +127,9 @@ const prepareUpdateTaskInput = (
   if (input.assigneeId === '') {
     input = omit(input, 'assigneeId')
     input.clearTeammate = true
+  }
+  if (input.dueDate) {
+    input.dueDate = formatDueTimeToServerTimezone(new Date(input.dueDate))
   }
 
   return input

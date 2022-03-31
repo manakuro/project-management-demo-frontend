@@ -13,6 +13,7 @@ import getWeek from 'date-fns/getWeek'
 import intervalToDuration from 'date-fns/intervalToDuration'
 import isFirstDayOfMonth from 'date-fns/isFirstDayOfMonth'
 import isLastDayOfMonth from 'date-fns/isLastDayOfMonth'
+import isPast from 'date-fns/isPast'
 import isSameDay from 'date-fns/isSameDay'
 import isThisWeek from 'date-fns/isThisWeek'
 import isThisYear from 'date-fns/isThisYear'
@@ -28,6 +29,9 @@ import subYears from 'date-fns/subYears'
 class DateFnsAdapter extends DateIODateFnsAdapter {
   isToday(date: ArgType<typeof isToday, 0>) {
     return isToday(date)
+  }
+  isPast(date: ArgType<typeof isPast, 0>) {
+    return isPast(date)
   }
   isTomorrow(date: ArgType<typeof isTomorrow, 0>) {
     return isTomorrow(date)

@@ -30,6 +30,16 @@ export const formatDueDateInput = (date: string): string => {
 export const formatDueTime = (date: string): string =>
   dateFns.format(new Date(date), 'H:mm aaa')
 
+export const formatDueTimeToLocalTimezone = (date: Date): string =>
+  dateFns.formatISO(dateFns.endOfDay(date))
+
+export const formatDueTimeToServerTimezone = (date: Date): string => {
+  const endOfDay = dateFns.endOfDay(new Date(date))
+  const endOfDayExcludedMilliseconds = endOfDay.setMilliseconds(0)
+
+  return new Date(endOfDayExcludedMilliseconds).toISOString()
+}
+
 export const formatTaskFileCreatedAt = (date: string): string => {
   if (!date) return ''
 

@@ -12,7 +12,7 @@ type Props = FlexProps & {
 }
 
 export const TasksDueDate: React.VFC<Props> = memo<Props>((props) => {
-  const { task, setTask } = useTask(props.taskId)
+  const { task, setTaskDueDate, resetTaskDueDate } = useTask(props.taskId)
   const hasDueDate = useMemo(() => !!task.dueDate, [task.dueDate])
   const { ref, isHovering } = useHover()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
@@ -26,16 +26,16 @@ export const TasksDueDate: React.VFC<Props> = memo<Props>((props) => {
   )
   const handleChange = useCallback(
     async (date: Date) => {
-      await setTask({ dueDate: date.toISOString() })
+      await setTaskDueDate(date)
     },
-    [setTask],
+    [setTaskDueDate],
   )
   const handleReset = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
       e.stopPropagation()
-      await setTask({ dueDate: '' })
+      await resetTaskDueDate()
     },
-    [setTask],
+    [resetTaskDueDate],
   )
 
   return (

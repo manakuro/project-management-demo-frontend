@@ -16,16 +16,16 @@ type Props = FlexProps & {
 }
 
 export const DueDate: React.VFC<Props> = memo<Props>((props) => {
-  const { task, setTask } = useTask(props.taskId)
+  const { task, setTaskDueDate } = useTask(props.taskId)
   const hasDueDate = useMemo(() => !!task.dueDate, [task.dueDate])
   const { isHovering } = useTasksBoardListItemContext()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   const handleChange = useCallback(
     async (date: Date) => {
-      await setTask({ dueDate: date.toISOString() })
+      await setTaskDueDate(date)
     },
-    [setTask],
+    [setTaskDueDate],
   )
 
   return (

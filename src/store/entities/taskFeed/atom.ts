@@ -1,4 +1,5 @@
 import { selectorFamily } from 'recoil'
+import { getDefaultDescription } from 'src/shared/prosemirror/getDefaultDescription'
 import { createState } from 'src/store/util'
 import { TaskFeed } from './type'
 
@@ -8,10 +9,7 @@ export const initialState = (): TaskFeed => ({
   id: '',
   taskId: '',
   teammateId: '',
-  description: {
-    type: 'doc',
-    content: [],
-  },
+  description: getDefaultDescription(),
   createdAt: '',
   updatedAt: '',
   isFirst: false,

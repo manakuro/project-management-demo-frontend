@@ -155,10 +155,10 @@ function useOnKeyBindings(props: {
     const mention = props.mentions.find((_, i) => i === state.selectedIndex)
 
     // Do nothing when it is entered without selecting an item
-    if (!mention || !state.query) return
+    if (!mention) return
 
     props.setValue({ id: mention.id, type: mention.type })
-  }, [props, state.query, state.selectedIndex])
+  }, [props, state.selectedIndex])
 }
 
 function useDisclosure(props: { reset: () => void }) {

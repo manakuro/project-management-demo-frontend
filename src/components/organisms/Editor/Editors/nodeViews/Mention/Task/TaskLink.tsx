@@ -1,20 +1,20 @@
 import React, { memo } from 'react'
 import { CheckIcon } from 'src/components/atoms'
-import { useReactNodeView } from 'src/components/organisms/Editor/Editors/ReactNodeView'
 import {
   PopoverEditorLink,
   PopoverEditorLinkTrigger,
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
 } from 'src/components/organisms/Popovers'
-import { MentionAttrs } from 'src/shared/prosemirror/schema'
 import { useProjectTask } from 'src/store/entities/projectTask'
 import { useTask } from 'src/store/entities/task'
 
-export const Task: React.FC = memo(() => {
-  const context = useReactNodeView()
-  const attrs = context.node?.attrs as MentionAttrs
-  const { projectTask } = useProjectTask(attrs.mentionId)
+type Props = {
+  projectTaskId: string
+}
+
+export const TaskLink: React.FC<Props> = memo<Props>((props) => {
+  const { projectTask } = useProjectTask(props.projectTaskId)
   const { task } = useTask(projectTask.taskId)
 
   return (
@@ -27,4 +27,4 @@ export const Task: React.FC = memo(() => {
     </PopoverEditorLink>
   )
 })
-Task.displayName = 'Task'
+TaskLink.displayName = 'TaskLink'

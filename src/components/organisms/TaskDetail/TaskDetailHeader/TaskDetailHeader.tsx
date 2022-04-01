@@ -1,7 +1,5 @@
 import React, { memo, useMemo } from 'react'
 import {
-  Button,
-  CheckIcon,
   Flex,
   Icon,
   IconButton,
@@ -12,6 +10,7 @@ import {
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { IconType } from 'src/shared/icons'
 import { Attachment } from './Attachment'
+import { Complete } from './Complete'
 import { Copy } from './Copy'
 import { Like } from './Like'
 import { MoreAction } from './MoreAction'
@@ -46,14 +45,7 @@ export const TaskDetailHeader: React.FC<Props> = memo<Props>((props) => {
   return (
     <Flex px={6} h="57px" alignItems="center" flex={1} {...rest}>
       <Flex flex={1}>
-        <Button
-          leftIcon={<CheckIcon completed mt="0.75px" />}
-          colorScheme="teal"
-          variant="outline"
-          size="xs"
-        >
-          Mark complete
-        </Button>
+        <Complete taskId={taskId} />
       </Flex>
       <Flex>
         <Stack spacing={1} direction="row">

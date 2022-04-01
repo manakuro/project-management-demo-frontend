@@ -14,7 +14,7 @@ type Props = {
 
 export const ListItem: React.VFC<Props> = memo((props) => {
   const { taskId } = props
-  const { task, setTaskDueDate } = useTask(taskId)
+  const { task, setTaskDueDate, setTask } = useTask(taskId)
   const { clickableHoverStyle } = useClickableHoverStyle()
   const { projectIds } = useProjectIdsByTaskId(taskId)
   const { navigateToHomeDetail } = useRouter()
@@ -34,6 +34,14 @@ export const ListItem: React.VFC<Props> = memo((props) => {
     [navigateToHomeDetail, taskId],
   )
 
+  const handleToggleDone = useCallback(
+    async (e: React.MouseEvent<SVGElement>) => {
+      e.stopPropagation()
+      await setTask({ completed: !task.completed })
+    },
+    [setTask, task.completed],
+  )
+
   return (
     <Flex
       border="1px"
@@ -46,7 +54,7 @@ export const ListItem: React.VFC<Props> = memo((props) => {
       {...clickableHoverStyle}
     >
       <Flex alignItems="center" flex={1}>
-        <CheckIcon completed={task.completed} />
+        <CheckIcon completed={task.completed} onClick={handleToggleDone} />
         <Text fontSize="sm" ml={2} isTruncated>
           {task.name}
         </Text>

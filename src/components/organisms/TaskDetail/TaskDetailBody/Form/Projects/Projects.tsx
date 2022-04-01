@@ -8,6 +8,7 @@ import {
   useProjectTaskCommand,
   useProjectTaskIdsByTaskId,
 } from 'src/store/entities/projectTask'
+import { useTask } from 'src/store/entities/task'
 import { Row, Label, Content } from '../Row'
 import { Selected } from './Selected'
 import { UnSelected } from './UnSelected'
@@ -18,6 +19,7 @@ type Props = {
 
 export const Projects: React.FC<Props> = memo<Props>((props) => {
   const { taskId } = props
+  const { isSubtask } = useTask(taskId)
   const { projectIds } = useProjectIdsByTaskId(taskId)
   const { projectTaskIds } = useProjectTaskIdsByTaskId(taskId)
   const { setProjectTask, deleteProjectTask } = useProjectTaskCommand()
@@ -42,6 +44,8 @@ export const Projects: React.FC<Props> = memo<Props>((props) => {
     },
     [deleteProjectTask],
   )
+
+  if (isSubtask) return null
 
   return (
     <Row>

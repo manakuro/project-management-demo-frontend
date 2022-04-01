@@ -2,33 +2,31 @@ import React, { useCallback } from 'react'
 import { Flex, Text, Icon, Portal, ColorBox } from 'src/components/atoms'
 import {
   MenuList as AtomsMenuList,
-  MenuItem as AtomsMenuItem,
   MenuDivider,
-  MenuItemProps,
 } from 'src/components/organisms/Menu'
 import { PopoverSetColorAndIcon } from 'src/components/organisms/Popovers'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
 import { Project } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
+import { ArchiveProject } from './ArchiveProject'
+import { CopyProjectLink } from './CopyProjectLink'
+import { DeleteProject } from './DeleteProject'
+import { DuplicateProject } from './DuplicateProject'
+import { EditProjectDetails } from './EditProjectDetails'
+import { Favorite } from './Favorite'
+import { MenuItem } from './MenuItem'
+import { Share } from './Share'
 
 type Props = {
   project: Project
   onCloseMenu: () => void
-  onAddFavorite?: () => void
-  onRemoveFavorite?: () => void
-  onDuplicateProject?: () => void
-  onArchiveProject?: () => void
-  onDeleteProject?: () => void
-  onEditNamesAndDescriptionProject?: () => void
-  onCopyProjectLink?: () => void
-  onShare?: () => void
   addFavorite?: boolean
   removeFavorite?: boolean
   duplicateProject?: boolean
   archiveProject?: boolean
   deleteProject?: boolean
-  editNamesAndDescriptionProject?: boolean
+  editProjectDetails?: boolean
   copyProjectLink?: boolean
   share?: boolean
 }
@@ -80,68 +78,55 @@ export const MenuList: React.VFC<Props> = (props) => {
         </MenuItem>
         <MenuDivider />
         {props.addFavorite && (
-          <MenuItem onMouseEnter={handleClose} onClick={props.onAddFavorite}>
-            Add to Favorites
-          </MenuItem>
-        )}
-        {props.removeFavorite && (
-          <MenuItem onMouseEnter={handleClose} onClick={props.onRemoveFavorite}>
-            Remove from Favorites
-          </MenuItem>
-        )}
-        {props.editNamesAndDescriptionProject && (
-          <MenuItem
+          <Favorite
+            onClose={props.onCloseMenu}
+            projectId={props.project.id}
             onMouseEnter={handleClose}
-            onClick={props.onEditNamesAndDescriptionProject}
-          >
-            Edit Name & Description
-          </MenuItem>
+          />
+        )}
+        {props.editProjectDetails && (
+          <EditProjectDetails
+            onClose={props.onCloseMenu}
+            onMouseEnter={handleClose}
+            projectId={props.project.id}
+          />
         )}
         {props.copyProjectLink && (
-          <MenuItem
+          <CopyProjectLink
+            onClose={props.onCloseMenu}
             onMouseEnter={handleClose}
-            onClick={props.onCopyProjectLink}
-          >
-            Copy Project Link
-          </MenuItem>
+            projectId={props.project.id}
+          />
         )}
         {props.share && (
-          <MenuItem onMouseEnter={handleClose} onClick={props.onShare}>
-            Share
-          </MenuItem>
+          <Share
+            onClose={props.onCloseMenu}
+            onMouseEnter={handleClose}
+            projectId={props.project.id}
+          />
         )}
         {props.duplicateProject && (
-          <MenuItem
+          <DuplicateProject
+            onClose={props.onCloseMenu}
             onMouseEnter={handleClose}
-            onClick={props.onDuplicateProject}
-            isDisabled
-          >
-            Duplicate Project
-          </MenuItem>
+            projectId={props.project.id}
+          />
         )}
         {props.archiveProject && (
-          <MenuItem
+          <ArchiveProject
+            onClose={props.onCloseMenu}
             onMouseEnter={handleClose}
-            onClick={props.onArchiveProject}
-            isDisabled
-          >
-            Archive Project
-          </MenuItem>
+            projectId={props.project.id}
+          />
         )}
         {props.deleteProject && (
-          <MenuItem
+          <DeleteProject
+            onClose={props.onCloseMenu}
             onMouseEnter={handleClose}
-            onClick={props.onDeleteProject}
-            isDisabled
-          >
-            Delete Project
-          </MenuItem>
+            projectId={props.project.id}
+          />
         )}
       </AtomsMenuList>
     </Portal>
   )
 }
-
-const MenuItem: React.FC<MenuItemProps> = (props) => (
-  <AtomsMenuItem fontSize="sm" iconSpacing={3} {...props} />
-)

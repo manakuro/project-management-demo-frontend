@@ -50,7 +50,7 @@ export const ProjectListItem: React.VFC<Props> = memo<Props>((props) => {
         </AvatarGroup>
         <PopoverProjectMenu
           addFavorite
-          editNamesAndDescriptionProject
+          editProjectDetails
           copyProjectLink
           share
           projectId={project.id}

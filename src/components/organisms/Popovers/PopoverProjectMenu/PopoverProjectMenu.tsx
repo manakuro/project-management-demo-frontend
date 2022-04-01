@@ -17,7 +17,7 @@ type Props = MenuButtonProps & {
   duplicateProject?: boolean
   archiveProject?: boolean
   deleteProject?: boolean
-  editNamesAndDescriptionProject?: boolean
+  editProjectDetails?: boolean
   copyProjectLink?: boolean
   share?: boolean
   iconButton?: IconButtonProps
@@ -35,7 +35,7 @@ export const PopoverProjectMenu: React.VFC<Props> = (props) => {
     duplicateProject,
     archiveProject,
     deleteProject,
-    editNamesAndDescriptionProject,
+    editProjectDetails,
     copyProjectLink,
     share,
     iconButton,
@@ -61,31 +61,6 @@ export const PopoverProjectMenu: React.VFC<Props> = (props) => {
     [onOpen, onOpened],
   )
 
-  const handleAddFavorite = useCallback(() => {
-    console.log('handleAddFavorite!')
-  }, [])
-  const handleRemoveFavorite = useCallback(() => {
-    console.log('handleRemoveFavorite!')
-  }, [])
-  const handleDuplicateProject = useCallback(() => {
-    console.log('handleDuplicateProject!')
-  }, [])
-  const handleArchiveProject = useCallback(() => {
-    console.log('handleArchiveProject!')
-  }, [])
-  const handleDeleteProject = useCallback(() => {
-    console.log('handleDeleteProject!')
-  }, [])
-  const handleEditNamesAndDescriptionProject = useCallback(() => {
-    console.log('handleEditNamesAndDescriptionProject!')
-  }, [])
-  const handleCopyProjectLink = useCallback(() => {
-    console.log('handleCopyProjectLink!')
-  }, [])
-  const handleShare = useCallback(() => {
-    console.log('handleShare!')
-  }, [])
-
   return (
     <Menu closeOnBlur={false} closeOnSelect={false} isOpen={isOpen} isLazy>
       <MenuButton onClick={handleOpen} {...iconButton} {...menuButtonStyle}>
@@ -95,22 +70,12 @@ export const PopoverProjectMenu: React.VFC<Props> = (props) => {
         <MenuList
           project={project}
           onCloseMenu={handleCloseMenu}
-          onAddFavorite={handleAddFavorite}
-          onRemoveFavorite={handleRemoveFavorite}
-          onDuplicateProject={handleDuplicateProject}
-          onArchiveProject={handleArchiveProject}
-          onDeleteProject={handleDeleteProject}
-          onEditNamesAndDescriptionProject={
-            handleEditNamesAndDescriptionProject
-          }
-          onCopyProjectLink={handleCopyProjectLink}
-          onShare={handleShare}
           addFavorite={addFavorite}
           removeFavorite={removeFavorite}
           duplicateProject={duplicateProject}
           archiveProject={archiveProject}
           deleteProject={deleteProject}
-          editNamesAndDescriptionProject={editNamesAndDescriptionProject}
+          editProjectDetails={editProjectDetails}
           copyProjectLink={copyProjectLink}
           share={share}
         />

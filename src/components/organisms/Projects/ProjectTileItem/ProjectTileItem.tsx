@@ -59,7 +59,7 @@ export const ProjectTileItem: React.VFC<Props> = memo((props) => {
             <Fade in={showTransition}>
               <PopoverProjectMenu
                 addFavorite
-                editNamesAndDescriptionProject
+                editProjectDetails
                 copyProjectLink
                 share
                 projectId={project.id}

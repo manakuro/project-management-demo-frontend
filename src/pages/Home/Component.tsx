@@ -28,7 +28,7 @@ export const Component: React.VFC<Props> = memo<Props>((props) => {
   })
 
   return (
-    <TasksProvider isMyTasksPage>
+    <TasksProvider isHomePage>
       <Flex data-testid="Home" flexDirection="column">
         <Head title="Home" />
         <Header />

@@ -61,6 +61,18 @@ export const tasksByTaskIdsState = selectorFamily<Task[], string[]>({
     },
 })
 
+export const taskIdsByTaskParentIdState = selectorFamily<string[], string>({
+  key: key('taskIdsByTaskParentIdState'),
+  get:
+    (taskParentId) =>
+    ({ get }) => {
+      const tasks = get(tasksState)
+      return tasks
+        .filter((t) => t.taskParentId === taskParentId)
+        .map((t) => t.id)
+    },
+})
+
 export const createdByIdsByTaskIdsState = selectorFamily<string[], string[]>({
   key: key('createdByIdsByTaskIdsState'),
   get:

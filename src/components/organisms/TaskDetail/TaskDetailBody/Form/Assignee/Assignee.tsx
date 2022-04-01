@@ -33,14 +33,7 @@ export const Assignee: React.FC<Props> = memo<Props>((props) => {
     [isAssigned, teammate.name],
   )
   const nameStyle = useMemo<TextProps>(
-    () =>
-      isAssigned
-        ? {
-            color: 'text.base',
-          }
-        : {
-            color: 'text.muted',
-          },
+    () => (isAssigned ? { color: 'text.base' } : { color: 'text.muted' }),
     [isAssigned],
   )
 

@@ -43,7 +43,6 @@ export const taskIdsByTaskSectionIdState = selectorFamily<
     ({ teammateTaskSectionId }) =>
     ({ get }) => {
       let tasks = get(tasksByTeammateTaskSectionIdState(teammateTaskSectionId))
-      tasks = tasks.filter((t) => !t.taskParentId)
       switch (true) {
         case get(isTabStatusState('List')) &&
           get(isTaskListSortStatusState('dueDate')): {

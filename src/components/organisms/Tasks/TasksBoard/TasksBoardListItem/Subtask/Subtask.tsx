@@ -2,10 +2,8 @@ import React, { memo, useCallback, useMemo } from 'react'
 import { IconButton } from 'src/components/atoms'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { SUBTASK_LIST_CONTAINER_ID } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/Subtasks'
-import {
-  useTasksRouter,
-  useTasksSubTaskIds,
-} from 'src/components/organisms/Tasks/hooks'
+import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
+import { useSubtaskIds } from 'src/store/entities/task'
 import { Icon } from './Icon'
 
 type Props = {
@@ -14,7 +12,7 @@ type Props = {
 
 export const Subtask: React.VFC<Props> = memo((props) => {
   const { taskId } = props
-  const { taskIds } = useTasksSubTaskIds(taskId)
+  const { taskIds } = useSubtaskIds(taskId)
   const size = useMemo(() => taskIds.length, [taskIds.length])
   const { setScrollId } = useTaskDetail()
   const { navigateToTaskDetail } = useTasksRouter()

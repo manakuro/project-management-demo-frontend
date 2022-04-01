@@ -52,7 +52,7 @@ export const TaskDetailHeader: React.FC<Props> = memo<Props>((props) => {
           <Like />
           <Attachment />
           <SubTasks taskId={taskId} />
-          <Copy />
+          <Copy taskId={taskId} />
           <MoreAction taskId={taskId} />
           {onClose && (
             <IconButton

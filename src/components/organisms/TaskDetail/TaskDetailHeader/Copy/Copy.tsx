@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Icon, IconButton } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 
-type Props = {}
+type Props = {
+  taskId: string
+}
 
-export const Copy: React.FC<Props> = () => {
+export const Copy: React.FC<Props> = memo(() => {
   return (
     <Tooltip
       hasArrow
@@ -17,7 +19,9 @@ export const Copy: React.FC<Props> = () => {
         icon={<Icon icon="copyAlt" color="text.muted" />}
         variant="ghost"
         size="sm"
+        isDisabled
       />
     </Tooltip>
   )
-}
+})
+Copy.displayName = 'Copy'

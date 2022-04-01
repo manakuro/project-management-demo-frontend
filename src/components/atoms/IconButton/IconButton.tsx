@@ -3,7 +3,7 @@ import {
   IconButtonProps as ChakraIconButtonProps,
 } from '@chakra-ui/react'
 import React, { useMemo } from 'react'
-import { useLinkHoverStyle } from 'src/hooks'
+import { useDisabledStyle, useLinkHoverStyle } from 'src/hooks'
 import { ChakraProps, forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraIconButtonProps & {
@@ -16,14 +16,17 @@ export const IconButton: React.FC<Props> & { id?: string } = forwardRef<
   Props,
   'button'
 >((props, ref) => {
-  const { light, ...rest } = props
+  const { light, isDisabled, ...rest } = props
   const { selectedStyle, ...linkHoverStyle } = useLinkHoverStyle()
+  const { disabledStyle } = useDisabledStyle()
+
   const style = useMemo(
     (): ChakraProps => ({
       ...(props.variant === 'ghost' ? { p: '0.4em' } : {}),
       ...(light ? linkHoverStyle : {}),
+      ...(isDisabled ? { ...disabledStyle } : {}),
     }),
-    [light, linkHoverStyle, props.variant],
+    [disabledStyle, isDisabled, light, linkHoverStyle, props.variant],
   )
 
   return (

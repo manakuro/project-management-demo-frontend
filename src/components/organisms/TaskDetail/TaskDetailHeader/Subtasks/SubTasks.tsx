@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Icon, IconButton } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { useTasksSubTask } from 'src/components/organisms/Tasks/hooks'
@@ -7,7 +7,7 @@ type Props = {
   taskId: string
 }
 
-export const SubTasks: React.FC<Props> = (props) => {
+export const SubTasks: React.FC<Props> = memo((props) => {
   const { addTask } = useTasksSubTask()
 
   const handleAddSubtask = useCallback(async () => {
@@ -31,4 +31,5 @@ export const SubTasks: React.FC<Props> = (props) => {
       />
     </Tooltip>
   )
-}
+})
+SubTasks.displayName = 'SubTasks'

@@ -9,6 +9,7 @@ import { Feed } from './Feed'
 import { Like } from './Like'
 import { MoveTasksBetweenSections } from './MoveTasksBetweenSections'
 import { Subtask } from './Subtask'
+import { TaskParentName } from './TaskParentName'
 import { TasksNameCell } from './TasksNameCell'
 import { TasksNameField } from './TasksNameField'
 import { TasksNameGrabIcon } from './TasksNameGrabIcon'
@@ -112,6 +113,7 @@ const Component: React.VFC<Props> = memo<Props>((props) => {
           flex={1}
         />
         <Stack direction="row" spacing={1} ml={1} mr="auto">
+          <TaskParentName />
           <Like />
           <Feed />
           <Subtask />

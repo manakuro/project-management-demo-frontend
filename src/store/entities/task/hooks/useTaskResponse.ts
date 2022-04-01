@@ -103,6 +103,9 @@ const useSetters = () => {
         setTaskValue(data)
         return
       }
+      if (data?.parentTask) {
+        setTask(data.parentTask as TaskResponse)
+      }
       setTaskValue(data)
     },
     [setTaskValue],

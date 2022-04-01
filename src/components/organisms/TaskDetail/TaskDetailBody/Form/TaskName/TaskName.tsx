@@ -18,7 +18,7 @@ export const TaskName: React.FC<Props> = memo<Props>((props) => {
   )
 
   return (
-    <Flex px={4}>
+    <Flex>
       <Input value={task.name} onChange={handleChange} />
     </Flex>
   )

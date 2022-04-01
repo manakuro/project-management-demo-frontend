@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useUpdateTaskMutation } from 'src/graphql/hooks'
 import {
@@ -94,6 +95,11 @@ export const useTask = (taskId: string) => {
     [setTask],
   )
 
+  const isSubtask = useMemo<boolean>(
+    () => !!task.taskParentId,
+    [task.taskParentId],
+  )
+
   return {
     task,
     setTask,
@@ -102,6 +108,7 @@ export const useTask = (taskId: string) => {
     setTaskDueDate,
     resetTaskDueDate,
     hasDescriptionUpdated,
+    isSubtask,
   }
 }
 

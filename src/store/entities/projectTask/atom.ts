@@ -32,23 +32,6 @@ export const projectIdsByTaskIdState = selectorFamily<string[], string>({
     },
 })
 
-export const taskIdsByTaskParentIdState = selectorFamily<string[], string>({
-  key: key('taskIdsByTaskParentIdState'),
-  get:
-    (taskParentId) =>
-    ({ get }) => {
-      const tasks = get(tasksState)
-      const projectTasks = get(projectTasksState)
-      const subTaskIds = tasks
-        .filter((t) => t.taskParentId === taskParentId)
-        .map((t) => t.id)
-
-      return projectTasks
-        .filter((p) => subTaskIds.includes(p.taskId))
-        .map((p) => p.taskId)
-    },
-})
-
 export const projectTaskByTaskIdState = selectorFamily<ProjectTask, string>({
   key: key('projectTaskByTaskIdState'),
   get:

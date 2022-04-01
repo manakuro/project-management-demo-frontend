@@ -1,6 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { useTasksSubTask } from 'src/components/organisms/Tasks/hooks'
-import { useSubtaskIds } from 'src/store/entities/task'
+import { useSubtaskIds, useTaskCommand } from 'src/store/entities/task'
 import { Row, Label } from '../Row'
 import { AddSubtaskButton } from './AddSubtaskButton'
 import { TasksName } from './TasksName'
@@ -12,11 +11,11 @@ export const SUBTASK_LIST_CONTAINER_ID = 'SUBTASK_LIST_CONTAINER_ID'
 
 export const Subtasks: React.FC<Props> = memo<Props>((props) => {
   const { taskIds } = useSubtaskIds(props.taskParentId)
-  const { addTask } = useTasksSubTask()
+  const { addSubtask } = useTaskCommand()
 
   const handleAddSubtask = useCallback(async () => {
-    await addTask({ taskParentId: props.taskParentId })
-  }, [addTask, props.taskParentId])
+    await addSubtask({ taskParentId: props.taskParentId })
+  }, [addSubtask, props.taskParentId])
 
   return (
     <Row

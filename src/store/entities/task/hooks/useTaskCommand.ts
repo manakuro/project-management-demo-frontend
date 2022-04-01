@@ -5,6 +5,7 @@ import {
   useUndeleteTaskMutation,
   useAssignTaskMutation,
   useUnassignTaskMutation,
+  useCreateTaskMutation,
 } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import {
@@ -30,20 +31,25 @@ import {
 } from 'src/store/entities/teammateTask'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { taskState, initialState } from '../atom'
+import { useResetTask } from './useResetTask'
 import { TASK_ASSIGNED_SUBSCRIPTION_REQUEST_ID } from './useTaskAssignedSubscription'
 import { TASK_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskDeletedSubscription'
+import { useTasksResponse } from './useTaskResponse'
 import { TASK_UNASSIGNED_SUBSCRIPTION_REQUEST_ID } from './useTaskUnassignedSubscription'
 import { TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskUndeletedSubscription'
 import { useUpsert } from './useUpsert'
 
 export const useTaskCommand = () => {
   const { upsert } = useUpsert()
+  const { resetTask } = useResetTask()
+  const { setTasksFromResponse } = useTasksResponse()
   const { me } = useMe()
   const { workspace } = useWorkspace()
   const [deleteTaskMutation] = useDeleteTaskMutation()
   const [undeleteTaskMutation] = useUndeleteTaskMutation()
   const [assignTaskMutation] = useAssignTaskMutation()
   const [unassignTaskMutation] = useUnassignTaskMutation()
+  const [createTaskMutation] = useCreateTaskMutation()
   const { setTeammateTask } = useTeammateTaskResponse()
   const { resetTeammateTask } = useResetTeammateTask()
   const { setProjectTask } = useProjectTaskResponse()
@@ -153,6 +159,52 @@ export const useTaskCommand = () => {
       return id
     },
     [me.id, upsert],
+  )
+
+  const addSubtask = useRecoilCallback(
+    () => async (input: { taskParentId: string }) => {
+      const newTaskId = addTask({
+        taskParentId: input.taskParentId,
+      })
+
+      const restore = () => {
+        resetTask(newTaskId)
+      }
+
+      try {
+        const res = await createTaskMutation({
+          variables: {
+            input: {
+              createdBy: me.id,
+              taskParentId: input.taskParentId,
+              workspaceId: workspace.id,
+              requestId: '',
+            },
+          },
+        })
+        if (res.errors) {
+          restore()
+          return ''
+        }
+
+        const data = res.data?.createTask
+        if (!data) return ''
+
+        resetTask(newTaskId)
+        setTasksFromResponse([data])
+      } catch (e) {
+        restore()
+        throw e
+      }
+    },
+    [
+      addTask,
+      createTaskMutation,
+      me.id,
+      resetTask,
+      setTasksFromResponse,
+      workspace.id,
+    ],
   )
 
   const isDeletingTask = useRef<boolean>(false)
@@ -274,5 +326,6 @@ export const useTaskCommand = () => {
     setTaskById,
     deleteTask,
     undeleteTask,
+    addSubtask,
   }
 }

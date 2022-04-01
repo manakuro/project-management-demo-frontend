@@ -2,9 +2,9 @@ import React, { useCallback, useMemo } from 'react'
 import { IconButton } from 'src/components/atoms'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import { FEED_LIST_CONTAINER_ID } from 'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList'
-import { useTasksNameContext } from 'src/components/organisms/Tasks/TasksList/TasksListCells'
 import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
 import { useTaskFeedIdsWithoutFirstByTaskId } from 'src/store/entities/taskFeed'
+import { useTasksNameContext } from '../TasksNameProvider'
 import { Icon } from './Icon'
 
 type Props = {}

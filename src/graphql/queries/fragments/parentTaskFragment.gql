@@ -1,16 +1,9 @@
-fragment TaskFragment on Task {
+fragment ParentTaskFragment on Task {
   id
   name
-  description
   assigneeId
   taskFeeds {
     ...TaskFeedFragment
-  }
-  taskLikes {
-    ...TaskLikeFragment
-  }
-  taskFeedLikes {
-    ...TaskFeedLikeFragment
   }
   taskFiles {
     ...TaskFileFragment
@@ -24,17 +17,10 @@ fragment TaskFragment on Task {
   taskCollaborators {
     ...TaskCollaboratorFragment
   }
-  subTasks {
-    ...SubTaskFragment
-  }
-  parentTask {
-    ...ParentTaskFragment
-  }
   projectTasks {
     id
     taskId
     projectId
-    projectTaskSectionId
     project {
       ...ProjectFragment
     }

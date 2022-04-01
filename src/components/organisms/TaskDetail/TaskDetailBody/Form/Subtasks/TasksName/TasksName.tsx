@@ -74,7 +74,7 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
         <Flex alignItems="center" ml="auto">
           <Stack direction="row" spacing={2} alignItems="center">
             <RightItem>
-              <DueDate dueDate={task.dueDate} dueTime={task.dueTime} />
+              <DueDate taskId={props.taskId} />
             </RightItem>
             <RightItem>
               <Assignee taskId={props.taskId} />

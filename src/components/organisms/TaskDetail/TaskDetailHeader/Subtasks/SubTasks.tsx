@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Icon, IconButton } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
+import { useTasksSubTask } from 'src/components/organisms/Tasks/hooks'
 
-type Props = {}
+type Props = {
+  taskId: string
+}
 
-export const SubTasks: React.FC<Props> = () => {
+export const SubTasks: React.FC<Props> = (props) => {
+  const { addTask } = useTasksSubTask()
+
+  const handleAddSubtask = useCallback(async () => {
+    await addTask({ taskParentId: props.taskId })
+  }, [addTask, props.taskId])
+
   return (
     <Tooltip
       hasArrow
@@ -18,6 +27,7 @@ export const SubTasks: React.FC<Props> = () => {
         icon={<Icon icon="subdirectoryRight" color="text.muted" />}
         variant="ghost"
         size="sm"
+        onClick={handleAddSubtask}
       />
     </Tooltip>
   )

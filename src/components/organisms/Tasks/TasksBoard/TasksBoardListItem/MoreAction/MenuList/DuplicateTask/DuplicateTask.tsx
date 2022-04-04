@@ -23,6 +23,7 @@ export const DuplicateTask: React.FC<Props> = memo((props) => {
       onMouseEnter={onMouseEnter}
       icon={<Icon icon="copyAlt" color="text.muted" />}
       onClick={handleClick}
+      isDisabled
     >
       Duplicate task
     </MenuItem>

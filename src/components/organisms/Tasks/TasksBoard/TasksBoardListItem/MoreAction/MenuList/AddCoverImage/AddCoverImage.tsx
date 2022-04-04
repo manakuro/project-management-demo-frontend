@@ -12,7 +12,7 @@ export const AddCoverImage: React.FC<Props> = memo((props) => {
   const { onClose, onOpen, isOpen } = props
 
   return (
-    <MenuItem onMouseEnter={onOpen}>
+    <MenuItem onMouseEnter={onOpen} isDisabled>
       <PopoverAddCoverImageActions
         isOpen={isOpen}
         placement="right"

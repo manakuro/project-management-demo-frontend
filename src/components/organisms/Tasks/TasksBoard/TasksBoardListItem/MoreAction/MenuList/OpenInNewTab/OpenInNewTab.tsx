@@ -19,6 +19,7 @@ export const OpenInNewTab: React.FC<Props> = memo((props) => {
       onMouseEnter={onMouseEnter}
       icon={<Icon icon="linkExternal" color="text.muted" />}
       onClick={handleClick}
+      isDisabled
     >
       Open in new tab
     </MenuItem>

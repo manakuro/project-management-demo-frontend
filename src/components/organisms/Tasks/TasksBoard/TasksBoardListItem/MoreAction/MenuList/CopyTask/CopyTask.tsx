@@ -26,6 +26,7 @@ export const CopyTask: React.FC<Props> = memo((props) => {
       onMouseEnter={onMouseEnter}
       icon={<Icon icon="link" color="text.muted" />}
       onClick={handleClick}
+      isDisabled
     >
       Copy task link
     </MenuItem>

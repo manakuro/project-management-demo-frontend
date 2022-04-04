@@ -4778,21 +4778,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/eslint-plugin-next@npm:12.1.4":
+"@next/eslint-plugin-next@npm:12.1.4, @next/eslint-plugin-next@npm:^12.1.4":
   version: 12.1.4
   resolution: "@next/eslint-plugin-next@npm:12.1.4"
   dependencies:
     glob: 7.1.7
   checksum: 6908d3ea066cc31a2353a198eb019bccb1158f032df8607568bb5ca17f84d271871e916e426f981eab08f2dbbc3df7a0ab00de2a8f14ed323492417e4f9d7903
-  languageName: node
-  linkType: hard
-
-"@next/eslint-plugin-next@npm:^12.0.7":
-  version: 12.0.7
-  resolution: "@next/eslint-plugin-next@npm:12.0.7"
-  dependencies:
-    glob: 7.1.7
-  checksum: 9ba7579ef8b006ccc356727003917bd13d2deac10200584b95d2ccf971e93482be944fe4af9caf7395f934355b8a4aec2fd79c2b63c9650131833c8d4d22a053
   languageName: node
   linkType: hard
 
@@ -14923,7 +14914,7 @@ __metadata:
     "@graphql-codegen/typescript-react-apollo": ^3.2.11
     "@material-ui/core": 5.0.0-alpha.27
     "@material-ui/lab": 5.0.0-alpha.27
-    "@next/eslint-plugin-next": ^12.0.7
+    "@next/eslint-plugin-next": ^12.1.4
     "@react-hook/hover": ^4.0.0
     "@react-hook/latest": ^1.0.3
     "@react-hook/passive-layout-effect": ^1.2.1

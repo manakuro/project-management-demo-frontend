@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
 import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
@@ -6,7 +6,11 @@ import {
   parseDescription,
   stringifyDescription,
 } from 'src/shared/prosemirror/convertDescription'
-import { useProject, useProjectCommand } from 'src/store/entities/project'
+import {
+  useHasDescriptionUpdatedValue,
+  useProject,
+  useProjectCommand,
+} from 'src/store/entities/project'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
 import { Provider } from './Provider'
@@ -32,6 +36,8 @@ const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
     () => stringifyDescription(project.description),
     [project.description],
   )
+  const { hasDescriptionUpdated } = useHasDescriptionUpdatedValue({ projectId })
+  const [resetView, setResetView] = useState<number>(1)
 
   const handleChange = useCallback(
     async (val: string) => {
@@ -43,15 +49,26 @@ const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
     [project.description, setProject, projectId],
   )
 
-  return <Component onChange={handleChange} initialValue={initialValue} />
+  useEffect(() => {
+    setResetView((s) => s + 1)
+  }, [hasDescriptionUpdated])
+
+  return (
+    <Component
+      onChange={handleChange}
+      initialValue={initialValue}
+      resetView={resetView}
+    />
+  )
 })
 
 type ComponentProps = {
   onChange: (val: string) => void
   initialValue: string
+  resetView: number
 }
 const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
-  const { onChange, initialValue } = props
+  const { onChange, initialValue, resetView } = props
 
   const handleChange = useCallback(
     (val: string) => {
@@ -63,7 +80,11 @@ const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
 
   return (
     <Container>
-      <Editor onChange={handleChange} initialValue={initialValue}>
+      <Editor
+        onChange={handleChange}
+        initialValue={initialValue}
+        resetView={resetView}
+      >
         <Flex flex={1} flexDirection="column">
           <EditorContent style={{ minHeight: '80px' }} />
           <Placeholder />

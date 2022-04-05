@@ -9,11 +9,13 @@ import { omit } from 'src/shared/utils/omit'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { projectState } from '../atom'
 import { Project } from '../type'
+import { useSetHasDescriptionUpdated } from './useHasDescriptionUpdated'
 import { PROJECT_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useProjectUpdatedSubscription'
 import { useUpsert } from './useUpsert'
 
 export const useProjectCommand = () => {
   const [updateProjectMutation] = useUpdateProjectMutation()
+  const { setHasDescriptionUpdated } = useSetHasDescriptionUpdated()
   const { workspace } = useWorkspace()
   const { upsert } = useUpsert()
 
@@ -48,6 +50,28 @@ export const useProjectCommand = () => {
     [updateProjectMutation, upsert, workspace.id],
   )
 
+  const setProjectDescription = useRecoilCallback(
+    () =>
+      async (
+        input: {
+          projectId: string
+          description: Project['description']
+        },
+        options?: { hasDescriptionUpdated: boolean },
+      ) => {
+        const hasDescriptionUpdated = options?.hasDescriptionUpdated ?? false
+
+        await setProject({
+          projectId: input.projectId,
+          description: input.description,
+        })
+        if (hasDescriptionUpdated) {
+          await setHasDescriptionUpdated(input.projectId)
+        }
+      },
+    [setHasDescriptionUpdated, setProject],
+  )
+
   const setProjectDueDate = useRecoilCallback(
     () => async (input: { projectId: string; dueDate: Date }) => {
       await setProject({
@@ -72,6 +96,7 @@ export const useProjectCommand = () => {
     setProject,
     setProjectDueDate,
     resetProjectDueDate,
+    setProjectDescription,
   }
 }
 

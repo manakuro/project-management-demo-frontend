@@ -26,7 +26,7 @@ export const Description: React.FC<Props> = memo((props) => {
 const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
   const { projectId } = props
   const { project } = useProject(projectId)
-  const { setProject } = useProjectCommand()
+  const { setProjectDescription } = useProjectCommand()
   const initialValue = useMemo(
     () => stringifyDescription(project.description),
     [project.description],
@@ -37,9 +37,12 @@ const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
       const description = parseDescription(val)
       if (isEqual(description, project.description)) return
 
-      await setProject({ description, projectId })
+      await setProjectDescription(
+        { description, projectId },
+        { hasDescriptionUpdated: true },
+      )
     },
-    [project.description, setProject, projectId],
+    [project.description, setProjectDescription, projectId],
   )
 
   return <Component onChange={handleChange} initialValue={initialValue} />

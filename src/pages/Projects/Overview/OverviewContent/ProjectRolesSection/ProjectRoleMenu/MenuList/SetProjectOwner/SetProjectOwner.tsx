@@ -22,7 +22,7 @@ export const SetProjectOwner: React.FC<Props> = memo<Props>((props) => {
   )
 
   const handleRemoveAsProjectOwner = useCallback(async () => {
-    await setProjectTeammateById(projectTeammateId, { isOwner: false })
+    await setProjectTeammateById({ isOwner: false, id: projectTeammateId })
   }, [projectTeammateId, setProjectTeammateById])
 
   const handleSetAsProjectOwner = useCallback(async () => {

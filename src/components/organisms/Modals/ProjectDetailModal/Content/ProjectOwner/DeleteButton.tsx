@@ -17,7 +17,8 @@ export const DeleteButton: React.FC<Props> = memo<Props>((props) => {
     async (e: React.MouseEvent<SVGElement>) => {
       e.stopPropagation()
 
-      await setProjectTeammateById(projectTeammateId, {
+      await setProjectTeammateById({
+        id: projectTeammateId,
         isOwner: false,
       })
     },

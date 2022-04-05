@@ -1,5 +1,8 @@
 import { useRecoilCallback } from 'recoil'
-import { useUpdateProjectTeammateOwnerMutation } from 'src/graphql/hooks'
+import {
+  useUpdateProjectTeammateOwnerMutation,
+  useUpdateProjectTeammateMutation,
+} from 'src/graphql/hooks'
 import { useWorkspace } from 'src/store/entities/workspace'
 import {
   projectTeammateState,
@@ -13,20 +16,44 @@ export const useProjectTeammatesCommand = () => {
   const { upsert } = useUpsert()
   const [updateProjectTeammateOwnerMutation] =
     useUpdateProjectTeammateOwnerMutation()
+
+  const [updateProjectTeammateMutation] = useUpdateProjectTeammateMutation()
+
   const { workspace } = useWorkspace()
 
   const setProjectTeammateById = useRecoilCallback(
     ({ snapshot }) =>
-      async (projectTeammateId: string, input: Partial<ProjectTeammate>) => {
-        const current = await snapshot.getPromise(
-          projectTeammateState(projectTeammateId),
-        )
+      async (input: Partial<ProjectTeammate> & { id: string }) => {
+        const prev = await snapshot.getPromise(projectTeammateState(input.id))
+
+        const restore = () => {
+          upsert(prev)
+        }
+
         upsert({
-          ...current,
+          ...prev,
           ...input,
         })
+
+        try {
+          const res = await updateProjectTeammateMutation({
+            variables: {
+              input: {
+                ...input,
+                requestId: '',
+                workspaceId: workspace.id,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
+        }
       },
-    [upsert],
+    [updateProjectTeammateMutation, upsert, workspace.id],
   )
 
   const setProjectTeammateByProjectIdAndTeammateId = useRecoilCallback(

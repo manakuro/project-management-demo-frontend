@@ -27,7 +27,7 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
 
   const handleChangeRole = useCallback(
     async (value: string) => {
-      await setProjectTeammateById(projectTeammate.id, { role: value })
+      await setProjectTeammateById({ role: value, id: projectTeammate.id })
       onClose()
     },
     [projectTeammate.id, setProjectTeammateById, onClose],

@@ -26,9 +26,10 @@ export const Content: React.VFC<Props> = memo<Props>((props) => {
   const handleChangeName = useCallback(
     async (val: string) => {
       if (!val) return
+      if (val === project.name) return
       await setProject({ name: val, projectId })
     },
-    [setProject, projectId],
+    [project.name, setProject, projectId],
   )
 
   return (

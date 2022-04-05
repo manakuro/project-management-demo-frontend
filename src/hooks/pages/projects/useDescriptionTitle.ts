@@ -12,9 +12,11 @@ export const useDescriptionTitle = (props: Props) => {
 
   const onChange = useCallback(
     async (val: string) => {
+      if (val === project.descriptionTitle) return
+
       await setProject({ descriptionTitle: val, projectId })
     },
-    [setProject, projectId],
+    [project.descriptionTitle, setProject, projectId],
   )
 
   return {

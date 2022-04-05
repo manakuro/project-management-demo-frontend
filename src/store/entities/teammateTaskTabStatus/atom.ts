@@ -7,16 +7,18 @@ import {
 
 const key = (str: string) => `src/store/entities/teammateTaskTabStatus/${str}`
 
+export const initialState = (): TeammateTaskTabStatus => ({
+  id: '',
+  teammateId: '',
+  workspaceId: '',
+  statusCode: TeammateTaskTabStatusCode.List,
+  createdAt: '',
+  updatedAt: '',
+})
+
 export const tabStatusState = atom<TeammateTaskTabStatus>({
   key: key('tabStatusState'),
-  default: {
-    id: '',
-    teammateId: '',
-    workspaceId: '',
-    statusCode: TeammateTaskTabStatusCode.List,
-    createdAt: '',
-    updatedAt: '',
-  },
+  default: initialState(),
 })
 
 export const isTabStatusState = selectorFamily<

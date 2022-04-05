@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react'
 import { useProjectIconsQuery as useQuery } from 'src/graphql/hooks'
 import { ProjectIconsQuery } from 'src/graphql/types/projectIcons'
-import { useMountedRef } from 'src/hooks'
 import { getNodesFromEdges } from 'src/shared/apollo/util'
 import {
   ProjectIconResponse,
@@ -9,30 +7,21 @@ import {
 } from 'src/store/entities/projectIcon'
 
 export const useProjectIconsQuery = () => {
-  const queryResult = useQuery()
   const { setProjectIcons } = useProjectIconsResponse()
-  const [loading, setLoading] = useState(true)
-  const { mountedRef } = useMountedRef()
 
-  useEffect(() => {
-    setLoading(queryResult.loading)
-  }, [queryResult.loading])
+  const queryResult = useQuery({
+    onCompleted: (data) => {
+      const projectIcons = getNodesFromEdges<
+        ProjectIconResponse,
+        ProjectIconsQuery['projectIcons']
+      >(data.projectIcons)
 
-  useEffect(() => {
-    if (!queryResult.data?.projectIcons) return
-    if (loading) return
-    if (!mountedRef.current) return
-
-    const projectIcons = getNodesFromEdges<
-      ProjectIconResponse,
-      ProjectIconsQuery['projectIcons']
-    >(queryResult.data.projectIcons)
-
-    setProjectIcons(projectIcons)
-  }, [loading, mountedRef, queryResult.data, setProjectIcons])
+      setProjectIcons(projectIcons)
+    },
+  })
 
   return {
     refetch: queryResult.refetch,
-    loading,
+    loading: queryResult.loading,
   }
 }

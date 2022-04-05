@@ -46,7 +46,7 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <PopoverDueDatePicker
-      date={value}
+      date={dueDate}
       onChange={handleSelect}
       defaultIsOpen
       includeDueTime={false}

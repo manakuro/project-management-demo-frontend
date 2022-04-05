@@ -1,9 +1,16 @@
 import { NextRouter } from 'next/router'
-import React, { memo, useCallback, useEffect, useState } from 'react'
+import React, {
+  memo,
+  useCallback,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { Flex } from 'src/components/atoms'
 import { Head } from 'src/components/atoms/Head'
 import { MainHeader } from 'src/components/organisms/MainHeader'
 import { Tabs, TabPanels, TabPanel } from 'src/components/organisms/Tabs'
+import { usePrevious } from 'src/hooks'
 import {
   isProjectsBoardURL,
   isProjectsCalendarURL,
@@ -61,6 +68,7 @@ const mapURLtoTabIndex = ({ router }: { router: NextRouter }): Index => {
   if (isProjectsCalendarURL(router)) return CALENDAR_INDEX
   if (isProjectsFilesURL(router)) return FILES_INDEX
   if (isProjectsOverviewURL(router)) return OVERVIEW_INDEX
+
   return LIST_INDEX
 }
 
@@ -78,10 +86,16 @@ const WrappedComponent: React.VFC = memo(() => {
     useProjectsPageContext()
   const [tabIndex, setTabIndex] = useState<Index>(mapURLtoTabIndex({ router }))
   const { projectId } = useProjectsProjectId()
+  const prevProjectId = usePrevious(projectId)
+  const hasProjectChanged = useMemo(() => {
+    if (!projectId || !prevProjectId) return false
+    if (projectId === prevProjectId) return false
+    return true
+  }, [prevProjectId, projectId])
 
-  useEffect(() => {
-    setTabIndex(LIST_INDEX)
-  }, [projectId])
+  useLayoutEffect(() => {
+    if (hasProjectChanged) setTabIndex(LIST_INDEX)
+  }, [hasProjectChanged])
 
   const setLoading = useCallback(() => {
     startTabContentLoading()

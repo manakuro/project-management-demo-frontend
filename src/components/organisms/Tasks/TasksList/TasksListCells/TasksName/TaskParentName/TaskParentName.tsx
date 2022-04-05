@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import { Flex, Icon, Text } from 'src/components/atoms'
+import { useTasksContext } from 'src/components/organisms/Tasks'
 import { useTask } from 'src/store/entities/task'
 import { useTasksNameContext } from '../TasksNameProvider'
 
@@ -9,8 +10,9 @@ export const TaskParentName: React.VFC<Props> = memo<Props>(() => {
   const { taskId } = useTasksNameContext()
   const { isSubtask, task } = useTask(taskId)
   const { task: taskParent } = useTask(task.taskParentId)
+  const { isProjectsPage } = useTasksContext()
 
-  if (!isSubtask) return null
+  if (!isSubtask || isProjectsPage) return null
 
   return (
     <Flex alignItems="center" ml={2}>

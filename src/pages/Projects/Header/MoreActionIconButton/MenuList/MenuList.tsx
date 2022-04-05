@@ -69,6 +69,7 @@ export const MenuList: React.FC<Props> = (props) => {
     <Portal>
       <AtomsMenuList ref={ref} zIndex={1}>
         <EditProjectDetails
+          projectId={projectId}
           onClose={handleCloseAll}
           onMouseEnter={handleClose}
         />

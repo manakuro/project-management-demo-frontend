@@ -1,6 +1,7 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { Icon } from 'src/components/atoms'
 import { MenuItem } from 'src/components/organisms/Menu'
+import { useCopyProjectLink } from 'src/hooks/pages/projects'
 
 type Props = {
   onClose: () => void
@@ -9,12 +10,25 @@ type Props = {
 }
 
 export const CopyProjectLink: React.FC<Props> = memo((props) => {
-  const { onMouseEnter } = props
+  const { onMouseEnter, projectId, onClose } = props
+  const { copyProjectLink } = useCopyProjectLink({ projectId })
+
+  const handleClick = useCallback(
+    async (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation()
+      e.preventDefault()
+      onClose()
+
+      await copyProjectLink()
+    },
+    [copyProjectLink, onClose],
+  )
 
   return (
     <MenuItem
       onMouseEnter={onMouseEnter}
       icon={<Icon icon="link" color="text.muted" />}
+      onClick={handleClick}
     >
       Copy project link
     </MenuItem>

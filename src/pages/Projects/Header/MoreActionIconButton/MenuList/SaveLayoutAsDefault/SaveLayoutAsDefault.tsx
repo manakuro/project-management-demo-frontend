@@ -15,6 +15,7 @@ export const SaveLayoutAsDefault: React.FC<Props> = memo((props) => {
     <MenuItem
       onMouseEnter={onMouseEnter}
       icon={<Icon icon="save" color="text.muted" />}
+      isDisabled
     >
       Save layout as default
     </MenuItem>

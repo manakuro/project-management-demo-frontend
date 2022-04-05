@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react'
-import { useToast } from 'src/hooks'
-import { getProjectsURL } from 'src/router/projects'
+import { useCopyProjectLink } from 'src/hooks/pages/projects'
 import { MenuItem } from './MenuItem'
 
 type Props = {
@@ -11,7 +10,7 @@ type Props = {
 
 export const CopyProjectLink: React.VFC<Props> = (props) => {
   const { projectId, onClose, onMouseEnter } = props
-  const { toast } = useToast()
+  const { copyProjectLink } = useCopyProjectLink({ projectId })
 
   const handleClick = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -19,12 +18,9 @@ export const CopyProjectLink: React.VFC<Props> = (props) => {
       e.preventDefault()
       onClose()
 
-      await navigator.clipboard.writeText(getProjectsURL(projectId))
-      toast({
-        description: 'The project link was copied to your clipboard.',
-      })
+      await copyProjectLink()
     },
-    [onClose, projectId, toast],
+    [copyProjectLink, onClose],
   )
 
   return (

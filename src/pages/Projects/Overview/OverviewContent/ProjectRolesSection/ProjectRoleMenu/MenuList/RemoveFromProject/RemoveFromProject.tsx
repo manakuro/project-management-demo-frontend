@@ -10,7 +10,7 @@ export const RemoveFromProject: React.FC<Props> = memo<Props>(() => {
   const handleRemoveFromProject = useCallback(() => {}, [])
 
   return (
-    <MenuItem onClick={handleRemoveFromProject} color="alert">
+    <MenuItem onClick={handleRemoveFromProject} color="alert" isDisabled>
       Remove from Project
     </MenuItem>
   )

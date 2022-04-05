@@ -9,7 +9,7 @@ type Props = {}
 export const MenuList: React.FC<Props> = memo(() => {
   return (
     <AtomsMenuList>
-      <MenuItem>Save layout as default</MenuItem>
+      <MenuItem isDisabled>Save layout as default</MenuItem>
     </AtomsMenuList>
   )
 })

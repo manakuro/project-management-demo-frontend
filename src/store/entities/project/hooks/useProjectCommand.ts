@@ -1,6 +1,10 @@
 import { useRecoilCallback } from 'recoil'
 import { useUpdateProjectMutation } from 'src/graphql/hooks'
 import { UpdateProjectInput } from 'src/graphql/types'
+import {
+  formatDueTimeToLocalTimezone,
+  formatDueTimeToServerTimezone,
+} from 'src/shared/date'
 import { omit } from 'src/shared/utils/omit'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { projectState } from '../atom'
@@ -44,8 +48,30 @@ export const useProjectCommand = () => {
     [updateProjectMutation, upsert, workspace.id],
   )
 
+  const setProjectDueDate = useRecoilCallback(
+    () => async (input: { projectId: string; dueDate: Date }) => {
+      await setProject({
+        projectId: input.projectId,
+        dueDate: formatDueTimeToLocalTimezone(input.dueDate),
+      })
+    },
+    [setProject],
+  )
+
+  const resetProjectDueDate = useRecoilCallback(
+    () => async (input: { projectId: string }) => {
+      await setProject({
+        projectId: input.projectId,
+        dueDate: '',
+      })
+    },
+    [setProject],
+  )
+
   return {
     setProject,
+    setProjectDueDate,
+    resetProjectDueDate,
   }
 }
 
@@ -54,9 +80,18 @@ const prepareUpdateProjectInput = (
     Omit<Project, 'id'>
   >,
 ): UpdateProjectInput => {
-  return {
+  let res: UpdateProjectInput = {
     id: input.projectId,
     requestId: PROJECT_UPDATED_SUBSCRIPTION_REQUEST_ID,
     ...omit(input, 'projectId'),
   }
+  if (input.dueDate === '') {
+    res = omit(res, 'dueDate')
+    res.clearDueDate = true
+  }
+  if (input.dueDate) {
+    res.dueDate = formatDueTimeToServerTimezone(new Date(input.dueDate))
+  }
+
+  return res
 }

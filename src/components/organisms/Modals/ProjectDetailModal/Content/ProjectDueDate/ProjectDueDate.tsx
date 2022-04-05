@@ -9,18 +9,18 @@ type Props = {
 export const ProjectDueDate: React.FC<Props> = memo<Props>((props) => {
   const { projectId } = props
   const { project } = useProject(projectId)
-  const { setProject } = useProjectCommand()
+  const { setProjectDueDate, resetProjectDueDate } = useProjectCommand()
 
   const handleSelect = useCallback(
     async (val: Date) => {
-      await setProject({ dueDate: val.toISOString(), projectId })
+      await setProjectDueDate({ dueDate: val, projectId })
     },
-    [setProject, projectId],
+    [setProjectDueDate, projectId],
   )
 
   const handleDelete = useCallback(async () => {
-    await setProject({ dueDate: '', projectId })
-  }, [setProject, projectId])
+    await resetProjectDueDate({ projectId })
+  }, [resetProjectDueDate, projectId])
 
   return (
     <DatePickerWithInput

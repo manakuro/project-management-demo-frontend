@@ -6,7 +6,16 @@ export const useUpsert = () => {
   const upsert = useRecoilCallback(
     ({ set }) =>
       (project: Project) => {
-        set(projectState(project.id), project)
+        set(projectState(project.id), (prev) => {
+          return {
+            ...prev,
+            ...project,
+            description: {
+              ...prev.description,
+              ...project.description,
+            },
+          }
+        })
       },
     [],
   )

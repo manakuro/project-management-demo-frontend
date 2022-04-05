@@ -1,7 +1,7 @@
-import isEqual from 'lodash-es/isEqual'
 import React, { memo, useCallback, useMemo } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
+import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
 import {
   parseDescription,
   stringifyDescription,
@@ -36,7 +36,7 @@ const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
   const handleChange = useCallback(
     async (val: string) => {
       const description = parseDescription(val)
-      if (isEqual(description, project.description)) return
+      if (isDescriptionEqual(description, project.description)) return
 
       await setProject({ description, projectId })
     },

@@ -1,0 +1,10 @@
+mutation UpdateProjectTeammate($input: UpdateProjectTeammateInput!) {
+  updateProjectTeammate(input: $input) {
+    id
+    projectId
+    teammateId
+    isOwner
+    createdAt
+    updatedAt
+  }
+}

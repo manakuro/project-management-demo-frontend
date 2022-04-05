@@ -1,4 +1,6 @@
 import { useRecoilCallback } from 'recoil'
+import { useUpdateProjectTeammateOwnerMutation } from 'src/graphql/hooks'
+import { useWorkspace } from 'src/store/entities/workspace'
 import {
   projectTeammateState,
   projectTeammateByProjectIdAndTeammateIdState,
@@ -9,6 +11,9 @@ import { useUpsert } from './useUpsert'
 
 export const useProjectTeammatesCommand = () => {
   const { upsert } = useUpsert()
+  const [updateProjectTeammateOwnerMutation] =
+    useUpdateProjectTeammateOwnerMutation()
+  const { workspace } = useWorkspace()
 
   const setProjectTeammateById = useRecoilCallback(
     ({ snapshot }) =>
@@ -48,26 +53,46 @@ export const useProjectTeammatesCommand = () => {
   const setOwnerByProjectIdAndTeammateId = useRecoilCallback(
     ({ snapshot }) =>
       async (projectId: string, teammateId: string) => {
-        const currentOwner = await snapshot.getPromise(
+        const prev = await snapshot.getPromise(
           ownerProjectTeammateByProjectIdState(projectId),
         )
-        upsert({
-          ...currentOwner,
-          isOwner: false,
-        })
+        upsert({ ...prev, isOwner: false })
 
-        const nextOwner = await snapshot.getPromise(
+        const restore = () => {
+          upsert({ ...prev, isOwner: true })
+        }
+
+        const owner = await snapshot.getPromise(
           projectTeammateByProjectIdAndTeammateIdState({
             projectId,
             teammateId,
           }),
         )
         upsert({
-          ...nextOwner,
+          ...owner,
           isOwner: true,
         })
+
+        try {
+          const res = await updateProjectTeammateOwnerMutation({
+            variables: {
+              input: {
+                id: owner.id,
+                projectId,
+                requestId: '',
+                workspaceId: workspace.id,
+              },
+            },
+          })
+          if (res.errors) {
+            restore()
+          }
+        } catch (e) {
+          restore()
+          throw e
+        }
       },
-    [upsert],
+    [updateProjectTeammateOwnerMutation, upsert, workspace.id],
   )
 
   return {

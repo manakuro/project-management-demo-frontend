@@ -55,7 +55,7 @@ export const Content: React.VFC<Props> = memo<Props>((props) => {
           <Divider />
           <Flex flexDirection="column">
             <DescriptionTitle projectId={projectId} />
-            <Description />
+            <Description projectId={projectId} />
           </Flex>
         </Stack>
       </ModalBody>

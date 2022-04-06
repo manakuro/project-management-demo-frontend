@@ -3,7 +3,7 @@ import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
 import { useToast } from 'src/hooks'
 import { parseDescription } from 'src/shared/prosemirror/convertDescription'
 import { createProvider } from 'src/shared/react/createProvider'
-import { useTaskFeed } from 'src/store/entities/taskFeed'
+import { useTaskFeed, useTaskFeedCommand } from 'src/store/entities/taskFeed'
 import { useTaskFileIdsByTaskFeedId } from 'src/store/entities/taskFile'
 import { useTeammate } from 'src/store/entities/teammate'
 import { Provider as ProviderContainer } from './ProviderContainer'
@@ -29,6 +29,7 @@ const useValue = (props: Props) => {
     onPin,
     onUnpin,
     onEdit,
+    onDelete,
     setIsEdit,
     isEdit,
     showFeedOptionMenu,
@@ -52,6 +53,7 @@ const useValue = (props: Props) => {
     teammate,
     editable,
     onEdit,
+    onDelete,
     onCancel,
     description,
     onChangeDescription,
@@ -76,6 +78,7 @@ const { Provider: ProviderBase, useContext: useTaskFeedListItemContext } =
 const useFeedOptionMenu = (props: Props) => {
   const { getTasksDetailFeedURL } = useTasksRouter()
   const { taskFeed, setTaskFeed } = useTaskFeed(props.taskFeedId)
+  const { deleteTaskFeed, undeleteTaskFeed } = useTaskFeedCommand()
   const [isEdit, setIsEdit] = useState<boolean>(false)
   const { toast } = useToast()
 
@@ -95,6 +98,21 @@ const useFeedOptionMenu = (props: Props) => {
   )
   const showLike = useMemo(() => !taskFeed.isFirst, [taskFeed.isFirst])
 
+  const onDelete = useCallback(async () => {
+    const res = await deleteTaskFeed({ id: taskFeed.id })
+    if (!res) return
+
+    const handleUndo = async () => {
+      await undeleteTaskFeed(res)
+    }
+
+    toast({
+      description: 'The comment was deleted',
+      undo: handleUndo,
+      duration: 10000,
+    })
+  }, [deleteTaskFeed, taskFeed.id, toast, undeleteTaskFeed])
+
   const onCopyCommentLink = useCallback(async () => {
     await navigator.clipboard.writeText(
       getTasksDetailFeedURL({ taskId: props.taskId, taskFeedId: taskFeed.id }),
@@ -108,6 +126,7 @@ const useFeedOptionMenu = (props: Props) => {
     onPin,
     onUnpin,
     onEdit,
+    onDelete,
     showFeedOptionMenu,
     showLike,
     isEdit,

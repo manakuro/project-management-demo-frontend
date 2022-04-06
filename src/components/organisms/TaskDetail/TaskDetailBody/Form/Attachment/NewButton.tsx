@@ -8,8 +8,8 @@ type Props = {}
 export const NewButton: React.VFC<Props> = memo<Props>(() => {
   return (
     <AttachmentMenu
-      label="Attach a file. (This file will not be persisted in database.) "
-      tooltip={{ size: 'md' }}
+      label="Attach a file. This file will not be persisted in database."
+      tooltip={{ size: 'md', textAlign: 'left' }}
     >
       <MenuButton cursor="pointer">
         <NewBox size="lg" />

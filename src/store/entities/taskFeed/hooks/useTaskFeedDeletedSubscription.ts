@@ -37,11 +37,11 @@ export const useTaskFeedDeletedSubscription = (props: Props) => {
   const setTaskBySubscription = useRecoilCallback(
     ({ reset }) =>
       async (response: TaskFeedDeletedSubscriptionResponse) => {
-        const updated = response.taskFeedDeleted
+        const data = response.taskFeedDeleted
 
         console.log('subscription deleted! ')
 
-        reset(taskFeedState(updated.id))
+        reset(taskFeedState(data.taskFeed.id))
       },
     [],
   )

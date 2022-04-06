@@ -1,4 +1,7 @@
-import { TaskFeedFragmentFragment } from 'src/graphql/types'
+import {
+  TaskFeedFragmentFragment,
+  DeleteTaskFeedMutation,
+} from 'src/graphql/types'
 
 export type TaskFeedResponse = NonNullable<TaskFeedFragmentFragment>
 export type {
@@ -9,3 +12,5 @@ export type {
   CreateTaskFeedInput,
   DeleteTaskFeedInput,
 } from 'src/graphql/types'
+
+export type DeleteTaskFeedResponse = DeleteTaskFeedMutation['deleteTaskFeed']

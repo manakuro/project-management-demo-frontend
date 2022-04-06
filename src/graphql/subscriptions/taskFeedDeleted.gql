@@ -1,5 +1,13 @@
 subscription TaskFeedDeleted($workspaceId: ID!, $requestId: String!) {
   taskFeedDeleted(workspaceId: $workspaceId, requestId: $requestId) {
-    ...TaskFeedFragment
+    taskFeed {
+      ...TaskFeedFragment
+    }
+    taskFiles {
+      ...TaskFileFragment
+    }
+    taskFeedLikes {
+      ...TaskFeedLikeFragment
+    }
   }
 }

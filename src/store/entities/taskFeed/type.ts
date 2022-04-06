@@ -8,6 +8,7 @@ export type {
   UpdateTaskFeedInput,
   CreateTaskFeedInput,
   DeleteTaskFeedInput,
+  DeleteTaskFeedResponse,
 } from 'src/graphql/types/taskFeed'
 
 export type TaskFeed = TaskFeedResponse

@@ -7,7 +7,10 @@ type Props = {}
 
 export const Attachment: React.VFC<Props> = memo<Props>(() => {
   return (
-    <AttachmentMenu label="Add a file to this task">
+    <AttachmentMenu
+      label="Add a file to this task. This file will not be persisted in database."
+      tooltip={{ textAlign: 'left', size: 'md' }}
+    >
       <MenuButton
         aria-label="Attachment button"
         as={IconButton}

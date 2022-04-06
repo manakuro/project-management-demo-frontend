@@ -27,8 +27,12 @@ export const taskFeedIdsByTaskIdState = selectorFamily<string[], string>({
   get:
     (taskId) =>
     ({ get }) => {
-      const taskFeeds = get(taskFeedsState)
-      return taskFeeds.filter((p) => p.taskId === taskId).map((p) => p.id)
+      let taskFeeds = [...get(taskFeedsState)]
+      taskFeeds = taskFeeds.filter((p) => p.taskId === taskId)
+      taskFeeds = taskFeeds.sort((a, b) => {
+        return new Date(a.createdAt) > new Date(b.createdAt) ? 1 : -1
+      })
+      return taskFeeds.map((p) => p.id)
     },
 })
 export const taskFeedIdsWithoutFirstState = selectorFamily<string[], string>({

@@ -22,7 +22,7 @@ export const DeleteTask: React.FC<Props> = memo((props) => {
   const handleClick = useCallback(async () => {
     await deleteTask({ taskId })
     toast({
-      description: `${task.name} deleted`,
+      description: `${task.name} was deleted`,
       undo: handleUndo,
       duration: 10000,
     })

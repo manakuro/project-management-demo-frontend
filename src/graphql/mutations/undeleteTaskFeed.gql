@@ -1,5 +1,5 @@
-mutation DeleteTaskFeed($input: DeleteTaskFeedInput!) {
-  deleteTaskFeed(input: $input) {
+mutation UndeleteTaskFeed($input: UndeleteTaskFeedInput!) {
+  undeleteTaskFeed(input: $input) {
     taskFeed {
       ...TaskFeedFragment
     }

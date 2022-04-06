@@ -2,11 +2,14 @@ import { useRecoilCallback } from 'recoil'
 import {
   useCreateTaskFeedMutation,
   useDeleteTaskFeedMutation,
+  useUndeleteTaskFeedMutation,
 } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
+import { useTaskFeedLikeResponse } from 'src/store/entities/taskFeedLike'
+import { useTaskFileResponse } from 'src/store/entities/taskFile'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { initialState, taskFeedState } from '../atom'
-import { TaskFeed } from '../type'
+import { DeleteTaskFeedResponse, TaskFeed } from '../type'
 import { useResetTaskFeed } from './useResetTaskFeed'
 import { TASK_FEED_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskFeedCreatedSubscription'
 import { TASK_FEED_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskFeedDeletedSubscription'
@@ -18,9 +21,12 @@ export const useTaskFeedCommand = () => {
   const { workspace } = useWorkspace()
   const [createTaskFeedMutation] = useCreateTaskFeedMutation()
   const [deleteTaskFeedMutation] = useDeleteTaskFeedMutation()
+  const [undeleteTaskFeedMutation] = useUndeleteTaskFeedMutation()
 
   const { resetTaskFeed } = useResetTaskFeed()
   const { setTaskFeed } = useTaskFeedResponse()
+  const { setTaskFeedLikes } = useTaskFeedLikeResponse()
+  const { setTaskFiles } = useTaskFileResponse()
 
   const addTaskFeed = useRecoilCallback(
     () => (input: Pick<TaskFeed, 'taskId' | 'teammateId' | 'description'>) => {
@@ -71,7 +77,7 @@ export const useTaskFeedCommand = () => {
 
   const deleteTaskFeed = useRecoilCallback(
     ({ snapshot }) =>
-      async (input: Pick<TaskFeed, 'id'>) => {
+      async (input: { id: string }) => {
         const prev = await snapshot.getPromise(taskFeedState(input.id))
 
         resetTaskFeed(input.id)
@@ -92,10 +98,9 @@ export const useTaskFeedCommand = () => {
           })
           if (res.errors) {
             setTaskFeed([prev])
-            return ''
+            return
           }
-
-          return res.data?.deleteTaskFeed?.id || ''
+          return res.data?.deleteTaskFeed
         } catch (e) {
           restore()
           throw e
@@ -104,8 +109,56 @@ export const useTaskFeedCommand = () => {
     [resetTaskFeed, deleteTaskFeedMutation, setTaskFeed, workspace.id],
   )
 
+  const undeleteTaskFeed = useRecoilCallback(
+    () => async (input: DeleteTaskFeedResponse) => {
+      const id = uuid()
+      setTaskFeed([{ ...input.taskFeed, id }])
+
+      const restore = () => {
+        resetTaskFeed(input.taskFeed.id)
+      }
+
+      try {
+        const res = await undeleteTaskFeedMutation({
+          variables: {
+            input: {
+              taskFeed: input.taskFeed,
+              taskFeedLikes: input.taskFeedLikes,
+              taskFiles: input.taskFiles,
+              requestId: '',
+              workspaceId: workspace.id,
+            },
+          },
+        })
+        if (res.errors) {
+          restore()
+          return
+        }
+        const data = res.data?.undeleteTaskFeed
+        if (!data) return
+
+        resetTaskFeed(id)
+        setTaskFeed([data.taskFeed])
+        setTaskFeedLikes(data.taskFeedLikes)
+        setTaskFiles(data.taskFiles)
+      } catch (e) {
+        restore()
+        throw e
+      }
+    },
+    [
+      resetTaskFeed,
+      setTaskFeed,
+      setTaskFeedLikes,
+      setTaskFiles,
+      undeleteTaskFeedMutation,
+      workspace.id,
+    ],
+  )
+
   return {
     addTaskFeed,
     deleteTaskFeed,
+    undeleteTaskFeed,
   }
 }

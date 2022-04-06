@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useState } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
+import { getDefaultDescription } from 'src/shared/prosemirror/getDefaultDescription'
 import { Attachments } from './Attachments'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
@@ -9,10 +10,7 @@ import { ToolBar } from './ToolBar'
 
 type Props = {}
 
-const initialValue = JSON.stringify({
-  type: 'doc',
-  content: [],
-})
+const initialValue = JSON.stringify(getDefaultDescription())
 
 export const Input: React.FC<Props> = (props) => {
   return (

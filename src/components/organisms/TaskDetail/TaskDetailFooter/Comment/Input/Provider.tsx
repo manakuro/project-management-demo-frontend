@@ -42,8 +42,13 @@ const useValue = (): ContextProps => {
   const { focused, setFocused, onFocus, ref } = useFocus()
   const [taskFeedId, setFeedId] = useState<string>('')
   const { taskFeed } = useTaskFeed(taskFeedId)
-  const { hasTaskFile, setTaskFileIds, taskFileIds, onDeleteTaskFile } =
-    useTaskFileFile()
+  const {
+    hasTaskFile,
+    setTaskFileIds,
+    taskFileIds,
+    onDeleteTaskFile,
+    resetTaskFileIds,
+  } = useTaskFile()
   const { uploadingFiles, onUploadFile } = useUploadingFile({
     setTaskFileIds,
   })
@@ -51,6 +56,7 @@ const useValue = (): ContextProps => {
     onSaved: (id: string) => {
       setFeedId(id)
       setFocused(false)
+      resetTaskFileIds()
     },
   })
 
@@ -72,7 +78,7 @@ useValue.__PROVIDER__ = 'CommentInputProvider'
 export const { Provider, useContext: useInputContext } =
   createProvider(useValue)
 
-function useTaskFileFile() {
+const useTaskFile = () => {
   const [taskFileIds, setTaskFileIds] = useState<string[]>([])
   const { toast } = useToast()
 
@@ -88,17 +94,22 @@ function useTaskFileFile() {
     [toast],
   )
 
+  const resetTaskFileIds = useCallback(() => {
+    setTaskFileIds([])
+  }, [])
+
   return {
     taskFileIds,
     setTaskFileIds,
+    resetTaskFileIds,
     hasTaskFile,
     onDeleteTaskFile: onDelete,
   }
 }
 
-function useUploadingFile(props: {
+const useUploadingFile = (props: {
   setTaskFileIds: React.Dispatch<React.SetStateAction<string[]>>
-}) {
+}) => {
   const { taskId } = useTaskDetail()
   const { addTaskFile } = useTaskFileCommand()
   const [uploadingFiles, setUploadingFiles] = useState<
@@ -189,7 +200,7 @@ function useUploadingFile(props: {
   }
 }
 
-function useFocus() {
+const useFocus = () => {
   const [focused, setFocused] = useState(false)
 
   const onFocus = useCallback(() => {
@@ -218,7 +229,7 @@ function useFocus() {
   }
 }
 
-function useSave(props: { onSaved: (id: string) => void }) {
+const useSave = (props: { onSaved: (id: string) => void }) => {
   const { taskId } = useTaskDetail()
   const { addTaskFeed } = useTaskFeedCommand()
   const { me } = useMe()

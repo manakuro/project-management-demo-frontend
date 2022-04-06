@@ -11,7 +11,9 @@ export const Attachment: React.VFC<Props> = memo<Props>(() => {
 
   return (
     <AttachmentMenu
-      label="Attach a file or paste an image"
+      label={
+        'Attach a file or paste an image. (This file will not be persisted in database.) '
+      }
       tooltip={{ openDelay: 500 }}
       onUpload={onUploadFile}
     >

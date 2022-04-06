@@ -4,7 +4,6 @@ import { useTaskUpdatedSubscription as useSubscription } from 'src/graphql/hooks
 import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
 import { uuid } from 'src/shared/uuid'
 import {
-  initialState,
   taskState,
   TaskUpdatedSubscriptionResponse,
 } from 'src/store/entities/task'
@@ -54,9 +53,6 @@ export const useTaskUpdatedSubscription = (props: Props) => {
         upsert({
           ...prev,
           ...updatedTask,
-          taskPriority: {
-            ...(updatedTask.taskPriority || initialState().taskPriority),
-          },
           // To prevent autofocus on input.
           isNew: false,
         })

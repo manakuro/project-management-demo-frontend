@@ -3,7 +3,10 @@ import { dateFns } from 'src/shared/dateFns'
 import { ProjectTaskSection } from 'src/store/entities/projectTaskSection'
 import { Task } from 'src/store/entities/task'
 import { taskLikesByTaskIdState } from 'src/store/entities/taskLike'
-import { TaskPriorityType } from 'src/store/entities/taskPriority'
+import {
+  TaskPriorityType,
+  taskPriorityState,
+} from 'src/store/entities/taskPriority'
 import { teammateState } from 'src/store/entities/teammate'
 import {
   isTaskListCompletedStatusState,
@@ -118,9 +121,16 @@ export const sortByPriority =
     if (!get(isTaskListSortStatusState('priority'))) return tasks
 
     return [...tasks].sort((a, b) => {
+      if (!a.taskPriorityId) return 1
+      if (!b.taskPriorityId) return -1
+
       return (
-        PRIORITY_LIST.indexOf(a.taskPriority.priorityType as any) -
-        PRIORITY_LIST.indexOf(b.taskPriority.priorityType as any)
+        PRIORITY_LIST.indexOf(
+          get(taskPriorityState(a.taskPriorityId)).priorityType as any,
+        ) -
+        PRIORITY_LIST.indexOf(
+          get(taskPriorityState(b.taskPriorityId)).priorityType as any,
+        )
       )
     })
   }

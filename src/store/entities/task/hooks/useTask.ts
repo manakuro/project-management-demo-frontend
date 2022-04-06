@@ -53,19 +53,6 @@ export const useTask = (taskId: string) => {
       },
     [taskId, updateTaskMutation, upsert, workspace.id],
   )
-  const setTaskPriority = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: Partial<Task['taskPriority']>) => {
-        const prev = await snapshot.getPromise(taskState(taskId))
-        await setTask({
-          taskPriority: {
-            ...prev.taskPriority,
-            ...input,
-          },
-        })
-      },
-    [taskId, setTask],
-  )
 
   const setTaskName = useRecoilCallback(
     ({ snapshot }) =>
@@ -103,7 +90,6 @@ export const useTask = (taskId: string) => {
   return {
     task,
     setTask,
-    setTaskPriority,
     setTaskName,
     setTaskDueDate,
     resetTaskDueDate,

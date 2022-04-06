@@ -10,10 +10,12 @@ import {
   useProjectBaseColorsQuery,
   useProjectLightColorsQuery,
   useProjectIconsQuery,
+  useTaskPrioritiesQuery,
 } from 'src/hooks/queries/entities'
 import { useMe } from 'src/store/entities/me'
 
 export const BeforeAppMount: React.FC = (props) => {
+  useTaskPrioritiesQuery()
   useProjectsQuery()
   useProjectBaseColorsQuery()
   useProjectLightColorsQuery()

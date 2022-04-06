@@ -11,9 +11,6 @@ fragment SubTaskFragment on Task {
   taskTags {
     ...TaskTagFragment
   }
-  taskPriority {
-    ...TaskPriorityFragment
-  }
   taskCollaborators {
     ...TaskCollaboratorFragment
   }

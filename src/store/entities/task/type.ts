@@ -12,19 +12,14 @@ export type {
 
 export type TaskResponse = Response
 
-export type Task = Override<
-  Omit<
-    TaskResponse,
-    | 'taskFiles'
-    | 'taskTags'
-    | 'taskCollaborators'
-    | 'taskFeeds'
-    | 'projectTasks'
-    | 'subTasks'
-    | 'taskFeedLikes'
-    | 'taskLikes'
-  >,
-  {
-    taskPriority: NonNullable<TaskResponse['taskPriority']>
-  }
+export type Task = Omit<
+  TaskResponse,
+  | 'taskFiles'
+  | 'taskTags'
+  | 'taskCollaborators'
+  | 'taskFeeds'
+  | 'projectTasks'
+  | 'subTasks'
+  | 'taskFeedLikes'
+  | 'taskLikes'
 >

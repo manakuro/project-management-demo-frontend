@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import React, { memo, useCallback } from 'react'
 import { MenuItemOption } from 'src/components/organisms/Menu'
 import {
   MenuSelect,
@@ -6,11 +6,7 @@ import {
   MenuSelectList,
 } from 'src/components/organisms/Menus'
 import { useTask } from 'src/store/entities/task'
-import {
-  TaskPriorityType,
-  TaskPriorityTypeValue,
-  findTextByCode,
-} from 'src/store/entities/taskPriority'
+import { useTasksPriorities } from 'src/store/entities/taskPriority'
 
 type Props = {
   taskId: string
@@ -18,43 +14,21 @@ type Props = {
   onClosed?: () => void
 }
 
-const ITEMS: {
-  value: TaskPriorityTypeValue
-  text: string
-}[] = [
-  {
-    value: TaskPriorityType.High,
-    text: findTextByCode(TaskPriorityType.High),
-  },
-  {
-    value: TaskPriorityType.Medium,
-    text: findTextByCode(TaskPriorityType.Medium),
-  },
-  {
-    value: TaskPriorityType.Low,
-    text: findTextByCode(TaskPriorityType.Low),
-  },
-]
-
 export const Menu: React.FC<Props> = memo<Props>((props) => {
   const { taskId, onOpened, onClosed } = props
-  const { task, setTaskPriority } = useTask(taskId)
-  const defaultValue = useMemo(
-    () => task.taskPriority.priorityType?.toString(),
-    [task.taskPriority.priorityType],
-  )
+  const { task, setTask } = useTask(taskId)
+  const defaultValue = task.taskPriorityId
+  const { taskPriorities } = useTasksPriorities()
 
   const handleChange = useCallback(
-    async (type: TaskPriorityTypeValue) => {
-      await setTaskPriority({ priorityType: type })
+    async (taskPriorityId: string) => {
+      await setTask({ taskPriorityId })
     },
-    [setTaskPriority],
+    [setTask],
   )
 
-  const items = useMemo(() => ITEMS, [])
-
   return (
-    <MenuSelect<TaskPriorityTypeValue>
+    <MenuSelect<string>
       onChange={handleChange}
       placement="bottom-end"
       onOpened={onOpened}
@@ -64,9 +38,9 @@ export const Menu: React.FC<Props> = memo<Props>((props) => {
         {props.children}
       </MenuSelectButton>
       <MenuSelectList defaultValue={defaultValue}>
-        {items.map((item, i) => (
-          <MenuItemOption value={item.value.toString()} key={i}>
-            {item.text}
+        {taskPriorities.map((t) => (
+          <MenuItemOption value={t.id} key={t.id}>
+            {t.name}
           </MenuItemOption>
         ))}
       </MenuSelectList>

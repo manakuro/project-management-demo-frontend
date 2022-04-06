@@ -1,17 +1,17 @@
 import React, { memo, useCallback } from 'react'
 import { Badge } from 'src/components/atoms'
-import { useTask } from 'src/store/entities/task'
+import { useTaskPriority } from 'src/store/entities/taskPriority'
 
 type Props = {
-  taskId: string
+  taskPriorityId: string
   onDelete?: () => void
   onClick?: () => void
   disableStopPropagation?: boolean
 }
 
 export const PriorityChip: React.VFC<Props> = memo((props) => {
-  const { taskId, onClick, disableStopPropagation } = props
-  const { task } = useTask(taskId)
+  const { taskPriorityId, onClick, disableStopPropagation } = props
+  const { taskPriority } = useTaskPriority(taskPriorityId)
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
@@ -23,19 +23,19 @@ export const PriorityChip: React.VFC<Props> = memo((props) => {
     [onClick, disableStopPropagation],
   )
 
-  if (!task.taskPriority) return null
+  if (!taskPriorityId) return null
 
   return (
     <Badge
       h={5}
       variant="solid"
-      bg={task.taskPriority.color.color}
+      bg={taskPriority.color.color}
       textAlign="center"
       fontWeight="medium"
       lineHeight={1.7}
       onClick={handleClick}
     >
-      {task.taskPriority.name}
+      {taskPriority.name}
     </Badge>
   )
 })

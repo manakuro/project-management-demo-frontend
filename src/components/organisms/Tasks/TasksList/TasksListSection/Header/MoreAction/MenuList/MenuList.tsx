@@ -21,6 +21,7 @@ export const MenuList: React.FC<Props> = memo(() => {
   const { hasTasks } = useHasTasksByTaskSectionId(taskSectionId)
   const { canDeleteTaskSection, message } =
     useTasksCanDeleteTaskSection(taskSectionId)
+
   const deleteSectionDisabled = useMemo(
     () => !canDeleteTaskSection,
     [canDeleteTaskSection],

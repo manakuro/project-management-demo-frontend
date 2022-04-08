@@ -1,13 +1,13 @@
-import { useTasksTaskIdsByTaskSectionId } from './useTasksTaskIdsByTaskSectionId'
+import { useTasksTasksByTaskSectionId } from './useTasksTasksByTaskSectionId'
 
 type Result = {
   hasTasks: boolean
 }
 
 export const useHasTasksByTaskSectionId = (taskSectionId: string): Result => {
-  const { taskIds } = useTasksTaskIdsByTaskSectionId(taskSectionId)
+  const { tasks } = useTasksTasksByTaskSectionId(taskSectionId)
 
   return {
-    hasTasks: !!taskIds.length,
+    hasTasks: !!tasks.length,
   }
 }

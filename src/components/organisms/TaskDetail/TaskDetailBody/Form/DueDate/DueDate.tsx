@@ -28,6 +28,11 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
     },
     [setTaskDueDate],
   )
+
+  const handleClear = useCallback(async () => {
+    await resetTaskDueDate()
+  }, [resetTaskDueDate])
+
   const handleReset = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
       e.stopPropagation()
@@ -44,6 +49,7 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
           date={task.dueDate}
           time={task.dueTime}
           onChange={handleChange}
+          onClear={handleClear}
         >
           <Button
             as={Box}

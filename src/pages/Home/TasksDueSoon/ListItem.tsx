@@ -14,7 +14,7 @@ type Props = {
 
 export const ListItem: React.VFC<Props> = memo((props) => {
   const { taskId } = props
-  const { task, setTaskDueDate, setTask } = useTask(taskId)
+  const { task, setTaskDueDate, setTask, resetTaskDueDate } = useTask(taskId)
   const { clickableHoverStyle } = useClickableHoverStyle()
   const { projectIds } = useProjectIdsByTaskId(taskId)
   const { navigateToHomeDetail } = useRouter()
@@ -25,6 +25,10 @@ export const ListItem: React.VFC<Props> = memo((props) => {
     },
     [setTaskDueDate],
   )
+
+  const handleClear = useCallback(async () => {
+    await resetTaskDueDate()
+  }, [resetTaskDueDate])
 
   const handleClick = useCallback(
     async (e: React.MouseEvent<HTMLDivElement>) => {
@@ -77,6 +81,7 @@ export const ListItem: React.VFC<Props> = memo((props) => {
           date={task.dueDate}
           time={task.dueTime}
           onChange={handleChange}
+          onClear={handleClear}
         >
           <DueDate
             ml={2}

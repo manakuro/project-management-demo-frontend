@@ -53,6 +53,7 @@ export const TasksDueDate: React.VFC<Props> = memo<Props>((props) => {
         linkStyle={{ w: 'full', h: 'full' }}
         date={task.dueDate}
         onChange={handleChange}
+        onClear={resetTaskDueDate}
       >
         <Flex flex={1} h="full" alignItems="center">
           {showCalendarIcon && (

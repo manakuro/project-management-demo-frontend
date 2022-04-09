@@ -14,7 +14,7 @@ type Props = {
 export const DueDate: React.FC<Props> = memo<Props>((props) => {
   const { clickableHoverLightStyle } = useClickableHoverStyle()
   const { onDueDateOpened, onDueDateClosed, showIcon } = useDueDate()
-  const { task, setTaskDueDate } = useTask(props.taskId)
+  const { task, setTaskDueDate, resetTaskDueDate } = useTask(props.taskId)
 
   const handleChange = useCallback(
     async (date: Date) => {
@@ -23,11 +23,16 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
     [setTaskDueDate],
   )
 
+  const handleClear = useCallback(async () => {
+    await resetTaskDueDate()
+  }, [resetTaskDueDate])
+
   return (
     <PopoverDueDatePicker
       date={task.dueDate}
       time={task.dueTime}
       onChange={handleChange}
+      onClear={handleClear}
       onOpened={onDueDateOpened}
       onClosed={onDueDateClosed}
     >

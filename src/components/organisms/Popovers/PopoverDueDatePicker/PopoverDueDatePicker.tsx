@@ -12,6 +12,7 @@ import { Body } from './Body'
 type Props = {
   date: string
   onChange: (date: Date) => void
+  onClear: () => void
   time?: string
   onOpened?: () => void
   onClosed?: () => void
@@ -49,6 +50,12 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
     [closeOnChange, popoverDisclosure, props],
   )
 
+  const handleClear = useCallback(() => {
+    props.onClear()
+    if (!closeOnChange) return
+    popoverDisclosure.onClose()
+  }, [closeOnChange, popoverDisclosure, props])
+
   return (
     <PortalManager zIndex={1500}>
       <Popover
@@ -67,7 +74,7 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
         <Portal>
           <PopoverContent
             w="276px"
-            minH="300px"
+            minH="280px"
             className="PopoverDueDatePicker"
             pointerEvents="auto"
           >
@@ -77,6 +84,7 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
                 onChange={handleChange}
                 time={props.time}
                 onCloseMenu={handleClose}
+                onClear={handleClear}
                 includeDueTime={props.includeDueTime}
               />
             )}

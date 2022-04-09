@@ -16,7 +16,7 @@ type Props = FlexProps & {
 }
 
 export const DueDate: React.VFC<Props> = memo<Props>((props) => {
-  const { task, setTaskDueDate } = useTask(props.taskId)
+  const { task, setTaskDueDate, resetTaskDueDate } = useTask(props.taskId)
   const hasDueDate = useMemo(() => !!task.dueDate, [task.dueDate])
   const { isHovering } = useTasksBoardListItemContext()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
@@ -28,9 +28,17 @@ export const DueDate: React.VFC<Props> = memo<Props>((props) => {
     [setTaskDueDate],
   )
 
+  const handleClear = useCallback(async () => {
+    await resetTaskDueDate()
+  }, [resetTaskDueDate])
+
   return (
     <Flex onClick={(e) => e.stopPropagation()}>
-      <PopoverDueDatePicker date={task.dueDate} onChange={handleChange}>
+      <PopoverDueDatePicker
+        date={task.dueDate}
+        onChange={handleChange}
+        onClear={handleClear}
+      >
         {!hasDueDate && (
           <Icon
             icon="calendarAlt"

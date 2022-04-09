@@ -72,6 +72,7 @@ export const DatePickerWithInput: React.FC<Props> = memo<Props>((props) => {
       {focused ? (
         <Input
           onClose={handleClickInputOutside}
+          onClear={onDelete}
           dueDate={dueDate}
           onSelect={onSelect}
         />

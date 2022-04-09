@@ -10,6 +10,7 @@ import {
   ownerProjectTeammateByProjectIdState,
 } from '../atom'
 import { ProjectTeammate } from '../type'
+import { useProjectTeammateResponse } from './useProjectTeammateResponse'
 import { useUpsert } from './useUpsert'
 
 export const useProjectTeammatesCommand = () => {
@@ -20,6 +21,7 @@ export const useProjectTeammatesCommand = () => {
   const [updateProjectTeammateMutation] = useUpdateProjectTeammateMutation()
 
   const { workspace } = useWorkspace()
+  const { setProjectsTeammates } = useProjectTeammateResponse()
 
   const setProjectTeammateById = useRecoilCallback(
     ({ snapshot }) =>
@@ -83,10 +85,10 @@ export const useProjectTeammatesCommand = () => {
         const prev = await snapshot.getPromise(
           ownerProjectTeammateByProjectIdState(projectId),
         )
-        upsert({ ...prev, isOwner: false })
+        if (prev.id) upsert({ ...prev, isOwner: false })
 
         const restore = () => {
-          upsert({ ...prev, isOwner: true })
+          if (prev.id) upsert({ ...prev, isOwner: true })
         }
 
         const owner = await snapshot.getPromise(
@@ -95,16 +97,13 @@ export const useProjectTeammatesCommand = () => {
             teammateId,
           }),
         )
-        upsert({
-          ...owner,
-          isOwner: true,
-        })
+        if (owner.id) upsert({ ...owner, isOwner: true })
 
         try {
           const res = await updateProjectTeammateOwnerMutation({
             variables: {
               input: {
-                id: owner.id,
+                teammateId,
                 projectId,
                 requestId: '',
                 workspaceId: workspace.id,
@@ -113,13 +112,23 @@ export const useProjectTeammatesCommand = () => {
           })
           if (res.errors) {
             restore()
+            return
           }
+          const data = res.data?.updateProjectTeammateOwner
+          if (!data) return
+
+          if (!owner.id) setProjectsTeammates([data])
         } catch (e) {
           restore()
           throw e
         }
       },
-    [updateProjectTeammateOwnerMutation, upsert, workspace.id],
+    [
+      setProjectsTeammates,
+      updateProjectTeammateOwnerMutation,
+      upsert,
+      workspace.id,
+    ],
   )
 
   return {

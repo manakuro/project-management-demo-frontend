@@ -1,10 +1,5 @@
 mutation UpdateProjectTeammateOwner($input: UpdateProjectTeammateOwnerInput!) {
   updateProjectTeammateOwner(input: $input) {
-    id
-    projectId
-    teammateId
-    isOwner
-    createdAt
-    updatedAt
+    ...ProjectTeammateFragment
   }
 }

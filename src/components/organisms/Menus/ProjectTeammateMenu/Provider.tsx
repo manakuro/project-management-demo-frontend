@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react'
-import { useSearchProjectTeammatesQuery } from 'src/components/organisms/Menus/ProjectTeammateMenu/useSearchProjectTeammatesQuery'
+import { useSearchWorkspaceTeammatesQuery } from 'src/hooks/queries/entities'
 import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {}
@@ -9,7 +9,7 @@ const useValue = (): ContextProps => {
     refetch,
     teammates,
     loading: loadingQuery,
-  } = useSearchProjectTeammatesQuery()
+  } = useSearchWorkspaceTeammatesQuery()
   const [loadingText, setLoadingText] = useState<boolean>(false)
   const loading = useMemo(
     () => loadingText || loadingQuery,

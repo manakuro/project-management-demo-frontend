@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useSearchMenuOnKeyBindings } from 'src/components/organisms/Menus/SearchMenu'
 import { useDebounce } from 'src/hooks'
+import { useSearchWorkspaceTeammatesQuery } from 'src/hooks/queries/entities'
 import { Teammate } from 'src/store/entities/teammate'
-import { useSearchProjectTeammatesQuery } from './useSearchProjectTeammatesQuery'
 
 type Props = {
   onSelect: (val: Teammate) => void
@@ -19,7 +19,7 @@ export const useProjectTeammateMenu = (props: Props) => {
     refetch,
     teammates,
     loading: loadingQuery,
-  } = useSearchProjectTeammatesQuery()
+  } = useSearchWorkspaceTeammatesQuery()
   const [loadingText, setLoadingText] = useState<boolean>(false)
   const loading = useMemo(
     () => loadingText || loadingQuery,
@@ -29,7 +29,6 @@ export const useProjectTeammateMenu = (props: Props) => {
 
   const fetchTeammates = useCallback(
     async (val: string) => {
-      console.log(val)
       await refetch({ queryText: val })
       setLoadingText(false)
     },

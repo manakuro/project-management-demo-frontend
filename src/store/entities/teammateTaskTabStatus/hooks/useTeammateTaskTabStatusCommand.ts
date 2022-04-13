@@ -17,10 +17,12 @@ export const useTeammateTaskTabStatusCommand = () => {
     ({ snapshot }) =>
       async (key: TeammateTaskTabStatusCodeKey) => {
         const prev = await snapshot.getPromise(tabStatusState)
-
         const input: Partial<TeammateTaskTabStatus> = {
           statusCode: TeammateTaskTabStatusCode[key],
         }
+        if (!prev.id) return
+        if (prev.statusCode === input.statusCode) return
+
         upsert(input)
 
         const restore = () => {

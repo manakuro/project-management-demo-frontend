@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Flex, Icon, Text } from 'src/components/atoms'
+import { Flex, Icon, Text } from 'src/components/atoms'
 
 type Props = {}
 
@@ -18,9 +18,9 @@ export const MakePublic: React.FC<Props> = () => {
       <Text fontSize="sm" flex={1} ml={2}>
         This task is visible to its collaborators and members to My workspace
       </Text>
-      <Button size="sm" variant="ghost">
-        Make public
-      </Button>
+      {/*<Button size="sm" variant="ghost">*/}
+      {/*  Make public*/}
+      {/*</Button>*/}
     </Flex>
   )
 }

@@ -4,7 +4,7 @@ import { useRecoilCallback } from 'recoil'
 import { useTaskDeletedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import { useDeletedTaskResponse } from 'src/store/entities/deletedTask'
-import { projectTaskState } from 'src/store/entities/projectTask'
+import { useResetProjectTask } from 'src/store/entities/projectTask'
 import { teammateTaskState } from 'src/store/entities/teammateTask'
 import { TaskDeletedSubscriptionResponse as Response } from '../type'
 
@@ -21,6 +21,8 @@ export const useTaskDeletedSubscription = (props: Props) => {
     () => !props.workspaceId,
     [props.workspaceId],
   )
+  const { resetProjectTasks } = useResetProjectTask()
+
   const subscriptionResult = useSubscription({
     variables: {
       workspaceId: props.workspaceId,
@@ -52,14 +54,14 @@ export const useTaskDeletedSubscription = (props: Props) => {
         if (data.teammateTask.id) {
           reset(teammateTaskState(data.teammateTask.id))
         }
-        if (data.projectTask.id) {
-          reset(projectTaskState(data.projectTask.id))
+        if (data.projectTasks?.length) {
+          resetProjectTasks(data.projectTasks.map((p) => p.id))
         }
         if (data.deletedTasks) {
           setDeletedTask(data.deletedTasks)
         }
       },
-    [setDeletedTask],
+    [resetProjectTasks, setDeletedTask],
   )
 
   return {

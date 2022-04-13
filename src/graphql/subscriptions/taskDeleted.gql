@@ -3,7 +3,7 @@ subscription TaskDeleted($workspaceId: ID!, $requestId: String!) {
     teammateTask {
       id
     }
-    projectTask {
+    projectTasks {
       id
     }
     deletedTasks {

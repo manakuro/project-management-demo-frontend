@@ -3,7 +3,7 @@ mutation UndeleteTask($input: UndeleteTaskInput!) {
     teammateTask {
       ...TeammateTaskFragment
     }
-    projectTask {
+    projectTasks {
       ...ProjectTaskFragment
     }
     deletedTasks {

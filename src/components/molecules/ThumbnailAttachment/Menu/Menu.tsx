@@ -40,8 +40,8 @@ export const Menu: React.FC<Props> = memo((props) => {
               Download taskFile
             </Link>
           </MenuItem>
-          <MenuItem onClick={onDelete} color="alert">
-            Delete taskFile
+          <MenuItem onClick={onDelete} color="alert" isDisabled>
+            Delete task file
           </MenuItem>
         </MenuList>
       </Portal>

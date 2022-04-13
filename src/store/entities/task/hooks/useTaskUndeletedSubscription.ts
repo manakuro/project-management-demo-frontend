@@ -50,8 +50,8 @@ export const useTaskUndeletedSubscription = (props: Props) => {
             reset(deletedTaskState(d.id))
           })
         }
-        if (data.projectTask) {
-          setProjectTask([data.projectTask])
+        if (data.projectTasks.length) {
+          setProjectTask(data.projectTasks)
         }
         if (data.teammateTask) {
           setTeammateTask([data.teammateTask])

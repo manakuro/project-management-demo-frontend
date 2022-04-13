@@ -17,6 +17,7 @@ export const useProjectTaskSectionsByProjectIdsQuery = (
         projectIDIn: projectIds,
       },
     },
+    fetchPolicy: 'no-cache',
     skip,
   })
   const { setProjectsTaskSections } = useProjectTaskSectionResponse()

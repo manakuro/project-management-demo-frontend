@@ -199,10 +199,7 @@ const useSetters = () => {
           )
           .forEach((p) =>
             set(projectTaskState(p.id), (prev) => {
-              return {
-                ...prev,
-                ...p,
-              }
+              return { ...prev, ...p }
             }),
           )
       },

@@ -3,7 +3,7 @@ mutation DeleteTask($input: DeleteTaskInput!) {
     teammateTask {
       id
     }
-    projectTask {
+    projectTasks {
       id
     }
     deletedTasks {

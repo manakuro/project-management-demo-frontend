@@ -1,6 +1,5 @@
 import { useRecoilCallback } from 'recoil'
 import { projectTaskState } from '../atom'
-import { ProjectTask } from '../type'
 
 export const useResetProjectTask = () => {
   const resetProjectTask = useRecoilCallback(
@@ -13,9 +12,9 @@ export const useResetProjectTask = () => {
 
   const resetProjectTasks = useRecoilCallback(
     ({ reset }) =>
-      (projectTasks: ProjectTask[]) => {
-        projectTasks.forEach((t) => {
-          reset(projectTaskState(t.id))
+      (ids: string[]) => {
+        ids.forEach((id) => {
+          reset(projectTaskState(id))
         })
       },
     [],

@@ -16,10 +16,10 @@ import {
 } from 'src/store/entities/deletedTask'
 import { useMe } from 'src/store/entities/me'
 import {
-  projectTaskByTaskIdState,
   ProjectTaskResponse,
-  projectTaskState,
+  projectTasksByTaskIdState,
   useProjectTaskResponse,
+  useResetProjectTask,
 } from 'src/store/entities/projectTask'
 import { Task } from 'src/store/entities/task'
 import {
@@ -54,6 +54,7 @@ export const useTaskCommand = () => {
   const { resetTeammateTask } = useResetTeammateTask()
   const { setProjectTask } = useProjectTaskResponse()
   const { setDeletedTask } = useDeletedTaskResponse()
+  const { resetProjectTasks } = useResetProjectTask()
 
   const setTaskById = useRecoilCallback(
     ({ snapshot }) =>
@@ -222,18 +223,18 @@ export const useTaskCommand = () => {
           reset(teammateTaskState(teammateTask.id))
         }
 
-        const projectTask = await snapshot.getPromise(
-          projectTaskByTaskIdState(input.taskId),
+        const projectTasks = await snapshot.getPromise(
+          projectTasksByTaskIdState(input.taskId),
         )
-        if (projectTask.id) {
-          reset(projectTaskState(projectTask.id))
+        if (projectTasks.length) {
+          resetProjectTasks(projectTasks.map((p) => p.id))
         }
 
         const restore = () => {
           if (teammateTask.id)
             setTeammateTask([teammateTask as TeammateTaskResponse])
-          if (projectTask.id)
-            setProjectTask([projectTask as ProjectTaskResponse])
+          if (projectTasks.length)
+            setProjectTask(projectTasks as ProjectTaskResponse[])
         }
 
         try {
@@ -247,6 +248,7 @@ export const useTaskCommand = () => {
             },
           })
           if (res.errors) {
+            console.log('res.errors!')
             restore()
             return
           }
@@ -254,7 +256,7 @@ export const useTaskCommand = () => {
           const data = res.data?.deleteTask?.deletedTasks
           if (!data) return
 
-          setDeletedTask(data)
+          setDeletedTask(data, { includeTask: false })
         } catch (e) {
           restore()
           throw e
@@ -264,6 +266,7 @@ export const useTaskCommand = () => {
       },
     [
       deleteTaskMutation,
+      resetProjectTasks,
       setDeletedTask,
       setProjectTask,
       setTeammateTask,
@@ -303,8 +306,9 @@ export const useTaskCommand = () => {
           const teammateTask = res.data?.undeleteTask?.teammateTask
           if (teammateTask) setTeammateTask([teammateTask])
 
-          const projectTask = res.data?.undeleteTask?.projectTask
-          if (projectTask) setProjectTask([projectTask])
+          const projectTasks = res.data?.undeleteTask?.projectTasks
+          if (projectTasks?.length)
+            setProjectTask(projectTasks, { includeTask: false })
         } catch (e) {
           restore()
           throw e

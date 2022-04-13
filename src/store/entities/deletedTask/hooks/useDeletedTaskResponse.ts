@@ -9,10 +9,13 @@ export const useDeletedTaskResponse = () => {
 
   const setDeletedTask = useRecoilCallback(
     ({ set }) =>
-      (data: DeletedTaskResponse[]) => {
+      (data: DeletedTaskResponse[], options?: { includeTask: boolean }) => {
+        const includeTask = options?.includeTask ?? true
         data.forEach((d) => {
           set(deletedTaskState(d.id), d)
         })
+
+        if (!includeTask) return
 
         const tasks = data.map<TaskResponse>((d) => ({
           ...d.task,

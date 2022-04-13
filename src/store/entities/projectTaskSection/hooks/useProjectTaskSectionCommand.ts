@@ -174,7 +174,7 @@ export const useProjectTaskSectionCommand = () => {
         )
 
         reset(projectTaskSectionState(id))
-        resetProjectTasks(projectTasks)
+        resetProjectTasks(projectTasks.map((p) => p.id))
 
         const restore = async () => {
           const prev = await snapshot.getPromise(projectTaskSectionState(id))

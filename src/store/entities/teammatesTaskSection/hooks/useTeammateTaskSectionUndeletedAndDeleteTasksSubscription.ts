@@ -53,7 +53,9 @@ export const useTeammateTaskSectionUndeletedAndDeleteTasksSubscription = (
 
       if (__DEV__) console.log('Teammate Task Section undeleted!')
 
-      setTeammatesTaskSections([data.teammateTaskSection])
+      setTeammatesTaskSections([data.teammateTaskSection], {
+        includeTask: false,
+      })
     },
     [setTeammatesTaskSections],
   )

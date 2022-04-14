@@ -58,7 +58,7 @@ export const useTaskDeletedSubscription = (props: Props) => {
           resetProjectTasks(data.projectTasks.map((p) => p.id))
         }
         if (data.deletedTasks) {
-          setDeletedTask(data.deletedTasks)
+          setDeletedTask(data.deletedTasks, { includeTask: false })
         }
       },
     [resetProjectTasks, setDeletedTask],

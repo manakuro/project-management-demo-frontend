@@ -52,7 +52,7 @@ export const useProjectTaskSectionUndeletedAndDeleteTasksSubscription = (
       const projectTaskSection =
         response.projectTaskSectionUndeletedAndDeleteTasks.projectTaskSection
 
-      setProjectsTaskSections([projectTaskSection])
+      setProjectsTaskSections([projectTaskSection], { includeTask: false })
     },
     [setProjectsTaskSections],
   )

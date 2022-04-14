@@ -51,7 +51,7 @@ export const useTaskUndeletedSubscription = (props: Props) => {
           })
         }
         if (data.projectTasks.length) {
-          setProjectTask(data.projectTasks)
+          setProjectTask(data.projectTasks, { includeTask: false })
         }
         if (data.teammateTask) {
           setTeammateTask([data.teammateTask])

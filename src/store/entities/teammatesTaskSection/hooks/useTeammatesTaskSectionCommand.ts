@@ -357,7 +357,9 @@ export const useTeammatesTaskSectionCommand = () => {
       const data = res.data?.undeleteTeammateTaskSectionAndDeleteTasks
       if (!data) return
 
-      setTeammatesTaskSections([data.teammateTaskSection])
+      setTeammatesTaskSections([data.teammateTaskSection], {
+        includeTask: false,
+      })
     },
     [
       setTeammatesTaskSections,

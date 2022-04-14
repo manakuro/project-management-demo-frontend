@@ -14,9 +14,10 @@ export const useTeammatesTaskSectionResponse = () => {
     ({ set }) =>
       (
         data: TeammateTaskSectionResponse[],
-        options?: { includeTeammateTask?: boolean },
+        options?: { includeTeammateTask?: boolean; includeTask?: boolean },
       ) => {
         const includeTeammateTask = options?.includeTeammateTask ?? true
+        const includeTask = options?.includeTask ?? true
 
         data.forEach((d) => {
           set(teammatesTaskSectionState(d.id), (prev) => {
@@ -31,7 +32,8 @@ export const useTeammatesTaskSectionResponse = () => {
         const teammateTasks = data.reduce<TeammateTaskResponse[]>((acc, p) => {
           return uniqBy([...acc, ...p.teammateTasks], 'id')
         }, [])
-        setTeammateTask(teammateTasks)
+
+        setTeammateTask(teammateTasks, { includeTask })
       },
     [setTeammateTask],
   )

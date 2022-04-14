@@ -333,7 +333,7 @@ export const useProjectTaskSectionCommand = () => {
       const data = res.data?.undeleteProjectTaskSectionAndDeleteTasks
       if (!data) return
 
-      setProjectsTaskSections([data.projectTaskSection])
+      setProjectsTaskSections([data.projectTaskSection], { includeTask: false })
     },
     [
       setProjectsTaskSections,

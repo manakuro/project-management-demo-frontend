@@ -12,8 +12,12 @@ export const useProjectTaskSectionResponse = () => {
 
   const setProjectsTaskSections = useRecoilCallback(
     ({ set }) =>
-      (data: Data[], options?: { includeProjectTasks: boolean }) => {
+      (
+        data: Data[],
+        options?: { includeProjectTasks?: boolean; includeTask?: boolean },
+      ) => {
         const includeProjectTasks = options?.includeProjectTasks ?? true
+        const includeTask = options?.includeTask ?? true
 
         data.forEach((d) => {
           set(projectTaskSectionState(d.id), (prev) => {
@@ -28,7 +32,7 @@ export const useProjectTaskSectionResponse = () => {
         const projectTasks = data.reduce<ProjectTaskResponse[]>((acc, p) => {
           return uniqBy([...acc, ...(p?.projectTasks || [])], 'id')
         }, [])
-        setProjectTask(projectTasks)
+        setProjectTask(projectTasks, { includeTask })
       },
     [setProjectTask],
   )

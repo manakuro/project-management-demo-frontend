@@ -248,7 +248,6 @@ export const useTaskCommand = () => {
             },
           })
           if (res.errors) {
-            console.log('res.errors!')
             restore()
             return
           }

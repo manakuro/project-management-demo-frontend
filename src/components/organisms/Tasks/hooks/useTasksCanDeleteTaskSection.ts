@@ -14,7 +14,7 @@ export const useTasksCanDeleteTaskSection = (taskSectionId: string): Result => {
 
   if (isMyTasksPage) {
     return {
-      canDeleteTaskSection: !!taskSection.assigned,
+      canDeleteTaskSection: !taskSection.assigned,
       message:
         "This section can't be deleted because new tasks assigned to you appear here.",
     }

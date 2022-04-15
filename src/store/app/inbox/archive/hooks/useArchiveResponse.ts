@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
-import { useArchivedMyTaskActivitiesResponse } from '../archivedMyTaskActivities'
-import { useArchivedMyTaskActivityTasksResponse } from '../archivedMyTaskActivityTasks'
+import { useArchivedTaskActivitiesResponse } from '../archivedTaskActivities'
+import { useArchivedTaskActivityTasksResponse } from '../archivedTaskActivityTasks'
 import { useArchivedWorkspaceActivitiesResponse } from '../archivedWorkspaceActivities'
 import { useArchivedWorkspaceActivityTasksResponse } from '../archivedWorkspaceActivityTasks'
 import { useArchivesResponse } from '../archives'
@@ -14,10 +14,10 @@ export const useArchiveResponse = () => {
   const { setArchivedWorkspaceActivityTasks } =
     useArchivedWorkspaceActivityTasksResponse()
 
-  const { setArchivedMyTaskActivities } = useArchivedMyTaskActivitiesResponse()
+  const { setArchivedTaskActivities } = useArchivedTaskActivitiesResponse()
 
-  const { setArchivedMyTaskActivityTasks } =
-    useArchivedMyTaskActivityTasksResponse()
+  const { setArchivedTaskActivityTasks } =
+    useArchivedTaskActivityTasksResponse()
 
   const setArchive = useRecoilCallback(
     () => (data: ArchiveResponse) => {
@@ -25,15 +25,15 @@ export const useArchiveResponse = () => {
       setArchivedWorkspaceActivities(data)
       setArchivedWorkspaceActivityTasks(data)
 
-      setArchivedMyTaskActivities(data)
-      setArchivedMyTaskActivityTasks(data)
+      setArchivedTaskActivities(data)
+      setArchivedTaskActivityTasks(data)
     },
     [
       setArchives,
       setArchivedWorkspaceActivities,
       setArchivedWorkspaceActivityTasks,
-      setArchivedMyTaskActivities,
-      setArchivedMyTaskActivityTasks,
+      setArchivedTaskActivities,
+      setArchivedTaskActivityTasks,
     ],
   )
 

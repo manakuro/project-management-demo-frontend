@@ -1,5 +1,5 @@
 import { useTaskActivityTasksTaskIds } from 'src/store/app/inbox/activity/taskActivityTasks'
-import { useArchivedMyTaskActivityTasksTaskIds } from 'src/store/app/inbox/archive/archivedMyTaskActivityTasks'
+import { useArchivedTaskActivityTasksTaskIds } from 'src/store/app/inbox/archive/archivedTaskActivityTasks'
 import { useInboxContext } from '../../Inbox'
 
 type Result = {
@@ -9,7 +9,7 @@ type Result = {
 export const useTaskActivityTaskIds = (listItemId: string): Result => {
   const { isActivity } = useInboxContext()
   const activity = useTaskActivityTasksTaskIds(listItemId)
-  const archived = useArchivedMyTaskActivityTasksTaskIds(listItemId)
+  const archived = useArchivedTaskActivityTasksTaskIds(listItemId)
 
   if (isActivity) {
     return {

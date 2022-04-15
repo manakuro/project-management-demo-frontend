@@ -1,11 +1,11 @@
 import { useRecoilValue } from 'recoil'
 import { taskIdsByArchivedMyTaskActivityIdState } from '../atom'
 
-export const useArchivedMyTaskActivityTasksTaskIds = (
-  archivedMyTaskActivityId: string,
+export const useArchivedTaskActivityTasksTaskIds = (
+  archivedTaskActivityId: string,
 ) => {
   const taskIds = useRecoilValue(
-    taskIdsByArchivedMyTaskActivityIdState(archivedMyTaskActivityId),
+    taskIdsByArchivedMyTaskActivityIdState(archivedTaskActivityId),
   )
 
   return {

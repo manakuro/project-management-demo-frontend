@@ -3,14 +3,14 @@ import { useTasksResponse } from 'src/store/entities/task'
 import { ArchiveResponse } from '../../type'
 import { archivedMyTaskActivityTaskState } from '../atom'
 
-export const useArchivedMyTaskActivityTasksResponse = () => {
+export const useArchivedTaskActivityTasksResponse = () => {
   const { setTasksFromResponse } = useTasksResponse()
 
-  const setArchivedMyTaskActivityTasks = useRecoilCallback(
+  const setArchivedTaskActivityTasks = useRecoilCallback(
     ({ set }) =>
       (data: ArchiveResponse) => {
         data.archivedMyTaskActivities.forEach((d) => {
-          d.archivedMyTaskActivityTasks.forEach((t) => {
+          d.archivedMyTaskActivityTasks.forEach((t: any) => {
             set(archivedMyTaskActivityTaskState(t.id), t)
 
             setTasksFromResponse([t.task])
@@ -21,6 +21,6 @@ export const useArchivedMyTaskActivityTasksResponse = () => {
   )
 
   return {
-    setArchivedMyTaskActivityTasks,
+    setArchivedTaskActivityTasks,
   }
 }

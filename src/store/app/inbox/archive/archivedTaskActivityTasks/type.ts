@@ -1,6 +1,6 @@
 import { TaskResponse } from 'src/store/entities/task'
 
-export type ArchivedMyTaskActivityTasksResponse = {
+export type ArchivedTaskActivityTasksResponse = {
   id: string
   archivedMyTaskActivityId: string
   taskId: string
@@ -9,7 +9,7 @@ export type ArchivedMyTaskActivityTasksResponse = {
   updatedAt: string
 }
 
-export type ArchivedMyTaskActivityTask = {
+export type ArchivedTaskActivityTask = {
   id: string
   archivedMyTaskActivityId: string
   taskId: string

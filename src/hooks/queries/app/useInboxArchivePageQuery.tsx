@@ -44,32 +44,32 @@ const fetch = async (): Promise<ArchiveResponse> => {
         archives: [
           {
             id: '1',
-            type: 2,
+            type: 'WORKSPACE',
             updatedAt: new Date(dateFns.subDays(new Date(), 3)).toISOString(),
           },
           {
             id: '2',
-            type: 2,
+            type: 'WORKSPACE',
             updatedAt: new Date(dateFns.subDays(new Date(), 4)).toISOString(),
           },
           {
             id: '3',
-            type: 1,
+            type: 'TASK',
             updatedAt: new Date(dateFns.subDays(new Date(), 1)).toISOString(),
           },
           {
             id: '4',
-            type: 1,
+            type: 'TASK',
             updatedAt: new Date(dateFns.subDays(new Date(), 5)).toISOString(),
           },
           {
             id: '5',
-            type: 1,
+            type: 'TASK',
             updatedAt: new Date(dateFns.subDays(new Date(), 10)).toISOString(),
           },
           {
             id: '6',
-            type: 1,
+            type: 'TASK',
             updatedAt: new Date(new Date()).toISOString(),
           },
         ],

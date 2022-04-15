@@ -1,11 +1,3 @@
-import { Activity } from './activities'
-import { InboxListStatus } from './inboxListStatus'
-import { MyTaskActivityResponse } from './myTaskActivities'
-import { WorkspaceActivityResponse } from './workspaceActivities'
+import { InboxActivityResponse } from 'src/graphql/types/app/inbox'
 
-export type ActivityResponse = {
-  workspaceActivities: WorkspaceActivityResponse[]
-  myTaskActivities: MyTaskActivityResponse[]
-  inboxListStatus: InboxListStatus
-  activities: Activity[]
-}
+export type ActivityResponse = InboxActivityResponse

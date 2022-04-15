@@ -1,9 +1,8 @@
-import { ACTIVITY_TYPE_TASK } from 'src/store/entities/activityType'
 import { ArchivedMyTaskActivityTasksResponse } from '../archivedMyTaskActivityTasks'
 
 export type ArchivedMyTaskActivityResponse = {
   id: string
-  activityType: typeof ACTIVITY_TYPE_TASK
+  activityType: any
   archivedMyTaskActivityTasks: ArchivedMyTaskActivityTasksResponse[]
   teammateId: string
   createdAt: string
@@ -12,7 +11,7 @@ export type ArchivedMyTaskActivityResponse = {
 
 export type ArchivedMyTaskActivity = {
   id: string
-  activityType: typeof ACTIVITY_TYPE_TASK
+  activityType: any
   teammateId: string
   createdAt: string
   updatedAt: string

@@ -1,9 +1,8 @@
-import { ACTIVITY_TYPE_WORKSPACE } from 'src/store/entities/activityType'
 import { ArchivedWorkspaceActivityTasksResponse } from '../archivedWorkspaceActivityTasks'
 
 export type ArchivedWorkspaceActivityResponse = {
   id: string
-  activityType: typeof ACTIVITY_TYPE_WORKSPACE
+  activityType: any
   workspaceId: string
   workspace: {
     id: string
@@ -22,7 +21,7 @@ export type ArchivedWorkspaceActivityResponse = {
 
 export type ArchivedWorkspaceActivity = {
   id: string
-  activityType: typeof ACTIVITY_TYPE_WORKSPACE
+  activityType: any
   workspaceId: string
   projectId: string
   teammateId: string

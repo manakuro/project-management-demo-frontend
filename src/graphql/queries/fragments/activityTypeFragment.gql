@@ -1,0 +1,6 @@
+fragment ActivityTypeFragment on ActivityType {
+  id
+  typeCode
+  createdAt
+  updatedAt
+}

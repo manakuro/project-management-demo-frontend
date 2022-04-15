@@ -1,5 +1,6 @@
 import { selector } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
+import { ActivityTypeCode } from 'src/store/entities/activityType'
 import { createState } from 'src/store/util'
 import { Activity } from './type'
 
@@ -7,7 +8,7 @@ const key = (str: string) => `src/store/app/inbox/activity/activities/${str}`
 
 export const initialState = (): Activity => ({
   id: '',
-  type: 1,
+  type: ActivityTypeCode.Task,
   updatedAt: '',
 })
 export const {
@@ -40,12 +41,15 @@ export const activityIdsSortByUpdatedAtState =
 
             if (dateFns.isToday(new Date(a.updatedAt))) {
               acc.today.push(a.id)
+              return acc
             }
             if (dateFns.isYesterday(new Date(a.updatedAt))) {
               acc.yesterday.push(a.id)
+              return acc
             }
             if (duration?.days && duration.days <= 7) {
               acc.pastSevenDays.push(a.id)
+              return acc
             }
 
             if (duration?.days && duration.days > 7) {

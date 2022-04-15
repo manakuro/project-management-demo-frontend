@@ -1,7 +1,7 @@
-import { ActivityTypes } from 'src/store/entities/activityType'
+import { ActivityTypeCodeValues } from 'src/store/entities/activityType'
 
 export type Archive = {
   id: string
-  type: ActivityTypes
+  type: ActivityTypeCodeValues
   updatedAt: string
 }

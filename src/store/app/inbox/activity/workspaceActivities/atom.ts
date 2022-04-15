@@ -6,7 +6,7 @@ const key = (str: string) =>
 
 export const initialState = (): WorkspaceActivity => ({
   id: '',
-  activityType: 2,
+  activityTypeId: '',
   workspaceId: '',
   projectId: '',
   teammateId: '',

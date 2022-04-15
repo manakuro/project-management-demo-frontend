@@ -24,7 +24,7 @@ type Result = {
 }
 
 export const useTasksRouter = (): Result => {
-  const { isMyTasksPage, isHomePage } = useTasksContext()
+  const { isMyTasksPage, isHomePage, isInboxPage } = useTasksContext()
   const { projectId } = useProjectsProjectId()
   const {
     router,
@@ -33,12 +33,17 @@ export const useTasksRouter = (): Result => {
     navigateToProjectsTaskDetail,
     navigateToProjectsBoard,
     navigateToMyTasksBoard,
+    navigateToInboxDetail,
   } = useRouter()
 
   const navigateToTaskDetail = useCallback(
     async (taskId: string, options?: Options) => {
       if (isHomePage) {
         await navigateToHomeDetail(taskId)
+        return
+      }
+      if (isInboxPage) {
+        await navigateToInboxDetail(taskId)
         return
       }
 
@@ -51,8 +56,10 @@ export const useTasksRouter = (): Result => {
     },
     [
       isHomePage,
+      isInboxPage,
       isMyTasksPage,
       navigateToHomeDetail,
+      navigateToInboxDetail,
       navigateToMyTasksTaskDetail,
       navigateToProjectsTaskDetail,
       projectId,

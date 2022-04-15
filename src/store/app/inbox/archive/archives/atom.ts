@@ -7,7 +7,7 @@ const key = (str: string) => `src/store/app/inbox/archive/archives/${str}`
 
 export const initialState = (): Archive => ({
   id: '',
-  type: 1,
+  type: 'TASK',
   updatedAt: '',
 })
 export const {

@@ -1,18 +1,4 @@
-import { TaskResponse } from 'src/store/entities/task'
+import { WorkspaceActivityTaskResponse } from 'src/graphql/types/workspaceActivityTask'
+export type { WorkspaceActivityTaskResponse } from 'src/graphql/types/workspaceActivityTask'
 
-export type WorkspaceActivityTasksResponse = {
-  id: string
-  workspaceActivityId: string
-  taskId: string
-  task: TaskResponse
-  createdAt: string
-  updatedAt: string
-}
-
-export type WorkspaceActivityTask = {
-  id: string
-  workspaceActivityId: string
-  taskId: string
-  createdAt: string
-  updatedAt: string
-}
+export type WorkspaceActivityTask = Omit<WorkspaceActivityTaskResponse, 'task'>

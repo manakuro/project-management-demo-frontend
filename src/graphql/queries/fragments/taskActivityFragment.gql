@@ -1,0 +1,13 @@
+fragment TaskActivityFragment on TaskActivity {
+  id
+  teammateId
+  activityTypeId
+  activityType {
+    ...ActivityTypeFragment
+  }
+  taskActivityTasks {
+    ...TaskActivityTaskFragment
+  }
+  createdAt
+  updatedAt
+}

@@ -14,6 +14,7 @@ import {
 } from 'src/components/organisms/Inbox'
 import { useInboxTaskDetail } from 'src/components/organisms/Inbox'
 import { TaskDetailSide } from 'src/components/organisms/TaskDetails'
+import { TasksProvider } from 'src/components/organisms/Tasks'
 import { useInboxActivityPageQuery } from 'src/hooks/queries/app'
 import { getInboxDetailId, isInboxDetailURL } from 'src/router'
 import { useInboxPageContext } from '../Provider'
@@ -39,24 +40,26 @@ const Component: React.VFC = memo(() => {
   if (loading) return <InboxSkeleton />
 
   return (
-    <Inbox isActivity>
-      <InboxLeft>
-        <InboxHeader>
-          <InboxHeaderRight>
-            <FilterButton />
-            <MoreActionButton />
-          </InboxHeaderRight>
-        </InboxHeader>
-        <InboxListContent>
-          <Flex>
-            <InboxList />
-          </Flex>
-        </InboxListContent>
-      </InboxLeft>
-      <InboxRight>
-        <TaskDetailSide />
-      </InboxRight>
-    </Inbox>
+    <TasksProvider isInboxPage>
+      <Inbox isActivity>
+        <InboxLeft>
+          <InboxHeader>
+            <InboxHeaderRight>
+              <FilterButton />
+              <MoreActionButton />
+            </InboxHeaderRight>
+          </InboxHeader>
+          <InboxListContent>
+            <Flex>
+              <InboxList />
+            </Flex>
+          </InboxListContent>
+        </InboxLeft>
+        <InboxRight>
+          <TaskDetailSide />
+        </InboxRight>
+      </Inbox>
+    </TasksProvider>
   )
 })
 Component.displayName = 'Component'

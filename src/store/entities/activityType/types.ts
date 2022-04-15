@@ -1,6 +1,5 @@
-export const ACTIVITY_TYPE_TASK = 1 as const
-export const ACTIVITY_TYPE_WORKSPACE = 2 as const
+import { ActivityTypeCode } from 'src/graphql/enums'
+export { ActivityTypeCode } from 'src/graphql/enums'
 
-export type ActivityTypes =
-  | typeof ACTIVITY_TYPE_TASK
-  | typeof ACTIVITY_TYPE_WORKSPACE
+export type ActivityTypeCodeValues = ValueOf<typeof ActivityTypeCode>
+export type ActivityTypeCodeKeys = keyof typeof ActivityTypeCode

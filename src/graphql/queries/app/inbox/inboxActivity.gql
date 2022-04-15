@@ -1,0 +1,19 @@
+query InboxActivityPage($workspaceId: ID!) {
+  activities(where: { workspaceId: $workspaceId }) {
+    ...ActivityFragment
+  }
+  taskActivities(where: { workspaceID: $workspaceId }) {
+    edges {
+      node {
+        ...TaskActivityFragment
+      }
+    }
+  }
+  workspaceActivities(where: { workspaceID: $workspaceId }) {
+    edges {
+      node {
+        ...WorkspaceActivityFragment
+      }
+    }
+  }
+}

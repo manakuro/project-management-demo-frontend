@@ -1,12 +1,12 @@
 import { useRecoilCallback } from 'recoil'
-import { ActivityResponse } from '../../type'
 import { inboxStatusState } from '../atom'
+import { InboxListStatus } from '../type'
 
 export const useInboxListStatusResponse = () => {
   const setInboxListStatus = useRecoilCallback(
     ({ set }) =>
-      (data: ActivityResponse) => {
-        set(inboxStatusState, data.inboxListStatus)
+      (data: InboxListStatus) => {
+        set(inboxStatusState, data)
       },
     [],
   )

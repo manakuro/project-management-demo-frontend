@@ -1,0 +1,10 @@
+fragment WorkspaceActivityTaskFragment on WorkspaceActivityTask {
+  id
+  workspaceActivityId
+  taskId
+  task {
+    ...TaskFragment
+  }
+  createdAt
+  updatedAt
+}

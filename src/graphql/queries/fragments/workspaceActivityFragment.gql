@@ -1,0 +1,25 @@
+fragment WorkspaceActivityFragment on WorkspaceActivity {
+  id
+  activityType {
+    id
+    typeCode
+  }
+  activityTypeId
+  teammateId
+  teammate {
+    ...TeammateFragment
+  }
+  workspaceId
+  workspace {
+    ...WorkspaceFragment
+  }
+  projectId
+  project {
+    ...ProjectFragment
+  }
+  workspaceActivityTasks {
+    ...WorkspaceActivityTaskFragment
+  }
+  createdAt
+  updatedAt
+}

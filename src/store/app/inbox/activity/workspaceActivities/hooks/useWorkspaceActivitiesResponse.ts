@@ -1,12 +1,12 @@
 import { useRecoilCallback } from 'recoil'
-import { ActivityResponse } from '../../type'
 import { workspaceActivityState } from '../atom'
+import { WorkspaceActivityResponse } from '../type'
 
 export const useWorkspaceActivitiesResponse = () => {
   const setWorkspaceActivities = useRecoilCallback(
     ({ set }) =>
-      (data: ActivityResponse) => {
-        data.workspaceActivities.forEach((w) => {
+      (data: WorkspaceActivityResponse[]) => {
+        data.forEach((w) => {
           set(workspaceActivityState(w.id), w)
         })
       },

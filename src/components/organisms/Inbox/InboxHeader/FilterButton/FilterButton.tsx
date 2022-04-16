@@ -85,7 +85,7 @@ export const FilterButton: React.VFC<Props> = memo<Props>(() => {
       </MenuSelectButton>
       <MenuSelectList defaultValue={filterStatus.toString()}>
         {items.map((item, i) => (
-          <MenuItemOption value={item.value.toString()} key={i}>
+          <MenuItemOption value={item.value.toString()} key={i} isDisabled>
             {item.text}
           </MenuItemOption>
         ))}

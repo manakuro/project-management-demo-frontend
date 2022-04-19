@@ -1,9 +1,12 @@
 import { Activity, useActivity } from 'src/store/app/inbox/activity/activities'
-import { Archive, useArchive } from 'src/store/app/inbox/archive/archives'
+import {
+  ArchiveActivity,
+  useArchive,
+} from 'src/store/app/inbox/archive/archives'
 import { useInboxContext } from '../Inbox'
 
 type Result = {
-  listItem: Activity | Archive
+  listItem: Activity | ArchiveActivity
 }
 
 export const useInboxListItem = (listItemId: string): Result => {

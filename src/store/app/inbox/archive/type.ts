@@ -1,9 +1,3 @@
-import { ArchivedTaskActivityResponse } from './archivedTaskActivities'
-import { ArchivedWorkspaceActivityResponse } from './archivedWorkspaceActivities'
-import { Archive } from './archives'
+import { InboxArchiveResponse } from 'src/graphql/types/app/inbox'
 
-export type ArchiveResponse = {
-  archivedWorkspaceActivities: ArchivedWorkspaceActivityResponse[]
-  archivedMyTaskActivities: ArchivedTaskActivityResponse[]
-  archives: Archive[]
-}
+export type ArchiveResponse = InboxArchiveResponse

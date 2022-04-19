@@ -1,0 +1,5 @@
+fragment ArchivedActivityFragment on ArchivedActivity {
+  id
+  type
+  updatedAt
+}

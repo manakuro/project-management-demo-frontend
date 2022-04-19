@@ -1,18 +1,8 @@
-import { TaskResponse } from 'src/store/entities/task'
+import { ArchivedTaskActivityTaskResponse } from 'src/graphql/types/archivedTaskActivityTask'
 
-export type ArchivedTaskActivityTasksResponse = {
-  id: string
-  archivedMyTaskActivityId: string
-  taskId: string
-  task: TaskResponse
-  createdAt: string
-  updatedAt: string
-}
+export type { ArchivedTaskActivityTaskResponse } from 'src/graphql/types/archivedTaskActivityTask'
 
-export type ArchivedTaskActivityTask = {
-  id: string
-  archivedMyTaskActivityId: string
-  taskId: string
-  createdAt: string
-  updatedAt: string
-}
+export type ArchivedTaskActivityTask = Omit<
+  ArchivedTaskActivityTaskResponse,
+  'task'
+>

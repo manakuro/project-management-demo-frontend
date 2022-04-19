@@ -1,12 +1,12 @@
 import { useRecoilCallback } from 'recoil'
-import { ArchiveResponse } from '../../type'
 import { archivedTaskActivityState } from '../atom'
+import { ArchivedTaskActivityResponse } from '../type'
 
 export const useArchivedTaskActivitiesResponse = () => {
   const setArchivedTaskActivities = useRecoilCallback(
     ({ set }) =>
-      (data: ArchiveResponse) => {
-        data.archivedMyTaskActivities.forEach((d) => {
+      (data: ArchivedTaskActivityResponse[]) => {
+        data.forEach((d) => {
           set(archivedTaskActivityState(d.id), d)
         })
       },

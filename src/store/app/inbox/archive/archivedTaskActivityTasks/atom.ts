@@ -7,28 +7,28 @@ const key = (str: string) =>
 
 export const initialState = (): ArchivedTaskActivityTask => ({
   id: '',
-  archivedMyTaskActivityId: '',
+  archivedTaskActivityId: '',
   taskId: '',
   createdAt: '',
   updatedAt: '',
 })
 export const {
-  state: archivedMyTaskActivityTaskState,
-  listState: archivedMyTaskActivityTasksState,
-  idsState: archivedMyTaskActivityTaskIdsState,
+  state: archivedTaskActivityTaskState,
+  listState: archivedTaskActivityTasksState,
+  idsState: archivedTaskActivityTaskIdsState,
 } = createState({ key, initialState })
 
-export const taskIdsByArchivedMyTaskActivityIdState = selectorFamily<
+export const taskIdsByArchivedTaskActivityIdState = selectorFamily<
   string[],
   string
 >({
-  key: key('taskIdsByArchivedMyTaskActivityIdState'),
+  key: key('taskIdsByArchivedTaskActivityIdState'),
   get:
-    (archivedMyTaskActivityId: string) =>
+    (archivedTaskActivityId: string) =>
     ({ get }) => {
-      const archivedMyTaskActivityTasks = get(archivedMyTaskActivityTasksState)
-      return archivedMyTaskActivityTasks
-        .filter((w) => w.archivedMyTaskActivityId === archivedMyTaskActivityId)
+      const archivedTaskActivityTasks = get(archivedTaskActivityTasksState)
+      return archivedTaskActivityTasks
+        .filter((w) => w.archivedTaskActivityId === archivedTaskActivityId)
         .map((w) => w.taskId)
     },
 })

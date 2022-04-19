@@ -1,12 +1,12 @@
 import { useRecoilCallback } from 'recoil'
-import { ArchiveResponse } from '../../type'
 import { archivedWorkspaceActivityState } from '../atom'
+import { ArchivedWorkspaceActivityResponse } from '../type'
 
 export const useArchivedWorkspaceActivitiesResponse = () => {
   const setArchivedWorkspaceActivities = useRecoilCallback(
     ({ set }) =>
-      (data: ArchiveResponse) => {
-        data.archivedWorkspaceActivities.forEach((w) => {
+      (data: ArchivedWorkspaceActivityResponse[]) => {
+        data.forEach((w) => {
           set(archivedWorkspaceActivityState(w.id), w)
         })
       },

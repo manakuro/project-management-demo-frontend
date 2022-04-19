@@ -1,0 +1,10 @@
+fragment ArchivedTaskActivityTaskFragment on ArchivedTaskActivityTask {
+  id
+  archivedTaskActivityId
+  taskId
+  task {
+    ...TaskFragment
+  }
+  createdAt
+  updatedAt
+}

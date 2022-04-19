@@ -6,7 +6,7 @@ const key = (str: string) =>
 
 export const initialState = (): ArchivedTaskActivity => ({
   id: '',
-  activityType: 1,
+  activityTypeId: '',
   teammateId: '',
   createdAt: '',
   updatedAt: '',

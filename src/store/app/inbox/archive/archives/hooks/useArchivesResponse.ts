@@ -1,13 +1,13 @@
 import { useRecoilCallback } from 'recoil'
-import { ArchiveResponse } from '../../type'
 import { archiveState } from '../atom'
+import { ArchivedActivityResponse, ArchiveActivity } from '../type'
 
 export const useArchivesResponse = () => {
   const setArchives = useRecoilCallback(
     ({ set }) =>
-      (data: ArchiveResponse) => {
-        data.archives.forEach((a) => {
-          set(archiveState(a.id), a)
+      (data: ArchivedActivityResponse[]) => {
+        data.forEach((a) => {
+          set(archiveState(a.id), a as ArchiveActivity)
         })
       },
     [],

@@ -1,0 +1,13 @@
+fragment ArchivedTaskActivityFragment on ArchivedTaskActivity {
+  id
+  teammateId
+  activityTypeId
+  activityType {
+    ...ActivityTypeFragment
+  }
+  archivedTaskActivityTasks {
+    ...ArchivedTaskActivityTaskFragment
+  }
+  createdAt
+  updatedAt
+}

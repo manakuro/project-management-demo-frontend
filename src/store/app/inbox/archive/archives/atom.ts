@@ -1,11 +1,11 @@
 import { selector } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
 import { createState } from 'src/store/util'
-import { Archive } from './type'
+import { ArchiveActivity } from './type'
 
 const key = (str: string) => `src/store/app/inbox/archive/archives/${str}`
 
-export const initialState = (): Archive => ({
+export const initialState = (): ArchiveActivity => ({
   id: '',
   type: 'TASK',
   updatedAt: '',
@@ -42,12 +42,15 @@ export const archiveIdsSortByUpdatedAtState =
 
             if (dateFns.isToday(new Date(a.updatedAt))) {
               acc.today.push(a.id)
+              return acc
             }
             if (dateFns.isYesterday(new Date(a.updatedAt))) {
               acc.yesterday.push(a.id)
+              return acc
             }
             if (duration?.days && duration.days <= 7) {
               acc.pastSevenDays.push(a.id)
+              return acc
             }
 
             if (duration?.days && duration.days > 7) {

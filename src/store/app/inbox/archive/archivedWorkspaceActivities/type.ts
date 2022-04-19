@@ -1,30 +1,11 @@
-import { ArchivedWorkspaceActivityTasksResponse } from '../archivedWorkspaceActivityTasks'
+import type { ArchivedWorkspaceActivityResponse } from 'src/graphql/types/archivedWorkspaceActivity'
+export type { ArchivedWorkspaceActivityResponse } from 'src/graphql/types/archivedWorkspaceActivity'
 
-export type ArchivedWorkspaceActivityResponse = {
-  id: string
-  activityType: any
-  workspaceId: string
-  workspace: {
-    id: string
-    name: string
-  }
-  projectId: string
-  project: {
-    id: string
-    name: string
-  }
-  archivedWorkspaceActivityTasks: ArchivedWorkspaceActivityTasksResponse[]
-  teammateId: string
-  createdAt: string
-  updatedAt: string
-}
-
-export type ArchivedWorkspaceActivity = {
-  id: string
-  activityType: any
-  workspaceId: string
-  projectId: string
-  teammateId: string
-  createdAt: string
-  updatedAt: string
-}
+export type ArchivedWorkspaceActivity = Omit<
+  ArchivedWorkspaceActivityResponse,
+  | 'workspace'
+  | 'teammate'
+  | 'project'
+  | 'activityType'
+  | 'archivedWorkspaceActivityTasks'
+>

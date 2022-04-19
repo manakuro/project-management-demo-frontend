@@ -1,0 +1,19 @@
+query InboxArchivePage($workspaceId: ID!) {
+  archivedActivities(where: { workspaceId: $workspaceId }) {
+    ...ArchivedActivityFragment
+  }
+  archivedTaskActivities(where: { workspaceID: $workspaceId }) {
+    edges {
+      node {
+        ...ArchivedTaskActivityFragment
+      }
+    }
+  }
+  archivedWorkspaceActivities(where: { workspaceID: $workspaceId }) {
+    edges {
+      node {
+        ...ArchivedWorkspaceActivityFragment
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+fragment ArchivedWorkspaceActivityFragment on ArchivedWorkspaceActivity {
+  id
+  activityType {
+    id
+    typeCode
+  }
+  activityTypeId
+  teammateId
+  teammate {
+    ...TeammateFragment
+  }
+  workspaceId
+  workspace {
+    ...WorkspaceFragment
+  }
+  projectId
+  project {
+    ...ProjectFragment
+  }
+  archivedWorkspaceActivityTasks {
+    ...ArchivedWorkspaceActivityTaskFragment
+  }
+  createdAt
+  updatedAt
+}

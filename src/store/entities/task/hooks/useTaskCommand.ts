@@ -11,8 +11,8 @@ import { uuid } from 'src/shared/uuid'
 import {
   DeletedTaskResponse,
   deletedTasksByTaskIdState,
-  deletedTaskState,
   useDeletedTaskResponse,
+  useResetDeletedTask,
 } from 'src/store/entities/deletedTask'
 import { useMe } from 'src/store/entities/me'
 import {
@@ -55,6 +55,7 @@ export const useTaskCommand = () => {
   const { setProjectTask } = useProjectTaskResponse()
   const { setDeletedTask } = useDeletedTaskResponse()
   const { resetProjectTasks } = useResetProjectTask()
+  const { resetDeletedTask } = useResetDeletedTask()
 
   const setTaskById = useRecoilCallback(
     ({ snapshot }) =>
@@ -252,10 +253,10 @@ export const useTaskCommand = () => {
             return
           }
 
-          const data = res.data?.deleteTask?.deletedTasks
+          const data = res.data?.deleteTask?.deletedTask
           if (!data) return
 
-          setDeletedTask(data, { includeTask: false })
+          setDeletedTask([data], { includeTask: false })
         } catch (e) {
           restore()
           throw e
@@ -274,13 +275,13 @@ export const useTaskCommand = () => {
   )
 
   const undeleteTask = useRecoilCallback(
-    ({ snapshot, reset }) =>
+    ({ snapshot }) =>
       async (input: { taskId: string }) => {
         const deletedTasks = await snapshot.getPromise(
           deletedTasksByTaskIdState(input.taskId),
         )
         deletedTasks.forEach((d) => {
-          reset(deletedTaskState(d.id))
+          resetDeletedTask(d.id)
         })
 
         const restore = () => {
@@ -314,6 +315,7 @@ export const useTaskCommand = () => {
         }
       },
     [
+      resetDeletedTask,
       setDeletedTask,
       setProjectTask,
       setTeammateTask,

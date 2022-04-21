@@ -6,7 +6,7 @@ subscription TaskDeleted($workspaceId: ID!, $requestId: String!) {
     projectTasks {
       id
     }
-    deletedTasks {
+    deletedTask {
       ...DeletedTaskFragment
     }
   }

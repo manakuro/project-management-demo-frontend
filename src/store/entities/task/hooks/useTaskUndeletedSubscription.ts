@@ -2,7 +2,7 @@ import isEqual from 'lodash-es/isEqual'
 import { useRecoilCallback } from 'recoil'
 import { useTaskUndeletedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { deletedTaskState } from 'src/store/entities/deletedTask'
+import { useResetDeletedTask } from 'src/store/entities/deletedTask'
 import { useProjectTaskResponse } from 'src/store/entities/projectTask'
 import { useTeammateTaskResponse } from 'src/store/entities/teammateTask'
 import { TaskUndeletedSubscriptionResponse as Response } from '../type'
@@ -17,6 +17,7 @@ export const TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID = uuid()
 export const useTaskUndeletedSubscription = (props: Props) => {
   const { setTeammateTask } = useTeammateTaskResponse()
   const { setProjectTask } = useProjectTaskResponse()
+  const { resetDeletedTask } = useResetDeletedTask()
 
   const subscriptionResult = useSubscription({
     variables: {
@@ -39,25 +40,22 @@ export const useTaskUndeletedSubscription = (props: Props) => {
   })
 
   const setBySubscription = useRecoilCallback(
-    ({ reset }) =>
-      async (response: Response) => {
-        const data = response.taskUndeleted
+    () => async (response: Response) => {
+      const data = response.taskUndeleted
 
-        if (__DEV__) console.log('Task undeleted!')
+      if (__DEV__) console.log('Task undeleted!')
 
-        if (data.deletedTasks) {
-          data.deletedTasks.forEach((d) => {
-            reset(deletedTaskState(d.id))
-          })
-        }
-        if (data.projectTasks.length) {
-          setProjectTask(data.projectTasks, { includeTask: false })
-        }
-        if (data.teammateTask) {
-          setTeammateTask([data.teammateTask])
-        }
-      },
-    [setProjectTask, setTeammateTask],
+      if (data.deletedTask) {
+        resetDeletedTask(data.deletedTask.id)
+      }
+      if (data.projectTasks.length) {
+        setProjectTask(data.projectTasks, { includeTask: false })
+      }
+      if (data.teammateTask) {
+        setTeammateTask([data.teammateTask])
+      }
+    },
+    [resetDeletedTask, setProjectTask, setTeammateTask],
   )
 
   return {

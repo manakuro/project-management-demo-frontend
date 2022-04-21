@@ -6,7 +6,7 @@ mutation UndeleteTask($input: UndeleteTaskInput!) {
     projectTasks {
       ...ProjectTaskFragment
     }
-    deletedTasks {
+    deletedTask {
       id
     }
   }

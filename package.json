@@ -132,7 +132,7 @@
     "jest-dom": "^4.0.0",
     "jest-plugin-context": "^2.9.0",
     "jest-watch-typeahead": "^1.1.0",
-    "lint-staged": "^12.4.0",
+    "lint-staged": "^12.4.1",
     "node-fetch": "^2.6.6",
     "prettier": "^2.6.2",
     "ts-jest": "^27.1.4",

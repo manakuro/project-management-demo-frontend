@@ -43,7 +43,7 @@
     "focus-visible": "^5.2.0",
     "formik": "^2.2.9",
     "framer-motion": "^4.1.0",
-    "graphql": "^16.3.0",
+    "graphql": "^16.4.0",
     "lodash-es": "^4.17.21",
     "next": "canary",
     "pdfjs-dist": "2.9.359",

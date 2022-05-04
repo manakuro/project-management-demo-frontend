@@ -20,17 +20,6 @@ fragment TaskForListFragment on Task {
     taskParentId
     isNew
   }
-  projectTasks {
-    id
-    taskId
-    projectId
-    projectTaskSectionId
-    project {
-      ...ProjectFragment
-    }
-    createdAt
-    updatedAt
-  }
   isNew
   taskParentId
   completedAt

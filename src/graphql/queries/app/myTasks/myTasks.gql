@@ -13,6 +13,17 @@ query MyTasksPage($workspaceId: ID!, $teammateId: ID!) {
          teammateTaskSectionId
          task {
            ...TaskForListFragment
+           projectTasks {
+             id
+             taskId
+             projectId
+             projectTaskSectionId
+             project {
+               ...ProjectFragment
+             }
+             createdAt
+             updatedAt
+           }
          }
          workspaceId
          createdAt

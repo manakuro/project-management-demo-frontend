@@ -4,7 +4,7 @@ fragment TaskForListFragment on Task {
   description
   assigneeId
   taskFeeds {
-    id
+    ...TaskFeedFragment
   }
   taskLikes {
     ...TaskLikeFragment

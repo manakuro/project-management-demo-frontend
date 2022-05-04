@@ -7,7 +7,7 @@ import {
 import { useProjectTaskSectionResponse } from 'src/store/entities/projectTaskSection'
 import { ProjectTaskSectionResponse } from 'src/store/entities/projectTaskSection/type'
 import { taskListStatusState } from '../taskListStatus'
-import { ProjectsResponse } from '../type'
+import { ProjectsResponse, ProjectsProjectTaskSectionResponse } from '../type'
 
 export const useProjectsResponse = () => {
   const { setProjectsTaskSections } = useProjectTaskSectionResponse()
@@ -15,11 +15,13 @@ export const useProjectsResponse = () => {
   const setProjects = useRecoilCallback(
     () => (data: ProjectsResponse) => {
       const projectTaskSections = getNodesFromEdges<
-        ProjectTaskSectionResponse,
+        ProjectsProjectTaskSectionResponse,
         ProjectsResponse['projectTaskSections']
       >(data.projectTaskSections)
 
-      setProjectsTaskSections(projectTaskSections)
+      setProjectsTaskSections(
+        projectTaskSections as ProjectTaskSectionResponse[],
+      )
       setTaskColumns(data)
       setTaskStatus(data)
     },

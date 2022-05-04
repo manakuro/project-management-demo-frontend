@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
 import { TaskDetailModal } from 'src/components/organisms/TaskDetails'
 import {
@@ -7,7 +7,6 @@ import {
   TasksContainer,
 } from 'src/components/organisms/Tasks'
 import { useTasksFilesDetail } from 'src/components/organisms/Tasks/TasksFiles/useTasksFilesDetail'
-import { useMyTasksFilesPageQuery } from 'src/hooks/queries/app'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { isMyTasksDetailURL, getMyTasksDetailId, useRouter } from 'src/router'
 import { SkeletonFiles } from './SkeletonFiles'
@@ -22,11 +21,7 @@ export const Files: React.VFC = memo(() => {
 
 const Component: React.VFC = memo(() => {
   const { tabContentLoading, fetchTaskDetailQuery } = useMyTasksContext()
-  const { loading: queryLoading } = useMyTasksFilesPageQuery()
-  const loading = useMemo(
-    () => tabContentLoading || queryLoading,
-    [tabContentLoading, queryLoading],
-  )
+
   const { navigateToMyTasksFiles } = useRouter()
 
   useTasksFilesDetail({
@@ -35,7 +30,7 @@ const Component: React.VFC = memo(() => {
     fetchQuery: fetchTaskDetailQuery,
   })
 
-  if (loading) return <SkeletonFiles />
+  if (tabContentLoading) return <SkeletonFiles />
 
   return (
     <>

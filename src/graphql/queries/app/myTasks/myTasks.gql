@@ -2,7 +2,24 @@ query MyTasksPage($workspaceId: ID!, $teammateId: ID!) {
   teammateTaskSections(where: { teammateID: $teammateId, workspaceID: $workspaceId }) {
    edges {
      node {
-       ...TeammateTaskSectionFragment
+       id
+       name
+       assigned
+       teammateId
+       teammateTasks {
+         id
+         taskId
+         teammateId
+         teammateTaskSectionId
+         task {
+           ...TaskForListFragment
+         }
+         workspaceId
+         createdAt
+         updatedAt
+       }
+       createdAt
+       updatedAt
      }
    }
   }

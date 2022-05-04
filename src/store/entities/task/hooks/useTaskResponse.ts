@@ -63,7 +63,7 @@ const useSetters = () => {
   const setTaskLikes = useRecoilCallback(
     () => (data: TaskResponse[]) => {
       const taskLikes = data.reduce<TaskResponse['taskLikes']>(
-        (acc, p) => uniqBy([...acc, ...p.taskLikes], 'id'),
+        (acc, p) => uniqBy([...acc, ...(p.taskLikes || [])], 'id'),
         [],
       )
       setTaskLikesResponse(taskLikes)
@@ -74,7 +74,7 @@ const useSetters = () => {
   const setTaskFeedLikes = useRecoilCallback(
     () => (data: TaskResponse[]) => {
       const taskFeedLikes = data.reduce<TaskResponse['taskFeedLikes']>(
-        (acc, p) => uniqBy([...acc, ...p.taskFeedLikes], 'id'),
+        (acc, p) => uniqBy([...acc, ...(p.taskFeedLikes || [])], 'id'),
         [],
       )
       setTaskFeedLikesResponse(taskFeedLikes)
@@ -125,7 +125,7 @@ const useSetters = () => {
       (data: TaskResponse[]) => {
         data
           .reduce<TaskResponse['taskFiles']>(
-            (acc, p) => uniqBy([...acc, ...p.taskFiles], 'id'),
+            (acc, p) => uniqBy([...acc, ...(p.taskFiles || [])], 'id'),
             [],
           )
           .forEach((t) =>
@@ -144,7 +144,7 @@ const useSetters = () => {
       (data: TaskResponse[]) => {
         data
           .reduce<TaskResponse['taskFeeds']>(
-            (acc, p) => uniqBy([...acc, ...p.taskFeeds], 'id'),
+            (acc, p) => uniqBy([...acc, ...(p.taskFeeds || [])], 'id'),
             [],
           )
           .forEach((t) =>
@@ -161,11 +161,13 @@ const useSetters = () => {
   const setTeammates = useRecoilCallback(
     () => (data: TaskResponse[]) => {
       const taskCollaborators = data.reduce<TaskResponse['taskCollaborators']>(
-        (acc, d) => [...acc, ...d.taskCollaborators],
+        (acc, d) => [...acc, ...(d.taskCollaborators || [])],
         [],
       )
-      setTaskCollaboratorsResponse(taskCollaborators)
-      setTeammatesResponse(taskCollaborators.map((t) => t.teammate))
+      if (taskCollaborators.length) {
+        setTaskCollaboratorsResponse(taskCollaborators)
+        setTeammatesResponse(taskCollaborators.map((t) => t.teammate))
+      }
     },
     [setTaskCollaboratorsResponse, setTeammatesResponse],
   )
@@ -174,7 +176,7 @@ const useSetters = () => {
       (data: TaskResponse[]) => {
         data
           .reduce<TaskResponse['taskTags']>(
-            (acc, p) => uniqBy([...acc, ...p.taskTags], 'id'),
+            (acc, p) => uniqBy([...acc, ...(p.taskTags || [])], 'id'),
             [],
           )
           .forEach((t) =>
@@ -194,7 +196,7 @@ const useSetters = () => {
       (data: TaskResponse[]) => {
         data
           .reduce<TaskResponse['projectTasks']>(
-            (acc, p) => uniqBy([...acc, ...p.projectTasks], 'id'),
+            (acc, p) => uniqBy([...acc, ...(p.projectTasks || [])], 'id'),
             [],
           )
           .forEach((p) =>

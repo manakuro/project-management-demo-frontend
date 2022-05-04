@@ -2,7 +2,25 @@ query ProjectsPage($projectId: ID!) {
   projectTaskSections(where: { projectID: $projectId }) {
    edges {
      node {
-       ...ProjectTaskSectionFragment
+       id
+       name
+       projectId
+       projectTasks {
+         id
+         taskId
+         projectId
+         projectTaskSectionId
+         project {
+           ...ProjectFragment
+         }
+         task {
+           ...TaskForListFragment
+         }
+         createdAt
+         updatedAt
+       }
+       createdAt
+       updatedAt
      }
    }
   }

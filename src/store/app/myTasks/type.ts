@@ -1,1 +1,4 @@
-export type { MyTasksResponse } from 'src/graphql/types/app/myTasks'
+export type {
+  MyTasksResponse,
+  MyTasksTeammateTaskSectionResponse,
+} from 'src/graphql/types/app/myTasks'

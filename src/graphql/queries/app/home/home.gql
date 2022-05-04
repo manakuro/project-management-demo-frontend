@@ -1,5 +1,38 @@
 query HomePage($workspaceId: ID!, $teammateId: ID!) {
   tasksDueSoon(workspaceId: $workspaceId, teammateId: $teammateId) {
-    ...TeammateTaskFragment
+    id
+    taskId
+    teammateId
+    teammateTaskSectionId
+    task {
+      id
+      name
+      description
+      assigneeId
+      projectTasks {
+        id
+        taskId
+        projectId
+        projectTaskSectionId
+        project {
+          ...ProjectFragment
+        }
+        createdAt
+        updatedAt
+      }
+      isNew
+      taskParentId
+      completedAt
+      completed
+      taskPriorityId
+      dueDate
+      dueTime
+      createdBy
+      createdAt
+      updatedAt
+    }
+    workspaceId
+    createdAt
+    updatedAt
   }
 }

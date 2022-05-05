@@ -18,7 +18,9 @@
     "test:integration": "cross-env INTEGRATION=true jest",
     "tsc": "tsc",
     "codegen": "yarn codegen:download && graphql-codegen",
-    "codegen:download": "env-cmd -f ./.env.local node scripts/codegen/download.js"
+    "codegen:download": "env-cmd -f ./.env.local node scripts/codegen/download.js",
+    "codegen:prod": "yarn codegen:download:prod && graphql-codegen",
+    "codegen:download:prod": "echo ENV_JSON > ./env.json && env-cmd -f ./.env.json node scripts/codegen/download.js"
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",

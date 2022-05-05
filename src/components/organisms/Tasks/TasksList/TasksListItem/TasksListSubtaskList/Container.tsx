@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { useFirstRender } from 'src/hooks'
 import { useSubTasksQuery } from 'src/hooks/queries/entities'
 import { useSubtaskIds } from 'src/store/entities/task'
 import { SkeletonList } from './SkeletonList'
@@ -17,8 +18,10 @@ export const Container: React.FC<Props> = memo<Props>((props) => {
     },
   })
   const { taskIds } = useSubtaskIds(taskId)
+  const { firstRender } = useFirstRender()
 
-  if (loading) return <SkeletonList />
+  // Perform a query on the first render to prevent loading when adding task.
+  if (loading && firstRender) return <SkeletonList />
 
   return (
     <>

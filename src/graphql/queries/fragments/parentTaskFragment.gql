@@ -2,28 +2,6 @@ fragment ParentTaskFragment on Task {
   id
   name
   assigneeId
-  taskFeeds {
-    ...TaskFeedFragment
-  }
-  taskFiles {
-    ...TaskFileFragment
-  }
-  taskTags {
-    ...TaskTagFragment
-  }
-  taskCollaborators {
-    ...TaskCollaboratorFragment
-  }
-  projectTasks {
-    id
-    taskId
-    projectId
-    project {
-      ...ProjectFragment
-    }
-    createdAt
-    updatedAt
-  }
   isNew
   taskParentId
   completedAt

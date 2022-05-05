@@ -2,7 +2,11 @@ import { useCallback, useState } from 'react'
 import { useProjectsTaskDetailPageLazyQuery as useQuery } from 'src/graphql/hooks'
 import { ProjectsTaskDetailPageQueryVariables as Variables } from 'src/graphql/types/app/projects'
 import { useMountedRef } from 'src/hooks'
-import { useProjectTaskResponse } from 'src/store/entities/projectTask'
+import {
+  ProjectTaskResponse,
+  useProjectTaskResponse,
+} from 'src/store/entities/projectTask'
+import { useTasksResponse } from 'src/store/entities/task'
 
 export type UseProjectsTaskDetailPageQueryResult = {
   refetch: (variables: Variables) => Promise<void>
@@ -13,6 +17,7 @@ export const useProjectsTaskDetailPageQuery =
   (): UseProjectsTaskDetailPageQueryResult => {
     const [loading, setLoading] = useState(true)
     const { setProjectTask } = useProjectTaskResponse()
+    const { setTasksFromResponse } = useTasksResponse()
     const { mountedRef } = useMountedRef()
 
     const [refetchQuery] = useQuery({
@@ -21,7 +26,12 @@ export const useProjectsTaskDetailPageQuery =
       onCompleted: (data) => {
         if (!mountedRef.current) return
 
-        if (data.projectTask) setProjectTask([data.projectTask])
+        if (data.projectTask)
+          setProjectTask([data.projectTask as ProjectTaskResponse], {
+            includeTask: false,
+          })
+        if (data.task) setTasksFromResponse([data.task])
+
         endLoading()
       },
     })

@@ -1,5 +1,13 @@
 query ProjectsTaskDetailPage($taskId: ID!, $projectId: ID!) {
   projectTask(where: { taskID: $taskId, projectID: $projectId }) {
-    ...ProjectTaskFragment
+    id
+    taskId
+    projectId
+    projectTaskSectionId
+    createdAt
+    updatedAt
+  }
+  task(where: { id: $taskId }) {
+    ...TaskFragment
   }
 }

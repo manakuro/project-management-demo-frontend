@@ -3,8 +3,8 @@ import { FlexProps } from 'src/components/atoms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
 import { useTasksTaskColumnIds } from 'src/components/organisms/Tasks/hooks'
-import { Cell } from './Cell'
-import { useTasksListItemRowContext } from './Provider'
+import { Cell } from '../Cell'
+import { useTasksListItemRowContext } from '../Provider'
 
 type Props = FlexProps & {
   taskId: string

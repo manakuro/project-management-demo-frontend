@@ -1,7 +1,6 @@
-fragment TaskForListFragment on Task {
+fragment SubTaskForListFragment on Task {
   id
   name
-  description
   assigneeId
   taskFeeds {
     ...TaskFeedFragment
@@ -9,17 +8,8 @@ fragment TaskForListFragment on Task {
   taskLikes {
     ...TaskLikeFragment
   }
-  taskFiles {
-    ...TaskFileFragment
-  }
   taskTags {
     ...TaskTagFragment
-  }
-  subTasks {
-    id
-    name
-    taskParentId
-    isNew
   }
   isNew
   taskParentId

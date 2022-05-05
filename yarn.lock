@@ -7175,13 +7175,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"awilix@npm:^7.0.0":
-  version: 7.0.1
-  resolution: "awilix@npm:7.0.1"
+"awilix@npm:^7.0.2":
+  version: 7.0.3
+  resolution: "awilix@npm:7.0.3"
   dependencies:
     camel-case: ^4.1.2
     fast-glob: ^3.2.11
-  checksum: cf75f1e2727e2506a595de811f616aadee2df48273a4e4c53bd438a335c31b3145a4776275b774b80dcdd6019aa83655315842ffe026fb833e49ad32c35618c1
+  checksum: 2f4251753a60a19a46c4af2fcbba3ea3e062506aea529375e76cd11a29c9231bffd8b352794e8ed7a3710d6a9975fa09889e18dce32f25461cf769cce21197b6
   languageName: node
   linkType: hard
 
@@ -7192,12 +7192,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.26.1":
-  version: 0.26.1
-  resolution: "axios@npm:0.26.1"
+"axios@npm:^0.27.2":
+  version: 0.27.2
+  resolution: "axios@npm:0.27.2"
   dependencies:
-    follow-redirects: ^1.14.8
-  checksum: d9eb58ff4bc0b36a04783fc9ff760e9245c829a5a1052ee7ca6013410d427036b1d10d04e7380c02f3508c5eaf3485b1ae67bd2adbfec3683704745c8d7a6e1a
+    follow-redirects: ^1.14.9
+    form-data: ^4.0.0
+  checksum: 38cb7540465fe8c4102850c4368053c21683af85c5fdf0ea619f9628abbcb59415d1e22ebc8a6390d2bbc9b58a9806c874f139767389c862ec9b772235f06854
   languageName: node
   linkType: hard
 
@@ -10449,13 +10450,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.14.8":
-  version: 1.14.9
-  resolution: "follow-redirects@npm:1.14.9"
+"follow-redirects@npm:^1.14.9":
+  version: 1.15.0
+  resolution: "follow-redirects@npm:1.15.0"
   peerDependenciesMeta:
     debug:
       optional: true
-  checksum: f5982e0eb481818642492d3ca35a86989c98af1128b8e1a62911a3410621bc15d2b079e8170b35b19d3bdee770b73ed431a257ed86195af773771145baa57845
+  checksum: eaec81c3e0ae57aae2422e38ad3539d0e7279b3a63f9681eeea319bb683dea67502c4e097136b8ce9721542b4e236e092b6b49e34e326cdd7733c274f0a3f378
   languageName: node
   linkType: hard
 
@@ -14894,7 +14895,7 @@ __metadata:
     subscriptions-transport-ws: ^0.11.0
     ts-jest: ^27.1.4
     typescript: ^4.6.3
-    typesync: ^0.9.0
+    typesync: ^0.9.1
     use-prosemirror: ^1.2.1
     uuid: ^8.3.2
   languageName: unknown
@@ -16107,6 +16108,17 @@ resolve@^2.0.0-next.3:
   bin:
     semver: ./bin/semver.js
   checksum: 1b26ecf6db9e8292dd90df4e781d91875c0dcc1b1909e70f5d12959a23c7eebb8f01ea581c00783bbee72ceeaad9505797c381756326073850dc36ed284b21b9
+  languageName: node
+  linkType: hard
+
+"semver@npm:^7.3.7":
+  version: 7.3.7
+  resolution: "semver@npm:7.3.7"
+  dependencies:
+    lru-cache: ^6.0.0
+  bin:
+    semver: bin/semver.js
+  checksum: 2fa3e877568cd6ce769c75c211beaed1f9fce80b28338cadd9d0b6c40f2e2862bafd62c19a6cff42f3d54292b7c623277bcab8816a2b5521cf15210d43e75232
   languageName: node
   linkType: hard
 
@@ -17340,21 +17352,21 @@ typescript@^4.6.3:
   languageName: node
   linkType: hard
 
-"typesync@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "typesync@npm:0.9.0"
+"typesync@npm:^0.9.1":
+  version: 0.9.1
+  resolution: "typesync@npm:0.9.1"
   dependencies:
-    awilix: ^7.0.0
-    axios: ^0.26.1
+    awilix: ^7.0.2
+    axios: ^0.27.2
     chalk: ^4.1.0
     cosmiconfig: ^7.0.1
     detect-indent: ^6.0.0
     glob: ^7.2.0
     ora: ^5.1.0
-    semver: ^7.3.5
+    semver: ^7.3.7
   bin:
     typesync: bin/typesync
-  checksum: 92cc9d6df3457ebeacbbad1bad3f67e8d2de18bbb40d4149f7f9f1ce97b3459eabc7b5735b72ff1b41c77fb7d58f359f02f6161d3a3828758e366cc94171b506
+  checksum: 19e66bc3089c70e0554845c488fc3815669e171c27843e802d18b47f61ed0a8459f61e37792b6a940ac961a776e8bfc08e00ab23146bfb4c0864d634dbe2efc5
   languageName: node
   linkType: hard
 

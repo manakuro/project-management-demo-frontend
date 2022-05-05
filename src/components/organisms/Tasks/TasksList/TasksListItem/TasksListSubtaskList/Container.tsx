@@ -10,6 +10,8 @@ type Props = {
   taskId: string
 }
 
+// TODO: Need to fix a Recoil warning, `Warning: Cannot update a component (`Batcher`)`.
+// @see https://github.com/facebookexperimental/Recoil/issues/12
 export const Container: React.FC<Props> = memo<Props>((props) => {
   const { subTaskIds, taskId } = props
   const { loading } = useSubTasksQuery({

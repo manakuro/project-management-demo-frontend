@@ -7,12 +7,11 @@ type Props = CreateLinkProps
 let client: ApolloClient<NormalizedCacheObject>
 export const createApolloClient = (props: Props) => {
   if (!client) {
-    console.log('apollo client created!')
     client = new ApolloClient({
       link: createLink(props),
       cache: new InMemoryCache(),
       defaultOptions: {
-        // NOTE: Prevent unnecessary re-refetching after mutation.
+        // NOTE: Prevent unnecessary re-fetching after mutation.
         // @see https://github.com/apollographql/apollo-client/issues/6833
         watchQuery: {
           fetchPolicy: 'no-cache',
@@ -36,4 +35,8 @@ export const resetApolloLink = async () => {
 
   console.log('apollo client sets new link')
   client.setLink(createLink({ idToken }))
+}
+
+export const setErrorToken = () => {
+  client.setLink(createLink({ idToken: 'test' }))
 }

@@ -8,6 +8,7 @@ import { RecoilRoot } from 'recoil'
 import { GetLayout } from 'src/@types/next'
 import { PageLoader } from 'src/components/molecules'
 import { LayoutDefault } from 'src/components/organisms/Layout'
+import { Mobile } from 'src/components/organisms/Mobile'
 import { Modals } from 'src/components/organisms/Modals'
 import { useAuth } from 'src/hooks/useAuth'
 import { ApolloProvider } from 'src/shared/apollo/ApolloProvider'
@@ -36,7 +37,9 @@ const App = (props: AppPropsWithLayout) => {
       <MuiThemeProvider theme={muiTheme}>
         <ChakraProvider theme={theme} resetCSS>
           <LocalizationProvider dateAdapter={AdapterDateFns} locale={enLocale}>
-            <Inner {...props} />
+            <Mobile>
+              <Inner {...props} />
+            </Mobile>
           </LocalizationProvider>
         </ChakraProvider>
       </MuiThemeProvider>

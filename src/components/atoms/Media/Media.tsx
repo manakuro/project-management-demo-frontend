@@ -9,7 +9,7 @@ type Props = BoxProps & {
 export const Media: React.FC<Props> = ({ pc, mobile, ...rest }) => {
   switch (true) {
     case Boolean(mobile):
-      return <ChakraBox display={{ base: 'block', sm: 'none' }} {...rest} />
+      return <ChakraBox display={{ base: 'block', md: 'none' }} {...rest} />
     case Boolean(pc):
       return <ChakraBox display={{ base: 'none', md: 'block' }} {...rest} />
     default:

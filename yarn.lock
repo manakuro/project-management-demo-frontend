@@ -7176,7 +7176,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"awilix@npm:^7.0.2":
+"awilix@npm:^7.0.3":
   version: 7.0.3
   resolution: "awilix@npm:7.0.3"
   dependencies:
@@ -14870,8 +14870,8 @@ __metadata:
     shortid: ^2.2.16
     subscriptions-transport-ws: ^0.11.0
     ts-jest: ^28.0.1
-    typescript: ^4.6.4
-    typesync: ^0.9.1
+    typescript: ^4.7.4
+    typesync: ^0.9.2
     use-prosemirror: ^1.2.1
     uuid: ^8.3.2
   languageName: unknown
@@ -17308,31 +17308,31 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-typescript@^4.6.4:
-  version: 4.6.4
-  resolution: "typescript@npm:4.6.4"
+typescript@^4.7.4:
+  version: 4.7.4
+  resolution: "typescript@npm:4.7.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: e7bfcc39cd4571a63a54e5ea21f16b8445268b9900bf55aee0e02ad981be576acc140eba24f1af5e3c1457767c96cea6d12861768fb386cf3ffb34013718631a
+  checksum: 5750181b1cd7e6482c4195825547e70f944114fb47e58e4aa7553e62f11b3f3173766aef9c281783edfd881f7b8299cf35e3ca8caebe73d8464528c907a164df
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>":
-  version: 4.6.4
-  resolution: "typescript@patch:typescript@npm%3A4.6.4#~builtin<compat/typescript>::version=4.6.4&hash=d8b4e7"
+"typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
+  version: 4.7.4
+  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=d8b4e7"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 984becf501fe4a0dec5f7fd7bed69785ee84a777e8c6fae5bec7241ac81467ea03d0b6211fb54997dc66e204608a9b70c4e56042566042f8348d3356b8a70f71
+  checksum: 0b078b97f27848c2d10fc0777b7cb4cb85374426620edac25b2fe62459a4344569655e7f1a989d0ce9d5618cdeb958451eb2ee9436e78f7af86a99e800df967b
   languageName: node
   linkType: hard
 
-"typesync@npm:^0.9.1":
-  version: 0.9.1
-  resolution: "typesync@npm:0.9.1"
+"typesync@npm:^0.9.2":
+  version: 0.9.2
+  resolution: "typesync@npm:0.9.2"
   dependencies:
-    awilix: ^7.0.2
+    awilix: ^7.0.3
     axios: ^0.27.2
     chalk: ^4.1.0
     cosmiconfig: ^7.0.1
@@ -17342,7 +17342,7 @@ typescript@^4.6.4:
     semver: ^7.3.7
   bin:
     typesync: bin/typesync
-  checksum: 19e66bc3089c70e0554845c488fc3815669e171c27843e802d18b47f61ed0a8459f61e37792b6a940ac961a776e8bfc08e00ab23146bfb4c0864d634dbe2efc5
+  checksum: 8905b7deec2e23306fa54fbb8e12afce7fbb1cd311001176cbe5b7833758a9f172d3e2a5301decf10622272ee0e2d55f40f43506c37be2b59fb837b1fc9e6f67
   languageName: node
   linkType: hard
 

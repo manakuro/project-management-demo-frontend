@@ -11246,9 +11246,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hygen@npm:^6.2.0":
-  version: 6.2.0
-  resolution: "hygen@npm:6.2.0"
+"hygen@npm:^6.2.7":
+  version: 6.2.7
+  resolution: "hygen@npm:6.2.7"
   dependencies:
     "@types/node": ^17.0.19
     chalk: ^4.1.2
@@ -11263,10 +11263,11 @@ __metadata:
     fs-extra: ^10.0.0
     ignore-walk: ^4.0.1
     inflection: ^1.12.0
+    ora: ^5.0.0
     yargs-parser: ^21.0.0
   bin:
     hygen: dist/bin.js
-  checksum: a41e6ea467de097884e301b179914fd7e7ca093570026a0669b20f3679e69f4a005d884eb21a174198409edffdfb1b71ddf164124726dcd2d18e3926f30489b3
+  checksum: 0dc221536c2a02f31f584f04a9c7496f500dd9a84e2a5498354835a97fc6a8e1287f2e5e6ce5d656b2028e9d8a0b0d5b7902e589726f55a4bf5fd6a04c204403
   languageName: node
   linkType: hard
 
@@ -14255,7 +14256,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ora@npm:^5.1.0, ora@npm:^5.4.1":
+"ora@npm:^5.0.0, ora@npm:^5.1.0, ora@npm:^5.4.1":
   version: 5.4.1
   resolution: "ora@npm:5.4.1"
   dependencies:
@@ -14854,7 +14855,7 @@ __metadata:
     framer-motion: ^4.1.0
     graphql: ^16.4.0
     husky: ^7.0.4
-    hygen: ^6.2.0
+    hygen: ^6.2.7
     jest: ^28.1.0
     jest-dom: ^4.0.0
     jest-plugin-context: ^2.9.0

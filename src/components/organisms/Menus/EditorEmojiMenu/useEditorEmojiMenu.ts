@@ -1,14 +1,14 @@
-import {
-  BaseEmoji,
-  emojiIndex as emojiData,
-  frequently,
-  EmojiData,
-  EmojiSkin,
-} from 'emoji-mart'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useResizeObserver } from 'src/hooks/useResizeObserver'
 import { calculateModalPosition } from 'src/shared/calculateModalPosition'
+import {
+  BaseEmoji,
+  emojiData,
+  frequently,
+  EmojiData,
+  EmojiSkin,
+} from 'src/shared/emoji'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
 
 const key = (str: string) =>

@@ -52,7 +52,11 @@ export const TasksDueSoon: React.VFC<Props> = memo<Props>(() => {
                 >
                   <Icon icon="help" size="xs" color="gray.500" mt="-1px" />
                 </Tooltip>
-                <NextLink href={ROUTE_MY_TASKS_LIST.href.pathname()} passHref>
+                <NextLink
+                  href={ROUTE_MY_TASKS_LIST.href.pathname()}
+                  passHref
+                  legacyBehavior
+                >
                   <Link {...style} fontSize="xs" ml={1}>
                     See all my tasks
                   </Link>

@@ -34,7 +34,11 @@ export const ListItem: React.VFC<Props> = memo((props) => {
   )
 
   return (
-    <NextLink href={ROUTE_PROJECTS_LIST.href.pathnameObj(projectId)} passHref>
+    <NextLink
+      href={ROUTE_PROJECTS_LIST.href.pathnameObj(projectId)}
+      passHref
+      legacyBehavior
+    >
       <Link
         w="full"
         p={2}

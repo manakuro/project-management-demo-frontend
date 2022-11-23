@@ -26,7 +26,7 @@ export const Header: React.VFC<Props> = memo<Props>(() => {
       ml={isExpanded ? 0 : '-3px'}
     >
       {isExpanded && (
-        <NextLink href={ROUTE_HOME.href.pathname()} passHref>
+        <NextLink href={ROUTE_HOME.href.pathname()} passHref legacyBehavior>
           <Link mr="auto">
             <Logo />
           </Link>

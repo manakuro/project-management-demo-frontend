@@ -59,7 +59,7 @@ const WithNextLink: React.FC<Props> = (props) => {
   return props.item.isExternal ? (
     <>{props.children}</>
   ) : (
-    <NextLink href={props.item.href as StaticRoutes} passHref>
+    <NextLink href={props.item.href as StaticRoutes} passHref legacyBehavior>
       {props.children}
     </NextLink>
   )

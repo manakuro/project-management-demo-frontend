@@ -43,6 +43,7 @@ export const Workspace: React.VFC<Props> = memo(() => {
               <NextLink
                 href={ROUTE_WORKSPACES_OVERVIEW.href.pathnameObj(workspace.id)}
                 passHref
+                legacyBehavior
               >
                 <Link w="full">
                   <Text fontSize="sm" flex={1}>

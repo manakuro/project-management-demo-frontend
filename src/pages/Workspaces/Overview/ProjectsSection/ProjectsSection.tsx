@@ -44,6 +44,7 @@ export const ProjectsSection: React.VFC<Props> = memo<Props>(() => {
                     href={ROUTE_PROJECTS_LIST.href.pathnameObj(id)}
                     key={id}
                     passHref
+                    legacyBehavior
                   >
                     <Link>
                       <ProjectTileItem
@@ -63,6 +64,7 @@ export const ProjectsSection: React.VFC<Props> = memo<Props>(() => {
                   href={ROUTE_PROJECTS_LIST.href.pathnameObj(id)}
                   key={id}
                   passHref
+                  legacyBehavior
                 >
                   <Link>
                     <ProjectListItem projectId={id} />

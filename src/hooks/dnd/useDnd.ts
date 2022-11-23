@@ -1,5 +1,5 @@
+import { DropResult } from '@hello-pangea/dnd'
 import { useCallback, useState } from 'react'
-import { DropResult } from 'react-beautiful-dnd'
 
 const sort = <T>(list: T[], startIndex: number, endIndex: number): T[] => {
   const arr = Array.from(list)

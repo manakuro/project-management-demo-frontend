@@ -1,5 +1,5 @@
+import { DraggableChildrenFn, DraggingStyle } from '@hello-pangea/dnd'
 import { useRef, useEffect } from 'react'
-import { DraggableChildrenFn, DraggingStyle } from 'react-beautiful-dnd'
 import { createPortal } from 'react-dom'
 
 export const useDraggableInPortal = () => {

@@ -1,5 +1,5 @@
+import { DragDropContext, Droppable } from '@hello-pangea/dnd'
 import React, { memo, useEffect, useMemo } from 'react'
-import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { Box, Flex, Heading, Icon, IconButton } from 'src/components/atoms'
 import {
   DrawerBody,

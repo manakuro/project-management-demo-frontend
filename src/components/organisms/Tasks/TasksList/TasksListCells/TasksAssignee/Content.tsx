@@ -48,7 +48,7 @@ export const Content: React.VFC<Props> = memo<Props>((props) => {
       <>
         <Flex alignItems="center" maxW="inherit">
           <TeammateAvatar teammateId={task.assigneeId} size="xs" />
-          <Text fontSize="xs" ml={1} isTruncated>
+          <Text fontSize="xs" ml={1} noOfLines={1}>
             {teammate.name}
           </Text>
         </Flex>

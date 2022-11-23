@@ -52,7 +52,7 @@ export const TagChip: React.VFC<Props> = memo<Props>((props) => {
         bg: taskTag.tag.color.color,
       }}
     >
-      <Text fontSize="xs" isTruncated color="text.base">
+      <Text fontSize="xs" noOfLines={1} color="text.base">
         {taskTag.tag.name}
       </Text>
       {props.deletable && (

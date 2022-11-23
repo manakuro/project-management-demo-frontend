@@ -18,7 +18,7 @@ export const Task: React.FC<Props> = memo<Props>((props) => {
         <CheckIcon completed={props.mention.completed} />
       </LeftContainer>
       <RightContainer>
-        <Text fontSize="sm" maxW="80%" isTruncated>
+        <Text fontSize="sm" maxW="80%" noOfLines={1}>
           {props.mention.title}
         </Text>
         <Text ml={5} fontSize="xs" color="text.muted">

@@ -39,7 +39,7 @@ export const ProjectRoleListItem: React.FC<Props> = (props) => {
               justifyContent="center"
               minW="1px"
             >
-              <Text fontSize="sm" fontWeight="medium" isTruncated>
+              <Text fontSize="sm" fontWeight="medium" noOfLines={1}>
                 {teammate.name}
               </Text>
               <Text fontSize="xs" color="text.muted" mt={1}>

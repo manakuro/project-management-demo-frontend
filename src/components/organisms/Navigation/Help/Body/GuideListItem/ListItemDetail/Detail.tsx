@@ -55,7 +55,7 @@ export const Detail: React.VFC<Props> = (props) => {
         </>
       ) : (
         <>
-          <Text fontSize="sm" isTruncated noOfLines={3}>
+          <Text fontSize="sm" noOfLines={3}>
             {item.description}
           </Text>
           <Box>

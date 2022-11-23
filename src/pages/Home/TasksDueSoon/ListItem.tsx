@@ -59,7 +59,7 @@ export const ListItem: React.VFC<Props> = memo((props) => {
     >
       <Flex alignItems="center" flex={1}>
         <CheckIcon completed={task.completed} onClick={handleToggleDone} />
-        <Text fontSize="sm" ml={2} isTruncated>
+        <Text fontSize="sm" ml={2} noOfLines={1}>
           {task.name}
         </Text>
       </Flex>
@@ -71,7 +71,7 @@ export const ListItem: React.VFC<Props> = memo((props) => {
               projectId={id}
               key={id}
               badgeProps={{
-                isTruncated: true,
+                noOfLines: 1,
                 maxW: 20,
               }}
             />

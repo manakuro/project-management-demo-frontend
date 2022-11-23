@@ -17,7 +17,7 @@ export const TaskParentName: React.VFC<Props> = memo<Props>(() => {
   return (
     <Flex alignItems="center" ml={2}>
       <Icon icon="chevronLeft" color="text.muted" size="xs" />
-      <Text fontSize="xs" color="text.muted" isTruncated maxW="100px">
+      <Text fontSize="xs" color="text.muted" noOfLines={1} maxW="100px">
         {taskParent.name}
       </Text>
     </Flex>

@@ -72,7 +72,7 @@ export const ProjectChip: React.VFC<Props> = memo((props) => {
       _hover={{ bg: 'gray.100' }}
     >
       <ColorBox size="xs" color={projectBaseColor.color.color} />
-      <Text ml={2} fontSize="xs" isTruncated color="text.base">
+      <Text ml={2} fontSize="xs" noOfLines={1} color="text.base">
         {project.name}
       </Text>
       {props.deletable && (

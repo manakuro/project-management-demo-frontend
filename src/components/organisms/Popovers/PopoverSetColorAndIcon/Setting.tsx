@@ -8,7 +8,7 @@ type Props = {
 export const Setting: React.VFC<Props> = (props) => {
   return (
     <Flex px={6} py={4}>
-      <Checkbox defaultIsChecked={props.isSetForEveryone}>
+      <Checkbox defaultChecked={props.isSetForEveryone}>
         <Text fontSize="xs">Set for everyone</Text>
       </Checkbox>
     </Flex>

@@ -18,7 +18,7 @@ export const Workspace: React.FC<Props> = memo<Props>(() => {
         <Icon icon="group" color="text.muted" />
       </LeftContainer>
       <RightContainer>
-        <Text fontSize="sm" w="80%" isTruncated>
+        <Text fontSize="sm" w="80%" noOfLines={1}>
           {workspace.name}
         </Text>
       </RightContainer>

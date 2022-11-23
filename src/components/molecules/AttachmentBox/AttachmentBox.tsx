@@ -46,7 +46,7 @@ export const AttachmentBox: React.FC<Props> = (props) => {
     >
       <Icon icon={icon} color="text.muted" size="2xl" />
       <Flex ml={4} flexDirection="column" flex={1} minW={0}>
-        <Text fontSize="sm" isTruncated>
+        <Text fontSize="sm" noOfLines={1}>
           {taskFile.name}
         </Text>
         <Flex>

@@ -21,7 +21,7 @@ export const useStandaloneToast = () => {
       duration,
     }
 
-    toastIdRef = toastChakraUi({
+    toastIdRef = toastChakraUi.toast({
       ...toastProps,
     })
 

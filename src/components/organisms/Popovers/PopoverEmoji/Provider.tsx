@@ -1,5 +1,5 @@
-import { BaseEmoji } from 'emoji-mart'
 import { useCallback, useState } from 'react'
+import { BaseEmoji } from 'src/shared/emoji'
 import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {

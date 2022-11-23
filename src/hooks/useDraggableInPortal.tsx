@@ -1,5 +1,5 @@
-import { useRef, useEffect } from 'react'
-import { DraggableChildrenFn, DraggingStyle } from 'react-beautiful-dnd'
+import { DraggableChildrenFn, DraggingStyle } from '@hello-pangea/dnd'
+import React, { useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 
 export const useDraggableInPortal = () => {
@@ -25,7 +25,10 @@ export const useDraggableInPortal = () => {
       if (
         (provided?.draggableProps?.style as DraggingStyle).position === 'fixed'
       ) {
-        return createPortal(element, self.current as HTMLDivElement)
+        return createPortal(
+          element,
+          self.current as HTMLDivElement,
+        ) as React.ReactNode
       }
       return element
     }

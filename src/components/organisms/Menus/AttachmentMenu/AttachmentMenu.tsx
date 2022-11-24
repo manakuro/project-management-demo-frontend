@@ -15,7 +15,7 @@ export const AttachmentMenu: React.FC<Props> = memo((props) => {
   const menuDisclosure = useDisclosure()
 
   return (
-    <Menu isLazy isOpen={menuDisclosure.isOpen}>
+    <Menu isLazy isOpen={menuDisclosure.isOpen} autoSelect={false}>
       <Tooltip
         hasArrow
         label={props.label}

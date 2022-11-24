@@ -8,7 +8,7 @@ type Props = {}
 
 export const MenuContent: React.VFC<Props> = memo(() => {
   const { x, y, containerRef } = useEditorMentionMenu()
-  const menuStyles = useMenuStyle()
+  const menuStyles = useMenuStyle().list
 
   return (
     <ModalContent
@@ -22,7 +22,7 @@ export const MenuContent: React.VFC<Props> = memo(() => {
       overflowY="scroll"
       ref={containerRef}
     >
-      <ModalBody w="full" px={0} {...menuStyles.list}>
+      <ModalBody w="full" px={0} {...menuStyles}>
         <MenuList />
       </ModalBody>
     </ModalContent>

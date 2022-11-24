@@ -18,11 +18,22 @@ export const useMenuStyle = () => {
 
   return useMemo((): MenuStyle => {
     return {
-      ...menuStyles,
+      list: {
+        __css: {
+          ...menuStyles.list,
+        },
+      },
       item: {
-        ...menuStyles.item,
+        __css: {
+          ...menuStyles.item,
+        },
+        display: 'flex',
+        flex: 1,
         cursor: 'pointer',
         _hover: {
+          bg: 'gray.100',
+        },
+        _focus: {
           bg: 'gray.100',
         },
       },

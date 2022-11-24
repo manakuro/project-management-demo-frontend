@@ -42,9 +42,9 @@ export const MentionItemBase: React.FC<Props> = memo<Props>((props) => {
   return (
     <Flex
       ref={ref}
+      {...styles}
       bg={selected ? styles._focus.bg : 'transparent'}
       fontSize="sm"
-      {...styles}
       onClick={handleClick}
       {...rest}
     >

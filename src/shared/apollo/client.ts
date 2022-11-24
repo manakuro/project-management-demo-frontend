@@ -1,5 +1,8 @@
-import { NormalizedCacheObject } from '@apollo/client'
-import { ApolloClient, InMemoryCache } from 'src/libs/apollo/client'
+import {
+  ApolloClient,
+  InMemoryCache,
+  NormalizedCacheObject,
+} from '@apollo/client'
 import { refreshToken } from 'src/shared/firebase/auth'
 import { createLink, CreateLinkProps } from './createLink'
 

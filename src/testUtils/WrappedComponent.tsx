@@ -3,7 +3,7 @@ import enLocale from 'date-fns/locale/en-US'
 import React from 'react'
 import { RecoilRoot } from 'recoil'
 import { Modals } from 'src/components/organisms/Modals'
-import { BeforeAppMount } from 'src/shared/app'
+import { ApolloProvider } from 'src/shared/apollo/ApolloProvider'
 import {
   AdapterDateFns,
   LocalizationProvider,
@@ -18,12 +18,12 @@ export const WrappedComponent: React.FCWithChildren = (props) => {
       <MuiThemeProvider theme={muiTheme}>
         <ChakraProvider theme={theme} resetCSS>
           <LocalizationProvider dateAdapter={AdapterDateFns} locale={enLocale}>
-            <BeforeAppMount>
+            <ApolloProvider>
               <>
                 {props.children}
                 <Modals />
               </>
-            </BeforeAppMount>
+            </ApolloProvider>
           </LocalizationProvider>
         </ChakraProvider>
       </MuiThemeProvider>

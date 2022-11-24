@@ -1,4 +1,4 @@
-import PDFViewer from '@react-pdf-viewer/core'
+import * as PDFViewer from '@react-pdf-viewer/core'
 import React from 'react'
 import { Box } from 'src/components/atoms'
 

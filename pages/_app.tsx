@@ -56,9 +56,7 @@ const Inner = ({ Component, pageProps }: AppPropsWithLayout) => {
   const { isSignedIn } = useAuth()
 
   useEffect(() => {
-    if (isSignedIn) {
-      endLoading()
-    }
+    if (isSignedIn) endLoading()
   }, [endLoading, isSignedIn])
 
   if (loading) return <PageLoader />

@@ -12,7 +12,7 @@ type Props = FlexProps & {
   onDelete: (taskFile: TaskFile) => void
 }
 
-export const ThumbnailAttachment: React.VFC<Props> = memo<Props>((props) => {
+export const ThumbnailAttachment: React.FC<Props> = memo<Props>((props) => {
   return (
     <Provider {...props}>
       <Component {...props} />
@@ -20,7 +20,7 @@ export const ThumbnailAttachment: React.VFC<Props> = memo<Props>((props) => {
   )
 })
 
-export const Component: React.VFC<Props> = memo((props) => {
+export const Component: React.FC<Props> = memo((props) => {
   const { taskFileId, onOpenFileViewer, onDelete, ...rest } = props
   const { taskFile } = useTaskFile(taskFileId)
 

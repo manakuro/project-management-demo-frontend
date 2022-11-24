@@ -4,7 +4,7 @@ import { useTasksCalendarContext } from '../../TasksCalendar'
 
 type Props = {}
 
-export const TodayButton: React.VFC<Props> = memo<Props>(() => {
+export const TodayButton: React.FC<Props> = memo<Props>(() => {
   const { resetMonth, scrollToDate } = useTasksCalendarContext()
 
   const handleClickToday = useCallback(() => {

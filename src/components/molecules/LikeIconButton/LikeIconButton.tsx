@@ -12,7 +12,7 @@ type Props = {
 } & Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>
 export type LikeButtonProps = Props
 
-export const LikeIconButton: React.VFC<Props> = memo<Props>((props) => {
+export const LikeIconButton: React.FC<Props> = memo<Props>((props) => {
   const {
     hasAnyoneLiked,
     label,

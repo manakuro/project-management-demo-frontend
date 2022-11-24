@@ -45,7 +45,7 @@ const items: {
   },
 ]
 
-export const FilterButton: React.VFC<Props> = memo<Props>(() => {
+export const FilterButton: React.FC<Props> = memo<Props>(() => {
   const { onFilter, filterStatus, isFiltered } = useInboxListStatus()
 
   const handleChange = useCallback(

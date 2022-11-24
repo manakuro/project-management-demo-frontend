@@ -11,7 +11,7 @@ type Props = {
   onMouseEnter: () => void
 }
 
-export const Favorite: React.VFC<Props> = (props) => {
+export const Favorite: React.FC<Props> = (props) => {
   const { projectId, onClose, onMouseEnter } = props
   const { setFavoriteProjectId } = useFavoriteProjectIdsCommand()
   const { isFavorite } = useFavoriteProjectIds()

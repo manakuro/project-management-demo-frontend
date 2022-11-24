@@ -7,7 +7,7 @@ import { ToolBar } from './ToolBar'
 
 type Props = {}
 
-export const ContentText: React.VFC<Props> = memo<Props>(() => {
+export const ContentText: React.FC<Props> = memo<Props>(() => {
   const { taskFeed, editable, onChangeDescription } =
     useTaskFeedListItemContext()
   const [resetView, setResetView] = useState<number>(1)

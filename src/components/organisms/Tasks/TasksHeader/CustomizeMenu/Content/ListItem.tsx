@@ -11,7 +11,7 @@ type Props = {
   index: number
 }
 
-export const ListItem: React.VFC<Props> = memo<Props>((props) => {
+export const ListItem: React.FC<Props> = memo<Props>((props) => {
   const { tasksTaskColumn, setTasksTaskColumn } = useTasksTaskColumn(
     props.tasksTaskColumnId,
   )

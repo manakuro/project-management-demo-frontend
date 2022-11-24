@@ -13,7 +13,7 @@ export const config = {
   FIREBASE_MEASUREMENT_ID: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!,
 } as const
 
-if (__DEV__) {
+if (__DEV__ && process.env.NODE_ENV !== 'test') {
   console.groupCollapsed('config')
   console.log(config)
   console.groupEnd()

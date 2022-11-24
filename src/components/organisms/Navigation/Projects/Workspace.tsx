@@ -18,7 +18,7 @@ import { useWorkspace } from 'src/store/entities/workspace'
 
 type Props = {}
 
-export const Workspace: React.VFC<Props> = memo(() => {
+export const Workspace: React.FC<Props> = memo(() => {
   const { isExpanded } = useNavigation()
   const { _hover } = useLinkHoverStyle()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
@@ -43,6 +43,7 @@ export const Workspace: React.VFC<Props> = memo(() => {
               <NextLink
                 href={ROUTE_WORKSPACES_OVERVIEW.href.pathnameObj(workspace.id)}
                 passHref
+                legacyBehavior
               >
                 <Link w="full">
                   <Text fontSize="sm" flex={1}>

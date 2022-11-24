@@ -7,7 +7,7 @@ type Props = {
   taskId: string
 }
 
-export const Like: React.VFC<Props> = memo((props) => {
+export const Like: React.FC<Props> = memo((props) => {
   const { taskId } = props
   const { taskLikes } = useTaskLikesByTaskId(taskId)
   const { isHovering } = useTasksBoardListItemContext()

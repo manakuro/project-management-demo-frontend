@@ -9,7 +9,7 @@ import { useWorkspace } from 'src/store/entities/workspace'
 
 type Props = Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>
 
-export const FavoriteButton: React.VFC<Props> = memo<Props>((props) => {
+export const FavoriteButton: React.FC<Props> = memo<Props>((props) => {
   const { workspace } = useWorkspace()
   const { isFavorite } = useFavoriteWorkspaceIds()
   const { setFavoriteWorkspaceId } = useFavoriteWorkspaceIdsCommand()

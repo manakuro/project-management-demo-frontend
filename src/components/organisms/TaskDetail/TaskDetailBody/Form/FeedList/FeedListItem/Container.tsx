@@ -1,12 +1,12 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo, PropsWithChildren, useMemo } from 'react'
 import { Flex, FlexProps } from 'src/components/atoms'
 import { transitions } from 'src/styles'
 import { useTaskFeedListItemContext } from './Provider'
 import { useFeedListItemContainerContext } from './Provider/ProviderContainer'
 
-type Props = {}
+type Props = PropsWithChildren<{}>
 
-export const Container: React.FC<Props> = memo((props) => {
+export const Container: React.FC<Props> = memo<Props>((props) => {
   const { taskFeed, isPinned } = useTaskFeedListItemContext()
   const { containerRef, isReferenced } = useFeedListItemContainerContext()
 

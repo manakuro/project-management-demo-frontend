@@ -10,7 +10,7 @@ type Props = {
   taskId: string
 }
 
-export const Attachment: React.VFC<Props> = memo<Props>((props) => {
+export const Attachment: React.FC<Props> = memo<Props>((props) => {
   const { taskFileIds } = useTaskFileIdsByTaskId(props.taskId)
   const { onOpen, setState } = useFileViewerModal()
   const { toast } = useToast()

@@ -5,7 +5,7 @@ type Props = {
   title?: string
 }
 
-export const Section: React.FC<Props> = (props) => {
+export const Section: React.FCWithChildren<Props> = (props) => {
   return (
     <Box mt={4}>
       <Divider />

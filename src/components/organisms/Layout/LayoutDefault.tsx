@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { Flex } from 'src/components/atoms'
 import { Navigation } from 'src/components/organisms/Navigation'
 
-export const LayoutDefault: React.FC = memo((props) => {
+export const LayoutDefault: React.FCWithChildren = memo((props) => {
   return (
     <Flex
       w="full"

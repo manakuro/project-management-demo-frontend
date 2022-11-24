@@ -5,7 +5,7 @@ import { chakra, ChakraProps } from 'src/shared/chakra'
 type Props = {
   seconds: number
 } & ChakraProps
-export const Duration: React.VFC<Props> = (props) => {
+export const Duration: React.FC<Props> = (props) => {
   return (
     <Time {...props} dateTime={`P${Math.round(props.seconds)}S`}>
       {format(props.seconds)}

@@ -6,7 +6,7 @@ type Props = {
   taskId: string
 } & Omit<IconButtonProps, 'aria-label'>
 
-export const ArchiveButton: React.VFC<Props> = memo<Props>((props) => {
+export const ArchiveButton: React.FC<Props> = memo<Props>((props) => {
   const { taskId, ...rest } = props
   const handleClick = useCallback(() => {}, [])
 

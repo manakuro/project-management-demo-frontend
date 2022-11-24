@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { Flex, Heading } from 'src/components/atoms'
 import { TabList, Tab } from 'src/components/organisms/Tabs'
 
-export const Tabs: React.VFC = memo(() => {
+export const Tabs: React.FC = memo(() => {
   return (
     <Flex mt={3} flex={1}>
       <Flex alignItems="flex-start" flexDirection="column">

@@ -26,7 +26,7 @@ type Props = {
   }
 }
 
-export const PopoverProfile: React.FC<Props> = (props) => {
+export const PopoverProfile: React.FCWithChildren<Props> = (props) => {
   return (
     <PortalManager zIndex={1600}>
       <Popover trigger="hover" isLazy>

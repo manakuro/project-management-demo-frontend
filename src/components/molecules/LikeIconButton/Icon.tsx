@@ -8,7 +8,7 @@ type Props = Pick<
   'hasAnyoneLiked' | 'label' | 'likeLength' | 'textStyle'
 >
 
-export const Icon: React.VFC<Props> = memo<Props>((props) => {
+export const Icon: React.FC<Props> = memo<Props>((props) => {
   const { hasAnyoneLiked, label, likeLength, textStyle } = props
 
   if (hasAnyoneLiked) {

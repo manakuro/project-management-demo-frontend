@@ -8,7 +8,7 @@ type Props = {
   onToggle: (id: number) => void
 }
 
-export const ListItem: React.VFC<Props> = (props) => {
+export const ListItem: React.FC<Props> = (props) => {
   const { item, onToggle } = props
   const icon = item.done ? item.iconDone : item.icon
 

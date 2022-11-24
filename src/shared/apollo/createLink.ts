@@ -1,4 +1,4 @@
-import { from } from 'src/libs/apollo/client'
+import { from } from '@apollo/client'
 import { createErrorLink } from './createErrorLink'
 import { createHttpLink, CreateHttpProps } from './createHttpLink'
 import { removeTypeName } from './removeTypename'

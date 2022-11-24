@@ -20,7 +20,7 @@ type Props = {
   disabled?: boolean
 } & ListItemProps
 
-export const NavListItem: React.VFC<Props> = memo<Props>((props) => {
+export const NavListItem: React.FC<Props> = memo<Props>((props) => {
   const { item, linkStyle, light, disabled, ...rest } = props
   const { _hover, selectedStyle } = useLinkHoverStyle()
   const listItemStyle = useMemo(
@@ -59,7 +59,7 @@ const WithNextLink: React.FC<Props> = (props) => {
   return props.item.isExternal ? (
     <>{props.children}</>
   ) : (
-    <NextLink href={props.item.href as StaticRoutes} passHref>
+    <NextLink href={props.item.href as StaticRoutes} passHref legacyBehavior>
       {props.children}
     </NextLink>
   )

@@ -6,7 +6,7 @@ import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 import { useProjectIcon } from 'src/store/entities/projectIcon'
 
-export const ProjectIcon: React.VFC = memo(() => {
+export const ProjectIcon: React.FC = memo(() => {
   const { projectId } = useProjectsProjectId()
   const { project } = useProject(projectId)
   const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)

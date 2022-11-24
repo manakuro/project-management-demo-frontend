@@ -11,7 +11,7 @@ import { transitions } from 'src/styles'
 
 type Props = {}
 
-export const ProjectTeammates: React.VFC<Props> = memo<Props>(() => {
+export const ProjectTeammates: React.FC<Props> = memo<Props>(() => {
   const { projectId } = useProjectsProjectId()
   const { teammateIds } = useTeammateIdsByProjectId(projectId)
   const { isOpen, ref } = useTooltip()

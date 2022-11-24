@@ -17,7 +17,7 @@ import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router'
 import { SortMenu } from '../TasksHeader'
 import { SkeletonBoardContent, SkeletonBoardHeader } from './SkeletonBoard'
 
-export const Board: React.VFC = memo(() => {
+export const Board: React.FC = memo(() => {
   return (
     <TasksContainer isMyTasksPage>
       <Component />
@@ -25,7 +25,7 @@ export const Board: React.VFC = memo(() => {
   )
 })
 
-const Component: React.VFC = memo(() => {
+const Component: React.FC = memo(() => {
   const {
     tabContentLoading,
     fetchTaskDetailQuery,

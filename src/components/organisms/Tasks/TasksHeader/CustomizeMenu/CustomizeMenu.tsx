@@ -3,7 +3,7 @@ import { Drawer } from 'src/components/organisms/Drawer'
 import { Content } from './Content'
 import { useCustomizeMenu } from './useCustomizeMenu'
 
-export const CustomizeMenu: React.VFC = () => {
+export const CustomizeMenu: React.FC = () => {
   const { isOpen, onClose } = useCustomizeMenu()
 
   return (

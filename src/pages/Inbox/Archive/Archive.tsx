@@ -16,11 +16,11 @@ import { useInboxArchivePageQuery } from 'src/hooks/queries/app'
 import { getInboxDetailId, isInboxDetailURL } from 'src/router'
 import { useInboxPageContext } from '../Provider'
 
-export const Archive: React.VFC = memo(() => {
+export const Archive: React.FC = memo(() => {
   return <Component />
 })
 
-const Component: React.VFC = memo(() => {
+const Component: React.FC = memo(() => {
   const { loadingTabContent } = useInboxPageContext()
   const { loading: loadingQuery } = useInboxArchivePageQuery()
   const loading = useMemo(

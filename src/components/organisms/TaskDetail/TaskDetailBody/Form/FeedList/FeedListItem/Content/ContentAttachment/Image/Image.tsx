@@ -12,7 +12,7 @@ type Props = FlexProps & {
   taskFileId: string
 }
 
-export const Image: React.VFC<Props> = memo<Props>((props) => {
+export const Image: React.FC<Props> = memo<Props>((props) => {
   const { onClick, taskFileId, ...rest } = props
   const { taskFile } = useTaskFile(taskFileId)
 

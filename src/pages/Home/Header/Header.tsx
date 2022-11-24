@@ -5,7 +5,7 @@ import { useTasksListContentVerticalScroll } from '../Content'
 
 type Props = {}
 
-export const Header: React.VFC<Props> = memo<Props>(() => {
+export const Header: React.FC<Props> = memo<Props>(() => {
   const { isScrolling } = useTasksListContentVerticalScroll()
 
   return (

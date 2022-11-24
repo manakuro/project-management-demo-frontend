@@ -9,7 +9,7 @@ import { Title } from './Title'
 
 type Props = {}
 
-export const Header: React.VFC<Props> = memo<Props>(() => {
+export const Header: React.FC<Props> = memo<Props>(() => {
   const { teammate } = useTaskFeedListItemContext()
 
   return (

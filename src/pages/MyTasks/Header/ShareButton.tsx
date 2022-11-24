@@ -4,7 +4,7 @@ import { Tooltip } from 'src/components/molecules'
 import { useTooltip } from 'src/components/molecules/Tooltip/useTooltip'
 import { useShareWorkspaceModal } from 'src/components/organisms/Modals/ShareWorkspaceModal'
 
-export const ShareButton: React.VFC = memo(() => {
+export const ShareButton: React.FC = memo(() => {
   const { setIsOpen } = useShareWorkspaceModal()
   const { isOpen, ref } = useTooltip()
 

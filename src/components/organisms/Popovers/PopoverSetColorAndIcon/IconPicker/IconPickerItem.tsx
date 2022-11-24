@@ -19,7 +19,7 @@ type Props = {
   onClick: (id: string) => Promise<void>
 }
 
-export const IconPickerItem: React.VFC<Props> = memo<Props>((props) => {
+export const IconPickerItem: React.FC<Props> = memo<Props>((props) => {
   const {
     projectIconId,
     currentProjectBaseColorId,

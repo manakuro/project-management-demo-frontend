@@ -6,7 +6,7 @@ type Props = {
   tooltipProps: Omit<TooltipProps, 'children'>
 } & Omit<IconButtonProps, 'aria-label'>
 
-export const ArchiveButton: React.VFC<Props> = memo<Props>((props) => {
+export const ArchiveButton: React.FC<Props> = memo<Props>((props) => {
   const { tooltipProps, ...rest } = props
   const handleClick = useCallback(() => {}, [])
 

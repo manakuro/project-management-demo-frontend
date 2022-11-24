@@ -1,14 +1,16 @@
 import { EditorProps } from 'prosemirror-view'
-import React, { memo, useMemo } from 'react'
+import React, { memo, PropsWithChildren, useMemo } from 'react'
 import { schema, plugins } from 'src/shared/prosemirror/config'
 import { EditorContainer } from './Editors'
 
-type Props = {
-  initialValue: string
-  forceUpdate?: number
-  onChange?: (val: string) => void
-  resetView?: number
-} & EditorProps
+type Props = PropsWithChildren<
+  {
+    initialValue: string
+    forceUpdate?: number
+    onChange?: (val: string) => void
+    resetView?: number
+  } & EditorProps
+>
 
 export const Editor: React.FC<Props> = memo<Props>((props) => {
   const pluginsProp = useMemo(() => plugins(), [])

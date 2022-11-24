@@ -12,7 +12,7 @@ type Props = {
   nextItem?: Item
 }
 
-export const ListItemDetail: React.VFC<Props> = (props) => {
+export const ListItemDetail: React.FC<Props> = (props) => {
   const { item, onToggle, nextItem, seeMoreComponent } = props
 
   return (

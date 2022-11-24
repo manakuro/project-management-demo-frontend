@@ -3,7 +3,7 @@ import { Wrap } from 'src/components/atoms'
 
 type Props = {}
 
-export const CarouselThumbnail: React.FC<Props> = (props) => {
+export const CarouselThumbnail: React.FCWithChildren<Props> = (props) => {
   const children = React.Children.map(props.children, (child, index) => {
     if (!React.isValidElement(child)) {
       console.warn('Provide React element under Carousel component')

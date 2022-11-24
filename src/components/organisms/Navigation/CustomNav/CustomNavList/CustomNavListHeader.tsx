@@ -3,7 +3,7 @@ import { Heading, HeadingProps } from 'src/components/atoms'
 
 type Props = HeadingProps
 
-export const CustomNavListHeader: React.VFC<Props> = memo((props) => {
+export const CustomNavListHeader: React.FC<Props> = memo((props) => {
   return (
     <Heading
       as="h4"

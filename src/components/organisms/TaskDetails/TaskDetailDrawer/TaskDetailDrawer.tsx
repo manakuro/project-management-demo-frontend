@@ -11,7 +11,7 @@ type Props = {
   hasClickedOutside: UseClickOutsideOptionsHasClickedOutside
 }
 
-export const TaskDetailDrawer: React.VFC<Props> = memo((props) => {
+export const TaskDetailDrawer: React.FC<Props> = memo((props) => {
   const { hasClickedOutside, backToPage } = props
   const { isOpen, onClose } = useTaskDetailDrawer()
   const { loading } = useTaskDetail()

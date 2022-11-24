@@ -8,7 +8,7 @@ type Props = {
   backToPage: () => Promise<void>
 }
 
-export const TaskDetailModal: React.VFC<Props> = memo((props) => {
+export const TaskDetailModal: React.FC<Props> = memo((props) => {
   const { isOpen, onClose } = useTaskDetailModal()
   const { loading } = useTaskDetail()
 

@@ -5,7 +5,7 @@ import { useBreakpointValue } from 'src/shared/chakra'
 import { splitByNumber } from 'src/shared/utils'
 import { TasksFilesListItem } from '../TasksFilesListItem'
 
-export const TasksFilesList: React.VFC = memo(() => {
+export const TasksFilesList: React.FC = memo(() => {
   const { taskFileIds } = useTasksTaskFiles()
   const splitNum = useBreakpointValue({ base: 2, '2xl': 3 }) as number
   const sections = useMemo(

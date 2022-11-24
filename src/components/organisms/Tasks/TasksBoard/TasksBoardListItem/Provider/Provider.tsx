@@ -1,10 +1,10 @@
-import React, { memo } from 'react'
+import React, { memo, PropsWithChildren } from 'react'
 import { Provider as InputProvider } from './InputProvider'
 import { Provider as ListItemProvider } from './ListItemProvider'
 
-type Props = {
+type Props = PropsWithChildren<{
   taskId: string
-}
+}>
 
 export const Provider: React.FC<Props> = memo((props) => {
   return (

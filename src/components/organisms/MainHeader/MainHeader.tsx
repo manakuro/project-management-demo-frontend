@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo, PropsWithChildren, useMemo } from 'react'
 import { Flex, FlexProps, Stack } from 'src/components/atoms'
 import { useMainStyle } from 'src/hooks'
 import { ChakraProps } from 'src/shared/chakra'
@@ -6,10 +6,10 @@ import { AddButton } from './AddButton'
 import { MyAccountAvatar } from './MyAccountAvatar'
 import { SearchInput } from './SearchInput'
 
-type Props = {
+type Props = PropsWithChildren<{
   sticky?: boolean
   isScrolling?: boolean
-}
+}>
 export const MainHeader: React.FC<Props> = memo<Props>((props) => {
   const { sticky, isScrolling } = props
   const { paddingX } = useMainStyle()

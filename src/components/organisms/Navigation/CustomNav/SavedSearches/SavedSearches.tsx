@@ -16,7 +16,7 @@ import {
 
 type Props = {}
 
-export const SavedSearches: React.VFC<Props> = memo(() => {
+export const SavedSearches: React.FC<Props> = memo(() => {
   const { isExpanded } = useNavigation()
   const { disabledStyle } = useDisabledStyle()
   const title = useMemo(

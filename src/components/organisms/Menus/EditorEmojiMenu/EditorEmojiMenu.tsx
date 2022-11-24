@@ -5,7 +5,7 @@ import { useEditorEmojiMenu } from './useEditorEmojiMenu'
 
 type Props = {}
 
-export const EditorEmojiMenu: React.VFC<Props> = () => {
+export const EditorEmojiMenu: React.FC<Props> = () => {
   const { isOpen, onClose } = useEditorEmojiMenu()
 
   return (

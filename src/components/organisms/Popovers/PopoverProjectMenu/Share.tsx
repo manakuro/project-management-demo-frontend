@@ -8,7 +8,7 @@ type Props = {
   onMouseEnter: () => void
 }
 
-export const Share: React.VFC<Props> = (props) => {
+export const Share: React.FC<Props> = (props) => {
   const { projectId, onClose, onMouseEnter } = props
   const { onOpen, setProjectId, setShareTab } = useShareProjectModal()
 

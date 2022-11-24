@@ -9,7 +9,7 @@ import {
   useTasksTaskSectionIds,
 } from 'src/components/organisms/Tasks/hooks'
 
-export const ListSortByDueDate: React.VFC = memo(() => {
+export const ListSortByDueDate: React.FC = memo(() => {
   const { taskIds } = useTasksTaskIds()
   const { taskSectionIds } = useTasksTaskSectionIds()
   const [isExpanded, setIsExpanded] = useState(true)

@@ -20,7 +20,7 @@ type Props = {
   projectId: string
 }
 
-export const ListItem: React.VFC<Props> = memo((props) => {
+export const ListItem: React.FC<Props> = memo((props) => {
   const { isExpanded } = useNavigation()
   const { projectId } = props
   const { project } = useProject(projectId)
@@ -34,7 +34,11 @@ export const ListItem: React.VFC<Props> = memo((props) => {
   )
 
   return (
-    <NextLink href={ROUTE_PROJECTS_LIST.href.pathnameObj(projectId)} passHref>
+    <NextLink
+      href={ROUTE_PROJECTS_LIST.href.pathnameObj(projectId)}
+      passHref
+      legacyBehavior
+    >
       <Link
         w="full"
         p={2}

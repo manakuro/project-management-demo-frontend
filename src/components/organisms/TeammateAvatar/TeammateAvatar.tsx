@@ -8,7 +8,7 @@ type Props = {
   showProfile?: boolean
 } & AvatarProps
 
-export const TeammateAvatar: React.VFC<Props> = (props) => {
+export const TeammateAvatar: React.FC<Props> = (props) => {
   const { teammateId, showProfile, ...rest } = props
   const { teammate } = useTeammate(teammateId)
 

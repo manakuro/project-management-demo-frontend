@@ -3,7 +3,7 @@ import { Button, Flex, Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { useCollaboratorsContext } from './Provider'
 
-export const LeaveTask: React.VFC = memo(() => {
+export const LeaveTask: React.FC = memo(() => {
   const { isInputFocused } = useCollaboratorsContext()
 
   if (isInputFocused) return null

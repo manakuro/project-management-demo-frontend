@@ -9,15 +9,10 @@ type Props = FlexProps & {
   taskId: string
 }
 export const Card: React.FC<Props> = memo<Props>((props) => {
-  // const { task } = useTask(props.taskId)
   const { isOpening } = useTasksBoardListItemContext()
 
-  // if (task.isNew) {
-  //   return <Component {...props} />
-  // }
-
   return (
-    <Collapse in={isOpening} animateOpacity>
+    <Collapse in={isOpening} animateOpacity style={{ overflow: 'initial' }}>
       <Component {...props} />
     </Collapse>
   )

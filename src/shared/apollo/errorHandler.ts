@@ -47,7 +47,7 @@ const handleUnauthorizedError = () => {
   })
   setTimeout(() => {
     window.location.reload()
-  }, 5000)
+  }, 3000)
 
   unauthorized = true
 }

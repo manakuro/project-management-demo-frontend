@@ -6,7 +6,7 @@ import { useInputContext } from '../Provider'
 
 type Props = {}
 
-export const Attachment: React.VFC<Props> = memo<Props>(() => {
+export const Attachment: React.FC<Props> = memo<Props>(() => {
   const { onUploadFile } = useInputContext()
 
   return (

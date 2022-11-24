@@ -17,7 +17,7 @@ export const TasksName: React.FC<Props> = memo<Props>((props) => {
   )
 })
 
-const Component: React.VFC<Props> = memo<Props>((props) => {
+const Component: React.FC<Props> = memo<Props>((props) => {
   const { onToggleDone } = useTasksBoardListItemContext()
   const { deleteTask } = useTaskCommand()
   const { task, setTaskName } = useTask(props.taskId)

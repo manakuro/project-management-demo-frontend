@@ -6,7 +6,7 @@ import { useEditorLinkModal } from './useEditorLinkModal'
 type Props = {}
 
 const MARGIN = 30
-export const EditorLinkModal: React.VFC<Props> = () => {
+export const EditorLinkModal: React.FC<Props> = () => {
   const { isOpen, x, y, onClose, setInput, input } = useEditorLinkModal()
 
   const handleInput = useCallback(

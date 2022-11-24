@@ -3,7 +3,7 @@ import { Link } from 'src/components/atoms'
 import { PopoverTrigger } from 'src/components/organisms/Popover'
 import { useLinkStyle } from 'src/hooks/styles'
 
-export const PopoverEditorLinkTrigger: React.FC = (props) => {
+export const PopoverEditorLinkTrigger: React.FCWithChildren = (props) => {
   const { style } = useLinkStyle()
 
   return (

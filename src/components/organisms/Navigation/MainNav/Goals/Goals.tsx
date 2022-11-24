@@ -4,7 +4,7 @@ import { ROUTE_GOALS } from 'src/router'
 import { NavListItem } from '../../NavListItem'
 import { NavListItem as TNavListItem } from '../../type'
 
-export const Goals: React.VFC = memo(() => {
+export const Goals: React.FC = memo(() => {
   const router = useRouter()
 
   const item = useMemo<TNavListItem>(

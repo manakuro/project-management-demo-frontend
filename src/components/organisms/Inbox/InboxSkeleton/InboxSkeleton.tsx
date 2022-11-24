@@ -13,7 +13,7 @@ type Props = FlexProps
 const BUTTON_HEIGHT = '28px'
 const TEXT_HEIGHT = '16px'
 const maxH = 72 + 57
-export const InboxSkeleton: React.VFC<Props> = () => {
+export const InboxSkeleton: React.FC<Props> = () => {
   return (
     <Flex flex={1} h="full">
       <InboxLeft>

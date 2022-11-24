@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Flex, Stack, Skeleton } from 'src/components/atoms'
 
-export const SkeletonHeader: React.VFC = memo(() => {
+export const SkeletonHeader: React.FC = memo(() => {
   return (
     <Flex flex={1}>
       <Flex alignItems="center">

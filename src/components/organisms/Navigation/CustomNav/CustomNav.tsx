@@ -4,7 +4,7 @@ import { SavedSearches } from './SavedSearches'
 
 type Props = {}
 
-export const CustomNav: React.VFC<Props> = memo(() => {
+export const CustomNav: React.FC<Props> = memo(() => {
   return (
     <>
       <Favorites />

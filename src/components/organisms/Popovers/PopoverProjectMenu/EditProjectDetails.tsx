@@ -8,7 +8,7 @@ type Props = {
   onMouseEnter: () => void
 }
 
-export const EditProjectDetails: React.VFC<Props> = (props) => {
+export const EditProjectDetails: React.FC<Props> = (props) => {
   const { projectId, onClose, onMouseEnter } = props
   const { onOpen, setProjectId } = useProjectDetailModal()
 

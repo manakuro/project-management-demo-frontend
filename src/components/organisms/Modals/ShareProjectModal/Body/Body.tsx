@@ -17,7 +17,7 @@ type Props = {
   projectId: string
 }
 
-export const Body: React.VFC<Props> = memo<Props>((props) => {
+export const Body: React.FC<Props> = memo<Props>((props) => {
   const { projectId } = props
   const { tabIndex, setMembersTab, setShareTab } = useShareProjectModal()
   const [loadingTabContent, setLoadingTabContent] = useState<boolean>(true)

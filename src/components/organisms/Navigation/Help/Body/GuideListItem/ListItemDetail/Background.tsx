@@ -6,7 +6,7 @@ type Props = {
   src?: string
 }
 
-export const Background: React.VFC<Props> = (props) => {
+export const Background: React.FC<Props> = (props) => {
   const { src } = props
   const { setIsOpen, setSrc } = useVideoPlayer()
 

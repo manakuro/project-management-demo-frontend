@@ -18,28 +18,29 @@ export const TasksBoardContent: React.FC<Props> = memo<Props>((props) => {
   const ref = useRef<HTMLDivElement | null>(null)
   const [style, setStyle] = useState<FlexProps>()
   const prevIsOpen = usePrevious(isOpen)
-  const margin = useBreakpointValue({ base: 220, '2xl': 700 }) ?? 0
+  const margin =
+    useBreakpointValue({ base: 220, '2xl': 700 }, { fallback: 'base' }) ?? 0
 
   useEffect(() => {
-    const current = ref.current
-    if (prevIsOpen) return
     if (!isOpen) {
       setStyle({})
       return
     }
+    const current = ref.current
+    if (prevIsOpen) return
     if (!isHTMLElement(current)) return
 
     const boardListSectionElement =
       getTasksBoardListSectionElementByTaskId(taskId)
     if (!isHTMLElement(boardListSectionElement)) return
 
+    const left = boardListSectionElement.offsetLeft
+
+    // Skip scrolling when the first section is clicked
+    if (left < 300) return
+
+    setStyle({ width: '36%', minWidth: 'calc(100% - 670px)' })
     setTimeout(() => {
-      const left = boardListSectionElement.offsetLeft
-
-      // Skip scrolling when the first section is clicked
-      if (left < 300) return
-
-      setStyle({ width: '36%', minWidth: 'calc(100% - 670px)' })
       current.scrollTo({
         left: left - margin,
         behavior: 'smooth',

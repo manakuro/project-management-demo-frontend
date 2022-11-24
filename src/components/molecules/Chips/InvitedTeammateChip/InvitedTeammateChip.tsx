@@ -14,7 +14,7 @@ type Props = {
   onClick?: () => void
 }
 
-export const InvitedTeammateChip: React.VFC<Props> = memo((props) => {
+export const InvitedTeammateChip: React.FC<Props> = memo((props) => {
   const { teammate, onClick } = props
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
@@ -55,7 +55,7 @@ export const InvitedTeammateChip: React.VFC<Props> = memo((props) => {
       _hover={{ bg: 'gray.100' }}
     >
       <TeammateAvatar teammateId={teammate.id} size="xs" />
-      <Text ml={2} fontSize="xs" isTruncated color="text.base">
+      <Text ml={2} fontSize="xs" noOfLines={1} color="text.base">
         {teammate.name}
       </Text>
       {props.deletable && (

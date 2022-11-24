@@ -11,7 +11,7 @@ type Props = {
   currentProjectBaseColorId: string
 }
 
-export const IconPicker: React.VFC<Props> = (props) => {
+export const IconPicker: React.FC<Props> = (props) => {
   const { projectIconIds } = useProjectIconIds()
   const { setProject } = useProjectCommand()
 

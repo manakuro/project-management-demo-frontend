@@ -20,7 +20,7 @@ type Props = {
   endLoading: () => void
 }
 
-export const IncompleteTasksMenu: React.VFC<Props> = memo<Props>((props) => {
+export const IncompleteTasksMenu: React.FC<Props> = memo<Props>((props) => {
   const { startLoading, endLoading } = props
   const { setTaskListCompletedStatus, taskListStatus } =
     useTasksTaskListStatus()

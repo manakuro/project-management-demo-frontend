@@ -8,7 +8,7 @@ import {
 } from 'src/components/organisms/Popovers'
 import { useReactNodeView } from '../ReactNodeView'
 
-export const Link: React.FC = (props) => {
+export const Link: React.FCWithChildren = (props) => {
   const context = useReactNodeView()
 
   return (

@@ -5,7 +5,7 @@ import { AttachmentMenu } from 'src/components/organisms/Menus'
 
 type Props = {}
 
-export const Attachment: React.VFC<Props> = memo<Props>(() => {
+export const Attachment: React.FC<Props> = memo<Props>(() => {
   return (
     <AttachmentMenu
       label="Add a file to this task. This file will not be persisted in database."

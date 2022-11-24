@@ -13,7 +13,7 @@ import { useRouter, isProjectsDetailURL, getProjectsDetailId } from 'src/router'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { SkeletonFiles } from './SkeletonFiles'
 
-export const Files: React.VFC = memo(() => {
+export const Files: React.FC = memo(() => {
   return (
     <TasksContainer isProjectsPage>
       <Component />
@@ -21,7 +21,7 @@ export const Files: React.VFC = memo(() => {
   )
 })
 
-const Component: React.VFC = memo(() => {
+const Component: React.FC = memo(() => {
   const { tabContentLoading, fetchTaskDetailQuery } = useProjectsPageContext()
   const { projectId } = useProjectsProjectId()
   const { loading: queryLoading } = useProjectsFilesPageQuery()

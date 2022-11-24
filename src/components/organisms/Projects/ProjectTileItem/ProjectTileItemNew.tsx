@@ -8,7 +8,7 @@ type Props = {
   containerStyle?: FlexProps
 }
 
-export const ProjectTileItemNew: React.VFC<Props> = (props) => {
+export const ProjectTileItemNew: React.FC<Props> = (props) => {
   const { containerStyle } = props
   return (
     <Container name="New Project" {...containerStyle}>

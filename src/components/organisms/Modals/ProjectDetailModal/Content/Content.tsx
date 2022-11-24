@@ -18,7 +18,7 @@ type Props = {
   projectId: string
 }
 
-export const Content: React.VFC<Props> = memo<Props>((props) => {
+export const Content: React.FC<Props> = memo<Props>((props) => {
   const { projectId } = props
   const { project } = useProject(projectId)
   const { setProject } = useProjectCommand()

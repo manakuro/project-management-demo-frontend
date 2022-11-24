@@ -10,7 +10,7 @@ import {
 type Props = FlexProps
 
 const BUTTON_HEIGHT = '28px'
-export const SkeletonCalendar: React.VFC<Props> = memo<Props>((props) => {
+export const SkeletonCalendar: React.FC<Props> = memo<Props>((props) => {
   return (
     <Flex flex={1} flexDirection="column" {...props}>
       <TasksHeader

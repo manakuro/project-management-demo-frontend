@@ -19,7 +19,7 @@ import {
 
 type Props = {}
 
-export const ProjectsSection: React.VFC<Props> = memo<Props>(() => {
+export const ProjectsSection: React.FC<Props> = memo<Props>(() => {
   const { projectIds } = useProjectIds()
   const [listStatus, setListStatus] = useState<ProjectListStatus>(
     PROJECT_LIST_MENU_VIEW_AS_TILES,
@@ -44,6 +44,7 @@ export const ProjectsSection: React.VFC<Props> = memo<Props>(() => {
                     href={ROUTE_PROJECTS_LIST.href.pathnameObj(id)}
                     key={id}
                     passHref
+                    legacyBehavior
                   >
                     <Link>
                       <ProjectTileItem
@@ -63,6 +64,7 @@ export const ProjectsSection: React.VFC<Props> = memo<Props>(() => {
                   href={ROUTE_PROJECTS_LIST.href.pathnameObj(id)}
                   key={id}
                   passHref
+                  legacyBehavior
                 >
                   <Link>
                     <ProjectListItem projectId={id} />

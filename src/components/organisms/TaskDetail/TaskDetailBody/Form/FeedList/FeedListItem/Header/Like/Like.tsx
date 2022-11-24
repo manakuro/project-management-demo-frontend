@@ -5,7 +5,7 @@ import { useLike } from './useLike'
 
 type Props = {}
 
-export const Like: React.VFC<Props> = () => {
+export const Like: React.FC<Props> = () => {
   const { showLike } = useTaskFeedListItemContext()
   const { hasAnyoneLiked, label, likeLength, onToggleLike } = useLike()
 

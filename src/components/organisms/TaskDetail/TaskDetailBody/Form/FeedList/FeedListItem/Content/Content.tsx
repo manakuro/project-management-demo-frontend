@@ -6,14 +6,14 @@ import { ContentText } from './ContentText'
 
 type Props = {}
 
-export const Content: React.VFC<Props> = memo<Props>(() => {
+export const Content: React.FC<Props> = memo<Props>(() => {
   return (
     <Flex mt={2} flexDirection="column">
       <Component />
     </Flex>
   )
 })
-const Component: React.VFC<Props> = memo<Props>(() => {
+const Component: React.FC<Props> = memo<Props>(() => {
   const { taskFileIds, hasText } = useTaskFeedListItemContext()
 
   return (

@@ -39,10 +39,10 @@ export const EmojiItem: React.FC<Props> = memo<Props>((props) => {
   return (
     <Flex
       ref={ref}
+      {...styles}
       bg={selected ? styles._focus.bg : 'transparent'}
       fontSize="sm"
       alignItems="center"
-      {...styles}
       onClick={handleClick}
       {...rest}
     >

@@ -5,7 +5,7 @@ import { forwardRef } from 'src/shared/chakra'
 
 type Props = {}
 
-export const Button: React.FC<Props> = forwardRef((props, ref) => {
+export const Button: React.FCWithChildren<Props> = forwardRef((props, ref) => {
   return (
     <MenuButton
       ref={ref}

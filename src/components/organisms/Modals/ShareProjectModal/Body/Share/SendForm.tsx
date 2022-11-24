@@ -19,7 +19,7 @@ type Props = {
   onDeleteInvitedTeammate: (teammateId: string) => void
 }
 
-export const SendForm: React.VFC<Props> = memo<Props>((props) => {
+export const SendForm: React.FC<Props> = memo<Props>((props) => {
   const { onSetInvitedTeammates, invitedTeammates, onDeleteInvitedTeammate } =
     props
   const popoverDisclosure = useDisclosure()

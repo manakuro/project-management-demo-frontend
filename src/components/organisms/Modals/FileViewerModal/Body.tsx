@@ -14,7 +14,7 @@ import { useFileViewerModal } from './useFileViewerModal'
 
 type Props = {}
 
-export const Body: React.VFC<Props> = memo(() => {
+export const Body: React.FC<Props> = memo(() => {
   const { taskFileIds, setState, currentTaskFileId } = useFileViewerModal()
   const defaultIndex = useMemo(
     () => taskFileIds.indexOf(currentTaskFileId),

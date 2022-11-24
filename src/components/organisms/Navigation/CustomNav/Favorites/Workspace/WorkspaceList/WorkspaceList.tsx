@@ -4,7 +4,7 @@ import { ListItem } from './ListItem'
 
 type Props = {}
 
-export const WorkspaceList: React.VFC<Props> = memo(() => {
+export const WorkspaceList: React.FC<Props> = memo(() => {
   const { favoriteWorkspaceIds } = useFavoriteWorkspaceIds()
 
   return <>{favoriteWorkspaceIds.length > 0 && <ListItem />}</>

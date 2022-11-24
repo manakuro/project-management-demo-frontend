@@ -5,7 +5,7 @@ type Props = {
   server?: boolean
 }
 
-export const ConditionalRender: React.FC<Props> = (props) => {
+export const ConditionalRender: React.FCWithChildren<Props> = (props) => {
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => setIsMounted(true), [])

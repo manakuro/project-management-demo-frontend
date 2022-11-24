@@ -25,7 +25,7 @@ const initialState = (): State => ({
   seeking: false,
 })
 
-export const VideoPlayer: React.VFC = () => {
+export const VideoPlayer: React.FC = () => {
   const { state, onClose } = useVideoPlayer()
   const [videoState, setVideoState] = useState<State>(initialState())
   const ref = useRef<ReactPlayer>(null)
@@ -52,7 +52,7 @@ export const VideoPlayer: React.VFC = () => {
     [videoState.seeking],
   )
 
-  const handleDuration = useCallback((duration) => {
+  const handleDuration = useCallback((duration: number) => {
     setVideoState((s) => ({ ...s, duration }))
   }, [])
 

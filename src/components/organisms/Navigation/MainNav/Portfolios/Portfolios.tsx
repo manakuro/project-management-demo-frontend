@@ -4,7 +4,7 @@ import { ROUTE_PORTFOLIOS } from 'src/router'
 import { NavListItem } from '../../NavListItem'
 import { NavListItem as TNavListItem } from '../../type'
 
-export const Portfolios: React.VFC = memo(() => {
+export const Portfolios: React.FC = memo(() => {
   const router = useRouter()
 
   const item = useMemo<TNavListItem>(

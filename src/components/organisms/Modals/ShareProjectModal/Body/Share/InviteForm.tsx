@@ -13,7 +13,7 @@ type Props = {
   onSetInvitedTeammates: (val: Teammate) => void
 }
 
-export const InviteForm: React.VFC<Props> = memo<Props>((props) => {
+export const InviteForm: React.FC<Props> = memo<Props>((props) => {
   const { projectId, onSetMembersTab, onSetInvitedTeammates } = props
   const popoverDisclosure = useDisclosure()
   const [value, setValue] = useState<string>('')

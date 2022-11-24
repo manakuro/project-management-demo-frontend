@@ -35,7 +35,9 @@ const useValue = (props: Props): ContextProps => {
 
     setReference()
     const rect = dom.getBoundingClientRect()
-    taskDetailBodyDom.scrollTo({ top: rect.top, behavior: 'smooth' })
+    setTimeout(() => {
+      taskDetailBodyDom.scrollTo({ top: rect.top, behavior: 'smooth' })
+    }, 500)
   }, [setReference, taskDetailBodyDom])
 
   useEffect(() => {

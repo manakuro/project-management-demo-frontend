@@ -7,7 +7,7 @@ type Props = FlexProps & {
   taskId: string
 }
 
-export const DeleteButton: React.VFC<Props> = memo<Props>((props) => {
+export const DeleteButton: React.FC<Props> = memo<Props>((props) => {
   const { unassignTask } = useTaskCommand()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
   const handleClick = useCallback(

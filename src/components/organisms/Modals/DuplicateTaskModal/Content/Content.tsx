@@ -36,7 +36,7 @@ const INCLUDE_OPTION_PROJECTS = '6'
 const INCLUDE_OPTION_DUE_DATE = '7'
 const INCLUDE_OPTION_PARENT_TASK = '8'
 
-export const Content: React.VFC<Props> = memo((props) => {
+export const Content: React.FC<Props> = memo((props) => {
   const { task } = useTask(props.taskId)
   const initialValues = useMemo(
     () => ({

@@ -9,7 +9,7 @@ type Props = {
   taskFileId: string
 }
 
-export const ThumbnailListItem: React.VFC<Props> = (props) => {
+export const ThumbnailListItem: React.FC<Props> = (props) => {
   const { taskFileId } = props
   const { taskFile } = useTaskFile(taskFileId)
   const style = useMemo<ChakraProps>(

@@ -8,7 +8,7 @@ type Props = {
   taskFileId: string
 }
 
-export const ListItem: React.VFC<Props> = (props) => {
+export const ListItem: React.FC<Props> = (props) => {
   const { taskFileId } = props
   const { taskFile } = useTaskFile(taskFileId)
 

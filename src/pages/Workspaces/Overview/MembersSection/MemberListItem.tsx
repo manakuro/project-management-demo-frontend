@@ -7,7 +7,7 @@ type Props = {
   teammateId: string
 }
 
-export const MemberListItem: React.VFC<Props> = memo<Props>((props) => {
+export const MemberListItem: React.FC<Props> = memo<Props>((props) => {
   const { teammateId } = props
   const { teammate } = useTeammate(teammateId)
   return (
@@ -20,7 +20,7 @@ export const MemberListItem: React.VFC<Props> = memo<Props>((props) => {
         flex={1}
         justifyContent="center"
       >
-        <Text fontSize="sm" fontWeight="medium" isTruncated>
+        <Text fontSize="sm" fontWeight="medium" noOfLines={1}>
           {teammate.name}
         </Text>
         <Text fontSize="xs" color="text.muted">

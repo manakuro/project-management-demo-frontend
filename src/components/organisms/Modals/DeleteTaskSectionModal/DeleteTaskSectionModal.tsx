@@ -19,7 +19,7 @@ import {
 } from 'src/components/organisms/Modal'
 import { useDeleteTaskSectionModal } from './useDeleteTaskSectionModal'
 
-export const DeleteTaskSectionModal: React.VFC<Props> = () => {
+export const DeleteTaskSectionModal: React.FC<Props> = () => {
   const { isOpen } = useDeleteTaskSectionModal()
 
   if (!isOpen) return null
@@ -28,7 +28,7 @@ export const DeleteTaskSectionModal: React.VFC<Props> = () => {
 }
 
 type Props = {}
-export const Component: React.VFC<Props> = () => {
+export const Component: React.FC<Props> = () => {
   const {
     isOpen,
     onClose,

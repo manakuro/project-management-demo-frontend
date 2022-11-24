@@ -8,7 +8,7 @@ import { useWorkspace } from 'src/store/entities/workspace'
 
 type Props = FlexProps
 
-export const ShareButton: React.VFC<Props> = memo<Props>((props) => {
+export const ShareButton: React.FC<Props> = memo<Props>((props) => {
   const { projectId } = useProjectsProjectId()
   const { onOpen, setProjectId, setShareTab } = useShareProjectModal()
   const { isOpen, ref } = useTooltip()

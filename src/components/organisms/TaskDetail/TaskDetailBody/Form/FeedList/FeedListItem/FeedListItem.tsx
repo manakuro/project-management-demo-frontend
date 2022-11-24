@@ -10,7 +10,7 @@ type Props = {
   isPinned?: boolean
 }
 
-export const FeedListItem: React.VFC<Props> = memo<Props>((props) => {
+export const FeedListItem: React.FC<Props> = memo<Props>((props) => {
   return (
     <Provider {...props}>
       <Component />
@@ -18,7 +18,7 @@ export const FeedListItem: React.VFC<Props> = memo<Props>((props) => {
   )
 })
 
-const Component: React.VFC = memo(() => {
+const Component: React.FC = memo(() => {
   return (
     <Container>
       <Header />

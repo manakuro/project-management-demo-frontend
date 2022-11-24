@@ -10,7 +10,7 @@ type Props = {
   onToggle: (id: number) => void
 }
 
-export const Header: React.VFC<Props> = (props) => {
+export const Header: React.FC<Props> = (props) => {
   const { item, onToggle } = props
 
   const handleToggle = useCallback(() => {

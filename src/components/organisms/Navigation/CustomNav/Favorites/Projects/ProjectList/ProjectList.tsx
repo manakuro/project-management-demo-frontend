@@ -4,7 +4,7 @@ import { ListItem } from './ListItem'
 
 type Props = {}
 
-export const ProjectList: React.VFC<Props> = memo(() => {
+export const ProjectList: React.FC<Props> = memo(() => {
   const { favoriteProjectIds } = useFavoriteProjectIds()
 
   return (

@@ -30,7 +30,7 @@ type Props = {
 }
 
 export const PADDING_X = 4
-export const GuideListItem: React.VFC<Props> = (props) => {
+export const GuideListItem: React.FC<Props> = (props) => {
   const { item, isOpen, onToggle, nextItem } = props
 
   return (

@@ -7,7 +7,7 @@ import { FavoriteIconButton } from './FavoriteIconButton'
 import { MoreActionIconButton } from './MoreActionIconButton'
 import { ProjectDetailIconButton } from './ProjectDetailIconButton'
 
-export const Tabs: React.VFC = memo(() => {
+export const Tabs: React.FC = memo(() => {
   const { projectId } = useProjectsProjectId()
   const { project } = useProject(projectId)
 

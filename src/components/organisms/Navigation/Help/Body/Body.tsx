@@ -9,7 +9,7 @@ import { GuideListItem, Item } from './GuideListItem'
 
 const items: Item[] = [guide1Item, guide2Item, guide3Item, guide4Item]
 
-export const Body: React.VFC = (props) => {
+export const Body: React.FC = (props) => {
   const [state, setState] = useState<{ id: number; isOpen: boolean }[]>(
     items.map((i) => ({ id: i.id, isOpen: false })),
   )

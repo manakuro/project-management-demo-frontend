@@ -12,7 +12,7 @@ import { useFileViewerModal } from './useFileViewerModal'
 
 type Props = {}
 
-export const FileViewerModal: React.VFC<Props> = () => {
+export const FileViewerModal: React.FC<Props> = () => {
   const { isOpen, onClose } = useFileViewerModal()
 
   return (

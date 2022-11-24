@@ -1,5 +1,5 @@
 import Link, { LinkProps } from 'next/link'
-import React, { memo, useMemo } from 'react'
+import React, { memo, PropsWithChildren, useMemo } from 'react'
 import {
   StaticRoutes,
   routes,
@@ -7,9 +7,11 @@ import {
   convertPathnameObjToPathname,
 } from 'src/router'
 
-type Props = Omit<LinkProps, 'href'> & {
-  href: StaticRoutes | DynamicRoutes
-}
+type Props = PropsWithChildren<
+  Omit<LinkProps, 'href'> & {
+    href: StaticRoutes | DynamicRoutes
+  }
+>
 
 export const NextLink: React.FC<Props> = memo<Props>((props) => {
   const href = useMemo(() => {

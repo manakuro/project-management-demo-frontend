@@ -12,7 +12,7 @@ import {
 import { Teammate } from 'src/store/entities/teammate'
 import { useCollaboratorsContext } from '../Provider'
 
-export const Input: React.VFC = () => {
+export const Input: React.FC = () => {
   const { isInputFocused } = useCollaboratorsContext()
 
   if (!isInputFocused) return null
@@ -25,7 +25,7 @@ type InputStyle = {
   addon: ChakraProps
 }
 
-const Component: React.VFC = memo(() => {
+const Component: React.FC = memo(() => {
   const { taskId } = useTaskDetail()
   const { teammateIds } = useTeammateIdsByTaskId(taskId)
   const { addTaskCollaboratorByTeammate, deleteTaskCollaboratorByTeammate } =

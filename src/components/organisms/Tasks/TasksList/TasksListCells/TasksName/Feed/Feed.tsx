@@ -9,7 +9,7 @@ import { Icon } from './Icon'
 
 type Props = {}
 
-export const Feed: React.VFC<Props> = () => {
+export const Feed: React.FC<Props> = () => {
   const { taskId } = useTasksNameContext()
   const { taskFeedIdsWithoutFirst } = useTaskFeedIdsWithoutFirstByTaskId(taskId)
   const size = useMemo(

@@ -7,7 +7,7 @@ type Props = {
   projectId: string
 }
 
-export const DueDate: React.VFC<Props> = memo<Props>((props) => {
+export const DueDate: React.FC<Props> = memo<Props>((props) => {
   const { projectId } = props
   const { timelineBorderStyle } = useTimelineStyle()
 

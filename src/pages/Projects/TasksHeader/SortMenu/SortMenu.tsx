@@ -43,7 +43,7 @@ const ITEMS: {
   },
 ]
 
-export const SortMenu: React.VFC<Props> = memo<Props>(() => {
+export const SortMenu: React.FC<Props> = memo<Props>(() => {
   const { sortBy, isSorted, taskListStatus } = useProjectsTaskListStatus()
   const { startContentLoading, endContentLoading } = useProjectsPageContext()
 

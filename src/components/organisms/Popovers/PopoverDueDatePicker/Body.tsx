@@ -31,7 +31,7 @@ export const Body: React.FC<Props> = memo<Props>((props) => {
   }, [props.date])
 
   const handleAccept = useCallback(
-    (newValue) => {
+    (newValue: unknown) => {
       onChange(newValue as Date)
     },
     [onChange],

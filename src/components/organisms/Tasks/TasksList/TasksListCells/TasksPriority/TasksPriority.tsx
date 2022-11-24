@@ -11,7 +11,7 @@ type Props = FlexProps & {
   width: string
 }
 
-export const TasksPriority: React.VFC<Props> = memo<Props>((props) => {
+export const TasksPriority: React.FC<Props> = memo<Props>((props) => {
   const { taskId } = props
   const { task } = useTask(taskId)
   const [focused, setFocused] = useState(false)

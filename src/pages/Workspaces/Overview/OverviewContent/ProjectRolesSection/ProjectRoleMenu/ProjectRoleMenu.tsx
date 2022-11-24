@@ -1,14 +1,14 @@
-import React, { memo } from 'react'
+import React, { memo, PropsWithChildren } from 'react'
 import { Box, PortalManager } from 'src/components/atoms'
 import { Menu } from 'src/components/organisms/Menu'
 import { useDisclosure } from 'src/shared/chakra'
 import { MenuList } from './MenuList'
 import { ProjectRoleInputPopover } from './ProjectRoleInputPopover'
 
-type Props = {
+type Props = PropsWithChildren<{
   projectId: string
   projectTeammateId: string
-}
+}>
 
 export const ProjectRoleMenu: React.FC<Props> = memo<Props>((props) => {
   const disclosurePopover = useDisclosure()

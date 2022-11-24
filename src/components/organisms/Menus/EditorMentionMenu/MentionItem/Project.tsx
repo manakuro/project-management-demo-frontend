@@ -20,7 +20,7 @@ export const Project: React.FC<Props> = memo<Props>((props) => {
         <ColorBox size="sm" color={projectBaseColor.color.color} />
       </LeftContainer>
       <RightContainer>
-        <Text fontSize="sm" w="80%" isTruncated>
+        <Text fontSize="sm" w="80%" noOfLines={1}>
           {props.mention.title}
         </Text>
       </RightContainer>

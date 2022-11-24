@@ -4,7 +4,7 @@ import { TabList, Tab } from 'src/components/organisms/Tabs'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { FavoriteButton } from './FavoriteButton'
 
-export const Tabs: React.VFC = memo(() => {
+export const Tabs: React.FC = memo(() => {
   const { workspace } = useWorkspace()
 
   return (

@@ -7,7 +7,7 @@ import { TasksListSectionProvider } from 'src/components/organisms/Tasks/TasksLi
 import { useMyTasksProjectIds } from 'src/store/app/myTasks/projects'
 import { useMyTasksTaskIdsWithNoProject } from 'src/store/app/myTasks/tasks'
 
-export const ListSortByProject: React.VFC = memo(() => {
+export const ListSortByProject: React.FC = memo(() => {
   const { projectIds } = useMyTasksProjectIds()
   const { taskIds } = useMyTasksTaskIdsWithNoProject()
   const { stickyStyle } = useTasksListContext()

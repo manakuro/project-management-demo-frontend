@@ -9,7 +9,7 @@ import { Tabs } from './Tabs'
 type Props = {
   loading?: boolean
 }
-export const Header: React.VFC<Props> = memo<Props>((props) => {
+export const Header: React.FC<Props> = memo<Props>((props) => {
   if (props.loading) {
     return <SkeletonHeader />
   }

@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { Box, Flex, Skeleton, Stack } from 'src/components/atoms'
 
 const TEXT_HEIGHT = '16px'
-export const SkeletonHome: React.VFC = memo(() => {
+export const SkeletonHome: React.FC = memo(() => {
   return (
     <Box w="840px" mx="auto" py={10}>
       <Stack spacing={10}>

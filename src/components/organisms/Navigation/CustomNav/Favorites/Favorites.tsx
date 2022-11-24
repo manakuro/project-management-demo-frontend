@@ -18,7 +18,7 @@ import { Workspace } from './Workspace'
 
 type Props = {}
 
-export const Favorites: React.VFC<Props> = memo(() => {
+export const Favorites: React.FC<Props> = memo(() => {
   const { isExpanded } = useNavigation()
   const { disabledStyle } = useDisabledStyle()
   const title = useMemo(() => (isExpanded ? 'Favorites' : 'Fav'), [isExpanded])

@@ -1,11 +1,11 @@
-const OriginalDate = Date as any
+import MockDate from 'mockdate'
+
 export const mockDate = (date: string) => {
   beforeAll(() => {
-    const now = new OriginalDate(date) as any
-    ;(Date as any).now = jest.fn(() => now)
+    MockDate.set(date)
   })
 
   afterAll(() => {
-    global.Date = OriginalDate
+    MockDate.reset()
   })
 }

@@ -3,7 +3,7 @@ import { Text, Stack, AspectRatio, Box, Link } from 'src/components/atoms'
 import { Section } from 'src/components/organisms/Navigation/Help/Body/GuideListItem/ListItemDetail'
 import { guide1Item } from './item'
 
-export const SeeMore: React.VFC = () => {
+export const SeeMore: React.FC = () => {
   return (
     <>
       <Stack spacing={3}>

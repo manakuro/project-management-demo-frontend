@@ -5,12 +5,9 @@ const testMatch = () => {
 }
 
 module.exports = {
-  preset: 'ts-jest',
   testEnvironment: 'jsdom',
   globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.jest.json',
-    },
+    __DEV__: true,
   },
   testMatch: testMatch(),
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
@@ -19,14 +16,17 @@ module.exports = {
     '<rootDir>/setupTests.js',
   ],
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/ts-jest',
+    '^.+\\.(js|jsx|ts|tsx)$': ['@swc/jest'],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'd.ts'],
   moduleNameMapper: {
     '^src/(.*)$': '<rootDir>/src/$1',
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|css)$':
       'empty/object',
   },
+  transformIgnorePatterns: [
+    '/node_modules/(?!(lodash-es|uuid|@react-hook|emoji-mart))',
+  ],
   watchPlugins: [
     require.resolve('jest-watch-typeahead/filename'),
     require.resolve('jest-watch-typeahead/testname'),

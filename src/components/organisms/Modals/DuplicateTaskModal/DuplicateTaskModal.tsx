@@ -5,7 +5,7 @@ import { useDuplicateTaskModal } from './useDuplicateTaskModal'
 
 type Props = {}
 
-export const DuplicateTaskModal: React.VFC<Props> = () => {
+export const DuplicateTaskModal: React.FC<Props> = () => {
   const { isOpen, onClose, taskId } = useDuplicateTaskModal()
 
   return (

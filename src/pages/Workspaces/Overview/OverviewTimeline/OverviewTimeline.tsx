@@ -6,7 +6,7 @@ import { ProjectCreated } from './ProjectCreated'
 
 type Props = {}
 
-export const OverviewTimeline: React.VFC<Props> = memo<Props>(() => {
+export const OverviewTimeline: React.FC<Props> = memo<Props>(() => {
   const { projectId } = useProjectsProjectId()
 
   return (

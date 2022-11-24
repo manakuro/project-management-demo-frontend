@@ -9,7 +9,7 @@ type Props = {
   onDelete?: (teammateId: string) => void
 }
 
-export const AssigneeChip: React.VFC<Props> = memo((props) => {
+export const AssigneeChip: React.FC<Props> = memo((props) => {
   const { teammateId, onDelete } = props
   const { teammate } = useTeammate(teammateId)
   const { clickableHoverLightStyle } = useClickableHoverStyle()

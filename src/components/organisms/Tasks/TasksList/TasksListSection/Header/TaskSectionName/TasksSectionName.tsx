@@ -48,7 +48,7 @@ export const TaskSectionName: React.FC<Props> = memo<Props>((props) => {
     <Box
       px={2}
       maxW={80}
-      isTruncated
+      noOfLines={1}
       fontWeight="semibold"
       border="1px"
       borderColor="transparent"

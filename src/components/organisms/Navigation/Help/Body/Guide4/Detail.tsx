@@ -23,7 +23,7 @@ const items: TNavListItem[] = [
     isExternal: true,
   },
 ]
-export const Detail: React.VFC = () => {
+export const Detail: React.FC = () => {
   return (
     <>
       <List w="full">

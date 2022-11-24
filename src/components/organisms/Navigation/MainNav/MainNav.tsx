@@ -7,7 +7,7 @@ import { Inbox } from './Inbox'
 import { MyTasks } from './MyTasks'
 import { Portfolios } from './Portfolios'
 
-export const MainNav: React.VFC = memo(() => {
+export const MainNav: React.FC = memo(() => {
   return (
     <List w={MAX_WIDTH} mb={2}>
       <Home />

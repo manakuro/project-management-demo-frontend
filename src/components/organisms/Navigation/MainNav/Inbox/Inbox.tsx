@@ -4,7 +4,7 @@ import { ROUTE_INBOX } from 'src/router'
 import { NavListItem } from '../../NavListItem'
 import { NavListItem as TNavListItem } from '../../type'
 
-export const Inbox: React.VFC = memo(() => {
+export const Inbox: React.FC = memo(() => {
   const router = useRouter()
 
   const item = useMemo<TNavListItem>(

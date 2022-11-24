@@ -1,1 +1,5 @@
 src/graphql/types/index.ts
+src/graphql/enums/index.ts
+src/graphql/hooks/index.ts
+src/graphql/__schema__.graphql
+src/graphql/**/*.gql

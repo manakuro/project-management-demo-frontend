@@ -36,7 +36,7 @@ type Props = {
   forceUpdate?: number
   resetView?: number
 } & EditorProps
-export const EditorProvider: React.FC<Props> = (props) => {
+export const EditorProvider: React.FCWithChildren<Props> = (props) => {
   return (
     <ReactNodeViewPortalsProvider>
       <Provider {...props} />
@@ -105,7 +105,7 @@ const generateView = (
   return view
 }
 
-const Provider: React.FC<Props> = (props) => {
+const Provider: React.FCWithChildren<Props> = (props) => {
   const { createPortal, removePortal } = useReactNodeViewCreatePortal()
   const [state, setState] = useState(generateState(props))
   const [view, setView] = useState<EditorView | null>(null)

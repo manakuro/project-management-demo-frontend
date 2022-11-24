@@ -10,7 +10,7 @@ import { OverviewRightContent } from './OverviewRightContent'
 import { OverviewTimeline } from './OverviewTimeline'
 import { SkeletonOverview } from './SkeletonOverview'
 
-export const Overview: React.VFC = memo(() => {
+export const Overview: React.FC = memo(() => {
   return (
     <TasksContainer isProjectsPage>
       <Component />
@@ -18,7 +18,7 @@ export const Overview: React.VFC = memo(() => {
   )
 })
 
-const Component: React.VFC = memo(() => {
+const Component: React.FC = memo(() => {
   const { tabContentLoading } = useProjectsPageContext()
 
   if (tabContentLoading) return <SkeletonOverview />

@@ -4,7 +4,7 @@ import { TasksListRow } from 'src/components/organisms/Tasks'
 
 const TEXT_HEIGHT = '16px'
 
-export const SkeletonList: React.VFC = memo(() => {
+export const SkeletonList: React.FC = memo(() => {
   return (
     <Flex px={6} flex={1}>
       <Flex flex={1} flexDirection="column">

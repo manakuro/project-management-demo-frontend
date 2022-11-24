@@ -20,7 +20,7 @@ import { useShareWorkspaceModal } from './useShareWorkspaceModal'
 
 type Props = {}
 
-export const ShareWorkspaceModal: React.VFC<Props> = () => {
+export const ShareWorkspaceModal: React.FC<Props> = () => {
   const { isOpen, onClose } = useShareWorkspaceModal()
 
   return (

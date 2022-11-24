@@ -6,7 +6,7 @@ type Props = {
   textStyle?: TextProps
 }
 
-export const Icon: React.VFC<Props> = memo<Props>((props) => {
+export const Icon: React.FC<Props> = memo<Props>((props) => {
   const { size, textStyle } = props
 
   return (

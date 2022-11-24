@@ -8,7 +8,7 @@ type Props = {
   taskId: string
 } & Omit<IconButtonProps, 'aria-label'>
 
-export const ActionButton: React.VFC<Props> = memo<Props>((props) => {
+export const ActionButton: React.FC<Props> = memo<Props>((props) => {
   const { isActivity } = useInboxContext()
 
   if (isActivity) {

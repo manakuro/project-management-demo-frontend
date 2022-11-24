@@ -5,7 +5,7 @@ import { TasksHeader, TasksHeaderRight } from 'src/components/organisms/Tasks'
 type Props = FlexProps
 
 const BUTTON_HEIGHT = '28px'
-export const SkeletonBoardHeader: React.VFC<Props> = memo<Props>(() => {
+export const SkeletonBoardHeader: React.FC<Props> = memo<Props>(() => {
   return (
     <TasksHeader
       h="40px"

@@ -6,7 +6,7 @@ import {
   TasksHeaderRight,
 } from 'src/components/organisms/Tasks'
 const BUTTON_HEIGHT = '28px'
-export const SkeletonListHeader: React.VFC = memo(() => {
+export const SkeletonListHeader: React.FC = memo(() => {
   return (
     <TasksHeader>
       <TasksHeaderLeft>

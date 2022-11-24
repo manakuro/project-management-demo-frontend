@@ -3,7 +3,7 @@ import { Button, Icon } from 'src/components/atoms'
 
 type Props = {}
 
-export const WeekendsButton: React.VFC<Props> = memo<Props>(() => {
+export const WeekendsButton: React.FC<Props> = memo<Props>(() => {
   return (
     <Button
       variant="ghost"

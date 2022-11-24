@@ -5,7 +5,7 @@ import { ProjectRolesSection } from './ProjectRolesSection'
 
 type Props = {}
 
-export const OverviewContent: React.VFC<Props> = memo<Props>(() => {
+export const OverviewContent: React.FC<Props> = memo<Props>(() => {
   return (
     <>
       <DescriptionSection />

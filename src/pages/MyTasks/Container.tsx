@@ -28,7 +28,7 @@ export const Container: React.FC & GetLayout = () => {
 }
 
 // Set tab status before rendering in order to prevent unnecessary tab changed
-const BeforeMountComponent: React.FC = (props) => {
+const BeforeMountComponent: React.FCWithChildren = (props) => {
   const { loading: queryLoading } = useTeammateTaskTabStatusQuery()
   const [loading, setLoading] = useState(queryLoading)
   const [loaded, setLoaded] = useState(false)

@@ -6,7 +6,7 @@ import { useEditorMentionMenu } from './useEditorMentionMenu'
 
 type Props = {}
 
-export const MenuContent: React.VFC<Props> = memo(() => {
+export const MenuContent: React.FC<Props> = memo(() => {
   const { x, y, containerRef } = useEditorMentionMenu()
   const menuStyles = useMenuStyle().list
 

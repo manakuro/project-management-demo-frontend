@@ -17,7 +17,7 @@ type Props = {
   onClose: () => void
 }
 
-export const Content: React.VFC<Props> = memo((props) => {
+export const Content: React.FC<Props> = memo((props) => {
   return (
     <ModalContent minH="670px" maxH="670px">
       <ModalHeader p={0}>

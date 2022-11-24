@@ -5,7 +5,7 @@ type Props = FlexProps & {
   isHovering: boolean
 }
 
-export const Overlay: React.VFC<Props> = (props) => {
+export const Overlay: React.FC<Props> = (props) => {
   const { isHovering, ...rest } = props
 
   return (

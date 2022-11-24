@@ -30,7 +30,7 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
   const { task, setTaskName, setTask } = useTask(props.taskId)
 
   const handleChange = useCallback(
-    async (val) => {
+    async (val: string) => {
       await setTaskName(val)
     },
     [setTaskName],

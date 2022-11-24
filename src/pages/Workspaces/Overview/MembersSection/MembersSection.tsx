@@ -11,7 +11,7 @@ import { MemberListItem } from './MemberListItem'
 
 type Props = {}
 
-export const MembersSection: React.VFC<Props> = memo<Props>(() => {
+export const MembersSection: React.FC<Props> = memo<Props>(() => {
   const { workspace } = useWorkspace()
   const { teammateIds } = useTeammateIdsByWorkspaceId(workspace.id)
 

@@ -14,7 +14,7 @@ type Props = {
   projectId: string
 }
 
-export const ProjectListItem: React.VFC<Props> = memo<Props>((props) => {
+export const ProjectListItem: React.FC<Props> = memo<Props>((props) => {
   const { projectId } = props
   const { project } = useProject(projectId)
   const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)

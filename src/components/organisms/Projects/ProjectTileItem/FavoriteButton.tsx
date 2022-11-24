@@ -10,7 +10,7 @@ type Props = {
   projectId: string
 }
 
-export const FavoriteButton: React.VFC<Props> = memo((props) => {
+export const FavoriteButton: React.FC<Props> = memo((props) => {
   const { projectId } = props
   const { clickableHoverLightStyle } = useClickableHoverStyle()
   const { setFavoriteProjectId } = useFavoriteProjectIdsCommand()

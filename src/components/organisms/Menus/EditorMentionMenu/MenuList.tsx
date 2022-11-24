@@ -7,7 +7,7 @@ import { useEditorMentionMenu, SetValueParam } from './useEditorMentionMenu'
 
 type Props = {}
 
-export const MenuList: React.VFC<Props> = memo<Props>(() => {
+export const MenuList: React.FC<Props> = memo<Props>(() => {
   const { mentions, setValue, refetch, query } = useEditorMentionMenu()
   const [hasChangedQuery, setHasChangedQuery] = useState<number>(0)
   const [searching, setSearching] = useState<boolean>(true)

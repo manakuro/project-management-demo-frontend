@@ -37,7 +37,7 @@ const ITEMS: {
   },
 ]
 
-export const SortMenu: React.VFC<Props> = memo<Props>((props) => {
+export const SortMenu: React.FC<Props> = memo<Props>((props) => {
   const { sortBy, isSorted, taskListStatus } = useMyTasksTaskListStatus()
   const { startContentLoading, endContentLoading } = useMyTasksContext()
 

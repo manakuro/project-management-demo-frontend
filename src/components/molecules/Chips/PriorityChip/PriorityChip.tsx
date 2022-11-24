@@ -9,7 +9,7 @@ type Props = {
   disableStopPropagation?: boolean
 }
 
-export const PriorityChip: React.VFC<Props> = memo((props) => {
+export const PriorityChip: React.FC<Props> = memo((props) => {
   const { taskPriorityId, onClick, disableStopPropagation } = props
   const { taskPriority } = useTaskPriority(taskPriorityId)
 

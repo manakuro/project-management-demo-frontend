@@ -14,7 +14,7 @@ type Props = {
   projectTeammateId: string
 }
 
-export const JoinedTeammate: React.VFC<Props> = memo<Props>((props) => {
+export const JoinedTeammate: React.FC<Props> = memo<Props>((props) => {
   const { projectTeammateId, projectId } = props
   const { projectTeammate } = useProjectTeammate(projectTeammateId)
   const { teammate } = useTeammate(projectTeammate.teammateId)

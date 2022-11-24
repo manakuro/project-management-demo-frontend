@@ -10,7 +10,7 @@ type Props = FlexProps & {
   width: string
 }
 
-export const TasksTags: React.VFC<Props> = memo<Props>((props) => {
+export const TasksTags: React.FC<Props> = memo<Props>((props) => {
   const { taskTagIds } = useTaskTagIdsByTaskId(props.taskId)
   const [focused, setFocused] = useState<boolean>(false)
 

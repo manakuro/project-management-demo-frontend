@@ -7,7 +7,7 @@ import { useShareProjectModalInvitedTeammates } from '../useShareProjectModalInv
 
 type Props = {}
 
-export const Share: React.VFC<Props> = memo<Props>(() => {
+export const Share: React.FC<Props> = memo<Props>(() => {
   const { onClose, projectId } = useShareProjectModal()
   const { hasInvitedTeammates } = useShareProjectModalInvitedTeammates()
   const { copyProjectLink } = useCopyProjectLink({ projectId })

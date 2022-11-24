@@ -16,7 +16,7 @@ const ARCHIVE_INDEX = 1 as const
 
 type Index = typeof ACTIVITY_INDEX | typeof ARCHIVE_INDEX
 
-export const Component: React.VFC<Props> = memo<Props>(() => {
+export const Component: React.FC<Props> = memo<Props>(() => {
   return (
     <Provider>
       <WrappedComponent />
@@ -24,7 +24,7 @@ export const Component: React.VFC<Props> = memo<Props>(() => {
   )
 })
 
-const WrappedComponent: React.VFC = memo(() => {
+const WrappedComponent: React.FC = memo(() => {
   const { setLoadingTabContent } = useInboxPageContext()
   const [tabIndex, setTabIndex] = React.useState<Index>(ACTIVITY_INDEX)
   const { navigateToInbox } = useRouter()

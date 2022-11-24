@@ -25,14 +25,14 @@ import { useProjectsPageContext } from '../Provider'
 import { SortMenu } from '../TasksHeader'
 import { SkeletonListContent, SkeletonListHeader } from './SkeletonList'
 
-export const List: React.VFC = memo(() => {
+export const List: React.FC = memo(() => {
   return (
     <TasksContainer isProjectsPage>
       <Component />
     </TasksContainer>
   )
 })
-const Component: React.VFC = memo(() => {
+const Component: React.FC = memo(() => {
   const {
     tabContentLoading,
     fetchTaskDetailQuery,

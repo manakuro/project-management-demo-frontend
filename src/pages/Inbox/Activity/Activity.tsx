@@ -19,11 +19,11 @@ import { useInboxActivityPageQuery } from 'src/hooks/queries/app'
 import { getInboxDetailId, isInboxDetailURL } from 'src/router'
 import { useInboxPageContext } from '../Provider'
 
-export const Activity: React.VFC = memo(() => {
+export const Activity: React.FC = memo(() => {
   return <Component />
 })
 
-const Component: React.VFC = memo(() => {
+const Component: React.FC = memo(() => {
   const { loadingTabContent } = useInboxPageContext()
   const { loading: loadingQuery } = useInboxActivityPageQuery()
   const loading = useMemo(

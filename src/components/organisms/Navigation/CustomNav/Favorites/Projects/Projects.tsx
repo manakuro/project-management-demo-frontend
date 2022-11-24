@@ -4,7 +4,7 @@ import { ProjectList } from './ProjectList'
 
 type Props = {}
 
-export const Projects: React.VFC<Props> = memo<Props>(() => {
+export const Projects: React.FC<Props> = memo<Props>(() => {
   return (
     <Flex flexDirection="column" flex={1}>
       <ProjectList />

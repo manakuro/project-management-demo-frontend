@@ -11,7 +11,7 @@ type Props = FlexProps & {
   taskFileId: string
 }
 
-export const File: React.VFC<Props> = (props) => {
+export const File: React.FC<Props> = (props) => {
   const { taskFileId, ...rest } = props
   const { isHovering } = useThumbnailAttachmentContext()
 

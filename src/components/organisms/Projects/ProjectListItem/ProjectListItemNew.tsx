@@ -6,7 +6,7 @@ import { Container } from './Container'
 
 type Props = FlexProps
 
-export const ProjectListItemNew: React.VFC<Props> = (props) => {
+export const ProjectListItemNew: React.FC<Props> = (props) => {
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   return (

@@ -11,7 +11,7 @@ import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { isMyTasksDetailURL, getMyTasksDetailId, useRouter } from 'src/router'
 import { SkeletonFiles } from './SkeletonFiles'
 
-export const Files: React.VFC = memo(() => {
+export const Files: React.FC = memo(() => {
   return (
     <TasksContainer isMyTasksPage>
       <Component />
@@ -19,7 +19,7 @@ export const Files: React.VFC = memo(() => {
   )
 })
 
-const Component: React.VFC = memo(() => {
+const Component: React.FC = memo(() => {
   const { tabContentLoading, fetchTaskDetailQuery } = useMyTasksContext()
 
   const { navigateToMyTasksFiles } = useRouter()

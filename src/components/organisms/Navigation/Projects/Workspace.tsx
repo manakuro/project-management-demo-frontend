@@ -18,7 +18,7 @@ import { useWorkspace } from 'src/store/entities/workspace'
 
 type Props = {}
 
-export const Workspace: React.VFC<Props> = memo(() => {
+export const Workspace: React.FC<Props> = memo(() => {
   const { isExpanded } = useNavigation()
   const { _hover } = useLinkHoverStyle()
   const { clickableHoverLightStyle } = useClickableHoverStyle()

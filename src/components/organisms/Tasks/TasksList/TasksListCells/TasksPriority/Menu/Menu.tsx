@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo, PropsWithChildren, useCallback } from 'react'
 import { MenuItemOption } from 'src/components/organisms/Menu'
 import {
   MenuSelect,
@@ -8,11 +8,11 @@ import {
 import { useTask } from 'src/store/entities/task'
 import { useTasksPriorities } from 'src/store/entities/taskPriority'
 
-type Props = {
+type Props = PropsWithChildren<{
   taskId: string
   onOpened?: () => void
   onClosed?: () => void
-}
+}>
 
 export const Menu: React.FC<Props> = memo<Props>((props) => {
   const { taskId, onOpened, onClosed } = props

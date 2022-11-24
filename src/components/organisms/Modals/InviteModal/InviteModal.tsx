@@ -13,7 +13,7 @@ import { useInviteModal } from 'src/components/organisms/Modals'
 
 type Props = {}
 
-export const InviteModal: React.VFC<Props> = () => {
+export const InviteModal: React.FC<Props> = () => {
   const { isOpen, onClose } = useInviteModal()
 
   return (

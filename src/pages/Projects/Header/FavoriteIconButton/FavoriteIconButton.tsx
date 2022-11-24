@@ -15,7 +15,7 @@ type Props = {
   projectId: string
 } & Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>
 
-export const FavoriteIconButton: React.VFC<Props> = memo<Props>((props) => {
+export const FavoriteIconButton: React.FC<Props> = memo<Props>((props) => {
   const { projectId } = props
   const { project } = useProject(projectId)
   const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)

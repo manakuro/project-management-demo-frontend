@@ -33,7 +33,7 @@ const items: {
   },
 ]
 
-export const PermissionMenu: React.VFC<Props> = memo<Props>(() => {
+export const PermissionMenu: React.FC<Props> = memo<Props>(() => {
   const { status, setStatus } = useProjectPermission()
   const { clickableHoverStyle } = useClickableHoverStyle()
 

@@ -9,7 +9,7 @@ type Props = FlexProps & {
   width: string
 }
 
-export const TasksAssignee: React.VFC<Props> = memo<Props>((props) => {
+export const TasksAssignee: React.FC<Props> = memo<Props>((props) => {
   const { ref, isHovering } = useHover()
   const [focused, setFocused] = useState(false)
 

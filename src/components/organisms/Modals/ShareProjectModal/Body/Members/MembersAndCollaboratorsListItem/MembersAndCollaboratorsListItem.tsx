@@ -9,7 +9,7 @@ type Props = {
   projectId: string
 }
 
-export const MembersAndCollaboratorsListItem: React.VFC<Props> = memo<Props>(
+export const MembersAndCollaboratorsListItem: React.FC<Props> = memo<Props>(
   () => {
     const { clickableHoverStyle } = useClickableHoverStyle()
     const { workspace } = useWorkspace()

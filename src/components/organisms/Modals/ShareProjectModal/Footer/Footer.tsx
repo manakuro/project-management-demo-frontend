@@ -6,7 +6,7 @@ import { Share } from './Share'
 
 type Props = {}
 
-export const Footer: React.VFC<Props> = memo<Props>(() => {
+export const Footer: React.FC<Props> = memo<Props>(() => {
   const { tabIndex } = useShareProjectModal()
 
   switch (tabIndex) {

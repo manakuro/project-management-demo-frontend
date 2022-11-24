@@ -17,7 +17,7 @@ type Props = {
   fetchTaskDetailQuery: (variables: { taskId: string }) => Promise<void>
 }
 
-export const Component: React.VFC<Props> = memo<Props>((props) => {
+export const Component: React.FC<Props> = memo<Props>((props) => {
   const { fetchTaskDetailQuery } = props
   const { navigateToHome } = useRouter()
 

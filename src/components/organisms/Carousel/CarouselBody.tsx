@@ -4,7 +4,7 @@ import { useCarouselContext } from './Provider'
 
 type Props = {}
 
-export const CarouselBody: React.FC<Props> = (props) => {
+export const CarouselBody: React.FCWithChildren<Props> = (props) => {
   const { setCount } = useCarouselContext()
   const count = React.Children.toArray(props.children).filter(
     (c) => (c as any).type.displayName === 'CarouselItem',

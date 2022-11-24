@@ -5,7 +5,7 @@ import { useHelp } from 'src/components/organisms/Navigation/Help'
 import { transitions } from 'src/styles'
 import { PADDING_X } from '../Navigation'
 
-export const Help: React.VFC = () => {
+export const Help: React.FC = () => {
   const { setIsOpen } = useHelp()
 
   const handleClick = useCallback(() => {

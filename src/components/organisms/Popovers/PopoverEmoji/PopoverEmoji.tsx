@@ -7,7 +7,7 @@ import { Provider } from './Provider'
 
 type Props = {}
 
-export const PopoverEmoji: React.FC<Props> = (props) => {
+export const PopoverEmoji: React.FCWithChildren<Props> = (props) => {
   return (
     <Provider>
       <Component {...props} />
@@ -15,7 +15,7 @@ export const PopoverEmoji: React.FC<Props> = (props) => {
   )
 }
 
-const Component: React.FC<Props> = (props) => {
+const Component: React.FCWithChildren<Props> = (props) => {
   const { isOpen } = usePopoverEmojiContext()
 
   return (

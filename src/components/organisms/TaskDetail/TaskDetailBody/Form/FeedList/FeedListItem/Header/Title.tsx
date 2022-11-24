@@ -32,7 +32,7 @@ const generateTitle = (
   }
 }
 
-export const Title: React.VFC<Props> = memo<Props>((props) => {
+export const Title: React.FC<Props> = memo<Props>((props) => {
   const { teammate, taskFeed, hasTaskFile } = useTaskFeedListItemContext()
   const title = generateTitle({ teammate, taskFeed }, { hasTaskFile })
 

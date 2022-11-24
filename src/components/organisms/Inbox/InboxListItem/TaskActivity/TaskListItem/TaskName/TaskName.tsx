@@ -7,7 +7,7 @@ type Props = {
   isTransitioning: boolean
 } & TextProps
 
-export const TaskName: React.VFC<Props> = memo((props) => {
+export const TaskName: React.FC<Props> = memo((props) => {
   const { taskId, isTransitioning, ...rest } = props
   const { task } = useTask(taskId)
   const style = useMemo(

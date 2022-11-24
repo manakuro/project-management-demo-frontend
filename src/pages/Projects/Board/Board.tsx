@@ -18,7 +18,7 @@ import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { SortMenu } from '../TasksHeader'
 import { SkeletonBoardHeader, SkeletonBoardContent } from './SkeletonBoard'
 
-export const Board: React.VFC = memo(() => {
+export const Board: React.FC = memo(() => {
   return (
     <TasksContainer isProjectsPage>
       <Component />
@@ -26,7 +26,7 @@ export const Board: React.VFC = memo(() => {
   )
 })
 
-const Component: React.VFC = memo(() => {
+const Component: React.FC = memo(() => {
   const {
     tabContentLoading,
     fetchTaskDetailQuery,

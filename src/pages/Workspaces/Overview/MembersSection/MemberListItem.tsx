@@ -7,7 +7,7 @@ type Props = {
   teammateId: string
 }
 
-export const MemberListItem: React.VFC<Props> = memo<Props>((props) => {
+export const MemberListItem: React.FC<Props> = memo<Props>((props) => {
   const { teammateId } = props
   const { teammate } = useTeammate(teammateId)
   return (

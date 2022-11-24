@@ -11,7 +11,7 @@ type Props = FlexProps & {
   width: string
 }
 
-export const TasksDueDate: React.VFC<Props> = memo<Props>((props) => {
+export const TasksDueDate: React.FC<Props> = memo<Props>((props) => {
   const { task, setTaskDueDate, resetTaskDueDate } = useTask(props.taskId)
   const hasDueDate = useMemo(() => !!task.dueDate, [task.dueDate])
   const { ref, isHovering } = useHover()

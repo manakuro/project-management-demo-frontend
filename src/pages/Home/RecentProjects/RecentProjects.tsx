@@ -4,7 +4,7 @@ import { useProjectIds } from 'src/store/entities/project'
 
 type Props = {}
 
-export const RecentProjects: React.VFC<Props> = memo<Props>(() => {
+export const RecentProjects: React.FC<Props> = memo<Props>(() => {
   const { projectIds } = useProjectIds()
 
   return (

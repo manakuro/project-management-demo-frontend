@@ -6,7 +6,7 @@ type Props = FlexProps & {
   taskFileId: string
 }
 
-export const File: React.VFC<Props> = memo<Props>((props) => {
+export const File: React.FC<Props> = memo<Props>((props) => {
   return (
     <AttachmentBox
       size="lg"

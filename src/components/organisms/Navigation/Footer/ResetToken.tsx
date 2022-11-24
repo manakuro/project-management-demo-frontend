@@ -5,7 +5,7 @@ import { setErrorToken } from 'src/shared/apollo/client'
 import { transitions } from 'src/styles'
 import { PADDING_X } from '../Navigation'
 
-export const ResetToken: React.VFC = () => {
+export const ResetToken: React.FC = () => {
   const handleClick = useCallback(() => {
     setErrorToken()
   }, [])

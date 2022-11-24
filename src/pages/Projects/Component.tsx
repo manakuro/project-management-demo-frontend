@@ -51,7 +51,7 @@ type Index =
   | typeof CALENDAR_DASHBOARD
   | typeof FILES_INDEX
 
-export const Component: React.VFC<Props> = memo<Props>((props) => {
+export const Component: React.FC<Props> = memo<Props>((props) => {
   return (
     <Provider
       loading={props.loading}
@@ -72,7 +72,7 @@ const mapURLtoTabIndex = ({ router }: { router: NextRouter }): Index => {
   return LIST_INDEX
 }
 
-const WrappedComponent: React.VFC = memo(() => {
+const WrappedComponent: React.FC = memo(() => {
   const {
     navigateToProjectsList,
     navigateToProjectsBoard,

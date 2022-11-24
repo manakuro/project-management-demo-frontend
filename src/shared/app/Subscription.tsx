@@ -63,7 +63,7 @@ import {
   useWorkspaceUpdatedSubscription,
 } from 'src/store/entities/workspace'
 
-export const Subscription: React.FC = memo((props) => {
+export const Subscription: React.FCWithChildren = memo((props) => {
   const { workspace } = useWorkspace()
   const { me } = useMe()
 

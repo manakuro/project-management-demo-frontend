@@ -1,8 +1,8 @@
-import React, { memo } from 'react'
+import React, { memo, PropsWithChildren } from 'react'
 import { Flex } from 'src/components/atoms'
 import { useTasksListBody } from './useTasksListBody'
 
-type Props = {}
+type Props = PropsWithChildren<{}>
 
 export const TasksListBody: React.FC<Props> = memo<Props>((props) => {
   const { id } = useTasksListBody()

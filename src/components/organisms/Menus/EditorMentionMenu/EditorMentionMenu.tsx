@@ -5,7 +5,7 @@ import { useEditorMentionMenu } from './useEditorMentionMenu'
 
 type Props = {}
 
-export const EditorMentionMenu: React.VFC<Props> = memo<Props>(() => {
+export const EditorMentionMenu: React.FC<Props> = memo<Props>(() => {
   const { isOpen, onClose } = useEditorMentionMenu()
 
   return (

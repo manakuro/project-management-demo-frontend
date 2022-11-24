@@ -7,7 +7,7 @@ import { ListSortByDueDate } from './ListSortByDueDate'
 import { ListSortByLike } from './ListSortByLike'
 import { ListSortByProject } from './ListSortByProject'
 
-export const TasksListLayout: React.VFC = memo(() => {
+export const TasksListLayout: React.FC = memo(() => {
   const { taskListStatus } = useTasksTaskListStatus()
 
   switch (taskListStatus.taskListSortStatus) {

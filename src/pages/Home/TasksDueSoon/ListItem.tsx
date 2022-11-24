@@ -12,7 +12,7 @@ type Props = {
   taskId: string
 }
 
-export const ListItem: React.VFC<Props> = memo((props) => {
+export const ListItem: React.FC<Props> = memo((props) => {
   const { taskId } = props
   const { task, setTaskDueDate, setTask, resetTaskDueDate } = useTask(taskId)
   const { clickableHoverStyle } = useClickableHoverStyle()

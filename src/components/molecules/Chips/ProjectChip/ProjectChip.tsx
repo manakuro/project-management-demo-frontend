@@ -23,7 +23,7 @@ type Props = {
   badgeProps?: BadgeProps
 }
 
-export const ProjectChip: React.VFC<Props> = memo((props) => {
+export const ProjectChip: React.FC<Props> = memo((props) => {
   const { projectId, onClick, onDelete } = props
   const { project } = useProject(projectId)
   const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)

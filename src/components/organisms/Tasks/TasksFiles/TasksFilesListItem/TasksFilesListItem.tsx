@@ -24,7 +24,7 @@ type Props = {
   taskFileId: string
 } & FlexProps
 
-export const TasksFilesListItem: React.VFC<Props> = memo((props) => {
+export const TasksFilesListItem: React.FC<Props> = memo((props) => {
   const { taskFileId, ...rest } = props
   const { ref, isHovering } = useHover()
   const { taskFile } = useTaskFile(taskFileId)

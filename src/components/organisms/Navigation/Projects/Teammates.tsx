@@ -9,7 +9,7 @@ import { Teammate } from './Teammate'
 
 type Props = {}
 
-export const Teammates: React.VFC<Props> = memo(() => {
+export const Teammates: React.FC<Props> = memo(() => {
   const { clickableHoverLightStyle } = useClickableHoverStyle()
   const inviteModal = useInviteModal()
   const { teammateIds } = useTeammates()

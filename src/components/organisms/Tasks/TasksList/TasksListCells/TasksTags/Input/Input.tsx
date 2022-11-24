@@ -17,7 +17,7 @@ type Props = {
 }
 
 const HEIGHT = '37px'
-export const Input: React.VFC<Props> = memo((props) => {
+export const Input: React.FC<Props> = memo((props) => {
   const { taskId, onClose } = props
   const popoverDisclosure = useDisclosure()
   const { taskTagIds } = useTaskTagIdsByTaskId(taskId)

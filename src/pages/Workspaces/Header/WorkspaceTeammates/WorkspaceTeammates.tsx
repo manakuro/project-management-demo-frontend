@@ -6,7 +6,7 @@ import { useTeammateIdsByWorkspaceId } from 'src/store/entities/workspaceTeammat
 
 type Props = {}
 
-export const WorkspaceTeammates: React.VFC<Props> = memo<Props>(() => {
+export const WorkspaceTeammates: React.FC<Props> = memo<Props>(() => {
   const { workspace } = useWorkspace()
   const { teammateIds } = useTeammateIdsByWorkspaceId(workspace.id)
 

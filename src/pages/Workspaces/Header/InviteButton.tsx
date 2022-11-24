@@ -5,7 +5,7 @@ import { useInviteModal } from 'src/components/organisms/Modals'
 
 type Props = FlexProps
 
-export const InviteButton: React.VFC<Props> = memo<Props>((props) => {
+export const InviteButton: React.FC<Props> = memo<Props>((props) => {
   const { setIsOpen } = useInviteModal()
 
   const handleClick = useCallback(() => {

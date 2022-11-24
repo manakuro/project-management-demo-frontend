@@ -1,7 +1,7 @@
-import React, { memo } from 'react'
+import React, { memo, PropsWithChildren } from 'react'
 import { PopoverTrigger } from 'src/components/organisms/Popover'
 
-type Props = {}
+type Props = PropsWithChildren<{}>
 
 export const ProjectTeammateMenuTrigger: React.FC<Props> = memo<Props>(
   (props) => {

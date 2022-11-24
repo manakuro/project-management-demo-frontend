@@ -11,7 +11,7 @@ import { useTeammateTaskTabStatus } from 'src/store/entities/teammateTaskTabStat
 import { NavListItem } from '../../NavListItem'
 import { NavListItem as TNavListItem } from '../../type'
 
-export const MyTasks: React.VFC = memo(() => {
+export const MyTasks: React.FC = memo(() => {
   const router = useRouter()
   const { isTabStatus } = useTeammateTaskTabStatus()
   const href = useMemo(() => {

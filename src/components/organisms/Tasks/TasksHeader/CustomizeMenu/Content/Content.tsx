@@ -17,7 +17,7 @@ const HEADER_HEIGHT = 72
 const TASKS_HEADER_HEIGHT = 60
 const TASKS_HEADER_BOARD_HEIGHT = 40
 
-export const Content: React.VFC = memo(() => {
+export const Content: React.FC = memo(() => {
   const { onClose } = useCustomizeMenu()
   const { tasksTaskColumnIds, setTaskColumnOrder } =
     useTasksTaskColumnCustomizable()

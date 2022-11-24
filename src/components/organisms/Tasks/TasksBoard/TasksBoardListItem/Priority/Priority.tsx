@@ -7,7 +7,7 @@ type Props = FlexProps & {
   taskId: string
 }
 
-export const Priority: React.VFC<Props> = memo<Props>((props) => {
+export const Priority: React.FC<Props> = memo<Props>((props) => {
   const { taskId } = props
   const { task } = useTask(taskId)
 

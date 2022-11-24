@@ -5,7 +5,7 @@ import { useShareProjectModal } from '../useShareProjectModal'
 
 type Props = {}
 
-export const Members: React.VFC<Props> = memo<Props>(() => {
+export const Members: React.FC<Props> = memo<Props>(() => {
   const { onClose } = useShareProjectModal()
 
   const handleCopyProjectLink = useCallback(() => {

@@ -13,7 +13,7 @@ type Props = {
   onSetShareTab: () => void
 }
 
-export const Members: React.VFC<Props> = memo<Props>((props) => {
+export const Members: React.FC<Props> = memo<Props>((props) => {
   const { projectId, onSetShareTab } = props
   const { teammateIds } = useTeammateIdsByProjectId(projectId)
   const headerText = useMemo(

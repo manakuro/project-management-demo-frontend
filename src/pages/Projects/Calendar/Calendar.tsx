@@ -20,7 +20,7 @@ import { getProjectsDetailId, isProjectsDetailURL, useRouter } from 'src/router'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { SkeletonCalendar } from './SkeletonCalendar'
 
-export const Calendar: React.VFC = memo(() => {
+export const Calendar: React.FC = memo(() => {
   return (
     <TasksContainer isProjectsPage>
       <Component />
@@ -28,7 +28,7 @@ export const Calendar: React.VFC = memo(() => {
   )
 })
 
-const Component: React.VFC = memo(() => {
+const Component: React.FC = memo(() => {
   const { tabContentLoading, fetchTaskDetailQuery } = useProjectsPageContext()
   const { navigateToProjectsCalendar } = useRouter()
   const { projectId } = useProjectsProjectId()

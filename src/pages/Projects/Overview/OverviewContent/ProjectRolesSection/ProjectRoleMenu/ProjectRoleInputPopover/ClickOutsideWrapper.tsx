@@ -7,7 +7,7 @@ type Props = {
   onClose: () => void
 }
 
-export const ClickOutsideWrapper: React.FC<Props> = (props) => {
+export const ClickOutsideWrapper: React.FCWithChildren<Props> = (props) => {
   const { onClose, children, isOpen } = props
   const { ref } = useClickOutside(onClose)
 

@@ -13,7 +13,7 @@ type Props = {
   loading: boolean
 }
 
-export const Content: React.VFC<Props> = memo((props) => {
+export const Content: React.FC<Props> = memo((props) => {
   return (
     <Flex
       flex={1}

@@ -6,7 +6,7 @@ type Props = {
   projectId: string
 }
 
-export const Header: React.VFC<Props> = memo<Props>((props) => {
+export const Header: React.FC<Props> = memo<Props>((props) => {
   const { project } = useProject(props.projectId)
 
   return <ModalHeader>Share {project.name}</ModalHeader>

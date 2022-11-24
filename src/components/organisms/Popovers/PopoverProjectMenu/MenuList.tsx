@@ -31,7 +31,7 @@ type Props = {
   share?: boolean
 }
 
-export const MenuList: React.VFC<Props> = (props) => {
+export const MenuList: React.FC<Props> = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { ref } = useClickOutside(() => {
     onClose()

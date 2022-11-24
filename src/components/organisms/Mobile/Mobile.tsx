@@ -1,11 +1,11 @@
-import React, { memo } from 'react'
+import React, { memo, PropsWithChildren } from 'react'
 import { Flex, Image, Logo, Text } from 'src/components/atoms'
 import { useResponsive } from 'src/hooks'
 
-type Props = {}
+type Props = PropsWithChildren<{}>
 export type MenuProps = Props
 
-export const Mobile: React.FC<Props> = memo((props) => {
+export const Mobile: React.FC<Props> = memo<Props>((props) => {
   const { isMobile } = useResponsive()
 
   if (isMobile)

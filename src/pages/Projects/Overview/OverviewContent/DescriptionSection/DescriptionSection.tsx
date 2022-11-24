@@ -6,7 +6,7 @@ import { DescriptionTitle } from './DescriptionTitle'
 
 type Props = {}
 
-export const DescriptionSection: React.VFC<Props> = memo<Props>(() => {
+export const DescriptionSection: React.FC<Props> = memo<Props>(() => {
   const { projectId } = useProjectsProjectId()
 
   return (

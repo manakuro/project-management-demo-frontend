@@ -5,7 +5,7 @@ type Props = {
   label: string
 }
 
-export const Container: React.FC<Props> = (props) => {
+export const Container: React.FCWithChildren<Props> = (props) => {
   return (
     <Tooltip
       hasArrow

@@ -6,7 +6,7 @@ import { useTasksNameContext } from '../TasksNameProvider'
 
 type Props = {}
 
-export const TaskParentName: React.VFC<Props> = memo<Props>(() => {
+export const TaskParentName: React.FC<Props> = memo<Props>(() => {
   const { taskId } = useTasksNameContext()
   const { isSubtask, task } = useTask(taskId)
   const { task: taskParent } = useTask(task.taskParentId)

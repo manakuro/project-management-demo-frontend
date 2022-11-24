@@ -7,7 +7,7 @@ type Props = FlexProps & {
   taskTagId: string
 }
 
-export const Tag: React.VFC<Props> = memo<Props>((props) => {
+export const Tag: React.FC<Props> = memo<Props>((props) => {
   const { taskTagId } = props
   const { taskTag } = useTaskTag(taskTagId)
 

@@ -6,7 +6,7 @@ type Props = {
   taskId: string
 }
 
-export const Feed: React.VFC<Props> = (props) => {
+export const Feed: React.FC<Props> = (props) => {
   const { taskId } = props
   const { taskFeedIdsWithoutFirst } = useTaskFeedIdsWithoutFirstByTaskId(taskId)
   const size = useMemo(

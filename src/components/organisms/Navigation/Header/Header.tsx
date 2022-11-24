@@ -12,7 +12,7 @@ import { ROUTE_HOME } from 'src/router'
 
 type Props = {}
 
-export const Header: React.VFC<Props> = memo<Props>(() => {
+export const Header: React.FC<Props> = memo<Props>(() => {
   const { isExpanded, toggleMenu } = useNavigation()
 
   return (

@@ -9,7 +9,7 @@ import { Icon } from './Icon'
 
 type Props = {}
 
-export const Subtask: React.VFC<Props> = () => {
+export const Subtask: React.FC<Props> = () => {
   const { taskId } = useTasksNameContext()
   const { taskIds } = useSubtaskIds(taskId)
   const size = useMemo(() => taskIds.length, [taskIds.length])

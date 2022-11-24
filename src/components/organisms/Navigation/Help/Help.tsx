@@ -13,7 +13,7 @@ import { Footer } from './Footer'
 import { useHelp } from './useHelp'
 
 export const HELP_CONTAINER_PADDING = 4
-export const Help: React.VFC = () => {
+export const Help: React.FC = () => {
   const { isOpen, onClose } = useHelp()
 
   return (

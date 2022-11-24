@@ -5,7 +5,7 @@ type Props = {
   teammateId: string
 }
 
-export const Teammate: React.VFC<Props> = memo((props) => {
+export const Teammate: React.FC<Props> = memo((props) => {
   return <TeammateAvatar teammateId={props.teammateId} size="xs" />
 })
 Teammate.displayName = 'Teammate'

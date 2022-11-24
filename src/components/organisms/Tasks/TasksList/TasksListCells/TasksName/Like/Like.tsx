@@ -5,7 +5,7 @@ import { useTasksNameContext } from '../TasksNameProvider'
 
 type Props = {}
 
-export const Like: React.VFC<Props> = () => {
+export const Like: React.FC<Props> = () => {
   const { taskId } = useTasksNameContext()
   const { taskLikes } = useTaskLikesByTaskId(taskId)
   const show = useMemo(() => !!taskLikes.length, [taskLikes.length])

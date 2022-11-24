@@ -9,7 +9,7 @@ type Props = {
   projectId: string
 }
 
-export const ColorPicker: React.VFC<Props> = (props) => {
+export const ColorPicker: React.FC<Props> = (props) => {
   const { projectBaseColorIds } = useProjectBaseColorIds()
   const { setProject } = useProjectCommand()
 

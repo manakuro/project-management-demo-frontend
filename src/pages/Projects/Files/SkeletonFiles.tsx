@@ -4,7 +4,7 @@ import { useBreakpointValue } from 'src/shared/chakra'
 
 type Props = FlexProps
 
-export const SkeletonFiles: React.VFC<Props> = memo<Props>(() => {
+export const SkeletonFiles: React.FC<Props> = memo<Props>(() => {
   const splitNum = useBreakpointValue({ base: 2, '2xl': 3 }) as number
 
   return (

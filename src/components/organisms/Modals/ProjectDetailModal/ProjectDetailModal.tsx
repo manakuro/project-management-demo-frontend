@@ -5,7 +5,7 @@ import { useProjectDetailModal } from './useProjectDetailModal'
 
 type Props = {}
 
-export const ProjectDetailModal: React.VFC<Props> = memo(() => {
+export const ProjectDetailModal: React.FC<Props> = memo(() => {
   const { isOpen, onClose, projectId } = useProjectDetailModal()
 
   return (

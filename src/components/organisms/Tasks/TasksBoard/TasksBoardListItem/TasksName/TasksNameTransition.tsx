@@ -12,7 +12,7 @@ const shimmer = keyframes({
   },
 })
 
-export const TasksNameTransition: React.VFC<Props> = memo<Props>((props) => {
+export const TasksNameTransition: React.FC<Props> = memo<Props>((props) => {
   const bgGradient = useMemo<FlexProps>(() => {
     if (props.isTransitioning)
       return {

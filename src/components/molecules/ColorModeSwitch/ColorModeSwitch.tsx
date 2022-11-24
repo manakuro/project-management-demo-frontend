@@ -6,7 +6,7 @@ import { Icon } from 'src/components/atoms/Icon'
 
 type Props = FlexProps
 
-export const ColorModeSwitch: React.VFC<Props> = (props) => {
+export const ColorModeSwitch: React.FC<Props> = (props) => {
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (

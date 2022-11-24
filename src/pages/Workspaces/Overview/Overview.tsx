@@ -11,7 +11,7 @@ import { OverviewRightContent } from './OverviewRightContent'
 import { ProjectsSection } from './ProjectsSection'
 import { SkeletonOverview } from './SkeletonOverview'
 
-export const Overview: React.VFC = memo(() => {
+export const Overview: React.FC = memo(() => {
   return (
     <TasksContainer isProjectsPage>
       <Component />
@@ -19,7 +19,7 @@ export const Overview: React.VFC = memo(() => {
   )
 })
 
-const Component: React.VFC = memo(() => {
+const Component: React.FC = memo(() => {
   const { loadingTabContent } = useWorkspacesPageContext()
 
   if (loadingTabContent) return <SkeletonOverview />

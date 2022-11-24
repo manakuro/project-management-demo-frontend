@@ -3,7 +3,7 @@ import React, { useMemo } from 'react'
 import { useAuth } from 'src/hooks/useAuth'
 import { createApolloClient } from './client'
 
-export const ApolloProvider: React.FC = (props) => {
+export const ApolloProvider: React.FCWithChildren = (props) => {
   const { idToken } = useAuth()
 
   const client = useMemo(

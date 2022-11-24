@@ -22,7 +22,7 @@ import { ListItem } from './ListItem'
 
 type Props = {}
 
-export const TasksDueSoon: React.VFC<Props> = memo<Props>(() => {
+export const TasksDueSoon: React.FC<Props> = memo<Props>(() => {
   const { taskIds } = useTasksDueSoonIds()
   const { style } = useLinkStyle()
 

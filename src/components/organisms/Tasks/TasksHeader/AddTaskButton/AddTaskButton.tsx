@@ -26,7 +26,7 @@ type Props = ButtonGroupProps & {
   outlined?: boolean
 }
 
-export const AddTaskButton: React.VFC<Props> = memo<Props>((props) => {
+export const AddTaskButton: React.FC<Props> = memo<Props>((props) => {
   const { solid, outlined, ...rest } = props
   const { addTaskSection } = useTasksTaskSectionCommand()
   const { taskSectionIds } = useTasksTaskSectionIds()

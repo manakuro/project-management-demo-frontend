@@ -16,7 +16,7 @@ import { Content } from './Content'
 
 type Props = FlexProps
 
-export const CalendarMonthPicker: React.VFC<Props> = memo<Props>((props) => {
+export const CalendarMonthPicker: React.FC<Props> = memo<Props>((props) => {
   const { currentDate } = useTasksCalendarContext()
   const dateText = useMemo(() => {
     return dateFns.format(currentDate, 'MMMM y')

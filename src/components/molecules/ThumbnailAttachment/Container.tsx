@@ -4,7 +4,7 @@ import { useThumbnailAttachmentContext } from './Provider'
 
 type Props = FlexProps
 
-export const Container: React.VFC<Props> = (props) => {
+export const Container: React.FC<Props> = (props) => {
   const { ref } = useThumbnailAttachmentContext()
 
   return (

@@ -7,7 +7,7 @@ type Props = {
   projectId: string
 }
 
-export const JoinedTeammates: React.VFC<Props> = memo<Props>((props) => {
+export const JoinedTeammates: React.FC<Props> = memo<Props>((props) => {
   const { projectId } = props
   const { projectTeammateIds } =
     useProjectTeammateIdsByProjectIdSortedByCreatedAt(projectId)

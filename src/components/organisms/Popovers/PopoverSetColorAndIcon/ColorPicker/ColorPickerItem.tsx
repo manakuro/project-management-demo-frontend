@@ -8,7 +8,7 @@ type Props = {
   onClick: (id: string) => Promise<void>
 }
 
-export const ColorPickerItem: React.VFC<Props> = memo<Props>((props) => {
+export const ColorPickerItem: React.FC<Props> = memo<Props>((props) => {
   const { projectBaseColorId, currentProjectBaseColorId, onClick } = props
   const { projectBaseColor } = useProjectBaseColor(projectBaseColorId)
 

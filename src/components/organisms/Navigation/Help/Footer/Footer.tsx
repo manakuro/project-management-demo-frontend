@@ -36,7 +36,7 @@ const items: TNavListItem[] = [
   },
 ]
 
-export const Footer: React.VFC = () => {
+export const Footer: React.FC = () => {
   return (
     <List w="full" mb={3}>
       {items.map((n, i) => (

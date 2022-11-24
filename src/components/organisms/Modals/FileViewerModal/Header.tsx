@@ -16,7 +16,7 @@ import { useFileViewerModal } from './useFileViewerModal'
 
 type Props = {}
 
-export const Header: React.VFC<Props> = memo(() => {
+export const Header: React.FC<Props> = memo(() => {
   const { onClose, currentTaskFileId } = useFileViewerModal()
   const { taskFile } = useTaskFile(currentTaskFileId)
   const formattedCreateAt = formatTaskFileCreatedAt(taskFile.createdAt)

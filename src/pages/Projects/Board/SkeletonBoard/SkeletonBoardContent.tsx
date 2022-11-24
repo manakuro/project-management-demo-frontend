@@ -5,7 +5,7 @@ type Props = FlexProps
 
 const TEXT_HEIGHT = '16px'
 const CARD_HEIGHT = '97px'
-export const SkeletonBoardContent: React.VFC<Props> = memo<Props>(() => {
+export const SkeletonBoardContent: React.FC<Props> = memo<Props>(() => {
   return (
     <Flex flex={1} p={2}>
       {[...new Array(3)].map((_, i) => (

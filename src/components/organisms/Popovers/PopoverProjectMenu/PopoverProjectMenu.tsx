@@ -27,7 +27,7 @@ type Props = MenuButtonProps & {
 }
 export type PopoverProjectMenuProps = Props
 
-export const PopoverProjectMenu: React.VFC<Props> = (props) => {
+export const PopoverProjectMenu: React.FC<Props> = (props) => {
   const {
     projectId,
     addFavorite,

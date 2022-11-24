@@ -12,7 +12,7 @@ import {
 import { Section } from 'src/components/organisms/Navigation/Help/Body/GuideListItem/ListItemDetail'
 import { guide2Item } from './item'
 
-export const SeeMore: React.VFC = () => {
+export const SeeMore: React.FC = () => {
   return (
     <>
       <Text fontSize="sm">{guide2Item.description}</Text>

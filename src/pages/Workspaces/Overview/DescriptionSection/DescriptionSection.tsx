@@ -8,7 +8,7 @@ import { Description } from './Description'
 
 type Props = {}
 
-export const DescriptionSection: React.VFC<Props> = memo<Props>(() => {
+export const DescriptionSection: React.FC<Props> = memo<Props>(() => {
   return (
     <Flex flexDirection="column">
       <OverviewSectionHeader>

@@ -23,7 +23,7 @@ type Props = {
 }
 
 export const PADDING_X = 2
-export const ProjectsContainer: React.VFC<Props> = memo<Props>((props) => {
+export const ProjectsContainer: React.FC<Props> = memo<Props>((props) => {
   const [listStatus, setListStatus] = useState<ProjectListStatus>(
     PROJECT_LIST_MENU_VIEW_AS_TILES,
   )

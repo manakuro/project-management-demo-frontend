@@ -19,7 +19,7 @@ import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router'
 import { SkeletonCalendar } from './SkeletonCalendar'
 
-export const Calendar: React.VFC = memo(() => {
+export const Calendar: React.FC = memo(() => {
   return (
     <TasksContainer isMyTasksPage>
       <Component />
@@ -27,7 +27,7 @@ export const Calendar: React.VFC = memo(() => {
   )
 })
 
-const Component: React.VFC = memo(() => {
+const Component: React.FC = memo(() => {
   const { tabContentLoading, fetchTaskDetailQuery } = useMyTasksContext()
   const { navigateToMyTasksCalendar } = useRouter()
 

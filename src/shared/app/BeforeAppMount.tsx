@@ -14,7 +14,7 @@ import {
 } from 'src/hooks/queries/entities'
 import { useMe } from 'src/store/entities/me'
 
-export const BeforeAppMount: React.FC = (props) => {
+export const BeforeAppMount: React.FCWithChildren = (props) => {
   useTaskPrioritiesQuery()
   useProjectsQuery()
   useProjectBaseColorsQuery()

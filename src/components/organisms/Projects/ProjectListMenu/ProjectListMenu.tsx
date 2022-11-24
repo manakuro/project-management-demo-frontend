@@ -19,7 +19,7 @@ export type ProjectListStatus =
   | typeof PROJECT_LIST_MENU_VIEW_AS_TILES
   | typeof PROJECT_LIST_MENU_VIEW_AS_LIST
 
-export const ProjectListMenu: React.VFC<Props> = memo<Props>((props) => {
+export const ProjectListMenu: React.FC<Props> = memo<Props>((props) => {
   const handleClickViewAsTitles = useCallback(() => {
     props.onChange(PROJECT_LIST_MENU_VIEW_AS_TILES)
   }, [props])

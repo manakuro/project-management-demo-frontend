@@ -8,7 +8,7 @@ import { Workspace } from './Workspace'
 
 type Props = {}
 
-export const Projects: React.VFC<Props> = memo<Props>(() => {
+export const Projects: React.FC<Props> = memo<Props>(() => {
   const { isExpanded } = useNavigation()
 
   return (

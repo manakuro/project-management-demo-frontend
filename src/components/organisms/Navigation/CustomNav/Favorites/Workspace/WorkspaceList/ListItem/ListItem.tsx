@@ -12,7 +12,7 @@ import { WorkspaceMenu } from './WorkspaceMenu'
 
 type Props = {}
 
-export const ListItem: React.VFC<Props> = memo(() => {
+export const ListItem: React.FC<Props> = memo(() => {
   const { isExpanded } = useNavigation()
   const { workspace } = useWorkspace()
   const { _hover, selectedStyle } = useLinkHoverStyle()

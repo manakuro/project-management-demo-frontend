@@ -23,7 +23,7 @@ type Props = {
   containerStyle?: FlexProps
 }
 
-export const ProjectTileItem: React.VFC<Props> = memo((props) => {
+export const ProjectTileItem: React.FC<Props> = memo((props) => {
   const { projectId, containerStyle } = props
   const { project } = useProject(projectId)
   const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)

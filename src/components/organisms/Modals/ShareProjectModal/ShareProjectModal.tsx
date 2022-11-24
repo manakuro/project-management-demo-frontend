@@ -12,7 +12,7 @@ import { useShareProjectModal } from './useShareProjectModal'
 
 type Props = {}
 
-export const ShareProjectModal: React.VFC<Props> = memo<Props>(() => {
+export const ShareProjectModal: React.FC<Props> = memo<Props>(() => {
   const { isOpen, onClose, projectId } = useShareProjectModal()
 
   return (

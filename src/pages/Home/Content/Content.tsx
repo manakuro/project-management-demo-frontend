@@ -5,7 +5,7 @@ import { useHomeContentDom, useTasksListContentVerticalScroll } from './hooks'
 type Props = FlexProps
 
 const HEADER_HEIGHT = 72
-export const Content: React.VFC<Props> = memo<Props>((props) => {
+export const Content: React.FC<Props> = memo<Props>((props) => {
   const { ref } = useHomeContentDom()
 
   useTasksListContentVerticalScroll({ listenOnEvent: true })

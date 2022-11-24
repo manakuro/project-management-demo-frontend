@@ -4,7 +4,7 @@ import { useFavoriteProjectIds } from 'src/store/entities/favoriteProjectIds'
 
 type Props = {}
 
-export const FavoriteProjects: React.VFC<Props> = memo<Props>(() => {
+export const FavoriteProjects: React.FC<Props> = memo<Props>(() => {
   const { favoriteProjectIds } = useFavoriteProjectIds()
 
   if (!favoriteProjectIds.length) return null

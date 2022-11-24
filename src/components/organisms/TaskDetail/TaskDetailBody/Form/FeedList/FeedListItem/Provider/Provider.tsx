@@ -13,7 +13,7 @@ type Props = {
   taskId: string
   isPinned?: boolean
 }
-export const Provider: React.FC<Props> = (props) => {
+export const Provider: React.FCWithChildren<Props> = (props) => {
   return (
     <ProviderBase {...props}>
       <ProviderContainer {...props}>{props.children}</ProviderContainer>

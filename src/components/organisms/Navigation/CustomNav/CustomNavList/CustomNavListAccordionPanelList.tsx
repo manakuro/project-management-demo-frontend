@@ -3,6 +3,8 @@ import { List } from 'src/components/atoms'
 
 type Props = {}
 
-export const CustomNavListAccordionPanelList: React.FC<Props> = (props) => {
+export const CustomNavListAccordionPanelList: React.FCWithChildren<Props> = (
+  props,
+) => {
   return <List mb={2} {...props} />
 }

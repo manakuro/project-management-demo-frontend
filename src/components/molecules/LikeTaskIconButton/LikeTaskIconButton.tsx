@@ -9,7 +9,7 @@ type Props = {
   textStyle?: TextProps
 } & Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>
 
-export const LikeTaskIconButton: React.VFC<Props> = memo<Props>((props) => {
+export const LikeTaskIconButton: React.FC<Props> = memo<Props>((props) => {
   const { taskId, show, ...rest } = props
   const { hasAnyoneLiked, label, likeLength, onToggleLike } = useLike(props)
 

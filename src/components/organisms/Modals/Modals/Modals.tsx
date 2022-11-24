@@ -15,7 +15,7 @@ import {
 import { Help } from 'src/components/organisms/Navigation'
 import { VideoPlayer } from 'src/components/organisms/VideoPlayer'
 
-export const Modals: React.VFC = memo(() => {
+export const Modals: React.FC = memo(() => {
   return (
     <>
       <InviteModal />

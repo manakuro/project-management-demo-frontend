@@ -4,6 +4,8 @@ import { PADDING_X } from '../../Navigation'
 
 type Props = {}
 
-export const CustomNavListAccordionButton: React.FC<Props> = (props) => {
+export const CustomNavListAccordionButton: React.FCWithChildren<Props> = (
+  props,
+) => {
   return <AccordionButton px={PADDING_X} py={4} {...props} />
 }

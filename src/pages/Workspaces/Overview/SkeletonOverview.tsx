@@ -13,7 +13,7 @@ type Props = FlexProps
 
 const TEXT_HEIGHT = '16px'
 const CARD_HEIGHT = '97px'
-export const SkeletonOverview: React.VFC<Props> = memo<Props>((props) => {
+export const SkeletonOverview: React.FC<Props> = memo<Props>((props) => {
   return (
     <Flex flex={1} h="full" maxW="full" justifyContent="center" {...props}>
       <OverviewLeft mt={12}>

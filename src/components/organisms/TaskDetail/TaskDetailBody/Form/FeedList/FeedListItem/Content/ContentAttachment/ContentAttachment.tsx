@@ -13,7 +13,7 @@ type Props = {
   taskFileId: string
 }
 
-export const ContentAttachment: React.VFC<Props> = memo<Props>((props) => {
+export const ContentAttachment: React.FC<Props> = memo<Props>((props) => {
   const { taskId } = useTaskFeedListItemContext()
   const { taskFile } = useTaskFile(props.taskFileId)
   const { taskFileIds } = useTaskFileIdsByTaskId(taskId)

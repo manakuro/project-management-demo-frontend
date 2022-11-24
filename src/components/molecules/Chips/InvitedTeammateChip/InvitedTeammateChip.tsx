@@ -14,7 +14,7 @@ type Props = {
   onClick?: () => void
 }
 
-export const InvitedTeammateChip: React.VFC<Props> = memo((props) => {
+export const InvitedTeammateChip: React.FC<Props> = memo((props) => {
   const { teammate, onClick } = props
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 

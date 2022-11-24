@@ -3,7 +3,7 @@ import { Flex } from 'src/components/atoms'
 import { useTasksTaskSectionIds } from 'src/components/organisms/Tasks/hooks'
 import { TasksBoardListSection } from '../TasksBoardListSection'
 
-export const TasksBoardList: React.VFC = memo(() => {
+export const TasksBoardList: React.FC = memo(() => {
   const { taskSectionIds } = useTasksTaskSectionIds()
 
   return (

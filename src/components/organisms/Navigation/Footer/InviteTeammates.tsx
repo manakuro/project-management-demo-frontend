@@ -5,7 +5,7 @@ import { Divider } from 'src/components/organisms/Navigation/Divider'
 import { transitions } from 'src/styles'
 import { PADDING_X } from '../Navigation'
 
-export const InviteTeammates: React.VFC = () => {
+export const InviteTeammates: React.FC = () => {
   const { setIsOpen } = useInviteModal()
 
   const handleClick = useCallback(() => {

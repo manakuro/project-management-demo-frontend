@@ -5,7 +5,7 @@ type Props = {
   isSetForEveryone: boolean
 }
 
-export const Setting: React.VFC<Props> = (props) => {
+export const Setting: React.FC<Props> = (props) => {
   return (
     <Flex px={6} py={4}>
       <Checkbox defaultChecked={props.isSetForEveryone}>

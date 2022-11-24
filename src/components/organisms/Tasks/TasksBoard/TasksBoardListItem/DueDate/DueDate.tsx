@@ -15,7 +15,7 @@ type Props = FlexProps & {
   taskId: string
 }
 
-export const DueDate: React.VFC<Props> = memo<Props>((props) => {
+export const DueDate: React.FC<Props> = memo<Props>((props) => {
   const { task, setTaskDueDate, resetTaskDueDate } = useTask(props.taskId)
   const hasDueDate = useMemo(() => !!task.dueDate, [task.dueDate])
   const { isHovering } = useTasksBoardListItemContext()

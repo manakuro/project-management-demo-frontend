@@ -11,7 +11,7 @@ type Props = {
 
 const MIN = 0
 const MAX = 0.999999
-export const DurationBar: React.VFC<Props> = (props) => {
+export const DurationBar: React.FC<Props> = (props) => {
   const { setVideoState, seekTo, played } = props
 
   const handleSeekChange = useCallback(

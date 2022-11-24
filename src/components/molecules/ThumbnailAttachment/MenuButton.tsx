@@ -17,7 +17,7 @@ type Props = Omit<MenuButtonProps, 'children'> & {
   color: IconProps['color']
 }
 
-export const MenuButton: React.VFC<Props> = (props) => {
+export const MenuButton: React.FC<Props> = (props) => {
   const { isHovering, thumbnailMenuOpened } = useThumbnailAttachmentContext()
   const show = useMemo(
     () => isHovering || thumbnailMenuOpened,

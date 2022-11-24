@@ -3,7 +3,7 @@ import { Tooltip } from 'src/components/molecules'
 
 type Props = {}
 
-export const ComingSoonTooltip: React.FC<Props> = (props) => {
+export const ComingSoonTooltip: React.FCWithChildren<Props> = (props) => {
   return (
     <Tooltip
       hasArrow

@@ -7,7 +7,7 @@ type Props = FlexProps & {
   taskId: string
 }
 
-export const Input: React.VFC<Props> = memo<Props>((props) => {
+export const Input: React.FC<Props> = memo<Props>((props) => {
   const { task, setTaskName } = useTask(props.taskId)
   const { deleteTask } = useTaskCommand()
 

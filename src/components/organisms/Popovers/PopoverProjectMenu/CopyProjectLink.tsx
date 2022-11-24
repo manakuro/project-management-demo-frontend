@@ -8,7 +8,7 @@ type Props = {
   onMouseEnter: () => void
 }
 
-export const CopyProjectLink: React.VFC<Props> = (props) => {
+export const CopyProjectLink: React.FC<Props> = (props) => {
   const { projectId, onClose, onMouseEnter } = props
   const { copyProjectLink } = useCopyProjectLink({ projectId })
 

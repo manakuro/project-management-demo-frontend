@@ -11,7 +11,7 @@ import {
 import { EditorProvider, useEditorStateContext } from './EdiorProvider'
 import { Portals } from './Portals'
 
-type Props = {
+type Props = PropsWithChildren<{
   schema: Schema
   plugins: Plugin[]
   initialValue: string
@@ -19,7 +19,8 @@ type Props = {
   debounce: number
   forceUpdate?: number
   resetView?: number
-} & EditorProps
+}> &
+  EditorProps
 
 export const EditorContainer: React.FC<Props> = (props) => {
   const transformer = useMemo<ProsemirrorTransformer>(

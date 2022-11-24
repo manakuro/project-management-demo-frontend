@@ -1,17 +1,17 @@
-import React, { memo } from 'react'
+import React, { memo, PropsWithChildren } from 'react'
 import { FileUploaderParams, Flex } from 'src/components/atoms'
 import { Tooltip, TooltipProps } from 'src/components/molecules'
 import { Menu } from 'src/components/organisms/Menu'
 import { useDisclosure } from 'src/shared/chakra'
 import { MenuList } from './MenuList'
 
-type Props = {
+type Props = PropsWithChildren<{
   label: string
   tooltip?: Omit<TooltipProps, 'children'>
   onUpload?: (files: FileUploaderParams) => void
-}
+}>
 
-export const AttachmentMenu: React.FC<Props> = memo((props) => {
+export const AttachmentMenu: React.FC<Props> = memo<Props>((props) => {
   const menuDisclosure = useDisclosure()
 
   return (

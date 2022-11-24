@@ -20,7 +20,9 @@ const ReactNodeViewCreatePortalContext = React.createContext<PortalHandlers>({
   removePortal: () => {},
 })
 
-export const ReactNodeViewPortalsProvider: React.FC<Props> = (props) => {
+export const ReactNodeViewPortalsProvider: React.FCWithChildren<Props> = (
+  props,
+) => {
   const [portals, setPortals] = useState<Portal[]>([])
 
   const findPortal = useCallback(
@@ -29,7 +31,7 @@ export const ReactNodeViewPortalsProvider: React.FC<Props> = (props) => {
   )
 
   const createPortal = useCallback(
-    ({ container, Component }) => {
+    ({ container, Component }: { Component: any; container: any }) => {
       const newVal: Portal = {
         container,
         Component,
@@ -50,7 +52,7 @@ export const ReactNodeViewPortalsProvider: React.FC<Props> = (props) => {
     [findPortal],
   )
 
-  const removePortal = useCallback((container) => {
+  const removePortal = useCallback((container: HTMLElement) => {
     setPortals((prev) => {
       return prev.filter((p) => p.container !== container)
     })

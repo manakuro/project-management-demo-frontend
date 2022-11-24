@@ -20,7 +20,7 @@ type Props = {
   hasClickedOutside: UseClickOutsideOptionsHasClickedOutside
 }
 
-export const Content: React.VFC<Props> = memo((props) => {
+export const Content: React.FC<Props> = memo((props) => {
   const { hasClickedOutside } = props
   const { drawerStyle } = useDrawerStyle()
   const { ref } = useClickOutside(

@@ -7,7 +7,7 @@ type Props = {
   onMouseEnter: () => void
 }
 
-export const DuplicateProject: React.VFC<Props> = (props) => {
+export const DuplicateProject: React.FC<Props> = (props) => {
   const { onClose, onMouseEnter } = props
 
   const handleClick = useCallback(

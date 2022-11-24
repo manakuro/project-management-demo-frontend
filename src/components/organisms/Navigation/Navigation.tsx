@@ -10,7 +10,7 @@ import { useNavigation } from './hooks'
 export const PADDING_X = 4
 export const MAX_WIDTH = '240px'
 export const MIN_WIDTH = '53px'
-export const Navigation: React.VFC = memo(() => {
+export const Navigation: React.FC = memo(() => {
   const { isExpanded } = useNavigation()
 
   return (

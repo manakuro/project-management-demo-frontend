@@ -6,7 +6,7 @@ import { useClickableHoverStyle } from 'src/hooks'
 
 type Props = {}
 
-export const AddMemberListItem: React.VFC<Props> = memo<Props>(() => {
+export const AddMemberListItem: React.FC<Props> = memo<Props>(() => {
   const { setIsOpen } = useInviteModal()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 

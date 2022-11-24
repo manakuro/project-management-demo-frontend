@@ -13,7 +13,7 @@ type Props = {
   onSetMembersTab: () => void
 }
 
-export const Share: React.VFC<Props> = memo<Props>((props) => {
+export const Share: React.FC<Props> = memo<Props>((props) => {
   const { projectId, onSetMembersTab } = props
   const { invitedTeammates, setInvitedTeammates } =
     useShareProjectModalInvitedTeammates()

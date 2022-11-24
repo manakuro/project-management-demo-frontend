@@ -6,7 +6,7 @@ type Props = {
   taskId: string
 }
 
-export const Subtask: React.VFC<Props> = (props) => {
+export const Subtask: React.FC<Props> = (props) => {
   const { taskId } = props
   const { taskIds } = useSubtaskIds(taskId)
   const size = useMemo(() => taskIds.length, [taskIds.length])

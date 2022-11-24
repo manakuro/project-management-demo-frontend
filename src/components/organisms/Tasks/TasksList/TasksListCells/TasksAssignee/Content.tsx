@@ -13,7 +13,7 @@ type Props = {
   onUnfocus: () => void
 }
 
-export const Content: React.VFC<Props> = memo<Props>((props) => {
+export const Content: React.FC<Props> = memo<Props>((props) => {
   const { isHovering, focused, onUnfocus, taskId } = props
   const { task } = useTask(taskId)
   const { assignTask } = useTaskCommand()

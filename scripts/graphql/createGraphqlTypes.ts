@@ -3,9 +3,9 @@ import { spawnSync } from '../util/spawnSync'
 import { getGraphqlFilenames } from './getGraphqlFilenames'
 
 const createGraphqlTypes = async () => {
-  const { abs } = await getGraphqlFilenames()
+  const { paths } = await getGraphqlFilenames()
 
-  abs.forEach((file) => {
+  paths.forEach((file) => {
     spawnSync(`npx hygen new queryType --file ${file}`)
   })
 

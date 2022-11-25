@@ -60,12 +60,6 @@ export const parseGraphql = (file: string) => {
 
 const queryType = (typeName: string) => {
   switch (typeName) {
-    case 'clientAccountsByClientBillingId':
-      return 'ClientAccountByClientBillingId'
-
-    case 'seikyuKobetsuChoseiAutoCreationSettings':
-      return 'SeikyuKobetsuChoseiAutoCreationSetting'
-
     default:
       return inflection.singularize(typeName)
   }

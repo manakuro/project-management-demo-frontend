@@ -137,6 +137,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
+    "fast-glob": "^3.2.12",
     "husky": "^7.0.4",
     "hygen": "^6.2.11",
     "inflection": "^2.0.0",

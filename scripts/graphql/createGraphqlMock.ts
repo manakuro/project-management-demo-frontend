@@ -15,8 +15,8 @@ const createGraphqlMock = async () => {
     return
   }
 
-  const { abs } = (await getGraphqlFilenames()) || { abs: [] }
-  abs.forEach((file: string) => {
+  const { paths } = await getGraphqlFilenames()
+  paths.forEach((file: string) => {
     spawnSync(`npx hygen new queryMock --file ${file}`)
   })
 

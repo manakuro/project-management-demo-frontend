@@ -1,27 +1,29 @@
 import './enableImportGraphql'
 
-import * as fs from 'fs/promises'
 import * as path from 'path'
 import consola from 'consola'
+import fg from 'fast-glob'
 
-export const getGraphqlFilenames = async () => {
-  const dir = path.resolve(__dirname, '../../src/graphql/queries')
-  const filenames = (await fs.readdir(dir)) as string[]
-  if (!filenames) {
-    consola.error('Not found:', dir)
-    return { abs: [], filenames: [] }
+type Result = {
+  paths: string[]
+}
+export const getGraphqlFilenames = async (): Promise<Result> => {
+  let paths = await fg(['src/graphql/queries/**/*'], {
+    ignore: ['**/*/fragments'],
+  })
+
+  if (!paths) {
+    consola.error('GraphQL file not found')
+    return { paths: [] }
   }
 
-  const graphqlFiles = filenames
+  paths = paths
     .filter((f) => isGraphqlFile(f))
     .filter((f) => f !== '__schema__.graphql')
     .filter((f) => !f.includes('Fragment'))
 
-  const abs = graphqlFiles.map((f) => `${dir}/${f}`)
-
   return {
-    abs,
-    filenames: graphqlFiles,
+    paths,
   }
 }
 

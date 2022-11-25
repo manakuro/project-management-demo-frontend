@@ -2,7 +2,7 @@ import { server } from 'src/testUtils/mock/server'
 
 type Callback = () => void
 
-export const startServer = (callback: Callback) => {
+export const startServer = (callback?: Callback) => {
   beforeAll(async () => {
     if (callback) await callback()
     server.listen()

@@ -4,6 +4,7 @@ import React from 'react'
 import { RecoilRoot } from 'recoil'
 import { Modals } from 'src/components/organisms/Modals'
 import { ApolloProvider } from 'src/shared/apollo/ApolloProvider'
+import { BeforeAppMount } from 'src/shared/app/'
 import {
   AdapterDateFns,
   LocalizationProvider,
@@ -19,10 +20,10 @@ export const WrappedComponent: React.FCWithChildren = (props) => {
         <ChakraProvider theme={theme} resetCSS>
           <LocalizationProvider dateAdapter={AdapterDateFns} locale={enLocale}>
             <ApolloProvider>
-              <>
+              <BeforeAppMount>
                 {props.children}
                 <Modals />
-              </>
+              </BeforeAppMount>
             </ApolloProvider>
           </LocalizationProvider>
         </ChakraProvider>

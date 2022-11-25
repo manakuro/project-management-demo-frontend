@@ -6,11 +6,25 @@ export const data = (
   options?: Response,
   deepMergeOptions?: deepmerge.Options,
 ): Query =>
-  deepmerge<Query>({}, (options || {}) as Query, {
-    arrayMerge(target: any[], source: any[]): any[] {
-      if (!source.length) return source
-
-      return [...target, ...source]
+  deepmerge<Query>(
+    {
+      teammateTaskTabStatus: {
+        id: '0AO01GF9ZGEFKWVGARJ8JPPVM3DYD',
+        teammateId: '0AC01GF9ZGB7W1P0G4DZS22JZHC3G',
+        workspaceId: '0AD01GF9ZGB9E77AWH3M8BCM81FMX',
+        statusCode: 'LIST',
+        createdAt: '2022-10-14T09:50:04+09:00',
+        updatedAt: '2022-11-24T14:04:58+09:00',
+        __typename: 'TeammateTaskTabStatus',
+      },
     },
-    ...deepMergeOptions,
-  })
+    (options || {}) as Query,
+    {
+      arrayMerge(target: any[], source: any[]): any[] {
+        if (!source.length) return source
+
+        return [...target, ...source]
+      },
+      ...deepMergeOptions,
+    },
+  )

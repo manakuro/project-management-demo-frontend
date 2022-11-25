@@ -6,11 +6,77 @@ export const data = (
   options?: Response,
   deepMergeOptions?: deepmerge.Options,
 ): Query =>
-  deepmerge<Query>({}, (options || {}) as Query, {
-    arrayMerge(target: any[], source: any[]): any[] {
-      if (!source.length) return source
-
-      return [...target, ...source]
+  deepmerge<Query>(
+    {
+      workspace: {
+        id: '0AD01GF9ZGB9E77AWH3M8BCM81FMX',
+        name: 'My Workspace',
+        description: {
+          content: [
+            {
+              content: [
+                {
+                  text: 'A Workspace is a collection of people that collaborate on projects and tasks. Workspaces can be used by any group of people and do not require a common company email domain.',
+                  type: 'text',
+                },
+              ],
+              type: 'paragraph',
+            },
+            {
+              type: 'paragraph',
+            },
+            {
+              type: 'paragraph',
+            },
+            {
+              type: 'paragraph',
+            },
+            {
+              content: [
+                {
+                  text: 'This is my project',
+                  type: 'text',
+                },
+              ],
+              type: 'paragraph',
+            },
+            {
+              type: 'paragraph',
+            },
+            {
+              content: [
+                {
+                  text: '😆  ',
+                  type: 'text',
+                },
+              ],
+              type: 'paragraph',
+            },
+            {
+              content: [
+                {
+                  text: 'hey',
+                  type: 'text',
+                },
+              ],
+              type: 'paragraph',
+            },
+          ],
+          type: 'doc',
+        },
+        createdBy: '0AC01GF9ZGB7W1P0G4DZS22JZHC3G',
+        createdAt: '2022-10-14T09:50:01+09:00',
+        updatedAt: '2022-11-24T14:04:41+09:00',
+        __typename: 'Workspace',
+      },
     },
-    ...deepMergeOptions,
-  })
+    (options || {}) as Query,
+    {
+      arrayMerge(target: any[], source: any[]): any[] {
+        if (!source.length) return source
+
+        return [...target, ...source]
+      },
+      ...deepMergeOptions,
+    },
+  )

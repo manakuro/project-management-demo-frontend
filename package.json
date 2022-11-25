@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "preinstall": "typesync || :",
-    "postinstall": "husky install",
+    "setup": "husky install",
     "dev": "next dev -p 4001",
     "build": "next build",
     "start": "next start -p 8080",
@@ -13,7 +13,6 @@
     "precommit": "tsc && lint-staged",
     "lint": "eslint --ext .js,.ts,.tsx 'src/**'",
     "lint:fix": "eslint --ext .js,.ts,.tsx 'src/**' --fix",
-    "new:component": "hygen new component && yarn lint:fix",
     "test:unit": "jest",
     "test:integration": "cross-env INTEGRATION=true jest",
     "tsc": "tsc",

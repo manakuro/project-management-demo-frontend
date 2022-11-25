@@ -1,7 +1,12 @@
 # project-management-demo-frontend
 Project management tool demo app.
 
-## Usage
+## Install
+```
+yarn
+```
+
+## Start server
 
 ```
 yarn dev
@@ -9,10 +14,17 @@ yarn dev
 
 ## Test
 ```
-yarn test
+yarn test:unit
+yarn test:integration
 ```
 
 ## Build
 ```
 yarn build
+```
+
+## Generate query mock
+```
+yarn codegen
+yarn new:QueryMock
 ```

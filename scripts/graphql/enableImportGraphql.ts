@@ -10,7 +10,7 @@ const handleModule = (m: any, filename: string) => {
   m.exports = parse(content)
 }
 
-// GraphQLファイルをimportで読み込めるようにする
+// This lets you import GraphQL file.
 VALID_EXTENSIONS.forEach((ext) => {
   if ((Module as any)._extensions[`.${ext}`]) return
   ;(Module as any)._extensions[`.${ext}`] = handleModule

@@ -10,6 +10,7 @@ type Result = {
 export const getGraphqlFilenames = async (): Promise<Result> => {
   let paths = await fg(['src/graphql/queries/**/*'], {
     ignore: ['**/*/fragments'],
+    absolute: true,
   })
 
   if (!paths) {

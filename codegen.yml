@@ -42,6 +42,7 @@ generates:
       - typescript-operations
     config:
       enumsAsConst: true
+      skipTypename: false
 
 config:
   scalars:

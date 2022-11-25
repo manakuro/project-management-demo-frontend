@@ -10,5 +10,7 @@ spawnSync(
     ? `node scripts/graphql/createGraphqlMock.js --file ${argv.file}`
     : 'node scripts/graphql/createGraphqlMock.js',
 )
-spawnSync('yarn new:queryMockHandler')
+spawnSync(
+  'node scripts/graphql/createMockHandler.js && eslint ./src/testUtils/mock/handlers.ts --fix',
+)
 spawnSync('eslint ./src/testUtils/mock/queries/ --fix')

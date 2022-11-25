@@ -5,7 +5,7 @@ import * as path from 'path'
 import consola from 'consola'
 
 export const getGraphqlFilenames = async () => {
-  const dir = path.resolve(__dirname, '../../src/queries')
+  const dir = path.resolve(__dirname, '../../src/graphql/queries')
   const filenames = (await fs.readdir(dir)) as string[]
   if (!filenames) {
     consola.error('Not found:', dir)

@@ -23,8 +23,7 @@
     "codegen:download": "env-cmd -f ./.env.local node scripts/codegen/download.js",
     "codegen:prod": "yarn codegen:download:prod && graphql-codegen",
     "codegen:download:prod": "echo ENV_JSON > ./env.json && env-cmd -f ./.env.json node scripts/codegen/download.js",
-    "new:queryMock": "ts-node ./scripts/newQueryMock.ts",
-    "new:queryMockHandler": "yarn tsc:scripts && node scripts/graphql/createMockHandler.js && eslint ./src/testUtils/mock/handlers.ts --fix"
+    "new:queryMock": "ts-node ./scripts/newQueryMock.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",
@@ -139,7 +138,7 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
     "husky": "^7.0.4",
-    "hygen": "^6.2.7",
+    "hygen": "^6.2.11",
     "inflection": "^2.0.0",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",

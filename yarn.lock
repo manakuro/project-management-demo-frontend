@@ -11519,9 +11519,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hygen@npm:^6.2.7":
-  version: 6.2.7
-  resolution: "hygen@npm:6.2.7"
+"hygen@npm:^6.2.11":
+  version: 6.2.11
+  resolution: "hygen@npm:6.2.11"
   dependencies:
     "@types/node": ^17.0.19
     chalk: ^4.1.2
@@ -11530,7 +11530,6 @@ __metadata:
     degit: ^2.8.4
     ejs: ^3.1.6
     enquirer: ^2.3.6
-    eslint-plugin-prettier: ^4.0.0
     execa: ^5.0.0
     front-matter: ^4.0.2
     fs-extra: ^10.0.0
@@ -11540,7 +11539,7 @@ __metadata:
     yargs-parser: ^21.0.0
   bin:
     hygen: dist/bin.js
-  checksum: 0dc221536c2a02f31f584f04a9c7496f500dd9a84e2a5498354835a97fc6a8e1287f2e5e6ce5d656b2028e9d8a0b0d5b7902e589726f55a4bf5fd6a04c204403
+  checksum: 2ea44b41c3ccf2b85e2935f43adb620c465173628e410ccaa30a29503cafb57eccb3537ab1e6839dea6bc5a8454ad34a2a69aa7ec0cfc8531e30142a81ad04e6
   languageName: node
   linkType: hard
 
@@ -15198,7 +15197,7 @@ __metadata:
     framer-motion: ^4.1.0
     graphql: ^16.4.0
     husky: ^7.0.4
-    hygen: ^6.2.7
+    hygen: ^6.2.11
     inflection: ^2.0.0
     jest: ^29.3.1
     jest-environment-jsdom: ^29.3.1

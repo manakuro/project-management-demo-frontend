@@ -8,7 +8,7 @@ import consola from 'consola'
 import { parse } from 'graphql'
 
 export const getFragmentFilenames = async () => {
-  const dir = path.resolve(__dirname, '../../src/queries/fragments')
+  const dir = path.resolve(__dirname, '../../src/graphql/queries/fragments')
   const filenames = (await fs.readdir(dir)) as string[]
   if (!filenames) {
     consola.error('Not found:', dir)

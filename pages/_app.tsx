@@ -3,24 +3,21 @@ import { resetServerContext } from '@hello-pangea/dnd'
 import enLocale from 'date-fns/locale/en-US'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement, Suspense } from 'react'
 import { RecoilRoot } from 'recoil'
 import { GetLayout } from 'src/@types/next'
 import { PageLoader } from 'src/components/molecules'
 import { LayoutDefault } from 'src/components/organisms/Layout'
 import { Mobile } from 'src/components/organisms/Mobile'
 import { Modals } from 'src/components/organisms/Modals'
-import { useAuth } from 'src/hooks/useAuth'
+import { BeforeAppMount, Subscription } from 'src/components/shared/app'
 import { ApolloProvider } from 'src/shared/apollo/ApolloProvider'
-import { BeforeAppMount } from 'src/shared/app'
-import { Subscription } from 'src/shared/app/Subscription'
 import {
   muiTheme,
   MuiThemeProvider,
   LocalizationProvider,
   AdapterDateFns,
 } from 'src/shared/materialUI'
-import { useGlobalUILoading } from 'src/store/app/globalUI/loading'
 import { theme } from 'src/styles'
 
 resetServerContext()
@@ -38,7 +35,9 @@ const App = (props: AppPropsWithLayout) => {
         <ChakraProvider theme={theme} resetCSS>
           <LocalizationProvider dateAdapter={AdapterDateFns} locale={enLocale}>
             <Mobile>
-              <Inner {...props} />
+              <Suspense fallback={<PageLoader />}>
+                <Inner {...props} />
+              </Suspense>
             </Mobile>
           </LocalizationProvider>
         </ChakraProvider>
@@ -51,15 +50,6 @@ const Inner = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout =
     Component.getLayout ||
     ((page: ReactElement) => <LayoutDefault>{page}</LayoutDefault>)
-
-  const { loading, endLoading } = useGlobalUILoading()
-  const { isSignedIn } = useAuth()
-
-  useEffect(() => {
-    if (isSignedIn) endLoading()
-  }, [endLoading, isSignedIn])
-
-  if (loading) return <PageLoader />
 
   return (
     <ApolloProvider>

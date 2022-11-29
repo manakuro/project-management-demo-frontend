@@ -1,10 +1,11 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import enLocale from 'date-fns/locale/en-US'
-import React from 'react'
+import React, { Suspense } from 'react'
 import { RecoilRoot } from 'recoil'
+import { PageLoader } from 'src/components/molecules'
 import { Modals } from 'src/components/organisms/Modals'
+import { BeforeAppMount } from 'src/components/shared/app'
 import { ApolloProvider } from 'src/shared/apollo/ApolloProvider'
-import { BeforeAppMount } from 'src/shared/app/'
 import {
   AdapterDateFns,
   LocalizationProvider,
@@ -19,12 +20,14 @@ export const WrappedComponent: React.FCWithChildren = (props) => {
       <MuiThemeProvider theme={muiTheme}>
         <ChakraProvider theme={theme} resetCSS>
           <LocalizationProvider dateAdapter={AdapterDateFns} locale={enLocale}>
-            <ApolloProvider>
-              <BeforeAppMount>
-                {props.children}
-                <Modals />
-              </BeforeAppMount>
-            </ApolloProvider>
+            <Suspense fallback={<PageLoader />}>
+              <ApolloProvider>
+                <BeforeAppMount>
+                  {props.children}
+                  <Modals />
+                </BeforeAppMount>
+              </ApolloProvider>
+            </Suspense>
           </LocalizationProvider>
         </ChakraProvider>
       </MuiThemeProvider>

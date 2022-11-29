@@ -1,5 +1,5 @@
-import { useEffect, useMemo } from 'react'
-import { atom, useRecoilState } from 'recoil'
+import { useMemo } from 'react'
+import { atom, useRecoilValue } from 'recoil'
 import { isServer } from 'src/shared/environment'
 import {
   onAuthStateChanged,
@@ -12,46 +12,45 @@ const key = (str: string) => `src/hooks/useAuth/${str}`
 const idTokenState = atom<string>({
   key: key('idTokenState'),
   default: '',
-})
+  effects: [
+    ({ setSelf }) => {
+      if (isServer()) {
+        setSelf('')
+        return
+      }
+      let resolve: (value: string) => void
 
-export const useAuth = () => {
-  const [idToken, setIdToken] = useRecoilState(idTokenState)
+      // Suspense for initial rendering.
+      const defaultValue = new Promise<string>((r) => {
+        resolve = r
+      })
+      setSelf(defaultValue)
 
-  const isSignedIn = useMemo(() => !!idToken, [idToken])
-
-  useEffect(() => {
-    if (isServer()) return
-
-    try {
-      return onAuthStateChanged(async (user) => {
+      const unsubscribeAuthStateChanged = onAuthStateChanged(async (user) => {
         if (!user) {
           console.log('signInAnonymously!')
           await signInAnonymously()
         }
       })
-    } catch (err) {
-      if (err instanceof Error) {
-        console.dir(err)
-      }
-    }
-  }, [setIdToken])
-
-  useEffect(() => {
-    if (isServer()) return
-
-    try {
-      return onIdTokenChanged(async (user) => {
+      const unsubscribeIdTokenChanged = onIdTokenChanged(async (user) => {
         if (!user) return
         console.log('onIdTokenChanged has changed!')
         const id = await user.getIdToken()
-        setIdToken(id)
+        resolve(id)
+        setSelf(id)
       })
-    } catch (err) {
-      if (err instanceof Error) {
-        console.dir(err)
+
+      return () => {
+        unsubscribeAuthStateChanged()
+        unsubscribeIdTokenChanged()
       }
-    }
-  }, [setIdToken])
+    },
+  ],
+})
+
+export const useAuth = () => {
+  const idToken = useRecoilValue(idTokenState)
+  const isSignedIn = useMemo(() => !!idToken, [idToken])
 
   return {
     idToken,

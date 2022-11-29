@@ -1,15 +1,9 @@
-const testMatch = () => {
-  if (process.env.INTEGRATION) return ['**/src/**/?(*.)+(integ).[jt]s?(x)']
-
-  return ['**/src/**/?(*.)+(spec|test).[jt]s?(x)']
-}
-
 module.exports = {
   testEnvironment: 'jsdom',
   globals: {
     __DEV__: true,
   },
-  testMatch: testMatch(),
+  testMatch: ['**/src/**/?(*.)+(spec|test).[jt]s?(x)'],
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
   setupFilesAfterEnv: [
     '<rootDir>/node_modules/jest-plugin-context/setup',

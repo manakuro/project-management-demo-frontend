@@ -1,4 +1,5 @@
 src/graphql/types/index.ts
+src/graphql/types/index.mock.ts
 src/graphql/enums/index.ts
 src/graphql/hooks/index.ts
 src/graphql/__schema__.graphql

@@ -29,7 +29,7 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <TasksProvider isHomePage>
-      <Flex data-testid="Home" flexDirection="column">
+      <Flex flexDirection="column">
         <Head title="Home" />
         <Header />
         {props.loading ? (

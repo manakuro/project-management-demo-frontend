@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react'
-import { Box, Flex, Grid, Heading, Icon } from 'src/components/atoms'
+import { Box, Flex, Grid, Heading, Icon, FlexProps } from 'src/components/atoms'
 import {
   Accordion,
   AccordionItem,
@@ -20,6 +20,8 @@ type Props = {
   projectIds: string[]
   showNewOrder: boolean
   title: string
+  projectTileItemProps?: FlexProps
+  projectListItemProps?: FlexProps
 }
 
 export const PADDING_X = 2
@@ -62,7 +64,11 @@ export const ProjectsContainer: React.FC<Props> = memo<Props>((props) => {
                   <Box py={4}>
                     <Grid templateColumns="repeat(4, 1fr)" gap={6}>
                       {props.projectIds.map((id) => (
-                        <ProjectTileItem projectId={id} key={id} />
+                        <ProjectTileItem
+                          projectId={id}
+                          key={id}
+                          containerStyle={props.projectTileItemProps}
+                        />
                       ))}
                       {props.showNewOrder && <ProjectTileItemNew />}
                     </Grid>
@@ -70,7 +76,11 @@ export const ProjectsContainer: React.FC<Props> = memo<Props>((props) => {
                 ) : (
                   <>
                     {props.projectIds.map((id) => (
-                      <ProjectListItem projectId={id} key={id} />
+                      <ProjectListItem
+                        projectId={id}
+                        key={id}
+                        containerStyle={props.projectListItemProps}
+                      />
                     ))}
                     {props.showNewOrder && <ProjectListItemNew />}
                   </>

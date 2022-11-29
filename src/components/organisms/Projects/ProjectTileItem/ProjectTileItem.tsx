@@ -31,7 +31,11 @@ export const ProjectTileItem: React.FC<Props> = memo((props) => {
   const { teammateIds } = useTeammateIdsByProjectId(projectId)
 
   return (
-    <Container name={project.name} {...containerStyle}>
+    <Container
+      name={project.name}
+      aria-label="project tile item"
+      {...containerStyle}
+    >
       {({
         showTransition,
         handlePopoverProjectMenuClosed,

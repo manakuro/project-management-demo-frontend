@@ -24,6 +24,8 @@ export const FavoriteIconButton: React.FC<Props> = memo<Props>((props) => {
     ? { icon: 'starFilled', color: 'yellow.300', ...iconStyle?.favorite }
     : { icon: 'starOutline', ...iconStyle?.none }
 
+  const ariaLabel = isFavorite(favoriteId) ? 'delete favorite' : 'add favorite'
+
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation()
@@ -37,11 +39,12 @@ export const FavoriteIconButton: React.FC<Props> = memo<Props>((props) => {
   return (
     <IconButton
       onClick={handleClick}
-      aria-label="favorite button"
+      aria-label={ariaLabel}
+      role="button"
       icon={<Icon {...favoriteIconStyle} size="xs" />}
       variant="ghost"
       {...rest}
     />
   )
 })
-FavoriteIconButton.displayName = 'FavoriteButton'
+FavoriteIconButton.displayName = 'FavoriteIconButton'

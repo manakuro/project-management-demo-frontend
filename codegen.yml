@@ -4,10 +4,6 @@ documents:
  - "./src/graphql/**/*.gql"
 generates:
   ./src/graphql/types/index.ts:
-#    Too slow when enabled
-#    hooks:
-#      afterOneFileWrite:
-#        - eslint ./src/graphql/types/index.ts --fix
     plugins:
       - add:
           content: "/* eslint-disable @typescript-eslint/no-redeclare */"
@@ -17,9 +13,6 @@ generates:
       enumsAsConst: true
 
   ./src/graphql/enums/index.ts:
-#    hooks:
-#      afterOneFileWrite:
-#        - eslint ./src/graphql/enums/index.ts --fix
     plugins:
       - add:
           content: "/* eslint-disable @typescript-eslint/no-redeclare */"
@@ -30,9 +23,6 @@ generates:
       enumPrefix: false
 
   ./src/graphql/hooks/index.ts:
-#    hooks:
-#      afterOneFileWrite:
-#        - eslint ./src/graphql/hooks/index.ts --fix
     plugins:
       - typescript-react-apollo
     config:
@@ -42,6 +32,17 @@ generates:
       apolloClientVersion: 3
       reactApolloVersion: 3
       importOperationTypesFrom: import('../types')
+
+  # For mock
+  ./src/graphql/types/index.mock.ts:
+    plugins:
+      - add:
+          content: "/* eslint-disable @typescript-eslint/no-redeclare */"
+      - typescript
+      - typescript-operations
+    config:
+      enumsAsConst: true
+      skipTypename: false
 
 config:
   scalars:

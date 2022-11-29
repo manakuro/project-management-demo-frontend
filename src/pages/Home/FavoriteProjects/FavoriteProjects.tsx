@@ -14,6 +14,12 @@ export const FavoriteProjects: React.FC<Props> = memo<Props>(() => {
       title="Favorite Projects"
       showNewOrder={false}
       projectIds={favoriteProjectIds}
+      projectTileItemProps={{
+        'aria-label': 'favorite project tile item',
+      }}
+      projectListItemProps={{
+        'aria-label': 'favorite project list item',
+      }}
     />
   )
 })

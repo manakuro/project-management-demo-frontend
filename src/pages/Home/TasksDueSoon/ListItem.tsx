@@ -55,6 +55,7 @@ export const ListItem: React.FC<Props> = memo((props) => {
       py={2}
       h={10}
       onClick={handleClick}
+      aria-label="task due soon"
       {...clickableHoverStyle}
     >
       <Flex alignItems="center" flex={1}>

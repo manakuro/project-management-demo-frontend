@@ -1,5 +1,12 @@
 import React, { memo } from 'react'
-import { Flex, IconButton, Text, Icon, AvatarGroup } from 'src/components/atoms'
+import {
+  Flex,
+  IconButton,
+  Text,
+  Icon,
+  AvatarGroup,
+  FlexProps,
+} from 'src/components/atoms'
 import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import { IconType } from 'src/shared/icons'
@@ -12,17 +19,18 @@ import { FavoriteButton } from './FavoriteButton'
 
 type Props = {
   projectId: string
+  containerStyle?: FlexProps
 }
 
 export const ProjectListItem: React.FC<Props> = memo<Props>((props) => {
-  const { projectId } = props
+  const { projectId, containerStyle } = props
   const { project } = useProject(projectId)
   const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
   const { projectIcon } = useProjectIcon(project.projectIconId)
   const { teammateIds } = useTeammateIdsByProjectId(projectId)
 
   return (
-    <Container>
+    <Container aria-label="project list item" {...containerStyle}>
       <Flex
         borderRadius="lg"
         p={2}

@@ -1,9 +1,10 @@
 # project-management-demo-frontend
 Project management tool demo app.
 
-## Install
+## Set up
 ```
-yarn
+yarn install
+yarn codegen
 ```
 
 ## Start server
@@ -13,6 +14,15 @@ yarn dev
 ```
 
 ## Test
+
+Generate query and mutation mock.
+```
+yarn codegen
+yarn new:queryMock
+yarn new:mutationMock
+```
+
+Run tests.
 ```
 yarn test:unit
 yarn test:integration
@@ -23,8 +33,4 @@ yarn test:integration
 yarn build
 ```
 
-## Generate query mock
-```
-yarn codegen
-yarn new:QueryMock
-```
+

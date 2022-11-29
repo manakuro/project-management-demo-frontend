@@ -1,10 +1,10 @@
-const { parseGraphql } = require('../../../scripts/graphql/parseGraphql')
+const { parseQuery } = require('../../../scripts/graphql/parseQuery')
 const changeCase = require('change-case')
 const fs = require('fs')
 
 module.exports = {
   params: async ({ args }) => {
-    const parsed = parseGraphql(args.file)
+    const parsed = parseQuery(args.file)
     const queryTypeName = changeCase.camelCase(parsed.queryType)
 
     const fileName = queryTypeName

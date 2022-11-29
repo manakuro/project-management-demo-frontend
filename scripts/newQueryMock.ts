@@ -12,10 +12,10 @@ spawnSync(
 )
 spawnSync(
   argv.file
-    ? `node scripts/graphql/createGraphqlMock.js --file ${argv.file}`
-    : 'node scripts/graphql/createGraphqlMock.js',
+    ? `node scripts/graphql/createQueryMock.js --file ${argv.file}`
+    : 'node scripts/graphql/createQueryMock.js',
 )
 spawnSync(
-  'node scripts/graphql/createMockHandler.js && eslint ./src/testUtils/mock/handlers.ts --fix',
+  'node scripts/graphql/createQueryMockHandler.js && eslint ./src/testUtils/mock/handlers.ts --fix',
 )
 spawnSync('eslint ./src/testUtils/mock/queries/ --fix')

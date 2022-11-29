@@ -22,7 +22,8 @@
     "codegen:download": "env-cmd -f ./.env.local node scripts/codegen/download.js",
     "codegen:prod": "yarn codegen:download:prod && graphql-codegen",
     "codegen:download:prod": "echo ENV_JSON > ./env.json && env-cmd -f ./.env.json node scripts/codegen/download.js",
-    "new:queryMock": "ts-node ./scripts/newQueryMock.ts"
+    "new:queryMock": "ts-node ./scripts/newQueryMock.ts",
+    "new:mutationMock": "ts-node ./scripts/newMutationMock.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",

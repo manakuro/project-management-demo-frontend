@@ -3,7 +3,7 @@ import consola from 'consola'
 import { hideBin } from 'yargs/helpers'
 import yargs from 'yargs/yargs'
 import { spawnSync } from '../util/spawnSync'
-import { getGraphqlFilenames } from './getGraphqlFilenames'
+import { getQueryFilenames } from './getQueryFilenames'
 
 const argv = yargs(hideBin(process.argv)).argv as unknown as { file: string }
 
@@ -15,7 +15,7 @@ const createMock = async () => {
     return
   }
 
-  const { paths } = await getGraphqlFilenames()
+  const { paths } = await getQueryFilenames()
   paths.forEach((file: string) => {
     spawnSync(`npx hygen new mock --file ${file}`)
   })

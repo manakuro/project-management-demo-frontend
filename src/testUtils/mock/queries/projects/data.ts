@@ -7,11 +7,17 @@ export const data = (
   options?: Response,
   deepMergeOptions?: deepmerge.Options,
 ): Query =>
-  deepmerge<Query>({ ...projects({}) }, (options || {}) as Query, {
-    arrayMerge(target: any[], source: any[]): any[] {
-      if (!source.length) return source
-
-      return [...target, ...source]
+  deepmerge<Query>(
+    {
+      ...projects(),
     },
-    ...deepMergeOptions,
-  })
+    (options || {}) as Query,
+    {
+      arrayMerge(target: any[], source: any[]): any[] {
+        if (!source.length) return source
+
+        return [...target, ...source]
+      },
+      ...deepMergeOptions,
+    },
+  )

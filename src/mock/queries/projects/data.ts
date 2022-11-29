@@ -1,8 +1,8 @@
 import deepmerge from 'deepmerge'
-import { Response, Query } from './type'
+import { Options, Query } from './type'
 
 export const projects = (
-  options?: Response,
+  options?: Options,
   deepMergeOptions?: deepmerge.Options,
 ): Query =>
   deepmerge<Query>(
@@ -11,16 +11,20 @@ export const projects = (
         edges: [
           {
             node: {
-              id: '0AG01GF9ZGBYJM9MKV30SNVZE10HV',
+              id: '0AG01GK0BWAWW1RDQ0KJJEKB6HC3G',
               name: 'App Development',
-              projectBaseColorId: '0AI01GF9ZGBDY8AYPFK3FBV5DMY8Q',
-              projectLightColorId: '0AJ01GF9ZGBJ03P0145BSRV9PNNSJ',
-              projectIconId: '0AK01GF9ZGBR4F2ZYZ427KC9AEZYQ',
+              projectBaseColorId: '0AI01GK0BWARZDJ7DV0QC8D00VKEN',
+              projectLightColorId: '0AJ01GK0BWASYFS2ABT0SKNJT7H04',
+              projectIconId: '0AK01GK0BWAVC6X7D4HNHZ06N4ADE',
               description: {
                 content: [
                   {
                     content: [
                       {
+                        attrs: {
+                          mentionId: '',
+                          mentionType: '',
+                        },
                         text: 'Welcome to the App Development team! We’ll be using this project to track our progress on our Q1 product launch. Final ad designs are in the “Key Resources” section below. Use this form to submit new ideas! 😆',
                         type: 'text',
                       },
@@ -28,114 +32,19 @@ export const projects = (
                     type: 'paragraph',
                   },
                   {
+                    content: null,
                     type: 'paragraph',
                   },
                   {
-                    content: [
-                      {
-                        text: 'Welcome to the App Development team! We’ll be using this project to track our progress on our Q1 product launch. Final ad designs are in the “Key Resources” section below. ',
-                        type: 'text',
-                      },
-                      {
-                        marks: [
-                          {
-                            type: 'bold',
-                          },
-                          {
-                            type: 'italic',
-                          },
-                          {
-                            type: 'underline',
-                          },
-                        ],
-                        text: 'Use',
-                        type: 'text',
-                      },
-                      {
-                        text: ' this form to submit new ideas! 😆',
-                        type: 'text',
-                      },
-                    ],
+                    content: null,
                     type: 'paragraph',
                   },
                   {
+                    content: null,
                     type: 'paragraph',
                   },
                   {
-                    type: 'paragraph',
-                  },
-                  {
-                    attrs: {
-                      start: 1,
-                      type: 'bullet',
-                    },
-                    content: [
-                      {
-                        content: [
-                          {
-                            content: [
-                              {
-                                text: 'test',
-                                type: 'text',
-                              },
-                            ],
-                            type: 'paragraph',
-                          },
-                          {
-                            attrs: {
-                              start: 1,
-                              type: 'ordered',
-                            },
-                            content: [
-                              {
-                                content: [
-                                  {
-                                    content: [
-                                      {
-                                        text: 'test',
-                                        type: 'text',
-                                      },
-                                    ],
-                                    type: 'paragraph',
-                                  },
-                                ],
-                                type: 'listItem',
-                              },
-                            ],
-                            type: 'list',
-                          },
-                        ],
-                        type: 'listItem',
-                      },
-                      {
-                        content: [
-                          {
-                            content: [
-                              {
-                                text: 'test',
-                                type: 'text',
-                              },
-                            ],
-                            type: 'paragraph',
-                          },
-                        ],
-                        type: 'listItem',
-                      },
-                      {
-                        content: [
-                          {
-                            type: 'paragraph',
-                          },
-                        ],
-                        type: 'listItem',
-                      },
-                    ],
-                    type: 'list',
-                  },
-                  {
-                    type: 'paragraph',
-                  },
-                  {
+                    content: null,
                     type: 'paragraph',
                   },
                 ],
@@ -143,84 +52,84 @@ export const projects = (
               },
               descriptionTitle: "How we'll collaborate",
               teammateIds: [
-                '0AC01GF9ZGB7W1P0G4DZS22JZHC3G',
-                '0AC01GF9ZGB7W1P0G4DZS25NB547H',
-                '0AC01GF9ZGB7W1P0G4DZS28AB3880',
+                '0AC01GK0BWAQM2G89ZEQW6TVYJC17',
+                '0AC01GK0BWAQM2G89ZEQW6V2CG974',
+                '0AC01GK0BWAQM2G89ZEQW6XCNRHWV',
               ],
               projectTeammates: [
                 {
-                  id: '0AH01GF9ZGC0T279SX57Y9K1XSZYE',
+                  id: '0AH01GK0BWAXJ1S3A8ZD03128ZZYF',
                   isOwner: true,
                   role: '',
-                  projectId: '0AG01GF9ZGBYJM9MKV30SNVZE10HV',
-                  teammateId: '0AC01GF9ZGB7W1P0G4DZS22JZHC3G',
+                  projectId: '0AG01GK0BWAWW1RDQ0KJJEKB6HC3G',
+                  teammateId: '0AC01GK0BWAQM2G89ZEQW6TVYJC17',
                   teammate: {
-                    id: '0AC01GF9ZGB7W1P0G4DZS22JZHC3G',
+                    id: '0AC01GK0BWAQM2G89ZEQW6TVYJC17',
                     name: 'Manato Kuroda',
                     image: '/images/cat_img.png',
                     email: 'manato.kuroda@example.com',
-                    createdAt: '2022-10-14T09:50:01+09:00',
-                    updatedAt: '2022-10-14T09:50:01+09:00',
+                    createdAt: '2022-11-29T09:16:39+09:00',
+                    updatedAt: '2022-11-29T09:16:39+09:00',
                     __typename: 'Teammate',
                   },
-                  createdAt: '2022-10-14T09:50:01+09:00',
-                  updatedAt: '2022-11-23T15:55:19+09:00',
+                  createdAt: '2022-11-29T09:16:39+09:00',
+                  updatedAt: '2022-11-29T09:16:39+09:00',
                   __typename: 'ProjectTeammate',
                 },
                 {
-                  id: '0AH01GF9ZGC0T279SX57Y9K76KST1',
+                  id: '0AH01GK0BWAXJ1S3A8ZD033SJMMXV',
                   isOwner: false,
-                  role: 'Role',
-                  projectId: '0AG01GF9ZGBYJM9MKV30SNVZE10HV',
-                  teammateId: '0AC01GF9ZGB7W1P0G4DZS25NB547H',
+                  role: '',
+                  projectId: '0AG01GK0BWAWW1RDQ0KJJEKB6HC3G',
+                  teammateId: '0AC01GK0BWAQM2G89ZEQW6V2CG974',
                   teammate: {
-                    id: '0AC01GF9ZGB7W1P0G4DZS25NB547H',
+                    id: '0AC01GK0BWAQM2G89ZEQW6V2CG974',
                     name: 'Dan Abrahmov',
                     image: '/images/dan.jpg',
                     email: 'dan.abrahmov@example.com',
-                    createdAt: '2022-10-14T09:50:01+09:00',
-                    updatedAt: '2022-10-14T09:50:01+09:00',
+                    createdAt: '2022-11-29T09:16:39+09:00',
+                    updatedAt: '2022-11-29T09:16:39+09:00',
                     __typename: 'Teammate',
                   },
-                  createdAt: '2022-10-14T09:50:01+09:00',
-                  updatedAt: '2022-11-23T15:55:05+09:00',
+                  createdAt: '2022-11-29T09:16:39+09:00',
+                  updatedAt: '2022-11-29T09:16:39+09:00',
                   __typename: 'ProjectTeammate',
                 },
                 {
-                  id: '0AH01GF9ZGC0T279SX57Y9MHXC58F',
+                  id: '0AH01GK0BWAXJ1S3A8ZD036H4RMBP',
                   isOwner: false,
                   role: '',
-                  projectId: '0AG01GF9ZGBYJM9MKV30SNVZE10HV',
-                  teammateId: '0AC01GF9ZGB7W1P0G4DZS28AB3880',
+                  projectId: '0AG01GK0BWAWW1RDQ0KJJEKB6HC3G',
+                  teammateId: '0AC01GK0BWAQM2G89ZEQW6XCNRHWV',
                   teammate: {
-                    id: '0AC01GF9ZGB7W1P0G4DZS28AB3880',
+                    id: '0AC01GK0BWAQM2G89ZEQW6XCNRHWV',
                     name: 'Kent Dodds',
                     image: '/images/kent.jpg',
                     email: 'kent.dodds@example.com',
-                    createdAt: '2022-10-14T09:50:01+09:00',
-                    updatedAt: '2022-10-14T09:50:01+09:00',
+                    createdAt: '2022-11-29T09:16:39+09:00',
+                    updatedAt: '2022-11-29T09:16:39+09:00',
                     __typename: 'Teammate',
                   },
-                  createdAt: '2022-10-14T09:50:01+09:00',
-                  updatedAt: '2022-11-23T15:55:19+09:00',
+                  createdAt: '2022-11-29T09:16:39+09:00',
+                  updatedAt: '2022-11-29T09:16:39+09:00',
                   __typename: 'ProjectTeammate',
                 },
               ],
-              dueDate: '2022-10-28T23:59:59+09:00',
-              createdBy: '0AC01GF9ZGB7W1P0G4DZS22JZHC3G',
-              createdAt: '2022-10-14T09:50:01+09:00',
-              updatedAt: '2022-11-24T14:00:05+09:00',
+              dueDate: '2022-11-29T09:16:39+09:00',
+              createdBy: '0AC01GK0BWAQM2G89ZEQW6TVYJC17',
+              createdAt: '2022-11-29T09:16:39+09:00',
+              updatedAt: '2022-11-29T09:16:39+09:00',
               __typename: 'Project',
             },
             __typename: 'ProjectEdge',
           },
           {
             node: {
-              id: '0AG01GF9ZGBYJM9MKV30SNX1YAZZ9',
+              id: '0AG01GK0BWAWW1RDQ0KJJENA0ET1A',
               name: 'Marketing',
-              projectBaseColorId: '0AI01GF9ZGBDY8AYPFK3FBNRTA42F',
-              projectLightColorId: '0AJ01GF9ZGBJ03P0145BSRGYTRY0N',
-              projectIconId: '0AK01GF9ZGBR4F2ZYZ427JHT0K0VW',
+              projectBaseColorId: '0AI01GK0BWARZDJ7DV0QC8884CKJG',
+              projectLightColorId: '0AJ01GK0BWASYFS2ABT0SKGZ30GK7',
+              projectIconId: '0AK01GK0BWAVC6X7D4HNHYZQ2MHEH',
               description: {
                 content: [
                   {
@@ -258,21 +167,21 @@ export const projects = (
               descriptionTitle: "How we'll collaborate",
               teammateIds: [],
               projectTeammates: [],
-              dueDate: '2022-10-14T09:50:01+09:00',
-              createdBy: '0AC01GF9ZGB7W1P0G4DZS22JZHC3G',
-              createdAt: '2022-10-14T09:50:01+09:00',
-              updatedAt: '2022-11-23T15:49:57+09:00',
+              dueDate: '2022-11-29T09:16:39+09:00',
+              createdBy: '0AC01GK0BWAQM2G89ZEQW6TVYJC17',
+              createdAt: '2022-11-29T09:16:39+09:00',
+              updatedAt: '2022-11-29T09:16:39+09:00',
               __typename: 'Project',
             },
             __typename: 'ProjectEdge',
           },
           {
             node: {
-              id: '0AG01GF9ZGBYJM9MKV30SNY0WPG91',
+              id: '0AG01GK0BWAWW1RDQ0KJJEPA0GCDW',
               name: 'Customer Success',
-              projectBaseColorId: '0AI01GF9ZGBDY8AYPFK3FBBBGHHJJ',
-              projectLightColorId: '0AJ01GF9ZGBJ03P0145BSR96E1S4R',
-              projectIconId: '0AK01GF9ZGBR4F2ZYZ427J8846P7Z',
+              projectBaseColorId: '0AI01GK0BWARZDJ7DV0QC7YB0ZKNN',
+              projectLightColorId: '0AJ01GK0BWASYFS2ABT0SKDYG2T65',
+              projectIconId: '0AK01GK0BWAVC6X7D4HNHYZQ2MHEH',
               description: {
                 content: [
                   {
@@ -311,9 +220,9 @@ export const projects = (
               teammateIds: [],
               projectTeammates: [],
               dueDate: '',
-              createdBy: '0AC01GF9ZGB7W1P0G4DZS22JZHC3G',
-              createdAt: '2022-10-14T09:50:01+09:00',
-              updatedAt: '2022-10-14T09:50:01+09:00',
+              createdBy: '0AC01GK0BWAQM2G89ZEQW6TVYJC17',
+              createdAt: '2022-11-29T09:16:39+09:00',
+              updatedAt: '2022-11-29T09:16:39+09:00',
               __typename: 'Project',
             },
             __typename: 'ProjectEdge',

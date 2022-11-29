@@ -60,9 +60,9 @@ export const handlers = [
   homeTaskDetailPageQuery(),
   inboxActivityPageQuery(),
   inboxArchivePageQuery(),
-  workspacePageQuery(),
   projectsPageQuery(),
   projectsTaskDetailPageQuery(),
   myTasksPageQuery(),
   myTasksDetailPageQuery(),
+  workspacePageQuery(),
 ]

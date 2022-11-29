@@ -23,6 +23,8 @@ jobs:
       - name: Run install
         if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile --silent
+      - name: Run codegen
+        run: yarn codegen:ci
       - name: Run lint
         run: yarn lint
       - name: Run test

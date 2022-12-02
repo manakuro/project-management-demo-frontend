@@ -27,7 +27,8 @@
     "new:mutationMock": "ts-node ./scripts/newMutationMock.ts",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "env-cmd -f ./.env.local npx chromatic"
+    "chromatic": "npx chromatic",
+    "chromatic:local": "env-cmd -f ./.env.local npx chromatic"
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",

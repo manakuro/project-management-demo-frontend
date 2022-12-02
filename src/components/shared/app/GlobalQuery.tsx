@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { PageLoader } from 'src/components/molecules'
 import {
   useProjectsQuery,
@@ -14,7 +14,7 @@ import {
 } from 'src/hooks/queries/entities'
 import { useMe } from 'src/store/entities/me'
 
-export const BeforeAppMount: React.FCWithChildren = (props) => {
+export const GlobalQuery: React.FCWithChildren = (props) => {
   useTaskPrioritiesQuery()
   useProjectsQuery()
   useProjectBaseColorsQuery()
@@ -27,11 +27,6 @@ export const BeforeAppMount: React.FCWithChildren = (props) => {
   useTeammateTaskTabStatusQuery()
 
   const { me } = useMe()
-
-  useEffect(() => {
-    console.log('BeforeAppMount!!')
-    /* eslint react-hooks/exhaustive-deps: off */
-  }, [])
 
   if (!me.id) return <PageLoader />
 

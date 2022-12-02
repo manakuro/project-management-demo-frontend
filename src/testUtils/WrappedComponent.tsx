@@ -4,7 +4,7 @@ import React, { Suspense } from 'react'
 import { RecoilRoot } from 'recoil'
 import { PageLoader } from 'src/components/molecules'
 import { Modals } from 'src/components/organisms/Modals'
-import { BeforeAppMount } from 'src/components/shared/app'
+import { GlobalQuery } from 'src/components/shared/app'
 import { ApolloProvider } from 'src/shared/apollo/ApolloProvider'
 import {
   AdapterDateFns,
@@ -22,10 +22,10 @@ export const WrappedComponent: React.FCWithChildren = (props) => {
           <LocalizationProvider dateAdapter={AdapterDateFns} locale={enLocale}>
             <Suspense fallback={<PageLoader />}>
               <ApolloProvider>
-                <BeforeAppMount>
+                <GlobalQuery>
                   {props.children}
                   <Modals />
-                </BeforeAppMount>
+                </GlobalQuery>
               </ApolloProvider>
             </Suspense>
           </LocalizationProvider>

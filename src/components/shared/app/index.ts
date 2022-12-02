@@ -1,2 +1,2 @@
-export * from './BeforeAppMount'
+export * from './GlobalQuery'
 export * from './Subscription'

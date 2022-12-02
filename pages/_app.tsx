@@ -10,7 +10,7 @@ import { PageLoader } from 'src/components/molecules'
 import { LayoutDefault } from 'src/components/organisms/Layout'
 import { Mobile } from 'src/components/organisms/Mobile'
 import { Modals } from 'src/components/organisms/Modals'
-import { BeforeAppMount, Subscription } from 'src/components/shared/app'
+import { GlobalQuery, Subscription } from 'src/components/shared/app'
 import { ApolloProvider } from 'src/shared/apollo/ApolloProvider'
 import {
   muiTheme,
@@ -53,14 +53,14 @@ const Inner = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   return (
     <ApolloProvider>
-      <BeforeAppMount>
+      <GlobalQuery>
         <Subscription>
           <>
             {getLayout(<Component {...pageProps} />)}
             <Modals />
           </>
         </Subscription>
-      </BeforeAppMount>
+      </GlobalQuery>
     </ApolloProvider>
   )
 }

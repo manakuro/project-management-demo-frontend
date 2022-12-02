@@ -56,3 +56,6 @@ __schema__.graphql
 # scripts
 scripts/graphql/*.js
 scripts/util/*.js
+
+## storybook
+src/stories

@@ -1,8 +1,11 @@
 import React from 'react'
-import { AccordionButton } from 'src/components/organisms/Accordion'
+import {
+  AccordionButton,
+  AccordionButtonProps,
+} from 'src/components/organisms/Accordion'
 import { PADDING_X } from '../../Navigation'
 
-type Props = {}
+type Props = AccordionButtonProps
 
 export const CustomNavListAccordionButton: React.FCWithChildren<Props> = (
   props,

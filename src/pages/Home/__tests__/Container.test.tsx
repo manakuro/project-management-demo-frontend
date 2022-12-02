@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import React from 'react'
-import { WrappedComponent } from 'src/testUtils'
+import { mockDate, WrappedComponent } from 'src/testUtils'
 import { removeAllListeners } from 'src/testUtils/mock/server'
 import {
   closeServer,
@@ -21,6 +21,8 @@ describe('pages/Home', () => {
   closeServer()
   resetServer()
   resetHandlers()
+
+  mockDate('2022-11-29T09:16:39+09:00')
 
   beforeEach(async () => {
     removeAllListeners()

@@ -5,6 +5,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:@next/next/recommended',
     'plugin:@next/next/core-web-vitals',
+    'plugin:storybook/recommended',
   ],
   plugins: [
     'babel', // https://www.npmjs.com/package/eslint-plugin-babel

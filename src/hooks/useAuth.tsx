@@ -34,7 +34,7 @@ const idTokenState = atom<string>({
       })
       const unsubscribeIdTokenChanged = onIdTokenChanged(async (user) => {
         if (!user) return
-        console.log('onIdTokenChanged has changed!')
+        // console.log('onIdTokenChanged has changed!')
         const id = await user.getIdToken()
         resolve(id)
         setSelf(id)

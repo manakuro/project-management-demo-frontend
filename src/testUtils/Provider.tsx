@@ -14,7 +14,7 @@ import {
 } from 'src/shared/materialUI'
 import { theme } from 'src/styles'
 
-export const WrappedComponent: React.FCWithChildren = (props) => {
+export const Provider: React.FCWithChildren = (props) => {
   return (
     <RecoilRoot>
       <MuiThemeProvider theme={muiTheme}>

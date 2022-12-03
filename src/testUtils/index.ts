@@ -1,2 +1,2 @@
-export * from './WrappedComponent'
+export * from './Provider'
 export * from './mockDate'

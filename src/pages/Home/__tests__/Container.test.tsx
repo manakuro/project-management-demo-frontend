@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import React from 'react'
-import { mockDate, WrappedComponent } from 'src/testUtils'
+import { mockDate, Provider } from 'src/testUtils'
 import { removeAllListeners } from 'src/testUtils/mock/server'
 import {
   closeServer,
@@ -31,9 +31,9 @@ describe('pages/Home', () => {
   describe('Tasks Due Soon', () => {
     it('should render tasks due soon section', async () => {
       render(
-        <WrappedComponent>
+        <Provider>
           <Container {...propsData()} />
-        </WrappedComponent>,
+        </Provider>,
       )
 
       expect((await screen.findAllByLabelText('task due soon')).length).toBe(4)
@@ -43,9 +43,9 @@ describe('pages/Home', () => {
   describe('Favorite Projects', () => {
     it('should render favorite projects', async () => {
       render(
-        <WrappedComponent>
+        <Provider>
           <Container {...propsData()} />
-        </WrappedComponent>,
+        </Provider>,
       )
 
       expect(
@@ -54,9 +54,9 @@ describe('pages/Home', () => {
     })
     it('should add favorite item', async () => {
       render(
-        <WrappedComponent>
+        <Provider>
           <Container {...propsData()} />
-        </WrappedComponent>,
+        </Provider>,
       )
 
       const favoriteItem = (await screen.findAllByLabelText('add favorite'))[0]
@@ -69,9 +69,9 @@ describe('pages/Home', () => {
 
     it('should delete favorite item', async () => {
       render(
-        <WrappedComponent>
+        <Provider>
           <Container {...propsData()} />
-        </WrappedComponent>,
+        </Provider>,
       )
 
       const favoriteItem = (
@@ -88,9 +88,9 @@ describe('pages/Home', () => {
   describe('Recent Projects', () => {
     it('should render recent projects', async () => {
       render(
-        <WrappedComponent>
+        <Provider>
           <Container {...propsData()} />
-        </WrappedComponent>,
+        </Provider>,
       )
 
       expect(

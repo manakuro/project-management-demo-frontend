@@ -7,15 +7,10 @@ const argv = yargs(hideBin(process.argv)).argv as unknown as { file: string }
 spawnSync('yarn tsc:scripts')
 spawnSync(
   argv.file
-    ? `node scripts/graphql/createMock.js --file ${argv.file}`
-    : 'node scripts/graphql/createMock.js',
-)
-spawnSync(
-  argv.file
     ? `node scripts/graphql/createQueryMock.js --file ${argv.file}`
     : 'node scripts/graphql/createQueryMock.js',
 )
 spawnSync(
-  'node scripts/graphql/createQueryMockHandler.js && eslint ./src/testUtils/mock/handlers.ts --fix',
+  'node scripts/graphql/createQueryMockHandler.js && eslint ./src/mocks/queries/handlers.ts --fix',
 )
-spawnSync('eslint ./src/testUtils/mock/queries/ --fix')
+spawnSync('eslint ./src/mocks/queries/ --fix')

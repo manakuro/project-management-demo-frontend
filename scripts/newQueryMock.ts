@@ -11,6 +11,6 @@ spawnSync(
     : 'node scripts/graphql/createQueryMock.js',
 )
 spawnSync(
-  'node scripts/graphql/createQueryMockHandler.js && eslint ./src/testUtils/mock/handlers.ts --fix',
+  'node scripts/graphql/createQueryMockHandler.js && eslint ./src/mocks/queries/handlers.ts --fix',
 )
-spawnSync('eslint ./src/testUtils/mock/queries/ --fix')
+spawnSync('eslint ./src/mocks/queries/ --fix')

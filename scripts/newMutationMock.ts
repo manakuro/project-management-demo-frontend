@@ -11,6 +11,6 @@ spawnSync(
     : 'node scripts/graphql/createMutationMock.js',
 )
 spawnSync(
-  'node scripts/graphql/createMutationMockHandler.js && eslint ./src/testUtils/mock/handlers.ts --fix',
+  'node scripts/graphql/createMutationMockHandler.js && eslint ./src/mocks/mutations/handlers.ts --fix',
 )
-spawnSync('eslint ./src/testUtils/mock/mutations/ --fix')
+spawnSync('eslint ./src/mocks/mutations/ --fix')

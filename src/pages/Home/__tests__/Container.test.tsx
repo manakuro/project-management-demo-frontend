@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import React from 'react'
+import { removeAllListeners } from 'src/mocks/server'
 import { mockDate, Provider } from 'src/testUtils'
-import { removeAllListeners } from 'src/testUtils/mock/server'
 import {
   closeServer,
   resetHandlers,

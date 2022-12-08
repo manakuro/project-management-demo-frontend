@@ -18,7 +18,7 @@ export const parameters = {
     Provider: RouterContext.Provider,
   },
   msw: {
-    handlers: [...[...queryHandlers, ...mutationHandlers]]
+    handlers: [...queryHandlers, ...mutationHandlers]
   }
 }
 

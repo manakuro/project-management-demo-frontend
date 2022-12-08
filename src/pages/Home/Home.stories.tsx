@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import React from 'react'
 import { LayoutDefault } from 'src/components/organisms/Layout'
-import { Component as Page } from './Component'
+import { Container as Page } from './Container'
 
 export default {
   title: 'Pages/Home',
@@ -25,7 +25,3 @@ export default {
 const Template: ComponentStory<typeof Page> = (args) => <Page {...args} />
 
 export const Default = Template.bind({})
-Default.args = {
-  loading: false,
-  fetchTaskDetailQuery: async () => {},
-}

@@ -7833,7 +7833,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addons@npm:6.5.14":
+"@storybook/addons@npm:6.5.14, @storybook/addons@npm:^6.0.0":
   version: 6.5.14
   resolution: "@storybook/addons@npm:6.5.14"
   dependencies:
@@ -21568,6 +21568,18 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"msw-storybook-addon@npm:^1.6.3":
+  version: 1.6.3
+  resolution: "msw-storybook-addon@npm:1.6.3"
+  dependencies:
+    "@storybook/addons": ^6.0.0
+    is-node-process: ^1.0.1
+  peerDependencies:
+    msw: ">=0.35.0 <1.0.0"
+  checksum: 04f71af6defdb80c57cc824b73419fbc5a355c82c40bfde1a274d771f51b0ed24131a1665608545a353af32b3b9aea0ff39115631c2a59d105acc1c165d5708d
+  languageName: node
+  linkType: hard
+
 "msw@npm:^0.49.0":
   version: 0.49.0
   resolution: "msw@npm:0.49.0"
@@ -23507,6 +23519,7 @@ fsevents@^1.2.7:
     lodash-es: ^4.17.21
     mockdate: ^3.0.5
     msw: ^0.49.0
+    msw-storybook-addon: ^1.6.3
     next: 13.0.4
     node-fetch: ^2.6.6
     pdfjs-dist: 2.9.359

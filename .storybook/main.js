@@ -5,6 +5,7 @@ module.exports = {
     "../src/**/*.stories.mdx",
     "../src/**/*.stories.@(js|jsx|ts|tsx)"
   ],
+  staticDirs: ['../public'],
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -29,6 +30,19 @@ module.exports = {
         configFile: './tsconfig.json'
       }),
     ];
+    config.resolve = {
+      ...config.resolve,
+      fallback: {
+        timers: false,
+        tty: false,
+        os: false,
+        http: false,
+        https: false,
+        zlib: false,
+        util: false,
+        ...config.resolve.fallback,
+      }
+    }
 
     // Return the altered config
     return config;

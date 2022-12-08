@@ -3,6 +3,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import enLocale from 'date-fns/locale/en-US'
 import React, { useMemo } from 'react'
 import { RecoilRoot } from 'recoil'
+import { Modals } from 'src/components/organisms/Modals'
 import {
   useFavoriteProjectIdsQuery,
   useFavoriteWorkspaceIdsQuery,
@@ -31,7 +32,12 @@ export const Provider: React.FCWithChildren = (props) => {
         <ChakraProvider theme={theme} resetCSS>
           <LocalizationProvider dateAdapter={AdapterDateFns} locale={enLocale}>
             <ApolloProvider>
-              <GlobalQuery>{props.children}</GlobalQuery>
+              <GlobalQuery>
+                <>
+                  {props.children}
+                  <Modals />
+                </>
+              </GlobalQuery>
             </ApolloProvider>
           </LocalizationProvider>
         </ChakraProvider>

@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { userEvent, within } from '@storybook/testing-library'
 import React from 'react'
 import { LayoutDefault } from 'src/components/organisms/Layout'
 import { Container as Page } from './Container'
@@ -46,40 +45,34 @@ export const Board = Template.bind({})
 Board.parameters = {
   nextRouter: {
     asPath: '/my_tasks/board',
-    path: '/my_tasks/board',
-    query: 'board',
+    path: '/my_tasks/[[...my_tasks]]',
+    pathname: '/my_tasks/[[...my_tasks]]',
+    query: {
+      my_tasks: ['board'],
+    },
   },
-}
-Board.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement)
-
-  await userEvent.click(await canvas.findByRole('tab', { name: 'Board' }))
 }
 
 export const Calendar = Template.bind({})
 Calendar.parameters = {
   nextRouter: {
     asPath: '/my_tasks/calendar',
-    path: '/my_tasks/calendar',
-    query: 'calendar',
+    path: '/my_tasks/[[...my_tasks]]',
+    pathname: '/my_tasks/[[...my_tasks]]',
+    query: {
+      my_tasks: ['calendar'],
+    },
   },
-}
-Calendar.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement)
-
-  await userEvent.click(await canvas.findByRole('tab', { name: 'Calendar' }))
 }
 
 export const Files = Template.bind({})
 Files.parameters = {
   nextRouter: {
     asPath: '/my_tasks/files',
-    path: '/my_tasks/files',
-    query: 'files',
+    path: '/my_tasks/[[...my_tasks]]',
+    pathname: '/my_tasks/[[...my_tasks]]',
+    query: {
+      my_tasks: ['files'],
+    },
   },
-}
-Files.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement)
-
-  await userEvent.click(await canvas.findByRole('tab', { name: 'Files' }))
 }

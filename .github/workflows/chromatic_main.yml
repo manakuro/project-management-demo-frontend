@@ -1,4 +1,4 @@
-name: CI
+name: Chromatic main
 on:
   push:
     branches: [main]

@@ -1,4 +1,4 @@
-name: CI
+name: Chromatic development
 on:
   pull_request:
     branches: [main]

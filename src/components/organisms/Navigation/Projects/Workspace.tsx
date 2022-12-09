@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import React, { memo, useCallback, useMemo } from 'react'
 import { Flex, Link, NextLink, Text, Icon, Portal } from 'src/components/atoms'
 import {
@@ -13,20 +14,26 @@ import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useI
 import { useNavigation } from 'src/components/organisms/Navigation'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
 import { useLinkHoverStyle, useClickableHoverStyle } from 'src/hooks'
-import { ROUTE_WORKSPACES_OVERVIEW } from 'src/router'
+import { ROUTE_WORKSPACES, ROUTE_WORKSPACES_OVERVIEW } from 'src/router'
 import { useWorkspace } from 'src/store/entities/workspace'
 
 type Props = {}
 
 export const Workspace: React.FC<Props> = memo(() => {
+  const router = useRouter()
   const { isExpanded } = useNavigation()
-  const { _hover } = useLinkHoverStyle()
+  const { _hover, selectedStyle } = useLinkHoverStyle()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
   const { workspace } = useWorkspace()
   const name = useMemo(() => {
     if (!isExpanded) return workspace.name.slice(0, 3)
     return workspace.name
   }, [isExpanded, workspace.name])
+
+  const isCurrentRoute = useMemo(
+    () => router.asPath.includes(ROUTE_WORKSPACES.href.pathname(workspace.id)),
+    [router.asPath, workspace.id],
+  )
 
   const { setIsOpen } = useInviteModal()
 
@@ -37,7 +44,13 @@ export const Workspace: React.FC<Props> = memo(() => {
   return (
     <>
       <Menu placement="bottom-end">
-        <Flex p={2} px={PADDING_X} _hover={_hover} alignItems="center">
+        <Flex
+          p={2}
+          px={PADDING_X}
+          _hover={_hover}
+          alignItems="center"
+          {...(isCurrentRoute ? selectedStyle : {})}
+        >
           <Flex flex={1}>
             {!!workspace.id && (
               <NextLink

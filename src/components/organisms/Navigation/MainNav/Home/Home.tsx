@@ -12,9 +12,9 @@ export const Home: React.FC = memo(() => {
       name: 'Home',
       href: ROUTE_HOME.href.pathname(),
       icon: 'home',
-      isCurrentRoute: () => router.pathname === ROUTE_HOME.href.pathname(),
+      isCurrentRoute: () => router.asPath === ROUTE_HOME.href.pathname(),
     }),
-    [router.pathname],
+    [router.asPath],
   )
 
   return <NavListItem item={item} />

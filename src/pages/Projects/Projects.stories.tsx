@@ -5,14 +5,18 @@ import { LayoutDefault } from 'src/components/organisms/Layout'
 import { Container as Page } from './Container'
 
 export default {
-  title: 'Pages/MyTasks',
+  title: 'Pages/Projects',
   component: Page,
   parameters: {
     layout: 'fullscreen',
     nextRouter: {
-      path: '/my_tasks',
-      query: 'my_tasks',
-      pathname: '/my_tasks/[[...my_tasks]]',
+      asPath: '/projects/0AG01GK0BWAWW1RDQ0KJJEKB6HC3G/list',
+      path: '/projects/[projectId]',
+      query: {
+        projectId: '0AG01GK0BWAWW1RDQ0KJJEKB6HC3G',
+        projects: ['list'],
+      },
+      pathname: '/projects/[projectId]/[[...projects]]',
     },
   },
   decorators: [
@@ -31,8 +35,12 @@ export const List = Template.bind({})
 export const Board = Template.bind({})
 Board.parameters = {
   nextRouter: {
-    path: '/my_tasks/board',
-    query: 'board',
+    asPath: '/projects/0AG01GK0BWAWW1RDQ0KJJEKB6HC3G/board',
+    path: '/projects/[projectId]/board',
+    query: {
+      projectId: '0AG01GK0BWAWW1RDQ0KJJEKB6HC3G',
+      projects: ['board'],
+    },
   },
 }
 Board.play = async ({ canvasElement }) => {
@@ -44,8 +52,12 @@ Board.play = async ({ canvasElement }) => {
 export const Calendar = Template.bind({})
 Calendar.parameters = {
   nextRouter: {
-    path: '/my_tasks/calendar',
-    query: 'calendar',
+    asPath: '/projects/0AG01GK0BWAWW1RDQ0KJJEKB6HC3G/calendar',
+    path: '/projects/[projectId]/calendar',
+    query: {
+      projectId: '0AG01GK0BWAWW1RDQ0KJJEKB6HC3G',
+      projects: ['calendar'],
+    },
   },
 }
 Calendar.play = async ({ canvasElement }) => {
@@ -57,8 +69,12 @@ Calendar.play = async ({ canvasElement }) => {
 export const Files = Template.bind({})
 Files.parameters = {
   nextRouter: {
-    path: '/my_tasks/files',
-    query: 'files',
+    asPath: '/projects/0AG01GK0BWAWW1RDQ0KJJEKB6HC3G/files',
+    path: '/projects/[projectId]/files',
+    query: {
+      projectId: '0AG01GK0BWAWW1RDQ0KJJEKB6HC3G',
+      projects: ['files'],
+    },
   },
 }
 Files.play = async ({ canvasElement }) => {

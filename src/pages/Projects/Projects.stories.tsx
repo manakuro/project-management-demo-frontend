@@ -32,6 +32,21 @@ const Template: ComponentStory<typeof Page> = (args) => <Page {...args} />
 
 export const List = Template.bind({})
 
+export const Detail = Template.bind({})
+Detail.parameters = {
+  nextRouter: {
+    asPath:
+      '/projects/0AG01GK0BWAWW1RDQ0KJJEKB6HC3G/0BA01GK0BWB1Z78B3A3PK795SFJW9',
+    path: '/projects/[projectId]/[[...projects]]',
+    pathname: '/projects/[projectId]/[[...projects]]',
+    query: {
+      projectId: '0AG01GK0BWAWW1RDQ0KJJEKB6HC3G',
+      projects: ['0BA01GK0BWB1Z78B3A3PK795SFJW9'],
+    },
+    route: '/projects/[projectId]/[[...projects]]',
+  },
+}
+
 export const Board = Template.bind({})
 Board.parameters = {
   nextRouter: {

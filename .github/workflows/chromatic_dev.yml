@@ -5,7 +5,7 @@ on:
 
 jobs:
   chromatic:
-    name: chromatic
+    name: chromatic development
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -32,6 +32,7 @@ jobs:
         id: chromatic
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          exitZeroOnChanges: true
       - name: Remove unnecessary path for Chromatic link
         id: storybook-url
         run: echo "::set-output name=value::${STORYBOOK_URL//\/iframe.html/}"

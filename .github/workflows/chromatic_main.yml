@@ -1,0 +1,35 @@
+name: CI
+on:
+  push:
+    branches: [main]
+
+jobs:
+  chromatic:
+    name: chromatic main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16.18.1
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        id: node_modules_cache_id
+        with:
+          path: node_modules
+          key: v1-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          restore-keys: |
+            v1-yarn-
+      - name: Run install
+        if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --silent
+      - name: Run codegen
+        run: yarn codegen:ci
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
+        id: chromatic
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          autoAcceptChanges: true

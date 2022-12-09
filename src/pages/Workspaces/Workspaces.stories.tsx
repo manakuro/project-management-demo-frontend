@@ -4,15 +4,18 @@ import { LayoutDefault } from 'src/components/organisms/Layout'
 import { Container as Page } from './Container'
 
 export default {
-  title: 'Pages/Home',
+  title: 'Pages/Workspaces',
   component: Page,
   parameters: {
     layout: 'fullscreen',
     nextRouter: {
-      asPath: '/',
-      path: '/',
-      query: 'index',
-      pathname: '/[[...index]]',
+      asPath: '/workspaces/0AD01GK0BWAQZYWRN2T89M5K2620Z/overview',
+      path: '/workspaces/[workspaceId]/[[...workspaces]]',
+      query: {
+        workspaceId: '0AD01GK0BWAQZYWRN2T89M5K2620Z',
+        workspaces: ['overview'],
+      },
+      pathname: '/workspaces/[workspaceId]/[[...workspaces]]',
     },
   },
   decorators: [
@@ -25,5 +28,4 @@ export default {
 } as ComponentMeta<typeof Page>
 
 const Template: ComponentStory<typeof Page> = (args) => <Page {...args} />
-
-export const Default = Template.bind({})
+export const Overview = Template.bind({})

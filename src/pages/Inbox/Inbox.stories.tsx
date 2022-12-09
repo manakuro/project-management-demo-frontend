@@ -4,15 +4,14 @@ import { LayoutDefault } from 'src/components/organisms/Layout'
 import { Container as Page } from './Container'
 
 export default {
-  title: 'Pages/Home',
+  title: 'Pages/Inbox',
   component: Page,
   parameters: {
     layout: 'fullscreen',
     nextRouter: {
-      asPath: '/',
-      path: '/',
-      query: 'index',
-      pathname: '/[[...index]]',
+      asPath: '/inbox',
+      path: '/inbox/[[...inbox]]',
+      pathname: '/inbox/[[...inbox]]',
     },
   },
   decorators: [

@@ -3,7 +3,15 @@ An Asana clone application for portfolio apps, built with real-time communicatio
 
 - [View project](https://project-management-demo.manatoworks.me/)
 - [Storybook](https://main--63894befbaf58840c037c246.chromatic.com)
+- [View backend](https://github.com/manakuro/project-management-demo-backend)
 
+## Tech Stack
+- Next.js
+- TypeScript
+- [Recoil](https://recoiljs.org/)
+- [Chakra UI](https://chakra-ui.com/)
+- [Apollo Client](https://www.apollographql.com/docs/react/)
+- [Chromatic](https://www.chromatic.com/)
 
 ## Set up
 ```
@@ -19,14 +27,6 @@ yarn dev
 
 ## Test
 
-Set up query and mutation mock.
-```
-yarn codegen
-yarn new:queryMock
-yarn new:mutationMock
-```
-
-Run tests.
 ```
 yarn test
 ```

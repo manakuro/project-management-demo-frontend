@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Flex, Heading } from 'src/components/atoms'
-import { TabList, Tab } from 'src/components/organisms/Tabs'
+import { Flex, Heading } from 'src/components/ui/atoms'
+import { TabList, Tab } from 'src/components/ui/organisms/Tabs'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useProject } from 'src/store/entities/project'
 import { FavoriteIconButton } from './FavoriteIconButton'

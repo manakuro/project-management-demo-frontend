@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
-import { Flex, Text } from 'src/components/atoms'
-import { useInviteModal } from 'src/components/organisms/Modals'
-import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { useInviteModal } from 'src/components/features/organisms/Modals'
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
+import { Flex, Text } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 
 type Props = {}

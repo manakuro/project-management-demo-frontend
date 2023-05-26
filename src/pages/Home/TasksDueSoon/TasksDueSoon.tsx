@@ -7,14 +7,14 @@ import {
   Link,
   NextLink,
   Stack,
-} from 'src/components/atoms'
-import { Tooltip } from 'src/components/molecules'
+} from 'src/components/ui/atoms'
+import { Tooltip } from 'src/components/ui/molecules'
 import {
   Accordion,
   AccordionItem,
   AccordionPanel,
   AccordionButton,
-} from 'src/components/organisms/Accordion'
+} from 'src/components/ui/organisms/Accordion'
 import { useLinkStyle } from 'src/hooks'
 import { ROUTE_MY_TASKS_LIST } from 'src/router'
 import { useTasksDueSoonIds } from 'src/store/app/home/tasksDueSoon'

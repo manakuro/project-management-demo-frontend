@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
-import { Skeleton } from 'src/components/atoms'
 import {
   TasksHeader,
   TasksHeaderLeft,
   TasksHeaderRight,
-} from 'src/components/organisms/Tasks'
+} from 'src/components/features/organisms/Tasks'
+import { Skeleton } from 'src/components/ui/atoms'
 
 const BUTTON_HEIGHT = '28px'
 export const SkeletonListHeader: React.FC = memo(() => {

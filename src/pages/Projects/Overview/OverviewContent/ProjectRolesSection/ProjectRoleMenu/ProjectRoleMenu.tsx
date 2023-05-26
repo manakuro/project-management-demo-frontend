@@ -1,6 +1,6 @@
 import React, { memo, PropsWithChildren } from 'react'
-import { Box, PortalManager } from 'src/components/atoms'
-import { Menu } from 'src/components/organisms/Menu'
+import { Box, PortalManager } from 'src/components/ui/atoms'
+import { Menu } from 'src/components/ui/organisms/Menu'
 import { useDisclosure } from 'src/shared/chakra'
 import { MenuList } from './MenuList'
 import { ProjectRoleInputPopover } from './ProjectRoleInputPopover'

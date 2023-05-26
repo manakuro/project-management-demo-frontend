@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { ButtonProps, IconProps } from 'src/components/atoms'
-import { DatePickerWithInput } from 'src/components/molecules'
+import { ButtonProps, IconProps } from 'src/components/ui/atoms'
+import { DatePickerWithInput } from 'src/components/ui/molecules'
 import { useProject, useProjectCommand } from 'src/store/entities/project'
 
 type Props = {

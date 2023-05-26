@@ -5,7 +5,7 @@ import {
   MenuItem,
   MenuButton,
   MenuProps,
-} from 'src/components/organisms/Menu'
+} from 'src/components/ui/organisms/Menu'
 import { chakra } from 'src/shared/chakra'
 
 type Props = {

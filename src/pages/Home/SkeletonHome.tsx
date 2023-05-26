@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Box, Flex, Skeleton, Stack } from 'src/components/atoms'
+import { Box, Flex, Skeleton, Stack } from 'src/components/ui/atoms'
 
 const TEXT_HEIGHT = '16px'
 export const SkeletonHome: React.FC = memo(() => {

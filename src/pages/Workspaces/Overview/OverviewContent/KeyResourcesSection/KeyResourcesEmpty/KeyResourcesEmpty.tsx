@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, Flex, Heading, Image, Stack } from 'src/components/atoms'
-import { ComingSoonTooltip } from 'src/components/molecules'
+import { ComingSoonTooltip } from 'src/components/features/molecules/Tooltips'
+import { Button, Flex, Heading, Image, Stack } from 'src/components/ui/atoms'
 
 type Props = {}
 

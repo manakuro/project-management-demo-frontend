@@ -2,9 +2,9 @@ import { ChakraProvider } from '@chakra-ui/react'
 import enLocale from 'date-fns/locale/en-US'
 import React, { Suspense } from 'react'
 import { RecoilRoot } from 'recoil'
-import { PageLoader } from 'src/components/molecules'
-import { Modals } from 'src/components/organisms/Modals'
+import { Modals } from 'src/components/features/organisms/Modals'
 import { GlobalQuery } from 'src/components/shared/app'
+import { PageLoader } from 'src/components/ui/molecules'
 import { ApolloProvider } from 'src/shared/apollo/ApolloProvider'
 import {
   AdapterDateFns,

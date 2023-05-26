@@ -8,7 +8,7 @@ import {
   onMentionArrowUp as onArrowUp,
   onMentionEnter as onEnter,
   getMentionType,
-} from 'src/components/organisms/Menus/EditorMentionMenu'
+} from 'src/components/features/organisms/Menus/EditorMentionMenu'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
 
 export const MENTION_CHAR = '@'

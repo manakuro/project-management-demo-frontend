@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
-import { ColorBox, Flex, Icon, Text } from 'src/components/atoms'
-import { MenuItem } from 'src/components/organisms/Menu'
-import { PopoverSetColorAndIcon } from 'src/components/organisms/Popovers'
+import { PopoverSetColorAndIcon } from 'src/components/features/organisms/Popovers'
+import { ColorBox, Flex, Icon, Text } from 'src/components/ui/atoms'
+import { MenuItem } from 'src/components/ui/organisms/Menu'
 import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 

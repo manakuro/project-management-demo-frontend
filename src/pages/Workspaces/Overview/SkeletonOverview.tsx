@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Flex, FlexProps, Grid, Skeleton } from 'src/components/atoms'
+import { Flex, FlexProps, Grid, Skeleton } from 'src/components/ui/atoms'
 import { OverviewLeft } from './OverviewLeft'
 import { OverviewLeftContent } from './OverviewLeftContent'
 import { OverviewRight } from './OverviewRight'

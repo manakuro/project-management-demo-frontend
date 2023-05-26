@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Flex, Stack, Skeleton } from 'src/components/atoms'
+import { Flex, Stack, Skeleton } from 'src/components/ui/atoms'
 
 export const SkeletonHeader: React.FC = memo(() => {
   return (

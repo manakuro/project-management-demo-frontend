@@ -7,7 +7,7 @@ import {
   onEmojiArrowDown as onArrowDown,
   onEmojiArrowUp as onArrowUp,
   onEmojiEnter as onEnter,
-} from 'src/components/organisms/Menus/EditorEmojiMenu'
+} from 'src/components/features/organisms/Menus/EditorEmojiMenu'
 
 export const suggestEmoji: Suggester = {
   noDecorations: true,

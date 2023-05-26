@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Flex, Icon } from 'src/components/atoms'
+import { Flex, Icon } from 'src/components/ui/atoms'
 import { IconType } from 'src/shared/icons'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useProject } from 'src/store/entities/project'

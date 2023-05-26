@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Divider, Flex } from 'src/components/atoms'
+import { Divider, Flex } from 'src/components/ui/atoms'
 import { ProjectIcon } from './ProjectIcon'
 import { ProjectTeammates } from './ProjectTeammates'
 import { ShareButton } from './ShareButton'

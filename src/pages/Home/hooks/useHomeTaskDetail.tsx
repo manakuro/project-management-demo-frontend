@@ -1,7 +1,7 @@
 import { NextRouter } from 'next/router'
 import { useEffect } from 'react'
-import { useTaskDetail } from 'src/components/organisms/TaskDetail'
-import { useTaskDetailModal } from 'src/components/organisms/TaskDetails'
+import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
+import { useTaskDetailModal } from 'src/components/features/organisms/TaskDetails'
 import { useRouter } from 'src/router'
 
 type Props = {

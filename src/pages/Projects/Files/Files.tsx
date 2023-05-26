@@ -1,12 +1,12 @@
 import React, { memo, useCallback, useMemo } from 'react'
-import { Flex } from 'src/components/atoms'
-import { TaskDetailModal } from 'src/components/organisms/TaskDetails'
+import { TaskDetailModal } from 'src/components/features/organisms/TaskDetails'
 import {
   TasksFilesContent,
   TasksFilesList,
   TasksContainer,
-} from 'src/components/organisms/Tasks'
-import { useTasksFilesDetail } from 'src/components/organisms/Tasks/TasksFiles/useTasksFilesDetail'
+} from 'src/components/features/organisms/Tasks'
+import { useTasksFilesDetail } from 'src/components/features/organisms/Tasks/TasksFiles/useTasksFilesDetail'
+import { Flex } from 'src/components/ui/atoms'
 import { useProjectsFilesPageQuery } from 'src/hooks/queries/app'
 import { useProjectsPageContext } from 'src/pages/Projects/Provider'
 import { useRouter, isProjectsDetailURL, getProjectsDetailId } from 'src/router'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Grid } from 'src/components/atoms'
+import { Flex, Grid } from 'src/components/ui/atoms'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useProjectTeammateIdsByProjectIdSortedByOwner } from 'src/store/entities/projectTeammate'
 import { OverviewContentHeading } from '../OverviewContentHeading'

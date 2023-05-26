@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { IconButtonProps } from 'src/components/atoms'
-import { Tooltip, FavoriteIconButton } from 'src/components/molecules'
+import { IconButtonProps } from 'src/components/ui/atoms'
+import { Tooltip, FavoriteIconButton } from 'src/components/ui/molecules'
 import {
   useFavoriteWorkspaceIds,
   useFavoriteWorkspaceIdsCommand,

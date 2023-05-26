@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
-import { Flex, Icon, Text } from 'src/components/atoms'
-import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
+import { Flex, Icon, Text } from 'src/components/ui/atoms'
 import { useHover } from 'src/hooks/useHover'
 import { useProjectTeammate } from 'src/store/entities/projectTeammate'
 import { useTeammate } from 'src/store/entities/teammate'

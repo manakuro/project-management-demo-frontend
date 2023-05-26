@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { Icon } from 'src/components/atoms'
-import { MenuItem } from 'src/components/organisms/Menu'
+import { Icon } from 'src/components/ui/atoms'
+import { MenuItem } from 'src/components/ui/organisms/Menu'
 import { useCopyProjectLink } from 'src/hooks/pages/projects'
 
 type Props = {

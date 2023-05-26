@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button as AtomsButton } from 'src/components/atoms'
-import { MenuButton } from 'src/components/organisms/Menu'
+import { Button as AtomsButton } from 'src/components/ui/atoms'
+import { MenuButton } from 'src/components/ui/organisms/Menu'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = {}

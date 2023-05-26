@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState } from 'react'
-import { Button, Flex, Input as AtomsInput } from 'src/components/atoms'
+import { Button, Flex, Input as AtomsInput } from 'src/components/ui/atoms'
 
 type Props = {
   defaultValue: string

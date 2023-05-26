@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Icon } from 'src/components/atoms'
-import { MenuItem } from 'src/components/organisms/Menu'
+import { Icon } from 'src/components/ui/atoms'
+import { MenuItem } from 'src/components/ui/organisms/Menu'
 
 type Props = {
   onClose: () => void

@@ -1,8 +1,13 @@
 import React, { memo, useCallback, useState } from 'react'
-import { Flex, Input as AtomsInput, Wrap, WrapItem } from 'src/components/atoms'
 import { AssigneeChip } from 'src/components/molecules'
 import { InviteCollaboratorMenu } from 'src/components/organisms/Menus'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
+import {
+  Flex,
+  Input as AtomsInput,
+  Wrap,
+  WrapItem,
+} from 'src/components/ui/atoms'
 import { useClickOutside } from 'src/hooks'
 import { ChakraProps, useDisclosure, useStyleConfig } from 'src/shared/chakra'
 import {

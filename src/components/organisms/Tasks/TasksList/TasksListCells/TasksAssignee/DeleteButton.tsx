@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { Flex, FlexProps, Icon } from 'src/components/atoms'
+import { Flex, FlexProps, Icon } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useTaskCommand } from 'src/store/entities/task'
 

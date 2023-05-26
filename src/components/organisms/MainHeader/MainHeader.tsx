@@ -1,5 +1,5 @@
 import React, { memo, PropsWithChildren, useMemo } from 'react'
-import { Flex, FlexProps, Stack } from 'src/components/atoms'
+import { Flex, FlexProps, Stack } from 'src/components/ui/atoms'
 import { useMainStyle } from 'src/hooks'
 import { ChakraProps } from 'src/shared/chakra'
 import { AddButton } from './AddButton'

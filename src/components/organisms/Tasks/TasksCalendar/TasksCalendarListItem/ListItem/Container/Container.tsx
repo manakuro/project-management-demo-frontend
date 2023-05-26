@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react'
-import { Flex, FlexProps } from 'src/components/atoms'
+import { Flex, FlexProps } from 'src/components/ui/atoms'
 import { forwardRef } from 'src/shared/chakra'
 import { useProject } from 'src/store/entities/project'
 import {

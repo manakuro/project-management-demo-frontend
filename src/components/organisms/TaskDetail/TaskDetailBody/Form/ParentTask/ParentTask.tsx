@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
-import { Flex, Icon, Text } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
+import { Flex, Icon, Text } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useTask } from 'src/store/entities/task'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, BoxProps } from 'src/components/atoms'
+import { Box, BoxProps } from 'src/components/ui/atoms'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = BoxProps & {

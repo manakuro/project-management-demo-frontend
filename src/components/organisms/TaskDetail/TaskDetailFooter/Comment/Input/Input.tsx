@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react'
-import { Flex } from 'src/components/atoms'
 import { Editor, EditorContent } from 'src/components/organisms/Editor'
+import { Flex } from 'src/components/ui/atoms'
 import { getDefaultDescription } from 'src/shared/prosemirror/getDefaultDescription'
 import { Attachments } from './Attachments'
 import { Container } from './Container'

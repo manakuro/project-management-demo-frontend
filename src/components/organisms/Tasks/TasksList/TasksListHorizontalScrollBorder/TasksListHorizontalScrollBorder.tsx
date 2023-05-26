@@ -1,11 +1,11 @@
 import React, { memo, useEffect, useMemo, useState } from 'react'
-import { Flex, FlexProps } from 'src/components/atoms'
 import { useNavigation } from 'src/components/organisms/Navigation'
 import {
   useTasksListContentSticky,
   useTasksListContentHorizontalScroll,
 } from 'src/components/organisms/Tasks'
 import { useTasksTaskColumnByType } from 'src/components/organisms/Tasks/hooks'
+import { Flex, FlexProps } from 'src/components/ui/atoms'
 import { useMountedRef } from 'src/hooks'
 import { ChakraProps } from 'src/shared/chakra'
 import { TaskColumnType } from 'src/store/entities/taskColumn'

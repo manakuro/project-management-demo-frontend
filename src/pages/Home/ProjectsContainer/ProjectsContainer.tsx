@@ -1,5 +1,4 @@
 import React, { memo, useState } from 'react'
-import { Box, Flex, Grid, Heading, Icon, FlexProps } from 'src/components/atoms'
 import {
   Accordion,
   AccordionItem,
@@ -15,6 +14,14 @@ import {
   ProjectListStatus,
   PROJECT_LIST_MENU_VIEW_AS_TILES,
 } from 'src/components/organisms/Projects'
+import {
+  Box,
+  Flex,
+  Grid,
+  Heading,
+  Icon,
+  FlexProps,
+} from 'src/components/ui/atoms'
 
 type Props = {
   projectIds: string[]

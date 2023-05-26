@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useState } from 'react'
-import { FlexProps, Stack } from 'src/components/atoms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
+import { FlexProps, Stack } from 'src/components/ui/atoms'
 import { useProjectTaskIdsByTaskId } from 'src/store/entities/projectTask'
 import { Input } from './Input'
 import { ListItem } from './ListItem'

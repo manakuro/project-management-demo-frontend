@@ -1,5 +1,5 @@
 import React from 'react'
-import { DashedBox, FlexProps, Icon } from 'src/components/atoms'
+import { DashedBox, FlexProps, Icon } from 'src/components/ui/atoms'
 
 type Props = FlexProps & {
   size: Sizes

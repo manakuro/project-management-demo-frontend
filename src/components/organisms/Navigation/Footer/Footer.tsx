@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { List } from 'src/components/atoms'
+import { List } from 'src/components/ui/atoms'
 import { MAX_WIDTH } from '../Navigation'
 import { Help } from './Help'
 import { InviteTeammates } from './InviteTeammates'

@@ -1,11 +1,11 @@
 import React, { memo, useCallback, useMemo } from 'react'
-import { Button, Icon, Flex } from 'src/components/atoms'
 import { MenuItemOption } from 'src/components/organisms/Menu'
 import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms/Menus'
+import { Button, Icon, Flex } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import {
   PROJECT_PERMISSION_CAN_COMMENT,

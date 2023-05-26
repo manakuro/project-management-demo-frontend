@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
-import { Divider, Flex } from 'src/components/atoms'
 import {
   TaskDetailBody,
   TaskDetailHeader,
   TaskDetailFooter,
 } from 'src/components/organisms/TaskDetail'
+import { Divider, Flex } from 'src/components/ui/atoms'
 import {
   useClickOutside,
   UseClickOutsideOptionsHasClickedOutside,

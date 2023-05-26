@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Flex, Stack } from 'src/components/atoms'
+import { Flex, Stack } from 'src/components/ui/atoms'
 import { AddTaskButton } from './AddTaskButton'
 import { MoreAction } from './MoreAction'
 import { TaskSectionName } from './TaskSectionName'

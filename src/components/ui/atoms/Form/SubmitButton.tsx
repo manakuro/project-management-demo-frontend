@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik'
 import React, { memo } from 'react'
-import { Button, ButtonProps } from 'src/components/atoms'
+import { Button, ButtonProps } from 'src/components/ui/atoms'
 
 type Props = ButtonProps
 

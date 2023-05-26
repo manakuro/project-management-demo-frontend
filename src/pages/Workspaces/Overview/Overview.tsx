@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Flex } from 'src/components/atoms'
 import { TasksContainer } from 'src/components/organisms/Tasks'
+import { Flex } from 'src/components/ui/atoms'
 import { useWorkspacesPageContext } from '../Provider'
 import { DescriptionSection } from './DescriptionSection'
 import { MembersSection } from './MembersSection'

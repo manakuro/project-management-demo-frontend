@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, TextProps } from 'src/components/atoms'
+import { Text, TextProps } from 'src/components/ui/atoms'
 
 type Props = TextProps
 export type MoreLinkProps = Props

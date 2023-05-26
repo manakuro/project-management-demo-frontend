@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, FlexProps } from 'src/components/atoms'
+import { Flex, FlexProps } from 'src/components/ui/atoms'
 import { useThumbnailAttachmentContext } from './Provider'
 
 type Props = FlexProps

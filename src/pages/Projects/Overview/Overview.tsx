@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Flex } from 'src/components/atoms'
 import { TasksContainer } from 'src/components/organisms/Tasks'
+import { Flex } from 'src/components/ui/atoms'
 import { useProjectsPageContext } from 'src/pages/Projects/Provider'
 import { OverviewContent } from './OverviewContent'
 import { OverviewLeft } from './OverviewLeft'

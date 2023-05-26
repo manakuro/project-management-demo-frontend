@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
-import { CheckIcon } from 'src/components/atoms'
 import {
   PopoverEditorLink,
   PopoverEditorLinkTrigger,
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
 } from 'src/components/organisms/Popovers'
+import { CheckIcon } from 'src/components/ui/atoms'
 import { useProjectTask } from 'src/store/entities/projectTask'
 import { useTask } from 'src/store/entities/task'
 

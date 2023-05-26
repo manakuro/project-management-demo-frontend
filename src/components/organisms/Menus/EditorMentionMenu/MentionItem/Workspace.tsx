@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Flex, FlexProps, Icon, Text } from 'src/components/atoms'
+import { Flex, FlexProps, Icon, Text } from 'src/components/ui/atoms'
 import { Mention } from 'src/store/entities/mention'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { LeftContainer } from './LeftContainer'

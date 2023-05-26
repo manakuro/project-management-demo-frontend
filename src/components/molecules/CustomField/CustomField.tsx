@@ -6,7 +6,7 @@ import {
   Flex,
   Icon,
   SwitchProps,
-} from 'src/components/atoms'
+} from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 
 type Props = SwitchProps & {

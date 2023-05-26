@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Flex, Text } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { Flex, Text } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useTeammate } from 'src/store/entities/teammate'
 import { PermissionMenu } from '../../PermissionMenu'

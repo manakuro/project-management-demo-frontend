@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlexProps, Heading } from 'src/components/atoms'
+import { FlexProps, Heading } from 'src/components/ui/atoms'
 
 type Props = FlexProps
 

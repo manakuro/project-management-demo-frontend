@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useMemo, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { Flex, FlexProps } from 'src/components/atoms'
+import { Flex, FlexProps } from 'src/components/ui/atoms'
 import { transitions } from 'src/styles'
 
 type Props = FlexProps

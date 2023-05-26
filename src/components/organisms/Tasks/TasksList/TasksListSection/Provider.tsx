@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react'
-import { FlexProps } from 'src/components/atoms'
+import { FlexProps } from 'src/components/ui/atoms'
 import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {

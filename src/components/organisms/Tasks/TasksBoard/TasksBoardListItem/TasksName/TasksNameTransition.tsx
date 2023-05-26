@@ -1,6 +1,6 @@
 import { keyframes } from '@chakra-ui/react'
 import React, { memo, useMemo } from 'react'
-import { Flex, FlexProps } from 'src/components/atoms'
+import { Flex, FlexProps } from 'src/components/ui/atoms'
 
 type Props = FlexProps & {
   isTransitioning: boolean

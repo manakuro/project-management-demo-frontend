@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
-import { Flex, Icon, IconButton, Stack } from 'src/components/atoms'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { useTasksListSectionContext } from 'src/components/organisms/Tasks/TasksList/TasksListSection/Provider'
+import { Flex, Icon, IconButton, Stack } from 'src/components/ui/atoms'
 import { useHover } from 'src/hooks/useHover'
 import { AddTaskButton } from './AddTaskButton'
 import { MoreAction } from './MoreAction'

@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { Button, Flex, Icon, Text } from 'src/components/atoms'
+import { Button, Flex, Icon, Text } from 'src/components/ui/atoms'
 import { useTaskCommand } from 'src/store/entities/task'
 
 type Props = {

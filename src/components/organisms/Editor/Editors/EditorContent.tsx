@@ -5,8 +5,8 @@ import React, {
   memo,
   useLayoutEffect,
 } from 'react'
-import { Box } from 'src/components/atoms'
 import { useEditorViewContext } from 'src/components/organisms/Editor/Editors/EdiorProvider'
+import { Box } from 'src/components/ui/atoms'
 import 'prosemirror-view/style/prosemirror.css'
 
 type Props = {

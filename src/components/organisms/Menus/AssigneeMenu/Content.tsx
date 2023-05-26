@@ -1,5 +1,4 @@
 import React, { memo } from 'react'
-import { Divider, Icon, Text } from 'src/components/atoms'
 import {
   ProjectTeammateMenuItem,
   useProjectTeammateMenu,
@@ -10,6 +9,7 @@ import {
   SearchMenuLoading,
   SearchMenuRightContainer,
 } from 'src/components/organisms/Menus/SearchMenu'
+import { Divider, Icon, Text } from 'src/components/ui/atoms'
 import { Teammate } from 'src/store/entities/teammate'
 
 type Props = {

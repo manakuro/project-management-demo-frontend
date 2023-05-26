@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useState } from 'react'
-import { Input as AtomsInput } from 'src/components/atoms'
 import { AssigneeMenu } from 'src/components/organisms/Menus'
+import { Input as AtomsInput } from 'src/components/ui/atoms'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import { useTaskCommand } from 'src/store/entities/task'

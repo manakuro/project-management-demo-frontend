@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo } from 'react'
-import { Box } from 'src/components/atoms'
 import { useTasksListSectionContext } from 'src/components/organisms/Tasks'
 import { useTasksTaskSection } from 'src/components/organisms/Tasks/hooks'
+import { Box } from 'src/components/ui/atoms'
 import { Input } from './Input'
 
 type Props = {

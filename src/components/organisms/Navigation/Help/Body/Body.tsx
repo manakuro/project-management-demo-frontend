@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
-import { Stack } from 'src/components/atoms'
 import { HELP_CONTAINER_PADDING } from 'src/components/organisms/Navigation/Help'
+import { Stack } from 'src/components/ui/atoms'
 import { guide1Item } from './Guide1'
 import { guide2Item } from './Guide2'
 import { guide3Item } from './Guide3'

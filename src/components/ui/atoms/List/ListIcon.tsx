@@ -1,6 +1,6 @@
 import { ListIcon as ChakraListIcon } from '@chakra-ui/react'
 import React from 'react'
-import { Icon } from 'src/components/atoms'
+import { Icon } from 'src/components/ui/atoms'
 import { IconType } from 'src/shared/icons'
 
 type Props = React.ComponentProps<typeof ChakraListIcon> & {

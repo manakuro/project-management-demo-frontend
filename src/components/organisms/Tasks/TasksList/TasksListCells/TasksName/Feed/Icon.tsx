@@ -1,5 +1,10 @@
 import React, { memo } from 'react'
-import { Flex, Icon as AtomsIcon, Text, TextProps } from 'src/components/atoms'
+import {
+  Flex,
+  Icon as AtomsIcon,
+  Text,
+  TextProps,
+} from 'src/components/ui/atoms'
 
 type Props = {
   size: number

@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from 'react'
-import { Flex, FlexProps, Icon, Link } from 'src/components/atoms'
 import { useTaskActivityTaskIds } from 'src/components/organisms/Inbox/hooks'
+import { Flex, FlexProps, Icon, Link } from 'src/components/ui/atoms'
 import { formatDueDate } from 'src/shared/date'
 import { useTask } from 'src/store/entities/task'
 import { transitions } from 'src/styles'

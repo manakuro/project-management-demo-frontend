@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex } from 'src/components/atoms'
+import { Flex } from 'src/components/ui/atoms'
 import { useClickOutside } from 'src/hooks'
 
 type Props = {

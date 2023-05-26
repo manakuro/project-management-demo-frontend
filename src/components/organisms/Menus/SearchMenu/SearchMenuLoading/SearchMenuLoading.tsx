@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Spinner } from 'src/components/atoms'
+import { Spinner } from 'src/components/ui/atoms'
 import { SearchMenuListItem } from '../SearchMenuListItem'
 
 type Props = {}

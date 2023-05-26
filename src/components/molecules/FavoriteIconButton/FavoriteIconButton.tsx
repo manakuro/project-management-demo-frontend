@@ -4,7 +4,7 @@ import {
   IconButton,
   IconButtonProps,
   IconProps,
-} from 'src/components/atoms'
+} from 'src/components/ui/atoms'
 
 type Props = {
   favoriteId: string

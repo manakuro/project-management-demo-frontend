@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { Icon } from 'src/components/atoms'
 import { MenuItem } from 'src/components/organisms/Menu'
+import { Icon } from 'src/components/ui/atoms'
 import { useToast } from 'src/hooks'
 import { useTask, useTaskCommand } from 'src/store/entities/task'
 

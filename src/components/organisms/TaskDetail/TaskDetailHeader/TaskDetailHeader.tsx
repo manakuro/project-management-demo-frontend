@@ -1,4 +1,5 @@
 import React, { memo, useMemo } from 'react'
+import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import {
   Flex,
   Icon,
@@ -6,8 +7,7 @@ import {
   Stack,
   Skeleton,
   FlexProps,
-} from 'src/components/atoms'
-import { useTaskDetail } from 'src/components/organisms/TaskDetail'
+} from 'src/components/ui/atoms'
 import { IconType } from 'src/shared/icons'
 import { Attachment } from './Attachment'
 import { Complete } from './Complete'

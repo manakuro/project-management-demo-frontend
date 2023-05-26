@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Flex, Icon, IconButton } from 'src/components/atoms'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
+import { Flex, Icon, IconButton } from 'src/components/ui/atoms'
 import { TaskSectionName } from './TaskSectionName'
 
 type Props = {

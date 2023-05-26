@@ -7,7 +7,7 @@ import {
   ColorBox,
   Icon,
   Text,
-} from 'src/components/atoms'
+} from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'

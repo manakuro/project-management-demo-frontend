@@ -1,5 +1,4 @@
 import React, { memo, useCallback } from 'react'
-import { Flex } from 'src/components/atoms'
 import { TaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import {
   CustomizeMenu,
@@ -12,6 +11,7 @@ import {
   TasksBoardList,
   useTasksBoardDetail,
 } from 'src/components/organisms/Tasks'
+import { Flex } from 'src/components/ui/atoms'
 import { useProjectsPageContext } from 'src/pages/Projects/Provider'
 import { getProjectsDetailId, isProjectsDetailURL, useRouter } from 'src/router'
 import { useProjectsProjectId } from 'src/store/app/projects/project'

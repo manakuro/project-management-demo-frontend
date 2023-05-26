@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react'
-import { Flex, Heading, Icon, Text } from 'src/components/atoms'
+import { Flex, Heading, Icon, Text } from 'src/components/ui/atoms'
 import { formatCreatedAt } from 'src/shared/date'
 import { useProject } from 'src/store/entities/project'
 import { useTeammate } from 'src/store/entities/teammate'

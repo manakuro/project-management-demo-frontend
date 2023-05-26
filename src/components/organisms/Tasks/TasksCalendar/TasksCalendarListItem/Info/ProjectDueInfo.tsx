@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { FlexProps, Flex } from 'src/components/atoms'
+import { FlexProps, Flex } from 'src/components/ui/atoms'
 import { useProjectDueDate } from '../hooks'
 
 type Props = {

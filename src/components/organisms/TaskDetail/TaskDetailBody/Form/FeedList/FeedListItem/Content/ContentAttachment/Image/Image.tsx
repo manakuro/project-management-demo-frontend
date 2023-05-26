@@ -5,7 +5,7 @@ import {
   Image as AtomsImage,
   Link,
   Text,
-} from 'src/components/atoms'
+} from 'src/components/ui/atoms'
 import { useTaskFile } from 'src/store/entities/taskFile'
 
 type Props = FlexProps & {

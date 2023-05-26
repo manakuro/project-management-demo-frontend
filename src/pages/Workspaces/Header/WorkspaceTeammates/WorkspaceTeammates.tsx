@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Flex, AvatarGroup } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { Flex, AvatarGroup } from 'src/components/ui/atoms'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { useTeammateIdsByWorkspaceId } from 'src/store/entities/workspaceTeammate'
 

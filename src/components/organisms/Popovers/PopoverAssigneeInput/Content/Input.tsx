@@ -1,13 +1,13 @@
 import React, { useCallback, useMemo, useState } from 'react'
+import { AssigneeMenu } from 'src/components/organisms/Menus'
+import { PopoverProps } from 'src/components/organisms/Popover'
 import {
   Flex,
   Icon,
   Input as AtomsInput,
   InputGroup,
   InputRightElement,
-} from 'src/components/atoms'
-import { AssigneeMenu } from 'src/components/organisms/Menus'
-import { PopoverProps } from 'src/components/organisms/Popover'
+} from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import { useTask, useTaskCommand } from 'src/store/entities/task'

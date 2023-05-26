@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from 'react'
-import { Flex, FlexProps, Icon, Text, TextProps } from 'src/components/atoms'
 import { useInboxListItemContext } from 'src/components/organisms/Inbox/InboxListItem/Provider'
+import { Flex, FlexProps, Icon, Text, TextProps } from 'src/components/ui/atoms'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { transitions } from 'src/styles'
 

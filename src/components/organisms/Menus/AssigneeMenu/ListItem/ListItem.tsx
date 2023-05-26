@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useMemo } from 'react'
-import { Flex, FlexProps } from 'src/components/atoms'
 import { useAssigneeMenu } from 'src/components/organisms/Menus/AssigneeMenu/useAssigneeMenu'
+import { Flex, FlexProps } from 'src/components/ui/atoms'
 import { useMenuStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 

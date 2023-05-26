@@ -2,7 +2,7 @@ import { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
 import { Plugin } from 'prosemirror-state'
 import { EditorProps } from 'prosemirror-view'
 import React, { PropsWithChildren, useMemo } from 'react'
-import { ConditionalRender } from 'src/components/atoms'
+import { ConditionalRender } from 'src/components/ui/atoms'
 import { useDebounce, usePrevious } from 'src/hooks'
 import {
   createJSONTransformer,

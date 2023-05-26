@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from 'react'
-import { Flex, Text } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { Flex, Text } from 'src/components/ui/atoms'
 import { useTask, useTaskCommand } from 'src/store/entities/task'
 import { Teammate, useTeammate } from 'src/store/entities/teammate'
 import { DeleteButton } from './DeleteButton'

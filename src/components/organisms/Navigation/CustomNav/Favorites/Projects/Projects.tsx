@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Flex } from 'src/components/atoms'
+import { Flex } from 'src/components/ui/atoms'
 import { ProjectList } from './ProjectList'
 
 type Props = {}

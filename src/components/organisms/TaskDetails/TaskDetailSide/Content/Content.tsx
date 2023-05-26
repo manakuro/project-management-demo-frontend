@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
-import { Flex } from 'src/components/atoms'
 import {
   TaskDetailBody,
   TaskDetailHeader,
   TaskDetailFooter,
 } from 'src/components/organisms/TaskDetail'
+import { Flex } from 'src/components/ui/atoms'
 
 const HEADER_HEIGHT = 72
 const TOP = HEADER_HEIGHT

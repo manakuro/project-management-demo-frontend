@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { Button, Divider, Icon } from 'src/components/atoms'
 import { ModalFooter } from 'src/components/organisms/Modal'
+import { Button, Divider, Icon } from 'src/components/ui/atoms'
 import { useShareProjectModal } from '../useShareProjectModal'
 
 type Props = {}

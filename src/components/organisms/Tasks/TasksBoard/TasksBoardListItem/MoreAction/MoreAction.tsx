@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from 'react'
-import { Flex, Icon, IconButton, PortalManager } from 'src/components/atoms'
 import { Menu, MenuButton } from 'src/components/organisms/Menu'
+import { Flex, Icon, IconButton, PortalManager } from 'src/components/ui/atoms'
 import { useDisclosure } from 'src/shared/chakra'
 import {
   useTasksBoardListItemContext,

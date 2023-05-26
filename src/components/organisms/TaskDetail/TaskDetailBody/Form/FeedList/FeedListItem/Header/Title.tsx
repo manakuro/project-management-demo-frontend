@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Flex, Icon, Text, TextProps } from 'src/components/atoms'
+import { Flex, Icon, Text, TextProps } from 'src/components/ui/atoms'
 import { TaskFeed } from 'src/store/entities/taskFeed'
 import { Teammate } from 'src/store/entities/teammate'
 import { useTaskFeedListItemContext } from '../Provider'

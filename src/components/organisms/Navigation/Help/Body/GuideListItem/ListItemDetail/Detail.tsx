@@ -1,10 +1,10 @@
 import { useDisclosure } from '@chakra-ui/react'
 import React, { useCallback } from 'react'
-import { Box, Button, Flex, Text, MoreLink } from 'src/components/atoms'
 import {
   PADDING_X,
   Item,
 } from 'src/components/organisms/Navigation/Help/Body/GuideListItem'
+import { Box, Button, Flex, Text, MoreLink } from 'src/components/ui/atoms'
 
 type Props = {
   item: Item

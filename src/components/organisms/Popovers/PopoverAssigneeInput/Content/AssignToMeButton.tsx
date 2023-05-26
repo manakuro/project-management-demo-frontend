@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
-import { Button } from 'src/components/atoms'
 import { PopoverProps } from 'src/components/organisms/Popover'
+import { Button } from 'src/components/ui/atoms'
 import { useMe } from 'src/store/entities/me'
 import { useTaskCommand } from 'src/store/entities/task'
 

@@ -5,7 +5,7 @@ import {
   FlexProps,
   Textarea,
   TextareaProps,
-} from 'src/components/atoms'
+} from 'src/components/ui/atoms'
 import { ChakraProps } from 'src/shared/chakra'
 
 type Props = {

@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useEffect, useMemo } from 'react'
-import { Flex, FlexProps } from 'src/components/atoms'
 import {
   SetValueParam,
   useEditorMentionMenu,
 } from 'src/components/organisms/Menus/EditorMentionMenu'
+import { Flex, FlexProps } from 'src/components/ui/atoms'
 import { useMenuStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { Mention } from 'src/store/entities/mention'

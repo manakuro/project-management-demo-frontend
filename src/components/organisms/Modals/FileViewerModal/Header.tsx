@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { ComingSoonTooltip } from 'src/components/molecules'
 import {
   Button,
   Divider,
@@ -8,8 +9,7 @@ import {
   Link,
   Stack,
   Text,
-} from 'src/components/atoms'
-import { ComingSoonTooltip } from 'src/components/molecules'
+} from 'src/components/ui/atoms'
 import { formatTaskFileCreatedAt } from 'src/shared/date'
 import { useTaskFile } from 'src/store/entities/taskFile'
 import { useFileViewerModal } from './useFileViewerModal'

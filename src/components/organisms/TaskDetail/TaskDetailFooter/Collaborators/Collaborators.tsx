@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Flex, Text } from 'src/components/atoms'
+import { Flex, Text } from 'src/components/ui/atoms'
 import { Input } from './Input'
 import { LeaveTask } from './LeaveTask'
 import { Provider } from './Provider'

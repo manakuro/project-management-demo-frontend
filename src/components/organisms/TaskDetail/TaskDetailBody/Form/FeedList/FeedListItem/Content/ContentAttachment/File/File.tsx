@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { FlexProps } from 'src/components/atoms'
 import { AttachmentBox } from 'src/components/molecules'
+import { FlexProps } from 'src/components/ui/atoms'
 
 type Props = FlexProps & {
   taskFileId: string

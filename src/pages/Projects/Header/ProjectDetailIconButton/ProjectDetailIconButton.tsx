@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { Icon, IconButton, IconButtonProps } from 'src/components/atoms'
 import { useProjectDetailModal } from 'src/components/organisms/Modals'
+import { Icon, IconButton, IconButtonProps } from 'src/components/ui/atoms'
 
 type Props = {
   projectId: string

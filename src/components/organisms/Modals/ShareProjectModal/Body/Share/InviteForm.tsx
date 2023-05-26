@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo, useState } from 'react'
-import { AvatarGroup, Flex, Input, Text } from 'src/components/atoms'
 import { InviteProjectTeammateMenu } from 'src/components/organisms/Menus'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { AvatarGroup, Flex, Input, Text } from 'src/components/ui/atoms'
 import { useLinkStyle } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate'

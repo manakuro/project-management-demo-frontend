@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { FlexProps } from 'src/components/atoms'
 import { useTasksContext } from 'src/components/organisms/Tasks'
+import { FlexProps } from 'src/components/ui/atoms'
 import { Provider } from './Provider'
 import { TasksBoardListItemForMyTasksPage } from './TasksBoardListItemForMyTasksPage'
 import { TasksBoardListItemForProjectsPage } from './TasksBoardListItemForProjectsPage'

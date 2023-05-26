@@ -7,7 +7,7 @@ import {
   Icon,
   ListItemProps,
   LinkProps,
-} from 'src/components/atoms'
+} from 'src/components/ui/atoms'
 import { useLinkHoverStyle } from 'src/hooks'
 import { StaticRoutes } from 'src/router'
 import { PADDING_X } from './Navigation'

@@ -1,5 +1,4 @@
 import React, { memo, useCallback } from 'react'
-import { Link, Portal } from 'src/components/atoms'
 import { useThumbnailAttachmentContext } from 'src/components/molecules/ThumbnailAttachment/Provider'
 import {
   Menu as OrganismsMenu,
@@ -7,6 +6,7 @@ import {
   MenuItem,
   MenuList,
 } from 'src/components/organisms/Menu'
+import { Link, Portal } from 'src/components/ui/atoms'
 import { useTaskFile } from 'src/store/entities/taskFile'
 
 type Props = MenuProps & {

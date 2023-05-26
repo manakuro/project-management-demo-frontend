@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
-import { Text, ListItem, Icon } from 'src/components/atoms'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
+import { Text, ListItem, Icon } from 'src/components/ui/atoms'
 import { setErrorToken } from 'src/shared/apollo/client'
 import { transitions } from 'src/styles'
 import { PADDING_X } from '../Navigation'

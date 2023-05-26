@@ -1,5 +1,4 @@
 import React, { memo, useCallback } from 'react'
-import { Icon, IconButton, Portal } from 'src/components/atoms'
 import {
   MenuButton,
   MenuList,
@@ -7,6 +6,7 @@ import {
   MenuOptionGroup,
   Menu,
 } from 'src/components/organisms/Menu'
+import { Icon, IconButton, Portal } from 'src/components/ui/atoms'
 
 type Props = {
   listStatus: ProjectListStatus

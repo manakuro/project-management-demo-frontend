@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Flex, FlexProps, Stack } from 'src/components/atoms'
+import { Flex, FlexProps, Stack } from 'src/components/ui/atoms'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useProjectIdsByTaskId } from 'src/store/entities/projectTask'
 import { Assignee } from './Assignee'

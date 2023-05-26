@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { Flex } from 'src/components/atoms'
 import {
   Tooltip as MoleculesTooltip,
   TooltipProps,
 } from 'src/components/molecules'
+import { Flex } from 'src/components/ui/atoms'
 import { useDisclosure } from 'src/shared/chakra'
 import { useTaskFile } from 'src/store/entities/taskFile'
 import { useThumbnailAttachmentContext } from './Provider'

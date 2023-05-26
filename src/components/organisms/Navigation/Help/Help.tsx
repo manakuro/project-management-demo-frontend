@@ -1,5 +1,4 @@
 import React from 'react'
-import { Flex } from 'src/components/atoms'
 import {
   Drawer,
   DrawerBody,
@@ -8,6 +7,7 @@ import {
   DrawerHeader,
 } from 'src/components/organisms/Drawer'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
+import { Flex } from 'src/components/ui/atoms'
 import { Body } from './Body'
 import { Footer } from './Footer'
 import { useHelp } from './useHelp'

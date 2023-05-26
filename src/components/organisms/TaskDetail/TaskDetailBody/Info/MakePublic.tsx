@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Icon, Text } from 'src/components/atoms'
+import { Flex, Icon, Text } from 'src/components/ui/atoms'
 
 type Props = {}
 

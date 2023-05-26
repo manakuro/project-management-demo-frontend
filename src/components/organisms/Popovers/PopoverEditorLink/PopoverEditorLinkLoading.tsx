@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Flex, Spinner } from 'src/components/atoms'
+import { Flex, Spinner } from 'src/components/ui/atoms'
 
 type Props = {}
 

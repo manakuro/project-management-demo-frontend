@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Box, Flex } from 'src/components/atoms'
+import { Box, Flex } from 'src/components/ui/atoms'
 import { CustomNav } from './CustomNav'
 import { Footer } from './Footer'
 import { Header } from './Header'

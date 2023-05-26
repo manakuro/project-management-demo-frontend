@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
-import { Flex, InputText, InputProps } from 'src/components/atoms'
 import { useTaskDetailDrawerRef } from 'src/components/organisms/TaskDetails'
+import { Flex, InputText, InputProps } from 'src/components/ui/atoms'
 import {
   useClickOutside,
   UseClickOutsideOptionsHasClickedOutside,

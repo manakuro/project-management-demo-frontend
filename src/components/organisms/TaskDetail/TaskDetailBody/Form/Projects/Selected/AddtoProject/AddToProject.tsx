@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Box, Button, Icon } from 'src/components/atoms'
+import { Box, Button, Icon } from 'src/components/ui/atoms'
 
 type Props = {}
 

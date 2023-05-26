@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { PADDING_X, useNavigation } from 'src/components/organisms/Navigation'
 import {
   Logo,
   Link,
@@ -6,8 +7,7 @@ import {
   Icon,
   Flex,
   IconButton,
-} from 'src/components/atoms'
-import { PADDING_X, useNavigation } from 'src/components/organisms/Navigation'
+} from 'src/components/ui/atoms'
 import { ROUTE_HOME } from 'src/router'
 
 type Props = {}

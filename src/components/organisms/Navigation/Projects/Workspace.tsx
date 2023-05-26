@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 import React, { memo, useCallback, useMemo } from 'react'
-import { Flex, Link, NextLink, Text, Icon, Portal } from 'src/components/atoms'
 import {
   MenuList,
   MenuItem as AtomsMenuItem,
@@ -13,6 +12,14 @@ import {
 import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
 import { useNavigation } from 'src/components/organisms/Navigation'
 import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
+import {
+  Flex,
+  Link,
+  NextLink,
+  Text,
+  Icon,
+  Portal,
+} from 'src/components/ui/atoms'
 import { useLinkHoverStyle, useClickableHoverStyle } from 'src/hooks'
 import { ROUTE_WORKSPACES, ROUTE_WORKSPACES_OVERVIEW } from 'src/router'
 import { useWorkspace } from 'src/store/entities/workspace'

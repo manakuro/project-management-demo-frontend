@@ -4,7 +4,7 @@ import {
   BoxProps,
   WrapItem,
   Center,
-} from 'src/components/atoms'
+} from 'src/components/ui/atoms'
 import { useLinkHoverStyle } from 'src/hooks'
 import { IconType } from 'src/shared/icons'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'

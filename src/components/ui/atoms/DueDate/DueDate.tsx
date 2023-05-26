@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { TextProps, Text } from 'src/components/atoms'
+import { TextProps, Text } from 'src/components/ui/atoms'
 import { formatDueDate } from 'src/shared/date'
 import { dateFns } from 'src/shared/dateFns'
 

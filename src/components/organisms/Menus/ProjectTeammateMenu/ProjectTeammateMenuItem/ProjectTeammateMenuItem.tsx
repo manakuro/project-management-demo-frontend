@@ -1,11 +1,11 @@
 import React, { memo, useCallback } from 'react'
-import { Text } from 'src/components/atoms'
 import {
   SearchMenuLeftContainer,
   SearchMenuListItem,
   SearchMenuRightContainer,
 } from 'src/components/organisms/Menus/SearchMenu'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { Text } from 'src/components/ui/atoms'
 import { Teammate } from 'src/store/entities/teammate'
 
 type Props = {

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box, Flex, Image, Text } from 'src/components/atoms'
 import { PdfViewer } from 'src/components/organisms/PdfViewer'
+import { Box, Flex, Image, Text } from 'src/components/ui/atoms'
 import { FileTypeCode } from 'src/store/entities/fileType'
 import { useTaskFile } from 'src/store/entities/taskFile'
 

@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
-import { FlexProps } from 'src/components/atoms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
 import { useTasksTaskColumnIds } from 'src/components/organisms/Tasks/hooks'
+import { FlexProps } from 'src/components/ui/atoms'
 import { Cell } from '../Cell'
 import { useTasksListItemRowContext } from '../Provider'
 

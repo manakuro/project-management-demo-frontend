@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Flex, FlexProps, Skeleton } from 'src/components/atoms'
+import { Flex, FlexProps, Skeleton } from 'src/components/ui/atoms'
 import { Collaborators } from './Collaborators'
 import { Comment } from './Comment'
 

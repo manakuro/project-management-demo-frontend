@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useState } from 'react'
-import { Flex, InputText } from 'src/components/atoms'
+import { Flex, InputText } from 'src/components/ui/atoms'
 import { useDebounce } from 'src/hooks'
 
 type Props = {

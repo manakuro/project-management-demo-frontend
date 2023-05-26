@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Flex, FlexProps, Text } from 'src/components/atoms'
+import { Flex, FlexProps, Text } from 'src/components/ui/atoms'
 import { isContentEmpty } from 'src/shared/prosemirror/utils'
 import { useEditorViewContext } from './EdiorProvider'
 

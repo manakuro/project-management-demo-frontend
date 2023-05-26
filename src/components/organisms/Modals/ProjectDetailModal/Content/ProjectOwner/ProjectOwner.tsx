@@ -1,6 +1,12 @@
 import React, { memo, useCallback, useMemo, useState } from 'react'
-import { Button, ButtonProps, Text, Box, TextProps } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import {
+  Button,
+  ButtonProps,
+  Text,
+  Box,
+  TextProps,
+} from 'src/components/ui/atoms'
 import { useHover } from 'src/hooks/useHover'
 import { useOwnerTeammateIdsByProjectId } from 'src/store/entities/projectTeammate'
 import { useTeammate } from 'src/store/entities/teammate'

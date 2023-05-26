@@ -1,15 +1,15 @@
 import React, { useCallback, useMemo } from 'react'
-import {
-  Icon,
-  IconButton,
-  IconButtonProps,
-  IconProps,
-} from 'src/components/atoms'
 import { useThumbnailAttachmentContext } from 'src/components/molecules/ThumbnailAttachment/Provider'
 import {
   MenuButton as AtomsMenuButton,
   MenuButtonProps,
 } from 'src/components/organisms/Menu'
+import {
+  Icon,
+  IconButton,
+  IconButtonProps,
+  IconProps,
+} from 'src/components/ui/atoms'
 import { transitions } from 'src/styles'
 
 type Props = Omit<MenuButtonProps, 'children'> & {

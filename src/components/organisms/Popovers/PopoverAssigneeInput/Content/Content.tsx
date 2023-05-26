@@ -1,5 +1,4 @@
 import React from 'react'
-import { Portal, Stack, Text } from 'src/components/atoms'
 import {
   PopoverContent,
   PopoverProps,
@@ -7,6 +6,7 @@ import {
   PopoverHeader,
   PopoverBody,
 } from 'src/components/organisms/Popover'
+import { Portal, Stack, Text } from 'src/components/ui/atoms'
 import { useClickOutside } from 'src/hooks'
 import { AssignToMeButton } from './AssignToMeButton'
 import { Input } from './Input'

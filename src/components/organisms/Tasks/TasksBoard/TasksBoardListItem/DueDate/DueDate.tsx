@@ -1,12 +1,12 @@
 import React, { memo, useCallback, useMemo } from 'react'
+import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import {
   FlexProps,
   Icon,
   DueDate as AtomsDueDate,
   Button,
   Flex,
-} from 'src/components/atoms'
-import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
+} from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useTask } from 'src/store/entities/task'
 import { useTasksBoardListItemContext } from '../Provider'

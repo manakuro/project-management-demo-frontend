@@ -1,5 +1,4 @@
 import React, { memo, useState } from 'react'
-import { Box, Flex, Grid, Link, NextLink } from 'src/components/atoms'
 import {
   PROJECT_LIST_MENU_VIEW_AS_TILES,
   ProjectListItem,
@@ -9,6 +8,7 @@ import {
   ProjectTileItem,
   ProjectTileItemNew,
 } from 'src/components/organisms/Projects'
+import { Box, Flex, Grid, Link, NextLink } from 'src/components/ui/atoms'
 import { ROUTE_PROJECTS_LIST } from 'src/router'
 import { useProjectIds } from 'src/store/entities/project'
 import {

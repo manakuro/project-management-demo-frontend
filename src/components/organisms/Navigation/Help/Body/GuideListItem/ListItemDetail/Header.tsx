@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react'
-import { Flex, Icon, Text } from 'src/components/atoms'
 import {
   PADDING_X,
   Item,
 } from 'src/components/organisms/Navigation/Help/Body/GuideListItem'
+import { Flex, Icon, Text } from 'src/components/ui/atoms'
 
 type Props = {
   item: Item

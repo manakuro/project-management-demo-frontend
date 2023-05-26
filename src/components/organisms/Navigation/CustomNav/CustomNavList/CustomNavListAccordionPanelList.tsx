@@ -1,5 +1,5 @@
 import React from 'react'
-import { List } from 'src/components/atoms'
+import { List } from 'src/components/ui/atoms'
 
 type Props = {}
 

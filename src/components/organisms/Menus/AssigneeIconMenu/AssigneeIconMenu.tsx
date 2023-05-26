@@ -1,8 +1,8 @@
 import React, { memo, useCallback, useState } from 'react'
-import { Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { PopoverAssigneeInput } from 'src/components/organisms/Popovers'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { Icon } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useTeammate } from 'src/store/entities/teammate'
 

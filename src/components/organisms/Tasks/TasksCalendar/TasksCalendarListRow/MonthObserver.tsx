@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { FlexProps, Flex } from 'src/components/atoms'
+import { FlexProps, Flex } from 'src/components/ui/atoms'
 import { useTasksCalendarContext } from '../Provider'
 
 type Props = {

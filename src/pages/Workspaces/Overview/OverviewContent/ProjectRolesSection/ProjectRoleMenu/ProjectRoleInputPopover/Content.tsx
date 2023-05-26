@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { Label, Portal } from 'src/components/atoms'
 import { PopoverBody, PopoverContent } from 'src/components/organisms/Popover'
+import { Label, Portal } from 'src/components/ui/atoms'
 import { useClickOutside } from 'src/hooks'
 import {
   useProjectTeammate,

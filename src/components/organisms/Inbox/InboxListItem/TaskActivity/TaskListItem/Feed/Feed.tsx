@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Flex, Icon as AtomsIcon, Text } from 'src/components/atoms'
+import { Flex, Icon as AtomsIcon, Text } from 'src/components/ui/atoms'
 import { useTaskFeedIdsWithoutFirstByTaskId } from 'src/store/entities/taskFeed'
 
 type Props = {

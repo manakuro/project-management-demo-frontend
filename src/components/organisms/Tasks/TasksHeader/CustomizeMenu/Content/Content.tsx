@@ -1,6 +1,5 @@
 import { DragDropContext, Droppable } from '@hello-pangea/dnd'
 import React, { memo, useEffect, useMemo } from 'react'
-import { Box, Flex, Heading, Icon, IconButton } from 'src/components/atoms'
 import {
   DrawerBody,
   DrawerContent,
@@ -8,6 +7,7 @@ import {
 } from 'src/components/organisms/Drawer'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
 import { useTasksTaskColumnCustomizable } from 'src/components/organisms/Tasks/hooks'
+import { Box, Flex, Heading, Icon, IconButton } from 'src/components/ui/atoms'
 import { useDnd } from 'src/hooks/dnd/useDnd'
 import { isMyTasksBoardURL, useRouter } from 'src/router'
 import { useCustomizeMenu } from '../useCustomizeMenu'

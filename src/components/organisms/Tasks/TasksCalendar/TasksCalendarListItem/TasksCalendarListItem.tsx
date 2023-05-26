@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Flex, FlexProps, Text } from 'src/components/atoms'
+import { Flex, FlexProps, Text } from 'src/components/ui/atoms'
 import { Content } from './Content'
 import { Info } from './Info'
 import { useListItemStyle } from './hooks'

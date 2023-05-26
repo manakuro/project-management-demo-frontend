@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Flex } from 'src/components/atoms'
 import { Navigation } from 'src/components/organisms/Navigation'
+import { Flex } from 'src/components/ui/atoms'
 
 export const LayoutDefault: React.FCWithChildren = memo((props) => {
   return (

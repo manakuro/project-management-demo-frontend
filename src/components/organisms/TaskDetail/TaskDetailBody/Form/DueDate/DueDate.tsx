@@ -1,11 +1,11 @@
 import React, { memo, useCallback, useMemo } from 'react'
+import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import {
   Button,
   Icon,
   DueDate as AtomsDueDate,
   Box,
-} from 'src/components/atoms'
-import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
+} from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { useTask } from 'src/store/entities/task'

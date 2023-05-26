@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Stack } from 'src/components/atoms'
 import { useTasksTaskIdsByDueDate } from 'src/components/organisms/Tasks/hooks'
+import { Stack } from 'src/components/ui/atoms'
 import { ListItem } from './ListItem'
 
 type Props = {

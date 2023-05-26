@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Icon, IconButtonProps } from 'src/components/atoms'
 import { TooltipProps } from 'src/components/molecules'
+import { Icon, IconButtonProps } from 'src/components/ui/atoms'
 import { useBulletList } from 'src/shared/prosemirror/hooks'
 import { BaseButton } from '../BaseButton'
 

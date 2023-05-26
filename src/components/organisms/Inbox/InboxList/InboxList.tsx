@@ -1,9 +1,9 @@
 import React, { memo, useMemo } from 'react'
-import { Flex, FlexProps } from 'src/components/atoms'
 import {
   useInboxListItemIds,
   UseInboxListItemIdsKeys,
 } from 'src/components/organisms/Inbox'
+import { Flex, FlexProps } from 'src/components/ui/atoms'
 import { InboxListSection } from '../InboxListSection'
 import { useInboxList } from './useInboxList'
 

@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from 'react'
-import { Flex, Link, NextLink, Text, ColorBox } from 'src/components/atoms'
 import { useNavigation, PADDING_X } from 'src/components/organisms/Navigation'
+import { Flex, Link, NextLink, Text, ColorBox } from 'src/components/ui/atoms'
 import { useLinkHoverStyle } from 'src/hooks'
 import { ROUTE_PROJECTS_LIST, useRouter } from 'src/router'
 import { ROUTE_PROJECTS } from 'src/router/projects'

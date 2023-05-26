@@ -1,4 +1,6 @@
 import React, { memo, useCallback } from 'react'
+import { useFileViewerModal } from 'src/components/organisms/Modals'
+import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
 import {
   Flex,
   FlexProps,
@@ -7,9 +9,7 @@ import {
   Text,
   Image,
   Divider,
-} from 'src/components/atoms'
-import { useFileViewerModal } from 'src/components/organisms/Modals'
-import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
+} from 'src/components/ui/atoms'
 import { useHover } from 'src/hooks/useHover'
 import { FileTypeCode } from 'src/store/entities/fileType'
 import { useTask } from 'src/store/entities/task'

@@ -1,4 +1,7 @@
 import React, { memo, useMemo } from 'react'
+import { useNavigation } from 'src/components/organisms/Navigation'
+import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
+import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
 import {
   Flex,
   Link,
@@ -6,10 +9,7 @@ import {
   Text,
   Icon,
   ColorBox,
-} from 'src/components/atoms'
-import { useNavigation } from 'src/components/organisms/Navigation'
-import { PADDING_X } from 'src/components/organisms/Navigation/Navigation'
-import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
+} from 'src/components/ui/atoms'
 import { useLinkHoverStyle, useClickableHoverStyle } from 'src/hooks'
 import { ROUTE_PROJECTS_LIST, useRouter } from 'src/router'
 import { ROUTE_PROJECTS } from 'src/router/projects'

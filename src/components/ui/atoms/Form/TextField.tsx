@@ -1,6 +1,6 @@
 import { useField, FieldInputProps } from 'formik'
 import React, { memo } from 'react'
-import { FormErrorMessage, Input, FormControl } from 'src/components/atoms'
+import { FormErrorMessage, Input, FormControl } from 'src/components/ui/atoms'
 
 type Props = {
   name: string

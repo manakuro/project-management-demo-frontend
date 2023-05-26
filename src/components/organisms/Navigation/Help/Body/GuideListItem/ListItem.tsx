@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { Flex, Icon, Text } from 'src/components/atoms'
+import { Flex, Icon, Text } from 'src/components/ui/atoms'
 import { transitions } from 'src/styles'
 import { Item, PADDING_X } from './GuideListItem'
 

@@ -1,9 +1,9 @@
 import React from 'react'
-import { Portal } from 'src/components/atoms'
 import {
   MenuList as AtomsMenuList,
   MenuItem,
 } from 'src/components/organisms/Menu'
+import { Portal } from 'src/components/ui/atoms'
 
 type Props = {}
 

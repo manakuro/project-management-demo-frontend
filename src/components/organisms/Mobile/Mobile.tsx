@@ -1,5 +1,5 @@
 import React, { memo, PropsWithChildren } from 'react'
-import { Flex, Image, Logo, Text } from 'src/components/atoms'
+import { Flex, Image, Logo, Text } from 'src/components/ui/atoms'
 import { useResponsive } from 'src/hooks'
 
 type Props = PropsWithChildren<{}>

@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { IconButton, IconButtonProps, TextProps } from 'src/components/atoms'
+import { IconButton, IconButtonProps, TextProps } from 'src/components/ui/atoms'
 import { Icon } from './Icon'
 
 type Props = {

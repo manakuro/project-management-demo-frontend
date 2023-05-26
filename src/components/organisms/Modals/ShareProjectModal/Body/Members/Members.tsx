@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react'
-import { Flex, Text } from 'src/components/atoms'
+import { Flex, Text } from 'src/components/ui/atoms'
 import { useLinkStyle } from 'src/hooks'
 import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate'
 import { BodyHeader } from '../BodyHeader'

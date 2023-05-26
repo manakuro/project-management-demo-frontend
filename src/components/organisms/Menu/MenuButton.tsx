@@ -3,7 +3,7 @@ import {
   MenuButtonProps as ChakraMenuButtonProps,
 } from '@chakra-ui/react'
 import React, { useMemo } from 'react'
-import { Box } from 'src/components/atoms'
+import { Box } from 'src/components/ui/atoms'
 import { ChakraProps } from 'src/shared/chakra'
 
 type Props = ChakraMenuButtonProps &

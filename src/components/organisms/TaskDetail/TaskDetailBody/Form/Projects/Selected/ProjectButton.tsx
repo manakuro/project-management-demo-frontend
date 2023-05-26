@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Text, Box, Flex } from 'src/components/atoms'
+import { Button, Text, Box, Flex } from 'src/components/ui/atoms'
 import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 

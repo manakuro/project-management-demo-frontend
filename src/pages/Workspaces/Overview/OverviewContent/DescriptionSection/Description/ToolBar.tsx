@@ -1,5 +1,4 @@
 import React, { memo } from 'react'
-import { Divider, Stack } from 'src/components/atoms'
 import {
   Bold,
   BulletList,
@@ -13,6 +12,7 @@ import {
   Emoji,
   AtMention,
 } from 'src/components/organisms/Editor/ToolBar'
+import { Divider, Stack } from 'src/components/ui/atoms'
 import { useDescriptionContext } from './Provider'
 
 type Props = {}

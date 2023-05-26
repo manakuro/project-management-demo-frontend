@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useState } from 'react'
-import { Box, Flex, Icon, IconButton } from 'src/components/atoms'
 import { TasksListSectionGroupByProject } from 'src/components/organisms/Tasks'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
 import { TasksListSectionProvider } from 'src/components/organisms/Tasks/TasksList/TasksListSection'
+import { Box, Flex, Icon, IconButton } from 'src/components/ui/atoms'
 import { useMyTasksProjectIds } from 'src/store/app/myTasks/projects'
 import { useMyTasksTaskIdsWithNoProject } from 'src/store/app/myTasks/tasks'
 

@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { Button, CheckIcon } from 'src/components/atoms'
+import { Button, CheckIcon } from 'src/components/ui/atoms'
 import { useTask } from 'src/store/entities/task'
 
 type Props = {

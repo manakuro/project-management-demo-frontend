@@ -1,5 +1,5 @@
 import React from 'react'
-import { Wrap } from 'src/components/atoms'
+import { Wrap } from 'src/components/ui/atoms'
 
 type Props = {}
 

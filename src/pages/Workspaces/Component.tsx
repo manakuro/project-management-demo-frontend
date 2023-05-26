@@ -1,9 +1,9 @@
 import { NextRouter } from 'next/router'
 import React, { memo, useCallback, useState } from 'react'
-import { Flex } from 'src/components/atoms'
-import { Head } from 'src/components/atoms/Head'
 import { MainHeader } from 'src/components/organisms/MainHeader'
 import { Tabs, TabPanels, TabPanel } from 'src/components/organisms/Tabs'
+import { Flex } from 'src/components/ui/atoms'
+import { Head } from 'src/components/ui/atoms/Head'
 import {
   isWorkspacesCalendarURL,
   isWorkspacesOverviewURL,

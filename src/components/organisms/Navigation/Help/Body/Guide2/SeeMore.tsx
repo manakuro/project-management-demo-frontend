@@ -1,4 +1,5 @@
 import React from 'react'
+import { Section } from 'src/components/organisms/Navigation/Help/Body/GuideListItem/ListItemDetail'
 import {
   Text,
   Stack,
@@ -8,8 +9,7 @@ import {
   UnorderedList,
   OrderedList,
   ListItem,
-} from 'src/components/atoms'
-import { Section } from 'src/components/organisms/Navigation/Help/Body/GuideListItem/ListItemDetail'
+} from 'src/components/ui/atoms'
 import { guide2Item } from './item'
 
 export const SeeMore: React.FC = () => {

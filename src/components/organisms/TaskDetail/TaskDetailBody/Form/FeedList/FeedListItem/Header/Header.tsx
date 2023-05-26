@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Flex, Stack } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { Flex, Stack } from 'src/components/ui/atoms'
 import { useTaskFeedListItemContext } from '../Provider'
 import { CreateAt } from './CreateAt'
 import { FeedOptionMenu } from './FeedOptionMenu'

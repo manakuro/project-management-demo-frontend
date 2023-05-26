@@ -1,7 +1,7 @@
 import React, { memo, PropsWithChildren } from 'react'
-import { FileUploaderParams, Flex } from 'src/components/atoms'
 import { Tooltip, TooltipProps } from 'src/components/molecules'
 import { Menu } from 'src/components/organisms/Menu'
+import { FileUploaderParams, Flex } from 'src/components/ui/atoms'
 import { useDisclosure } from 'src/shared/chakra'
 import { MenuList } from './MenuList'
 

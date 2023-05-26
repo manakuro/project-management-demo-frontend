@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useState } from 'react'
-import { FlexProps, Flex } from 'src/components/atoms'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
+import { FlexProps, Flex } from 'src/components/ui/atoms'
 import { useHover } from 'src/hooks/useHover'
 import { Content } from './Content'
 

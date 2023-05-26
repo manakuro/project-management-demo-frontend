@@ -5,7 +5,7 @@ import {
   InputGroup,
   Input,
   InputLeftElement,
-} from 'src/components/atoms'
+} from 'src/components/ui/atoms'
 import { IconType } from 'src/shared/icons'
 
 type Props = InputProps & {

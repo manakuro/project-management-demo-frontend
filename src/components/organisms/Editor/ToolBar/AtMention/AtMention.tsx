@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Icon } from 'src/components/atoms'
+import { Icon } from 'src/components/ui/atoms'
 import { useAtMention } from 'src/shared/prosemirror/hooks'
 import { BaseButton } from '../BaseButton'
 

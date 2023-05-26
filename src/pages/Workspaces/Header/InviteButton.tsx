@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
-import { Button, Flex, FlexProps, Icon } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
 import { useInviteModal } from 'src/components/organisms/Modals'
+import { Button, Flex, FlexProps, Icon } from 'src/components/ui/atoms'
 
 type Props = FlexProps
 

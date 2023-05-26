@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
-import { Flex } from 'src/components/atoms'
 import { useNavigation } from 'src/components/organisms/Navigation'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
+import { Flex } from 'src/components/ui/atoms'
 import { ProjectList } from './ProjectList'
 import { Teammates } from './Teammates'
 import { Workspace } from './Workspace'

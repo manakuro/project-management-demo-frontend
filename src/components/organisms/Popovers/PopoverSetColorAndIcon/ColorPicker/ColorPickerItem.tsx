@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { Icon, WrapItem, ColorBox } from 'src/components/atoms'
+import { Icon, WrapItem, ColorBox } from 'src/components/ui/atoms'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 
 type Props = {

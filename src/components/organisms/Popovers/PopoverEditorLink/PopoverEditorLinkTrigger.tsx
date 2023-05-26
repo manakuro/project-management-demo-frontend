@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'src/components/atoms'
 import { PopoverTrigger } from 'src/components/organisms/Popover'
+import { Link } from 'src/components/ui/atoms'
 import { useLinkStyle } from 'src/hooks/styles'
 
 export const PopoverEditorLinkTrigger: React.FCWithChildren = (props) => {

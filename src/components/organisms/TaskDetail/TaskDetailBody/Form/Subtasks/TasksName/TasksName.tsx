@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
-import { CheckIcon, Flex, FlexProps, Stack } from 'src/components/atoms'
 import { TaskDoneTransition } from 'src/components/molecules'
 import { TasksListRow } from 'src/components/organisms/Tasks/TasksList/TasksListRow'
+import { CheckIcon, Flex, FlexProps, Stack } from 'src/components/ui/atoms'
 import { useTask, useTaskCommand } from 'src/store/entities/task'
 import { Assignee } from './Assignee'
 import { DueDate } from './DueDate'

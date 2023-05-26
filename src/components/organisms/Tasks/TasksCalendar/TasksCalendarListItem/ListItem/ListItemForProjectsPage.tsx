@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { FlexProps, Stack } from 'src/components/atoms'
 import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { FlexProps, Stack } from 'src/components/ui/atoms'
 import { useHover } from 'src/hooks/useHover'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useProjectIdsByTaskId } from 'src/store/entities/projectTask'

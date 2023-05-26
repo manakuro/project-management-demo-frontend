@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from 'react'
-import { Flex, Link, NextLink, Text, Icon } from 'src/components/atoms'
 import { useNavigation, PADDING_X } from 'src/components/organisms/Navigation'
+import { Flex, Link, NextLink, Text, Icon } from 'src/components/ui/atoms'
 import { useLinkHoverStyle } from 'src/hooks'
 import {
   ROUTE_WORKSPACES_OVERVIEW,

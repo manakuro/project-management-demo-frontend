@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Flex, Skeleton } from 'src/components/atoms'
 import { TasksListRow } from 'src/components/organisms/Tasks'
+import { Flex, Skeleton } from 'src/components/ui/atoms'
 
 const TEXT_HEIGHT = '16px'
 

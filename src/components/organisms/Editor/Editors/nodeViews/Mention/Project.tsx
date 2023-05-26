@@ -1,5 +1,4 @@
 import React, { memo } from 'react'
-import { ColorBox } from 'src/components/atoms'
 import { useReactNodeView } from 'src/components/organisms/Editor/Editors/ReactNodeView'
 import {
   PopoverEditorLink,
@@ -7,6 +6,7 @@ import {
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
 } from 'src/components/organisms/Popovers'
+import { ColorBox } from 'src/components/ui/atoms'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
 import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'

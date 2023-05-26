@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo } from 'react'
-import { Icon, IconButton, Link, PortalManager } from 'src/components/atoms'
 import { useEditorStateContext } from 'src/components/organisms/Editor/Editors'
 import { Popover, PopoverTrigger } from 'src/components/organisms/Popover'
+import { Icon, IconButton, Link, PortalManager } from 'src/components/ui/atoms'
 import { useDisclosure } from 'src/shared/chakra'
 import {
   useBold,

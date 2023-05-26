@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Flex, FlexProps } from 'src/components/atoms'
+import { Flex, FlexProps } from 'src/components/ui/atoms'
 import { MonthObserver } from './MonthObserver'
 import { ScrollDownObserver } from './ScrollDownObserver'
 import { ScrollUpObserver } from './ScrollUpObserver'

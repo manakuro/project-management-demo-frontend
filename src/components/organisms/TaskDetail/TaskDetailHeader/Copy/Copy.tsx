@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Icon, IconButton } from 'src/components/atoms'
 import { Tooltip } from 'src/components/molecules'
+import { Icon, IconButton } from 'src/components/ui/atoms'
 
 type Props = {
   taskId: string

@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react'
 import {
   CheckIcon as AtomsCheckIcon,
   CheckIconProps,
-} from 'src/components/atoms'
+} from 'src/components/ui/atoms'
 import { useTask } from 'src/store/entities/task'
 
 type Props = {

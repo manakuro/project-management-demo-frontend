@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Icon, IconButton, Stack } from 'src/components/atoms'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
+import { Icon, IconButton, Stack } from 'src/components/ui/atoms'
 import { useTeammateIdsByTaskId } from 'src/store/entities/taskCollaborator'
 import { useCollaboratorsContext } from '../Provider'
 import { Teammate } from './Teammate'

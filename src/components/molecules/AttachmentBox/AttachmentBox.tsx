@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, FlexProps, Icon, Link, Text } from 'src/components/atoms'
+import { Flex, FlexProps, Icon, Link, Text } from 'src/components/ui/atoms'
 import {
   useTaskFile,
   getTaskFileIcon,

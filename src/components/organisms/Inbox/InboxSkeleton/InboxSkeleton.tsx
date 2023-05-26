@@ -1,5 +1,4 @@
 import React from 'react'
-import { Flex, FlexProps, Skeleton, Stack } from 'src/components/atoms'
 import {
   InboxLeft,
   InboxHeader,
@@ -7,6 +6,7 @@ import {
   InboxHeaderRight,
   InboxListHeader,
 } from 'src/components/organisms/Inbox'
+import { Flex, FlexProps, Skeleton, Stack } from 'src/components/ui/atoms'
 
 type Props = FlexProps
 

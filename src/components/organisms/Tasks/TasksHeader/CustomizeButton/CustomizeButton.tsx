@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { Button, Icon } from 'src/components/atoms'
 import { useCustomizeMenu } from 'src/components/organisms/Tasks/TasksHeader/CustomizeMenu/useCustomizeMenu'
+import { Button, Icon } from 'src/components/ui/atoms'
 
 type Props = {}
 

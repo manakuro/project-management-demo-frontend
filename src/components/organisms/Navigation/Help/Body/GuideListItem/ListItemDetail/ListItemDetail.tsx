@@ -1,6 +1,6 @@
 import React from 'react'
-import { Flex } from 'src/components/atoms'
 import { Item } from 'src/components/organisms/Navigation/Help/Body/GuideListItem'
+import { Flex } from 'src/components/ui/atoms'
 import { Background } from './Background'
 import { Detail } from './Detail'
 import { Header } from './Header'

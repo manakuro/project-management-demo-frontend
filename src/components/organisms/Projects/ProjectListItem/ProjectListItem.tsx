@@ -1,4 +1,6 @@
 import React, { memo } from 'react'
+import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
+import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
 import {
   Flex,
   IconButton,
@@ -6,9 +8,7 @@ import {
   Icon,
   AvatarGroup,
   FlexProps,
-} from 'src/components/atoms'
-import { PopoverProjectMenu } from 'src/components/organisms/Popovers'
-import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+} from 'src/components/ui/atoms'
 import { IconType } from 'src/shared/icons'
 import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'

@@ -1,5 +1,4 @@
 import React, { memo } from 'react'
-import { Flex } from 'src/components/atoms'
 import { TaskDetailDrawer } from 'src/components/organisms/TaskDetails'
 import {
   CustomizeMenu,
@@ -12,6 +11,7 @@ import {
   useTasksBoardDetail,
   TasksContainer,
 } from 'src/components/organisms/Tasks'
+import { Flex } from 'src/components/ui/atoms'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router'
 import { SortMenu } from '../TasksHeader'

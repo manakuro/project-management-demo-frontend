@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo } from 'react'
-import { Flex, FlexProps, Text } from 'src/components/atoms'
 import { useEditorEmojiMenu } from 'src/components/organisms/Menus/EditorEmojiMenu'
+import { Flex, FlexProps, Text } from 'src/components/ui/atoms'
 import { useMenuStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { BaseEmoji } from 'src/shared/emoji'

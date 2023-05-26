@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Flex, Icon, Text } from 'src/components/atoms'
 import { useTasksContext } from 'src/components/organisms/Tasks'
+import { Flex, Icon, Text } from 'src/components/ui/atoms'
 import { useTask } from 'src/store/entities/task'
 import { useTasksNameContext } from '../TasksNameProvider'
 

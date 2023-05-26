@@ -1,7 +1,7 @@
 import React from 'react'
-import { List } from 'src/components/atoms'
 import { NavListItem } from 'src/components/organisms/Navigation/NavListItem'
 import { NavListItem as TNavListItem } from 'src/components/organisms/Navigation/type'
+import { List } from 'src/components/ui/atoms'
 
 const items: TNavListItem[] = [
   {

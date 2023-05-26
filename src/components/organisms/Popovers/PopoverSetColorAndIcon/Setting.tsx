@@ -1,5 +1,5 @@
 import React from 'react'
-import { Checkbox, Flex, Text } from 'src/components/atoms'
+import { Checkbox, Flex, Text } from 'src/components/ui/atoms'
 
 type Props = {
   isSetForEveryone: boolean

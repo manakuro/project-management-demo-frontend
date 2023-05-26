@@ -1,6 +1,6 @@
 import React from 'react'
-import { PortalManager } from 'src/components/atoms'
 import { Popover } from 'src/components/organisms/Popover'
+import { PortalManager } from 'src/components/ui/atoms'
 
 export const PopoverEditorLink: React.FCWithChildren = (props) => {
   return (

@@ -1,13 +1,13 @@
 import React, { memo, useCallback, useState } from 'react'
+import { InvitedTeammateChip } from 'src/components/molecules'
+import { InviteProjectTeammateMenu } from 'src/components/organisms/Menus'
 import {
   Flex,
   Input as AtomsInput,
   Textarea,
   Wrap,
   WrapItem,
-} from 'src/components/atoms'
-import { InvitedTeammateChip } from 'src/components/molecules'
-import { InviteProjectTeammateMenu } from 'src/components/organisms/Menus'
+} from 'src/components/ui/atoms'
 import { useDisclosure } from 'src/shared/chakra'
 import { Teammate } from 'src/store/entities/teammate'
 import { PermissionMenu } from '../PermissionMenu'

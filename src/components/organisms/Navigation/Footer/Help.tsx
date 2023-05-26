@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
-import { Text, ListItem, Icon } from 'src/components/atoms'
 import { Divider } from 'src/components/organisms/Navigation/Divider'
 import { useHelp } from 'src/components/organisms/Navigation/Help'
+import { Text, ListItem, Icon } from 'src/components/ui/atoms'
 import { transitions } from 'src/styles'
 import { PADDING_X } from '../Navigation'
 

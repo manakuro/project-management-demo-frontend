@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
-import { Icon } from 'src/components/atoms'
 import {
   PopoverEditorLink,
   PopoverEditorLinkTrigger,
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
 } from 'src/components/organisms/Popovers'
+import { Icon } from 'src/components/ui/atoms'
 import { useWorkspace } from 'src/store/entities/workspace'
 
 export const Workspace: React.FC = memo(() => {

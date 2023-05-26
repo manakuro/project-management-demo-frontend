@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from 'react'
-import { FlexProps } from 'src/components/atoms'
 import { useTasksTaskColumn } from 'src/components/organisms/Tasks/hooks'
+import { FlexProps } from 'src/components/ui/atoms'
 import { useTaskColumn } from 'src/store/entities/taskColumn'
 import { TaskColumnType } from 'src/store/entities/taskColumn/type'
 import {

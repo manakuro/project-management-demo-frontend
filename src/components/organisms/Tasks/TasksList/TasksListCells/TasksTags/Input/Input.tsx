@@ -1,7 +1,12 @@
 import React, { memo, useCallback, useMemo, useRef, useState } from 'react'
-import { Flex, Input as AtomsInput, Wrap, WrapItem } from 'src/components/atoms'
 import { TagChip } from 'src/components/molecules'
 import { TagMenu } from 'src/components/organisms/Menus'
+import {
+  Flex,
+  Input as AtomsInput,
+  Wrap,
+  WrapItem,
+} from 'src/components/ui/atoms'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import { Tag } from 'src/store/entities/tag'

@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { Icon, IconButton } from 'src/components/atoms'
 import { useSubtaskListContext } from 'src/components/organisms/Tasks/TasksList/TasksListItem/Provider'
+import { Icon, IconButton } from 'src/components/ui/atoms'
 
 type Props = {
   showExpandIcon: boolean

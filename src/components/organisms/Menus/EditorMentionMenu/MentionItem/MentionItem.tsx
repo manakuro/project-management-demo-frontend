@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { FlexProps } from 'src/components/atoms'
 import { SetValueParam } from 'src/components/organisms/Menus/EditorMentionMenu'
+import { FlexProps } from 'src/components/ui/atoms'
 import { Mention } from 'src/store/entities/mention'
 import { MentionType } from 'src/store/entities/mention'
 import { MentionItemBase } from './MentionItemBase'

@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { Flex, FlexProps } from 'src/components/atoms'
+import { Flex, FlexProps } from 'src/components/ui/atoms'
 
 type Props = {
   observeScrollDown?: boolean

@@ -1,5 +1,4 @@
 import React, { memo } from 'react'
-import { Divider } from 'src/components/atoms'
 import {
   ModalBody,
   ModalHeader,
@@ -11,6 +10,7 @@ import {
   TaskDetailHeader,
   TaskDetailFooter,
 } from 'src/components/organisms/TaskDetail'
+import { Divider } from 'src/components/ui/atoms'
 
 type Props = {
   loading: boolean

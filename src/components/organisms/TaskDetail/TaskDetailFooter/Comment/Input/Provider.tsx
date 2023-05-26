@@ -1,9 +1,9 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { FileUploaderParams, UploadedFile } from 'src/components/atoms'
 import {
   useTaskDetail,
   useTaskDetailBody,
 } from 'src/components/organisms/TaskDetail'
+import { FileUploaderParams, UploadedFile } from 'src/components/ui/atoms'
 import { useClickOutside, useToast } from 'src/hooks'
 import { getScrollBottom } from 'src/shared/getScrollBottom'
 import { parseDescription } from 'src/shared/prosemirror/convertDescription'

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Flex, Icon, Text } from 'src/components/atoms'
+import { Flex, Icon, Text } from 'src/components/ui/atoms'
 import { useSubtaskIds } from 'src/store/entities/task'
 
 type Props = {

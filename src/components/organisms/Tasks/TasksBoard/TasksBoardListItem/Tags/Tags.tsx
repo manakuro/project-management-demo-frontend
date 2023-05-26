@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { FlexProps, Stack } from 'src/components/atoms'
+import { FlexProps, Stack } from 'src/components/ui/atoms'
 import { useTaskTagIdsByTaskId } from 'src/store/entities/taskTag'
 import { Tag } from './Tag'
 

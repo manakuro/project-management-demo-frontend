@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
-import { Flex, Portal } from 'src/components/atoms'
 import {
   PopoverContent,
   PopoverContentProps,
 } from 'src/components/organisms/Popover'
+import { Flex, Portal } from 'src/components/ui/atoms'
 import { useClickOutside } from 'src/hooks'
 import { useSearchMenuRef } from '../useSearchMenuRef'
 

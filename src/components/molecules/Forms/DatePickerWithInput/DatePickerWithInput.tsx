@@ -7,7 +7,7 @@ import {
   Flex,
   DueDate as AtomsDueDate,
   IconProps,
-} from 'src/components/atoms'
+} from 'src/components/ui/atoms'
 import { useHover } from 'src/hooks/useHover'
 import { ChakraProps } from 'src/shared/chakra'
 import { DeleteButton } from './DeleteButton'

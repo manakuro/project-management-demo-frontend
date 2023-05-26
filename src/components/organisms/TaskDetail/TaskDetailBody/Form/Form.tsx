@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Flex, Stack } from 'src/components/atoms'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
+import { Flex, Stack } from 'src/components/ui/atoms'
 import { Assignee } from './Assignee'
 import { Attachment } from './Attachment'
 import { Description } from './Description'

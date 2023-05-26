@@ -1,5 +1,4 @@
 import React, { memo, useMemo } from 'react'
-import { Flex } from 'src/components/atoms'
 import {
   Inbox,
   InboxLeft,
@@ -15,6 +14,7 @@ import {
 import { useInboxTaskDetail } from 'src/components/organisms/Inbox'
 import { TaskDetailSide } from 'src/components/organisms/TaskDetails'
 import { TasksProvider } from 'src/components/organisms/Tasks'
+import { Flex } from 'src/components/ui/atoms'
 import { useInboxActivityPageQuery } from 'src/hooks/queries/app'
 import { getInboxDetailId, isInboxDetailURL } from 'src/router'
 import { useInboxPageContext } from '../Provider'

@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react'
-import { Flex } from 'src/components/atoms'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
+import { Flex } from 'src/components/ui/atoms'
 import { Form } from './Form'
 import { Info } from './Info'
 import { SkeletonTaskDetailBody } from './SkeletonTaskDetailBody'

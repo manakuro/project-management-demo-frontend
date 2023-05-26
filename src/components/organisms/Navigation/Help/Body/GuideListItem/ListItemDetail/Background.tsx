@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
-import { AspectRatio, Flex, Icon } from 'src/components/atoms'
 import { useVideoPlayer } from 'src/components/organisms/VideoPlayer'
+import { AspectRatio, Flex, Icon } from 'src/components/ui/atoms'
 
 type Props = {
   src?: string

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, FlexProps, Icon, Text, Progress } from 'src/components/atoms'
+import { Flex, FlexProps, Icon, Text, Progress } from 'src/components/ui/atoms'
 import { transitions } from 'src/styles'
 
 type Props = FlexProps & {

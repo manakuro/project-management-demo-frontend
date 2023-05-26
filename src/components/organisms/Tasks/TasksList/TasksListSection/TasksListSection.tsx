@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useState } from 'react'
-import { Flex } from 'src/components/atoms'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
 import { useTasksTaskIdsByTaskSectionId } from 'src/components/organisms/Tasks/hooks'
+import { Flex } from 'src/components/ui/atoms'
 import { AddTask } from './AddTask'
 import { AddTaskSection } from './AddTaskSection'
 import { Header } from './Header'

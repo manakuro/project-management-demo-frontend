@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, HeadingProps } from 'src/components/atoms'
+import { Heading, HeadingProps } from 'src/components/ui/atoms'
 
 type Props = HeadingProps
 

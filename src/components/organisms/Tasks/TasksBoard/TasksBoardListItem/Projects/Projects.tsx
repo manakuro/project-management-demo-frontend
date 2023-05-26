@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { FlexProps, Stack } from 'src/components/atoms'
+import { FlexProps, Stack } from 'src/components/ui/atoms'
 import { ProjectChip } from './ProjectChip'
 
 type Props = FlexProps & {

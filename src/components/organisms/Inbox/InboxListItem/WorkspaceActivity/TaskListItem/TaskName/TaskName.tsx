@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react'
-import { Text, TextProps } from 'src/components/atoms'
+import { Text, TextProps } from 'src/components/ui/atoms'
 import { useTask } from 'src/store/entities/task'
 
 type Props = {

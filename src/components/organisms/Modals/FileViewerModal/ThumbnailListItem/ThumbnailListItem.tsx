@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Center, Icon, Image } from 'src/components/atoms'
+import { Center, Icon, Image } from 'src/components/ui/atoms'
 import { FileTypeCode } from 'src/graphql/enums'
 import { ChakraProps } from 'src/shared/chakra'
 import { useTaskFile, getTaskFileIcon } from 'src/store/entities/taskFile'

@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useState } from 'react'
-import { Flex, FlexProps, Stack } from 'src/components/atoms'
 import { TaskDoneTransition } from 'src/components/molecules'
+import { Flex, FlexProps, Stack } from 'src/components/ui/atoms'
 import { useHover } from 'src/hooks/useHover'
 import { useRouter } from 'src/router'
 import { CheckIcon } from './CheckIcon'

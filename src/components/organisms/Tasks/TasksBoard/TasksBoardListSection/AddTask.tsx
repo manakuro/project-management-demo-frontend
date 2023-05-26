@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { Button, ButtonProps, Icon } from 'src/components/atoms'
 import { useTasksTask } from 'src/components/organisms/Tasks/hooks'
+import { Button, ButtonProps, Icon } from 'src/components/ui/atoms'
 
 type Props = {
   taskSectionId: string

@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
-import { Icon, IconButton, Portal } from 'src/components/atoms'
 import {
   Menu,
   MenuList,
   MenuGroup,
   MenuButton,
 } from 'src/components/organisms/Menu'
+import { Icon, IconButton, Portal } from 'src/components/ui/atoms'
 import { useTaskFeedListItemContext } from '../../Provider'
 import { CopyCommentLink } from './CopyCommentLink'
 import { DeleteComment } from './DeleteComment'

@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react'
-import { AspectRatio, WrapItem } from 'src/components/atoms'
+import { AspectRatio, WrapItem } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useCarouselContext } from './Provider'
 

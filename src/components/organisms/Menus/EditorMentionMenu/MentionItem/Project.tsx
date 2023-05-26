@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { ColorBox, Flex, FlexProps, Text } from 'src/components/atoms'
+import { ColorBox, Flex, FlexProps, Text } from 'src/components/ui/atoms'
 import { Mention } from 'src/store/entities/mention'
 import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'

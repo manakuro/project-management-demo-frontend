@@ -1,5 +1,4 @@
 import React, { memo, useCallback, useState } from 'react'
-import { Box, Flex, Icon, IconButton } from 'src/components/atoms'
 import { TasksListSection } from 'src/components/organisms/Tasks'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { TasksListItem } from 'src/components/organisms/Tasks/TasksList/TasksListItem'
@@ -8,6 +7,7 @@ import {
   useTasksTaskIds,
   useTasksTaskSectionIds,
 } from 'src/components/organisms/Tasks/hooks'
+import { Box, Flex, Icon, IconButton } from 'src/components/ui/atoms'
 
 export const ListSortByDueDate: React.FC = memo(() => {
   const { taskIds } = useTasksTaskIds()

@@ -3,7 +3,7 @@ import StaticDatePicker, {
   StaticDatePickerProps,
 } from '@material-ui/lab/StaticDatePicker'
 import React from 'react'
-import { ConditionalRender } from 'src/components/atoms'
+import { ConditionalRender } from 'src/components/ui/atoms'
 
 type Props = Omit<StaticDatePickerProps, 'renderInput' | 'openTo'>
 

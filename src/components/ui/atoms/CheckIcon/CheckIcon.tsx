@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Icon, IconProps } from 'src/components/atoms'
+import { Icon, IconProps } from 'src/components/ui/atoms'
 import { transitions } from 'src/styles'
 
 type Props = {

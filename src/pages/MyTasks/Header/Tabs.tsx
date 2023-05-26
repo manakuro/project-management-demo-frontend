@@ -1,5 +1,4 @@
 import React, { memo } from 'react'
-import { Flex, Heading, Icon, IconButton, Portal } from 'src/components/atoms'
 import {
   Menu,
   MenuButton,
@@ -7,6 +6,13 @@ import {
   MenuList,
 } from 'src/components/organisms/Menu'
 import { TabList, Tab } from 'src/components/organisms/Tabs'
+import {
+  Flex,
+  Heading,
+  Icon,
+  IconButton,
+  Portal,
+} from 'src/components/ui/atoms'
 
 export const Tabs: React.FC = memo(() => {
   return (

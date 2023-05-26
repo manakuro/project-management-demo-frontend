@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { Slide } from 'src/components/atoms'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
+import { Slide } from 'src/components/ui/atoms'
 import { UseClickOutsideOptionsHasClickedOutside } from 'src/hooks/useClickOutside'
 import { Content } from './Content'
 import { useTaskDetailDrawer } from './useTaskDetailDrawer'

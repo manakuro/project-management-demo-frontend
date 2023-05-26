@@ -1,5 +1,4 @@
 import React from 'react'
-import { Portal, Stack } from 'src/components/atoms'
 import {
   Bold,
   BulletList,
@@ -17,6 +16,7 @@ import {
   PopoverBody,
   PopoverArrow,
 } from 'src/components/organisms/Popover'
+import { Portal, Stack } from 'src/components/ui/atoms'
 import { useClickOutside } from 'src/hooks'
 
 type Props = {

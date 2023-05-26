@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Icon, IconButton, PortalManager } from 'src/components/atoms'
 import { Menu, MenuButton } from 'src/components/organisms/Menu'
+import { Icon, IconButton, PortalManager } from 'src/components/ui/atoms'
 import { MenuList } from './MenuList'
 
 type Props = {}

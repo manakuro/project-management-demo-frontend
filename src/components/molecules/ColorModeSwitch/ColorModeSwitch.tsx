@@ -1,8 +1,8 @@
 import { useColorMode } from '@chakra-ui/color-mode'
 import React from 'react'
-import { Button } from 'src/components/atoms'
-import { Flex, FlexProps } from 'src/components/atoms/Flex'
-import { Icon } from 'src/components/atoms/Icon'
+import { Button } from 'src/components/ui/atoms'
+import { Flex, FlexProps } from 'src/components/ui/atoms/Flex'
+import { Icon } from 'src/components/ui/atoms/Icon'
 
 type Props = FlexProps
 

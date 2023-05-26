@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { Button } from 'src/components/atoms'
+import { Button } from 'src/components/ui/atoms'
 import { useTasksCalendarContext } from '../../TasksCalendar'
 
 type Props = {}

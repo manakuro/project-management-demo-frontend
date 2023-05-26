@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from 'react'
-import { useShareProjectModal } from 'src/components/organisms/Modals'
-import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { useShareProjectModal } from 'src/components/features/organisms/Modals'
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
 import { Flex, Heading, Icon, Text } from 'src/components/ui/atoms'
 import { useLinkStyle } from 'src/hooks'
 import { formatCreatedAt } from 'src/shared/date'

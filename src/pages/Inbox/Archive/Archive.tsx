@@ -7,10 +7,10 @@ import {
   InboxList,
   InboxListContent,
   InboxSkeleton,
-} from 'src/components/organisms/Inbox'
-import { useInboxTaskDetail } from 'src/components/organisms/Inbox'
-import { TaskDetailSide } from 'src/components/organisms/TaskDetails'
-import { TasksProvider } from 'src/components/organisms/Tasks'
+} from 'src/components/features/organisms/Inbox'
+import { useInboxTaskDetail } from 'src/components/features/organisms/Inbox'
+import { TaskDetailSide } from 'src/components/features/organisms/TaskDetails'
+import { TasksProvider } from 'src/components/features/organisms/Tasks'
 import { Flex } from 'src/components/ui/atoms'
 import { useInboxArchivePageQuery } from 'src/hooks/queries/app'
 import { getInboxDetailId, isInboxDetailURL } from 'src/router'

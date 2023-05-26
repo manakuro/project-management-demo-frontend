@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { MainHeader } from 'src/components/organisms/MainHeader'
+import { MainHeader } from 'src/components/features/organisms/MainHeader'
 import { Heading } from 'src/components/ui/atoms'
 import { useTasksListContentVerticalScroll } from '../Content'
 

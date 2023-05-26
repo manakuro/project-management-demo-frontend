@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo } from 'react'
-import { SortMenu as TasksHeaderSortMenu } from 'src/components/organisms/Tasks/TasksHeader'
+import { SortMenu as TasksHeaderSortMenu } from 'src/components/features/organisms/Tasks/TasksHeader'
 import { useProjectsPageContext } from 'src/pages/Projects/Provider'
 import {
   useProjectsTaskListStatus,

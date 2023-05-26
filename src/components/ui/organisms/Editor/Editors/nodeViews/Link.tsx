@@ -4,7 +4,7 @@ import {
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
   PopoverEditorLinkTrigger,
-} from 'src/components/organisms/Popovers'
+} from 'src/components/features/organisms/Popovers'
 import { Icon, Link as AtomsLink } from 'src/components/ui/atoms'
 import { useReactNodeView } from '../ReactNodeView'
 

@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
 import { Flex, AvatarGroup } from 'src/components/ui/atoms'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { useTeammateIdsByWorkspaceId } from 'src/store/entities/workspaceTeammate'

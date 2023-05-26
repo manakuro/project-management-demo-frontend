@@ -7,7 +7,7 @@ import {
   ProjectListMenu,
   ProjectListStatus,
   PROJECT_LIST_MENU_VIEW_AS_TILES,
-} from 'src/components/organisms/Projects'
+} from 'src/components/features/organisms/Projects'
 import {
   Box,
   Flex,

@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { useShareProjectModal } from 'src/components/organisms/Modals/ShareProjectModal'
-import { TeammateAvatar } from 'src/components/organisms/TeammateAvatar'
+import { useShareProjectModal } from 'src/components/features/organisms/Modals/ShareProjectModal'
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
 import { Flex, AvatarGroup } from 'src/components/ui/atoms'
 import { Tooltip } from 'src/components/ui/molecules'
 import { useTooltip } from 'src/components/ui/molecules/Tooltip/useTooltip'

@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { useInviteModal } from 'src/components/organisms/Modals'
+import { useInviteModal } from 'src/components/features/organisms/Modals'
 import { Button, Flex, FlexProps, Icon } from 'src/components/ui/atoms'
 import { Tooltip } from 'src/components/ui/molecules'
 

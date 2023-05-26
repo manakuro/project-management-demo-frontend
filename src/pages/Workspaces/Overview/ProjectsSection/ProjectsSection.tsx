@@ -7,7 +7,7 @@ import {
   ProjectListStatus,
   ProjectTileItem,
   ProjectTileItemNew,
-} from 'src/components/organisms/Projects'
+} from 'src/components/features/organisms/Projects'
 import { Box, Flex, Grid, Link, NextLink } from 'src/components/ui/atoms'
 import { ROUTE_PROJECTS_LIST } from 'src/router'
 import { useProjectIds } from 'src/store/entities/project'

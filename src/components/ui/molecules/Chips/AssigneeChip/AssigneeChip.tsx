@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { PopoverProfile } from 'src/components/organisms/Popovers'
+import { PopoverProfile } from 'src/components/features/organisms/Popovers'
 import { Avatar, Box, Button, Icon, Text } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useTeammate } from 'src/store/entities/teammate'

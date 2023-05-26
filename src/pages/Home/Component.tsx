@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { TaskDetailModal } from 'src/components/organisms/TaskDetails'
-import { TasksProvider } from 'src/components/organisms/Tasks'
+import { TaskDetailModal } from 'src/components/features/organisms/TaskDetails'
+import { TasksProvider } from 'src/components/features/organisms/Tasks'
 import { Stack, Flex } from 'src/components/ui/atoms'
 import { Head } from 'src/components/ui/atoms/Head'
 import { isHomeDetailURL, useRouter, getHomeDetailId } from 'src/router'

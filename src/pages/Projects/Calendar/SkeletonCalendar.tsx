@@ -4,7 +4,7 @@ import {
   TasksHeader,
   TasksHeaderLeft,
   TasksHeaderRight,
-} from 'src/components/organisms/Tasks'
+} from 'src/components/features/organisms/Tasks'
 import { Flex, FlexProps, Skeleton, Stack } from 'src/components/ui/atoms'
 
 type Props = FlexProps

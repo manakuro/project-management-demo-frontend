@@ -4,7 +4,7 @@ import {
   PopoverEditorLinkTrigger,
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
-} from 'src/components/organisms/Popovers'
+} from 'src/components/features/organisms/Popovers'
 import { Icon } from 'src/components/ui/atoms'
 import { useWorkspace } from 'src/store/entities/workspace'
 

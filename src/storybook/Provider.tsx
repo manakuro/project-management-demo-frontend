@@ -3,7 +3,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import enLocale from 'date-fns/locale/en-US'
 import React, { useMemo } from 'react'
 import { RecoilRoot } from 'recoil'
-import { Modals } from 'src/components/organisms/Modals'
+import { Modals } from 'src/components/features/organisms/Modals'
 import {
   useFavoriteProjectIdsQuery,
   useFavoriteWorkspaceIdsQuery,

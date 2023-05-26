@@ -4,7 +4,7 @@ import {
   PopoverEditorLinkTrigger,
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
-} from 'src/components/organisms/Popovers'
+} from 'src/components/features/organisms/Popovers'
 import { CheckIcon } from 'src/components/ui/atoms'
 import { useProjectTask } from 'src/store/entities/projectTask'
 import { useTask } from 'src/store/entities/task'

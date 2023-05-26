@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Navigation } from 'src/components/organisms/Navigation'
+import { Navigation } from 'src/components/features/organisms/Navigation'
 import { Flex } from 'src/components/ui/atoms'
 
 export const LayoutDefault: React.FCWithChildren = memo((props) => {

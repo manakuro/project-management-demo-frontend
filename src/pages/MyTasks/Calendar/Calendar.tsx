@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { TaskDetailModal } from 'src/components/organisms/TaskDetails'
+import { TaskDetailModal } from 'src/components/features/organisms/TaskDetails'
 import {
   TasksCalendarContent,
   TasksCalendarList,
@@ -7,14 +7,14 @@ import {
   useTasksCalendarDetail,
   TasksCalendar,
   TasksContainer,
-} from 'src/components/organisms/Tasks'
+} from 'src/components/features/organisms/Tasks'
 import {
   CalendarMonthPicker,
   TasksHeader,
   TasksHeaderRight,
   TasksHeaderLeft,
   TodayButton,
-} from 'src/components/organisms/Tasks/TasksHeader'
+} from 'src/components/features/organisms/Tasks/TasksHeader'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router'
 import { SkeletonCalendar } from './SkeletonCalendar'

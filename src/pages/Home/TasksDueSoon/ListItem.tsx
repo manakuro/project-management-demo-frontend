@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
+import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers'
 import { Flex, Text, CheckIcon, DueDate, Stack } from 'src/components/ui/atoms'
 import { ProjectChip } from 'src/components/ui/molecules'
 import { useClickableHoverStyle } from 'src/hooks'

@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { useProjectDetailModal } from 'src/components/organisms/Modals'
+import { useProjectDetailModal } from 'src/components/features/organisms/Modals'
 import { Icon, IconButton, IconButtonProps } from 'src/components/ui/atoms'
 
 type Props = {

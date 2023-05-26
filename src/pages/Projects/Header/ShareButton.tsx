@@ -1,8 +1,8 @@
 import React, { memo, useCallback } from 'react'
-import { Tooltip } from 'src/components/molecules'
-import { useTooltip } from 'src/components/molecules/Tooltip/useTooltip'
 import { useShareProjectModal } from 'src/components/organisms/Modals/ShareProjectModal'
 import { Button, Flex, FlexProps, Icon } from 'src/components/ui/atoms'
+import { Tooltip } from 'src/components/ui/molecules'
+import { useTooltip } from 'src/components/ui/molecules/Tooltip/useTooltip'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useWorkspace } from 'src/store/entities/workspace'
 

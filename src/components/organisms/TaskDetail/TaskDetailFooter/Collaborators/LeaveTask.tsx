@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { Tooltip } from 'src/components/molecules'
 import { Button, Flex, Icon } from 'src/components/ui/atoms'
+import { Tooltip } from 'src/components/ui/molecules'
 import { useCollaboratorsContext } from './Provider'
 
 export const LeaveTask: React.FC = memo(() => {

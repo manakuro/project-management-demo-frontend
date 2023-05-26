@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
-import { ThumbnailAttachment } from 'src/components/molecules'
 import { useFileViewerModal } from 'src/components/organisms/Modals'
 import { Wrap, WrapItem } from 'src/components/ui/atoms'
+import { ThumbnailAttachment } from 'src/components/ui/molecules'
 import { useToast } from 'src/hooks'
 import { TaskFile, useTaskFileIdsByTaskId } from 'src/store/entities/taskFile'
 import { NewButton } from './NewButton'

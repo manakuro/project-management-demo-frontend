@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
-import { Tooltip } from 'src/components/molecules'
 import { useTasksTask } from 'src/components/organisms/Tasks/hooks'
 import { Icon, IconButton } from 'src/components/ui/atoms'
+import { Tooltip } from 'src/components/ui/molecules'
 
 type Props = {
   taskSectionId: string

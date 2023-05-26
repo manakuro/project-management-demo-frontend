@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { TooltipProps } from 'src/components/molecules'
 import { Icon, IconButtonProps } from 'src/components/ui/atoms'
+import { TooltipProps } from 'src/components/ui/molecules'
 import { useIncreaseListIndent } from 'src/shared/prosemirror/hooks'
 import { BaseButton } from '../BaseButton'
 

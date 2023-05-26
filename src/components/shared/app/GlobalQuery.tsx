@@ -1,5 +1,5 @@
 import React from 'react'
-import { PageLoader } from 'src/components/molecules'
+import { PageLoader } from 'src/components/ui/molecules'
 import {
   useProjectsQuery,
   useFavoriteProjectIdsQuery,

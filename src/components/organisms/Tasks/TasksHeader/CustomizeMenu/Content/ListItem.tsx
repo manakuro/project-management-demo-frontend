@@ -1,8 +1,8 @@
 import { Draggable } from '@hello-pangea/dnd'
 import React, { memo, useCallback, useMemo } from 'react'
-import { CustomField } from 'src/components/molecules'
 import { useTasksTaskColumn } from 'src/components/organisms/Tasks/hooks'
 import { Box } from 'src/components/ui/atoms'
+import { CustomField } from 'src/components/ui/molecules'
 import { useDraggableInPortal } from 'src/hooks/useDraggableInPortal'
 import { useTaskColumn } from 'src/store/entities/taskColumn'
 

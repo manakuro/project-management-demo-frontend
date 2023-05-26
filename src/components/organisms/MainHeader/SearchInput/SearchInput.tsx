@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { InputWithIcon } from 'src/components/molecules'
+import { InputWithIcon } from 'src/components/ui/molecules'
 
 export const SearchInput: React.FC = memo(() => {
   return (

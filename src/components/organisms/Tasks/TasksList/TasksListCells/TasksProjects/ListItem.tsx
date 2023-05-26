@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { ProjectChip } from 'src/components/molecules'
+import { ProjectChip } from 'src/components/ui/molecules'
 import { useProjectTask } from 'src/store/entities/projectTask'
 
 type Props = {

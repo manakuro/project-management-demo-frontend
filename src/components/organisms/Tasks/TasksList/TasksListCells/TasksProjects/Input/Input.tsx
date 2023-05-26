@@ -1,5 +1,4 @@
 import React, { memo, useCallback, useState } from 'react'
-import { ProjectChip } from 'src/components/molecules'
 import { ProjectMenu } from 'src/components/organisms/Menus'
 import {
   Flex,
@@ -7,6 +6,7 @@ import {
   Wrap,
   WrapItem,
 } from 'src/components/ui/atoms'
+import { ProjectChip } from 'src/components/ui/molecules'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import {

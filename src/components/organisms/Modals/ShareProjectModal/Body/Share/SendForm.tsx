@@ -1,5 +1,4 @@
 import React, { memo, useCallback, useState } from 'react'
-import { InvitedTeammateChip } from 'src/components/molecules'
 import { InviteProjectTeammateMenu } from 'src/components/organisms/Menus'
 import {
   Flex,
@@ -8,6 +7,7 @@ import {
   Wrap,
   WrapItem,
 } from 'src/components/ui/atoms'
+import { InvitedTeammateChip } from 'src/components/ui/molecules'
 import { useDisclosure } from 'src/shared/chakra'
 import { Teammate } from 'src/store/entities/teammate'
 import { PermissionMenu } from '../PermissionMenu'

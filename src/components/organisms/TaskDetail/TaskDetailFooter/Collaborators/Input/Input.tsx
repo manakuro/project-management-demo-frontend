@@ -1,5 +1,4 @@
 import React, { memo, useCallback, useState } from 'react'
-import { AssigneeChip } from 'src/components/molecules'
 import { InviteCollaboratorMenu } from 'src/components/organisms/Menus'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
 import {
@@ -8,6 +7,7 @@ import {
   Wrap,
   WrapItem,
 } from 'src/components/ui/atoms'
+import { AssigneeChip } from 'src/components/ui/molecules'
 import { useClickOutside } from 'src/hooks'
 import { ChakraProps, useDisclosure, useStyleConfig } from 'src/shared/chakra'
 import {

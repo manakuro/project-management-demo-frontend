@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { Tooltip, TooltipProps } from 'src/components/molecules'
 import { Icon, IconButton, IconButtonProps } from 'src/components/ui/atoms'
+import { Tooltip, TooltipProps } from 'src/components/ui/molecules'
 
 type Props = {
   tooltipProps: Omit<TooltipProps, 'children'>

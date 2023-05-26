@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react'
-import { Tooltip, TooltipProps } from 'src/components/molecules'
 import {
   useEditorStateContext,
   useEditorViewContext,
 } from 'src/components/organisms/Editor/Editors'
 import { IconButton, IconButtonProps } from 'src/components/ui/atoms'
+import { Tooltip, TooltipProps } from 'src/components/ui/molecules'
 import { ToolbarItem } from 'src/shared/prosemirror/hooks'
 
 type Props = {

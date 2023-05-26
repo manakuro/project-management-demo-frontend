@@ -1,5 +1,4 @@
 import React, { memo, useCallback } from 'react'
-import { TaskDoneTransition } from 'src/components/molecules'
 import { useTasksListContext } from 'src/components/organisms/Tasks/TasksList/Provider'
 import { useTasksRouter } from 'src/components/organisms/Tasks/hooks'
 import {
@@ -9,6 +8,7 @@ import {
   Stack,
   Text,
 } from 'src/components/ui/atoms'
+import { TaskDoneTransition } from 'src/components/ui/molecules'
 import { useTask, useTaskCommand } from 'src/store/entities/task'
 import { ExpandIcon } from './ExpandIcon'
 import { Feed } from './Feed'

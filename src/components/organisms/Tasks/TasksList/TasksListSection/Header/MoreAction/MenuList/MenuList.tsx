@@ -1,5 +1,4 @@
 import React, { memo, useCallback, useMemo } from 'react'
-import { Tooltip } from 'src/components/molecules'
 import {
   MenuList as AtomsMenuList,
   MenuItem,
@@ -11,6 +10,7 @@ import {
   useTasksCanDeleteTaskSection,
   useTasksTaskSectionCommand,
 } from 'src/components/organisms/Tasks/hooks'
+import { Tooltip } from 'src/components/ui/molecules'
 
 type Props = {}
 

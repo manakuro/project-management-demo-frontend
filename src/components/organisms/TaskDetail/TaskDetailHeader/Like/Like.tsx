@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { LikeTaskIconButton } from 'src/components/molecules'
 import { useTaskDetail } from 'src/components/organisms/TaskDetail'
+import { LikeTaskIconButton } from 'src/components/ui/molecules'
 
 type Props = {}
 

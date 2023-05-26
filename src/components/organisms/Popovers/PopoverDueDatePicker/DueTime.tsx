@@ -1,5 +1,4 @@
 import React from 'react'
-import { Tooltip } from 'src/components/molecules'
 import {
   Flex,
   Icon,
@@ -8,6 +7,7 @@ import {
   Select,
   Text,
 } from 'src/components/ui/atoms'
+import { Tooltip } from 'src/components/ui/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
 import { formatDueTime } from 'src/shared/date'
 import { times } from 'src/shared/date/time'

@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import { PriorityChip } from 'src/components/molecules'
 import { FlexProps } from 'src/components/ui/atoms'
+import { PriorityChip } from 'src/components/ui/molecules'
 import { useTask } from 'src/store/entities/task'
 
 type Props = FlexProps & {

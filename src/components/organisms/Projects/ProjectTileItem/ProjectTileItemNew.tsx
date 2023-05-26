@@ -1,6 +1,6 @@
 import React from 'react'
-import { ComingSoonTooltip } from 'src/components/molecules'
 import { DashedBox, Flex, FlexProps, Icon } from 'src/components/ui/atoms'
+import { ComingSoonTooltip } from 'src/components/ui/molecules'
 import { transitions } from 'src/styles'
 import { Container } from './Container'
 

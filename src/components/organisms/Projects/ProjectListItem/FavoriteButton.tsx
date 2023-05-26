@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { FavoriteIconButton } from 'src/components/molecules'
+import { FavoriteIconButton } from 'src/components/ui/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
 import {
   useFavoriteProjectIds,

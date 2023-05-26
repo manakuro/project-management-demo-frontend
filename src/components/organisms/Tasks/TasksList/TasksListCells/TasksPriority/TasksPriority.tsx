@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo, useState } from 'react'
-import { PriorityChip } from 'src/components/molecules'
 import { TasksListCell } from 'src/components/organisms/Tasks/TasksList/TasksListCell'
 import { Flex, FlexProps, Icon } from 'src/components/ui/atoms'
+import { PriorityChip } from 'src/components/ui/molecules'
 import { useHover } from 'src/hooks/useHover'
 import { useTask } from 'src/store/entities/task'
 import { Menu } from './Menu'

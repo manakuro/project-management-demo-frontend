@@ -1,5 +1,5 @@
 import React from 'react'
-import { LikeIconButton } from 'src/components/molecules'
+import { LikeIconButton } from 'src/components/ui/molecules'
 import { useTaskFeedListItemContext } from '../../Provider'
 import { useLike } from './useLike'
 

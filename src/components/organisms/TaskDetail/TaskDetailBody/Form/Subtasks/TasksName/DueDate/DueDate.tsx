@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
-import { Tooltip } from 'src/components/molecules'
 import { PopoverDueDatePicker } from 'src/components/organisms/Popovers'
 import { Icon, DueDate as AtomsDueDate } from 'src/components/ui/atoms'
+import { Tooltip } from 'src/components/ui/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
 import { getDifferenceInDays } from 'src/shared/date'
 import { useTask } from 'src/store/entities/task'

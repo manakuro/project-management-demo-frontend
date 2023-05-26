@@ -1,8 +1,8 @@
 import React, { memo, useCallback } from 'react'
-import { Tooltip } from 'src/components/molecules'
 import { MenuSelect, MenuSelectButton } from 'src/components/organisms/Menus'
 import { useTasksTask } from 'src/components/organisms/Tasks/hooks'
 import { Icon } from 'src/components/ui/atoms'
+import { Tooltip } from 'src/components/ui/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
 import { MenuList } from './MenuList'
 

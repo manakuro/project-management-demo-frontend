@@ -1,5 +1,4 @@
 import React, { useCallback, useMemo } from 'react'
-import { useThumbnailAttachmentContext } from 'src/components/molecules/ThumbnailAttachment/Provider'
 import {
   MenuButton as AtomsMenuButton,
   MenuButtonProps,
@@ -10,6 +9,7 @@ import {
   IconButtonProps,
   IconProps,
 } from 'src/components/ui/atoms'
+import { useThumbnailAttachmentContext } from 'src/components/ui/molecules/ThumbnailAttachment/Provider'
 import { transitions } from 'src/styles'
 
 type Props = Omit<MenuButtonProps, 'children'> & {

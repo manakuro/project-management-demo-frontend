@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal } from 'src/components/organisms/Modal'
+import { Modal } from 'src/components/ui/organisms/Modal'
 import { MenuList } from './MenuList'
 import { useEditorEmojiMenu } from './useEditorEmojiMenu'
 

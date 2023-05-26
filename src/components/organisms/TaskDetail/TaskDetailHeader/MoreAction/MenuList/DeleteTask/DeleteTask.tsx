@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { MenuItem } from 'src/components/organisms/Menu'
+import { MenuItem } from 'src/components/ui/organisms/Menu'
 import { useToast } from 'src/hooks'
 import { useTask, useTaskCommand } from 'src/store/entities/task'
 

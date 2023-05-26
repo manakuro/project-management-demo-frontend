@@ -9,8 +9,8 @@ import {
   SearchMenuRightContainer,
   SearchMenuLoading,
 } from 'src/components/organisms/Menus/SearchMenu'
-import { PopoverProps } from 'src/components/organisms/Popover'
 import { Divider, Icon, Text } from 'src/components/ui/atoms'
+import { PopoverProps } from 'src/components/ui/organisms/Popover'
 import { Teammate } from 'src/store/entities/teammate'
 
 type Props = PopoverProps & {

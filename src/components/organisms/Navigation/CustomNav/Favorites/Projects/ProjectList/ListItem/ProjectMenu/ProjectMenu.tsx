@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { Menu, MenuButton } from 'src/components/organisms/Menu'
 import { Icon, PortalManager } from 'src/components/ui/atoms'
+import { Menu, MenuButton } from 'src/components/ui/organisms/Menu'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import { MenuList } from './MenuList'

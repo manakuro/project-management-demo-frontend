@@ -1,5 +1,5 @@
 import React from 'react'
-import { AccordionItem } from 'src/components/organisms/Accordion'
+import { AccordionItem } from 'src/components/ui/organisms/Accordion'
 
 type Props = {}
 

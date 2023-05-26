@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { ModalBody, ModalContent } from 'src/components/organisms/Modal'
+import { ModalBody, ModalContent } from 'src/components/ui/organisms/Modal'
 import { useMenuStyle } from 'src/hooks'
 import { MenuList } from './MenuList'
 import { useEditorMentionMenu } from './useEditorMentionMenu'

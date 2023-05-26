@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
-import { Editor, EditorContent } from 'src/components/organisms/Editor'
+import { Editor, EditorContent } from 'src/components/ui/organisms/Editor'
 import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
 import {
   parseDescription,

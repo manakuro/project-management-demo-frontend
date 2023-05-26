@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { ModalBody, ModalContent } from 'src/components/organisms/Modal'
+import { ModalBody, ModalContent } from 'src/components/ui/organisms/Modal'
 import { useMenuStyle } from 'src/hooks'
 import { BaseEmoji } from 'src/shared/emoji'
 import { EmojiItem } from './EmojiItem'

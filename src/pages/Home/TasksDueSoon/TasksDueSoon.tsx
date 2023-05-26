@@ -1,11 +1,5 @@
 import React, { memo } from 'react'
 import {
-  Accordion,
-  AccordionItem,
-  AccordionPanel,
-  AccordionButton,
-} from 'src/components/organisms/Accordion'
-import {
   Box,
   Flex,
   Heading,
@@ -15,6 +9,12 @@ import {
   Stack,
 } from 'src/components/ui/atoms'
 import { Tooltip } from 'src/components/ui/molecules'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionPanel,
+  AccordionButton,
+} from 'src/components/ui/organisms/Accordion'
 import { useLinkStyle } from 'src/hooks'
 import { ROUTE_MY_TASKS_LIST } from 'src/router'
 import { useTasksDueSoonIds } from 'src/store/app/home/tasksDueSoon'

@@ -1,11 +1,5 @@
 import React from 'react'
 import {
-  Popover,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
-} from 'src/components/organisms/Popover'
-import {
   AspectRatio,
   Button,
   Divider,
@@ -17,6 +11,12 @@ import {
   Box,
 } from 'src/components/ui/atoms'
 import { Flex } from 'src/components/ui/atoms/Flex'
+import {
+  Popover,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
+} from 'src/components/ui/organisms/Popover'
 
 type Props = {
   profile: {

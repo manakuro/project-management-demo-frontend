@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
-import { MenuItem } from 'src/components/organisms/Menu'
 import { useProjectDetailModal } from 'src/components/organisms/Modals'
 import { Icon } from 'src/components/ui/atoms'
+import { MenuItem } from 'src/components/ui/organisms/Menu'
 
 type Props = {
   onClose: () => void

@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
-import { Menu, MenuButton } from 'src/components/organisms/Menu'
 import { Icon, IconButton, PortalManager } from 'src/components/ui/atoms'
 import { Tooltip } from 'src/components/ui/molecules'
+import { Menu, MenuButton } from 'src/components/ui/organisms/Menu'
 import { useDisclosure } from 'src/shared/chakra'
 import { MenuList } from './MenuList'
 

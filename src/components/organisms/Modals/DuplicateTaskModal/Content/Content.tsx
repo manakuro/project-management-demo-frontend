@@ -1,13 +1,6 @@
 import { FormikConfig, Formik, Form } from 'formik'
 import React, { memo, useCallback, useMemo } from 'react'
 import {
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalCloseButton,
-} from 'src/components/organisms/Modal'
-import {
   Divider,
   Flex,
   Stack,
@@ -15,6 +8,13 @@ import {
   TextField,
   CheckboxField,
 } from 'src/components/ui/atoms'
+import {
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalCloseButton,
+} from 'src/components/ui/organisms/Modal'
 import { useTask } from 'src/store/entities/task'
 import { Label } from './Label'
 

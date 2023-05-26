@@ -1,10 +1,10 @@
 import React, { memo, PropsWithChildren, useCallback } from 'react'
-import { MenuItemOption } from 'src/components/organisms/Menu'
 import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms/Menus'
+import { MenuItemOption } from 'src/components/ui/organisms/Menu'
 import { useTask } from 'src/store/entities/task'
 import { useTasksPriorities } from 'src/store/entities/taskPriority'
 

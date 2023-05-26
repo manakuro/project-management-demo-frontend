@@ -1,11 +1,11 @@
 import React, { memo, useCallback, useMemo } from 'react'
-import { MenuItemOption } from 'src/components/organisms/Menu'
 import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms/Menus'
 import { Button, Icon } from 'src/components/ui/atoms'
+import { MenuItemOption } from 'src/components/ui/organisms/Menu'
 import { ChakraProps } from 'src/shared/chakra'
 import {
   InboxListFilterStatuses,

@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { useTasksCalendarContext } from 'src/components/organisms/Tasks'
+import { Flex, FlexProps, Icon, Portal, Text } from 'src/components/ui/atoms'
 import {
   PopoverContent,
   PopoverProps,
   PopoverHeader,
-} from 'src/components/organisms/Popover'
-import { useTasksCalendarContext } from 'src/components/organisms/Tasks'
-import { Flex, FlexProps, Icon, Portal, Text } from 'src/components/ui/atoms'
+} from 'src/components/ui/organisms/Popover'
 import { useClickableHoverStyle, useClickOutside } from 'src/hooks'
 import { dateFns } from 'src/shared/dateFns'
 

@@ -1,11 +1,5 @@
 import React, { memo, useCallback, useMemo } from 'react'
 import {
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-} from 'src/components/organisms/Menu'
-import {
   useTasksTask,
   useTasksTaskSectionCommand,
   useTasksTaskSectionIds,
@@ -19,6 +13,12 @@ import {
   Portal,
   Divider,
 } from 'src/components/ui/atoms'
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+} from 'src/components/ui/organisms/Menu'
 import { ChakraProps } from 'src/shared/chakra'
 
 type Props = ButtonGroupProps & {

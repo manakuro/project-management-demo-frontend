@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
 import { useSearchMenuRef } from 'src/components/organisms/Menus/SearchMenu'
+import { Flex, Portal } from 'src/components/ui/atoms'
 import {
   PopoverContent,
   PopoverContentProps,
-} from 'src/components/organisms/Popover'
-import { Flex, Portal } from 'src/components/ui/atoms'
+} from 'src/components/ui/organisms/Popover'
 import { useClickOutside } from 'src/hooks'
 
 type Props = PopoverContentProps & {

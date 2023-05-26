@@ -7,7 +7,7 @@ import {
   CarouselBody,
   CarouselThumbnail,
   CarouselThumbnailItem,
-} from 'src/components/organisms/Carousel'
+} from 'src/components/ui/organisms/Carousel'
 import { ListItem } from './ListItem'
 import { ThumbnailListItem } from './ThumbnailListItem/ThumbnailListItem'
 import { useFileViewerModal } from './useFileViewerModal'

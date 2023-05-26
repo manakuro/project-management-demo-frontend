@@ -1,12 +1,12 @@
 import React from 'react'
+import { Box, FileUploader, FileUploaderParams } from 'src/components/ui/atoms'
 import {
   Menu,
   MenuList,
   MenuItem,
   MenuButton,
   MenuProps,
-} from 'src/components/organisms/Menu'
-import { Box, FileUploader, FileUploaderParams } from 'src/components/ui/atoms'
+} from 'src/components/ui/organisms/Menu'
 import { useMenuStyle } from 'src/hooks'
 import { chakra } from 'src/shared/chakra'
 

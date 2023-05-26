@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { PopoverContent } from 'src/components/organisms/Popover'
 import { Portal, Box } from 'src/components/ui/atoms'
+import { PopoverContent } from 'src/components/ui/organisms/Popover'
 import { useClickOutside } from 'src/hooks'
 import { BaseEmoji, EmojiPicker } from 'src/shared/emoji'
 import { usePopoverEmojiContext } from './Provider'

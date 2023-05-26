@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react'
+import { PopoverSetColorAndIcon } from 'src/components/organisms/Popovers'
+import { Flex, Text, Icon, Portal, ColorBox } from 'src/components/ui/atoms'
 import {
   MenuList as AtomsMenuList,
   MenuDivider,
-} from 'src/components/organisms/Menu'
-import { PopoverSetColorAndIcon } from 'src/components/organisms/Popovers'
-import { Flex, Text, Icon, Portal, ColorBox } from 'src/components/ui/atoms'
+} from 'src/components/ui/organisms/Menu'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
 import { Project } from 'src/store/entities/project'

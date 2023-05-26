@@ -1,20 +1,20 @@
 import React, { useCallback, useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
 import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalOverlay,
-} from 'src/components/organisms/Modal'
-import { DurationBar } from 'src/components/organisms/VideoPlayer/DurationBar'
-import {
   AspectRatio,
   Box,
   Flex,
   Icon,
   IconButton,
 } from 'src/components/ui/atoms'
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalOverlay,
+} from 'src/components/ui/organisms/Modal'
+import { DurationBar } from 'src/components/ui/organisms/VideoPlayer/DurationBar'
 import { Duration } from './Duration'
 import { useVideoPlayer } from './useVideoPlayer'
 

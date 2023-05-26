@@ -1,13 +1,13 @@
 import React, { memo, useCallback, useState } from 'react'
-import { ModalBody } from 'src/components/organisms/Modal'
+import { Flex } from 'src/components/ui/atoms'
+import { ModalBody } from 'src/components/ui/organisms/Modal'
 import {
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
-} from 'src/components/organisms/Tabs'
-import { Flex } from 'src/components/ui/atoms'
+} from 'src/components/ui/organisms/Tabs'
 import { Index, MEMBERS_INDEX, SHARE_INDEX } from '../types'
 import { useShareProjectModal } from '../useShareProjectModal'
 import { Members } from './Members'

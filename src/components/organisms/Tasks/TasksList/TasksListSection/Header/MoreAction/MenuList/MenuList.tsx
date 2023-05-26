@@ -1,8 +1,4 @@
 import React, { memo, useCallback, useMemo } from 'react'
-import {
-  MenuList as AtomsMenuList,
-  MenuItem,
-} from 'src/components/organisms/Menu'
 import { useDeleteTaskSectionModal } from 'src/components/organisms/Modals'
 import { useTasksListSectionContext } from 'src/components/organisms/Tasks/TasksList/TasksListSection/Provider'
 import {
@@ -11,6 +7,10 @@ import {
   useTasksTaskSectionCommand,
 } from 'src/components/organisms/Tasks/hooks'
 import { Tooltip } from 'src/components/ui/molecules'
+import {
+  MenuList as AtomsMenuList,
+  MenuItem,
+} from 'src/components/ui/organisms/Menu'
 
 type Props = {}
 

@@ -1,11 +1,11 @@
 import React, { memo, useCallback } from 'react'
+import { Divider, Flex, Stack } from 'src/components/ui/atoms'
 import {
   ModalBody,
   ModalContent,
   ModalHeader,
   ModalCloseButton,
-} from 'src/components/organisms/Modal'
-import { Divider, Flex, Stack } from 'src/components/ui/atoms'
+} from 'src/components/ui/organisms/Modal'
 import { useProject, useProjectCommand } from 'src/store/entities/project'
 import { Description } from './Description'
 import { DescriptionTitle } from './DescriptionTitle'

@@ -1,13 +1,13 @@
 import React from 'react'
+import { Divider } from 'src/components/organisms/Navigation/Divider'
+import { Flex } from 'src/components/ui/atoms'
 import {
   Drawer,
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
   DrawerHeader,
-} from 'src/components/organisms/Drawer'
-import { Divider } from 'src/components/organisms/Navigation/Divider'
-import { Flex } from 'src/components/ui/atoms'
+} from 'src/components/ui/organisms/Drawer'
 import { Body } from './Body'
 import { Footer } from './Footer'
 import { useHelp } from './useHelp'

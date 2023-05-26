@@ -6,7 +6,7 @@ import {
   MenuProps,
   MenuItemOption,
   MenuOptionGroup,
-} from 'src/components/organisms/Menu'
+} from 'src/components/ui/organisms/Menu'
 import { chakra } from 'src/shared/chakra'
 import {
   TaskListCompletedStatusCode,

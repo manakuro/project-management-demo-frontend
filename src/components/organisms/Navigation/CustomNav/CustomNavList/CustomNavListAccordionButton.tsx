@@ -2,7 +2,7 @@ import React from 'react'
 import {
   AccordionButton,
   AccordionButtonProps,
-} from 'src/components/organisms/Accordion'
+} from 'src/components/ui/organisms/Accordion'
 import { PADDING_X } from '../../Navigation'
 
 type Props = AccordionButtonProps

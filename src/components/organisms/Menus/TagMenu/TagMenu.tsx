@@ -4,7 +4,7 @@ import {
   SearchMenuTrigger,
   SearchMenu,
 } from 'src/components/organisms/Menus/SearchMenu'
-import { PopoverProps } from 'src/components/organisms/Popover'
+import { PopoverProps } from 'src/components/ui/organisms/Popover'
 import { Tag } from 'src/store/entities/tag'
 import { Content } from './Content'
 

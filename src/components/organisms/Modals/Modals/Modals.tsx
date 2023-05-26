@@ -13,7 +13,7 @@ import {
   ProjectDetailModal,
 } from 'src/components/organisms/Modals'
 import { Help } from 'src/components/organisms/Navigation'
-import { VideoPlayer } from 'src/components/organisms/VideoPlayer'
+import { VideoPlayer } from 'src/components/ui/organisms/VideoPlayer'
 
 export const Modals: React.FC = memo(() => {
   return (

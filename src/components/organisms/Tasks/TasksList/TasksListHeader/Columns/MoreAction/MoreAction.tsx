@@ -1,10 +1,10 @@
 import React, { memo, useCallback, useMemo } from 'react'
-import { Menu, MenuButton } from 'src/components/organisms/Menu'
 import {
   useTasksTaskColumn,
   useTasksTaskColumnIds,
 } from 'src/components/organisms/Tasks/hooks'
 import { Box, Icon, IconButton, PortalManager } from 'src/components/ui/atoms'
+import { Menu, MenuButton } from 'src/components/ui/organisms/Menu'
 import { MenuList } from './MenuList'
 
 type Props = {

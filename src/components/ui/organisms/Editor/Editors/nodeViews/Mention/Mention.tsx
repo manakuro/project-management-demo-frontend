@@ -1,5 +1,5 @@
 import React from 'react'
-import { useReactNodeView } from 'src/components/organisms/Editor/Editors'
+import { useReactNodeView } from 'src/components/ui/organisms/Editor/Editors'
 import { MentionAttrs } from 'src/shared/prosemirror/schema'
 import { MentionType, MentionTypeCode } from 'src/store/entities/mention'
 import { Project } from './Project'

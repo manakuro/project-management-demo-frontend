@@ -1,13 +1,13 @@
 import { DragDropContext, Droppable } from '@hello-pangea/dnd'
 import React, { memo, useEffect, useMemo } from 'react'
+import { Divider } from 'src/components/organisms/Navigation/Divider'
+import { useTasksTaskColumnCustomizable } from 'src/components/organisms/Tasks/hooks'
+import { Box, Flex, Heading, Icon, IconButton } from 'src/components/ui/atoms'
 import {
   DrawerBody,
   DrawerContent,
   DrawerHeader,
-} from 'src/components/organisms/Drawer'
-import { Divider } from 'src/components/organisms/Navigation/Divider'
-import { useTasksTaskColumnCustomizable } from 'src/components/organisms/Tasks/hooks'
-import { Box, Flex, Heading, Icon, IconButton } from 'src/components/ui/atoms'
+} from 'src/components/ui/organisms/Drawer'
 import { useDnd } from 'src/hooks/dnd/useDnd'
 import { isMyTasksBoardURL, useRouter } from 'src/router'
 import { useCustomizeMenu } from '../useCustomizeMenu'

@@ -1,11 +1,11 @@
 import React from 'react'
+import { Divider, PortalManager } from 'src/components/ui/atoms'
 import {
   Modal,
   ModalBody,
   ModalContent,
   ModalHeader,
-} from 'src/components/organisms/Modal'
-import { Divider, PortalManager } from 'src/components/ui/atoms'
+} from 'src/components/ui/organisms/Modal'
 import { Body } from './Body'
 import { Header } from './Header'
 import { useFileViewerModal } from './useFileViewerModal'

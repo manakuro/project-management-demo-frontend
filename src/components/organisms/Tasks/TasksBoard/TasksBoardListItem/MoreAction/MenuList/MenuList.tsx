@@ -1,9 +1,9 @@
 import React, { memo, useCallback } from 'react'
+import { Portal } from 'src/components/ui/atoms'
 import {
   MenuList as AtomsMenuList,
   MenuDivider,
-} from 'src/components/organisms/Menu'
-import { Portal } from 'src/components/ui/atoms'
+} from 'src/components/ui/organisms/Menu'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
 import { AddCoverImage } from './AddCoverImage'

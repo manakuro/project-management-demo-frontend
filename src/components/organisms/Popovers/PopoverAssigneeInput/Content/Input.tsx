@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { AssigneeMenu } from 'src/components/organisms/Menus'
-import { PopoverProps } from 'src/components/organisms/Popover'
 import {
   Flex,
   Icon,
@@ -8,6 +7,7 @@ import {
   InputGroup,
   InputRightElement,
 } from 'src/components/ui/atoms'
+import { PopoverProps } from 'src/components/ui/organisms/Popover'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import { useTask, useTaskCommand } from 'src/store/entities/task'

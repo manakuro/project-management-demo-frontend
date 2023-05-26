@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
-import { MenuButton } from 'src/components/organisms/Menu'
 import { AttachmentMenu } from 'src/components/organisms/Menus'
 import { NewBox } from 'src/components/ui/molecules'
+import { MenuButton } from 'src/components/ui/organisms/Menu'
 
 type Props = {}
 

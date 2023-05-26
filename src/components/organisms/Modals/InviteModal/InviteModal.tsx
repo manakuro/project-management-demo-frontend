@@ -1,4 +1,6 @@
 import React from 'react'
+import { useInviteModal } from 'src/components/organisms/Modals'
+import { Box, Button, Stack, Text, Textarea } from 'src/components/ui/atoms'
 import {
   Modal,
   ModalBody,
@@ -7,9 +9,7 @@ import {
   ModalHeader,
   ModalOverlay,
   ModalCloseButton,
-} from 'src/components/organisms/Modal'
-import { useInviteModal } from 'src/components/organisms/Modals'
-import { Box, Button, Stack, Text, Textarea } from 'src/components/ui/atoms'
+} from 'src/components/ui/organisms/Modal'
 
 type Props = {}
 

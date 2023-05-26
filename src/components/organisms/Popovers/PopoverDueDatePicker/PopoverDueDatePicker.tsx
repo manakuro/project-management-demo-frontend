@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react'
+import { Link, Portal, PortalManager } from 'src/components/ui/atoms'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
   PopoverProps,
-} from 'src/components/organisms/Popover'
-import { Link, Portal, PortalManager } from 'src/components/ui/atoms'
+} from 'src/components/ui/organisms/Popover'
 import { ChakraProps, useDisclosure } from 'src/shared/chakra'
 import { Body } from './Body'
 

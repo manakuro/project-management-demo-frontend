@@ -1,14 +1,14 @@
 import React, { memo } from 'react'
 import {
-  MenuItem,
-  MenuList as OrganismsMenuList,
-  MenuGroup,
-} from 'src/components/organisms/Menu'
-import {
   FileUploader,
   FileUploaderParams,
   Portal,
 } from 'src/components/ui/atoms'
+import {
+  MenuItem,
+  MenuList as OrganismsMenuList,
+  MenuGroup,
+} from 'src/components/ui/organisms/Menu'
 import { useClickOutside, useMenuStyle } from 'src/hooks'
 
 type Props = {

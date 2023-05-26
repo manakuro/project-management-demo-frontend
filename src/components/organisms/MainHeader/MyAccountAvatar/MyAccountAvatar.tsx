@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
-import { Menu, MenuButton } from 'src/components/organisms/Menu'
 import { MyAvatar } from 'src/components/organisms/MyAvatar'
+import { Menu, MenuButton } from 'src/components/ui/organisms/Menu'
 import { useDisclosure } from 'src/shared/chakra'
 import { MenuList } from './MenuList'
 

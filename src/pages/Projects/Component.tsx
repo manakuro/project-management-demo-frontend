@@ -7,9 +7,9 @@ import React, {
   useState,
 } from 'react'
 import { MainHeader } from 'src/components/organisms/MainHeader'
-import { Tabs, TabPanels, TabPanel } from 'src/components/organisms/Tabs'
 import { Flex } from 'src/components/ui/atoms'
 import { Head } from 'src/components/ui/atoms/Head'
+import { Tabs, TabPanels, TabPanel } from 'src/components/ui/organisms/Tabs'
 import { usePrevious } from 'src/hooks'
 import {
   isProjectsBoardURL,

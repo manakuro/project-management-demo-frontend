@@ -1,5 +1,4 @@
 import React, { memo, useMemo } from 'react'
-import { Popover, PopoverTrigger } from 'src/components/organisms/Popover'
 import { useTasksCalendarContext } from 'src/components/organisms/Tasks'
 import {
   IconButton,
@@ -10,6 +9,7 @@ import {
   PortalManager,
   Link,
 } from 'src/components/ui/atoms'
+import { Popover, PopoverTrigger } from 'src/components/ui/organisms/Popover'
 import { useDisclosure } from 'src/shared/chakra'
 import { dateFns } from 'src/shared/dateFns'
 import { Content } from './Content'

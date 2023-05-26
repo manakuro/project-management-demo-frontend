@@ -1,11 +1,11 @@
 import React from 'react'
-import { MenuItemOption } from 'src/components/organisms/Menu'
 import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/organisms/Menus'
 import { Button, Icon } from 'src/components/ui/atoms'
+import { MenuItemOption } from 'src/components/ui/organisms/Menu'
 import { TaskListSortStatusCodeValue } from 'src/store/entities/taskListSortStatus'
 
 type Props<T extends TaskListSortStatusCodeValue> = {

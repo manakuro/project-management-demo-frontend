@@ -1,11 +1,11 @@
 import React from 'react'
+import { Input, InputProps, Portal } from 'src/components/ui/atoms'
 import {
   Menu,
   MenuButton,
   MenuButtonProps,
   MenuList,
-} from 'src/components/organisms/Menu'
-import { Input, InputProps, Portal } from 'src/components/ui/atoms'
+} from 'src/components/ui/organisms/Menu'
 
 type Props = {
   value: string

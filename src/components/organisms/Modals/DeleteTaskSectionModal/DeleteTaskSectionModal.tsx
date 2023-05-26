@@ -1,14 +1,5 @@
 import React, { useCallback } from 'react'
 import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  ModalCloseButton,
-} from 'src/components/organisms/Modal'
-import {
   Button,
   Flex,
   Stack,
@@ -17,6 +8,15 @@ import {
   RadioGroup,
   Divider,
 } from 'src/components/ui/atoms'
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  ModalCloseButton,
+} from 'src/components/ui/organisms/Modal'
 import { useDeleteTaskSectionModal } from './useDeleteTaskSectionModal'
 
 export const DeleteTaskSectionModal: React.FC<Props> = () => {

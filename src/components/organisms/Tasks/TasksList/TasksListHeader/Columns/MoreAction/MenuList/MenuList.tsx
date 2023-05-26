@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react'
 import {
   MenuList as AtomsMenuList,
   MenuItem,
-} from 'src/components/organisms/Menu'
+} from 'src/components/ui/organisms/Menu'
 
 type Props = {
   onSort?: () => void

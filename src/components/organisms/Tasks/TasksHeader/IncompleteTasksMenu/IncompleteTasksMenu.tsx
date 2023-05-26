@@ -1,5 +1,4 @@
 import React, { memo, useCallback, useMemo } from 'react'
-import { MenuItemOption } from 'src/components/organisms/Menu'
 import {
   MenuSelect,
   MenuSelectButton,
@@ -7,6 +6,7 @@ import {
 } from 'src/components/organisms/Menus'
 import { useTasksTaskListStatus } from 'src/components/organisms/Tasks/hooks'
 import { Button, Flex, Icon, Text } from 'src/components/ui/atoms'
+import { MenuItemOption } from 'src/components/ui/organisms/Menu'
 import { useDisclosure } from 'src/shared/chakra'
 import {
   TaskListCompletedStatusCode,

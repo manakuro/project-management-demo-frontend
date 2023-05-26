@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { MenuItem } from 'src/components/organisms/Menu'
+import { MenuItem } from 'src/components/ui/organisms/Menu'
 import { useFavoriteWorkspaceIdsCommand } from 'src/store/entities/favoriteWorkspaceIds'
 
 type Props = {

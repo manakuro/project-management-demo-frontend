@@ -1,16 +1,16 @@
 import React, { memo } from 'react'
 import {
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
-  ModalContent,
-} from 'src/components/organisms/Modal'
-import {
   TaskDetailBody,
   TaskDetailHeader,
   TaskDetailFooter,
 } from 'src/components/organisms/TaskDetail'
 import { Divider } from 'src/components/ui/atoms'
+import {
+  ModalBody,
+  ModalHeader,
+  ModalFooter,
+  ModalContent,
+} from 'src/components/ui/organisms/Modal'
 
 type Props = {
   loading: boolean

@@ -1,18 +1,18 @@
 import React, { memo } from 'react'
 import {
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-} from 'src/components/organisms/Menu'
-import { TabList, Tab } from 'src/components/organisms/Tabs'
-import {
   Flex,
   Heading,
   Icon,
   IconButton,
   Portal,
 } from 'src/components/ui/atoms'
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+} from 'src/components/ui/organisms/Menu'
+import { TabList, Tab } from 'src/components/ui/organisms/Tabs'
 
 export const Tabs: React.FC = memo(() => {
   return (

@@ -1,7 +1,7 @@
 import { DOMSerializer, Node } from 'prosemirror-model'
 import { Decoration, EditorView, NodeView } from 'prosemirror-view'
 import React, { useContext, useEffect, useRef } from 'react'
-import { PortalHandlers } from 'src/components/organisms/Editor/Editors/ReactNodeViewPortals'
+import { PortalHandlers } from 'src/components/ui/organisms/Editor/Editors/ReactNodeViewPortals'
 import {
   entries,
   isDomNodeOutputSpec,

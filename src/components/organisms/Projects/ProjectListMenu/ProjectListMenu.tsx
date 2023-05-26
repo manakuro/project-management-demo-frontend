@@ -1,12 +1,12 @@
 import React, { memo, useCallback } from 'react'
+import { Icon, IconButton, Portal } from 'src/components/ui/atoms'
 import {
   MenuButton,
   MenuList,
   MenuItemOption,
   MenuOptionGroup,
   Menu,
-} from 'src/components/organisms/Menu'
-import { Icon, IconButton, Portal } from 'src/components/ui/atoms'
+} from 'src/components/ui/organisms/Menu'
 
 type Props = {
   listStatus: ProjectListStatus

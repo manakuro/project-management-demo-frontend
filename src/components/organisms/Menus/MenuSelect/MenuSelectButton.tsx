@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { MenuButton, MenuButtonProps } from 'src/components/organisms/Menu'
+import { MenuButton, MenuButtonProps } from 'src/components/ui/organisms/Menu'
 import { useMenuSelectContext } from './useMenuSelect'
 
 type Props = MenuButtonProps

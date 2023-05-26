@@ -3,7 +3,7 @@ import React from 'react'
 import { Box } from 'src/components/ui/atoms'
 
 import '@react-pdf-viewer/core/lib/styles/index.css'
-const packageJson = require('../../../../package.json')
+const packageJson = require('../../../../../package.json')
 const version = packageJson.dependencies['pdfjs-dist']
 
 const characterMap: PDFViewer.CharacterMap = {

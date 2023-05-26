@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
-import { MenuItemOption } from 'src/components/organisms/Menu'
 import { MenuSelectList } from 'src/components/organisms/Menus'
 import {
   useTasksTaskSections,
   TaskSection,
   useTasksTaskSectionByTaskId,
 } from 'src/components/organisms/Tasks/hooks'
+import { MenuItemOption } from 'src/components/ui/organisms/Menu'
 
 type Props = {
   taskId: string

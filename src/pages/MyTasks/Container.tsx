@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { GetLayout } from 'src/@types/next'
-import { LayoutDefault } from 'src/components/organisms/Layout'
 import { PageLoader } from 'src/components/ui/molecules'
+import { LayoutDefault } from 'src/components/ui/organisms/Layout'
 import {
   useMyTasksPageQuery,
   useMyTasksDetailPageQuery,

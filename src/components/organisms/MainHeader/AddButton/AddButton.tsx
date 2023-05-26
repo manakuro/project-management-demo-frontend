@@ -1,10 +1,4 @@
 import React, { memo, useCallback } from 'react'
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-} from 'src/components/organisms/Menu'
 import { useInviteModal } from 'src/components/organisms/Modals/InviteModal/useInviteModal'
 import {
   Icon,
@@ -14,6 +8,12 @@ import {
   Text,
   FlexProps,
 } from 'src/components/ui/atoms'
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+} from 'src/components/ui/organisms/Menu'
 import { IconType } from 'src/shared/icons'
 
 export const AddButton: React.FC = memo(() => {

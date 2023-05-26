@@ -1,11 +1,5 @@
 import React, { memo, useState } from 'react'
 import {
-  Accordion,
-  AccordionItem,
-  AccordionPanel,
-  AccordionButton,
-} from 'src/components/organisms/Accordion'
-import {
   ProjectListItem,
   ProjectListItemNew,
   ProjectTileItem,
@@ -22,6 +16,12 @@ import {
   Icon,
   FlexProps,
 } from 'src/components/ui/atoms'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionPanel,
+  AccordionButton,
+} from 'src/components/ui/organisms/Accordion'
 
 type Props = {
   projectIds: string[]

@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from 'react'
-import { AccordionIcon } from 'src/components/organisms/Accordion'
 import { useNavigation } from 'src/components/organisms/Navigation'
 import { NavListItem } from 'src/components/organisms/Navigation/NavListItem'
+import { AccordionIcon } from 'src/components/ui/organisms/Accordion'
 import { useDisabledStyle } from 'src/hooks'
 import { Divider } from '../../Divider'
 import {

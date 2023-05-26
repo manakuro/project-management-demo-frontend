@@ -1,13 +1,13 @@
 import React, { memo, useCallback } from 'react'
-import {
-  MenuList as AtomsMenuList,
-  MenuItem,
-} from 'src/components/organisms/Menu'
 import { useDeleteTaskSectionModal } from 'src/components/organisms/Modals'
 import {
   useHasTasksByTaskSectionId,
   useTasksTaskSectionCommand,
 } from 'src/components/organisms/Tasks/hooks'
+import {
+  MenuList as AtomsMenuList,
+  MenuItem,
+} from 'src/components/ui/organisms/Menu'
 import { useTasksBoardListSectionContext } from '../../../Provider'
 
 type Props = {}

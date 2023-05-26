@@ -1,11 +1,11 @@
 import React from 'react'
+import { AttachmentBox } from 'src/components/features/molecules/AttachmentBox'
+import { Container } from 'src/components/features/molecules/ThumbnailAttachment/Container'
+import { Menu } from 'src/components/features/molecules/ThumbnailAttachment/Menu'
+import { MenuButton } from 'src/components/features/molecules/ThumbnailAttachment/MenuButton'
+import { useThumbnailAttachmentContext } from 'src/components/features/molecules/ThumbnailAttachment/Provider'
+import { Tooltip } from 'src/components/features/molecules/ThumbnailAttachment/Tooltip'
 import { FlexProps } from 'src/components/ui/atoms'
-import { AttachmentBox } from 'src/components/ui/molecules'
-import { Container } from 'src/components/ui/molecules/ThumbnailAttachment/Container'
-import { Menu } from 'src/components/ui/molecules/ThumbnailAttachment/Menu'
-import { MenuButton } from 'src/components/ui/molecules/ThumbnailAttachment/MenuButton'
-import { useThumbnailAttachmentContext } from 'src/components/ui/molecules/ThumbnailAttachment/Provider'
-import { Tooltip } from 'src/components/ui/molecules/ThumbnailAttachment/Tooltip'
 
 type Props = FlexProps & {
   taskFileId: string

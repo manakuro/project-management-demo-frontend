@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useMemo, useRef, useState } from 'react'
+import { TagChip } from 'src/components/features/molecules/Chips'
 import { TagMenu } from 'src/components/features/organisms/Menus'
 import {
   Flex,
@@ -6,7 +7,6 @@ import {
   Wrap,
   WrapItem,
 } from 'src/components/ui/atoms'
-import { TagChip } from 'src/components/ui/molecules'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import { Tag } from 'src/store/entities/tag'

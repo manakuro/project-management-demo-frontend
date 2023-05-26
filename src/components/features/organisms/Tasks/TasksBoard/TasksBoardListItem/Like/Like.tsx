@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react'
-import { LikeTaskIconButton } from 'src/components/ui/molecules'
+import { LikeTaskIconButton } from 'src/components/features/molecules/LikeTaskIconButton'
 import { useTaskLikesByTaskId } from 'src/store/entities/taskLike'
 import { useTasksBoardListItemContext } from '../Provider'
 

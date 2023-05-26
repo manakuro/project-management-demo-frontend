@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react'
+import { ProjectChip } from 'src/components/features/molecules/Chips'
 import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers'
 import { Flex, Text, CheckIcon, DueDate, Stack } from 'src/components/ui/atoms'
-import { ProjectChip } from 'src/components/ui/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useRouter } from 'src/router'
 import { formatDueTime } from 'src/shared/date'

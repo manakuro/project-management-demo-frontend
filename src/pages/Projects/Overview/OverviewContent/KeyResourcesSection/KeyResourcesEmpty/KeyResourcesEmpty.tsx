@@ -1,6 +1,6 @@
 import React from 'react'
+import { ComingSoonTooltip } from 'src/components/features/molecules/Tooltips'
 import { Button, Flex, Heading, Image, Stack } from 'src/components/ui/atoms'
-import { ComingSoonTooltip } from 'src/components/ui/molecules'
 
 type Props = {}
 

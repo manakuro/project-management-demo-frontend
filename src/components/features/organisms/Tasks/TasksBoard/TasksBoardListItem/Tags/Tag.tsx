@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
+import { TagChip } from 'src/components/features/molecules/Chips'
 import { FlexProps } from 'src/components/ui/atoms'
-import { TagChip, Tooltip } from 'src/components/ui/molecules'
+import { Tooltip } from 'src/components/ui/molecules/Tooltip'
 import { useTaskTag } from 'src/store/entities/taskTag'
 
 type Props = FlexProps & {

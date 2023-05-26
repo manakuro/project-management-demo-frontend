@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react'
+import { useThumbnailAttachmentContext } from 'src/components/features/molecules/ThumbnailAttachment/Provider'
 import { Link, Portal } from 'src/components/ui/atoms'
-import { useThumbnailAttachmentContext } from 'src/components/ui/molecules/ThumbnailAttachment/Provider'
 import {
   Menu as OrganismsMenu,
   MenuProps,

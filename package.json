@@ -19,6 +19,7 @@
     "tsc:scripts": "tsc --p ./scripts/",
     "ts-node": "ts-node",
     "codegen": "yarn codegen:download && graphql-codegen",
+    "codegen:watch": "yarn codegen:download && graphql-codegen --watch",
     "codegen:download": "env-cmd -f ./.env.local node scripts/codegen/download.js",
     "codegen:prod": "yarn codegen:download:prod && graphql-codegen",
     "codegen:download:prod": "echo ENV_JSON > ./env.json && env-cmd -f ./.env.json node scripts/codegen/download.js",

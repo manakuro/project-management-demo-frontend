@@ -41,3 +41,13 @@ NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID="your FIREBASE_MESSAGING_SENDER_ID"
 NEXT_PUBLIC_FIREBASE_APPID="your FIREBASE_APPID"
 NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID="your FIREBASE_MEASUREMENT_ID"
 ```
+
+### 6. Enable Anonymous sign-in
+
+1. Go to the Firebase Console
+2. In the Firebase console, open the Auth section.
+3. On the Sign-in Methods page, enable the Anonymous sign-in method.
+
+Check out the detail here.
+
+[Authenticate with Firebase Anonymously Using JavaScript](https://firebase.google.com/docs/auth/web/anonymous-auth)

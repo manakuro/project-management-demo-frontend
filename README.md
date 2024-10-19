@@ -13,6 +13,11 @@ An Asana clone application for portfolio apps, built with real-time communicatio
 - [Apollo Client](https://www.apollographql.com/docs/react/)
 - [Chromatic](https://www.chromatic.com/)
 
+## Pre-requisite
+Follow the provided documentation to configure the Firebase project.
+
+[docs/setup.md](docs/setup.md)
+
 ## Set up
 ```
 yarn install

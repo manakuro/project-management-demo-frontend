@@ -5,6 +5,10 @@ An Asana clone application for portfolio apps, built with real-time communicatio
 - [Storybook](https://main--63894befbaf58840c037c246.chromatic.com)
 - [View backend](https://github.com/manakuro/project-management-demo-backend)
 
+## Development Environment
+- Node.js 22.11.0
+- pnpm 10.12.4
+
 ## Tech Stack
 - Next.js
 - TypeScript
@@ -20,25 +24,37 @@ Follow the provided documentation to configure the Firebase project.
 
 ## Set up
 ```
-yarn install
-yarn codegen
+npm install -g corepack@latest
+corepack enable pnpm
+pnpm codegen
 ```
 
-## Start server
+### Installation
 
 ```
-yarn dev
+pnpm install
+```
+
+## Start dev server
+
+```
+pnpm dev
 ```
 
 ## Test
 
 ```
-yarn test
+pnpm test
 ```
 
 ## Build
 ```
-yarn build
+pnpm build
+```
+
+## Start server
+```
+pnpm start
 ```
 
 

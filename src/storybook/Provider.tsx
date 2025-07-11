@@ -30,7 +30,10 @@ export const Provider: React.FCWithChildren = (props) => {
     <RecoilRoot>
       <MuiThemeProvider theme={muiTheme}>
         <ChakraProvider theme={theme} resetCSS>
-          <LocalizationProvider dateAdapter={AdapterDateFns} locale={enLocale}>
+          <LocalizationProvider
+            dateAdapter={AdapterDateFns as any}
+            locale={enLocale}
+          >
             <ApolloProvider>
               <GlobalQuery>
                 <>

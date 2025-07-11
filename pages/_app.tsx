@@ -33,7 +33,10 @@ const App = (props: AppPropsWithLayout) => {
     <RecoilRoot>
       <MuiThemeProvider theme={muiTheme}>
         <ChakraProvider theme={theme} resetCSS>
-          <LocalizationProvider dateAdapter={AdapterDateFns} locale={enLocale}>
+          <LocalizationProvider
+            dateAdapter={AdapterDateFns as any}
+            locale={enLocale}
+          >
             <Mobile>
               <Suspense fallback={<PageLoader />}>
                 <Inner {...props} />

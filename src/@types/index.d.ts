@@ -16,3 +16,10 @@ declare type Nodes<T> = ArrayType<NonNullable<NonNullable<T>['nodes']>>
 declare type EdgesNode<T> = NonNullable<Edges<T>>['node']
 declare type PageInfo<T> = NonNullable<NonNullable<T>['pageInfo']>
 declare type Unpacked<T> = T extends { [K in keyof T]: infer U } ? U : never
+
+declare global {
+  const __DEV__: boolean | undefined
+}
+declare const _default: typeof globalThis & {
+  __DEV__: typeof __DEV__
+}

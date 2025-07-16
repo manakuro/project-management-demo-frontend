@@ -51,7 +51,7 @@ export const Favorites = memo(function Favorites() {
               <CustomNavListAccordionPanelList>
                 <Projects />
                 <Workspace />
-                {listItems.map((listItem, i) => (
+                {listItems.map((listItem) => (
                   <NavListItem
                     item={listItem}
                     key={listItem.name}

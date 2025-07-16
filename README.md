@@ -6,8 +6,8 @@ An Asana clone application for portfolio apps, built with real-time communicatio
 - [View backend](https://github.com/manakuro/project-management-demo-backend)
 
 ## Development Environment
-- Node.js 22.11.0
-- pnpm 10.12.4
+- Node.js 22.17.0
+- pnpm 10.13.1
 
 ## Tech Stack
 - Next.js

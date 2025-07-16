@@ -1,30 +1,30 @@
-import type React from 'react'
-import { memo, useCallback, useMemo } from 'react'
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
-} from 'src/components/features/organisms/Menus'
-import { useTasksTaskListStatus } from 'src/components/features/organisms/Tasks/hooks'
-import { Button, Flex, Icon, Text } from 'src/components/ui/atoms'
-import { MenuItemOption } from 'src/components/ui/organisms/Menu'
-import { useDisclosure } from 'src/shared/chakra'
+} from 'src/components/features/organisms/Menus';
+import { useTasksTaskListStatus } from 'src/components/features/organisms/Tasks/hooks';
+import { Button, Flex, Icon, Text } from 'src/components/ui/atoms';
+import { MenuItemOption } from 'src/components/ui/organisms/Menu';
+import { useDisclosure } from 'src/shared/chakra';
 import {
   TaskListCompletedStatusCode,
   type TaskListCompletedStatusCodeValue,
   useTaskListCompletedStatus,
-} from 'src/store/entities/taskListCompletedStatus'
-import { PopoverCompletedTasks } from './PopoverCompletedTasks'
+} from 'src/store/entities/taskListCompletedStatus';
+import { PopoverCompletedTasks } from './PopoverCompletedTasks';
 
 type Props = {
-  startLoading: () => void
-  endLoading: () => void
-}
+  startLoading: () => void;
+  endLoading: () => void;
+};
 
 export const IncompleteTasksMenu: React.FC<Props> = memo<Props>((props) => {
-  const { startLoading, endLoading } = props
+  const { startLoading, endLoading } = props;
   const { setTaskListCompletedStatus, taskListStatus } =
-    useTasksTaskListStatus()
+    useTasksTaskListStatus();
   const {
     isTaskListCompleted,
     isTaskListInComplete,
@@ -34,35 +34,35 @@ export const IncompleteTasksMenu: React.FC<Props> = memo<Props>((props) => {
     isTaskListCompleted3Weeks,
     isTaskListCompletedYesterday,
     isTaskListCompletedAll,
-  } = useTaskListCompletedStatus()
-  const popoverDisclosure = useDisclosure()
+  } = useTaskListCompletedStatus();
+  const popoverDisclosure = useDisclosure();
 
   const handleChange = useCallback(
     (status: TaskListCompletedStatusCodeValue) => {
-      startLoading()
+      startLoading();
       setTimeout(() => {
-        setTaskListCompletedStatus(status)
-        endLoading()
-      }, 200)
+        setTaskListCompletedStatus(status);
+        endLoading();
+      }, 200);
     },
     [endLoading, setTaskListCompletedStatus, startLoading],
-  )
+  );
 
   const buttonText = useMemo<string>(() => {
     switch (true) {
       case isTaskListInComplete(taskListStatus.taskListCompletedStatus):
-        return 'Incomplete tasks'
+        return 'Incomplete tasks';
       case isTaskListCompleted(taskListStatus.taskListCompletedStatus):
       case isTaskListCompletedToday(taskListStatus.taskListCompletedStatus):
       case isTaskListCompletedYesterday(taskListStatus.taskListCompletedStatus):
       case isTaskListCompleted1Week(taskListStatus.taskListCompletedStatus):
       case isTaskListCompleted2Weeks(taskListStatus.taskListCompletedStatus):
       case isTaskListCompleted3Weeks(taskListStatus.taskListCompletedStatus):
-        return 'Completed tasks'
+        return 'Completed tasks';
       case isTaskListCompletedAll(taskListStatus.taskListCompletedStatus):
-        return 'All tasks'
+        return 'All tasks';
       default:
-        return ''
+        return '';
     }
   }, [
     isTaskListCompleted,
@@ -74,7 +74,7 @@ export const IncompleteTasksMenu: React.FC<Props> = memo<Props>((props) => {
     isTaskListCompletedYesterday,
     isTaskListInComplete,
     taskListStatus.taskListCompletedStatus,
-  ])
+  ]);
 
   return (
     <MenuSelect<TaskListCompletedStatusCodeValue>
@@ -106,8 +106,8 @@ export const IncompleteTasksMenu: React.FC<Props> = memo<Props>((props) => {
                   isOpen={popoverDisclosure.isOpen}
                   placement="left-start"
                   onClose={() => {
-                    popoverDisclosure.onClose()
-                    onClose()
+                    popoverDisclosure.onClose();
+                    onClose();
                   }}
                   listStatus={listStatus}
                   onChange={onChange}
@@ -128,6 +128,6 @@ export const IncompleteTasksMenu: React.FC<Props> = memo<Props>((props) => {
         </>
       )}
     </MenuSelect>
-  )
-})
-IncompleteTasksMenu.displayName = 'IncompleteTasksButton'
+  );
+});
+IncompleteTasksMenu.displayName = 'IncompleteTasksButton';

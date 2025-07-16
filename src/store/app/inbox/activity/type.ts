@@ -1,3 +1,3 @@
-import type { InboxActivityResponse } from 'src/graphql/types/app/inbox'
+import type { InboxActivityResponse } from 'src/graphql/types/app/inbox';
 
-export type ActivityResponse = InboxActivityResponse
+export type ActivityResponse = InboxActivityResponse;

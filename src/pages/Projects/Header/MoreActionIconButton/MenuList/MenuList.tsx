@@ -1,70 +1,70 @@
-import type React from 'react'
-import { useCallback } from 'react'
-import { Portal } from 'src/components/ui/atoms'
+import type React from 'react';
+import { useCallback } from 'react';
+import { Portal } from 'src/components/ui/atoms';
 import {
   MenuList as AtomsMenuList,
   MenuDivider,
-} from 'src/components/ui/organisms/Menu'
-import { useClickOutside } from 'src/hooks/useClickOutside'
-import { useDisclosure } from 'src/shared/chakra'
-import { AddToPortfolio } from './AddToPortfolio'
-import { Archive } from './Archive'
-import { ConvertToTemplate } from './ConvertToTemplate'
-import { CopyProjectLink } from './CopyProjectLink'
-import { DeleteProject } from './DeleteProject'
-import { Duplicate } from './Duplicate'
-import { EditProjectDetails } from './EditProjectDetails'
-import { ExportAndPrint } from './ExportAndPrint'
-import { Import } from './Import'
-import { SaveLayoutAsDefault } from './SaveLayoutAsDefault'
-import { SetColorAndIcon } from './SetColorAndIcon'
+} from 'src/components/ui/organisms/Menu';
+import { useClickOutside } from 'src/hooks/useClickOutside';
+import { useDisclosure } from 'src/shared/chakra';
+import { AddToPortfolio } from './AddToPortfolio';
+import { Archive } from './Archive';
+import { ConvertToTemplate } from './ConvertToTemplate';
+import { CopyProjectLink } from './CopyProjectLink';
+import { DeleteProject } from './DeleteProject';
+import { Duplicate } from './Duplicate';
+import { EditProjectDetails } from './EditProjectDetails';
+import { ExportAndPrint } from './ExportAndPrint';
+import { Import } from './Import';
+import { SaveLayoutAsDefault } from './SaveLayoutAsDefault';
+import { SetColorAndIcon } from './SetColorAndIcon';
 
 type Props = {
-  onCloseMenu: () => void
-  projectId: string
-}
+  onCloseMenu: () => void;
+  projectId: string;
+};
 
 export const MenuList: React.FC<Props> = (props) => {
-  const { projectId } = props
-  const disclosureForPopoverSetColorAndIcon = useDisclosure()
-  const disclosureForPopoverImportActions = useDisclosure()
-  const disclosureForPopoverExportAndPrintActions = useDisclosure()
+  const { projectId } = props;
+  const disclosureForPopoverSetColorAndIcon = useDisclosure();
+  const disclosureForPopoverImportActions = useDisclosure();
+  const disclosureForPopoverExportAndPrintActions = useDisclosure();
   const { ref } = useClickOutside(() => {
-    handleCloseAll()
-  })
+    handleCloseAll();
+  });
 
   const handleClose = useCallback(() => {
-    disclosureForPopoverSetColorAndIcon.onClose()
-    disclosureForPopoverImportActions.onClose()
-    disclosureForPopoverExportAndPrintActions.onClose()
+    disclosureForPopoverSetColorAndIcon.onClose();
+    disclosureForPopoverImportActions.onClose();
+    disclosureForPopoverExportAndPrintActions.onClose();
   }, [
     disclosureForPopoverImportActions,
     disclosureForPopoverExportAndPrintActions,
     disclosureForPopoverSetColorAndIcon,
-  ])
+  ]);
 
   const handleCloseAll = useCallback(() => {
-    handleClose()
-    props.onCloseMenu()
-  }, [handleClose, props])
+    handleClose();
+    props.onCloseMenu();
+  }, [handleClose, props]);
 
   const handleOpenPopoverSetColorAndIcon = useCallback(() => {
-    handleClose()
+    handleClose();
 
-    disclosureForPopoverSetColorAndIcon.onOpen()
-  }, [disclosureForPopoverSetColorAndIcon, handleClose])
+    disclosureForPopoverSetColorAndIcon.onOpen();
+  }, [disclosureForPopoverSetColorAndIcon, handleClose]);
 
   const handleOpenPopoverImportActions = useCallback(() => {
-    handleClose()
+    handleClose();
 
-    disclosureForPopoverImportActions.onOpen()
-  }, [disclosureForPopoverImportActions, handleClose])
+    disclosureForPopoverImportActions.onOpen();
+  }, [disclosureForPopoverImportActions, handleClose]);
 
   const handleOpenPopoverExportAndPrintActions = useCallback(() => {
-    handleClose()
+    handleClose();
 
-    disclosureForPopoverExportAndPrintActions.onOpen()
-  }, [disclosureForPopoverExportAndPrintActions, handleClose])
+    disclosureForPopoverExportAndPrintActions.onOpen();
+  }, [disclosureForPopoverExportAndPrintActions, handleClose]);
 
   return (
     <Portal>
@@ -131,5 +131,5 @@ export const MenuList: React.FC<Props> = (props) => {
         />
       </AtomsMenuList>
     </Portal>
-  )
-}
+  );
+};

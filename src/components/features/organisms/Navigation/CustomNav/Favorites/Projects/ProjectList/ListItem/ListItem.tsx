@@ -1,32 +1,32 @@
-import type React from 'react'
-import { memo, useMemo } from 'react'
+import type React from 'react';
+import { memo, useMemo } from 'react';
 import {
   PADDING_X,
   useNavigation,
-} from 'src/components/features/organisms/Navigation'
-import { ColorBox, Flex, Link, NextLink, Text } from 'src/components/ui/atoms'
-import { useLinkHoverStyle } from 'src/hooks'
-import { ROUTE_PROJECTS_LIST, useRouter } from 'src/router'
-import { ROUTE_PROJECTS } from 'src/router/projects'
-import { useProject } from 'src/store/entities/project'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
-import { ProjectMenu } from './ProjectMenu'
+} from 'src/components/features/organisms/Navigation';
+import { ColorBox, Flex, Link, NextLink, Text } from 'src/components/ui/atoms';
+import { useLinkHoverStyle } from 'src/hooks';
+import { ROUTE_PROJECTS_LIST, useRouter } from 'src/router';
+import { ROUTE_PROJECTS } from 'src/router/projects';
+import { useProject } from 'src/store/entities/project';
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
+import { ProjectMenu } from './ProjectMenu';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const ListItem: React.FC<Props> = memo((props) => {
-  const { isExpanded } = useNavigation()
-  const { projectId } = props
-  const { project } = useProject(projectId)
-  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
-  const { _hover, selectedStyle } = useLinkHoverStyle()
-  const { router } = useRouter()
+  const { isExpanded } = useNavigation();
+  const { projectId } = props;
+  const { project } = useProject(projectId);
+  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId);
+  const { _hover, selectedStyle } = useLinkHoverStyle();
+  const { router } = useRouter();
   const selected = useMemo(
     () => router.asPath.includes(ROUTE_PROJECTS.href.pathname(projectId)),
     [projectId, router.asPath],
-  )
+  );
 
   return (
     <NextLink
@@ -60,6 +60,6 @@ export const ListItem: React.FC<Props> = memo((props) => {
         </Flex>
       </Link>
     </NextLink>
-  )
-})
-ListItem.displayName = 'ListItem'
+  );
+});
+ListItem.displayName = 'ListItem';

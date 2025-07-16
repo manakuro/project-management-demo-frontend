@@ -1,28 +1,28 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { Box, Button, Flex, Icon, Stack } from 'src/components/ui/atoms'
-import { useProjectTask } from 'src/store/entities/projectTask'
-import { ProjectButton } from './ProjectButton'
-import { Section } from './Section'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { Box, Button, Flex, Icon, Stack } from 'src/components/ui/atoms';
+import { useProjectTask } from 'src/store/entities/projectTask';
+import { ProjectButton } from './ProjectButton';
+import { Section } from './Section';
 
 type Props = {
-  taskId: string
-  projectTaskId: string
+  taskId: string;
+  projectTaskId: string;
   onChange: (input: {
-    projectTaskId: string
-    projectTaskSectionId: string
-  }) => void
-  onDelete: (projectTaskId: string) => void
-  onClick: () => void
-}
+    projectTaskId: string;
+    projectTaskSectionId: string;
+  }) => void;
+  onDelete: (projectTaskId: string) => void;
+  onClick: () => void;
+};
 
 export const Selected: React.FC<Props> = memo<Props>((props) => {
-  const { taskId, projectTaskId, onChange, onDelete, onClick } = props
-  const { projectTask } = useProjectTask(projectTaskId)
+  const { taskId, projectTaskId, onChange, onDelete, onClick } = props;
+  const { projectTask } = useProjectTask(projectTaskId);
 
   const handleDelete = useCallback(() => {
-    onDelete(projectTaskId)
-  }, [onDelete, projectTaskId])
+    onDelete(projectTaskId);
+  }, [onDelete, projectTaskId]);
 
   return (
     <Flex flexDirection="column">
@@ -60,6 +60,6 @@ export const Selected: React.FC<Props> = memo<Props>((props) => {
         </Button>
       </Stack>
     </Flex>
-  )
-})
-Selected.displayName = 'Selected'
+  );
+});
+Selected.displayName = 'Selected';

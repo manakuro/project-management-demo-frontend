@@ -1,1 +1,1 @@
-export * from './AddToPortfolio'
+export * from './AddToPortfolio';

@@ -1,15 +1,15 @@
-import { memo } from 'react'
+import { memo } from 'react';
 import {
   TasksHeader,
   TasksHeaderRight,
-} from 'src/components/features/organisms/Tasks'
-import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms'
+} from 'src/components/features/organisms/Tasks';
+import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms';
 
-type Props = FlexProps
+type Props = FlexProps;
 
-const TEXT_HEIGHT = '16px'
-const BUTTON_HEIGHT = '28px'
-const CARD_HEIGHT = '97px'
+const TEXT_HEIGHT = '16px';
+const BUTTON_HEIGHT = '28px';
+const CARD_HEIGHT = '97px';
 export const SkeletonOverview = memo<Props>(function SkeletonList(props) {
   return (
     <Flex flex={1} flexDirection="column" {...props}>
@@ -43,5 +43,5 @@ export const SkeletonOverview = memo<Props>(function SkeletonList(props) {
           ))}
       </Flex>
     </Flex>
-  )
-})
+  );
+});

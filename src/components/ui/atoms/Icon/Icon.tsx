@@ -1,17 +1,17 @@
 import {
   Icon as ChakraIcon,
   type IconProps as ChakraIconProps,
-} from '@chakra-ui/react'
-import type React from 'react'
-import { forwardRef } from 'src/shared/chakra'
-import { type IconType, icons } from 'src/shared/icons'
+} from '@chakra-ui/react';
+import type React from 'react';
+import { forwardRef } from 'src/shared/chakra';
+import { type IconType, icons } from 'src/shared/icons';
 
 type Props = ChakraIconProps & {
-  icon: IconType
-  size?: Sizes
-  ref?: React.ForwardedRef<any>
-}
-export type IconProps = Props
+  icon: IconType;
+  size?: Sizes;
+  ref?: React.ForwardedRef<any>;
+};
+export type IconProps = Props;
 
 const sizes = {
   '3xl': {
@@ -42,14 +42,14 @@ const sizes = {
     w: '1em',
     h: '1em',
   },
-} as const
-type Sizes = keyof typeof sizes
+} as const;
+type Sizes = keyof typeof sizes;
 
 export const Icon: React.FC<Props> & { id?: string } = forwardRef<Props, 'svg'>(
   (props, ref) => {
-    const { size, icon, ...iconProps } = props
-    const iconComponent = icons[icon]
-    const sizeStyle = sizes[size ?? 'md']
+    const { size, icon, ...iconProps } = props;
+    const iconComponent = icons[icon];
+    const sizeStyle = sizes[size ?? 'md'];
 
     return (
       <ChakraIcon
@@ -59,8 +59,8 @@ export const Icon: React.FC<Props> & { id?: string } = forwardRef<Props, 'svg'>(
         {...sizeStyle}
         {...iconProps}
       />
-    )
+    );
   },
-)
+);
 
-Icon.id = 'Icon'
+Icon.id = 'Icon';

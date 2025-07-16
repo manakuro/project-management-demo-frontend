@@ -1,49 +1,49 @@
-import type React from 'react'
-import { useCallback, useMemo, useState } from 'react'
-import { useHover } from 'src/hooks/useHover'
-import { createProvider } from 'src/shared/react/createProvider'
-import { type UseInputFocus, useInputFocus } from './useInputFocus'
-import { type UseMarkMenuFocus, useMarkMenuFocus } from './useMarkMenuFocus'
+import type React from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { useHover } from 'src/hooks/useHover';
+import { createProvider } from 'src/shared/react/createProvider';
+import { type UseInputFocus, useInputFocus } from './useInputFocus';
+import { type UseMarkMenuFocus, useMarkMenuFocus } from './useMarkMenuFocus';
 
 type ContextProps = UseInputFocus &
   UseMarkMenuFocus & {
-    ref: React.MutableRefObject<HTMLElement | null>
-    isHovering: boolean
-    showIcon: boolean
-    showMark: boolean
-    taskId: string
-    isTransitioning: boolean
-    onStartTransition: () => void
-    onEndTransition: () => void
-  }
+    ref: React.MutableRefObject<HTMLElement | null>;
+    isHovering: boolean;
+    showIcon: boolean;
+    showMark: boolean;
+    taskId: string;
+    isTransitioning: boolean;
+    onStartTransition: () => void;
+    onEndTransition: () => void;
+  };
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 const useValue = (props: Props): ContextProps => {
-  const useInputFocusResult = useInputFocus()
+  const useInputFocusResult = useInputFocus();
   const { markMenuFocused, onMarkMenuClosed, onMarkMenuOpened } =
-    useMarkMenuFocus()
-  const { ref, isHovering } = useHover()
-  const [isTransitioning, setIsTransitioning] = useState(false)
+    useMarkMenuFocus();
+  const { ref, isHovering } = useHover();
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const onStartTransition = useCallback(() => {
-    setIsTransitioning(true)
-  }, [])
+    setIsTransitioning(true);
+  }, []);
 
   const onEndTransition = useCallback(() => {
-    setIsTransitioning(false)
-  }, [])
+    setIsTransitioning(false);
+  }, []);
 
   const showIcon = useMemo(
     () => isHovering || markMenuFocused,
     [isHovering, markMenuFocused],
-  )
+  );
 
   const showMark = useMemo(
     () => isHovering || markMenuFocused,
     [isHovering, markMenuFocused],
-  )
+  );
 
   return {
     ...useInputFocusResult,
@@ -58,9 +58,9 @@ const useValue = (props: Props): ContextProps => {
     isTransitioning,
     onStartTransition,
     onEndTransition,
-  }
-}
+  };
+};
 useValue.__PROVIDER__ =
-  'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName/TasksNameProvider.tsx'
+  'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName/TasksNameProvider.tsx';
 export const { Provider: TasksNameProvider, useContext: useTasksNameContext } =
-  createProvider(useValue)
+  createProvider(useValue);

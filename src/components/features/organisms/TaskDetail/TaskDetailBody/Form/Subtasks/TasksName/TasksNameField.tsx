@@ -1,65 +1,65 @@
-import type React from 'react'
-import { memo, useCallback, useEffect, useMemo, useState } from 'react'
-import { Box, Flex, Input, type InputProps } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { Box, Flex, Input, type InputProps } from 'src/components/ui/atoms';
 import {
   type UseClickOutsideOptionsHasClickedOutside,
   useClickOutside,
   useDebounce,
   useMountedRef,
-} from 'src/hooks'
-import { useSubtasksNameContext } from './Provider'
+} from 'src/hooks';
+import { useSubtasksNameContext } from './Provider';
 
 type Props = {
-  value: string
-  onChange: (val: string) => void
-  deleteTask?: () => Promise<void>
-  isNew: boolean
-  focusedBorder?: boolean
-} & Omit<InputProps, 'onChange'>
+  value: string;
+  onChange: (val: string) => void;
+  deleteTask?: () => Promise<void>;
+  isNew: boolean;
+  focusedBorder?: boolean;
+} & Omit<InputProps, 'onChange'>;
 
 export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
-  const [value, setValue] = useState<string>(props.value)
-  const { mountedRef } = useMountedRef()
+  const [value, setValue] = useState<string>(props.value);
+  const { mountedRef } = useMountedRef();
   const {
     ref: containerRef,
     onInputFocus,
     onInputBlur,
     inputFocused,
     isTransitioning,
-  } = useSubtasksNameContext()
-  const autoFocus = useMemo(() => props.isNew, [props.isNew])
+  } = useSubtasksNameContext();
+  const autoFocus = useMemo(() => props.isNew, [props.isNew]);
   const hasClickedOutside =
     useCallback<UseClickOutsideOptionsHasClickedOutside>(
       (e) => {
         if (containerRef.current?.contains(e.target as Node) ?? false)
-          return false
-        return true
+          return false;
+        return true;
       },
       [containerRef],
-    )
+    );
   const { ref, removeEventListener } = useClickOutside(
     async () => {
-      if (!value) await props.deleteTask?.()
+      if (!value) await props.deleteTask?.();
     },
     {
       skip: !props.isNew,
       hasClickedOutside,
     },
-  )
+  );
   useEffect(() => {
-    if (!props.isNew) removeEventListener()
-  }, [props.isNew, removeEventListener])
+    if (!props.isNew) removeEventListener();
+  }, [props.isNew, removeEventListener]);
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value)
-  }, [])
+    setValue(e.target.value);
+  }, []);
 
   useEffect(() => {
-    if (!mountedRef.current) return
-    setValue(props.value)
-  }, [mountedRef, props.value])
+    if (!mountedRef.current) return;
+    setValue(props.value);
+  }, [mountedRef, props.value]);
 
-  useDebounce(value, props.onChange, 500)
+  useDebounce(value, props.onChange, 500);
 
   const style = useMemo<InputProps>(() => {
     let val: InputProps = {
@@ -71,12 +71,12 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
       paddingInlineStart: 2,
       paddingInlineEnd: 2,
       border: 'none',
-    }
+    };
     if (isTransitioning)
       val = {
         ...val,
         color: 'gray.50',
-      }
+      };
 
     if (props.focusedBorder)
       val = {
@@ -87,9 +87,9 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
         _hover: {
           borderColor: 'gray.400',
         },
-      }
-    return val
-  }, [isTransitioning, props.focusedBorder])
+      };
+    return val;
+  }, [isTransitioning, props.focusedBorder]);
 
   return (
     <Flex
@@ -115,6 +115,6 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
         autoFocus={autoFocus}
       />
     </Flex>
-  )
-})
-TasksNameField.displayName = 'TasksNameField'
+  );
+});
+TasksNameField.displayName = 'TasksNameField';

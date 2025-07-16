@@ -1,1 +1,1 @@
-export * from './TasksListHeader'
+export * from './TasksListHeader';

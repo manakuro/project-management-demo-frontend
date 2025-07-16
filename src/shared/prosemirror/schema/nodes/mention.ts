@@ -1,10 +1,10 @@
-import type { NodeSpec } from 'prosemirror-model'
+import type { NodeSpec } from 'prosemirror-model';
 
 type Attrs = {
-  mentionId: string
-  mentionType: string
-}
-export type MentionAttrs = Attrs
+  mentionId: string;
+  mentionType: string;
+};
+export type MentionAttrs = Attrs;
 
 export const mention: Override<
   NodeSpec,
@@ -20,7 +20,7 @@ export const mention: Override<
   selectable: false,
   draggable: false,
   toDOM: (node: NodeSpec) => {
-    const attrs = node.attrs as Attrs
+    const attrs = node.attrs as Attrs;
 
     return [
       'span',
@@ -28,7 +28,7 @@ export const mention: Override<
         'data-mention-mentionId': attrs.mentionId,
         'data-mention-mentionType': attrs.mentionType,
       },
-    ]
+    ];
   },
 
   parseDOM: [
@@ -36,14 +36,14 @@ export const mention: Override<
       tag: 'span[data-mention-mentionId]',
       // @ts-ignore
       getAttrs: (element: HTMLSpanElement): Attrs => {
-        const mentionId = element.getAttribute('data-mention-mentionId') ?? ''
+        const mentionId = element.getAttribute('data-mention-mentionId') ?? '';
         const mentionType =
-          element.getAttribute('data-mention-mentionType') ?? ''
+          element.getAttribute('data-mention-mentionType') ?? '';
         return {
           mentionId,
           mentionType,
-        }
+        };
       },
     },
   ],
-}
+};

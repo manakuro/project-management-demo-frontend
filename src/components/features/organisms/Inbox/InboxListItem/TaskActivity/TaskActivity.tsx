@@ -1,18 +1,18 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { Container } from '../Container'
-import { ActionButtons } from './ActionButtons'
-import { ClickHandler } from './ClickHandler'
-import { TaskList } from './TaskList'
-import { Title } from './Title'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { Container } from '../Container';
+import { ActionButtons } from './ActionButtons';
+import { ClickHandler } from './ClickHandler';
+import { TaskList } from './TaskList';
+import { Title } from './Title';
 
 type Props = FlexProps & {
-  taskActivityId: string
-}
+  taskActivityId: string;
+};
 
 export const TaskActivity: React.FC<Props> = memo<Props>((props) => {
-  const { taskActivityId } = props
+  const { taskActivityId } = props;
 
   return (
     <Container>
@@ -24,7 +24,7 @@ export const TaskActivity: React.FC<Props> = memo<Props>((props) => {
       </ClickHandler>
       <ActionButtons />
     </Container>
-  )
-})
+  );
+});
 
-TaskActivity.displayName = 'TaskActivityList'
+TaskActivity.displayName = 'TaskActivityList';

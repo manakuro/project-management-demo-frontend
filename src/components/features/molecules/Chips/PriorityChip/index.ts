@@ -1,1 +1,1 @@
-export * from './PriorityChip'
+export * from './PriorityChip';

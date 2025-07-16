@@ -1,24 +1,24 @@
-import { memo, useCallback } from 'react'
-import { Button, Divider, Icon } from 'src/components/ui/atoms'
-import { ModalFooter } from 'src/components/ui/organisms/Modal'
-import { useCopyProjectLink } from 'src/hooks/pages/projects'
-import { useShareProjectModal } from '../useShareProjectModal'
-import { useShareProjectModalInvitedTeammates } from '../useShareProjectModalInvitedTeammates'
+import { memo, useCallback } from 'react';
+import { Button, Divider, Icon } from 'src/components/ui/atoms';
+import { ModalFooter } from 'src/components/ui/organisms/Modal';
+import { useCopyProjectLink } from 'src/hooks/pages/projects';
+import { useShareProjectModal } from '../useShareProjectModal';
+import { useShareProjectModalInvitedTeammates } from '../useShareProjectModalInvitedTeammates';
 
 export const Share = memo(function Share() {
-  const { onClose, projectId } = useShareProjectModal()
-  const { hasInvitedTeammates } = useShareProjectModalInvitedTeammates()
-  const { copyProjectLink } = useCopyProjectLink({ projectId })
+  const { onClose, projectId } = useShareProjectModal();
+  const { hasInvitedTeammates } = useShareProjectModalInvitedTeammates();
+  const { copyProjectLink } = useCopyProjectLink({ projectId });
 
   const handleSend = useCallback(() => {
-    onClose()
-  }, [onClose])
+    onClose();
+  }, [onClose]);
 
   const handleCopyProjectLink = useCallback(async () => {
-    onClose()
+    onClose();
 
-    await copyProjectLink()
-  }, [copyProjectLink, onClose])
+    await copyProjectLink();
+  }, [copyProjectLink, onClose]);
 
   return (
     <>
@@ -40,5 +40,5 @@ export const Share = memo(function Share() {
         )}
       </ModalFooter>
     </>
-  )
-})
+  );
+});

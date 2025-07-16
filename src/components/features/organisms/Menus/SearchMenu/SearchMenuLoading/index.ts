@@ -1,1 +1,1 @@
-export * from './SearchMenuLoading'
+export * from './SearchMenuLoading';

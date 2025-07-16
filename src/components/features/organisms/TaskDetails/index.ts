@@ -1,3 +1,3 @@
-export * from './TaskDetailDrawer'
-export * from './TaskDetailModal'
-export * from './TaskDetailSide'
+export * from './TaskDetailDrawer';
+export * from './TaskDetailModal';
+export * from './TaskDetailSide';

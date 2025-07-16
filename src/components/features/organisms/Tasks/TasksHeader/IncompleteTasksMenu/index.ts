@@ -1,1 +1,1 @@
-export * from './IncompleteTasksMenu'
+export * from './IncompleteTasksMenu';

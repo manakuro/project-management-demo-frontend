@@ -1,43 +1,43 @@
-import styled from '@emotion/styled'
-import type React from 'react'
-import { useCallback, useMemo } from 'react'
-import { type ChakraProps, chakra } from 'src/shared/chakra'
-import type { State } from './VideoPlayer'
+import styled from '@emotion/styled';
+import type React from 'react';
+import { useCallback, useMemo } from 'react';
+import { type ChakraProps, chakra } from 'src/shared/chakra';
+import type { State } from './VideoPlayer';
 
 type Props = {
-  played: number
-  setVideoState: React.Dispatch<React.SetStateAction<State>>
-  seekTo: (amount: number, type?: 'seconds' | 'fraction') => void
-} & ChakraProps
+  played: number;
+  setVideoState: React.Dispatch<React.SetStateAction<State>>;
+  seekTo: (amount: number, type?: 'seconds' | 'fraction') => void;
+} & ChakraProps;
 
-const MIN = 0
-const MAX = 0.999999
+const MIN = 0;
+const MAX = 0.999999;
 export const DurationBar: React.FC<Props> = (props) => {
-  const { setVideoState, seekTo, played } = props
+  const { setVideoState, seekTo, played } = props;
 
   const handleSeekChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setVideoState((s) => ({
         ...s,
         played: Number.parseFloat(e.target.value),
-      }))
+      }));
     },
     [setVideoState],
-  )
+  );
 
   const handleSeekMouseDown = useCallback(() => {
-    setVideoState((s) => ({ ...s, seeking: true }))
-  }, [setVideoState])
+    setVideoState((s) => ({ ...s, seeking: true }));
+  }, [setVideoState]);
 
   const handleSeekMouseUp = useCallback(
     (e: React.MouseEvent<HTMLInputElement>) => {
-      setVideoState((s) => ({ ...s, seeking: false }))
-      seekTo(Number.parseFloat((e.target as HTMLInputElement).value))
+      setVideoState((s) => ({ ...s, seeking: false }));
+      seekTo(Number.parseFloat((e.target as HTMLInputElement).value));
     },
     [seekTo, setVideoState],
-  )
+  );
 
-  const percent = useMemo(() => (played / MAX) * 100, [played])
+  const percent = useMemo(() => (played / MAX) * 100, [played]);
 
   return (
     <InputRange
@@ -51,12 +51,12 @@ export const DurationBar: React.FC<Props> = (props) => {
       onChange={handleSeekChange}
       percent={percent}
     />
-  )
-}
+  );
+};
 
 type InputRangeProps = {
-  percent: number
-}
+  percent: number;
+};
 const InputRange = chakra(styled.input<InputRangeProps>`
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -136,4 +136,4 @@ const InputRange = chakra(styled.input<InputRangeProps>`
   &:focus::-ms-fill-upper {
     background: #edf2f7;
   }
-`)
+`);

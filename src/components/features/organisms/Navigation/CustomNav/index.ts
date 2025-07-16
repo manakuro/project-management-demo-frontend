@@ -1,1 +1,1 @@
-export * from './CustomNav'
+export * from './CustomNav';

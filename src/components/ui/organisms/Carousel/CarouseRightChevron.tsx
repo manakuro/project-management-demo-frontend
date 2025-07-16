@@ -1,19 +1,19 @@
-import { useCallback } from 'react'
-import { Flex, Icon, IconButton } from 'src/components/ui/atoms'
-import { useCarouselContext } from './Provider'
+import { useCallback } from 'react';
+import { Flex, Icon, IconButton } from 'src/components/ui/atoms';
+import { useCarouselContext } from './Provider';
 
 export function CarouselRightChevron() {
-  const { count, currentIndex, setCurrentIndex } = useCarouselContext()
+  const { count, currentIndex, setCurrentIndex } = useCarouselContext();
 
   const handleClick = useCallback(() => {
-    const nextIndex = currentIndex + 1
+    const nextIndex = currentIndex + 1;
     if (nextIndex === count) {
-      setCurrentIndex(0)
-      return
+      setCurrentIndex(0);
+      return;
     }
 
-    setCurrentIndex(nextIndex)
-  }, [count, currentIndex, setCurrentIndex])
+    setCurrentIndex(nextIndex);
+  }, [count, currentIndex, setCurrentIndex]);
 
   return (
     <Flex
@@ -34,5 +34,5 @@ export function CarouselRightChevron() {
         light
       />
     </Flex>
-  )
+  );
 }

@@ -1,27 +1,27 @@
-import { useProjectBaseColorsQuery as useQuery } from 'src/graphql/hooks'
-import type { ProjectBaseColorsQuery } from 'src/graphql/types/projectBaseColors'
-import { getNodesFromEdges } from 'src/shared/apollo/util'
+import { useProjectBaseColorsQuery as useQuery } from 'src/graphql/hooks';
+import type { ProjectBaseColorsQuery } from 'src/graphql/types/projectBaseColors';
+import { getNodesFromEdges } from 'src/shared/apollo/util';
 import {
   type ProjectBaseColorResponse,
   useProjectBaseColorsResponse,
-} from 'src/store/entities/projectBaseColor'
+} from 'src/store/entities/projectBaseColor';
 
 export const useProjectBaseColorsQuery = () => {
-  const { setProjectBaseColors } = useProjectBaseColorsResponse()
+  const { setProjectBaseColors } = useProjectBaseColorsResponse();
 
   const queryResult = useQuery({
     onCompleted: (data) => {
       const projectBaseColors = getNodesFromEdges<
         ProjectBaseColorResponse,
         ProjectBaseColorsQuery['projectBaseColors']
-      >(data.projectBaseColors)
+      >(data.projectBaseColors);
 
-      setProjectBaseColors(projectBaseColors)
+      setProjectBaseColors(projectBaseColors);
     },
-  })
+  });
 
   return {
     refetch: queryResult.refetch,
     loading: queryResult.loading,
-  }
-}
+  };
+};

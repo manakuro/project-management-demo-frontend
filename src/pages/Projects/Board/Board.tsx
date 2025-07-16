@@ -1,6 +1,6 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { TaskDetailDrawer } from 'src/components/features/organisms/TaskDetails'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { TaskDetailDrawer } from 'src/components/features/organisms/TaskDetails';
 import {
   CustomizeButton,
   CustomizeMenu,
@@ -11,21 +11,25 @@ import {
   TasksHeader,
   TasksHeaderRight,
   useTasksBoardDetail,
-} from 'src/components/features/organisms/Tasks'
-import { Flex } from 'src/components/ui/atoms'
-import { useProjectsPageContext } from 'src/pages/Projects/Provider'
-import { getProjectsDetailId, isProjectsDetailURL, useRouter } from 'src/router'
-import { useProjectsProjectId } from 'src/store/app/projects/project'
-import { SortMenu } from '../TasksHeader'
-import { SkeletonBoardContent, SkeletonBoardHeader } from './SkeletonBoard'
+} from 'src/components/features/organisms/Tasks';
+import { Flex } from 'src/components/ui/atoms';
+import { useProjectsPageContext } from 'src/pages/Projects/Provider';
+import {
+  getProjectsDetailId,
+  isProjectsDetailURL,
+  useRouter,
+} from 'src/router';
+import { useProjectsProjectId } from 'src/store/app/projects/project';
+import { SortMenu } from '../TasksHeader';
+import { SkeletonBoardContent, SkeletonBoardHeader } from './SkeletonBoard';
 
 export const Board: React.FC = memo(() => {
   return (
     <TasksContainer isProjectsPage>
       <Component />
     </TasksContainer>
-  )
-})
+  );
+});
 
 const Component: React.FC = memo(() => {
   const {
@@ -34,18 +38,18 @@ const Component: React.FC = memo(() => {
     contentLoading,
     startContentLoading,
     endContentLoading,
-  } = useProjectsPageContext()
-  const { projectId } = useProjectsProjectId()
-  const { navigateToProjectsBoard } = useRouter()
+  } = useProjectsPageContext();
+  const { projectId } = useProjectsProjectId();
+  const { navigateToProjectsBoard } = useRouter();
   const { hasClickedOutside } = useTasksBoardDetail({
     isTaskDetailURL: isProjectsDetailURL,
     getTaskDetailId: getProjectsDetailId,
     fetchQuery: fetchTaskDetailQuery,
-  })
+  });
 
   const backToPage = useCallback(async () => {
-    await navigateToProjectsBoard(projectId)
-  }, [navigateToProjectsBoard, projectId])
+    await navigateToProjectsBoard(projectId);
+  }, [navigateToProjectsBoard, projectId]);
 
   if (tabContentLoading)
     return (
@@ -53,7 +57,7 @@ const Component: React.FC = memo(() => {
         <SkeletonBoardHeader />
         <SkeletonBoardContent />
       </Flex>
-    )
+    );
 
   return (
     <>
@@ -89,7 +93,7 @@ const Component: React.FC = memo(() => {
         hasClickedOutside={hasClickedOutside}
       />
     </>
-  )
-})
-Component.displayName = 'Component'
-Board.displayName = 'Board'
+  );
+});
+Component.displayName = 'Component';
+Board.displayName = 'Board';

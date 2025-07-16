@@ -1,1 +1,1 @@
-export * from './ProjectRoleAddMember'
+export * from './ProjectRoleAddMember';

@@ -1,9 +1,12 @@
-import type React from 'react'
-import { memo } from 'react'
-import { PortalManager } from 'src/components/ui/atoms'
-import { Popover, type PopoverProps } from 'src/components/ui/organisms/Popover'
+import type React from 'react';
+import { memo } from 'react';
+import { PortalManager } from 'src/components/ui/atoms';
+import {
+  Popover,
+  type PopoverProps,
+} from 'src/components/ui/organisms/Popover';
 
-type Props = PopoverProps
+type Props = PopoverProps;
 
 export const ProjectTeammateMenu: React.FC<Props> = memo<Props>((props) => {
   return (
@@ -17,6 +20,6 @@ export const ProjectTeammateMenu: React.FC<Props> = memo<Props>((props) => {
         {...props}
       />
     </PortalManager>
-  )
-})
-ProjectTeammateMenu.displayName = 'ProjectTeammateMenu'
+  );
+});
+ProjectTeammateMenu.displayName = 'ProjectTeammateMenu';

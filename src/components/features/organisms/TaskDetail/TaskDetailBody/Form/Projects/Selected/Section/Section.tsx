@@ -1,46 +1,46 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
-} from 'src/components/features/organisms/Menus'
-import { Button, Icon } from 'src/components/ui/atoms'
-import { MenuItemOption } from 'src/components/ui/organisms/Menu'
-import { useProjectTask } from 'src/store/entities/projectTask'
+} from 'src/components/features/organisms/Menus';
+import { Button, Icon } from 'src/components/ui/atoms';
+import { MenuItemOption } from 'src/components/ui/organisms/Menu';
+import { useProjectTask } from 'src/store/entities/projectTask';
 import {
   useProjectTaskSection,
   useProjectsTaskSectionsByProjectId,
-} from 'src/store/entities/projectTaskSection'
+} from 'src/store/entities/projectTaskSection';
 
 type Props = {
-  taskId: string
-  projectTaskId: string
+  taskId: string;
+  projectTaskId: string;
   onChange: (input: {
-    projectTaskId: string
-    projectTaskSectionId: string
-  }) => void
-}
+    projectTaskId: string;
+    projectTaskSectionId: string;
+  }) => void;
+};
 
 export const Section: React.FC<Props> = memo<Props>((props) => {
-  const { projectTaskId, onChange } = props
-  const { projectTask } = useProjectTask(projectTaskId)
+  const { projectTaskId, onChange } = props;
+  const { projectTask } = useProjectTask(projectTaskId);
   const { projectTaskSection } = useProjectTaskSection(
     projectTask.projectTaskSectionId,
-  )
+  );
   const { projectTaskSections } = useProjectsTaskSectionsByProjectId(
     projectTask.projectId,
-  )
+  );
 
   const handleChange = useCallback(
     (projectTaskSectionId: string) => {
       onChange({
         projectTaskId: projectTask.id,
         projectTaskSectionId,
-      })
+      });
     },
     [onChange, projectTask.id],
-  )
+  );
 
   return (
     <MenuSelect onChange={handleChange} placement="bottom-start">
@@ -63,6 +63,6 @@ export const Section: React.FC<Props> = memo<Props>((props) => {
         ))}
       </MenuSelectList>
     </MenuSelect>
-  )
-})
-Section.displayName = 'Section'
+  );
+});
+Section.displayName = 'Section';

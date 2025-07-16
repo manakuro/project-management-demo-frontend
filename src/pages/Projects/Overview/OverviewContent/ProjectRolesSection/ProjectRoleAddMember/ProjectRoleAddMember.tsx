@@ -1,23 +1,23 @@
-import type React from 'react'
-import { useCallback } from 'react'
-import { useShareProjectModal } from 'src/components/features/organisms/Modals'
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
-import { Flex, Text } from 'src/components/ui/atoms'
-import { Button } from './Button'
+import type React from 'react';
+import { useCallback } from 'react';
+import { useShareProjectModal } from 'src/components/features/organisms/Modals';
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
+import { Flex, Text } from 'src/components/ui/atoms';
+import { Button } from './Button';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const ProjectRoleAddMember: React.FC<Props> = (props) => {
-  const { projectId } = props
-  const { onOpen, setProjectId, setShareTab } = useShareProjectModal()
+  const { projectId } = props;
+  const { onOpen, setProjectId, setShareTab } = useShareProjectModal();
 
   const handleClick = useCallback(() => {
-    setProjectId(projectId)
-    setShareTab()
-    onOpen()
-  }, [setProjectId, projectId, setShareTab, onOpen])
+    setProjectId(projectId);
+    setShareTab();
+    onOpen();
+  }, [setProjectId, projectId, setShareTab, onOpen]);
 
   return (
     <Flex flexDirection="column" cursor="pointer">
@@ -36,6 +36,6 @@ export const ProjectRoleAddMember: React.FC<Props> = (props) => {
         </Flex>
       </Button>
     </Flex>
-  )
-}
-ProjectRoleAddMember.displayName = 'ProjectRoleAddMember'
+  );
+};
+ProjectRoleAddMember.displayName = 'ProjectRoleAddMember';

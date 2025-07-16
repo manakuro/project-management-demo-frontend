@@ -1,5 +1,5 @@
-import type { Item } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem'
-import { SeeMore } from './SeeMore'
+import type { Item } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem';
+import { SeeMore } from './SeeMore';
 
 export const guide1Item: Item = {
   id: 1,
@@ -19,4 +19,4 @@ export const guide1Item: Item = {
   done: true,
   time: '2 min read',
   seeMoreComponent: <SeeMore />,
-}
+};

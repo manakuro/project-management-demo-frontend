@@ -1,7 +1,7 @@
-import type { Node as ProsemirrorNode } from 'prosemirror-model'
-import { EditorState, type Plugin } from 'prosemirror-state'
-import { type EditorProps, EditorView } from 'prosemirror-view'
-import type React from 'react'
+import type { Node as ProsemirrorNode } from 'prosemirror-model';
+import { EditorState, type Plugin } from 'prosemirror-state';
+import { type EditorProps, EditorView } from 'prosemirror-view';
+import type React from 'react';
 import {
   type Dispatch,
   type SetStateAction,
@@ -10,53 +10,53 @@ import {
   useContext,
   useEffect,
   useState,
-} from 'react'
-import { createReactNodeView } from './ReactNodeView'
+} from 'react';
+import { createReactNodeView } from './ReactNodeView';
 import {
   type PortalHandlers,
   ReactNodeViewPortalsProvider,
   useReactNodeViewCreatePortal,
-} from './ReactNodeViewPortals'
-import { Emoji, Link, Mention } from './nodeViews'
+} from './ReactNodeViewPortals';
+import { Emoji, Link, Mention } from './nodeViews';
 
-const EditorStateContext = createContext<EditorState | null>(null)
-const EditorViewContext = createContext<EditorView | null>(null)
+const EditorStateContext = createContext<EditorState | null>(null);
+const EditorViewContext = createContext<EditorView | null>(null);
 
 export const useEditorStateContext = (): EditorState => {
-  const context = useContext(EditorStateContext)
+  const context = useContext(EditorStateContext);
   if (!context)
-    throw new Error('useEditorState is only available inside EditorProvider')
-  return context
-}
+    throw new Error('useEditorState is only available inside EditorProvider');
+  return context;
+};
 
-export const useEditorViewContext = () => useContext(EditorViewContext)
+export const useEditorViewContext = () => useContext(EditorViewContext);
 
 type Props = {
-  doc?: ProsemirrorNode
-  plugins?: Plugin[]
-  forceUpdate?: number
-  resetView?: number
-} & EditorProps
+  doc?: ProsemirrorNode;
+  plugins?: Plugin[];
+  forceUpdate?: number;
+  resetView?: number;
+} & EditorProps;
 export const EditorProvider: React.FCWithChildren<Props> = (props) => {
   return (
     <ReactNodeViewPortalsProvider>
       <Provider {...props} />
     </ReactNodeViewPortalsProvider>
-  )
-}
+  );
+};
 
 const generateState = (props: Parameters<typeof EditorState.create>[0]) => {
   return EditorState.create({
     doc: props.doc,
     plugins: props.plugins,
-  })
-}
+  });
+};
 const generateView = (
   props: Props & {
-    state: EditorState
-    createPortal: PortalHandlers['createPortal']
-    removePortal: PortalHandlers['removePortal']
-    setState: Dispatch<SetStateAction<EditorState>>
+    state: EditorState;
+    createPortal: PortalHandlers['createPortal'];
+    removePortal: PortalHandlers['removePortal'];
+    setState: Dispatch<SetStateAction<EditorState>>;
   },
 ) => {
   const view = new EditorView(undefined, {
@@ -72,7 +72,7 @@ const generateView = (
           component: Link,
           onCreatePortal: props.createPortal,
           onRemovePortal: props.removePortal,
-        })
+        });
       },
       mention(node, view, getPos, decorations) {
         return createReactNodeView({
@@ -83,7 +83,7 @@ const generateView = (
           component: Mention,
           onCreatePortal: props.createPortal,
           onRemovePortal: props.removePortal,
-        })
+        });
       },
       emoji(node, view, getPos, decorations) {
         return createReactNodeView({
@@ -94,22 +94,22 @@ const generateView = (
           component: Emoji,
           onCreatePortal: props.createPortal,
           onRemovePortal: props.removePortal,
-        })
+        });
       },
     },
     dispatchTransaction(tr) {
-      const state = view.state.apply(tr)
-      view.updateState(state)
-      props.setState(state)
+      const state = view.state.apply(tr);
+      view.updateState(state);
+      props.setState(state);
     },
-  })
-  return view
-}
+  });
+  return view;
+};
 
 const Provider: React.FCWithChildren<Props> = (props) => {
-  const { createPortal, removePortal } = useReactNodeViewCreatePortal()
-  const [state, setState] = useState(generateState(props))
-  const [view, setView] = useState<EditorView | null>(null)
+  const { createPortal, removePortal } = useReactNodeViewCreatePortal();
+  const [state, setState] = useState(generateState(props));
+  const [view, setView] = useState<EditorView | null>(null);
   //
   // useEffect(() => {
   //   if (!view) return
@@ -162,20 +162,20 @@ const Provider: React.FCWithChildren<Props> = (props) => {
         createPortal,
         removePortal,
       }),
-    )
-  }, [props])
+    );
+  }, [props]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    resetView()
+    resetView();
     /* eslint react-hooks/exhaustive-deps: off */
-  }, [props.editable])
+  }, [props.editable]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    resetView()
+    resetView();
     /* eslint react-hooks/exhaustive-deps: off */
-  }, [props.resetView])
+  }, [props.resetView]);
 
   return (
     <EditorStateContext.Provider value={state}>
@@ -183,5 +183,5 @@ const Provider: React.FCWithChildren<Props> = (props) => {
         {props.children}
       </EditorViewContext.Provider>
     </EditorStateContext.Provider>
-  )
-}
+  );
+};

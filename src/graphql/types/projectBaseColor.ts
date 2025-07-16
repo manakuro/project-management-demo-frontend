@@ -1,4 +1,4 @@
-import type { ProjectBaseColorFragmentFragment } from 'src/graphql/types'
+import type { ProjectBaseColorFragmentFragment } from 'src/graphql/types';
 
 export type ProjectBaseColorResponse =
-  NonNullable<ProjectBaseColorFragmentFragment>
+  NonNullable<ProjectBaseColorFragmentFragment>;

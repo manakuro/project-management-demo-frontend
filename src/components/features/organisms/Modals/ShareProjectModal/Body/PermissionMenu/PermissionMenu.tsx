@@ -1,24 +1,24 @@
-import type React from 'react'
-import { memo, useCallback, useMemo } from 'react'
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
-} from 'src/components/features/organisms/Menus'
-import { Button, Flex, Icon } from 'src/components/ui/atoms'
-import { MenuItemOption } from 'src/components/ui/organisms/Menu'
-import { useClickableHoverStyle } from 'src/hooks'
+} from 'src/components/features/organisms/Menus';
+import { Button, Flex, Icon } from 'src/components/ui/atoms';
+import { MenuItemOption } from 'src/components/ui/organisms/Menu';
+import { useClickableHoverStyle } from 'src/hooks';
 import {
   PROJECT_PERMISSION_CAN_COMMENT,
   PROJECT_PERMISSION_CAN_EDIT,
   type ProjectPermissionTypes,
-} from './types'
-import { useProjectPermission } from './useProjectPermission'
+} from './types';
+import { useProjectPermission } from './useProjectPermission';
 
 const items: {
-  value: ProjectPermissionTypes
-  text: string
-  subText: string
+  value: ProjectPermissionTypes;
+  text: string;
+  subText: string;
 }[] = [
   {
     value: PROJECT_PERMISSION_CAN_EDIT,
@@ -30,22 +30,22 @@ const items: {
     text: 'Can comment',
     subText: "The team can comment, but can't edit anything in the project.",
   },
-]
+];
 
 export const PermissionMenu: React.FC = memo(() => {
-  const { status, setStatus } = useProjectPermission()
-  const { clickableHoverStyle } = useClickableHoverStyle()
+  const { status, setStatus } = useProjectPermission();
+  const { clickableHoverStyle } = useClickableHoverStyle();
 
   const handleChange = useCallback(
     (status: ToString<ProjectPermissionTypes>) => {
-      setStatus(Number(status) as ProjectPermissionTypes)
+      setStatus(Number(status) as ProjectPermissionTypes);
     },
     [setStatus],
-  )
+  );
 
   const buttonText = useMemo<string>(() => {
-    return items.find((i) => i.value === status)?.text || ''
-  }, [status])
+    return items.find((i) => i.value === status)?.text || '';
+  }, [status]);
 
   return (
     <MenuSelect<ToString<ProjectPermissionTypes>>
@@ -84,6 +84,6 @@ export const PermissionMenu: React.FC = memo(() => {
         ))}
       </MenuSelectList>
     </MenuSelect>
-  )
-})
-PermissionMenu.displayName = 'PermissionMenu'
+  );
+});
+PermissionMenu.displayName = 'PermissionMenu';

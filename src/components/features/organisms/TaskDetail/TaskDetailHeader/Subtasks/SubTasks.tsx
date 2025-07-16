@@ -1,19 +1,19 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { Icon, IconButton } from 'src/components/ui/atoms'
-import { Tooltip } from 'src/components/ui/molecules'
-import { useTaskCommand } from 'src/store/entities/task'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { Icon, IconButton } from 'src/components/ui/atoms';
+import { Tooltip } from 'src/components/ui/molecules';
+import { useTaskCommand } from 'src/store/entities/task';
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const SubTasks: React.FC<Props> = memo((props) => {
-  const { addSubtask } = useTaskCommand()
+  const { addSubtask } = useTaskCommand();
 
   const handleAddSubtask = useCallback(async () => {
-    await addSubtask({ taskParentId: props.taskId })
-  }, [addSubtask, props.taskId])
+    await addSubtask({ taskParentId: props.taskId });
+  }, [addSubtask, props.taskId]);
 
   return (
     <Tooltip
@@ -31,6 +31,6 @@ export const SubTasks: React.FC<Props> = memo((props) => {
         onClick={handleAddSubtask}
       />
     </Tooltip>
-  )
-})
-SubTasks.displayName = 'SubTasks'
+  );
+});
+SubTasks.displayName = 'SubTasks';

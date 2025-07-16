@@ -1,1 +1,1 @@
-export * from './TasksTags'
+export * from './TasksTags';

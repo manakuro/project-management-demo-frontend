@@ -1,2 +1,2 @@
-export * from './Component'
-export * from './Container'
+export * from './Component';
+export * from './Container';

@@ -1,17 +1,17 @@
-import type React from 'react'
+import type React from 'react';
 import {
   Icon,
   Input,
   InputGroup,
   InputLeftElement,
   type InputProps,
-} from 'src/components/ui/atoms'
-import type { IconType } from 'src/shared/icons'
+} from 'src/components/ui/atoms';
+import type { IconType } from 'src/shared/icons';
 
 type Props = InputProps & {
-  icon: IconType
-}
-export type InputWithIconProps = Props
+  icon: IconType;
+};
+export type InputWithIconProps = Props;
 
 const iconSizes = {
   lg: {
@@ -30,12 +30,12 @@ const iconSizes = {
     w: '0.875em',
     h: '0.875em',
   },
-} as const
-type IconSizes = keyof typeof iconSizes
+} as const;
+type IconSizes = keyof typeof iconSizes;
 
 export const InputWithIcon: React.FC<Props> = (props) => {
-  const { icon, size, ...inputProps } = props
-  const iconSize = iconSizes[(size as IconSizes) ?? 'md']
+  const { icon, size, ...inputProps } = props;
+  const iconSize = iconSizes[(size as IconSizes) ?? 'md'];
 
   return (
     <InputGroup size={size}>
@@ -46,5 +46,5 @@ export const InputWithIcon: React.FC<Props> = (props) => {
       />
       <Input focusBorderColor="primary" placeholder="Search" {...inputProps} />
     </InputGroup>
-  )
-}
+  );
+};

@@ -1,30 +1,31 @@
-import type React from 'react'
-import { memo } from 'react'
+import type React from 'react';
+import { memo } from 'react';
 import {
   ProjectTeammateMenuItem,
   useProjectTeammateMenu,
-} from 'src/components/features/organisms/Menus/ProjectTeammateMenu'
+} from 'src/components/features/organisms/Menus/ProjectTeammateMenu';
 import {
   SearchMenuLeftContainer,
   SearchMenuListItem,
   SearchMenuLoading,
   SearchMenuRightContainer,
-} from 'src/components/features/organisms/Menus/SearchMenu'
-import { Divider, Icon, Text } from 'src/components/ui/atoms'
-import type { PopoverProps } from 'src/components/ui/organisms/Popover'
-import type { Teammate } from 'src/store/entities/teammate'
+} from 'src/components/features/organisms/Menus/SearchMenu';
+import { Divider, Icon, Text } from 'src/components/ui/atoms';
+import type { PopoverProps } from 'src/components/ui/organisms/Popover';
+import type { Teammate } from 'src/store/entities/teammate';
 
 type Props = PopoverProps & {
-  onSelect: (val: Teammate) => void
-  queryText: string
-  onClose: () => void
-  onClosed?: () => void
-}
+  onSelect: (val: Teammate) => void;
+  queryText: string;
+  onClose: () => void;
+  onClosed?: () => void;
+};
 
 export const Content: React.FC<Props> = memo<Props>((props) => {
-  const { teammates, loading, onSelectTeammate } = useProjectTeammateMenu(props)
+  const { teammates, loading, onSelectTeammate } =
+    useProjectTeammateMenu(props);
 
-  if (loading) return <SearchMenuLoading />
+  if (loading) return <SearchMenuLoading />;
 
   return (
     <>
@@ -48,6 +49,6 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
         </SearchMenuRightContainer>
       </SearchMenuListItem>
     </>
-  )
-})
-Content.displayName = 'Content'
+  );
+});
+Content.displayName = 'Content';

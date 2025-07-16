@@ -2,8 +2,8 @@ import {
   type FirebaseApp,
   type FirebaseOptions,
   initializeApp,
-} from 'firebase/app'
-import { config } from 'src/config'
+} from 'firebase/app';
+import { config } from 'src/config';
 
 const firebaseConfig: FirebaseOptions = {
   apiKey: config.FIREBASE_API_KEY,
@@ -14,17 +14,17 @@ const firebaseConfig: FirebaseOptions = {
   messagingSenderId: config.FIREBASE_MESSAGING_SENDER_ID,
   appId: config.FIREBASE_APPID,
   measurementId: config.FIREBASE_MEASUREMENT_ID,
-}
+};
 
-let firebaseApp: FirebaseApp
+let firebaseApp: FirebaseApp;
 try {
-  firebaseApp = initializeApp(firebaseConfig)
+  firebaseApp = initializeApp(firebaseConfig);
 } catch (err) {
   if (err instanceof Error) {
     if (!/already exists/.test(err.message)) {
-      console.error('Firebase initialization error', err.stack)
+      console.error('Firebase initialization error', err.stack);
     }
   }
 }
 
-export { firebaseApp }
+export { firebaseApp };

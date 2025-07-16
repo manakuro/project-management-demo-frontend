@@ -1,10 +1,10 @@
-import { memo } from 'react'
-import { Icon } from 'src/components/ui/atoms'
-import { useAtMention } from 'src/shared/prosemirror/hooks'
-import { BaseButton } from '../BaseButton'
+import { memo } from 'react';
+import { Icon } from 'src/components/ui/atoms';
+import { useAtMention } from 'src/shared/prosemirror/hooks';
+import { BaseButton } from '../BaseButton';
 
 export const AtMention = memo(function AtMention() {
-  const { action } = useAtMention()
+  const { action } = useAtMention();
 
   return (
     <BaseButton
@@ -16,5 +16,5 @@ export const AtMention = memo(function AtMention() {
         'aria-label': 'At-Mention',
       }}
     />
-  )
-})
+  );
+});

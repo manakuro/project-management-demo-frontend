@@ -1,13 +1,13 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { useMainStyle } from 'src/hooks'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { useMainStyle } from 'src/hooks';
 
-type Props = FlexProps
+type Props = FlexProps;
 
-const maxH = 72 + 40 + 24
+const maxH = 72 + 40 + 24;
 export const TasksCalendarContent: React.FC<Props> = memo<Props>((props) => {
-  const { maxW } = useMainStyle()
+  const { maxW } = useMainStyle();
 
   return (
     <Flex
@@ -25,6 +25,6 @@ export const TasksCalendarContent: React.FC<Props> = memo<Props>((props) => {
         {props.children}
       </Flex>
     </Flex>
-  )
-})
-TasksCalendarContent.displayName = 'TasksCalendarContent'
+  );
+});
+TasksCalendarContent.displayName = 'TasksCalendarContent';

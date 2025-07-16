@@ -1,22 +1,22 @@
-import type React from 'react'
-import { Portal } from 'src/components/ui/atoms'
+import type React from 'react';
+import { Portal } from 'src/components/ui/atoms';
 import {
   MenuList as AtomsMenuList,
   MenuItem,
-} from 'src/components/ui/organisms/Menu'
-import { useClickOutside } from 'src/hooks'
-import { RemoveFromFavorites } from './RemoveFromFavorites'
+} from 'src/components/ui/organisms/Menu';
+import { useClickOutside } from 'src/hooks';
+import { RemoveFromFavorites } from './RemoveFromFavorites';
 
 type Props = {
-  projectId: string
-  onClose: () => void
-}
+  projectId: string;
+  onClose: () => void;
+};
 
 export const MenuList: React.FC<Props> = (props) => {
-  const { onClose, projectId } = props
+  const { onClose, projectId } = props;
   const { ref } = useClickOutside(() => {
-    onClose()
-  })
+    onClose();
+  });
 
   return (
     <Portal>
@@ -25,5 +25,5 @@ export const MenuList: React.FC<Props> = (props) => {
         <MenuItem isDisabled>Duplicate Project...</MenuItem>
       </AtomsMenuList>
     </Portal>
-  )
-}
+  );
+};

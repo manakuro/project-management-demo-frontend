@@ -1,26 +1,26 @@
-import type React from 'react'
-import { memo, useCallback, useState } from 'react'
-import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { useHover } from 'src/hooks/useHover'
-import { Content } from './Content'
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
+import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { useHover } from 'src/hooks/useHover';
+import { Content } from './Content';
 
 type Props = FlexProps & {
-  taskId: string
-  width: string
-}
+  taskId: string;
+  width: string;
+};
 
 export const TasksAssignee: React.FC<Props> = memo<Props>((props) => {
-  const { ref, isHovering } = useHover()
-  const [focused, setFocused] = useState(false)
+  const { ref, isHovering } = useHover();
+  const [focused, setFocused] = useState(false);
 
   const handleClick = useCallback(() => {
-    setFocused(true)
-  }, [])
+    setFocused(true);
+  }, []);
 
   const handleUnfocus = useCallback(() => {
-    setFocused(false)
-  }, [])
+    setFocused(false);
+  }, []);
 
   return (
     <TasksListCell
@@ -43,6 +43,6 @@ export const TasksAssignee: React.FC<Props> = memo<Props>((props) => {
         />
       </Flex>
     </TasksListCell>
-  )
-})
-TasksAssignee.displayName = 'TasksAssignee'
+  );
+});
+TasksAssignee.displayName = 'TasksAssignee';

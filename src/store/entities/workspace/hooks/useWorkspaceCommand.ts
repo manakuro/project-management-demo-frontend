@@ -1,29 +1,29 @@
-import { useRecoilCallback } from 'recoil'
-import { useUpdateWorkspaceMutation } from 'src/graphql/hooks'
-import { workspaceState } from '../atom'
-import type { Workspace } from '../type'
-import { useUpsert } from './useUpsert'
-import { WORKSPACE_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useWorkspaceUpdatedSubscription'
+import { useRecoilCallback } from 'recoil';
+import { useUpdateWorkspaceMutation } from 'src/graphql/hooks';
+import { workspaceState } from '../atom';
+import type { Workspace } from '../type';
+import { useUpsert } from './useUpsert';
+import { WORKSPACE_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useWorkspaceUpdatedSubscription';
 
 export const useWorkspaceCommand = () => {
   const [updateWorkspaceMutation, { loading: updating }] =
-    useUpdateWorkspaceMutation()
+    useUpdateWorkspaceMutation();
 
-  const { upsert } = useUpsert()
+  const { upsert } = useUpsert();
 
   const setWorkspace = useRecoilCallback(
     ({ snapshot }) =>
       async (input: Partial<Workspace>) => {
-        const prev = await snapshot.getPromise(workspaceState)
+        const prev = await snapshot.getPromise(workspaceState);
         const params = {
           ...prev,
           ...input,
-        }
-        upsert(params)
+        };
+        upsert(params);
 
         const restore = () => {
-          upsert(prev)
-        }
+          upsert(prev);
+        };
         try {
           const res = await updateWorkspaceMutation({
             variables: {
@@ -34,21 +34,21 @@ export const useWorkspaceCommand = () => {
                 requestId: WORKSPACE_UPDATED_SUBSCRIPTION_REQUEST_ID,
               },
             },
-          })
+          });
 
           if (res.errors) {
-            restore()
+            restore();
           }
         } catch (e) {
-          restore()
-          throw e
+          restore();
+          throw e;
         }
       },
     [updateWorkspaceMutation, upsert],
-  )
+  );
 
   return {
     setWorkspace,
     updating,
-  }
-}
+  };
+};

@@ -1,1 +1,1 @@
-export * from './ColorBox'
+export * from './ColorBox';

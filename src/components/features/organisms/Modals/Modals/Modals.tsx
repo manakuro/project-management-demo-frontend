@@ -1,9 +1,9 @@
-import type React from 'react'
-import { memo } from 'react'
+import type React from 'react';
+import { memo } from 'react';
 import {
   EditorEmojiMenu,
   EditorMentionMenu,
-} from 'src/components/features/organisms/Menus'
+} from 'src/components/features/organisms/Menus';
 import {
   DuplicateTaskModal,
   EditorLinkModal,
@@ -12,9 +12,9 @@ import {
   ProjectDetailModal,
   ShareProjectModal,
   ShareWorkspaceModal,
-} from 'src/components/features/organisms/Modals'
-import { Help } from 'src/components/features/organisms/Navigation'
-import { VideoPlayer } from 'src/components/ui/organisms/VideoPlayer'
+} from 'src/components/features/organisms/Modals';
+import { Help } from 'src/components/features/organisms/Navigation';
+import { VideoPlayer } from 'src/components/ui/organisms/VideoPlayer';
 
 export const Modals: React.FC = memo(() => {
   return (
@@ -31,6 +31,6 @@ export const Modals: React.FC = memo(() => {
       <ShareProjectModal />
       <ProjectDetailModal />
     </>
-  )
-})
-Modals.displayName = 'Modals'
+  );
+});
+Modals.displayName = 'Modals';

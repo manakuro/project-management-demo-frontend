@@ -1,26 +1,26 @@
-import type React from 'react'
+import type React from 'react';
 import {
   Box,
   FileUploader,
   type FileUploaderParams,
-} from 'src/components/ui/atoms'
+} from 'src/components/ui/atoms';
 import {
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   type MenuProps,
-} from 'src/components/ui/organisms/Menu'
-import { useMenuStyle } from 'src/hooks'
-import { chakra } from 'src/shared/chakra'
+} from 'src/components/ui/organisms/Menu';
+import { useMenuStyle } from 'src/hooks';
+import { chakra } from 'src/shared/chakra';
 
 type Props = {
-  onUpload?: (files: FileUploaderParams) => void
-  onClose: () => void
-} & MenuProps
+  onUpload?: (files: FileUploaderParams) => void;
+  onClose: () => void;
+} & MenuProps;
 
 export const PopoverAddCoverImageActions: React.FC<Props> = (props) => {
-  const itemStyle = useMenuStyle().item
+  const itemStyle = useMenuStyle().item;
 
   return (
     <Menu isLazy {...props}>
@@ -50,12 +50,12 @@ export const PopoverAddCoverImageActions: React.FC<Props> = (props) => {
         </MenuItem>
       </MenuList>
     </Menu>
-  )
-}
+  );
+};
 
 // NOTE: Use custom component instead of `Box` because of styling issue with positioning menu item
 const MenuButtonAs = chakra('div', {
   baseStyle: {
     w: 'full',
   },
-})
+});

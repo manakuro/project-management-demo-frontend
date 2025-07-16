@@ -1,6 +1,6 @@
-import type React from 'react'
-import { memo, useMemo } from 'react'
-import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
+import type React from 'react';
+import { memo, useMemo } from 'react';
+import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
 import {
   Flex,
   type FlexProps,
@@ -8,32 +8,35 @@ import {
   IconButton,
   Skeleton,
   Stack,
-} from 'src/components/ui/atoms'
-import type { IconType } from 'src/shared/icons'
-import { Attachment } from './Attachment'
-import { Complete } from './Complete'
-import { Copy } from './Copy'
-import { Like } from './Like'
-import { MoreAction } from './MoreAction'
-import { SubTasks } from './Subtasks'
+} from 'src/components/ui/atoms';
+import type { IconType } from 'src/shared/icons';
+import { Attachment } from './Attachment';
+import { Complete } from './Complete';
+import { Copy } from './Copy';
+import { Like } from './Like';
+import { MoreAction } from './MoreAction';
+import { SubTasks } from './Subtasks';
 
 type Props = {
-  mode?: Mode
-  onClose?: () => void
-  loading?: boolean
-} & FlexProps
+  mode?: Mode;
+  onClose?: () => void;
+  loading?: boolean;
+} & FlexProps;
 
 const closeIcons = {
   modal: 'x',
   drawer: 'arrowToRight',
-} as const
-type Mode = keyof typeof closeIcons
+} as const;
+type Mode = keyof typeof closeIcons;
 
 export const TaskDetailHeader: React.FC<Props> = memo<Props>((props) => {
-  const { mode, onClose, loading, ...rest } = props
-  const { taskId } = useTaskDetail()
+  const { mode, onClose, loading, ...rest } = props;
+  const { taskId } = useTaskDetail();
 
-  const closeIcon = useMemo<IconType>(() => closeIcons[mode ?? 'modal'], [mode])
+  const closeIcon = useMemo<IconType>(
+    () => closeIcons[mode ?? 'modal'],
+    [mode],
+  );
 
   if (loading)
     return (
@@ -41,7 +44,7 @@ export const TaskDetailHeader: React.FC<Props> = memo<Props>((props) => {
         <Skeleton h="28px" w="117px" />
         <Skeleton h="28px" w="212px" ml="auto" />
       </Flex>
-    )
+    );
 
   return (
     <Flex px={6} h="57px" alignItems="center" flex={1} {...rest}>
@@ -67,6 +70,6 @@ export const TaskDetailHeader: React.FC<Props> = memo<Props>((props) => {
         </Stack>
       </Flex>
     </Flex>
-  )
-})
-TaskDetailHeader.displayName = 'TaskDetailHeader'
+  );
+});
+TaskDetailHeader.displayName = 'TaskDetailHeader';

@@ -1,27 +1,27 @@
-import type React from 'react'
-import { memo } from 'react'
+import type React from 'react';
+import { memo } from 'react';
 import {
   FileUploader,
   type FileUploaderParams,
   Portal,
-} from 'src/components/ui/atoms'
+} from 'src/components/ui/atoms';
 import {
   MenuGroup,
   MenuItem,
   MenuList as OrganismsMenuList,
-} from 'src/components/ui/organisms/Menu'
-import { useClickOutside, useMenuStyle } from 'src/hooks'
+} from 'src/components/ui/organisms/Menu';
+import { useClickOutside, useMenuStyle } from 'src/hooks';
 
 type Props = {
-  onUpload?: (files: FileUploaderParams) => void
-  onClose?: () => void
-}
+  onUpload?: (files: FileUploaderParams) => void;
+  onClose?: () => void;
+};
 
 export const MenuList: React.FC<Props> = memo((props) => {
-  const itemStyle = useMenuStyle().item
+  const itemStyle = useMenuStyle().item;
   const { ref } = useClickOutside(() => {
-    props.onClose?.()
-  })
+    props.onClose?.();
+  });
 
   return (
     <Portal>
@@ -42,6 +42,6 @@ export const MenuList: React.FC<Props> = memo((props) => {
         </MenuGroup>
       </OrganismsMenuList>
     </Portal>
-  )
-})
-MenuList.displayName = 'MenuList'
+  );
+});
+MenuList.displayName = 'MenuList';

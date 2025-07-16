@@ -1,1 +1,1 @@
-export * from './InboxListSection'
+export * from './InboxListSection';

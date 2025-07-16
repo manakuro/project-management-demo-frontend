@@ -1,22 +1,22 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider'
-import { useTasksTask } from 'src/components/features/organisms/Tasks/hooks'
-import { Flex } from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider';
+import { useTasksTask } from 'src/components/features/organisms/Tasks/hooks';
+import { Flex } from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
 
 type Props = {
-  taskSectionId: string
-}
+  taskSectionId: string;
+};
 
 export const AddTask: React.FC<Props> = memo<Props>((props) => {
-  const { addTask } = useTasksTask()
-  const { clickableHoverStyle } = useClickableHoverStyle()
-  const { stickyStyle } = useTasksListContext()
+  const { addTask } = useTasksTask();
+  const { clickableHoverStyle } = useClickableHoverStyle();
+  const { stickyStyle } = useTasksListContext();
 
   const handleClick = useCallback(() => {
-    addTask({ taskSectionId: props.taskSectionId })
-  }, [addTask, props.taskSectionId])
+    addTask({ taskSectionId: props.taskSectionId });
+  }, [addTask, props.taskSectionId]);
 
   return (
     <Flex
@@ -33,6 +33,6 @@ export const AddTask: React.FC<Props> = memo<Props>((props) => {
         Add task...
       </Flex>
     </Flex>
-  )
-})
-AddTask.displayName = 'AddTask'
+  );
+});
+AddTask.displayName = 'AddTask';

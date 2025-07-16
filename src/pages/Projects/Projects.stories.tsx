@@ -1,7 +1,7 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
-import { userEvent, within } from '@storybook/testing-library'
-import { LayoutDefault } from 'src/components/ui/organisms/Layout'
-import { Container as Page } from './Container'
+import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import { userEvent, within } from '@storybook/testing-library';
+import { LayoutDefault } from 'src/components/ui/organisms/Layout';
+import { Container as Page } from './Container';
 
 export default {
   title: 'Pages/Projects',
@@ -25,13 +25,13 @@ export default {
       </LayoutDefault>
     ),
   ],
-} as ComponentMeta<typeof Page>
+} as ComponentMeta<typeof Page>;
 
-const Template: ComponentStory<typeof Page> = (args) => <Page {...args} />
+const Template: ComponentStory<typeof Page> = (args) => <Page {...args} />;
 
-export const List = Template.bind({})
+export const List = Template.bind({});
 
-export const Detail = Template.bind({})
+export const Detail = Template.bind({});
 Detail.parameters = {
   nextRouter: {
     asPath:
@@ -44,9 +44,9 @@ Detail.parameters = {
     },
     route: '/projects/[projectId]/[[...projects]]',
   },
-}
+};
 
-export const Board = Template.bind({})
+export const Board = Template.bind({});
 Board.parameters = {
   nextRouter: {
     asPath: '/projects/0AG01GK0BWAWW1RDQ0KJJEKB6HC3G/board',
@@ -56,14 +56,14 @@ Board.parameters = {
       projects: ['board'],
     },
   },
-}
+};
 Board.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement)
+  const canvas = within(canvasElement);
 
-  await userEvent.click(await canvas.findByRole('tab', { name: 'Board' }))
-}
+  await userEvent.click(await canvas.findByRole('tab', { name: 'Board' }));
+};
 
-export const Calendar = Template.bind({})
+export const Calendar = Template.bind({});
 Calendar.parameters = {
   nextRouter: {
     asPath: '/projects/0AG01GK0BWAWW1RDQ0KJJEKB6HC3G/calendar',
@@ -73,14 +73,14 @@ Calendar.parameters = {
       projects: ['calendar'],
     },
   },
-}
+};
 Calendar.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement)
+  const canvas = within(canvasElement);
 
-  await userEvent.click(await canvas.findByRole('tab', { name: 'Calendar' }))
-}
+  await userEvent.click(await canvas.findByRole('tab', { name: 'Calendar' }));
+};
 
-export const Files = Template.bind({})
+export const Files = Template.bind({});
 Files.parameters = {
   nextRouter: {
     asPath: '/projects/0AG01GK0BWAWW1RDQ0KJJEKB6HC3G/files',
@@ -90,9 +90,9 @@ Files.parameters = {
       projects: ['files'],
     },
   },
-}
+};
 Files.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement)
+  const canvas = within(canvasElement);
 
-  await userEvent.click(await canvas.findByRole('tab', { name: 'Files' }))
-}
+  await userEvent.click(await canvas.findByRole('tab', { name: 'Files' }));
+};

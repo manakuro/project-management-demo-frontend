@@ -1,1 +1,1 @@
-export * from './ProjectChip'
+export * from './ProjectChip';

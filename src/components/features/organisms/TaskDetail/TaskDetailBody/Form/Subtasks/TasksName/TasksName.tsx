@@ -1,59 +1,64 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { TasksListRow } from 'src/components/features/organisms/Tasks/TasksList/TasksListRow'
-import { CheckIcon, Flex, type FlexProps, Stack } from 'src/components/ui/atoms'
-import { TaskDoneTransition } from 'src/components/ui/molecules'
-import { useTask, useTaskCommand } from 'src/store/entities/task'
-import { Assignee } from './Assignee'
-import { DueDate } from './DueDate'
-import { Provider, useSubtasksNameContext } from './Provider'
-import { RightItem } from './RightItem'
-import { TasksNameCell } from './TasksNameCell'
-import { TasksNameField } from './TasksNameField'
-import { TasksNameGrabIcon } from './TasksNameGrabIcon'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { TasksListRow } from 'src/components/features/organisms/Tasks/TasksList/TasksListRow';
+import {
+  CheckIcon,
+  Flex,
+  type FlexProps,
+  Stack,
+} from 'src/components/ui/atoms';
+import { TaskDoneTransition } from 'src/components/ui/molecules';
+import { useTask, useTaskCommand } from 'src/store/entities/task';
+import { Assignee } from './Assignee';
+import { DueDate } from './DueDate';
+import { Provider, useSubtasksNameContext } from './Provider';
+import { RightItem } from './RightItem';
+import { TasksNameCell } from './TasksNameCell';
+import { TasksNameField } from './TasksNameField';
+import { TasksNameGrabIcon } from './TasksNameGrabIcon';
 
 type Props = FlexProps & {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const TasksName: React.FC<Props> = memo<Props>((props) => {
   return (
     <Provider taskId={props.taskId}>
       <Component {...props} />
     </Provider>
-  )
-})
+  );
+});
 
 export const Component: React.FC<Props> = memo<Props>((props) => {
   const { ref, isTransitioning, onStartTransition, onEndTransition } =
-    useSubtasksNameContext()
-  const { deleteTask } = useTaskCommand()
-  const { task, setTaskName, setTask } = useTask(props.taskId)
+    useSubtasksNameContext();
+  const { deleteTask } = useTaskCommand();
+  const { task, setTaskName, setTask } = useTask(props.taskId);
 
   const handleChange = useCallback(
     async (val: string) => {
-      await setTaskName(val)
+      await setTaskName(val);
     },
     [setTaskName],
-  )
+  );
 
   const handleDeleteTask = useCallback(async () => {
-    await deleteTask({ taskId: props.taskId })
-  }, [deleteTask, props.taskId])
+    await deleteTask({ taskId: props.taskId });
+  }, [deleteTask, props.taskId]);
 
   const handleToggleDone = useCallback(async () => {
     if (!task.completed) {
-      onStartTransition()
+      onStartTransition();
       setTimeout(async () => {
-        await setTask({ completed: !task.completed })
-        onEndTransition()
-      }, 1000)
-      return
+        await setTask({ completed: !task.completed });
+        onEndTransition();
+      }, 1000);
+      return;
     }
 
-    await setTask({ completed: !task.completed })
-    onEndTransition()
-  }, [onEndTransition, onStartTransition, setTask, task.completed])
+    await setTask({ completed: !task.completed });
+    onEndTransition();
+  }, [onEndTransition, onStartTransition, setTask, task.completed]);
 
   return (
     <TasksListRow w="full">
@@ -84,7 +89,7 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
         </Flex>
       </TasksNameCell>
     </TasksListRow>
-  )
-})
-Component.displayName = 'Component'
-TasksName.displayName = 'TasksName'
+  );
+});
+Component.displayName = 'Component';
+TasksName.displayName = 'TasksName';

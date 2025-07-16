@@ -1,10 +1,10 @@
-import { LikeIconButton } from 'src/components/ui/molecules'
-import { useTaskFeedListItemContext } from '../../Provider'
-import { useLike } from './useLike'
+import { LikeIconButton } from 'src/components/ui/molecules';
+import { useTaskFeedListItemContext } from '../../Provider';
+import { useLike } from './useLike';
 
 export function Like() {
-  const { showLike } = useTaskFeedListItemContext()
-  const { hasAnyoneLiked, label, likeLength, onToggleLike } = useLike()
+  const { showLike } = useTaskFeedListItemContext();
+  const { hasAnyoneLiked, label, likeLength, onToggleLike } = useLike();
 
   return (
     <LikeIconButton
@@ -14,5 +14,5 @@ export function Like() {
       likeLength={likeLength}
       onToggleLike={onToggleLike}
     />
-  )
+  );
 }

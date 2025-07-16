@@ -1,2 +1,2 @@
-export * from './Inbox'
-export { useInboxContext } from './Provider'
+export * from './Inbox';
+export { useInboxContext } from './Provider';

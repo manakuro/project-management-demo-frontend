@@ -1,12 +1,12 @@
-import { useRouter } from 'next/router'
-import type React from 'react'
-import { memo, useMemo } from 'react'
-import { ROUTE_HOME } from 'src/router'
-import { NavListItem } from '../../NavListItem'
-import type { NavListItem as TNavListItem } from '../../type'
+import { useRouter } from 'next/router';
+import type React from 'react';
+import { memo, useMemo } from 'react';
+import { ROUTE_HOME } from 'src/router';
+import { NavListItem } from '../../NavListItem';
+import type { NavListItem as TNavListItem } from '../../type';
 
 export const Home: React.FC = memo(() => {
-  const router = useRouter()
+  const router = useRouter();
 
   const item = useMemo<TNavListItem>(
     () => ({
@@ -16,8 +16,8 @@ export const Home: React.FC = memo(() => {
       isCurrentRoute: () => router.asPath === ROUTE_HOME.href.pathname(),
     }),
     [router.asPath],
-  )
+  );
 
-  return <NavListItem item={item} />
-})
-Home.displayName = 'Home'
+  return <NavListItem item={item} />;
+});
+Home.displayName = 'Home';

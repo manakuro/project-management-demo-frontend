@@ -1,18 +1,18 @@
-import { useMyTasksTaskColumnsCustomizable } from 'src/store/app/myTasks/taskColumns'
-import { useProjectsTaskColumnsCustomizable } from 'src/store/app/projects/taskColumns'
-import { useTasksContext } from '../TasksProvider'
+import { useMyTasksTaskColumnsCustomizable } from 'src/store/app/myTasks/taskColumns';
+import { useProjectsTaskColumnsCustomizable } from 'src/store/app/projects/taskColumns';
+import { useTasksContext } from '../TasksProvider';
 
 type Result = {
-  tasksTaskColumnIds: string[]
-  setTaskColumnOrder: (updatedIds: string[]) => void
-}
+  tasksTaskColumnIds: string[];
+  setTaskColumnOrder: (updatedIds: string[]) => void;
+};
 
 export const useTasksTaskColumnCustomizable = (): Result => {
-  const { isMyTasksPage } = useTasksContext()
+  const { isMyTasksPage } = useTasksContext();
   const useMyTasksTaskColumnsCustomizableResult =
-    useMyTasksTaskColumnsCustomizable()
+    useMyTasksTaskColumnsCustomizable();
   const useProjectsTaskColumnsCustomizableResult =
-    useProjectsTaskColumnsCustomizable()
+    useProjectsTaskColumnsCustomizable();
 
   if (isMyTasksPage) {
     return {
@@ -20,7 +20,7 @@ export const useTasksTaskColumnCustomizable = (): Result => {
         useMyTasksTaskColumnsCustomizableResult.tasksTaskColumnIds,
       setTaskColumnOrder:
         useMyTasksTaskColumnsCustomizableResult.setTaskColumnOrder,
-    }
+    };
   }
 
   return {
@@ -28,5 +28,5 @@ export const useTasksTaskColumnCustomizable = (): Result => {
       useProjectsTaskColumnsCustomizableResult.tasksTaskColumnIds,
     setTaskColumnOrder:
       useProjectsTaskColumnsCustomizableResult.setTaskColumnOrder,
-  }
-}
+  };
+};

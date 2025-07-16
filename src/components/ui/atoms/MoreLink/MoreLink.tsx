@@ -1,8 +1,8 @@
-import type React from 'react'
-import { Text, type TextProps } from 'src/components/ui/atoms'
+import type React from 'react';
+import { Text, type TextProps } from 'src/components/ui/atoms';
 
-type Props = TextProps
-export type MoreLinkProps = Props
+type Props = TextProps;
+export type MoreLinkProps = Props;
 
 export const MoreLink: React.FC<Props> = (props) => {
   return (
@@ -16,5 +16,5 @@ export const MoreLink: React.FC<Props> = (props) => {
       }}
       {...props}
     />
-  )
-}
+  );
+};

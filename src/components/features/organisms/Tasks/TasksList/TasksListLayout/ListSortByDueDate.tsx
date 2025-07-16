@@ -1,24 +1,24 @@
-import type React from 'react'
-import { memo, useCallback, useState } from 'react'
-import { TasksListSection } from 'src/components/features/organisms/Tasks'
-import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider'
-import { TasksListItem } from 'src/components/features/organisms/Tasks/TasksList/TasksListItem'
-import { TasksListSectionProvider } from 'src/components/features/organisms/Tasks/TasksList/TasksListSection'
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
+import { TasksListSection } from 'src/components/features/organisms/Tasks';
+import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider';
+import { TasksListItem } from 'src/components/features/organisms/Tasks/TasksList/TasksListItem';
+import { TasksListSectionProvider } from 'src/components/features/organisms/Tasks/TasksList/TasksListSection';
 import {
   useTasksTaskIds,
   useTasksTaskSectionIds,
-} from 'src/components/features/organisms/Tasks/hooks'
-import { Box, Flex, Icon, IconButton } from 'src/components/ui/atoms'
+} from 'src/components/features/organisms/Tasks/hooks';
+import { Box, Flex, Icon, IconButton } from 'src/components/ui/atoms';
 
 export const ListSortByDueDate: React.FC = memo(() => {
-  const { taskIds } = useTasksTaskIds()
-  const { taskSectionIds } = useTasksTaskSectionIds()
-  const [isExpanded, setIsExpanded] = useState(true)
-  const { stickyStyle } = useTasksListContext()
+  const { taskIds } = useTasksTaskIds();
+  const { taskSectionIds } = useTasksTaskSectionIds();
+  const [isExpanded, setIsExpanded] = useState(true);
+  const { stickyStyle } = useTasksListContext();
 
   const handleToggle = useCallback(() => {
-    setIsExpanded((s) => !s)
-  }, [])
+    setIsExpanded((s) => !s);
+  }, []);
 
   return (
     <Flex flexDirection="column">
@@ -55,6 +55,6 @@ export const ListSortByDueDate: React.FC = memo(() => {
         </Flex>
       )}
     </Flex>
-  )
-})
-ListSortByDueDate.displayName = 'ListSortByDueDate'
+  );
+});
+ListSortByDueDate.displayName = 'ListSortByDueDate';

@@ -1,18 +1,18 @@
-import type React from 'react'
-import { useMemo } from 'react'
-import { Flex } from 'src/components/ui/atoms'
-import { useCarouselContext } from './Provider'
+import type React from 'react';
+import { useMemo } from 'react';
+import { Flex } from 'src/components/ui/atoms';
+import { useCarouselContext } from './Provider';
 
 type Props = {
-  index?: number
-}
+  index?: number;
+};
 
 export const CarouselItem: React.FCWithChildren<Props> = (props) => {
-  const { currentIndex } = useCarouselContext()
+  const { currentIndex } = useCarouselContext();
   const show = useMemo(
     () => currentIndex === props.index,
     [currentIndex, props.index],
-  )
+  );
 
   return (
     <Flex
@@ -37,6 +37,6 @@ export const CarouselItem: React.FCWithChildren<Props> = (props) => {
         {props.children}
       </Flex>
     </Flex>
-  )
-}
-CarouselItem.displayName = 'CarouselItem'
+  );
+};
+CarouselItem.displayName = 'CarouselItem';

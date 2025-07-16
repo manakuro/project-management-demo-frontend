@@ -1,27 +1,27 @@
-import type React from 'react'
-import { memo } from 'react'
-import type { IconButtonProps } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo } from 'react';
+import type { IconButtonProps } from 'src/components/ui/atoms';
 import {
   FavoriteIconButton as MoleculesFavoriteIconButton,
   Tooltip,
-} from 'src/components/ui/molecules'
+} from 'src/components/ui/molecules';
 import {
   useFavoriteProjectIds,
   useFavoriteProjectIdsCommand,
-} from 'src/store/entities/favoriteProjectIds'
-import { useProject } from 'src/store/entities/project'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
+} from 'src/store/entities/favoriteProjectIds';
+import { useProject } from 'src/store/entities/project';
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
 
 type Props = {
-  projectId: string
-} & Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>
+  projectId: string;
+} & Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>;
 
 export const FavoriteIconButton: React.FC<Props> = memo<Props>((props) => {
-  const { projectId } = props
-  const { project } = useProject(projectId)
-  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
-  const { setFavoriteProjectId } = useFavoriteProjectIdsCommand()
-  const { isFavorite } = useFavoriteProjectIds()
+  const { projectId } = props;
+  const { project } = useProject(projectId);
+  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId);
+  const { setFavoriteProjectId } = useFavoriteProjectIdsCommand();
+  const { isFavorite } = useFavoriteProjectIds();
 
   return (
     <Tooltip
@@ -44,6 +44,6 @@ export const FavoriteIconButton: React.FC<Props> = memo<Props>((props) => {
         }}
       />
     </Tooltip>
-  )
-})
-FavoriteIconButton.displayName = 'FavoriteIconButton'
+  );
+});
+FavoriteIconButton.displayName = 'FavoriteIconButton';

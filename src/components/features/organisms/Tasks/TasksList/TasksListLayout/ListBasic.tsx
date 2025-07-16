@@ -1,10 +1,10 @@
-import type React from 'react'
-import { memo } from 'react'
-import { TasksListSection } from 'src/components/features/organisms/Tasks'
-import { useTasksTaskSectionIds } from 'src/components/features/organisms/Tasks/hooks'
+import type React from 'react';
+import { memo } from 'react';
+import { TasksListSection } from 'src/components/features/organisms/Tasks';
+import { useTasksTaskSectionIds } from 'src/components/features/organisms/Tasks/hooks';
 
 export const ListBasic: React.FC = memo(() => {
-  const { taskSectionIds } = useTasksTaskSectionIds()
+  const { taskSectionIds } = useTasksTaskSectionIds();
 
   return (
     <>
@@ -16,6 +16,6 @@ export const ListBasic: React.FC = memo(() => {
         />
       ))}
     </>
-  )
-})
-ListBasic.displayName = 'ListBasic'
+  );
+});
+ListBasic.displayName = 'ListBasic';

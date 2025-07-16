@@ -1,20 +1,20 @@
-import type React from 'react'
-import { memo, useCallback, useMemo } from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { forwardRef } from 'src/shared/chakra'
-import { pxToNum } from 'src/shared/pxToNum'
-import { ColumnResizer } from './ColumnResizer'
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { forwardRef } from 'src/shared/chakra';
+import { pxToNum } from 'src/shared/pxToNum';
+import { ColumnResizer } from './ColumnResizer';
 
 type Props = {
-  hover?: boolean
-  resizable?: boolean
-  resizedMinW?: number
-  resizedMaxW?: number
-  onChangeSize?: (size: string) => void
-  containerStyle?: FlexProps
-  focused?: boolean
-} & FlexProps
-export type TasksListCellProps = Props
+  hover?: boolean;
+  resizable?: boolean;
+  resizedMinW?: number;
+  resizedMaxW?: number;
+  onChangeSize?: (size: string) => void;
+  containerStyle?: FlexProps;
+  focused?: boolean;
+} & FlexProps;
+export type TasksListCellProps = Props;
 
 export const TasksListCell: React.FC<Props> = memo(
   forwardRef((props, ref) => {
@@ -27,16 +27,16 @@ export const TasksListCell: React.FC<Props> = memo(
       containerStyle,
       focused,
       ...rest
-    } = props
+    } = props;
 
     const handleChange = useCallback(
       (margin: number) => {
-        const width = pxToNum(containerStyle?.w as string)
-        console.log('width: ', width, margin)
-        onChangeSize?.(`${width + margin}px`)
+        const width = pxToNum(containerStyle?.w as string);
+        console.log('width: ', width, margin);
+        onChangeSize?.(`${width + margin}px`);
       },
       [onChangeSize, containerStyle?.w],
-    )
+    );
 
     const cellStyle = useMemo(
       (): FlexProps => ({
@@ -58,7 +58,7 @@ export const TasksListCell: React.FC<Props> = memo(
           : {}),
       }),
       [focused, hover],
-    )
+    );
 
     return (
       <Flex
@@ -96,7 +96,7 @@ export const TasksListCell: React.FC<Props> = memo(
           />
         )}
       </Flex>
-    )
+    );
   }),
-)
-TasksListCell.displayName = 'TasksListCell'
+);
+TasksListCell.displayName = 'TasksListCell';

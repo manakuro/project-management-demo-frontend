@@ -1,20 +1,20 @@
-import type React from 'react'
-import { Divider } from 'src/components/features/organisms/Navigation/Divider'
-import { Flex } from 'src/components/ui/atoms'
+import type React from 'react';
+import { Divider } from 'src/components/features/organisms/Navigation/Divider';
+import { Flex } from 'src/components/ui/atoms';
 import {
   Drawer,
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
   DrawerHeader,
-} from 'src/components/ui/organisms/Drawer'
-import { Body } from './Body'
-import { Footer } from './Footer'
-import { useHelp } from './useHelp'
+} from 'src/components/ui/organisms/Drawer';
+import { Body } from './Body';
+import { Footer } from './Footer';
+import { useHelp } from './useHelp';
 
-export const HELP_CONTAINER_PADDING = 4
+export const HELP_CONTAINER_PADDING = 4;
 export const Help: React.FC = () => {
-  const { isOpen, onClose } = useHelp()
+  const { isOpen, onClose } = useHelp();
 
   return (
     <Drawer
@@ -39,5 +39,5 @@ export const Help: React.FC = () => {
         </Flex>
       </DrawerContent>
     </Drawer>
-  )
-}
+  );
+};

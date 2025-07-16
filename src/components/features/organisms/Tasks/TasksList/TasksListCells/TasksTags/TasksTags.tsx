@@ -1,27 +1,27 @@
-import type React from 'react'
-import { memo, useCallback, useState } from 'react'
-import { TagChip } from 'src/components/features/molecules/Chips'
-import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell'
-import { type FlexProps, Stack } from 'src/components/ui/atoms'
-import { useTaskTagIdsByTaskId } from 'src/store/entities/taskTag'
-import { Input } from './Input'
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
+import { TagChip } from 'src/components/features/molecules/Chips';
+import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
+import { type FlexProps, Stack } from 'src/components/ui/atoms';
+import { useTaskTagIdsByTaskId } from 'src/store/entities/taskTag';
+import { Input } from './Input';
 
 type Props = FlexProps & {
-  taskId: string
-  width: string
-}
+  taskId: string;
+  width: string;
+};
 
 export const TasksTags: React.FC<Props> = memo<Props>((props) => {
-  const { taskTagIds } = useTaskTagIdsByTaskId(props.taskId)
-  const [focused, setFocused] = useState<boolean>(false)
+  const { taskTagIds } = useTaskTagIdsByTaskId(props.taskId);
+  const [focused, setFocused] = useState<boolean>(false);
 
   const onFocus = useCallback(() => {
-    setFocused(true)
-  }, [])
+    setFocused(true);
+  }, []);
 
   const onUnfocus = useCallback(() => {
-    setFocused(false)
-  }, [])
+    setFocused(false);
+  }, []);
 
   return (
     <TasksListCell
@@ -47,6 +47,6 @@ export const TasksTags: React.FC<Props> = memo<Props>((props) => {
         <Input focused={focused} onClose={onUnfocus} taskId={props.taskId} />
       )}
     </TasksListCell>
-  )
-})
-TasksTags.displayName = 'TasksProjects'
+  );
+});
+TasksTags.displayName = 'TasksProjects';

@@ -1,21 +1,21 @@
-import { memo } from 'react'
-import { Icon, IconButton, Portal } from 'src/components/ui/atoms'
+import { memo } from 'react';
+import { Icon, IconButton, Portal } from 'src/components/ui/atoms';
 import {
   Menu,
   MenuButton,
   MenuGroup,
   MenuList,
-} from 'src/components/ui/organisms/Menu'
-import { useTaskFeedListItemContext } from '../../Provider'
-import { CopyCommentLink } from './CopyCommentLink'
-import { DeleteComment } from './DeleteComment'
-import { DeleteStory } from './DeleteStory'
-import { EditComment } from './EditComment'
-import { Pin } from './Pin'
+} from 'src/components/ui/organisms/Menu';
+import { useTaskFeedListItemContext } from '../../Provider';
+import { CopyCommentLink } from './CopyCommentLink';
+import { DeleteComment } from './DeleteComment';
+import { DeleteStory } from './DeleteStory';
+import { EditComment } from './EditComment';
+import { Pin } from './Pin';
 
 export const FeedOptionMenu = memo(function FeedOptionMenu() {
-  const { showFeedOptionMenu } = useTaskFeedListItemContext()
-  if (!showFeedOptionMenu) return null
+  const { showFeedOptionMenu } = useTaskFeedListItemContext();
+  if (!showFeedOptionMenu) return null;
 
   return (
     <Menu isLazy lazyBehavior="keepMounted" placement="bottom-end">
@@ -38,5 +38,5 @@ export const FeedOptionMenu = memo(function FeedOptionMenu() {
         </MenuList>
       </Portal>
     </Menu>
-  )
-})
+  );
+});

@@ -1,12 +1,12 @@
-import type React from 'react'
-import { memo } from 'react'
+import type React from 'react';
+import { memo } from 'react';
 import {
   TasksHeader,
   TasksHeaderLeft,
   TasksHeaderRight,
-} from 'src/components/features/organisms/Tasks'
-import { Skeleton } from 'src/components/ui/atoms'
-const BUTTON_HEIGHT = '28px'
+} from 'src/components/features/organisms/Tasks';
+import { Skeleton } from 'src/components/ui/atoms';
+const BUTTON_HEIGHT = '28px';
 export const SkeletonListHeader: React.FC = memo(() => {
   return (
     <TasksHeader>
@@ -19,6 +19,6 @@ export const SkeletonListHeader: React.FC = memo(() => {
         <Skeleton h={BUTTON_HEIGHT} w="91px" />
       </TasksHeaderRight>
     </TasksHeader>
-  )
-})
-SkeletonListHeader.displayName = 'SkeletonListHeader'
+  );
+});
+SkeletonListHeader.displayName = 'SkeletonListHeader';

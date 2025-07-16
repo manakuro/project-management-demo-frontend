@@ -1,10 +1,10 @@
-import { memo } from 'react'
-import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms'
+import { memo } from 'react';
+import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms';
 
-type Props = FlexProps
+type Props = FlexProps;
 
-const TEXT_HEIGHT = '16px'
-const CARD_HEIGHT = '97px'
+const TEXT_HEIGHT = '16px';
+const CARD_HEIGHT = '97px';
 export const SkeletonBoardContent = memo<Props>(
   function SkeletonBoardContent() {
     return (
@@ -23,6 +23,6 @@ export const SkeletonBoardContent = memo<Props>(
             </Flex>
           ))}
       </Flex>
-    )
+    );
   },
-)
+);

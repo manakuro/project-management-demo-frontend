@@ -4,4 +4,4 @@ export const ROUTE_HOME = {
     pathname: () => '/' as const,
   },
   query: 'index',
-} as const
+} as const;

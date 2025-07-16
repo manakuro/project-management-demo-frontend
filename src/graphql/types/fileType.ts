@@ -1,3 +1,3 @@
-import type { FileTypeFragmentFragment } from 'src/graphql/types'
+import type { FileTypeFragmentFragment } from 'src/graphql/types';
 
-export type FileTypeResponse = NonNullable<FileTypeFragmentFragment>
+export type FileTypeResponse = NonNullable<FileTypeFragmentFragment>;

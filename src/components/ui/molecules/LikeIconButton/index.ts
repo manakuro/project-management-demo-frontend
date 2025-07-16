@@ -1,1 +1,1 @@
-export * from './LikeIconButton'
+export * from './LikeIconButton';

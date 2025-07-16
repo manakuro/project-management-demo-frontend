@@ -1,27 +1,27 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
-import { Slide } from 'src/components/ui/atoms'
-import type { UseClickOutsideOptionsHasClickedOutside } from 'src/hooks/useClickOutside'
-import { Content } from './Content'
-import { useTaskDetailDrawer } from './useTaskDetailDrawer'
-import { useTaskDetailDrawerRef } from './useTaskDetailDrawerRef'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
+import { Slide } from 'src/components/ui/atoms';
+import type { UseClickOutsideOptionsHasClickedOutside } from 'src/hooks/useClickOutside';
+import { Content } from './Content';
+import { useTaskDetailDrawer } from './useTaskDetailDrawer';
+import { useTaskDetailDrawerRef } from './useTaskDetailDrawerRef';
 
 type Props = {
-  backToPage: () => Promise<void>
-  hasClickedOutside: UseClickOutsideOptionsHasClickedOutside
-}
+  backToPage: () => Promise<void>;
+  hasClickedOutside: UseClickOutsideOptionsHasClickedOutside;
+};
 
 export const TaskDetailDrawer: React.FC<Props> = memo((props) => {
-  const { hasClickedOutside, backToPage } = props
-  const { isOpen, onClose } = useTaskDetailDrawer()
-  const { loading } = useTaskDetail()
-  const { ref } = useTaskDetailDrawerRef()
+  const { hasClickedOutside, backToPage } = props;
+  const { isOpen, onClose } = useTaskDetailDrawer();
+  const { loading } = useTaskDetail();
+  const { ref } = useTaskDetailDrawerRef();
 
   const handleClose = useCallback(async () => {
-    await backToPage()
-    await onClose()
-  }, [backToPage, onClose])
+    await backToPage();
+    await onClose();
+  }, [backToPage, onClose]);
 
   return (
     <Slide
@@ -49,6 +49,6 @@ export const TaskDetailDrawer: React.FC<Props> = memo((props) => {
         />
       )}
     </Slide>
-  )
-})
-TaskDetailDrawer.displayName = 'TaskDetailDrawer'
+  );
+});
+TaskDetailDrawer.displayName = 'TaskDetailDrawer';

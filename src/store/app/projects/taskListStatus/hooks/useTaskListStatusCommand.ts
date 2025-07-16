@@ -1,6 +1,6 @@
-import { useRecoilCallback } from 'recoil'
-import type { ProjectTaskListStatus } from 'src/store/app/projects/taskListStatus'
-import { taskListStatusState } from '../atom'
+import { useRecoilCallback } from 'recoil';
+import type { ProjectTaskListStatus } from 'src/store/app/projects/taskListStatus';
+import { taskListStatusState } from '../atom';
 
 export const useTaskListStatusCommand = () => {
   const setTaskListCompletedStatus = useRecoilCallback(
@@ -12,10 +12,10 @@ export const useTaskListStatusCommand = () => {
             ...prev.taskListCompletedStatus,
             ...input,
           },
-        }))
+        }));
       },
     [],
-  )
+  );
 
   const setTaskListSortStatus = useRecoilCallback(
     ({ set }) =>
@@ -26,13 +26,13 @@ export const useTaskListStatusCommand = () => {
             ...prev.taskListSortStatus,
             ...input,
           },
-        }))
+        }));
       },
     [],
-  )
+  );
 
   return {
     setTaskListCompletedStatus,
     setTaskListSortStatus,
-  }
-}
+  };
+};

@@ -1,4 +1,4 @@
-import type { NodeSpec } from 'prosemirror-model'
+import type { NodeSpec } from 'prosemirror-model';
 
 // from prosemirror-schema-basic
 
@@ -8,4 +8,4 @@ export const lineBreak: NodeSpec = {
   selectable: false,
   parseDOM: [{ tag: 'br' }],
   toDOM: () => ['br'],
-}
+};

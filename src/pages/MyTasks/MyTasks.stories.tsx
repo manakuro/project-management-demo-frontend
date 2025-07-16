@@ -1,6 +1,6 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
-import { LayoutDefault } from 'src/components/ui/organisms/Layout'
-import { Container as Page } from './Container'
+import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import { LayoutDefault } from 'src/components/ui/organisms/Layout';
+import { Container as Page } from './Container';
 
 export default {
   title: 'Pages/MyTasks',
@@ -21,13 +21,13 @@ export default {
       </LayoutDefault>
     ),
   ],
-} as ComponentMeta<typeof Page>
+} as ComponentMeta<typeof Page>;
 
-const Template: ComponentStory<typeof Page> = (args) => <Page {...args} />
+const Template: ComponentStory<typeof Page> = (args) => <Page {...args} />;
 
-export const List = Template.bind({})
+export const List = Template.bind({});
 
-export const Detail = Template.bind({})
+export const Detail = Template.bind({});
 Detail.parameters = {
   nextRouter: {
     asPath: '/my_tasks/0BA01GK0BWB1Z78B3A3PK795SFJW9',
@@ -38,9 +38,9 @@ Detail.parameters = {
     },
     route: '/my_tasks/[[...my_tasks]]',
   },
-}
+};
 
-export const Board = Template.bind({})
+export const Board = Template.bind({});
 Board.parameters = {
   nextRouter: {
     asPath: '/my_tasks/board',
@@ -50,9 +50,9 @@ Board.parameters = {
       my_tasks: ['board'],
     },
   },
-}
+};
 
-export const Calendar = Template.bind({})
+export const Calendar = Template.bind({});
 Calendar.parameters = {
   nextRouter: {
     asPath: '/my_tasks/calendar',
@@ -62,9 +62,9 @@ Calendar.parameters = {
       my_tasks: ['calendar'],
     },
   },
-}
+};
 
-export const Files = Template.bind({})
+export const Files = Template.bind({});
 Files.parameters = {
   nextRouter: {
     asPath: '/my_tasks/files',
@@ -74,4 +74,4 @@ Files.parameters = {
       my_tasks: ['files'],
     },
   },
-}
+};

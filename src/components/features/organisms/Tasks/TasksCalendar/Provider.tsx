@@ -1,52 +1,52 @@
-import { useCallback, useMemo, useState } from 'react'
-import { getCalendarMatrix } from 'src/shared/date'
-import { dateFns } from 'src/shared/dateFns'
-import { isHTMLElement } from 'src/shared/isHTMLElement'
-import { createProvider } from 'src/shared/react/createProvider'
-import { useTasksCalendarId } from './useTasksCalendarId'
+import { useCallback, useMemo, useState } from 'react';
+import { getCalendarMatrix } from 'src/shared/date';
+import { dateFns } from 'src/shared/dateFns';
+import { isHTMLElement } from 'src/shared/isHTMLElement';
+import { createProvider } from 'src/shared/react/createProvider';
+import { useTasksCalendarId } from './useTasksCalendarId';
 
 type ContextProps = {
-  calendarRows: Date[][]
-  onVisibleWhenScrollUp: (id: string) => void
-  onVisibleWhenScrollDown: (id: string) => void
-  isSecondRowOfMonth: (row: Date[]) => boolean
-  currentDate: Date
-  onNextMonth: () => void
-  onPrevMonth: () => void
-  resetMonth: () => void
-  resetCount: number
-  setMonth: (date: Date) => void
-  scrollToDate: (date: Date) => void
-}
+  calendarRows: Date[][];
+  onVisibleWhenScrollUp: (id: string) => void;
+  onVisibleWhenScrollDown: (id: string) => void;
+  isSecondRowOfMonth: (row: Date[]) => boolean;
+  currentDate: Date;
+  onNextMonth: () => void;
+  onPrevMonth: () => void;
+  resetMonth: () => void;
+  resetCount: number;
+  setMonth: (date: Date) => void;
+  scrollToDate: (date: Date) => void;
+};
 
 const useValue = (): ContextProps => {
-  const [currentDate, setCurrentDate] = useState(new Date())
-  const [baseDate, setBaseDate] = useState(new Date())
-  const { getCalendarListId, getCalendarListItemId } = useTasksCalendarId()
-  const [resetCount, setResetCount] = useState(0)
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [baseDate, setBaseDate] = useState(new Date());
+  const { getCalendarListId, getCalendarListItemId } = useTasksCalendarId();
+  const [resetCount, setResetCount] = useState(0);
 
   const incrementResetCount = useCallback(() => {
-    setResetCount((s) => s + 1)
-  }, [])
+    setResetCount((s) => s + 1);
+  }, []);
 
   const onNextMonth = useCallback(() => {
-    setCurrentDate((s) => dateFns.addMonths(s, 1))
-  }, [])
+    setCurrentDate((s) => dateFns.addMonths(s, 1));
+  }, []);
 
   const onPrevMonth = useCallback(() => {
-    setCurrentDate((s) => dateFns.subMonths(s, 1))
-  }, [])
+    setCurrentDate((s) => dateFns.subMonths(s, 1));
+  }, []);
 
   const setMonth = useCallback((date: Date) => {
-    setCurrentDate(date)
-    setBaseDate(date)
-  }, [])
+    setCurrentDate(date);
+    setBaseDate(date);
+  }, []);
 
   const resetMonth = useCallback(() => {
-    setMonth(new Date())
-    setBaseDate(new Date())
-    incrementResetCount()
-  }, [setMonth, incrementResetCount])
+    setMonth(new Date());
+    setBaseDate(new Date());
+    incrementResetCount();
+  }, [setMonth, incrementResetCount]);
 
   const calendarRows = useMemo<Date[][]>(
     () =>
@@ -55,7 +55,7 @@ const useValue = (): ContextProps => {
         dateFns.addMonths(baseDate, 6),
       ),
     [baseDate],
-  )
+  );
 
   const isSecondRowOfMonth = useCallback(
     (row: Date[]) => {
@@ -64,32 +64,32 @@ const useValue = (): ContextProps => {
           .filter((c) => c.some((date) => dateFns.isLastDayOfMonth(date)))
           .find((c) => getCalendarListId(c[0]) === getCalendarListId(row[0])) ??
         false
-      )
+      );
     },
     [calendarRows, getCalendarListId],
-  )
+  );
 
   const onVisibleWhenScrollUp = useCallback((id: string) => {
-    setBaseDate((s) => dateFns.subMonths(s, 3))
-    console.log('handleVisibleWhenScrollUp: ', id)
-  }, [])
+    setBaseDate((s) => dateFns.subMonths(s, 3));
+    console.log('handleVisibleWhenScrollUp: ', id);
+  }, []);
 
   const onVisibleWhenScrollDown = useCallback((id: string) => {
-    setBaseDate((s) => dateFns.addMonths(s, 3))
-    console.log('handleVisibleWhenScrollDown: ', id)
-  }, [])
+    setBaseDate((s) => dateFns.addMonths(s, 3));
+    console.log('handleVisibleWhenScrollDown: ', id);
+  }, []);
 
   const scrollToDate = useCallback(
     (date: Date) => {
       setTimeout(() => {
-        const element = document.getElementById(getCalendarListItemId(date))
-        if (!isHTMLElement(element)) return
+        const element = document.getElementById(getCalendarListItemId(date));
+        if (!isHTMLElement(element)) return;
 
-        element.scrollIntoView()
-      })
+        element.scrollIntoView();
+      });
     },
     [getCalendarListItemId],
-  )
+  );
 
   return {
     calendarRows,
@@ -103,9 +103,9 @@ const useValue = (): ContextProps => {
     resetCount,
     setMonth,
     scrollToDate,
-  }
-}
+  };
+};
 useValue.__PROVIDER__ =
-  'src/components/organisms/Tasks/TasksCalendar/Provider.tsx'
+  'src/components/organisms/Tasks/TasksCalendar/Provider.tsx';
 export const { Provider, useContext: useTasksCalendarContext } =
-  createProvider(useValue)
+  createProvider(useValue);

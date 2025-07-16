@@ -1,9 +1,9 @@
-import { memo } from 'react'
-import { useProjectIds } from 'src/store/entities/project'
-import { ListItem } from './ListItem'
+import { memo } from 'react';
+import { useProjectIds } from 'src/store/entities/project';
+import { ListItem } from './ListItem';
 
 export const ProjectList = memo(function ProjectList() {
-  const { projectIds } = useProjectIds()
+  const { projectIds } = useProjectIds();
 
   return (
     <>
@@ -11,5 +11,5 @@ export const ProjectList = memo(function ProjectList() {
         <ListItem projectId={id} key={id} />
       ))}
     </>
-  )
-})
+  );
+});

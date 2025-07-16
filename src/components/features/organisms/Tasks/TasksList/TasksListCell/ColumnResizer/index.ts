@@ -1,1 +1,1 @@
-export * from './ColumnResizer'
+export * from './ColumnResizer';

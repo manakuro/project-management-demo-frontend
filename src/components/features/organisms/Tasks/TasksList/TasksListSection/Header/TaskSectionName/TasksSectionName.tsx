@@ -1,39 +1,40 @@
-import type React from 'react'
-import { memo, useCallback, useMemo } from 'react'
-import { useTasksListSectionContext } from 'src/components/features/organisms/Tasks'
-import { useTasksTaskSection } from 'src/components/features/organisms/Tasks/hooks'
-import { Box } from 'src/components/ui/atoms'
-import { Input } from './Input'
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
+import { useTasksListSectionContext } from 'src/components/features/organisms/Tasks';
+import { useTasksTaskSection } from 'src/components/features/organisms/Tasks/hooks';
+import { Box } from 'src/components/ui/atoms';
+import { Input } from './Input';
 
 type Props = {
-  taskSectionId: string
-}
+  taskSectionId: string;
+};
 
 export const TaskSectionName: React.FC<Props> = memo<Props>((props) => {
   const { taskSection, setSectionName } = useTasksTaskSection(
     props.taskSectionId,
-  )
-  const { focused, onFocusInput, onUnfocusInput } = useTasksListSectionContext()
+  );
+  const { focused, onFocusInput, onUnfocusInput } =
+    useTasksListSectionContext();
 
   const showInput = useMemo(() => {
-    if (taskSection.isNew) return true
-    return focused
-  }, [focused, taskSection.isNew])
+    if (taskSection.isNew) return true;
+    return focused;
+  }, [focused, taskSection.isNew]);
 
   const handleClick = useCallback(() => {
-    onFocusInput()
-  }, [onFocusInput])
+    onFocusInput();
+  }, [onFocusInput]);
 
   const handleClickOutside = useCallback(() => {
-    onUnfocusInput()
-  }, [onUnfocusInput])
+    onUnfocusInput();
+  }, [onUnfocusInput]);
 
   const handleChange = useCallback(
     async (val: string) => {
-      await setSectionName(val)
+      await setSectionName(val);
     },
     [setSectionName],
-  )
+  );
 
   if (showInput) {
     return (
@@ -42,7 +43,7 @@ export const TaskSectionName: React.FC<Props> = memo<Props>((props) => {
         onChange={handleChange}
         value={taskSection.name}
       />
-    )
+    );
   }
 
   return (
@@ -58,6 +59,6 @@ export const TaskSectionName: React.FC<Props> = memo<Props>((props) => {
     >
       {taskSection.name}
     </Box>
-  )
-})
-TaskSectionName.displayName = 'TaskSectionName'
+  );
+});
+TaskSectionName.displayName = 'TaskSectionName';

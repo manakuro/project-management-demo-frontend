@@ -1,17 +1,17 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { useInviteModal } from 'src/components/features/organisms/Modals'
-import { Button, Flex, type FlexProps, Icon } from 'src/components/ui/atoms'
-import { Tooltip } from 'src/components/ui/molecules'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { useInviteModal } from 'src/components/features/organisms/Modals';
+import { Button, Flex, type FlexProps, Icon } from 'src/components/ui/atoms';
+import { Tooltip } from 'src/components/ui/molecules';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const InviteButton: React.FC<Props> = memo<Props>((props) => {
-  const { setIsOpen } = useInviteModal()
+  const { setIsOpen } = useInviteModal();
 
   const handleClick = useCallback(() => {
-    setIsOpen(true)
-  }, [setIsOpen])
+    setIsOpen(true);
+  }, [setIsOpen]);
 
   return (
     <Flex alignItems="center" {...props}>
@@ -31,6 +31,6 @@ export const InviteButton: React.FC<Props> = memo<Props>((props) => {
         </Button>
       </Tooltip>
     </Flex>
-  )
-})
-InviteButton.displayName = 'InviteButton'
+  );
+});
+InviteButton.displayName = 'InviteButton';

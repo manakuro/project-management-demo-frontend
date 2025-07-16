@@ -1,20 +1,20 @@
-import { useCallback } from 'react'
-import { ModalBody, ModalContent } from 'src/components/ui/organisms/Modal'
-import { useMenuStyle } from 'src/hooks'
-import type { BaseEmoji } from 'src/shared/emoji'
-import { EmojiItem } from './EmojiItem'
-import { useEditorEmojiMenu } from './useEditorEmojiMenu'
+import { useCallback } from 'react';
+import { ModalBody, ModalContent } from 'src/components/ui/organisms/Modal';
+import { useMenuStyle } from 'src/hooks';
+import type { BaseEmoji } from 'src/shared/emoji';
+import { EmojiItem } from './EmojiItem';
+import { useEditorEmojiMenu } from './useEditorEmojiMenu';
 
 export function MenuList() {
-  const { emojis, x, y, setValue, containerRef } = useEditorEmojiMenu()
-  const menuStyles = useMenuStyle()
+  const { emojis, x, y, setValue, containerRef } = useEditorEmojiMenu();
+  const menuStyles = useMenuStyle();
 
   const handleClick = useCallback(
     (val: BaseEmoji) => {
-      setValue(val)
+      setValue(val);
     },
     [setValue],
-  )
+  );
 
   return (
     <ModalContent
@@ -34,5 +34,5 @@ export function MenuList() {
         ))}
       </ModalBody>
     </ModalContent>
-  )
+  );
 }

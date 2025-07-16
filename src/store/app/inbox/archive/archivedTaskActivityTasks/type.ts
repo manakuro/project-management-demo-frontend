@@ -1,8 +1,8 @@
-import type { ArchivedTaskActivityTaskResponse } from 'src/graphql/types/archivedTaskActivityTask'
+import type { ArchivedTaskActivityTaskResponse } from 'src/graphql/types/archivedTaskActivityTask';
 
-export type { ArchivedTaskActivityTaskResponse } from 'src/graphql/types/archivedTaskActivityTask'
+export type { ArchivedTaskActivityTaskResponse } from 'src/graphql/types/archivedTaskActivityTask';
 
 export type ArchivedTaskActivityTask = Omit<
   ArchivedTaskActivityTaskResponse,
   'task'
->
+>;

@@ -1,34 +1,34 @@
-import { useDisclosure } from '@chakra-ui/react'
-import type React from 'react'
-import { useCallback } from 'react'
+import { useDisclosure } from '@chakra-ui/react';
+import type React from 'react';
+import { useCallback } from 'react';
 import {
   type Item,
   PADDING_X,
-} from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem'
-import { Box, Button, Flex, MoreLink, Text } from 'src/components/ui/atoms'
+} from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem';
+import { Box, Button, Flex, MoreLink, Text } from 'src/components/ui/atoms';
 
 type Props = {
-  item: Item
-  onToggle: (id: number) => void
-  seeMoreComponent: React.ReactNode
-  nextItem?: Item
-}
+  item: Item;
+  onToggle: (id: number) => void;
+  seeMoreComponent: React.ReactNode;
+  nextItem?: Item;
+};
 
 export const Detail: React.FC<Props> = (props) => {
-  const { item, onToggle, nextItem, seeMoreComponent } = props
-  const disclosure = useDisclosure()
+  const { item, onToggle, nextItem, seeMoreComponent } = props;
+  const disclosure = useDisclosure();
 
   const handleContinue = useCallback(() => {
-    if (!nextItem) return
-    onToggle(nextItem?.id)
-  }, [nextItem, onToggle])
+    if (!nextItem) return;
+    onToggle(nextItem?.id);
+  }, [nextItem, onToggle]);
 
   if (item.detailComponent)
     return (
       <Flex p={PADDING_X} flexDirection="column">
         {item.detailComponent}
       </Flex>
-    )
+    );
 
   return (
     <Flex p={PADDING_X} flexDirection="column">
@@ -69,5 +69,5 @@ export const Detail: React.FC<Props> = (props) => {
         </>
       )}
     </Flex>
-  )
-}
+  );
+};

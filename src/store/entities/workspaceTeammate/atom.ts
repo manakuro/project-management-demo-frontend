@@ -1,8 +1,8 @@
-import { selectorFamily } from 'recoil'
-import { createState } from 'src/store/util'
-import type { WorkspaceTeammate } from './type'
+import { selectorFamily } from 'recoil';
+import { createState } from 'src/store/util';
+import type { WorkspaceTeammate } from './type';
 
-const key = (str: string) => `src/store/entities/workspacesTeammate/${str}`
+const key = (str: string) => `src/store/entities/workspacesTeammate/${str}`;
 
 const initialState = (): WorkspaceTeammate => ({
   id: '',
@@ -12,24 +12,24 @@ const initialState = (): WorkspaceTeammate => ({
   role: '',
   createdAt: '',
   updatedAt: '',
-})
+});
 export const {
   state: workspaceTeammateState,
   listState: workspaceTeammatesState,
   idsState: workspaceTeammateIdsState,
-} = createState({ key, initialState })
+} = createState({ key, initialState });
 
 export const teammateIdsByWorkspaceIdState = selectorFamily<string[], string>({
   key: 'teammateIdsByWorkspaceIdState',
   get:
     (workspaceId) =>
     ({ get }) => {
-      const workspaces = get(workspaceTeammatesState)
+      const workspaces = get(workspaceTeammatesState);
       return workspaces
         .filter((t) => t.workspaceId === workspaceId)
-        .map((p) => p.teammateId)
+        .map((p) => p.teammateId);
     },
-})
+});
 
 export const workspaceTeammateIdsByWorkspaceIdState = selectorFamily<
   string[],
@@ -39,12 +39,12 @@ export const workspaceTeammateIdsByWorkspaceIdState = selectorFamily<
   get:
     (workspaceId) =>
     ({ get }) => {
-      const workspaces = get(workspaceTeammatesState)
+      const workspaces = get(workspaceTeammatesState);
       return workspaces
         .filter((t) => t.workspaceId === workspaceId)
-        .map((p) => p.id)
+        .map((p) => p.id);
     },
-})
+});
 
 export const workspaceTeammateIdsByWorkspaceIdSortedByOwnerState =
   selectorFamily<string[], string>({
@@ -52,17 +52,17 @@ export const workspaceTeammateIdsByWorkspaceIdSortedByOwnerState =
     get:
       (workspaceId) =>
       ({ get }) => {
-        const workspaces = get(workspaceTeammatesState)
+        const workspaces = get(workspaceTeammatesState);
         return workspaces
           .filter((t) => t.workspaceId === workspaceId)
           .sort((a, b) => {
-            if (a.isOwner) return -1
-            if (b.isOwner) return 1
-            return 0
+            if (a.isOwner) return -1;
+            if (b.isOwner) return 1;
+            return 0;
           })
-          .map((p) => p.id)
+          .map((p) => p.id);
       },
-  })
+  });
 
 export const workspaceTeammateIdsByWorkspaceIdSortedByCreatedAtState =
   selectorFamily<string[], string>({
@@ -70,15 +70,15 @@ export const workspaceTeammateIdsByWorkspaceIdSortedByCreatedAtState =
     get:
       (workspaceId) =>
       ({ get }) => {
-        const workspaces = get(workspaceTeammatesState)
+        const workspaces = get(workspaceTeammatesState);
         return workspaces
           .filter((t) => t.workspaceId === workspaceId)
           .sort((a, b) => {
-            return a.createdAt > b.createdAt ? -1 : 1
+            return a.createdAt > b.createdAt ? -1 : 1;
           })
-          .map((p) => p.id)
+          .map((p) => p.id);
       },
-  })
+  });
 
 export const ownerWorkspaceTeammateByWorkspaceIdState = selectorFamily<
   WorkspaceTeammate,
@@ -88,14 +88,14 @@ export const ownerWorkspaceTeammateByWorkspaceIdState = selectorFamily<
   get:
     (workspaceId) =>
     ({ get }) => {
-      const workspaces = get(workspaceTeammatesState)
+      const workspaces = get(workspaceTeammatesState);
       return (
         workspaces.filter(
           (t) => t.workspaceId === workspaceId && t.isOwner,
         )[0] ?? initialState()
-      )
+      );
     },
-})
+});
 
 export const workspaceTeammateByWorkspaceIdAndTeammateIdState = selectorFamily<
   WorkspaceTeammate,
@@ -105,11 +105,11 @@ export const workspaceTeammateByWorkspaceIdAndTeammateIdState = selectorFamily<
   get:
     ({ workspaceId, teammateId }) =>
     ({ get }) => {
-      const workspaces = get(workspaceTeammatesState)
+      const workspaces = get(workspaceTeammatesState);
       return (
         workspaces.find(
           (t) => t.workspaceId === workspaceId && t.teammateId === teammateId,
         ) ?? initialState()
-      )
+      );
     },
-})
+});

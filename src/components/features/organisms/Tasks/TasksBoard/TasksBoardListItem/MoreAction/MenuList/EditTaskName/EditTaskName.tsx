@@ -1,21 +1,21 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { Icon } from 'src/components/ui/atoms'
-import { MenuItem } from 'src/components/ui/organisms/Menu'
-import { useTasksBoardListItemInputContext } from '../../../Provider'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { Icon } from 'src/components/ui/atoms';
+import { MenuItem } from 'src/components/ui/organisms/Menu';
+import { useTasksBoardListItemInputContext } from '../../../Provider';
 
 type Props = {
-  onMouseEnter: () => void
-  onCloseMenu: () => void
-}
+  onMouseEnter: () => void;
+  onCloseMenu: () => void;
+};
 export const EditTaskName: React.FC<Props> = memo((props) => {
-  const { onInputSelect } = useTasksBoardListItemInputContext()
-  const { onMouseEnter, onCloseMenu } = props
+  const { onInputSelect } = useTasksBoardListItemInputContext();
+  const { onMouseEnter, onCloseMenu } = props;
 
   const handleEditTaskName = useCallback(() => {
-    onInputSelect()
-    onCloseMenu()
-  }, [onCloseMenu, onInputSelect])
+    onInputSelect();
+    onCloseMenu();
+  }, [onCloseMenu, onInputSelect]);
 
   return (
     <MenuItem
@@ -25,7 +25,7 @@ export const EditTaskName: React.FC<Props> = memo((props) => {
     >
       Edit task name
     </MenuItem>
-  )
-})
+  );
+});
 
-EditTaskName.displayName = 'EditTaskName'
+EditTaskName.displayName = 'EditTaskName';

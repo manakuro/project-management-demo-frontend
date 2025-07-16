@@ -1,1 +1,1 @@
-export * from './AssigneeChip'
+export * from './AssigneeChip';

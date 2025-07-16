@@ -1,37 +1,37 @@
-import type React from 'react'
-import { memo, useCallback, useMemo } from 'react'
-import { Flex, Icon, IconButton, PortalManager } from 'src/components/ui/atoms'
-import { Menu, MenuButton } from 'src/components/ui/organisms/Menu'
-import { useDisclosure } from 'src/shared/chakra'
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
+import { Flex, Icon, IconButton, PortalManager } from 'src/components/ui/atoms';
+import { Menu, MenuButton } from 'src/components/ui/organisms/Menu';
+import { useDisclosure } from 'src/shared/chakra';
 import {
   useTasksBoardListItemContext,
   useTasksBoardListItemInputContext,
-} from '../Provider'
-import { MenuList } from './MenuList'
+} from '../Provider';
+import { MenuList } from './MenuList';
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const MoreAction: React.FC<Props> = memo<Props>((props) => {
-  const { onClose, onOpen, isOpen } = useDisclosure()
-  const { isHovering } = useTasksBoardListItemContext()
-  const { inputFocused } = useTasksBoardListItemInputContext()
+  const { onClose, onOpen, isOpen } = useDisclosure();
+  const { isHovering } = useTasksBoardListItemContext();
+  const { inputFocused } = useTasksBoardListItemInputContext();
 
   const show = useMemo<boolean>(() => {
-    if (isOpen) return true
-    if (inputFocused) return false
-    if (isHovering) return true
-    return false
-  }, [isHovering, isOpen, inputFocused])
+    if (isOpen) return true;
+    if (inputFocused) return false;
+    if (isHovering) return true;
+    return false;
+  }, [isHovering, isOpen, inputFocused]);
 
   const handleOpen = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation()
-      onOpen()
+      e.stopPropagation();
+      onOpen();
     },
     [onOpen],
-  )
+  );
 
   return (
     <PortalManager zIndex={1500}>
@@ -57,6 +57,6 @@ export const MoreAction: React.FC<Props> = memo<Props>((props) => {
         {isOpen && <MenuList onCloseMenu={onClose} taskId={props.taskId} />}
       </Menu>
     </PortalManager>
-  )
-})
-MoreAction.displayName = 'MoreAction'
+  );
+});
+MoreAction.displayName = 'MoreAction';

@@ -1,10 +1,10 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
 
-type Props = FlexProps
+type Props = FlexProps;
 
-const maxH = 72
+const maxH = 72;
 export const OverviewLeftContent: React.FC<Props> = memo((props) => {
   return (
     <Flex
@@ -16,7 +16,7 @@ export const OverviewLeftContent: React.FC<Props> = memo((props) => {
       flexDirection="column"
       {...props}
     />
-  )
-})
+  );
+});
 
-OverviewLeftContent.displayName = 'OverviewLeftContent'
+OverviewLeftContent.displayName = 'OverviewLeftContent';

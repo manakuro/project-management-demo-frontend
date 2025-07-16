@@ -1,24 +1,24 @@
-import isEqual from 'lodash-es/isEqual'
-import { useRecoilCallback } from 'recoil'
-import { useTaskUnassignedSubscription as useSubscription } from 'src/graphql/hooks'
-import { uuid } from 'src/shared/uuid'
+import isEqual from 'lodash-es/isEqual';
+import { useRecoilCallback } from 'recoil';
+import { useTaskUnassignedSubscription as useSubscription } from 'src/graphql/hooks';
+import { uuid } from 'src/shared/uuid';
 import {
   type TaskUnassignedSubscriptionResponse,
   useTaskCommand,
-} from 'src/store/entities/task'
-import { useResetTeammateTask } from 'src/store/entities/teammateTask'
+} from 'src/store/entities/task';
+import { useResetTeammateTask } from 'src/store/entities/teammateTask';
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
-let previousData: any
+let previousData: any;
 
 type Props = {
-  workspaceId: string
-}
+  workspaceId: string;
+};
 
-export const TASK_UNASSIGNED_SUBSCRIPTION_REQUEST_ID = uuid()
+export const TASK_UNASSIGNED_SUBSCRIPTION_REQUEST_ID = uuid();
 export const useTaskUnassignedSubscription = (props: Props) => {
-  const { resetTeammateTask } = useResetTeammateTask()
-  const { setTaskById } = useTaskCommand()
+  const { resetTeammateTask } = useResetTeammateTask();
+  const { setTaskById } = useTaskCommand();
 
   useSubscription({
     variables: {
@@ -32,23 +32,23 @@ export const useTaskUnassignedSubscription = (props: Props) => {
           previousData?.subscriptionData?.data,
         )
       )
-        return
+        return;
 
       if (data.subscriptionData.data)
-        setBySubscription(data.subscriptionData.data)
-      previousData = data
+        setBySubscription(data.subscriptionData.data);
+      previousData = data;
     },
-  })
+  });
 
   const setBySubscription = useRecoilCallback(
     () => async (response: TaskUnassignedSubscriptionResponse) => {
-      const data = response.taskUnassigned
+      const data = response.taskUnassigned;
 
-      if (__DEV__) console.log('task unassigned!')
+      if (__DEV__) console.log('task unassigned!');
 
-      resetTeammateTask(data.teammateTaskId)
-      await setTaskById(data.task.id, { assigneeId: '' })
+      resetTeammateTask(data.teammateTaskId);
+      await setTaskById(data.task.id, { assigneeId: '' });
     },
     [resetTeammateTask, setTaskById],
-  )
-}
+  );
+};

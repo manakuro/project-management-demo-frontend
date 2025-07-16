@@ -1,1 +1,1 @@
-export * from './ProjectListMenu'
+export * from './ProjectListMenu';

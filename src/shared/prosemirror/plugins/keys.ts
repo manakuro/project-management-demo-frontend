@@ -5,13 +5,13 @@ import {
   joinDown,
   joinUp,
   lift,
-} from 'prosemirror-commands'
-import { redo, undo } from 'prosemirror-history'
-import { undoInputRule } from 'prosemirror-inputrules'
-import { keymap } from 'prosemirror-keymap'
-import type { Plugin } from 'prosemirror-state'
+} from 'prosemirror-commands';
+import { redo, undo } from 'prosemirror-history';
+import { undoInputRule } from 'prosemirror-inputrules';
+import { keymap } from 'prosemirror-keymap';
+import type { Plugin } from 'prosemirror-state';
 
-import { Escape } from 'src/shared/prosemirror/plugins/suggestions/keys'
+import { Escape } from 'src/shared/prosemirror/plugins/suggestions/keys';
 import {
   insertNodeHorizontalRule,
   insertNodeLineBreak,
@@ -26,7 +26,7 @@ import {
   toggleMarkStrikethrough,
   toggleMarkUnderline,
   wrapInBlockquote,
-} from '../config/commands'
+} from '../config/commands';
 
 export const listKeys = (): Plugin =>
   keymap({
@@ -35,7 +35,7 @@ export const listKeys = (): Plugin =>
     Tab: sinkListItemCommand,
     'Shift-Tab': liftListItemCommand,
     Enter: splitListItemCommand,
-  })
+  });
 
 export const editorKeys = (): Plugin =>
   keymap({
@@ -59,6 +59,6 @@ export const editorKeys = (): Plugin =>
     'Shift-Enter': chainCommands(exitCode, insertNodeLineBreak),
     'Ctrl-Enter': chainCommands(exitCode, insertNodeLineBreak), // mac-only?
     'Mod-_': insertNodeHorizontalRule,
-  })
+  });
 
-export const baseKeys = (): Plugin => keymap(baseKeymap)
+export const baseKeys = (): Plugin => keymap(baseKeymap);

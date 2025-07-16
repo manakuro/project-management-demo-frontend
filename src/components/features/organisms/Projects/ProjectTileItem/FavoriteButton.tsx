@@ -1,21 +1,21 @@
-import type React from 'react'
-import { memo } from 'react'
-import { FavoriteIconButton } from 'src/components/ui/molecules'
-import { useClickableHoverStyle } from 'src/hooks'
+import type React from 'react';
+import { memo } from 'react';
+import { FavoriteIconButton } from 'src/components/ui/molecules';
+import { useClickableHoverStyle } from 'src/hooks';
 import {
   useFavoriteProjectIds,
   useFavoriteProjectIdsCommand,
-} from 'src/store/entities/favoriteProjectIds'
+} from 'src/store/entities/favoriteProjectIds';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const FavoriteButton: React.FC<Props> = memo((props) => {
-  const { projectId } = props
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
-  const { setFavoriteProjectId } = useFavoriteProjectIdsCommand()
-  const { isFavorite } = useFavoriteProjectIds()
+  const { projectId } = props;
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
+  const { setFavoriteProjectId } = useFavoriteProjectIdsCommand();
+  const { isFavorite } = useFavoriteProjectIds();
 
   return (
     <FavoriteIconButton
@@ -26,6 +26,6 @@ export const FavoriteButton: React.FC<Props> = memo((props) => {
       pl={2}
       {...clickableHoverLightStyle}
     />
-  )
-})
-FavoriteButton.displayName = 'FavoriteButton'
+  );
+});
+FavoriteButton.displayName = 'FavoriteButton';

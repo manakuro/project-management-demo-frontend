@@ -1,6 +1,6 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { useInviteModal } from 'src/components/features/organisms/Modals/InviteModal/useInviteModal'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { useInviteModal } from 'src/components/features/organisms/Modals/InviteModal/useInviteModal';
 import {
   Flex,
   type FlexProps,
@@ -8,21 +8,21 @@ import {
   IconButton,
   Portal,
   Text,
-} from 'src/components/ui/atoms'
+} from 'src/components/ui/atoms';
 import {
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-} from 'src/components/ui/organisms/Menu'
-import type { IconType } from 'src/shared/icons'
+} from 'src/components/ui/organisms/Menu';
+import type { IconType } from 'src/shared/icons';
 
 export const AddButton: React.FC = memo(() => {
-  const inviteModal = useInviteModal()
+  const inviteModal = useInviteModal();
 
   const handleInvite = useCallback(() => {
-    inviteModal.setIsOpen(true)
-  }, [inviteModal])
+    inviteModal.setIsOpen(true);
+  }, [inviteModal]);
 
   return (
     <Menu placement="bottom-end" isLazy>
@@ -49,20 +49,20 @@ export const AddButton: React.FC = memo(() => {
         </MenuList>
       </Portal>
     </Menu>
-  )
-})
-AddButton.displayName = 'AddButton'
+  );
+});
+AddButton.displayName = 'AddButton';
 
 type IconTextProps = {
-  icon: IconType
-} & FlexProps
+  icon: IconType;
+} & FlexProps;
 
 const IconText: React.FC<IconTextProps> = (props) => {
-  const { icon, ...rest } = props
+  const { icon, ...rest } = props;
   return (
     <Flex alignItems="center" {...rest}>
       <Icon icon={icon} mr={2} mt="-2px" color="gray.500" />
       <Text fontSize="sm">{props.children}</Text>
     </Flex>
-  )
-}
+  );
+};

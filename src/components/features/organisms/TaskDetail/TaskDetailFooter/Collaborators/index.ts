@@ -1,1 +1,1 @@
-export * from './Collaborators'
+export * from './Collaborators';

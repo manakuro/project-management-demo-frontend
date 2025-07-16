@@ -1,1 +1,1 @@
-export * from './AssignTaskMenu'
+export * from './AssignTaskMenu';

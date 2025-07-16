@@ -1,20 +1,20 @@
-import isEqual from 'lodash-es/isEqual'
-import { useRecoilCallback } from 'recoil'
-import { useTaskFeedCreatedSubscription as useSubscription } from 'src/graphql/hooks'
-import { uuid } from 'src/shared/uuid'
-import type { TaskFeedCreatedSubscriptionResponse } from '../type'
-import { useTaskFeedResponse } from './useTaskFeedResponse'
+import isEqual from 'lodash-es/isEqual';
+import { useRecoilCallback } from 'recoil';
+import { useTaskFeedCreatedSubscription as useSubscription } from 'src/graphql/hooks';
+import { uuid } from 'src/shared/uuid';
+import type { TaskFeedCreatedSubscriptionResponse } from '../type';
+import { useTaskFeedResponse } from './useTaskFeedResponse';
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
-let previousData: any
+let previousData: any;
 
 type Props = {
-  workspaceId: string
-}
+  workspaceId: string;
+};
 
-export const TASK_FEED_CREATED_SUBSCRIPTION_REQUEST_ID = uuid()
+export const TASK_FEED_CREATED_SUBSCRIPTION_REQUEST_ID = uuid();
 export const useTaskFeedCreatedSubscription = (props: Props) => {
-  const { setTaskFeed } = useTaskFeedResponse()
+  const { setTaskFeed } = useTaskFeedResponse();
 
   useSubscription({
     variables: {
@@ -28,22 +28,22 @@ export const useTaskFeedCreatedSubscription = (props: Props) => {
           previousData?.subscriptionData?.data,
         )
       )
-        return
+        return;
 
       if (data.subscriptionData.data)
-        setTaskBySubscription(data.subscriptionData.data)
-      previousData = data
+        setTaskBySubscription(data.subscriptionData.data);
+      previousData = data;
     },
-  })
+  });
 
   const setTaskBySubscription = useRecoilCallback(
     () => async (response: TaskFeedCreatedSubscriptionResponse) => {
-      const updated = response.taskFeedCreated
+      const updated = response.taskFeedCreated;
 
-      console.log('subscription created! ')
+      console.log('subscription created! ');
 
-      setTaskFeed([updated])
+      setTaskFeed([updated]);
     },
     [setTaskFeed],
-  )
-}
+  );
+};

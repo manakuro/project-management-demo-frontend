@@ -1,52 +1,52 @@
-import type React from 'react'
-import { memo, useCallback, useState } from 'react'
-import { InvitedTeammateChip } from 'src/components/features/molecules/Chips'
-import { InviteProjectTeammateMenu } from 'src/components/features/organisms/Menus'
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
+import { InvitedTeammateChip } from 'src/components/features/molecules/Chips';
+import { InviteProjectTeammateMenu } from 'src/components/features/organisms/Menus';
 import {
   Input as AtomsInput,
   Flex,
   Textarea,
   Wrap,
   WrapItem,
-} from 'src/components/ui/atoms'
-import { useDisclosure } from 'src/shared/chakra'
-import type { Teammate } from 'src/store/entities/teammate'
-import { PermissionMenu } from '../PermissionMenu'
+} from 'src/components/ui/atoms';
+import { useDisclosure } from 'src/shared/chakra';
+import type { Teammate } from 'src/store/entities/teammate';
+import { PermissionMenu } from '../PermissionMenu';
 
 type Props = {
-  projectId: string
-  invitedTeammates: Teammate[]
-  onSetInvitedTeammates: (val: Teammate) => void
-  onDeleteInvitedTeammate: (teammateId: string) => void
-}
+  projectId: string;
+  invitedTeammates: Teammate[];
+  onSetInvitedTeammates: (val: Teammate) => void;
+  onDeleteInvitedTeammate: (teammateId: string) => void;
+};
 
 export const SendForm: React.FC<Props> = memo<Props>((props) => {
   const { onSetInvitedTeammates, invitedTeammates, onDeleteInvitedTeammate } =
-    props
-  const popoverDisclosure = useDisclosure()
-  const [value, setValue] = useState<string>('')
+    props;
+  const popoverDisclosure = useDisclosure();
+  const [value, setValue] = useState<string>('');
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const val = e.target.value
-      setValue(val)
+      const val = e.target.value;
+      setValue(val);
       if (val) {
-        popoverDisclosure.onOpen()
-        return
+        popoverDisclosure.onOpen();
+        return;
       }
-      popoverDisclosure.onClose()
+      popoverDisclosure.onClose();
     },
     [popoverDisclosure],
-  )
+  );
 
   const handleSelect = useCallback(
     (val: Teammate) => {
-      console.log(val)
-      onSetInvitedTeammates(val)
-      setValue('')
+      console.log(val);
+      onSetInvitedTeammates(val);
+      setValue('');
     },
     [onSetInvitedTeammates],
-  )
+  );
 
   return (
     <>
@@ -103,6 +103,6 @@ export const SendForm: React.FC<Props> = memo<Props>((props) => {
         />
       </Flex>
     </>
-  )
-})
-SendForm.displayName = 'SendForm'
+  );
+});
+SendForm.displayName = 'SendForm';

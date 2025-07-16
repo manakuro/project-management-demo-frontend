@@ -1,10 +1,10 @@
-import type { NodeSpec } from 'prosemirror-model'
+import type { NodeSpec } from 'prosemirror-model';
 
 // changed from prosemirror-schema-list
 
 interface Attrs {
-  type: string
-  start?: number
+  type: string;
+  start?: number;
 }
 
 export const list: NodeSpec = {
@@ -19,35 +19,35 @@ export const list: NodeSpec = {
       tag: 'ol',
       // @ts-ignore
       getAttrs: (element: HTMLOListElement): Attrs => {
-        const start = element.getAttribute('start')
+        const start = element.getAttribute('start');
 
         return {
           type: 'ordered',
           start: start === null ? 1 : Number(start),
-        }
+        };
       },
     },
     { tag: 'ul.simple', getAttrs: () => ({ type: 'simple' }) },
     { tag: 'ul', getAttrs: () => ({ type: 'bullet' }) },
   ],
   toDOM: (node) => {
-    const { type, start } = node.attrs as Attrs
+    const { type, start } = node.attrs as Attrs;
 
     switch (type) {
       case 'ordered':
-        return ['ol', { start: start === 1 ? undefined : String(start) }, 0]
+        return ['ol', { start: start === 1 ? undefined : String(start) }, 0];
 
       case 'simple':
-        return ['ul', { class: 'simple' }, 0]
+        return ['ul', { class: 'simple' }, 0];
       default:
-        return ['ul', 0]
+        return ['ul', 0];
     }
   },
-}
+};
 
 export const listItem: NodeSpec = {
   content: 'paragraph block*', // 'block+',
   defining: true,
   parseDOM: [{ tag: 'li' }],
   toDOM: () => ['li', 0],
-}
+};

@@ -1,2 +1,2 @@
-export * from './FileViewerModal'
-export * from './useFileViewerModal'
+export * from './FileViewerModal';
+export * from './useFileViewerModal';

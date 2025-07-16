@@ -1,19 +1,19 @@
-import type React from 'react'
-import { memo } from 'react'
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
-import { Flex, Text } from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
-import { useWorkspace } from 'src/store/entities/workspace'
-import { PermissionMenu } from '../../PermissionMenu'
+import type React from 'react';
+import { memo } from 'react';
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
+import { Flex, Text } from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
+import { useWorkspace } from 'src/store/entities/workspace';
+import { PermissionMenu } from '../../PermissionMenu';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const MembersAndCollaboratorsListItem: React.FC<Props> = memo<Props>(
   () => {
-    const { clickableHoverStyle } = useClickableHoverStyle()
-    const { workspace } = useWorkspace()
+    const { clickableHoverStyle } = useClickableHoverStyle();
+    const { workspace } = useWorkspace();
 
     return (
       <Flex
@@ -33,7 +33,7 @@ export const MembersAndCollaboratorsListItem: React.FC<Props> = memo<Props>(
           <PermissionMenu />
         </Flex>
       </Flex>
-    )
+    );
   },
-)
-MembersAndCollaboratorsListItem.displayName = 'MembersAndCollaboratorsListItem'
+);
+MembersAndCollaboratorsListItem.displayName = 'MembersAndCollaboratorsListItem';

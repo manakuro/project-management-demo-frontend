@@ -1,11 +1,11 @@
 import {
   Checkbox as ChakraCheckBox,
   type CheckboxProps as ChakraCheckboxProps,
-} from '@chakra-ui/react'
-import type React from 'react'
+} from '@chakra-ui/react';
+import type React from 'react';
 
-type Props = ChakraCheckboxProps
-export type CheckboxProps = Props
+type Props = ChakraCheckboxProps;
+export type CheckboxProps = Props;
 
 export const Checkbox: React.FC<Props> = (props) => {
   return (
@@ -18,5 +18,5 @@ export const Checkbox: React.FC<Props> = (props) => {
         },
       }}
     />
-  )
-}
+  );
+};

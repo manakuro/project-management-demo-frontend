@@ -1,14 +1,14 @@
-import { Flex, Grid } from 'src/components/ui/atoms'
-import { useProjectsProjectId } from 'src/store/app/projects/project'
-import { useProjectTeammateIdsByProjectIdSortedByOwner } from 'src/store/entities/projectTeammate'
-import { OverviewContentHeading } from '../OverviewContentHeading'
-import { ProjectRoleAddMember } from './ProjectRoleAddMember'
-import { ProjectRoleListItem } from './ProjectRoleListItem'
+import { Flex, Grid } from 'src/components/ui/atoms';
+import { useProjectsProjectId } from 'src/store/app/projects/project';
+import { useProjectTeammateIdsByProjectIdSortedByOwner } from 'src/store/entities/projectTeammate';
+import { OverviewContentHeading } from '../OverviewContentHeading';
+import { ProjectRoleAddMember } from './ProjectRoleAddMember';
+import { ProjectRoleListItem } from './ProjectRoleListItem';
 
 export function ProjectRolesSection() {
-  const { projectId } = useProjectsProjectId()
+  const { projectId } = useProjectsProjectId();
   const { projectTeammateIds } =
-    useProjectTeammateIdsByProjectIdSortedByOwner(projectId)
+    useProjectTeammateIdsByProjectIdSortedByOwner(projectId);
 
   return (
     <Flex flexDirection="column" mt={8}>
@@ -28,5 +28,5 @@ export function ProjectRolesSection() {
         ))}
       </Grid>
     </Flex>
-  )
+  );
 }

@@ -1,40 +1,40 @@
-import type React from 'react'
-import { memo, useCallback, useEffect, useState } from 'react'
-import { Flex, Input, type InputProps } from 'src/components/ui/atoms'
-import { useClickOutside, useDebounce } from 'src/hooks'
+import type React from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
+import { Flex, Input, type InputProps } from 'src/components/ui/atoms';
+import { useClickOutside, useDebounce } from 'src/hooks';
 
 type Props = {
-  value: string
-  onChange: (val: string) => void
-  isNew?: boolean
-  deleteTask?: () => Promise<void>
-  focusedBorder?: boolean
-} & Omit<InputProps, 'onChange'>
+  value: string;
+  onChange: (val: string) => void;
+  isNew?: boolean;
+  deleteTask?: () => Promise<void>;
+  focusedBorder?: boolean;
+} & Omit<InputProps, 'onChange'>;
 
 export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
-  const [value, setValue] = useState<string>(props.value)
+  const [value, setValue] = useState<string>(props.value);
   const { ref, removeEventListener } = useClickOutside(
     async () => {
-      if (!value) await props.deleteTask?.()
+      if (!value) await props.deleteTask?.();
     },
     {
       skip: !props.isNew,
     },
-  )
+  );
 
   useEffect(() => {
-    if (!props.isNew) removeEventListener()
-  }, [props.isNew, removeEventListener])
+    if (!props.isNew) removeEventListener();
+  }, [props.isNew, removeEventListener]);
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value)
-  }, [])
+    setValue(e.target.value);
+  }, []);
 
   useEffect(() => {
-    setValue(props.value)
-  }, [props.value])
+    setValue(props.value);
+  }, [props.value]);
 
-  useDebounce(value, props.onChange, 500)
+  useDebounce(value, props.onChange, 500);
 
   return (
     <Flex
@@ -61,6 +61,6 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
         variant="unstyled"
       />
     </Flex>
-  )
-})
-TasksNameField.displayName = 'TasksNameField'
+  );
+});
+TasksNameField.displayName = 'TasksNameField';

@@ -1,1 +1,1 @@
-export * from './MoreActionMenu'
+export * from './MoreActionMenu';

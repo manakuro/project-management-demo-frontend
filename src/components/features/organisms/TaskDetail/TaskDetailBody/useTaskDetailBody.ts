@@ -1,28 +1,28 @@
-import { useEffect, useRef } from 'react'
-import { atom, useRecoilState } from 'recoil'
+import { useEffect, useRef } from 'react';
+import { atom, useRecoilState } from 'recoil';
 
 const key = (str: string) =>
-  `src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody/${str}`
+  `src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody/${str}`;
 
-type State = HTMLElement | null
+type State = HTMLElement | null;
 
 const refState = atom<State>({
   key: key('refState'),
   default: null,
-})
+});
 
 export const useTaskDetailBody = () => {
-  const ref = useRef<HTMLElement | null>(null)
-  const [state, setState] = useRecoilState(refState)
+  const ref = useRef<HTMLElement | null>(null);
+  const [state, setState] = useRecoilState(refState);
 
   useEffect(() => {
     if (ref.current) {
-      setState(ref.current)
+      setState(ref.current);
     }
-  }, [setState])
+  }, [setState]);
 
   return {
     ref,
     taskDetailBodyDom: state,
-  }
-}
+  };
+};

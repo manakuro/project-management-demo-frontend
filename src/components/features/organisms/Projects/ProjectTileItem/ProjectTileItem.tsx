@@ -1,7 +1,7 @@
-import type React from 'react'
-import { memo } from 'react'
-import { PopoverProjectMenu } from 'src/components/features/organisms/Popovers'
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
+import type React from 'react';
+import { memo } from 'react';
+import { PopoverProjectMenu } from 'src/components/features/organisms/Popovers';
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
 import {
   AvatarGroup,
   Fade,
@@ -9,27 +9,27 @@ import {
   type FlexProps,
   Icon,
   IconButton,
-} from 'src/components/ui/atoms'
-import type { IconType } from 'src/shared/icons'
-import { useProject } from 'src/store/entities/project'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
-import { useProjectIcon } from 'src/store/entities/projectIcon'
-import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate'
-import { transitions } from 'src/styles'
-import { Container } from './Container'
-import { FavoriteButton } from './FavoriteButton'
+} from 'src/components/ui/atoms';
+import type { IconType } from 'src/shared/icons';
+import { useProject } from 'src/store/entities/project';
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
+import { useProjectIcon } from 'src/store/entities/projectIcon';
+import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate';
+import { transitions } from 'src/styles';
+import { Container } from './Container';
+import { FavoriteButton } from './FavoriteButton';
 
 type Props = {
-  projectId: string
-  containerStyle?: FlexProps
-}
+  projectId: string;
+  containerStyle?: FlexProps;
+};
 
 export const ProjectTileItem: React.FC<Props> = memo((props) => {
-  const { projectId, containerStyle } = props
-  const { project } = useProject(projectId)
-  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
-  const { projectIcon } = useProjectIcon(project.projectIconId)
-  const { teammateIds } = useTeammateIdsByProjectId(projectId)
+  const { projectId, containerStyle } = props;
+  const { project } = useProject(projectId);
+  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId);
+  const { projectIcon } = useProjectIcon(project.projectIconId);
+  const { teammateIds } = useTeammateIdsByProjectId(projectId);
 
   return (
     <Container
@@ -107,6 +107,6 @@ export const ProjectTileItem: React.FC<Props> = memo((props) => {
         </Flex>
       )}
     </Container>
-  )
-})
-ProjectTileItem.displayName = 'ProjectTileItem'
+  );
+});
+ProjectTileItem.displayName = 'ProjectTileItem';

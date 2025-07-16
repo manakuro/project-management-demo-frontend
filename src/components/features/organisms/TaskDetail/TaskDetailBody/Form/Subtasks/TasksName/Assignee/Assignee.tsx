@@ -1,17 +1,17 @@
-import type React from 'react'
-import { memo } from 'react'
-import { AssigneeIconMenu } from 'src/components/features/organisms/Menus'
-import { useTask } from 'src/store/entities/task'
-import { useAssignee } from './useAssignee'
+import type React from 'react';
+import { memo } from 'react';
+import { AssigneeIconMenu } from 'src/components/features/organisms/Menus';
+import { useTask } from 'src/store/entities/task';
+import { useAssignee } from './useAssignee';
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const Assignee: React.FC<Props> = memo<Props>((props) => {
-  const { taskId } = props
-  const { task } = useTask(taskId)
-  const { onAssigneeClosed, onAssigneeOpened, showIcon } = useAssignee()
+  const { taskId } = props;
+  const { task } = useTask(taskId);
+  const { onAssigneeClosed, onAssigneeOpened, showIcon } = useAssignee();
 
   return (
     <AssigneeIconMenu
@@ -21,6 +21,6 @@ export const Assignee: React.FC<Props> = memo<Props>((props) => {
       onAssigneeOpened={onAssigneeOpened}
       showIcon={showIcon}
     />
-  )
-})
-Assignee.displayName = 'Assignee'
+  );
+});
+Assignee.displayName = 'Assignee';

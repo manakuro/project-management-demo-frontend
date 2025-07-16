@@ -1,12 +1,12 @@
-import type React from 'react'
-import { memo } from 'react'
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
+import type React from 'react';
+import { memo } from 'react';
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
 
 type Props = {
-  teammateId: string
-}
+  teammateId: string;
+};
 
 export const Teammate: React.FC<Props> = memo((props) => {
-  return <TeammateAvatar teammateId={props.teammateId} size="xs" />
-})
-Teammate.displayName = 'Teammate'
+  return <TeammateAvatar teammateId={props.teammateId} size="xs" />;
+});
+Teammate.displayName = 'Teammate';

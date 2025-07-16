@@ -1,1 +1,1 @@
-export * from './AddRole'
+export * from './AddRole';

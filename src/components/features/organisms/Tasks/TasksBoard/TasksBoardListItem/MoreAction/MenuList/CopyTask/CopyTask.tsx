@@ -1,26 +1,26 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { Icon } from 'src/components/ui/atoms'
-import { MenuItem } from 'src/components/ui/organisms/Menu'
-import { useToast } from 'src/hooks'
-import { taskDetailURL } from 'src/router'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { Icon } from 'src/components/ui/atoms';
+import { MenuItem } from 'src/components/ui/organisms/Menu';
+import { useToast } from 'src/hooks';
+import { taskDetailURL } from 'src/router';
 
 type Props = {
-  onMouseEnter: () => void
-  onCloseMenu: () => void
-  taskId: string
-}
+  onMouseEnter: () => void;
+  onCloseMenu: () => void;
+  taskId: string;
+};
 export const CopyTask: React.FC<Props> = memo((props) => {
-  const { onMouseEnter, onCloseMenu } = props
-  const { toast } = useToast()
+  const { onMouseEnter, onCloseMenu } = props;
+  const { toast } = useToast();
 
   const handleClick = useCallback(async () => {
-    await navigator.clipboard.writeText(taskDetailURL(props.taskId))
+    await navigator.clipboard.writeText(taskDetailURL(props.taskId));
     toast({
       description: 'The task link was copied to your clipboard.',
-    })
-    onCloseMenu()
-  }, [onCloseMenu, props.taskId, toast])
+    });
+    onCloseMenu();
+  }, [onCloseMenu, props.taskId, toast]);
 
   return (
     <MenuItem
@@ -31,7 +31,7 @@ export const CopyTask: React.FC<Props> = memo((props) => {
     >
       Copy task link
     </MenuItem>
-  )
-})
+  );
+});
 
-CopyTask.displayName = 'CopyTask'
+CopyTask.displayName = 'CopyTask';

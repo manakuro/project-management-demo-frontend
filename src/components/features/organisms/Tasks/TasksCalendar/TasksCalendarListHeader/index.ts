@@ -1,1 +1,1 @@
-export * from './TasksCalendarListHeader'
+export * from './TasksCalendarListHeader';

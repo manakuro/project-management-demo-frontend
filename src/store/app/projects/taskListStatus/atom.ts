@@ -1,9 +1,9 @@
-import { atom, selectorFamily } from 'recoil'
-import { TaskListCompletedStatusCode } from 'src/store/entities/taskListCompletedStatus'
-import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
-import type { ProjectTaskListStatus } from './type'
+import { atom, selectorFamily } from 'recoil';
+import { TaskListCompletedStatusCode } from 'src/store/entities/taskListCompletedStatus';
+import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus';
+import type { ProjectTaskListStatus } from './type';
 
-const key = (str: string) => `src/store/app/projects/taskListStatus/${str}`
+const key = (str: string) => `src/store/app/projects/taskListStatus/${str}`;
 
 export const taskListStatusState = atom<ProjectTaskListStatus>({
   key: key('taskListStatusState'),
@@ -22,7 +22,7 @@ export const taskListStatusState = atom<ProjectTaskListStatus>({
     createdAt: '',
     updatedAt: '',
   },
-})
+});
 
 export const isTaskListCompletedStatusState = selectorFamily<
   boolean,
@@ -32,13 +32,13 @@ export const isTaskListCompletedStatusState = selectorFamily<
   get:
     (key) =>
     ({ get }) => {
-      const taskStatus = get(taskListStatusState)
+      const taskStatus = get(taskListStatusState);
       return (
         taskStatus.taskListCompletedStatus.statusCode ===
         taskListCompletedStatues[key]
-      )
+      );
     },
-})
+});
 
 export const isTaskListSortStatusState = selectorFamily<
   boolean,
@@ -48,12 +48,12 @@ export const isTaskListSortStatusState = selectorFamily<
   get:
     (key) =>
     ({ get }) => {
-      const taskStatus = get(taskListStatusState)
+      const taskStatus = get(taskListStatusState);
       return (
         taskStatus.taskListSortStatus.statusCode === taskListSortStatues[key]
-      )
+      );
     },
-})
+});
 
 export const taskListSortStatues = {
   none: TaskListSortStatusCode.None,
@@ -63,8 +63,8 @@ export const taskListSortStatues = {
   assignee: TaskListSortStatusCode.Assignee,
   creationTime: TaskListSortStatusCode.CreationTime,
   priority: TaskListSortStatusCode.Priority,
-} as const
-export type TaskListSortStatuses = keyof typeof taskListSortStatues
+} as const;
+export type TaskListSortStatuses = keyof typeof taskListSortStatues;
 
 export const taskListCompletedStatues = {
   incomplete: TaskListCompletedStatusCode.Incomplete,
@@ -75,5 +75,5 @@ export const taskListCompletedStatues = {
   completed2Weeks: TaskListCompletedStatusCode.Completed_2Weeks,
   completed3Weeks: TaskListCompletedStatusCode.Completed_3Weeks,
   all: TaskListCompletedStatusCode.All,
-} as const
-export type TaskListCompletedStatuses = keyof typeof taskListCompletedStatues
+} as const;
+export type TaskListCompletedStatuses = keyof typeof taskListCompletedStatues;

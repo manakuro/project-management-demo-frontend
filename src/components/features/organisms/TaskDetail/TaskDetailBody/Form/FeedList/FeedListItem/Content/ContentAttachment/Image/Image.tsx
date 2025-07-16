@@ -1,21 +1,21 @@
-import type React from 'react'
-import { memo } from 'react'
+import type React from 'react';
+import { memo } from 'react';
 import {
   Image as AtomsImage,
   Flex,
   type FlexProps,
   Link,
   Text,
-} from 'src/components/ui/atoms'
-import { useTaskFile } from 'src/store/entities/taskFile'
+} from 'src/components/ui/atoms';
+import { useTaskFile } from 'src/store/entities/taskFile';
 
 type Props = FlexProps & {
-  taskFileId: string
-}
+  taskFileId: string;
+};
 
 export const Image: React.FC<Props> = memo<Props>((props) => {
-  const { onClick, taskFileId, ...rest } = props
-  const { taskFile } = useTaskFile(taskFileId)
+  const { onClick, taskFileId, ...rest } = props;
+  const { taskFile } = useTaskFile(taskFileId);
 
   return (
     <Flex flexDirection="column" {...rest}>
@@ -55,6 +55,6 @@ export const Image: React.FC<Props> = memo<Props>((props) => {
         </Link>
       </Text>
     </Flex>
-  )
-})
-Image.displayName = 'Image'
+  );
+});
+Image.displayName = 'Image';

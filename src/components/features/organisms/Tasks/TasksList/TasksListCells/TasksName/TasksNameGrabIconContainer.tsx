@@ -1,18 +1,18 @@
-import type React from 'react'
-import { memo, useMemo } from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { useTasksNameContext } from './TasksNameProvider'
+import type React from 'react';
+import { memo, useMemo } from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { useTasksNameContext } from './TasksNameProvider';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const TasksNameGrabIconContainer: React.FC<Props> = memo<Props>(
   (props) => {
-    const { isHovering, inputFocused } = useTasksNameContext()
+    const { isHovering, inputFocused } = useTasksNameContext();
     const borderColor = useMemo(() => {
-      if (inputFocused) return 'cyan.400'
-      if (isHovering) return 'gray.400'
-      return 'white'
-    }, [inputFocused, isHovering])
+      if (inputFocused) return 'cyan.400';
+      if (isHovering) return 'gray.400';
+      return 'white';
+    }, [inputFocused, isHovering]);
 
     return (
       <Flex
@@ -29,7 +29,7 @@ export const TasksNameGrabIconContainer: React.FC<Props> = memo<Props>(
         alignItems="center"
         {...props}
       />
-    )
+    );
   },
-)
-TasksNameGrabIconContainer.displayName = 'TasksNameGrabIconContainer'
+);
+TasksNameGrabIconContainer.displayName = 'TasksNameGrabIconContainer';

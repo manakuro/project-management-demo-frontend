@@ -1,29 +1,29 @@
-import type React from 'react'
-import { memo, useEffect, useMemo } from 'react'
-import { useAssigneeMenu } from 'src/components/features/organisms/Menus/AssigneeMenu/useAssigneeMenu'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { useMenuStyle } from 'src/hooks'
-import { useHover } from 'src/hooks/useHover'
+import type React from 'react';
+import { memo, useEffect, useMemo } from 'react';
+import { useAssigneeMenu } from 'src/components/features/organisms/Menus/AssigneeMenu/useAssigneeMenu';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { useMenuStyle } from 'src/hooks';
+import { useHover } from 'src/hooks/useHover';
 
 type Props = FlexProps & {
-  index: number
-}
+  index: number;
+};
 
 export const ListItem: React.FC<Props> = memo<Props>((props) => {
-  const styles = useMenuStyle().item
-  const { ref, isHovering } = useHover()
-  const { selectedIndex, setSelectedIndex } = useAssigneeMenu()
+  const styles = useMenuStyle().item;
+  const { ref, isHovering } = useHover();
+  const { selectedIndex, setSelectedIndex } = useAssigneeMenu();
 
-  styles._hover = undefined
+  styles._hover = undefined;
 
   useEffect(() => {
-    if (isHovering) setSelectedIndex(props.index)
-  }, [isHovering, props.index, setSelectedIndex])
+    if (isHovering) setSelectedIndex(props.index);
+  }, [isHovering, props.index, setSelectedIndex]);
 
   const selected = useMemo(
     () => props.index === selectedIndex,
     [props.index, selectedIndex],
-  )
+  );
 
   return (
     <Flex
@@ -34,6 +34,6 @@ export const ListItem: React.FC<Props> = memo<Props>((props) => {
       {...styles}
       {...props}
     />
-  )
-})
-ListItem.displayName = 'ListItem'
+  );
+});
+ListItem.displayName = 'ListItem';

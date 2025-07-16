@@ -1,1 +1,1 @@
-export * from './AddTaskButton'
+export * from './AddTaskButton';

@@ -1,18 +1,18 @@
-import { useCallback, useMemo, useState } from 'react'
-import { useProjectsPageQuery as useQuery } from 'src/graphql/hooks'
-import type { ProjectsPageQueryVariables as Variables } from 'src/graphql/types/app/projects'
-import { useMountedRef } from 'src/hooks'
-import { useProjectsResponse } from 'src/store/app/projects'
+import { useCallback, useMemo, useState } from 'react';
+import { useProjectsPageQuery as useQuery } from 'src/graphql/hooks';
+import type { ProjectsPageQueryVariables as Variables } from 'src/graphql/types/app/projects';
+import { useMountedRef } from 'src/hooks';
+import { useProjectsResponse } from 'src/store/app/projects';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const useProjectsPageQuery = (props: Props) => {
-  const skip = useMemo(() => !props.projectId, [props.projectId])
-  const [loading, setLoading] = useState(true)
-  const { setProjects } = useProjectsResponse()
-  const { mountedRef } = useMountedRef()
+  const skip = useMemo(() => !props.projectId, [props.projectId]);
+  const [loading, setLoading] = useState(true);
+  const { setProjects } = useProjectsResponse();
+  const { mountedRef } = useMountedRef();
 
   const { refetch: refetchQuery } = useQuery({
     variables: {
@@ -21,35 +21,35 @@ export const useProjectsPageQuery = (props: Props) => {
     fetchPolicy: 'no-cache',
     notifyOnNetworkStatusChange: true,
     onCompleted: (data) => {
-      if (!mountedRef.current) return
+      if (!mountedRef.current) return;
 
-      setProjects(data)
-      endLoading()
+      setProjects(data);
+      endLoading();
     },
     skip,
-  })
+  });
 
   const startLoading = useCallback(() => {
-    setLoading(true)
-  }, [])
+    setLoading(true);
+  }, []);
 
   const endLoading = useCallback(() => {
-    setLoading(false)
-  }, [])
+    setLoading(false);
+  }, []);
 
   const refetch = useCallback(
     async (variables: Variables) => {
-      startLoading()
+      startLoading();
       setTimeout(async () => {
-        await refetchQuery(variables)
-      })
+        await refetchQuery(variables);
+      });
     },
     [refetchQuery, startLoading],
-  )
+  );
 
   return {
     startLoading,
     refetch,
     loading,
-  }
-}
+  };
+};

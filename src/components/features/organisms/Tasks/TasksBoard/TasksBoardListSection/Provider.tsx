@@ -1,36 +1,36 @@
-import { useCallback, useState } from 'react'
-import { createProvider } from 'src/shared/react/createProvider'
+import { useCallback, useState } from 'react';
+import { createProvider } from 'src/shared/react/createProvider';
 
 type ContextProps = {
-  focused: boolean
-  onFocusInput: () => void
-  onUnfocusInput: () => void
-  taskSectionId: string
-}
+  focused: boolean;
+  onFocusInput: () => void;
+  onUnfocusInput: () => void;
+  taskSectionId: string;
+};
 
 type Props = {
-  taskSectionId: string
-}
+  taskSectionId: string;
+};
 
 const useValue = (props: Props): ContextProps => {
-  const [focused, setFocused] = useState(false)
+  const [focused, setFocused] = useState(false);
 
   const onFocusInput = useCallback(() => {
-    setFocused(true)
-  }, [])
+    setFocused(true);
+  }, []);
 
   const onUnfocusInput = useCallback(() => {
-    setFocused(false)
-  }, [])
+    setFocused(false);
+  }, []);
 
   return {
     focused,
     onFocusInput,
     onUnfocusInput,
     taskSectionId: props.taskSectionId,
-  } as const
-}
+  } as const;
+};
 useValue.__PROVIDER__ =
-  'src/components/organisms/Tasks/TasksBoard/TasksBoardListSection/Provider.tsx'
+  'src/components/organisms/Tasks/TasksBoard/TasksBoardListSection/Provider.tsx';
 export const { Provider, useContext: useTasksBoardListSectionContext } =
-  createProvider(useValue)
+  createProvider(useValue);

@@ -1,15 +1,15 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, type FlexProps, Skeleton } from 'src/components/ui/atoms'
-import { Collaborators } from './Collaborators'
-import { Comment } from './Comment'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, type FlexProps, Skeleton } from 'src/components/ui/atoms';
+import { Collaborators } from './Collaborators';
+import { Comment } from './Comment';
 
 type Props = {
-  loading?: boolean
-} & FlexProps
+  loading?: boolean;
+} & FlexProps;
 
 export const TaskDetailFooter: React.FC<Props> = memo<Props>((props) => {
-  const { loading, ...rest } = props
+  const { loading, ...rest } = props;
   if (props.loading)
     return (
       <Flex flex={1} px={6} py={2} bg="gray.50" flexDirection="column">
@@ -21,7 +21,7 @@ export const TaskDetailFooter: React.FC<Props> = memo<Props>((props) => {
           <Skeleton w="100%" height="36px" />
         </Flex>
       </Flex>
-    )
+    );
 
   return (
     <Flex
@@ -37,6 +37,6 @@ export const TaskDetailFooter: React.FC<Props> = memo<Props>((props) => {
       <Comment />
       <Collaborators />
     </Flex>
-  )
-})
-TaskDetailFooter.displayName = 'TaskDetailFooter'
+  );
+});
+TaskDetailFooter.displayName = 'TaskDetailFooter';

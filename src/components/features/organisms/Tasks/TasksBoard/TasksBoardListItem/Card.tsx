@@ -1,43 +1,43 @@
-import type React from 'react'
-import { memo, useCallback, useMemo } from 'react'
-import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks'
-import { Collapse, Flex, type FlexProps } from 'src/components/ui/atoms'
-import { useTask } from 'src/store/entities/task'
-import { transitions } from 'src/styles'
-import { useTasksBoardListItemContext } from './Provider'
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
+import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks';
+import { Collapse, Flex, type FlexProps } from 'src/components/ui/atoms';
+import { useTask } from 'src/store/entities/task';
+import { transitions } from 'src/styles';
+import { useTasksBoardListItemContext } from './Provider';
 
 type Props = FlexProps & {
-  taskId: string
-}
+  taskId: string;
+};
 export const Card: React.FC<Props> = memo<Props>((props) => {
-  const { isOpening } = useTasksBoardListItemContext()
+  const { isOpening } = useTasksBoardListItemContext();
 
   return (
     <Collapse in={isOpening} animateOpacity style={{ overflow: 'initial' }}>
       <Component {...props} />
     </Collapse>
-  )
-})
+  );
+});
 
 const Component: React.FC<Props> = memo<Props>((props) => {
-  const { taskId, ...rest } = props
-  const { ref, selected } = useTasksBoardListItemContext()
-  const { navigateToTaskDetail } = useTasksRouter()
-  const { task } = useTask(taskId)
+  const { taskId, ...rest } = props;
+  const { ref, selected } = useTasksBoardListItemContext();
+  const { navigateToTaskDetail } = useTasksRouter();
+  const { task } = useTask(taskId);
   const style = useMemo(
     (): FlexProps => ({
       ...(task.completed ? { opacity: 0.6 } : {}),
       ...(selected ? { bg: 'teal.100', borderColor: 'teal.400' } : {}),
     }),
     [selected, task.completed],
-  )
+  );
   const handleClick = useCallback(
     async (e: React.MouseEvent<HTMLDivElement>) => {
-      e.stopPropagation()
-      await navigateToTaskDetail(taskId)
+      e.stopPropagation();
+      await navigateToTaskDetail(taskId);
     },
     [navigateToTaskDetail, taskId],
-  )
+  );
 
   return (
     <Flex
@@ -62,7 +62,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
       {...style}
       {...rest}
     />
-  )
-})
-Component.displayName = 'Component'
-Card.displayName = 'Card'
+  );
+});
+Component.displayName = 'Component';
+Card.displayName = 'Card';

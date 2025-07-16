@@ -1,26 +1,26 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks'
-import { Flex, Icon, Text } from 'src/components/ui/atoms'
-import { Tooltip } from 'src/components/ui/molecules'
-import { useClickableHoverStyle } from 'src/hooks'
-import { useTask } from 'src/store/entities/task'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks';
+import { Flex, Icon, Text } from 'src/components/ui/atoms';
+import { Tooltip } from 'src/components/ui/molecules';
+import { useClickableHoverStyle } from 'src/hooks';
+import { useTask } from 'src/store/entities/task';
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const ParentTask: React.FC<Props> = memo<Props>((props) => {
-  const { isSubtask, task } = useTask(props.taskId)
-  const { task: parentTask } = useTask(task.taskParentId)
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
-  const { navigateToTaskDetail } = useTasksRouter()
+  const { isSubtask, task } = useTask(props.taskId);
+  const { task: parentTask } = useTask(task.taskParentId);
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
+  const { navigateToTaskDetail } = useTasksRouter();
 
   const handleClick = useCallback(async () => {
-    await navigateToTaskDetail(parentTask.id)
-  }, [navigateToTaskDetail, parentTask.id])
+    await navigateToTaskDetail(parentTask.id);
+  }, [navigateToTaskDetail, parentTask.id]);
 
-  if (!isSubtask) return null
+  if (!isSubtask) return null;
 
   return (
     <Flex px={6} my={4} alignItems="center">
@@ -44,6 +44,6 @@ export const ParentTask: React.FC<Props> = memo<Props>((props) => {
         </>
       </Tooltip>
     </Flex>
-  )
-})
-ParentTask.displayName = 'ParentTask'
+  );
+});
+ParentTask.displayName = 'ParentTask';

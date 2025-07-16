@@ -1,43 +1,43 @@
-import type React from 'react'
-import { memo, useCallback, useMemo } from 'react'
-import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers'
-import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell'
-import { DueDate, Flex, type FlexProps, Icon } from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
-import { useHover } from 'src/hooks/useHover'
-import { useTask } from 'src/store/entities/task'
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
+import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers';
+import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
+import { DueDate, Flex, type FlexProps, Icon } from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
+import { useHover } from 'src/hooks/useHover';
+import { useTask } from 'src/store/entities/task';
 
 type Props = FlexProps & {
-  taskId: string
-  width: string
-}
+  taskId: string;
+  width: string;
+};
 
 export const TasksDueDate: React.FC<Props> = memo<Props>((props) => {
-  const { task, setTaskDueDate, resetTaskDueDate } = useTask(props.taskId)
-  const hasDueDate = useMemo(() => !!task.dueDate, [task.dueDate])
-  const { ref, isHovering } = useHover()
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
+  const { task, setTaskDueDate, resetTaskDueDate } = useTask(props.taskId);
+  const hasDueDate = useMemo(() => !!task.dueDate, [task.dueDate]);
+  const { ref, isHovering } = useHover();
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
   const showCalendarIcon = useMemo(
     () => !hasDueDate && isHovering,
     [hasDueDate, isHovering],
-  )
+  );
   const showResetIcon = useMemo(
     () => hasDueDate && isHovering,
     [hasDueDate, isHovering],
-  )
+  );
   const handleChange = useCallback(
     async (date: Date) => {
-      await setTaskDueDate(date)
+      await setTaskDueDate(date);
     },
     [setTaskDueDate],
-  )
+  );
   const handleReset = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
-      e.stopPropagation()
-      await resetTaskDueDate()
+      e.stopPropagation();
+      await resetTaskDueDate();
     },
     [resetTaskDueDate],
-  )
+  );
 
   return (
     <TasksListCell
@@ -79,6 +79,6 @@ export const TasksDueDate: React.FC<Props> = memo<Props>((props) => {
         </Flex>
       </PopoverDueDatePicker>
     </TasksListCell>
-  )
-})
-TasksDueDate.displayName = 'TasksDueDate'
+  );
+});
+TasksDueDate.displayName = 'TasksDueDate';

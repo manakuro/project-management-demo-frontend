@@ -1,4 +1,4 @@
-import type { NodeSpec } from 'prosemirror-model'
+import type { NodeSpec } from 'prosemirror-model';
 
 // from prosemirror-schema-basic
 
@@ -10,4 +10,4 @@ export const codeBlock: NodeSpec = {
   defining: true,
   parseDOM: [{ tag: 'pre', preserveWhitespace: 'full' }],
   toDOM: () => ['pre', ['code', 0]],
-}
+};

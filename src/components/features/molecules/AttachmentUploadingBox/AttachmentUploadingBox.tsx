@@ -1,21 +1,21 @@
-import type React from 'react'
+import type React from 'react';
 import {
   Flex,
   type FlexProps,
   Icon,
   Progress,
   Text,
-} from 'src/components/ui/atoms'
-import { transitions } from 'src/styles'
+} from 'src/components/ui/atoms';
+import { transitions } from 'src/styles';
 
 type Props = FlexProps & {
-  size: Sizes
+  size: Sizes;
   file: {
-    name: string
-    num: number
-  }
-}
-export type AttachmentUploadingBoxProps = Props
+    name: string;
+    num: number;
+  };
+};
+export type AttachmentUploadingBoxProps = Props;
 
 const sizes = {
   lg: {
@@ -26,14 +26,14 @@ const sizes = {
     w: 60,
     h: 16,
   },
-} as const
-type Sizes = keyof typeof sizes
+} as const;
+type Sizes = keyof typeof sizes;
 
 export const AttachmentUploadingBox: React.FC<Props> = (props) => {
-  const { size, color, ...rest } = props
-  const sizeStyle = sizes[size]
-  const taskFile = props.file.name
-  const progressValue = props.file.num
+  const { size, color, ...rest } = props;
+  const sizeStyle = sizes[size];
+  const taskFile = props.file.name;
+  const progressValue = props.file.num;
 
   return (
     <Flex
@@ -65,5 +65,5 @@ export const AttachmentUploadingBox: React.FC<Props> = (props) => {
         />
       </Flex>
     </Flex>
-  )
-}
+  );
+};

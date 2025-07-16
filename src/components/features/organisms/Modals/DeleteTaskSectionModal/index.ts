@@ -1,2 +1,2 @@
-export * from './DeleteTaskSectionModal'
-export * from './useDeleteTaskSectionModal'
+export * from './DeleteTaskSectionModal';
+export * from './useDeleteTaskSectionModal';

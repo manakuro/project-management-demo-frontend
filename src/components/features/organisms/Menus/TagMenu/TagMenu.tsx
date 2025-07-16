@@ -1,23 +1,23 @@
-import type React from 'react'
-import { memo } from 'react'
+import type React from 'react';
+import { memo } from 'react';
 import {
   SearchMenu,
   SearchMenuContent,
   SearchMenuTrigger,
-} from 'src/components/features/organisms/Menus/SearchMenu'
-import type { PopoverProps } from 'src/components/ui/organisms/Popover'
-import type { Tag } from 'src/store/entities/tag'
-import { Content } from './Content'
+} from 'src/components/features/organisms/Menus/SearchMenu';
+import type { PopoverProps } from 'src/components/ui/organisms/Popover';
+import type { Tag } from 'src/store/entities/tag';
+import { Content } from './Content';
 
 type Props = PopoverProps & {
-  onSelect: (tag: Tag) => void
-  queryText: string
-  onClose: () => void
-  onClosed?: () => void
-}
+  onSelect: (tag: Tag) => void;
+  queryText: string;
+  onClose: () => void;
+  onClosed?: () => void;
+};
 
 export const TagMenu: React.FC<Props> = memo<Props>((props) => {
-  const { onClosed, queryText, isOpen, onClose, ...rest } = props
+  const { onClosed, queryText, isOpen, onClose, ...rest } = props;
 
   return (
     <SearchMenu isOpen={isOpen} {...rest}>
@@ -33,6 +33,6 @@ export const TagMenu: React.FC<Props> = memo<Props>((props) => {
         </SearchMenuContent>
       )}
     </SearchMenu>
-  )
-})
-TagMenu.displayName = 'TagMenu'
+  );
+});
+TagMenu.displayName = 'TagMenu';

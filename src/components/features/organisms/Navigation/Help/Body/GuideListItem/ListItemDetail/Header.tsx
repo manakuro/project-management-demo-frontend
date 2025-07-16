@@ -1,22 +1,22 @@
-import type React from 'react'
-import { useCallback } from 'react'
+import type React from 'react';
+import { useCallback } from 'react';
 import {
   type Item,
   PADDING_X,
-} from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem'
-import { Flex, Icon, Text } from 'src/components/ui/atoms'
+} from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem';
+import { Flex, Icon, Text } from 'src/components/ui/atoms';
 
 type Props = {
-  item: Item
-  onToggle: (id: number) => void
-}
+  item: Item;
+  onToggle: (id: number) => void;
+};
 
 export const Header: React.FC<Props> = (props) => {
-  const { item, onToggle } = props
+  const { item, onToggle } = props;
 
   const handleToggle = useCallback(() => {
-    onToggle(item.id)
-  }, [item.id, onToggle])
+    onToggle(item.id);
+  }, [item.id, onToggle]);
 
   return (
     <Flex
@@ -45,5 +45,5 @@ export const Header: React.FC<Props> = (props) => {
       </Text>
       <Icon icon="chevronDown" />
     </Flex>
-  )
-}
+  );
+};

@@ -1,16 +1,16 @@
-import { memo, useCallback } from 'react'
-import { useInviteModal } from 'src/components/features/organisms/Modals'
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
-import { Flex, Text } from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
+import { memo, useCallback } from 'react';
+import { useInviteModal } from 'src/components/features/organisms/Modals';
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
+import { Flex, Text } from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
 
 export const AddMemberListItem = memo(function AddMemberListItem() {
-  const { setIsOpen } = useInviteModal()
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
+  const { setIsOpen } = useInviteModal();
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
 
   const handleClick = useCallback(() => {
-    setIsOpen(true)
-  }, [setIsOpen])
+    setIsOpen(true);
+  }, [setIsOpen]);
 
   return (
     <Flex
@@ -34,5 +34,5 @@ export const AddMemberListItem = memo(function AddMemberListItem() {
         </Text>
       </Flex>
     </Flex>
-  )
-})
+  );
+});

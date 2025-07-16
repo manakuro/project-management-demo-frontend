@@ -1,15 +1,15 @@
-import { memo } from 'react'
+import { memo } from 'react';
 import {
   TasksCalendarContent,
   TasksHeader,
   TasksHeaderLeft,
   TasksHeaderRight,
-} from 'src/components/features/organisms/Tasks'
-import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms'
+} from 'src/components/features/organisms/Tasks';
+import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms';
 
-type Props = FlexProps
+type Props = FlexProps;
 
-const BUTTON_HEIGHT = '28px'
+const BUTTON_HEIGHT = '28px';
 export const SkeletonCalendar = memo<Props>(function SkeletonList(props) {
   return (
     <Flex flex={1} flexDirection="column" {...props}>
@@ -52,5 +52,5 @@ export const SkeletonCalendar = memo<Props>(function SkeletonList(props) {
         </TasksCalendarContent>
       </Flex>
     </Flex>
-  )
-})
+  );
+});

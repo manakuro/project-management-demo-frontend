@@ -1,2 +1,2 @@
-export * from './SkeletonBoard'
-export * from './SkeletonBoardHeader'
+export * from './SkeletonBoard';
+export * from './SkeletonBoardHeader';

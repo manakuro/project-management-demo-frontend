@@ -1,19 +1,19 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, type FlexProps, Grid, Skeleton } from 'src/components/ui/atoms'
-import { OverviewLeft } from './OverviewLeft'
-import { OverviewLeftContent } from './OverviewLeftContent'
-import { OverviewRight } from './OverviewRight'
-import { OverviewRightContent } from './OverviewRightContent'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, type FlexProps, Grid, Skeleton } from 'src/components/ui/atoms';
+import { OverviewLeft } from './OverviewLeft';
+import { OverviewLeftContent } from './OverviewLeftContent';
+import { OverviewRight } from './OverviewRight';
+import { OverviewRightContent } from './OverviewRightContent';
 import {
   OverviewSectionHeader,
   OverviewSectionHeaderHeading,
-} from './OverviewSectionHeader'
+} from './OverviewSectionHeader';
 
-type Props = FlexProps
+type Props = FlexProps;
 
-const TEXT_HEIGHT = '16px'
-const CARD_HEIGHT = '97px'
+const TEXT_HEIGHT = '16px';
+const CARD_HEIGHT = '97px';
 export const SkeletonOverview: React.FC<Props> = memo<Props>((props) => {
   return (
     <Flex flex={1} h="full" maxW="full" justifyContent="center" {...props}>
@@ -76,6 +76,6 @@ export const SkeletonOverview: React.FC<Props> = memo<Props>((props) => {
         </OverviewRightContent>
       </OverviewRight>
     </Flex>
-  )
-})
-SkeletonOverview.displayName = 'SkeletonList'
+  );
+});
+SkeletonOverview.displayName = 'SkeletonList';

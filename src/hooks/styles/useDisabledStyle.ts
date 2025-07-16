@@ -1,7 +1,7 @@
-import { useMemo } from 'react'
-import type { ChakraProps } from 'src/shared/chakra'
+import { useMemo } from 'react';
+import type { ChakraProps } from 'src/shared/chakra';
 
-type Props = ChakraProps
+type Props = ChakraProps;
 
 export const useDisabledStyle = (props?: Props) => {
   const disabledStyle = useMemo<ChakraProps>(
@@ -12,9 +12,9 @@ export const useDisabledStyle = (props?: Props) => {
       ...props,
     }),
     [props],
-  )
+  );
 
   return {
     disabledStyle,
-  }
-}
+  };
+};

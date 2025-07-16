@@ -10,4 +10,4 @@ export const config = {
   FIREBASE_MESSAGING_SENDER_ID: '',
   FIREBASE_APPID: '',
   FIREBASE_MEASUREMENT_ID: '',
-}
+};

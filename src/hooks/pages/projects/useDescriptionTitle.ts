@@ -1,26 +1,26 @@
-import { useCallback } from 'react'
-import { useProject, useProjectCommand } from 'src/store/entities/project'
+import { useCallback } from 'react';
+import { useProject, useProjectCommand } from 'src/store/entities/project';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const useDescriptionTitle = (props: Props) => {
-  const { projectId } = props
-  const { project } = useProject(projectId)
-  const { setProject } = useProjectCommand()
+  const { projectId } = props;
+  const { project } = useProject(projectId);
+  const { setProject } = useProjectCommand();
 
   const onChange = useCallback(
     async (val: string) => {
-      if (val === project.descriptionTitle) return
+      if (val === project.descriptionTitle) return;
 
-      await setProject({ descriptionTitle: val, projectId })
+      await setProject({ descriptionTitle: val, projectId });
     },
     [project.descriptionTitle, setProject, projectId],
-  )
+  );
 
   return {
     onChange,
     descriptionTitle: project.descriptionTitle,
-  }
-}
+  };
+};

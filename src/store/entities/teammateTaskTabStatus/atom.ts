@@ -1,11 +1,11 @@
-import { atom, selectorFamily } from 'recoil'
+import { atom, selectorFamily } from 'recoil';
 import {
   type TeammateTaskTabStatus,
   TeammateTaskTabStatusCode,
   type TeammateTaskTabStatusCodeKey,
-} from './type'
+} from './type';
 
-const key = (str: string) => `src/store/entities/teammateTaskTabStatus/${str}`
+const key = (str: string) => `src/store/entities/teammateTaskTabStatus/${str}`;
 
 export const initialState = (): TeammateTaskTabStatus => ({
   id: '',
@@ -14,12 +14,12 @@ export const initialState = (): TeammateTaskTabStatus => ({
   statusCode: TeammateTaskTabStatusCode.List,
   createdAt: '',
   updatedAt: '',
-})
+});
 
 export const tabStatusState = atom<TeammateTaskTabStatus>({
   key: key('tabStatusState'),
   default: initialState(),
-})
+});
 
 export const isTabStatusState = selectorFamily<
   boolean,
@@ -29,7 +29,7 @@ export const isTabStatusState = selectorFamily<
   get:
     (key) =>
     ({ get }) => {
-      const taskStatus = get(tabStatusState)
-      return TeammateTaskTabStatusCode[key] === taskStatus.statusCode
+      const taskStatus = get(tabStatusState);
+      return TeammateTaskTabStatusCode[key] === taskStatus.statusCode;
     },
-})
+});

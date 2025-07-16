@@ -1,7 +1,7 @@
-import type React from 'react'
-import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms'
+import type React from 'react';
+import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const SkeletonTaskDetailBody: React.FC<Props> = (props) => {
   return (
@@ -15,5 +15,5 @@ export const SkeletonTaskDetailBody: React.FC<Props> = (props) => {
         <Skeleton h="16px" w="45%" borderRadius="full" />
       </Stack>
     </Flex>
-  )
-}
+  );
+};

@@ -1,2 +1,2 @@
-export * from './TaskDetailSide'
-export { useTaskDetailSide } from './useTaskDetailSide'
+export * from './TaskDetailSide';
+export { useTaskDetailSide } from './useTaskDetailSide';

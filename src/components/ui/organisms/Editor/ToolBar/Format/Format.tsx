@@ -1,8 +1,8 @@
-import { memo, useCallback, useMemo } from 'react'
-import { Icon, IconButton, Link, PortalManager } from 'src/components/ui/atoms'
-import { useEditorStateContext } from 'src/components/ui/organisms/Editor/Editors'
-import { Popover, PopoverTrigger } from 'src/components/ui/organisms/Popover'
-import { useDisclosure } from 'src/shared/chakra'
+import { memo, useCallback, useMemo } from 'react';
+import { Icon, IconButton, Link, PortalManager } from 'src/components/ui/atoms';
+import { useEditorStateContext } from 'src/components/ui/organisms/Editor/Editors';
+import { Popover, PopoverTrigger } from 'src/components/ui/organisms/Popover';
+import { useDisclosure } from 'src/shared/chakra';
 import {
   useBold,
   useBulletList,
@@ -10,18 +10,18 @@ import {
   useOrderedList,
   useStrikethrough,
   useUnderline,
-} from 'src/shared/prosemirror/hooks'
-import { Content } from './Content'
+} from 'src/shared/prosemirror/hooks';
+import { Content } from './Content';
 
 export const Format = memo(function Format() {
-  const state = useEditorStateContext()
-  const popoverDisclosure = useDisclosure()
-  const useBoldResult = useBold()
-  const useItalicResult = useItalic()
-  const useUnderlineResult = useUnderline()
-  const useStrikethroughResult = useStrikethrough()
-  const useBulletListResult = useBulletList()
-  const useOrderedListResult = useOrderedList()
+  const state = useEditorStateContext();
+  const popoverDisclosure = useDisclosure();
+  const useBoldResult = useBold();
+  const useItalicResult = useItalic();
+  const useUnderlineResult = useUnderline();
+  const useStrikethroughResult = useStrikethrough();
+  const useBulletListResult = useBulletList();
+  const useOrderedListResult = useOrderedList();
 
   const isActive = useMemo(() => {
     return (
@@ -31,7 +31,7 @@ export const Format = memo(function Format() {
       useStrikethroughResult.isActive?.(state) ||
       useBulletListResult.isActive?.(state) ||
       useOrderedListResult.isActive?.(state)
-    )
+    );
   }, [
     state,
     useBoldResult,
@@ -40,11 +40,11 @@ export const Format = memo(function Format() {
     useOrderedListResult,
     useStrikethroughResult,
     useUnderlineResult,
-  ])
+  ]);
 
   const handleClose = useCallback(() => {
-    popoverDisclosure.onClose()
-  }, [popoverDisclosure])
+    popoverDisclosure.onClose();
+  }, [popoverDisclosure]);
 
   return (
     <PortalManager zIndex={1500}>
@@ -69,5 +69,5 @@ export const Format = memo(function Format() {
         {popoverDisclosure.isOpen && <Content onClose={handleClose} />}
       </Popover>
     </PortalManager>
-  )
-})
+  );
+});

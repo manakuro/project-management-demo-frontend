@@ -1,1 +1,1 @@
-export * from './SortMenu'
+export * from './SortMenu';

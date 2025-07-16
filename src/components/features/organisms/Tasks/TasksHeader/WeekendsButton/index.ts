@@ -1,1 +1,1 @@
-export * from './WeekendsButton'
+export * from './WeekendsButton';

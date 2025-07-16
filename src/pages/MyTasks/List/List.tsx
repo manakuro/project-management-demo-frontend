@@ -1,6 +1,6 @@
-import type React from 'react'
-import { memo } from 'react'
-import { TaskDetailDrawer } from 'src/components/features/organisms/TaskDetails'
+import type React from 'react';
+import { memo } from 'react';
+import { TaskDetailDrawer } from 'src/components/features/organisms/TaskDetails';
 import {
   AddTaskButton,
   CustomizeButton,
@@ -17,20 +17,20 @@ import {
   TasksListHorizontalScrollBorder,
   TasksListLayout,
   useTasksListDetail,
-} from 'src/components/features/organisms/Tasks'
-import { Flex } from 'src/components/ui/atoms'
-import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
-import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router'
-import { SortMenu } from '../TasksHeader'
-import { SkeletonListContent, SkeletonListHeader } from './SkeletonList'
+} from 'src/components/features/organisms/Tasks';
+import { Flex } from 'src/components/ui/atoms';
+import { useMyTasksContext } from 'src/pages/MyTasks/Provider';
+import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router';
+import { SortMenu } from '../TasksHeader';
+import { SkeletonListContent, SkeletonListHeader } from './SkeletonList';
 
 export const List: React.FC = memo(() => {
   return (
     <TasksContainer isMyTasksPage>
       <Component />
     </TasksContainer>
-  )
-})
+  );
+});
 const Component: React.FC = memo(() => {
   const {
     tabContentLoading,
@@ -38,13 +38,13 @@ const Component: React.FC = memo(() => {
     contentLoading,
     startContentLoading,
     endContentLoading,
-  } = useMyTasksContext()
-  const { navigateToMyTasksList } = useRouter()
+  } = useMyTasksContext();
+  const { navigateToMyTasksList } = useRouter();
   const { hasClickedOutside } = useTasksListDetail({
     isTaskDetailURL: isMyTasksDetailURL,
     getTaskDetailId: getMyTasksDetailId,
     fetchQuery: fetchTaskDetailQuery,
-  })
+  });
 
   if (tabContentLoading)
     return (
@@ -52,7 +52,7 @@ const Component: React.FC = memo(() => {
         <SkeletonListHeader />
         <SkeletonListContent />
       </Flex>
-    )
+    );
 
   return (
     <>
@@ -88,7 +88,7 @@ const Component: React.FC = memo(() => {
         hasClickedOutside={hasClickedOutside}
       />
     </>
-  )
-})
-List.displayName = 'List'
-Component.displayName = 'Component'
+  );
+});
+List.displayName = 'List';
+Component.displayName = 'Component';

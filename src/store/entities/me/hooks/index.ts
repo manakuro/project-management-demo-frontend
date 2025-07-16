@@ -1,2 +1,2 @@
-export * from './useMe'
-export * from './useMeResponse'
+export * from './useMe';
+export * from './useMeResponse';

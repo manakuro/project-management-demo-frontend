@@ -1,18 +1,18 @@
-import type React from 'react'
-import { memo } from 'react'
-import type { IconButtonProps, TextProps } from 'src/components/ui/atoms'
-import { LikeIconButton } from 'src/components/ui/molecules'
-import { useLike } from './useLike'
+import type React from 'react';
+import { memo } from 'react';
+import type { IconButtonProps, TextProps } from 'src/components/ui/atoms';
+import { LikeIconButton } from 'src/components/ui/molecules';
+import { useLike } from './useLike';
 
 type Props = {
-  taskId: string
-  show?: boolean
-  textStyle?: TextProps
-} & Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>
+  taskId: string;
+  show?: boolean;
+  textStyle?: TextProps;
+} & Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>;
 
 export const LikeTaskIconButton: React.FC<Props> = memo<Props>((props) => {
-  const { taskId, show, ...rest } = props
-  const { hasAnyoneLiked, label, likeLength, onToggleLike } = useLike(props)
+  const { taskId, show, ...rest } = props;
+  const { hasAnyoneLiked, label, likeLength, onToggleLike } = useLike(props);
 
   return (
     <LikeIconButton
@@ -23,6 +23,6 @@ export const LikeTaskIconButton: React.FC<Props> = memo<Props>((props) => {
       onToggleLike={onToggleLike}
       {...rest}
     />
-  )
-})
-LikeTaskIconButton.displayName = 'LikeTaskIconButton'
+  );
+});
+LikeTaskIconButton.displayName = 'LikeTaskIconButton';

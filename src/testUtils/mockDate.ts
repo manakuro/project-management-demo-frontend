@@ -1,11 +1,11 @@
-import MockDate from 'mockdate'
+import MockDate from 'mockdate';
 
 export const mockDate = (date: string) => {
   beforeAll(() => {
-    MockDate.set(date)
-  })
+    MockDate.set(date);
+  });
 
   afterAll(() => {
-    MockDate.reset()
-  })
-}
+    MockDate.reset();
+  });
+};

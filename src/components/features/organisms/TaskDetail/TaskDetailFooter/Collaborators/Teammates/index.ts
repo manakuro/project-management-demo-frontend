@@ -1,1 +1,1 @@
-export * from './Teammates'
+export * from './Teammates';

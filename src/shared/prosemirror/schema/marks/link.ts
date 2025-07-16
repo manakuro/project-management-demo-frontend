@@ -1,8 +1,8 @@
-import type { MarkSpec } from 'prosemirror-model'
+import type { MarkSpec } from 'prosemirror-model';
 
 interface Attrs {
-  href: string
-  title: string | null
+  href: string;
+  title: string | null;
 }
 
 export const link: MarkSpec = {
@@ -19,13 +19,13 @@ export const link: MarkSpec = {
         return {
           href: element.getAttribute('href') as string,
           title: element.getAttribute('title'),
-        }
+        };
       },
     },
   ],
   toDOM(node) {
-    const { href, title } = node.attrs as Attrs
+    const { href, title } = node.attrs as Attrs;
 
-    return ['a', { href, title }, 0]
+    return ['a', { href, title }, 0];
   },
-}
+};

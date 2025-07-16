@@ -1,12 +1,12 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Icon, type IconProps } from 'src/components/ui/atoms'
-import { useSubtasksNameContext } from './Provider'
+import type React from 'react';
+import { memo } from 'react';
+import { Icon, type IconProps } from 'src/components/ui/atoms';
+import { useSubtasksNameContext } from './Provider';
 
-type Props = Omit<IconProps, 'icon'>
+type Props = Omit<IconProps, 'icon'>;
 
 export const TasksNameGrabIcon: React.FC<Props> = memo<Props>((props) => {
-  const { showIcon } = useSubtasksNameContext()
+  const { showIcon } = useSubtasksNameContext();
   return (
     <Icon
       icon="gridVertical"
@@ -16,6 +16,6 @@ export const TasksNameGrabIcon: React.FC<Props> = memo<Props>((props) => {
       cursor="grab"
       {...props}
     />
-  )
-})
-TasksNameGrabIcon.displayName = 'TasksNameGrabIcon'
+  );
+});
+TasksNameGrabIcon.displayName = 'TasksNameGrabIcon';

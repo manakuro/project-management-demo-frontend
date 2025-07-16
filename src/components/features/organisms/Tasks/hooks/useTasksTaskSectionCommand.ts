@@ -1,45 +1,45 @@
-import { useMyTasksTaskSectionCommand } from 'src/store/app/myTasks/taskSections'
-import { useProjectsTaskSectionCommand } from 'src/store/app/projects/taskSections'
+import { useMyTasksTaskSectionCommand } from 'src/store/app/myTasks/taskSections';
+import { useProjectsTaskSectionCommand } from 'src/store/app/projects/taskSections';
 import type {
   DeleteProjectTaskSectionAndDeleteTasksMutation,
   DeleteProjectTaskSectionAndKeepTasksMutation,
-} from 'src/store/entities/projectTaskSection'
+} from 'src/store/entities/projectTaskSection';
 import type {
   DeleteTeammateTaskSectionAndDeleteTasksMutation,
   DeleteTeammateTaskSectionAndKeepTasksMutation,
-} from 'src/store/entities/teammatesTaskSection'
-import { useTasksContext } from '../TasksProvider'
+} from 'src/store/entities/teammatesTaskSection';
+import { useTasksContext } from '../TasksProvider';
 
 export type DeleteTaskSectionAndKeepTasksResponse =
   | DeleteTeammateTaskSectionAndKeepTasksMutation
-  | DeleteProjectTaskSectionAndKeepTasksMutation
+  | DeleteProjectTaskSectionAndKeepTasksMutation;
 
 export type DeleteTaskSectionAndDeleteTasksResponse =
   | DeleteTeammateTaskSectionAndDeleteTasksMutation
-  | DeleteProjectTaskSectionAndDeleteTasksMutation
+  | DeleteProjectTaskSectionAndDeleteTasksMutation;
 
 type Result = {
-  addTaskSection: () => Promise<string>
+  addTaskSection: () => Promise<string>;
   deleteTaskSectionAndKeepTasks: (
     id: string,
-  ) => Promise<DeleteTaskSectionAndKeepTasksResponse | null | undefined>
+  ) => Promise<DeleteTaskSectionAndKeepTasksResponse | null | undefined>;
   deleteTaskSectionAndDeleteTasks: (
     id: string,
-  ) => Promise<DeleteTaskSectionAndDeleteTasksResponse | null | undefined>
-  deleteTaskSection: (id: string) => Promise<void>
+  ) => Promise<DeleteTaskSectionAndDeleteTasksResponse | null | undefined>;
+  deleteTaskSection: (id: string) => Promise<void>;
   undeleteTaskSectionAndKeepTasks: (
     val: DeleteTaskSectionAndKeepTasksResponse,
-  ) => Promise<void>
+  ) => Promise<void>;
   undeleteTaskSectionAndDeleteTasks: (
     val: DeleteTaskSectionAndDeleteTasksResponse,
-  ) => Promise<void>
-}
+  ) => Promise<void>;
+};
 
 export const useTasksTaskSectionCommand = (): Result => {
-  const { isMyTasksPage } = useTasksContext()
+  const { isMyTasksPage } = useTasksContext();
 
-  const myTasks = useMyTasksTaskSectionCommand()
-  const projects = useProjectsTaskSectionCommand()
+  const myTasks = useMyTasksTaskSectionCommand();
+  const projects = useProjectsTaskSectionCommand();
 
   if (isMyTasksPage) {
     return {
@@ -51,7 +51,7 @@ export const useTasksTaskSectionCommand = (): Result => {
         myTasks.undeleteTaskSectionAndKeepTasks as Result['undeleteTaskSectionAndKeepTasks'],
       undeleteTaskSectionAndDeleteTasks:
         myTasks.undeleteTaskSectionAndDeleteTasks as Result['undeleteTaskSectionAndDeleteTasks'],
-    }
+    };
   }
 
   return {
@@ -63,5 +63,5 @@ export const useTasksTaskSectionCommand = (): Result => {
       projects.undeleteTaskSectionAndKeepTasks as Result['undeleteTaskSectionAndKeepTasks'],
     undeleteTaskSectionAndDeleteTasks:
       projects.undeleteTaskSectionAndDeleteTasks as Result['undeleteTaskSectionAndDeleteTasks'],
-  }
-}
+  };
+};

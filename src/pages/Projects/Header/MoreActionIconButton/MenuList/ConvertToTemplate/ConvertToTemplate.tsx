@@ -1,16 +1,16 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Icon } from 'src/components/ui/atoms'
-import { MenuItem } from 'src/components/ui/organisms/Menu'
+import type React from 'react';
+import { memo } from 'react';
+import { Icon } from 'src/components/ui/atoms';
+import { MenuItem } from 'src/components/ui/organisms/Menu';
 
 type Props = {
-  onClose: () => void
-  onMouseEnter: () => void
-  projectId: string
-}
+  onClose: () => void;
+  onMouseEnter: () => void;
+  projectId: string;
+};
 
 export const ConvertToTemplate: React.FC<Props> = memo((props) => {
-  const { onMouseEnter } = props
+  const { onMouseEnter } = props;
 
   return (
     <MenuItem
@@ -20,6 +20,6 @@ export const ConvertToTemplate: React.FC<Props> = memo((props) => {
     >
       Convert to template
     </MenuItem>
-  )
-})
-ConvertToTemplate.displayName = 'ConvertToTemplate'
+  );
+});
+ConvertToTemplate.displayName = 'ConvertToTemplate';

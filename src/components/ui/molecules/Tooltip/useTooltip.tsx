@@ -1,37 +1,37 @@
-import { useEffect } from 'react'
-import { useMountedRef } from 'src/hooks'
-import { useHover } from 'src/hooks/useHover'
-import { useDisclosure } from 'src/shared/chakra'
+import { useEffect } from 'react';
+import { useMountedRef } from 'src/hooks';
+import { useHover } from 'src/hooks/useHover';
+import { useDisclosure } from 'src/shared/chakra';
 
 type Props = {
-  openDelay?: number
-}
+  openDelay?: number;
+};
 
 export const useTooltip = (props: Props = {}) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const { ref, isHovering } = useHover()
-  const { mountedRef } = useMountedRef()
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { ref, isHovering } = useHover();
+  const { mountedRef } = useMountedRef();
 
   useEffect(() => {
     if (isHovering) {
       if (props.openDelay) {
         setTimeout(() => {
           if (mountedRef.current) {
-            onOpen()
+            onOpen();
           }
-        }, props.openDelay)
-        return
+        }, props.openDelay);
+        return;
       }
-      onOpen()
+      onOpen();
     } else {
-      onClose()
+      onClose();
     }
-  }, [isHovering, mountedRef, onClose, onOpen, props.openDelay])
+  }, [isHovering, mountedRef, onClose, onOpen, props.openDelay]);
 
   return {
     ref,
     isOpen,
     onClose,
     onOpen,
-  }
-}
+  };
+};

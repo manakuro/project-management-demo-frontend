@@ -1,6 +1,6 @@
-import type React from 'react'
-import { memo, useMemo } from 'react'
-import { useTasksCalendarContext } from 'src/components/features/organisms/Tasks'
+import type React from 'react';
+import { memo, useMemo } from 'react';
+import { useTasksCalendarContext } from 'src/components/features/organisms/Tasks';
 import {
   Flex,
   type FlexProps,
@@ -9,21 +9,21 @@ import {
   Link,
   PortalManager,
   Text,
-} from 'src/components/ui/atoms'
-import { Popover, PopoverTrigger } from 'src/components/ui/organisms/Popover'
-import { useDisclosure } from 'src/shared/chakra'
-import { dateFns } from 'src/shared/dateFns'
-import { Content } from './Content'
+} from 'src/components/ui/atoms';
+import { Popover, PopoverTrigger } from 'src/components/ui/organisms/Popover';
+import { useDisclosure } from 'src/shared/chakra';
+import { dateFns } from 'src/shared/dateFns';
+import { Content } from './Content';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const CalendarMonthPicker: React.FC<Props> = memo<Props>((props) => {
-  const { currentDate } = useTasksCalendarContext()
+  const { currentDate } = useTasksCalendarContext();
   const dateText = useMemo(() => {
-    return dateFns.format(currentDate, 'MMMM y')
-  }, [currentDate])
+    return dateFns.format(currentDate, 'MMMM y');
+  }, [currentDate]);
 
-  const popoverDisclosure = useDisclosure()
+  const popoverDisclosure = useDisclosure();
 
   return (
     <Flex {...props} alignItems="center">
@@ -53,6 +53,6 @@ export const CalendarMonthPicker: React.FC<Props> = memo<Props>((props) => {
         </Popover>
       </PortalManager>
     </Flex>
-  )
-})
-CalendarMonthPicker.displayName = 'CalendarMonthPicker'
+  );
+});
+CalendarMonthPicker.displayName = 'CalendarMonthPicker';

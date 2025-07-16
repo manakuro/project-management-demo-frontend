@@ -1,25 +1,25 @@
-import type React from 'react'
-import { memo, useMemo } from 'react'
-import { Flex } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo, useMemo } from 'react';
+import { Flex } from 'src/components/ui/atoms';
 import {
   useTaskFeedIdsByTaskId,
   useTaskFeedsPinnedIds,
-} from 'src/store/entities/taskFeed'
-import { FeedListItem } from './FeedListItem'
+} from 'src/store/entities/taskFeed';
+import { FeedListItem } from './FeedListItem';
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 
-export const FEED_LIST_CONTAINER_ID = 'FEED_LIST_CONTAINER_ID'
+export const FEED_LIST_CONTAINER_ID = 'FEED_LIST_CONTAINER_ID';
 
 export const FeedList: React.FC<Props> = memo<Props>((props) => {
-  const { taskFeedIds } = useTaskFeedIdsByTaskId(props.taskId)
-  const { taskFeedPinnedIds } = useTaskFeedsPinnedIds(props.taskId)
+  const { taskFeedIds } = useTaskFeedIdsByTaskId(props.taskId);
+  const { taskFeedPinnedIds } = useTaskFeedsPinnedIds(props.taskId);
   const anyFeedIds = useMemo(
     () => !!taskFeedIds.length || !!taskFeedPinnedIds.length,
     [taskFeedIds.length, taskFeedPinnedIds.length],
-  )
+  );
 
   return (
     <Flex
@@ -41,6 +41,6 @@ export const FeedList: React.FC<Props> = memo<Props>((props) => {
         <FeedListItem key={id} taskFeedId={id} taskId={props.taskId} />
       ))}
     </Flex>
-  )
-})
-FeedList.displayName = 'FeedList'
+  );
+});
+FeedList.displayName = 'FeedList';

@@ -1,74 +1,74 @@
-import type React from 'react'
-import { useCallback, useRef, useState } from 'react'
-import ReactPlayer from 'react-player'
+import type React from 'react';
+import { useCallback, useRef, useState } from 'react';
+import ReactPlayer from 'react-player';
 import {
   AspectRatio,
   Box,
   Flex,
   Icon,
   IconButton,
-} from 'src/components/ui/atoms'
+} from 'src/components/ui/atoms';
 import {
   Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalOverlay,
-} from 'src/components/ui/organisms/Modal'
-import { DurationBar } from 'src/components/ui/organisms/VideoPlayer/DurationBar'
-import { Duration } from './Duration'
-import { useVideoPlayer } from './useVideoPlayer'
+} from 'src/components/ui/organisms/Modal';
+import { DurationBar } from 'src/components/ui/organisms/VideoPlayer/DurationBar';
+import { Duration } from './Duration';
+import { useVideoPlayer } from './useVideoPlayer';
 
 export type State = {
-  played: number
-  playing: boolean
-  duration: number
-  seeking: boolean
-}
+  played: number;
+  playing: boolean;
+  duration: number;
+  seeking: boolean;
+};
 const initialState = (): State => ({
   played: 0,
   playing: true,
   duration: 0,
   seeking: false,
-})
+});
 
 export const VideoPlayer: React.FC = () => {
-  const { state, onClose } = useVideoPlayer()
-  const [videoState, setVideoState] = useState<State>(initialState())
-  const ref = useRef<ReactPlayer>(null)
+  const { state, onClose } = useVideoPlayer();
+  const [videoState, setVideoState] = useState<State>(initialState());
+  const ref = useRef<ReactPlayer>(null);
 
   const handleClose = useCallback(() => {
-    setVideoState(initialState())
-    onClose()
-  }, [onClose])
+    setVideoState(initialState());
+    onClose();
+  }, [onClose]);
 
   const handlePlay = useCallback(() => {
-    setVideoState((s) => ({ ...s, playing: !videoState.playing }))
-  }, [videoState.playing])
+    setVideoState((s) => ({ ...s, playing: !videoState.playing }));
+  }, [videoState.playing]);
 
   const handleProgress = useCallback(
     (state: {
-      played: number
-      playedSeconds: number
-      loaded: number
-      loadedSeconds: number
+      played: number;
+      playedSeconds: number;
+      loaded: number;
+      loadedSeconds: number;
     }) => {
-      if (videoState.seeking) return
-      setVideoState((s) => ({ ...s, played: state.played }))
+      if (videoState.seeking) return;
+      setVideoState((s) => ({ ...s, played: state.played }));
     },
     [videoState.seeking],
-  )
+  );
 
   const handleDuration = useCallback((duration: number) => {
-    setVideoState((s) => ({ ...s, duration }))
-  }, [])
+    setVideoState((s) => ({ ...s, duration }));
+  }, []);
 
   const seekTo = useCallback(
     (amount: number, type?: 'seconds' | 'fraction') => {
-      ref.current?.seekTo(amount, type)
+      ref.current?.seekTo(amount, type);
     },
     [],
-  )
+  );
 
   return (
     <Modal
@@ -127,5 +127,5 @@ export const VideoPlayer: React.FC = () => {
         </ModalFooter>
       </ModalContent>
     </Modal>
-  )
-}
+  );
+};

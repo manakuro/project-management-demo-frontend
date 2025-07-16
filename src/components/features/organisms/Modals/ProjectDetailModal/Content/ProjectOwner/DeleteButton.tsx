@@ -1,30 +1,30 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { Icon } from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
-import { useProjectTeammatesCommand } from 'src/store/entities/projectTeammate'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { Icon } from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
+import { useProjectTeammatesCommand } from 'src/store/entities/projectTeammate';
 
 type Props = {
-  projectTeammateId: string
-  isHovering: boolean
-}
+  projectTeammateId: string;
+  isHovering: boolean;
+};
 
 export const DeleteButton: React.FC<Props> = memo<Props>((props) => {
-  const { isHovering, projectTeammateId } = props
-  const { setProjectTeammateById } = useProjectTeammatesCommand()
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
+  const { isHovering, projectTeammateId } = props;
+  const { setProjectTeammateById } = useProjectTeammatesCommand();
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
 
   const handleClick = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
-      e.stopPropagation()
+      e.stopPropagation();
 
       await setProjectTeammateById({
         id: projectTeammateId,
         isOwner: false,
-      })
+      });
     },
     [projectTeammateId, setProjectTeammateById],
-  )
+  );
 
   return (
     <Icon
@@ -37,6 +37,6 @@ export const DeleteButton: React.FC<Props> = memo<Props>((props) => {
       {...clickableHoverLightStyle}
       onClick={handleClick}
     />
-  )
-})
-DeleteButton.displayName = 'DeleteButton'
+  );
+});
+DeleteButton.displayName = 'DeleteButton';

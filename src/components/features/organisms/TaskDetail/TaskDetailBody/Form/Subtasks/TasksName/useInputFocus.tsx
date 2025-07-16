@@ -3,19 +3,19 @@ import {
   type SetStateAction,
   useCallback,
   useState,
-} from 'react'
-import type { TasksListCellProps } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell'
+} from 'react';
+import type { TasksListCellProps } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
 
 export type UseInputFocus = {
-  inputFocused: boolean
-  setInputFocused: Dispatch<SetStateAction<boolean>>
-  cellStyle?: TasksListCellProps
-  onInputFocus: () => void
-  onInputBlur: () => void
-}
+  inputFocused: boolean;
+  setInputFocused: Dispatch<SetStateAction<boolean>>;
+  cellStyle?: TasksListCellProps;
+  onInputFocus: () => void;
+  onInputBlur: () => void;
+};
 export const useInputFocus = (): UseInputFocus => {
-  const [focused, setFocused] = useState(false)
-  const [cellStyle, setCellStyle] = useState<TasksListCellProps>()
+  const [focused, setFocused] = useState(false);
+  const [cellStyle, setCellStyle] = useState<TasksListCellProps>();
   const onInputFocus = useCallback(() => {
     setCellStyle({
       borderColor: 'primary',
@@ -25,13 +25,13 @@ export const useInputFocus = (): UseInputFocus => {
       containerStyle: {
         bg: 'white',
       },
-    })
-    setFocused(true)
-  }, [])
+    });
+    setFocused(true);
+  }, []);
   const onInputBlur = useCallback(() => {
-    setCellStyle({})
-    setFocused(false)
-  }, [])
+    setCellStyle({});
+    setFocused(false);
+  }, []);
 
   return {
     inputFocused: focused,
@@ -39,5 +39,5 @@ export const useInputFocus = (): UseInputFocus => {
     cellStyle,
     onInputFocus,
     onInputBlur,
-  }
-}
+  };
+};

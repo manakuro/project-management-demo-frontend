@@ -1,2 +1,2 @@
-export * from './Help'
-export * from './useHelp'
+export * from './Help';
+export * from './useHelp';

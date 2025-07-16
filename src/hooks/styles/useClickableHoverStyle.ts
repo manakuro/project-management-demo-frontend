@@ -1,6 +1,6 @@
-import { useMemo } from 'react'
-import type { ChakraProps } from 'src/shared/chakra'
-import { transitions } from 'src/styles'
+import { useMemo } from 'react';
+import type { ChakraProps } from 'src/shared/chakra';
+import { transitions } from 'src/styles';
 
 export const useClickableHoverStyle = () => {
   const defaultStyle = useMemo<ChakraProps>(
@@ -12,7 +12,7 @@ export const useClickableHoverStyle = () => {
       cursor: 'pointer',
     }),
     [],
-  )
+  );
   const lightStyle = useMemo<ChakraProps>(
     () => ({
       opacity: 0.7,
@@ -23,7 +23,7 @@ export const useClickableHoverStyle = () => {
       cursor: 'pointer',
     }),
     [],
-  )
+  );
 
   const inputGrabbableStyle = useMemo<ChakraProps>(
     () => ({
@@ -35,7 +35,7 @@ export const useClickableHoverStyle = () => {
       cursor: 'pointer',
     }),
     [],
-  )
+  );
 
   const textStyle = useMemo<ChakraProps>(
     () => ({
@@ -44,12 +44,12 @@ export const useClickableHoverStyle = () => {
       cursor: 'pointer',
     }),
     [],
-  )
+  );
 
   return {
     clickableHoverStyle: defaultStyle,
     clickableHoverLightStyle: lightStyle,
     clickableHoverInputGrabbableStyle: inputGrabbableStyle,
     clickableHoverTextStyle: textStyle,
-  }
-}
+  };
+};

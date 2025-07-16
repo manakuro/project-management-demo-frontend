@@ -1,2 +1,2 @@
-export * from './TasksBoardListSection'
-export * from './useTasksBoardListSectionElement'
+export * from './TasksBoardListSection';
+export * from './useTasksBoardListSectionElement';

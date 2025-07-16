@@ -1,30 +1,30 @@
-import { useRecoilCallback } from 'recoil'
+import { useRecoilCallback } from 'recoil';
 import {
   useUpdateTeammateTaskColumnMutation,
   useUpdateTeammateTaskColumnOrderMutation,
-} from 'src/graphql/hooks'
-import { teammateTaskColumnState, teammateTaskColumnsState } from '../atom'
-import type { TeammateTaskColumn } from '../type'
-import { useUpsert } from './useUpsert'
+} from 'src/graphql/hooks';
+import { teammateTaskColumnState, teammateTaskColumnsState } from '../atom';
+import type { TeammateTaskColumn } from '../type';
+import { useUpsert } from './useUpsert';
 
 export const useTeammateTaskColumnCommand = () => {
-  const { upsert } = useUpsert()
+  const { upsert } = useUpsert();
   const [updateTeammateTaskColumnMutation] =
-    useUpdateTeammateTaskColumnMutation()
+    useUpdateTeammateTaskColumnMutation();
   const [updateTeammateTaskColumnOrderMutation] =
-    useUpdateTeammateTaskColumnOrderMutation()
+    useUpdateTeammateTaskColumnOrderMutation();
 
   const setTeammateTaskColumn = useRecoilCallback(
     ({ snapshot }) =>
       async (input: Partial<TeammateTaskColumn> & { id: string }) => {
         const prev = await snapshot.getPromise(
           teammateTaskColumnState(input.id),
-        )
-        upsert({ ...prev, ...input })
+        );
+        upsert({ ...prev, ...input });
 
         const restore = () => {
-          upsert(prev)
-        }
+          upsert(prev);
+        };
 
         try {
           const res = await updateTeammateTaskColumnMutation({
@@ -35,41 +35,41 @@ export const useTeammateTaskColumnCommand = () => {
                 requestId: '',
               },
             },
-          })
+          });
           if (res.errors) {
-            restore()
+            restore();
           }
         } catch (e) {
-          restore()
-          throw e
+          restore();
+          throw e;
         }
       },
     [updateTeammateTaskColumnMutation, upsert],
-  )
+  );
 
   const setTeammateTaskColumnOrder = useRecoilCallback(
     ({ snapshot }) =>
       async (ids: string[]) => {
-        const prev = await snapshot.getPromise(teammateTaskColumnsState)
-        const prevIds = prev.map((p) => p.id)
+        const prev = await snapshot.getPromise(teammateTaskColumnsState);
+        const prevIds = prev.map((p) => p.id);
 
-        if (JSON.stringify(prevIds) === JSON.stringify(ids)) return
+        if (JSON.stringify(prevIds) === JSON.stringify(ids)) return;
 
         ids.forEach((id, index) => {
           upsert({
             id,
             order: index,
-          })
-        })
+          });
+        });
 
         const restore = () => {
           prevIds.forEach((id, index) => {
             upsert({
               id,
               order: index,
-            })
-          })
-        }
+            });
+          });
+        };
 
         try {
           const res = await updateTeammateTaskColumnOrderMutation({
@@ -78,20 +78,20 @@ export const useTeammateTaskColumnCommand = () => {
                 ids,
               },
             },
-          })
+          });
           if (res.errors) {
-            restore()
+            restore();
           }
         } catch (e) {
-          restore()
-          throw e
+          restore();
+          throw e;
         }
       },
     [updateTeammateTaskColumnOrderMutation, upsert],
-  )
+  );
 
   return {
     setTeammateTaskColumn,
     setTeammateTaskColumnOrder,
-  }
-}
+  };
+};

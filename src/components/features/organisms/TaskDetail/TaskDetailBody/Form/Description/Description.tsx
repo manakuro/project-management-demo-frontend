@@ -1,55 +1,55 @@
-import type React from 'react'
-import { memo, useCallback, useEffect, useMemo, useState } from 'react'
-import { Editor, EditorContent } from 'src/components/ui/organisms/Editor'
-import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
+import type React from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { Editor, EditorContent } from 'src/components/ui/organisms/Editor';
+import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual';
 import {
   parseDescription,
   stringifyDescription,
-} from 'src/shared/prosemirror/convertDescription'
-import { useTask } from 'src/store/entities/task'
-import { Content, Label, Row } from '../Row'
-import { Container } from './Container'
-import { Placeholder } from './Placeholder'
-import { Provider } from './Provider'
-import { ToolBar } from './ToolBar'
+} from 'src/shared/prosemirror/convertDescription';
+import { useTask } from 'src/store/entities/task';
+import { Content, Label, Row } from '../Row';
+import { Container } from './Container';
+import { Placeholder } from './Placeholder';
+import { Provider } from './Provider';
+import { ToolBar } from './ToolBar';
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const Description: React.FC<Props> = memo<Props>((props) => {
   return (
     <Provider>
       <DescriptionHandler {...props} />
     </Provider>
-  )
-})
+  );
+});
 
 const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
-  const { task, setTask, hasDescriptionUpdated } = useTask(props.taskId)
+  const { task, setTask, hasDescriptionUpdated } = useTask(props.taskId);
   const initialValue = useMemo(
     () => stringifyDescription(task.description),
     [task.description],
-  )
-  const [resetView, setResetView] = useState<number>(1)
+  );
+  const [resetView, setResetView] = useState<number>(1);
 
   const handleChange = useCallback(
     async (val: string) => {
-      const description = parseDescription(val)
-      if (isDescriptionEqual(description, task.description)) return
+      const description = parseDescription(val);
+      if (isDescriptionEqual(description, task.description)) return;
 
-      console.log('change!')
+      console.log('change!');
       await setTask({
         description,
-      })
+      });
     },
     [setTask, task.description],
-  )
+  );
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    setResetView((s) => s + 1)
-  }, [hasDescriptionUpdated])
+    setResetView((s) => s + 1);
+  }, [hasDescriptionUpdated]);
 
   return (
     <Component
@@ -57,23 +57,23 @@ const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
       initialValue={initialValue}
       resetView={resetView}
     />
-  )
-})
+  );
+});
 
 type ComponentProps = {
-  onChange: (val: string) => void
-  initialValue: string
-  resetView: number
-}
+  onChange: (val: string) => void;
+  initialValue: string;
+  resetView: number;
+};
 const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
-  const { onChange, initialValue, resetView } = props
+  const { onChange, initialValue, resetView } = props;
 
   const handleChange = useCallback(
     (val: string) => {
-      onChange(val)
+      onChange(val);
     },
     [onChange],
-  )
+  );
 
   return (
     <Row>
@@ -92,8 +92,8 @@ const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
         </Container>
       </Content>
     </Row>
-  )
-})
-DescriptionHandler.displayName = 'DescriptionHandler'
-Component.displayName = 'Component'
-Description.displayName = 'Description'
+  );
+});
+DescriptionHandler.displayName = 'DescriptionHandler';
+Component.displayName = 'Component';
+Description.displayName = 'Description';

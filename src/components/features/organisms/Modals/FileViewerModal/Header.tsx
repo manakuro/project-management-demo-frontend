@@ -1,5 +1,5 @@
-import { memo } from 'react'
-import { ComingSoonTooltip } from 'src/components/features/molecules/Tooltips'
+import { memo } from 'react';
+import { ComingSoonTooltip } from 'src/components/features/molecules/Tooltips';
 import {
   Button,
   Divider,
@@ -9,15 +9,15 @@ import {
   Link,
   Stack,
   Text,
-} from 'src/components/ui/atoms'
-import { formatTaskFileCreatedAt } from 'src/shared/date'
-import { useTaskFile } from 'src/store/entities/taskFile'
-import { useFileViewerModal } from './useFileViewerModal'
+} from 'src/components/ui/atoms';
+import { formatTaskFileCreatedAt } from 'src/shared/date';
+import { useTaskFile } from 'src/store/entities/taskFile';
+import { useFileViewerModal } from './useFileViewerModal';
 
 export const Header = memo(function Header() {
-  const { onClose, currentTaskFileId } = useFileViewerModal()
-  const { taskFile } = useTaskFile(currentTaskFileId)
-  const formattedCreateAt = formatTaskFileCreatedAt(taskFile.createdAt)
+  const { onClose, currentTaskFileId } = useFileViewerModal();
+  const { taskFile } = useTaskFile(currentTaskFileId);
+  const formattedCreateAt = formatTaskFileCreatedAt(taskFile.createdAt);
 
   return (
     <Flex h="full">
@@ -60,5 +60,5 @@ export const Header = memo(function Header() {
         />
       </Flex>
     </Flex>
-  )
-})
+  );
+});

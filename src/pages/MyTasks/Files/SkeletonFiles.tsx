@@ -1,11 +1,11 @@
-import { memo } from 'react'
-import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms'
-import { useBreakpointValue } from 'src/shared/chakra'
+import { memo } from 'react';
+import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms';
+import { useBreakpointValue } from 'src/shared/chakra';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const SkeletonFiles = memo<Props>(function SkeletonFiles() {
-  const splitNum = useBreakpointValue({ base: 2, '2xl': 3 }) as number
+  const splitNum = useBreakpointValue({ base: 2, '2xl': 3 }) as number;
 
   return (
     <Flex flex={1} h="full" flexDirection="column" bg="gray.50">
@@ -26,5 +26,5 @@ export const SkeletonFiles = memo<Props>(function SkeletonFiles() {
         </Stack>
       </Flex>
     </Flex>
-  )
-})
+  );
+});

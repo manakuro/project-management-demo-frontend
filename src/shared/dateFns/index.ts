@@ -1,1 +1,1 @@
-export * from './dateFns'
+export * from './dateFns';

@@ -1,24 +1,24 @@
-import type React from 'react'
-import { memo } from 'react'
-import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider'
-import { useTasksListSectionContext } from 'src/components/features/organisms/Tasks/TasksList/TasksListSection/Provider'
-import { Flex, Icon, IconButton, Stack } from 'src/components/ui/atoms'
-import { useHover } from 'src/hooks/useHover'
-import { AddTaskButton } from './AddTaskButton'
-import { MoreAction } from './MoreAction'
-import { TaskSectionName } from './TaskSectionName'
+import type React from 'react';
+import { memo } from 'react';
+import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider';
+import { useTasksListSectionContext } from 'src/components/features/organisms/Tasks/TasksList/TasksListSection/Provider';
+import { Flex, Icon, IconButton, Stack } from 'src/components/ui/atoms';
+import { useHover } from 'src/hooks/useHover';
+import { AddTaskButton } from './AddTaskButton';
+import { MoreAction } from './MoreAction';
+import { TaskSectionName } from './TaskSectionName';
 
 type Props = {
-  taskSectionId: string
-  onToggle: () => void
-  isExpanded: boolean
-}
+  taskSectionId: string;
+  onToggle: () => void;
+  isExpanded: boolean;
+};
 
 export const Header: React.FC<Props> = memo<Props>((props) => {
-  const { onToggle, isExpanded } = props
-  const { ref, isHovering } = useHover()
-  const { indentedStyle } = useTasksListSectionContext()
-  const { stickyStyle } = useTasksListContext()
+  const { onToggle, isExpanded } = props;
+  const { ref, isHovering } = useHover();
+  const { indentedStyle } = useTasksListSectionContext();
+  const { stickyStyle } = useTasksListContext();
 
   return (
     <Flex
@@ -45,6 +45,6 @@ export const Header: React.FC<Props> = memo<Props>((props) => {
         </Stack>
       )}
     </Flex>
-  )
-})
-Header.displayName = 'Header'
+  );
+});
+Header.displayName = 'Header';

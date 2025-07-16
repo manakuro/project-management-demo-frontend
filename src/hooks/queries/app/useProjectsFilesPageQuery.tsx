@@ -1,45 +1,45 @@
-import { useCallback, useEffect, useState } from 'react'
-import { useMountedRef } from 'src/hooks'
-import { useProjectsFilesResponse } from 'src/store/app/projectsFiles'
+import { useCallback, useEffect, useState } from 'react';
+import { useMountedRef } from 'src/hooks';
+import { useProjectsFilesResponse } from 'src/store/app/projectsFiles';
 
 type Props = {
-  lazy?: boolean
-}
+  lazy?: boolean;
+};
 
 export const useProjectsFilesPageQuery = (props?: Props) => {
-  const [loading, setLoading] = useState(true)
-  const { setProjectsAttachments } = useProjectsFilesResponse()
-  const { mountedRef } = useMountedRef()
+  const [loading, setLoading] = useState(true);
+  const { setProjectsAttachments } = useProjectsFilesResponse();
+  const { mountedRef } = useMountedRef();
 
   useEffect(() => {
-    ;(async () => {
-      if (props?.lazy) return
+    (async () => {
+      if (props?.lazy) return;
 
-      setLoading(true)
-      const res = await fetchTasks()
+      setLoading(true);
+      const res = await fetchTasks();
       if (mountedRef.current) {
-        await setProjectsAttachments(res)
-        setLoading(false)
+        await setProjectsAttachments(res);
+        setLoading(false);
       }
-    })()
-  }, [props?.lazy, setProjectsAttachments, mountedRef])
+    })();
+  }, [props?.lazy, setProjectsAttachments, mountedRef]);
 
   const refetch = useCallback(async () => {
-    setLoading(true)
-    const res = await fetchTasks()
+    setLoading(true);
+    const res = await fetchTasks();
     if (mountedRef.current) {
-      await setProjectsAttachments(res)
-      setLoading(false)
+      await setProjectsAttachments(res);
+      setLoading(false);
     }
 
-    return res
-  }, [mountedRef, setProjectsAttachments])
+    return res;
+  }, [mountedRef, setProjectsAttachments]);
 
   return {
     refetch,
     loading,
-  }
-}
+  };
+};
 
 const fetchTasks = async (): Promise<any[]> => {
   return new Promise<any[]>((resolve) => {
@@ -135,7 +135,7 @@ const fetchTasks = async (): Promise<any[]> => {
             name: 'Implement Task Due Soon',
           },
         },
-      ])
-    }, 500)
-  })
-}
+      ]);
+    }, 500);
+  });
+};

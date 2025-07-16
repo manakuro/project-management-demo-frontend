@@ -1,6 +1,6 @@
-import { useMemo } from 'react'
-import { sinkListItemCommand } from 'src/shared/prosemirror/config/commands'
-import type { ToolbarItem } from './types'
+import { useMemo } from 'react';
+import { sinkListItemCommand } from 'src/shared/prosemirror/config/commands';
+import type { ToolbarItem } from './types';
 
 export const useIncreaseListIndent = (): ToolbarItem => {
   return useMemo(
@@ -9,5 +9,5 @@ export const useIncreaseListIndent = (): ToolbarItem => {
       isEnable: sinkListItemCommand,
     }),
     [],
-  )
-}
+  );
+};

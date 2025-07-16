@@ -1,16 +1,16 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, Icon, Text } from 'src/components/ui/atoms'
-import { MenuItem } from 'src/components/ui/organisms/Menu'
-import { PopoverAddCoverImageActions } from './PopoverAddCoverImageActions'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, Icon, Text } from 'src/components/ui/atoms';
+import { MenuItem } from 'src/components/ui/organisms/Menu';
+import { PopoverAddCoverImageActions } from './PopoverAddCoverImageActions';
 
 type Props = {
-  isOpen: boolean
-  onOpen: () => void
-  onClose: () => void
-}
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+};
 export const AddCoverImage: React.FC<Props> = memo((props) => {
-  const { onClose, onOpen, isOpen } = props
+  const { onClose, onOpen, isOpen } = props;
 
   return (
     <MenuItem onMouseEnter={onOpen} isDisabled>
@@ -28,7 +28,7 @@ export const AddCoverImage: React.FC<Props> = memo((props) => {
         </Flex>
       </PopoverAddCoverImageActions>
     </MenuItem>
-  )
-})
+  );
+});
 
-AddCoverImage.displayName = 'EditTaskName'
+AddCoverImage.displayName = 'EditTaskName';

@@ -1,1 +1,1 @@
-export * from './EditTaskName'
+export * from './EditTaskName';

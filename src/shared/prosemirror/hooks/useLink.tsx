@@ -1,12 +1,12 @@
-import { type Command, toggleMark } from 'prosemirror-commands'
-import { useCallback, useMemo } from 'react'
-import { useEditorLinkModal } from 'src/components/features/organisms/Modals'
-import { isMarkActive } from 'src/shared/prosemirror/commands'
-import { schema } from 'src/shared/prosemirror/config'
-import type { ToolbarItem } from './types'
+import { type Command, toggleMark } from 'prosemirror-commands';
+import { useCallback, useMemo } from 'react';
+import { useEditorLinkModal } from 'src/components/features/organisms/Modals';
+import { isMarkActive } from 'src/shared/prosemirror/commands';
+import { schema } from 'src/shared/prosemirror/config';
+import type { ToolbarItem } from './types';
 
 export const useLink = (): ToolbarItem => {
-  const { onOpen } = useEditorLinkModal()
+  const { onOpen } = useEditorLinkModal();
   const action = useCallback<
     (
       state: Parameters<Command>[0],
@@ -16,26 +16,26 @@ export const useLink = (): ToolbarItem => {
   >(
     async (state, dispatch) => {
       if (isMarkActive(schema.marks.link)(state)) {
-        toggleMark(schema.marks.link)(state, dispatch)
-        return true
+        toggleMark(schema.marks.link)(state, dispatch);
+        return true;
       }
-      const selectedText = window.getSelection()
-      const position = selectedText?.getRangeAt(0).getBoundingClientRect()
+      const selectedText = window.getSelection();
+      const position = selectedText?.getRangeAt(0).getBoundingClientRect();
 
-      if (!selectedText?.anchorNode) return false
+      if (!selectedText?.anchorNode) return false;
 
       const input = await onOpen({
         x: Number(position?.top),
         y: Number(position?.left),
-      })
-      if (!input.url) return false
+      });
+      if (!input.url) return false;
 
-      toggleMark(schema.marks.link, { href: input.url })(state, dispatch)
+      toggleMark(schema.marks.link, { href: input.url })(state, dispatch);
 
-      return true
+      return true;
     },
     [onOpen],
-  )
+  );
 
   return useMemo(
     () => ({
@@ -44,5 +44,5 @@ export const useLink = (): ToolbarItem => {
       isEnable: (state) => !state.selection.empty,
     }),
     [action],
-  )
-}
+  );
+};

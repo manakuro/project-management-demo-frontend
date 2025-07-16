@@ -1,26 +1,26 @@
-import type { PropsWithChildren } from 'react'
-import { useCallback, useMemo } from 'react'
-import { AspectRatio, WrapItem } from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
-import { useCarouselContext } from './Provider'
+import type { PropsWithChildren } from 'react';
+import { useCallback, useMemo } from 'react';
+import { AspectRatio, WrapItem } from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
+import { useCarouselContext } from './Provider';
 
 type Props = {
-  index?: number
-}
+  index?: number;
+};
 
 export function CarouselThumbnailItem(props: PropsWithChildren<Props>) {
-  const { currentIndex, setCurrentIndex } = useCarouselContext()
+  const { currentIndex, setCurrentIndex } = useCarouselContext();
   const show = useMemo(
     () => currentIndex === props.index,
     [currentIndex, props.index],
-  )
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
+  );
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
 
   const handleClick = useCallback(() => {
     if (props.index) {
-      setCurrentIndex(props.index)
+      setCurrentIndex(props.index);
     }
-  }, [props.index, setCurrentIndex])
+  }, [props.index, setCurrentIndex]);
 
   return (
     <WrapItem
@@ -35,5 +35,5 @@ export function CarouselThumbnailItem(props: PropsWithChildren<Props>) {
         {props.children}
       </AspectRatio>
     </WrapItem>
-  )
+  );
 }

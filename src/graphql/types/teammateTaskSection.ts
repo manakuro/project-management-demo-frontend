@@ -1,7 +1,7 @@
-import type { TeammateTaskSectionFragmentFragment } from 'src/graphql/types'
+import type { TeammateTaskSectionFragmentFragment } from 'src/graphql/types';
 
 export type TeammateTaskSectionResponse =
-  NonNullable<TeammateTaskSectionFragmentFragment>
+  NonNullable<TeammateTaskSectionFragmentFragment>;
 
 export type {
   TeammateTaskSectionUpdatedSubscription as TeammateTaskSectionUpdatedSubscriptionResponse,
@@ -14,4 +14,4 @@ export type {
   DeleteTeammateTaskSectionAndKeepTasksMutation,
   DeleteTeammateTaskSectionAndDeleteTasksMutation,
   UpdateTeammateTaskSectionInput,
-} from 'src/graphql/types'
+} from 'src/graphql/types';

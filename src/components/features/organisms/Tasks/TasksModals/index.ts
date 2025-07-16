@@ -1,1 +1,1 @@
-export * from './TasksModals'
+export * from './TasksModals';

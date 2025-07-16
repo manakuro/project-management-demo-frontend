@@ -1,1 +1,1 @@
-export * from './MoreAction'
+export * from './MoreAction';

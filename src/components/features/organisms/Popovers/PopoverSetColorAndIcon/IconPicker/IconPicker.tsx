@@ -1,30 +1,30 @@
-import type React from 'react'
-import { useCallback } from 'react'
-import { Wrap } from 'src/components/ui/atoms'
-import { useProjectCommand } from 'src/store/entities/project'
-import { useProjectIconIds } from 'src/store/entities/projectIcon'
-import { IconPickerItem } from './IconPickerItem'
+import type React from 'react';
+import { useCallback } from 'react';
+import { Wrap } from 'src/components/ui/atoms';
+import { useProjectCommand } from 'src/store/entities/project';
+import { useProjectIconIds } from 'src/store/entities/projectIcon';
+import { IconPickerItem } from './IconPickerItem';
 
 type Props = {
-  projectId: string
-  currentProjectIconId: string
-  currentProjectLightColorId: string
-  currentProjectBaseColorId: string
-}
+  projectId: string;
+  currentProjectIconId: string;
+  currentProjectLightColorId: string;
+  currentProjectBaseColorId: string;
+};
 
 export const IconPicker: React.FC<Props> = (props) => {
-  const { projectIconIds } = useProjectIconIds()
-  const { setProject } = useProjectCommand()
+  const { projectIconIds } = useProjectIconIds();
+  const { setProject } = useProjectCommand();
 
   const handleClick = useCallback(
     async (id: string) => {
       await setProject({
         projectId: props.projectId,
         projectIconId: id,
-      })
+      });
     },
     [props.projectId, setProject],
-  )
+  );
 
   return (
     <Wrap p={6} spacing={1} overflowY="scroll" maxH={60}>
@@ -39,5 +39,5 @@ export const IconPicker: React.FC<Props> = (props) => {
         />
       ))}
     </Wrap>
-  )
-}
+  );
+};

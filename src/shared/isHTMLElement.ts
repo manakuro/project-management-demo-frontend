@@ -1,2 +1,2 @@
 export const isHTMLElement = (obj: any): obj is HTMLElement =>
-  obj instanceof Element
+  obj instanceof Element;

@@ -1,23 +1,23 @@
-import type React from 'react'
-import { memo } from 'react'
+import type React from 'react';
+import { memo } from 'react';
 import {
   SearchMenu,
   SearchMenuContent,
   SearchMenuTrigger,
-} from 'src/components/features/organisms/Menus/SearchMenu'
-import type { PopoverProps } from 'src/components/ui/organisms/Popover'
-import { Content } from './Content'
+} from 'src/components/features/organisms/Menus/SearchMenu';
+import type { PopoverProps } from 'src/components/ui/organisms/Popover';
+import { Content } from './Content';
 
 type Props = PopoverProps & {
-  onSelect: (val: string) => void
-  queryText: string
-  onClose: () => void
-  onClosed?: () => void
-  immediate?: boolean
-}
+  onSelect: (val: string) => void;
+  queryText: string;
+  onClose: () => void;
+  onClosed?: () => void;
+  immediate?: boolean;
+};
 
 export const ProjectMenu: React.FC<Props> = memo<Props>((props) => {
-  const { onClosed, queryText, isOpen, onClose, immediate, ...rest } = props
+  const { onClosed, queryText, isOpen, onClose, immediate, ...rest } = props;
 
   return (
     <SearchMenu isOpen={isOpen} {...rest}>
@@ -34,6 +34,6 @@ export const ProjectMenu: React.FC<Props> = memo<Props>((props) => {
         </SearchMenuContent>
       )}
     </SearchMenu>
-  )
-})
-ProjectMenu.displayName = 'ProjectMenu'
+  );
+});
+ProjectMenu.displayName = 'ProjectMenu';

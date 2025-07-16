@@ -1,1 +1,1 @@
-export * from './FeedOptionMenu'
+export * from './FeedOptionMenu';

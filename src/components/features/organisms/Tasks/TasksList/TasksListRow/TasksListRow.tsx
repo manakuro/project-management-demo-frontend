@@ -1,22 +1,22 @@
-import type React from 'react'
-import { memo, useMemo } from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
+import type React from 'react';
+import { memo, useMemo } from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
 
 type Props = FlexProps & {
-  selected?: boolean
-}
+  selected?: boolean;
+};
 
 export const TasksListRow: React.FC<Props> = memo<Props>((props) => {
-  const { selected, ...rest } = props
-  const { clickableHoverStyle } = useClickableHoverStyle()
+  const { selected, ...rest } = props;
+  const { clickableHoverStyle } = useClickableHoverStyle();
   const style = useMemo<FlexProps>(() => {
     return {
       ...(selected
         ? { bg: 'teal.50', _hover: { bg: 'teal.50' } }
         : { bg: 'white' }),
-    }
-  }, [selected])
+    };
+  }, [selected]);
 
   return (
     <Flex
@@ -26,6 +26,6 @@ export const TasksListRow: React.FC<Props> = memo<Props>((props) => {
       {...style}
       {...rest}
     />
-  )
-})
-TasksListRow.displayName = 'TasksListRow'
+  );
+});
+TasksListRow.displayName = 'TasksListRow';

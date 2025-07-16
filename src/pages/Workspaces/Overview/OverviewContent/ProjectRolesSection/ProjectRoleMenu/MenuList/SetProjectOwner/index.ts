@@ -1,1 +1,1 @@
-export * from './SetProjectOwner'
+export * from './SetProjectOwner';

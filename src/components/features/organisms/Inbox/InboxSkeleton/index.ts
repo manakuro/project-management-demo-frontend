@@ -1,1 +1,1 @@
-export * from './InboxSkeleton'
+export * from './InboxSkeleton';

@@ -1,5 +1,5 @@
-import { memo } from 'react'
-import { Flex, Skeleton, Stack } from 'src/components/ui/atoms'
+import { memo } from 'react';
+import { Flex, Skeleton, Stack } from 'src/components/ui/atoms';
 
 export const SkeletonDescription = memo(function SkeletonDescription() {
   return (
@@ -19,5 +19,5 @@ export const SkeletonDescription = memo(function SkeletonDescription() {
         <Skeleton h="16px" w="40%" borderRadius="full" />
       </Stack>
     </Flex>
-  )
-})
+  );
+});

@@ -1,26 +1,26 @@
-import type React from 'react'
-import { useCallback } from 'react'
-import { Input, Stack } from 'src/components/ui/atoms'
+import type React from 'react';
+import { useCallback } from 'react';
+import { Input, Stack } from 'src/components/ui/atoms';
 import {
   Modal,
   ModalBody,
   ModalContent,
-} from 'src/components/ui/organisms/Modal'
-import { useEditorLinkModal } from './useEditorLinkModal'
+} from 'src/components/ui/organisms/Modal';
+import { useEditorLinkModal } from './useEditorLinkModal';
 
-const MARGIN = 30
+const MARGIN = 30;
 export function EditorLinkModal() {
-  const { isOpen, x, y, onClose, setInput, input } = useEditorLinkModal()
+  const { isOpen, x, y, onClose, setInput, input } = useEditorLinkModal();
 
   const handleInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, type: keyof typeof input) => {
       setInput({
         ...input,
         [type]: e.target.value,
-      })
+      });
     },
     [input, setInput],
-  )
+  );
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xs">
@@ -38,5 +38,5 @@ export function EditorLinkModal() {
         </ModalBody>
       </ModalContent>
     </Modal>
-  )
+  );
 }

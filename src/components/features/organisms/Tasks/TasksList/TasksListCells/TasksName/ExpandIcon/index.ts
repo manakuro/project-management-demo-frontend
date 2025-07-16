@@ -1,1 +1,1 @@
-export * from './ExpandIcon'
+export * from './ExpandIcon';

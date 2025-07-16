@@ -1,12 +1,12 @@
-import { useFormikContext } from 'formik'
-import type React from 'react'
-import { memo } from 'react'
-import { Button, type ButtonProps } from 'src/components/ui/atoms'
+import { useFormikContext } from 'formik';
+import type React from 'react';
+import { memo } from 'react';
+import { Button, type ButtonProps } from 'src/components/ui/atoms';
 
-type Props = ButtonProps
+type Props = ButtonProps;
 
 export const SubmitButton: React.FC<Props> = memo((props) => {
-  const { isValid } = useFormikContext()
+  const { isValid } = useFormikContext();
 
   return (
     <Button
@@ -16,7 +16,7 @@ export const SubmitButton: React.FC<Props> = memo((props) => {
       isDisabled={!isValid}
       {...props}
     />
-  )
-})
+  );
+});
 
-SubmitButton.displayName = 'SubmitButton'
+SubmitButton.displayName = 'SubmitButton';

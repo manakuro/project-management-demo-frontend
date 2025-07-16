@@ -1,12 +1,12 @@
-import type React from 'react'
-import { useMenuSelectContext } from '../useMenuSelect'
-import { Component, type ComponentProps } from './Component'
+import type React from 'react';
+import { useMenuSelectContext } from '../useMenuSelect';
+import { Component, type ComponentProps } from './Component';
 
-type Props = ComponentProps
+type Props = ComponentProps;
 
 export const MenuSelectList: React.FC<Props> = (props) => {
-  const { isOpen } = useMenuSelectContext()
-  if (!isOpen) return null
+  const { isOpen } = useMenuSelectContext();
+  if (!isOpen) return null;
 
-  return <Component {...props} />
-}
+  return <Component {...props} />;
+};

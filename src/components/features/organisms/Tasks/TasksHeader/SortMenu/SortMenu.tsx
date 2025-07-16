@@ -2,25 +2,25 @@ import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
-} from 'src/components/features/organisms/Menus'
-import { Button, Icon } from 'src/components/ui/atoms'
-import { MenuItemOption } from 'src/components/ui/organisms/Menu'
-import type { TaskListSortStatusCodeValue } from 'src/store/entities/taskListSortStatus'
+} from 'src/components/features/organisms/Menus';
+import { Button, Icon } from 'src/components/ui/atoms';
+import { MenuItemOption } from 'src/components/ui/organisms/Menu';
+import type { TaskListSortStatusCodeValue } from 'src/store/entities/taskListSortStatus';
 
 type Props<T extends TaskListSortStatusCodeValue> = {
   items: {
-    value: T
-    text: string
-  }[]
-  onChange: (status: T) => void
-  text: string
-  defaultValue: string
-}
+    value: T;
+    text: string;
+  }[];
+  onChange: (status: T) => void;
+  text: string;
+  defaultValue: string;
+};
 
 export const SortMenu = <T extends TaskListSortStatusCodeValue>(
   props: Props<T>,
 ) => {
-  const { items, onChange, text, defaultValue } = props
+  const { items, onChange, text, defaultValue } = props;
 
   return (
     <MenuSelect<T> onChange={onChange} placement="bottom-end">
@@ -44,6 +44,6 @@ export const SortMenu = <T extends TaskListSortStatusCodeValue>(
         ))}
       </MenuSelectList>
     </MenuSelect>
-  )
-}
-SortMenu.displayName = 'SortMenu'
+  );
+};
+SortMenu.displayName = 'SortMenu';

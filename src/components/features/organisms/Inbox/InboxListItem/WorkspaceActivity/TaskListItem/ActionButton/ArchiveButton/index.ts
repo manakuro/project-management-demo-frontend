@@ -1,1 +1,1 @@
-export * from './ArchiveButton'
+export * from './ArchiveButton';

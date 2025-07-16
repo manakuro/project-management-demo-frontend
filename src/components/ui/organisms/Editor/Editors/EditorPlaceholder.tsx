@@ -1,20 +1,20 @@
-import React, { useMemo } from 'react'
-import { Flex, type FlexProps, Text } from 'src/components/ui/atoms'
-import { isContentEmpty } from 'src/shared/prosemirror/utils'
-import { useEditorViewContext } from './EdiorProvider'
+import React, { useMemo } from 'react';
+import { Flex, type FlexProps, Text } from 'src/components/ui/atoms';
+import { isContentEmpty } from 'src/shared/prosemirror/utils';
+import { useEditorViewContext } from './EdiorProvider';
 
-type Props = FlexProps
+type Props = FlexProps;
 export const EditorPlaceholder: React.FC<Props> = React.memo<Props>((props) => {
-  const { children, ...rest } = props
-  const view = useEditorViewContext()
+  const { children, ...rest } = props;
+  const view = useEditorViewContext();
 
   const show = useMemo(() => {
-    if (!view) return true
+    if (!view) return true;
 
-    return isContentEmpty(view)
-  }, [view])
+    return isContentEmpty(view);
+  }, [view]);
 
-  if (!show) return null
+  if (!show) return null;
 
   return (
     <Flex
@@ -31,6 +31,6 @@ export const EditorPlaceholder: React.FC<Props> = React.memo<Props>((props) => {
         {children}
       </Text>
     </Flex>
-  )
-})
-EditorPlaceholder.displayName = 'EditorPlaceholder'
+  );
+});
+EditorPlaceholder.displayName = 'EditorPlaceholder';

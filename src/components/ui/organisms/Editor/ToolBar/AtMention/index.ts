@@ -1,1 +1,1 @@
-export * from './AtMention'
+export * from './AtMention';

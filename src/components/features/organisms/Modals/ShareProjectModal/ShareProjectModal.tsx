@@ -1,17 +1,17 @@
-import { memo } from 'react'
+import { memo } from 'react';
 import {
   Modal,
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-} from 'src/components/ui/organisms/Modal'
-import { Body } from './Body'
-import { Footer } from './Footer'
-import { Header } from './Header'
-import { useShareProjectModal } from './useShareProjectModal'
+} from 'src/components/ui/organisms/Modal';
+import { Body } from './Body';
+import { Footer } from './Footer';
+import { Header } from './Header';
+import { useShareProjectModal } from './useShareProjectModal';
 
 export const ShareProjectModal = memo(function ShareProjectModal() {
-  const { isOpen, onClose, projectId } = useShareProjectModal()
+  const { isOpen, onClose, projectId } = useShareProjectModal();
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl">
@@ -23,5 +23,5 @@ export const ShareProjectModal = memo(function ShareProjectModal() {
         {isOpen && <Footer />}
       </ModalContent>
     </Modal>
-  )
-})
+  );
+});

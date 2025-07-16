@@ -1,8 +1,8 @@
-import { selectorFamily } from 'recoil'
-import { createState } from 'src/store/util'
-import type { ProjectTeammate } from './type'
+import { selectorFamily } from 'recoil';
+import { createState } from 'src/store/util';
+import type { ProjectTeammate } from './type';
 
-const key = (str: string) => `src/store/entities/projectTeammate/${str}`
+const key = (str: string) => `src/store/entities/projectTeammate/${str}`;
 
 const initialState = (): ProjectTeammate => ({
   id: '',
@@ -12,24 +12,24 @@ const initialState = (): ProjectTeammate => ({
   role: '',
   createdAt: '',
   updatedAt: '',
-})
+});
 export const {
   state: projectTeammateState,
   listState: projectTeammatesState,
   idsState: projectTeammateIdsState,
-} = createState({ key, initialState })
+} = createState({ key, initialState });
 
 export const teammateIdsByProjectIdState = selectorFamily<string[], string>({
   key: 'teammateIdsByProjectIdState',
   get:
     (projectId) =>
     ({ get }) => {
-      const projects = get(projectTeammatesState)
+      const projects = get(projectTeammatesState);
       return projects
         .filter((t) => t.projectId === projectId)
-        .map((p) => p.teammateId)
+        .map((p) => p.teammateId);
     },
-})
+});
 
 export const projectTeammateIdsByProjectIdState = selectorFamily<
   string[],
@@ -39,10 +39,10 @@ export const projectTeammateIdsByProjectIdState = selectorFamily<
   get:
     (projectId) =>
     ({ get }) => {
-      const projects = get(projectTeammatesState)
-      return projects.filter((t) => t.projectId === projectId).map((p) => p.id)
+      const projects = get(projectTeammatesState);
+      return projects.filter((t) => t.projectId === projectId).map((p) => p.id);
     },
-})
+});
 
 export const projectTeammateIdsByProjectIdSortedByOwnerState = selectorFamily<
   string[],
@@ -52,17 +52,17 @@ export const projectTeammateIdsByProjectIdSortedByOwnerState = selectorFamily<
   get:
     (projectId) =>
     ({ get }) => {
-      const projects = get(projectTeammatesState)
+      const projects = get(projectTeammatesState);
       return projects
         .filter((t) => t.projectId === projectId)
         .sort((a, b) => {
-          if (a.isOwner) return -1
-          if (b.isOwner) return 1
-          return 0
+          if (a.isOwner) return -1;
+          if (b.isOwner) return 1;
+          return 0;
         })
-        .map((p) => p.id)
+        .map((p) => p.id);
     },
-})
+});
 
 export const projectTeammateIdsByProjectIdSortedByCreatedAtState =
   selectorFamily<string[], string>({
@@ -70,15 +70,15 @@ export const projectTeammateIdsByProjectIdSortedByCreatedAtState =
     get:
       (projectId) =>
       ({ get }) => {
-        const projects = get(projectTeammatesState)
+        const projects = get(projectTeammatesState);
         return projects
           .filter((t) => t.projectId === projectId)
           .sort((a, b) => {
-            return a.createdAt > b.createdAt ? -1 : 1
+            return a.createdAt > b.createdAt ? -1 : 1;
           })
-          .map((p) => p.id)
+          .map((p) => p.id);
       },
-  })
+  });
 
 export const ownerProjectTeammateByProjectIdState = selectorFamily<
   ProjectTeammate,
@@ -88,13 +88,13 @@ export const ownerProjectTeammateByProjectIdState = selectorFamily<
   get:
     (projectId) =>
     ({ get }) => {
-      const projects = get(projectTeammatesState)
+      const projects = get(projectTeammatesState);
       return (
         projects.filter((t) => t.projectId === projectId && t.isOwner)[0] ??
         initialState()
-      )
+      );
     },
-})
+});
 
 export const projectTeammateByProjectIdAndTeammateIdState = selectorFamily<
   ProjectTeammate,
@@ -104,11 +104,11 @@ export const projectTeammateByProjectIdAndTeammateIdState = selectorFamily<
   get:
     ({ projectId, teammateId }) =>
     ({ get }) => {
-      const projects = get(projectTeammatesState)
+      const projects = get(projectTeammatesState);
       return (
         projects.find(
           (t) => t.projectId === projectId && t.teammateId === teammateId,
         ) ?? initialState()
-      )
+      );
     },
-})
+});

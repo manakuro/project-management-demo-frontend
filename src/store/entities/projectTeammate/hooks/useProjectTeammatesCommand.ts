@@ -1,41 +1,41 @@
-import { useRecoilCallback } from 'recoil'
+import { useRecoilCallback } from 'recoil';
 import {
   useUpdateProjectTeammateMutation,
   useUpdateProjectTeammateOwnerMutation,
-} from 'src/graphql/hooks'
-import { useWorkspace } from 'src/store/entities/workspace'
+} from 'src/graphql/hooks';
+import { useWorkspace } from 'src/store/entities/workspace';
 import {
   ownerProjectTeammateByProjectIdState,
   projectTeammateByProjectIdAndTeammateIdState,
   projectTeammateState,
-} from '../atom'
-import type { ProjectTeammate } from '../type'
-import { useProjectTeammateResponse } from './useProjectTeammateResponse'
-import { useUpsert } from './useUpsert'
+} from '../atom';
+import type { ProjectTeammate } from '../type';
+import { useProjectTeammateResponse } from './useProjectTeammateResponse';
+import { useUpsert } from './useUpsert';
 
 export const useProjectTeammatesCommand = () => {
-  const { upsert } = useUpsert()
+  const { upsert } = useUpsert();
   const [updateProjectTeammateOwnerMutation] =
-    useUpdateProjectTeammateOwnerMutation()
+    useUpdateProjectTeammateOwnerMutation();
 
-  const [updateProjectTeammateMutation] = useUpdateProjectTeammateMutation()
+  const [updateProjectTeammateMutation] = useUpdateProjectTeammateMutation();
 
-  const { workspace } = useWorkspace()
-  const { setProjectsTeammates } = useProjectTeammateResponse()
+  const { workspace } = useWorkspace();
+  const { setProjectsTeammates } = useProjectTeammateResponse();
 
   const setProjectTeammateById = useRecoilCallback(
     ({ snapshot }) =>
       async (input: Partial<ProjectTeammate> & { id: string }) => {
-        const prev = await snapshot.getPromise(projectTeammateState(input.id))
+        const prev = await snapshot.getPromise(projectTeammateState(input.id));
 
         const restore = () => {
-          upsert(prev)
-        }
+          upsert(prev);
+        };
 
         upsert({
           ...prev,
           ...input,
-        })
+        });
 
         try {
           const res = await updateProjectTeammateMutation({
@@ -46,17 +46,17 @@ export const useProjectTeammatesCommand = () => {
                 workspaceId: workspace.id,
               },
             },
-          })
+          });
           if (res.errors) {
-            restore()
+            restore();
           }
         } catch (e) {
-          restore()
-          throw e
+          restore();
+          throw e;
         }
       },
     [updateProjectTeammateMutation, upsert, workspace.id],
-  )
+  );
 
   const setProjectTeammateByProjectIdAndTeammateId = useRecoilCallback(
     ({ snapshot }) =>
@@ -70,34 +70,34 @@ export const useProjectTeammatesCommand = () => {
             projectId,
             teammateId,
           }),
-        )
+        );
         upsert({
           ...prev,
           ...input,
-        })
+        });
       },
     [upsert],
-  )
+  );
 
   const setOwnerByProjectIdAndTeammateId = useRecoilCallback(
     ({ snapshot }) =>
       async (projectId: string, teammateId: string) => {
         const prev = await snapshot.getPromise(
           ownerProjectTeammateByProjectIdState(projectId),
-        )
-        if (prev.id) upsert({ ...prev, isOwner: false })
+        );
+        if (prev.id) upsert({ ...prev, isOwner: false });
 
         const restore = () => {
-          if (prev.id) upsert({ ...prev, isOwner: true })
-        }
+          if (prev.id) upsert({ ...prev, isOwner: true });
+        };
 
         const owner = await snapshot.getPromise(
           projectTeammateByProjectIdAndTeammateIdState({
             projectId,
             teammateId,
           }),
-        )
-        if (owner.id) upsert({ ...owner, isOwner: true })
+        );
+        if (owner.id) upsert({ ...owner, isOwner: true });
 
         try {
           const res = await updateProjectTeammateOwnerMutation({
@@ -109,18 +109,18 @@ export const useProjectTeammatesCommand = () => {
                 workspaceId: workspace.id,
               },
             },
-          })
+          });
           if (res.errors) {
-            restore()
-            return
+            restore();
+            return;
           }
-          const data = res.data?.updateProjectTeammateOwner
-          if (!data) return
+          const data = res.data?.updateProjectTeammateOwner;
+          if (!data) return;
 
-          if (!owner.id) setProjectsTeammates([data])
+          if (!owner.id) setProjectsTeammates([data]);
         } catch (e) {
-          restore()
-          throw e
+          restore();
+          throw e;
         }
       },
     [
@@ -129,11 +129,11 @@ export const useProjectTeammatesCommand = () => {
       upsert,
       workspace.id,
     ],
-  )
+  );
 
   return {
     setProjectTeammateById,
     setProjectTeammateByProjectIdAndTeammateId,
     setOwnerByProjectIdAndTeammateId,
-  }
-}
+  };
+};

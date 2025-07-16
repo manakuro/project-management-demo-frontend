@@ -1,6 +1,6 @@
-import { useRecoilCallback } from 'recoil'
-import type { Task } from 'src/store/entities/task'
-import { taskState } from '../atom'
+import { useRecoilCallback } from 'recoil';
+import type { Task } from 'src/store/entities/task';
+import { taskState } from '../atom';
 
 export const useUpsert = () => {
   const upsert = useRecoilCallback(
@@ -10,13 +10,13 @@ export const useUpsert = () => {
           return {
             ...prev,
             ...task,
-          }
-        })
+          };
+        });
       },
     [],
-  )
+  );
 
   return {
     upsert,
-  }
-}
+  };
+};

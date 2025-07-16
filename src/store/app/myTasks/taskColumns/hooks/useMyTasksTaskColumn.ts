@@ -1,52 +1,52 @@
-import { useCallback } from 'react'
-import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { useMe } from 'src/store/entities/me'
+import { useCallback } from 'react';
+import { useRecoilCallback, useRecoilValue } from 'recoil';
+import { useMe } from 'src/store/entities/me';
 import {
   type TeammateTaskColumn,
   useTeammateTaskColumn,
   useTeammateTaskColumnCommand,
-} from 'src/store/entities/teammateTaskColumn'
-import { taskColumnIdsState } from '../atom'
+} from 'src/store/entities/teammateTaskColumn';
+import { taskColumnIdsState } from '../atom';
 
 export const useMyTasksTaskColumn = (tasksTaskColumnId: string) => {
-  const { me } = useMe()
-  const { teammatesTaskColumn } = useTeammateTaskColumn(tasksTaskColumnId)
+  const { me } = useMe();
+  const { teammatesTaskColumn } = useTeammateTaskColumn(tasksTaskColumnId);
   const { setTeammateTaskColumn, setTeammateTaskColumnOrder } =
-    useTeammateTaskColumnCommand()
-  const ids = useRecoilValue(taskColumnIdsState(me.id))
+    useTeammateTaskColumnCommand();
+  const ids = useRecoilValue(taskColumnIdsState(me.id));
   const setTasksTaskColumn = useCallback(
     async (input: Partial<TeammateTaskColumn>) => {
-      await setTeammateTaskColumn({ id: tasksTaskColumnId, ...input })
+      await setTeammateTaskColumn({ id: tasksTaskColumnId, ...input });
     },
     [setTeammateTaskColumn, tasksTaskColumnId],
-  )
+  );
 
   const setTaskColumnOrder = useRecoilCallback(
     () => async (startIndex: number, endIndex: number) => {
-      const newIds = Array.from(ids)
-      const [deleted] = newIds.splice(startIndex, 1)
-      newIds.splice(endIndex, 0, deleted)
+      const newIds = Array.from(ids);
+      const [deleted] = newIds.splice(startIndex, 1);
+      newIds.splice(endIndex, 0, deleted);
 
-      setTeammateTaskColumnOrder(newIds)
+      setTeammateTaskColumnOrder(newIds);
     },
     [ids, setTeammateTaskColumnOrder],
-  )
+  );
 
   const canMoveLeft = useRecoilCallback(
     () => (id: string) => {
-      const currentIndex = ids.indexOf(id)
-      return currentIndex > 1
+      const currentIndex = ids.indexOf(id);
+      return currentIndex > 1;
     },
     [ids],
-  )
+  );
 
   const canMoveRight = useRecoilCallback(
     () => (id: string) => {
-      const currentIndex = ids.indexOf(id)
-      return currentIndex !== ids.length - 1
+      const currentIndex = ids.indexOf(id);
+      return currentIndex !== ids.length - 1;
     },
     [ids],
-  )
+  );
 
   return {
     tasksTaskColumn: teammatesTaskColumn,
@@ -54,5 +54,5 @@ export const useMyTasksTaskColumn = (tasksTaskColumnId: string) => {
     setTaskColumnOrder,
     canMoveLeft,
     canMoveRight,
-  }
-}
+  };
+};

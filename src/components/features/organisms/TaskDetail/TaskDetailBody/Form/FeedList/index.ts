@@ -1,1 +1,1 @@
-export * from './FeedList'
+export * from './FeedList';

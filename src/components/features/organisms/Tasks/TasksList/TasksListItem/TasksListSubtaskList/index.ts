@@ -1,1 +1,1 @@
-export * from './TasksListSubtaskList'
+export * from './TasksListSubtaskList';

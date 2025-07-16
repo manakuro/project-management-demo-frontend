@@ -1,13 +1,13 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, type FlexProps, Stack } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, type FlexProps, Stack } from 'src/components/ui/atoms';
 
 type Props = FlexProps & {
-  spacing?: number
-}
+  spacing?: number;
+};
 
 export const TasksHeaderRight: React.FC<Props> = memo<Props>((props) => {
-  const { children, ...rest } = props
+  const { children, ...rest } = props;
 
   return (
     <Flex {...rest}>
@@ -15,6 +15,6 @@ export const TasksHeaderRight: React.FC<Props> = memo<Props>((props) => {
         {children}
       </Stack>
     </Flex>
-  )
-})
-TasksHeaderRight.displayName = 'TasksHeaderRight'
+  );
+});
+TasksHeaderRight.displayName = 'TasksHeaderRight';

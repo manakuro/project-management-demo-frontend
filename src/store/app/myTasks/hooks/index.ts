@@ -1,1 +1,1 @@
-export * from './useMyTasksResponse'
+export * from './useMyTasksResponse';

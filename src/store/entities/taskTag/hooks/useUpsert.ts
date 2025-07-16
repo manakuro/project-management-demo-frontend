@@ -1,6 +1,6 @@
-import { useRecoilCallback } from 'recoil'
-import { taskTagState } from '../atom'
-import type { TaskTag } from '../type'
+import { useRecoilCallback } from 'recoil';
+import { taskTagState } from '../atom';
+import type { TaskTag } from '../type';
 
 export const useUpsert = () => {
   const upsert = useRecoilCallback(
@@ -10,13 +10,13 @@ export const useUpsert = () => {
           return {
             ...prev,
             ...taskTag,
-          }
-        })
+          };
+        });
       },
     [],
-  )
+  );
 
   return {
     upsert,
-  }
-}
+  };
+};

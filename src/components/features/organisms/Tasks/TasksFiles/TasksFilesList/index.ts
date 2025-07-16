@@ -1,1 +1,1 @@
-export * from './TasksFilesList'
+export * from './TasksFilesList';

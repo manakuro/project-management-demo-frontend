@@ -1,13 +1,13 @@
-import type React from 'react'
-import { Box, type BoxProps } from 'src/components/ui/atoms'
-import { forwardRef } from 'src/shared/chakra'
+import type React from 'react';
+import { Box, type BoxProps } from 'src/components/ui/atoms';
+import { forwardRef } from 'src/shared/chakra';
 
 type Props = BoxProps & {
-  ref?: React.ForwardedRef<any>
-  color: BoxProps['bgColor']
-  size: Sizes
-}
-export type ColorBoxProps = Props
+  ref?: React.ForwardedRef<any>;
+  color: BoxProps['bgColor'];
+  size: Sizes;
+};
+export type ColorBoxProps = Props;
 
 const sizes = {
   lg: {
@@ -34,16 +34,16 @@ const sizes = {
     h: 2,
     minH: 2,
   },
-} as const
-type Sizes = keyof typeof sizes
+} as const;
+type Sizes = keyof typeof sizes;
 
 export const ColorBox: React.FC<Props> = forwardRef<Props, 'div'>(
   (props, ref) => {
-    const { size, color, ...rest } = props
-    const sizeStyle = sizes[size ?? 'md']
+    const { size, color, ...rest } = props;
+    const sizeStyle = sizes[size ?? 'md'];
 
     return (
       <Box {...sizeStyle} borderRadius="sm" bg={color} {...rest} ref={ref} />
-    )
+    );
   },
-)
+);

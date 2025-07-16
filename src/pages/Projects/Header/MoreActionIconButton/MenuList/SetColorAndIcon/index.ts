@@ -1,1 +1,1 @@
-export * from './SetColorAndIcon'
+export * from './SetColorAndIcon';

@@ -1,61 +1,61 @@
-import type React from 'react'
-import { useCallback } from 'react'
-import { Link, Portal, PortalManager } from 'src/components/ui/atoms'
+import type React from 'react';
+import { useCallback } from 'react';
+import { Link, Portal, PortalManager } from 'src/components/ui/atoms';
 import {
   Popover,
   PopoverContent,
   type PopoverProps,
   PopoverTrigger,
-} from 'src/components/ui/organisms/Popover'
-import { type ChakraProps, useDisclosure } from 'src/shared/chakra'
-import { Body } from './Body'
+} from 'src/components/ui/organisms/Popover';
+import { type ChakraProps, useDisclosure } from 'src/shared/chakra';
+import { Body } from './Body';
 
 type Props = {
-  date: string
-  onChange: (date: Date) => void
-  onClear: () => void
-  time?: string
-  onOpened?: () => void
-  onClosed?: () => void
-  linkStyle?: ChakraProps
-  closeOnChange?: boolean
-  defaultIsOpen?: boolean
-  includeDueTime?: boolean
-} & PopoverProps
+  date: string;
+  onChange: (date: Date) => void;
+  onClear: () => void;
+  time?: string;
+  onOpened?: () => void;
+  onClosed?: () => void;
+  linkStyle?: ChakraProps;
+  closeOnChange?: boolean;
+  defaultIsOpen?: boolean;
+  includeDueTime?: boolean;
+} & PopoverProps;
 
 export const PopoverDueDatePicker: React.FC<Props> = (props) => {
   const popoverDisclosure = useDisclosure({
     defaultIsOpen: props.defaultIsOpen,
-  })
-  const closeOnChange = props.closeOnChange ?? true
+  });
+  const closeOnChange = props.closeOnChange ?? true;
 
   const handleOpen = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
-      e.stopPropagation()
-      popoverDisclosure.onOpen()
-      props.onOpened?.()
+      e.stopPropagation();
+      popoverDisclosure.onOpen();
+      props.onOpened?.();
     },
     [popoverDisclosure, props],
-  )
+  );
 
   const handleClose = useCallback(() => {
-    popoverDisclosure.onClose()
-  }, [popoverDisclosure])
+    popoverDisclosure.onClose();
+  }, [popoverDisclosure]);
 
   const handleChange = useCallback(
     (date: Date) => {
-      props.onChange(date)
-      if (!closeOnChange) return
-      popoverDisclosure.onClose()
+      props.onChange(date);
+      if (!closeOnChange) return;
+      popoverDisclosure.onClose();
     },
     [closeOnChange, popoverDisclosure, props],
-  )
+  );
 
   const handleClear = useCallback(() => {
-    props.onClear()
-    if (!closeOnChange) return
-    popoverDisclosure.onClose()
-  }, [closeOnChange, popoverDisclosure, props])
+    props.onClear();
+    if (!closeOnChange) return;
+    popoverDisclosure.onClose();
+  }, [closeOnChange, popoverDisclosure, props]);
 
   return (
     <PortalManager zIndex={1500}>
@@ -93,5 +93,5 @@ export const PopoverDueDatePicker: React.FC<Props> = (props) => {
         </Portal>
       </Popover>
     </PortalManager>
-  )
-}
+  );
+};

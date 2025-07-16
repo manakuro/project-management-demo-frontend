@@ -1,36 +1,36 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import {
   MenuList as AtomsMenuList,
   MenuItem,
-} from 'src/components/ui/organisms/Menu'
+} from 'src/components/ui/organisms/Menu';
 
 type Props = {
-  onSort?: () => void
-  onMoveRight?: () => void
-  onMoveLeft?: () => void
-  onHideColumn?: () => void
-  disabledMoveLeft?: boolean
-  disabledMoveRight?: boolean
-}
+  onSort?: () => void;
+  onMoveRight?: () => void;
+  onMoveLeft?: () => void;
+  onHideColumn?: () => void;
+  disabledMoveLeft?: boolean;
+  disabledMoveRight?: boolean;
+};
 
 export const MenuList: React.FC<Props> = memo((props) => {
-  const { onSort, onHideColumn, onMoveLeft, onMoveRight } = props
+  const { onSort, onHideColumn, onMoveLeft, onMoveRight } = props;
   const handleSortBy = useCallback(() => {
-    onSort?.()
-  }, [onSort])
+    onSort?.();
+  }, [onSort]);
 
   const handleMoveRight = useCallback(() => {
-    onMoveRight?.()
-  }, [onMoveRight])
+    onMoveRight?.();
+  }, [onMoveRight]);
 
   const handleMoveLeft = useCallback(() => {
-    onMoveLeft?.()
-  }, [onMoveLeft])
+    onMoveLeft?.();
+  }, [onMoveLeft]);
 
   const handleHideColumn = useCallback(() => {
-    onHideColumn?.()
-  }, [onHideColumn])
+    onHideColumn?.();
+  }, [onHideColumn]);
 
   return (
     <AtomsMenuList color="text.base">
@@ -43,6 +43,6 @@ export const MenuList: React.FC<Props> = memo((props) => {
       </MenuItem>
       <MenuItem onClick={handleHideColumn}>Hide column</MenuItem>
     </AtomsMenuList>
-  )
-})
-MenuList.displayName = 'MenuList'
+  );
+});
+MenuList.displayName = 'MenuList';

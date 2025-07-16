@@ -1,16 +1,16 @@
-import type React from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
-import { forwardRef } from 'src/shared/chakra'
+import type React from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
+import { forwardRef } from 'src/shared/chakra';
 
 type Props = FlexProps & {
-  ref?: React.ForwardedRef<any>
-}
-export type DashedBoxProps = Props
+  ref?: React.ForwardedRef<any>;
+};
+export type DashedBoxProps = Props;
 
 export const DashedBox: React.FC<Props> = forwardRef<Props, 'div'>(
   (props, ref) => {
-    const { clickableHoverLightStyle } = useClickableHoverStyle()
+    const { clickableHoverLightStyle } = useClickableHoverStyle();
 
     return (
       <Flex
@@ -26,6 +26,6 @@ export const DashedBox: React.FC<Props> = forwardRef<Props, 'div'>(
         {...props}
         {...clickableHoverLightStyle}
       />
-    )
+    );
   },
-)
+);

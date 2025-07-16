@@ -1,8 +1,8 @@
-import { createState } from 'src/store/util'
-import type { ArchivedTaskActivity } from './type'
+import { createState } from 'src/store/util';
+import type { ArchivedTaskActivity } from './type';
 
 const key = (str: string) =>
-  `src/store/app/inbox/archive/archivedTaskActivities/${str}`
+  `src/store/app/inbox/archive/archivedTaskActivities/${str}`;
 
 export const initialState = (): ArchivedTaskActivity => ({
   id: '',
@@ -10,10 +10,10 @@ export const initialState = (): ArchivedTaskActivity => ({
   teammateId: '',
   createdAt: '',
   updatedAt: '',
-})
+});
 
 export const {
   state: archivedTaskActivityState,
   listState: archivedTaskActivitiesState,
   idsState: archivedTaskActivityIdsState,
-} = createState({ key, initialState })
+} = createState({ key, initialState });

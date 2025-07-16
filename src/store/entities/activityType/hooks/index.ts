@@ -1,1 +1,1 @@
-export * from './useActivityType'
+export * from './useActivityType';

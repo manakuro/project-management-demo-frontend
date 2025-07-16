@@ -1,10 +1,10 @@
-import { memo } from 'react'
-import { Modal } from 'src/components/ui/organisms/Modal'
-import { MenuContent } from './MenuContent'
-import { useEditorMentionMenu } from './useEditorMentionMenu'
+import { memo } from 'react';
+import { Modal } from 'src/components/ui/organisms/Modal';
+import { MenuContent } from './MenuContent';
+import { useEditorMentionMenu } from './useEditorMentionMenu';
 
 export const EditorMentionMenu = memo(function EditorMentionMenu() {
-  const { isOpen, onClose } = useEditorMentionMenu()
+  const { isOpen, onClose } = useEditorMentionMenu();
 
   return (
     <Modal
@@ -17,5 +17,5 @@ export const EditorMentionMenu = memo(function EditorMentionMenu() {
     >
       {isOpen && <MenuContent />}
     </Modal>
-  )
-})
+  );
+});

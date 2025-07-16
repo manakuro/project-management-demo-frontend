@@ -1,20 +1,20 @@
-import type React from 'react'
-import { memo } from 'react'
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
-import { Flex, Text } from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
-import { useTeammate } from 'src/store/entities/teammate'
-import { PermissionMenu } from '../../PermissionMenu'
+import type React from 'react';
+import { memo } from 'react';
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
+import { Flex, Text } from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
+import { useTeammate } from 'src/store/entities/teammate';
+import { PermissionMenu } from '../../PermissionMenu';
 
 type Props = {
-  projectId: string
-  teammateId: string
-}
+  projectId: string;
+  teammateId: string;
+};
 
 export const MemberListItem: React.FC<Props> = memo<Props>((props) => {
-  const { teammateId } = props
-  const { teammate } = useTeammate(teammateId)
-  const { clickableHoverStyle } = useClickableHoverStyle()
+  const { teammateId } = props;
+  const { teammate } = useTeammate(teammateId);
+  const { clickableHoverStyle } = useClickableHoverStyle();
 
   return (
     <Flex
@@ -37,6 +37,6 @@ export const MemberListItem: React.FC<Props> = memo<Props>((props) => {
         <PermissionMenu />
       </Flex>
     </Flex>
-  )
-})
-MemberListItem.displayName = 'MemberListItem'
+  );
+});
+MemberListItem.displayName = 'MemberListItem';

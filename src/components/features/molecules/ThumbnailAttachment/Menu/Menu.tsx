@@ -1,31 +1,31 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { useThumbnailAttachmentContext } from 'src/components/features/molecules/ThumbnailAttachment/Provider'
-import { Link, Portal } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { useThumbnailAttachmentContext } from 'src/components/features/molecules/ThumbnailAttachment/Provider';
+import { Link, Portal } from 'src/components/ui/atoms';
 import {
   MenuItem,
   MenuList,
   type MenuProps,
   Menu as OrganismsMenu,
-} from 'src/components/ui/organisms/Menu'
-import { useTaskFile } from 'src/store/entities/taskFile'
+} from 'src/components/ui/organisms/Menu';
+import { useTaskFile } from 'src/store/entities/taskFile';
 
 type Props = MenuProps & {
-  taskFileId: string
-}
+  taskFileId: string;
+};
 
 export const Menu: React.FC<Props> = memo((props) => {
-  const { taskFileId, ...rest } = props
-  const { setThumbnailMenuOpened, onDelete } = useThumbnailAttachmentContext()
-  const { taskFile } = useTaskFile(taskFileId)
+  const { taskFileId, ...rest } = props;
+  const { setThumbnailMenuOpened, onDelete } = useThumbnailAttachmentContext();
+  const { taskFile } = useTaskFile(taskFileId);
 
   const handleThumbnailMenuOpen = useCallback(() => {
-    setThumbnailMenuOpened(true)
-  }, [setThumbnailMenuOpened])
+    setThumbnailMenuOpened(true);
+  }, [setThumbnailMenuOpened]);
 
   const handleThumbnailMenuClose = useCallback(() => {
-    setThumbnailMenuOpened(false)
-  }, [setThumbnailMenuOpened])
+    setThumbnailMenuOpened(false);
+  }, [setThumbnailMenuOpened]);
 
   return (
     <OrganismsMenu
@@ -47,6 +47,6 @@ export const Menu: React.FC<Props> = memo((props) => {
         </MenuList>
       </Portal>
     </OrganismsMenu>
-  )
-})
-Menu.displayName = 'Menu'
+  );
+});
+Menu.displayName = 'Menu';

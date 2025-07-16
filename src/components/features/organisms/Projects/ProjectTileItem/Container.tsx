@@ -1,35 +1,35 @@
-import type React from 'react'
-import { type ReactElement, useCallback, useState } from 'react'
-import { Flex, type FlexProps, Text } from 'src/components/ui/atoms'
-import { useHover } from 'src/hooks/useHover'
-import { transitions } from 'src/styles'
+import type React from 'react';
+import { type ReactElement, useCallback, useState } from 'react';
+import { Flex, type FlexProps, Text } from 'src/components/ui/atoms';
+import { useHover } from 'src/hooks/useHover';
+import { transitions } from 'src/styles';
 
 type Props = {
-  name: string
+  name: string;
   children(data: {
-    showTransition: boolean
-    handlePopoverProjectMenuOpened: () => void
-    handlePopoverProjectMenuClosed: () => void
-  }): ReactElement
-} & Omit<FlexProps, 'children'>
+    showTransition: boolean;
+    handlePopoverProjectMenuOpened: () => void;
+    handlePopoverProjectMenuClosed: () => void;
+  }): ReactElement;
+} & Omit<FlexProps, 'children'>;
 
 const focusedStyle: FlexProps = {
   bg: 'gray.50',
   transform: 'translate(0, -5px)',
-}
+};
 export const Container: React.FC<Props> = (props) => {
-  const { children, name, ...rest } = props
-  const { ref, isHovering } = useHover()
-  const [focused, setFocused] = useState(false)
+  const { children, name, ...rest } = props;
+  const { ref, isHovering } = useHover();
+  const [focused, setFocused] = useState(false);
 
   const handlePopoverProjectMenuOpened = useCallback(() => {
-    setFocused(true)
-  }, [])
+    setFocused(true);
+  }, []);
   const handlePopoverProjectMenuClosed = useCallback(() => {
-    setFocused(false)
-  }, [])
+    setFocused(false);
+  }, []);
 
-  const showTransition = isHovering || focused
+  const showTransition = isHovering || focused;
 
   return (
     <Flex
@@ -53,5 +53,5 @@ export const Container: React.FC<Props> = (props) => {
       })}
       <Text mt={2}>{name}</Text>
     </Flex>
-  )
-}
+  );
+};

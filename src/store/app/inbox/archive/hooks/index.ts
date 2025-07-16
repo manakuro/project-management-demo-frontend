@@ -1,1 +1,1 @@
-export * from './useArchiveResponse'
+export * from './useArchiveResponse';

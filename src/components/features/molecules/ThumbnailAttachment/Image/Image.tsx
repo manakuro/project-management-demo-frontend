@@ -1,22 +1,22 @@
-import type React from 'react'
-import { Container } from 'src/components/features/molecules/ThumbnailAttachment/Container'
-import { Menu } from 'src/components/features/molecules/ThumbnailAttachment/Menu'
-import { MenuButton } from 'src/components/features/molecules/ThumbnailAttachment/MenuButton'
-import { Overlay } from 'src/components/features/molecules/ThumbnailAttachment/Overlay'
-import { useThumbnailAttachmentContext } from 'src/components/features/molecules/ThumbnailAttachment/Provider'
-import { Tooltip } from 'src/components/features/molecules/ThumbnailAttachment/Tooltip'
-import type { FlexProps } from 'src/components/ui/atoms'
-import { Image as AtomsImage } from 'src/components/ui/atoms'
-import { useTaskFile } from 'src/store/entities/taskFile'
+import type React from 'react';
+import { Container } from 'src/components/features/molecules/ThumbnailAttachment/Container';
+import { Menu } from 'src/components/features/molecules/ThumbnailAttachment/Menu';
+import { MenuButton } from 'src/components/features/molecules/ThumbnailAttachment/MenuButton';
+import { Overlay } from 'src/components/features/molecules/ThumbnailAttachment/Overlay';
+import { useThumbnailAttachmentContext } from 'src/components/features/molecules/ThumbnailAttachment/Provider';
+import { Tooltip } from 'src/components/features/molecules/ThumbnailAttachment/Tooltip';
+import type { FlexProps } from 'src/components/ui/atoms';
+import { Image as AtomsImage } from 'src/components/ui/atoms';
+import { useTaskFile } from 'src/store/entities/taskFile';
 
 type Props = FlexProps & {
-  taskFileId: string
-}
+  taskFileId: string;
+};
 
 export const Image: React.FC<Props> = (props) => {
-  const { taskFileId, ...rest } = props
-  const { taskFile } = useTaskFile(taskFileId)
-  const { isHovering } = useThumbnailAttachmentContext()
+  const { taskFileId, ...rest } = props;
+  const { taskFile } = useTaskFile(taskFileId);
+  const { isHovering } = useThumbnailAttachmentContext();
 
   return (
     <Tooltip taskFileId={taskFileId}>
@@ -35,5 +35,5 @@ export const Image: React.FC<Props> = (props) => {
         </Menu>
       </Container>
     </Tooltip>
-  )
-}
+  );
+};

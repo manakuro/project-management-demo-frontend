@@ -1,10 +1,10 @@
-import type { Command } from 'prosemirror-commands'
-import { useCallback, useMemo } from 'react'
-import { usePopoverEmojiContext } from 'src/components/features/organisms/Popovers'
-import type { ToolbarItem } from './types'
+import type { Command } from 'prosemirror-commands';
+import { useCallback, useMemo } from 'react';
+import { usePopoverEmojiContext } from 'src/components/features/organisms/Popovers';
+import type { ToolbarItem } from './types';
 
 export const useEmoji = (): ToolbarItem => {
-  const { onOpen } = usePopoverEmojiContext()
+  const { onOpen } = usePopoverEmojiContext();
   const action = useCallback<
     (
       state: Parameters<Command>[0],
@@ -13,21 +13,21 @@ export const useEmoji = (): ToolbarItem => {
     ) => Promise<boolean>
   >(
     async (state, dispatch) => {
-      const emoji = await onOpen()
-      if (!emoji) return false
+      const emoji = await onOpen();
+      if (!emoji) return false;
 
-      const { tr } = state
-      tr.insertText(emoji.native)
-      dispatch?.(tr)
-      return true
+      const { tr } = state;
+      tr.insertText(emoji.native);
+      dispatch?.(tr);
+      return true;
     },
     [onOpen],
-  )
+  );
 
   return useMemo(
     () => ({
       action,
     }),
     [action],
-  )
-}
+  );
+};

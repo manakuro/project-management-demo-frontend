@@ -1,1 +1,1 @@
-export * from './materialUI'
+export * from './materialUI';

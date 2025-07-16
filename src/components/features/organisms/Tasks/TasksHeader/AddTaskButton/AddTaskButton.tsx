@@ -1,10 +1,10 @@
-import type React from 'react'
-import { memo, useCallback, useMemo } from 'react'
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import {
   useTasksTask,
   useTasksTaskSectionCommand,
   useTasksTaskSectionIds,
-} from 'src/components/features/organisms/Tasks/hooks'
+} from 'src/components/features/organisms/Tasks/hooks';
 import {
   Button,
   ButtonGroup,
@@ -13,41 +13,41 @@ import {
   Icon,
   IconButton,
   Portal,
-} from 'src/components/ui/atoms'
+} from 'src/components/ui/atoms';
 import {
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-} from 'src/components/ui/organisms/Menu'
-import type { ChakraProps } from 'src/shared/chakra'
+} from 'src/components/ui/organisms/Menu';
+import type { ChakraProps } from 'src/shared/chakra';
 
 type Props = ButtonGroupProps & {
-  solid?: boolean
-  outlined?: boolean
-}
+  solid?: boolean;
+  outlined?: boolean;
+};
 
 export const AddTaskButton: React.FC<Props> = memo<Props>((props) => {
-  const { solid, outlined, ...rest } = props
-  const { addTaskSection } = useTasksTaskSectionCommand()
-  const { taskSectionIds } = useTasksTaskSectionIds()
-  const firstTaskSectionId = useMemo(() => taskSectionIds[0], [taskSectionIds])
-  const { addTask } = useTasksTask()
+  const { solid, outlined, ...rest } = props;
+  const { addTaskSection } = useTasksTaskSectionCommand();
+  const { taskSectionIds } = useTasksTaskSectionIds();
+  const firstTaskSectionId = useMemo(() => taskSectionIds[0], [taskSectionIds]);
+  const { addTask } = useTasksTask();
 
   const handleAddTask = useCallback(() => {
-    addTask({ taskSectionId: firstTaskSectionId })
-  }, [addTask, firstTaskSectionId])
+    addTask({ taskSectionId: firstTaskSectionId });
+  }, [addTask, firstTaskSectionId]);
 
   const buttonGroupProps: ButtonGroupProps = props.solid
     ? { variant: 'solid', colorScheme: 'teal' }
-    : { variant: 'outline' }
+    : { variant: 'outline' };
   const iconStyle: ChakraProps = props.solid
     ? { color: 'white' }
-    : { color: 'text.muted' }
+    : { color: 'text.muted' };
 
   const handleAddTaskSection = useCallback(() => {
-    addTaskSection()
-  }, [addTaskSection])
+    addTaskSection();
+  }, [addTaskSection]);
 
   return (
     <ButtonGroup size="xs" isAttached {...buttonGroupProps} {...rest}>
@@ -75,6 +75,6 @@ export const AddTaskButton: React.FC<Props> = memo<Props>((props) => {
         </Portal>
       </Menu>
     </ButtonGroup>
-  )
-})
-AddTaskButton.displayName = 'AddTaskButton'
+  );
+});
+AddTaskButton.displayName = 'AddTaskButton';

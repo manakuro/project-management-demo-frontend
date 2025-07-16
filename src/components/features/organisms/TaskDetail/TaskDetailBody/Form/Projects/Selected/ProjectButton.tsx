@@ -1,15 +1,15 @@
-import type React from 'react'
-import { Box, Button, Flex, Text } from 'src/components/ui/atoms'
-import { useProject } from 'src/store/entities/project'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
+import type React from 'react';
+import { Box, Button, Flex, Text } from 'src/components/ui/atoms';
+import { useProject } from 'src/store/entities/project';
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const ProjectButton: React.FC<Props> = (props) => {
-  const { project } = useProject(props.projectId)
-  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
+  const { project } = useProject(props.projectId);
+  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId);
 
   return (
     <Button
@@ -34,5 +34,5 @@ export const ProjectButton: React.FC<Props> = (props) => {
         </Text>
       </Flex>
     </Button>
-  )
-}
+  );
+};

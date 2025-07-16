@@ -1,1 +1,1 @@
-export * from './AssigneeIconMenu'
+export * from './AssigneeIconMenu';

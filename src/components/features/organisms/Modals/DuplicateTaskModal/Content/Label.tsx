@@ -1,7 +1,7 @@
-import type React from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
+import type React from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const Label: React.FC<Props> = (props) => {
   return (
@@ -12,6 +12,6 @@ export const Label: React.FC<Props> = (props) => {
       mb={2}
       {...props}
     />
-  )
-}
-Label.displayName = 'Label'
+  );
+};
+Label.displayName = 'Label';

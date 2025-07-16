@@ -1,23 +1,23 @@
-import type React from 'react'
-import { Box, Flex, Image, Text } from 'src/components/ui/atoms'
-import { PdfViewer } from 'src/components/ui/organisms/PdfViewer'
-import { FileTypeCode } from 'src/store/entities/fileType'
-import { useTaskFile } from 'src/store/entities/taskFile'
+import type React from 'react';
+import { Box, Flex, Image, Text } from 'src/components/ui/atoms';
+import { PdfViewer } from 'src/components/ui/organisms/PdfViewer';
+import { FileTypeCode } from 'src/store/entities/fileType';
+import { useTaskFile } from 'src/store/entities/taskFile';
 
 type Props = {
-  taskFileId: string
-}
+  taskFileId: string;
+};
 
 export const ListItem: React.FC<Props> = (props) => {
-  const { taskFileId } = props
-  const { taskFile } = useTaskFile(taskFileId)
+  const { taskFileId } = props;
+  const { taskFile } = useTaskFile(taskFileId);
 
   switch (taskFile.fileType.typeCode) {
     case FileTypeCode.Image: {
-      return <Image src={taskFile.src} objectFit="contain" alt="taskFile" />
+      return <Image src={taskFile.src} objectFit="contain" alt="taskFile" />;
     }
     case FileTypeCode.Pdf: {
-      return <PdfViewer fileUrl={taskFile.src} />
+      return <PdfViewer fileUrl={taskFile.src} />;
     }
     case FileTypeCode.Text: {
       return (
@@ -40,8 +40,8 @@ export const ListItem: React.FC<Props> = (props) => {
             {taskFile.name}
           </Text>
         </Flex>
-      )
+      );
     }
   }
-  return null
-}
+  return null;
+};

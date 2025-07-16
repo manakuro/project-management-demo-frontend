@@ -1,5 +1,5 @@
-import type React from 'react'
-import { memo, useMemo } from 'react'
+import type React from 'react';
+import { memo, useMemo } from 'react';
 import {
   Icon,
   Link,
@@ -8,22 +8,22 @@ import {
   type ListItemProps,
   NextLink,
   Text,
-} from 'src/components/ui/atoms'
-import { useLinkHoverStyle } from 'src/hooks'
-import type { StaticRoutes } from 'src/router'
-import { PADDING_X } from './Navigation'
-import type { NavListItem as TNavListItem } from './type'
+} from 'src/components/ui/atoms';
+import { useLinkHoverStyle } from 'src/hooks';
+import type { StaticRoutes } from 'src/router';
+import { PADDING_X } from './Navigation';
+import type { NavListItem as TNavListItem } from './type';
 
 type Props = {
-  item: TNavListItem
-  light?: boolean
-  linkStyle?: LinkProps
-  disabled?: boolean
-} & ListItemProps
+  item: TNavListItem;
+  light?: boolean;
+  linkStyle?: LinkProps;
+  disabled?: boolean;
+} & ListItemProps;
 
 export const NavListItem: React.FC<Props> = memo<Props>((props) => {
-  const { item, linkStyle, light, disabled, ...rest } = props
-  const { _hover, selectedStyle } = useLinkHoverStyle()
+  const { item, linkStyle, light, disabled, ...rest } = props;
+  const { _hover, selectedStyle } = useLinkHoverStyle();
   const listItemStyle = useMemo(
     (): ListItemProps => ({
       ...(disabled
@@ -31,7 +31,7 @@ export const NavListItem: React.FC<Props> = memo<Props>((props) => {
         : {}),
     }),
     [disabled],
-  )
+  );
 
   return (
     <ListItem {...listItemStyle} {...rest}>
@@ -52,9 +52,9 @@ export const NavListItem: React.FC<Props> = memo<Props>((props) => {
         </Link>
       </WithNextLink>
     </ListItem>
-  )
-})
-NavListItem.displayName = 'NavListItem'
+  );
+});
+NavListItem.displayName = 'NavListItem';
 
 const WithNextLink: React.FC<Props> = (props) => {
   return props.item.isExternal ? (
@@ -63,5 +63,5 @@ const WithNextLink: React.FC<Props> = (props) => {
     <NextLink href={props.item.href as StaticRoutes} passHref legacyBehavior>
       {props.children}
     </NextLink>
-  )
-}
+  );
+};

@@ -1,5 +1,5 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import {
   Badge,
   type BadgeProps,
@@ -8,43 +8,43 @@ import {
   ColorBox,
   Icon,
   Text,
-} from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
-import { useProject } from 'src/store/entities/project'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
+} from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
+import { useProject } from 'src/store/entities/project';
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
 
-type Variant = 'badge' | 'button'
+type Variant = 'badge' | 'button';
 
 type Props = {
-  projectId: string
-  variant: Variant
-  onDelete?: () => void
-  deletable?: boolean
-  onClick?: () => void
-  badgeProps?: BadgeProps
-}
+  projectId: string;
+  variant: Variant;
+  onDelete?: () => void;
+  deletable?: boolean;
+  onClick?: () => void;
+  badgeProps?: BadgeProps;
+};
 
 export const ProjectChip: React.FC<Props> = memo((props) => {
-  const { projectId, onClick, onDelete } = props
-  const { project } = useProject(projectId)
-  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
+  const { projectId, onClick, onDelete } = props;
+  const { project } = useProject(projectId);
+  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId);
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
 
   const handleDelete = useCallback(
     (e: React.MouseEvent<SVGElement>) => {
-      e.stopPropagation()
-      onDelete?.()
+      e.stopPropagation();
+      onDelete?.();
     },
     [onDelete],
-  )
+  );
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
-      e.stopPropagation()
-      onClick?.()
+      e.stopPropagation();
+      onClick?.();
     },
     [onClick],
-  )
+  );
 
   if (props.variant === 'badge') {
     return (
@@ -57,7 +57,7 @@ export const ProjectChip: React.FC<Props> = memo((props) => {
       >
         {project.name}
       </Badge>
-    )
+    );
   }
 
   return (
@@ -88,6 +88,6 @@ export const ProjectChip: React.FC<Props> = memo((props) => {
         />
       )}
     </Button>
-  )
-})
-ProjectChip.displayName = 'ProjectChip'
+  );
+});
+ProjectChip.displayName = 'ProjectChip';

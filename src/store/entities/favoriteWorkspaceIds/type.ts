@@ -1,8 +1,8 @@
-import type { FavoriteWorkspaceIdsResponse } from 'src/graphql/types/favoriteWorkspaceIds'
+import type { FavoriteWorkspaceIdsResponse } from 'src/graphql/types/favoriteWorkspaceIds';
 
 export type {
   FavoriteWorkspaceIdsResponse,
   FavoriteWorkspaceIdsUpdatedSubscriptionResponse,
-} from 'src/graphql/types/favoriteWorkspaceIds'
+} from 'src/graphql/types/favoriteWorkspaceIds';
 
-export type FavoriteWorkspaceId = FavoriteWorkspaceIdsResponse[number]
+export type FavoriteWorkspaceId = FavoriteWorkspaceIdsResponse[number];

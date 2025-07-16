@@ -1,1 +1,1 @@
-export * from './OverviewRightContent'
+export * from './OverviewRightContent';

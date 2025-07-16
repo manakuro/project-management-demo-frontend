@@ -1,33 +1,33 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { Icon, IconButton, Portal } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { Icon, IconButton, Portal } from 'src/components/ui/atoms';
 import {
   Menu,
   MenuButton,
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
-} from 'src/components/ui/organisms/Menu'
+} from 'src/components/ui/organisms/Menu';
 
 type Props = {
-  listStatus: ProjectListStatus
-  onChange: (listStatus: ProjectListStatus) => void
-}
+  listStatus: ProjectListStatus;
+  onChange: (listStatus: ProjectListStatus) => void;
+};
 
-export const PROJECT_LIST_MENU_VIEW_AS_TILES = '1' as const
-export const PROJECT_LIST_MENU_VIEW_AS_LIST = '2' as const
+export const PROJECT_LIST_MENU_VIEW_AS_TILES = '1' as const;
+export const PROJECT_LIST_MENU_VIEW_AS_LIST = '2' as const;
 export type ProjectListStatus =
   | typeof PROJECT_LIST_MENU_VIEW_AS_TILES
-  | typeof PROJECT_LIST_MENU_VIEW_AS_LIST
+  | typeof PROJECT_LIST_MENU_VIEW_AS_LIST;
 
 export const ProjectListMenu: React.FC<Props> = memo<Props>((props) => {
   const handleClickViewAsTitles = useCallback(() => {
-    props.onChange(PROJECT_LIST_MENU_VIEW_AS_TILES)
-  }, [props])
+    props.onChange(PROJECT_LIST_MENU_VIEW_AS_TILES);
+  }, [props]);
 
   const handleClickViewAsList = useCallback(() => {
-    props.onChange(PROJECT_LIST_MENU_VIEW_AS_LIST)
-  }, [props])
+    props.onChange(PROJECT_LIST_MENU_VIEW_AS_LIST);
+  }, [props]);
 
   return (
     <Menu placement="bottom-start" isLazy>
@@ -56,6 +56,6 @@ export const ProjectListMenu: React.FC<Props> = memo<Props>((props) => {
         </MenuList>
       </Portal>
     </Menu>
-  )
-})
-ProjectListMenu.displayName = 'ProjectListMenu'
+  );
+});
+ProjectListMenu.displayName = 'ProjectListMenu';

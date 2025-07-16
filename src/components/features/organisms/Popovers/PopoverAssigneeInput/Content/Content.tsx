@@ -1,29 +1,29 @@
-import type React from 'react'
-import { Portal, Stack, Text } from 'src/components/ui/atoms'
+import type React from 'react';
+import { Portal, Stack, Text } from 'src/components/ui/atoms';
 import {
   PopoverBody,
   PopoverCloseButton,
   PopoverContent,
   PopoverHeader,
   type PopoverProps,
-} from 'src/components/ui/organisms/Popover'
-import { useClickOutside } from 'src/hooks'
-import { AssignToMeButton } from './AssignToMeButton'
-import { Input } from './Input'
+} from 'src/components/ui/organisms/Popover';
+import { useClickOutside } from 'src/hooks';
+import { AssignToMeButton } from './AssignToMeButton';
+import { Input } from './Input';
 
 type Props = {
-  taskId: string
-  onClose: () => void
-} & PopoverProps
+  taskId: string;
+  onClose: () => void;
+} & PopoverProps;
 
 export const Content: React.FC<Props> = (props) => {
-  const { onClose, taskId } = props
+  const { onClose, taskId } = props;
   const { ref } = useClickOutside(onClose, {
     hasClickedOutside: (e, helpers) => {
-      if (helpers.isContainInPopoverContent(e)) return false
-      return true
+      if (helpers.isContainInPopoverContent(e)) return false;
+      return true;
     },
-  })
+  });
 
   return (
     <Portal>
@@ -50,5 +50,5 @@ export const Content: React.FC<Props> = (props) => {
         </PopoverBody>
       </PopoverContent>
     </Portal>
-  )
-}
+  );
+};

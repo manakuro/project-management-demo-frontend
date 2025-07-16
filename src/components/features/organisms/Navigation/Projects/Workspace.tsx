@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router'
-import type React from 'react'
-import { memo, useCallback, useMemo } from 'react'
-import { useInviteModal } from 'src/components/features/organisms/Modals/InviteModal/useInviteModal'
-import { useNavigation } from 'src/components/features/organisms/Navigation'
-import { PADDING_X } from 'src/components/features/organisms/Navigation/Navigation'
+import { useRouter } from 'next/router';
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
+import { useInviteModal } from 'src/components/features/organisms/Modals/InviteModal/useInviteModal';
+import { useNavigation } from 'src/components/features/organisms/Navigation';
+import { PADDING_X } from 'src/components/features/organisms/Navigation/Navigation';
 import {
   Flex,
   Icon,
@@ -11,7 +11,7 @@ import {
   NextLink,
   Portal,
   Text,
-} from 'src/components/ui/atoms'
+} from 'src/components/ui/atoms';
 import {
   MenuItem as AtomsMenuItem,
   Menu,
@@ -20,32 +20,32 @@ import {
   MenuGroup,
   type MenuItemProps,
   MenuList,
-} from 'src/components/ui/organisms/Menu'
-import { useClickableHoverStyle, useLinkHoverStyle } from 'src/hooks'
-import { ROUTE_WORKSPACES, ROUTE_WORKSPACES_OVERVIEW } from 'src/router'
-import { useWorkspace } from 'src/store/entities/workspace'
+} from 'src/components/ui/organisms/Menu';
+import { useClickableHoverStyle, useLinkHoverStyle } from 'src/hooks';
+import { ROUTE_WORKSPACES, ROUTE_WORKSPACES_OVERVIEW } from 'src/router';
+import { useWorkspace } from 'src/store/entities/workspace';
 
 export const Workspace = memo(function Workspace() {
-  const router = useRouter()
-  const { isExpanded } = useNavigation()
-  const { _hover, selectedStyle } = useLinkHoverStyle()
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
-  const { workspace } = useWorkspace()
+  const router = useRouter();
+  const { isExpanded } = useNavigation();
+  const { _hover, selectedStyle } = useLinkHoverStyle();
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
+  const { workspace } = useWorkspace();
   const name = useMemo(() => {
-    if (!isExpanded) return workspace.name.slice(0, 3)
-    return workspace.name
-  }, [isExpanded, workspace.name])
+    if (!isExpanded) return workspace.name.slice(0, 3);
+    return workspace.name;
+  }, [isExpanded, workspace.name]);
 
   const isCurrentRoute = useMemo(
     () => router.asPath.includes(ROUTE_WORKSPACES.href.pathname(workspace.id)),
     [router.asPath, workspace.id],
-  )
+  );
 
-  const { setIsOpen } = useInviteModal()
+  const { setIsOpen } = useInviteModal();
 
   const handleInvitePeople = useCallback(() => {
-    setIsOpen(true)
-  }, [setIsOpen])
+    setIsOpen(true);
+  }, [setIsOpen]);
 
   return (
     <>
@@ -100,9 +100,9 @@ export const Workspace = memo(function Workspace() {
         </Portal>
       </Menu>
     </>
-  )
-})
+  );
+});
 
 const MenuItem: React.FC<MenuItemProps> = (props) => (
   <AtomsMenuItem fontSize="sm" iconSpacing={2} {...props} />
-)
+);

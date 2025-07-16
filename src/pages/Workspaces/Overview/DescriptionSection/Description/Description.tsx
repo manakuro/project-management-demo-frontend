@@ -1,49 +1,52 @@
-import { memo, useCallback, useEffect, useMemo, useState } from 'react'
-import { Editor, EditorContent } from 'src/components/ui/organisms/Editor'
-import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { Editor, EditorContent } from 'src/components/ui/organisms/Editor';
+import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual';
 import {
   parseDescription,
   stringifyDescription,
-} from 'src/shared/prosemirror/convertDescription'
-import { useWorkspace, useWorkspaceCommand } from 'src/store/entities/workspace'
-import { Container } from './Container'
-import { Placeholder } from './Placeholder'
-import { Provider } from './Provider'
+} from 'src/shared/prosemirror/convertDescription';
+import {
+  useWorkspace,
+  useWorkspaceCommand,
+} from 'src/store/entities/workspace';
+import { Container } from './Container';
+import { Placeholder } from './Placeholder';
+import { Provider } from './Provider';
 
 export const Description = memo(function Description() {
   return (
     <Provider>
       <DescriptionHandler />
     </Provider>
-  )
-})
+  );
+});
 
 const DescriptionHandler = memo(function DescriptionHandler() {
-  const { workspace, hasDescriptionUpdated } = useWorkspace()
-  const { setWorkspace } = useWorkspaceCommand()
+  const { workspace, hasDescriptionUpdated } = useWorkspace();
+  const { setWorkspace } = useWorkspaceCommand();
   const initialValue = useMemo(
     () => stringifyDescription(workspace.description),
     [workspace.description],
-  )
-  const [resetView, setResetView] = useState<number>(1)
+  );
+  const [resetView, setResetView] = useState<number>(1);
 
   const handleChange = useCallback(
     async (val: string) => {
-      const description = parseDescription(val)
-      if (isDescriptionEqual(description, workspace.description)) return
+      const description = parseDescription(val);
+      if (isDescriptionEqual(description, workspace.description)) return;
 
-      console.log('change!')
+      console.log('change!');
       await setWorkspace({
         description,
-      })
+      });
     },
     [setWorkspace, workspace.description],
-  )
+  );
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    setResetView((s) => s + 1)
-  }, [hasDescriptionUpdated])
+    setResetView((s) => s + 1);
+  }, [hasDescriptionUpdated]);
 
   return (
     <Component
@@ -51,23 +54,23 @@ const DescriptionHandler = memo(function DescriptionHandler() {
       initialValue={initialValue}
       resetView={resetView}
     />
-  )
-})
+  );
+});
 
 type ComponentProps = {
-  onChange: (val: string) => void
-  initialValue: string
-  resetView: number
-}
+  onChange: (val: string) => void;
+  initialValue: string;
+  resetView: number;
+};
 const Component = memo<ComponentProps>(function Component(props) {
-  const { onChange, initialValue, resetView } = props
+  const { onChange, initialValue, resetView } = props;
 
   const handleChange = useCallback(
     (val: string) => {
-      onChange(val)
+      onChange(val);
     },
     [onChange],
-  )
+  );
 
   return (
     <Container>
@@ -80,5 +83,5 @@ const Component = memo<ComponentProps>(function Component(props) {
         <Placeholder />
       </Editor>
     </Container>
-  )
-})
+  );
+});

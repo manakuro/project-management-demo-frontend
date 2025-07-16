@@ -1,18 +1,18 @@
-import type React from 'react'
-import { memo } from 'react'
+import type React from 'react';
+import { memo } from 'react';
 import {
   TaskDetailBody,
   TaskDetailFooter,
   TaskDetailHeader,
-} from 'src/components/features/organisms/TaskDetail'
-import { Flex } from 'src/components/ui/atoms'
+} from 'src/components/features/organisms/TaskDetail';
+import { Flex } from 'src/components/ui/atoms';
 
-const HEADER_HEIGHT = 72
-const TOP = HEADER_HEIGHT
+const HEADER_HEIGHT = 72;
+const TOP = HEADER_HEIGHT;
 
 type Props = {
-  loading: boolean
-}
+  loading: boolean;
+};
 
 export const Content: React.FC<Props> = memo((props) => {
   return (
@@ -50,6 +50,6 @@ export const Content: React.FC<Props> = memo((props) => {
         </Flex>
       </Flex>
     </Flex>
-  )
-})
-Content.displayName = 'Content'
+  );
+});
+Content.displayName = 'Content';

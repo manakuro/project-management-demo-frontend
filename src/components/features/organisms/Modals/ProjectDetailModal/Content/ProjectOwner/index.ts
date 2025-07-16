@@ -1,1 +1,1 @@
-export * from './ProjectOwner'
+export * from './ProjectOwner';

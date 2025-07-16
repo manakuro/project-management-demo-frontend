@@ -1,1 +1,1 @@
-export * from './TasksPriority'
+export * from './TasksPriority';

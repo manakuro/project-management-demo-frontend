@@ -1,1 +1,1 @@
-export * from './TagItem'
+export * from './TagItem';

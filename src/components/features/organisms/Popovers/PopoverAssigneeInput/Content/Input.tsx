@@ -1,63 +1,63 @@
-import type React from 'react'
-import { useCallback, useMemo, useState } from 'react'
-import { AssigneeMenu } from 'src/components/features/organisms/Menus'
+import type React from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { AssigneeMenu } from 'src/components/features/organisms/Menus';
 import {
   Input as AtomsInput,
   Flex,
   Icon,
   InputGroup,
   InputRightElement,
-} from 'src/components/ui/atoms'
-import type { PopoverProps } from 'src/components/ui/organisms/Popover'
-import { useClickableHoverStyle } from 'src/hooks'
-import { useDisclosure } from 'src/shared/chakra'
-import { useTask, useTaskCommand } from 'src/store/entities/task'
-import { type Teammate, useTeammate } from 'src/store/entities/teammate'
+} from 'src/components/ui/atoms';
+import type { PopoverProps } from 'src/components/ui/organisms/Popover';
+import { useClickableHoverStyle } from 'src/hooks';
+import { useDisclosure } from 'src/shared/chakra';
+import { useTask, useTaskCommand } from 'src/store/entities/task';
+import { type Teammate, useTeammate } from 'src/store/entities/teammate';
 
 type Props = {
-  taskId: string
-  onClose: () => void
-} & PopoverProps
+  taskId: string;
+  onClose: () => void;
+} & PopoverProps;
 
 export const Input: React.FC<Props> = (props) => {
-  const { onClose, taskId } = props
-  const { task } = useTask(taskId)
-  const { unassignTask, assignTask } = useTaskCommand()
-  const hasAssigned = useMemo(() => !!task.assigneeId, [task.assigneeId])
-  const { teammate } = useTeammate(task.assigneeId)
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
-  const popoverDisclosure = useDisclosure({ defaultIsOpen: true })
-  const [value, setValue] = useState<string>('')
+  const { onClose, taskId } = props;
+  const { task } = useTask(taskId);
+  const { unassignTask, assignTask } = useTaskCommand();
+  const hasAssigned = useMemo(() => !!task.assigneeId, [task.assigneeId]);
+  const { teammate } = useTeammate(task.assigneeId);
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
+  const popoverDisclosure = useDisclosure({ defaultIsOpen: true });
+  const [value, setValue] = useState<string>('');
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      e.stopPropagation()
+      e.stopPropagation();
 
-      const val = e.target.value
-      setValue(val)
+      const val = e.target.value;
+      setValue(val);
       if (val) {
-        popoverDisclosure.onOpen()
-        return
+        popoverDisclosure.onOpen();
+        return;
       }
-      popoverDisclosure.onClose()
+      popoverDisclosure.onClose();
     },
     [popoverDisclosure],
-  )
+  );
 
   const handleSelect = useCallback(
     async (val: Teammate) => {
-      setValue('')
-      console.log('val: ', val)
-      await assignTask({ id: taskId, assigneeId: val.id })
-      onClose()
+      setValue('');
+      console.log('val: ', val);
+      await assignTask({ id: taskId, assigneeId: val.id });
+      onClose();
     },
     [assignTask, onClose, taskId],
-  )
+  );
 
   const handleDelete = useCallback(async () => {
-    onClose()
-    await unassignTask({ id: taskId })
-  }, [onClose, taskId, unassignTask])
+    onClose();
+    await unassignTask({ id: taskId });
+  }, [onClose, taskId, unassignTask]);
 
   return (
     <AssigneeMenu
@@ -90,6 +90,6 @@ export const Input: React.FC<Props> = (props) => {
         </InputGroup>
       </Flex>
     </AssigneeMenu>
-  )
-}
-Input.displayName = 'Input'
+  );
+};
+Input.displayName = 'Input';

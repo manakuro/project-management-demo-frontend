@@ -1,1 +1,1 @@
-export * from './InviteProjectTeammateMenu'
+export * from './InviteProjectTeammateMenu';

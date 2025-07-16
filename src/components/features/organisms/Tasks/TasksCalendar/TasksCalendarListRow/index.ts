@@ -1,1 +1,1 @@
-export * from './TasksCalendarListRow'
+export * from './TasksCalendarListRow';

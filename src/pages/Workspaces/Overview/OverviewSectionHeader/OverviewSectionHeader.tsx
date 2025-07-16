@@ -1,7 +1,7 @@
-import type React from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
+import type React from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const OverviewSectionHeader: React.FC<Props> = (props) => (
   <Flex
@@ -14,6 +14,6 @@ export const OverviewSectionHeader: React.FC<Props> = (props) => (
   >
     {props.children}
   </Flex>
-)
+);
 
-OverviewSectionHeader.displayName = 'OverviewSectionHeader'
+OverviewSectionHeader.displayName = 'OverviewSectionHeader';

@@ -1,32 +1,32 @@
-import type React from 'react'
-import { memo, useCallback, useState } from 'react'
-import { TasksListItem } from 'src/components/features/organisms/Tasks/TasksList/TasksListItem'
-import { TasksListSectionProvider } from 'src/components/features/organisms/Tasks/TasksList/TasksListSection'
-import { Flex } from 'src/components/ui/atoms'
-import { useMyTasksTaskIdsByProjectId } from 'src/store/app/myTasks/tasks'
-import { Header } from './Header'
-import { Provider } from './Provider'
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
+import { TasksListItem } from 'src/components/features/organisms/Tasks/TasksList/TasksListItem';
+import { TasksListSectionProvider } from 'src/components/features/organisms/Tasks/TasksList/TasksListSection';
+import { Flex } from 'src/components/ui/atoms';
+import { useMyTasksTaskIdsByProjectId } from 'src/store/app/myTasks/tasks';
+import { Header } from './Header';
+import { Provider } from './Provider';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 export const TasksListSectionGroupByProject: React.FC<Props> = memo<Props>(
   (props) => {
     return (
       <Provider projectId={props.projectId}>
         <Component {...props} />
       </Provider>
-    )
+    );
   },
-)
+);
 
 const Component: React.FC<Props> = memo<Props>((props) => {
-  const { taskIds } = useMyTasksTaskIdsByProjectId(props.projectId)
-  const [isExpanded, setIsExpanded] = useState(true)
+  const { taskIds } = useMyTasksTaskIdsByProjectId(props.projectId);
+  const [isExpanded, setIsExpanded] = useState(true);
 
   const handleToggle = useCallback(() => {
-    setIsExpanded((s) => !s)
-  }, [])
+    setIsExpanded((s) => !s);
+  }, []);
 
   return (
     <>
@@ -47,7 +47,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
         )}
       </Flex>
     </>
-  )
-})
-Component.displayName = 'Component'
-TasksListSectionGroupByProject.displayName = 'TasksListSectionGroupByProject'
+  );
+});
+Component.displayName = 'Component';
+TasksListSectionGroupByProject.displayName = 'TasksListSectionGroupByProject';

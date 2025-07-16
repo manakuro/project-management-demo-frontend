@@ -1,2 +1,2 @@
-export * from './EditorLinkModal'
-export * from './useEditorLinkModal'
+export * from './EditorLinkModal';
+export * from './useEditorLinkModal';

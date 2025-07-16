@@ -1,1 +1,1 @@
-export * from './TaskDetailHeader'
+export * from './TaskDetailHeader';

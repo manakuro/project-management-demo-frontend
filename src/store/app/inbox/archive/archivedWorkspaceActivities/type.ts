@@ -1,5 +1,5 @@
-import type { ArchivedWorkspaceActivityResponse } from 'src/graphql/types/archivedWorkspaceActivity'
-export type { ArchivedWorkspaceActivityResponse } from 'src/graphql/types/archivedWorkspaceActivity'
+import type { ArchivedWorkspaceActivityResponse } from 'src/graphql/types/archivedWorkspaceActivity';
+export type { ArchivedWorkspaceActivityResponse } from 'src/graphql/types/archivedWorkspaceActivity';
 
 export type ArchivedWorkspaceActivity = Omit<
   ArchivedWorkspaceActivityResponse,
@@ -8,4 +8,4 @@ export type ArchivedWorkspaceActivity = Omit<
   | 'project'
   | 'activityType'
   | 'archivedWorkspaceActivityTasks'
->
+>;

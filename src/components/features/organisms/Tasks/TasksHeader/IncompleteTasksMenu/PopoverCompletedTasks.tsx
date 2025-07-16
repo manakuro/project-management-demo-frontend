@@ -1,5 +1,5 @@
-import type React from 'react'
-import { useCallback } from 'react'
+import type React from 'react';
+import { useCallback } from 'react';
 import {
   Menu,
   MenuButton,
@@ -7,27 +7,27 @@ import {
   MenuList,
   MenuOptionGroup,
   type MenuProps,
-} from 'src/components/ui/organisms/Menu'
-import { chakra } from 'src/shared/chakra'
+} from 'src/components/ui/organisms/Menu';
+import { chakra } from 'src/shared/chakra';
 import {
   TaskListCompletedStatusCode,
   type TaskListCompletedStatusCodeValue,
-} from 'src/store/entities/taskListCompletedStatus'
+} from 'src/store/entities/taskListCompletedStatus';
 
 type Props = {
-  onClose: () => void
-  listStatus?: TaskListCompletedStatusCodeValue
-  onChange: (listStatus: TaskListCompletedStatusCodeValue) => void
-} & MenuProps
+  onClose: () => void;
+  listStatus?: TaskListCompletedStatusCodeValue;
+  onChange: (listStatus: TaskListCompletedStatusCodeValue) => void;
+} & MenuProps;
 
 export const PopoverCompletedTasks: React.FC<Props> = (props) => {
   const handleChange = useCallback(
     (listStatus?: string | string[]) => {
-      props.onChange(listStatus as TaskListCompletedStatusCodeValue)
-      props.onClose()
+      props.onChange(listStatus as TaskListCompletedStatusCodeValue);
+      props.onClose();
     },
     [props],
-  )
+  );
 
   return (
     <Menu closeOnBlur={false} closeOnSelect={false} isLazy {...props}>
@@ -87,12 +87,12 @@ export const PopoverCompletedTasks: React.FC<Props> = (props) => {
         </MenuOptionGroup>
       </MenuList>
     </Menu>
-  )
-}
+  );
+};
 
 // NOTE: Use custom component instead of `Box` because of styling issue with positioning menu item
 const MenuButtonAs = chakra('div', {
   baseStyle: {
     w: 'full',
   },
-})
+});

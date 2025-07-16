@@ -1,4 +1,4 @@
-import type { Suggester } from 'prosemirror-suggest'
+import type { Suggester } from 'prosemirror-suggest';
 import {
   getEmoji,
   onEmojiArrowDown as onArrowDown,
@@ -7,7 +7,7 @@ import {
   onEmojiEnter as onEnter,
   onEmojiOpen as onOpen,
   setEmojiQuery as setQuery,
-} from 'src/components/features/organisms/Menus/EditorEmojiMenu'
+} from 'src/components/features/organisms/Menus/EditorEmojiMenu';
 
 export const suggestEmoji: Suggester = {
   noDecorations: true,
@@ -15,39 +15,39 @@ export const suggestEmoji: Suggester = {
   name: 'emoji-suggestion',
   keyBindings: {
     ArrowDown: (params) => {
-      params.event.preventDefault()
+      params.event.preventDefault();
 
-      onArrowDown()
+      onArrowDown();
     },
     ArrowUp: (params) => {
-      params.event.preventDefault()
+      params.event.preventDefault();
 
-      onArrowUp()
+      onArrowUp();
     },
     Enter: (params) => {
-      params.event.preventDefault()
-      onEnter()
-      return true
+      params.event.preventDefault();
+      onEnter();
+      return true;
     },
   },
   onChange: async (params) => {
-    setQuery(params.queryText.full)
-    await onOpen()
-    params.command()
+    setQuery(params.queryText.full);
+    await onOpen();
+    params.command();
   },
 
   createCommand: (params) => {
     return () => {
-      if (!getEmoji()) return
+      if (!getEmoji()) return;
 
-      const emoji = `${getEmoji()?.native}  `
-      const state = params.view.state
-      const { from, end: to } = params.match.range
-      const { tr } = state
-      params.view.dispatch(tr.insertText(emoji, from, to))
-    }
+      const emoji = `${getEmoji()?.native}  `;
+      const state = params.view.state;
+      const { from, end: to } = params.match.range;
+      const { tr } = state;
+      params.view.dispatch(tr.insertText(emoji, from, to));
+    };
   },
   onExit: () => {
-    onClose()
+    onClose();
   },
-}
+};

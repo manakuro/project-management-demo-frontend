@@ -1,16 +1,16 @@
 import {
   Tab as ChakraTab,
   type TabProps as ChakraTabProps,
-} from '@chakra-ui/react'
-import type React from 'react'
-import { useClickableHoverStyle } from 'src/hooks'
-import { forwardRef } from 'src/shared/chakra'
+} from '@chakra-ui/react';
+import type React from 'react';
+import { useClickableHoverStyle } from 'src/hooks';
+import { forwardRef } from 'src/shared/chakra';
 
-type Props = ChakraTabProps
-export type TabProps = Props
+type Props = ChakraTabProps;
+export type TabProps = Props;
 
 export const Tab: React.FC<Props> = forwardRef<Props, 'div'>((props, ref) => {
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
 
   return (
     <ChakraTab
@@ -22,5 +22,5 @@ export const Tab: React.FC<Props> = forwardRef<Props, 'div'>((props, ref) => {
       {...props}
       ref={ref}
     />
-  )
-})
+  );
+});

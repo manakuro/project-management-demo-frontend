@@ -1,9 +1,9 @@
-import type React from 'react'
-import { Box, Divider, Heading } from 'src/components/ui/atoms'
+import type React from 'react';
+import { Box, Divider, Heading } from 'src/components/ui/atoms';
 
 type Props = {
-  title?: string
-}
+  title?: string;
+};
 
 export const Section: React.FCWithChildren<Props> = (props) => {
   return (
@@ -16,5 +16,5 @@ export const Section: React.FCWithChildren<Props> = (props) => {
       )}
       <Box mt={props.title ? 0 : 4}>{props.children}</Box>
     </Box>
-  )
-}
+  );
+};

@@ -1,20 +1,20 @@
-import isEqual from 'lodash-es/isEqual'
-import { useRecoilCallback } from 'recoil'
-import { useTaskAssignedSubscription as useSubscription } from 'src/graphql/hooks'
-import { uuid } from 'src/shared/uuid'
-import type { TaskAssignedSubscriptionResponse } from 'src/store/entities/task'
-import { useTeammateTaskResponse } from 'src/store/entities/teammateTask'
+import isEqual from 'lodash-es/isEqual';
+import { useRecoilCallback } from 'recoil';
+import { useTaskAssignedSubscription as useSubscription } from 'src/graphql/hooks';
+import { uuid } from 'src/shared/uuid';
+import type { TaskAssignedSubscriptionResponse } from 'src/store/entities/task';
+import { useTeammateTaskResponse } from 'src/store/entities/teammateTask';
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
-let previousData: any
+let previousData: any;
 
 type Props = {
-  workspaceId: string
-}
+  workspaceId: string;
+};
 
-export const TASK_ASSIGNED_SUBSCRIPTION_REQUEST_ID = uuid()
+export const TASK_ASSIGNED_SUBSCRIPTION_REQUEST_ID = uuid();
 export const useTaskAssignedSubscription = (props: Props) => {
-  const { setTeammateTask } = useTeammateTaskResponse()
+  const { setTeammateTask } = useTeammateTaskResponse();
 
   useSubscription({
     variables: {
@@ -28,22 +28,22 @@ export const useTaskAssignedSubscription = (props: Props) => {
           previousData?.subscriptionData?.data,
         )
       )
-        return
+        return;
 
       if (data.subscriptionData.data)
-        setBySubscription(data.subscriptionData.data)
-      previousData = data
+        setBySubscription(data.subscriptionData.data);
+      previousData = data;
     },
-  })
+  });
 
   const setBySubscription = useRecoilCallback(
     () => async (response: TaskAssignedSubscriptionResponse) => {
-      const data = response.taskAssigned
+      const data = response.taskAssigned;
 
-      if (__DEV__) console.log('task assigned!')
+      if (__DEV__) console.log('task assigned!');
 
-      setTeammateTask([data.teammateTask])
+      setTeammateTask([data.teammateTask]);
     },
     [setTeammateTask],
-  )
-}
+  );
+};

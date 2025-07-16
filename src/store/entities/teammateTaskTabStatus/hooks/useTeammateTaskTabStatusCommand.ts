@@ -1,33 +1,33 @@
-import { useRecoilCallback } from 'recoil'
-import { useUpdateTeammateTaskTabStatusMutation } from 'src/graphql/hooks'
-import { tabStatusState } from '../atom'
+import { useRecoilCallback } from 'recoil';
+import { useUpdateTeammateTaskTabStatusMutation } from 'src/graphql/hooks';
+import { tabStatusState } from '../atom';
 import {
   type TeammateTaskTabStatus,
   TeammateTaskTabStatusCode,
   type TeammateTaskTabStatusCodeKey,
-} from '../type'
-import { useUpsert } from './useUpsert'
+} from '../type';
+import { useUpsert } from './useUpsert';
 
 export const useTeammateTaskTabStatusCommand = () => {
   const [updateTeammateTaskTabStatusMutation] =
-    useUpdateTeammateTaskTabStatusMutation()
-  const { upsert } = useUpsert()
+    useUpdateTeammateTaskTabStatusMutation();
+  const { upsert } = useUpsert();
 
   const setTabStatus = useRecoilCallback(
     ({ snapshot }) =>
       async (key: TeammateTaskTabStatusCodeKey) => {
-        const prev = await snapshot.getPromise(tabStatusState)
+        const prev = await snapshot.getPromise(tabStatusState);
         const input: Partial<TeammateTaskTabStatus> = {
           statusCode: TeammateTaskTabStatusCode[key],
-        }
-        if (!prev.id) return
-        if (prev.statusCode === input.statusCode) return
+        };
+        if (!prev.id) return;
+        if (prev.statusCode === input.statusCode) return;
 
-        upsert(input)
+        upsert(input);
 
         const restore = () => {
-          upsert(prev)
-        }
+          upsert(prev);
+        };
 
         try {
           const res = await updateTeammateTaskTabStatusMutation({
@@ -38,19 +38,19 @@ export const useTeammateTaskTabStatusCommand = () => {
                 ...input,
               },
             },
-          })
+          });
           if (res.errors) {
-            restore()
+            restore();
           }
         } catch (e) {
-          restore()
-          throw e
+          restore();
+          throw e;
         }
       },
     [updateTeammateTaskTabStatusMutation, upsert],
-  )
+  );
 
   return {
     setTabStatus,
-  }
-}
+  };
+};

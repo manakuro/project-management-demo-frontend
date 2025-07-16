@@ -1,1 +1,1 @@
-export * from './KeyResourcesSection'
+export * from './KeyResourcesSection';

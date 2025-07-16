@@ -1,12 +1,12 @@
-import { memo, useCallback, useMemo } from 'react'
+import { memo, useCallback, useMemo } from 'react';
 import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
-} from 'src/components/features/organisms/Menus'
-import { Button, Icon } from 'src/components/ui/atoms'
-import { MenuItemOption } from 'src/components/ui/organisms/Menu'
-import type { ChakraProps } from 'src/shared/chakra'
+} from 'src/components/features/organisms/Menus';
+import { Button, Icon } from 'src/components/ui/atoms';
+import { MenuItemOption } from 'src/components/ui/organisms/Menu';
+import type { ChakraProps } from 'src/shared/chakra';
 import {
   INBOX_LIST_FILTER_STATUS_TYPE_ALL,
   INBOX_LIST_FILTER_STATUS_TYPE_ASSIGNED_BY_ME,
@@ -15,11 +15,11 @@ import {
   INBOX_LIST_FILTER_STATUS_TYPE_UNREAD_ONLY,
   type InboxListFilterStatuses,
   useInboxListStatus,
-} from 'src/store/app/inbox/activity/inboxListStatus'
+} from 'src/store/app/inbox/activity/inboxListStatus';
 
 const items: {
-  value: InboxListFilterStatuses
-  text: string
+  value: InboxListFilterStatuses;
+  text: string;
 }[] = [
   {
     value: INBOX_LIST_FILTER_STATUS_TYPE_ALL,
@@ -41,30 +41,30 @@ const items: {
     value: INBOX_LIST_FILTER_STATUS_TYPE_UNREAD_ONLY,
     text: 'Unread only',
   },
-]
+];
 
 export const FilterButton = memo(() => {
-  const { onFilter, filterStatus, isFiltered } = useInboxListStatus()
+  const { onFilter, filterStatus, isFiltered } = useInboxListStatus();
 
   const handleChange = useCallback(
     (status: ToString<InboxListFilterStatuses>) => {
-      onFilter(Number(status) as InboxListFilterStatuses)
+      onFilter(Number(status) as InboxListFilterStatuses);
     },
     [onFilter],
-  )
-  const isActiveButton = useMemo(() => !isFiltered('all'), [isFiltered])
+  );
+  const isActiveButton = useMemo(() => !isFiltered('all'), [isFiltered]);
   const buttonStyle = useMemo(
     (): ChakraProps => ({
       ...(isActiveButton ? { bg: 'teal.100', _hover: { bg: 'teal.100' } } : {}),
     }),
     [isActiveButton],
-  )
+  );
 
   const text = useMemo<string>(() => {
-    if (isFiltered('all')) return ''
+    if (isFiltered('all')) return '';
 
-    return `: ${items.find((i) => i.value === filterStatus)?.text}`
-  }, [isFiltered, filterStatus])
+    return `: ${items.find((i) => i.value === filterStatus)?.text}`;
+  }, [isFiltered, filterStatus]);
 
   return (
     <MenuSelect<ToString<InboxListFilterStatuses>>
@@ -93,6 +93,6 @@ export const FilterButton = memo(() => {
         ))}
       </MenuSelectList>
     </MenuSelect>
-  )
-})
-FilterButton.displayName = 'FilterButton'
+  );
+});
+FilterButton.displayName = 'FilterButton';

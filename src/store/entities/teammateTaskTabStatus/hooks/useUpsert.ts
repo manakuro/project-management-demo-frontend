@@ -1,6 +1,6 @@
-import { useRecoilCallback } from 'recoil'
-import { tabStatusState } from '../atom'
-import type { TeammateTaskTabStatus } from '../type'
+import { useRecoilCallback } from 'recoil';
+import { tabStatusState } from '../atom';
+import type { TeammateTaskTabStatus } from '../type';
 
 export const useUpsert = () => {
   const upsert = useRecoilCallback(
@@ -9,12 +9,12 @@ export const useUpsert = () => {
         set(tabStatusState, (prev) => ({
           ...prev,
           ...input,
-        }))
+        }));
       },
     [],
-  )
+  );
 
   return {
     upsert,
-  }
-}
+  };
+};

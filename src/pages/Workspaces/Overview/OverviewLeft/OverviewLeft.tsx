@@ -1,8 +1,8 @@
-import type React from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { forwardRef } from 'src/shared/chakra'
+import type React from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { forwardRef } from 'src/shared/chakra';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const OverviewLeft: React.FC<Props> = forwardRef((props, ref) => (
   <Flex
@@ -13,6 +13,6 @@ export const OverviewLeft: React.FC<Props> = forwardRef((props, ref) => (
     {...props}
     ref={ref}
   />
-))
+));
 
-OverviewLeft.displayName = 'OverviewLeft'
+OverviewLeft.displayName = 'OverviewLeft';

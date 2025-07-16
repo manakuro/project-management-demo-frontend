@@ -1,16 +1,16 @@
-import { Divider, PortalManager } from 'src/components/ui/atoms'
+import { Divider, PortalManager } from 'src/components/ui/atoms';
 import {
   Modal,
   ModalBody,
   ModalContent,
   ModalHeader,
-} from 'src/components/ui/organisms/Modal'
-import { Body } from './Body'
-import { Header } from './Header'
-import { useFileViewerModal } from './useFileViewerModal'
+} from 'src/components/ui/organisms/Modal';
+import { Body } from './Body';
+import { Header } from './Header';
+import { useFileViewerModal } from './useFileViewerModal';
 
 export function FileViewerModal() {
-  const { isOpen, onClose } = useFileViewerModal()
+  const { isOpen, onClose } = useFileViewerModal();
 
   return (
     <PortalManager zIndex={1800}>
@@ -33,5 +33,5 @@ export function FileViewerModal() {
         </ModalContent>
       </Modal>
     </PortalManager>
-  )
+  );
 }

@@ -1,7 +1,7 @@
-import { memo } from 'react'
-import { AttachmentMenu } from 'src/components/features/organisms/Menus'
-import { NewBox } from 'src/components/ui/molecules'
-import { MenuButton } from 'src/components/ui/organisms/Menu'
+import { memo } from 'react';
+import { AttachmentMenu } from 'src/components/features/organisms/Menus';
+import { NewBox } from 'src/components/ui/molecules';
+import { MenuButton } from 'src/components/ui/organisms/Menu';
 
 export const NewButton = memo(function NewButton() {
   return (
@@ -13,5 +13,5 @@ export const NewButton = memo(function NewButton() {
         <NewBox size="lg" />
       </MenuButton>
     </AttachmentMenu>
-  )
-})
+  );
+});

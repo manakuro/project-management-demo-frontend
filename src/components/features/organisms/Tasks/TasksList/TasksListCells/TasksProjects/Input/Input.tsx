@@ -1,66 +1,66 @@
-import type React from 'react'
-import { memo, useCallback, useState } from 'react'
-import { ProjectChip } from 'src/components/features/molecules/Chips'
-import { ProjectMenu } from 'src/components/features/organisms/Menus'
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
+import { ProjectChip } from 'src/components/features/molecules/Chips';
+import { ProjectMenu } from 'src/components/features/organisms/Menus';
 import {
   Input as AtomsInput,
   Flex,
   Wrap,
   WrapItem,
-} from 'src/components/ui/atoms'
-import { useClickOutside } from 'src/hooks'
-import { useDisclosure } from 'src/shared/chakra'
+} from 'src/components/ui/atoms';
+import { useClickOutside } from 'src/hooks';
+import { useDisclosure } from 'src/shared/chakra';
 import {
   useProjectIdsByTaskId,
   useProjectTaskCommand,
-} from 'src/store/entities/projectTask'
+} from 'src/store/entities/projectTask';
 
 type Props = {
-  taskId: string
-  focused: boolean
-  onClose: () => void
-}
+  taskId: string;
+  focused: boolean;
+  onClose: () => void;
+};
 
-const HEIGHT = '37px'
+const HEIGHT = '37px';
 export const Input: React.FC<Props> = memo((props) => {
-  const { taskId, onClose } = props
-  const popoverDisclosure = useDisclosure()
-  const { projectIds } = useProjectIdsByTaskId(taskId)
+  const { taskId, onClose } = props;
+  const popoverDisclosure = useDisclosure();
+  const { projectIds } = useProjectIdsByTaskId(taskId);
   const { addProjectTaskByTaskId, deleteProjectTaskByTaskId } =
-    useProjectTaskCommand()
+    useProjectTaskCommand();
   const { ref } = useClickOutside(onClose, {
     hasClickedOutside: (e, helper) => {
-      if (helper.isContainInPopoverContent(e)) return false
-      return true
+      if (helper.isContainInPopoverContent(e)) return false;
+      return true;
     },
-  })
-  const [value, setValue] = useState<string>('')
+  });
+  const [value, setValue] = useState<string>('');
 
   const handleDelete = useCallback(async () => {
-    await deleteProjectTaskByTaskId({ taskId })
-  }, [deleteProjectTaskByTaskId, taskId])
+    await deleteProjectTaskByTaskId({ taskId });
+  }, [deleteProjectTaskByTaskId, taskId]);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const val = e.target.value
-      setValue(val)
+      const val = e.target.value;
+      setValue(val);
       if (val) {
-        popoverDisclosure.onOpen()
-        return
+        popoverDisclosure.onOpen();
+        return;
       }
-      popoverDisclosure.onClose()
+      popoverDisclosure.onClose();
     },
     [popoverDisclosure],
-  )
+  );
 
   const handleSelect = useCallback(
     async (projectId: string) => {
-      console.log(projectId)
-      onClose()
-      await addProjectTaskByTaskId({ projectId, taskId })
+      console.log(projectId);
+      onClose();
+      await addProjectTaskByTaskId({ projectId, taskId });
     },
     [addProjectTaskByTaskId, onClose, taskId],
-  )
+  );
 
   return (
     <ProjectMenu
@@ -110,6 +110,6 @@ export const Input: React.FC<Props> = memo((props) => {
         </Wrap>
       </Flex>
     </ProjectMenu>
-  )
-})
-Input.displayName = 'Input'
+  );
+});
+Input.displayName = 'Input';

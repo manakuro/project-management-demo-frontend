@@ -1,7 +1,7 @@
-import { memo } from 'react'
-import { AttachmentMenu } from 'src/components/features/organisms/Menus'
-import { Icon, IconButton } from 'src/components/ui/atoms'
-import { MenuButton } from 'src/components/ui/organisms/Menu'
+import { memo } from 'react';
+import { AttachmentMenu } from 'src/components/features/organisms/Menus';
+import { Icon, IconButton } from 'src/components/ui/atoms';
+import { MenuButton } from 'src/components/ui/organisms/Menu';
 
 export const Attachment = memo(function Attachment() {
   return (
@@ -17,5 +17,5 @@ export const Attachment = memo(function Attachment() {
         variant="ghost"
       />
     </AttachmentMenu>
-  )
-})
+  );
+});

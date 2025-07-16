@@ -30,4 +30,4 @@ export const dueDatePickerCustomStyle = () => ({
     fontSize: 'sm',
     height: '26px !important',
   },
-})
+});

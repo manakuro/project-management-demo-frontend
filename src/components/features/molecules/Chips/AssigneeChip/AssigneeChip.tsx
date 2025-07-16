@@ -1,27 +1,27 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { PopoverProfile } from 'src/components/features/organisms/Popovers'
-import { Avatar, Box, Button, Icon, Text } from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
-import { useTeammate } from 'src/store/entities/teammate'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { PopoverProfile } from 'src/components/features/organisms/Popovers';
+import { Avatar, Box, Button, Icon, Text } from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
+import { useTeammate } from 'src/store/entities/teammate';
 
 type Props = {
-  teammateId: string
-  onDelete?: (teammateId: string) => void
-}
+  teammateId: string;
+  onDelete?: (teammateId: string) => void;
+};
 
 export const AssigneeChip: React.FC<Props> = memo((props) => {
-  const { teammateId, onDelete } = props
-  const { teammate } = useTeammate(teammateId)
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
+  const { teammateId, onDelete } = props;
+  const { teammate } = useTeammate(teammateId);
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
 
   const handleDelete = useCallback(
     (e: React.MouseEvent<SVGElement>) => {
-      e.stopPropagation()
-      onDelete?.(teammateId)
+      e.stopPropagation();
+      onDelete?.(teammateId);
     },
     [onDelete, teammateId],
-  )
+  );
 
   return (
     <PopoverProfile
@@ -60,6 +60,6 @@ export const AssigneeChip: React.FC<Props> = memo((props) => {
         />
       </Button>
     </PopoverProfile>
-  )
-})
-AssigneeChip.displayName = 'AssigneeChip'
+  );
+});
+AssigneeChip.displayName = 'AssigneeChip';

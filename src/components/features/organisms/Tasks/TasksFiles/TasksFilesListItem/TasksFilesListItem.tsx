@@ -1,7 +1,7 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { useFileViewerModal } from 'src/components/features/organisms/Modals'
-import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { useFileViewerModal } from 'src/components/features/organisms/Modals';
+import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks';
 import {
   Divider,
   Flex,
@@ -10,46 +10,46 @@ import {
   Image,
   Link,
   Text,
-} from 'src/components/ui/atoms'
-import { useHover } from 'src/hooks/useHover'
-import { FileTypeCode } from 'src/store/entities/fileType'
-import { useTask } from 'src/store/entities/task'
+} from 'src/components/ui/atoms';
+import { useHover } from 'src/hooks/useHover';
+import { FileTypeCode } from 'src/store/entities/fileType';
+import { useTask } from 'src/store/entities/task';
 import {
   getTaskFileIcon,
   useTaskFile,
   useTaskFileIdsByTaskId,
-} from 'src/store/entities/taskFile'
-import { transitions } from 'src/styles'
+} from 'src/store/entities/taskFile';
+import { transitions } from 'src/styles';
 
 type Props = {
-  taskFileId: string
-} & FlexProps
+  taskFileId: string;
+} & FlexProps;
 
 export const TasksFilesListItem: React.FC<Props> = memo((props) => {
-  const { taskFileId, ...rest } = props
-  const { ref, isHovering } = useHover()
-  const { taskFile } = useTaskFile(taskFileId)
-  const { task } = useTask(taskFile.taskId)
-  const { taskFileIds } = useTaskFileIdsByTaskId(taskFile.taskId)
-  const { onOpen, setState } = useFileViewerModal()
-  const icon = getTaskFileIcon(taskFile.fileType.typeCode)
-  const { navigateToTaskDetail } = useTasksRouter()
+  const { taskFileId, ...rest } = props;
+  const { ref, isHovering } = useHover();
+  const { taskFile } = useTaskFile(taskFileId);
+  const { task } = useTask(taskFile.taskId);
+  const { taskFileIds } = useTaskFileIdsByTaskId(taskFile.taskId);
+  const { onOpen, setState } = useFileViewerModal();
+  const icon = getTaskFileIcon(taskFile.fileType.typeCode);
+  const { navigateToTaskDetail } = useTasksRouter();
 
   const handleOpenTaskDetail = useCallback(
     async (e: React.MouseEvent<HTMLAnchorElement>) => {
-      e.stopPropagation()
-      await navigateToTaskDetail(task.id)
+      e.stopPropagation();
+      await navigateToTaskDetail(task.id);
     },
     [navigateToTaskDetail, task.id],
-  )
+  );
 
   const handleOpenFileViewer = useCallback(() => {
     setState({
       taskFileIds,
       currentTaskFileId: taskFileId,
-    })
-    onOpen()
-  }, [taskFileId, taskFileIds, onOpen, setState])
+    });
+    onOpen();
+  }, [taskFileId, taskFileIds, onOpen, setState]);
 
   return (
     <Flex
@@ -99,6 +99,6 @@ export const TasksFilesListItem: React.FC<Props> = memo((props) => {
         </>
       )}
     </Flex>
-  )
-})
-TasksFilesListItem.displayName = 'TasksFilesListItem'
+  );
+});
+TasksFilesListItem.displayName = 'TasksFilesListItem';

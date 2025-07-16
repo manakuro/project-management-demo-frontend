@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback } from 'react';
 import {
   getMyTasksDetailFeedId,
   getMyTasksDetailFeedURL,
@@ -7,25 +7,25 @@ import {
   isMyTasksDetailURLById,
   isProjectsDetailURLById,
   useRouter,
-} from 'src/router'
-import type { Options } from 'src/router/types'
-import { useProjectsProjectId } from 'src/store/app/projects/project'
-import { useTasksContext } from '../TasksProvider'
+} from 'src/router';
+import type { Options } from 'src/router/types';
+import { useProjectsProjectId } from 'src/store/app/projects/project';
+import { useTasksContext } from '../TasksProvider';
 
 type Result = {
-  navigateToTaskDetail: (taskId: string, options?: Options) => Promise<void>
-  navigateToTaskBoard: (options?: Options) => Promise<void>
-  isTaskDetailURLById: (taskId: string) => boolean
+  navigateToTaskDetail: (taskId: string, options?: Options) => Promise<void>;
+  navigateToTaskBoard: (options?: Options) => Promise<void>;
+  isTaskDetailURLById: (taskId: string) => boolean;
   getTasksDetailFeedURL: (props: {
-    taskId: string
-    taskFeedId: string
-  }) => string
-  getTasksDetailFeedId: () => string
-}
+    taskId: string;
+    taskFeedId: string;
+  }) => string;
+  getTasksDetailFeedId: () => string;
+};
 
 export const useTasksRouter = (): Result => {
-  const { isMyTasksPage, isHomePage, isInboxPage } = useTasksContext()
-  const { projectId } = useProjectsProjectId()
+  const { isMyTasksPage, isHomePage, isInboxPage } = useTasksContext();
+  const { projectId } = useProjectsProjectId();
   const {
     router,
     navigateToHomeDetail,
@@ -34,25 +34,25 @@ export const useTasksRouter = (): Result => {
     navigateToProjectsBoard,
     navigateToMyTasksBoard,
     navigateToInboxDetail,
-  } = useRouter()
+  } = useRouter();
 
   const navigateToTaskDetail = useCallback(
     async (taskId: string, options?: Options) => {
       if (isHomePage) {
-        await navigateToHomeDetail(taskId)
-        return
+        await navigateToHomeDetail(taskId);
+        return;
       }
       if (isInboxPage) {
-        await navigateToInboxDetail(taskId)
-        return
+        await navigateToInboxDetail(taskId);
+        return;
       }
 
       if (isMyTasksPage) {
-        await navigateToMyTasksTaskDetail(taskId, options)
-        return
+        await navigateToMyTasksTaskDetail(taskId, options);
+        return;
       }
 
-      await navigateToProjectsTaskDetail(projectId, taskId, options)
+      await navigateToProjectsTaskDetail(projectId, taskId, options);
     },
     [
       isHomePage,
@@ -64,43 +64,43 @@ export const useTasksRouter = (): Result => {
       navigateToProjectsTaskDetail,
       projectId,
     ],
-  )
+  );
 
   const navigateToTaskBoard = useCallback(
     async (options?: Options) => {
       if (isMyTasksPage) {
-        await navigateToMyTasksBoard(options)
-        return
+        await navigateToMyTasksBoard(options);
+        return;
       }
 
-      await navigateToProjectsBoard(projectId, options)
+      await navigateToProjectsBoard(projectId, options);
     },
     [isMyTasksPage, navigateToMyTasksBoard, navigateToProjectsBoard, projectId],
-  )
+  );
 
   const isTaskDetailURLById = useCallback(
     (taskId: string) => {
-      if (isMyTasksPage) return isMyTasksDetailURLById(router, taskId)
+      if (isMyTasksPage) return isMyTasksDetailURLById(router, taskId);
 
-      return isProjectsDetailURLById(router, taskId)
+      return isProjectsDetailURLById(router, taskId);
     },
     [isMyTasksPage, router],
-  )
+  );
 
   const getTasksDetailFeedURL = useCallback(
     ({ taskId, taskFeedId }: { taskId: string; taskFeedId: string }) => {
-      if (isMyTasksPage) return getMyTasksDetailFeedURL(taskId, taskFeedId)
+      if (isMyTasksPage) return getMyTasksDetailFeedURL(taskId, taskFeedId);
 
-      return getProjectsDetailFeedURL(projectId, taskId, taskFeedId)
+      return getProjectsDetailFeedURL(projectId, taskId, taskFeedId);
     },
     [isMyTasksPage, projectId],
-  )
+  );
 
   const getTasksDetailFeedId = useCallback(() => {
-    if (isMyTasksPage) return getMyTasksDetailFeedId(router)
+    if (isMyTasksPage) return getMyTasksDetailFeedId(router);
 
-    return getProjectsDetailFeedId(router)
-  }, [isMyTasksPage, router])
+    return getProjectsDetailFeedId(router);
+  }, [isMyTasksPage, router]);
 
   return {
     navigateToTaskDetail,
@@ -108,5 +108,5 @@ export const useTasksRouter = (): Result => {
     isTaskDetailURLById,
     getTasksDetailFeedURL,
     getTasksDetailFeedId,
-  }
-}
+  };
+};

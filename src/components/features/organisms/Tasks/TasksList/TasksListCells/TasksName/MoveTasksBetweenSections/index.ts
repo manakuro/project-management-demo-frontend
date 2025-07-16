@@ -1,1 +1,1 @@
-export * from './MoveTasksBetweenSections'
+export * from './MoveTasksBetweenSections';

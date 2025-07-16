@@ -1,11 +1,11 @@
-import { type PropsWithChildren, memo } from 'react'
-import { Flex } from 'src/components/ui/atoms'
-import { useTasksListBody } from './useTasksListBody'
+import { type PropsWithChildren, memo } from 'react';
+import { Flex } from 'src/components/ui/atoms';
+import { useTasksListBody } from './useTasksListBody';
 
-type Props = PropsWithChildren
+type Props = PropsWithChildren;
 
 export const TasksListBody = memo<Props>(function TasksListBody(props) {
-  const { id } = useTasksListBody()
+  const { id } = useTasksListBody();
   return (
     <Flex
       id={id}
@@ -15,5 +15,5 @@ export const TasksListBody = memo<Props>(function TasksListBody(props) {
       position="relative"
       {...props}
     />
-  )
-})
+  );
+});

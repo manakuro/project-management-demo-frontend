@@ -1,9 +1,9 @@
-import type React from 'react'
-import { Checkbox, Flex, Text } from 'src/components/ui/atoms'
+import type React from 'react';
+import { Checkbox, Flex, Text } from 'src/components/ui/atoms';
 
 type Props = {
-  isSetForEveryone: boolean
-}
+  isSetForEveryone: boolean;
+};
 
 export const Setting: React.FC<Props> = (props) => {
   return (
@@ -12,5 +12,5 @@ export const Setting: React.FC<Props> = (props) => {
         <Text fontSize="xs">Set for everyone</Text>
       </Checkbox>
     </Flex>
-  )
-}
+  );
+};

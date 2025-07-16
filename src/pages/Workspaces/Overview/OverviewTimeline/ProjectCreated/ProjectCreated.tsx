@@ -1,19 +1,19 @@
-import type React from 'react'
-import { memo, useMemo } from 'react'
-import { Flex, Heading, Icon, Text } from 'src/components/ui/atoms'
-import { formatCreatedAt } from 'src/shared/date'
-import { useProject } from 'src/store/entities/project'
-import { useTeammate } from 'src/store/entities/teammate'
+import type React from 'react';
+import { memo, useMemo } from 'react';
+import { Flex, Heading, Icon, Text } from 'src/components/ui/atoms';
+import { formatCreatedAt } from 'src/shared/date';
+import { useProject } from 'src/store/entities/project';
+import { useTeammate } from 'src/store/entities/teammate';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const ProjectCreated: React.FC<Props> = memo<Props>((props) => {
-  const { projectId } = props
-  const { project } = useProject(projectId)
-  const { teammate } = useTeammate(project.createdBy)
-  const name = useMemo(() => teammate.name, [teammate.name])
+  const { projectId } = props;
+  const { project } = useProject(projectId);
+  const { teammate } = useTeammate(project.createdBy);
+  const name = useMemo(() => teammate.name, [teammate.name]);
 
   return (
     <Flex position="relative">
@@ -34,6 +34,6 @@ export const ProjectCreated: React.FC<Props> = memo<Props>((props) => {
         </Flex>
       </Flex>
     </Flex>
-  )
-})
-ProjectCreated.displayName = 'JoinedTeammate'
+  );
+});
+ProjectCreated.displayName = 'JoinedTeammate';

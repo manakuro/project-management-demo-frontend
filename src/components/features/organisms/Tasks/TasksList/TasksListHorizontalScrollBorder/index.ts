@@ -1,1 +1,1 @@
-export * from './TasksListHorizontalScrollBorder'
+export * from './TasksListHorizontalScrollBorder';

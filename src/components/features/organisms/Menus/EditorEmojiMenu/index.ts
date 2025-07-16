@@ -1,2 +1,2 @@
-export * from './EditorEmojiMenu'
-export * from './useEditorEmojiMenu'
+export * from './EditorEmojiMenu';
+export * from './useEditorEmojiMenu';

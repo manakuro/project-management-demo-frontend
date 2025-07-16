@@ -1,3 +1,3 @@
-import type { HomePageQuery } from 'src/graphql/types'
+import type { HomePageQuery } from 'src/graphql/types';
 
-export type HomeResponse = NonNullable<HomePageQuery>
+export type HomeResponse = NonNullable<HomePageQuery>;

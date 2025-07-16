@@ -1,1 +1,1 @@
-export * from './MyAccountAvatar'
+export * from './MyAccountAvatar';

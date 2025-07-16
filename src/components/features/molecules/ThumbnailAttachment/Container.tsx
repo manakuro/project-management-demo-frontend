@@ -1,11 +1,11 @@
-import type React from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { useThumbnailAttachmentContext } from './Provider'
+import type React from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { useThumbnailAttachmentContext } from './Provider';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const Container: React.FC<Props> = (props) => {
-  const { ref } = useThumbnailAttachmentContext()
+  const { ref } = useThumbnailAttachmentContext();
 
   return (
     <Flex
@@ -17,5 +17,5 @@ export const Container: React.FC<Props> = (props) => {
       position="relative"
       {...props}
     />
-  )
-}
+  );
+};

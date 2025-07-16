@@ -1,3 +1,3 @@
-import type { IconFragmentFragment } from 'src/graphql/types'
+import type { IconFragmentFragment } from 'src/graphql/types';
 
-export type IconResponse = NonNullable<IconFragmentFragment>
+export type IconResponse = NonNullable<IconFragmentFragment>;

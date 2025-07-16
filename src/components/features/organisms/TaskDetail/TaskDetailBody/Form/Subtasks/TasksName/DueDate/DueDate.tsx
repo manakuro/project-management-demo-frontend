@@ -1,32 +1,32 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers'
-import { DueDate as AtomsDueDate, Icon } from 'src/components/ui/atoms'
-import { Tooltip } from 'src/components/ui/molecules'
-import { useClickableHoverStyle } from 'src/hooks'
-import { getDifferenceInDays } from 'src/shared/date'
-import { useTask } from 'src/store/entities/task'
-import { useDueDate } from './useDueDate'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers';
+import { DueDate as AtomsDueDate, Icon } from 'src/components/ui/atoms';
+import { Tooltip } from 'src/components/ui/molecules';
+import { useClickableHoverStyle } from 'src/hooks';
+import { getDifferenceInDays } from 'src/shared/date';
+import { useTask } from 'src/store/entities/task';
+import { useDueDate } from './useDueDate';
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const DueDate: React.FC<Props> = memo<Props>((props) => {
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
-  const { onDueDateOpened, onDueDateClosed, showIcon } = useDueDate()
-  const { task, setTaskDueDate, resetTaskDueDate } = useTask(props.taskId)
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
+  const { onDueDateOpened, onDueDateClosed, showIcon } = useDueDate();
+  const { task, setTaskDueDate, resetTaskDueDate } = useTask(props.taskId);
 
   const handleChange = useCallback(
     async (date: Date) => {
-      await setTaskDueDate(date)
+      await setTaskDueDate(date);
     },
     [setTaskDueDate],
-  )
+  );
 
   const handleClear = useCallback(async () => {
-    await resetTaskDueDate()
-  }, [resetTaskDueDate])
+    await resetTaskDueDate();
+  }, [resetTaskDueDate]);
 
   return (
     <PopoverDueDatePicker
@@ -68,6 +68,6 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
         </Tooltip>
       )}
     </PopoverDueDatePicker>
-  )
-})
-DueDate.displayName = 'DueDate'
+  );
+});
+DueDate.displayName = 'DueDate';

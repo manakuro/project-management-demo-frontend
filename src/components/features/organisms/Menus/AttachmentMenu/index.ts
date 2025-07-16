@@ -1,1 +1,1 @@
-export * from './AttachmentMenu'
+export * from './AttachmentMenu';

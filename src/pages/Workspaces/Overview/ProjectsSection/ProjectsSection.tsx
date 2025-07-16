@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { memo, useState } from 'react';
 import {
   PROJECT_LIST_MENU_VIEW_AS_TILES,
   ProjectListItem,
@@ -7,21 +7,21 @@ import {
   type ProjectListStatus,
   ProjectTileItem,
   ProjectTileItemNew,
-} from 'src/components/features/organisms/Projects'
-import { Box, Flex, Grid, Link, NextLink } from 'src/components/ui/atoms'
-import { ROUTE_PROJECTS_LIST } from 'src/router'
-import { useProjectIds } from 'src/store/entities/project'
+} from 'src/components/features/organisms/Projects';
+import { Box, Flex, Grid, Link, NextLink } from 'src/components/ui/atoms';
+import { ROUTE_PROJECTS_LIST } from 'src/router';
+import { useProjectIds } from 'src/store/entities/project';
 import {
   OverviewSectionHeader,
   OverviewSectionHeaderHeading,
   OverviewSectionHeaderRight,
-} from '../OverviewSectionHeader'
+} from '../OverviewSectionHeader';
 
 export const ProjectsSection = memo(function ProjectsSection() {
-  const { projectIds } = useProjectIds()
+  const { projectIds } = useProjectIds();
   const [listStatus, setListStatus] = useState<ProjectListStatus>(
     PROJECT_LIST_MENU_VIEW_AS_TILES,
-  )
+  );
 
   return (
     <Flex flexDirection="column">
@@ -72,5 +72,5 @@ export const ProjectsSection = memo(function ProjectsSection() {
         )}
       </Flex>
     </Flex>
-  )
-})
+  );
+});

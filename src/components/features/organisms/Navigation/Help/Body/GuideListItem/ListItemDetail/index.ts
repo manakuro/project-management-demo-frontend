@@ -1,2 +1,2 @@
-export * from './ListItemDetail'
-export * from './Section'
+export * from './ListItemDetail';
+export * from './Section';

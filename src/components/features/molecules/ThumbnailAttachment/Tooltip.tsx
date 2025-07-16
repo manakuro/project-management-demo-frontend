@@ -1,33 +1,33 @@
-import type React from 'react'
-import { useEffect } from 'react'
-import { Flex } from 'src/components/ui/atoms'
+import type React from 'react';
+import { useEffect } from 'react';
+import { Flex } from 'src/components/ui/atoms';
 import {
   Tooltip as MoleculesTooltip,
   type TooltipProps,
-} from 'src/components/ui/molecules'
-import { useDisclosure } from 'src/shared/chakra'
-import { useTaskFile } from 'src/store/entities/taskFile'
-import { useThumbnailAttachmentContext } from './Provider'
+} from 'src/components/ui/molecules';
+import { useDisclosure } from 'src/shared/chakra';
+import { useTaskFile } from 'src/store/entities/taskFile';
+import { useThumbnailAttachmentContext } from './Provider';
 
 type Props = Omit<TooltipProps, 'label' | 'size'> & {
-  taskFileId: string
-}
+  taskFileId: string;
+};
 
 export const Tooltip: React.FC<Props> = (props) => {
-  const { taskFileId, children, ...rest } = props
-  const { taskFile } = useTaskFile(taskFileId)
-  const tooltipDisclosure = useDisclosure()
-  const { isHovering, thumbnailMenuOpened } = useThumbnailAttachmentContext()
+  const { taskFileId, children, ...rest } = props;
+  const { taskFile } = useTaskFile(taskFileId);
+  const tooltipDisclosure = useDisclosure();
+  const { isHovering, thumbnailMenuOpened } = useThumbnailAttachmentContext();
 
   useEffect(() => {
     if (!thumbnailMenuOpened && isHovering) {
       setTimeout(() => {
-        tooltipDisclosure.onOpen()
-      }, props.openDelay ?? 0)
+        tooltipDisclosure.onOpen();
+      }, props.openDelay ?? 0);
     } else {
-      tooltipDisclosure.onClose()
+      tooltipDisclosure.onClose();
     }
-  }, [isHovering, props.openDelay, thumbnailMenuOpened, tooltipDisclosure])
+  }, [isHovering, props.openDelay, thumbnailMenuOpened, tooltipDisclosure]);
 
   return (
     <MoleculesTooltip
@@ -40,5 +40,5 @@ export const Tooltip: React.FC<Props> = (props) => {
     >
       <Flex>{children}</Flex>
     </MoleculesTooltip>
-  )
-}
+  );
+};

@@ -1,25 +1,25 @@
-import { type PropsWithChildren, memo, useMemo } from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { transitions } from 'src/styles'
-import { useTaskFeedListItemContext } from './Provider'
-import { useFeedListItemContainerContext } from './Provider/ProviderContainer'
+import { type PropsWithChildren, memo, useMemo } from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { transitions } from 'src/styles';
+import { useTaskFeedListItemContext } from './Provider';
+import { useFeedListItemContainerContext } from './Provider/ProviderContainer';
 
-type Props = PropsWithChildren
+type Props = PropsWithChildren;
 
 export const Container = memo<Props>(function Container(props) {
-  const { taskFeed, isPinned } = useTaskFeedListItemContext()
-  const { containerRef, isReferenced } = useFeedListItemContainerContext()
+  const { taskFeed, isPinned } = useTaskFeedListItemContext();
+  const { containerRef, isReferenced } = useFeedListItemContainerContext();
 
   const style = useMemo((): FlexProps => {
     if (isReferenced)
       return {
         bg: 'yellow.100',
-      }
+      };
 
     if (isPinned)
       return {
         bg: 'yellow.50',
-      }
+      };
 
     return taskFeed.isPinned
       ? {
@@ -30,8 +30,8 @@ export const Container = memo<Props>(function Container(props) {
         }
       : {
           bg: 'gray.50',
-        }
-  }, [taskFeed.isPinned, isPinned, isReferenced])
+        };
+  }, [taskFeed.isPinned, isPinned, isReferenced]);
 
   return (
     <Flex
@@ -43,5 +43,5 @@ export const Container = memo<Props>(function Container(props) {
       transition={transitions.base()}
       {...props}
     />
-  )
-})
+  );
+});

@@ -1,4 +1,4 @@
-import type { MarkSpec } from 'prosemirror-model'
+import type { MarkSpec } from 'prosemirror-model';
 
 // from prosemirror-schema-basic
 
@@ -19,4 +19,4 @@ export const bold: MarkSpec = {
     },
   ],
   toDOM: () => ['b', 0],
-}
+};

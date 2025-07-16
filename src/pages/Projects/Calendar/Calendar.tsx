@@ -1,6 +1,6 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { TaskDetailModal } from 'src/components/features/organisms/TaskDetails'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { TaskDetailModal } from 'src/components/features/organisms/TaskDetails';
 import {
   TasksCalendar,
   TasksCalendarContent,
@@ -8,43 +8,47 @@ import {
   TasksCalendarListHeader,
   TasksContainer,
   useTasksCalendarDetail,
-} from 'src/components/features/organisms/Tasks'
+} from 'src/components/features/organisms/Tasks';
 import {
   CalendarMonthPicker,
   TasksHeader,
   TasksHeaderLeft,
   TasksHeaderRight,
   TodayButton,
-} from 'src/components/features/organisms/Tasks/TasksHeader'
-import { useProjectsPageContext } from 'src/pages/Projects/Provider'
-import { getProjectsDetailId, isProjectsDetailURL, useRouter } from 'src/router'
-import { useProjectsProjectId } from 'src/store/app/projects/project'
-import { SkeletonCalendar } from './SkeletonCalendar'
+} from 'src/components/features/organisms/Tasks/TasksHeader';
+import { useProjectsPageContext } from 'src/pages/Projects/Provider';
+import {
+  getProjectsDetailId,
+  isProjectsDetailURL,
+  useRouter,
+} from 'src/router';
+import { useProjectsProjectId } from 'src/store/app/projects/project';
+import { SkeletonCalendar } from './SkeletonCalendar';
 
 export const Calendar: React.FC = memo(() => {
   return (
     <TasksContainer isProjectsPage>
       <Component />
     </TasksContainer>
-  )
-})
+  );
+});
 
 const Component: React.FC = memo(() => {
-  const { tabContentLoading, fetchTaskDetailQuery } = useProjectsPageContext()
-  const { navigateToProjectsCalendar } = useRouter()
-  const { projectId } = useProjectsProjectId()
+  const { tabContentLoading, fetchTaskDetailQuery } = useProjectsPageContext();
+  const { navigateToProjectsCalendar } = useRouter();
+  const { projectId } = useProjectsProjectId();
 
   useTasksCalendarDetail({
     isTaskDetailURL: isProjectsDetailURL,
     getTaskDetailId: getProjectsDetailId,
     fetchQuery: fetchTaskDetailQuery,
-  })
+  });
 
   const backToPage = useCallback(async () => {
-    await navigateToProjectsCalendar(projectId)
-  }, [navigateToProjectsCalendar, projectId])
+    await navigateToProjectsCalendar(projectId);
+  }, [navigateToProjectsCalendar, projectId]);
 
-  if (tabContentLoading) return <SkeletonCalendar />
+  if (tabContentLoading) return <SkeletonCalendar />;
 
   return (
     <>
@@ -70,7 +74,7 @@ const Component: React.FC = memo(() => {
       </TasksCalendar>
       <TaskDetailModal backToPage={backToPage} />
     </>
-  )
-})
-Component.displayName = 'Component'
-Calendar.displayName = 'Calendar'
+  );
+});
+Component.displayName = 'Component';
+Calendar.displayName = 'Calendar';

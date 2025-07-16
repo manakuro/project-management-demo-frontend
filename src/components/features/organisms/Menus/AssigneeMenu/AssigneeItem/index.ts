@@ -1,1 +1,1 @@
-export * from './AssigneeItem'
+export * from './AssigneeItem';

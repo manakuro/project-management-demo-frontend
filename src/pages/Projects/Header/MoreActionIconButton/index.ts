@@ -1,1 +1,1 @@
-export * from './MoreActionIconButton'
+export * from './MoreActionIconButton';

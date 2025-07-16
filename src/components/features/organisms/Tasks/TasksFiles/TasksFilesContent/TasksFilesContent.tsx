@@ -1,14 +1,14 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { useMainStyle } from 'src/hooks'
-import { transitions } from 'src/styles'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { useMainStyle } from 'src/hooks';
+import { transitions } from 'src/styles';
 
-type Props = FlexProps
+type Props = FlexProps;
 
-const maxH = 72
+const maxH = 72;
 export const TasksFilesContent: React.FC<Props> = memo<Props>((props) => {
-  const { maxW } = useMainStyle()
+  const { maxW } = useMainStyle();
 
   return (
     <Flex
@@ -28,6 +28,6 @@ export const TasksFilesContent: React.FC<Props> = memo<Props>((props) => {
         {props.children}
       </Flex>
     </Flex>
-  )
-})
-TasksFilesContent.displayName = 'TasksFilesContent'
+  );
+});
+TasksFilesContent.displayName = 'TasksFilesContent';

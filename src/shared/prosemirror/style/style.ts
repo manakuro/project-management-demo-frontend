@@ -13,4 +13,4 @@ export const proseMirrorStyle = () => ({
   '.ProseMirror-selectednode': {
     outline: '0 !important',
   },
-})
+});

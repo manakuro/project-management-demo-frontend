@@ -1,4 +1,4 @@
-import type { NodeSpec } from 'prosemirror-model'
+import type { NodeSpec } from 'prosemirror-model';
 
 // from prosemirror-schema-basic
 
@@ -19,4 +19,4 @@ export const heading: NodeSpec = {
     { tag: 'h6', attrs: { level: 6 } },
   ],
   toDOM: (node) => [`h${String(node.attrs.level)}`, 0],
-}
+};

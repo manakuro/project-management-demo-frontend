@@ -1,6 +1,6 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { TaskDetailDrawer } from 'src/components/features/organisms/TaskDetails'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { TaskDetailDrawer } from 'src/components/features/organisms/TaskDetails';
 import {
   AddTaskButton,
   CustomizeButton,
@@ -18,21 +18,25 @@ import {
   TasksListHorizontalScrollBorder,
   TasksListLayout,
   useTasksListDetail,
-} from 'src/components/features/organisms/Tasks'
-import { Flex } from 'src/components/ui/atoms'
-import { getProjectsDetailId, isProjectsDetailURL, useRouter } from 'src/router'
-import { useProjectsProjectId } from 'src/store/app/projects/project'
-import { useProjectsPageContext } from '../Provider'
-import { SortMenu } from '../TasksHeader'
-import { SkeletonListContent, SkeletonListHeader } from './SkeletonList'
+} from 'src/components/features/organisms/Tasks';
+import { Flex } from 'src/components/ui/atoms';
+import {
+  getProjectsDetailId,
+  isProjectsDetailURL,
+  useRouter,
+} from 'src/router';
+import { useProjectsProjectId } from 'src/store/app/projects/project';
+import { useProjectsPageContext } from '../Provider';
+import { SortMenu } from '../TasksHeader';
+import { SkeletonListContent, SkeletonListHeader } from './SkeletonList';
 
 export const List: React.FC = memo(() => {
   return (
     <TasksContainer isProjectsPage>
       <Component />
     </TasksContainer>
-  )
-})
+  );
+});
 const Component: React.FC = memo(() => {
   const {
     tabContentLoading,
@@ -40,18 +44,18 @@ const Component: React.FC = memo(() => {
     contentLoading,
     startContentLoading,
     endContentLoading,
-  } = useProjectsPageContext()
-  const { projectId } = useProjectsProjectId()
-  const { navigateToProjectsList } = useRouter()
+  } = useProjectsPageContext();
+  const { projectId } = useProjectsProjectId();
+  const { navigateToProjectsList } = useRouter();
   const { hasClickedOutside } = useTasksListDetail({
     isTaskDetailURL: isProjectsDetailURL,
     getTaskDetailId: getProjectsDetailId,
     fetchQuery: fetchTaskDetailQuery,
-  })
+  });
 
   const backToPage = useCallback(async () => {
-    await navigateToProjectsList(projectId)
-  }, [navigateToProjectsList, projectId])
+    await navigateToProjectsList(projectId);
+  }, [navigateToProjectsList, projectId]);
 
   if (tabContentLoading)
     return (
@@ -59,7 +63,7 @@ const Component: React.FC = memo(() => {
         <SkeletonListHeader />
         <SkeletonListContent />
       </Flex>
-    )
+    );
 
   return (
     <>
@@ -96,7 +100,7 @@ const Component: React.FC = memo(() => {
         hasClickedOutside={hasClickedOutside}
       />
     </>
-  )
-})
-List.displayName = 'List'
-Component.displayName = 'Component'
+  );
+});
+List.displayName = 'List';
+Component.displayName = 'Component';

@@ -1,16 +1,16 @@
-import type React from 'react'
-import { memo } from 'react'
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
-import { Flex, Text } from 'src/components/ui/atoms'
-import { useTeammate } from 'src/store/entities/teammate'
+import type React from 'react';
+import { memo } from 'react';
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
+import { Flex, Text } from 'src/components/ui/atoms';
+import { useTeammate } from 'src/store/entities/teammate';
 
 type Props = {
-  teammateId: string
-}
+  teammateId: string;
+};
 
 export const MemberListItem: React.FC<Props> = memo<Props>((props) => {
-  const { teammateId } = props
-  const { teammate } = useTeammate(teammateId)
+  const { teammateId } = props;
+  const { teammate } = useTeammate(teammateId);
   return (
     <Flex flex={1} py={3} alignItems="center">
       <TeammateAvatar teammateId={teammate.id} size="sm" />
@@ -29,6 +29,6 @@ export const MemberListItem: React.FC<Props> = memo<Props>((props) => {
         </Text>
       </Flex>
     </Flex>
-  )
-})
-MemberListItem.displayName = 'MemberListItem'
+  );
+});
+MemberListItem.displayName = 'MemberListItem';

@@ -1,54 +1,54 @@
-import type React from 'react'
-import { memo, useCallback, useState } from 'react'
-import { ProjectMenu } from 'src/components/features/organisms/Menus'
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
+import { ProjectMenu } from 'src/components/features/organisms/Menus';
 import {
   Input as AtomsInput,
   Flex,
   type InputProps,
-} from 'src/components/ui/atoms'
-import type { MenuListProps } from 'src/components/ui/organisms/Menu'
-import { useClickOutside } from 'src/hooks'
-import { useDisclosure } from 'src/shared/chakra'
-import { useProjectTaskCommand } from 'src/store/entities/projectTask'
+} from 'src/components/ui/atoms';
+import type { MenuListProps } from 'src/components/ui/organisms/Menu';
+import { useClickOutside } from 'src/hooks';
+import { useDisclosure } from 'src/shared/chakra';
+import { useProjectTaskCommand } from 'src/store/entities/projectTask';
 
 type Props = {
-  onClose: () => void
-  menuListStyle?: MenuListProps
-  taskId: string
-} & InputProps
+  onClose: () => void;
+  menuListStyle?: MenuListProps;
+  taskId: string;
+} & InputProps;
 
 export const Input: React.FC<Props> = memo<Props>((props) => {
-  const { onClose, menuListStyle, taskId, ...rest } = props
-  const popoverDisclosure = useDisclosure({ defaultIsOpen: true })
-  const { addProjectTaskByTaskId } = useProjectTaskCommand()
+  const { onClose, menuListStyle, taskId, ...rest } = props;
+  const popoverDisclosure = useDisclosure({ defaultIsOpen: true });
+  const { addProjectTaskByTaskId } = useProjectTaskCommand();
   const { ref } = useClickOutside(onClose, {
     hasClickedOutside: (e, helpers) => {
-      if (helpers.isContainInPopoverContent(e)) return false
-      return true
+      if (helpers.isContainInPopoverContent(e)) return false;
+      return true;
     },
-  })
-  const [value, setValue] = useState<string>('')
+  });
+  const [value, setValue] = useState<string>('');
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const val = e.target.value
-      setValue(val)
+      const val = e.target.value;
+      setValue(val);
       if (val) {
-        popoverDisclosure.onOpen()
-        return
+        popoverDisclosure.onOpen();
+        return;
       }
-      popoverDisclosure.onClose()
+      popoverDisclosure.onClose();
     },
     [popoverDisclosure],
-  )
+  );
 
   const handleSelect = useCallback(
     async (projectId: string) => {
-      console.log(projectId)
-      onClose()
-      await addProjectTaskByTaskId({ projectId, taskId })
+      console.log(projectId);
+      onClose();
+      await addProjectTaskByTaskId({ projectId, taskId });
     },
     [addProjectTaskByTaskId, onClose, taskId],
-  )
+  );
 
   return (
     <ProjectMenu
@@ -82,6 +82,6 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
         />
       </Flex>
     </ProjectMenu>
-  )
-})
-Input.displayName = 'Input'
+  );
+});
+Input.displayName = 'Input';

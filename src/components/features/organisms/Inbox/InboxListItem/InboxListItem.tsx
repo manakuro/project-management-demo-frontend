@@ -1,37 +1,37 @@
-import type React from 'react'
-import { memo } from 'react'
-import { useInboxListItem } from 'src/components/features/organisms/Inbox'
-import type { FlexProps } from 'src/components/ui/atoms'
-import { ActivityTypeCode } from 'src/store/entities/activityType'
-import { Provider } from './Provider'
-import { TaskActivity } from './TaskActivity'
-import { WorkspaceActivity } from './WorkspaceActivity'
+import type React from 'react';
+import { memo } from 'react';
+import { useInboxListItem } from 'src/components/features/organisms/Inbox';
+import type { FlexProps } from 'src/components/ui/atoms';
+import { ActivityTypeCode } from 'src/store/entities/activityType';
+import { Provider } from './Provider';
+import { TaskActivity } from './TaskActivity';
+import { WorkspaceActivity } from './WorkspaceActivity';
 
 type Props = FlexProps & {
-  listItemId: string
-}
+  listItemId: string;
+};
 
 export const InboxListItem: React.FC<Props> = memo<Props>((props) => {
   return (
     <Provider>
       <Component {...props} />
     </Provider>
-  )
-})
+  );
+});
 
 const Component: React.FC<Props> = memo<Props>((props) => {
-  const { listItemId } = props
-  const { listItem } = useInboxListItem(listItemId)
+  const { listItemId } = props;
+  const { listItem } = useInboxListItem(listItemId);
 
   switch (listItem.type) {
     case ActivityTypeCode.Workspace:
-      return <WorkspaceActivity workspaceActivityId={listItem.id} />
+      return <WorkspaceActivity workspaceActivityId={listItem.id} />;
     case ActivityTypeCode.Task:
-      return <TaskActivity taskActivityId={listItem.id} />
+      return <TaskActivity taskActivityId={listItem.id} />;
     default:
-      return null
+      return null;
   }
-})
-Component.displayName = 'Component'
+});
+Component.displayName = 'Component';
 
-InboxListItem.displayName = 'InboxListItem'
+InboxListItem.displayName = 'InboxListItem';

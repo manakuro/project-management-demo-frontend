@@ -1,14 +1,14 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Container } from './Container'
+import type React from 'react';
+import { memo } from 'react';
+import { Container } from './Container';
 
 type Props = {
-  tasksTaskColumnId: string
-}
+  tasksTaskColumnId: string;
+};
 
 export const Tags: React.FC<Props> = memo<Props>((props) => {
-  const { tasksTaskColumnId } = props
+  const { tasksTaskColumnId } = props;
 
-  return <Container clickable tasksTaskColumnId={tasksTaskColumnId} menu />
-})
-Tags.displayName = 'Tags'
+  return <Container clickable tasksTaskColumnId={tasksTaskColumnId} menu />;
+});
+Tags.displayName = 'Tags';

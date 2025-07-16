@@ -1,21 +1,27 @@
-import type React from 'react'
-import { Flex, type FlexProps, Icon, Link, Text } from 'src/components/ui/atoms'
-import type { IconType } from 'src/shared/icons'
-import { transitions } from 'src/styles'
-import { type Sizes, sizes } from './sizes'
+import type React from 'react';
+import {
+  Flex,
+  type FlexProps,
+  Icon,
+  Link,
+  Text,
+} from 'src/components/ui/atoms';
+import type { IconType } from 'src/shared/icons';
+import { transitions } from 'src/styles';
+import { type Sizes, sizes } from './sizes';
 
 type Props = FlexProps & {
-  size: Sizes
-  name: string
-  src: string
-  fileName: string
-  icon: IconType
-  isHovering?: boolean
-}
+  size: Sizes;
+  name: string;
+  src: string;
+  fileName: string;
+  icon: IconType;
+  isHovering?: boolean;
+};
 
 export const Component: React.FC<Props> = (props) => {
-  const { size, color, name, isHovering, fileName, src, icon, ...rest } = props
-  const sizeStyle = sizes[size]
+  const { size, color, name, isHovering, fileName, src, icon, ...rest } = props;
+  const sizeStyle = sizes[size];
 
   return (
     <Flex
@@ -50,5 +56,5 @@ export const Component: React.FC<Props> = (props) => {
         </Flex>
       </Flex>
     </Flex>
-  )
-}
+  );
+};

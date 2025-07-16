@@ -1,16 +1,16 @@
-import { useRecoilCallback } from 'recoil'
-import { tabStatusState } from '../atom'
+import { useRecoilCallback } from 'recoil';
+import { tabStatusState } from '../atom';
 
 export const useResetTeammateTask = () => {
   const resetTeammateTask = useRecoilCallback(
     ({ reset }) =>
       () => {
-        reset(tabStatusState)
+        reset(tabStatusState);
       },
     [],
-  )
+  );
 
   return {
     resetTeammateTask,
-  }
-}
+  };
+};

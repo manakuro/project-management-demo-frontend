@@ -1,5 +1,5 @@
-import type React from 'react'
-import { PageLoader } from 'src/components/ui/molecules'
+import type React from 'react';
+import { PageLoader } from 'src/components/ui/molecules';
 import {
   useFavoriteProjectIdsQuery,
   useFavoriteWorkspaceIdsQuery,
@@ -11,24 +11,24 @@ import {
   useTaskPrioritiesQuery,
   useTeammateTaskTabStatusQuery,
   useWorkspaceQuery,
-} from 'src/hooks/queries/entities'
-import { useMe } from 'src/store/entities/me'
+} from 'src/hooks/queries/entities';
+import { useMe } from 'src/store/entities/me';
 
 export const GlobalQuery: React.FCWithChildren = (props) => {
-  useTaskPrioritiesQuery()
-  useProjectsQuery()
-  useProjectBaseColorsQuery()
-  useProjectLightColorsQuery()
-  useProjectIconsQuery()
-  useFavoriteWorkspaceIdsQuery()
-  useWorkspaceQuery()
-  useMeQuery()
-  useFavoriteProjectIdsQuery()
-  useTeammateTaskTabStatusQuery()
+  useTaskPrioritiesQuery();
+  useProjectsQuery();
+  useProjectBaseColorsQuery();
+  useProjectLightColorsQuery();
+  useProjectIconsQuery();
+  useFavoriteWorkspaceIdsQuery();
+  useWorkspaceQuery();
+  useMeQuery();
+  useFavoriteProjectIdsQuery();
+  useTeammateTaskTabStatusQuery();
 
-  const { me } = useMe()
+  const { me } = useMe();
 
-  if (!me.id) return <PageLoader />
+  if (!me.id) return <PageLoader />;
 
-  return props.children as React.ReactElement
-}
+  return props.children as React.ReactElement;
+};

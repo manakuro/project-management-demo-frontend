@@ -1,8 +1,8 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Heading, type HeadingProps } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo } from 'react';
+import { Heading, type HeadingProps } from 'src/components/ui/atoms';
 
-type Props = HeadingProps
+type Props = HeadingProps;
 
 export const CustomNavListHeader: React.FC<Props> = memo((props) => {
   return (
@@ -14,6 +14,6 @@ export const CustomNavListHeader: React.FC<Props> = memo((props) => {
       textAlign="left"
       {...props}
     />
-  )
-})
-CustomNavListHeader.displayName = 'CustomNavListHeader'
+  );
+});
+CustomNavListHeader.displayName = 'CustomNavListHeader';

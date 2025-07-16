@@ -1,58 +1,58 @@
-import React, { memo, useCallback, useEffect } from 'react'
-import { Button, Divider, Flex, type FlexProps } from 'src/components/ui/atoms'
-import { DatePicker } from 'src/components/ui/organisms/DatePicker'
+import React, { memo, useCallback, useEffect } from 'react';
+import { Button, Divider, Flex, type FlexProps } from 'src/components/ui/atoms';
+import { DatePicker } from 'src/components/ui/organisms/DatePicker';
 import {
   PopoverBody,
   type PopoverProps,
-} from 'src/components/ui/organisms/Popover'
-import { useClickOutside } from 'src/hooks/useClickOutside'
-import { useDisclosure } from 'src/shared/chakra'
-import { dateFns } from 'src/shared/dateFns'
-import { DueTime } from './DueTime'
+} from 'src/components/ui/organisms/Popover';
+import { useClickOutside } from 'src/hooks/useClickOutside';
+import { useDisclosure } from 'src/shared/chakra';
+import { dateFns } from 'src/shared/dateFns';
+import { DueTime } from './DueTime';
 
 type Props = {
-  date: string
-  onChange: (date: Date) => void
-  onClear: () => void
-  onCloseMenu: () => void
-  time?: string
-  includeDueTime?: boolean
-} & PopoverProps
+  date: string;
+  onChange: (date: Date) => void;
+  onClear: () => void;
+  onCloseMenu: () => void;
+  time?: string;
+  includeDueTime?: boolean;
+} & PopoverProps;
 
-const MIN_DATE = dateFns.addYears(new Date(), -1)
-const MAX_DATE = dateFns.addYears(new Date(), 1)
+const MIN_DATE = dateFns.addYears(new Date(), -1);
+const MAX_DATE = dateFns.addYears(new Date(), 1);
 
 export const Body: React.FC<Props> = memo<Props>((props) => {
-  const { onChange, onClear } = props
-  const includeDueTime = props.includeDueTime ?? false
-  const [value, setValue] = React.useState<Date | null>(new Date(props.date))
-  const dueTimeDisclosure = useDisclosure()
-  const { ref } = useClickOutside(props.onCloseMenu)
+  const { onChange, onClear } = props;
+  const includeDueTime = props.includeDueTime ?? false;
+  const [value, setValue] = React.useState<Date | null>(new Date(props.date));
+  const dueTimeDisclosure = useDisclosure();
+  const { ref } = useClickOutside(props.onCloseMenu);
 
   useEffect(() => {
-    setValue(new Date(props.date))
-  }, [props.date])
+    setValue(new Date(props.date));
+  }, [props.date]);
 
   const handleAccept = useCallback(
     (newValue: unknown) => {
-      onChange(newValue as Date)
+      onChange(newValue as Date);
     },
     [onChange],
-  )
+  );
   const optionContainerStyle: FlexProps = dueTimeDisclosure.isOpen
     ? { flexDirection: 'column' }
-    : { flexDirection: 'row' }
+    : { flexDirection: 'row' };
 
   const handleDueTimeClick = useCallback(() => {
-    dueTimeDisclosure.onToggle()
-  }, [dueTimeDisclosure])
+    dueTimeDisclosure.onToggle();
+  }, [dueTimeDisclosure]);
 
   return (
     <PopoverBody p={4} ref={ref} onClick={(e) => e.stopPropagation()}>
       <DatePicker
         value={value}
         onChange={(newValue) => {
-          setValue(newValue as Date)
+          setValue(newValue as Date);
         }}
         onAccept={handleAccept}
         minDate={MIN_DATE}
@@ -82,6 +82,6 @@ export const Body: React.FC<Props> = memo<Props>((props) => {
         </>
       }
     </PopoverBody>
-  )
-})
-Body.displayName = 'Body'
+  );
+});
+Body.displayName = 'Body';

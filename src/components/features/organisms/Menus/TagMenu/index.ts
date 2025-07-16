@@ -1,1 +1,1 @@
-export * from './TagMenu'
+export * from './TagMenu';

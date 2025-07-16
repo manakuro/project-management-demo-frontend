@@ -1,8 +1,8 @@
-import { Portal } from 'src/components/ui/atoms'
+import { Portal } from 'src/components/ui/atoms';
 import {
   MenuList as AtomsMenuList,
   MenuItem,
-} from 'src/components/ui/organisms/Menu'
+} from 'src/components/ui/organisms/Menu';
 
 export function MenuList() {
   return (
@@ -12,5 +12,5 @@ export function MenuList() {
         <MenuItem isDisabled>Manage notifications</MenuItem>
       </AtomsMenuList>
     </Portal>
-  )
+  );
 }

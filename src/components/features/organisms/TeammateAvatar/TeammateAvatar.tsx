@@ -1,19 +1,19 @@
-import type React from 'react'
-import { PopoverProfile } from 'src/components/features/organisms/Popovers'
-import { Avatar, type AvatarProps } from 'src/components/ui/atoms'
-import { useTeammate } from 'src/store/entities/teammate'
+import type React from 'react';
+import { PopoverProfile } from 'src/components/features/organisms/Popovers';
+import { Avatar, type AvatarProps } from 'src/components/ui/atoms';
+import { useTeammate } from 'src/store/entities/teammate';
 
 type Props = {
-  teammateId: string
-  showProfile?: boolean
-} & AvatarProps
+  teammateId: string;
+  showProfile?: boolean;
+} & AvatarProps;
 
 export const TeammateAvatar: React.FC<Props> = (props) => {
-  const { teammateId, showProfile, ...rest } = props
-  const { teammate } = useTeammate(teammateId)
+  const { teammateId, showProfile, ...rest } = props;
+  const { teammate } = useTeammate(teammateId);
 
   if (!teammateId) {
-    return <Avatar name="" src="" bg="teal.200" border="none" {...rest} />
+    return <Avatar name="" src="" bg="teal.200" border="none" {...rest} />;
   }
 
   if (!(showProfile ?? true)) {
@@ -25,7 +25,7 @@ export const TeammateAvatar: React.FC<Props> = (props) => {
         border="none"
         {...rest}
       />
-    )
+    );
   }
 
   return (
@@ -44,5 +44,5 @@ export const TeammateAvatar: React.FC<Props> = (props) => {
         {...rest}
       />
     </PopoverProfile>
-  )
-}
+  );
+};

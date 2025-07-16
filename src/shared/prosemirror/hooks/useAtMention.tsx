@@ -1,7 +1,7 @@
-import type { Command } from 'prosemirror-commands'
-import { useCallback, useMemo } from 'react'
-import { MENTION_CHAR } from 'src/shared/prosemirror/plugins/suggestions/suggestMention'
-import type { ToolbarItem } from './types'
+import type { Command } from 'prosemirror-commands';
+import { useCallback, useMemo } from 'react';
+import { MENTION_CHAR } from 'src/shared/prosemirror/plugins/suggestions/suggestMention';
+import type { ToolbarItem } from './types';
 
 export const useAtMention = (): ToolbarItem => {
   const action = useCallback<
@@ -11,16 +11,16 @@ export const useAtMention = (): ToolbarItem => {
       view: Parameters<Command>[2],
     ) => boolean
   >((state, dispatch) => {
-    const { tr } = state
-    dispatch?.(tr.insertText(MENTION_CHAR))
+    const { tr } = state;
+    dispatch?.(tr.insertText(MENTION_CHAR));
 
-    return true
-  }, [])
+    return true;
+  }, []);
 
   return useMemo(
     () => ({
       action,
     }),
     [action],
-  )
-}
+  );
+};

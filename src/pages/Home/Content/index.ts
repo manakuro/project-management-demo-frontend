@@ -1,2 +1,2 @@
-export * from './Content'
-export * from './hooks'
+export * from './Content';
+export * from './hooks';

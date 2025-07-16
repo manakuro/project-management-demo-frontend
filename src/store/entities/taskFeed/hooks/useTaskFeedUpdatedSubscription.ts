@@ -1,27 +1,27 @@
-import isEqual from 'lodash-es/isEqual'
-import { useMemo } from 'react'
-import { useRecoilCallback } from 'recoil'
-import { useTaskFeedUpdatedSubscription as useSubscription } from 'src/graphql/hooks'
-import { isULID } from 'src/shared/ulid'
-import { uuid } from 'src/shared/uuid'
-import type { TaskFeedUpdatedSubscriptionResponse } from '../type'
-import { useTaskFeedResponse } from './useTaskFeedResponse'
+import isEqual from 'lodash-es/isEqual';
+import { useMemo } from 'react';
+import { useRecoilCallback } from 'recoil';
+import { useTaskFeedUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
+import { isULID } from 'src/shared/ulid';
+import { uuid } from 'src/shared/uuid';
+import type { TaskFeedUpdatedSubscriptionResponse } from '../type';
+import { useTaskFeedResponse } from './useTaskFeedResponse';
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
-let previousData: any
+let previousData: any;
 
 type Props = {
-  workspaceId: string
-}
+  workspaceId: string;
+};
 
-export const TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid()
+export const TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID = uuid();
 export const useTaskFeedUpdatedSubscription = (props: Props) => {
-  const { setTaskFeed } = useTaskFeedResponse()
+  const { setTaskFeed } = useTaskFeedResponse();
 
   const skipSubscription = useMemo(
     () => !props.workspaceId || !isULID(props.workspaceId),
     [props.workspaceId],
-  )
+  );
 
   useSubscription({
     variables: {
@@ -35,23 +35,23 @@ export const useTaskFeedUpdatedSubscription = (props: Props) => {
           previousData?.subscriptionData?.data,
         )
       )
-        return
+        return;
 
       if (data.subscriptionData.data)
-        setTaskBySubscription(data.subscriptionData.data)
-      previousData = data
+        setTaskBySubscription(data.subscriptionData.data);
+      previousData = data;
     },
     skip: skipSubscription,
-  })
+  });
 
   const setTaskBySubscription = useRecoilCallback(
     () => async (response: TaskFeedUpdatedSubscriptionResponse) => {
-      const updated = response.taskFeedUpdated
+      const updated = response.taskFeedUpdated;
 
-      console.log('subscription updated!: ')
+      console.log('subscription updated!: ');
 
-      setTaskFeed([updated])
+      setTaskFeed([updated]);
     },
     [setTaskFeed],
-  )
-}
+  );
+};

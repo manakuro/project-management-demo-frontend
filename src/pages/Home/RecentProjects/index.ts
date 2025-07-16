@@ -1,1 +1,1 @@
-export * from './RecentProjects'
+export * from './RecentProjects';

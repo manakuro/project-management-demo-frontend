@@ -1,15 +1,15 @@
-import { useCallback } from 'react'
-import { atom, useRecoilState } from 'recoil'
-import { useProjectTeammatesLazyQuery } from 'src/graphql/hooks'
+import { useCallback } from 'react';
+import { atom, useRecoilState } from 'recoil';
+import { useProjectTeammatesLazyQuery } from 'src/graphql/hooks';
 import type {
   ProjectTeammateResponse,
   ProjectTeammatesQuery,
-} from 'src/graphql/types/projectTeammate'
-import { getNodesFromEdges } from 'src/shared/apollo/util'
-import type { Teammate } from 'src/store/entities/teammate'
+} from 'src/graphql/types/projectTeammate';
+import { getNodesFromEdges } from 'src/shared/apollo/util';
+import type { Teammate } from 'src/store/entities/teammate';
 
 const key = (str: string) =>
-  `src/components/organisms/Menus/ProjectTeammateMenu/useSearchProjectTeammatesQuery/${str}`
+  `src/components/organisms/Menus/ProjectTeammateMenu/useSearchProjectTeammatesQuery/${str}`;
 
 const queryState = atom<{ loading: boolean; teammates: Teammate[] }>({
   key: key('queryState'),
@@ -17,18 +17,18 @@ const queryState = atom<{ loading: boolean; teammates: Teammate[] }>({
     loading: false,
     teammates: [],
   },
-})
+});
 
 type Props = {
-  queryText: string
-}
+  queryText: string;
+};
 export const useSearchProjectTeammatesQuery = () => {
-  const [state, setState] = useRecoilState(queryState)
-  const [refetchQuery] = useProjectTeammatesLazyQuery()
+  const [state, setState] = useRecoilState(queryState);
+  const [refetchQuery] = useProjectTeammatesLazyQuery();
 
   const refetch = useCallback(
     async (props: Props) => {
-      setState((s) => ({ ...s, loading: true }))
+      setState((s) => ({ ...s, loading: true }));
       const res = await refetchQuery({
         variables: {
           first: 10,
@@ -43,38 +43,38 @@ export const useSearchProjectTeammatesQuery = () => {
             ],
           },
         },
-      })
+      });
       const projectTeammates = getNodesFromEdges<
         ProjectTeammateResponse,
         ProjectTeammatesQuery['projectTeammates']
-      >(res.data?.projectTeammates)
+      >(res.data?.projectTeammates);
 
-      const teammates = projectTeammates.map((p) => p.teammate)
+      const teammates = projectTeammates.map((p) => p.teammate);
 
-      setState((s) => ({ ...s, teammates, loading: false }))
-      return teammates
+      setState((s) => ({ ...s, teammates, loading: false }));
+      return teammates;
     },
     [refetchQuery, setState],
-  )
+  );
 
   const setTeammates = useCallback(
     (val: Teammate[]) => {
-      setState((s) => ({ ...s, teammates: val }))
+      setState((s) => ({ ...s, teammates: val }));
     },
     [setState],
-  )
+  );
 
   const setLoading = useCallback(
     (val: boolean) => {
-      setState((s) => ({ ...s, loading: val }))
+      setState((s) => ({ ...s, loading: val }));
     },
     [setState],
-  )
+  );
 
   return {
     refetch,
     setTeammates,
     setLoading,
     ...state,
-  }
-}
+  };
+};

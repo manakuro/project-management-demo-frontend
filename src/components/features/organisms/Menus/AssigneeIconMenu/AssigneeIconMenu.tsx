@@ -1,36 +1,36 @@
-import type React from 'react'
-import { memo, useCallback, useState } from 'react'
-import { PopoverAssigneeInput } from 'src/components/features/organisms/Popovers'
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
-import { Icon } from 'src/components/ui/atoms'
-import { Tooltip } from 'src/components/ui/molecules'
-import { useClickableHoverStyle } from 'src/hooks'
-import { useTeammate } from 'src/store/entities/teammate'
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
+import { PopoverAssigneeInput } from 'src/components/features/organisms/Popovers';
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
+import { Icon } from 'src/components/ui/atoms';
+import { Tooltip } from 'src/components/ui/molecules';
+import { useClickableHoverStyle } from 'src/hooks';
+import { useTeammate } from 'src/store/entities/teammate';
 
 type Props = {
-  taskId: string
-  assigneeId: string
-  onAssigneeOpened: () => void
-  onAssigneeClosed: () => void
-  showIcon: boolean
-}
+  taskId: string;
+  assigneeId: string;
+  onAssigneeOpened: () => void;
+  onAssigneeClosed: () => void;
+  showIcon: boolean;
+};
 
 export const AssigneeIconMenu: React.FC<Props> = memo<Props>((props) => {
   const { taskId, assigneeId, onAssigneeClosed, onAssigneeOpened, showIcon } =
-    props
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
-  const { teammate } = useTeammate(assigneeId)
-  const [showProfile, setShowProfile] = useState(true)
+    props;
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
+  const { teammate } = useTeammate(assigneeId);
+  const [showProfile, setShowProfile] = useState(true);
 
   const handleOpened = useCallback(() => {
-    setShowProfile(false)
-    onAssigneeOpened()
-  }, [onAssigneeOpened])
+    setShowProfile(false);
+    onAssigneeOpened();
+  }, [onAssigneeOpened]);
 
   const handleClosed = useCallback(() => {
-    onAssigneeClosed()
-    setShowProfile(true)
-  }, [onAssigneeClosed])
+    onAssigneeClosed();
+    setShowProfile(true);
+  }, [onAssigneeClosed]);
 
   return (
     <PopoverAssigneeInput
@@ -63,6 +63,6 @@ export const AssigneeIconMenu: React.FC<Props> = memo<Props>((props) => {
         </Tooltip>
       )}
     </PopoverAssigneeInput>
-  )
-})
-AssigneeIconMenu.displayName = 'AssigneeIconMenu'
+  );
+});
+AssigneeIconMenu.displayName = 'AssigneeIconMenu';

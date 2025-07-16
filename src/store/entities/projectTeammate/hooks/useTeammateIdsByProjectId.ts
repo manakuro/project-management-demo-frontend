@@ -1,10 +1,10 @@
-import { useRecoilValue } from 'recoil'
-import { teammateIdsByProjectIdState } from '../atom'
+import { useRecoilValue } from 'recoil';
+import { teammateIdsByProjectIdState } from '../atom';
 
 export const useTeammateIdsByProjectId = (projectId: string) => {
-  const teammateIds = useRecoilValue(teammateIdsByProjectIdState(projectId))
+  const teammateIds = useRecoilValue(teammateIdsByProjectIdState(projectId));
 
   return {
     teammateIds,
-  }
-}
+  };
+};

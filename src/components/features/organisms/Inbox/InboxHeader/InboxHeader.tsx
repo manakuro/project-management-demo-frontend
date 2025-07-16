@@ -1,12 +1,12 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { useMainStyle } from 'src/hooks'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { useMainStyle } from 'src/hooks';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const InboxHeader: React.FC<Props> = memo<Props>((props) => {
-  const { paddingX } = useMainStyle()
+  const { paddingX } = useMainStyle();
 
   return (
     <Flex
@@ -20,6 +20,6 @@ export const InboxHeader: React.FC<Props> = memo<Props>((props) => {
       borderColor="gray.200"
       {...props}
     />
-  )
-})
-InboxHeader.displayName = 'InboxHeader'
+  );
+});
+InboxHeader.displayName = 'InboxHeader';

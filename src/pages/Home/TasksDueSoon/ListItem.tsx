@@ -1,51 +1,51 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { ProjectChip } from 'src/components/features/molecules/Chips'
-import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers'
-import { CheckIcon, DueDate, Flex, Stack, Text } from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
-import { useRouter } from 'src/router'
-import { formatDueTime } from 'src/shared/date'
-import { useProjectIdsByTaskId } from 'src/store/entities/projectTask'
-import { useTask } from 'src/store/entities/task'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { ProjectChip } from 'src/components/features/molecules/Chips';
+import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers';
+import { CheckIcon, DueDate, Flex, Stack, Text } from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
+import { useRouter } from 'src/router';
+import { formatDueTime } from 'src/shared/date';
+import { useProjectIdsByTaskId } from 'src/store/entities/projectTask';
+import { useTask } from 'src/store/entities/task';
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const ListItem: React.FC<Props> = memo((props) => {
-  const { taskId } = props
-  const { task, setTaskDueDate, setTask, resetTaskDueDate } = useTask(taskId)
-  const { clickableHoverStyle } = useClickableHoverStyle()
-  const { projectIds } = useProjectIdsByTaskId(taskId)
-  const { navigateToHomeDetail } = useRouter()
+  const { taskId } = props;
+  const { task, setTaskDueDate, setTask, resetTaskDueDate } = useTask(taskId);
+  const { clickableHoverStyle } = useClickableHoverStyle();
+  const { projectIds } = useProjectIdsByTaskId(taskId);
+  const { navigateToHomeDetail } = useRouter();
 
   const handleChange = useCallback(
     async (date: Date) => {
-      await setTaskDueDate(date)
+      await setTaskDueDate(date);
     },
     [setTaskDueDate],
-  )
+  );
 
   const handleClear = useCallback(async () => {
-    await resetTaskDueDate()
-  }, [resetTaskDueDate])
+    await resetTaskDueDate();
+  }, [resetTaskDueDate]);
 
   const handleClick = useCallback(
     async (e: React.MouseEvent<HTMLDivElement>) => {
-      e.stopPropagation()
-      await navigateToHomeDetail(taskId)
+      e.stopPropagation();
+      await navigateToHomeDetail(taskId);
     },
     [navigateToHomeDetail, taskId],
-  )
+  );
 
   const handleToggleDone = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
-      e.stopPropagation()
-      await setTask({ completed: !task.completed })
+      e.stopPropagation();
+      await setTask({ completed: !task.completed });
     },
     [setTask, task.completed],
-  )
+  );
 
   return (
     <Flex
@@ -101,6 +101,6 @@ export const ListItem: React.FC<Props> = memo((props) => {
         </PopoverDueDatePicker>
       </Flex>
     </Flex>
-  )
-})
-ListItem.displayName = 'ListItem'
+  );
+});
+ListItem.displayName = 'ListItem';

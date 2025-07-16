@@ -1,14 +1,14 @@
-import type React from 'react'
-import { ComingSoonTooltip } from 'src/components/features/molecules/Tooltips'
-import { Flex, type FlexProps, Text } from 'src/components/ui/atoms'
-import { NewBox } from 'src/components/ui/molecules/NewBox'
-import { useClickableHoverStyle } from 'src/hooks'
-import { Container } from './Container'
+import type React from 'react';
+import { ComingSoonTooltip } from 'src/components/features/molecules/Tooltips';
+import { Flex, type FlexProps, Text } from 'src/components/ui/atoms';
+import { NewBox } from 'src/components/ui/molecules/NewBox';
+import { useClickableHoverStyle } from 'src/hooks';
+import { Container } from './Container';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const ProjectListItemNew: React.FC<Props> = (props) => {
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
 
   return (
     <Container {...props}>
@@ -21,6 +21,6 @@ export const ProjectListItemNew: React.FC<Props> = (props) => {
         </Flex>
       </ComingSoonTooltip>
     </Container>
-  )
-}
-ProjectListItemNew.displayName = 'ProjectListItemNew'
+  );
+};
+ProjectListItemNew.displayName = 'ProjectListItemNew';

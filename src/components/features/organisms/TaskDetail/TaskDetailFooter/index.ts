@@ -1,1 +1,1 @@
-export * from './TaskDetailFooter'
+export * from './TaskDetailFooter';

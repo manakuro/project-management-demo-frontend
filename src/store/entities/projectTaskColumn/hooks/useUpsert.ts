@@ -1,6 +1,6 @@
-import { useRecoilCallback } from 'recoil'
-import { projectTaskColumnState } from '../atom'
-import type { ProjectTaskColumn } from '../type'
+import { useRecoilCallback } from 'recoil';
+import { projectTaskColumnState } from '../atom';
+import type { ProjectTaskColumn } from '../type';
 
 export const UseUpsert = () => {
   const upsert = useRecoilCallback(
@@ -10,13 +10,13 @@ export const UseUpsert = () => {
           return {
             ...prev,
             ...taskColumn,
-          }
-        })
+          };
+        });
       },
     [],
-  )
+  );
 
   return {
     upsert,
-  }
-}
+  };
+};

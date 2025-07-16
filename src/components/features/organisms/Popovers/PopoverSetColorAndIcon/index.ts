@@ -1,1 +1,1 @@
-export * from './PopoverSetColorAndIcon'
+export * from './PopoverSetColorAndIcon';

@@ -1,19 +1,19 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { Button, Flex, Icon, Text } from 'src/components/ui/atoms'
-import { useTaskCommand } from 'src/store/entities/task'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { Button, Flex, Icon, Text } from 'src/components/ui/atoms';
+import { useTaskCommand } from 'src/store/entities/task';
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const DeletedTask: React.FC<Props> = memo<Props>((props) => {
-  const { taskId } = props
-  const { undeleteTask } = useTaskCommand()
+  const { taskId } = props;
+  const { undeleteTask } = useTaskCommand();
 
   const handleUndelete = useCallback(async () => {
-    await undeleteTask({ taskId })
-  }, [taskId, undeleteTask])
+    await undeleteTask({ taskId });
+  }, [taskId, undeleteTask]);
 
   return (
     <Flex
@@ -33,6 +33,6 @@ export const DeletedTask: React.FC<Props> = memo<Props>((props) => {
         Undelete
       </Button>
     </Flex>
-  )
-})
-DeletedTask.displayName = 'DeletedTask'
+  );
+});
+DeletedTask.displayName = 'DeletedTask';

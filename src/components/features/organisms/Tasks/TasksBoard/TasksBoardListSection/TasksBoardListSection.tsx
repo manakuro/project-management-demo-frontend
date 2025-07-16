@@ -1,31 +1,31 @@
-import type React from 'react'
-import { memo } from 'react'
-import { useTasksTaskIdsByTaskSectionId } from 'src/components/features/organisms/Tasks/hooks'
-import { Flex } from 'src/components/ui/atoms'
-import { transitions } from 'src/styles'
-import { TasksBoardListItem } from '../TasksBoardListItem'
-import { AddTask } from './AddTask'
-import { AddTaskSection } from './AddTaskSection'
-import { Header } from './Header'
-import { Provider } from './Provider'
-import { useTasksBoardListSectionElement } from './useTasksBoardListSectionElement'
+import type React from 'react';
+import { memo } from 'react';
+import { useTasksTaskIdsByTaskSectionId } from 'src/components/features/organisms/Tasks/hooks';
+import { Flex } from 'src/components/ui/atoms';
+import { transitions } from 'src/styles';
+import { TasksBoardListItem } from '../TasksBoardListItem';
+import { AddTask } from './AddTask';
+import { AddTaskSection } from './AddTaskSection';
+import { Header } from './Header';
+import { Provider } from './Provider';
+import { useTasksBoardListSectionElement } from './useTasksBoardListSectionElement';
 
 type Props = {
-  taskSectionId: string
-  showAddButton: boolean
-}
+  taskSectionId: string;
+  showAddButton: boolean;
+};
 export const TasksBoardListSection: React.FC<Props> = memo<Props>((props) => {
   return (
     <Provider taskSectionId={props.taskSectionId}>
       <Component {...props} />
     </Provider>
-  )
-})
+  );
+});
 
-const TOP = 72 + 40 + 8 + 8 + 36 // Header + List Header + padding + padding + List Section
+const TOP = 72 + 40 + 8 + 8 + 36; // Header + List Header + padding + padding + List Section
 const Component: React.FC<Props> = memo<Props>((props) => {
-  const { taskIds } = useTasksTaskIdsByTaskSectionId(props.taskSectionId)
-  const { className } = useTasksBoardListSectionElement()
+  const { taskIds } = useTasksTaskIdsByTaskSectionId(props.taskSectionId);
+  const { className } = useTasksBoardListSectionElement();
 
   return (
     <>
@@ -81,7 +81,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
       </Flex>
       {props.showAddButton && <AddTaskSection />}
     </>
-  )
-})
-Component.displayName = 'Component'
-TasksBoardListSection.displayName = 'TasksBoardListSection'
+  );
+});
+Component.displayName = 'Component';
+TasksBoardListSection.displayName = 'TasksBoardListSection';

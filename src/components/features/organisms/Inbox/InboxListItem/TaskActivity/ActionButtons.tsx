@@ -1,15 +1,15 @@
-import type React from 'react'
-import { memo } from 'react'
-import { useInboxContext } from 'src/components/features/organisms/Inbox'
-import type { FlexProps } from 'src/components/ui/atoms'
-import { Actions, ArchiveButton, MoveToInboxButton } from '../Actions'
-import { useInboxListItemContext } from '../Provider'
+import type React from 'react';
+import { memo } from 'react';
+import { useInboxContext } from 'src/components/features/organisms/Inbox';
+import type { FlexProps } from 'src/components/ui/atoms';
+import { Actions, ArchiveButton, MoveToInboxButton } from '../Actions';
+import { useInboxListItemContext } from '../Provider';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const ActionButtons: React.FC<Props> = memo<Props>(() => {
-  const { isHovering } = useInboxListItemContext()
-  const { isArchive, isActivity } = useInboxContext()
+  const { isHovering } = useInboxListItemContext();
+  const { isArchive, isActivity } = useInboxContext();
 
   return (
     <Actions visibility={isHovering ? 'visible' : 'hidden'}>
@@ -26,7 +26,7 @@ export const ActionButtons: React.FC<Props> = memo<Props>(() => {
         />
       )}
     </Actions>
-  )
-})
+  );
+});
 
-ActionButtons.displayName = 'ActionButtons'
+ActionButtons.displayName = 'ActionButtons';

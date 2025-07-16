@@ -1,54 +1,54 @@
-import { useRecoilCallback } from 'recoil'
+import { useRecoilCallback } from 'recoil';
 import {
   useCreateTaskTagMutation,
   useDeleteTaskTagMutation,
-} from 'src/graphql/hooks'
-import { uuid } from 'src/shared/uuid'
-import type { Tag } from 'src/store/entities/tag'
+} from 'src/graphql/hooks';
+import { uuid } from 'src/shared/uuid';
+import type { Tag } from 'src/store/entities/tag';
 import {
   taskTagByTaskIdAndTagIdState,
   taskTagState,
-} from 'src/store/entities/taskTag'
-import { useWorkspace } from 'src/store/entities/workspace'
-import { initialState } from '../atom'
-import { useResetTaskTag } from './useResetTaskTag'
-import { TASK_TAG_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskTagCreatedSubscription'
-import { TASK_TAG_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskTagDeletedSubscription'
-import { useTaskTagResponse } from './useTaskTagResponse'
-import { useUpsert } from './useUpsert'
+} from 'src/store/entities/taskTag';
+import { useWorkspace } from 'src/store/entities/workspace';
+import { initialState } from '../atom';
+import { useResetTaskTag } from './useResetTaskTag';
+import { TASK_TAG_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskTagCreatedSubscription';
+import { TASK_TAG_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskTagDeletedSubscription';
+import { useTaskTagResponse } from './useTaskTagResponse';
+import { useUpsert } from './useUpsert';
 
 export const useTaskTagCommand = () => {
-  const [createTaskTagMutation] = useCreateTaskTagMutation()
-  const [deleteTaskTagMutation] = useDeleteTaskTagMutation()
-  const { setTaskTag } = useTaskTagResponse()
-  const { upsert } = useUpsert()
-  const { resetTaskTag } = useResetTaskTag()
-  const { workspace } = useWorkspace()
+  const [createTaskTagMutation] = useCreateTaskTagMutation();
+  const [deleteTaskTagMutation] = useDeleteTaskTagMutation();
+  const { setTaskTag } = useTaskTagResponse();
+  const { upsert } = useUpsert();
+  const { resetTaskTag } = useResetTaskTag();
+  const { workspace } = useWorkspace();
 
   const addTaskTag = useRecoilCallback(
     ({ snapshot }) =>
       async (input: { tag: Tag; taskId: string }) => {
-        const release = snapshot.retain()
+        const release = snapshot.retain();
         const taskTag = await snapshot.getPromise(
           taskTagByTaskIdAndTagIdState({
             taskId: input.taskId,
             tagId: input.tag.id,
           }),
-        )
-        if (taskTag.id) return
+        );
+        if (taskTag.id) return;
 
-        const id = uuid()
+        const id = uuid();
         upsert({
           ...initialState(),
           id,
           tagId: input.tag.id,
           tag: input.tag,
           taskId: input.taskId,
-        })
+        });
 
         const restore = () => {
-          resetTaskTag(id)
-        }
+          resetTaskTag(id);
+        };
 
         try {
           const res = await createTaskTagMutation({
@@ -60,38 +60,38 @@ export const useTaskTagCommand = () => {
                 requestId: TASK_TAG_CREATED_SUBSCRIPTION_REQUEST_ID,
               },
             },
-          })
+          });
           if (res.errors) {
-            restore()
-            return
+            restore();
+            return;
           }
 
-          const data = res.data?.createTaskTag
-          if (!data) return
+          const data = res.data?.createTaskTag;
+          if (!data) return;
 
-          resetTaskTag(id)
-          await setTaskTag([data])
+          resetTaskTag(id);
+          await setTaskTag([data]);
         } catch (e) {
-          restore()
-          throw e
+          restore();
+          throw e;
         } finally {
-          release()
+          release();
         }
       },
     [createTaskTagMutation, resetTaskTag, setTaskTag, upsert, workspace.id],
-  )
+  );
 
   const deleteTaskTag = useRecoilCallback(
     ({ snapshot }) =>
       async (input: { id: string }) => {
-        const release = snapshot.retain()
-        const prev = await snapshot.getPromise(taskTagState(input.id))
+        const release = snapshot.retain();
+        const prev = await snapshot.getPromise(taskTagState(input.id));
 
-        resetTaskTag(input.id)
+        resetTaskTag(input.id);
 
         const restore = () => {
-          setTaskTag([prev])
-        }
+          setTaskTag([prev]);
+        };
 
         try {
           const res = await deleteTaskTagMutation({
@@ -102,23 +102,23 @@ export const useTaskTagCommand = () => {
                 requestId: TASK_TAG_DELETED_SUBSCRIPTION_REQUEST_ID,
               },
             },
-          })
+          });
           if (res.errors) {
-            restore()
-            return
+            restore();
+            return;
           }
         } catch (e) {
-          restore()
-          throw e
+          restore();
+          throw e;
         } finally {
-          release()
+          release();
         }
       },
     [deleteTaskTagMutation, resetTaskTag, setTaskTag, workspace.id],
-  )
+  );
 
   return {
     addTaskTag,
     deleteTaskTag,
-  }
-}
+  };
+};

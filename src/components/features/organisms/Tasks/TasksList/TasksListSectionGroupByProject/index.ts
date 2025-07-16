@@ -1,1 +1,1 @@
-export * from './TasksListSectionGroupByProject'
+export * from './TasksListSectionGroupByProject';

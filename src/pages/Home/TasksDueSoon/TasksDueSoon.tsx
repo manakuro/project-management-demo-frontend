@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo } from 'react';
 import {
   Box,
   Flex,
@@ -7,22 +7,22 @@ import {
   Link,
   NextLink,
   Stack,
-} from 'src/components/ui/atoms'
-import { Tooltip } from 'src/components/ui/molecules'
+} from 'src/components/ui/atoms';
+import { Tooltip } from 'src/components/ui/molecules';
 import {
   Accordion,
   AccordionButton,
   AccordionItem,
   AccordionPanel,
-} from 'src/components/ui/organisms/Accordion'
-import { useLinkStyle } from 'src/hooks'
-import { ROUTE_MY_TASKS_LIST } from 'src/router'
-import { useTasksDueSoonIds } from 'src/store/app/home/tasksDueSoon'
-import { ListItem } from './ListItem'
+} from 'src/components/ui/organisms/Accordion';
+import { useLinkStyle } from 'src/hooks';
+import { ROUTE_MY_TASKS_LIST } from 'src/router';
+import { useTasksDueSoonIds } from 'src/store/app/home/tasksDueSoon';
+import { ListItem } from './ListItem';
 
 export const TasksDueSoon = memo(function TasksDueSoon() {
-  const { taskIds } = useTasksDueSoonIds()
-  const { style } = useLinkStyle()
+  const { taskIds } = useTasksDueSoonIds();
+  const { style } = useLinkStyle();
 
   return (
     <Accordion allowToggle defaultIndex={0}>
@@ -75,5 +75,5 @@ export const TasksDueSoon = memo(function TasksDueSoon() {
         )}
       </AccordionItem>
     </Accordion>
-  )
-})
+  );
+});

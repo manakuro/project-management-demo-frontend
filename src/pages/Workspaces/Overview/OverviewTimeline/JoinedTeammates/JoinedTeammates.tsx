@@ -1,17 +1,17 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex } from 'src/components/ui/atoms'
-import { useProjectTeammateIdsByProjectIdSortedByCreatedAt } from 'src/store/entities/projectTeammate'
-import { JoinedTeammate } from './JoinedTeammate'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex } from 'src/components/ui/atoms';
+import { useProjectTeammateIdsByProjectIdSortedByCreatedAt } from 'src/store/entities/projectTeammate';
+import { JoinedTeammate } from './JoinedTeammate';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const JoinedTeammates: React.FC<Props> = memo<Props>((props) => {
-  const { projectId } = props
+  const { projectId } = props;
   const { projectTeammateIds } =
-    useProjectTeammateIdsByProjectIdSortedByCreatedAt(projectId)
+    useProjectTeammateIdsByProjectIdSortedByCreatedAt(projectId);
 
   return (
     <Flex flexDirection="column">
@@ -19,6 +19,6 @@ export const JoinedTeammates: React.FC<Props> = memo<Props>((props) => {
         <JoinedTeammate projectTeammateId={id} key={id} projectId={projectId} />
       ))}
     </Flex>
-  )
-})
-JoinedTeammates.displayName = 'JoinedTeammates'
+  );
+});
+JoinedTeammates.displayName = 'JoinedTeammates';

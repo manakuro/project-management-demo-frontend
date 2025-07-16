@@ -1,1 +1,1 @@
-export * from './PopoverProfile'
+export * from './PopoverProfile';

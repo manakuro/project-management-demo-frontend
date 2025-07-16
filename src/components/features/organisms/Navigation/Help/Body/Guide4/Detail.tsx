@@ -1,7 +1,7 @@
-import type React from 'react'
-import { NavListItem } from 'src/components/features/organisms/Navigation/NavListItem'
-import type { NavListItem as TNavListItem } from 'src/components/features/organisms/Navigation/type'
-import { List } from 'src/components/ui/atoms'
+import type React from 'react';
+import { NavListItem } from 'src/components/features/organisms/Navigation/NavListItem';
+import type { NavListItem as TNavListItem } from 'src/components/features/organisms/Navigation/type';
+import { List } from 'src/components/ui/atoms';
 
 const items: TNavListItem[] = [
   {
@@ -22,7 +22,7 @@ const items: TNavListItem[] = [
     icon: 'shapePolygon',
     isExternal: true,
   },
-]
+];
 export const Detail: React.FC = () => {
   return (
     <>
@@ -39,5 +39,5 @@ export const Detail: React.FC = () => {
         ))}
       </List>
     </>
-  )
-}
+  );
+};

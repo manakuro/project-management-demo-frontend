@@ -1,6 +1,6 @@
-import { Flex } from 'src/components/ui/atoms'
-import { OverviewContentHeading } from '../OverviewContentHeading'
-import { KeyResourcesEmpty } from './KeyResourcesEmpty'
+import { Flex } from 'src/components/ui/atoms';
+import { OverviewContentHeading } from '../OverviewContentHeading';
+import { KeyResourcesEmpty } from './KeyResourcesEmpty';
 
 export function KeyResourcesSection() {
   return (
@@ -8,5 +8,5 @@ export function KeyResourcesSection() {
       <OverviewContentHeading>Key resources</OverviewContentHeading>
       <KeyResourcesEmpty />
     </Flex>
-  )
+  );
 }

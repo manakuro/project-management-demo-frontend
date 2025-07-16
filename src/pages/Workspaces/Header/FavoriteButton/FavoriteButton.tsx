@@ -1,19 +1,19 @@
-import type React from 'react'
-import { memo } from 'react'
-import type { IconButtonProps } from 'src/components/ui/atoms'
-import { FavoriteIconButton, Tooltip } from 'src/components/ui/molecules'
+import type React from 'react';
+import { memo } from 'react';
+import type { IconButtonProps } from 'src/components/ui/atoms';
+import { FavoriteIconButton, Tooltip } from 'src/components/ui/molecules';
 import {
   useFavoriteWorkspaceIds,
   useFavoriteWorkspaceIdsCommand,
-} from 'src/store/entities/favoriteWorkspaceIds'
-import { useWorkspace } from 'src/store/entities/workspace'
+} from 'src/store/entities/favoriteWorkspaceIds';
+import { useWorkspace } from 'src/store/entities/workspace';
 
-type Props = Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>
+type Props = Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>;
 
 export const FavoriteButton: React.FC<Props> = memo<Props>((props) => {
-  const { workspace } = useWorkspace()
-  const { isFavorite } = useFavoriteWorkspaceIds()
-  const { setFavoriteWorkspaceId } = useFavoriteWorkspaceIdsCommand()
+  const { workspace } = useWorkspace();
+  const { isFavorite } = useFavoriteWorkspaceIds();
+  const { setFavoriteWorkspaceId } = useFavoriteWorkspaceIdsCommand();
 
   return (
     <Tooltip
@@ -36,6 +36,6 @@ export const FavoriteButton: React.FC<Props> = memo<Props>((props) => {
         {...props}
       />
     </Tooltip>
-  )
-})
-FavoriteButton.displayName = 'FavoriteButton'
+  );
+});
+FavoriteButton.displayName = 'FavoriteButton';

@@ -1,4 +1,4 @@
-import { ulidRegex } from 'src/shared/ulid'
+import { ulidRegex } from 'src/shared/ulid';
 
 export const ROUTE_PROJECTS = {
   regex: new RegExp(`^/projects/${ulidRegex}/?`, 'iu'),
@@ -14,7 +14,7 @@ export const ROUTE_PROJECTS = {
     projectId: 'projectId',
     projects: 'projects',
   },
-} as const
+} as const;
 
 export const ROUTE_PROJECTS_LIST = {
   regex: new RegExp(`^/projects/${ulidRegex}/list/?$`, 'iu'),
@@ -27,7 +27,7 @@ export const ROUTE_PROJECTS_LIST = {
       }) as const,
   },
   query: 'projects',
-} as const
+} as const;
 export const ROUTE_PROJECTS_BOARD = {
   regex: new RegExp(`^/projects/${ulidRegex}/board/?$`, 'iu'),
   href: {
@@ -39,7 +39,7 @@ export const ROUTE_PROJECTS_BOARD = {
       }) as const,
   },
   query: 'projects',
-} as const
+} as const;
 export const ROUTE_PROJECTS_CALENDAR = {
   regex: new RegExp(`^/projects/${ulidRegex}/calendar/?$`, 'iu'),
   href: {
@@ -51,7 +51,7 @@ export const ROUTE_PROJECTS_CALENDAR = {
       }) as const,
   },
   query: 'projects',
-} as const
+} as const;
 export const ROUTE_PROJECTS_FILES = {
   regex: new RegExp(`^/projects/${ulidRegex}/files/?$`, 'iu'),
   href: {
@@ -63,7 +63,7 @@ export const ROUTE_PROJECTS_FILES = {
       }) as const,
   },
   query: 'projects',
-} as const
+} as const;
 
 export const ROUTE_PROJECTS_OVERVIEW = {
   regex: new RegExp(`^/projects/${ulidRegex}/overview/?$`, 'iu'),
@@ -76,4 +76,4 @@ export const ROUTE_PROJECTS_OVERVIEW = {
       }) as const,
   },
   query: 'projects',
-} as const
+} as const;

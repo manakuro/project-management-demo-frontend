@@ -1,4 +1,4 @@
-import type React from 'react'
+import type React from 'react';
 import {
   AspectRatio,
   Box,
@@ -9,22 +9,22 @@ import {
   Portal,
   PortalManager,
   Text,
-} from 'src/components/ui/atoms'
-import { Flex } from 'src/components/ui/atoms/Flex'
+} from 'src/components/ui/atoms';
+import { Flex } from 'src/components/ui/atoms/Flex';
 import {
   Popover,
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
-} from 'src/components/ui/organisms/Popover'
+} from 'src/components/ui/organisms/Popover';
 
 type Props = {
   profile: {
-    name: string
-    image: string
-    email: string
-  }
-}
+    name: string;
+    image: string;
+    email: string;
+  };
+};
 
 export const PopoverProfile: React.FCWithChildren<Props> = (props) => {
   return (
@@ -93,5 +93,5 @@ export const PopoverProfile: React.FCWithChildren<Props> = (props) => {
         </Portal>
       </Popover>
     </PortalManager>
-  )
-}
+  );
+};

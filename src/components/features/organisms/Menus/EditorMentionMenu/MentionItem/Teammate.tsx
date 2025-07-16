@@ -1,17 +1,17 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Avatar, Flex, type FlexProps, Text } from 'src/components/ui/atoms'
-import type { Mention } from 'src/store/entities/mention'
-import { useTeammate } from 'src/store/entities/teammate'
-import { LeftContainer } from './LeftContainer'
-import { RightContainer } from './RightContainer'
+import type React from 'react';
+import { memo } from 'react';
+import { Avatar, Flex, type FlexProps, Text } from 'src/components/ui/atoms';
+import type { Mention } from 'src/store/entities/mention';
+import { useTeammate } from 'src/store/entities/teammate';
+import { LeftContainer } from './LeftContainer';
+import { RightContainer } from './RightContainer';
 
 type Props = FlexProps & {
-  mention: Mention
-}
+  mention: Mention;
+};
 
 export const Teammate: React.FC<Props> = memo<Props>((props) => {
-  const { teammate } = useTeammate(props.mention.id)
+  const { teammate } = useTeammate(props.mention.id);
 
   return (
     <Flex alignItems="center" flex={1}>
@@ -31,6 +31,6 @@ export const Teammate: React.FC<Props> = memo<Props>((props) => {
         </Text>
       </RightContainer>
     </Flex>
-  )
-})
-Teammate.displayName = 'Teammate'
+  );
+});
+Teammate.displayName = 'Teammate';

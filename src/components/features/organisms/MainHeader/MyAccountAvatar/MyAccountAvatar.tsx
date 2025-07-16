@@ -1,16 +1,16 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { MyAvatar } from 'src/components/features/organisms/MyAvatar'
-import { Menu, MenuButton } from 'src/components/ui/organisms/Menu'
-import { useDisclosure } from 'src/shared/chakra'
-import { MenuList } from './MenuList'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { MyAvatar } from 'src/components/features/organisms/MyAvatar';
+import { Menu, MenuButton } from 'src/components/ui/organisms/Menu';
+import { useDisclosure } from 'src/shared/chakra';
+import { MenuList } from './MenuList';
 
 export const MyAccountAvatar: React.FC = memo(() => {
-  const { onClose, onOpen, isOpen } = useDisclosure()
+  const { onClose, onOpen, isOpen } = useDisclosure();
 
   const handleOpen = useCallback(() => {
-    onOpen()
-  }, [onOpen])
+    onOpen();
+  }, [onOpen]);
 
   return (
     <Menu
@@ -25,6 +25,6 @@ export const MyAccountAvatar: React.FC = memo(() => {
       </MenuButton>
       {isOpen && <MenuList onCloseMenu={onClose} />}
     </Menu>
-  )
-})
-MyAccountAvatar.displayName = 'MyAccountAvatar'
+  );
+});
+MyAccountAvatar.displayName = 'MyAccountAvatar';

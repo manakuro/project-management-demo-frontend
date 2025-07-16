@@ -1,1 +1,1 @@
-export * from './useGlobalUILoading'
+export * from './useGlobalUILoading';

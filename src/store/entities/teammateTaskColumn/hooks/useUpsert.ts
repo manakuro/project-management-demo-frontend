@@ -1,6 +1,6 @@
-import { useRecoilCallback } from 'recoil'
-import { teammateTaskColumnState } from '../atom'
-import type { TeammateTaskColumn } from '../type'
+import { useRecoilCallback } from 'recoil';
+import { teammateTaskColumnState } from '../atom';
+import type { TeammateTaskColumn } from '../type';
 
 export const useUpsert = () => {
   const upsert = useRecoilCallback(
@@ -10,12 +10,12 @@ export const useUpsert = () => {
           return {
             ...prev,
             ...taskColumn,
-          }
-        })
+          };
+        });
       },
     [],
-  )
+  );
   return {
     upsert,
-  }
-}
+  };
+};

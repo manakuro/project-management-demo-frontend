@@ -1,18 +1,18 @@
-import type React from 'react'
-import { useMemo } from 'react'
-import { Center, Icon, Image } from 'src/components/ui/atoms'
-import { FileTypeCode } from 'src/graphql/enums'
-import type { ChakraProps } from 'src/shared/chakra'
-import { getTaskFileIcon, useTaskFile } from 'src/store/entities/taskFile'
-import { Container } from './Container'
+import type React from 'react';
+import { useMemo } from 'react';
+import { Center, Icon, Image } from 'src/components/ui/atoms';
+import { FileTypeCode } from 'src/graphql/enums';
+import type { ChakraProps } from 'src/shared/chakra';
+import { getTaskFileIcon, useTaskFile } from 'src/store/entities/taskFile';
+import { Container } from './Container';
 
 type Props = {
-  taskFileId: string
-}
+  taskFileId: string;
+};
 
 export const ThumbnailListItem: React.FC<Props> = (props) => {
-  const { taskFileId } = props
-  const { taskFile } = useTaskFile(taskFileId)
+  const { taskFileId } = props;
+  const { taskFile } = useTaskFile(taskFileId);
   const style = useMemo<ChakraProps>(
     () => ({
       bg: 'gray.50',
@@ -21,7 +21,7 @@ export const ThumbnailListItem: React.FC<Props> = (props) => {
       w: 'full',
     }),
     [],
-  )
+  );
 
   switch (taskFile.fileType.typeCode) {
     case FileTypeCode.Image: {
@@ -29,18 +29,18 @@ export const ThumbnailListItem: React.FC<Props> = (props) => {
         <Container label={taskFile.name}>
           <Image src={taskFile.src} objectFit="cover" {...style} />
         </Container>
-      )
+      );
     }
     case FileTypeCode.Pdf:
     case FileTypeCode.Text: {
-      const icon = getTaskFileIcon(taskFile.fileType.typeCode)
+      const icon = getTaskFileIcon(taskFile.fileType.typeCode);
       return (
         <Container label={taskFile.name}>
           <Center {...style}>
             <Icon icon={icon} color="primary" />
           </Center>
         </Container>
-      )
+      );
     }
   }
-}
+};

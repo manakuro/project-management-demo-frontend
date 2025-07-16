@@ -1,8 +1,8 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const Actions: React.FC<Props> = memo<Props>((props) => {
   return (
@@ -18,7 +18,7 @@ export const Actions: React.FC<Props> = memo<Props>((props) => {
       right={4}
       {...props}
     />
-  )
-})
+  );
+});
 
-Actions.displayName = 'Actions'
+Actions.displayName = 'Actions';

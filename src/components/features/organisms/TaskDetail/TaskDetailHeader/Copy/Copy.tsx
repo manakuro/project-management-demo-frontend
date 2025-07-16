@@ -1,11 +1,11 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Icon, IconButton } from 'src/components/ui/atoms'
-import { Tooltip } from 'src/components/ui/molecules'
+import type React from 'react';
+import { memo } from 'react';
+import { Icon, IconButton } from 'src/components/ui/atoms';
+import { Tooltip } from 'src/components/ui/molecules';
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const Copy: React.FC<Props> = memo(() => {
   return (
@@ -23,6 +23,6 @@ export const Copy: React.FC<Props> = memo(() => {
         isDisabled
       />
     </Tooltip>
-  )
-})
-Copy.displayName = 'Copy'
+  );
+});
+Copy.displayName = 'Copy';

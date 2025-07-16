@@ -1,24 +1,24 @@
-import type { UseToastOptions as UseToastOptionsChakra } from '@chakra-ui/react'
-import type { RenderProps } from '@chakra-ui/toast/dist'
-import type React from 'react'
-import { useCallback } from 'react'
-import { Button, Flex, Icon, IconButton } from 'src/components/ui/atoms'
-import { forwardRef } from 'src/shared/chakra'
+import type { UseToastOptions as UseToastOptionsChakra } from '@chakra-ui/react';
+import type { RenderProps } from '@chakra-ui/toast/dist';
+import type React from 'react';
+import { useCallback } from 'react';
+import { Button, Flex, Icon, IconButton } from 'src/components/ui/atoms';
+import { forwardRef } from 'src/shared/chakra';
 
 export type ToastProps = UseToastOptionsChakra & {
-  undo?: (() => void) | (() => Promise<void>)
-  close?: () => void
-}
-type Props = ToastProps & RenderProps
+  undo?: (() => void) | (() => Promise<void>);
+  close?: () => void;
+};
+type Props = ToastProps & RenderProps;
 
 export const Toast: React.FC<Props> & { id?: string } = forwardRef<
   Props,
   'div'
 >((props, ref) => {
   const handleUndo = useCallback(() => {
-    props.undo?.()
-    props.close?.()
-  }, [props])
+    props.undo?.();
+    props.close?.();
+  }, [props]);
 
   return (
     <Flex
@@ -61,7 +61,7 @@ export const Toast: React.FC<Props> & { id?: string } = forwardRef<
         </Flex>
       )}
     </Flex>
-  )
-})
+  );
+});
 
-Toast.id = 'Toast'
+Toast.id = 'Toast';

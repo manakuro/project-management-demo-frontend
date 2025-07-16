@@ -1,4 +1,4 @@
-import { uniqBy } from 'src/shared/utils'
+import { uniqBy } from 'src/shared/utils';
 
 export const getNodesFromEdges = <
   Node extends { id: string },
@@ -9,39 +9,39 @@ export const getNodesFromEdges = <
   return uniqBy(
     data?.edges?.map((e) => e?.node || []) as Node[],
     'id',
-  ) as Node[]
-}
+  ) as Node[];
+};
 
 export const initialPageInfo = (): {
-  hasPreviousPage: boolean
-  hasNextPage: boolean
-  endCursor: string
-  startCursor: string
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
+  endCursor: string;
+  startCursor: string;
 } => ({
   hasPreviousPage: false,
   hasNextPage: false,
   endCursor: '',
   startCursor: '',
-})
+});
 
 export const getPageInfo = <
   PageInfo,
   Data extends {
-    pageInfo?: PageInfo | null
+    pageInfo?: PageInfo | null;
   },
 >(
   res: Data | null,
 ): PageInfo => {
-  return (res?.pageInfo || initialPageInfo()) as PageInfo
-}
+  return (res?.pageInfo || initialPageInfo()) as PageInfo;
+};
 
 export const getTotalCount = <
   TotalCount,
   Data extends {
-    totalCount?: TotalCount | null
+    totalCount?: TotalCount | null;
   },
 >(
   res: Data | null,
 ): TotalCount => {
-  return (res?.totalCount ?? 0) as TotalCount
-}
+  return (res?.totalCount ?? 0) as TotalCount;
+};

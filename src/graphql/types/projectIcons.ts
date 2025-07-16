@@ -1,12 +1,12 @@
-import type { ProjectIconsQuery } from 'src/graphql/types'
+import type { ProjectIconsQuery } from 'src/graphql/types';
 
 export type {
   ProjectIconsQuery,
   ProjectIconsQueryVariables,
-} from 'src/graphql/types'
+} from 'src/graphql/types';
 export type {
   ProjectIconsQueryHookResult,
   ProjectIconsLazyQueryHookResult,
-} from 'src/graphql/hooks'
+} from 'src/graphql/hooks';
 
-export type ProjectIconsResponse = ProjectIconsQuery['projectIcons']
+export type ProjectIconsResponse = ProjectIconsQuery['projectIcons'];

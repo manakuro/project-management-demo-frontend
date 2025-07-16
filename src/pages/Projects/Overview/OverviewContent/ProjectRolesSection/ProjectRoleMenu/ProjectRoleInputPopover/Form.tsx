@@ -1,24 +1,24 @@
-import type React from 'react'
-import { memo, useCallback, useState } from 'react'
-import { Input as AtomsInput, Button, Flex } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
+import { Input as AtomsInput, Button, Flex } from 'src/components/ui/atoms';
 
 type Props = {
-  defaultValue: string
-  initialFocusRef: React.MutableRefObject<HTMLInputElement | null>
-  onChange: (value: string) => void
-}
+  defaultValue: string;
+  initialFocusRef: React.MutableRefObject<HTMLInputElement | null>;
+  onChange: (value: string) => void;
+};
 
 export const Form: React.FC<Props> = memo<Props>((props) => {
-  const { initialFocusRef, defaultValue, onChange } = props
-  const [value, setValue] = useState(defaultValue)
+  const { initialFocusRef, defaultValue, onChange } = props;
+  const [value, setValue] = useState(defaultValue);
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value)
-  }, [])
+    setValue(e.target.value);
+  }, []);
 
   const handleDone = useCallback(() => {
-    onChange(value)
-  }, [onChange, value])
+    onChange(value);
+  }, [onChange, value]);
 
   return (
     <Flex alignItems="center" mt={2}>
@@ -34,6 +34,6 @@ export const Form: React.FC<Props> = memo<Props>((props) => {
         Done
       </Button>
     </Flex>
-  )
-})
-Form.displayName = 'Form'
+  );
+});
+Form.displayName = 'Form';

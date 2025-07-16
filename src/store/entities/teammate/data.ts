@@ -17,4 +17,4 @@ export const teammates = {
     image: 'https://bit.ly/kent-c-dodds',
     email: 'kent.dodds@example.com',
   },
-}
+};

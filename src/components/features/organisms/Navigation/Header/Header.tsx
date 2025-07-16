@@ -1,8 +1,8 @@
-import { memo } from 'react'
+import { memo } from 'react';
 import {
   PADDING_X,
   useNavigation,
-} from 'src/components/features/organisms/Navigation'
+} from 'src/components/features/organisms/Navigation';
 import {
   Flex,
   Icon,
@@ -10,11 +10,11 @@ import {
   Link,
   Logo,
   NextLink,
-} from 'src/components/ui/atoms'
-import { ROUTE_HOME } from 'src/router'
+} from 'src/components/ui/atoms';
+import { ROUTE_HOME } from 'src/router';
 
 export const Header = memo(function Header() {
-  const { isExpanded, toggleMenu } = useNavigation()
+  const { isExpanded, toggleMenu } = useNavigation();
 
   return (
     <Flex
@@ -42,5 +42,5 @@ export const Header = memo(function Header() {
         light
       />
     </Flex>
-  )
-})
+  );
+});

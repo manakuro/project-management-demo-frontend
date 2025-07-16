@@ -1,11 +1,11 @@
-import type { NodeSpec } from 'prosemirror-model'
+import type { NodeSpec } from 'prosemirror-model';
 
 // from prosemirror-schema-basic
 
 interface Attrs {
-  src: string
-  alt: string | null
-  title: string | null
+  src: string;
+  alt: string | null;
+  title: string | null;
 }
 
 export const image: NodeSpec = {
@@ -26,13 +26,13 @@ export const image: NodeSpec = {
           src: element.getAttribute('src') as string,
           title: element.getAttribute('title'),
           alt: element.getAttribute('alt'),
-        }
+        };
       },
     },
   ],
   toDOM(node) {
-    const { src, alt, title } = node.attrs as Attrs
+    const { src, alt, title } = node.attrs as Attrs;
 
-    return ['img', { src, alt, title }]
+    return ['img', { src, alt, title }];
   },
-}
+};

@@ -1,29 +1,29 @@
-import isEqual from 'lodash-es/isEqual'
-import { useMemo } from 'react'
-import { useRecoilCallback } from 'recoil'
-import { useProjectTaskSectionDeletedAndDeleteTasksSubscription as useSubscription } from 'src/graphql/hooks'
-import { uuid } from 'src/shared/uuid'
-import type { ProjectTaskSectionDeletedAndDeleteTasksSubscriptionResponse as Response } from '../type'
-import { useResetProjectTaskSection } from './useResetProjectTaskSection'
+import isEqual from 'lodash-es/isEqual';
+import { useMemo } from 'react';
+import { useRecoilCallback } from 'recoil';
+import { useProjectTaskSectionDeletedAndDeleteTasksSubscription as useSubscription } from 'src/graphql/hooks';
+import { uuid } from 'src/shared/uuid';
+import type { ProjectTaskSectionDeletedAndDeleteTasksSubscriptionResponse as Response } from '../type';
+import { useResetProjectTaskSection } from './useResetProjectTaskSection';
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
-let previousData: any
+let previousData: any;
 
 type Props = {
-  workspaceId: string
-}
+  workspaceId: string;
+};
 export const PROJECT_TASK_SECTION_DELETED_AND_DELETED_TASKS_SUBSCRIPTION_REQUEST_ID =
-  uuid()
+  uuid();
 export const useProjectTaskSectionDeletedAndDeleteTasksSubscription = (
   props: Props,
 ) => {
-  const { resetProjectTaskSection } = useResetProjectTaskSection()
-  const { resetProjectTaskSections } = useResetProjectTaskSection()
+  const { resetProjectTaskSection } = useResetProjectTaskSection();
+  const { resetProjectTaskSections } = useResetProjectTaskSection();
 
   const skipSubscription = useMemo(
     () => !props.workspaceId,
     [props.workspaceId],
-  )
+  );
   const subscriptionResult = useSubscription({
     variables: {
       workspaceId: props.workspaceId,
@@ -37,31 +37,31 @@ export const useProjectTaskSectionDeletedAndDeleteTasksSubscription = (
           previousData?.subscriptionData?.data,
         )
       )
-        return
+        return;
 
       if (data.subscriptionData.data)
-        setBySubscription(data.subscriptionData.data)
-      previousData = data
+        setBySubscription(data.subscriptionData.data);
+      previousData = data;
     },
     skip: skipSubscription,
-  })
+  });
 
   const setBySubscription = useRecoilCallback(
     () => async (response: Response) => {
-      if (__DEV__) console.log('Project Task Section deleted!')
+      if (__DEV__) console.log('Project Task Section deleted!');
 
       const projectTaskSection =
-        response.projectTaskSectionDeletedAndDeleteTasks.projectTaskSection
+        response.projectTaskSectionDeletedAndDeleteTasks.projectTaskSection;
       const projectTaskIds =
-        response.projectTaskSectionDeletedAndDeleteTasks.projectTaskIds
+        response.projectTaskSectionDeletedAndDeleteTasks.projectTaskIds;
 
-      resetProjectTaskSection(projectTaskSection.id)
-      resetProjectTaskSections(projectTaskIds)
+      resetProjectTaskSection(projectTaskSection.id);
+      resetProjectTaskSections(projectTaskIds);
     },
     [resetProjectTaskSection, resetProjectTaskSections],
-  )
+  );
 
   return {
     subscriptionResult,
-  }
-}
+  };
+};

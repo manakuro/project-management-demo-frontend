@@ -1,27 +1,27 @@
-import type React from 'react'
-import { memo, useMemo } from 'react'
+import type React from 'react';
+import { memo, useMemo } from 'react';
 import {
   Box,
   Flex,
   type FlexProps,
   Textarea,
   type TextareaProps,
-} from 'src/components/ui/atoms'
-import type { ChakraProps } from 'src/shared/chakra'
+} from 'src/components/ui/atoms';
+import type { ChakraProps } from 'src/shared/chakra';
 
 type Props = {
-  value: string
-  onChange: TextareaProps['onChange']
-  onClick?: FlexProps['onClick']
-  onKeyDown?: TextareaProps['onKeyDown']
-  onFocus?: TextareaProps['onFocus']
-  onBlur?: TextareaProps['onBlur']
-  autoFocus?: TextareaProps['autoFocus']
-  containerStyle?: FlexProps
-  placeholder?: string
-  textareaRef?: React.ForwardedRef<any>
-  noBorder?: boolean
-} & ChakraProps
+  value: string;
+  onChange: TextareaProps['onChange'];
+  onClick?: FlexProps['onClick'];
+  onKeyDown?: TextareaProps['onKeyDown'];
+  onFocus?: TextareaProps['onFocus'];
+  onBlur?: TextareaProps['onBlur'];
+  autoFocus?: TextareaProps['autoFocus'];
+  containerStyle?: FlexProps;
+  placeholder?: string;
+  textareaRef?: React.ForwardedRef<any>;
+  noBorder?: boolean;
+} & ChakraProps;
 
 export const InputText: React.FC<Props> = memo<Props>((props) => {
   const {
@@ -37,7 +37,7 @@ export const InputText: React.FC<Props> = memo<Props>((props) => {
     textareaRef,
     noBorder,
     ...rest
-  } = props
+  } = props;
 
   const style = useMemo<ChakraProps>(
     () => ({
@@ -61,7 +61,7 @@ export const InputText: React.FC<Props> = memo<Props>((props) => {
       ...(autoFocus ? { borderColor: 'gray.500' } : {}),
     }),
     [props.minH, noBorder, autoFocus],
-  )
+  );
 
   return (
     <Flex
@@ -96,6 +96,6 @@ export const InputText: React.FC<Props> = memo<Props>((props) => {
         {value}
       </Textarea>
     </Flex>
-  )
-})
-InputText.displayName = 'InputText'
+  );
+});
+InputText.displayName = 'InputText';

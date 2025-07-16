@@ -1,7 +1,7 @@
-import { createMuiTheme } from '@material-ui/core'
-export * from '@material-ui/lab'
-export { ThemeProvider as MuiThemeProvider } from '@material-ui/core'
-export { default as AdapterDateFns } from '@material-ui/lab/AdapterDateFns'
+import { createMuiTheme } from '@material-ui/core';
+export * from '@material-ui/lab';
+export { ThemeProvider as MuiThemeProvider } from '@material-ui/core';
+export { default as AdapterDateFns } from '@material-ui/lab/AdapterDateFns';
 
 export const muiTheme = createMuiTheme({
   palette: {
@@ -10,4 +10,4 @@ export const muiTheme = createMuiTheme({
       dark: '#4FD1C5',
     },
   },
-})
+});

@@ -1,24 +1,24 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import {
   Icon as AtomsIcon,
   type BoxProps,
   Center,
   WrapItem,
-} from 'src/components/ui/atoms'
-import { useLinkHoverStyle } from 'src/hooks'
-import type { IconType } from 'src/shared/icons'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
-import { useProjectIcon } from 'src/store/entities/projectIcon'
-import { useProjectLightColor } from 'src/store/entities/projectLightColor'
+} from 'src/components/ui/atoms';
+import { useLinkHoverStyle } from 'src/hooks';
+import type { IconType } from 'src/shared/icons';
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
+import { useProjectIcon } from 'src/store/entities/projectIcon';
+import { useProjectLightColor } from 'src/store/entities/projectLightColor';
 
 type Props = {
-  projectIconId: string
-  currentProjectIconId: string
-  currentProjectLightColorId: string
-  currentProjectBaseColorId: string
-  onClick: (id: string) => Promise<void>
-}
+  projectIconId: string;
+  currentProjectIconId: string;
+  currentProjectLightColorId: string;
+  currentProjectBaseColorId: string;
+  onClick: (id: string) => Promise<void>;
+};
 
 export const IconPickerItem: React.FC<Props> = memo<Props>((props) => {
   const {
@@ -27,21 +27,23 @@ export const IconPickerItem: React.FC<Props> = memo<Props>((props) => {
     currentProjectLightColorId,
     currentProjectIconId,
     onClick,
-  } = props
-  const { projectIcon } = useProjectIcon(projectIconId)
+  } = props;
+  const { projectIcon } = useProjectIcon(projectIconId);
 
-  const { projectLightColor } = useProjectLightColor(currentProjectLightColorId)
-  const { projectBaseColor } = useProjectBaseColor(currentProjectBaseColorId)
+  const { projectLightColor } = useProjectLightColor(
+    currentProjectLightColorId,
+  );
+  const { projectBaseColor } = useProjectBaseColor(currentProjectBaseColorId);
   const { _hover, transition } = useLinkHoverStyle({
     color: projectLightColor.color.color,
-  })
+  });
 
   const handlePickIcon = useCallback(
     async (id: string) => {
-      await onClick(id)
+      await onClick(id);
     },
     [onClick],
-  )
+  );
 
   return (
     <WrapItem>
@@ -58,10 +60,10 @@ export const IconPickerItem: React.FC<Props> = memo<Props>((props) => {
         <AtomsIcon icon={projectIcon.icon.icon as IconType} w={6} h={6} />
       </IconBox>
     </WrapItem>
-  )
-})
-IconPickerItem.displayName = 'IconPickerItem'
+  );
+});
+IconPickerItem.displayName = 'IconPickerItem';
 
 const IconBox: React.FC<BoxProps> = (props) => (
   <Center borderRadius="sm" w="44px" h="44px" cursor="pointer" {...props} />
-)
+);

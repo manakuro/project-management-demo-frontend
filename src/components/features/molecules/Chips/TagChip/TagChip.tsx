@@ -1,37 +1,37 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import {
   Box,
   Button,
   Icon,
   type IconProps,
   Text,
-} from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
-import { useTaskTag } from 'src/store/entities/taskTag'
+} from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
+import { useTaskTag } from 'src/store/entities/taskTag';
 
-type Variant = 'button' | 'icon'
+type Variant = 'button' | 'icon';
 
 type Props = {
-  taskTagId: string
-  variant: Variant
-  onDelete?: (id: string) => void
-  deletable?: boolean
-  iconProps?: Omit<IconProps, 'icon'>
-}
+  taskTagId: string;
+  variant: Variant;
+  onDelete?: (id: string) => void;
+  deletable?: boolean;
+  iconProps?: Omit<IconProps, 'icon'>;
+};
 
 export const TagChip: React.FC<Props> = memo<Props>((props) => {
-  const { taskTagId, variant, iconProps, onDelete } = props
-  const { taskTag } = useTaskTag(taskTagId)
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
+  const { taskTagId, variant, iconProps, onDelete } = props;
+  const { taskTag } = useTaskTag(taskTagId);
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
 
   const handleDelete = useCallback(
     (e: React.MouseEvent<SVGElement>) => {
-      e.stopPropagation()
-      onDelete?.(taskTagId)
+      e.stopPropagation();
+      onDelete?.(taskTagId);
     },
     [onDelete, taskTagId],
-  )
+  );
 
   if (variant === 'icon') {
     return (
@@ -41,7 +41,7 @@ export const TagChip: React.FC<Props> = memo<Props>((props) => {
         size="sm"
         {...iconProps}
       />
-    )
+    );
   }
 
   return (
@@ -74,6 +74,6 @@ export const TagChip: React.FC<Props> = memo<Props>((props) => {
         />
       )}
     </Button>
-  )
-})
-TagChip.displayName = 'TagChip'
+  );
+});
+TagChip.displayName = 'TagChip';

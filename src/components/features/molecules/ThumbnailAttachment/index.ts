@@ -1,1 +1,1 @@
-export * from './ThumbnailAttachment'
+export * from './ThumbnailAttachment';

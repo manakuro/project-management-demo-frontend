@@ -1,1 +1,1 @@
-export * from './AssignProjectOwnerMenu'
+export * from './AssignProjectOwnerMenu';

@@ -1,1 +1,1 @@
-export * from './MoreLink'
+export * from './MoreLink';

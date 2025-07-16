@@ -1,11 +1,11 @@
-import { memo } from 'react'
-import { ProjectsContainer } from 'src/pages/Home/ProjectsContainer'
-import { useFavoriteProjectIds } from 'src/store/entities/favoriteProjectIds'
+import { memo } from 'react';
+import { ProjectsContainer } from 'src/pages/Home/ProjectsContainer';
+import { useFavoriteProjectIds } from 'src/store/entities/favoriteProjectIds';
 
 export const FavoriteProjects = memo(function FavoriteProjects() {
-  const { favoriteProjectIds } = useFavoriteProjectIds()
+  const { favoriteProjectIds } = useFavoriteProjectIds();
 
-  if (!favoriteProjectIds.length) return null
+  if (!favoriteProjectIds.length) return null;
 
   return (
     <ProjectsContainer
@@ -19,5 +19,5 @@ export const FavoriteProjects = memo(function FavoriteProjects() {
         'aria-label': 'favorite project list item',
       }}
     />
-  )
-})
+  );
+});

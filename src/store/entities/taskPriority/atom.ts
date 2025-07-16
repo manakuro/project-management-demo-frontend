@@ -1,8 +1,8 @@
-import { createState } from 'src/store/util'
-import type { TaskPriority } from './type'
-import { TaskPriorityType } from './types'
+import { createState } from 'src/store/util';
+import type { TaskPriority } from './type';
+import { TaskPriorityType } from './types';
 
-const key = (str: string) => `src/store/entities/taskPriority/${str}`
+const key = (str: string) => `src/store/entities/taskPriority/${str}`;
 
 export const initialState = (): TaskPriority => ({
   id: '',
@@ -17,10 +17,10 @@ export const initialState = (): TaskPriority => ({
   },
   createdAt: '',
   updatedAt: '',
-})
+});
 
 export const {
   state: taskPriorityState,
   listState: taskPrioritiesState,
   idsState: taskPriorityIdsState,
-} = createState({ key, initialState })
+} = createState({ key, initialState });

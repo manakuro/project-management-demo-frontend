@@ -1,8 +1,8 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Button, type ButtonProps, Icon } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo } from 'react';
+import { Button, type ButtonProps, Icon } from 'src/components/ui/atoms';
 
-type Props = ButtonProps
+type Props = ButtonProps;
 
 export const AddSubtaskButton: React.FC<Props> = memo<Props>((props) => {
   return (
@@ -19,6 +19,6 @@ export const AddSubtaskButton: React.FC<Props> = memo<Props>((props) => {
     >
       Add subtask
     </Button>
-  )
-})
-AddSubtaskButton.displayName = 'AddSubtaskButton'
+  );
+});
+AddSubtaskButton.displayName = 'AddSubtaskButton';

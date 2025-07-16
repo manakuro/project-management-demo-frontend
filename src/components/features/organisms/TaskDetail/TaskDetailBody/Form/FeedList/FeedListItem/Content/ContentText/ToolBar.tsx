@@ -1,15 +1,15 @@
-import { memo } from 'react'
-import { Button, Flex, Stack } from 'src/components/ui/atoms'
+import { memo } from 'react';
+import { Button, Flex, Stack } from 'src/components/ui/atoms';
 import {
   AtMention,
   Emoji,
   Format,
-} from 'src/components/ui/organisms/Editor/ToolBar'
-import { useTaskFeedListItemContext } from '../../Provider'
+} from 'src/components/ui/organisms/Editor/ToolBar';
+import { useTaskFeedListItemContext } from '../../Provider';
 
 export const ToolBar = memo(function ToolBar() {
-  const { editable, onCancel, onSave } = useTaskFeedListItemContext()
-  if (!editable()) return null
+  const { editable, onCancel, onSave } = useTaskFeedListItemContext();
+  if (!editable()) return null;
 
   return (
     <Flex marginTop="auto" h={9}>
@@ -27,5 +27,5 @@ export const ToolBar = memo(function ToolBar() {
         </Button>
       </Flex>
     </Flex>
-  )
-})
+  );
+});

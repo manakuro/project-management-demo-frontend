@@ -1,20 +1,20 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { Flex, type FlexProps, Icon, Link } from 'src/components/ui/atoms'
-import { useProject } from 'src/store/entities/project'
-import { transitions } from 'src/styles'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { Flex, type FlexProps, Icon, Link } from 'src/components/ui/atoms';
+import { useProject } from 'src/store/entities/project';
+import { transitions } from 'src/styles';
 
 type Props = FlexProps & {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const Project: React.FC<Props> = memo<Props>((props) => {
-  const { projectId } = props
-  const { project } = useProject(projectId)
+  const { projectId } = props;
+  const { project } = useProject(projectId);
 
   const handleClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation()
-  }, [])
+    e.stopPropagation();
+  }, []);
 
   return (
     <Flex flex={1} mt={1}>
@@ -33,7 +33,7 @@ export const Project: React.FC<Props> = memo<Props>((props) => {
         </Link>
       </Flex>
     </Flex>
-  )
-})
+  );
+});
 
-Project.displayName = 'Project'
+Project.displayName = 'Project';

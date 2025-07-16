@@ -1,9 +1,9 @@
-import { memo, useMemo } from 'react'
-import { useNavigation } from 'src/components/features/organisms/Navigation'
-import { NavListItem } from 'src/components/features/organisms/Navigation/NavListItem'
-import { AccordionIcon } from 'src/components/ui/organisms/Accordion'
-import { useDisabledStyle } from 'src/hooks'
-import { Divider } from '../../Divider'
+import { memo, useMemo } from 'react';
+import { useNavigation } from 'src/components/features/organisms/Navigation';
+import { NavListItem } from 'src/components/features/organisms/Navigation/NavListItem';
+import { AccordionIcon } from 'src/components/ui/organisms/Accordion';
+import { useDisabledStyle } from 'src/hooks';
+import { Divider } from '../../Divider';
 import {
   CustomNavList,
   CustomNavListAccordion,
@@ -12,14 +12,14 @@ import {
   CustomNavListAccordionPanel,
   CustomNavListAccordionPanelList,
   CustomNavListHeader,
-} from '../CustomNavList'
-import { Projects } from './Projects'
-import { Workspace } from './Workspace'
+} from '../CustomNavList';
+import { Projects } from './Projects';
+import { Workspace } from './Workspace';
 
 export const Favorites = memo(function Favorites() {
-  const { isExpanded } = useNavigation()
-  const { disabledStyle } = useDisabledStyle()
-  const title = useMemo(() => (isExpanded ? 'Favorites' : 'Fav'), [isExpanded])
+  const { isExpanded } = useNavigation();
+  const { disabledStyle } = useDisabledStyle();
+  const title = useMemo(() => (isExpanded ? 'Favorites' : 'Fav'), [isExpanded]);
   const listItems = useMemo(
     () =>
       [
@@ -35,7 +35,7 @@ export const Favorites = memo(function Favorites() {
         },
       ] as const,
     [],
-  )
+  );
 
   return (
     <>
@@ -64,5 +64,5 @@ export const Favorites = memo(function Favorites() {
         </CustomNavListAccordion>
       </CustomNavList>
     </>
-  )
-})
+  );
+});

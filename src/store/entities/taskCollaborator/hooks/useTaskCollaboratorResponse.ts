@@ -1,6 +1,6 @@
-import { useRecoilCallback } from 'recoil'
-import { taskCollaboratorState } from '../atom'
-import type { TaskCollaboratorResponse } from '../type'
+import { useRecoilCallback } from 'recoil';
+import { taskCollaboratorState } from '../atom';
+import type { TaskCollaboratorResponse } from '../type';
 
 export const useTaskCollaboratorResponse = () => {
   const setTaskCollaborators = useRecoilCallback(
@@ -11,14 +11,14 @@ export const useTaskCollaboratorResponse = () => {
             return {
               ...prev,
               ...d,
-            }
-          })
-        })
+            };
+          });
+        });
       },
     [],
-  )
+  );
 
   return {
     setTaskCollaborators,
-  }
-}
+  };
+};

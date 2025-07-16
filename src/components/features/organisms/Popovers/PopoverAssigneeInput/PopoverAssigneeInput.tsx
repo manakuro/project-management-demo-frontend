@@ -1,40 +1,40 @@
-import React, { useCallback } from 'react'
-import { Link, PortalManager } from 'src/components/ui/atoms'
+import React, { useCallback } from 'react';
+import { Link, PortalManager } from 'src/components/ui/atoms';
 import {
   Popover,
   type PopoverProps,
   PopoverTrigger,
-} from 'src/components/ui/organisms/Popover'
-import { useDisclosure } from 'src/shared/chakra'
-import { Content } from './Content'
+} from 'src/components/ui/organisms/Popover';
+import { useDisclosure } from 'src/shared/chakra';
+import { Content } from './Content';
 
 type Props = {
-  taskId: string
-  onOpened?: () => void
-  onClosed?: () => void
-} & PopoverProps
+  taskId: string;
+  onOpened?: () => void;
+  onClosed?: () => void;
+} & PopoverProps;
 
 export const PopoverAssigneeInput: React.FC<Props> = (props) => {
-  const { taskId } = props
-  const popoverDisclosure = useDisclosure()
-  const inputRef = React.useRef<HTMLInputElement | null>(null)
+  const { taskId } = props;
+  const popoverDisclosure = useDisclosure();
+  const inputRef = React.useRef<HTMLInputElement | null>(null);
 
   const handleOpen = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
-      e.stopPropagation()
-      popoverDisclosure.onOpen()
-      props.onOpened?.()
+      e.stopPropagation();
+      popoverDisclosure.onOpen();
+      props.onOpened?.();
     },
     [popoverDisclosure, props],
-  )
+  );
 
   const handleClose = useCallback(() => {
-    popoverDisclosure.onClose()
+    popoverDisclosure.onClose();
     // Prevent flush when closing popover
     setTimeout(() => {
-      props.onClosed?.()
-    }, 60)
-  }, [popoverDisclosure, props])
+      props.onClosed?.();
+    }, 60);
+  }, [popoverDisclosure, props]);
 
   return (
     <PortalManager zIndex={1500}>
@@ -53,5 +53,5 @@ export const PopoverAssigneeInput: React.FC<Props> = (props) => {
         )}
       </Popover>
     </PortalManager>
-  )
-}
+  );
+};

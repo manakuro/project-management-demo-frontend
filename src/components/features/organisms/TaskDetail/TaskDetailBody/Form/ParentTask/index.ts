@@ -1,1 +1,1 @@
-export * from './ParentTask'
+export * from './ParentTask';

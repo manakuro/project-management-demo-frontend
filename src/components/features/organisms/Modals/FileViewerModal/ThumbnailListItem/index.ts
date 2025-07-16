@@ -1,1 +1,1 @@
-export * from './ThumbnailListItem'
+export * from './ThumbnailListItem';

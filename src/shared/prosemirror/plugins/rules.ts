@@ -5,10 +5,10 @@ import {
   smartQuotes,
   textblockTypeInputRule,
   wrappingInputRule,
-} from 'prosemirror-inputrules'
-import type { Plugin } from 'prosemirror-state'
+} from 'prosemirror-inputrules';
+import type { Plugin } from 'prosemirror-state';
 
-import { schema } from '../config/schema'
+import { schema } from '../config/schema';
 
 export const rules = (): Plugin =>
   inputRules({
@@ -25,16 +25,16 @@ export const rules = (): Plugin =>
         /^(\d+)\.\s$/,
         schema.nodes.list,
         (match) => {
-          return { type: 'ordered', start: +match[1] }
+          return { type: 'ordered', start: +match[1] };
         },
         (match, node) => {
-          return node.childCount + Number(node.attrs.start) === +match[1]
+          return node.childCount + Number(node.attrs.start) === +match[1];
         },
       ),
 
       // * bullet list
       wrappingInputRule(/^\s*\*\s$/, schema.nodes.list, () => {
-        return { type: 'bullet' }
+        return { type: 'bullet' };
       }),
 
       // ``` code block
@@ -42,7 +42,7 @@ export const rules = (): Plugin =>
 
       // # heading
       textblockTypeInputRule(/^(#{1,6})\s$/, schema.nodes.heading, (match) => {
-        return { level: match[1].length }
+        return { level: match[1].length };
       }),
     ],
-  })
+  });

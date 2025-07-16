@@ -1,5 +1,5 @@
-import type { WorkspaceTeammateResponse } from 'src/graphql/types/workspaceTeammate'
+import type { WorkspaceTeammateResponse } from 'src/graphql/types/workspaceTeammate';
 
-export type { WorkspaceTeammateResponse } from 'src/graphql/types/workspaceTeammate'
+export type { WorkspaceTeammateResponse } from 'src/graphql/types/workspaceTeammate';
 
-export type WorkspaceTeammate = Omit<WorkspaceTeammateResponse, 'teammate'>
+export type WorkspaceTeammate = Omit<WorkspaceTeammateResponse, 'teammate'>;

@@ -1,13 +1,13 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, Stack } from 'src/components/ui/atoms'
-import { AddTaskButton } from './AddTaskButton'
-import { MoreAction } from './MoreAction'
-import { TaskSectionName } from './TaskSectionName'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, Stack } from 'src/components/ui/atoms';
+import { AddTaskButton } from './AddTaskButton';
+import { MoreAction } from './MoreAction';
+import { TaskSectionName } from './TaskSectionName';
 
 type Props = {
-  taskSectionId: string
-}
+  taskSectionId: string;
+};
 
 export const Header: React.FC<Props> = memo<Props>((props) => {
   return (
@@ -18,6 +18,6 @@ export const Header: React.FC<Props> = memo<Props>((props) => {
         <MoreAction />
       </Stack>
     </Flex>
-  )
-})
-Header.displayName = 'Header'
+  );
+});
+Header.displayName = 'Header';

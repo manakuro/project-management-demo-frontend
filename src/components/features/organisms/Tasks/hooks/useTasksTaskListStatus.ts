@@ -1,34 +1,36 @@
-import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus'
-import { useProjectsTaskListStatus } from 'src/store/app/projects/taskListStatus'
+import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus';
+import { useProjectsTaskListStatus } from 'src/store/app/projects/taskListStatus';
 import {
   TaskListCompletedStatusCode,
   type TaskListCompletedStatusCodeValue,
-} from 'src/store/entities/taskListCompletedStatus'
+} from 'src/store/entities/taskListCompletedStatus';
 import {
   TaskListSortStatusCode,
   type TaskListSortStatusCodeValue,
-} from 'src/store/entities/taskListSortStatus'
-import { useTasksContext } from '../TasksProvider'
+} from 'src/store/entities/taskListSortStatus';
+import { useTasksContext } from '../TasksProvider';
 
 type Result = {
   taskListStatus: {
-    taskListCompletedStatus: TaskListCompletedStatusCodeValue
-    taskListSortStatus: TaskListSortStatusCodeValue
-  }
-  sortByNone: () => void
-  sortByAlphabetical: () => void
-  sortByLikes: () => void
-  sortByDueDate: () => void
-  sortByProject?: () => void
-  sortByAssignee?: () => void
-  sortByPriority?: () => void
-  setTaskListCompletedStatus: (status: TaskListCompletedStatusCodeValue) => void
-}
+    taskListCompletedStatus: TaskListCompletedStatusCodeValue;
+    taskListSortStatus: TaskListSortStatusCodeValue;
+  };
+  sortByNone: () => void;
+  sortByAlphabetical: () => void;
+  sortByLikes: () => void;
+  sortByDueDate: () => void;
+  sortByProject?: () => void;
+  sortByAssignee?: () => void;
+  sortByPriority?: () => void;
+  setTaskListCompletedStatus: (
+    status: TaskListCompletedStatusCodeValue,
+  ) => void;
+};
 
 export const useTasksTaskListStatus = (): Result => {
-  const { isMyTasksPage } = useTasksContext()
-  const myTasks = useMyTasksTaskListStatus()
-  const projects = useProjectsTaskListStatus()
+  const { isMyTasksPage } = useTasksContext();
+  const myTasks = useMyTasksTaskListStatus();
+  const projects = useProjectsTaskListStatus();
 
   if (isMyTasksPage) {
     return {
@@ -42,7 +44,7 @@ export const useTasksTaskListStatus = (): Result => {
       sortByDueDate: myTasks.sortByDueDate,
       sortByProject: myTasks.sortByProject,
       setTaskListCompletedStatus: myTasks.setTaskListCompletedStatus,
-    }
+    };
   }
 
   return {
@@ -57,16 +59,16 @@ export const useTasksTaskListStatus = (): Result => {
     sortByAssignee: projects.sortByAssignee,
     sortByPriority: projects.sortByPriority,
     setTaskListCompletedStatus: projects.setTaskListCompletedStatus,
-  }
-}
+  };
+};
 
 const getTaskListCompletedStatus = <
   T extends {
     taskListStatus: {
       taskListCompletedStatus: {
-        statusCode: TaskListCompletedStatusCodeValue | null
-      }
-    }
+        statusCode: TaskListCompletedStatusCodeValue | null;
+      };
+    };
   },
 >(
   data: T,
@@ -74,16 +76,16 @@ const getTaskListCompletedStatus = <
   return (
     data.taskListStatus.taskListCompletedStatus.statusCode ||
     TaskListCompletedStatusCode.Incomplete
-  )
-}
+  );
+};
 
 const getTaskListSortStatus = <
   T extends {
     taskListStatus: {
       taskListSortStatus: {
-        statusCode: TaskListSortStatusCodeValue | null
-      }
-    }
+        statusCode: TaskListSortStatusCodeValue | null;
+      };
+    };
   },
 >(
   data: T,
@@ -91,5 +93,5 @@ const getTaskListSortStatus = <
   return (
     data.taskListStatus.taskListSortStatus.statusCode ||
     TaskListSortStatusCode.None
-  )
-}
+  );
+};

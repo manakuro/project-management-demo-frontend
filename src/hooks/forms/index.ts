@@ -1,2 +1,2 @@
-export * from './useCheckBox'
-export * from './useInputText'
+export * from './useCheckBox';
+export * from './useInputText';

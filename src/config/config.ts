@@ -14,10 +14,10 @@ export const config = {
   FIREBASE_APPID: process.env.NEXT_PUBLIC_FIREBASE_APPID as string,
   FIREBASE_MEASUREMENT_ID: process.env
     .NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID as string,
-} as const
+} as const;
 
 if (__DEV__ && process.env.NODE_ENV !== 'test') {
-  console.groupCollapsed('config')
-  console.log(config)
-  console.groupEnd()
+  console.groupCollapsed('config');
+  console.log(config);
+  console.groupEnd();
 }

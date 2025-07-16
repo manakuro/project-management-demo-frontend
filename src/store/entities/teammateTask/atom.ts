@@ -1,8 +1,8 @@
-import { selector, selectorFamily } from 'recoil'
-import { type Task, tasksState } from 'src/store/entities/task'
-import { createState } from 'src/store/util'
-import type { TeammateTask } from './type'
-const key = (str: string) => `src/store/entities/teammateTask/${str}`
+import { selector, selectorFamily } from 'recoil';
+import { type Task, tasksState } from 'src/store/entities/task';
+import { createState } from 'src/store/util';
+import type { TeammateTask } from './type';
+const key = (str: string) => `src/store/entities/teammateTask/${str}`;
 
 export const initialState = (): TeammateTask => ({
   id: '',
@@ -12,23 +12,23 @@ export const initialState = (): TeammateTask => ({
   workspaceId: '',
   createdAt: '',
   updatedAt: '',
-})
+});
 export const {
   state: teammateTaskState,
   listState: teammateTasksState,
   idsState: teammateTaskIdsState,
-} = createState({ key, initialState })
+} = createState({ key, initialState });
 
 export const tasksByTeammateIdState = selector<Task[]>({
   key: key('tasksByTeammateIdState'),
   get: ({ get }) => {
-    const tasks = get(tasksState)
-    const teammateTasks = get(teammateTasksState)
-    const taskIds = teammateTasks.map((t) => t.taskId)
+    const tasks = get(tasksState);
+    const teammateTasks = get(teammateTasksState);
+    const taskIds = teammateTasks.map((t) => t.taskId);
 
-    return tasks.filter((t) => taskIds.includes(t.id))
+    return tasks.filter((t) => taskIds.includes(t.id));
   },
-})
+});
 
 export const tasksByTeammateTaskSectionIdState = selectorFamily<Task[], string>(
   {
@@ -36,26 +36,26 @@ export const tasksByTeammateTaskSectionIdState = selectorFamily<Task[], string>(
     get:
       (teammateTaskSectionId) =>
       ({ get }) => {
-        const tasks = get(tasksState)
-        const teammateTasks = get(teammateTasksState)
+        const tasks = get(tasksState);
+        const teammateTasks = get(teammateTasksState);
         const taskIds = teammateTasks
           .filter((t) => t.teammateTaskSectionId === teammateTaskSectionId)
-          .map((t) => t.taskId)
+          .map((t) => t.taskId);
 
-        return tasks.filter((t) => taskIds.includes(t.id))
+        return tasks.filter((t) => taskIds.includes(t.id));
       },
   },
-)
+);
 
 export const teammateTaskByTaskIdState = selectorFamily<TeammateTask, string>({
   key: key('teammateTaskByTaskIdState'),
   get:
     (taskId) =>
     ({ get }) => {
-      const teammateTasks = get(teammateTasksState)
-      return teammateTasks.find((t) => t.taskId === taskId) || initialState()
+      const teammateTasks = get(teammateTasksState);
+      return teammateTasks.find((t) => t.taskId === taskId) || initialState();
     },
-})
+});
 
 export const teammateTaskByTeammateTaskSectionIdState = selectorFamily<
   TeammateTask[],
@@ -65,12 +65,12 @@ export const teammateTaskByTeammateTaskSectionIdState = selectorFamily<
   get:
     (teammateTaskSectionId) =>
     ({ get }) => {
-      const teammateTasks = get(teammateTasksState)
+      const teammateTasks = get(teammateTasksState);
       return teammateTasks.filter(
         (t) => t.teammateTaskSectionId === teammateTaskSectionId,
-      )
+      );
     },
-})
+});
 
 export const teammateTasksByIdsState = selectorFamily<TeammateTask[], string[]>(
   {
@@ -78,8 +78,8 @@ export const teammateTasksByIdsState = selectorFamily<TeammateTask[], string[]>(
     get:
       (ids) =>
       ({ get }) => {
-        const teammateTasks = get(teammateTasksState)
-        return teammateTasks.filter((t) => ids.includes(t.id))
+        const teammateTasks = get(teammateTasksState);
+        return teammateTasks.filter((t) => ids.includes(t.id));
       },
   },
-)
+);

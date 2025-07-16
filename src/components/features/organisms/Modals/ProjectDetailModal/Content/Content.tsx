@@ -1,37 +1,37 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { Divider, Flex, Stack } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { Divider, Flex, Stack } from 'src/components/ui/atoms';
 import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalHeader,
-} from 'src/components/ui/organisms/Modal'
-import { useProject, useProjectCommand } from 'src/store/entities/project'
-import { Description } from './Description'
-import { DescriptionTitle } from './DescriptionTitle'
-import { Label } from './Label'
-import { NameField } from './NameField'
-import { ProjectDueDate } from './ProjectDueDate'
-import { ProjectOwner } from './ProjectOwner'
+} from 'src/components/ui/organisms/Modal';
+import { useProject, useProjectCommand } from 'src/store/entities/project';
+import { Description } from './Description';
+import { DescriptionTitle } from './DescriptionTitle';
+import { Label } from './Label';
+import { NameField } from './NameField';
+import { ProjectDueDate } from './ProjectDueDate';
+import { ProjectOwner } from './ProjectOwner';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const Content: React.FC<Props> = memo<Props>((props) => {
-  const { projectId } = props
-  const { project } = useProject(projectId)
-  const { setProject } = useProjectCommand()
+  const { projectId } = props;
+  const { project } = useProject(projectId);
+  const { setProject } = useProjectCommand();
 
   const handleChangeName = useCallback(
     async (val: string) => {
-      if (!val) return
-      if (val === project.name) return
-      await setProject({ name: val, projectId })
+      if (!val) return;
+      if (val === project.name) return;
+      await setProject({ name: val, projectId });
     },
     [project.name, setProject, projectId],
-  )
+  );
 
   return (
     <ModalContent>
@@ -62,6 +62,6 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
         </Stack>
       </ModalBody>
     </ModalContent>
-  )
-})
-Content.displayName = 'Content'
+  );
+});
+Content.displayName = 'Content';

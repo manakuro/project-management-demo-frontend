@@ -1,6 +1,6 @@
-import { useRecoilCallback } from 'recoil'
-import { useProjectTaskSectionCommand as useCommand } from 'src/store/entities/projectTaskSection'
-import { useProjectsProjectId } from '../../project'
+import { useRecoilCallback } from 'recoil';
+import { useProjectTaskSectionCommand as useCommand } from 'src/store/entities/projectTaskSection';
+import { useProjectsProjectId } from '../../project';
 
 export const useProjectsTaskSectionCommand = () => {
   const {
@@ -10,15 +10,15 @@ export const useProjectsTaskSectionCommand = () => {
     deleteProjectTaskSection,
     undeleteTaskSectionAndKeepTasks,
     undeleteTaskSectionAndDeleteTasks,
-  } = useCommand()
-  const { projectId } = useProjectsProjectId()
+  } = useCommand();
+  const { projectId } = useProjectsProjectId();
 
   const addTaskSection = useRecoilCallback(
     () => () => {
-      return addProjectsTaskSection({ projectId })
+      return addProjectsTaskSection({ projectId });
     },
     [addProjectsTaskSection, projectId],
-  )
+  );
 
   return {
     addTaskSection,
@@ -27,5 +27,5 @@ export const useProjectsTaskSectionCommand = () => {
     deleteProjectTaskSection,
     undeleteTaskSectionAndKeepTasks,
     undeleteTaskSectionAndDeleteTasks,
-  }
-}
+  };
+};

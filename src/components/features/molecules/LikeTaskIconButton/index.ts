@@ -1,1 +1,1 @@
-export * from './LikeTaskIconButton'
+export * from './LikeTaskIconButton';

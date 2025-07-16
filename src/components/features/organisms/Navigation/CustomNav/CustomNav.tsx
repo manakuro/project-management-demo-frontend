@@ -1,6 +1,6 @@
-import { memo } from 'react'
-import { Favorites } from './Favorites'
-import { SavedSearches } from './SavedSearches'
+import { memo } from 'react';
+import { Favorites } from './Favorites';
+import { SavedSearches } from './SavedSearches';
 
 export const CustomNav = memo(function CustomNav() {
   return (
@@ -8,5 +8,5 @@ export const CustomNav = memo(function CustomNav() {
       <Favorites />
       <SavedSearches />
     </>
-  )
-})
+  );
+});

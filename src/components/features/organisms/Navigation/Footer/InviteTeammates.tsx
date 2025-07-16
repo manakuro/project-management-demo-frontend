@@ -1,17 +1,17 @@
-import type React from 'react'
-import { useCallback } from 'react'
-import { useInviteModal } from 'src/components/features/organisms/Modals/InviteModal/useInviteModal'
-import { Divider } from 'src/components/features/organisms/Navigation/Divider'
-import { Icon, ListItem, Text } from 'src/components/ui/atoms'
-import { transitions } from 'src/styles'
-import { PADDING_X } from '../Navigation'
+import type React from 'react';
+import { useCallback } from 'react';
+import { useInviteModal } from 'src/components/features/organisms/Modals/InviteModal/useInviteModal';
+import { Divider } from 'src/components/features/organisms/Navigation/Divider';
+import { Icon, ListItem, Text } from 'src/components/ui/atoms';
+import { transitions } from 'src/styles';
+import { PADDING_X } from '../Navigation';
 
 export const InviteTeammates: React.FC = () => {
-  const { setIsOpen } = useInviteModal()
+  const { setIsOpen } = useInviteModal();
 
   const handleClick = useCallback(() => {
-    setIsOpen(true)
-  }, [setIsOpen])
+    setIsOpen(true);
+  }, [setIsOpen]);
 
   return (
     <>
@@ -32,5 +32,5 @@ export const InviteTeammates: React.FC = () => {
         <Text fontSize="sm">Invite teammates</Text>
       </ListItem>
     </>
-  )
-}
+  );
+};

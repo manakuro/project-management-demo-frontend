@@ -1,1 +1,1 @@
-export * from './ContentText'
+export * from './ContentText';

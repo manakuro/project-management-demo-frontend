@@ -1,6 +1,6 @@
-import { useRecoilCallback } from 'recoil'
-import { taskCollaboratorState } from '../atom'
-import type { TaskCollaborator } from '../type'
+import { useRecoilCallback } from 'recoil';
+import { taskCollaboratorState } from '../atom';
+import type { TaskCollaborator } from '../type';
 
 export const useUpsert = () => {
   const upsert = useRecoilCallback(
@@ -10,13 +10,13 @@ export const useUpsert = () => {
           return {
             ...prev,
             ...input,
-          }
-        })
+          };
+        });
       },
     [],
-  )
+  );
 
   return {
     upsert,
-  }
-}
+  };
+};

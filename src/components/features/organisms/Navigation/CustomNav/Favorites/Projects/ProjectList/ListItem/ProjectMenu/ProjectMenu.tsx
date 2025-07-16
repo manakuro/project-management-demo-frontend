@@ -1,29 +1,29 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { Icon, PortalManager } from 'src/components/ui/atoms'
-import { Menu, MenuButton } from 'src/components/ui/organisms/Menu'
-import { useClickableHoverStyle } from 'src/hooks'
-import { useDisclosure } from 'src/shared/chakra'
-import { MenuList } from './MenuList'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { Icon, PortalManager } from 'src/components/ui/atoms';
+import { Menu, MenuButton } from 'src/components/ui/organisms/Menu';
+import { useClickableHoverStyle } from 'src/hooks';
+import { useDisclosure } from 'src/shared/chakra';
+import { MenuList } from './MenuList';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const ProjectMenu: React.FC<Props> = memo<Props>((props) => {
-  const { projectId } = props
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
-  const { onClose, onOpen, isOpen } = useDisclosure()
+  const { projectId } = props;
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
+  const { onClose, onOpen, isOpen } = useDisclosure();
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
-      e.stopPropagation()
-      e.preventDefault()
+      e.stopPropagation();
+      e.preventDefault();
 
-      onOpen()
+      onOpen();
     },
     [onOpen],
-  )
+  );
 
   return (
     <PortalManager zIndex={1500}>
@@ -34,6 +34,6 @@ export const ProjectMenu: React.FC<Props> = memo<Props>((props) => {
         {isOpen && <MenuList onClose={onClose} projectId={projectId} />}
       </Menu>
     </PortalManager>
-  )
-})
-ProjectMenu.displayName = 'ProjectMenu'
+  );
+});
+ProjectMenu.displayName = 'ProjectMenu';

@@ -1,11 +1,11 @@
-import type React from 'react'
+import type React from 'react';
 import {
   Button as AtomsButton,
   type ButtonProps,
-} from 'src/components/ui/atoms'
-import { forwardRef } from 'src/shared/chakra'
+} from 'src/components/ui/atoms';
+import { forwardRef } from 'src/shared/chakra';
 
-type Props = ButtonProps
+type Props = ButtonProps;
 
 export const Button: React.FC<Props> = forwardRef((props, ref) => {
   return (
@@ -22,6 +22,6 @@ export const Button: React.FC<Props> = forwardRef((props, ref) => {
       textAlign="left"
       {...props}
     />
-  )
-})
-Button.displayName = 'Button'
+  );
+});
+Button.displayName = 'Button';

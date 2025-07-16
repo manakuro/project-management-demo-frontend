@@ -1,7 +1,7 @@
-import type React from 'react'
-import { Flex, type FlexProps, Logo, Spinner } from 'src/components/ui/atoms'
+import type React from 'react';
+import { Flex, type FlexProps, Logo, Spinner } from 'src/components/ui/atoms';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const PageLoader: React.FC<Props> = (props) => {
   return (
@@ -23,5 +23,5 @@ export const PageLoader: React.FC<Props> = (props) => {
         <Logo color="gray.50" w="200px" h="36px" ml="-30px" />
       </Flex>
     </Flex>
-  )
-}
+  );
+};

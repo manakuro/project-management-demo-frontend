@@ -1,22 +1,22 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { useSubtaskIds, useTaskCommand } from 'src/store/entities/task'
-import { Label, Row } from '../Row'
-import { AddSubtaskButton } from './AddSubtaskButton'
-import { TasksName } from './TasksName'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { useSubtaskIds, useTaskCommand } from 'src/store/entities/task';
+import { Label, Row } from '../Row';
+import { AddSubtaskButton } from './AddSubtaskButton';
+import { TasksName } from './TasksName';
 
 type Props = {
-  taskParentId: string
-}
-export const SUBTASK_LIST_CONTAINER_ID = 'SUBTASK_LIST_CONTAINER_ID'
+  taskParentId: string;
+};
+export const SUBTASK_LIST_CONTAINER_ID = 'SUBTASK_LIST_CONTAINER_ID';
 
 export const Subtasks: React.FC<Props> = memo<Props>((props) => {
-  const { taskIds } = useSubtaskIds(props.taskParentId)
-  const { addSubtask } = useTaskCommand()
+  const { taskIds } = useSubtaskIds(props.taskParentId);
+  const { addSubtask } = useTaskCommand();
 
   const handleAddSubtask = useCallback(async () => {
-    await addSubtask({ taskParentId: props.taskParentId })
-  }, [addSubtask, props.taskParentId])
+    await addSubtask({ taskParentId: props.taskParentId });
+  }, [addSubtask, props.taskParentId]);
 
   return (
     <Row
@@ -34,6 +34,6 @@ export const Subtasks: React.FC<Props> = memo<Props>((props) => {
       )}
       <AddSubtaskButton onClick={handleAddSubtask} />
     </Row>
-  )
-})
-Subtasks.displayName = 'Subtasks'
+  );
+});
+Subtasks.displayName = 'Subtasks';

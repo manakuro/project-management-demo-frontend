@@ -1,4 +1,4 @@
-import type { ProjectTaskResponse } from 'src/graphql/types/projectTask'
+import type { ProjectTaskResponse } from 'src/graphql/types/projectTask';
 
 export type {
   ProjectTaskResponse,
@@ -6,6 +6,6 @@ export type {
   ProjectTaskUpdatedSubscriptionResponse,
   ProjectTaskCreatedByTaskIdSubscriptionResponse,
   ProjectTaskDeletedSubscriptionResponse,
-} from 'src/graphql/types/projectTask'
+} from 'src/graphql/types/projectTask';
 
-export type ProjectTask = Omit<ProjectTaskResponse, 'task' | 'project'>
+export type ProjectTask = Omit<ProjectTaskResponse, 'task' | 'project'>;

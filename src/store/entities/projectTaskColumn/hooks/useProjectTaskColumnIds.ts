@@ -1,10 +1,10 @@
-import { useRecoilValue } from 'recoil'
-import { projectTaskColumnIdsState } from '../atom'
+import { useRecoilValue } from 'recoil';
+import { projectTaskColumnIdsState } from '../atom';
 
 export const useProjectTaskColumnIds = () => {
-  const ids = useRecoilValue(projectTaskColumnIdsState)
+  const ids = useRecoilValue(projectTaskColumnIdsState);
 
   return {
     projectsTaskColumnIds: ids,
-  }
-}
+  };
+};

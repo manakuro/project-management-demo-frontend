@@ -1,1 +1,1 @@
-export * from './PopoverAssigneeInput'
+export * from './PopoverAssigneeInput';

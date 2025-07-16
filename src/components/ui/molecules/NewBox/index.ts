@@ -1,1 +1,1 @@
-export * from './NewBox'
+export * from './NewBox';

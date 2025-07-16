@@ -1,6 +1,6 @@
-import { Button as AtomsButton } from 'src/components/ui/atoms'
-import { MenuButton } from 'src/components/ui/organisms/Menu'
-import { forwardRef } from 'src/shared/chakra'
+import { Button as AtomsButton } from 'src/components/ui/atoms';
+import { MenuButton } from 'src/components/ui/organisms/Menu';
+import { forwardRef } from 'src/shared/chakra';
 
 export const Button = forwardRef(function Button(props, ref) {
   return (
@@ -18,5 +18,5 @@ export const Button = forwardRef(function Button(props, ref) {
     >
       {props.children}
     </MenuButton>
-  )
-})
+  );
+});

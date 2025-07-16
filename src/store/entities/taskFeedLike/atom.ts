@@ -1,7 +1,7 @@
-import { createState } from 'src/store/util'
-import type { TaskFeedLike } from './type'
+import { createState } from 'src/store/util';
+import type { TaskFeedLike } from './type';
 
-const key = (str: string) => `src/store/entities/taskFeedLikes/${str}`
+const key = (str: string) => `src/store/entities/taskFeedLikes/${str}`;
 
 export const initialState = (): TaskFeedLike => ({
   id: '',
@@ -10,7 +10,7 @@ export const initialState = (): TaskFeedLike => ({
   teammateId: '',
   createdAt: '',
   updatedAt: '',
-})
+});
 
 export const {
   state: taskFeedLikeState,
@@ -19,4 +19,4 @@ export const {
 } = createState({
   key,
   initialState,
-})
+});

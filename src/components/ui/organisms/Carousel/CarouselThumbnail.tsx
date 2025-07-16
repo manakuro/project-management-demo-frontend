@@ -1,17 +1,17 @@
-import React, { type PropsWithChildren } from 'react'
-import { Wrap } from 'src/components/ui/atoms'
+import React, { type PropsWithChildren } from 'react';
+import { Wrap } from 'src/components/ui/atoms';
 
 export function CarouselThumbnail(props: PropsWithChildren) {
   const children = React.Children.map(props.children, (child, index) => {
     if (!React.isValidElement(child)) {
-      console.warn('Provide React element under Carousel component')
-      return null
+      console.warn('Provide React element under Carousel component');
+      return null;
     }
 
     return React.cloneElement(child, {
       index,
-    })
-  })
+    });
+  });
 
   return (
     <Wrap
@@ -30,5 +30,5 @@ export function CarouselThumbnail(props: PropsWithChildren) {
     >
       {children}
     </Wrap>
-  )
+  );
 }

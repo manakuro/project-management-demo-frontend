@@ -1,20 +1,20 @@
-import { useMemo } from 'react'
-import { useTasksListContentSticky } from 'src/components/features/organisms/Tasks'
-import type { ChakraProps } from 'src/shared/chakra'
-import { createProvider } from 'src/shared/react/createProvider'
+import { useMemo } from 'react';
+import { useTasksListContentSticky } from 'src/components/features/organisms/Tasks';
+import type { ChakraProps } from 'src/shared/chakra';
+import { createProvider } from 'src/shared/react/createProvider';
 
 type ContextProps = {
-  stickyStyle: StickyStyle
-}
+  stickyStyle: StickyStyle;
+};
 type StickyStyle = Override<
   ChakraProps,
   {
-    zIndex?: number
+    zIndex?: number;
   }
->
+>;
 
 const useValue = (): ContextProps => {
-  const { isStickyVertical } = useTasksListContentSticky()
+  const { isStickyVertical } = useTasksListContentSticky();
   const stickyStyle = useMemo((): StickyStyle => {
     if (isStickyVertical)
       return {
@@ -22,14 +22,14 @@ const useValue = (): ContextProps => {
         left: 0,
         zIndex: 100,
         bg: 'white',
-      }
+      };
 
-    return {}
-  }, [isStickyVertical])
+    return {};
+  }, [isStickyVertical]);
   return {
     stickyStyle,
-  } as const
-}
-useValue.__PROVIDER__ = 'src/components/organisms/Tasks/TasksList/Provider.tsx'
+  } as const;
+};
+useValue.__PROVIDER__ = 'src/components/organisms/Tasks/TasksList/Provider.tsx';
 export const { Provider, useContext: useTasksListContext } =
-  createProvider(useValue)
+  createProvider(useValue);

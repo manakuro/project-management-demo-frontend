@@ -1,40 +1,40 @@
-import type React from 'react'
-import { useCallback } from 'react'
-import { Portal } from 'src/components/ui/atoms'
+import type React from 'react';
+import { useCallback } from 'react';
+import { Portal } from 'src/components/ui/atoms';
 import {
   MenuList as AtomsMenuList,
   type MenuListProps,
   MenuOptionGroup,
   type MenuOptionGroupProps,
-} from 'src/components/ui/organisms/Menu'
-import { useClickOutside } from 'src/hooks/useClickOutside'
-import { useMenuSelectContext } from '../useMenuSelect'
+} from 'src/components/ui/organisms/Menu';
+import { useClickOutside } from 'src/hooks/useClickOutside';
+import { useMenuSelectContext } from '../useMenuSelect';
 
 type Props = MenuOptionGroupProps & {
-  menuListProps?: MenuListProps
-}
-export type ComponentProps = Props
+  menuListProps?: MenuListProps;
+};
+export type ComponentProps = Props;
 
 export const Component: React.FC<Props> = (props) => {
-  const { menuListProps, ...rest } = props
-  const { onChange, onClose, listStatus } = useMenuSelectContext()
+  const { menuListProps, ...rest } = props;
+  const { onChange, onClose, listStatus } = useMenuSelectContext();
   const { ref } = useClickOutside(onClose, {
     hasClickedOutside: () => true,
-  })
+  });
 
   const handleChange = useCallback(
     (listStatus: string | string[] | undefined) => {
-      if (listStatus === undefined) return
-      onChange(listStatus)
+      if (listStatus === undefined) return;
+      onChange(listStatus);
     },
     [onChange],
-  )
+  );
   const handleClickMenuList = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
-      e.stopPropagation()
+      e.stopPropagation();
     },
     [],
-  )
+  );
 
   return (
     <Portal>
@@ -47,5 +47,5 @@ export const Component: React.FC<Props> = (props) => {
         />
       </AtomsMenuList>
     </Portal>
-  )
-}
+  );
+};

@@ -1,30 +1,30 @@
-import type React from 'react'
-import { Divider, Link } from 'src/components/ui/atoms'
+import type React from 'react';
+import { Divider, Link } from 'src/components/ui/atoms';
 import {
   Popover,
   PopoverBody,
   PopoverContent,
   type PopoverProps,
   PopoverTrigger,
-} from 'src/components/ui/organisms/Popover'
-import type { Project } from 'src/store/entities/project'
-import { ColorPicker } from './ColorPicker'
-import { IconPicker } from './IconPicker'
-import { Setting } from './Setting'
+} from 'src/components/ui/organisms/Popover';
+import type { Project } from 'src/store/entities/project';
+import { ColorPicker } from './ColorPicker';
+import { IconPicker } from './IconPicker';
+import { Setting } from './Setting';
 
 type Props = {
-  project: Project
-} & PopoverProps
+  project: Project;
+} & PopoverProps;
 
-const COLOR_BOX_WIDTH = 20
-const COLOR_BOX_PADDING = 4
-const COLOR_BOX_PER_COLUMN = 8
+const COLOR_BOX_WIDTH = 20;
+const COLOR_BOX_PADDING = 4;
+const COLOR_BOX_PER_COLUMN = 8;
 const WIDTH = `${
   COLOR_BOX_WIDTH * COLOR_BOX_PER_COLUMN +
   COLOR_BOX_PADDING * COLOR_BOX_PER_COLUMN -
   1 +
   24 * 2
-}px`
+}px`;
 export const PopoverSetColorAndIcon: React.FC<Props> = (props) => {
   return (
     <Popover
@@ -54,5 +54,5 @@ export const PopoverSetColorAndIcon: React.FC<Props> = (props) => {
         </PopoverBody>
       </PopoverContent>
     </Popover>
-  )
-}
+  );
+};

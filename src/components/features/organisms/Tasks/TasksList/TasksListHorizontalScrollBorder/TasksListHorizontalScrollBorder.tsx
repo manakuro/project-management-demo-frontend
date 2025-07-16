@@ -1,52 +1,52 @@
-import type React from 'react'
-import { memo, useEffect, useMemo, useState } from 'react'
-import { useNavigation } from 'src/components/features/organisms/Navigation'
+import type React from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
+import { useNavigation } from 'src/components/features/organisms/Navigation';
 import {
   useTasksListContentHorizontalScroll,
   useTasksListContentSticky,
-} from 'src/components/features/organisms/Tasks'
-import { useTasksTaskColumnByType } from 'src/components/features/organisms/Tasks/hooks'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { useMountedRef } from 'src/hooks'
-import type { ChakraProps } from 'src/shared/chakra'
-import { TaskColumnType } from 'src/store/entities/taskColumn'
+} from 'src/components/features/organisms/Tasks';
+import { useTasksTaskColumnByType } from 'src/components/features/organisms/Tasks/hooks';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { useMountedRef } from 'src/hooks';
+import type { ChakraProps } from 'src/shared/chakra';
+import { TaskColumnType } from 'src/store/entities/taskColumn';
 
-type Props = FlexProps
+type Props = FlexProps;
 
-const TOP = 72 + 60
+const TOP = 72 + 60;
 export const TasksListHorizontalScrollBorder: React.FC<Props> = memo<Props>(
   (props) => {
-    const [opacity, setOpacity] = useState<string>()
-    const { isScrolling } = useTasksListContentHorizontalScroll()
-    const { isStickyVertical } = useTasksListContentSticky()
+    const [opacity, setOpacity] = useState<string>();
+    const { isScrolling } = useTasksListContentHorizontalScroll();
+    const { isStickyVertical } = useTasksListContentSticky();
     const { tasksTaskColumn } = useTasksTaskColumnByType(
       TaskColumnType.TaskName,
-    )
-    const { isExpanded } = useNavigation()
-    const left = useMemo(() => (isExpanded ? '240px' : '53px'), [isExpanded])
+    );
+    const { isExpanded } = useNavigation();
+    const left = useMemo(() => (isExpanded ? '240px' : '53px'), [isExpanded]);
     const scrollingStyle = useMemo((): ChakraProps => {
-      if (isScrolling) return { shadow: 'md' }
-      return {}
-    }, [isScrolling])
-    const { mountedRef } = useMountedRef()
+      if (isScrolling) return { shadow: 'md' };
+      return {};
+    }, [isScrolling]);
+    const { mountedRef } = useMountedRef();
 
     // Use setTimeout to prevent border line from flashing  when navigation expands
     useEffect(() => {
-      setOpacity('0')
-      mountedRef.current = true
+      setOpacity('0');
+      mountedRef.current = true;
 
       setTimeout(() => {
         if (mountedRef.current) {
-          setOpacity('1')
+          setOpacity('1');
         }
-      }, 100)
+      }, 100);
 
       return () => {
-        mountedRef.current = false
-      }
-    }, [mountedRef.current, mountedRef])
+        mountedRef.current = false;
+      };
+    }, [mountedRef.current, mountedRef]);
 
-    if (!isStickyVertical) return null
+    if (!isStickyVertical) return null;
 
     return (
       <Flex
@@ -65,7 +65,7 @@ export const TasksListHorizontalScrollBorder: React.FC<Props> = memo<Props>(
         {...scrollingStyle}
         {...props}
       />
-    )
+    );
   },
-)
-TasksListHorizontalScrollBorder.displayName = 'TasksListHorizontalScrollBorder'
+);
+TasksListHorizontalScrollBorder.displayName = 'TasksListHorizontalScrollBorder';

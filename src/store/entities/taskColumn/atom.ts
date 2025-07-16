@@ -1,12 +1,12 @@
-import { selectorFamily } from 'recoil'
-import { createState } from 'src/store/util'
+import { selectorFamily } from 'recoil';
+import { createState } from 'src/store/util';
 import {
   type TaskColumn,
   TaskColumnType,
   type TaskColumnTypeValue,
-} from './type'
+} from './type';
 
-const key = (str: string) => `src/store/entities/taskColumn/${str}`
+const key = (str: string) => `src/store/entities/taskColumn/${str}`;
 
 const initialState = (): TaskColumn => ({
   id: '',
@@ -14,13 +14,13 @@ const initialState = (): TaskColumn => ({
   type: TaskColumnType.TaskName,
   createdAt: '',
   updatedAt: '',
-})
+});
 
 export const {
   state: taskColumnState,
   listState: taskColumnsState,
   idsState: taskColumnIdsState,
-} = createState({ key, initialState })
+} = createState({ key, initialState });
 
 export const taskColumnByTypeState = selectorFamily<TaskColumn, TaskColumnType>(
   {
@@ -28,8 +28,8 @@ export const taskColumnByTypeState = selectorFamily<TaskColumn, TaskColumnType>(
     get:
       (type: TaskColumnTypeValue) =>
       ({ get }) => {
-        const taskColumns = get(taskColumnsState)
-        return taskColumns.find((t) => t.type === type) || initialState()
+        const taskColumns = get(taskColumnsState);
+        return taskColumns.find((t) => t.type === type) || initialState();
       },
   },
-)
+);

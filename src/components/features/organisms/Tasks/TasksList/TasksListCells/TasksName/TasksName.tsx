@@ -1,42 +1,42 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider'
-import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider';
+import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks';
 import {
   CheckIcon,
   type FlexProps,
   Icon,
   Stack,
   Text,
-} from 'src/components/ui/atoms'
-import { TaskDoneTransition } from 'src/components/ui/molecules'
-import { useTask, useTaskCommand } from 'src/store/entities/task'
-import { ExpandIcon } from './ExpandIcon'
-import { Feed } from './Feed'
-import { Like } from './Like'
-import { MoveTasksBetweenSections } from './MoveTasksBetweenSections'
-import { Subtask } from './Subtask'
-import { TaskParentName } from './TaskParentName'
-import { TasksNameCell } from './TasksNameCell'
-import { TasksNameField } from './TasksNameField'
-import { TasksNameGrabIcon } from './TasksNameGrabIcon'
-import { TasksNameGrabIconContainer } from './TasksNameGrabIconContainer'
-import { TasksNameProvider, useTasksNameContext } from './TasksNameProvider'
-import { TasksNameRightContainer } from './TasksNameRightContainer'
+} from 'src/components/ui/atoms';
+import { TaskDoneTransition } from 'src/components/ui/molecules';
+import { useTask, useTaskCommand } from 'src/store/entities/task';
+import { ExpandIcon } from './ExpandIcon';
+import { Feed } from './Feed';
+import { Like } from './Like';
+import { MoveTasksBetweenSections } from './MoveTasksBetweenSections';
+import { Subtask } from './Subtask';
+import { TaskParentName } from './TaskParentName';
+import { TasksNameCell } from './TasksNameCell';
+import { TasksNameField } from './TasksNameField';
+import { TasksNameGrabIcon } from './TasksNameGrabIcon';
+import { TasksNameGrabIconContainer } from './TasksNameGrabIconContainer';
+import { TasksNameProvider, useTasksNameContext } from './TasksNameProvider';
+import { TasksNameRightContainer } from './TasksNameRightContainer';
 
 type Props = FlexProps & {
-  taskId: string
-  width: string
-  isSubtask?: boolean
-}
+  taskId: string;
+  width: string;
+  isSubtask?: boolean;
+};
 
 export const TasksName: React.FC<Props> = memo<Props>((props) => {
   return (
     <TasksNameProvider taskId={props.taskId}>
       <Component {...props} />
     </TasksNameProvider>
-  )
-})
+  );
+});
 
 const Component: React.FC<Props> = memo<Props>((props) => {
   const {
@@ -46,43 +46,43 @@ const Component: React.FC<Props> = memo<Props>((props) => {
     onEndTransition,
     onStartTransition,
     isTransitioning,
-  } = useTasksNameContext()
-  const { navigateToTaskDetail } = useTasksRouter()
-  const { deleteTask } = useTaskCommand()
-  const { task, setTask, setTaskName } = useTask(props.taskId)
-  const { stickyStyle } = useTasksListContext()
+  } = useTasksNameContext();
+  const { navigateToTaskDetail } = useTasksRouter();
+  const { deleteTask } = useTaskCommand();
+  const { task, setTask, setTaskName } = useTask(props.taskId);
+  const { stickyStyle } = useTasksListContext();
 
   const handleDeleteTask = useCallback(async () => {
-    await deleteTask({ taskId: props.taskId })
-  }, [deleteTask, props.taskId])
+    await deleteTask({ taskId: props.taskId });
+  }, [deleteTask, props.taskId]);
 
   const handleClick = useCallback(async () => {
-    await navigateToTaskDetail(task.id)
-  }, [navigateToTaskDetail, task.id])
+    await navigateToTaskDetail(task.id);
+  }, [navigateToTaskDetail, task.id]);
 
   const handleChangeName = useCallback(
     async (val: string) => {
-      await setTaskName(val)
+      await setTaskName(val);
     },
     [setTaskName],
-  )
+  );
   const handleToggleDone = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
-      e.stopPropagation()
+      e.stopPropagation();
       if (!task.completed) {
-        onStartTransition()
+        onStartTransition();
         setTimeout(async () => {
-          await setTask({ completed: !task.completed })
-          onEndTransition()
-        }, 1000)
-        return
+          await setTask({ completed: !task.completed });
+          onEndTransition();
+        }, 1000);
+        return;
       }
 
-      await setTask({ completed: !task.completed })
-      onEndTransition()
+      await setTask({ completed: !task.completed });
+      onEndTransition();
     },
     [onEndTransition, onStartTransition, setTask, task.completed],
-  )
+  );
 
   return (
     <>
@@ -138,7 +138,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
         </TasksNameRightContainer>
       </TasksNameCell>
     </>
-  )
-})
-Component.displayName = 'Component'
-TasksName.displayName = 'TasksName'
+  );
+});
+Component.displayName = 'Component';
+TasksName.displayName = 'TasksName';

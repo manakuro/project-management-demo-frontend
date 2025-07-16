@@ -1,11 +1,11 @@
 import {
   Badge as ChakraBadge,
   type BadgeProps as ChakraBadgeProps,
-} from '@chakra-ui/react'
-import type React from 'react'
+} from '@chakra-ui/react';
+import type React from 'react';
 
-type Props = ChakraBadgeProps
-export type BadgeProps = Props
+type Props = ChakraBadgeProps;
+export type BadgeProps = Props;
 
 export const Badge: React.FC<Props> = (props) => {
   return (
@@ -18,5 +18,5 @@ export const Badge: React.FC<Props> = (props) => {
       }}
       {...props}
     />
-  )
-}
+  );
+};

@@ -1,2 +1,2 @@
-export * from './Wrap'
-export * from './WrapItem'
+export * from './Wrap';
+export * from './WrapItem';

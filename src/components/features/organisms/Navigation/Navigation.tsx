@@ -1,18 +1,18 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Box, Flex } from 'src/components/ui/atoms'
-import { CustomNav } from './CustomNav'
-import { Footer } from './Footer'
-import { Header } from './Header'
-import { MainNav } from './MainNav'
-import { Projects } from './Projects'
-import { useNavigation } from './hooks'
+import type React from 'react';
+import { memo } from 'react';
+import { Box, Flex } from 'src/components/ui/atoms';
+import { CustomNav } from './CustomNav';
+import { Footer } from './Footer';
+import { Header } from './Header';
+import { MainNav } from './MainNav';
+import { Projects } from './Projects';
+import { useNavigation } from './hooks';
 
-export const PADDING_X = 4
-export const MAX_WIDTH = '240px'
-export const MIN_WIDTH = '53px'
+export const PADDING_X = 4;
+export const MAX_WIDTH = '240px';
+export const MIN_WIDTH = '53px';
 export const Navigation: React.FC = memo(() => {
-  const { isExpanded } = useNavigation()
+  const { isExpanded } = useNavigation();
 
   return (
     <Flex
@@ -34,6 +34,6 @@ export const Navigation: React.FC = memo(() => {
       </Box>
       <Footer />
     </Flex>
-  )
-})
-Navigation.displayName = 'Navigation'
+  );
+});
+Navigation.displayName = 'Navigation';

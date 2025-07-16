@@ -4,4 +4,4 @@ export const ROUTE_INBOX = {
     pathname: () => '/inbox' as const,
   },
   query: 'inbox',
-} as const
+} as const;

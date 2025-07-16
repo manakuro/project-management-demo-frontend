@@ -1,2 +1,2 @@
-export * from './TaskDetailModal'
-export * from './useTaskDetailModal'
+export * from './TaskDetailModal';
+export * from './useTaskDetailModal';

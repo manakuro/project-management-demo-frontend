@@ -1,30 +1,30 @@
-import type React from 'react'
-import { memo } from 'react'
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
-import { type FlexProps, Stack } from 'src/components/ui/atoms'
-import { useHover } from 'src/hooks/useHover'
-import { useProjectIdsByTaskId } from 'src/store/entities/projectTask'
-import { useTask } from 'src/store/entities/task'
-import { CheckIcon } from './CheckIcon'
-import { Container } from './Container'
-import { Input } from './Input'
-import { Subtask } from './Subtask'
-import { TaskName } from './TaskName'
-import { useListItem } from './useListItem'
+import type React from 'react';
+import { memo } from 'react';
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
+import { type FlexProps, Stack } from 'src/components/ui/atoms';
+import { useHover } from 'src/hooks/useHover';
+import { useProjectIdsByTaskId } from 'src/store/entities/projectTask';
+import { useTask } from 'src/store/entities/task';
+import { CheckIcon } from './CheckIcon';
+import { Container } from './Container';
+import { Input } from './Input';
+import { Subtask } from './Subtask';
+import { TaskName } from './TaskName';
+import { useListItem } from './useListItem';
 
 type Props = {
-  taskId: string
-} & FlexProps
+  taskId: string;
+} & FlexProps;
 
 export const ListItemForMyTasksPage: React.FC<Props> = memo<Props>((props) => {
-  const { taskId } = props
-  const { task } = useTask(taskId)
-  const { ref, isHovering } = useHover()
-  const { onOpenTaskDetail } = useListItem({ taskId })
-  const { projectIds } = useProjectIdsByTaskId(taskId)
+  const { taskId } = props;
+  const { task } = useTask(taskId);
+  const { ref, isHovering } = useHover();
+  const { onOpenTaskDetail } = useListItem({ taskId });
+  const { projectIds } = useProjectIdsByTaskId(taskId);
 
   if (task.isNew) {
-    return <Input taskId={taskId} />
+    return <Input taskId={taskId} />;
   }
 
   return (
@@ -52,6 +52,6 @@ export const ListItemForMyTasksPage: React.FC<Props> = memo<Props>((props) => {
         <Subtask taskId={taskId} />
       </Stack>
     </Container>
-  )
-})
-ListItemForMyTasksPage.displayName = 'ListItemForMyPage'
+  );
+});
+ListItemForMyTasksPage.displayName = 'ListItemForMyPage';

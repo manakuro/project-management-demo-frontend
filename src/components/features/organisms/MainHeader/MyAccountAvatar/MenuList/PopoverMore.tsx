@@ -1,28 +1,28 @@
-import type React from 'react'
-import { useCallback } from 'react'
+import type React from 'react';
+import { useCallback } from 'react';
 import {
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   type MenuProps,
-} from 'src/components/ui/organisms/Menu'
-import { chakra } from 'src/shared/chakra'
+} from 'src/components/ui/organisms/Menu';
+import { chakra } from 'src/shared/chakra';
 
 type Props = {
-  onClose: () => void
-} & MenuProps
+  onClose: () => void;
+} & MenuProps;
 
 export const PopoverMore: React.FC<Props> = (props) => {
   const handleCreateNewWorkspace = useCallback(() => {
     // do something
-    props.onClose()
-  }, [props])
+    props.onClose();
+  }, [props]);
 
   const handleRemoveMe = useCallback(() => {
     // do something
-    props.onClose()
-  }, [props])
+    props.onClose();
+  }, [props]);
 
   return (
     <Menu isLazy {...props}>
@@ -38,12 +38,12 @@ export const PopoverMore: React.FC<Props> = (props) => {
         </MenuItem>
       </MenuList>
     </Menu>
-  )
-}
+  );
+};
 
 // NOTE: Use custom component instead of `Box` because of styling issue with positioning menu item
 const MenuButtonAs = chakra('div', {
   baseStyle: {
     w: 'full',
   },
-})
+});

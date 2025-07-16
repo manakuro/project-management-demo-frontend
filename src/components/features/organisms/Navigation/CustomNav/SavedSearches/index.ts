@@ -1,1 +1,1 @@
-export * from './SavedSearches'
+export * from './SavedSearches';

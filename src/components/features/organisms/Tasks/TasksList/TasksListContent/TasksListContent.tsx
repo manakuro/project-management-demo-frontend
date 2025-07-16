@@ -1,22 +1,22 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { useMainStyle } from 'src/hooks'
-import { useTasksListContent } from './useTasksListContent'
-import { useTasksListContentHorizontalScroll } from './useTasksListContentHorizontalScroll'
-import { useTasksListContentSticky } from './useTasksListContentSticky'
-import { useTasksListContentVerticalScroll } from './useTasksListContentVerticalScroll'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { useMainStyle } from 'src/hooks';
+import { useTasksListContent } from './useTasksListContent';
+import { useTasksListContentHorizontalScroll } from './useTasksListContentHorizontalScroll';
+import { useTasksListContentSticky } from './useTasksListContentSticky';
+import { useTasksListContentVerticalScroll } from './useTasksListContentVerticalScroll';
 
-type Props = FlexProps
+type Props = FlexProps;
 
-const maxH = 72 + 60
+const maxH = 72 + 60;
 export const TasksListContent: React.FC<Props> = memo<Props>((props) => {
-  const { maxW } = useMainStyle()
-  const { ref } = useTasksListContent()
+  const { maxW } = useMainStyle();
+  const { ref } = useTasksListContent();
 
-  useTasksListContentVerticalScroll({ listenOnEvent: true })
-  useTasksListContentSticky({ listenOnEvent: true })
-  useTasksListContentHorizontalScroll({ listenOnEvent: true })
+  useTasksListContentVerticalScroll({ listenOnEvent: true });
+  useTasksListContentSticky({ listenOnEvent: true });
+  useTasksListContentHorizontalScroll({ listenOnEvent: true });
 
   return (
     <Flex
@@ -33,6 +33,6 @@ export const TasksListContent: React.FC<Props> = memo<Props>((props) => {
         {props.children}
       </Flex>
     </Flex>
-  )
-})
-TasksListContent.displayName = 'TasksListContent'
+  );
+});
+TasksListContent.displayName = 'TasksListContent';

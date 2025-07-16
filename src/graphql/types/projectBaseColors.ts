@@ -1,13 +1,13 @@
-import type { ProjectBaseColorsQuery } from 'src/graphql/types'
+import type { ProjectBaseColorsQuery } from 'src/graphql/types';
 
 export type {
   ProjectBaseColorsQuery,
   ProjectBaseColorsQueryVariables,
-} from 'src/graphql/types'
+} from 'src/graphql/types';
 export type {
   ProjectBaseColorsQueryHookResult,
   ProjectBaseColorsLazyQueryHookResult,
-} from 'src/graphql/hooks'
+} from 'src/graphql/hooks';
 
 export type ProjectBaseColorsResponse =
-  ProjectBaseColorsQuery['projectBaseColors']
+  ProjectBaseColorsQuery['projectBaseColors'];

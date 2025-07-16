@@ -1,1 +1,1 @@
-export * from './MoveToInboxButton'
+export * from './MoveToInboxButton';

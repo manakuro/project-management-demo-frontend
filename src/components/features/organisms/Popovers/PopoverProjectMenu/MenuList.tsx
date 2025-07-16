@@ -1,54 +1,54 @@
-import type React from 'react'
-import { useCallback } from 'react'
-import { PopoverSetColorAndIcon } from 'src/components/features/organisms/Popovers'
-import { ColorBox, Flex, Icon, Portal, Text } from 'src/components/ui/atoms'
+import type React from 'react';
+import { useCallback } from 'react';
+import { PopoverSetColorAndIcon } from 'src/components/features/organisms/Popovers';
+import { ColorBox, Flex, Icon, Portal, Text } from 'src/components/ui/atoms';
 import {
   MenuList as AtomsMenuList,
   MenuDivider,
-} from 'src/components/ui/organisms/Menu'
-import { useClickOutside } from 'src/hooks/useClickOutside'
-import { useDisclosure } from 'src/shared/chakra'
-import type { Project } from 'src/store/entities/project'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
-import { ArchiveProject } from './ArchiveProject'
-import { CopyProjectLink } from './CopyProjectLink'
-import { DeleteProject } from './DeleteProject'
-import { DuplicateProject } from './DuplicateProject'
-import { EditProjectDetails } from './EditProjectDetails'
-import { Favorite } from './Favorite'
-import { MenuItem } from './MenuItem'
-import { Share } from './Share'
+} from 'src/components/ui/organisms/Menu';
+import { useClickOutside } from 'src/hooks/useClickOutside';
+import { useDisclosure } from 'src/shared/chakra';
+import type { Project } from 'src/store/entities/project';
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
+import { ArchiveProject } from './ArchiveProject';
+import { CopyProjectLink } from './CopyProjectLink';
+import { DeleteProject } from './DeleteProject';
+import { DuplicateProject } from './DuplicateProject';
+import { EditProjectDetails } from './EditProjectDetails';
+import { Favorite } from './Favorite';
+import { MenuItem } from './MenuItem';
+import { Share } from './Share';
 
 type Props = {
-  project: Project
-  onCloseMenu: () => void
-  addFavorite?: boolean
-  removeFavorite?: boolean
-  duplicateProject?: boolean
-  archiveProject?: boolean
-  deleteProject?: boolean
-  editProjectDetails?: boolean
-  copyProjectLink?: boolean
-  share?: boolean
-}
+  project: Project;
+  onCloseMenu: () => void;
+  addFavorite?: boolean;
+  removeFavorite?: boolean;
+  duplicateProject?: boolean;
+  archiveProject?: boolean;
+  deleteProject?: boolean;
+  editProjectDetails?: boolean;
+  copyProjectLink?: boolean;
+  share?: boolean;
+};
 
 export const MenuList: React.FC<Props> = (props) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { ref } = useClickOutside(() => {
-    onClose()
-    props.onCloseMenu()
-  })
+    onClose();
+    props.onCloseMenu();
+  });
   const { projectBaseColor } = useProjectBaseColor(
     props.project.projectBaseColorId,
-  )
+  );
 
   const handleOpen = useCallback(() => {
-    onOpen()
-  }, [onOpen])
+    onOpen();
+  }, [onOpen]);
 
   const handleClose = useCallback(() => {
-    onClose()
-  }, [onClose])
+    onClose();
+  }, [onClose]);
 
   return (
     <Portal>
@@ -129,5 +129,5 @@ export const MenuList: React.FC<Props> = (props) => {
         )}
       </AtomsMenuList>
     </Portal>
-  )
-}
+  );
+};

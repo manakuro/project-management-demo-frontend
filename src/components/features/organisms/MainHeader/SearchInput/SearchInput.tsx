@@ -1,6 +1,6 @@
-import type React from 'react'
-import { memo } from 'react'
-import { InputWithIcon } from 'src/components/ui/molecules'
+import type React from 'react';
+import { memo } from 'react';
+import { InputWithIcon } from 'src/components/ui/molecules';
 
 export const SearchInput: React.FC = memo(() => {
   return (
@@ -10,6 +10,6 @@ export const SearchInput: React.FC = memo(() => {
       borderRadius="full"
       size="sm"
     />
-  )
-})
-SearchInput.displayName = 'SearchInput'
+  );
+});
+SearchInput.displayName = 'SearchInput';

@@ -1,21 +1,21 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { Icon, IconButton, PortalManager } from 'src/components/ui/atoms'
-import { Menu, MenuButton } from 'src/components/ui/organisms/Menu'
-import { useDisclosure } from 'src/shared/chakra'
-import { MenuList } from './MenuList'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { Icon, IconButton, PortalManager } from 'src/components/ui/atoms';
+import { Menu, MenuButton } from 'src/components/ui/organisms/Menu';
+import { useDisclosure } from 'src/shared/chakra';
+import { MenuList } from './MenuList';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const MoreActionIconButton: React.FC<Props> = memo<Props>((props) => {
-  const { projectId } = props
-  const { onClose, onOpen, isOpen } = useDisclosure()
+  const { projectId } = props;
+  const { onClose, onOpen, isOpen } = useDisclosure();
 
   const handleOpen = useCallback(() => {
-    onOpen()
-  }, [onOpen])
+    onOpen();
+  }, [onOpen]);
 
   return (
     <PortalManager zIndex={1500}>
@@ -39,6 +39,6 @@ export const MoreActionIconButton: React.FC<Props> = memo<Props>((props) => {
         {isOpen && <MenuList onCloseMenu={onClose} projectId={projectId} />}
       </Menu>
     </PortalManager>
-  )
-})
-MoreActionIconButton.displayName = 'MoreActionIconButton'
+  );
+});
+MoreActionIconButton.displayName = 'MoreActionIconButton';

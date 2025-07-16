@@ -1,6 +1,6 @@
-import { useRecoilCallback } from 'recoil'
-import { workspaceState } from '../atom'
-import type { WorkspaceResponse } from '../type'
+import { useRecoilCallback } from 'recoil';
+import { workspaceState } from '../atom';
+import type { WorkspaceResponse } from '../type';
 
 export const useWorkspaceResponse = () => {
   const setWorkspace = useRecoilCallback(
@@ -14,13 +14,13 @@ export const useWorkspaceResponse = () => {
               ...prev.description,
               ...data?.description,
             },
-          }
-        })
+          };
+        });
       },
     [],
-  )
+  );
 
   return {
     setWorkspace,
-  }
-}
+  };
+};

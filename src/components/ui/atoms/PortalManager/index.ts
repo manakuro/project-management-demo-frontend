@@ -1,1 +1,1 @@
-export * from './PortalManager'
+export * from './PortalManager';

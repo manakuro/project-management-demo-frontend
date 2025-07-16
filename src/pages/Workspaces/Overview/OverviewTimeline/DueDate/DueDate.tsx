@@ -1,16 +1,16 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex } from 'src/components/ui/atoms'
-import { useTimelineStyle } from '../useTimelineStyle'
-import { ProjectDueDate } from './ProjectDueDate'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex } from 'src/components/ui/atoms';
+import { useTimelineStyle } from '../useTimelineStyle';
+import { ProjectDueDate } from './ProjectDueDate';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const DueDate: React.FC<Props> = memo<Props>((props) => {
-  const { projectId } = props
-  const { timelineBorderStyle } = useTimelineStyle()
+  const { projectId } = props;
+  const { timelineBorderStyle } = useTimelineStyle();
 
   return (
     <Flex position="relative" pb={8} {...timelineBorderStyle}>
@@ -20,6 +20,6 @@ export const DueDate: React.FC<Props> = memo<Props>((props) => {
         iconStyle={{ size: 'xl', ml: '1px' }}
       />
     </Flex>
-  )
-})
-DueDate.displayName = 'DueDate'
+  );
+});
+DueDate.displayName = 'DueDate';

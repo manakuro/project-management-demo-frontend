@@ -1,5 +1,5 @@
-import type { Item } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem'
-import { Detail } from './Detail'
+import type { Item } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem';
+import { Detail } from './Detail';
 
 export const guide4Item: Item = {
   id: 4,
@@ -19,4 +19,4 @@ export const guide4Item: Item = {
   done: false,
   time: '2 min read',
   detailComponent: <Detail />,
-}
+};

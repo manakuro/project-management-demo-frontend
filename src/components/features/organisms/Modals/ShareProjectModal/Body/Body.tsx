@@ -1,52 +1,52 @@
-import type React from 'react'
-import { memo, useCallback, useState } from 'react'
-import { Flex } from 'src/components/ui/atoms'
-import { ModalBody } from 'src/components/ui/organisms/Modal'
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
+import { Flex } from 'src/components/ui/atoms';
+import { ModalBody } from 'src/components/ui/organisms/Modal';
 import {
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
-} from 'src/components/ui/organisms/Tabs'
-import { type Index, MEMBERS_INDEX, SHARE_INDEX } from '../types'
-import { useShareProjectModal } from '../useShareProjectModal'
-import { Members } from './Members'
-import { Share } from './Share'
+} from 'src/components/ui/organisms/Tabs';
+import { type Index, MEMBERS_INDEX, SHARE_INDEX } from '../types';
+import { useShareProjectModal } from '../useShareProjectModal';
+import { Members } from './Members';
+import { Share } from './Share';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const Body: React.FC<Props> = memo<Props>((props) => {
-  const { projectId } = props
-  const { tabIndex, setMembersTab, setShareTab } = useShareProjectModal()
-  const [loadingTabContent, setLoadingTabContent] = useState<boolean>(true)
+  const { projectId } = props;
+  const { tabIndex, setMembersTab, setShareTab } = useShareProjectModal();
+  const [loadingTabContent, setLoadingTabContent] = useState<boolean>(true);
 
   const setLoading = useCallback(() => {
-    setLoadingTabContent(true)
+    setLoadingTabContent(true);
     setTimeout(() => {
-      setLoadingTabContent(false)
-    }, 200)
-  }, [])
+      setLoadingTabContent(false);
+    }, 200);
+  }, []);
 
   const handleTabsChange = useCallback(
     async (index: number) => {
       switch (index as Index) {
         case SHARE_INDEX: {
-          setLoading()
-          setShareTab()
-          break
+          setLoading();
+          setShareTab();
+          break;
         }
         case MEMBERS_INDEX: {
-          setLoading()
-          setMembersTab()
-          break
+          setLoading();
+          setMembersTab();
+          break;
         }
       }
     },
     [setLoading, setMembersTab, setShareTab],
-  )
+  );
 
   return (
     <ModalBody p={0}>
@@ -85,6 +85,6 @@ export const Body: React.FC<Props> = memo<Props>((props) => {
         </Flex>
       </Tabs>
     </ModalBody>
-  )
-})
-Body.displayName = 'Body'
+  );
+});
+Body.displayName = 'Body';

@@ -1,1 +1,1 @@
-export * from './TagChip'
+export * from './TagChip';

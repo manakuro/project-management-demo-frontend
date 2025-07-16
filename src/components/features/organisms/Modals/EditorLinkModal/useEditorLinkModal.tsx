@@ -1,18 +1,18 @@
-import { useCallback } from 'react'
-import { atom, useRecoilState, useResetRecoilState } from 'recoil'
+import { useCallback } from 'react';
+import { atom, useRecoilState, useResetRecoilState } from 'recoil';
 
 const key = (str: string) =>
-  `src/components/organisms/Modals/EditorLinkModal/useEditorLinkModal/${str}`
+  `src/components/organisms/Modals/EditorLinkModal/useEditorLinkModal/${str}`;
 
 type State = {
-  isOpen: boolean
-  x: number
-  y: number
+  isOpen: boolean;
+  x: number;
+  y: number;
   input: {
-    url: string
-  }
-  callback: (input: State['input']) => void
-}
+    url: string;
+  };
+  callback: (input: State['input']) => void;
+};
 
 const modalState = atom<State>({
   key: key('editorLinkModalState'),
@@ -25,17 +25,17 @@ const modalState = atom<State>({
     },
     callback: () => {},
   },
-})
+});
 
 export const useEditorLinkModal = () => {
-  const [state, setState] = useRecoilState(modalState)
-  const resetState = useResetRecoilState(modalState)
+  const [state, setState] = useRecoilState(modalState);
+  const resetState = useResetRecoilState(modalState);
 
   const onClose = useCallback(() => {
-    setState((s) => ({ ...s, isOpen: false }))
-    state.callback(state.input)
-    resetState()
-  }, [resetState, setState, state])
+    setState((s) => ({ ...s, isOpen: false }));
+    state.callback(state.input);
+    resetState();
+  }, [resetState, setState, state]);
 
   const onOpen = useCallback(
     ({ x, y }: { x: State['x']; y: State['y'] }) => {
@@ -46,23 +46,23 @@ export const useEditorLinkModal = () => {
           x,
           y,
           callback: resolve,
-        }))
-      })
+        }));
+      });
     },
     [setState],
-  )
+  );
 
   const setInput = useCallback(
     (input: State['input']) => {
-      setState((s) => ({ ...s, input }))
+      setState((s) => ({ ...s, input }));
     },
     [setState],
-  )
+  );
 
   return {
     ...state,
     setInput,
     onOpen,
     onClose,
-  }
-}
+  };
+};

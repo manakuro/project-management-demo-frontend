@@ -1,9 +1,9 @@
-import type React from 'react'
-import { Tooltip } from 'src/components/ui/molecules'
+import type React from 'react';
+import { Tooltip } from 'src/components/ui/molecules';
 
 type Props = {
-  label: string
-}
+  label: string;
+};
 
 export const Container: React.FCWithChildren<Props> = (props) => {
   return (
@@ -16,5 +16,5 @@ export const Container: React.FCWithChildren<Props> = (props) => {
     >
       {props.children}
     </Tooltip>
-  )
-}
+  );
+};

@@ -1,9 +1,9 @@
-import type { NodeSpec } from 'prosemirror-model'
+import type { NodeSpec } from 'prosemirror-model';
 
 // adapted from prosemirror-schema-basic
 
 interface Attrs {
-  cite?: string
+  cite?: string;
 }
 
 export const blockquote: NodeSpec = {
@@ -23,8 +23,8 @@ export const blockquote: NodeSpec = {
     },
   ],
   toDOM: (node) => {
-    const { cite } = node.attrs as Attrs
+    const { cite } = node.attrs as Attrs;
 
-    return ['blockquote', { cite }, 0]
+    return ['blockquote', { cite }, 0];
   },
-}
+};

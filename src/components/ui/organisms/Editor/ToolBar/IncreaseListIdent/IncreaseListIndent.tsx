@@ -1,16 +1,16 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Icon, type IconButtonProps } from 'src/components/ui/atoms'
-import type { TooltipProps } from 'src/components/ui/molecules'
-import { useIncreaseListIndent } from 'src/shared/prosemirror/hooks'
-import { BaseButton } from '../BaseButton'
+import type React from 'react';
+import { memo } from 'react';
+import { Icon, type IconButtonProps } from 'src/components/ui/atoms';
+import type { TooltipProps } from 'src/components/ui/molecules';
+import { useIncreaseListIndent } from 'src/shared/prosemirror/hooks';
+import { BaseButton } from '../BaseButton';
 
 type Props = Omit<IconButtonProps, 'aria-label' | 'isActive'> & {
-  tooltip?: Omit<TooltipProps, 'children'>
-}
+  tooltip?: Omit<TooltipProps, 'children'>;
+};
 
 export const IncreaseListIndent: React.FC<Props> = memo<Props>((props) => {
-  const { action, isEnable } = useIncreaseListIndent()
+  const { action, isEnable } = useIncreaseListIndent();
 
   return (
     <BaseButton
@@ -25,6 +25,6 @@ export const IncreaseListIndent: React.FC<Props> = memo<Props>((props) => {
         ...props.tooltip,
       }}
     />
-  )
-})
-IncreaseListIndent.displayName = 'IncreaseListIndent'
+  );
+});
+IncreaseListIndent.displayName = 'IncreaseListIndent';

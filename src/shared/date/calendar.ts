@@ -1,4 +1,4 @@
-import { dateFns } from 'src/shared/dateFns'
+import { dateFns } from 'src/shared/dateFns';
 
 export const getCalendarMatrix = (start: Date, end: Date) => {
   const matrix = dateFns.eachWeekOfInterval(
@@ -7,12 +7,12 @@ export const getCalendarMatrix = (start: Date, end: Date) => {
       end: dateFns.endOfMonth(end),
     },
     { weekStartsOn: 1 },
-  )
+  );
 
   return matrix.map((weekDay) =>
     dateFns.eachDayOfInterval({
       start: dateFns.startOfISOWeek(weekDay),
       end: dateFns.endOfISOWeek(weekDay),
     }),
-  )
-}
+  );
+};

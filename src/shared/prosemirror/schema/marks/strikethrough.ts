@@ -1,4 +1,4 @@
-import type { MarkSpec } from 'prosemirror-model'
+import type { MarkSpec } from 'prosemirror-model';
 
 export const strikethrough: MarkSpec = {
   parseDOM: [
@@ -7,4 +7,4 @@ export const strikethrough: MarkSpec = {
     { style: 'text-decoration-line=line-through' },
   ],
   toDOM: () => ['span', { style: 'text-decoration-line:line-through' }],
-}
+};

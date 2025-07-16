@@ -1,19 +1,19 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { useTasksTask } from 'src/components/features/organisms/Tasks/hooks'
-import { Button, type ButtonProps, Icon } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { useTasksTask } from 'src/components/features/organisms/Tasks/hooks';
+import { Button, type ButtonProps, Icon } from 'src/components/ui/atoms';
 
 type Props = {
-  taskSectionId: string
-} & ButtonProps
+  taskSectionId: string;
+} & ButtonProps;
 
 export const AddTask: React.FC<Props> = memo<Props>((props) => {
-  const { taskSectionId, ...rest } = props
-  const { addTask } = useTasksTask()
+  const { taskSectionId, ...rest } = props;
+  const { addTask } = useTasksTask();
 
   const handleClick = useCallback(() => {
-    addTask({ taskSectionId })
-  }, [addTask, taskSectionId])
+    addTask({ taskSectionId });
+  }, [addTask, taskSectionId]);
 
   return (
     <Button
@@ -27,6 +27,6 @@ export const AddTask: React.FC<Props> = memo<Props>((props) => {
     >
       Add task
     </Button>
-  )
-})
-AddTask.displayName = 'AddTask'
+  );
+});
+AddTask.displayName = 'AddTask';

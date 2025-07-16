@@ -1,17 +1,17 @@
-import { keyframes } from '@chakra-ui/react'
-import type React from 'react'
-import { memo, useMemo } from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
+import { keyframes } from '@chakra-ui/react';
+import type React from 'react';
+import { memo, useMemo } from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
 
 type Props = FlexProps & {
-  isTransitioning: boolean
-}
+  isTransitioning: boolean;
+};
 
 const shimmer = keyframes({
   '100%': {
     transform: 'translateX(100%)',
   },
-})
+});
 
 export const TaskDoneTransition: React.FC<Props> = memo<Props>((props) => {
   const bgGradient = useMemo<FlexProps>(() => {
@@ -33,9 +33,9 @@ export const TaskDoneTransition: React.FC<Props> = memo<Props>((props) => {
           animation: `${shimmer} 2s`,
           animationIterationCount: 1,
         },
-      }
-    return {}
-  }, [props.isTransitioning])
+      };
+    return {};
+  }, [props.isTransitioning]);
 
   return (
     <Flex
@@ -55,6 +55,6 @@ export const TaskDoneTransition: React.FC<Props> = memo<Props>((props) => {
       overflow="hidden"
       {...bgGradient}
     />
-  )
-})
-TaskDoneTransition.displayName = 'TaskDoneTransition'
+  );
+});
+TaskDoneTransition.displayName = 'TaskDoneTransition';

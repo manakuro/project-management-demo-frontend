@@ -1,25 +1,25 @@
-import isEqual from 'lodash-es/isEqual'
-import { useMemo } from 'react'
-import { useRecoilCallback } from 'recoil'
-import { useTaskFeedLikeCreatedSubscription as useSubscription } from 'src/graphql/hooks'
-import { uuid } from 'src/shared/uuid'
-import type { TaskFeedLikeCreatedSubscriptionResponse as Response } from '../type'
-import { useTaskFeedLikeResponse } from './useTaskFeedLikeResponse'
+import isEqual from 'lodash-es/isEqual';
+import { useMemo } from 'react';
+import { useRecoilCallback } from 'recoil';
+import { useTaskFeedLikeCreatedSubscription as useSubscription } from 'src/graphql/hooks';
+import { uuid } from 'src/shared/uuid';
+import type { TaskFeedLikeCreatedSubscriptionResponse as Response } from '../type';
+import { useTaskFeedLikeResponse } from './useTaskFeedLikeResponse';
 
-export const TASK_FEED_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID = uuid()
+export const TASK_FEED_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID = uuid();
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
-let previousData: any
+let previousData: any;
 
 type Props = {
-  workspaceId: string
-}
+  workspaceId: string;
+};
 export const useTaskFeedLikeCreatedSubscription = (props: Props) => {
   const skipSubscription = useMemo(() => {
-    return !props.workspaceId
-  }, [props.workspaceId])
+    return !props.workspaceId;
+  }, [props.workspaceId]);
 
-  const { setTaskFeedLikes } = useTaskFeedLikeResponse()
+  const { setTaskFeedLikes } = useTaskFeedLikeResponse();
 
   useSubscription({
     variables: {
@@ -33,23 +33,23 @@ export const useTaskFeedLikeCreatedSubscription = (props: Props) => {
           previousData?.subscriptionData?.data,
         )
       )
-        return
+        return;
 
       if (data.subscriptionData.data)
-        setBySubscription(data.subscriptionData.data)
-      previousData = data
+        setBySubscription(data.subscriptionData.data);
+      previousData = data;
     },
     skip: skipSubscription,
-  })
+  });
 
   const setBySubscription = useRecoilCallback(
     () => async (response: Response) => {
-      const taskFeedLikeCreated = response.taskFeedLikeCreated
+      const taskFeedLikeCreated = response.taskFeedLikeCreated;
 
-      if (__DEV__) console.log('TaskFeedLike created!: ')
+      if (__DEV__) console.log('TaskFeedLike created!: ');
 
-      setTaskFeedLikes([taskFeedLikeCreated])
+      setTaskFeedLikes([taskFeedLikeCreated]);
     },
     [setTaskFeedLikes],
-  )
-}
+  );
+};

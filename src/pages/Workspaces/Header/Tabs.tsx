@@ -1,12 +1,12 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, Heading } from 'src/components/ui/atoms'
-import { Tab, TabList } from 'src/components/ui/organisms/Tabs'
-import { useWorkspace } from 'src/store/entities/workspace'
-import { FavoriteButton } from './FavoriteButton'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, Heading } from 'src/components/ui/atoms';
+import { Tab, TabList } from 'src/components/ui/organisms/Tabs';
+import { useWorkspace } from 'src/store/entities/workspace';
+import { FavoriteButton } from './FavoriteButton';
 
 export const Tabs: React.FC = memo(() => {
-  const { workspace } = useWorkspace()
+  const { workspace } = useWorkspace();
 
   return (
     <Flex ml={4} mt={3} flex={1}>
@@ -28,6 +28,6 @@ export const Tabs: React.FC = memo(() => {
         </TabList>
       </Flex>
     </Flex>
-  )
-})
-Tabs.displayName = 'Tabs'
+  );
+});
+Tabs.displayName = 'Tabs';

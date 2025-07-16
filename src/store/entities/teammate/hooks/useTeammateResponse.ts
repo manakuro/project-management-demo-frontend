@@ -1,6 +1,6 @@
-import { useRecoilCallback } from 'recoil'
-import { teammateState } from '../atom'
-import type { Teammate } from '../type'
+import { useRecoilCallback } from 'recoil';
+import { teammateState } from '../atom';
+import type { Teammate } from '../type';
 
 export const useTeammateResponse = () => {
   const setTeammates = useRecoilCallback(
@@ -11,14 +11,14 @@ export const useTeammateResponse = () => {
             return {
               ...prev,
               ...t,
-            }
-          })
-        })
+            };
+          });
+        });
       },
     [],
-  )
+  );
 
   return {
     setTeammates,
-  }
-}
+  };
+};

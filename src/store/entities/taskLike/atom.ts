@@ -1,8 +1,8 @@
-import { selectorFamily } from 'recoil'
-import { createState } from 'src/store/util'
-import type { TaskLike } from './type'
+import { selectorFamily } from 'recoil';
+import { createState } from 'src/store/util';
+import type { TaskLike } from './type';
 
-const key = (str: string) => `src/store/entities/taskLike/${str}`
+const key = (str: string) => `src/store/entities/taskLike/${str}`;
 
 export const initialState = (): TaskLike => ({
   id: '',
@@ -11,19 +11,19 @@ export const initialState = (): TaskLike => ({
   workspaceId: '',
   createdAt: '',
   updatedAt: '',
-})
+});
 export const {
   state: taskLikeState,
   listState: taskLikesState,
   idsState: taskLikeIdsState,
-} = createState({ key, initialState })
+} = createState({ key, initialState });
 
 export const taskLikesByTaskIdState = selectorFamily<TaskLike[], string>({
   key: key('taskLikesByTaskIdState'),
   get:
     (taskId: string) =>
     ({ get }) => {
-      const taskLikes = get(taskLikesState)
-      return taskLikes.filter((t) => t.taskId === taskId)
+      const taskLikes = get(taskLikesState);
+      return taskLikes.filter((t) => t.taskId === taskId);
     },
-})
+});

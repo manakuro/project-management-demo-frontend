@@ -1,26 +1,26 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, Portal } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, Portal } from 'src/components/ui/atoms';
 import {
   PopoverContent,
   type PopoverContentProps,
-} from 'src/components/ui/organisms/Popover'
-import { useClickOutside } from 'src/hooks'
-import { useSearchMenuRef } from '../useSearchMenuRef'
+} from 'src/components/ui/organisms/Popover';
+import { useClickOutside } from 'src/hooks';
+import { useSearchMenuRef } from '../useSearchMenuRef';
 
 type Props = PopoverContentProps & {
-  onClose: () => void
-}
+  onClose: () => void;
+};
 
 export const SearchMenuContent: React.FC<Props> = memo<Props>((props) => {
-  const { onClose, children, ...rest } = props
+  const { onClose, children, ...rest } = props;
   const { ref } = useClickOutside(onClose, {
     hasClickedOutside: (e, helpers) => {
-      if (helpers.isContainInPopoverTrigger(e)) return false
-      return true
+      if (helpers.isContainInPopoverTrigger(e)) return false;
+      return true;
     },
-  })
-  const { ref: containerRef } = useSearchMenuRef()
+  });
+  const { ref: containerRef } = useSearchMenuRef();
 
   return (
     <Portal>
@@ -36,6 +36,6 @@ export const SearchMenuContent: React.FC<Props> = memo<Props>((props) => {
         </Flex>
       </PopoverContent>
     </Portal>
-  )
-})
-SearchMenuContent.displayName = 'SearchMenuContent'
+  );
+});
+SearchMenuContent.displayName = 'SearchMenuContent';

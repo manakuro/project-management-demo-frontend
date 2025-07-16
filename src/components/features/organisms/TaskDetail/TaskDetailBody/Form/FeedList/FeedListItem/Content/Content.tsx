@@ -1,18 +1,18 @@
-import { memo } from 'react'
-import { Flex, Stack } from 'src/components/ui/atoms'
-import { useTaskFeedListItemContext } from '../Provider'
-import { ContentAttachment } from './ContentAttachment'
-import { ContentText } from './ContentText'
+import { memo } from 'react';
+import { Flex, Stack } from 'src/components/ui/atoms';
+import { useTaskFeedListItemContext } from '../Provider';
+import { ContentAttachment } from './ContentAttachment';
+import { ContentText } from './ContentText';
 
 export const Content = memo(function Content() {
   return (
     <Flex mt={2} flexDirection="column">
       <Component />
     </Flex>
-  )
-})
+  );
+});
 const Component = memo(function Component() {
-  const { taskFileIds, hasText } = useTaskFeedListItemContext()
+  const { taskFileIds, hasText } = useTaskFeedListItemContext();
 
   return (
     <Stack flexDirection="column" flex={1} spacing={4}>
@@ -23,5 +23,5 @@ const Component = memo(function Component() {
         ))}
       </Stack>
     </Stack>
-  )
-})
+  );
+});

@@ -1,21 +1,21 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { useSubtaskListContext } from 'src/components/features/organisms/Tasks/TasksList/TasksListItem/Provider'
-import { Icon, IconButton } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { useSubtaskListContext } from 'src/components/features/organisms/Tasks/TasksList/TasksListItem/Provider';
+import { Icon, IconButton } from 'src/components/ui/atoms';
 
 type Props = {
-  showExpandIcon: boolean
-}
+  showExpandIcon: boolean;
+};
 export const Component: React.FC<Props> = memo<Props>((props) => {
-  const { isSubtaskExpanded, onToggleExpandSubtask } = useSubtaskListContext()
+  const { isSubtaskExpanded, onToggleExpandSubtask } = useSubtaskListContext();
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation()
-      onToggleExpandSubtask()
+      e.stopPropagation();
+      onToggleExpandSubtask();
     },
     [onToggleExpandSubtask],
-  )
+  );
 
   return (
     <IconButton
@@ -35,6 +35,6 @@ export const Component: React.FC<Props> = memo<Props>((props) => {
       p={0}
       variant="ghost"
     />
-  )
-})
-Component.displayName = 'Component'
+  );
+});
+Component.displayName = 'Component';

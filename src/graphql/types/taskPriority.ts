@@ -1,3 +1,3 @@
-import type { TaskPriorityFragmentFragment } from 'src/graphql/types'
+import type { TaskPriorityFragmentFragment } from 'src/graphql/types';
 
-export type TaskPriorityResponse = NonNullable<TaskPriorityFragmentFragment>
+export type TaskPriorityResponse = NonNullable<TaskPriorityFragmentFragment>;

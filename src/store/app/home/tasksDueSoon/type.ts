@@ -1,3 +1,3 @@
-import type { TaskResponse } from 'src/store/entities/task'
+import type { TaskResponse } from 'src/store/entities/task';
 
-export type TaskDueSoonResponse = TaskResponse
+export type TaskDueSoonResponse = TaskResponse;

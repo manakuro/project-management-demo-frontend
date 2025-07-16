@@ -1,19 +1,19 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { useTasksTask } from 'src/components/features/organisms/Tasks/hooks'
-import { Icon, IconButton } from 'src/components/ui/atoms'
-import { Tooltip } from 'src/components/ui/molecules'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { useTasksTask } from 'src/components/features/organisms/Tasks/hooks';
+import { Icon, IconButton } from 'src/components/ui/atoms';
+import { Tooltip } from 'src/components/ui/molecules';
 
 type Props = {
-  taskSectionId: string
-}
+  taskSectionId: string;
+};
 
 export const AddTaskButton: React.FC<Props> = memo((props) => {
-  const { addTask } = useTasksTask()
+  const { addTask } = useTasksTask();
 
   const handleClick = useCallback(() => {
-    addTask({ taskSectionId: props.taskSectionId })
-  }, [addTask, props.taskSectionId])
+    addTask({ taskSectionId: props.taskSectionId });
+  }, [addTask, props.taskSectionId]);
 
   return (
     <Tooltip
@@ -31,6 +31,6 @@ export const AddTaskButton: React.FC<Props> = memo((props) => {
         onClick={handleClick}
       />
     </Tooltip>
-  )
-})
-AddTaskButton.displayName = 'AddTaskButton'
+  );
+});
+AddTaskButton.displayName = 'AddTaskButton';

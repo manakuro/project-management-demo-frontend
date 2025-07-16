@@ -1,8 +1,8 @@
-import { createState } from 'src/store/util'
-import type { WorkspaceActivity } from './type'
+import { createState } from 'src/store/util';
+import type { WorkspaceActivity } from './type';
 
 const key = (str: string) =>
-  `src/store/app/inbox/activity/workspaceActivities/${str}`
+  `src/store/app/inbox/activity/workspaceActivities/${str}`;
 
 export const initialState = (): WorkspaceActivity => ({
   id: '',
@@ -12,9 +12,9 @@ export const initialState = (): WorkspaceActivity => ({
   teammateId: '',
   createdAt: '',
   updatedAt: '',
-})
+});
 export const {
   state: workspaceActivityState,
   listState: workspaceActivitiesState,
   idsState: workspaceActivityIdsState,
-} = createState({ key, initialState })
+} = createState({ key, initialState });

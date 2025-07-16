@@ -1,25 +1,25 @@
-import type React from 'react'
-import { memo, useEffect, useMemo, useState } from 'react'
-import { useInView } from 'react-intersection-observer'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { transitions } from 'src/styles'
+import type React from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { transitions } from 'src/styles';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const InboxListHeader: React.FC<Props> = memo((props) => {
-  const [isScrolling, setIsScrolling] = useState(false)
-  const { ref, entry } = useInView({ threshold: [1] })
+  const [isScrolling, setIsScrolling] = useState(false);
+  const { ref, entry } = useInView({ threshold: [1] });
 
   const style = useMemo(
     (): FlexProps => ({
       ...(isScrolling ? { boxShadow: 'sm' } : {}),
     }),
     [isScrolling],
-  )
+  );
 
   useEffect(() => {
-    setIsScrolling((entry?.intersectionRatio ?? 0) < 1)
-  }, [entry?.intersectionRatio])
+    setIsScrolling((entry?.intersectionRatio ?? 0) < 1);
+  }, [entry?.intersectionRatio]);
 
   return (
     <Flex
@@ -44,7 +44,7 @@ export const InboxListHeader: React.FC<Props> = memo((props) => {
     >
       {props.children}
     </Flex>
-  )
-})
+  );
+});
 
-InboxListHeader.displayName = 'InboxListHeader'
+InboxListHeader.displayName = 'InboxListHeader';

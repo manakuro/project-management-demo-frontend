@@ -1,9 +1,9 @@
-import { memo, useMemo } from 'react'
-import { useNavigation } from 'src/components/features/organisms/Navigation'
-import { NavListItem } from 'src/components/features/organisms/Navigation/NavListItem'
-import { AccordionIcon } from 'src/components/ui/organisms/Accordion'
-import { useDisabledStyle } from 'src/hooks'
-import { Divider } from '../../Divider'
+import { memo, useMemo } from 'react';
+import { useNavigation } from 'src/components/features/organisms/Navigation';
+import { NavListItem } from 'src/components/features/organisms/Navigation/NavListItem';
+import { AccordionIcon } from 'src/components/ui/organisms/Accordion';
+import { useDisabledStyle } from 'src/hooks';
+import { Divider } from '../../Divider';
 import {
   CustomNavList,
   CustomNavListAccordion,
@@ -12,15 +12,15 @@ import {
   CustomNavListAccordionPanel,
   CustomNavListAccordionPanelList,
   CustomNavListHeader,
-} from '../CustomNavList'
+} from '../CustomNavList';
 
 export const SavedSearches = memo(function SavedSearches() {
-  const { isExpanded } = useNavigation()
-  const { disabledStyle } = useDisabledStyle()
+  const { isExpanded } = useNavigation();
+  const { disabledStyle } = useDisabledStyle();
   const title = useMemo(
     () => (isExpanded ? 'Saved searches' : 'Sav'),
     [isExpanded],
-  )
+  );
   const listItems = useMemo(
     () =>
       [
@@ -31,7 +31,7 @@ export const SavedSearches = memo(function SavedSearches() {
         },
       ] as const,
     [],
-  )
+  );
 
   return (
     <>
@@ -58,5 +58,5 @@ export const SavedSearches = memo(function SavedSearches() {
         </CustomNavListAccordion>
       </CustomNavList>
     </>
-  )
-})
+  );
+});

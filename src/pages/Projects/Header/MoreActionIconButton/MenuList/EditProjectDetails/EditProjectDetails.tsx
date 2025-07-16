@@ -1,30 +1,30 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { useProjectDetailModal } from 'src/components/features/organisms/Modals'
-import { Icon } from 'src/components/ui/atoms'
-import { MenuItem } from 'src/components/ui/organisms/Menu'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { useProjectDetailModal } from 'src/components/features/organisms/Modals';
+import { Icon } from 'src/components/ui/atoms';
+import { MenuItem } from 'src/components/ui/organisms/Menu';
 
 type Props = {
-  onClose: () => void
-  onMouseEnter: () => void
-  projectId: string
-}
+  onClose: () => void;
+  onMouseEnter: () => void;
+  projectId: string;
+};
 
 export const EditProjectDetails: React.FC<Props> = memo<Props>((props) => {
-  const { onMouseEnter, projectId, onClose } = props
-  const { onOpen, setProjectId } = useProjectDetailModal()
+  const { onMouseEnter, projectId, onClose } = props;
+  const { onOpen, setProjectId } = useProjectDetailModal();
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation()
-      e.preventDefault()
-      onClose()
+      e.stopPropagation();
+      e.preventDefault();
+      onClose();
 
-      setProjectId(projectId)
-      onOpen()
+      setProjectId(projectId);
+      onOpen();
     },
     [onClose, setProjectId, projectId, onOpen],
-  )
+  );
 
   return (
     <MenuItem
@@ -34,6 +34,6 @@ export const EditProjectDetails: React.FC<Props> = memo<Props>((props) => {
     >
       Edit Project details
     </MenuItem>
-  )
-})
-EditProjectDetails.displayName = 'EditProjectDetails'
+  );
+});
+EditProjectDetails.displayName = 'EditProjectDetails';

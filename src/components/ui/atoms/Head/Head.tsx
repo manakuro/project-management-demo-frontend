@@ -1,16 +1,16 @@
-import NextHead from 'next/head'
-import type React from 'react'
+import NextHead from 'next/head';
+import type React from 'react';
 
-const defaultDescription = ''
-const defaultOGURL = ''
-const defaultOGImage = ''
+const defaultDescription = '';
+const defaultOGURL = '';
+const defaultOGImage = '';
 
 type Props = {
-  title: string
-  description?: string
-  url?: string
-  ogImage?: string
-}
+  title: string;
+  description?: string;
+  url?: string;
+  ogImage?: string;
+};
 
 export const Head: React.FC<Props> = (props) => (
   <NextHead>
@@ -35,4 +35,4 @@ export const Head: React.FC<Props> = (props) => (
     <meta property="og:image:height" content="630" />
     <meta name="robots" content="noindex" />
   </NextHead>
-)
+);

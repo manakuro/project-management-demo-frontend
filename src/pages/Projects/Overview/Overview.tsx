@@ -1,28 +1,28 @@
-import type React from 'react'
-import { memo } from 'react'
-import { TasksContainer } from 'src/components/features/organisms/Tasks'
-import { Flex } from 'src/components/ui/atoms'
-import { useProjectsPageContext } from 'src/pages/Projects/Provider'
-import { OverviewContent } from './OverviewContent'
-import { OverviewLeft } from './OverviewLeft'
-import { OverviewLeftContent } from './OverviewLeftContent'
-import { OverviewRight } from './OverviewRight'
-import { OverviewRightContent } from './OverviewRightContent'
-import { OverviewTimeline } from './OverviewTimeline'
-import { SkeletonOverview } from './SkeletonOverview'
+import type React from 'react';
+import { memo } from 'react';
+import { TasksContainer } from 'src/components/features/organisms/Tasks';
+import { Flex } from 'src/components/ui/atoms';
+import { useProjectsPageContext } from 'src/pages/Projects/Provider';
+import { OverviewContent } from './OverviewContent';
+import { OverviewLeft } from './OverviewLeft';
+import { OverviewLeftContent } from './OverviewLeftContent';
+import { OverviewRight } from './OverviewRight';
+import { OverviewRightContent } from './OverviewRightContent';
+import { OverviewTimeline } from './OverviewTimeline';
+import { SkeletonOverview } from './SkeletonOverview';
 
 export const Overview: React.FC = memo(() => {
   return (
     <TasksContainer isProjectsPage>
       <Component />
     </TasksContainer>
-  )
-})
+  );
+});
 
 const Component: React.FC = memo(() => {
-  const { tabContentLoading } = useProjectsPageContext()
+  const { tabContentLoading } = useProjectsPageContext();
 
-  if (tabContentLoading) return <SkeletonOverview />
+  if (tabContentLoading) return <SkeletonOverview />;
 
   return (
     <Flex flex={1} h="full" maxW="full">
@@ -37,7 +37,7 @@ const Component: React.FC = memo(() => {
         </OverviewRightContent>
       </OverviewRight>
     </Flex>
-  )
-})
-Component.displayName = 'Component'
-Overview.displayName = 'Overview'
+  );
+});
+Component.displayName = 'Component';
+Overview.displayName = 'Overview';

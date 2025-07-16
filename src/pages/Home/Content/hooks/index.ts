@@ -1,2 +1,2 @@
-export * from './useHomeContentDom'
-export * from './useHomeContentVerticalScroll'
+export * from './useHomeContentDom';
+export * from './useHomeContentVerticalScroll';

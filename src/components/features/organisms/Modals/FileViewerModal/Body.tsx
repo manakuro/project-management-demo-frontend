@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo } from 'react'
+import { memo, useCallback, useMemo } from 'react';
 import {
   Carousel,
   CarouselBody,
@@ -7,27 +7,27 @@ import {
   CarouselRightChevron,
   CarouselThumbnail,
   CarouselThumbnailItem,
-} from 'src/components/ui/organisms/Carousel'
-import { ListItem } from './ListItem'
-import { ThumbnailListItem } from './ThumbnailListItem/ThumbnailListItem'
-import { useFileViewerModal } from './useFileViewerModal'
+} from 'src/components/ui/organisms/Carousel';
+import { ListItem } from './ListItem';
+import { ThumbnailListItem } from './ThumbnailListItem/ThumbnailListItem';
+import { useFileViewerModal } from './useFileViewerModal';
 
 export const Body = memo(function Body() {
-  const { taskFileIds, setState, currentTaskFileId } = useFileViewerModal()
+  const { taskFileIds, setState, currentTaskFileId } = useFileViewerModal();
   const defaultIndex = useMemo(
     () => taskFileIds.indexOf(currentTaskFileId),
     [taskFileIds, currentTaskFileId],
-  )
+  );
 
   const handleChangeCarousel = useCallback(
     (currentIndex: number) => {
       setState((s) => ({
         ...s,
         currentTaskFileId: taskFileIds[currentIndex],
-      }))
+      }));
     },
     [taskFileIds, setState],
-  )
+  );
 
   return (
     <Carousel defaultIndex={defaultIndex} onChange={handleChangeCarousel}>
@@ -48,5 +48,5 @@ export const Body = memo(function Body() {
       <CarouselRightChevron />
       <CarouselLeftChevron />
     </Carousel>
-  )
-})
+  );
+});

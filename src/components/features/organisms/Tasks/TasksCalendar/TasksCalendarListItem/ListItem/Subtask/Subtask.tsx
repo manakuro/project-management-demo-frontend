@@ -1,18 +1,18 @@
-import type React from 'react'
-import { useMemo } from 'react'
-import { Flex, Icon, Text } from 'src/components/ui/atoms'
-import { useSubtaskIds } from 'src/store/entities/task'
+import type React from 'react';
+import { useMemo } from 'react';
+import { Flex, Icon, Text } from 'src/components/ui/atoms';
+import { useSubtaskIds } from 'src/store/entities/task';
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const Subtask: React.FC<Props> = (props) => {
-  const { taskId } = props
-  const { taskIds } = useSubtaskIds(taskId)
-  const size = useMemo(() => taskIds.length, [taskIds.length])
+  const { taskId } = props;
+  const { taskIds } = useSubtaskIds(taskId);
+  const size = useMemo(() => taskIds.length, [taskIds.length]);
 
-  if (!size) return null
+  if (!size) return null;
 
   return (
     <Flex alignItems="center" justifyContent="center">
@@ -21,5 +21,5 @@ export const Subtask: React.FC<Props> = (props) => {
       </Text>
       <Icon icon="flowChildren" color="inherit" />
     </Flex>
-  )
-}
+  );
+};

@@ -1,17 +1,17 @@
-import type React from 'react'
-import { memo } from 'react'
-import { CheckIcon, Flex, type FlexProps, Text } from 'src/components/ui/atoms'
-import type { Mention } from 'src/store/entities/mention'
-import { useProject } from 'src/store/entities/project'
-import { LeftContainer } from './LeftContainer'
-import { RightContainer } from './RightContainer'
+import type React from 'react';
+import { memo } from 'react';
+import { CheckIcon, Flex, type FlexProps, Text } from 'src/components/ui/atoms';
+import type { Mention } from 'src/store/entities/mention';
+import { useProject } from 'src/store/entities/project';
+import { LeftContainer } from './LeftContainer';
+import { RightContainer } from './RightContainer';
 
 type Props = FlexProps & {
-  mention: Mention
-}
+  mention: Mention;
+};
 
 export const Task: React.FC<Props> = memo<Props>((props) => {
-  const { project } = useProject(props.mention.projectId)
+  const { project } = useProject(props.mention.projectId);
 
   return (
     <Flex alignItems="center" flex={1}>
@@ -27,6 +27,6 @@ export const Task: React.FC<Props> = memo<Props>((props) => {
         </Text>
       </RightContainer>
     </Flex>
-  )
-})
-Task.displayName = 'Task'
+  );
+});
+Task.displayName = 'Task';

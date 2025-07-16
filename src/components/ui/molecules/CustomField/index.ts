@@ -1,1 +1,1 @@
-export * from './CustomField'
+export * from './CustomField';

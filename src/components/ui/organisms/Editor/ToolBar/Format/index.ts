@@ -1,1 +1,1 @@
-export * from './Format'
+export * from './Format';

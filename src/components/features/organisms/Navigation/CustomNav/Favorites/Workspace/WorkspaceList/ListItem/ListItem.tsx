@@ -1,27 +1,27 @@
-import { memo, useMemo } from 'react'
+import { memo, useMemo } from 'react';
 import {
   PADDING_X,
   useNavigation,
-} from 'src/components/features/organisms/Navigation'
-import { Flex, Icon, Link, NextLink, Text } from 'src/components/ui/atoms'
-import { useLinkHoverStyle } from 'src/hooks'
+} from 'src/components/features/organisms/Navigation';
+import { Flex, Icon, Link, NextLink, Text } from 'src/components/ui/atoms';
+import { useLinkHoverStyle } from 'src/hooks';
 import {
   ROUTE_WORKSPACES,
   ROUTE_WORKSPACES_OVERVIEW,
   useRouter,
-} from 'src/router'
-import { useWorkspace } from 'src/store/entities/workspace'
-import { WorkspaceMenu } from './WorkspaceMenu'
+} from 'src/router';
+import { useWorkspace } from 'src/store/entities/workspace';
+import { WorkspaceMenu } from './WorkspaceMenu';
 
 export const ListItem = memo(function ListItem() {
-  const { isExpanded } = useNavigation()
-  const { workspace } = useWorkspace()
-  const { _hover, selectedStyle } = useLinkHoverStyle()
-  const { router } = useRouter()
+  const { isExpanded } = useNavigation();
+  const { workspace } = useWorkspace();
+  const { _hover, selectedStyle } = useLinkHoverStyle();
+  const { router } = useRouter();
   const selected = useMemo(
     () => router.asPath.includes(ROUTE_WORKSPACES.href.pathname(workspace.id)),
     [workspace.id, router.asPath],
-  )
+  );
 
   return (
     <NextLink
@@ -55,5 +55,5 @@ export const ListItem = memo(function ListItem() {
         </Flex>
       </Link>
     </NextLink>
-  )
-})
+  );
+});

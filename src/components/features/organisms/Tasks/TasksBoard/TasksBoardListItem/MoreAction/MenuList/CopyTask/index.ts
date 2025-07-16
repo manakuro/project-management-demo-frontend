@@ -1,1 +1,1 @@
-export * from './CopyTask'
+export * from './CopyTask';

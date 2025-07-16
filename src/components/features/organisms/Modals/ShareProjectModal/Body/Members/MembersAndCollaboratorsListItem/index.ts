@@ -1,1 +1,1 @@
-export * from './MembersAndCollaboratorsListItem'
+export * from './MembersAndCollaboratorsListItem';

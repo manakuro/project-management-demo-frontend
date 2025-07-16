@@ -1,4 +1,4 @@
-import { useProjectBaseColor } from './useProjectBaseColor'
+import { useProjectBaseColor } from './useProjectBaseColor';
 
 // TODO: Text color should be managed in database
 const TEXT_COLORS = {
@@ -12,15 +12,15 @@ const TEXT_COLORS = {
   'cyan.400': 'text.base',
   'purple.400': 'white',
   'pink.400': 'white',
-} as const
+} as const;
 
-type Keys = keyof typeof TEXT_COLORS
+type Keys = keyof typeof TEXT_COLORS;
 
 export const useProjectBaseColorText = (projectBaseColorId?: string) => {
-  const { projectBaseColor } = useProjectBaseColor(projectBaseColorId)
-  const textColor = TEXT_COLORS[projectBaseColor.color.color as Keys] || ''
+  const { projectBaseColor } = useProjectBaseColor(projectBaseColorId);
+  const textColor = TEXT_COLORS[projectBaseColor.color.color as Keys] || '';
 
   return {
     textColor,
-  }
-}
+  };
+};

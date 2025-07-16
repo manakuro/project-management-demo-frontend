@@ -1,10 +1,10 @@
-import { useRecoilValue } from 'recoil'
-import { taskPrioritiesState } from '../atom'
+import { useRecoilValue } from 'recoil';
+import { taskPrioritiesState } from '../atom';
 
 export const useTasksPriorities = () => {
-  const taskPriorities = useRecoilValue(taskPrioritiesState)
+  const taskPriorities = useRecoilValue(taskPrioritiesState);
 
   return {
     taskPriorities,
-  }
-}
+  };
+};

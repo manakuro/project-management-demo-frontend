@@ -1,1 +1,1 @@
-export * from './WorkspaceList'
+export * from './WorkspaceList';

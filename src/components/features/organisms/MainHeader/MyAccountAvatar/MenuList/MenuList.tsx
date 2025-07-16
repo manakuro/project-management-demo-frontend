@@ -1,37 +1,37 @@
-import type React from 'react'
-import { useCallback } from 'react'
-import { Flex, Icon, Link, Portal, Text } from 'src/components/ui/atoms'
+import type React from 'react';
+import { useCallback } from 'react';
+import { Flex, Icon, Link, Portal, Text } from 'src/components/ui/atoms';
 import {
   MenuList as AtomsMenuList,
   MenuDivider,
   MenuItem,
-} from 'src/components/ui/organisms/Menu'
-import { useClickOutside } from 'src/hooks/useClickOutside'
-import { useDisclosure } from 'src/shared/chakra'
-import { PopoverMore } from './PopoverMore'
+} from 'src/components/ui/organisms/Menu';
+import { useClickOutside } from 'src/hooks/useClickOutside';
+import { useDisclosure } from 'src/shared/chakra';
+import { PopoverMore } from './PopoverMore';
 
 type Props = {
-  onCloseMenu: () => void
-}
+  onCloseMenu: () => void;
+};
 
 export const MenuList: React.FC<Props> = (props) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { ref } = useClickOutside(() => {
-    handleCloseAll()
-  })
+    handleCloseAll();
+  });
 
   const handleOpen = useCallback(() => {
-    onOpen()
-  }, [onOpen])
+    onOpen();
+  }, [onOpen]);
 
   const handleClose = useCallback(() => {
-    onClose()
-  }, [onClose])
+    onClose();
+  }, [onClose]);
 
   const handleCloseAll = useCallback(() => {
-    onClose()
-    props.onCloseMenu()
-  }, [onClose, props])
+    onClose();
+    props.onCloseMenu();
+  }, [onClose, props]);
 
   return (
     <Portal>
@@ -68,5 +68,5 @@ export const MenuList: React.FC<Props> = (props) => {
         </MenuItem>
       </AtomsMenuList>
     </Portal>
-  )
-}
+  );
+};

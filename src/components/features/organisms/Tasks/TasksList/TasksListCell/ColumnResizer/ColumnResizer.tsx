@@ -1,70 +1,70 @@
-import type React from 'react'
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Flex, type FlexProps, Portal } from 'src/components/ui/atoms'
-import { useHover } from 'src/hooks/useHover'
+import type React from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Flex, type FlexProps, Portal } from 'src/components/ui/atoms';
+import { useHover } from 'src/hooks/useHover';
 
 type Props = Omit<FlexProps, 'onChange'> & {
-  onChange?: (margin: number) => void
-  resizedMinW?: number
-  resizedMaxW?: number
-}
+  onChange?: (margin: number) => void;
+  resizedMinW?: number;
+  resizedMaxW?: number;
+};
 
 export const ColumnResizer: React.FC<Props> = (props) => {
-  const { onChange, resizedMinW, resizedMaxW, ...rest } = props
-  const [dragging, setDragging] = useState<boolean>(false)
-  const { ref, isHovering } = useHover()
-  const [height, setHeight] = useState<number>(0)
-  const [top, setTop] = useState<number>(0)
-  const [left, setLeft] = useState<number>(0)
-  const [translateX, setTranslateX] = useState<number>(0)
-  const [show, setShow] = useState<boolean>(false)
-  const showBorderLine = useMemo(() => dragging, [dragging])
+  const { onChange, resizedMinW, resizedMaxW, ...rest } = props;
+  const [dragging, setDragging] = useState<boolean>(false);
+  const { ref, isHovering } = useHover();
+  const [height, setHeight] = useState<number>(0);
+  const [top, setTop] = useState<number>(0);
+  const [left, setLeft] = useState<number>(0);
+  const [translateX, setTranslateX] = useState<number>(0);
+  const [show, setShow] = useState<boolean>(false);
+  const showBorderLine = useMemo(() => dragging, [dragging]);
 
   const initializeResizerPosition = useCallback(() => {
-    if (!ref.current) return
-    const rect = ref.current?.getBoundingClientRect()
-    setHeight(rect.height)
-    setTop(rect.top)
-    setLeft(rect.left)
-    setTranslateX(0)
-  }, [ref])
+    if (!ref.current) return;
+    const rect = ref.current?.getBoundingClientRect();
+    setHeight(rect.height);
+    setTop(rect.top);
+    setLeft(rect.left);
+    setTranslateX(0);
+  }, [ref]);
 
   const handleStartDrag = useCallback(() => {
-    setDragging(true)
-  }, [])
+    setDragging(true);
+  }, []);
 
   const handleEndDrag = useCallback(() => {
-    setDragging(false)
-    onChange?.(translateX)
-    setShow(false)
-  }, [onChange, translateX])
+    setDragging(false);
+    onChange?.(translateX);
+    setShow(false);
+  }, [onChange, translateX]);
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
-      e.preventDefault()
-      if (!dragging) return
-      if (!ref.current) return
-      const x = e.clientX - left
-      const parentWidth = ref.current?.parentElement?.offsetWidth ?? 0
-      const minX = parentWidth - Number(resizedMinW)
-      if (-x > minX) return
-      if (resizedMaxW && parentWidth + x > Number(resizedMaxW)) return
+      e.preventDefault();
+      if (!dragging) return;
+      if (!ref.current) return;
+      const x = e.clientX - left;
+      const parentWidth = ref.current?.parentElement?.offsetWidth ?? 0;
+      const minX = parentWidth - Number(resizedMinW);
+      if (-x > minX) return;
+      if (resizedMaxW && parentWidth + x > Number(resizedMaxW)) return;
 
-      setTranslateX(x)
+      setTranslateX(x);
     },
     [dragging, left, ref, resizedMaxW, resizedMinW],
-  )
+  );
 
   const handleMouseLeave = useCallback(() => {
-    setShow(false)
-  }, [])
+    setShow(false);
+  }, []);
 
   useEffect(() => {
     if (isHovering) {
-      initializeResizerPosition()
-      setShow(true)
+      initializeResizerPosition();
+      setShow(true);
     }
-  }, [isHovering, initializeResizerPosition])
+  }, [isHovering, initializeResizerPosition]);
 
   return (
     <>
@@ -116,5 +116,5 @@ export const ColumnResizer: React.FC<Props> = (props) => {
         </Portal>
       )}
     </>
-  )
-}
+  );
+};

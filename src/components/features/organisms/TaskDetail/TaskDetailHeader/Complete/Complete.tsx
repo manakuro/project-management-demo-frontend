@@ -1,19 +1,19 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { Button, CheckIcon } from 'src/components/ui/atoms'
-import { useTask } from 'src/store/entities/task'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { Button, CheckIcon } from 'src/components/ui/atoms';
+import { useTask } from 'src/store/entities/task';
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const Complete: React.FC<Props> = memo<Props>((props) => {
-  const { taskId } = props
-  const { task, setTask } = useTask(taskId)
+  const { taskId } = props;
+  const { task, setTask } = useTask(taskId);
 
   const handleToggleComplete = useCallback(async () => {
-    await setTask({ completed: !task.completed })
-  }, [setTask, task.completed])
+    await setTask({ completed: !task.completed });
+  }, [setTask, task.completed]);
 
   if (task.completed)
     return (
@@ -27,7 +27,7 @@ export const Complete: React.FC<Props> = memo<Props>((props) => {
       >
         Completed
       </Button>
-    )
+    );
 
   return (
     <Button
@@ -39,6 +39,6 @@ export const Complete: React.FC<Props> = memo<Props>((props) => {
     >
       Mark complete
     </Button>
-  )
-})
-Complete.displayName = 'Complete'
+  );
+});
+Complete.displayName = 'Complete';

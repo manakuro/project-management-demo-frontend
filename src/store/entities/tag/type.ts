@@ -1,3 +1,3 @@
-import type { TagResponse } from 'src/graphql/types/tag'
+import type { TagResponse } from 'src/graphql/types/tag';
 
-export type Tag = TagResponse
+export type Tag = TagResponse;

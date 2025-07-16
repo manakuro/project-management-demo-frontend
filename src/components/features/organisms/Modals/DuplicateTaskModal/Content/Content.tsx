@@ -1,6 +1,6 @@
-import { Form, Formik, type FormikConfig } from 'formik'
-import type React from 'react'
-import { memo, useCallback, useMemo } from 'react'
+import { Form, Formik, type FormikConfig } from 'formik';
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import {
   CheckboxField,
   Divider,
@@ -8,37 +8,37 @@ import {
   Stack,
   SubmitButton,
   TextField,
-} from 'src/components/ui/atoms'
+} from 'src/components/ui/atoms';
 import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
-} from 'src/components/ui/organisms/Modal'
-import { useTask } from 'src/store/entities/task'
-import { Label } from './Label'
+} from 'src/components/ui/organisms/Modal';
+import { useTask } from 'src/store/entities/task';
+import { Label } from './Label';
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 
 type Values = {
-  name: string
-  includeOption: string[]
-}
+  name: string;
+  includeOption: string[];
+};
 
-const INCLUDE_OPTION_TASK_DESCRIPTION = '1'
-const INCLUDE_OPTION_ASSIGNEE = '2'
-const INCLUDE_OPTION_SUBTASKS = '3'
-const INCLUDE_OPTION_TAGS = '4'
-const INCLUDE_OPTION_COLLABORATORS = '5'
-const INCLUDE_OPTION_PROJECTS = '6'
-const INCLUDE_OPTION_DUE_DATE = '7'
-const INCLUDE_OPTION_PARENT_TASK = '8'
+const INCLUDE_OPTION_TASK_DESCRIPTION = '1';
+const INCLUDE_OPTION_ASSIGNEE = '2';
+const INCLUDE_OPTION_SUBTASKS = '3';
+const INCLUDE_OPTION_TAGS = '4';
+const INCLUDE_OPTION_COLLABORATORS = '5';
+const INCLUDE_OPTION_PROJECTS = '6';
+const INCLUDE_OPTION_DUE_DATE = '7';
+const INCLUDE_OPTION_PARENT_TASK = '8';
 
 export const Content: React.FC<Props> = memo((props) => {
-  const { task } = useTask(props.taskId)
+  const { task } = useTask(props.taskId);
   const initialValues = useMemo(
     () => ({
       name: `Duplicate of ${task.name}`,
@@ -53,11 +53,11 @@ export const Content: React.FC<Props> = memo((props) => {
       ],
     }),
     [task.name],
-  )
+  );
 
   const handleSubmit = useCallback((values: Values) => {
-    console.log('values: ', values)
-  }, [])
+    console.log('values: ', values);
+  }, []);
 
   return (
     <Formik
@@ -132,15 +132,15 @@ export const Content: React.FC<Props> = memo((props) => {
         </ModalContent>
       </Form>
     </Formik>
-  )
-})
+  );
+});
 
 const validate: FormikConfig<Values>['validate'] = (values) => {
-  const errors: Partial<Values> = {}
+  const errors: Partial<Values> = {};
   if (!values.name) {
-    errors.name = 'Task Name Required'
+    errors.name = 'Task Name Required';
   }
 
-  return errors
-}
-Content.displayName = 'Content'
+  return errors;
+};
+Content.displayName = 'Content';

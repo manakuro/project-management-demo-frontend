@@ -1,1 +1,1 @@
-export * from './TasksProjects'
+export * from './TasksProjects';

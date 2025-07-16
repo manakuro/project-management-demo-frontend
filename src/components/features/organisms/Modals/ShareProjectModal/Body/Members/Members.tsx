@@ -1,27 +1,27 @@
-import type React from 'react'
-import { memo, useMemo } from 'react'
-import { Flex, Text } from 'src/components/ui/atoms'
-import { useLinkStyle } from 'src/hooks'
-import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate'
-import { BodyHeader } from '../BodyHeader'
-import { BodyStack } from '../BodyStack'
-import { MemberListItem } from './MemberListItem'
-import { MembersAndCollaboratorsListItem } from './MembersAndCollaboratorsListItem'
+import type React from 'react';
+import { memo, useMemo } from 'react';
+import { Flex, Text } from 'src/components/ui/atoms';
+import { useLinkStyle } from 'src/hooks';
+import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate';
+import { BodyHeader } from '../BodyHeader';
+import { BodyStack } from '../BodyStack';
+import { MemberListItem } from './MemberListItem';
+import { MembersAndCollaboratorsListItem } from './MembersAndCollaboratorsListItem';
 
 type Props = {
-  projectId: string
-  loading: boolean
-  onSetShareTab: () => void
-}
+  projectId: string;
+  loading: boolean;
+  onSetShareTab: () => void;
+};
 
 export const Members: React.FC<Props> = memo<Props>((props) => {
-  const { projectId, onSetShareTab } = props
-  const { teammateIds } = useTeammateIdsByProjectId(projectId)
+  const { projectId, onSetShareTab } = props;
+  const { teammateIds } = useTeammateIdsByProjectId(projectId);
   const headerText = useMemo(
     () => `${teammateIds.length} members`,
     [teammateIds.length],
-  )
-  const { style } = useLinkStyle()
+  );
+  const { style } = useLinkStyle();
 
   return (
     <BodyStack flex={1}>
@@ -45,6 +45,6 @@ export const Members: React.FC<Props> = memo<Props>((props) => {
         ))}
       </Flex>
     </BodyStack>
-  )
-})
-Members.displayName = 'Members'
+  );
+});
+Members.displayName = 'Members';

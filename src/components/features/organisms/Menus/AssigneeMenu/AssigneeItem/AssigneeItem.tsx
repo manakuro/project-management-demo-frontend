@@ -1,26 +1,26 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
-import { type FlexProps, Text } from 'src/components/ui/atoms'
-import { useTeammate } from 'src/store/entities/teammate'
-import { LeftContainer, ListItem, RightContainer } from '../ListItem'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
+import { type FlexProps, Text } from 'src/components/ui/atoms';
+import { useTeammate } from 'src/store/entities/teammate';
+import { LeftContainer, ListItem, RightContainer } from '../ListItem';
 
 type Props = Override<
   FlexProps,
   {
-    onClick: (val: any) => void
+    onClick: (val: any) => void;
   }
 > & {
-  assignee: any
-  index: number
-}
+  assignee: any;
+  index: number;
+};
 
 export const AssigneeItem: React.FC<Props> = memo<Props>(
   function AssigneeItem(props) {
     const handleClick = useCallback(() => {
-      props.onClick(props.assignee)
-    }, [props])
-    const { teammate } = useTeammate('1')
+      props.onClick(props.assignee);
+    }, [props]);
+    const { teammate } = useTeammate('1');
 
     return (
       <ListItem index={props.index} onClick={handleClick}>
@@ -34,6 +34,6 @@ export const AssigneeItem: React.FC<Props> = memo<Props>(
           </Text>
         </RightContainer>
       </ListItem>
-    )
+    );
   },
-)
+);

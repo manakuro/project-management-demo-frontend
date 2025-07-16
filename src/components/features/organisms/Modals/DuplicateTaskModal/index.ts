@@ -1,2 +1,2 @@
-export * from './DuplicateTaskModal'
-export * from './useDuplicateTaskModal'
+export * from './DuplicateTaskModal';
+export * from './useDuplicateTaskModal';

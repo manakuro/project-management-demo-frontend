@@ -1,1 +1,1 @@
-export * from './ConvertToTemplate'
+export * from './ConvertToTemplate';

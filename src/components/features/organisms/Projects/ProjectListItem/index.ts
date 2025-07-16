@@ -1,2 +1,2 @@
-export * from './ProjectListItem'
-export * from './ProjectListItemNew'
+export * from './ProjectListItem';
+export * from './ProjectListItemNew';

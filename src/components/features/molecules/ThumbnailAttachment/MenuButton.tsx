@@ -1,32 +1,32 @@
-import type React from 'react'
-import { useCallback, useMemo } from 'react'
-import { useThumbnailAttachmentContext } from 'src/components/features/molecules/ThumbnailAttachment/Provider'
+import type React from 'react';
+import { useCallback, useMemo } from 'react';
+import { useThumbnailAttachmentContext } from 'src/components/features/molecules/ThumbnailAttachment/Provider';
 import {
   Icon,
   IconButton,
   type IconButtonProps,
   type IconProps,
-} from 'src/components/ui/atoms'
+} from 'src/components/ui/atoms';
 import {
   MenuButton as AtomsMenuButton,
   type MenuButtonProps,
-} from 'src/components/ui/organisms/Menu'
-import { transitions } from 'src/styles'
+} from 'src/components/ui/organisms/Menu';
+import { transitions } from 'src/styles';
 
 type Props = Omit<MenuButtonProps, 'children'> & {
-  light?: IconButtonProps['light']
-  color: IconProps['color']
-}
+  light?: IconButtonProps['light'];
+  color: IconProps['color'];
+};
 
 export const MenuButton: React.FC<Props> = (props) => {
-  const { isHovering, thumbnailMenuOpened } = useThumbnailAttachmentContext()
+  const { isHovering, thumbnailMenuOpened } = useThumbnailAttachmentContext();
   const show = useMemo(
     () => isHovering || thumbnailMenuOpened,
     [isHovering, thumbnailMenuOpened],
-  )
+  );
   const handleClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation()
-  }, [])
+    e.stopPropagation();
+  }, []);
 
   return (
     <AtomsMenuButton
@@ -44,5 +44,5 @@ export const MenuButton: React.FC<Props> = (props) => {
       onClick={handleClick}
       {...props}
     />
-  )
-}
+  );
+};

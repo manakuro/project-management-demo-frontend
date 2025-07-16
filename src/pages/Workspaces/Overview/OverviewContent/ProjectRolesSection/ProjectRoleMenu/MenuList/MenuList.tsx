@@ -1,18 +1,18 @@
-import type React from 'react'
-import { memo } from 'react'
-import { MenuList as AtomsMenuList } from 'src/components/ui/organisms/Menu'
-import { AddRole } from './AddRole'
-import { RemoveFromProject } from './RemoveFromProject'
-import { SetProjectOwner } from './SetProjectOwner'
+import type React from 'react';
+import { memo } from 'react';
+import { MenuList as AtomsMenuList } from 'src/components/ui/organisms/Menu';
+import { AddRole } from './AddRole';
+import { RemoveFromProject } from './RemoveFromProject';
+import { SetProjectOwner } from './SetProjectOwner';
 
 type Props = {
-  projectId: string
-  projectTeammateId: string
-  onOpenPopover: () => void
-}
+  projectId: string;
+  projectTeammateId: string;
+  onOpenPopover: () => void;
+};
 
 export const MenuList: React.FC<Props> = memo<Props>((props) => {
-  const { projectId, projectTeammateId, onOpenPopover } = props
+  const { projectId, projectTeammateId, onOpenPopover } = props;
 
   return (
     <AtomsMenuList>
@@ -30,6 +30,6 @@ export const MenuList: React.FC<Props> = memo<Props>((props) => {
         projectTeammateId={projectTeammateId}
       />
     </AtomsMenuList>
-  )
-})
-MenuList.displayName = 'MenuList'
+  );
+});
+MenuList.displayName = 'MenuList';

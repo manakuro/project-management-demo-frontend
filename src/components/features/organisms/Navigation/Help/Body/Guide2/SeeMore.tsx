@@ -1,5 +1,5 @@
-import type React from 'react'
-import { Section } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem/ListItemDetail'
+import type React from 'react';
+import { Section } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem/ListItemDetail';
 import {
   AspectRatio,
   Box,
@@ -9,8 +9,8 @@ import {
   Stack,
   Text,
   UnorderedList,
-} from 'src/components/ui/atoms'
-import { guide2Item } from './item'
+} from 'src/components/ui/atoms';
+import { guide2Item } from './item';
 
 export const SeeMore: React.FC = () => {
   return (
@@ -147,5 +147,5 @@ export const SeeMore: React.FC = () => {
         </Stack>
       </Section>
     </>
-  )
-}
+  );
+};

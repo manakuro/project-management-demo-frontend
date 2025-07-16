@@ -1,16 +1,16 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Icon as AtomsIcon, Flex, Text } from 'src/components/ui/atoms'
-import { Tooltip } from 'src/components/ui/molecules'
-import type { LikeButtonProps } from './LikeIconButton'
+import type React from 'react';
+import { memo } from 'react';
+import { Icon as AtomsIcon, Flex, Text } from 'src/components/ui/atoms';
+import { Tooltip } from 'src/components/ui/molecules';
+import type { LikeButtonProps } from './LikeIconButton';
 
 type Props = Pick<
   LikeButtonProps,
   'hasAnyoneLiked' | 'label' | 'likeLength' | 'textStyle'
->
+>;
 
 export const Icon: React.FC<Props> = memo<Props>((props) => {
-  const { hasAnyoneLiked, label, likeLength, textStyle } = props
+  const { hasAnyoneLiked, label, likeLength, textStyle } = props;
 
   if (hasAnyoneLiked) {
     return (
@@ -28,9 +28,9 @@ export const Icon: React.FC<Props> = memo<Props>((props) => {
           <AtomsIcon icon="fillLike" color="primary" ml={1} />
         </Flex>
       </Tooltip>
-    )
+    );
   }
 
-  return <AtomsIcon icon="outlineLike" color="text.muted" />
-})
-Icon.displayName = 'Icon'
+  return <AtomsIcon icon="outlineLike" color="text.muted" />;
+});
+Icon.displayName = 'Icon';

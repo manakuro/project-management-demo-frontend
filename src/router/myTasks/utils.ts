@@ -1,27 +1,27 @@
-import type { NextRouter } from 'next/router'
+import type { NextRouter } from 'next/router';
 import {
   ROUTE_MY_TASKS,
   ROUTE_MY_TASKS_BOARD,
   ROUTE_MY_TASKS_CALENDAR,
   ROUTE_MY_TASKS_FILES,
   ROUTE_MY_TASKS_LIST,
-} from './routes'
+} from './routes';
 
 export const isMyTasksListURL = (router: NextRouter): boolean => {
-  return router.asPath === ROUTE_MY_TASKS_LIST.href.pathname()
-}
+  return router.asPath === ROUTE_MY_TASKS_LIST.href.pathname();
+};
 
 export const isMyTasksBoardURL = (router: NextRouter): boolean => {
-  return router.asPath === ROUTE_MY_TASKS_BOARD.href.pathname()
-}
+  return router.asPath === ROUTE_MY_TASKS_BOARD.href.pathname();
+};
 
 export const isMyTasksCalendarURL = (router: NextRouter): boolean => {
-  return router.asPath === ROUTE_MY_TASKS_CALENDAR.href.pathname()
-}
+  return router.asPath === ROUTE_MY_TASKS_CALENDAR.href.pathname();
+};
 
 export const isMyTasksFilesURL = (router: NextRouter): boolean => {
-  return router.asPath === ROUTE_MY_TASKS_FILES.href.pathname()
-}
+  return router.asPath === ROUTE_MY_TASKS_FILES.href.pathname();
+};
 
 // TODO: Should be verified
 export const isMyTasksDetailURL = (router: NextRouter): boolean => {
@@ -33,8 +33,8 @@ export const isMyTasksDetailURL = (router: NextRouter): boolean => {
     !isMyTasksBoardURL(router) &&
     !isMyTasksCalendarURL(router) &&
     !isMyTasksFilesURL(router)
-  )
-}
+  );
+};
 export const isMyTasksDetailURLById = (
   router: NextRouter,
   taskId: string,
@@ -47,18 +47,18 @@ export const isMyTasksDetailURLById = (
     !isMyTasksBoardURL(router) &&
     !isMyTasksCalendarURL(router) &&
     !isMyTasksFilesURL(router)
-  )
-}
+  );
+};
 
 export const getMyTasksDetailId = (router: NextRouter): string =>
   (isMyTasksDetailURL(router) &&
     (router.query?.[ROUTE_MY_TASKS.query]?.[0] as string)) ||
-  ''
+  '';
 
 export const getMyTasksDetailFeedId = (router: NextRouter): string =>
   (isMyTasksDetailURL(router) &&
     (router.query?.[ROUTE_MY_TASKS.query]?.[1] as string)) ||
-  ''
+  '';
 
 export const getMyTasksDetailFeedURL = (
   taskId: string,
@@ -66,5 +66,5 @@ export const getMyTasksDetailFeedURL = (
 ): string => {
   return `${
     window.location.origin
-  }${ROUTE_MY_TASKS.href.pathname()}/${taskId}/${taskFeedId}`
-}
+  }${ROUTE_MY_TASKS.href.pathname()}/${taskId}/${taskFeedId}`;
+};

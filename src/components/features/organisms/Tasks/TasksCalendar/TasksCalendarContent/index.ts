@@ -1,1 +1,1 @@
-export * from './TasksCalendarContent'
+export * from './TasksCalendarContent';

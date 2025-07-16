@@ -1,1 +1,1 @@
-export * from './AddCoverImage'
+export * from './AddCoverImage';

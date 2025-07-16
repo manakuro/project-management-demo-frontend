@@ -1,10 +1,10 @@
-import { useRecoilValue } from 'recoil'
-import { taskActivityIdsState } from '../atom'
+import { useRecoilValue } from 'recoil';
+import { taskActivityIdsState } from '../atom';
 
 export const useTaskActivityIds = () => {
-  const taskActivityIds = useRecoilValue(taskActivityIdsState)
+  const taskActivityIds = useRecoilValue(taskActivityIdsState);
 
   return {
     taskActivityIds,
-  }
-}
+  };
+};

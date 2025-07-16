@@ -1,5 +1,5 @@
-import { MenuIcon as ChakraMenuIcon } from '@chakra-ui/react'
+import { MenuIcon as ChakraMenuIcon } from '@chakra-ui/react';
 
 export const MenuIcon = () => {
-  return <ChakraMenuIcon />
-}
+  return <ChakraMenuIcon />;
+};

@@ -37,8 +37,7 @@
   "javascript": {
     "formatter": {
       "trailingCommas": "all",
-      "quoteStyle": "single",
-      "semicolons": "asNeeded"
+      "quoteStyle": "single"
     },
     "parser": {
       "unsafeParameterDecoratorsEnabled": true

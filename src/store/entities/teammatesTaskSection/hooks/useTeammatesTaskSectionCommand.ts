@@ -1,4 +1,4 @@
-import { useRecoilCallback } from 'recoil'
+import { useRecoilCallback } from 'recoil';
 import {
   useCreateTeammateTaskSectionMutation,
   useDeleteTeammateTaskSectionAndDeleteTasksMutation,
@@ -6,75 +6,75 @@ import {
   useDeleteTeammateTaskSectionMutation,
   useUndeleteTeammateTaskSectionAndDeleteTasksMutation,
   useUndeleteTeammateTaskSectionAndKeepTasksMutation,
-} from 'src/graphql/hooks'
-import { uuid } from 'src/shared/uuid'
-import { useMe } from 'src/store/entities/me'
+} from 'src/graphql/hooks';
+import { uuid } from 'src/shared/uuid';
+import { useMe } from 'src/store/entities/me';
 import {
   type TeammateTaskResponse,
   teammateTaskByTeammateTaskSectionIdState,
   teammateTasksByIdsState,
   useResetTeammateTask,
   useTeammateTaskResponse,
-} from 'src/store/entities/teammateTask'
-import { useWorkspace } from 'src/store/entities/workspace'
-import { initialState, teammatesTaskSectionState } from '../atom'
+} from 'src/store/entities/teammateTask';
+import { useWorkspace } from 'src/store/entities/workspace';
+import { initialState, teammatesTaskSectionState } from '../atom';
 import type {
   DeleteTeammateTaskSectionAndDeleteTasksMutation,
   DeleteTeammateTaskSectionAndKeepTasksMutation,
   TeammateTaskSection,
   TeammateTaskSectionResponse,
-} from '../type'
-import { useResetTeammateTaskSectionSection } from './useResetTeammateTaskSection'
-import { TEAMMATE_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionCreatedSubscription'
-import { TEAMMATE_TASK_SECTION_DELETED_AND_DELETE_TASKS_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedAndDeleteTasksSubscription'
-import { TEAMMATE_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedAndKeepTasksSubscription'
-import { TEAMMATE_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedSubscription'
-import { TEAMMATE_TASK_SECTION_UNDELETED_AND_DELETE_TASKS_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionUndeletedAndDeleteTasksSubscription'
-import { TEAMMATE_TASK_SECTION_UNDELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionUndeletedAndKeepTasksSubscription'
-import { useTeammatesTaskSectionResponse } from './useTeammatesTaskSectionResponse'
-import { useUpsert } from './useUpsert'
+} from '../type';
+import { useResetTeammateTaskSectionSection } from './useResetTeammateTaskSection';
+import { TEAMMATE_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionCreatedSubscription';
+import { TEAMMATE_TASK_SECTION_DELETED_AND_DELETE_TASKS_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedAndDeleteTasksSubscription';
+import { TEAMMATE_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedAndKeepTasksSubscription';
+import { TEAMMATE_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionDeletedSubscription';
+import { TEAMMATE_TASK_SECTION_UNDELETED_AND_DELETE_TASKS_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionUndeletedAndDeleteTasksSubscription';
+import { TEAMMATE_TASK_SECTION_UNDELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionUndeletedAndKeepTasksSubscription';
+import { useTeammatesTaskSectionResponse } from './useTeammatesTaskSectionResponse';
+import { useUpsert } from './useUpsert';
 
 export const useTeammatesTaskSectionCommand = () => {
-  const { upsert } = useUpsert()
-  const { me } = useMe()
-  const { workspace } = useWorkspace()
+  const { upsert } = useUpsert();
+  const { me } = useMe();
+  const { workspace } = useWorkspace();
   const [createTeammateTaskSectionMutation] =
-    useCreateTeammateTaskSectionMutation()
-  const { setTeammatesTaskSections } = useTeammatesTaskSectionResponse()
-  const { resetTeammateTaskSection } = useResetTeammateTaskSectionSection()
+    useCreateTeammateTaskSectionMutation();
+  const { setTeammatesTaskSections } = useTeammatesTaskSectionResponse();
+  const { resetTeammateTaskSection } = useResetTeammateTaskSectionSection();
 
   const [deleteTeammateTaskSectionAndKeepTasksMutation] =
-    useDeleteTeammateTaskSectionAndKeepTasksMutation()
+    useDeleteTeammateTaskSectionAndKeepTasksMutation();
 
   const [deleteTeammateTaskSectionAndDeleteTasksMutation] =
-    useDeleteTeammateTaskSectionAndDeleteTasksMutation()
+    useDeleteTeammateTaskSectionAndDeleteTasksMutation();
 
   const [deleteTeammateTaskSectionMutation] =
-    useDeleteTeammateTaskSectionMutation()
+    useDeleteTeammateTaskSectionMutation();
 
   const [undeleteTeammateTaskSectionAndKeepTasksMutation] =
-    useUndeleteTeammateTaskSectionAndKeepTasksMutation()
+    useUndeleteTeammateTaskSectionAndKeepTasksMutation();
 
   const [undeleteTeammateTaskSectionAndDeleteTasksMutation] =
-    useUndeleteTeammateTaskSectionAndDeleteTasksMutation()
+    useUndeleteTeammateTaskSectionAndDeleteTasksMutation();
 
-  const { setTeammateTask } = useTeammateTaskResponse()
-  const { resetTeammateTasks } = useResetTeammateTask()
+  const { setTeammateTask } = useTeammateTaskResponse();
+  const { resetTeammateTasks } = useResetTeammateTask();
 
   const addTeammatesTaskSection = useRecoilCallback(
     ({ reset }) =>
       async (val?: Partial<TeammateTaskSection>) => {
-        const id = uuid()
+        const id = uuid();
         upsert({
           ...initialState(),
           ...val,
           isNew: true,
           id,
-        })
+        });
 
         const restore = () => {
-          reset(teammatesTaskSectionState(id))
-        }
+          reset(teammatesTaskSectionState(id));
+        };
 
         try {
           const res = await createTeammateTaskSectionMutation({
@@ -86,27 +86,27 @@ export const useTeammatesTaskSectionCommand = () => {
                   TEAMMATE_TASK_SECTION_CREATED_SUBSCRIPTION_REQUEST_ID,
               },
             },
-          })
+          });
           if (res.errors) {
-            restore()
-            return ''
+            restore();
+            return '';
           }
 
-          const addedTeammateTaskSection = res.data?.createTeammateTaskSection
-          if (!addedTeammateTaskSection) return ''
+          const addedTeammateTaskSection = res.data?.createTeammateTaskSection;
+          if (!addedTeammateTaskSection) return '';
 
-          reset(teammatesTaskSectionState(id))
+          reset(teammatesTaskSectionState(id));
           setTeammatesTaskSections([
             {
               ...addedTeammateTaskSection,
               isNew: true,
             },
-          ])
+          ]);
 
-          return addedTeammateTaskSection.id
+          return addedTeammateTaskSection.id;
         } catch (e) {
-          restore()
-          throw e
+          restore();
+          throw e;
         }
       },
     [
@@ -116,22 +116,22 @@ export const useTeammatesTaskSectionCommand = () => {
       upsert,
       workspace.id,
     ],
-  )
+  );
 
   const deleteTaskSectionAndKeepTasks = useRecoilCallback(
     ({ snapshot }) =>
       async (id: string) => {
         const teammateTasks = await snapshot.getPromise(
           teammateTaskByTeammateTaskSectionIdState(id),
-        )
+        );
 
-        resetTeammateTaskSection(id)
+        resetTeammateTaskSection(id);
 
         const restore = async () => {
-          const prev = await snapshot.getPromise(teammatesTaskSectionState(id))
-          setTeammateTask(teammateTasks as TeammateTaskResponse[])
-          setTeammatesTaskSections([prev] as TeammateTaskSectionResponse[])
-        }
+          const prev = await snapshot.getPromise(teammatesTaskSectionState(id));
+          setTeammateTask(teammateTasks as TeammateTaskResponse[]);
+          setTeammatesTaskSections([prev] as TeammateTaskSectionResponse[]);
+        };
 
         try {
           const res = await deleteTeammateTaskSectionAndKeepTasksMutation({
@@ -143,29 +143,29 @@ export const useTeammatesTaskSectionCommand = () => {
                   TEAMMATE_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID,
               },
             },
-          })
+          });
           if (res.errors) {
-            await restore()
-            return
+            await restore();
+            return;
           }
 
           const teammateTaskSection =
             res.data?.deleteTeammateTaskSectionAndKeepTasks
-              .keptTeammateTaskSection
-          if (!teammateTaskSection) return
+              .keptTeammateTaskSection;
+          if (!teammateTaskSection) return;
 
           const newTeammateTasks = teammateTasks.map((t) => ({
             ...t,
             teammateTaskSectionId: teammateTaskSection.id,
-          }))
+          }));
           setTeammateTask(newTeammateTasks as TeammateTaskResponse[], {
             includeTask: false,
-          })
+          });
 
-          return res.data
+          return res.data;
         } catch (e) {
-          await restore()
-          throw e
+          await restore();
+          throw e;
         }
       },
     [
@@ -175,24 +175,24 @@ export const useTeammatesTaskSectionCommand = () => {
       setTeammatesTaskSections,
       workspace.id,
     ],
-  )
+  );
 
   const deleteTaskSectionAndDeleteTasks = useRecoilCallback(
     ({ snapshot }) =>
       async (id: string) => {
         const teammateTasks = await snapshot.getPromise(
           teammateTaskByTeammateTaskSectionIdState(id),
-        )
-        const teammateTaskIds = teammateTasks.map((t) => t.id)
+        );
+        const teammateTaskIds = teammateTasks.map((t) => t.id);
 
-        resetTeammateTaskSection(id)
-        resetTeammateTasks(teammateTaskIds)
+        resetTeammateTaskSection(id);
+        resetTeammateTasks(teammateTaskIds);
 
         const restore = async () => {
-          const prev = await snapshot.getPromise(teammatesTaskSectionState(id))
-          setTeammateTask(teammateTasks as TeammateTaskResponse[])
-          setTeammatesTaskSections([prev] as TeammateTaskSectionResponse[])
-        }
+          const prev = await snapshot.getPromise(teammatesTaskSectionState(id));
+          setTeammateTask(teammateTasks as TeammateTaskResponse[]);
+          setTeammatesTaskSections([prev] as TeammateTaskSectionResponse[]);
+        };
 
         try {
           const res = await deleteTeammateTaskSectionAndDeleteTasksMutation({
@@ -204,16 +204,16 @@ export const useTeammatesTaskSectionCommand = () => {
                   TEAMMATE_TASK_SECTION_DELETED_AND_DELETE_TASKS_SUBSCRIPTION_REQUEST_ID,
               },
             },
-          })
+          });
           if (res.errors) {
-            await restore()
-            return
+            await restore();
+            return;
           }
 
-          return res.data
+          return res.data;
         } catch (e) {
-          await restore()
-          throw e
+          await restore();
+          throw e;
         }
       },
     [
@@ -224,17 +224,17 @@ export const useTeammatesTaskSectionCommand = () => {
       setTeammatesTaskSections,
       workspace.id,
     ],
-  )
+  );
 
   const deleteTeammateTaskSection = useRecoilCallback(
     ({ snapshot }) =>
       async (id: string) => {
-        resetTeammateTaskSection(id)
+        resetTeammateTaskSection(id);
 
         const restore = async () => {
-          const prev = await snapshot.getPromise(teammatesTaskSectionState(id))
-          setTeammatesTaskSections([prev] as TeammateTaskSectionResponse[])
-        }
+          const prev = await snapshot.getPromise(teammatesTaskSectionState(id));
+          setTeammatesTaskSections([prev] as TeammateTaskSectionResponse[]);
+        };
 
         try {
           const res = await deleteTeammateTaskSectionMutation({
@@ -246,13 +246,13 @@ export const useTeammatesTaskSectionCommand = () => {
                   TEAMMATE_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID,
               },
             },
-          })
+          });
           if (res.errors) {
-            await restore()
+            await restore();
           }
         } catch (e) {
-          await restore()
-          throw e
+          await restore();
+          throw e;
         }
       },
     [
@@ -261,17 +261,17 @@ export const useTeammatesTaskSectionCommand = () => {
       setTeammatesTaskSections,
       workspace.id,
     ],
-  )
+  );
 
   const undeleteTaskSectionAndKeepTasks = useRecoilCallback(
     ({ snapshot }) =>
       async (input: DeleteTeammateTaskSectionAndKeepTasksMutation) => {
-        const release = snapshot.retain()
+        const release = snapshot.retain();
 
         const teammateTaskSection =
-          input.deleteTeammateTaskSectionAndKeepTasks.teammateTaskSection
+          input.deleteTeammateTaskSectionAndKeepTasks.teammateTaskSection;
         const teammateTaskIds =
-          input.deleteTeammateTaskSectionAndKeepTasks.teammateTaskIds
+          input.deleteTeammateTaskSectionAndKeepTasks.teammateTaskIds;
 
         try {
           const res = await undeleteTeammateTaskSectionAndKeepTasksMutation({
@@ -287,13 +287,13 @@ export const useTeammatesTaskSectionCommand = () => {
                   TEAMMATE_TASK_SECTION_UNDELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_ID,
               },
             },
-          })
+          });
           if (res.errors) {
-            return
+            return;
           }
 
-          const data = res.data?.undeleteTeammateTaskSectionAndKeepTasks
-          if (!data) return
+          const data = res.data?.undeleteTeammateTaskSectionAndKeepTasks;
+          if (!data) return;
 
           setTeammatesTaskSections(
             [
@@ -305,21 +305,21 @@ export const useTeammatesTaskSectionCommand = () => {
             {
               includeTeammateTask: false,
             },
-          )
+          );
 
           const teammateTasks = await snapshot.getPromise(
             teammateTasksByIdsState(data.teammateTaskIds),
-          )
+          );
 
           const newTeammateTasks = teammateTasks.map((t) => ({
             ...t,
             teammateTaskSectionId: data.teammateTaskSection.id,
-          }))
+          }));
           setTeammateTask(newTeammateTasks as TeammateTaskResponse[], {
             includeTask: false,
-          })
+          });
         } finally {
-          release()
+          release();
         }
       },
     [
@@ -327,15 +327,15 @@ export const useTeammatesTaskSectionCommand = () => {
       setTeammatesTaskSections,
       undeleteTeammateTaskSectionAndKeepTasksMutation,
     ],
-  )
+  );
 
   const undeleteTaskSectionAndDeleteTasks = useRecoilCallback(
     () => async (input: DeleteTeammateTaskSectionAndDeleteTasksMutation) => {
       const teammateTaskSection =
-        input.deleteTeammateTaskSectionAndDeleteTasks.teammateTaskSection
+        input.deleteTeammateTaskSectionAndDeleteTasks.teammateTaskSection;
       const teammateTaskIds =
-        input.deleteTeammateTaskSectionAndDeleteTasks.teammateTaskIds
-      const taskIds = input.deleteTeammateTaskSectionAndDeleteTasks.taskIds
+        input.deleteTeammateTaskSectionAndDeleteTasks.teammateTaskIds;
+      const taskIds = input.deleteTeammateTaskSectionAndDeleteTasks.taskIds;
 
       const res = await undeleteTeammateTaskSectionAndDeleteTasksMutation({
         variables: {
@@ -351,21 +351,21 @@ export const useTeammatesTaskSectionCommand = () => {
               TEAMMATE_TASK_SECTION_UNDELETED_AND_DELETE_TASKS_SUBSCRIPTION_REQUEST_ID,
           },
         },
-      })
-      if (res.errors) return
+      });
+      if (res.errors) return;
 
-      const data = res.data?.undeleteTeammateTaskSectionAndDeleteTasks
-      if (!data) return
+      const data = res.data?.undeleteTeammateTaskSectionAndDeleteTasks;
+      if (!data) return;
 
       setTeammatesTaskSections([data.teammateTaskSection], {
         includeTask: false,
-      })
+      });
     },
     [
       setTeammatesTaskSections,
       undeleteTeammateTaskSectionAndDeleteTasksMutation,
     ],
-  )
+  );
 
   return {
     addTeammatesTaskSection,
@@ -374,5 +374,5 @@ export const useTeammatesTaskSectionCommand = () => {
     deleteTeammateTaskSection,
     undeleteTaskSectionAndKeepTasks,
     undeleteTaskSectionAndDeleteTasks,
-  }
-}
+  };
+};

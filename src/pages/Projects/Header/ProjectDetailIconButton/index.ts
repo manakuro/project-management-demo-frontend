@@ -1,1 +1,1 @@
-export * from './ProjectDetailIconButton'
+export * from './ProjectDetailIconButton';

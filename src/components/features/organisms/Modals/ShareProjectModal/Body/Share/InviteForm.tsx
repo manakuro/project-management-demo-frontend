@@ -1,55 +1,55 @@
-import type React from 'react'
-import { memo, useCallback, useMemo, useState } from 'react'
-import { InviteProjectTeammateMenu } from 'src/components/features/organisms/Menus'
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
-import { AvatarGroup, Flex, Input, Text } from 'src/components/ui/atoms'
-import { useLinkStyle } from 'src/hooks'
-import { useDisclosure } from 'src/shared/chakra'
-import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate'
-import { type Teammate, useTeammate } from 'src/store/entities/teammate'
+import type React from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
+import { InviteProjectTeammateMenu } from 'src/components/features/organisms/Menus';
+import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
+import { AvatarGroup, Flex, Input, Text } from 'src/components/ui/atoms';
+import { useLinkStyle } from 'src/hooks';
+import { useDisclosure } from 'src/shared/chakra';
+import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate';
+import { type Teammate, useTeammate } from 'src/store/entities/teammate';
 
 type Props = {
-  projectId: string
-  onSetMembersTab: () => void
-  onSetInvitedTeammates: (val: Teammate) => void
-}
+  projectId: string;
+  onSetMembersTab: () => void;
+  onSetInvitedTeammates: (val: Teammate) => void;
+};
 
 export const InviteForm: React.FC<Props> = memo<Props>((props) => {
-  const { projectId, onSetMembersTab, onSetInvitedTeammates } = props
-  const popoverDisclosure = useDisclosure()
-  const [value, setValue] = useState<string>('')
-  const { teammateIds } = useTeammateIdsByProjectId(projectId)
-  const { teammate: firstTeammate } = useTeammate(teammateIds[0])
+  const { projectId, onSetMembersTab, onSetInvitedTeammates } = props;
+  const popoverDisclosure = useDisclosure();
+  const [value, setValue] = useState<string>('');
+  const { teammateIds } = useTeammateIdsByProjectId(projectId);
+  const { teammate: firstTeammate } = useTeammate(teammateIds[0]);
   const teammateText = useMemo(() => {
     const teammatesNames =
       teammateIds.length > 2
         ? [firstTeammate.name, `${teammateIds.length} others`]
-        : [firstTeammate.name]
+        : [firstTeammate.name];
 
-    return teammatesNames.join(' and ')
-  }, [firstTeammate.name, teammateIds.length])
-  const { style } = useLinkStyle()
+    return teammatesNames.join(' and ');
+  }, [firstTeammate.name, teammateIds.length]);
+  const { style } = useLinkStyle();
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const val = e.target.value
-      setValue(val)
+      const val = e.target.value;
+      setValue(val);
       if (val) {
-        popoverDisclosure.onOpen()
-        return
+        popoverDisclosure.onOpen();
+        return;
       }
-      popoverDisclosure.onClose()
+      popoverDisclosure.onClose();
     },
     [popoverDisclosure],
-  )
+  );
 
   const handleSelect = useCallback(
     (val: Teammate) => {
-      console.log(val)
-      onSetInvitedTeammates(val)
+      console.log(val);
+      onSetInvitedTeammates(val);
     },
     [onSetInvitedTeammates],
-  )
+  );
 
   return (
     <>
@@ -93,6 +93,6 @@ export const InviteForm: React.FC<Props> = memo<Props>((props) => {
         </Text>
       </Flex>
     </>
-  )
-})
-InviteForm.displayName = 'InviteForm'
+  );
+});
+InviteForm.displayName = 'InviteForm';

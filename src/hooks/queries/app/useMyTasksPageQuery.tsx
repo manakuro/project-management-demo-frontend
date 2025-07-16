@@ -1,17 +1,17 @@
-import { useCallback, useMemo, useState } from 'react'
-import { useMyTasksPageQuery as useQuery } from 'src/graphql/hooks'
-import { useMountedRef } from 'src/hooks'
-import { useMyTasksResponse } from 'src/store/app/myTasks'
-import { useMe } from 'src/store/entities/me'
-import { useWorkspace } from 'src/store/entities/workspace'
+import { useCallback, useMemo, useState } from 'react';
+import { useMyTasksPageQuery as useQuery } from 'src/graphql/hooks';
+import { useMountedRef } from 'src/hooks';
+import { useMyTasksResponse } from 'src/store/app/myTasks';
+import { useMe } from 'src/store/entities/me';
+import { useWorkspace } from 'src/store/entities/workspace';
 
 export const useMyTasksPageQuery = () => {
-  const { me } = useMe()
-  const { workspace } = useWorkspace()
-  const skip = useMemo(() => !me.id || !workspace.id, [me.id, workspace.id])
-  const [loading, setLoading] = useState(true)
-  const { setMyTasks } = useMyTasksResponse()
-  const { mountedRef } = useMountedRef()
+  const { me } = useMe();
+  const { workspace } = useWorkspace();
+  const skip = useMemo(() => !me.id || !workspace.id, [me.id, workspace.id]);
+  const [loading, setLoading] = useState(true);
+  const { setMyTasks } = useMyTasksResponse();
+  const { mountedRef } = useMountedRef();
 
   const { refetch: refetchQuery } = useQuery({
     variables: {
@@ -21,31 +21,31 @@ export const useMyTasksPageQuery = () => {
     fetchPolicy: 'no-cache',
     notifyOnNetworkStatusChange: true,
     onCompleted: (data) => {
-      if (!mountedRef.current) return
+      if (!mountedRef.current) return;
 
-      setMyTasks(data)
-      endLoading()
+      setMyTasks(data);
+      endLoading();
     },
     skip,
-  })
+  });
 
   const startLoading = useCallback(() => {
-    setLoading(true)
-  }, [])
+    setLoading(true);
+  }, []);
 
   const endLoading = useCallback(() => {
-    setLoading(false)
-  }, [])
+    setLoading(false);
+  }, []);
 
   const refetch = useCallback(async () => {
-    startLoading()
+    startLoading();
     setTimeout(async () => {
-      await refetchQuery()
-    })
-  }, [refetchQuery, startLoading])
+      await refetchQuery();
+    });
+  }, [refetchQuery, startLoading]);
 
   return {
     refetch,
     loading,
-  }
-}
+  };
+};

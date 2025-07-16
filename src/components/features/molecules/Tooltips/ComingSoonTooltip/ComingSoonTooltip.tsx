@@ -1,5 +1,5 @@
-import type { PropsWithChildren } from 'react'
-import { Tooltip } from 'src/components/ui/molecules'
+import type { PropsWithChildren } from 'react';
+import { Tooltip } from 'src/components/ui/molecules';
 
 export function ComingSoonTooltip(props: PropsWithChildren) {
   return (
@@ -12,5 +12,5 @@ export function ComingSoonTooltip(props: PropsWithChildren) {
     >
       {props.children}
     </Tooltip>
-  )
+  );
 }

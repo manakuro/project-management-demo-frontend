@@ -1,12 +1,12 @@
-import { type PropsWithChildren, memo } from 'react'
-import { Flex, Image, Logo, Text } from 'src/components/ui/atoms'
-import { useResponsive } from 'src/hooks'
+import { type PropsWithChildren, memo } from 'react';
+import { Flex, Image, Logo, Text } from 'src/components/ui/atoms';
+import { useResponsive } from 'src/hooks';
 
-type Props = PropsWithChildren
-export type MenuProps = Props
+type Props = PropsWithChildren;
+export type MenuProps = Props;
 
 export const Mobile = memo<Props>(function Mobile(props) {
-  const { isMobile } = useResponsive()
+  const { isMobile } = useResponsive();
 
   if (isMobile)
     return (
@@ -38,7 +38,7 @@ export const Mobile = memo<Props>(function Mobile(props) {
           <Logo color="gray.50" w="200px" h="36px" ml="-30px" />
         </Flex>
       </Flex>
-    )
+    );
 
-  return <>{props.children}</>
-})
+  return <>{props.children}</>;
+});

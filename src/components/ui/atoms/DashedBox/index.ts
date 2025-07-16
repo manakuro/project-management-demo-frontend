@@ -1,1 +1,1 @@
-export * from './DashedBox'
+export * from './DashedBox';

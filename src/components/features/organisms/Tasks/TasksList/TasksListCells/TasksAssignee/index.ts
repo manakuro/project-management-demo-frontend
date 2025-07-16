@@ -1,1 +1,1 @@
-export * from './TasksAssignee'
+export * from './TasksAssignee';

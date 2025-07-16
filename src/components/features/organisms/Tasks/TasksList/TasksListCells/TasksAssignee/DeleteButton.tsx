@@ -1,23 +1,23 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { Flex, type FlexProps, Icon } from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
-import { useTaskCommand } from 'src/store/entities/task'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { Flex, type FlexProps, Icon } from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
+import { useTaskCommand } from 'src/store/entities/task';
 
 type Props = FlexProps & {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const DeleteButton: React.FC<Props> = memo<Props>((props) => {
-  const { unassignTask } = useTaskCommand()
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
+  const { unassignTask } = useTaskCommand();
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
   const handleClick = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
-      e.stopPropagation()
-      await unassignTask({ id: props.taskId })
+      e.stopPropagation();
+      await unassignTask({ id: props.taskId });
     },
     [props.taskId, unassignTask],
-  )
+  );
 
   return (
     <Flex
@@ -39,6 +39,6 @@ export const DeleteButton: React.FC<Props> = memo<Props>((props) => {
         onClick={handleClick}
       />
     </Flex>
-  )
-})
-DeleteButton.displayName = 'DeleteButton'
+  );
+});
+DeleteButton.displayName = 'DeleteButton';

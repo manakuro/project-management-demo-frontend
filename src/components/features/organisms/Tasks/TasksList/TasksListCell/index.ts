@@ -1,1 +1,1 @@
-export * from './TasksListCell'
+export * from './TasksListCell';

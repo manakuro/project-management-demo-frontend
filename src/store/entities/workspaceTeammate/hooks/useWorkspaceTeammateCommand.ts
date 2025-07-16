@@ -1,14 +1,14 @@
-import { useRecoilCallback } from 'recoil'
+import { useRecoilCallback } from 'recoil';
 import {
   ownerWorkspaceTeammateByWorkspaceIdState,
   workspaceTeammateByWorkspaceIdAndTeammateIdState,
   workspaceTeammateState,
-} from '../atom'
-import type { WorkspaceTeammate } from '../type'
-import { useUpsert } from './useUpsert'
+} from '../atom';
+import type { WorkspaceTeammate } from '../type';
+import { useUpsert } from './useUpsert';
 
 export const useWorkspaceTeammateCommand = () => {
-  const { upsert } = useUpsert()
+  const { upsert } = useUpsert();
 
   const setWorkspaceTeammateById = useRecoilCallback(
     ({ snapshot }) =>
@@ -18,14 +18,14 @@ export const useWorkspaceTeammateCommand = () => {
       ) => {
         const current = await snapshot.getPromise(
           workspaceTeammateState(workspaceTeammateId),
-        )
+        );
         upsert({
           ...current,
           ...input,
-        })
+        });
       },
     [upsert],
-  )
+  );
 
   const setWorkspaceTeammateByWorkspaceIdAndTeammateId = useRecoilCallback(
     ({ snapshot }) =>
@@ -39,43 +39,43 @@ export const useWorkspaceTeammateCommand = () => {
             workspaceId,
             teammateId,
           }),
-        )
+        );
         upsert({
           ...current,
           ...input,
-        })
+        });
       },
     [upsert],
-  )
+  );
 
   const setOwnerByWorkspaceIdAndTeammateId = useRecoilCallback(
     ({ snapshot }) =>
       async (workspaceId: string, teammateId: string) => {
         const currentOwner = await snapshot.getPromise(
           ownerWorkspaceTeammateByWorkspaceIdState(workspaceId),
-        )
+        );
         upsert({
           ...currentOwner,
           isOwner: false,
-        })
+        });
 
         const nextOwner = await snapshot.getPromise(
           workspaceTeammateByWorkspaceIdAndTeammateIdState({
             workspaceId,
             teammateId,
           }),
-        )
+        );
         upsert({
           ...nextOwner,
           isOwner: true,
-        })
+        });
       },
     [upsert],
-  )
+  );
 
   return {
     setWorkspaceTeammateById,
     setWorkspaceTeammateByWorkspaceIdAndTeammateId,
     setOwnerByWorkspaceIdAndTeammateId,
-  }
-}
+  };
+};

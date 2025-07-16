@@ -1,16 +1,16 @@
-import { memo } from 'react'
-import { Button, Flex, Stack } from 'src/components/ui/atoms'
+import { memo } from 'react';
+import { Button, Flex, Stack } from 'src/components/ui/atoms';
 import {
   AtMention,
   Emoji,
   Format,
-} from 'src/components/ui/organisms/Editor/ToolBar'
-import { transitions } from 'src/styles'
-import { useInputContext } from '../Provider'
-import { Attachment } from './Attachment'
+} from 'src/components/ui/organisms/Editor/ToolBar';
+import { transitions } from 'src/styles';
+import { useInputContext } from '../Provider';
+import { Attachment } from './Attachment';
 
 export const ToolBar = memo(function ToolBar() {
-  const { focused, onSave } = useInputContext()
+  const { focused, onSave } = useInputContext();
 
   return (
     <Flex
@@ -31,5 +31,5 @@ export const ToolBar = memo(function ToolBar() {
         Comment
       </Button>
     </Flex>
-  )
-})
+  );
+});

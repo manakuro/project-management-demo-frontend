@@ -1,3 +1,3 @@
-import type { NextRouter } from 'next/router'
+import type { NextRouter } from 'next/router';
 
-export type Options = Parameters<NextRouter['push']>[2]
+export type Options = Parameters<NextRouter['push']>[2];

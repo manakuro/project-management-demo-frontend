@@ -1,1 +1,1 @@
-export * from './useTaskDetailProjectsInput'
+export * from './useTaskDetailProjectsInput';

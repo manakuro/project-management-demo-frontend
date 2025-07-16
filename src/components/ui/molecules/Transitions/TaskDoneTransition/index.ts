@@ -1,1 +1,1 @@
-export * from './TaskDoneTransition'
+export * from './TaskDoneTransition';

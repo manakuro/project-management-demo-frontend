@@ -1,8 +1,8 @@
-import type React from 'react'
-import { memo, useMemo } from 'react'
-import { useNavigation } from 'src/components/features/organisms/Navigation'
-import { PADDING_X } from 'src/components/features/organisms/Navigation/Navigation'
-import { PopoverProjectMenu } from 'src/components/features/organisms/Popovers'
+import type React from 'react';
+import { memo, useMemo } from 'react';
+import { useNavigation } from 'src/components/features/organisms/Navigation';
+import { PADDING_X } from 'src/components/features/organisms/Navigation/Navigation';
+import { PopoverProjectMenu } from 'src/components/features/organisms/Popovers';
 import {
   ColorBox,
   Flex,
@@ -10,29 +10,29 @@ import {
   Link,
   NextLink,
   Text,
-} from 'src/components/ui/atoms'
-import { useClickableHoverStyle, useLinkHoverStyle } from 'src/hooks'
-import { ROUTE_PROJECTS_LIST, useRouter } from 'src/router'
-import { ROUTE_PROJECTS } from 'src/router/projects'
-import { useProject } from 'src/store/entities/project'
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
+} from 'src/components/ui/atoms';
+import { useClickableHoverStyle, useLinkHoverStyle } from 'src/hooks';
+import { ROUTE_PROJECTS_LIST, useRouter } from 'src/router';
+import { ROUTE_PROJECTS } from 'src/router/projects';
+import { useProject } from 'src/store/entities/project';
+import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
 
 type Props = {
-  projectId: string
-}
+  projectId: string;
+};
 
 export const ListItem: React.FC<Props> = memo((props) => {
-  const { isExpanded } = useNavigation()
-  const { projectId } = props
-  const { project } = useProject(projectId)
-  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId)
-  const { _hover, selectedStyle } = useLinkHoverStyle()
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
-  const { router } = useRouter()
+  const { isExpanded } = useNavigation();
+  const { projectId } = props;
+  const { project } = useProject(projectId);
+  const { projectBaseColor } = useProjectBaseColor(project.projectBaseColorId);
+  const { _hover, selectedStyle } = useLinkHoverStyle();
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
+  const { router } = useRouter();
   const selected = useMemo(
     () => router.asPath.includes(ROUTE_PROJECTS.href.pathname(projectId)),
     [projectId, router.asPath],
-  )
+  );
 
   return (
     <NextLink
@@ -75,6 +75,6 @@ export const ListItem: React.FC<Props> = memo((props) => {
         </Flex>
       </Link>
     </NextLink>
-  )
-})
-ListItem.displayName = 'ListItem'
+  );
+});
+ListItem.displayName = 'ListItem';

@@ -1,1 +1,1 @@
-export * from './TaskParentName'
+export * from './TaskParentName';

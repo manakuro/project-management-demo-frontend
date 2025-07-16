@@ -1,46 +1,46 @@
-import type React from 'react'
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useTasksCalendarContext } from 'src/components/features/organisms/Tasks'
+import type React from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useTasksCalendarContext } from 'src/components/features/organisms/Tasks';
 import {
   Flex,
   type FlexProps,
   Icon,
   Portal,
   Text,
-} from 'src/components/ui/atoms'
+} from 'src/components/ui/atoms';
 import {
   PopoverContent,
   PopoverHeader,
   type PopoverProps,
-} from 'src/components/ui/organisms/Popover'
-import { useClickOutside, useClickableHoverStyle } from 'src/hooks'
-import { dateFns } from 'src/shared/dateFns'
+} from 'src/components/ui/organisms/Popover';
+import { useClickOutside, useClickableHoverStyle } from 'src/hooks';
+import { dateFns } from 'src/shared/dateFns';
 
 type Props = {
-  onClose: () => void
-} & PopoverProps
+  onClose: () => void;
+} & PopoverProps;
 
 export const Content: React.FC<Props> = (props) => {
-  const { onClose } = props
-  const { ref } = useClickOutside(onClose)
-  const { currentDate, setMonth, scrollToDate } = useTasksCalendarContext()
-  const [date, setDate] = useState<Date>(currentDate)
+  const { onClose } = props;
+  const { ref } = useClickOutside(onClose);
+  const { currentDate, setMonth, scrollToDate } = useTasksCalendarContext();
+  const [date, setDate] = useState<Date>(currentDate);
 
   const handleNextYear = useCallback(() => {
-    setDate((s) => dateFns.addYears(s, 1))
-  }, [])
+    setDate((s) => dateFns.addYears(s, 1));
+  }, []);
 
   const handlePrevYear = useCallback(() => {
-    setDate((s) => dateFns.subYears(s, 1))
-  }, [])
+    setDate((s) => dateFns.subYears(s, 1));
+  }, []);
 
   const months = useMemo<Date[]>(() => {
-    const start = dateFns.startOfYear(date)
-    const end = dateFns.endOfYear(date)
-    return dateFns.eachMonthOfInterval({ start, end })
-  }, [date])
+    const start = dateFns.startOfYear(date);
+    const end = dateFns.endOfYear(date);
+    return dateFns.eachMonthOfInterval({ start, end });
+  }, [date]);
 
-  const { clickableHoverTextStyle } = useClickableHoverStyle()
+  const { clickableHoverTextStyle } = useClickableHoverStyle();
 
   const currentMonthStyle = useCallback(
     (val: Date): FlexProps => {
@@ -57,25 +57,25 @@ export const Content: React.FC<Props> = (props) => {
             color: 'primary',
           },
           fontWeight: 'bold',
-        }
+        };
 
-      return {}
+      return {};
     },
     [date],
-  )
+  );
 
   const handleClickMonth = useCallback(
     (date: Date) => {
-      setMonth(date)
-      onClose()
-      scrollToDate(date)
+      setMonth(date);
+      onClose();
+      scrollToDate(date);
     },
     [setMonth, onClose, scrollToDate],
-  )
+  );
 
   useEffect(() => {
-    setDate(currentDate)
-  }, [currentDate])
+    setDate(currentDate);
+  }, [currentDate]);
 
   return (
     <Portal>
@@ -121,5 +121,5 @@ export const Content: React.FC<Props> = (props) => {
         </Flex>
       </PopoverContent>
     </Portal>
-  )
-}
+  );
+};

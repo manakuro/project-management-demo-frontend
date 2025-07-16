@@ -1,31 +1,31 @@
-import type React from 'react'
-import { useCallback, useMemo, useState } from 'react'
-import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks'
-import { useToast } from 'src/hooks'
-import { parseDescription } from 'src/shared/prosemirror/convertDescription'
-import { createProvider } from 'src/shared/react/createProvider'
-import { useTaskFeed, useTaskFeedCommand } from 'src/store/entities/taskFeed'
-import { useTaskFileIdsByTaskFeedId } from 'src/store/entities/taskFile'
-import { useTeammate } from 'src/store/entities/teammate'
-import { Provider as ProviderContainer } from './ProviderContainer'
+import type React from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks';
+import { useToast } from 'src/hooks';
+import { parseDescription } from 'src/shared/prosemirror/convertDescription';
+import { createProvider } from 'src/shared/react/createProvider';
+import { useTaskFeed, useTaskFeedCommand } from 'src/store/entities/taskFeed';
+import { useTaskFileIdsByTaskFeedId } from 'src/store/entities/taskFile';
+import { useTeammate } from 'src/store/entities/teammate';
+import { Provider as ProviderContainer } from './ProviderContainer';
 
 type Props = {
-  taskFeedId: string
-  taskId: string
-  isPinned?: boolean
-}
+  taskFeedId: string;
+  taskId: string;
+  isPinned?: boolean;
+};
 export const Provider: React.FCWithChildren<Props> = (props) => {
   return (
     <ProviderBase {...props}>
       <ProviderContainer {...props}>{props.children}</ProviderContainer>
     </ProviderBase>
-  )
-}
+  );
+};
 
 const useValue = (props: Props) => {
-  const { taskFeed } = useTaskFeed(props.taskFeedId)
-  const { taskFileIds } = useTaskFileIdsByTaskFeedId(props.taskFeedId)
-  const { teammate } = useTeammate(taskFeed.teammateId)
+  const { taskFeed } = useTaskFeed(props.taskFeedId);
+  const { taskFileIds } = useTaskFileIdsByTaskFeedId(props.taskFeedId);
+  const { teammate } = useTeammate(taskFeed.teammateId);
   const {
     onPin,
     onUnpin,
@@ -36,19 +36,19 @@ const useValue = (props: Props) => {
     showFeedOptionMenu,
     showLike,
     onCopyCommentLink,
-  } = useFeedOptionMenu(props)
+  } = useFeedOptionMenu(props);
 
   const { editable, onCancel, onSave, onChangeDescription, description } =
     useEditor(props, {
       setIsEdit,
       isEdit,
-    })
+    });
 
-  const hasTaskFile = useMemo(() => !!taskFileIds.length, [taskFileIds])
+  const hasTaskFile = useMemo(() => !!taskFileIds.length, [taskFileIds]);
   const hasText = useMemo(
     () => !!taskFeed.description.content.length,
     [taskFeed.description],
-  )
+  );
   return {
     taskFeed,
     teammate,
@@ -69,59 +69,59 @@ const useValue = (props: Props) => {
     hasText,
     taskId: props.taskId,
     taskFileIds,
-  }
-}
+  };
+};
 useValue.__PROVIDER__ =
-  'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider/Provider.tsx'
+  'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider/Provider.tsx';
 const { Provider: ProviderBase, useContext: useTaskFeedListItemContext } =
-  createProvider(useValue)
+  createProvider(useValue);
 
 const useFeedOptionMenu = (props: Props) => {
-  const { getTasksDetailFeedURL } = useTasksRouter()
-  const { taskFeed, setTaskFeed } = useTaskFeed(props.taskFeedId)
-  const { deleteTaskFeed, undeleteTaskFeed } = useTaskFeedCommand()
-  const [isEdit, setIsEdit] = useState<boolean>(false)
-  const { toast } = useToast()
+  const { getTasksDetailFeedURL } = useTasksRouter();
+  const { taskFeed, setTaskFeed } = useTaskFeed(props.taskFeedId);
+  const { deleteTaskFeed, undeleteTaskFeed } = useTaskFeedCommand();
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const { toast } = useToast();
 
   const onPin = useCallback(async () => {
-    await setTaskFeed({ isPinned: true })
-  }, [setTaskFeed])
+    await setTaskFeed({ isPinned: true });
+  }, [setTaskFeed]);
 
   const onUnpin = useCallback(async () => {
-    await setTaskFeed({ isPinned: false })
-  }, [setTaskFeed])
+    await setTaskFeed({ isPinned: false });
+  }, [setTaskFeed]);
 
-  const onEdit = useCallback(() => setIsEdit(true), [])
+  const onEdit = useCallback(() => setIsEdit(true), []);
 
   const showFeedOptionMenu = useMemo(
     () => !taskFeed.isFirst,
     [taskFeed.isFirst],
-  )
-  const showLike = useMemo(() => !taskFeed.isFirst, [taskFeed.isFirst])
+  );
+  const showLike = useMemo(() => !taskFeed.isFirst, [taskFeed.isFirst]);
 
   const onDelete = useCallback(async () => {
-    const res = await deleteTaskFeed({ id: taskFeed.id })
-    if (!res) return
+    const res = await deleteTaskFeed({ id: taskFeed.id });
+    if (!res) return;
 
     const handleUndo = async () => {
-      await undeleteTaskFeed(res)
-    }
+      await undeleteTaskFeed(res);
+    };
 
     toast({
       description: 'The comment was deleted',
       undo: handleUndo,
       duration: 10000,
-    })
-  }, [deleteTaskFeed, taskFeed.id, toast, undeleteTaskFeed])
+    });
+  }, [deleteTaskFeed, taskFeed.id, toast, undeleteTaskFeed]);
 
   const onCopyCommentLink = useCallback(async () => {
     await navigator.clipboard.writeText(
       getTasksDetailFeedURL({ taskId: props.taskId, taskFeedId: taskFeed.id }),
-    )
+    );
     toast({
       description: 'The comment link was copied to your clipboard.',
-    })
-  }, [getTasksDetailFeedURL, props.taskId, taskFeed.id, toast])
+    });
+  }, [getTasksDetailFeedURL, props.taskId, taskFeed.id, toast]);
 
   return {
     onPin,
@@ -133,8 +133,8 @@ const useFeedOptionMenu = (props: Props) => {
     isEdit,
     setIsEdit,
     onCopyCommentLink,
-  }
-}
+  };
+};
 
 const useEditor = (
   props: Props,
@@ -142,25 +142,25 @@ const useEditor = (
     setIsEdit,
     isEdit,
   }: {
-    setIsEdit: React.Dispatch<React.SetStateAction<boolean>>
-    isEdit: boolean
+    setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
+    isEdit: boolean;
   },
 ) => {
-  const { setTaskFeed } = useTaskFeed(props.taskFeedId)
-  const [description, setDescription] = useState<string>('')
+  const { setTaskFeed } = useTaskFeed(props.taskFeedId);
+  const [description, setDescription] = useState<string>('');
 
-  const onCancel = useCallback(() => setIsEdit(false), [setIsEdit])
+  const onCancel = useCallback(() => setIsEdit(false), [setIsEdit]);
 
   const onChangeDescription = useCallback((val: string) => {
-    setDescription(val)
-  }, [])
+    setDescription(val);
+  }, []);
 
   const onSave = useCallback(async () => {
-    await setTaskFeed({ description: parseDescription(description) })
-    setIsEdit(false)
-  }, [description, setTaskFeed, setIsEdit])
+    await setTaskFeed({ description: parseDescription(description) });
+    setIsEdit(false);
+  }, [description, setTaskFeed, setIsEdit]);
 
-  const editable = useCallback(() => isEdit, [isEdit])
+  const editable = useCallback(() => isEdit, [isEdit]);
 
   return {
     onCancel,
@@ -168,7 +168,7 @@ const useEditor = (
     editable,
     onChangeDescription,
     description,
-  }
-}
+  };
+};
 
-export { useTaskFeedListItemContext }
+export { useTaskFeedListItemContext };

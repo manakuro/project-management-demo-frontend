@@ -1,1 +1,1 @@
-export * from './useTaskActivityTaskIds'
+export * from './useTaskActivityTaskIds';

@@ -1,1 +1,1 @@
-export * from './ConditionalRender'
+export * from './ConditionalRender';

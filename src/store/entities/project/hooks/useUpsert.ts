@@ -1,6 +1,6 @@
-import { useRecoilCallback } from 'recoil'
-import { projectState } from '../atom'
-import type { Project } from '../type'
+import { useRecoilCallback } from 'recoil';
+import { projectState } from '../atom';
+import type { Project } from '../type';
 
 export const useUpsert = () => {
   const upsert = useRecoilCallback(
@@ -14,13 +14,13 @@ export const useUpsert = () => {
               ...prev.description,
               ...project.description,
             },
-          }
-        })
+          };
+        });
       },
     [],
-  )
+  );
 
   return {
     upsert,
-  }
-}
+  };
+};

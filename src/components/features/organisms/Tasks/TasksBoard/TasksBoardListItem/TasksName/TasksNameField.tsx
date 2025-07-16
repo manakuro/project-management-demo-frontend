@@ -1,34 +1,34 @@
-import type React from 'react'
-import { memo, useCallback, useEffect, useMemo, useState } from 'react'
-import { useTaskDetailDrawerRef } from 'src/components/features/organisms/TaskDetails'
-import { Flex, type InputProps, InputText } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { useTaskDetailDrawerRef } from 'src/components/features/organisms/TaskDetails';
+import { Flex, type InputProps, InputText } from 'src/components/ui/atoms';
 import {
   type UseClickOutsideOptionsHasClickedOutside,
   useClickOutside,
   useDebounce,
-} from 'src/hooks'
-import { useTasksBoardListItemInputContext } from '../Provider'
-import { useTasksBoardListItemElement } from '../index'
+} from 'src/hooks';
+import { useTasksBoardListItemInputContext } from '../Provider';
+import { useTasksBoardListItemElement } from '../index';
 
 type Props = {
-  taskId: string
-  value: string
-  onChange: (val: string) => void
-  isNew?: boolean
-  deleteTask?: () => Promise<void>
-  focusedBorder?: boolean
-} & Omit<InputProps, 'onChange'>
+  taskId: string;
+  value: string;
+  onChange: (val: string) => void;
+  isNew?: boolean;
+  deleteTask?: () => Promise<void>;
+  focusedBorder?: boolean;
+} & Omit<InputProps, 'onChange'>;
 
 export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
-  const [value, setValue] = useState<string>(props.value)
-  const { getTasksBoardListItemElementById } = useTasksBoardListItemElement()
+  const [value, setValue] = useState<string>(props.value);
+  const { getTasksBoardListItemElementById } = useTasksBoardListItemElement();
   const {
     onInputFocus,
     onInputBlur,
     ref: textareaRef,
-  } = useTasksBoardListItemInputContext()
-  const { taskDetailListDetailRef } = useTaskDetailDrawerRef()
-  const autoFocus = useMemo(() => props.isNew, [props.isNew])
+  } = useTasksBoardListItemInputContext();
+  const { taskDetailListDetailRef } = useTaskDetailDrawerRef();
+  const autoFocus = useMemo(() => props.isNew, [props.isNew]);
   const hasClickedOutside =
     useCallback<UseClickOutsideOptionsHasClickedOutside>(
       (e) => {
@@ -38,44 +38,44 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
           ) ??
           false
         )
-          return false
+          return false;
         if (taskDetailListDetailRef?.contains(e.target as Node) ?? false)
-          return false
+          return false;
 
-        return true
+        return true;
       },
       [getTasksBoardListItemElementById, props.taskId, taskDetailListDetailRef],
-    )
+    );
   const { ref, removeEventListener } = useClickOutside(
     async () => {
-      if (!value) await props.deleteTask?.()
+      if (!value) await props.deleteTask?.();
     },
     {
       skip: !props.isNew,
       hasClickedOutside,
     },
-  )
+  );
 
   useEffect(() => {
-    if (!props.isNew) removeEventListener()
-  }, [props.isNew, removeEventListener])
+    if (!props.isNew) removeEventListener();
+  }, [props.isNew, removeEventListener]);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setValue(e.target.value)
+      setValue(e.target.value);
     },
     [],
-  )
+  );
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.code === 'Enter') e.preventDefault()
-  }, [])
+    if (e.code === 'Enter') e.preventDefault();
+  }, []);
 
   useEffect(() => {
-    setValue(props.value)
-  }, [props.value])
+    setValue(props.value);
+  }, [props.value]);
 
-  useDebounce(value, props.onChange, 500)
+  useDebounce(value, props.onChange, 500);
 
   return (
     <Flex position="relative" minW="150px" ref={ref}>
@@ -98,6 +98,6 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
         }}
       />
     </Flex>
-  )
-})
-TasksNameField.displayName = 'TasksNameField'
+  );
+});
+TasksNameField.displayName = 'TasksNameField';

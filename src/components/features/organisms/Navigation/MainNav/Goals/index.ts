@@ -1,1 +1,1 @@
-export * from './Goals'
+export * from './Goals';

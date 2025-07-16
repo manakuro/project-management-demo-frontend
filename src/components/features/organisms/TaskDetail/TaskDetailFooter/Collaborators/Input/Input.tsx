@@ -1,90 +1,90 @@
-import type React from 'react'
-import { memo, useCallback, useState } from 'react'
-import { AssigneeChip } from 'src/components/features/molecules/Chips'
-import { InviteCollaboratorMenu } from 'src/components/features/organisms/Menus'
-import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
+import { AssigneeChip } from 'src/components/features/molecules/Chips';
+import { InviteCollaboratorMenu } from 'src/components/features/organisms/Menus';
+import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
 import {
   Input as AtomsInput,
   Flex,
   Wrap,
   WrapItem,
-} from 'src/components/ui/atoms'
-import { useClickOutside } from 'src/hooks'
+} from 'src/components/ui/atoms';
+import { useClickOutside } from 'src/hooks';
 import {
   type ChakraProps,
   useDisclosure,
   useStyleConfig,
-} from 'src/shared/chakra'
+} from 'src/shared/chakra';
 import {
   useTaskCollaboratorCommand,
   useTeammateIdsByTaskId,
-} from 'src/store/entities/taskCollaborator'
-import type { Teammate } from 'src/store/entities/teammate'
-import { useCollaboratorsContext } from '../Provider'
+} from 'src/store/entities/taskCollaborator';
+import type { Teammate } from 'src/store/entities/teammate';
+import { useCollaboratorsContext } from '../Provider';
 
 export const Input: React.FC = () => {
-  const { isInputFocused } = useCollaboratorsContext()
+  const { isInputFocused } = useCollaboratorsContext();
 
-  if (!isInputFocused) return null
+  if (!isInputFocused) return null;
 
-  return <Component />
-}
+  return <Component />;
+};
 
 type InputStyle = {
-  field: ChakraProps
-  addon: ChakraProps
-}
+  field: ChakraProps;
+  addon: ChakraProps;
+};
 
 const Component: React.FC = memo(() => {
-  const { taskId } = useTaskDetail()
-  const { teammateIds } = useTeammateIdsByTaskId(taskId)
+  const { taskId } = useTaskDetail();
+  const { teammateIds } = useTeammateIdsByTaskId(taskId);
   const { addTaskCollaboratorByTeammate, deleteTaskCollaboratorByTeammate } =
-    useTaskCollaboratorCommand()
-  const { onInputUnfocus } = useCollaboratorsContext()
+    useTaskCollaboratorCommand();
+  const { onInputUnfocus } = useCollaboratorsContext();
   const { ref } = useClickOutside(onInputUnfocus, {
     hasClickedOutside: (e, helpers) => {
-      if (helpers.isContainInPopoverContent(e)) return false
-      return true
+      if (helpers.isContainInPopoverContent(e)) return false;
+      return true;
     },
-  })
-  const style = useStyleConfig('Input') as InputStyle
+  });
+  const style = useStyleConfig('Input') as InputStyle;
 
-  const popoverDisclosure = useDisclosure()
-  const [value, setValue] = useState<string>('')
+  const popoverDisclosure = useDisclosure();
+  const [value, setValue] = useState<string>('');
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const val = e.target.value
-      setValue(val)
+      const val = e.target.value;
+      setValue(val);
       if (val) {
-        popoverDisclosure.onOpen()
-        return
+        popoverDisclosure.onOpen();
+        return;
       }
-      popoverDisclosure.onClose()
+      popoverDisclosure.onClose();
     },
     [popoverDisclosure],
-  )
+  );
 
   const handleSelect = useCallback(
     async (input: Teammate) => {
-      setValue('')
+      setValue('');
       await addTaskCollaboratorByTeammate({
         taskId,
         teammate: input,
-      })
+      });
     },
     [addTaskCollaboratorByTeammate, taskId],
-  )
+  );
 
   const handleDelete = useCallback(
     async (teammateId: string) => {
       await deleteTaskCollaboratorByTeammate({
         taskId,
         teammateId,
-      })
+      });
     },
     [deleteTaskCollaboratorByTeammate, taskId],
-  )
+  );
 
   return (
     <InviteCollaboratorMenu
@@ -127,6 +127,6 @@ const Component: React.FC = memo(() => {
         </Wrap>
       </Flex>
     </InviteCollaboratorMenu>
-  )
-})
-Component.displayName = 'Component'
+  );
+});
+Component.displayName = 'Component';

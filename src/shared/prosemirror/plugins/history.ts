@@ -1,1 +1,1 @@
-export { history } from 'prosemirror-history'
+export { history } from 'prosemirror-history';

@@ -1,9 +1,9 @@
-import { selectorFamily } from 'recoil'
-import { createState } from 'src/store/util'
-import type { WorkspaceActivityTask } from './type'
+import { selectorFamily } from 'recoil';
+import { createState } from 'src/store/util';
+import type { WorkspaceActivityTask } from './type';
 
 const key = (str: string) =>
-  `src/store/app/inbox/activity/workspaceActivityTasks/${str}`
+  `src/store/app/inbox/activity/workspaceActivityTasks/${str}`;
 
 export const initialState = (): WorkspaceActivityTask => ({
   id: '',
@@ -11,12 +11,12 @@ export const initialState = (): WorkspaceActivityTask => ({
   taskId: '',
   createdAt: '',
   updatedAt: '',
-})
+});
 export const {
   state: workspaceActivityTaskState,
   listState: workspaceActivityTasksState,
   idsState: workspaceActivityTaskIdsState,
-} = createState({ key, initialState })
+} = createState({ key, initialState });
 
 export const taskIdsByWorkspaceActivityIdState = selectorFamily<
   string[],
@@ -26,9 +26,9 @@ export const taskIdsByWorkspaceActivityIdState = selectorFamily<
   get:
     (workspaceActivityId: string) =>
     ({ get }) => {
-      const workspaceActivityTasks = get(workspaceActivityTasksState)
+      const workspaceActivityTasks = get(workspaceActivityTasksState);
       return workspaceActivityTasks
         .filter((w) => w.workspaceActivityId === workspaceActivityId)
-        .map((w) => w.taskId)
+        .map((w) => w.taskId);
     },
-})
+});

@@ -1,7 +1,7 @@
-import type React from 'react'
-import { Section } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem/ListItemDetail'
-import { AspectRatio, Box, Link, Stack, Text } from 'src/components/ui/atoms'
-import { guide1Item } from './item'
+import type React from 'react';
+import { Section } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem/ListItemDetail';
+import { AspectRatio, Box, Link, Stack, Text } from 'src/components/ui/atoms';
+import { guide1Item } from './item';
 
 export const SeeMore: React.FC = () => {
   return (
@@ -73,5 +73,5 @@ export const SeeMore: React.FC = () => {
         </Stack>
       </Section>
     </>
-  )
-}
+  );
+};

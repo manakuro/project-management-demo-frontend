@@ -1,15 +1,15 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, InputText } from 'src/components/ui/atoms'
-import { useDescriptionTitleInput } from 'src/hooks/pages/projects'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, InputText } from 'src/components/ui/atoms';
+import { useDescriptionTitleInput } from 'src/hooks/pages/projects';
 
 type Props = {
-  value: string
-  onChange: (val: string) => void
-}
+  value: string;
+  onChange: (val: string) => void;
+};
 
 export const Input: React.FC<Props> = memo<Props>((props) => {
-  const { value, onKeyDown, onChange } = useDescriptionTitleInput(props)
+  const { value, onKeyDown, onChange } = useDescriptionTitleInput(props);
 
   return (
     <Flex flex={1}>
@@ -24,6 +24,6 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
         noBorder
       />
     </Flex>
-  )
-})
-Input.displayName = 'Input'
+  );
+});
+Input.displayName = 'Input';

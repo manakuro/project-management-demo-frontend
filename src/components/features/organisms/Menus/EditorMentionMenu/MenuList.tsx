@@ -1,48 +1,48 @@
-import type React from 'react'
-import { memo, useCallback, useEffect, useState } from 'react'
-import { SearchMenuLoading } from 'src/components/features/organisms/Menus/SearchMenu'
-import { useDebounce } from 'src/hooks'
-import { MentionItem } from './MentionItem'
-import { Empty } from './MentionItem/Empty'
+import type React from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
+import { SearchMenuLoading } from 'src/components/features/organisms/Menus/SearchMenu';
+import { useDebounce } from 'src/hooks';
+import { MentionItem } from './MentionItem';
+import { Empty } from './MentionItem/Empty';
 import {
   type SetValueParam,
   useEditorMentionMenu,
-} from './useEditorMentionMenu'
+} from './useEditorMentionMenu';
 
 export const MenuList: React.FC = memo(() => {
-  const { mentions, setValue, refetch, query } = useEditorMentionMenu()
-  const [hasChangedQuery, setHasChangedQuery] = useState<number>(0)
-  const [searching, setSearching] = useState<boolean>(true)
+  const { mentions, setValue, refetch, query } = useEditorMentionMenu();
+  const [hasChangedQuery, setHasChangedQuery] = useState<number>(0);
+  const [searching, setSearching] = useState<boolean>(true);
 
   useEffect(() => {
-    if (!query) return
-    setSearching(true)
-    setHasChangedQuery((prev) => prev + 1)
-  }, [query])
+    if (!query) return;
+    setSearching(true);
+    setHasChangedQuery((prev) => prev + 1);
+  }, [query]);
 
   const handleDebounce = useCallback(async () => {
-    await refetch({ queryText: query })
+    await refetch({ queryText: query });
 
     // TODO: avoid duplicated rendering.
     setTimeout(() => {
-      setSearching(false)
-    }, 100)
-  }, [query, refetch])
+      setSearching(false);
+    }, 100);
+  }, [query, refetch]);
 
-  useDebounce(hasChangedQuery, handleDebounce, 500)
+  useDebounce(hasChangedQuery, handleDebounce, 500);
 
   const handleClick = useCallback(
     (val: SetValueParam) => {
-      setValue(val)
+      setValue(val);
     },
     [setValue],
-  )
+  );
 
-  if (searching) return <SearchMenuLoading />
+  if (searching) return <SearchMenuLoading />;
   if (!searching && mentions.length === 0)
     return (
       <Empty>Mention a teammate or link to a task, project, or message.</Empty>
-    )
+    );
 
   return (
     <>
@@ -55,6 +55,6 @@ export const MenuList: React.FC = memo(() => {
         />
       ))}
     </>
-  )
-})
-MenuList.displayName = 'MenuList'
+  );
+});
+MenuList.displayName = 'MenuList';

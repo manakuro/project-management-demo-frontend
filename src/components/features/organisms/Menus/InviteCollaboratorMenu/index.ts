@@ -1,1 +1,1 @@
-export * from './InviteCollaboratorMenu'
+export * from './InviteCollaboratorMenu';

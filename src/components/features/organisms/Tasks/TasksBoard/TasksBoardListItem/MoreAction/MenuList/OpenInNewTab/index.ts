@@ -1,1 +1,1 @@
-export * from './OpenInNewTab'
+export * from './OpenInNewTab';

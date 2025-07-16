@@ -1,3 +1,3 @@
-export * from './TasksFiles'
-export * from './TasksFilesContent'
-export * from './TasksFilesList'
+export * from './TasksFiles';
+export * from './TasksFilesContent';
+export * from './TasksFilesList';

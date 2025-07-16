@@ -1,19 +1,19 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, type FlexProps, Text } from 'src/components/ui/atoms'
-import { Content } from './Content'
-import { Info } from './Info'
-import { useListItemStyle } from './hooks'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, type FlexProps, Text } from 'src/components/ui/atoms';
+import { Content } from './Content';
+import { Info } from './Info';
+import { useListItemStyle } from './hooks';
 
 type Props = {
-  dateString: string
-} & FlexProps
+  dateString: string;
+} & FlexProps;
 
 export const TasksCalendarListItem: React.FC<Props> = memo<Props>((props) => {
-  const { dateString, ...rest } = props
+  const { dateString, ...rest } = props;
   const { dateText, borderStyle, textStyle } = useListItemStyle({
     dateString,
-  })
+  });
 
   return (
     <Flex
@@ -44,6 +44,6 @@ export const TasksCalendarListItem: React.FC<Props> = memo<Props>((props) => {
       </Flex>
       <Content dateString={dateString} />
     </Flex>
-  )
-})
-TasksCalendarListItem.displayName = 'TasksCalendarListItem'
+  );
+});
+TasksCalendarListItem.displayName = 'TasksCalendarListItem';

@@ -1,2 +1,2 @@
-export * from './ProjectDetailModal'
-export * from './useProjectDetailModal'
+export * from './ProjectDetailModal';
+export * from './useProjectDetailModal';

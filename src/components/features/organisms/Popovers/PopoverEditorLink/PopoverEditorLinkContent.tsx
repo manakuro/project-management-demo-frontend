@@ -1,9 +1,9 @@
-import type React from 'react'
-import { Flex, Portal } from 'src/components/ui/atoms'
+import type React from 'react';
+import { Flex, Portal } from 'src/components/ui/atoms';
 import {
   PopoverBody,
   PopoverContent,
-} from 'src/components/ui/organisms/Popover'
+} from 'src/components/ui/organisms/Popover';
 
 export const PopoverEditorLinkContent: React.FCWithChildren = (props) => {
   return (
@@ -16,5 +16,5 @@ export const PopoverEditorLinkContent: React.FCWithChildren = (props) => {
         </PopoverBody>
       </PopoverContent>
     </Portal>
-  )
-}
+  );
+};

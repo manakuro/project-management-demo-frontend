@@ -1,4 +1,4 @@
-import type { NodeSpec } from 'prosemirror-model'
+import type { NodeSpec } from 'prosemirror-model';
 
 // from prosemirror-schema-basic
 
@@ -6,4 +6,4 @@ export const horizontalRule: NodeSpec = {
   group: 'block',
   parseDOM: [{ tag: 'hr' }],
   toDOM: () => ['hr'],
-}
+};

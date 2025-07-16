@@ -1,32 +1,32 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import {
   MenuSelect,
   MenuSelectButton,
-} from 'src/components/features/organisms/Menus'
-import { useTasksTask } from 'src/components/features/organisms/Tasks/hooks'
-import { Icon } from 'src/components/ui/atoms'
-import { Tooltip } from 'src/components/ui/molecules'
-import { useClickableHoverStyle } from 'src/hooks'
-import { MenuList } from './MenuList'
+} from 'src/components/features/organisms/Menus';
+import { useTasksTask } from 'src/components/features/organisms/Tasks/hooks';
+import { Icon } from 'src/components/ui/atoms';
+import { Tooltip } from 'src/components/ui/molecules';
+import { useClickableHoverStyle } from 'src/hooks';
+import { MenuList } from './MenuList';
 
 type Props = {
-  taskId: string
-  onOpened?: () => void
-  onClosed?: () => void
-}
+  taskId: string;
+  onOpened?: () => void;
+  onClosed?: () => void;
+};
 
 export const MoveTasksBetweenSections: React.FC<Props> = memo<Props>(
   (props) => {
-    const { clickableHoverLightStyle } = useClickableHoverStyle()
-    const { setTaskSectionId } = useTasksTask()
+    const { clickableHoverLightStyle } = useClickableHoverStyle();
+    const { setTaskSectionId } = useTasksTask();
 
     const handleChange = useCallback(
       async (taskSectionId: string) => {
-        await setTaskSectionId({ taskSectionId, taskId: props.taskId })
+        await setTaskSectionId({ taskSectionId, taskId: props.taskId });
       },
       [props.taskId, setTaskSectionId],
-    )
+    );
 
     return (
       <MenuSelect<string>
@@ -62,7 +62,7 @@ export const MoveTasksBetweenSections: React.FC<Props> = memo<Props>(
           </>
         )}
       </MenuSelect>
-    )
+    );
   },
-)
-MoveTasksBetweenSections.displayName = 'Mark'
+);
+MoveTasksBetweenSections.displayName = 'Mark';

@@ -1,20 +1,20 @@
-import { useMemo } from 'react'
-import { type ChakraProps, useStyleConfig } from 'src/shared/chakra'
+import { useMemo } from 'react';
+import { type ChakraProps, useStyleConfig } from 'src/shared/chakra';
 
 type MenuStyle = {
-  list: ChakraProps
+  list: ChakraProps;
   item: Override<
     ChakraProps,
     {
       _focus: {
-        bg: ChakraProps['bg']
-      }
+        bg: ChakraProps['bg'];
+      };
     }
-  >
-}
+  >;
+};
 
 export const useMenuStyle = () => {
-  const menuStyles = useStyleConfig('Menu') as MenuStyle
+  const menuStyles = useStyleConfig('Menu') as MenuStyle;
 
   return useMemo((): MenuStyle => {
     return {
@@ -37,6 +37,6 @@ export const useMenuStyle = () => {
           bg: 'gray.100',
         },
       },
-    }
-  }, [menuStyles])
-}
+    };
+  }, [menuStyles]);
+};

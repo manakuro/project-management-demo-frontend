@@ -1,27 +1,27 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import type { FlexProps } from 'src/components/ui/atoms'
-import { useTask, useTaskCommand } from 'src/store/entities/task'
-import { TasksNameField } from './TasksNameField'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import type { FlexProps } from 'src/components/ui/atoms';
+import { useTask, useTaskCommand } from 'src/store/entities/task';
+import { TasksNameField } from './TasksNameField';
 
 type Props = FlexProps & {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const Input: React.FC<Props> = memo<Props>((props) => {
-  const { task, setTaskName } = useTask(props.taskId)
-  const { deleteTask } = useTaskCommand()
+  const { task, setTaskName } = useTask(props.taskId);
+  const { deleteTask } = useTaskCommand();
 
   const handleDeleteTask = useCallback(async () => {
-    await deleteTask({ taskId: props.taskId })
-  }, [deleteTask, props.taskId])
+    await deleteTask({ taskId: props.taskId });
+  }, [deleteTask, props.taskId]);
 
   const handleChangeName = useCallback(
     async (val: string) => {
-      await setTaskName(val)
+      await setTaskName(val);
     },
     [setTaskName],
-  )
+  );
 
   return (
     <TasksNameField
@@ -32,6 +32,6 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
       focusedBorder
       flex={1}
     />
-  )
-})
-Input.displayName = 'Input'
+  );
+});
+Input.displayName = 'Input';

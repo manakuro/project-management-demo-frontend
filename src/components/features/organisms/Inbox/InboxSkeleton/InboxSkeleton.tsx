@@ -1,18 +1,18 @@
-import type React from 'react'
+import type React from 'react';
 import {
   InboxHeader,
   InboxHeaderRight,
   InboxLeft,
   InboxListHeader,
   InboxRight,
-} from 'src/components/features/organisms/Inbox'
-import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms'
+} from 'src/components/features/organisms/Inbox';
+import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms';
 
-type Props = FlexProps
+type Props = FlexProps;
 
-const BUTTON_HEIGHT = '28px'
-const TEXT_HEIGHT = '16px'
-const maxH = 72 + 57
+const BUTTON_HEIGHT = '28px';
+const TEXT_HEIGHT = '16px';
+const maxH = 72 + 57;
 export const InboxSkeleton: React.FC<Props> = () => {
   return (
     <Flex flex={1} h="full">
@@ -104,5 +104,5 @@ export const InboxSkeleton: React.FC<Props> = () => {
         </Flex>
       </InboxRight>
     </Flex>
-  )
-}
+  );
+};

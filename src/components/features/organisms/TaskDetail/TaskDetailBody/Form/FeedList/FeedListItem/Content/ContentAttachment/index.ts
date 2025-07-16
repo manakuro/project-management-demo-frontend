@@ -1,1 +1,1 @@
-export * from './ContentAttachment'
+export * from './ContentAttachment';

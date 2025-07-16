@@ -1,7 +1,7 @@
-import { memo } from 'react'
-import { Box, Icon, IconButton, PortalManager } from 'src/components/ui/atoms'
-import { Menu, MenuButton } from 'src/components/ui/organisms/Menu'
-import { MenuList } from './MenuList'
+import { memo } from 'react';
+import { Box, Icon, IconButton, PortalManager } from 'src/components/ui/atoms';
+import { Menu, MenuButton } from 'src/components/ui/organisms/Menu';
+import { MenuList } from './MenuList';
 
 export const MoreActionMenu = memo(function MoreActionMenu() {
   return (
@@ -19,5 +19,5 @@ export const MoreActionMenu = memo(function MoreActionMenu() {
         </Menu>
       </Box>
     </PortalManager>
-  )
-})
+  );
+});

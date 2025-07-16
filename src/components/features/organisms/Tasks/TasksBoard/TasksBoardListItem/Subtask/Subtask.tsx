@@ -1,33 +1,33 @@
-import type React from 'react'
-import { memo, useCallback, useMemo } from 'react'
-import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
-import { SUBTASK_LIST_CONTAINER_ID } from 'src/components/features/organisms/TaskDetail/TaskDetailBody/Form/Subtasks'
-import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks'
-import { IconButton } from 'src/components/ui/atoms'
-import { useSubtaskIds } from 'src/store/entities/task'
-import { Icon } from './Icon'
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
+import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
+import { SUBTASK_LIST_CONTAINER_ID } from 'src/components/features/organisms/TaskDetail/TaskDetailBody/Form/Subtasks';
+import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks';
+import { IconButton } from 'src/components/ui/atoms';
+import { useSubtaskIds } from 'src/store/entities/task';
+import { Icon } from './Icon';
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const Subtask: React.FC<Props> = memo((props) => {
-  const { taskId } = props
-  const { taskIds } = useSubtaskIds(taskId)
-  const size = useMemo(() => taskIds.length, [taskIds.length])
-  const { setScrollId } = useTaskDetail()
-  const { navigateToTaskDetail } = useTasksRouter()
+  const { taskId } = props;
+  const { taskIds } = useSubtaskIds(taskId);
+  const size = useMemo(() => taskIds.length, [taskIds.length]);
+  const { setScrollId } = useTaskDetail();
+  const { navigateToTaskDetail } = useTasksRouter();
 
   const handleClick = useCallback(
     async (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation()
-      setScrollId(SUBTASK_LIST_CONTAINER_ID)
-      await navigateToTaskDetail(taskId)
+      e.stopPropagation();
+      setScrollId(SUBTASK_LIST_CONTAINER_ID);
+      await navigateToTaskDetail(taskId);
     },
     [navigateToTaskDetail, setScrollId, taskId],
-  )
+  );
 
-  if (!size) return null
+  if (!size) return null;
 
   return (
     <IconButton
@@ -38,6 +38,6 @@ export const Subtask: React.FC<Props> = memo((props) => {
       h={5}
       onClick={handleClick}
     />
-  )
-})
-Subtask.displayName = 'Subtask'
+  );
+});
+Subtask.displayName = 'Subtask';

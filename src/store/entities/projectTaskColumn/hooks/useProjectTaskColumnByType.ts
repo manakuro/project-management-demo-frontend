@@ -1,19 +1,19 @@
-import { useRecoilValue } from 'recoil'
-import type { TaskColumnTypeValue } from 'src/store/entities/taskColumn'
-import { projectsTaskColumnByTypeState } from '../atom'
+import { useRecoilValue } from 'recoil';
+import type { TaskColumnTypeValue } from 'src/store/entities/taskColumn';
+import { projectsTaskColumnByTypeState } from '../atom';
 
 export const useProjectTaskColumnByType = ({
   type,
   projectId,
 }: {
-  type: TaskColumnTypeValue
-  projectId: string
+  type: TaskColumnTypeValue;
+  projectId: string;
 }) => {
   const projectsTaskColumn = useRecoilValue(
     projectsTaskColumnByTypeState({ projectId, type }),
-  )
+  );
 
   return {
     projectsTaskColumn,
-  }
-}
+  };
+};

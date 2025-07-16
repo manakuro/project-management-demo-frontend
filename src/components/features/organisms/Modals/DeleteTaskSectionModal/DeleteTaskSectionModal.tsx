@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback } from 'react';
 import {
   Button,
   Divider,
@@ -7,7 +7,7 @@ import {
   RadioGroup,
   Stack,
   Text,
-} from 'src/components/ui/atoms'
+} from 'src/components/ui/atoms';
 import {
   Modal,
   ModalBody,
@@ -16,15 +16,15 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from 'src/components/ui/organisms/Modal'
-import { useDeleteTaskSectionModal } from './useDeleteTaskSectionModal'
+} from 'src/components/ui/organisms/Modal';
+import { useDeleteTaskSectionModal } from './useDeleteTaskSectionModal';
 
 export function DeleteTaskSectionModal() {
-  const { isOpen } = useDeleteTaskSectionModal()
+  const { isOpen } = useDeleteTaskSectionModal();
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
-  return <Component />
+  return <Component />;
 }
 
 export function Component() {
@@ -37,17 +37,17 @@ export function Component() {
     incompleteTaskSize,
     completedTaskSize,
     taskSize,
-  } = useDeleteTaskSectionModal()
-  const [value, setValue] = React.useState('1')
+  } = useDeleteTaskSectionModal();
+  const [value, setValue] = React.useState('1');
 
   const handleDelete = useCallback(async () => {
     if (value === '1') {
-      await onDeleteAndKeepTask()
-      return
+      await onDeleteAndKeepTask();
+      return;
     }
 
-    await onDeleteAndDeleteTask()
-  }, [onDeleteAndDeleteTask, onDeleteAndKeepTask, value])
+    await onDeleteAndDeleteTask();
+  }, [onDeleteAndDeleteTask, onDeleteAndKeepTask, value]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl">
@@ -89,5 +89,5 @@ export function Component() {
         </ModalFooter>
       </ModalContent>
     </Modal>
-  )
+  );
 }

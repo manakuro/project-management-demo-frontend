@@ -1,1 +1,1 @@
-export * from './Strikethrough'
+export * from './Strikethrough';

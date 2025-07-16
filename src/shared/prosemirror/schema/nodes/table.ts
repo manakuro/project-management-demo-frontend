@@ -1,4 +1,4 @@
-import type { NodeSpec } from 'prosemirror-model'
+import type { NodeSpec } from 'prosemirror-model';
 
 // from prosemirror-tables
 
@@ -8,14 +8,14 @@ export const table: NodeSpec = {
   tableRole: 'table',
   parseDOM: [{ tag: 'table' }],
   toDOM: () => ['div', { class: 'table-wrap' }, ['table', 0]],
-}
+};
 
 export const tableRow: NodeSpec = {
   content: 'tableCell+',
   tableRole: 'row',
   parseDOM: [{ tag: 'tr' }],
   toDOM: () => ['tr', 0],
-}
+};
 
 export const tableDataCell: NodeSpec = {
   attrs: {
@@ -28,7 +28,7 @@ export const tableDataCell: NodeSpec = {
   tableRole: 'cell',
   parseDOM: [{ tag: 'td' }],
   toDOM: () => ['td', 0],
-}
+};
 
 export const tableHeaderCell: NodeSpec = {
   attrs: {
@@ -41,4 +41,4 @@ export const tableHeaderCell: NodeSpec = {
   tableRole: 'header_cell',
   parseDOM: [{ tag: 'th' }],
   toDOM: () => ['th', 0],
-}
+};

@@ -1,20 +1,24 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { useProjectDetailModal } from 'src/components/features/organisms/Modals'
-import { Icon, IconButton, type IconButtonProps } from 'src/components/ui/atoms'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { useProjectDetailModal } from 'src/components/features/organisms/Modals';
+import {
+  Icon,
+  IconButton,
+  type IconButtonProps,
+} from 'src/components/ui/atoms';
 
 type Props = {
-  projectId: string
-} & Omit<IconButtonProps, 'aria-label'>
+  projectId: string;
+} & Omit<IconButtonProps, 'aria-label'>;
 
 export const ProjectDetailIconButton: React.FC<Props> = memo<Props>((props) => {
-  const { projectId, ...rest } = props
-  const { onOpen, setProjectId } = useProjectDetailModal()
+  const { projectId, ...rest } = props;
+  const { onOpen, setProjectId } = useProjectDetailModal();
 
   const handleClick = useCallback(() => {
-    setProjectId(projectId)
-    onOpen()
-  }, [onOpen, projectId, setProjectId])
+    setProjectId(projectId);
+    onOpen();
+  }, [onOpen, projectId, setProjectId]);
 
   return (
     <IconButton
@@ -26,7 +30,7 @@ export const ProjectDetailIconButton: React.FC<Props> = memo<Props>((props) => {
       w={6}
       onClick={handleClick}
     />
-  )
-})
+  );
+});
 
-ProjectDetailIconButton.displayName = 'ProjectDetailIconButton'
+ProjectDetailIconButton.displayName = 'ProjectDetailIconButton';

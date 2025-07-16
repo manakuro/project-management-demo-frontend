@@ -1,13 +1,13 @@
-import { useCallback } from 'react'
+import { useCallback } from 'react';
 
-const ID = 'tasksListBody'
+const ID = 'tasksListBody';
 export const useTasksListBody = () => {
   const getTasksListBodyElement = useCallback(() => {
-    return document.getElementById(ID)
-  }, [])
+    return document.getElementById(ID);
+  }, []);
 
   return {
     id: ID,
     getTasksListBodyElement,
-  }
-}
+  };
+};

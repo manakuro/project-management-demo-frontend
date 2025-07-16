@@ -1,21 +1,21 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import {
   IconButton,
   type IconButtonProps,
   type TextProps,
-} from 'src/components/ui/atoms'
-import { Icon } from './Icon'
+} from 'src/components/ui/atoms';
+import { Icon } from './Icon';
 
 type Props = {
-  hasAnyoneLiked: boolean
-  label: string
-  likeLength: number
-  onToggleLike: () => void
-  show?: boolean
-  textStyle?: TextProps
-} & Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>
-export type LikeButtonProps = Props
+  hasAnyoneLiked: boolean;
+  label: string;
+  likeLength: number;
+  onToggleLike: () => void;
+  show?: boolean;
+  textStyle?: TextProps;
+} & Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>;
+export type LikeButtonProps = Props;
 
 export const LikeIconButton: React.FC<Props> = memo<Props>((props) => {
   const {
@@ -26,17 +26,17 @@ export const LikeIconButton: React.FC<Props> = memo<Props>((props) => {
     show,
     textStyle,
     ...rest
-  } = props
+  } = props;
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
-      e.stopPropagation()
-      onToggleLike()
+      e.stopPropagation();
+      onToggleLike();
     },
     [onToggleLike],
-  )
+  );
 
-  if (!props.show) return null
+  if (!props.show) return null;
 
   return (
     <IconButton
@@ -54,6 +54,6 @@ export const LikeIconButton: React.FC<Props> = memo<Props>((props) => {
       onClick={handleClick}
       {...rest}
     />
-  )
-})
-LikeIconButton.displayName = 'LikeIconButton'
+  );
+});
+LikeIconButton.displayName = 'LikeIconButton';

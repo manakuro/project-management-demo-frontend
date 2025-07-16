@@ -1,12 +1,12 @@
-import type React from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
+import type React from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
 
 type Props = FlexProps & {
-  isHovering: boolean
-}
+  isHovering: boolean;
+};
 
 export const Overlay: React.FC<Props> = (props) => {
-  const { isHovering, ...rest } = props
+  const { isHovering, ...rest } = props;
 
   return (
     <Flex
@@ -24,5 +24,5 @@ export const Overlay: React.FC<Props> = (props) => {
       p={1}
       {...rest}
     />
-  )
-}
+  );
+};

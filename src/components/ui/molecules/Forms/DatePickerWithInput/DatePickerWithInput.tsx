@@ -1,5 +1,5 @@
-import type React from 'react'
-import { memo, useCallback, useMemo, useState } from 'react'
+import type React from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import {
   DueDate as AtomsDueDate,
   Box,
@@ -8,20 +8,20 @@ import {
   Flex,
   Icon,
   type IconProps,
-} from 'src/components/ui/atoms'
-import { useHover } from 'src/hooks/useHover'
-import type { ChakraProps } from 'src/shared/chakra'
-import { DeleteButton } from './DeleteButton'
-import { Input } from './Input'
+} from 'src/components/ui/atoms';
+import { useHover } from 'src/hooks/useHover';
+import type { ChakraProps } from 'src/shared/chakra';
+import { DeleteButton } from './DeleteButton';
+import { Input } from './Input';
 
 type Props = {
-  onSelect: (val: Date) => void
-  onDelete: () => void
-  dueDate: string
-  fallback?: string
-  buttonStyle?: ButtonProps
-  iconStyle?: Omit<IconProps, 'icon'>
-}
+  onSelect: (val: Date) => void;
+  onDelete: () => void;
+  dueDate: string;
+  fallback?: string;
+  buttonStyle?: ButtonProps;
+  iconStyle?: Omit<IconProps, 'icon'>;
+};
 
 const focusedStyle: ButtonProps = {
   bg: 'transparent',
@@ -30,29 +30,29 @@ const focusedStyle: ButtonProps = {
   _hover: {
     bg: 'transparent',
   },
-}
+};
 
 export const DatePickerWithInput: React.FC<Props> = memo<Props>((props) => {
-  const { onSelect, dueDate, onDelete, buttonStyle, iconStyle } = props
-  const { ref, isHovering } = useHover()
-  const [focused, setFocused] = useState(false)
-  const hasDueDate = useMemo(() => !!dueDate, [dueDate])
+  const { onSelect, dueDate, onDelete, buttonStyle, iconStyle } = props;
+  const { ref, isHovering } = useHover();
+  const [focused, setFocused] = useState(false);
+  const hasDueDate = useMemo(() => !!dueDate, [dueDate]);
   const colorStyle = useMemo<ChakraProps>(
     () => (hasDueDate ? { color: 'text.base' } : { color: 'text.muted' }),
     [hasDueDate],
-  )
+  );
   const fallback = useMemo(
     () => props.fallback ?? 'No due date',
     [props.fallback],
-  )
+  );
 
   const handleClick = useCallback(() => {
-    setFocused(true)
-  }, [])
+    setFocused(true);
+  }, []);
 
   const handleClickInputOutside = useCallback(() => {
-    setFocused(false)
-  }, [])
+    setFocused(false);
+  }, []);
 
   return (
     <Button
@@ -92,6 +92,6 @@ export const DatePickerWithInput: React.FC<Props> = memo<Props>((props) => {
         </>
       )}
     </Button>
-  )
-})
-DatePickerWithInput.displayName = 'ProjectDueDate'
+  );
+});
+DatePickerWithInput.displayName = 'ProjectDueDate';

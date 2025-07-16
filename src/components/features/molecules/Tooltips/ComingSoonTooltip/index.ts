@@ -1,1 +1,1 @@
-export * from './ComingSoonTooltip'
+export * from './ComingSoonTooltip';

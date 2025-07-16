@@ -1,3 +1,3 @@
-export * from './useTaskPriority'
-export * from './useTaskPriorityResponse'
-export * from './useTasksPriorities'
+export * from './useTaskPriority';
+export * from './useTaskPriorityResponse';
+export * from './useTasksPriorities';

@@ -1,22 +1,22 @@
-import type React from 'react'
-import { memo, useMemo } from 'react'
-import { Text, type TextProps } from 'src/components/ui/atoms'
-import { useTask } from 'src/store/entities/task'
+import type React from 'react';
+import { memo, useMemo } from 'react';
+import { Text, type TextProps } from 'src/components/ui/atoms';
+import { useTask } from 'src/store/entities/task';
 
 type Props = {
-  taskId: string
-  isTransitioning: boolean
-} & TextProps
+  taskId: string;
+  isTransitioning: boolean;
+} & TextProps;
 
 export const TaskName: React.FC<Props> = memo((props) => {
-  const { taskId, isTransitioning, ...rest } = props
-  const { task } = useTask(taskId)
+  const { taskId, isTransitioning, ...rest } = props;
+  const { task } = useTask(taskId);
   const style = useMemo(
     (): TextProps => ({
       ...(isTransitioning ? { color: 'white' } : {}),
     }),
     [isTransitioning],
-  )
+  );
 
   return (
     <Text
@@ -31,6 +31,6 @@ export const TaskName: React.FC<Props> = memo((props) => {
     >
       {task.name}
     </Text>
-  )
-})
-TaskName.displayName = 'TaskName'
+  );
+});
+TaskName.displayName = 'TaskName';

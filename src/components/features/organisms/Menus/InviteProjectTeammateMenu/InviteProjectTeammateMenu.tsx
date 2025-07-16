@@ -1,24 +1,24 @@
-import type React from 'react'
-import { memo } from 'react'
+import type React from 'react';
+import { memo } from 'react';
 import {
   ProjectTeammateMenu,
   ProjectTeammateMenuContent,
   ProjectTeammateMenuTrigger,
-} from 'src/components/features/organisms/Menus/ProjectTeammateMenu'
+} from 'src/components/features/organisms/Menus/ProjectTeammateMenu';
 import type {
   PopoverContentProps,
   PopoverProps,
-} from 'src/components/ui/organisms/Popover'
-import type { Teammate } from 'src/store/entities/teammate'
-import { Content } from './Content'
+} from 'src/components/ui/organisms/Popover';
+import type { Teammate } from 'src/store/entities/teammate';
+import { Content } from './Content';
 
 type Props = PopoverProps & {
-  onSelect: (val: Teammate) => void
-  queryText: string
-  onClose: () => void
-  onClosed?: () => void
-  contentStyle?: PopoverContentProps
-}
+  onSelect: (val: Teammate) => void;
+  queryText: string;
+  onClose: () => void;
+  onClosed?: () => void;
+  contentStyle?: PopoverContentProps;
+};
 
 export const InviteProjectTeammateMenu: React.FC<Props> = memo<Props>(
   (props) => {
@@ -30,7 +30,7 @@ export const InviteProjectTeammateMenu: React.FC<Props> = memo<Props>(
       onClose,
       isOpen,
       ...rest
-    } = props
+    } = props;
 
     return (
       <ProjectTeammateMenu isOpen={isOpen} {...rest}>
@@ -48,7 +48,7 @@ export const InviteProjectTeammateMenu: React.FC<Props> = memo<Props>(
           </ProjectTeammateMenuContent>
         )}
       </ProjectTeammateMenu>
-    )
+    );
   },
-)
-InviteProjectTeammateMenu.displayName = 'ProjectTeammateMenu'
+);
+InviteProjectTeammateMenu.displayName = 'ProjectTeammateMenu';

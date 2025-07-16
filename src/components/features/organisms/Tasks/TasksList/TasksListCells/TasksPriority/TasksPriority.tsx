@@ -1,39 +1,39 @@
-import type React from 'react'
-import { memo, useCallback, useMemo, useState } from 'react'
-import { PriorityChip } from 'src/components/features/molecules/Chips'
-import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell'
-import { Flex, type FlexProps, Icon } from 'src/components/ui/atoms'
-import { useHover } from 'src/hooks/useHover'
-import { useTask } from 'src/store/entities/task'
-import { Menu } from './Menu'
+import type React from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
+import { PriorityChip } from 'src/components/features/molecules/Chips';
+import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
+import { Flex, type FlexProps, Icon } from 'src/components/ui/atoms';
+import { useHover } from 'src/hooks/useHover';
+import { useTask } from 'src/store/entities/task';
+import { Menu } from './Menu';
 
 type Props = FlexProps & {
-  taskId: string
-  width: string
-}
+  taskId: string;
+  width: string;
+};
 
 export const TasksPriority: React.FC<Props> = memo<Props>((props) => {
-  const { taskId } = props
-  const { task } = useTask(taskId)
-  const [focused, setFocused] = useState(false)
-  const { ref, isHovering } = useHover()
+  const { taskId } = props;
+  const { task } = useTask(taskId);
+  const [focused, setFocused] = useState(false);
+  const { ref, isHovering } = useHover();
   const hasPriority = useMemo(
     () => !!task.taskPriorityId,
     [task.taskPriorityId],
-  )
+  );
 
   const showMenuIcon = useMemo(
     () => !hasPriority && isHovering,
     [hasPriority, isHovering],
-  )
+  );
 
   const handleOpened = useCallback(() => {
-    setFocused(true)
-  }, [])
+    setFocused(true);
+  }, []);
 
   const handleClosed = useCallback(() => {
-    setFocused(false)
-  }, [])
+    setFocused(false);
+  }, []);
 
   return (
     <TasksListCell
@@ -63,6 +63,6 @@ export const TasksPriority: React.FC<Props> = memo<Props>((props) => {
         </Flex>
       </Menu>
     </TasksListCell>
-  )
-})
-TasksPriority.displayName = 'TasksPriority'
+  );
+});
+TasksPriority.displayName = 'TasksPriority';

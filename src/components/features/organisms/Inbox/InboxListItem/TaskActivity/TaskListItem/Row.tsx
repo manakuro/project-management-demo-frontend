@@ -1,22 +1,22 @@
-import type React from 'react'
-import { memo, useMemo } from 'react'
-import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
+import type React from 'react';
+import { memo, useMemo } from 'react';
+import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
 
 type Props = FlexProps & {
-  taskId: string
-  isFirst?: boolean
-  isLast?: boolean
-}
+  taskId: string;
+  isFirst?: boolean;
+  isLast?: boolean;
+};
 
 export const Row: React.FC<Props> = memo<Props>((props) => {
-  const { isFirst, isLast, taskId, ...rest } = props
-  const { taskId: taskDetailTaskId } = useTaskDetail()
+  const { isFirst, isLast, taskId, ...rest } = props;
+  const { taskId: taskDetailTaskId } = useTaskDetail();
   const selected = useMemo(
     () => taskDetailTaskId === taskId,
     [taskDetailTaskId, taskId],
-  )
+  );
   const containerStyle = useMemo(
     (): FlexProps => ({
       ...(isFirst ? { borderTopRadius: 'sm' } : {}),
@@ -26,8 +26,8 @@ export const Row: React.FC<Props> = memo<Props>((props) => {
         : { bg: 'white' }),
     }),
     [isFirst, isLast, selected],
-  )
-  const { clickableHoverStyle } = useClickableHoverStyle()
+  );
+  const { clickableHoverStyle } = useClickableHoverStyle();
 
   return (
     <Flex
@@ -47,7 +47,7 @@ export const Row: React.FC<Props> = memo<Props>((props) => {
       {...containerStyle}
       {...rest}
     />
-  )
-})
+  );
+});
 
-Row.displayName = 'Row'
+Row.displayName = 'Row';

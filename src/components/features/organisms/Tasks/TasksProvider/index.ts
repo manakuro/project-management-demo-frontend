@@ -1,1 +1,1 @@
-export * from './TasksProvider'
+export * from './TasksProvider';

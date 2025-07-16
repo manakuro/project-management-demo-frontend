@@ -1,18 +1,18 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { MonthObserver } from './MonthObserver'
-import { ScrollDownObserver } from './ScrollDownObserver'
-import { ScrollUpObserver } from './ScrollUpObserver'
+import type React from 'react';
+import { memo } from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { MonthObserver } from './MonthObserver';
+import { ScrollDownObserver } from './ScrollDownObserver';
+import { ScrollUpObserver } from './ScrollUpObserver';
 
 type Props = {
-  observeScrollUp?: boolean
-  observeScrollDown?: boolean
-  onVisibleWhenScrollUp: (id: string) => void
-  onVisibleWhenScrollDown: (id: string) => void
-  isSecondRowOfMonth: boolean
-  dateString: string
-} & FlexProps
+  observeScrollUp?: boolean;
+  observeScrollDown?: boolean;
+  onVisibleWhenScrollUp: (id: string) => void;
+  onVisibleWhenScrollDown: (id: string) => void;
+  isSecondRowOfMonth: boolean;
+  dateString: string;
+} & FlexProps;
 
 export const TasksCalendarListRow: React.FC<Props> = memo<Props>((props) => {
   const {
@@ -23,7 +23,7 @@ export const TasksCalendarListRow: React.FC<Props> = memo<Props>((props) => {
     isSecondRowOfMonth,
     dateString,
     ...rest
-  } = props
+  } = props;
 
   return (
     <MonthObserver
@@ -45,6 +45,6 @@ export const TasksCalendarListRow: React.FC<Props> = memo<Props>((props) => {
         </ScrollDownObserver>
       </ScrollUpObserver>
     </MonthObserver>
-  )
-})
-TasksCalendarListRow.displayName = 'TasksCalendarListRow'
+  );
+});
+TasksCalendarListRow.displayName = 'TasksCalendarListRow';

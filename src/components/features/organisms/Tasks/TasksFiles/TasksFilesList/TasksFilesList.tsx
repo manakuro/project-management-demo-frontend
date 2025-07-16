@@ -1,17 +1,17 @@
-import { memo, useMemo } from 'react'
-import { useTasksTaskFiles } from 'src/components/features/organisms/Tasks/hooks'
-import { Flex, Stack } from 'src/components/ui/atoms'
-import { useBreakpointValue } from 'src/shared/chakra'
-import { splitByNumber } from 'src/shared/utils'
-import { TasksFilesListItem } from '../TasksFilesListItem'
+import { memo, useMemo } from 'react';
+import { useTasksTaskFiles } from 'src/components/features/organisms/Tasks/hooks';
+import { Flex, Stack } from 'src/components/ui/atoms';
+import { useBreakpointValue } from 'src/shared/chakra';
+import { splitByNumber } from 'src/shared/utils';
+import { TasksFilesListItem } from '../TasksFilesListItem';
 
 export const TasksFilesList = memo(function TasksFilesList() {
-  const { taskFileIds } = useTasksTaskFiles()
-  const splitNum = useBreakpointValue({ base: 2, '2xl': 3 }) as number
+  const { taskFileIds } = useTasksTaskFiles();
+  const splitNum = useBreakpointValue({ base: 2, '2xl': 3 }) as number;
   const sections = useMemo(
     () => splitByNumber(taskFileIds, splitNum),
     [taskFileIds, splitNum],
-  )
+  );
 
   return (
     <Flex flex={1} pb={4}>
@@ -25,5 +25,5 @@ export const TasksFilesList = memo(function TasksFilesList() {
         ))}
       </Stack>
     </Flex>
-  )
-})
+  );
+});

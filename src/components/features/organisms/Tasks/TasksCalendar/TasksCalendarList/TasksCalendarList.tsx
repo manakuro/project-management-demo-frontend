@@ -1,33 +1,33 @@
-import type React from 'react'
-import { memo, useEffect } from 'react'
-import { Flex, type FlexProps } from 'src/components/ui/atoms'
-import { dateFns } from 'src/shared/dateFns'
-import { isHTMLElement } from 'src/shared/isHTMLElement'
-import { useTasksCalendarContext } from '../Provider'
-import { TasksCalendarListItem } from '../TasksCalendarListItem'
-import { TasksCalendarListRow } from '../TasksCalendarListRow'
-import { useTasksCalendarId } from '../useTasksCalendarId'
+import type React from 'react';
+import { memo, useEffect } from 'react';
+import { Flex, type FlexProps } from 'src/components/ui/atoms';
+import { dateFns } from 'src/shared/dateFns';
+import { isHTMLElement } from 'src/shared/isHTMLElement';
+import { useTasksCalendarContext } from '../Provider';
+import { TasksCalendarListItem } from '../TasksCalendarListItem';
+import { TasksCalendarListRow } from '../TasksCalendarListRow';
+import { useTasksCalendarId } from '../useTasksCalendarId';
 
-type Props = FlexProps
+type Props = FlexProps;
 
 export const TasksCalendarList: React.FC<Props> = memo<Props>(() => {
-  const { getCalendarListId, getCalendarListItemId } = useTasksCalendarId()
+  const { getCalendarListId, getCalendarListItemId } = useTasksCalendarId();
   const {
     calendarRows,
     onVisibleWhenScrollDown,
     onVisibleWhenScrollUp,
     isSecondRowOfMonth,
     resetCount,
-  } = useTasksCalendarContext()
+  } = useTasksCalendarContext();
 
   useEffect(() => {
     const element = document.getElementById(
       getCalendarListItemId(dateFns.subDays(new Date(), 7)),
-    )
-    if (!isHTMLElement(element)) return
+    );
+    if (!isHTMLElement(element)) return;
 
-    element.scrollIntoView()
-  }, [getCalendarListItemId])
+    element.scrollIntoView();
+  }, [getCalendarListItemId]);
 
   return (
     <Flex flex={1} flexDirection="column">
@@ -52,6 +52,6 @@ export const TasksCalendarList: React.FC<Props> = memo<Props>(() => {
         </TasksCalendarListRow>
       ))}
     </Flex>
-  )
-})
-TasksCalendarList.displayName = 'TasksCalendarList'
+  );
+});
+TasksCalendarList.displayName = 'TasksCalendarList';

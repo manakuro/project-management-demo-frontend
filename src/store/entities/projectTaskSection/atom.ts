@@ -1,11 +1,11 @@
-import { selectorFamily } from 'recoil'
-import { projectTaskByTaskIdState } from 'src/store/entities/projectTask'
-import { createState } from 'src/store/util'
-import type { ProjectTaskSection } from './type'
+import { selectorFamily } from 'recoil';
+import { projectTaskByTaskIdState } from 'src/store/entities/projectTask';
+import { createState } from 'src/store/util';
+import type { ProjectTaskSection } from './type';
 
-const key = (str: string) => `src/store/entities/projectsTaskSection/${str}`
+const key = (str: string) => `src/store/entities/projectsTaskSection/${str}`;
 
-export const DEFAULT_TITLE_NAME = 'Untitled Section'
+export const DEFAULT_TITLE_NAME = 'Untitled Section';
 
 export const initialState = (): ProjectTaskSection => ({
   id: '',
@@ -14,12 +14,12 @@ export const initialState = (): ProjectTaskSection => ({
   isNew: false,
   createdAt: '',
   updatedAt: '',
-})
+});
 
 export const {
   state: projectTaskSectionState,
   listState: projectTaskSectionsState,
-} = createState({ key, initialState })
+} = createState({ key, initialState });
 
 export const projectTaskSectionsByProjectIdState = selectorFamily<
   ProjectTaskSection[],
@@ -29,10 +29,10 @@ export const projectTaskSectionsByProjectIdState = selectorFamily<
   get:
     (projectId) =>
     ({ get }) => {
-      const projectsTaskSections = get(projectTaskSectionsState)
-      return projectsTaskSections.filter((t) => t.projectId === projectId)
+      const projectsTaskSections = get(projectTaskSectionsState);
+      return projectsTaskSections.filter((t) => t.projectId === projectId);
     },
-})
+});
 
 export const projectTaskSectionByTaskIdAndProjectIdState = selectorFamily<
   ProjectTaskSection,
@@ -42,13 +42,13 @@ export const projectTaskSectionByTaskIdAndProjectIdState = selectorFamily<
   get:
     ({ taskId, projectId }) =>
     ({ get }) => {
-      const projectTask = get(projectTaskByTaskIdState(taskId))
-      const projectsTaskSections = get(projectTaskSectionsState)
+      const projectTask = get(projectTaskByTaskIdState(taskId));
+      const projectsTaskSections = get(projectTaskSectionsState);
       return (
         projectsTaskSections
           .filter((p) => p.projectId === projectId)
           .find((p) => p.id === projectTask.projectTaskSectionId) ||
         initialState()
-      )
+      );
     },
-})
+});

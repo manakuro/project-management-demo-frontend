@@ -1,1 +1,1 @@
-export * from './WorkspaceMenu'
+export * from './WorkspaceMenu';

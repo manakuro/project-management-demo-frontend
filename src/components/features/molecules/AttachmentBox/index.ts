@@ -1,1 +1,1 @@
-export * from './AttachmentBox'
+export * from './AttachmentBox';

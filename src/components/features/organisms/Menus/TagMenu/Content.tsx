@@ -1,43 +1,43 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import {
   SearchMenuLeftContainer,
   SearchMenuListItem,
   SearchMenuLoading,
   SearchMenuRightContainer,
   useSearchMenu,
-} from 'src/components/features/organisms/Menus/SearchMenu'
-import { Divider, Icon, Text } from 'src/components/ui/atoms'
-import type { Tag } from 'src/store/entities/tag'
-import { TagItem } from './TagItem'
-import { useSearchTagsQuery } from './useSearchTagsQuery'
+} from 'src/components/features/organisms/Menus/SearchMenu';
+import { Divider, Icon, Text } from 'src/components/ui/atoms';
+import type { Tag } from 'src/store/entities/tag';
+import { TagItem } from './TagItem';
+import { useSearchTagsQuery } from './useSearchTagsQuery';
 
 type Props = {
-  onSelect: (tag: Tag) => void
-  queryText: string
-  onClose: () => void
-  onClosed?: () => void
-}
+  onSelect: (tag: Tag) => void;
+  queryText: string;
+  onClose: () => void;
+  onClosed?: () => void;
+};
 
 export const Content: React.FC<Props> = memo<Props>((props) => {
-  const { queryText, onSelect, onClose, onClosed } = props
-  const { refetch, tags, loading: loadingQuery } = useSearchTagsQuery()
+  const { queryText, onSelect, onClose, onClosed } = props;
+  const { refetch, tags, loading: loadingQuery } = useSearchTagsQuery();
 
   const handleDebounce = useCallback(
     async (val: string) => {
-      await refetch({ queryText: val })
+      await refetch({ queryText: val });
     },
     [refetch],
-  )
+  );
 
   const handleSelect = useCallback(
     (tag: Tag) => {
-      onSelect(tag)
-      onClose()
-      onClosed?.()
+      onSelect(tag);
+      onClose();
+      onClosed?.();
     },
     [onClose, onClosed, onSelect],
-  )
+  );
 
   const { loading } = useSearchMenu({
     items: tags,
@@ -45,9 +45,9 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
     queryText,
     onSelect: handleSelect,
     onDebounce: handleDebounce,
-  })
+  });
 
-  if (loading) return <SearchMenuLoading />
+  if (loading) return <SearchMenuLoading />;
 
   return (
     <>
@@ -66,6 +66,6 @@ export const Content: React.FC<Props> = memo<Props>((props) => {
         </SearchMenuRightContainer>
       </SearchMenuListItem>
     </>
-  )
-})
-Content.displayName = 'Content'
+  );
+});
+Content.displayName = 'Content';

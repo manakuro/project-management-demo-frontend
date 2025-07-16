@@ -1,1 +1,1 @@
-export * from './WorkspaceActivity'
+export * from './WorkspaceActivity';

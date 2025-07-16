@@ -1,36 +1,36 @@
-import { memo, useCallback } from 'react'
-import { useDeleteTaskSectionModal } from 'src/components/features/organisms/Modals'
+import { memo, useCallback } from 'react';
+import { useDeleteTaskSectionModal } from 'src/components/features/organisms/Modals';
 import {
   useHasTasksByTaskSectionId,
   useTasksTaskSectionCommand,
-} from 'src/components/features/organisms/Tasks/hooks'
+} from 'src/components/features/organisms/Tasks/hooks';
 import {
   MenuList as AtomsMenuList,
   MenuItem,
-} from 'src/components/ui/organisms/Menu'
-import { useTasksBoardListSectionContext } from '../../../Provider'
+} from 'src/components/ui/organisms/Menu';
+import { useTasksBoardListSectionContext } from '../../../Provider';
 
 export const MenuList = memo(function MenuList() {
-  const { setModalState, onOpen } = useDeleteTaskSectionModal()
-  const { deleteTaskSection } = useTasksTaskSectionCommand()
-  const { onFocusInput, taskSectionId } = useTasksBoardListSectionContext()
-  const { hasTasks } = useHasTasksByTaskSectionId(taskSectionId)
+  const { setModalState, onOpen } = useDeleteTaskSectionModal();
+  const { deleteTaskSection } = useTasksTaskSectionCommand();
+  const { onFocusInput, taskSectionId } = useTasksBoardListSectionContext();
+  const { hasTasks } = useHasTasksByTaskSectionId(taskSectionId);
 
   const handleRenameSection = useCallback(() => {
-    onFocusInput()
-  }, [onFocusInput])
+    onFocusInput();
+  }, [onFocusInput]);
 
   const handleDeleteSection = useCallback(async () => {
     if (!hasTasks) {
-      await deleteTaskSection(taskSectionId)
-      return
+      await deleteTaskSection(taskSectionId);
+      return;
     }
 
     setModalState({
       taskSectionId,
-    })
-    onOpen()
-  }, [deleteTaskSection, hasTasks, onOpen, setModalState, taskSectionId])
+    });
+    onOpen();
+  }, [deleteTaskSection, hasTasks, onOpen, setModalState, taskSectionId]);
 
   return (
     <AtomsMenuList>
@@ -39,5 +39,5 @@ export const MenuList = memo(function MenuList() {
         Delete section
       </MenuItem>
     </AtomsMenuList>
-  )
-})
+  );
+});

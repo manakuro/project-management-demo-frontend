@@ -1,36 +1,38 @@
-import { useRecoilCallback } from 'recoil'
+import { useRecoilCallback } from 'recoil';
 import {
   useCreateFavoriteWorkspaceMutation,
   useDeleteFavoriteWorkspaceMutation,
-} from 'src/graphql/hooks'
-import { useMe } from 'src/store/entities/me'
-import { favoriteWorkspaceIdsState } from '../atom'
+} from 'src/graphql/hooks';
+import { useMe } from 'src/store/entities/me';
+import { favoriteWorkspaceIdsState } from '../atom';
 import {
   FAVORITE_WORKSPACE_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
   useFavoriteWorkspaceIdsUpdatedSubscription,
-} from './useFavoriteWorkspaceIdsUpdatedSubscription'
-import { useUpsert } from './useUpsert'
+} from './useFavoriteWorkspaceIdsUpdatedSubscription';
+import { useUpsert } from './useUpsert';
 
 export const useFavoriteWorkspaceIdsCommand = () => {
-  const { me } = useMe()
-  const [createFavoriteWorkspaceMutation] = useCreateFavoriteWorkspaceMutation()
-  const [deleteFavoriteWorkspaceMutation] = useDeleteFavoriteWorkspaceMutation()
-  const { upsert } = useUpsert()
+  const { me } = useMe();
+  const [createFavoriteWorkspaceMutation] =
+    useCreateFavoriteWorkspaceMutation();
+  const [deleteFavoriteWorkspaceMutation] =
+    useDeleteFavoriteWorkspaceMutation();
+  const { upsert } = useUpsert();
 
   useFavoriteWorkspaceIdsUpdatedSubscription({
     teammateId: me.id,
-  })
+  });
 
   const deleteFavoriteWorkspaceId = useRecoilCallback(
     ({ snapshot }) =>
       async (favoriteWorkspaceId: string) => {
-        const prev = await snapshot.getPromise(favoriteWorkspaceIdsState)
+        const prev = await snapshot.getPromise(favoriteWorkspaceIdsState);
 
-        upsert(prev.filter((id) => id !== favoriteWorkspaceId))
+        upsert(prev.filter((id) => id !== favoriteWorkspaceId));
 
         const restore = () => {
-          upsert(prev)
-        }
+          upsert(prev);
+        };
 
         try {
           const res = await deleteFavoriteWorkspaceMutation({
@@ -42,29 +44,29 @@ export const useFavoriteWorkspaceIdsCommand = () => {
                   FAVORITE_WORKSPACE_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
               },
             },
-          })
+          });
 
           if (res.errors) {
-            restore()
+            restore();
           }
         } catch (e) {
-          restore()
-          throw e
+          restore();
+          throw e;
         }
       },
     [deleteFavoriteWorkspaceMutation, me.id, upsert],
-  )
+  );
 
   const addFavoriteWorkspaceId = useRecoilCallback(
     ({ snapshot }) =>
       async (favoriteWorkspaceId: string) => {
-        const prev = await snapshot.getPromise(favoriteWorkspaceIdsState)
+        const prev = await snapshot.getPromise(favoriteWorkspaceIdsState);
 
-        upsert([...prev, favoriteWorkspaceId])
+        upsert([...prev, favoriteWorkspaceId]);
 
         const restore = () => {
-          upsert(prev)
-        }
+          upsert(prev);
+        };
 
         try {
           const res = await createFavoriteWorkspaceMutation({
@@ -76,36 +78,36 @@ export const useFavoriteWorkspaceIdsCommand = () => {
                   FAVORITE_WORKSPACE_IDS_UPDATED_SUBSCRIPTION_REQUEST_ID,
               },
             },
-          })
+          });
 
           if (res.errors) {
-            restore()
+            restore();
           }
         } catch (e) {
-          restore()
-          throw e
+          restore();
+          throw e;
         }
       },
     [createFavoriteWorkspaceMutation, me.id, upsert],
-  )
+  );
 
   const setFavoriteWorkspaceId = useRecoilCallback(
     ({ snapshot }) =>
       async (favoriteWorkspaceId: string) => {
-        const prev = await snapshot.getPromise(favoriteWorkspaceIdsState)
+        const prev = await snapshot.getPromise(favoriteWorkspaceIdsState);
 
-        const isFavorite = prev.some((id) => id === favoriteWorkspaceId)
+        const isFavorite = prev.some((id) => id === favoriteWorkspaceId);
         if (isFavorite) {
-          await deleteFavoriteWorkspaceId(favoriteWorkspaceId)
-          return
+          await deleteFavoriteWorkspaceId(favoriteWorkspaceId);
+          return;
         }
 
-        await addFavoriteWorkspaceId(favoriteWorkspaceId)
+        await addFavoriteWorkspaceId(favoriteWorkspaceId);
       },
     [addFavoriteWorkspaceId, deleteFavoriteWorkspaceId],
-  )
+  );
 
   return {
     setFavoriteWorkspaceId,
-  }
-}
+  };
+};

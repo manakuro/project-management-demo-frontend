@@ -1,5 +1,5 @@
-import { useMemo } from 'react'
-import type { ChakraProps } from 'src/shared/chakra'
+import { useMemo } from 'react';
+import type { ChakraProps } from 'src/shared/chakra';
 
 export const useTimelineStyle = () => {
   const timelineBorderStyle = useMemo(
@@ -18,9 +18,9 @@ export const useTimelineStyle = () => {
       },
     }),
     [],
-  )
+  );
 
   return {
     timelineBorderStyle,
-  }
-}
+  };
+};

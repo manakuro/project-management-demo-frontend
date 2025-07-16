@@ -1,22 +1,22 @@
-import type React from 'react'
-import { memo } from 'react'
+import type React from 'react';
+import { memo } from 'react';
 import {
   TasksListCell,
   type TasksListCellProps,
-} from 'src/components/features/organisms/Tasks/TasksList/TasksListCell'
-import { useTasksListSectionContext } from 'src/components/features/organisms/Tasks/TasksList/TasksListSection/Provider'
-import { forwardRef } from 'src/shared/chakra'
-import { useTasksNameContext } from './TasksNameProvider'
+} from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
+import { useTasksListSectionContext } from 'src/components/features/organisms/Tasks/TasksList/TasksListSection/Provider';
+import { forwardRef } from 'src/shared/chakra';
+import { useTasksNameContext } from './TasksNameProvider';
 
-type Props = TasksListCellProps
+type Props = TasksListCellProps;
 
 export const TasksNameCell: React.FC<Props> = memo(
   forwardRef((props, ref) => {
-    const { cellStyle } = useTasksNameContext()
-    const { indentedStyle } = useTasksListSectionContext()
+    const { cellStyle } = useTasksNameContext();
+    const { indentedStyle } = useTasksListSectionContext();
 
     const { containerStyle: cellStyleContainerStyle, ...cellStyleRest } =
-      cellStyle ?? { containerStyle: {} }
+      cellStyle ?? { containerStyle: {} };
     return (
       <>
         <TasksListCell
@@ -39,7 +39,7 @@ export const TasksNameCell: React.FC<Props> = memo(
           {props.children}
         </TasksListCell>
       </>
-    )
+    );
   }),
-)
-TasksNameCell.displayName = 'TasksNameCell'
+);
+TasksNameCell.displayName = 'TasksNameCell';

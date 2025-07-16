@@ -1,9 +1,9 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
-import type React from 'react'
-import { Container } from 'src/storybook/decorators/Container'
-import { Component } from './Component'
+import type { ComponentMeta, ComponentStory } from '@storybook/react';
+import type React from 'react';
+import { Container } from 'src/storybook/decorators/Container';
+import { Component } from './Component';
 
-type Props = React.ComponentProps<typeof Component>
+type Props = React.ComponentProps<typeof Component>;
 
 export default {
   title: 'Features/molecules/AttachmentBox',
@@ -18,13 +18,13 @@ export default {
       </Container>
     ),
   ],
-} as ComponentMeta<typeof Component>
+} as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...props()} {...args} />
-)
+);
 
-export const PDF = Template.bind({})
+export const PDF = Template.bind({});
 
 function props(options?: Partial<Props>): Props {
   return {
@@ -34,5 +34,5 @@ function props(options?: Partial<Props>): Props {
     icon: 'outlineFilePdf',
     src: '/files/pdf-test.pdf',
     ...options,
-  }
+  };
 }

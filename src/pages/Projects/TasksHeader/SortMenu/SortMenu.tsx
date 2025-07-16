@@ -1,15 +1,15 @@
-import { memo, useCallback, useMemo } from 'react'
-import { SortMenu as TasksHeaderSortMenu } from 'src/components/features/organisms/Tasks/TasksHeader'
-import { useProjectsPageContext } from 'src/pages/Projects/Provider'
+import { memo, useCallback, useMemo } from 'react';
+import { SortMenu as TasksHeaderSortMenu } from 'src/components/features/organisms/Tasks/TasksHeader';
+import { useProjectsPageContext } from 'src/pages/Projects/Provider';
 import {
   type TaskListSortStatusCodeValue,
   useProjectsTaskListStatus,
-} from 'src/store/app/projects/taskListStatus'
-import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
+} from 'src/store/app/projects/taskListStatus';
+import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus';
 
 const ITEMS: {
-  value: TaskListSortStatusCodeValue
-  text: string
+  value: TaskListSortStatusCodeValue;
+  text: string;
 }[] = [
   {
     value: TaskListSortStatusCode.None,
@@ -39,32 +39,32 @@ const ITEMS: {
     value: TaskListSortStatusCode.Priority,
     text: 'Priority',
   },
-]
+];
 export const SortMenu = memo(function SortMenu() {
-  const { sortBy, isSorted, taskListStatus } = useProjectsTaskListStatus()
-  const { startContentLoading, endContentLoading } = useProjectsPageContext()
+  const { sortBy, isSorted, taskListStatus } = useProjectsTaskListStatus();
+  const { startContentLoading, endContentLoading } = useProjectsPageContext();
 
   const handleChange = useCallback(
     (status: TaskListSortStatusCodeValue) => {
-      startContentLoading()
+      startContentLoading();
       setTimeout(() => {
-        sortBy(status)
-        endContentLoading()
-      }, 200)
+        sortBy(status);
+        endContentLoading();
+      }, 200);
     },
     [endContentLoading, sortBy, startContentLoading],
-  )
-  const items = useMemo(() => ITEMS, [])
+  );
+  const items = useMemo(() => ITEMS, []);
 
   const text = useMemo<string>(() => {
-    if (isSorted('none')) return ''
+    if (isSorted('none')) return '';
 
     return `: ${
       items.find(
         (i) => i.value === taskListStatus.taskListSortStatus.statusCode,
       )?.text
-    }`
-  }, [isSorted, items, taskListStatus.taskListSortStatus])
+    }`;
+  }, [isSorted, items, taskListStatus.taskListSortStatus]);
 
   return (
     <TasksHeaderSortMenu<TaskListSortStatusCodeValue>
@@ -76,5 +76,5 @@ export const SortMenu = memo(function SortMenu() {
         TaskListSortStatusCode.None
       }
     />
-  )
-})
+  );
+});

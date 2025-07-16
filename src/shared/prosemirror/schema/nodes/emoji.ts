@@ -1,9 +1,9 @@
-import type { NodeSpec } from 'prosemirror-model'
+import type { NodeSpec } from 'prosemirror-model';
 
 type Attrs = {
-  emoji: string
-}
-export type EmojiAttrs = Attrs
+  emoji: string;
+};
+export type EmojiAttrs = Attrs;
 
 export const emoji: Override<
   NodeSpec,
@@ -18,14 +18,14 @@ export const emoji: Override<
   selectable: false,
   draggable: false,
   toDOM: (node: NodeSpec) => {
-    const attrs = node.attrs as Attrs
+    const attrs = node.attrs as Attrs;
 
     return [
       'span',
       {
         'data-mention-emoji': attrs.emoji,
       },
-    ]
+    ];
   },
 
   parseDOM: [
@@ -33,11 +33,11 @@ export const emoji: Override<
       tag: 'span[data-mention-emoji]',
       // @ts-ignore
       getAttrs: (element: HTMLSpanElement): Attrs => {
-        const emoji = element.getAttribute('data-mention-emoji') ?? ''
+        const emoji = element.getAttribute('data-mention-emoji') ?? '';
         return {
           emoji,
-        }
+        };
       },
     },
   ],
-}
+};

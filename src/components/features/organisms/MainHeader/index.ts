@@ -1,1 +1,1 @@
-export * from './MainHeader'
+export * from './MainHeader';

@@ -1,9 +1,9 @@
-import { useTeammateTaskSections } from 'src/store/entities/teammatesTaskSection'
+import { useTeammateTaskSections } from 'src/store/entities/teammatesTaskSection';
 
 export const useMyTasksTaskSections = () => {
-  const { teammateTaskSections } = useTeammateTaskSections()
+  const { teammateTaskSections } = useTeammateTaskSections();
 
   return {
     taskSections: teammateTaskSections,
-  }
-}
+  };
+};

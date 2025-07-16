@@ -1,7 +1,7 @@
-import { memo } from 'react'
-import { MyAvatar } from 'src/components/features/organisms/MyAvatar'
-import { Flex } from 'src/components/ui/atoms'
-import { Input } from './Input'
+import { memo } from 'react';
+import { MyAvatar } from 'src/components/features/organisms/MyAvatar';
+import { Flex } from 'src/components/ui/atoms';
+import { Input } from './Input';
 
 export const Comment = memo(function Comment() {
   return (
@@ -11,5 +11,5 @@ export const Comment = memo(function Comment() {
       </Flex>
       <Input />
     </Flex>
-  )
-})
+  );
+});

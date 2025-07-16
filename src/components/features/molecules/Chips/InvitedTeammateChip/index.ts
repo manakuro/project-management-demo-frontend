@@ -1,1 +1,1 @@
-export * from './InvitedTeammateChip'
+export * from './InvitedTeammateChip';

@@ -7,5 +7,5 @@ export const sizes = {
     w: 60,
     h: 16,
   },
-} as const
-export type Sizes = keyof typeof sizes
+} as const;
+export type Sizes = keyof typeof sizes;

@@ -1,37 +1,37 @@
-import type React from 'react'
-import { memo } from 'react'
+import type React from 'react';
+import { memo } from 'react';
 import {
   TaskDetailBody,
   TaskDetailFooter,
   TaskDetailHeader,
-} from 'src/components/features/organisms/TaskDetail'
-import { Divider, Flex } from 'src/components/ui/atoms'
+} from 'src/components/features/organisms/TaskDetail';
+import { Divider, Flex } from 'src/components/ui/atoms';
 import {
   type UseClickOutsideOptionsHasClickedOutside,
   useClickOutside,
   useDrawerStyle,
-} from 'src/hooks'
+} from 'src/hooks';
 
-const HEADER_HEIGHT = 71
-const TOP = HEADER_HEIGHT
+const HEADER_HEIGHT = 71;
+const TOP = HEADER_HEIGHT;
 
 type Props = {
-  onClose: () => void
-  loading: boolean
-  hasClickedOutside: UseClickOutsideOptionsHasClickedOutside
-}
+  onClose: () => void;
+  loading: boolean;
+  hasClickedOutside: UseClickOutsideOptionsHasClickedOutside;
+};
 
 export const Content: React.FC<Props> = memo((props) => {
-  const { hasClickedOutside } = props
-  const { drawerStyle } = useDrawerStyle()
+  const { hasClickedOutside } = props;
+  const { drawerStyle } = useDrawerStyle();
   const { ref } = useClickOutside(
     () => {
-      props.onClose()
+      props.onClose();
     },
     {
       hasClickedOutside,
     },
-  )
+  );
 
   return (
     <Flex
@@ -72,6 +72,6 @@ export const Content: React.FC<Props> = memo((props) => {
         </Flex>
       </Flex>
     </Flex>
-  )
-})
-Content.displayName = 'Content'
+  );
+});
+Content.displayName = 'Content';

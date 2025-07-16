@@ -1,2 +1,2 @@
-export * from './InviteModal'
-export * from './useInviteModal'
+export * from './InviteModal';
+export * from './useInviteModal';

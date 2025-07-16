@@ -1,1 +1,1 @@
-export * from './InboxListHeader'
+export * from './InboxListHeader';

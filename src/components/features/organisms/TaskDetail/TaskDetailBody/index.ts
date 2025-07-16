@@ -1,2 +1,2 @@
-export * from './TaskDetailBody'
-export * from './useTaskDetailBody'
+export * from './TaskDetailBody';
+export * from './useTaskDetailBody';

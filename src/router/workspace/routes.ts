@@ -1,4 +1,4 @@
-import { ulidRegex } from 'src/shared/ulid'
+import { ulidRegex } from 'src/shared/ulid';
 
 export const ROUTE_WORKSPACES = {
   regex: new RegExp(`^/workspaces/${ulidRegex}/?$`, 'iu'),
@@ -14,7 +14,7 @@ export const ROUTE_WORKSPACES = {
     workspaceId: 'workspaceId',
     workspaces: 'workspaces',
   },
-} as const
+} as const;
 
 export const ROUTE_WORKSPACES_OVERVIEW = {
   regex: new RegExp(`^/workspaces/${ulidRegex}/overview/?$`, 'iu'),
@@ -27,7 +27,7 @@ export const ROUTE_WORKSPACES_OVERVIEW = {
       }) as const,
   },
   query: 'workspaces',
-} as const
+} as const;
 
 export const ROUTE_WORKSPACES_MESSAGES = {
   regex: new RegExp(`^/workspaces/${ulidRegex}/messages/?$`, 'iu'),
@@ -40,7 +40,7 @@ export const ROUTE_WORKSPACES_MESSAGES = {
       }) as const,
   },
   query: 'workspaces',
-} as const
+} as const;
 export const ROUTE_WORKSPACES_CALENDAR = {
   regex: new RegExp(`^/workspaces/${ulidRegex}/calendar/?$`, 'iu'),
   href: {
@@ -52,4 +52,4 @@ export const ROUTE_WORKSPACES_CALENDAR = {
       }) as const,
   },
   query: 'workspaces',
-} as const
+} as const;

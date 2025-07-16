@@ -1,1 +1,1 @@
-export * from './PermissionMenu'
+export * from './PermissionMenu';

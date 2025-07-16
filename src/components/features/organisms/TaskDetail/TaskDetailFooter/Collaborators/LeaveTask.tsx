@@ -1,13 +1,13 @@
-import type React from 'react'
-import { memo } from 'react'
-import { Button, Flex, Icon } from 'src/components/ui/atoms'
-import { Tooltip } from 'src/components/ui/molecules'
-import { useCollaboratorsContext } from './Provider'
+import type React from 'react';
+import { memo } from 'react';
+import { Button, Flex, Icon } from 'src/components/ui/atoms';
+import { Tooltip } from 'src/components/ui/molecules';
+import { useCollaboratorsContext } from './Provider';
 
 export const LeaveTask: React.FC = memo(() => {
-  const { isInputFocused } = useCollaboratorsContext()
+  const { isInputFocused } = useCollaboratorsContext();
 
-  if (isInputFocused) return null
+  if (isInputFocused) return null;
 
   return (
     <Flex alignItems="center" ml="auto" mt={1}>
@@ -28,6 +28,6 @@ export const LeaveTask: React.FC = memo(() => {
         </Button>
       </Tooltip>
     </Flex>
-  )
-})
-LeaveTask.displayName = 'LeaveTask'
+  );
+});
+LeaveTask.displayName = 'LeaveTask';

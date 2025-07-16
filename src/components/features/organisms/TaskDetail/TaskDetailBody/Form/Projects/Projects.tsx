@@ -1,52 +1,52 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { Input } from 'src/components/features/organisms/TaskDetail/TaskDetailBody/Form/Projects/Input'
-import { useTaskDetailProjectsInput } from 'src/components/features/organisms/TaskDetail/hooks'
-import { Flex } from 'src/components/ui/atoms'
-import { useProjectTaskSectionsByProjectIdsQuery } from 'src/hooks/queries/entities'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { Input } from 'src/components/features/organisms/TaskDetail/TaskDetailBody/Form/Projects/Input';
+import { useTaskDetailProjectsInput } from 'src/components/features/organisms/TaskDetail/hooks';
+import { Flex } from 'src/components/ui/atoms';
+import { useProjectTaskSectionsByProjectIdsQuery } from 'src/hooks/queries/entities';
 import {
   useProjectIdsByTaskId,
   useProjectTaskCommand,
   useProjectTaskIdsByTaskId,
-} from 'src/store/entities/projectTask'
-import { useTask } from 'src/store/entities/task'
-import { Content, Label, Row } from '../Row'
-import { Selected } from './Selected'
-import { UnSelected } from './UnSelected'
+} from 'src/store/entities/projectTask';
+import { useTask } from 'src/store/entities/task';
+import { Content, Label, Row } from '../Row';
+import { Selected } from './Selected';
+import { UnSelected } from './UnSelected';
 
 type Props = {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const Projects: React.FC<Props> = memo<Props>((props) => {
-  const { taskId } = props
-  const { isSubtask } = useTask(taskId)
-  const { projectIds } = useProjectIdsByTaskId(taskId)
-  const { projectTaskIds } = useProjectTaskIdsByTaskId(taskId)
-  const { setProjectTask, deleteProjectTask } = useProjectTaskCommand()
-  const hasProject = projectIds.length > 0
-  const inputDisclosure = useTaskDetailProjectsInput()
+  const { taskId } = props;
+  const { isSubtask } = useTask(taskId);
+  const { projectIds } = useProjectIdsByTaskId(taskId);
+  const { projectTaskIds } = useProjectTaskIdsByTaskId(taskId);
+  const { setProjectTask, deleteProjectTask } = useProjectTaskCommand();
+  const hasProject = projectIds.length > 0;
+  const inputDisclosure = useTaskDetailProjectsInput();
 
-  useProjectTaskSectionsByProjectIdsQuery(projectIds)
+  useProjectTaskSectionsByProjectIdsQuery(projectIds);
 
   const handleChange = useCallback(
     async (input: { projectTaskId: string; projectTaskSectionId: string }) => {
       await setProjectTask({
         id: input.projectTaskId,
         projectTaskSectionId: input.projectTaskSectionId,
-      })
+      });
     },
     [setProjectTask],
-  )
+  );
 
   const handleDelete = useCallback(
     async (projectTaskId: string) => {
-      await deleteProjectTask({ id: projectTaskId })
+      await deleteProjectTask({ id: projectTaskId });
     },
     [deleteProjectTask],
-  )
+  );
 
-  if (isSubtask) return null
+  if (isSubtask) return null;
 
   return (
     <Row>
@@ -80,6 +80,6 @@ export const Projects: React.FC<Props> = memo<Props>((props) => {
         )}
       </Content>
     </Row>
-  )
-})
-Projects.displayName = 'Projects'
+  );
+});
+Projects.displayName = 'Projects';

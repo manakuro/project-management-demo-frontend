@@ -1,9 +1,9 @@
-import type { TaskCollaboratorResponse } from 'src/graphql/types/taskCollaborator'
+import type { TaskCollaboratorResponse } from 'src/graphql/types/taskCollaborator';
 
 export type {
   TaskCollaboratorResponse,
   TaskCollaboratorCreatedSubscriptionResponse,
   TaskCollaboratorDeletedSubscriptionResponse,
-} from 'src/graphql/types/taskCollaborator'
+} from 'src/graphql/types/taskCollaborator';
 
-export type TaskCollaborator = Omit<TaskCollaboratorResponse, 'teammate'>
+export type TaskCollaborator = Omit<TaskCollaboratorResponse, 'teammate'>;

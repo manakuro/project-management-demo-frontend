@@ -1,1 +1,1 @@
-export * from './DeleteProject'
+export * from './DeleteProject';

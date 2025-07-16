@@ -1,1 +1,1 @@
-export * from './IncreaseListIndent'
+export * from './IncreaseListIndent';

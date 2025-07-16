@@ -1,4 +1,4 @@
-import type React from 'react'
+import type React from 'react';
 import {
   Flex,
   Icon,
@@ -6,25 +6,25 @@ import {
   Option,
   Select,
   Text,
-} from 'src/components/ui/atoms'
-import { Tooltip } from 'src/components/ui/molecules'
-import { useClickableHoverStyle } from 'src/hooks'
-import { formatDueTime } from 'src/shared/date'
-import { times } from 'src/shared/date/time'
+} from 'src/components/ui/atoms';
+import { Tooltip } from 'src/components/ui/molecules';
+import { useClickableHoverStyle } from 'src/hooks';
+import { formatDueTime } from 'src/shared/date';
+import { times } from 'src/shared/date/time';
 
 type Props = {
-  onClick: () => void
-  isEditing: boolean
-  time?: string
-}
+  onClick: () => void;
+  isEditing: boolean;
+  time?: string;
+};
 
 const selects = times().map((t) => ({
   text: t,
   value: t,
-}))
+}));
 
 export const DueTime: React.FC<Props> = (props) => {
-  const { clickableHoverStyle } = useClickableHoverStyle()
+  const { clickableHoverStyle } = useClickableHoverStyle();
   if (!props.isEditing) {
     return (
       <Tooltip
@@ -40,7 +40,7 @@ export const DueTime: React.FC<Props> = (props) => {
           variant="ghost"
         />
       </Tooltip>
-    )
+    );
   }
 
   return (
@@ -65,5 +65,5 @@ export const DueTime: React.FC<Props> = (props) => {
         <Icon {...clickableHoverStyle} ml={1} icon="x" color="text.muted" />
       </Flex>
     </Flex>
-  )
-}
+  );
+};

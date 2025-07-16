@@ -1,13 +1,13 @@
-import { memo, useCallback } from 'react'
-import { useTasksTaskSectionCommand } from 'src/components/features/organisms/Tasks/hooks'
-import { Button, Flex, Icon } from 'src/components/ui/atoms'
+import { memo, useCallback } from 'react';
+import { useTasksTaskSectionCommand } from 'src/components/features/organisms/Tasks/hooks';
+import { Button, Flex, Icon } from 'src/components/ui/atoms';
 
 export const AddTaskSection = memo(function AddTaskSection() {
-  const { addTaskSection } = useTasksTaskSectionCommand()
+  const { addTaskSection } = useTasksTaskSectionCommand();
 
   const handleClick = useCallback(async () => {
-    addTaskSection()
-  }, [addTaskSection])
+    addTaskSection();
+  }, [addTaskSection]);
 
   return (
     <Flex w={40} mt={3} ml={2}>
@@ -20,5 +20,5 @@ export const AddTaskSection = memo(function AddTaskSection() {
         Add section
       </Button>
     </Flex>
-  )
-})
+  );
+});

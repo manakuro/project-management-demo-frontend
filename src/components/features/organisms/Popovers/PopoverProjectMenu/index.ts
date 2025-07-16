@@ -1,1 +1,1 @@
-export * from './PopoverProjectMenu'
+export * from './PopoverProjectMenu';

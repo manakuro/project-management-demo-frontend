@@ -1,24 +1,24 @@
-import type React from 'react'
-import { useRef } from 'react'
-import { Flex, PortalManager } from 'src/components/ui/atoms'
+import type React from 'react';
+import { useRef } from 'react';
+import { Flex, PortalManager } from 'src/components/ui/atoms';
 import {
   Popover,
   type PopoverProps,
   PopoverTrigger,
-} from 'src/components/ui/organisms/Popover'
-import { Content } from './Content'
+} from 'src/components/ui/organisms/Popover';
+import { Content } from './Content';
 
 type Props = PopoverProps & {
-  onClose: () => void
-  projectId: string
-  projectTeammateId: string
-  isOpen: boolean
-}
+  onClose: () => void;
+  projectId: string;
+  projectTeammateId: string;
+  isOpen: boolean;
+};
 
 export const ProjectRoleInputPopover: React.FC<Props> = (props) => {
   const { children, isOpen, onClose, projectId, projectTeammateId, ...rest } =
-    props
-  const initialFocusRef = useRef<HTMLInputElement | null>(null)
+    props;
+  const initialFocusRef = useRef<HTMLInputElement | null>(null);
 
   return (
     <PortalManager zIndex={1500}>
@@ -43,5 +43,5 @@ export const ProjectRoleInputPopover: React.FC<Props> = (props) => {
         )}
       </Popover>
     </PortalManager>
-  )
-}
+  );
+};

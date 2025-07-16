@@ -1,27 +1,27 @@
-import type React from 'react'
-import { memo, useCallback, useState } from 'react'
-import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell'
-import { type FlexProps, Stack } from 'src/components/ui/atoms'
-import { useProjectTaskIdsByTaskId } from 'src/store/entities/projectTask'
-import { Input } from './Input'
-import { ListItem } from './ListItem'
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
+import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
+import { type FlexProps, Stack } from 'src/components/ui/atoms';
+import { useProjectTaskIdsByTaskId } from 'src/store/entities/projectTask';
+import { Input } from './Input';
+import { ListItem } from './ListItem';
 
 type Props = FlexProps & {
-  taskId: string
-  width: string
-}
+  taskId: string;
+  width: string;
+};
 
 export const TasksProjects: React.FC<Props> = memo<Props>((props) => {
-  const { projectTaskIds } = useProjectTaskIdsByTaskId(props.taskId)
-  const [focused, setFocused] = useState<boolean>(false)
+  const { projectTaskIds } = useProjectTaskIdsByTaskId(props.taskId);
+  const [focused, setFocused] = useState<boolean>(false);
 
   const onFocus = useCallback(() => {
-    setFocused(true)
-  }, [])
+    setFocused(true);
+  }, []);
 
   const onUnfocus = useCallback(() => {
-    setFocused(false)
-  }, [])
+    setFocused(false);
+  }, []);
 
   return (
     <TasksListCell
@@ -47,6 +47,6 @@ export const TasksProjects: React.FC<Props> = memo<Props>((props) => {
         <Input focused={focused} onClose={onUnfocus} taskId={props.taskId} />
       )}
     </TasksListCell>
-  )
-})
-TasksProjects.displayName = 'TasksProjects'
+  );
+});
+TasksProjects.displayName = 'TasksProjects';

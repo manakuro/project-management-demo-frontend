@@ -1,19 +1,19 @@
-import { memo } from 'react'
-import { PopoverEmoji } from 'src/components/features/organisms/Popovers'
-import { Icon } from 'src/components/ui/atoms'
-import { useEmoji } from 'src/shared/prosemirror/hooks'
-import { BaseButton } from '../BaseButton'
+import { memo } from 'react';
+import { PopoverEmoji } from 'src/components/features/organisms/Popovers';
+import { Icon } from 'src/components/ui/atoms';
+import { useEmoji } from 'src/shared/prosemirror/hooks';
+import { BaseButton } from '../BaseButton';
 
 export function Emoji() {
   return (
     <PopoverEmoji>
       <Component />
     </PopoverEmoji>
-  )
+  );
 }
 
 export const Component = memo(function Component() {
-  const { action } = useEmoji()
+  const { action } = useEmoji();
 
   return (
     <PopoverEmoji>
@@ -27,5 +27,5 @@ export const Component = memo(function Component() {
         }}
       />
     </PopoverEmoji>
-  )
-})
+  );
+});

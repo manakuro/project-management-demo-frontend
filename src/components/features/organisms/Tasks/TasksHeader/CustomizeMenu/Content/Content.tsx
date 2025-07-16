@@ -1,38 +1,38 @@
-import { DragDropContext, Droppable } from '@hello-pangea/dnd'
-import type React from 'react'
-import { memo, useEffect, useMemo } from 'react'
-import { Divider } from 'src/components/features/organisms/Navigation/Divider'
-import { useTasksTaskColumnCustomizable } from 'src/components/features/organisms/Tasks/hooks'
-import { Box, Flex, Heading, Icon, IconButton } from 'src/components/ui/atoms'
+import { DragDropContext, Droppable } from '@hello-pangea/dnd';
+import type React from 'react';
+import { memo, useEffect, useMemo } from 'react';
+import { Divider } from 'src/components/features/organisms/Navigation/Divider';
+import { useTasksTaskColumnCustomizable } from 'src/components/features/organisms/Tasks/hooks';
+import { Box, Flex, Heading, Icon, IconButton } from 'src/components/ui/atoms';
 import {
   DrawerBody,
   DrawerContent,
   DrawerHeader,
-} from 'src/components/ui/organisms/Drawer'
-import { useDnd } from 'src/hooks/dnd/useDnd'
-import { isMyTasksBoardURL, useRouter } from 'src/router'
-import { useCustomizeMenu } from '../useCustomizeMenu'
-import { ListItem } from './ListItem'
+} from 'src/components/ui/organisms/Drawer';
+import { useDnd } from 'src/hooks/dnd/useDnd';
+import { isMyTasksBoardURL, useRouter } from 'src/router';
+import { useCustomizeMenu } from '../useCustomizeMenu';
+import { ListItem } from './ListItem';
 
-const HEADER_HEIGHT = 72
-const TASKS_HEADER_HEIGHT = 60
-const TASKS_HEADER_BOARD_HEIGHT = 40
+const HEADER_HEIGHT = 72;
+const TASKS_HEADER_HEIGHT = 60;
+const TASKS_HEADER_BOARD_HEIGHT = 40;
 
 export const Content: React.FC = memo(() => {
-  const { onClose } = useCustomizeMenu()
+  const { onClose } = useCustomizeMenu();
   const { tasksTaskColumnIds, setTaskColumnOrder } =
-    useTasksTaskColumnCustomizable()
-  const { list, handleDnd } = useDnd(tasksTaskColumnIds)
-  const { router } = useRouter()
+    useTasksTaskColumnCustomizable();
+  const { list, handleDnd } = useDnd(tasksTaskColumnIds);
+  const { router } = useRouter();
   const top = useMemo<number>(() => {
     if (isMyTasksBoardURL(router))
-      return HEADER_HEIGHT + TASKS_HEADER_BOARD_HEIGHT
-    return HEADER_HEIGHT + TASKS_HEADER_HEIGHT
-  }, [router])
+      return HEADER_HEIGHT + TASKS_HEADER_BOARD_HEIGHT;
+    return HEADER_HEIGHT + TASKS_HEADER_HEIGHT;
+  }, [router]);
 
   useEffect(() => {
-    setTaskColumnOrder(list)
-  }, [list, setTaskColumnOrder])
+    setTaskColumnOrder(list);
+  }, [list, setTaskColumnOrder]);
 
   return (
     <DrawerContent
@@ -81,6 +81,6 @@ export const Content: React.FC = memo(() => {
         </Droppable>
       </DragDropContext>
     </DrawerContent>
-  )
-})
-Content.displayName = 'Content'
+  );
+});
+Content.displayName = 'Content';

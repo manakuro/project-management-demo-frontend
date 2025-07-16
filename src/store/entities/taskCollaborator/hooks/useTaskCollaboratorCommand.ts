@@ -1,33 +1,33 @@
-import { useRecoilCallback } from 'recoil'
+import { useRecoilCallback } from 'recoil';
 import {
   useCreateTaskCollaboratorMutation,
   useDeleteTaskCollaboratorMutation,
-} from 'src/graphql/hooks'
-import type { TaskCollaboratorResponse } from 'src/graphql/types/taskCollaborator'
-import { uuid } from 'src/shared/uuid'
+} from 'src/graphql/hooks';
+import type { TaskCollaboratorResponse } from 'src/graphql/types/taskCollaborator';
+import { uuid } from 'src/shared/uuid';
 import {
   type Teammate,
   useResetTeammate,
   useTeammateResponse,
-} from 'src/store/entities/teammate'
-import { useWorkspace } from 'src/store/entities/workspace'
-import { initialState, taskCollaboratorByTaskIdAndTeammateId } from '../atom'
-import { useResetTaskCollaborator } from './useResetTaskCollaborator'
-import { TASK_COLLABORATOR_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskCollaboratorCreatedSubscription'
-import { TASK_COLLABORATOR_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskCollaboratorDeletedSubscription'
-import { useTaskCollaboratorResponse } from './useTaskCollaboratorResponse'
-import { useUpsert } from './useUpsert'
+} from 'src/store/entities/teammate';
+import { useWorkspace } from 'src/store/entities/workspace';
+import { initialState, taskCollaboratorByTaskIdAndTeammateId } from '../atom';
+import { useResetTaskCollaborator } from './useResetTaskCollaborator';
+import { TASK_COLLABORATOR_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskCollaboratorCreatedSubscription';
+import { TASK_COLLABORATOR_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskCollaboratorDeletedSubscription';
+import { useTaskCollaboratorResponse } from './useTaskCollaboratorResponse';
+import { useUpsert } from './useUpsert';
 
 export const useTaskCollaboratorCommand = () => {
-  const { upsert } = useUpsert()
-  const { resetTaskCollaborator } = useResetTaskCollaborator()
-  const { setTaskCollaborators } = useTaskCollaboratorResponse()
-  const { setTeammates } = useTeammateResponse()
-  const { resetTeammate } = useResetTeammate()
-  const { workspace } = useWorkspace()
+  const { upsert } = useUpsert();
+  const { resetTaskCollaborator } = useResetTaskCollaborator();
+  const { setTaskCollaborators } = useTaskCollaboratorResponse();
+  const { setTeammates } = useTeammateResponse();
+  const { resetTeammate } = useResetTeammate();
+  const { workspace } = useWorkspace();
 
-  const [createTaskCollaboratorMutation] = useCreateTaskCollaboratorMutation()
-  const [deleteTaskCollaboratorMutation] = useDeleteTaskCollaboratorMutation()
+  const [createTaskCollaboratorMutation] = useCreateTaskCollaboratorMutation();
+  const [deleteTaskCollaboratorMutation] = useDeleteTaskCollaboratorMutation();
 
   const addTaskCollaboratorByTeammate = useRecoilCallback(
     ({ snapshot }) =>
@@ -37,23 +37,23 @@ export const useTaskCollaboratorCommand = () => {
             teammateId: input.teammate.id,
             taskId: input.taskId,
           }),
-        )
-        if (taskCollaborator.id) return
+        );
+        if (taskCollaborator.id) return;
 
-        const id = uuid()
+        const id = uuid();
         upsert({
           ...initialState(),
           id,
           taskId: input.taskId,
           teammateId: input.teammate.id,
-        })
+        });
 
-        setTeammates([input.teammate])
+        setTeammates([input.teammate]);
 
         const restore = () => {
-          resetTaskCollaborator(id)
-          resetTeammate(input.teammate.id)
-        }
+          resetTaskCollaborator(id);
+          resetTeammate(input.teammate.id);
+        };
 
         try {
           const res = await createTaskCollaboratorMutation({
@@ -65,20 +65,20 @@ export const useTaskCollaboratorCommand = () => {
                 requestId: TASK_COLLABORATOR_CREATED_SUBSCRIPTION_REQUEST_ID,
               },
             },
-          })
+          });
           if (res.errors) {
-            restore()
-            return
+            restore();
+            return;
           }
 
-          const data = res.data?.createTaskCollaborator
-          if (!data) return
+          const data = res.data?.createTaskCollaborator;
+          if (!data) return;
 
-          resetTaskCollaborator(id)
-          setTaskCollaborators([data])
+          resetTaskCollaborator(id);
+          setTaskCollaborators([data]);
         } catch (e) {
-          restore()
-          throw e
+          restore();
+          throw e;
         }
       },
     [
@@ -90,7 +90,7 @@ export const useTaskCollaboratorCommand = () => {
       upsert,
       workspace.id,
     ],
-  )
+  );
 
   const deleteTaskCollaboratorByTeammate = useRecoilCallback(
     ({ snapshot }) =>
@@ -100,13 +100,13 @@ export const useTaskCollaboratorCommand = () => {
             taskId: input.taskId,
             teammateId: input.teammateId,
           }),
-        )
+        );
 
-        resetTaskCollaborator(taskCollaborator.id)
+        resetTaskCollaborator(taskCollaborator.id);
 
         const restore = () => {
-          setTaskCollaborators([taskCollaborator as TaskCollaboratorResponse])
-        }
+          setTaskCollaborators([taskCollaborator as TaskCollaboratorResponse]);
+        };
 
         try {
           const res = await deleteTaskCollaboratorMutation({
@@ -117,13 +117,13 @@ export const useTaskCollaboratorCommand = () => {
                 requestId: TASK_COLLABORATOR_DELETED_SUBSCRIPTION_REQUEST_ID,
               },
             },
-          })
+          });
           if (res.errors) {
-            restore()
+            restore();
           }
         } catch (e) {
-          restore()
-          throw e
+          restore();
+          throw e;
         }
       },
     [
@@ -132,10 +132,10 @@ export const useTaskCollaboratorCommand = () => {
       setTaskCollaborators,
       workspace.id,
     ],
-  )
+  );
 
   return {
     addTaskCollaboratorByTeammate,
     deleteTaskCollaboratorByTeammate,
-  }
-}
+  };
+};

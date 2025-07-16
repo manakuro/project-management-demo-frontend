@@ -1,32 +1,32 @@
-import type React from 'react'
-import { memo, useCallback, useEffect, useState } from 'react'
-import { Flex, InputText } from 'src/components/ui/atoms'
-import { useDebounce } from 'src/hooks'
+import type React from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
+import { Flex, InputText } from 'src/components/ui/atoms';
+import { useDebounce } from 'src/hooks';
 
 type Props = {
-  value: string
-  onChange: (val: string) => void
-}
+  value: string;
+  onChange: (val: string) => void;
+};
 
 export const Input: React.FC<Props> = memo<Props>((props) => {
-  const [value, setValue] = useState<string>(props.value)
+  const [value, setValue] = useState<string>(props.value);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setValue(e.target.value)
+      setValue(e.target.value);
     },
     [],
-  )
+  );
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.code === 'Enter') e.preventDefault()
-  }, [])
+    if (e.code === 'Enter') e.preventDefault();
+  }, []);
 
   useEffect(() => {
-    setValue(props.value)
-  }, [props.value])
+    setValue(props.value);
+  }, [props.value]);
 
-  useDebounce(value, props.onChange, 500)
+  useDebounce(value, props.onChange, 500);
 
   return (
     <Flex flex={1} px={4}>
@@ -40,6 +40,6 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
         placeholder="Write a task name"
       />
     </Flex>
-  )
-})
-Input.displayName = 'Input'
+  );
+});
+Input.displayName = 'Input';

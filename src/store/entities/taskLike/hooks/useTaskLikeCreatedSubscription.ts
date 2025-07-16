@@ -1,25 +1,25 @@
-import isEqual from 'lodash-es/isEqual'
-import { useMemo } from 'react'
-import { useRecoilCallback } from 'recoil'
-import { useTaskLikeCreatedSubscription as useSubscription } from 'src/graphql/hooks'
-import { uuid } from 'src/shared/uuid'
-import type { TaskLikeCreatedSubscriptionResponse as Response } from '../type'
-import { useTaskLikeResponse } from './useTaskLikeResponse'
+import isEqual from 'lodash-es/isEqual';
+import { useMemo } from 'react';
+import { useRecoilCallback } from 'recoil';
+import { useTaskLikeCreatedSubscription as useSubscription } from 'src/graphql/hooks';
+import { uuid } from 'src/shared/uuid';
+import type { TaskLikeCreatedSubscriptionResponse as Response } from '../type';
+import { useTaskLikeResponse } from './useTaskLikeResponse';
 
-export const TASK_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID = uuid()
+export const TASK_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID = uuid();
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
-let previousData: any
+let previousData: any;
 
 type Props = {
-  workspaceId: string
-}
+  workspaceId: string;
+};
 export const useTaskLikeCreatedSubscription = (props: Props) => {
   const skipSubscription = useMemo(() => {
-    return !props.workspaceId
-  }, [props.workspaceId])
+    return !props.workspaceId;
+  }, [props.workspaceId]);
 
-  const { setTaskLikes } = useTaskLikeResponse()
+  const { setTaskLikes } = useTaskLikeResponse();
 
   useSubscription({
     variables: {
@@ -33,23 +33,23 @@ export const useTaskLikeCreatedSubscription = (props: Props) => {
           previousData?.subscriptionData?.data,
         )
       )
-        return
+        return;
 
       if (data.subscriptionData.data)
-        setBySubscription(data.subscriptionData.data)
-      previousData = data
+        setBySubscription(data.subscriptionData.data);
+      previousData = data;
     },
     skip: skipSubscription,
-  })
+  });
 
   const setBySubscription = useRecoilCallback(
     () => async (response: Response) => {
-      const taskLikeCreated = response.taskLikeCreated
+      const taskLikeCreated = response.taskLikeCreated;
 
-      if (__DEV__) console.log('TaskLike created!: ')
+      if (__DEV__) console.log('TaskLike created!: ');
 
-      setTaskLikes([taskLikeCreated])
+      setTaskLikes([taskLikeCreated]);
     },
     [setTaskLikes],
-  )
-}
+  );
+};

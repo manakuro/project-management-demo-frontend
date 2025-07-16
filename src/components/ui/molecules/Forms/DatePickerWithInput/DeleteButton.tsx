@@ -1,24 +1,24 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { Icon } from 'src/components/ui/atoms'
-import { useClickableHoverStyle } from 'src/hooks'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { Icon } from 'src/components/ui/atoms';
+import { useClickableHoverStyle } from 'src/hooks';
 
 type Props = {
-  onDelete: () => void
-  isHovering: boolean
-}
+  onDelete: () => void;
+  isHovering: boolean;
+};
 
 export const DeleteButton: React.FC<Props> = memo<Props>((props) => {
-  const { isHovering, onDelete } = props
-  const { clickableHoverLightStyle } = useClickableHoverStyle()
+  const { isHovering, onDelete } = props;
+  const { clickableHoverLightStyle } = useClickableHoverStyle();
 
   const handleClick = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
-      e.stopPropagation()
-      onDelete()
+      e.stopPropagation();
+      onDelete();
     },
     [onDelete],
-  )
+  );
 
   return (
     <Icon
@@ -31,6 +31,6 @@ export const DeleteButton: React.FC<Props> = memo<Props>((props) => {
       {...clickableHoverLightStyle}
       onClick={handleClick}
     />
-  )
-})
-DeleteButton.displayName = 'DeleteButton'
+  );
+});
+DeleteButton.displayName = 'DeleteButton';

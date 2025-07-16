@@ -1,6 +1,6 @@
-import { useRecoilCallback } from 'recoil'
-import { meState } from '../atom'
-import type { Me } from '../type'
+import { useRecoilCallback } from 'recoil';
+import { meState } from '../atom';
+import type { Me } from '../type';
 
 export const useUpsert = () => {
   const upsert = useRecoilCallback(
@@ -9,12 +9,12 @@ export const useUpsert = () => {
         set(meState, (prev) => ({
           ...prev,
           ...input,
-        }))
+        }));
       },
     [],
-  )
+  );
 
   return {
     upsert,
-  }
-}
+  };
+};

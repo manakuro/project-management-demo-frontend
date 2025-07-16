@@ -1,3 +1,3 @@
-export * from './Editor'
-export * from './Editors/EditorContent'
-export * from './Editors/EditorPlaceholder'
+export * from './Editor';
+export * from './Editors/EditorContent';
+export * from './Editors/EditorPlaceholder';

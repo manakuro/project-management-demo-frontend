@@ -1,2 +1,2 @@
-export * from './ShareWorkspaceModal'
-export * from './useShareWorkspaceModal'
+export * from './ShareWorkspaceModal';
+export * from './useShareWorkspaceModal';

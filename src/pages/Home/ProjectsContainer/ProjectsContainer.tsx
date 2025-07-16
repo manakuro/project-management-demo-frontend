@@ -1,5 +1,5 @@
-import type React from 'react'
-import { memo, useState } from 'react'
+import type React from 'react';
+import { memo, useState } from 'react';
 import {
   PROJECT_LIST_MENU_VIEW_AS_TILES,
   ProjectListItem,
@@ -8,7 +8,7 @@ import {
   type ProjectListStatus,
   ProjectTileItem,
   ProjectTileItemNew,
-} from 'src/components/features/organisms/Projects'
+} from 'src/components/features/organisms/Projects';
 import {
   Box,
   Flex,
@@ -16,27 +16,27 @@ import {
   Grid,
   Heading,
   Icon,
-} from 'src/components/ui/atoms'
+} from 'src/components/ui/atoms';
 import {
   Accordion,
   AccordionButton,
   AccordionItem,
   AccordionPanel,
-} from 'src/components/ui/organisms/Accordion'
+} from 'src/components/ui/organisms/Accordion';
 
 type Props = {
-  projectIds: string[]
-  showNewOrder: boolean
-  title: string
-  projectTileItemProps?: FlexProps
-  projectListItemProps?: FlexProps
-}
+  projectIds: string[];
+  showNewOrder: boolean;
+  title: string;
+  projectTileItemProps?: FlexProps;
+  projectListItemProps?: FlexProps;
+};
 
-export const PADDING_X = 2
+export const PADDING_X = 2;
 export const ProjectsContainer: React.FC<Props> = memo<Props>((props) => {
   const [listStatus, setListStatus] = useState<ProjectListStatus>(
     PROJECT_LIST_MENU_VIEW_AS_TILES,
-  )
+  );
 
   return (
     <Accordion allowToggle defaultIndex={0}>
@@ -97,6 +97,6 @@ export const ProjectsContainer: React.FC<Props> = memo<Props>((props) => {
         )}
       </AccordionItem>
     </Accordion>
-  )
-})
-ProjectsContainer.displayName = 'ProjectsContainer'
+  );
+});
+ProjectsContainer.displayName = 'ProjectsContainer';

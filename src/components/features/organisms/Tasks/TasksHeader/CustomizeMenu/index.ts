@@ -1,2 +1,2 @@
-export * from './CustomizeMenu'
-export * from './useCustomizeMenu'
+export * from './CustomizeMenu';
+export * from './useCustomizeMenu';

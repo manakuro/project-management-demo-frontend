@@ -1,14 +1,14 @@
-import type React from 'react'
-import { memo } from 'react'
+import type React from 'react';
+import { memo } from 'react';
 import {
   TasksHeader,
   TasksHeaderRight,
-} from 'src/components/features/organisms/Tasks'
-import { type FlexProps, Skeleton } from 'src/components/ui/atoms'
+} from 'src/components/features/organisms/Tasks';
+import { type FlexProps, Skeleton } from 'src/components/ui/atoms';
 
-type Props = FlexProps
+type Props = FlexProps;
 
-const BUTTON_HEIGHT = '28px'
+const BUTTON_HEIGHT = '28px';
 export const SkeletonBoardHeader: React.FC<Props> = memo<Props>(() => {
   return (
     <TasksHeader
@@ -25,6 +25,6 @@ export const SkeletonBoardHeader: React.FC<Props> = memo<Props>(() => {
         <Skeleton h={BUTTON_HEIGHT} w="91px" />
       </TasksHeaderRight>
     </TasksHeader>
-  )
-})
-SkeletonBoardHeader.displayName = 'SkeletonBoardHeader'
+  );
+});
+SkeletonBoardHeader.displayName = 'SkeletonBoardHeader';

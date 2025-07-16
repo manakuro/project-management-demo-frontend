@@ -1,1 +1,1 @@
-export * from './TaskActivity'
+export * from './TaskActivity';

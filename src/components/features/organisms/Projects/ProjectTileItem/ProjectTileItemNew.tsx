@@ -1,15 +1,15 @@
-import type React from 'react'
-import { ComingSoonTooltip } from 'src/components/features/molecules/Tooltips'
-import { DashedBox, Flex, type FlexProps, Icon } from 'src/components/ui/atoms'
-import { transitions } from 'src/styles'
-import { Container } from './Container'
+import type React from 'react';
+import { ComingSoonTooltip } from 'src/components/features/molecules/Tooltips';
+import { DashedBox, Flex, type FlexProps, Icon } from 'src/components/ui/atoms';
+import { transitions } from 'src/styles';
+import { Container } from './Container';
 
 type Props = {
-  containerStyle?: FlexProps
-}
+  containerStyle?: FlexProps;
+};
 
 export const ProjectTileItemNew: React.FC<Props> = (props) => {
-  const { containerStyle } = props
+  const { containerStyle } = props;
   return (
     <Container name="New Project" {...containerStyle}>
       {({ showTransition }) => (
@@ -29,5 +29,5 @@ export const ProjectTileItemNew: React.FC<Props> = (props) => {
         </ComingSoonTooltip>
       )}
     </Container>
-  )
-}
+  );
+};

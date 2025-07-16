@@ -1,1 +1,1 @@
-export * from './Assignee'
+export * from './Assignee';

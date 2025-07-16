@@ -1,9 +1,9 @@
-import { memo } from 'react'
-import { ProjectsContainer } from 'src/pages/Home/ProjectsContainer'
-import { useProjectIds } from 'src/store/entities/project'
+import { memo } from 'react';
+import { ProjectsContainer } from 'src/pages/Home/ProjectsContainer';
+import { useProjectIds } from 'src/store/entities/project';
 
 export const RecentProjects = memo(function RecentProjects() {
-  const { projectIds } = useProjectIds()
+  const { projectIds } = useProjectIds();
 
   return (
     <ProjectsContainer
@@ -17,5 +17,5 @@ export const RecentProjects = memo(function RecentProjects() {
         'aria-label': 'recent project list item',
       }}
     />
-  )
-})
+  );
+});

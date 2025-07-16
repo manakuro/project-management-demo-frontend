@@ -1,45 +1,45 @@
-import type React from 'react'
-import { memo, useCallback } from 'react'
-import { CheckIcon, Flex, type FlexProps } from 'src/components/ui/atoms'
-import { useTask, useTaskCommand } from 'src/store/entities/task'
-import { useTasksBoardListItemContext } from '../Provider'
-import { TasksNameProvider } from './Provider'
-import { TasksNameField } from './TasksNameField'
+import type React from 'react';
+import { memo, useCallback } from 'react';
+import { CheckIcon, Flex, type FlexProps } from 'src/components/ui/atoms';
+import { useTask, useTaskCommand } from 'src/store/entities/task';
+import { useTasksBoardListItemContext } from '../Provider';
+import { TasksNameProvider } from './Provider';
+import { TasksNameField } from './TasksNameField';
 
 type Props = FlexProps & {
-  taskId: string
-}
+  taskId: string;
+};
 
 export const TasksName: React.FC<Props> = memo<Props>((props) => {
   return (
     <TasksNameProvider taskId={props.taskId}>
       <Component {...props} />
     </TasksNameProvider>
-  )
-})
+  );
+});
 
 const Component: React.FC<Props> = memo<Props>((props) => {
-  const { onToggleDone } = useTasksBoardListItemContext()
-  const { deleteTask } = useTaskCommand()
-  const { task, setTaskName } = useTask(props.taskId)
+  const { onToggleDone } = useTasksBoardListItemContext();
+  const { deleteTask } = useTaskCommand();
+  const { task, setTaskName } = useTask(props.taskId);
 
   const handleDeleteTask = useCallback(async () => {
-    await deleteTask({ taskId: props.taskId })
-  }, [deleteTask, props.taskId])
+    await deleteTask({ taskId: props.taskId });
+  }, [deleteTask, props.taskId]);
 
   const handleChangeName = useCallback(
     async (val: string) => {
-      await setTaskName(val)
+      await setTaskName(val);
     },
     [setTaskName],
-  )
+  );
   const handleToggleDone = useCallback(
     async (e: React.MouseEvent<SVGElement>) => {
-      e.stopPropagation()
-      onToggleDone()
+      e.stopPropagation();
+      onToggleDone();
     },
     [onToggleDone],
-  )
+  );
 
   return (
     <Flex>
@@ -53,7 +53,7 @@ const Component: React.FC<Props> = memo<Props>((props) => {
         flex={1}
       />
     </Flex>
-  )
-})
-Component.displayName = 'Component'
-TasksName.displayName = 'TasksName'
+  );
+});
+Component.displayName = 'Component';
+TasksName.displayName = 'TasksName';

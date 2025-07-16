@@ -1,1 +1,1 @@
-export * from './DuplicateTask'
+export * from './DuplicateTask';

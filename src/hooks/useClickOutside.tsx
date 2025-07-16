@@ -1,37 +1,37 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 type Options = {
-  skip?: boolean
+  skip?: boolean;
   hasClickedOutside?: (
     e: Event,
     helpers: {
-      isContainInMenuList: (e: Event) => boolean
-      isContainInModalContent: (e: Event) => boolean
-      isContainInPopoverContent: (e: Event) => boolean
-      isContainInToastContent: (e: Event) => boolean
-      isContainInPopoverTrigger: (e: Event) => boolean
+      isContainInMenuList: (e: Event) => boolean;
+      isContainInModalContent: (e: Event) => boolean;
+      isContainInPopoverContent: (e: Event) => boolean;
+      isContainInToastContent: (e: Event) => boolean;
+      isContainInPopoverTrigger: (e: Event) => boolean;
     },
-  ) => boolean
-}
-export type UseClickOutsideOptions = Options
+  ) => boolean;
+};
+export type UseClickOutsideOptions = Options;
 export type UseClickOutsideOptionsHasClickedOutside =
-  Required<UseClickOutsideOptions>['hasClickedOutside']
+  Required<UseClickOutsideOptions>['hasClickedOutside'];
 
 export const useClickOutside = (
   onClickOutside?: () => void,
   options: Options = {},
 ) => {
-  const ref = useRef<HTMLElement | null>(null)
+  const ref = useRef<HTMLElement | null>(null);
   const [state, setState] = useState({
     hasClickedOutside: false,
-  })
-  const { skip, hasClickedOutside } = options
+  });
+  const { skip, hasClickedOutside } = options;
 
   const handleEvent = useCallback(
     (e: Event) => {
       if (ref?.current) {
         if (ref.current.contains(e.target as Node)) {
-          setState({ hasClickedOutside: false })
+          setState({ hasClickedOutside: false });
         } else {
           // Manually check to see if the element has clicked outside
           if (hasClickedOutside) {
@@ -41,82 +41,82 @@ export const useClickOutside = (
               isContainInPopoverContent,
               isContainInToastContent,
               isContainInPopoverTrigger,
-            })
-            setState({ hasClickedOutside: clicked })
-            return
+            });
+            setState({ hasClickedOutside: clicked });
+            return;
           }
 
-          setState({ hasClickedOutside: true })
+          setState({ hasClickedOutside: true });
         }
       }
     },
     [hasClickedOutside],
-  )
+  );
 
   const removeEventListener = useCallback(() => {
-    if (skip) return
+    if (skip) return;
 
-    console.log('Unsubscribe!!')
+    console.log('Unsubscribe!!');
 
     if (window.PointerEvent) {
-      document.removeEventListener('pointerdown', handleEvent)
+      document.removeEventListener('pointerdown', handleEvent);
     } else {
-      document.removeEventListener('mousedown', handleEvent)
-      document.removeEventListener('touchstart', handleEvent)
+      document.removeEventListener('mousedown', handleEvent);
+      document.removeEventListener('touchstart', handleEvent);
     }
-  }, [handleEvent, skip])
+  }, [handleEvent, skip]);
 
   useEffect(() => {
-    if (skip) return
+    if (skip) return;
 
     if (window.PointerEvent) {
-      document.addEventListener('pointerdown', handleEvent)
+      document.addEventListener('pointerdown', handleEvent);
     } else {
-      document.addEventListener('mousedown', handleEvent)
-      document.addEventListener('touchstart', handleEvent)
+      document.addEventListener('mousedown', handleEvent);
+      document.addEventListener('touchstart', handleEvent);
     }
-    console.log('Subscribe!!')
+    console.log('Subscribe!!');
 
     return () => {
-      removeEventListener()
-    }
-  }, [handleEvent, skip, removeEventListener])
+      removeEventListener();
+    };
+  }, [handleEvent, skip, removeEventListener]);
 
   useEffect(() => {
-    if (skip) return
+    if (skip) return;
 
     if (state.hasClickedOutside) {
-      onClickOutside?.()
+      onClickOutside?.();
     }
-  }, [onClickOutside, state.hasClickedOutside, skip])
+  }, [onClickOutside, state.hasClickedOutside, skip]);
 
   return {
     ref,
     hasClickedOutside: state.hasClickedOutside,
     removeEventListener,
-  }
-}
+  };
+};
 
 const isContainInMenuList = (e: Event) =>
   Array.from(document.querySelectorAll("[aria-label='menu-list']")).some((q) =>
     q.contains(e.target as Node),
-  )
+  );
 const isContainInModalContent = (e: Event) =>
   Array.from(document.querySelectorAll("[aria-label='modal-content']")).some(
     (q) => q.contains(e.target as Node),
   ) ||
   Array.from(
     document.querySelectorAll('.chakra-modal__content-container'),
-  ).some((q) => q.contains(e.target as Node))
+  ).some((q) => q.contains(e.target as Node));
 const isContainInPopoverContent = (e: Event) =>
   Array.from(document.querySelectorAll("[aria-label='popover-content']")).some(
     (q) => q.contains(e.target as Node),
-  )
+  );
 const isContainInToastContent = (e: Event) =>
   Array.from(document.querySelectorAll("[aria-label='toast-content']")).some(
     (q) => q.contains(e.target as Node),
-  )
+  );
 const isContainInPopoverTrigger = (e: Event) =>
   Array.from(document.querySelectorAll("[aria-label='popover-trigger']")).some(
     (q) => q.contains(e.target as Node),
-  )
+  );

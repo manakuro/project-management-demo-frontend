@@ -1,56 +1,56 @@
-import type React from 'react'
-import { memo, useCallback, useState } from 'react'
-import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers'
-import { Input as AtomsInput } from 'src/components/ui/atoms'
-import { useClickOutside } from 'src/hooks'
-import { useDisclosure } from 'src/shared/chakra'
-import { formatDueDateInput } from 'src/shared/date'
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
+import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers';
+import { Input as AtomsInput } from 'src/components/ui/atoms';
+import { useClickOutside } from 'src/hooks';
+import { useDisclosure } from 'src/shared/chakra';
+import { formatDueDateInput } from 'src/shared/date';
 
 type Props = {
-  onClose: () => void
-  onSelect: (val: Date) => void
-  onClear: () => void
-  dueDate: string
-}
+  onClose: () => void;
+  onSelect: (val: Date) => void;
+  onClear: () => void;
+  dueDate: string;
+};
 
 export const Input: React.FC<Props> = memo<Props>((props) => {
-  const { onClose, onSelect, dueDate, onClear } = props
+  const { onClose, onSelect, dueDate, onClear } = props;
   const { ref } = useClickOutside(onClose, {
     hasClickedOutside: (e, helpers) => {
-      if (helpers.isContainInPopoverContent(e)) return false
-      return true
+      if (helpers.isContainInPopoverContent(e)) return false;
+      return true;
     },
-  })
-  const popoverDisclosure = useDisclosure({ defaultIsOpen: true })
-  const [value, setValue] = useState<string>(formatDueDateInput(dueDate))
+  });
+  const popoverDisclosure = useDisclosure({ defaultIsOpen: true });
+  const [value, setValue] = useState<string>(formatDueDateInput(dueDate));
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const val = e.target.value
-      setValue(val)
+      const val = e.target.value;
+      setValue(val);
       if (val) {
-        popoverDisclosure.onOpen()
-        return
+        popoverDisclosure.onOpen();
+        return;
       }
-      popoverDisclosure.onClose()
+      popoverDisclosure.onClose();
     },
     [popoverDisclosure],
-  )
+  );
 
   const handleSelect = useCallback(
     (val: Date) => {
-      setValue('')
-      onSelect(val)
-      onClose()
+      setValue('');
+      onSelect(val);
+      onClose();
     },
     [onClose, onSelect],
-  )
+  );
 
   const handleClear = useCallback(() => {
-    setValue('')
-    popoverDisclosure.onClose()
-    onClear()
-  }, [onClear, popoverDisclosure])
+    setValue('');
+    popoverDisclosure.onClose();
+    onClear();
+  }, [onClear, popoverDisclosure]);
 
   return (
     <PopoverDueDatePicker
@@ -70,6 +70,6 @@ export const Input: React.FC<Props> = memo<Props>((props) => {
         ml={2}
       />
     </PopoverDueDatePicker>
-  )
-})
-Input.displayName = 'Input'
+  );
+});
+Input.displayName = 'Input';

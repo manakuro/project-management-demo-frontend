@@ -1,74 +1,74 @@
-import { useCallback } from 'react'
-import { atom, useRecoilState, useResetRecoilState } from 'recoil'
+import { useCallback } from 'react';
+import { atom, useRecoilState, useResetRecoilState } from 'recoil';
 import {
   useTasksCompletedTaskSizeByTaskSectionId,
   useTasksTaskSection,
   useTasksTaskSectionCommand,
-} from 'src/components/features/organisms/Tasks/hooks'
-import { useToast } from 'src/hooks'
+} from 'src/components/features/organisms/Tasks/hooks';
+import { useToast } from 'src/hooks';
 
 const key = (str: string) =>
-  `src/components/organisms/Modals/DeleteTaskSectionModal/useDeleteTaskSectionModal/${str}`
+  `src/components/organisms/Modals/DeleteTaskSectionModal/useDeleteTaskSectionModal/${str}`;
 
 const openState = atom({
   key: key('openState'),
   default: false,
-})
+});
 
 type ModalState = {
-  taskSectionId: string
-}
+  taskSectionId: string;
+};
 const modalState = atom<ModalState>({
   key: key('modalState'),
   default: {
     taskSectionId: '',
   },
-})
+});
 
 export const useDeleteTaskSectionModal = () => {
-  const [isOpen, setIsOpen] = useRecoilState(openState)
-  const [state, setState] = useRecoilState(modalState)
-  const resetState = useResetRecoilState(modalState)
-  const { toast } = useToast()
+  const [isOpen, setIsOpen] = useRecoilState(openState);
+  const [state, setState] = useRecoilState(modalState);
+  const resetState = useResetRecoilState(modalState);
+  const { toast } = useToast();
   const {
     deleteTaskSectionAndDeleteTasks,
     deleteTaskSectionAndKeepTasks,
     undeleteTaskSectionAndKeepTasks,
     undeleteTaskSectionAndDeleteTasks,
-  } = useTasksTaskSectionCommand()
+  } = useTasksTaskSectionCommand();
   const { completedTaskSize, incompleteTaskSize, taskSize } =
-    useTasksCompletedTaskSizeByTaskSectionId(state.taskSectionId)
-  const { taskSection } = useTasksTaskSection(state.taskSectionId)
+    useTasksCompletedTaskSizeByTaskSectionId(state.taskSectionId);
+  const { taskSection } = useTasksTaskSection(state.taskSectionId);
 
   const onClose = useCallback(() => {
-    setIsOpen(false)
-    resetState()
-  }, [setIsOpen, resetState])
+    setIsOpen(false);
+    resetState();
+  }, [setIsOpen, resetState]);
 
   const onOpen = useCallback(() => {
-    setIsOpen(true)
-  }, [setIsOpen])
+    setIsOpen(true);
+  }, [setIsOpen]);
 
   const setModalState = useCallback(
     (val: ModalState) => {
-      setState(val)
+      setState(val);
     },
     [setState],
-  )
+  );
 
   const onDeleteAndKeepTask = useCallback(async () => {
-    setIsOpen(false)
-    const res = await deleteTaskSectionAndKeepTasks(state.taskSectionId)
-    if (!res) return
+    setIsOpen(false);
+    const res = await deleteTaskSectionAndKeepTasks(state.taskSectionId);
+    if (!res) return;
 
     toast({
       description: `${taskSection.name} was deleted and its tasks are being moved.`,
       undo: async () => {
-        await undeleteTaskSectionAndKeepTasks(res)
+        await undeleteTaskSectionAndKeepTasks(res);
       },
       duration: 10000,
-    })
-    resetState()
+    });
+    resetState();
   }, [
     setIsOpen,
     deleteTaskSectionAndKeepTasks,
@@ -77,21 +77,21 @@ export const useDeleteTaskSectionModal = () => {
     taskSection.name,
     resetState,
     undeleteTaskSectionAndKeepTasks,
-  ])
+  ]);
 
   const onDeleteAndDeleteTask = useCallback(async () => {
-    setIsOpen(false)
-    const res = await deleteTaskSectionAndDeleteTasks(state.taskSectionId)
-    if (!res) return
+    setIsOpen(false);
+    const res = await deleteTaskSectionAndDeleteTasks(state.taskSectionId);
+    if (!res) return;
 
     toast({
       description: `${taskSection.name} was deleted and its tasks are being deleted.`,
       undo: async () => {
-        await undeleteTaskSectionAndDeleteTasks(res)
+        await undeleteTaskSectionAndDeleteTasks(res);
       },
       duration: 10000,
-    })
-    resetState()
+    });
+    resetState();
   }, [
     deleteTaskSectionAndDeleteTasks,
     resetState,
@@ -100,7 +100,7 @@ export const useDeleteTaskSectionModal = () => {
     taskSection.name,
     toast,
     undeleteTaskSectionAndDeleteTasks,
-  ])
+  ]);
 
   return {
     isOpen,
@@ -114,5 +114,5 @@ export const useDeleteTaskSectionModal = () => {
     completedTaskSize,
     taskSize,
     ...state,
-  }
-}
+  };
+};

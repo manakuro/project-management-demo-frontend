@@ -6,7 +6,7 @@ import {
   Input,
   Link,
   MoreLink,
-} from 'src/components/ui/atoms'
+} from 'src/components/ui/atoms';
 import {
   Modal,
   ModalBody,
@@ -14,11 +14,11 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-} from 'src/components/ui/organisms/Modal'
-import { useShareWorkspaceModal } from './useShareWorkspaceModal'
+} from 'src/components/ui/organisms/Modal';
+import { useShareWorkspaceModal } from './useShareWorkspaceModal';
 
 export function ShareWorkspaceModal() {
-  const { isOpen, onClose } = useShareWorkspaceModal()
+  const { isOpen, onClose } = useShareWorkspaceModal();
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl">
@@ -58,5 +58,5 @@ export function ShareWorkspaceModal() {
         </ModalBody>
       </ModalContent>
     </Modal>
-  )
+  );
 }

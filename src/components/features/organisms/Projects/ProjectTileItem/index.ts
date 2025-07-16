@@ -1,2 +1,2 @@
-export * from './ProjectTileItem'
-export * from './ProjectTileItemNew'
+export * from './ProjectTileItem';
+export * from './ProjectTileItemNew';

@@ -54,7 +54,7 @@ export const Favorites = memo(function Favorites() {
                 {listItems.map((listItem, i) => (
                   <NavListItem
                     item={listItem}
-                    key={listItem.href}
+                    key={listItem.name}
                     {...disabledStyle}
                   />
                 ))}

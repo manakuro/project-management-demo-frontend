@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { inboxStatusState } from '../atom'
-import { InboxListStatus } from '../type'
+import type { InboxListStatus } from '../type'
 
 export const useInboxListStatusResponse = () => {
   const setInboxListStatus = useRecoilCallback(

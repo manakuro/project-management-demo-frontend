@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { useProjectsLazyQuery } from 'src/graphql/hooks'
-import { ProjectResponse, ProjectsQuery } from 'src/graphql/types/project'
+import type { ProjectResponse, ProjectsQuery } from 'src/graphql/types/project'
 import { getNodesFromEdges } from 'src/shared/apollo/util'
-import { Project } from 'src/store/entities/project'
+import type { Project } from 'src/store/entities/project'
 import { useWorkspace } from 'src/store/entities/workspace'
 
 const key = (str: string) =>

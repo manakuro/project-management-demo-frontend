@@ -1,4 +1,4 @@
-import { ErrorResponse } from '@apollo/client/link/error'
+import type { ErrorResponse } from '@apollo/client/link/error'
 import { useStandaloneToast } from 'src/hooks'
 
 let unauthorized = false

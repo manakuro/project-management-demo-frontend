@@ -1,11 +1,12 @@
-import React, { useCallback } from 'react'
-import { IconButtonProps } from 'src/components/ui/atoms'
+import type React from 'react'
+import { useCallback } from 'react'
+import type { IconButtonProps } from 'src/components/ui/atoms'
 import {
   Menu,
   MenuButton,
-  MenuButtonProps,
+  type MenuButtonProps,
 } from 'src/components/ui/organisms/Menu'
-import { ChakraProps, useDisclosure } from 'src/shared/chakra'
+import { type ChakraProps, useDisclosure } from 'src/shared/chakra'
 import { useProject } from 'src/store/entities/project'
 import { MenuList } from './MenuList'
 

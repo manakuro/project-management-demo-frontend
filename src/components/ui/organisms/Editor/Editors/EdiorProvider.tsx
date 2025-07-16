@@ -1,10 +1,11 @@
-import { Node as ProsemirrorNode } from 'prosemirror-model'
-import { EditorState, Plugin } from 'prosemirror-state'
-import { EditorProps, EditorView } from 'prosemirror-view'
-import React, {
+import type { Node as ProsemirrorNode } from 'prosemirror-model'
+import { EditorState, type Plugin } from 'prosemirror-state'
+import { type EditorProps, EditorView } from 'prosemirror-view'
+import type React from 'react'
+import {
+  type Dispatch,
+  type SetStateAction,
   createContext,
-  Dispatch,
-  SetStateAction,
   useCallback,
   useContext,
   useEffect,
@@ -12,11 +13,11 @@ import React, {
 } from 'react'
 import { createReactNodeView } from './ReactNodeView'
 import {
-  PortalHandlers,
+  type PortalHandlers,
   ReactNodeViewPortalsProvider,
   useReactNodeViewCreatePortal,
 } from './ReactNodeViewPortals'
-import { Link, Mention, Emoji } from './nodeViews'
+import { Emoji, Link, Mention } from './nodeViews'
 
 const EditorStateContext = createContext<EditorState | null>(null)
 const EditorViewContext = createContext<EditorView | null>(null)
@@ -148,6 +149,7 @@ const Provider: React.FCWithChildren<Props> = (props) => {
   //   )
   // }, [props.forceUpdate])
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   const resetView = useCallback(() => {
     setView(
       generateView({
@@ -163,11 +165,13 @@ const Provider: React.FCWithChildren<Props> = (props) => {
     )
   }, [props])
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     resetView()
     /* eslint react-hooks/exhaustive-deps: off */
   }, [props.editable])
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     resetView()
     /* eslint react-hooks/exhaustive-deps: off */

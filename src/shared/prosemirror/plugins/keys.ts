@@ -9,23 +9,23 @@ import {
 import { redo, undo } from 'prosemirror-history'
 import { undoInputRule } from 'prosemirror-inputrules'
 import { keymap } from 'prosemirror-keymap'
-import { Plugin } from 'prosemirror-state'
+import type { Plugin } from 'prosemirror-state'
 
 import { Escape } from 'src/shared/prosemirror/plugins/suggestions/keys'
 import {
   insertNodeHorizontalRule,
   insertNodeLineBreak,
+  liftListItemCommand,
   setListTypeBullet,
   setListTypeOrdered,
-  liftListItemCommand,
   sinkListItemCommand,
   splitListItemCommand,
   toggleMarkBold,
   toggleMarkCode,
   toggleMarkItalic,
+  toggleMarkStrikethrough,
   toggleMarkUnderline,
   wrapInBlockquote,
-  toggleMarkStrikethrough,
 } from '../config/commands'
 
 export const listKeys = (): Plugin =>

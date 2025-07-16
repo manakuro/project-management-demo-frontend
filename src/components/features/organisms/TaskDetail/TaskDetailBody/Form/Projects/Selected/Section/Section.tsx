@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import {
   MenuSelect,
   MenuSelectButton,
@@ -8,8 +9,8 @@ import { Button, Icon } from 'src/components/ui/atoms'
 import { MenuItemOption } from 'src/components/ui/organisms/Menu'
 import { useProjectTask } from 'src/store/entities/projectTask'
 import {
-  useProjectsTaskSectionsByProjectId,
   useProjectTaskSection,
+  useProjectsTaskSectionsByProjectId,
 } from 'src/store/entities/projectTaskSection'
 
 type Props = {

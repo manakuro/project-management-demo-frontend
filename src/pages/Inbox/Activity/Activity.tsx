@@ -1,15 +1,16 @@
-import React, { memo, useMemo } from 'react'
+import type React from 'react'
+import { memo, useMemo } from 'react'
 import {
+  FilterButton,
   Inbox,
-  InboxLeft,
-  InboxRight,
   InboxHeader,
+  InboxHeaderRight,
+  InboxLeft,
   InboxList,
   InboxListContent,
-  InboxHeaderRight,
-  MoreActionButton,
-  FilterButton,
+  InboxRight,
   InboxSkeleton,
+  MoreActionButton,
 } from 'src/components/features/organisms/Inbox'
 import { useInboxTaskDetail } from 'src/components/features/organisms/Inbox'
 import { TaskDetailSide } from 'src/components/features/organisms/TaskDetails'

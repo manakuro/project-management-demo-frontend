@@ -1,20 +1,18 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { PopoverEmoji } from 'src/components/features/organisms/Popovers'
 import { Icon } from 'src/components/ui/atoms'
 import { useEmoji } from 'src/shared/prosemirror/hooks'
 import { BaseButton } from '../BaseButton'
 
-type Props = {}
-
-export const Emoji: React.FC<Props> = (props) => {
+export function Emoji() {
   return (
     <PopoverEmoji>
-      <Component {...props} />
+      <Component />
     </PopoverEmoji>
   )
 }
 
-export const Component: React.FC<Props> = memo<Props>(() => {
+export const Component = memo(function Component() {
   const { action } = useEmoji()
 
   return (
@@ -31,4 +29,3 @@ export const Component: React.FC<Props> = memo<Props>(() => {
     </PopoverEmoji>
   )
 })
-Component.displayName = 'Component'

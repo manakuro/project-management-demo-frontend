@@ -1,8 +1,8 @@
 import {
   Heading as ChakraHeading,
-  HeadingProps as ChakraHeadingProps,
+  type HeadingProps as ChakraHeadingProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraHeadingProps
 export type HeadingProps = Props

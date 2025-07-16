@@ -1,5 +1,5 @@
 import { createState } from 'src/store/util'
-import { TaskActivity } from './type'
+import type { TaskActivity } from './type'
 
 const key = (str: string) =>
   `src/store/app/inbox/activity/myTaskActivities/${str}`

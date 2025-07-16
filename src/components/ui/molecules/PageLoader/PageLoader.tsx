@@ -1,5 +1,5 @@
-import React from 'react'
-import { Flex, FlexProps, Logo, Spinner } from 'src/components/ui/atoms'
+import type React from 'react'
+import { Flex, type FlexProps, Logo, Spinner } from 'src/components/ui/atoms'
 
 type Props = FlexProps
 

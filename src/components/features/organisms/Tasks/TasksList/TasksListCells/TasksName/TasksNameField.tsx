@@ -1,9 +1,10 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
+import type React from 'react'
+import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { useTaskDetailDrawerRef } from 'src/components/features/organisms/TaskDetails'
-import { Box, Flex, Input, InputProps } from 'src/components/ui/atoms'
+import { Box, Flex, Input, type InputProps } from 'src/components/ui/atoms'
 import {
+  type UseClickOutsideOptionsHasClickedOutside,
   useClickOutside,
-  UseClickOutsideOptionsHasClickedOutside,
   useDebounce,
   useMountedRef,
 } from 'src/hooks'
@@ -54,7 +55,7 @@ export const TasksNameField: React.FC<Props> = memo<Props>((props) => {
 
   useEffect(() => {
     if (!props.isNew) removeEventListener()
-  }, [mountedRef, props.isNew, removeEventListener])
+  }, [props.isNew, removeEventListener])
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)

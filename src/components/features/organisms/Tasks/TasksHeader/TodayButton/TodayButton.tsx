@@ -1,10 +1,8 @@
-import React, { memo, useCallback } from 'react'
+import { memo, useCallback } from 'react'
 import { Button } from 'src/components/ui/atoms'
 import { useTasksCalendarContext } from '../../TasksCalendar'
 
-type Props = {}
-
-export const TodayButton: React.FC<Props> = memo<Props>(() => {
+export const TodayButton = memo(function TodayButton() {
   const { resetMonth, scrollToDate } = useTasksCalendarContext()
 
   const handleClickToday = useCallback(() => {
@@ -18,4 +16,3 @@ export const TodayButton: React.FC<Props> = memo<Props>(() => {
     </Button>
   )
 })
-TodayButton.displayName = 'TodayButton'

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 type Options = {
   skip?: boolean
@@ -29,7 +29,7 @@ export const useClickOutside = (
 
   const handleEvent = useCallback(
     (e: Event) => {
-      if (ref && ref.current) {
+      if (ref?.current) {
         if (ref.current.contains(e.target as Node)) {
           setState({ hasClickedOutside: false })
         } else {

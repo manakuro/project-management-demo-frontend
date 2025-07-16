@@ -6,7 +6,7 @@ import {
   textblockTypeInputRule,
   wrappingInputRule,
 } from 'prosemirror-inputrules'
-import { Plugin } from 'prosemirror-state'
+import type { Plugin } from 'prosemirror-state'
 
 import { schema } from '../config/schema'
 
@@ -41,12 +41,8 @@ export const rules = (): Plugin =>
       textblockTypeInputRule(/^```$/, schema.nodes.codeBlock),
 
       // # heading
-      textblockTypeInputRule(
-        new RegExp('^(#{1,6})\\s$'),
-        schema.nodes.heading,
-        (match) => {
-          return { level: match[1].length }
-        },
-      ),
+      textblockTypeInputRule(/^(#{1,6})\s$/, schema.nodes.heading, (match) => {
+        return { level: match[1].length }
+      }),
     ],
   })

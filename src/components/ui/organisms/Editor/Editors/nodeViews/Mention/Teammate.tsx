@@ -1,7 +1,8 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { PopoverProfile } from 'src/components/features/organisms/Popovers'
 import { useReactNodeView } from 'src/components/ui/organisms/Editor/Editors/ReactNodeView'
-import { MentionAttrs } from 'src/shared/prosemirror/schema'
+import type { MentionAttrs } from 'src/shared/prosemirror/schema'
 import { useTeammate } from 'src/store/entities/teammate'
 import { MentionText } from './MentionText'
 
@@ -18,7 +19,7 @@ export const Teammate: React.FC = memo(() => {
         image: teammate.image,
       }}
     >
-      <MentionText>{teammate.email + ' '}</MentionText>
+      <MentionText>{`${teammate.email} `}</MentionText>
     </PopoverProfile>
   )
 })

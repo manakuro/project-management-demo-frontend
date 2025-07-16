@@ -1,13 +1,14 @@
-import React, { useCallback } from 'react'
+import type React from 'react'
+import { useCallback } from 'react'
 import { PopoverSetColorAndIcon } from 'src/components/features/organisms/Popovers'
-import { Flex, Text, Icon, Portal, ColorBox } from 'src/components/ui/atoms'
+import { ColorBox, Flex, Icon, Portal, Text } from 'src/components/ui/atoms'
 import {
   MenuList as AtomsMenuList,
   MenuDivider,
 } from 'src/components/ui/organisms/Menu'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
-import { Project } from 'src/store/entities/project'
+import type { Project } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 import { ArchiveProject } from './ArchiveProject'
 import { CopyProjectLink } from './CopyProjectLink'

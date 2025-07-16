@@ -1,16 +1,17 @@
-import React, { useCallback } from 'react'
+import type React from 'react'
+import { useCallback } from 'react'
 import {
   Menu,
-  MenuList,
   MenuButton,
-  MenuProps,
   MenuItemOption,
+  MenuList,
   MenuOptionGroup,
+  type MenuProps,
 } from 'src/components/ui/organisms/Menu'
 import { chakra } from 'src/shared/chakra'
 import {
   TaskListCompletedStatusCode,
-  TaskListCompletedStatusCodeValue,
+  type TaskListCompletedStatusCodeValue,
 } from 'src/store/entities/taskListCompletedStatus'
 
 type Props = {

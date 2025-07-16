@@ -1,10 +1,10 @@
-import { NextRouter } from 'next/router'
+import type { NextRouter } from 'next/router'
 import {
   ROUTE_PROJECTS,
-  ROUTE_PROJECTS_LIST,
   ROUTE_PROJECTS_BOARD,
   ROUTE_PROJECTS_CALENDAR,
   ROUTE_PROJECTS_FILES,
+  ROUTE_PROJECTS_LIST,
   ROUTE_PROJECTS_OVERVIEW,
 } from './routes'
 

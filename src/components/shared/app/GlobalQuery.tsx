@@ -1,16 +1,16 @@
-import React from 'react'
+import type React from 'react'
 import { PageLoader } from 'src/components/ui/molecules'
 import {
-  useProjectsQuery,
   useFavoriteProjectIdsQuery,
-  useWorkspaceQuery,
-  useMeQuery,
-  useTeammateTaskTabStatusQuery,
   useFavoriteWorkspaceIdsQuery,
+  useMeQuery,
   useProjectBaseColorsQuery,
-  useProjectLightColorsQuery,
   useProjectIconsQuery,
+  useProjectLightColorsQuery,
+  useProjectsQuery,
   useTaskPrioritiesQuery,
+  useTeammateTaskTabStatusQuery,
+  useWorkspaceQuery,
 } from 'src/hooks/queries/entities'
 import { useMe } from 'src/store/entities/me'
 

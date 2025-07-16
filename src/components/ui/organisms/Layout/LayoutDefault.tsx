@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { Navigation } from 'src/components/features/organisms/Navigation'
 import { Flex } from 'src/components/ui/atoms'
 

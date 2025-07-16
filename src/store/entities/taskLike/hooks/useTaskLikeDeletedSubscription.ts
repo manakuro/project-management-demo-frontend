@@ -4,7 +4,7 @@ import { useRecoilCallback } from 'recoil'
 import { useTaskLikeDeletedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import { taskLikeState } from 'src/store/entities/taskLike'
-import { TaskLikeDeletedSubscriptionResponse as Response } from '../type'
+import type { TaskLikeDeletedSubscriptionResponse as Response } from '../type'
 
 export const TASK_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID = uuid()
 

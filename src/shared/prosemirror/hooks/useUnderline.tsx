@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { isMarkActive } from 'src/shared/prosemirror/commands'
 import { schema } from 'src/shared/prosemirror/config'
 import { toggleMarkUnderline } from 'src/shared/prosemirror/config/commands'
-import { ToolbarItem } from './types'
+import type { ToolbarItem } from './types'
 
 export const useUnderline = (): ToolbarItem => {
   return useMemo(

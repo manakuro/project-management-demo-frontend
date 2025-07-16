@@ -1,9 +1,9 @@
 import { useRecoilCallback } from 'recoil'
 import {
-  TeammateTaskResponse,
+  type TeammateTaskResponse,
   useTeammateTaskResponse,
 } from 'src/store/entities/teammateTask'
-import { HomeResponse } from '../type'
+import type { HomeResponse } from '../type'
 
 export const useHomeResponse = () => {
   const { setTeammateTask } = useTeammateTaskResponse()

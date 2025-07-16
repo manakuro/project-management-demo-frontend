@@ -1,10 +1,8 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { MenuItem } from 'src/components/ui/organisms/Menu'
 import { useTaskFeedListItemContext } from '../../Provider'
 
-type Props = {}
-
-export const DeleteComment: React.FC<Props> = memo(() => {
+export const DeleteComment = memo(function DeleteComment() {
   const { hasText, onDelete } = useTaskFeedListItemContext()
   if (!hasText) return null
 
@@ -14,4 +12,3 @@ export const DeleteComment: React.FC<Props> = memo(() => {
     </MenuItem>
   )
 })
-DeleteComment.displayName = 'DeleteComment'

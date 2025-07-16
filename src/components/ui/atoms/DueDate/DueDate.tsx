@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react'
-import { TextProps, Text } from 'src/components/ui/atoms'
+import type React from 'react'
+import { useMemo } from 'react'
+import { Text, type TextProps } from 'src/components/ui/atoms'
 import { formatDueDate } from 'src/shared/date'
 import { dateFns } from 'src/shared/dateFns'
 

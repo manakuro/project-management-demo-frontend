@@ -1,4 +1,4 @@
-import { TaskActivityTaskResponse } from 'src/graphql/types/taskActivityTask'
+import type { TaskActivityTaskResponse } from 'src/graphql/types/taskActivityTask'
 
 export type { TaskActivityTaskResponse } from 'src/graphql/types/taskActivityTask'
 

@@ -1,6 +1,6 @@
-import { Schema } from 'prosemirror-model'
-import { EditorState, Transaction } from 'prosemirror-state'
-import { EditorView } from 'prosemirror-view'
+import type { Schema } from 'prosemirror-model'
+import type { EditorState, Transaction } from 'prosemirror-state'
+import type { EditorView } from 'prosemirror-view'
 
 export type ToolbarItem<S extends Schema = any> = {
   action: (

@@ -1,8 +1,8 @@
 import {
   PopoverBody as ChakraPopoverBody,
-  PopoverBodyProps as ChakraPopoverBodyProps,
+  type PopoverBodyProps as ChakraPopoverBodyProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraPopoverBodyProps & {

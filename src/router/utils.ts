@@ -1,4 +1,4 @@
-import { UrlObject } from 'url'
+import type { UrlObject } from 'node:url'
 
 export { isHomeDetailURL, getHomeDetailId } from './home'
 export { isInboxDetailURL, getInboxDetailId } from './inbox'

@@ -3,11 +3,11 @@ import { atom, useRecoilState, useResetRecoilState } from 'recoil'
 import { useResizeObserver } from 'src/hooks/useResizeObserver'
 import { calculateModalPosition } from 'src/shared/calculateModalPosition'
 import {
-  BaseEmoji,
+  type BaseEmoji,
+  type EmojiData,
+  type EmojiSkin,
   emojiData,
   frequently,
-  EmojiData,
-  EmojiSkin,
 } from 'src/shared/emoji'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
 
@@ -79,8 +79,9 @@ const emojiRef: EmojiRef = {
   current: null,
 }
 export const getEmoji = () => emojiRef.current
-const setEmojiRef = (val: BaseEmoji | null) =>
-  void ((emojiRef as Writeable<EmojiRef>).current = val)
+const setEmojiRef = (val: BaseEmoji | null) => {
+  ;(emojiRef as Writeable<EmojiRef>).current = val
+}
 
 export const useEditorEmojiMenu = () => {
   const [state, setState] = useRecoilState(modalState)

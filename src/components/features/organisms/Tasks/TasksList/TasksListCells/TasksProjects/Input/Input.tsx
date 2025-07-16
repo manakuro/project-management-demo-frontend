@@ -1,9 +1,10 @@
-import React, { memo, useCallback, useState } from 'react'
+import type React from 'react'
+import { memo, useCallback, useState } from 'react'
 import { ProjectChip } from 'src/components/features/molecules/Chips'
 import { ProjectMenu } from 'src/components/features/organisms/Menus'
 import {
-  Flex,
   Input as AtomsInput,
+  Flex,
   Wrap,
   WrapItem,
 } from 'src/components/ui/atoms'

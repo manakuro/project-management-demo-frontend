@@ -1,9 +1,9 @@
 query SubTasks($where: TaskWhereInput) {
   tasks(where: $where) {
     edges {
-       node {
-         ...SubTaskForListFragment
-       }
+      node {
+        ...SubTaskForListFragment
+      }
     }
   }
 }

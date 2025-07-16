@@ -8,7 +8,7 @@ export const ROUTE_PROJECTS = {
       ({
         pathname: '/projects/[projectId]',
         query: { projectId: id },
-      } as const),
+      }) as const,
   },
   query: {
     projectId: 'projectId',
@@ -24,7 +24,7 @@ export const ROUTE_PROJECTS_LIST = {
       ({
         pathname: '/projects/[projectId]/list',
         query: { projectId: id },
-      } as const),
+      }) as const,
   },
   query: 'projects',
 } as const
@@ -36,7 +36,7 @@ export const ROUTE_PROJECTS_BOARD = {
       ({
         pathname: '/projects/[projectId]/board',
         query: { projectId: id },
-      } as const),
+      }) as const,
   },
   query: 'projects',
 } as const
@@ -48,7 +48,7 @@ export const ROUTE_PROJECTS_CALENDAR = {
       ({
         pathname: '/projects/[projectId]/calendar',
         query: { projectId: id },
-      } as const),
+      }) as const,
   },
   query: 'projects',
 } as const
@@ -60,7 +60,7 @@ export const ROUTE_PROJECTS_FILES = {
       ({
         pathname: '/projects/[projectId]/files',
         query: { projectId: id },
-      } as const),
+      }) as const,
   },
   query: 'projects',
 } as const
@@ -73,7 +73,7 @@ export const ROUTE_PROJECTS_OVERVIEW = {
       ({
         pathname: '/projects/[projectId]/overview',
         query: { projectId: id },
-      } as const),
+      }) as const,
   },
   query: 'projects',
 } as const

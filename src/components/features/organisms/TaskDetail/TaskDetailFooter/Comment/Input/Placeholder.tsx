@@ -1,10 +1,8 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { EditorPlaceholder } from 'src/components/ui/organisms/Editor'
 import { useInputContext } from './Provider'
 
-type Props = {}
-
-export const Placeholder: React.FC<Props> = memo<Props>(() => {
+export const Placeholder = memo(function Placeholder() {
   const { focused, hasTaskFile } = useInputContext()
 
   if (focused) return null
@@ -16,4 +14,3 @@ export const Placeholder: React.FC<Props> = memo<Props>(() => {
     </EditorPlaceholder>
   )
 })
-Placeholder.displayName = 'Placeholder'

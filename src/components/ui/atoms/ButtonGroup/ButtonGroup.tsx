@@ -1,8 +1,8 @@
 import {
   ButtonGroup as ChakraButtonGroup,
-  ButtonGroupProps as ChakraButtonGroupProps,
+  type ButtonGroupProps as ChakraButtonGroupProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraButtonGroupProps & {

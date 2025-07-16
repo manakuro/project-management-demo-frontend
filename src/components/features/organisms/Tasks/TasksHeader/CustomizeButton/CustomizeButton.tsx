@@ -1,10 +1,8 @@
-import React, { memo, useCallback } from 'react'
+import { memo, useCallback } from 'react'
 import { useCustomizeMenu } from 'src/components/features/organisms/Tasks/TasksHeader/CustomizeMenu/useCustomizeMenu'
 import { Button, Icon } from 'src/components/ui/atoms'
 
-type Props = {}
-
-export const CustomizeButton: React.FC<Props> = memo<Props>(() => {
+export const CustomizeButton = memo(function CustomizeButton() {
   const { setIsOpen } = useCustomizeMenu()
 
   const handleClick = useCallback(() => {
@@ -23,4 +21,3 @@ export const CustomizeButton: React.FC<Props> = memo<Props>(() => {
     </Button>
   )
 })
-CustomizeButton.displayName = 'CustomizeButton'

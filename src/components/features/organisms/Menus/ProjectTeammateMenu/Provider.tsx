@@ -2,9 +2,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { useSearchWorkspaceTeammatesQuery } from 'src/hooks/queries/entities'
 import { createProvider } from 'src/shared/react/createProvider'
 
-type ContextProps = {}
-
-const useValue = (): ContextProps => {
+const useValue = () => {
   const {
     refetch,
     teammates,

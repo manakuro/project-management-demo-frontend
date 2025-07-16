@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil'
-import { TaskColumnTypeValue } from 'src/store/entities/taskColumn'
+import type { TaskColumnTypeValue } from 'src/store/entities/taskColumn'
 import { projectsTaskColumnByTypeState } from '../atom'
 
 export const useProjectTaskColumnByType = ({

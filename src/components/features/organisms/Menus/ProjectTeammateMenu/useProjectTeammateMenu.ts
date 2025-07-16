@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useSearchMenuOnKeyBindings } from 'src/components/features/organisms/Menus/SearchMenu'
 import { useDebounce } from 'src/hooks'
 import { useSearchWorkspaceTeammatesQuery } from 'src/hooks/queries/entities'
-import { Teammate } from 'src/store/entities/teammate'
+import type { Teammate } from 'src/store/entities/teammate'
 
 type Props = {
   onSelect: (val: Teammate) => void

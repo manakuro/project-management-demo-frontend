@@ -1,15 +1,13 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Button, Flex, Stack } from 'src/components/ui/atoms'
 import {
-  Format,
-  Emoji,
   AtMention,
+  Emoji,
+  Format,
 } from 'src/components/ui/organisms/Editor/ToolBar'
 import { useTaskFeedListItemContext } from '../../Provider'
 
-type Props = {}
-
-export const ToolBar: React.FC<Props> = memo<Props>(() => {
+export const ToolBar = memo(function ToolBar() {
   const { editable, onCancel, onSave } = useTaskFeedListItemContext()
   if (!editable()) return null
 
@@ -31,4 +29,3 @@ export const ToolBar: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
-ToolBar.displayName = 'ToolBar'

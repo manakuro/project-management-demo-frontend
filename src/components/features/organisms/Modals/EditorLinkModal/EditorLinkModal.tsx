@@ -1,4 +1,5 @@
-import React, { useCallback } from 'react'
+import type React from 'react'
+import { useCallback } from 'react'
 import { Input, Stack } from 'src/components/ui/atoms'
 import {
   Modal,
@@ -7,10 +8,8 @@ import {
 } from 'src/components/ui/organisms/Modal'
 import { useEditorLinkModal } from './useEditorLinkModal'
 
-type Props = {}
-
 const MARGIN = 30
-export const EditorLinkModal: React.FC<Props> = () => {
+export function EditorLinkModal() {
   const { isOpen, x, y, onClose, setInput, input } = useEditorLinkModal()
 
   const handleInput = useCallback(

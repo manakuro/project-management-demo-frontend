@@ -1,11 +1,11 @@
-import React from 'react'
+import type React from 'react'
 import {
-  FormLabel,
-  FormControl,
-  Switch,
   Flex,
+  FormControl,
+  FormLabel,
   Icon,
-  SwitchProps,
+  Switch,
+  type SwitchProps,
 } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 

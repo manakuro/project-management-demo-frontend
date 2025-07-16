@@ -1,13 +1,14 @@
-import React, { memo, useEffect, useMemo, useState } from 'react'
+import type React from 'react'
+import { memo, useEffect, useMemo, useState } from 'react'
 import { useNavigation } from 'src/components/features/organisms/Navigation'
 import {
-  useTasksListContentSticky,
   useTasksListContentHorizontalScroll,
+  useTasksListContentSticky,
 } from 'src/components/features/organisms/Tasks'
 import { useTasksTaskColumnByType } from 'src/components/features/organisms/Tasks/hooks'
-import { Flex, FlexProps } from 'src/components/ui/atoms'
+import { Flex, type FlexProps } from 'src/components/ui/atoms'
 import { useMountedRef } from 'src/hooks'
-import { ChakraProps } from 'src/shared/chakra'
+import type { ChakraProps } from 'src/shared/chakra'
 import { TaskColumnType } from 'src/store/entities/taskColumn'
 
 type Props = FlexProps
@@ -43,7 +44,7 @@ export const TasksListHorizontalScrollBorder: React.FC<Props> = memo<Props>(
       return () => {
         mountedRef.current = false
       }
-    }, [isExpanded, mountedRef])
+    }, [mountedRef.current, mountedRef])
 
     if (!isStickyVertical) return null
 

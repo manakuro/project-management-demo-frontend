@@ -1,14 +1,15 @@
-import React, { memo, useMemo } from 'react'
+import type React from 'react'
+import { memo, useMemo } from 'react'
 import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
 import {
   Flex,
+  type FlexProps,
   Icon,
   IconButton,
-  Stack,
   Skeleton,
-  FlexProps,
+  Stack,
 } from 'src/components/ui/atoms'
-import { IconType } from 'src/shared/icons'
+import type { IconType } from 'src/shared/icons'
 import { Attachment } from './Attachment'
 import { Complete } from './Complete'
 import { Copy } from './Copy'

@@ -1,4 +1,4 @@
-import { TaskFeedLikeFragmentFragment } from 'src/graphql/types'
+import type { TaskFeedLikeFragmentFragment } from 'src/graphql/types'
 
 export type TaskFeedLikeResponse = NonNullable<TaskFeedLikeFragmentFragment>
 

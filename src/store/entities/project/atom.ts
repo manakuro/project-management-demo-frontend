@@ -1,6 +1,6 @@
 import { getDefaultDescription } from 'src/shared/prosemirror/getDefaultDescription'
 import { createState } from '../../util'
-import { Project } from './type'
+import type { Project } from './type'
 
 const key = (str: string) => `src/store/entities/project/${str}`
 

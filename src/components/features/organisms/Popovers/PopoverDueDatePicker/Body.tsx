@@ -1,7 +1,10 @@
 import React, { memo, useCallback, useEffect } from 'react'
-import { Button, Divider, Flex, FlexProps } from 'src/components/ui/atoms'
+import { Button, Divider, Flex, type FlexProps } from 'src/components/ui/atoms'
 import { DatePicker } from 'src/components/ui/organisms/DatePicker'
-import { PopoverBody, PopoverProps } from 'src/components/ui/organisms/Popover'
+import {
+  PopoverBody,
+  type PopoverProps,
+} from 'src/components/ui/organisms/Popover'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'
 import { dateFns } from 'src/shared/dateFns'

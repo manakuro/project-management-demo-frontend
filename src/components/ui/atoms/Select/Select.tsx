@@ -1,9 +1,9 @@
 import React from 'react'
-import { Input, InputProps, Portal } from 'src/components/ui/atoms'
+import { Input, type InputProps, Portal } from 'src/components/ui/atoms'
 import {
   Menu,
   MenuButton,
-  MenuButtonProps,
+  type MenuButtonProps,
   MenuList,
 } from 'src/components/ui/organisms/Menu'
 

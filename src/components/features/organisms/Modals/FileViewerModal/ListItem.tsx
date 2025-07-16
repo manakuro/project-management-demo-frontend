@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 import { Box, Flex, Image, Text } from 'src/components/ui/atoms'
 import { PdfViewer } from 'src/components/ui/organisms/PdfViewer'
 import { FileTypeCode } from 'src/store/entities/fileType'

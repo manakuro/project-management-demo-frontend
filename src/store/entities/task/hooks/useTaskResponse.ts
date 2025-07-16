@@ -10,7 +10,7 @@ import { useTaskLikeResponse } from 'src/store/entities/taskLike'
 import { taskTagState } from 'src/store/entities/taskTag'
 import { useTeammateResponse } from 'src/store/entities/teammate'
 import { taskState } from '../atom'
-import { TaskResponse } from '../type'
+import type { TaskResponse } from '../type'
 
 export const useTasksResponse = () => {
   const {
@@ -62,10 +62,10 @@ const useSetters = () => {
 
   const setTaskLikes = useRecoilCallback(
     () => (data: TaskResponse[]) => {
-      const taskLikes = data.reduce<TaskResponse['taskLikes']>(
-        (acc, p) => uniqBy([...acc, ...(p.taskLikes || [])], 'id'),
-        [],
-      )
+      const taskLikes = data.reduce<TaskResponse['taskLikes']>((acc, p) => {
+        acc.push(...(p.taskLikes || []))
+        return uniqBy(acc, 'id')
+      }, [])
       setTaskLikesResponse(taskLikes)
     },
     [setTaskLikesResponse],
@@ -74,7 +74,10 @@ const useSetters = () => {
   const setTaskFeedLikes = useRecoilCallback(
     () => (data: TaskResponse[]) => {
       const taskFeedLikes = data.reduce<TaskResponse['taskFeedLikes']>(
-        (acc, p) => uniqBy([...acc, ...(p.taskFeedLikes || [])], 'id'),
+        (acc, p) => {
+          acc.push(...(p.taskFeedLikes || []))
+          return uniqBy(acc, 'id')
+        },
         [],
       )
       setTaskFeedLikesResponse(taskFeedLikes)
@@ -124,10 +127,10 @@ const useSetters = () => {
     ({ set }) =>
       (data: TaskResponse[]) => {
         data
-          .reduce<TaskResponse['taskFiles']>(
-            (acc, p) => uniqBy([...acc, ...(p.taskFiles || [])], 'id'),
-            [],
-          )
+          .reduce<TaskResponse['taskFiles']>((acc, p) => {
+            acc.push(...(p.taskFiles || []))
+            return uniqBy(acc, 'id')
+          }, [])
           .forEach((t) =>
             set(taskFileState(t.id), (prev) => {
               return {
@@ -143,10 +146,10 @@ const useSetters = () => {
     ({ set }) =>
       (data: TaskResponse[]) => {
         data
-          .reduce<TaskResponse['taskFeeds']>(
-            (acc, p) => uniqBy([...acc, ...(p.taskFeeds || [])], 'id'),
-            [],
-          )
+          .reduce<TaskResponse['taskFeeds']>((acc, p) => {
+            acc.push(...(p.taskFeeds || []))
+            return uniqBy(acc, 'id')
+          }, [])
           .forEach((t) =>
             set(taskFeedState(t.id), (prev) => {
               return {
@@ -161,7 +164,10 @@ const useSetters = () => {
   const setTeammates = useRecoilCallback(
     () => (data: TaskResponse[]) => {
       const taskCollaborators = data.reduce<TaskResponse['taskCollaborators']>(
-        (acc, d) => [...acc, ...(d.taskCollaborators || [])],
+        (acc, d) => {
+          acc.push(...(d.taskCollaborators || []))
+          return acc
+        },
         [],
       )
       if (taskCollaborators.length) {
@@ -175,10 +181,10 @@ const useSetters = () => {
     ({ set }) =>
       (data: TaskResponse[]) => {
         data
-          .reduce<TaskResponse['taskTags']>(
-            (acc, p) => uniqBy([...acc, ...(p.taskTags || [])], 'id'),
-            [],
-          )
+          .reduce<TaskResponse['taskTags']>((acc, p) => {
+            acc.push(...(p.taskTags || []))
+            return uniqBy(acc, 'id')
+          }, [])
           .forEach((t) =>
             set(taskTagState(t.id), (prev) => {
               return {
@@ -195,10 +201,10 @@ const useSetters = () => {
     ({ set }) =>
       (data: TaskResponse[]) => {
         data
-          .reduce<TaskResponse['projectTasks']>(
-            (acc, p) => uniqBy([...acc, ...(p.projectTasks || [])], 'id'),
-            [],
-          )
+          .reduce<TaskResponse['projectTasks']>((acc, p) => {
+            acc.push(...(p.projectTasks || []))
+            return uniqBy(acc, 'id')
+          }, [])
           .forEach((p) =>
             set(projectTaskState(p.id), (prev) => {
               return { ...prev, ...p }

@@ -1,12 +1,10 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
-import { Flex, AvatarGroup } from 'src/components/ui/atoms'
+import { AvatarGroup, Flex } from 'src/components/ui/atoms'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { useTeammateIdsByWorkspaceId } from 'src/store/entities/workspaceTeammate'
 
-type Props = {}
-
-export const WorkspaceTeammates: React.FC<Props> = memo<Props>(() => {
+export const WorkspaceTeammates = memo(function WorkspaceTeammates() {
   const { workspace } = useWorkspace()
   const { teammateIds } = useTeammateIdsByWorkspaceId(workspace.id)
 
@@ -20,4 +18,3 @@ export const WorkspaceTeammates: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
-WorkspaceTeammates.displayName = 'WorkspaceTeammates'

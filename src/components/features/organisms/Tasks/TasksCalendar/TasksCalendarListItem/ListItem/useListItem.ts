@@ -1,4 +1,5 @@
-import React, { useCallback } from 'react'
+import type React from 'react'
+import { useCallback } from 'react'
 import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks'
 
 type Props = {

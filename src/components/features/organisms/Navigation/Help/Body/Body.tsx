@@ -1,11 +1,12 @@
-import React, { useCallback, useState } from 'react'
+import type React from 'react'
+import { useCallback, useState } from 'react'
 import { HELP_CONTAINER_PADDING } from 'src/components/features/organisms/Navigation/Help'
 import { Stack } from 'src/components/ui/atoms'
 import { guide1Item } from './Guide1'
 import { guide2Item } from './Guide2'
 import { guide3Item } from './Guide3'
 import { guide4Item } from './Guide4'
-import { GuideListItem, Item } from './GuideListItem'
+import { GuideListItem, type Item } from './GuideListItem'
 
 const items: Item[] = [guide1Item, guide2Item, guide3Item, guide4Item]
 
@@ -35,10 +36,10 @@ export const Body: React.FC = (props) => {
     >
       {items.map((item, i) => (
         <GuideListItem
-          key={i}
+          key={item.id}
           item={item}
           nextItem={items[i + 1]}
-          isOpen={state.find((s) => s.id === item.id)!.isOpen}
+          isOpen={state.find((s) => s.id === item.id)?.isOpen ?? false}
           onToggle={handleToggle}
         />
       ))}

@@ -1,5 +1,13 @@
-subscription teammateTaskSectionDeletedAndKeepTasks($teammateId: ID!, $workspaceId: ID!, $requestId: String!) {
-  teammateTaskSectionDeletedAndKeepTasks(teammateId: $teammateId, workspaceId: $workspaceId, requestId: $requestId) {
+subscription teammateTaskSectionDeletedAndKeepTasks(
+  $teammateId: ID!
+  $workspaceId: ID!
+  $requestId: String!
+) {
+  teammateTaskSectionDeletedAndKeepTasks(
+    teammateId: $teammateId
+    workspaceId: $workspaceId
+    requestId: $requestId
+  ) {
     teammateTaskSection {
       id
     }

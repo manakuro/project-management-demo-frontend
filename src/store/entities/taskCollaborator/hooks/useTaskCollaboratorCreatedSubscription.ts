@@ -4,7 +4,7 @@ import { useRecoilCallback } from 'recoil'
 import { useTaskCollaboratorCreatedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import { useTeammateResponse } from 'src/store/entities/teammate'
-import { TaskCollaboratorCreatedSubscriptionResponse as Response } from '../type'
+import type { TaskCollaboratorCreatedSubscriptionResponse as Response } from '../type'
 import { useTaskCollaboratorResponse } from './useTaskCollaboratorResponse'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.

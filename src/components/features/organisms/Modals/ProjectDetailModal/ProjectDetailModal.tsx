@@ -1,11 +1,9 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Modal, ModalOverlay } from 'src/components/ui/organisms/Modal'
 import { Content } from './Content'
 import { useProjectDetailModal } from './useProjectDetailModal'
 
-type Props = {}
-
-export const ProjectDetailModal: React.FC<Props> = memo(() => {
+export const ProjectDetailModal = memo(function ProjectDetailModal() {
   const { isOpen, onClose, projectId } = useProjectDetailModal()
 
   return (
@@ -15,4 +13,3 @@ export const ProjectDetailModal: React.FC<Props> = memo(() => {
     </Modal>
   )
 })
-ProjectDetailModal.displayName = 'ProjectDetailModal'

@@ -4,8 +4,8 @@ import { useTaskUpdatedSubscription as useSubscription } from 'src/graphql/hooks
 import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
 import { uuid } from 'src/shared/uuid'
 import {
+  type TaskUpdatedSubscriptionResponse,
   taskState,
-  TaskUpdatedSubscriptionResponse,
 } from 'src/store/entities/task'
 import { useSetHasDescriptionUpdated } from './useHasDescriptionUpdated'
 import { useUpsert } from './useUpsert'

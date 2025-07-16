@@ -1,5 +1,5 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react'
-import React from 'react'
+import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type React from 'react'
 import { Container } from 'src/storybook/decorators/Container'
 import { Component } from './Component'
 

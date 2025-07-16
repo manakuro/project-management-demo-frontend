@@ -1,6 +1,7 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import enLocale from 'date-fns/locale/en-US'
-import React, { Suspense } from 'react'
+import type React from 'react'
+import { Suspense } from 'react'
 import { RecoilRoot } from 'recoil'
 import { Modals } from 'src/components/features/organisms/Modals'
 import { GlobalQuery } from 'src/components/shared/app'
@@ -9,8 +10,8 @@ import { ApolloProvider } from 'src/shared/apollo/ApolloProvider'
 import {
   AdapterDateFns,
   LocalizationProvider,
-  muiTheme,
   MuiThemeProvider,
+  muiTheme,
 } from 'src/shared/materialUI'
 import { theme } from 'src/styles'
 

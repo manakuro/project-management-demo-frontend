@@ -1,4 +1,5 @@
-import React, { memo, PropsWithChildren, useCallback } from 'react'
+import type React from 'react'
+import { type PropsWithChildren, memo, useCallback } from 'react'
 import {
   MenuSelect,
   MenuSelectButton,

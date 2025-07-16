@@ -1,6 +1,6 @@
 import { selectorFamily } from 'recoil'
 import { createState } from 'src/store/util'
-import { TaskLike } from './type'
+import type { TaskLike } from './type'
 
 const key = (str: string) => `src/store/entities/taskLike/${str}`
 

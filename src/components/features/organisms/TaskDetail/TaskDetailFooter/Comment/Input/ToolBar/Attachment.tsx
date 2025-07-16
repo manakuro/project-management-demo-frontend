@@ -1,12 +1,10 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { AttachmentMenu } from 'src/components/features/organisms/Menus'
 import { Icon, IconButton } from 'src/components/ui/atoms'
 import { MenuButton } from 'src/components/ui/organisms/Menu'
 import { useInputContext } from '../Provider'
 
-type Props = {}
-
-export const Attachment: React.FC<Props> = memo<Props>(() => {
+export const Attachment = memo(function Attachment() {
   const { onUploadFile } = useInputContext()
 
   return (
@@ -27,4 +25,3 @@ export const Attachment: React.FC<Props> = memo<Props>(() => {
     </AttachmentMenu>
   )
 })
-Attachment.displayName = 'Attachment'

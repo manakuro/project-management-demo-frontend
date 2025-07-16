@@ -1,4 +1,4 @@
-import { InboxListFilterStatuses } from './types'
+import type { InboxListFilterStatuses } from './types'
 
 export type InboxListStatus = {
   id: string

@@ -8,7 +8,7 @@ import {
 import { omit } from 'src/shared/utils/omit'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { taskState } from '../atom'
-import { Task, UpdateTaskInput } from '../type'
+import type { Task, UpdateTaskInput } from '../type'
 import { hasTaskBeenPersisted } from '../util'
 import { useHasDescriptionUpdatedValue } from './useHasDescriptionUpdated'
 import { TASK_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useTaskUpdatedSubscription'

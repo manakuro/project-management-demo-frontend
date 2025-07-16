@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
 import { WrapItem } from 'src/components/ui/atoms'
 

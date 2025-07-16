@@ -3,7 +3,7 @@ import { useProjectResponse } from 'src/store/entities/project'
 import { useTeammateResponse } from 'src/store/entities/teammate'
 import { useWorkspaceResponse as useWorkspaceResponseEntity } from 'src/store/entities/workspace'
 import { useWorkspaceTeammateResponse } from 'src/store/entities/workspaceTeammate'
-import { WorkspaceResponse } from '../type'
+import type { WorkspaceResponse } from '../type'
 
 export const useWorkspaceResponse = () => {
   const workspaceResponseEntity = useWorkspaceResponseEntity()

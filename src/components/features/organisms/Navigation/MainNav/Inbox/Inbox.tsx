@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router'
-import React, { memo, useMemo } from 'react'
+import type React from 'react'
+import { memo, useMemo } from 'react'
 import { ROUTE_INBOX } from 'src/router'
 import { NavListItem } from '../../NavListItem'
-import { NavListItem as TNavListItem } from '../../type'
+import type { NavListItem as TNavListItem } from '../../type'
 
 export const Inbox: React.FC = memo(() => {
   const router = useRouter()

@@ -1,5 +1,5 @@
 import { useRecoilCallback } from 'recoil'
-import { FavoriteWorkspaceId } from '../type'
+import type { FavoriteWorkspaceId } from '../type'
 import { useUpsert } from './useUpsert'
 
 export const useFavoriteWorkspaceIdsResponse = () => {

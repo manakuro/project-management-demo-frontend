@@ -2,7 +2,7 @@ import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useUpdateTaskFeedMutation } from 'src/graphql/hooks'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { taskFeedState } from '../atom'
-import { TaskFeed } from '../type'
+import type { TaskFeed } from '../type'
 import { TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useTaskFeedUpdatedSubscription'
 import { useUpsert } from './useUpsert'
 

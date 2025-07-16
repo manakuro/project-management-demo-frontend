@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { useFirstRender } from 'src/hooks'
 import { useSubTasksQuery } from 'src/hooks/queries/entities'
 import { useSubtaskIds } from 'src/store/entities/task'

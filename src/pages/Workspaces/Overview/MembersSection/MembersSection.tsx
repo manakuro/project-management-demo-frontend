@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Flex } from 'src/components/ui/atoms'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { useTeammateIdsByWorkspaceId } from 'src/store/entities/workspaceTeammate'
@@ -9,9 +9,7 @@ import {
 import { AddMemberListItem } from './AddMemberListItem'
 import { MemberListItem } from './MemberListItem'
 
-type Props = {}
-
-export const MembersSection: React.FC<Props> = memo<Props>(() => {
+export const MembersSection = memo(function MembersSection() {
   const { workspace } = useWorkspace()
   const { teammateIds } = useTeammateIdsByWorkspaceId(workspace.id)
 
@@ -29,4 +27,3 @@ export const MembersSection: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
-MembersSection.displayName = 'DescriptionSection'

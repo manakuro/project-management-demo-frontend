@@ -1,9 +1,7 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Button, Icon } from 'src/components/ui/atoms'
 
-type Props = {}
-
-export const WeekendsButton: React.FC<Props> = memo<Props>(() => {
+export const WeekendsButton = memo(function WeekendsButton() {
   return (
     <Button
       variant="ghost"
@@ -14,4 +12,3 @@ export const WeekendsButton: React.FC<Props> = memo<Props>(() => {
     </Button>
   )
 })
-WeekendsButton.displayName = 'WeekendsButton'

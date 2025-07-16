@@ -1,23 +1,21 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Divider, Stack } from 'src/components/ui/atoms'
 import {
+  AtMention,
   Bold,
   BulletList,
   DecreaseListIndent,
+  Emoji,
   IncreaseListIndent,
   Italic,
   Link,
   OrderedList,
   Strikethrough,
   Underline,
-  Emoji,
-  AtMention,
 } from 'src/components/ui/organisms/Editor/ToolBar'
 import { useDescriptionContext } from './Provider'
 
-type Props = {}
-
-export const ToolBar: React.FC<Props> = memo<Props>(() => {
+export const ToolBar = memo(function ToolBar() {
   const { focused } = useDescriptionContext()
 
   return (
@@ -53,4 +51,3 @@ export const ToolBar: React.FC<Props> = memo<Props>(() => {
     </Stack>
   )
 })
-ToolBar.displayName = 'ToolBar'

@@ -3,7 +3,10 @@ import { useUpdateTeammateTaskSectionMutation } from 'src/graphql/hooks'
 import { omit } from 'src/shared/utils/omit'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { teammatesTaskSectionState } from '../atom'
-import { TeammateTaskSection, UpdateTeammateTaskSectionInput } from '../type'
+import type {
+  TeammateTaskSection,
+  UpdateTeammateTaskSectionInput,
+} from '../type'
 import {
   DEFAULT_TITLE_NAME,
   hasTeammateTaskSectionBeenPersisted,

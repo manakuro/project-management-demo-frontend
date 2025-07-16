@@ -1,9 +1,10 @@
-import React, { memo, useCallback, useEffect, useMemo } from 'react'
+import type React from 'react'
+import { memo, useCallback, useEffect, useMemo } from 'react'
 import { useEditorEmojiMenu } from 'src/components/features/organisms/Menus/EditorEmojiMenu'
-import { Flex, FlexProps, Text } from 'src/components/ui/atoms'
+import { Flex, type FlexProps, Text } from 'src/components/ui/atoms'
 import { useMenuStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
-import { BaseEmoji } from 'src/shared/emoji'
+import type { BaseEmoji } from 'src/shared/emoji'
 
 type Props = Override<
   FlexProps,
@@ -21,7 +22,7 @@ export const EmojiItem: React.FC<Props> = memo<Props>((props) => {
   const { ref, isHovering } = useHover()
   const { selectedIndex, setSelectedIndex } = useEditorEmojiMenu()
 
-  delete styles._hover
+  styles._hover = undefined
 
   const handleClick = useCallback(() => {
     onClick(props.emoji)

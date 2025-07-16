@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useTasksContext } from 'src/components/features/organisms/Tasks'
-import { FlexProps, TextProps } from 'src/components/ui/atoms'
+import type { FlexProps, TextProps } from 'src/components/ui/atoms'
 import { dateFns } from 'src/shared/dateFns'
 import { useProjectDueDate } from './useProjectDueDate'
 

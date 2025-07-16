@@ -1,9 +1,9 @@
-import { NextRouter } from 'next/router'
+import type { NextRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
 import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
 import { useTaskDetailDrawer } from 'src/components/features/organisms/TaskDetails'
 import { useTasksBoardListItemElement } from 'src/components/features/organisms/Tasks/TasksBoard/TasksBoardListItem'
-import { UseClickOutsideOptionsHasClickedOutside } from 'src/hooks'
+import type { UseClickOutsideOptionsHasClickedOutside } from 'src/hooks'
 import { useRouter } from 'src/router'
 import { isHTMLElement } from 'src/shared/isHTMLElement'
 

@@ -1,10 +1,10 @@
-import { NextRouter } from 'next/router'
+import type { NextRouter } from 'next/router'
 import {
-  ROUTE_MY_TASKS_LIST,
+  ROUTE_MY_TASKS,
   ROUTE_MY_TASKS_BOARD,
   ROUTE_MY_TASKS_CALENDAR,
   ROUTE_MY_TASKS_FILES,
-  ROUTE_MY_TASKS,
+  ROUTE_MY_TASKS_LIST,
 } from './routes'
 
 export const isMyTasksListURL = (router: NextRouter): boolean => {

@@ -1,17 +1,15 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Button, Flex, Stack } from 'src/components/ui/atoms'
 import {
-  Format,
-  Emoji,
   AtMention,
+  Emoji,
+  Format,
 } from 'src/components/ui/organisms/Editor/ToolBar'
 import { transitions } from 'src/styles'
 import { useInputContext } from '../Provider'
 import { Attachment } from './Attachment'
 
-type Props = {}
-
-export const ToolBar: React.FC<Props> = memo<Props>(() => {
+export const ToolBar = memo(function ToolBar() {
   const { focused, onSave } = useInputContext()
 
   return (
@@ -35,4 +33,3 @@ export const ToolBar: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
-ToolBar.displayName = 'ToolBar'

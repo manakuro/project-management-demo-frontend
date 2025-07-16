@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import {
   ProjectTeammateMenuItem,
   useProjectTeammateMenu,
@@ -6,12 +7,12 @@ import {
 import {
   SearchMenuLeftContainer,
   SearchMenuListItem,
-  SearchMenuRightContainer,
   SearchMenuLoading,
+  SearchMenuRightContainer,
 } from 'src/components/features/organisms/Menus/SearchMenu'
 import { Divider, Icon, Text } from 'src/components/ui/atoms'
-import { PopoverProps } from 'src/components/ui/organisms/Popover'
-import { Teammate } from 'src/store/entities/teammate'
+import type { PopoverProps } from 'src/components/ui/organisms/Popover'
+import type { Teammate } from 'src/store/entities/teammate'
 
 type Props = PopoverProps & {
   onSelect: (val: Teammate) => void

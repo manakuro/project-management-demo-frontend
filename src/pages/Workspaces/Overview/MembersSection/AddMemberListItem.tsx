@@ -1,12 +1,10 @@
-import React, { memo, useCallback } from 'react'
+import { memo, useCallback } from 'react'
 import { useInviteModal } from 'src/components/features/organisms/Modals'
 import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
 import { Flex, Text } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 
-type Props = {}
-
-export const AddMemberListItem: React.FC<Props> = memo<Props>(() => {
+export const AddMemberListItem = memo(function AddMemberListItem() {
   const { setIsOpen } = useInviteModal()
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
@@ -38,4 +36,3 @@ export const AddMemberListItem: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
-AddMemberListItem.displayName = 'AddMemberListItem'

@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useTasksListContentSticky } from 'src/components/features/organisms/Tasks'
-import { ChakraProps } from 'src/shared/chakra'
+import type { ChakraProps } from 'src/shared/chakra'
 import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {

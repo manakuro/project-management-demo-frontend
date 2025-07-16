@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { PopoverProfile } from 'src/components/features/organisms/Popovers'
 import { Avatar, Box, Button, Icon, Text } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'

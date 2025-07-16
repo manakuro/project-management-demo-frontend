@@ -1,5 +1,6 @@
-import React, { memo } from 'react'
-import { Flex, FlexProps } from 'src/components/ui/atoms'
+import type React from 'react'
+import { memo } from 'react'
+import { Flex, type FlexProps } from 'src/components/ui/atoms'
 import { Container } from '../Container'
 import { ActionButtons } from './ActionButtons'
 import { ClickHandler } from './ClickHandler'

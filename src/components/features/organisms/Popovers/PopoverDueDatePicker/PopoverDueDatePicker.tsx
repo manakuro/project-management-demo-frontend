@@ -1,12 +1,13 @@
-import React, { useCallback } from 'react'
+import type React from 'react'
+import { useCallback } from 'react'
 import { Link, Portal, PortalManager } from 'src/components/ui/atoms'
 import {
   Popover,
   PopoverContent,
+  type PopoverProps,
   PopoverTrigger,
-  PopoverProps,
 } from 'src/components/ui/organisms/Popover'
-import { ChakraProps, useDisclosure } from 'src/shared/chakra'
+import { type ChakraProps, useDisclosure } from 'src/shared/chakra'
 import { Body } from './Body'
 
 type Props = {

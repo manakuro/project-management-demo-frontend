@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
 import { Flex, Stack } from 'src/components/ui/atoms'
 import { Assignee } from './Assignee'
@@ -11,9 +11,7 @@ import { Projects } from './Projects'
 import { Subtasks } from './Subtasks'
 import { TaskName } from './TaskName'
 
-type Props = {}
-
-export const Form: React.FC<Props> = memo(() => {
+export const Form = memo(function Form() {
   const { taskId } = useTaskDetail()
 
   return (
@@ -32,4 +30,3 @@ export const Form: React.FC<Props> = memo(() => {
     </Flex>
   )
 })
-Form.displayName = 'Form'

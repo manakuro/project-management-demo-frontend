@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { projectTaskColumnState } from '../atom'
-import { ProjectTaskColumn } from '../type'
+import type { ProjectTaskColumn } from '../type'
 import { UseUpsert } from './useUpsert'
 
 export const useProjectTaskColumnCommand = () => {

@@ -4,7 +4,7 @@ import { useMentionsQuery } from 'src/hooks/queries/entities'
 import { useResizeObserver } from 'src/hooks/useResizeObserver'
 import { calculateModalPosition } from 'src/shared/calculateModalPosition'
 import { getCaretPosition } from 'src/shared/getCaretPosition'
-import { Mention, MentionTypeCode } from 'src/store/entities/mention'
+import type { Mention, MentionTypeCode } from 'src/store/entities/mention'
 
 const key = (str: string) =>
   `src/components/organisms/Menus/EditorMentionMenu/useEditorMentionMenu/${str}`
@@ -50,16 +50,18 @@ const idRef: IdRef = {
   current: '',
 }
 export const getMentionId = () => idRef.current
-const setMentionIdRef = (val: Id) =>
-  void ((idRef as Writeable<IdRef>).current = val)
+const setMentionIdRef = (val: Id) => {
+  ;(idRef as Writeable<IdRef>).current = val
+}
 
 type TypeRef = Readonly<{ current: MentionTypeCode | null }>
 const typeRef: IdRef = {
   current: null,
 }
 export const getMentionType = () => typeRef.current
-const setMentionTypeRef = (val: MentionTypeCode | null) =>
-  void ((typeRef as Writeable<TypeRef>).current = val)
+const setMentionTypeRef = (val: MentionTypeCode | null) => {
+  ;(typeRef as Writeable<TypeRef>).current = val
+}
 
 export type SetValueParam = {
   id: Id

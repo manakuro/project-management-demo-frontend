@@ -3,7 +3,15 @@
   "vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["**/node_modules/", "**/dist/"]
+    "ignore": [
+      "**/node_modules/",
+      "**/dist/",
+      "src/graphql/hooks/index.ts",
+      "src/graphql/hooks/enums.ts",
+      "src/graphql/enums/index.ts",
+      "src/graphql/types/index.ts",
+      "src/graphql/types/index.mock.ts"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -16,6 +24,12 @@
       "recommended": true,
       "correctness": {
         "noUnusedImports": "error"
+      },
+      "complexity": {
+        "noForEach": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "off"
       }
     }
   },

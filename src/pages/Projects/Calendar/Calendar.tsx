@@ -1,18 +1,19 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { TaskDetailModal } from 'src/components/features/organisms/TaskDetails'
 import {
+  TasksCalendar,
   TasksCalendarContent,
   TasksCalendarList,
   TasksCalendarListHeader,
-  useTasksCalendarDetail,
-  TasksCalendar,
   TasksContainer,
+  useTasksCalendarDetail,
 } from 'src/components/features/organisms/Tasks'
 import {
   CalendarMonthPicker,
   TasksHeader,
-  TasksHeaderRight,
   TasksHeaderLeft,
+  TasksHeaderRight,
   TodayButton,
 } from 'src/components/features/organisms/Tasks/TasksHeader'
 import { useProjectsPageContext } from 'src/pages/Projects/Provider'

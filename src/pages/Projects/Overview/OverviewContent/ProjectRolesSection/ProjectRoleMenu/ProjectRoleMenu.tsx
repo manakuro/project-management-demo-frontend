@@ -1,4 +1,5 @@
-import React, { memo, PropsWithChildren } from 'react'
+import type React from 'react'
+import { type PropsWithChildren, memo } from 'react'
 import { Box, PortalManager } from 'src/components/ui/atoms'
 import { Menu } from 'src/components/ui/organisms/Menu'
 import { useDisclosure } from 'src/shared/chakra'

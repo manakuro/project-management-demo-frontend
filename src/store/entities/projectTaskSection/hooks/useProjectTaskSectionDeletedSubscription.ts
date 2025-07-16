@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useProjectTaskSectionDeletedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { ProjectTaskSectionDeletedSubscriptionResponse as Response } from '../type'
+import type { ProjectTaskSectionDeletedSubscriptionResponse as Response } from '../type'
 import { useResetProjectTaskSection } from './useResetProjectTaskSection'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.

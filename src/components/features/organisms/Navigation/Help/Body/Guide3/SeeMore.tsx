@@ -1,12 +1,12 @@
-import React from 'react'
+import type React from 'react'
 import { Section } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem/ListItemDetail'
 import {
-  Text,
-  Stack,
   AspectRatio,
   Box,
-  UnorderedList,
   ListItem,
+  Stack,
+  Text,
+  UnorderedList,
 } from 'src/components/ui/atoms'
 import { guide3Item } from './item'
 

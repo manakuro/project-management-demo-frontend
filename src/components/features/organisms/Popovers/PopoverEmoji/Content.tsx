@@ -1,15 +1,13 @@
-import React, { memo, useCallback } from 'react'
-import { Portal, Box } from 'src/components/ui/atoms'
+import { memo, useCallback } from 'react'
+import { Box, Portal } from 'src/components/ui/atoms'
 import { PopoverContent } from 'src/components/ui/organisms/Popover'
 import { useClickOutside } from 'src/hooks'
-import { BaseEmoji, EmojiPicker } from 'src/shared/emoji'
+import { type BaseEmoji, EmojiPicker } from 'src/shared/emoji'
 import { usePopoverEmojiContext } from './Provider'
 
 import 'emoji-mart/css/emoji-mart.css'
 
-type Props = {}
-
-export const Content: React.FC<Props> = memo<Props>(() => {
+export const Content = memo(function Content() {
   const { onClose } = usePopoverEmojiContext()
   const { ref } = useClickOutside(onClose)
 
@@ -30,4 +28,3 @@ export const Content: React.FC<Props> = memo<Props>(() => {
     </Portal>
   )
 })
-Content.displayName = 'Content'

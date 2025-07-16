@@ -1,15 +1,16 @@
-import React, { memo, useCallback, useMemo, useState } from 'react'
+import type React from 'react'
+import { memo, useCallback, useMemo, useState } from 'react'
 import {
-  Button,
-  ButtonProps,
-  Box,
-  Icon,
-  Flex,
   DueDate as AtomsDueDate,
-  IconProps,
+  Box,
+  Button,
+  type ButtonProps,
+  Flex,
+  Icon,
+  type IconProps,
 } from 'src/components/ui/atoms'
 import { useHover } from 'src/hooks/useHover'
-import { ChakraProps } from 'src/shared/chakra'
+import type { ChakraProps } from 'src/shared/chakra'
 import { DeleteButton } from './DeleteButton'
 import { Input } from './Input'
 

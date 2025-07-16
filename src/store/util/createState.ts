@@ -1,4 +1,4 @@
-import { atom, atomFamily, DefaultValue, selectorFamily } from 'recoil'
+import { DefaultValue, atom, atomFamily, selectorFamily } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 
 type Props<T> = {

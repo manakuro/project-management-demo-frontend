@@ -1,11 +1,9 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { MyAvatar } from 'src/components/features/organisms/MyAvatar'
 import { Flex } from 'src/components/ui/atoms'
 import { Input } from './Input'
 
-type Props = {}
-
-export const Comment: React.FC<Props> = memo(() => {
+export const Comment = memo(function Comment() {
   return (
     <Flex flex={1}>
       <Flex alignItems="center" h={9}>
@@ -15,4 +13,3 @@ export const Comment: React.FC<Props> = memo(() => {
     </Flex>
   )
 })
-Comment.displayName = 'Comment'

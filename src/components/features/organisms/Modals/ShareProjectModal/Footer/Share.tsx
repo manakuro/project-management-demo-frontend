@@ -1,13 +1,11 @@
-import React, { memo, useCallback } from 'react'
+import { memo, useCallback } from 'react'
 import { Button, Divider, Icon } from 'src/components/ui/atoms'
 import { ModalFooter } from 'src/components/ui/organisms/Modal'
 import { useCopyProjectLink } from 'src/hooks/pages/projects'
 import { useShareProjectModal } from '../useShareProjectModal'
 import { useShareProjectModalInvitedTeammates } from '../useShareProjectModalInvitedTeammates'
 
-type Props = {}
-
-export const Share: React.FC<Props> = memo<Props>(() => {
+export const Share = memo(function Share() {
   const { onClose, projectId } = useShareProjectModal()
   const { hasInvitedTeammates } = useShareProjectModalInvitedTeammates()
   const { copyProjectLink } = useCopyProjectLink({ projectId })
@@ -44,4 +42,3 @@ export const Share: React.FC<Props> = memo<Props>(() => {
     </>
   )
 })
-Share.displayName = 'Share'

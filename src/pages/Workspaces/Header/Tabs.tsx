@@ -1,6 +1,7 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { Flex, Heading } from 'src/components/ui/atoms'
-import { TabList, Tab } from 'src/components/ui/organisms/Tabs'
+import { Tab, TabList } from 'src/components/ui/organisms/Tabs'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { FavoriteButton } from './FavoriteButton'
 

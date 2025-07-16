@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { Box } from 'src/components/ui/atoms'
 import { useProject } from 'src/store/entities/project'
 

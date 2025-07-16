@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { FavoriteIconButton } from 'src/components/ui/molecules'
 import { useClickableHoverStyle } from 'src/hooks'
 import {

@@ -1,5 +1,6 @@
-import React, { memo } from 'react'
-import { Flex, FlexProps, Stack } from 'src/components/ui/atoms'
+import type React from 'react'
+import { memo } from 'react'
+import { Flex, type FlexProps, Stack } from 'src/components/ui/atoms'
 import { useProjectIdsByTaskId } from 'src/store/entities/projectTask'
 import { Card } from './Card'
 import { DueDate } from './DueDate'

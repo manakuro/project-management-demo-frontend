@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { List } from 'src/components/ui/atoms'
 import { MAX_WIDTH } from '../Navigation'
 import { Goals } from './Goals'

@@ -1,11 +1,9 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { DescriptionSection } from './DescriptionSection'
 import { KeyResourcesSection } from './KeyResourcesSection'
 import { ProjectRolesSection } from './ProjectRolesSection'
 
-type Props = {}
-
-export const OverviewContent: React.FC<Props> = memo<Props>(() => {
+export const OverviewContent = memo(function OverviewContent() {
   return (
     <>
       <DescriptionSection />
@@ -14,4 +12,3 @@ export const OverviewContent: React.FC<Props> = memo<Props>(() => {
     </>
   )
 })
-OverviewContent.displayName = 'OverviewContent'

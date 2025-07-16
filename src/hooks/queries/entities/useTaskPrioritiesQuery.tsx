@@ -1,8 +1,8 @@
 import { useTaskPrioritiesQuery as useQuery } from 'src/graphql/hooks'
-import { TaskPrioritiesQuery } from 'src/graphql/types/taskPriorities'
+import type { TaskPrioritiesQuery } from 'src/graphql/types/taskPriorities'
 import { getNodesFromEdges } from 'src/shared/apollo/util'
 import {
-  TaskPriority,
+  type TaskPriority,
   useTaskPriorityResponse,
 } from 'src/store/entities/taskPriority'
 

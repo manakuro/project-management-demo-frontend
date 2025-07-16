@@ -1,8 +1,8 @@
 import {
+  type AspectRatioProps,
   AspectRatio as ChakraAspectRatio,
-  AspectRatioProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = AspectRatioProps
 

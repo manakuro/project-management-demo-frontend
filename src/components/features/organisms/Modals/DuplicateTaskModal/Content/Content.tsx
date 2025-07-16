@@ -1,19 +1,20 @@
-import { FormikConfig, Formik, Form } from 'formik'
-import React, { memo, useCallback, useMemo } from 'react'
+import { Form, Formik, type FormikConfig } from 'formik'
+import type React from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import {
+  CheckboxField,
   Divider,
   Flex,
   Stack,
   SubmitButton,
   TextField,
-  CheckboxField,
 } from 'src/components/ui/atoms'
 import {
   ModalBody,
+  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ModalCloseButton,
 } from 'src/components/ui/organisms/Modal'
 import { useTask } from 'src/store/entities/task'
 import { Label } from './Label'

@@ -1,26 +1,23 @@
-import React from 'react'
 import {
-  Input,
+  Button,
   Container,
   Flex,
   Icon,
-  Button,
-  MoreLink,
+  Input,
   Link,
+  MoreLink,
 } from 'src/components/ui/atoms'
 import {
   Modal,
   ModalBody,
+  ModalCloseButton,
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  ModalCloseButton,
 } from 'src/components/ui/organisms/Modal'
 import { useShareWorkspaceModal } from './useShareWorkspaceModal'
 
-type Props = {}
-
-export const ShareWorkspaceModal: React.FC<Props> = () => {
+export function ShareWorkspaceModal() {
   const { isOpen, onClose } = useShareWorkspaceModal()
 
   return (

@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { teammateTaskColumnState } from '../atom'
-import { TeammateTaskColumn } from '../type'
+import type { TeammateTaskColumn } from '../type'
 
 export const useUpsert = () => {
   const upsert = useRecoilCallback(

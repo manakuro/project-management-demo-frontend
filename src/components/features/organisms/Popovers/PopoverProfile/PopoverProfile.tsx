@@ -1,14 +1,14 @@
-import React from 'react'
+import type React from 'react'
 import {
   AspectRatio,
+  Box,
   Button,
   Divider,
   Icon,
-  Portal,
-  Text,
   Image,
+  Portal,
   PortalManager,
-  Box,
+  Text,
 } from 'src/components/ui/atoms'
 import { Flex } from 'src/components/ui/atoms/Flex'
 import {

@@ -1,5 +1,5 @@
-import { createIcon, IconProps, theme } from '@chakra-ui/react'
-import React from 'react'
+import { type IconProps, createIcon, theme } from '@chakra-ui/react'
+import type React from 'react'
 
 const LogoIcon = createIcon({
   viewBox: '0 0 109 25',

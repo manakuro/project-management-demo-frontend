@@ -1,4 +1,4 @@
-import { WorkspaceTeammateResponse } from 'src/graphql/types/workspaceTeammate'
+import type { WorkspaceTeammateResponse } from 'src/graphql/types/workspaceTeammate'
 
 export type { WorkspaceTeammateResponse } from 'src/graphql/types/workspaceTeammate'
 

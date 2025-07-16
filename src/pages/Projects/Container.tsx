@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useEffect } from 'react'
+import type React from 'react'
+import { memo, useCallback, useEffect } from 'react'
 import {
   useProjectsPageQuery,
   useProjectsTaskDetailPageQuery,

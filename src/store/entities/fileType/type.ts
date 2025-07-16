@@ -1,4 +1,4 @@
-import { FileTypeCode } from 'src/graphql/enums'
+import type { FileTypeCode } from 'src/graphql/enums'
 export { FileTypeCode } from 'src/graphql/enums'
 
 export type FileTypeCodeValue = ValueOf<typeof FileTypeCode>

@@ -1,7 +1,7 @@
 import { diff } from 'deep-object-diff'
 import isEqual from 'lodash-es/isEqual'
 import { omit } from 'src/shared/utils/omit'
-import { Task } from './type'
+import type { Task } from './type'
 
 export const isTaskEqual = (value: Task, other: Task): boolean => {
   let omitted1: any = omit(value, 'updatedAt')

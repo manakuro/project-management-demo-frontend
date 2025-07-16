@@ -1,12 +1,12 @@
-import React from 'react'
+import type React from 'react'
 import {
   Icon,
-  InputProps,
-  InputGroup,
   Input,
+  InputGroup,
   InputLeftElement,
+  type InputProps,
 } from 'src/components/ui/atoms'
-import { IconType } from 'src/shared/icons'
+import type { IconType } from 'src/shared/icons'
 
 type Props = InputProps & {
   icon: IconType
@@ -41,6 +41,7 @@ export const InputWithIcon: React.FC<Props> = (props) => {
     <InputGroup size={size}>
       <InputLeftElement
         pointerEvents="none"
+        // biome-ignore lint/correctness/noChildrenProp: <explanation>
         children={<Icon icon={icon} color="gray.300" {...iconSize} />}
       />
       <Input focusBorderColor="primary" placeholder="Search" {...inputProps} />

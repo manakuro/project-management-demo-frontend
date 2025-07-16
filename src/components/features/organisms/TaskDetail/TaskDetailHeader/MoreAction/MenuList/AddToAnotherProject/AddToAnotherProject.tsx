@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { useTaskDetailProjectsInput } from 'src/components/features/organisms/TaskDetail/hooks'
 import { Icon } from 'src/components/ui/atoms'
 import { MenuItem } from 'src/components/ui/organisms/Menu'

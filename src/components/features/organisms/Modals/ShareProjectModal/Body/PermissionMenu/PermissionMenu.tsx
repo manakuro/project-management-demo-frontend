@@ -1,20 +1,19 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import type React from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
 } from 'src/components/features/organisms/Menus'
-import { Button, Icon, Flex } from 'src/components/ui/atoms'
+import { Button, Flex, Icon } from 'src/components/ui/atoms'
 import { MenuItemOption } from 'src/components/ui/organisms/Menu'
 import { useClickableHoverStyle } from 'src/hooks'
 import {
   PROJECT_PERMISSION_CAN_COMMENT,
   PROJECT_PERMISSION_CAN_EDIT,
-  ProjectPermissionTypes,
+  type ProjectPermissionTypes,
 } from './types'
 import { useProjectPermission } from './useProjectPermission'
-
-type Props = {}
 
 const items: {
   value: ProjectPermissionTypes
@@ -33,7 +32,7 @@ const items: {
   },
 ]
 
-export const PermissionMenu: React.FC<Props> = memo<Props>(() => {
+export const PermissionMenu: React.FC = memo(() => {
   const { status, setStatus } = useProjectPermission()
   const { clickableHoverStyle } = useClickableHoverStyle()
 
@@ -45,7 +44,7 @@ export const PermissionMenu: React.FC<Props> = memo<Props>(() => {
   )
 
   const buttonText = useMemo<string>(() => {
-    return items.find((i) => i.value === status)!.text
+    return items.find((i) => i.value === status)?.text || ''
   }, [status])
 
   return (
@@ -70,7 +69,7 @@ export const PermissionMenu: React.FC<Props> = memo<Props>(() => {
         {items.map((item, i) => (
           <MenuItemOption
             value={item.value.toString()}
-            key={i}
+            key={item.value}
             {...clickableHoverStyle}
             _hover={{
               bg: 'gray.100',

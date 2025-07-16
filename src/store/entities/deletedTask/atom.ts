@@ -1,6 +1,6 @@
 import { selectorFamily } from 'recoil'
 import { createState } from 'src/store/util'
-import { DeletedTask } from './type'
+import type { DeletedTask } from './type'
 const key = (str: string) => `src/store/entities/deletedTask/${str}`
 
 export const initialState = (): DeletedTask => ({

@@ -1,11 +1,12 @@
-import React, { memo, useCallback, useMemo, useState } from 'react'
+import type React from 'react'
+import { memo, useCallback, useMemo, useState } from 'react'
 import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
 import {
-  Button,
-  ButtonProps,
-  Text,
   Box,
-  TextProps,
+  Button,
+  type ButtonProps,
+  Text,
+  type TextProps,
 } from 'src/components/ui/atoms'
 import { useHover } from 'src/hooks/useHover'
 import { useOwnerTeammateIdsByProjectId } from 'src/store/entities/projectTeammate'

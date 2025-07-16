@@ -1,6 +1,6 @@
-import { DOMParser, DOMSerializer, Schema } from 'prosemirror-model'
+import { DOMParser, DOMSerializer, type Schema } from 'prosemirror-model'
 
-import { ProsemirrorTransformer } from './types'
+import type { ProsemirrorTransformer } from './types'
 
 export const createHTMLTransformer = <S extends Schema>(
   schema: S,

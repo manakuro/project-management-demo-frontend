@@ -1,8 +1,8 @@
 import { useProjectBaseColorsQuery as useQuery } from 'src/graphql/hooks'
-import { ProjectBaseColorsQuery } from 'src/graphql/types/projectBaseColors'
+import type { ProjectBaseColorsQuery } from 'src/graphql/types/projectBaseColors'
 import { getNodesFromEdges } from 'src/shared/apollo/util'
 import {
-  ProjectBaseColorResponse,
+  type ProjectBaseColorResponse,
   useProjectBaseColorsResponse,
 } from 'src/store/entities/projectBaseColor'
 

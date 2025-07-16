@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
-import React from 'react'
-import { chakra, ChakraProps } from 'src/shared/chakra'
+import type React from 'react'
+import { type ChakraProps, chakra } from 'src/shared/chakra'
 
 type Props = {
   seconds: number
@@ -24,7 +24,7 @@ const format = (seconds: number) => {
   return `${mm}:${ss}`
 }
 
-const pad = (str: number) => ('0' + str).slice(-2)
+const pad = (str: number) => `0${str}`.slice(-2)
 
 const Time = chakra(
   styled.time`

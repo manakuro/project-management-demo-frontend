@@ -1,15 +1,15 @@
 import { useRecoilCallback } from 'recoil'
 import {
-  useUpdateProjectTeammateOwnerMutation,
   useUpdateProjectTeammateMutation,
+  useUpdateProjectTeammateOwnerMutation,
 } from 'src/graphql/hooks'
 import { useWorkspace } from 'src/store/entities/workspace'
 import {
-  projectTeammateState,
-  projectTeammateByProjectIdAndTeammateIdState,
   ownerProjectTeammateByProjectIdState,
+  projectTeammateByProjectIdAndTeammateIdState,
+  projectTeammateState,
 } from '../atom'
-import { ProjectTeammate } from '../type'
+import type { ProjectTeammate } from '../type'
 import { useProjectTeammateResponse } from './useProjectTeammateResponse'
 import { useUpsert } from './useUpsert'
 

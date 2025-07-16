@@ -1,10 +1,11 @@
-import React, { useCallback } from 'react'
+import type React from 'react'
+import { useCallback } from 'react'
 import {
   Menu,
-  MenuList,
-  MenuItem,
   MenuButton,
-  MenuProps,
+  MenuItem,
+  MenuList,
+  type MenuProps,
 } from 'src/components/ui/organisms/Menu'
 import { chakra } from 'src/shared/chakra'
 

@@ -1,5 +1,6 @@
-import React, { memo, useCallback } from 'react'
-import { Flex, FlexProps, Icon } from 'src/components/ui/atoms'
+import type React from 'react'
+import { memo, useCallback } from 'react'
+import { Flex, type FlexProps, Icon } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useTaskCommand } from 'src/store/entities/task'
 

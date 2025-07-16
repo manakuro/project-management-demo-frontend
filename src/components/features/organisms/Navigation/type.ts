@@ -1,5 +1,5 @@
-import { StaticRoutes } from 'src/router'
-import { IconType } from 'src/shared/icons'
+import type { StaticRoutes } from 'src/router'
+import type { IconType } from 'src/shared/icons'
 
 export type NavListItem = {
   name: string

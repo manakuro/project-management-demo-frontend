@@ -1,11 +1,9 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Icon } from 'src/components/ui/atoms'
 import { useAtMention } from 'src/shared/prosemirror/hooks'
 import { BaseButton } from '../BaseButton'
 
-type Props = {}
-
-export const AtMention: React.FC<Props> = memo<Props>(() => {
+export const AtMention = memo(function AtMention() {
   const { action } = useAtMention()
 
   return (
@@ -20,4 +18,3 @@ export const AtMention: React.FC<Props> = memo<Props>(() => {
     />
   )
 })
-AtMention.displayName = 'AtMention'

@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { teammatesTaskSectionState } from '../atom'
-import { TeammateTaskSection } from '../type'
+import type { TeammateTaskSection } from '../type'
 
 export const useUpsert = () => {
   const upsert = useRecoilCallback(

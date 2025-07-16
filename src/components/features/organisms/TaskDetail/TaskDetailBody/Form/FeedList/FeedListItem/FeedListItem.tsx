@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { Container } from './Container'
 import { Content } from './Content'
 import { Header } from './Header'

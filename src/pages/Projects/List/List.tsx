@@ -1,22 +1,23 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { TaskDetailDrawer } from 'src/components/features/organisms/TaskDetails'
 import {
   AddTaskButton,
   CustomizeButton,
+  CustomizeMenu,
   IncompleteTasksMenu,
+  MoreActionMenu,
+  TasksContainer,
   TasksHeader,
   TasksHeaderLeft,
   TasksHeaderRight,
   TasksList,
   TasksListBody,
-  TasksListHeader,
-  TasksListLayout,
   TasksListContent,
+  TasksListHeader,
   TasksListHorizontalScrollBorder,
-  CustomizeMenu,
+  TasksListLayout,
   useTasksListDetail,
-  MoreActionMenu,
-  TasksContainer,
 } from 'src/components/features/organisms/Tasks'
 import { Flex } from 'src/components/ui/atoms'
 import { getProjectsDetailId, isProjectsDetailURL, useRouter } from 'src/router'

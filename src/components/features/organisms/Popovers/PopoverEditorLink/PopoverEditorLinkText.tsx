@@ -1,7 +1,7 @@
-import React from 'react'
+import type React from 'react'
 import {
   MentionText,
-  MentionTextProps,
+  type MentionTextProps,
 } from 'src/components/ui/organisms/Editor/Editors/nodeViews/Mention/MentionText'
 
 type Props = MentionTextProps

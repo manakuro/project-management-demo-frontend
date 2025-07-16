@@ -1,8 +1,8 @@
 import {
   Button as ChakraButton,
-  ButtonProps as ChakraButtonProps,
+  type ButtonProps as ChakraButtonProps,
 } from '@chakra-ui/react'
-import React, { useMemo } from 'react'
+import type React from 'react'
 import { useLinkHoverStyle } from 'src/hooks'
 import { forwardRef } from 'src/shared/chakra'
 
@@ -17,12 +17,9 @@ export const Button: React.FC<Props> & {
 } = forwardRef((props, ref) => {
   const { lightBg, ...rest } = props
   const { selectedStyle, ...linkHoverStyle } = useLinkHoverStyle()
-  const style = useMemo(
-    () => ({
-      ...(lightBg ? linkHoverStyle : {}),
-    }),
-    [lightBg, linkHoverStyle],
-  )
+  const style = {
+    ...(lightBg ? linkHoverStyle : {}),
+  }
 
   return (
     <ChakraButton

@@ -1,8 +1,9 @@
-import React, { memo } from 'react'
-import { IconButtonProps } from 'src/components/ui/atoms'
+import type React from 'react'
+import { memo } from 'react'
+import type { IconButtonProps } from 'src/components/ui/atoms'
 import {
-  Tooltip,
   FavoriteIconButton as MoleculesFavoriteIconButton,
+  Tooltip,
 } from 'src/components/ui/molecules'
 import {
   useFavoriteProjectIds,

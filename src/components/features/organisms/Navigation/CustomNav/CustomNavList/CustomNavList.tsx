@@ -1,8 +1,6 @@
-import React from 'react'
+import type { PropsWithChildren } from 'react'
 import { Flex } from 'src/components/ui/atoms'
 
-type Props = {}
-
-export const CustomNavList: React.FCWithChildren<Props> = (props) => {
+export function CustomNavList(props: PropsWithChildren) {
   return <Flex flexDirection="column" {...props} />
 }

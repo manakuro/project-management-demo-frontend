@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { ChakraProps, useStyleConfig } from 'src/shared/chakra'
+import { type ChakraProps, useStyleConfig } from 'src/shared/chakra'
 
 type DrawerStyle = {
   body: ChakraProps

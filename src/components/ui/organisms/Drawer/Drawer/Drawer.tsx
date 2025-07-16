@@ -1,8 +1,8 @@
 import {
   Drawer as ChakraDrawer,
-  DrawerProps as ChakraDrawerProps,
+  type DrawerProps as ChakraDrawerProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraDrawerProps
 export type DrawerProps = Props

@@ -8,7 +8,7 @@ import {
   isProjectsDetailURLById,
   useRouter,
 } from 'src/router'
-import { Options } from 'src/router/types'
+import type { Options } from 'src/router/types'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useTasksContext } from '../TasksProvider'
 

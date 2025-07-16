@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { Box, Button, Flex, Icon, Stack } from 'src/components/ui/atoms'
 import { useProjectTask } from 'src/store/entities/projectTask'
 import { ProjectButton } from './ProjectButton'

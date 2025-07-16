@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { useHomePageQuery } from 'src/hooks/queries/app'
 import { useHomeTaskDetailPageQuery } from 'src/hooks/queries/app'
 import { useMe } from 'src/store/entities/me'

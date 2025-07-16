@@ -4,7 +4,7 @@ import { useRecoilCallback } from 'recoil'
 import { useTeammateTaskSectionDeletedAndDeleteTasksSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import { useResetTeammateTask } from 'src/store/entities/teammateTask'
-import { TeammateTaskSectionDeletedAndDeleteTasksSubscriptionResponse as Response } from '../type'
+import type { TeammateTaskSectionDeletedAndDeleteTasksSubscriptionResponse as Response } from '../type'
 import { useResetTeammateTaskSectionSection } from './useResetTeammateTaskSection'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.

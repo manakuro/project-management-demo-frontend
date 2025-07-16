@@ -1,5 +1,5 @@
-import React from 'react'
-import { Item } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem'
+import type React from 'react'
+import type { Item } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem'
 import { Flex } from 'src/components/ui/atoms'
 import { Background } from './Background'
 import { Detail } from './Detail'

@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { archivedWorkspaceActivityState } from '../atom'
-import { ArchivedWorkspaceActivityResponse } from '../type'
+import type { ArchivedWorkspaceActivityResponse } from '../type'
 
 export const useArchivedWorkspaceActivitiesResponse = () => {
   const setArchivedWorkspaceActivities = useRecoilCallback(

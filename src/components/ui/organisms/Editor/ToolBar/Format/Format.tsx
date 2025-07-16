@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { Icon, IconButton, Link, PortalManager } from 'src/components/ui/atoms'
 import { useEditorStateContext } from 'src/components/ui/organisms/Editor/Editors'
 import { Popover, PopoverTrigger } from 'src/components/ui/organisms/Popover'
@@ -12,9 +12,8 @@ import {
   useUnderline,
 } from 'src/shared/prosemirror/hooks'
 import { Content } from './Content'
-type Props = {}
 
-export const Format: React.FC<Props> = memo<Props>(() => {
+export const Format = memo(function Format() {
   const state = useEditorStateContext()
   const popoverDisclosure = useDisclosure()
   const useBoldResult = useBold()
@@ -72,4 +71,3 @@ export const Format: React.FC<Props> = memo<Props>(() => {
     </PortalManager>
   )
 })
-Format.displayName = 'Format'

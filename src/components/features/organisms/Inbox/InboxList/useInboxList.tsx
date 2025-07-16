@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from 'react'
 import {
   useInboxListItem,
-  useWorkspaceActivityTaskIds,
   useTaskActivityTaskIds,
+  useWorkspaceActivityTaskIds,
 } from 'src/components/features/organisms/Inbox/hooks'
 import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
 import { isInboxDetailURL, useRouter } from 'src/router'

@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { useTasksTaskIdsByTaskSectionId } from 'src/components/features/organisms/Tasks/hooks'
 import { Flex } from 'src/components/ui/atoms'
 import { transitions } from 'src/styles'
@@ -56,27 +57,25 @@ const Component: React.FC<Props> = memo<Props>((props) => {
             </>
           )}
           {taskIds.length === 0 && (
-            <>
-              <Flex
-                bgGradient="linear(to-b, gray.100, gray.50)"
-                borderRadius="md"
+            <Flex
+              bgGradient="linear(to-b, gray.100, gray.50)"
+              borderRadius="md"
+              w="full"
+              h="calc(100% - 8px)"
+              position="absolute"
+              top={2}
+              left={0}
+              pt={2}
+              px={2}
+            >
+              <AddTask
+                taskSectionId={props.taskSectionId}
                 w="full"
-                h="calc(100% - 8px)"
-                position="absolute"
-                top={2}
-                left={0}
-                pt={2}
-                px={2}
-              >
-                <AddTask
-                  taskSectionId={props.taskSectionId}
-                  w="full"
-                  _hover={{
-                    bg: 'gray.200',
-                  }}
-                />
-              </Flex>
-            </>
+                _hover={{
+                  bg: 'gray.200',
+                }}
+              />
+            </Flex>
           )}
         </Flex>
       </Flex>

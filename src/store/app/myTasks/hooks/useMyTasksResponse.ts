@@ -1,15 +1,18 @@
 import { useRecoilCallback } from 'recoil'
 import { getNodesFromEdges } from 'src/shared/apollo/util'
 import {
-  TeammateTaskColumnResponse,
+  type TeammateTaskColumnResponse,
   useTeammateTaskColumnResponse,
 } from 'src/store/entities/teammateTaskColumn'
 import {
-  TeammateTaskSectionResponse,
+  type TeammateTaskSectionResponse,
   useTeammatesTaskSectionResponse,
 } from 'src/store/entities/teammatesTaskSection'
 import { taskListStatusState } from '../taskListStatus'
-import { MyTasksResponse, MyTasksTeammateTaskSectionResponse } from '../type'
+import type {
+  MyTasksResponse,
+  MyTasksTeammateTaskSectionResponse,
+} from '../type'
 
 export const useMyTasksResponse = () => {
   const { setTeammatesTaskSections } = useTeammatesTaskSectionResponse()

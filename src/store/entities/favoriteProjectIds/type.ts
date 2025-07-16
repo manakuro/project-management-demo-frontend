@@ -1,4 +1,4 @@
-import { FavoriteProjectIdsResponse } from 'src/graphql/types/favoriteProjectIds'
+import type { FavoriteProjectIdsResponse } from 'src/graphql/types/favoriteProjectIds'
 
 export type {
   FavoriteProjectIdsResponse,

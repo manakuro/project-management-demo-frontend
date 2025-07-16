@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import type React from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { Flex, Icon, IconButton, PortalManager } from 'src/components/ui/atoms'
 import { Menu, MenuButton } from 'src/components/ui/organisms/Menu'
 import { useDisclosure } from 'src/shared/chakra'

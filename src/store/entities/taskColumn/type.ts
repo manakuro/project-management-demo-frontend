@@ -1,4 +1,4 @@
-import { TaskColumnType } from 'src/graphql/enums'
+import type { TaskColumnType } from 'src/graphql/enums'
 import type { TaskColumnResponse } from 'src/graphql/types/taskColumn'
 export type { TaskColumnResponse } from 'src/graphql/types/taskColumn'
 

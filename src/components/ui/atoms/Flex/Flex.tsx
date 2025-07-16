@@ -1,8 +1,9 @@
 import {
   Flex as ChakraFlex,
-  FlexProps as ChakraFlexProps,
+  type FlexProps as ChakraFlexProps,
 } from '@chakra-ui/react'
-import React, { forwardRef } from 'react'
+import type React from 'react'
+import { forwardRef } from 'react'
 
 type Props = ChakraFlexProps & {
   ref?: React.ForwardedRef<any>

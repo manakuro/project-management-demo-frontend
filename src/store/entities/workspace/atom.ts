@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
 import { getDefaultDescription } from 'src/shared/prosemirror/getDefaultDescription'
-import { Workspace } from './type'
+import type { Workspace } from './type'
 
 const key = (str: string) => `src/store/entities/workspace/${str}`
 

@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import { memo, useMemo } from 'react'
 import { useNavigation } from 'src/components/features/organisms/Navigation'
 import { NavListItem } from 'src/components/features/organisms/Navigation/NavListItem'
 import { AccordionIcon } from 'src/components/ui/organisms/Accordion'
@@ -7,8 +7,8 @@ import { Divider } from '../../Divider'
 import {
   CustomNavList,
   CustomNavListAccordion,
-  CustomNavListAccordionItem,
   CustomNavListAccordionButton,
+  CustomNavListAccordionItem,
   CustomNavListAccordionPanel,
   CustomNavListAccordionPanelList,
   CustomNavListHeader,
@@ -16,9 +16,7 @@ import {
 import { Projects } from './Projects'
 import { Workspace } from './Workspace'
 
-type Props = {}
-
-export const Favorites: React.FC<Props> = memo(() => {
+export const Favorites = memo(function Favorites() {
   const { isExpanded } = useNavigation()
   const { disabledStyle } = useDisabledStyle()
   const title = useMemo(() => (isExpanded ? 'Favorites' : 'Fav'), [isExpanded])
@@ -54,7 +52,11 @@ export const Favorites: React.FC<Props> = memo(() => {
                 <Projects />
                 <Workspace />
                 {listItems.map((listItem, i) => (
-                  <NavListItem item={listItem} key={i} {...disabledStyle} />
+                  <NavListItem
+                    item={listItem}
+                    key={listItem.href}
+                    {...disabledStyle}
+                  />
                 ))}
               </CustomNavListAccordionPanelList>
             </CustomNavListAccordionPanel>
@@ -64,4 +66,3 @@ export const Favorites: React.FC<Props> = memo(() => {
     </>
   )
 })
-Favorites.displayName = 'Favorites'

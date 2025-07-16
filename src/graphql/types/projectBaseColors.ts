@@ -1,4 +1,4 @@
-import { ProjectBaseColorsQuery } from 'src/graphql/types'
+import type { ProjectBaseColorsQuery } from 'src/graphql/types'
 
 export type {
   ProjectBaseColorsQuery,

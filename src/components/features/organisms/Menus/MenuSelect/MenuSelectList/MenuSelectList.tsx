@@ -1,6 +1,6 @@
-import React from 'react'
+import type React from 'react'
 import { useMenuSelectContext } from '../useMenuSelect'
-import { Component, ComponentProps } from './Component'
+import { Component, type ComponentProps } from './Component'
 
 type Props = ComponentProps
 

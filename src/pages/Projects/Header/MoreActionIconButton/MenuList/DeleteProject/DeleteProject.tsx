@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { MenuItem } from 'src/components/ui/organisms/Menu'
 
 type Props = {

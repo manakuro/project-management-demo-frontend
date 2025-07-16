@@ -2,21 +2,19 @@ import React, { memo, useCallback } from 'react'
 import { MainHeader } from 'src/components/features/organisms/MainHeader'
 import { Flex } from 'src/components/ui/atoms'
 import { Head } from 'src/components/ui/atoms/Head'
-import { Tabs, TabPanels, TabPanel } from 'src/components/ui/organisms/Tabs'
+import { TabPanel, TabPanels, Tabs } from 'src/components/ui/organisms/Tabs'
 import { useRouter } from 'src/router'
 import { Activity } from './Activity'
 import { Archive } from './Archive'
 import { Header } from './Header'
 import { Provider, useInboxPageContext } from './Provider'
 
-type Props = {}
-
 const ACTIVITY_INDEX = 0 as const
 const ARCHIVE_INDEX = 1 as const
 
 type Index = typeof ACTIVITY_INDEX | typeof ARCHIVE_INDEX
 
-export const Component: React.FC<Props> = memo<Props>(() => {
+export const Component = memo(function InboxComponent() {
   return (
     <Provider>
       <WrappedComponent />
@@ -24,7 +22,7 @@ export const Component: React.FC<Props> = memo<Props>(() => {
   )
 })
 
-const WrappedComponent: React.FC = memo(() => {
+const WrappedComponent = memo(function WrappedInboxComponent() {
   const { setLoadingTabContent } = useInboxPageContext()
   const [tabIndex, setTabIndex] = React.useState<Index>(ACTIVITY_INDEX)
   const { navigateToInbox } = useRouter()
@@ -84,5 +82,3 @@ const WrappedComponent: React.FC = memo(() => {
     </Tabs>
   )
 })
-WrappedComponent.displayName = 'WrappedComponent'
-Component.displayName = 'Component'

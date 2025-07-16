@@ -2,7 +2,7 @@ import { selector } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
 import { ActivityTypeCode } from 'src/store/entities/activityType'
 import { createState } from 'src/store/util'
-import { Activity } from './type'
+import type { Activity } from './type'
 
 const key = (str: string) => `src/store/app/inbox/activity/activities/${str}`
 

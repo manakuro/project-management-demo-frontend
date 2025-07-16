@@ -1,8 +1,8 @@
 import {
   Progress as ChakraProgress,
-  ProgressProps as ChakraProgressProps,
+  type ProgressProps as ChakraProgressProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraProgressProps
 export type ProgressProps = Props

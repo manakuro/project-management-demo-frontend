@@ -1,8 +1,8 @@
 import {
   PopoverHeader as ChakraPopoverHeader,
-  PopoverHeaderProps as ChakraPopoverHeaderProps,
+  type PopoverHeaderProps as ChakraPopoverHeaderProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraPopoverHeaderProps
 export type PopoverHeaderProps = Props

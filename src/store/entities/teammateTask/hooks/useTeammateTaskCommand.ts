@@ -8,11 +8,11 @@ import { useMe } from 'src/store/entities/me'
 import { taskState, useTaskCommand } from 'src/store/entities/task'
 import { useWorkspace } from 'src/store/entities/workspace'
 import {
-  teammateTaskState,
   initialState,
   teammateTaskByTaskIdState,
+  teammateTaskState,
 } from '../atom'
-import { TeammateTask } from '../type'
+import type { TeammateTask } from '../type'
 import { TEAMMATE_TASK_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskCreatedSubscription'
 import { useTeammateTaskResponse } from './useTeammateTaskResponse'
 import { TEAMMATE_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskUpdatedSubscription'

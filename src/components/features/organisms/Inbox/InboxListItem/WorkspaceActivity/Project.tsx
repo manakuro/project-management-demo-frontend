@@ -1,5 +1,6 @@
-import React, { memo, useCallback } from 'react'
-import { Flex, FlexProps, Icon, Link } from 'src/components/ui/atoms'
+import type React from 'react'
+import { memo, useCallback } from 'react'
+import { Flex, type FlexProps, Icon, Link } from 'src/components/ui/atoms'
 import { useProject } from 'src/store/entities/project'
 import { transitions } from 'src/styles'
 

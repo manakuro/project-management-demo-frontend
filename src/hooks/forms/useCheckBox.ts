@@ -1,5 +1,6 @@
-import { FormikProps } from 'formik'
-import React, { useCallback } from 'react'
+import type { FormikProps } from 'formik'
+import type React from 'react'
+import { useCallback } from 'react'
 
 type Props<Values> = {
   formik: FormikProps<Values>

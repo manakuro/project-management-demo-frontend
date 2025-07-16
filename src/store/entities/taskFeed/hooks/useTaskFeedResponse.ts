@@ -1,5 +1,5 @@
 import { useRecoilCallback } from 'recoil'
-import { TaskFeedResponse } from '../type'
+import type { TaskFeedResponse } from '../type'
 import { useUpsert } from './useUpsert'
 
 export const useTaskFeedResponse = () => {

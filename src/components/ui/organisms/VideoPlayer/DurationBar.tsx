@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
-import React, { useCallback, useMemo } from 'react'
-import { chakra, ChakraProps } from 'src/shared/chakra'
-import { State } from './VideoPlayer'
+import type React from 'react'
+import { useCallback, useMemo } from 'react'
+import { type ChakraProps, chakra } from 'src/shared/chakra'
+import type { State } from './VideoPlayer'
 
 type Props = {
   played: number
@@ -16,7 +17,10 @@ export const DurationBar: React.FC<Props> = (props) => {
 
   const handleSeekChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setVideoState((s) => ({ ...s, played: parseFloat(e.target.value) }))
+      setVideoState((s) => ({
+        ...s,
+        played: Number.parseFloat(e.target.value),
+      }))
     },
     [setVideoState],
   )
@@ -28,7 +32,7 @@ export const DurationBar: React.FC<Props> = (props) => {
   const handleSeekMouseUp = useCallback(
     (e: React.MouseEvent<HTMLInputElement>) => {
       setVideoState((s) => ({ ...s, seeking: false }))
-      seekTo(parseFloat((e.target as HTMLInputElement).value))
+      seekTo(Number.parseFloat((e.target as HTMLInputElement).value))
     },
     [seekTo, setVideoState],
   )

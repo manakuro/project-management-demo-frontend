@@ -1,8 +1,9 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import {
   TaskDetailBody,
-  TaskDetailHeader,
   TaskDetailFooter,
+  TaskDetailHeader,
 } from 'src/components/features/organisms/TaskDetail'
 import { Flex } from 'src/components/ui/atoms'
 

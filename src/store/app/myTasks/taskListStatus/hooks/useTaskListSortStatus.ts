@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
-import { TaskListSortStatuses, taskListSortStatues } from '../atom'
-import { TaskListSortStatusCodeValue } from '../types'
+import { type TaskListSortStatuses, taskListSortStatues } from '../atom'
+import type { TaskListSortStatusCodeValue } from '../types'
 import { useTaskListStatus } from './useTaskListStatus'
 import { useTaskListStatusCommand } from './useTaskListStatusCommand'
 

@@ -1,10 +1,8 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { Flex, Icon, IconButton } from 'src/components/ui/atoms'
 import { useCarouselContext } from './Provider'
 
-type Props = {}
-
-export const CarouselLeftChevron: React.FC<Props> = () => {
+export function CarouselLeftChevron() {
   const { count, currentIndex, setCurrentIndex } = useCarouselContext()
 
   const handleClick = useCallback(() => {

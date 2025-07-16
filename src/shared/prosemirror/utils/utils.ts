@@ -1,8 +1,9 @@
-import { NodeType } from 'prosemirror-model'
-import { EditorView } from 'prosemirror-view'
+import type { NodeType } from 'prosemirror-model'
+import type { EditorView } from 'prosemirror-view'
 
 const isOfType = <Type>(type: string, predicate?: (value: Type) => boolean) => {
   return (value: unknown): value is Type => {
+    // biome-ignore lint/suspicious/useValidTypeof: <explanation>
     if (typeof value !== type) return false
     return predicate ? predicate(value as Type) : true
   }
@@ -10,12 +11,14 @@ const isOfType = <Type>(type: string, predicate?: (value: Type) => boolean) => {
 export const isString = isOfType<string>('string')
 export const isNull = (value: unknown): value is null => value === null
 export const isUndefined = isOfType<undefined>('undefined')
+// biome-ignore lint/complexity/noBannedTypes: <explanation>
 export const isFunction = isOfType<Function>('function')
 export const isNumber = isOfType<number>(
   'number',
   (value) => !Number.isNaN(value),
 )
 export const Cast = <Type = any>(value: unknown): Type => value as Type
+// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
 export const toString = (value: unknown): string =>
   Object.prototype.toString.call(value)
 
@@ -24,7 +27,7 @@ export const isNullOrUndefined = (
 ): value is null | undefined => {
   return isNull(value) || isUndefined(value)
 }
-export const isObject = <Type extends any>(value: unknown): value is Type => {
+export const isObject = <Type>(value: unknown): value is Type => {
   return (
     !isNullOrUndefined(value) &&
     (isFunction(value) || isOfType('object')(value))

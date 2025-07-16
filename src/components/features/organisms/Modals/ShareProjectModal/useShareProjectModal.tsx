@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState, useResetRecoilState } from 'recoil'
-import { Index, MEMBERS_INDEX, SHARE_INDEX } from './types'
+import { type Index, MEMBERS_INDEX, SHARE_INDEX } from './types'
 import { useShareProjectModalInvitedTeammates } from './useShareProjectModalInvitedTeammates'
 
 const key = (str: string) =>

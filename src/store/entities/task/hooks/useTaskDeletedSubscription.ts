@@ -6,7 +6,7 @@ import { uuid } from 'src/shared/uuid'
 import { useDeletedTaskResponse } from 'src/store/entities/deletedTask'
 import { useResetProjectTask } from 'src/store/entities/projectTask'
 import { teammateTaskState } from 'src/store/entities/teammateTask'
-import { TaskDeletedSubscriptionResponse as Response } from '../type'
+import type { TaskDeletedSubscriptionResponse as Response } from '../type'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any

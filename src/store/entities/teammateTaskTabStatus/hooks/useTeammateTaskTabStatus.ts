@@ -2,8 +2,8 @@ import { useCallback } from 'react'
 import { useRecoilValue } from 'recoil'
 import { tabStatusState } from '../atom'
 import {
-  TeammateTaskTabStatusCodeKey,
   TeammateTaskTabStatusCode,
+  type TeammateTaskTabStatusCodeKey,
 } from '../type'
 
 export const useTeammateTaskTabStatus = () => {

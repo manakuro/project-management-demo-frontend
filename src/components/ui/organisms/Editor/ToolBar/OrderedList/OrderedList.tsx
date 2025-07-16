@@ -1,6 +1,7 @@
-import React, { memo } from 'react'
-import { Icon, IconButtonProps } from 'src/components/ui/atoms'
-import { TooltipProps } from 'src/components/ui/molecules'
+import type React from 'react'
+import { memo } from 'react'
+import { Icon, type IconButtonProps } from 'src/components/ui/atoms'
+import type { TooltipProps } from 'src/components/ui/molecules'
 import { useOrderedList } from 'src/shared/prosemirror/hooks'
 import { BaseButton } from '../BaseButton'
 

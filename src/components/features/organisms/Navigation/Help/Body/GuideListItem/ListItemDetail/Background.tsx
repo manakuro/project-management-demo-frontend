@@ -1,4 +1,5 @@
-import React, { useCallback } from 'react'
+import type React from 'react'
+import { useCallback } from 'react'
 import { AspectRatio, Flex, Icon } from 'src/components/ui/atoms'
 import { useVideoPlayer } from 'src/components/ui/organisms/VideoPlayer'
 

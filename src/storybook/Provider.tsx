@@ -1,7 +1,8 @@
 import { ApolloProvider as ApolloProviderLibs } from '@apollo/client'
 import { ChakraProvider } from '@chakra-ui/react'
 import enLocale from 'date-fns/locale/en-US'
-import React, { useMemo } from 'react'
+import type React from 'react'
+import { useMemo } from 'react'
 import { RecoilRoot } from 'recoil'
 import { Modals } from 'src/components/features/organisms/Modals'
 import {
@@ -20,8 +21,8 @@ import { createApolloClient } from 'src/shared/apollo/client'
 import {
   AdapterDateFns,
   LocalizationProvider,
-  muiTheme,
   MuiThemeProvider,
+  muiTheme,
 } from 'src/shared/materialUI'
 import { theme } from 'src/styles'
 

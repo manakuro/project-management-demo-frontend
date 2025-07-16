@@ -1,8 +1,8 @@
 import {
   Tfoot as ChakraTfoot,
-  TableFooterProps as ChakraTfootProps,
+  type TableFooterProps as ChakraTfootProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraTfootProps

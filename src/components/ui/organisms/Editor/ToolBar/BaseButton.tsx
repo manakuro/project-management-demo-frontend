@@ -1,11 +1,12 @@
-import React, { useCallback } from 'react'
-import { IconButton, IconButtonProps } from 'src/components/ui/atoms'
-import { Tooltip, TooltipProps } from 'src/components/ui/molecules'
+import type React from 'react'
+import { useCallback } from 'react'
+import { IconButton, type IconButtonProps } from 'src/components/ui/atoms'
+import { Tooltip, type TooltipProps } from 'src/components/ui/molecules'
 import {
   useEditorStateContext,
   useEditorViewContext,
 } from 'src/components/ui/organisms/Editor/Editors'
-import { ToolbarItem } from 'src/shared/prosemirror/hooks'
+import type { ToolbarItem } from 'src/shared/prosemirror/hooks'
 
 type Props = {
   isActive?: ToolbarItem['isActive']

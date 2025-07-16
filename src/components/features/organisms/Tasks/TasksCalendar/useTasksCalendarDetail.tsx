@@ -1,4 +1,4 @@
-import { NextRouter } from 'next/router'
+import type { NextRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
 import { useTaskDetailModal } from 'src/components/features/organisms/TaskDetails'

@@ -1,11 +1,12 @@
-import React, { memo, useMemo } from 'react'
+import type React from 'react'
+import { memo, useMemo } from 'react'
 import {
   Inbox,
-  InboxLeft,
-  InboxRight,
   InboxHeader,
+  InboxLeft,
   InboxList,
   InboxListContent,
+  InboxRight,
   InboxSkeleton,
 } from 'src/components/features/organisms/Inbox'
 import { useInboxTaskDetail } from 'src/components/features/organisms/Inbox'

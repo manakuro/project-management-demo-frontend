@@ -1,17 +1,18 @@
-import React, { memo, useMemo } from 'react'
+import type React from 'react'
+import { memo, useMemo } from 'react'
 import {
-  Text,
-  ListItem,
-  Link,
-  NextLink,
   Icon,
-  ListItemProps,
-  LinkProps,
+  Link,
+  type LinkProps,
+  ListItem,
+  type ListItemProps,
+  NextLink,
+  Text,
 } from 'src/components/ui/atoms'
 import { useLinkHoverStyle } from 'src/hooks'
-import { StaticRoutes } from 'src/router'
+import type { StaticRoutes } from 'src/router'
 import { PADDING_X } from './Navigation'
-import { NavListItem as TNavListItem } from './type'
+import type { NavListItem as TNavListItem } from './type'
 
 type Props = {
   item: TNavListItem

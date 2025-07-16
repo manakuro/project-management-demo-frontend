@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { AssigneeIconMenu } from 'src/components/features/organisms/Menus'
 import { useTask } from 'src/store/entities/task'
 import { useAssignee } from './useAssignee'

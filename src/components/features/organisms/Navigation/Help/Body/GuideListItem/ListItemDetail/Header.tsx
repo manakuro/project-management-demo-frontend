@@ -1,7 +1,8 @@
-import React, { useCallback } from 'react'
+import type React from 'react'
+import { useCallback } from 'react'
 import {
+  type Item,
   PADDING_X,
-  Item,
 } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem'
 import { Flex, Icon, Text } from 'src/components/ui/atoms'
 

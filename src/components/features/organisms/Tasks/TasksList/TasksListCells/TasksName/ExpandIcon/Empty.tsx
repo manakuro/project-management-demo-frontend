@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { Flex } from 'src/components/ui/atoms'
 
 export const Empty: React.FC = memo(() => {

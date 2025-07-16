@@ -1,4 +1,4 @@
-import { WorkspaceQuery } from 'src/graphql/types'
+import type { WorkspaceQuery } from 'src/graphql/types'
 
 export type {
   WorkspaceQuery,

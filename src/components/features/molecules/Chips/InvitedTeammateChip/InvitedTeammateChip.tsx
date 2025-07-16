@@ -1,8 +1,9 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
 import { Badge, Box, Button, Icon, Text } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
-import { Teammate } from 'src/store/entities/teammate'
+import type { Teammate } from 'src/store/entities/teammate'
 
 type Variant = 'badge' | 'button'
 

@@ -1,12 +1,13 @@
-import { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
-import { Plugin } from 'prosemirror-state'
-import { EditorProps } from 'prosemirror-view'
-import React, { PropsWithChildren, useMemo } from 'react'
+import type { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
+import type { Plugin } from 'prosemirror-state'
+import type { EditorProps } from 'prosemirror-view'
+import type React from 'react'
+import { type PropsWithChildren, useMemo } from 'react'
 import { ConditionalRender } from 'src/components/ui/atoms'
 import { useDebounce, usePrevious } from 'src/hooks'
 import {
+  type ProsemirrorTransformer,
   createJSONTransformer,
-  ProsemirrorTransformer,
 } from 'src/shared/prosemirror/transformers'
 import { EditorProvider, useEditorStateContext } from './EdiorProvider'
 import { Portals } from './Portals'
@@ -61,9 +62,7 @@ type ContainerProps<P> = {
   debounce: number
   initialValue: string
 }
-export const Container = <P extends unknown>(
-  props: PropsWithChildren<ContainerProps<P>>,
-) => {
+export const Container = <P,>(props: PropsWithChildren<ContainerProps<P>>) => {
   const state = useEditorStateContext()
   const prevStateDoc = usePrevious<ProsemirrorNode<any>>(state.doc)
 

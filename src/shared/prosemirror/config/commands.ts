@@ -1,4 +1,9 @@
-import { Command, setBlockType, toggleMark, wrapIn } from 'prosemirror-commands'
+import {
+  type Command,
+  setBlockType,
+  toggleMark,
+  wrapIn,
+} from 'prosemirror-commands'
 import {
   liftListItem,
   sinkListItem,

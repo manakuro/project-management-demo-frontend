@@ -1,7 +1,8 @@
-import React, { useCallback, useState } from 'react'
+import type React from 'react'
+import { useCallback, useState } from 'react'
 import { useHover } from 'src/hooks/useHover'
 import { createProvider } from 'src/shared/react/createProvider'
-import { TaskFile, useTaskFile } from 'src/store/entities/taskFile'
+import { type TaskFile, useTaskFile } from 'src/store/entities/taskFile'
 
 type ContextProps = {
   ref: React.MutableRefObject<HTMLElement | null>

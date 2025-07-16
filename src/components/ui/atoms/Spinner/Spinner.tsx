@@ -1,8 +1,8 @@
 import {
   Spinner as ChakraSpinner,
-  SpinnerProps as ChakraSpinnerProps,
+  type SpinnerProps as ChakraSpinnerProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraSpinnerProps
 export type SpinnerProps = Props

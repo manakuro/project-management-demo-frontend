@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useTaskCollaboratorDeletedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { TaskCollaboratorDeletedSubscriptionResponse as Response } from '../type'
+import type { TaskCollaboratorDeletedSubscriptionResponse as Response } from '../type'
 import { useResetTaskCollaborator } from './useResetTaskCollaborator'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.

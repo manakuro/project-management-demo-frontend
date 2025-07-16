@@ -1,5 +1,6 @@
-import React, { memo } from 'react'
-import { FlexProps } from 'src/components/ui/atoms'
+import type React from 'react'
+import { memo } from 'react'
+import type { FlexProps } from 'src/components/ui/atoms'
 import { useInboxContext } from '../../Inbox'
 import { Actions, ArchiveButton } from '../Actions'
 import { useInboxListItemContext } from '../Provider'

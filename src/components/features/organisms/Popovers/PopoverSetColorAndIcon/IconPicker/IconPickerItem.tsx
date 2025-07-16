@@ -1,12 +1,13 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import {
   Icon as AtomsIcon,
-  BoxProps,
-  WrapItem,
+  type BoxProps,
   Center,
+  WrapItem,
 } from 'src/components/ui/atoms'
 import { useLinkHoverStyle } from 'src/hooks'
-import { IconType } from 'src/shared/icons'
+import type { IconType } from 'src/shared/icons'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 import { useProjectIcon } from 'src/store/entities/projectIcon'
 import { useProjectLightColor } from 'src/store/entities/projectLightColor'

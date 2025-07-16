@@ -1,9 +1,9 @@
 import { useRecoilCallback } from 'recoil'
-import { ProjectTaskResponse } from 'src/graphql/types/projectTask'
+import type { ProjectTaskResponse } from 'src/graphql/types/projectTask'
 import { uniqBy } from 'src/shared/utils'
 import { useProjectTaskResponse } from 'src/store/entities/projectTask'
 import { projectTaskSectionState } from '../atom'
-import { ProjectTaskSectionResponse } from '../type'
+import type { ProjectTaskSectionResponse } from '../type'
 
 type Data = Override<Partial<ProjectTaskSectionResponse>, { id: string }>
 
@@ -30,9 +30,10 @@ export const useProjectTaskSectionResponse = () => {
         if (!includeProjectTasks) return
 
         const projectTasks = data.reduce<ProjectTaskResponse[]>((acc, p) => {
-          return uniqBy([...acc, ...(p?.projectTasks || [])], 'id')
+          acc.push(...(p?.projectTasks || []))
+          return acc
         }, [])
-        setProjectTask(projectTasks, { includeTask })
+        setProjectTask(uniqBy(projectTasks, 'id'), { includeTask })
       },
     [setProjectTask],
   )

@@ -1,4 +1,4 @@
-import { TestUsersQuery } from 'src/graphql/types'
+import type { TestUsersQuery } from 'src/graphql/types'
 
 export type { TestUsersQuery, TestUsersQueryVariables } from 'src/graphql/types'
 export type {

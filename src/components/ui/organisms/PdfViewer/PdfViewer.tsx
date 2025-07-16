@@ -1,5 +1,5 @@
 import * as PDFViewer from '@react-pdf-viewer/core'
-import React from 'react'
+import type React from 'react'
 import { Box } from 'src/components/ui/atoms'
 
 import '@react-pdf-viewer/core/lib/styles/index.css'

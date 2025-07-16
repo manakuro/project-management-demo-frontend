@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { archiveState } from '../atom'
-import { ArchivedActivityResponse, ArchiveActivity } from '../type'
+import type { ArchiveActivity, ArchivedActivityResponse } from '../type'
 
 export const useArchivesResponse = () => {
   const setArchives = useRecoilCallback(

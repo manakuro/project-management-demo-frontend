@@ -1,4 +1,4 @@
-import { DropResult } from '@hello-pangea/dnd'
+import type { DropResult } from '@hello-pangea/dnd'
 import { useCallback, useState } from 'react'
 
 const sort = <T>(list: T[], startIndex: number, endIndex: number): T[] => {

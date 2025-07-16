@@ -1,4 +1,4 @@
-import { ProjectIconsQuery } from 'src/graphql/types'
+import type { ProjectIconsQuery } from 'src/graphql/types'
 
 export type {
   ProjectIconsQuery,

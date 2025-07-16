@@ -1,22 +1,23 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { useFileViewerModal } from 'src/components/features/organisms/Modals'
 import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks'
 import {
+  Divider,
   Flex,
-  FlexProps,
+  type FlexProps,
   Icon,
+  Image,
   Link,
   Text,
-  Image,
-  Divider,
 } from 'src/components/ui/atoms'
 import { useHover } from 'src/hooks/useHover'
 import { FileTypeCode } from 'src/store/entities/fileType'
 import { useTask } from 'src/store/entities/task'
 import {
+  getTaskFileIcon,
   useTaskFile,
   useTaskFileIdsByTaskId,
-  getTaskFileIcon,
 } from 'src/store/entities/taskFile'
 import { transitions } from 'src/styles'
 

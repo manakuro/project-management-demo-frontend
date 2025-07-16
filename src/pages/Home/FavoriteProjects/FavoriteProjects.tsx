@@ -1,10 +1,8 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { ProjectsContainer } from 'src/pages/Home/ProjectsContainer'
 import { useFavoriteProjectIds } from 'src/store/entities/favoriteProjectIds'
 
-type Props = {}
-
-export const FavoriteProjects: React.FC<Props> = memo<Props>(() => {
+export const FavoriteProjects = memo(function FavoriteProjects() {
   const { favoriteProjectIds } = useFavoriteProjectIds()
 
   if (!favoriteProjectIds.length) return null
@@ -23,4 +21,3 @@ export const FavoriteProjects: React.FC<Props> = memo<Props>(() => {
     />
   )
 })
-FavoriteProjects.displayName = 'FavoriteProjects'

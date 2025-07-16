@@ -1,6 +1,5 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import type { ComponentMeta, ComponentStory } from '@storybook/react'
 import { userEvent, within } from '@storybook/testing-library'
-import React from 'react'
 import { LayoutDefault } from 'src/components/ui/organisms/Layout'
 import { Container as Page } from './Container'
 

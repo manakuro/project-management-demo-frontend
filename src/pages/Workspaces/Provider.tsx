@@ -1,4 +1,5 @@
-import React, { SetStateAction, useEffect, useState } from 'react'
+import type React from 'react'
+import { type SetStateAction, useEffect, useState } from 'react'
 import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {

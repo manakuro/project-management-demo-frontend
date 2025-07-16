@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { useUpdateProjectMutation } from 'src/graphql/hooks'
-import { UpdateProjectInput } from 'src/graphql/types'
+import type { UpdateProjectInput } from 'src/graphql/types'
 import {
   formatDueTimeToLocalTimezone,
   formatDueTimeToServerTimezone,
@@ -8,7 +8,7 @@ import {
 import { omit } from 'src/shared/utils/omit'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { projectState } from '../atom'
-import { Project } from '../type'
+import type { Project } from '../type'
 import { useSetHasDescriptionUpdated } from './useHasDescriptionUpdated'
 import { PROJECT_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useProjectUpdatedSubscription'
 import { useUpsert } from './useUpsert'

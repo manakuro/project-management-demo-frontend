@@ -1,6 +1,6 @@
 import { selectorFamily } from 'recoil'
 import { createState } from 'src/store/util'
-import { TaskTag } from './type'
+import type { TaskTag } from './type'
 
 const key = (str: string) => `src/store/entities/taskTag/${str}`
 

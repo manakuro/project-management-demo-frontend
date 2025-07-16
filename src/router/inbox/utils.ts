@@ -1,4 +1,4 @@
-import { NextRouter } from 'next/router'
+import type { NextRouter } from 'next/router'
 import { ROUTE_INBOX } from './routes'
 
 export const isInboxDetailURL = (router: NextRouter): boolean => {

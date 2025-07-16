@@ -1,4 +1,4 @@
-import { FavoriteWorkspaceIdsResponse } from 'src/graphql/types/favoriteWorkspaceIds'
+import type { FavoriteWorkspaceIdsResponse } from 'src/graphql/types/favoriteWorkspaceIds'
 
 export type {
   FavoriteWorkspaceIdsResponse,

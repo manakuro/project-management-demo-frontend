@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import type React from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
 import { SUBTASK_LIST_CONTAINER_ID } from 'src/components/features/organisms/TaskDetail/TaskDetailBody/Form/Subtasks'
 import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks'

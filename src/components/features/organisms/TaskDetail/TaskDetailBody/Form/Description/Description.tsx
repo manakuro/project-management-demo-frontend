@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
+import type React from 'react'
+import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Editor, EditorContent } from 'src/components/ui/organisms/Editor'
 import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
 import {
@@ -6,7 +7,7 @@ import {
   stringifyDescription,
 } from 'src/shared/prosemirror/convertDescription'
 import { useTask } from 'src/store/entities/task'
-import { Row, Label, Content } from '../Row'
+import { Content, Label, Row } from '../Row'
 import { Container } from './Container'
 import { Placeholder } from './Placeholder'
 import { Provider } from './Provider'
@@ -45,6 +46,7 @@ const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
     [setTask, task.description],
   )
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setResetView((s) => s + 1)
   }, [hasDescriptionUpdated])

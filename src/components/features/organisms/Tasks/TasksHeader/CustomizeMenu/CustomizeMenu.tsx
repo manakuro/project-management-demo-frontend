@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 import { Drawer } from 'src/components/ui/organisms/Drawer'
 import { Content } from './Content'
 import { useCustomizeMenu } from './useCustomizeMenu'

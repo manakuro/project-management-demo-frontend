@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { MenuList as AtomsMenuList } from 'src/components/ui/organisms/Menu'
 import { AddRole } from './AddRole'
 import { RemoveFromProject } from './RemoveFromProject'

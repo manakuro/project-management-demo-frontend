@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import type React from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { useShareProjectModal } from 'src/components/features/organisms/Modals'
 import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
 import { Flex, Heading, Icon, Text } from 'src/components/ui/atoms'

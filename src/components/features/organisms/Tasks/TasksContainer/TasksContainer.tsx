@@ -1,6 +1,7 @@
-import React, { memo, PropsWithChildren } from 'react'
+import type React from 'react'
+import { type PropsWithChildren, memo } from 'react'
 import { TasksModals } from '../TasksModals'
-import { TasksProvider, TasksProviderProps } from '../TasksProvider'
+import { TasksProvider, type TasksProviderProps } from '../TasksProvider'
 
 type Props = PropsWithChildren<TasksProviderProps>
 

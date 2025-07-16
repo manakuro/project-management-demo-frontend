@@ -1,6 +1,9 @@
 import { useCallback } from 'react'
-import { taskListCompletedStatues, TaskListCompletedStatuses } from '../atom'
-import { TaskListCompletedStatusCodeValue } from '../types'
+import {
+  type TaskListCompletedStatuses,
+  taskListCompletedStatues,
+} from '../atom'
+import type { TaskListCompletedStatusCodeValue } from '../types'
 import { useTaskListStatus } from './useTaskListStatus'
 import { useTaskListStatusCommand } from './useTaskListStatusCommand'
 

@@ -5,7 +5,7 @@ import { useWorkspaceUpdatedSubscription as useSubscription } from 'src/graphql/
 import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
 import { uuid } from 'src/shared/uuid'
 import { workspaceState } from '../atom'
-import { WorkspaceUpdatedSubscriptionResponse as Response } from '../type'
+import type { WorkspaceUpdatedSubscriptionResponse as Response } from '../type'
 import { useHasDescriptionUpdated } from './useHasDescriptionUpdated'
 import { useWorkspaceResponse } from './useWorkspaceResponse'
 

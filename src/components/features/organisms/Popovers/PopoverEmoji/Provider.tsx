@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { BaseEmoji } from 'src/shared/emoji'
+import type { BaseEmoji } from 'src/shared/emoji'
 import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
@@ -32,7 +32,7 @@ const useValue = (props: Props): ContextProps => {
       setIsOpen(true)
       setCallback(() => resolve)
     })
-  }, [setIsOpen, setCallback])
+  }, [])
 
   return {
     isOpen,

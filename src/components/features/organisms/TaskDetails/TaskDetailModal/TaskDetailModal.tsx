@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
 import { Modal, ModalOverlay } from 'src/components/ui/organisms/Modal'
 import { Content } from './Content'

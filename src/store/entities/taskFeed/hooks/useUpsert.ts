@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { taskFeedState } from '../atom'
-import { TaskFeed } from '../type'
+import type { TaskFeed } from '../type'
 
 export const useUpsert = () => {
   const upsert = useRecoilCallback(

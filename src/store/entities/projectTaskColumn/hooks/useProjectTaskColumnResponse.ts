@@ -1,7 +1,7 @@
 import { useRecoilCallback } from 'recoil'
 import { useTaskColumnsResponse } from 'src/store/entities/taskColumn'
 import { projectTaskColumnState } from '../atom'
-import { ProjectTaskColumnResponse } from '../type'
+import type { ProjectTaskColumnResponse } from '../type'
 
 export const useProjectTaskColumnResponse = () => {
   const { setTaskColumns } = useTaskColumnsResponse()

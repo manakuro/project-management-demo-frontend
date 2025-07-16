@@ -1,4 +1,6 @@
-mutation DeleteProjectTaskSectionAndDeleteTasks($input: DeleteProjectTaskSectionAndDeleteTasksInput!) {
+mutation DeleteProjectTaskSectionAndDeleteTasks(
+  $input: DeleteProjectTaskSectionAndDeleteTasksInput!
+) {
   deleteProjectTaskSectionAndDeleteTasks(input: $input) {
     projectTaskIds
     projectTaskSection {

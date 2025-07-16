@@ -1,20 +1,25 @@
-import React, { memo, useCallback, useState } from 'react'
+import type React from 'react'
+import { memo, useCallback, useState } from 'react'
 import { AssigneeChip } from 'src/components/features/molecules/Chips'
 import { InviteCollaboratorMenu } from 'src/components/features/organisms/Menus'
 import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
 import {
-  Flex,
   Input as AtomsInput,
+  Flex,
   Wrap,
   WrapItem,
 } from 'src/components/ui/atoms'
 import { useClickOutside } from 'src/hooks'
-import { ChakraProps, useDisclosure, useStyleConfig } from 'src/shared/chakra'
+import {
+  type ChakraProps,
+  useDisclosure,
+  useStyleConfig,
+} from 'src/shared/chakra'
 import {
   useTaskCollaboratorCommand,
   useTeammateIdsByTaskId,
 } from 'src/store/entities/taskCollaborator'
-import { Teammate } from 'src/store/entities/teammate'
+import type { Teammate } from 'src/store/entities/teammate'
 import { useCollaboratorsContext } from '../Provider'
 
 export const Input: React.FC = () => {

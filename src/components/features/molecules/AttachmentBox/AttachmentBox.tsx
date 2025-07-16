@@ -1,12 +1,12 @@
-import React from 'react'
-import { FlexProps } from 'src/components/ui/atoms'
+import type React from 'react'
+import type { FlexProps } from 'src/components/ui/atoms'
 import {
-  useTaskFile,
   getTaskFileIcon,
   getTaskFileName,
+  useTaskFile,
 } from 'src/store/entities/taskFile'
 import { Component } from './Component'
-import { Sizes } from './sizes'
+import type { Sizes } from './sizes'
 
 type Props = FlexProps & {
   size: Sizes

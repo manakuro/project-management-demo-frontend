@@ -1,13 +1,14 @@
-import { NextRouter } from 'next/router'
-import React, { memo, useCallback, useState } from 'react'
+import type { NextRouter } from 'next/router'
+import type React from 'react'
+import { memo, useCallback, useState } from 'react'
 import { MainHeader } from 'src/components/features/organisms/MainHeader'
 import { Flex } from 'src/components/ui/atoms'
 import { Head } from 'src/components/ui/atoms/Head'
-import { Tabs, TabPanels, TabPanel } from 'src/components/ui/organisms/Tabs'
+import { TabPanel, TabPanels, Tabs } from 'src/components/ui/organisms/Tabs'
 import {
   isWorkspacesCalendarURL,
-  isWorkspacesOverviewURL,
   isWorkspacesMessageURL,
+  isWorkspacesOverviewURL,
   useRouter,
 } from 'src/router'
 import { useWorkspace } from 'src/store/entities/workspace'

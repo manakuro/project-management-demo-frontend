@@ -1,24 +1,24 @@
 import { useRecoilCallback } from 'recoil'
-import { InboxActivityPageQuery } from 'src/graphql/types/app/inbox'
+import type { InboxActivityPageQuery } from 'src/graphql/types/app/inbox'
 import { getNodesFromEdges } from 'src/shared/apollo/util'
 import { useActivitiesResponse } from '../activities'
 import { useInboxListStatusResponse } from '../inboxListStatus'
 import {
+  type TaskActivityResponse,
   useTaskActivitiesResponse,
-  TaskActivityResponse,
 } from '../taskActivities'
 import {
+  type TaskActivityTaskResponse,
   useTaskActivityTasksResponse,
-  TaskActivityTaskResponse,
 } from '../taskActivityTasks'
-import { ActivityResponse } from '../type'
+import type { ActivityResponse } from '../type'
 import {
+  type WorkspaceActivityResponse,
   useWorkspaceActivitiesResponse,
-  WorkspaceActivityResponse,
 } from '../workspaceActivities'
 import {
+  type WorkspaceActivityTaskResponse,
   useWorkspaceActivityTasksResponse,
-  WorkspaceActivityTaskResponse,
 } from '../workspaceActivityTasks'
 
 export const useActivityResponse = () => {
@@ -38,10 +38,10 @@ export const useActivityResponse = () => {
         InboxActivityPageQuery['workspaceActivities']
       >(data.workspaceActivities)
 
-      const workspaceActivityTasks = workspaceActivities.reduce(
-        (acc, w) => [...acc, ...w.workspaceActivityTasks],
-        [] as WorkspaceActivityTaskResponse[],
-      )
+      const workspaceActivityTasks = workspaceActivities.reduce((acc, w) => {
+        acc.push(...w.workspaceActivityTasks)
+        return acc
+      }, [] as WorkspaceActivityTaskResponse[])
       setWorkspaceActivities(workspaceActivities)
       setWorkspaceActivityTasks(workspaceActivityTasks)
 
@@ -50,10 +50,10 @@ export const useActivityResponse = () => {
         InboxActivityPageQuery['taskActivities']
       >(data.taskActivities)
 
-      const taskActivityTasks = taskActivities.reduce(
-        (acc, w) => [...acc, ...w.taskActivityTasks],
-        [] as TaskActivityTaskResponse[],
-      )
+      const taskActivityTasks = taskActivities.reduce((acc, w) => {
+        acc.push(...w.taskActivityTasks)
+        return acc
+      }, [] as TaskActivityTaskResponse[])
 
       setTaskActivities(taskActivities)
       setTaskActivityTasks(taskActivityTasks)

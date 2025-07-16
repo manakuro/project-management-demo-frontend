@@ -2,7 +2,7 @@ import isEqual from 'lodash-es/isEqual'
 import { useRecoilCallback } from 'recoil'
 import { useTaskAssignedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { TaskAssignedSubscriptionResponse } from 'src/store/entities/task'
+import type { TaskAssignedSubscriptionResponse } from 'src/store/entities/task'
 import { useTeammateTaskResponse } from 'src/store/entities/teammateTask'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.

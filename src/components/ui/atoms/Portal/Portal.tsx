@@ -1,8 +1,8 @@
 import {
   Portal as ChakraPortal,
-  PortalProps as ChakraPortalProps,
+  type PortalProps as ChakraPortalProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraPortalProps & {
   ref?: React.MutableRefObject<any>

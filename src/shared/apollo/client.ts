@@ -1,10 +1,10 @@
 import {
   ApolloClient,
   InMemoryCache,
-  NormalizedCacheObject,
+  type NormalizedCacheObject,
 } from '@apollo/client'
 import { refreshToken } from 'src/shared/firebase/auth'
-import { createLink, CreateLinkProps } from './createLink'
+import { type CreateLinkProps, createLink } from './createLink'
 
 type Props = CreateLinkProps
 let client: ApolloClient<NormalizedCacheObject>
@@ -34,7 +34,8 @@ export const createApolloClient = (props: Props) => {
 }
 
 export const resetApolloLink = async () => {
-  const idToken = await refreshToken()!
+  const idToken = await refreshToken()
+  if (!idToken) return
 
   console.log('apollo client sets new link')
   client.setLink(createLink({ idToken }))

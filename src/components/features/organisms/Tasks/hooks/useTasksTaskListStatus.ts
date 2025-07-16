@@ -2,11 +2,11 @@ import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus'
 import { useProjectsTaskListStatus } from 'src/store/app/projects/taskListStatus'
 import {
   TaskListCompletedStatusCode,
-  TaskListCompletedStatusCodeValue,
+  type TaskListCompletedStatusCodeValue,
 } from 'src/store/entities/taskListCompletedStatus'
 import {
-  TaskListSortStatusCodeValue,
   TaskListSortStatusCode,
+  type TaskListSortStatusCodeValue,
 } from 'src/store/entities/taskListSortStatus'
 import { useTasksContext } from '../TasksProvider'
 

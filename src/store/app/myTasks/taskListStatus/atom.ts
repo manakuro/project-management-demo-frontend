@@ -1,7 +1,7 @@
 import { atom, selectorFamily } from 'recoil'
 import { TaskListCompletedStatusCode } from 'src/store/entities/taskListCompletedStatus'
 import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
-import { TeammateTaskListStatus } from './type'
+import type { TeammateTaskListStatus } from './type'
 
 const key = (str: string) => `src/store/app/myTasks/taskListStatus/${str}`
 

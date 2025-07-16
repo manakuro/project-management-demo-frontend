@@ -1,11 +1,9 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Icon, IconButton, PortalManager } from 'src/components/ui/atoms'
 import { Menu, MenuButton } from 'src/components/ui/organisms/Menu'
 import { MenuList } from './MenuList'
 
-type Props = {}
-
-export const MoreActionButton: React.FC<Props> = memo<Props>(() => {
+export const MoreActionButton = memo(function MoreActionButton() {
   return (
     <PortalManager zIndex={1500}>
       <Menu placement="bottom-start" isLazy>
@@ -22,4 +20,3 @@ export const MoreActionButton: React.FC<Props> = memo<Props>(() => {
     </PortalManager>
   )
 })
-MoreActionButton.displayName = 'MoreActionButton'

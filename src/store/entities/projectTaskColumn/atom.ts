@@ -1,8 +1,8 @@
 import { selectorFamily } from 'recoil'
 import { taskColumnByTypeState } from 'src/store/entities/taskColumn'
-import { TaskColumnTypeValue } from 'src/store/entities/taskColumn'
+import type { TaskColumnTypeValue } from 'src/store/entities/taskColumn'
 import { createState } from 'src/store/util'
-import { ProjectTaskColumn } from './type'
+import type { ProjectTaskColumn } from './type'
 
 const key = (str: string) => `src/store/entities/projectTaskColumn/${str}`
 

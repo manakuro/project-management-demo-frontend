@@ -4,7 +4,7 @@ import {
   useDeleteTaskTagMutation,
 } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { Tag } from 'src/store/entities/tag'
+import type { Tag } from 'src/store/entities/tag'
 import {
   taskTagByTaskIdAndTagIdState,
   taskTagState,

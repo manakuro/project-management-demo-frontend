@@ -1,8 +1,8 @@
-import React from 'react'
-import { Flex, FlexProps, Icon, Link, Text } from 'src/components/ui/atoms'
-import { IconType } from 'src/shared/icons'
+import type React from 'react'
+import { Flex, type FlexProps, Icon, Link, Text } from 'src/components/ui/atoms'
+import type { IconType } from 'src/shared/icons'
 import { transitions } from 'src/styles'
-import { Sizes, sizes } from './sizes'
+import { type Sizes, sizes } from './sizes'
 
 type Props = FlexProps & {
   size: Sizes

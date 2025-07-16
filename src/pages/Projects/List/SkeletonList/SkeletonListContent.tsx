@@ -1,10 +1,10 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { TasksListRow } from 'src/components/features/organisms/Tasks'
 import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell'
 import { Flex, Skeleton } from 'src/components/ui/atoms'
 
 const TEXT_HEIGHT = '16px'
-export const SkeletonListContent: React.FC = memo(() => {
+export const SkeletonListContent = memo(function SkeletonListContent() {
   return (
     <Flex px={6} flex={1}>
       <Flex flex={1} flexDirection="column">
@@ -26,6 +26,7 @@ export const SkeletonListContent: React.FC = memo(() => {
           </Flex>
           <Flex flexDirection="column" ml={8}>
             {['40%', '32%', '38%', '42%', '50%', '40%', '41%'].map((w, i) => (
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               <TasksListRow key={i} alignItems="center">
                 <Skeleton h={TEXT_HEIGHT} w="20px" borderRadius="full" />
                 <Skeleton h={TEXT_HEIGHT} w={w} ml={2} borderRadius="full" />
@@ -38,6 +39,7 @@ export const SkeletonListContent: React.FC = memo(() => {
           </Flex>
           <Flex flexDirection="column" ml={8}>
             {['39%', '30%', '38%', '42%'].map((w, i) => (
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               <TasksListRow key={i} alignItems="center">
                 <Skeleton h={TEXT_HEIGHT} w="20px" borderRadius="full" />
                 <Skeleton h={TEXT_HEIGHT} w={w} ml={2} borderRadius="full" />
@@ -49,4 +51,3 @@ export const SkeletonListContent: React.FC = memo(() => {
     </Flex>
   )
 })
-SkeletonListContent.displayName = 'SkeletonListContent'

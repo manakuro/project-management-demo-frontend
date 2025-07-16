@@ -1,7 +1,7 @@
 import useLatest from '@react-hook/latest'
 import useLayoutEffect from '@react-hook/passive-layout-effect'
 import rafSchd from 'raf-schd'
-import React from 'react'
+import type React from 'react'
 import ResizeObserver from 'resize-observer-polyfill'
 
 export const useResizeObserver = <T extends HTMLElement>(
@@ -64,8 +64,12 @@ const createResizeObserver = () => {
 
 let resizeObserver: ReturnType<typeof createResizeObserver>
 
-const getResizeObserver = () =>
-  !resizeObserver ? (resizeObserver = createResizeObserver()) : resizeObserver
+const getResizeObserver = () => {
+  if (!resizeObserver) {
+    resizeObserver = createResizeObserver()
+  }
+  return resizeObserver
+}
 
 export type UseResizeObserverCallback = (
   entry: ResizeObserverEntry,

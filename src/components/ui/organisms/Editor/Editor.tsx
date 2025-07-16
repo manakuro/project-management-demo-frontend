@@ -1,6 +1,7 @@
-import { EditorProps } from 'prosemirror-view'
-import React, { memo, PropsWithChildren, useMemo } from 'react'
-import { schema, plugins } from 'src/shared/prosemirror/config'
+import type { EditorProps } from 'prosemirror-view'
+import type React from 'react'
+import { type PropsWithChildren, memo, useMemo } from 'react'
+import { plugins, schema } from 'src/shared/prosemirror/config'
 import { EditorContainer } from './Editors'
 
 type Props = PropsWithChildren<

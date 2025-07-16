@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Flex } from 'src/components/ui/atoms'
 import {
   OverviewSectionHeader,
@@ -6,9 +6,7 @@ import {
 } from '../OverviewSectionHeader'
 import { Description } from './Description'
 
-type Props = {}
-
-export const DescriptionSection: React.FC<Props> = memo<Props>(() => {
+export const DescriptionSection = memo(function DescriptionSection() {
   return (
     <Flex flexDirection="column">
       <OverviewSectionHeader>
@@ -18,4 +16,3 @@ export const DescriptionSection: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
-DescriptionSection.displayName = 'DescriptionSection'

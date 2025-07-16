@@ -1,5 +1,5 @@
 import { useRecoilCallback } from 'recoil'
-import { ProjectTaskListStatus } from 'src/store/app/projects/taskListStatus'
+import type { ProjectTaskListStatus } from 'src/store/app/projects/taskListStatus'
 import { taskListStatusState } from '../atom'
 
 export const useTaskListStatusCommand = () => {

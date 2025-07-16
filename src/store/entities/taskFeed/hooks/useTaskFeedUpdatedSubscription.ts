@@ -4,7 +4,7 @@ import { useRecoilCallback } from 'recoil'
 import { useTaskFeedUpdatedSubscription as useSubscription } from 'src/graphql/hooks'
 import { isULID } from 'src/shared/ulid'
 import { uuid } from 'src/shared/uuid'
-import { TaskFeedUpdatedSubscriptionResponse } from '../type'
+import type { TaskFeedUpdatedSubscriptionResponse } from '../type'
 import { useTaskFeedResponse } from './useTaskFeedResponse'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.

@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 import { PortalManager } from 'src/components/ui/atoms'
 import { Popover } from 'src/components/ui/organisms/Popover'
 

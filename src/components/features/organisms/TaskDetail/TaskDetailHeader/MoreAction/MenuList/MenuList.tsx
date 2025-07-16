@@ -1,9 +1,10 @@
-import React, { useCallback } from 'react'
+import type React from 'react'
+import { useCallback } from 'react'
 import { Flex, Icon, Portal, Text } from 'src/components/ui/atoms'
 import {
   MenuList as AtomsMenuList,
-  MenuItem,
   MenuDivider,
+  MenuItem,
 } from 'src/components/ui/organisms/Menu'
 import { useClickOutside } from 'src/hooks/useClickOutside'
 import { useDisclosure } from 'src/shared/chakra'

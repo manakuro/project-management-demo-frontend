@@ -1,9 +1,6 @@
-import React from 'react'
 import { Flex, Icon, Text } from 'src/components/ui/atoms'
 
-type Props = {}
-
-export const MakePublic: React.FC<Props> = () => {
+export function MakePublic() {
   return (
     <Flex
       h="44px"

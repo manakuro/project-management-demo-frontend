@@ -1,7 +1,8 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { useReactNodeView } from 'src/components/ui/organisms/Editor/Editors/ReactNodeView'
 import { useProjectTaskQuery } from 'src/hooks/queries/entities'
-import { MentionAttrs } from 'src/shared/prosemirror/schema'
+import type { MentionAttrs } from 'src/shared/prosemirror/schema'
 import { Loading } from './Loading'
 import { TaskLink } from './TaskLink'
 

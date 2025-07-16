@@ -1,8 +1,8 @@
 import { atom, selectorFamily } from 'recoil'
 import {
-  TeammateTaskTabStatus,
+  type TeammateTaskTabStatus,
   TeammateTaskTabStatusCode,
-  TeammateTaskTabStatusCodeKey,
+  type TeammateTaskTabStatusCodeKey,
 } from './type'
 
 const key = (str: string) => `src/store/entities/teammateTaskTabStatus/${str}`

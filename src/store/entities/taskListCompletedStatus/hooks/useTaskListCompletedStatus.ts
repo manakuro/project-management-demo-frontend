@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import {
   TaskListCompletedStatusCode,
-  TaskListCompletedStatusCodeValue,
+  type TaskListCompletedStatusCodeValue,
 } from 'src/store/entities/taskListCompletedStatus'
 
 const isCompleted = (

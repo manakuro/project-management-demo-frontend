@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { useMyTasksDetailPageLazyQuery as useQuery } from 'src/graphql/hooks'
-import { MyTasksDetailPageQueryVariables as Variables } from 'src/graphql/types/app/myTasks'
+import type { MyTasksDetailPageQueryVariables as Variables } from 'src/graphql/types/app/myTasks'
 import { useMountedRef } from 'src/hooks'
 import { useTeammateTaskResponse } from 'src/store/entities/teammateTask'
 

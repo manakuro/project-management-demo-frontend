@@ -1,8 +1,9 @@
-import React, { useMemo } from 'react'
+import type React from 'react'
+import { useMemo } from 'react'
 import { Center, Icon, Image } from 'src/components/ui/atoms'
 import { FileTypeCode } from 'src/graphql/enums'
-import { ChakraProps } from 'src/shared/chakra'
-import { useTaskFile, getTaskFileIcon } from 'src/store/entities/taskFile'
+import type { ChakraProps } from 'src/shared/chakra'
+import { getTaskFileIcon, useTaskFile } from 'src/store/entities/taskFile'
 import { Container } from './Container'
 
 type Props = {

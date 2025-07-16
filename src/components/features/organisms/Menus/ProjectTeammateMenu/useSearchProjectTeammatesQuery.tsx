@@ -1,12 +1,12 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { useProjectTeammatesLazyQuery } from 'src/graphql/hooks'
-import {
+import type {
   ProjectTeammateResponse,
   ProjectTeammatesQuery,
 } from 'src/graphql/types/projectTeammate'
 import { getNodesFromEdges } from 'src/shared/apollo/util'
-import { Teammate } from 'src/store/entities/teammate'
+import type { Teammate } from 'src/store/entities/teammate'
 
 const key = (str: string) =>
   `src/components/organisms/Menus/ProjectTeammateMenu/useSearchProjectTeammatesQuery/${str}`

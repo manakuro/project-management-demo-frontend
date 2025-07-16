@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { ChakraProps, Colors } from 'src/shared/chakra'
+import type { ChakraProps, Colors } from 'src/shared/chakra'
 import { transitions } from 'src/styles'
 
 export type UseHoverProps = {

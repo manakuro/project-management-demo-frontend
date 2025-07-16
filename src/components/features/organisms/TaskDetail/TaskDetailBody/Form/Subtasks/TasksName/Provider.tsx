@@ -1,7 +1,8 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import type React from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useHover } from 'src/hooks/useHover'
 import { createProvider } from 'src/shared/react/createProvider'
-import { useInputFocus, UseInputFocus } from './useInputFocus'
+import { type UseInputFocus, useInputFocus } from './useInputFocus'
 
 type ContextProps = UseInputFocus & {
   ref: React.MutableRefObject<HTMLElement | null>

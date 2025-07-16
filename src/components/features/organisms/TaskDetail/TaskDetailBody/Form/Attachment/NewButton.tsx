@@ -1,11 +1,9 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { AttachmentMenu } from 'src/components/features/organisms/Menus'
 import { NewBox } from 'src/components/ui/molecules'
 import { MenuButton } from 'src/components/ui/organisms/Menu'
 
-type Props = {}
-
-export const NewButton: React.FC<Props> = memo<Props>(() => {
+export const NewButton = memo(function NewButton() {
   return (
     <AttachmentMenu
       label="Attach a file. This file will not be persisted in database."
@@ -17,4 +15,3 @@ export const NewButton: React.FC<Props> = memo<Props>(() => {
     </AttachmentMenu>
   )
 })
-NewButton.displayName = 'NewButton'

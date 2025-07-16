@@ -1,5 +1,6 @@
-import React, { memo, useCallback, useEffect, useState } from 'react'
-import { Flex, InputProps, Input } from 'src/components/ui/atoms'
+import type React from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
+import { Flex, Input, type InputProps } from 'src/components/ui/atoms'
 import { useClickOutside, useDebounce } from 'src/hooks'
 
 type Props = {

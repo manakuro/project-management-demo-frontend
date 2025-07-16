@@ -1,8 +1,11 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, {
+  type PropsWithChildren,
+  useCallback,
+  useContext,
+  useState,
+} from 'react'
 import shortid from 'shortid'
 import { uniqBy } from 'src/shared/utils'
-
-type Props = {}
 
 type Portal = {
   Component: React.FC
@@ -20,9 +23,7 @@ const ReactNodeViewCreatePortalContext = React.createContext<PortalHandlers>({
   removePortal: () => {},
 })
 
-export const ReactNodeViewPortalsProvider: React.FCWithChildren<Props> = (
-  props,
-) => {
+export function ReactNodeViewPortalsProvider(props: PropsWithChildren) {
   const [portals, setPortals] = useState<Portal[]>([])
 
   const findPortal = useCallback(

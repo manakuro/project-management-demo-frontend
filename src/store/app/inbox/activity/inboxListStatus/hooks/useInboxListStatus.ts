@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useRecoilValue } from 'recoil'
-import { inboxStatusState, filterStatues, FilterStatuses } from '../atom'
-import { InboxListFilterStatuses } from '../types'
+import { type FilterStatuses, filterStatues, inboxStatusState } from '../atom'
+import type { InboxListFilterStatuses } from '../types'
 import { useInboxListStatusCommand } from './useInboxListStatusCommand'
 
 const isSortStatusKey = (val: any): val is FilterStatuses =>

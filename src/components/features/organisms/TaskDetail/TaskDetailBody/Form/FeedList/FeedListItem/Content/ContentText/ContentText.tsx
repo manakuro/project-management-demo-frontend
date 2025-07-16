@@ -1,13 +1,11 @@
-import React, { memo, useEffect, useMemo, useState } from 'react'
+import { memo, useEffect, useMemo, useState } from 'react'
 import { Editor, EditorContent } from 'src/components/ui/organisms/Editor'
 import { stringifyDescription } from 'src/shared/prosemirror/convertDescription'
 import { useTaskFeedListItemContext } from '../../Provider'
 import { Container } from './Container'
 import { ToolBar } from './ToolBar'
 
-type Props = {}
-
-export const ContentText: React.FC<Props> = memo<Props>(() => {
+export const ContentText = memo(function ContentText() {
   const { taskFeed, editable, onChangeDescription } =
     useTaskFeedListItemContext()
   const [resetView, setResetView] = useState<number>(1)
@@ -16,6 +14,7 @@ export const ContentText: React.FC<Props> = memo<Props>(() => {
     [taskFeed.description],
   )
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setResetView((s) => s + 1)
   }, [editable, taskFeed.description])
@@ -34,4 +33,3 @@ export const ContentText: React.FC<Props> = memo<Props>(() => {
     </Container>
   )
 })
-ContentText.displayName = 'ContentText'

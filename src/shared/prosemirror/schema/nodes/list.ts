@@ -1,4 +1,4 @@
-import { NodeSpec } from 'prosemirror-model'
+import type { NodeSpec } from 'prosemirror-model'
 
 // changed from prosemirror-schema-list
 
@@ -39,8 +39,6 @@ export const list: NodeSpec = {
 
       case 'simple':
         return ['ul', { class: 'simple' }, 0]
-
-      case 'bullet':
       default:
         return ['ul', 0]
     }

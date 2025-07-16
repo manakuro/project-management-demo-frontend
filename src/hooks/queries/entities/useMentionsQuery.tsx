@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { useMentionLazyQuery as useQuery } from 'src/graphql/hooks'
-import { Mention } from 'src/store/entities/mention'
+import type { Mention } from 'src/store/entities/mention'
 import { useWorkspace } from 'src/store/entities/workspace'
 
 const key = (str: string) =>

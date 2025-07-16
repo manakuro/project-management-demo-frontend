@@ -1,13 +1,11 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { useTasksTaskColumnIds } from 'src/components/features/organisms/Tasks/hooks'
 import { Flex } from 'src/components/ui/atoms'
 import { Column } from './Column'
 import { RemainingSpace } from './Columns'
 import { Provider, useTasksListHeaderContext } from './Provider'
 
-type Props = {}
-
-export const TasksListHeader: React.FC<Props> = memo<Props>((props) => {
+export const TasksListHeader = memo(function TasksListHeader(props) {
   return (
     <Provider>
       <Component {...props} />
@@ -15,7 +13,7 @@ export const TasksListHeader: React.FC<Props> = memo<Props>((props) => {
   )
 })
 
-const Component: React.FC<Props> = memo<Props>(() => {
+const Component = memo(function Component() {
   const { tasksTaskColumnIds } = useTasksTaskColumnIds()
   const { scrollingStyle } = useTasksListHeaderContext()
 
@@ -35,5 +33,3 @@ const Component: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
-Component.displayName = 'Component'
-TasksListHeader.displayName = 'TasksListHeader'

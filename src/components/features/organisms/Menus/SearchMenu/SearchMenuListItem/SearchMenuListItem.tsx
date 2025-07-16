@@ -1,5 +1,6 @@
-import React, { memo, useEffect, useMemo } from 'react'
-import { Flex, FlexProps } from 'src/components/ui/atoms'
+import type React from 'react'
+import { memo, useEffect, useMemo } from 'react'
+import { Flex, type FlexProps } from 'src/components/ui/atoms'
 import { useMenuStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { useSearchMenuIndex } from '../useSearchMenuIndex'
@@ -13,7 +14,7 @@ export const SearchMenuListItem: React.FC<Props> = memo<Props>((props) => {
   const { ref, isHovering } = useHover()
   const { selectedIndex, setSelectedIndex } = useSearchMenuIndex()
 
-  delete styles._hover
+  styles._hover = undefined
 
   useEffect(() => {
     if (isHovering) setSelectedIndex(props.index)

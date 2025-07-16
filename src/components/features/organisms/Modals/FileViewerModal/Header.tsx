@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { ComingSoonTooltip } from 'src/components/features/molecules/Tooltips'
 import {
   Button,
@@ -14,9 +14,7 @@ import { formatTaskFileCreatedAt } from 'src/shared/date'
 import { useTaskFile } from 'src/store/entities/taskFile'
 import { useFileViewerModal } from './useFileViewerModal'
 
-type Props = {}
-
-export const Header: React.FC<Props> = memo(() => {
+export const Header = memo(function Header() {
   const { onClose, currentTaskFileId } = useFileViewerModal()
   const { taskFile } = useTaskFile(currentTaskFileId)
   const formattedCreateAt = formatTaskFileCreatedAt(taskFile.createdAt)
@@ -64,4 +62,3 @@ export const Header: React.FC<Props> = memo(() => {
     </Flex>
   )
 })
-Header.displayName = 'Header'

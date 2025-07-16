@@ -1,4 +1,3 @@
-import React from 'react'
 import { Divider, PortalManager } from 'src/components/ui/atoms'
 import {
   Modal,
@@ -10,9 +9,7 @@ import { Body } from './Body'
 import { Header } from './Header'
 import { useFileViewerModal } from './useFileViewerModal'
 
-type Props = {}
-
-export const FileViewerModal: React.FC<Props> = () => {
+export function FileViewerModal() {
   const { isOpen, onClose } = useFileViewerModal()
 
   return (

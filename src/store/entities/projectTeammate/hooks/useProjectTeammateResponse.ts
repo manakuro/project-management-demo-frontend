@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { projectTeammateState } from '../atom'
-import { ProjectTeammateResponse } from '../type'
+import type { ProjectTeammateResponse } from '../type'
 
 export const useProjectTeammateResponse = () => {
   const setProjectsTeammates = useRecoilCallback(

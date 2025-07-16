@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { favoriteProjectIdsState } from '../atom'
-import { FavoriteProjectId } from '../type'
+import type { FavoriteProjectId } from '../type'
 
 export const useUpsert = () => {
   const upsert = useRecoilCallback(

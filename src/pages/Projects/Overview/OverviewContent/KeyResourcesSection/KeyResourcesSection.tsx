@@ -1,11 +1,8 @@
-import React from 'react'
 import { Flex } from 'src/components/ui/atoms'
 import { OverviewContentHeading } from '../OverviewContentHeading'
 import { KeyResourcesEmpty } from './KeyResourcesEmpty'
 
-type Props = {}
-
-export const KeyResourcesSection: React.FC<Props> = () => {
+export function KeyResourcesSection() {
   return (
     <Flex flexDirection="column" mt={8}>
       <OverviewContentHeading>Key resources</OverviewContentHeading>
@@ -13,4 +10,3 @@ export const KeyResourcesSection: React.FC<Props> = () => {
     </Flex>
   )
 }
-KeyResourcesSection.displayName = 'KeyResourcesSection'

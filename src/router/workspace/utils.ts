@@ -1,9 +1,9 @@
-import { NextRouter } from 'next/router'
+import type { NextRouter } from 'next/router'
 import {
   ROUTE_WORKSPACES,
-  ROUTE_WORKSPACES_OVERVIEW,
   ROUTE_WORKSPACES_CALENDAR,
   ROUTE_WORKSPACES_MESSAGES,
+  ROUTE_WORKSPACES_OVERVIEW,
 } from './routes'
 
 export const isWorkspacesURL = (router: NextRouter): boolean => {

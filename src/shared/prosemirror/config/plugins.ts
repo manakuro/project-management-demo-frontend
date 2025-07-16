@@ -1,10 +1,10 @@
 import {
-  suggestionPlugin,
-  rules,
-  history,
-  editorKeys,
   baseKeys,
+  editorKeys,
+  history,
   listKeys,
+  rules,
+  suggestionPlugin,
 } from 'src/shared/prosemirror/plugins'
 
 export const plugins = () => [

@@ -1,8 +1,9 @@
 import {
   Menu as ChakraMenu,
-  MenuProps as ChakraMenuProps,
+  type MenuProps as ChakraMenuProps,
 } from '@chakra-ui/react'
-import React, { PropsWithChildren } from 'react'
+import type React from 'react'
+import type { PropsWithChildren } from 'react'
 
 type Props = PropsWithChildren<ChakraMenuProps>
 export type MenuProps = Props

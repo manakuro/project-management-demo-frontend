@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react'
+import { memo, useCallback } from 'react'
 import { useInviteModal } from 'src/components/features/organisms/Modals'
 import { PADDING_X } from 'src/components/features/organisms/Navigation/Navigation'
 import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
@@ -7,9 +7,7 @@ import { useClickableHoverStyle } from 'src/hooks'
 import { useTeammates } from 'src/store/entities/teammate'
 import { Teammate } from './Teammate'
 
-type Props = {}
-
-export const Teammates: React.FC<Props> = memo(() => {
+export const Teammates = memo(function Teammates() {
   const { clickableHoverLightStyle } = useClickableHoverStyle()
   const inviteModal = useInviteModal()
   const { teammateIds } = useTeammates()
@@ -35,4 +33,3 @@ export const Teammates: React.FC<Props> = memo(() => {
     </Wrap>
   )
 })
-Teammates.displayName = 'Teammates'

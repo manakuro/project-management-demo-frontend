@@ -1,12 +1,12 @@
 import { useRecoilCallback } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import {
+  type ProjectTeammate,
   projectTeammateState,
-  ProjectTeammate,
 } from 'src/store/entities/projectTeammate'
-import { Teammate, useTeammateResponse } from 'src/store/entities/teammate'
+import { type Teammate, useTeammateResponse } from 'src/store/entities/teammate'
 import { projectState } from '../atom'
-import { ProjectResponse } from '../type'
+import type { ProjectResponse } from '../type'
 
 export const useProjectResponse = () => {
   const { setTeammates: setTeammatesFromResponse } = useTeammateResponse()
@@ -15,7 +15,8 @@ export const useProjectResponse = () => {
     ({ set }) =>
       (data: ProjectResponse[]) => {
         const projectTeammates = data.reduce<ProjectTeammate[]>((acc, p) => {
-          return uniqBy([...acc, ...p.projectTeammates], 'id')
+          acc.push(...p.projectTeammates)
+          return uniqBy(acc, 'id')
         }, [])
 
         projectTeammates.forEach((p) => set(projectTeammateState(p.id), p))
@@ -24,14 +25,10 @@ export const useProjectResponse = () => {
 
   const setTeammates = useRecoilCallback(
     () => (data: ProjectResponse[]) => {
-      const teammates = data.reduce<Teammate[]>(
-        (acc, p) =>
-          uniqBy(
-            [...acc, ...p.projectTeammates.map((pt) => pt.teammate)],
-            'id',
-          ),
-        [],
-      )
+      const teammates = data.reduce<Teammate[]>((acc, p) => {
+        acc.push(...p.projectTeammates.map((pt) => pt.teammate))
+        return uniqBy(acc, 'id')
+      }, [])
 
       setTeammatesFromResponse(teammates)
     },

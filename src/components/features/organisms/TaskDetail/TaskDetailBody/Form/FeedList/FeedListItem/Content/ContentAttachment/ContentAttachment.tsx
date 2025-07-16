@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { useFileViewerModal } from 'src/components/features/organisms/Modals'
 import { FileTypeCode } from 'src/graphql/enums'
 import {

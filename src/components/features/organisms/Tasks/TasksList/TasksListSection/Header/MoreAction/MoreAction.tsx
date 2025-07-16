@@ -1,11 +1,9 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Box, Icon, IconButton, PortalManager } from 'src/components/ui/atoms'
 import { Menu, MenuButton } from 'src/components/ui/organisms/Menu'
 import { MenuList } from './MenuList'
 
-type Props = {}
-
-export const MoreAction: React.FC<Props> = memo<Props>(() => {
+export const MoreAction = memo(function MoreAction() {
   return (
     <PortalManager zIndex={1500}>
       <Box>
@@ -23,4 +21,3 @@ export const MoreAction: React.FC<Props> = memo<Props>(() => {
     </PortalManager>
   )
 })
-MoreAction.displayName = 'MoreAction'

@@ -1,10 +1,11 @@
 import { useDisclosure } from '@chakra-ui/react'
-import React, { useCallback } from 'react'
+import type React from 'react'
+import { useCallback } from 'react'
 import {
+  type Item,
   PADDING_X,
-  Item,
 } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem'
-import { Box, Button, Flex, Text, MoreLink } from 'src/components/ui/atoms'
+import { Box, Button, Flex, MoreLink, Text } from 'src/components/ui/atoms'
 
 type Props = {
   item: Item
@@ -18,7 +19,8 @@ export const Detail: React.FC<Props> = (props) => {
   const disclosure = useDisclosure()
 
   const handleContinue = useCallback(() => {
-    onToggle(nextItem!.id)
+    if (!nextItem) return
+    onToggle(nextItem?.id)
   }, [nextItem, onToggle])
 
   if (item.detailComponent)

@@ -1,9 +1,10 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import {
   PopoverEditorLink,
-  PopoverEditorLinkTrigger,
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
+  PopoverEditorLinkTrigger,
 } from 'src/components/features/organisms/Popovers'
 import { CheckIcon } from 'src/components/ui/atoms'
 import { useProjectTask } from 'src/store/entities/projectTask'
@@ -19,7 +20,7 @@ export const TaskLink: React.FC<Props> = memo<Props>((props) => {
 
   return (
     <PopoverEditorLink>
-      <PopoverEditorLinkTrigger>{task.name + ' '}</PopoverEditorLinkTrigger>
+      <PopoverEditorLinkTrigger>{`${task.name} `}</PopoverEditorLinkTrigger>
       <PopoverEditorLinkContent>
         <CheckIcon completed={task.completed} size="sm" cursor="auto" />
         <PopoverEditorLinkText>{task.name}</PopoverEditorLinkText>

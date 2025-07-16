@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import type React from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks'
 import { useToast } from 'src/hooks'
 import { parseDescription } from 'src/shared/prosemirror/convertDescription'

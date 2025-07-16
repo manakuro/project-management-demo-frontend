@@ -1,8 +1,8 @@
 import { useRecoilCallback } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
-import { TaskResponse, useTasksResponse } from 'src/store/entities/task'
+import { type TaskResponse, useTasksResponse } from 'src/store/entities/task'
 import { deletedTaskState } from '../atom'
-import { DeletedTaskResponse } from '../type'
+import type { DeletedTaskResponse } from '../type'
 
 export const useDeletedTaskResponse = () => {
   const { setTasksFromResponse } = useTasksResponse()

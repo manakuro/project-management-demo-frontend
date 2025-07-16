@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { uuid } from 'src/shared/uuid'
 import { initialState } from '../atom'
-import { TaskFile } from '../type'
+import type { TaskFile } from '../type'
 import { useUpsert } from './useUpsert'
 
 export const useTaskFileCommand = () => {

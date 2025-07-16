@@ -1,4 +1,5 @@
-import React, { memo, useMemo } from 'react'
+import type React from 'react'
+import { memo, useMemo } from 'react'
 import { useTask } from 'src/store/entities/task'
 import { useSubtaskIds } from 'src/store/entities/task'
 import { Component } from './Component'

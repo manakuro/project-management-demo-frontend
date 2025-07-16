@@ -1,8 +1,8 @@
 import {
   Image as ChakraImage,
-  ImageProps as ChakraImageProps,
+  type ImageProps as ChakraImageProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraImageProps
 export type ImageProps = Props

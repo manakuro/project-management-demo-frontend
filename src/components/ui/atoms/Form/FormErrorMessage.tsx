@@ -1,8 +1,8 @@
 import {
   FormErrorMessage as ChakraFormErrorMessage,
-  FormErrorMessageProps as ChakraFormErrorMessageProps,
+  type FormErrorMessageProps as ChakraFormErrorMessageProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraFormErrorMessageProps

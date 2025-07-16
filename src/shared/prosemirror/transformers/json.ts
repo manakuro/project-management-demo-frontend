@@ -1,6 +1,6 @@
-import { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
+import { Node as ProsemirrorNode, type Schema } from 'prosemirror-model'
 
-import { ProsemirrorTransformer } from './types'
+import type { ProsemirrorTransformer } from './types'
 
 export const createJSONTransformer = (
   schema: Schema,

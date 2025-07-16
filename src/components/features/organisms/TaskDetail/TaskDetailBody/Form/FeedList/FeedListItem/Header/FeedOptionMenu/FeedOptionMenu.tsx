@@ -1,10 +1,10 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Icon, IconButton, Portal } from 'src/components/ui/atoms'
 import {
   Menu,
-  MenuList,
-  MenuGroup,
   MenuButton,
+  MenuGroup,
+  MenuList,
 } from 'src/components/ui/organisms/Menu'
 import { useTaskFeedListItemContext } from '../../Provider'
 import { CopyCommentLink } from './CopyCommentLink'
@@ -13,9 +13,7 @@ import { DeleteStory } from './DeleteStory'
 import { EditComment } from './EditComment'
 import { Pin } from './Pin'
 
-type Props = {}
-
-export const FeedOptionMenu: React.FC<Props> = memo(() => {
+export const FeedOptionMenu = memo(function FeedOptionMenu() {
   const { showFeedOptionMenu } = useTaskFeedListItemContext()
   if (!showFeedOptionMenu) return null
 
@@ -42,4 +40,3 @@ export const FeedOptionMenu: React.FC<Props> = memo(() => {
     </Menu>
   )
 })
-FeedOptionMenu.displayName = 'FeedOptionMenu'

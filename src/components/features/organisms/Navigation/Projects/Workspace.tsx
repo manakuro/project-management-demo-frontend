@@ -1,32 +1,31 @@
 import { useRouter } from 'next/router'
-import React, { memo, useCallback, useMemo } from 'react'
+import type React from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { useInviteModal } from 'src/components/features/organisms/Modals/InviteModal/useInviteModal'
 import { useNavigation } from 'src/components/features/organisms/Navigation'
 import { PADDING_X } from 'src/components/features/organisms/Navigation/Navigation'
 import {
   Flex,
+  Icon,
   Link,
   NextLink,
-  Text,
-  Icon,
   Portal,
+  Text,
 } from 'src/components/ui/atoms'
 import {
-  MenuList,
   MenuItem as AtomsMenuItem,
   Menu,
   MenuButton,
   MenuDivider,
-  MenuItemProps,
   MenuGroup,
+  type MenuItemProps,
+  MenuList,
 } from 'src/components/ui/organisms/Menu'
-import { useLinkHoverStyle, useClickableHoverStyle } from 'src/hooks'
+import { useClickableHoverStyle, useLinkHoverStyle } from 'src/hooks'
 import { ROUTE_WORKSPACES, ROUTE_WORKSPACES_OVERVIEW } from 'src/router'
 import { useWorkspace } from 'src/store/entities/workspace'
 
-type Props = {}
-
-export const Workspace: React.FC<Props> = memo(() => {
+export const Workspace = memo(function Workspace() {
   const router = useRouter()
   const { isExpanded } = useNavigation()
   const { _hover, selectedStyle } = useLinkHoverStyle()
@@ -103,7 +102,6 @@ export const Workspace: React.FC<Props> = memo(() => {
     </>
   )
 })
-Workspace.displayName = 'Workspace'
 
 const MenuItem: React.FC<MenuItemProps> = (props) => (
   <AtomsMenuItem fontSize="sm" iconSpacing={2} {...props} />

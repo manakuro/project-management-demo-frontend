@@ -1,5 +1,5 @@
 import { createState } from 'src/store/util'
-import { WorkspaceActivity } from './type'
+import type { WorkspaceActivity } from './type'
 
 const key = (str: string) =>
   `src/store/app/inbox/activity/workspaceActivities/${str}`

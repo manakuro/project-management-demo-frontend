@@ -1,15 +1,16 @@
-import React, { memo, useMemo } from 'react'
+import type React from 'react'
+import { memo, useMemo } from 'react'
 import { useTasksTaskColumn } from 'src/components/features/organisms/Tasks/hooks'
-import { FlexProps } from 'src/components/ui/atoms'
+import type { FlexProps } from 'src/components/ui/atoms'
 import { useTaskColumn } from 'src/store/entities/taskColumn'
 import { TaskColumnType } from 'src/store/entities/taskColumn/type'
 import {
-  TasksName,
+  TasksAssignee,
   TasksDueDate,
+  TasksName,
+  TasksPriority,
   TasksProjects,
   TasksTags,
-  TasksAssignee,
-  TasksPriority,
 } from '../TasksListCells'
 
 type Props = FlexProps & {

@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo } from 'react'
+import type { PropsWithChildren } from 'react'
+import { useCallback, useMemo } from 'react'
 import { AspectRatio, WrapItem } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useCarouselContext } from './Provider'
@@ -7,7 +8,7 @@ type Props = {
   index?: number
 }
 
-export const CarouselThumbnailItem: React.FCWithChildren<Props> = (props) => {
+export function CarouselThumbnailItem(props: PropsWithChildren<Props>) {
   const { currentIndex, setCurrentIndex } = useCarouselContext()
   const show = useMemo(
     () => currentIndex === props.index,
@@ -16,7 +17,9 @@ export const CarouselThumbnailItem: React.FCWithChildren<Props> = (props) => {
   const { clickableHoverLightStyle } = useClickableHoverStyle()
 
   const handleClick = useCallback(() => {
-    setCurrentIndex(props.index!)
+    if (props.index) {
+      setCurrentIndex(props.index)
+    }
   }, [props.index, setCurrentIndex])
 
   return (
@@ -34,4 +37,3 @@ export const CarouselThumbnailItem: React.FCWithChildren<Props> = (props) => {
     </WrapItem>
   )
 }
-CarouselThumbnailItem.displayName = 'CarouselThumbnailItem'

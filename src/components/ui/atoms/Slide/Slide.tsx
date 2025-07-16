@@ -1,8 +1,8 @@
 import {
   Slide as ChakraSlide,
-  SlideProps as ChakraSlideProps,
+  type SlideProps as ChakraSlideProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraSlideProps & {

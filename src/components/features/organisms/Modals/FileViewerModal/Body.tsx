@@ -1,10 +1,10 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import {
   Carousel,
-  CarouselItem,
-  CarouselRightChevron,
-  CarouselLeftChevron,
   CarouselBody,
+  CarouselItem,
+  CarouselLeftChevron,
+  CarouselRightChevron,
   CarouselThumbnail,
   CarouselThumbnailItem,
 } from 'src/components/ui/organisms/Carousel'
@@ -12,9 +12,7 @@ import { ListItem } from './ListItem'
 import { ThumbnailListItem } from './ThumbnailListItem/ThumbnailListItem'
 import { useFileViewerModal } from './useFileViewerModal'
 
-type Props = {}
-
-export const Body: React.FC<Props> = memo(() => {
+export const Body = memo(function Body() {
   const { taskFileIds, setState, currentTaskFileId } = useFileViewerModal()
   const defaultIndex = useMemo(
     () => taskFileIds.indexOf(currentTaskFileId),
@@ -52,4 +50,3 @@ export const Body: React.FC<Props> = memo(() => {
     </Carousel>
   )
 })
-Body.displayName = 'Body'

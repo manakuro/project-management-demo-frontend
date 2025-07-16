@@ -1,12 +1,12 @@
-import React from 'react'
+import type React from 'react'
 import {
-  InboxLeft,
   InboxHeader,
-  InboxRight,
   InboxHeaderRight,
+  InboxLeft,
   InboxListHeader,
+  InboxRight,
 } from 'src/components/features/organisms/Inbox'
-import { Flex, FlexProps, Skeleton, Stack } from 'src/components/ui/atoms'
+import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms'
 
 type Props = FlexProps
 
@@ -31,32 +31,50 @@ export const InboxSkeleton: React.FC<Props> = () => {
         >
           <Flex>
             <Flex flexDirection="column" flex={1} maxWidth="full">
-              {[...new Array(5)].map((_, index) => (
-                <Flex flexDirection="column" flex={1} key={index}>
-                  <InboxListHeader>
-                    <Skeleton h={TEXT_HEIGHT} w="80px" borderRadius="full" />
-                  </InboxListHeader>
-                  <Flex
-                    maxW="inherit"
-                    flex={1}
-                    px={6}
-                    pb={2}
-                    borderBottom="1px"
-                    borderStyle="solid"
-                    borderColor="gray.200"
-                    h="122px"
-                  >
-                    <Flex flexDirection="column" py={4} flex={1}>
-                      <Skeleton h={TEXT_HEIGHT} w="86px" borderRadius="full" />
-                      <Stack spacing={2} mt={3}>
-                        <Skeleton h={TEXT_HEIGHT} w="80%" borderRadius="full" />
-                        <Skeleton h={TEXT_HEIGHT} w="50%" borderRadius="full" />
-                        <Skeleton h={TEXT_HEIGHT} w="30%" borderRadius="full" />
-                      </Stack>
+              {[...new Array(5)]
+                .map((_, i) => i + 1)
+                .map((v) => (
+                  <Flex flexDirection="column" flex={1} key={v}>
+                    <InboxListHeader>
+                      <Skeleton h={TEXT_HEIGHT} w="80px" borderRadius="full" />
+                    </InboxListHeader>
+                    <Flex
+                      maxW="inherit"
+                      flex={1}
+                      px={6}
+                      pb={2}
+                      borderBottom="1px"
+                      borderStyle="solid"
+                      borderColor="gray.200"
+                      h="122px"
+                    >
+                      <Flex flexDirection="column" py={4} flex={1}>
+                        <Skeleton
+                          h={TEXT_HEIGHT}
+                          w="86px"
+                          borderRadius="full"
+                        />
+                        <Stack spacing={2} mt={3}>
+                          <Skeleton
+                            h={TEXT_HEIGHT}
+                            w="80%"
+                            borderRadius="full"
+                          />
+                          <Skeleton
+                            h={TEXT_HEIGHT}
+                            w="50%"
+                            borderRadius="full"
+                          />
+                          <Skeleton
+                            h={TEXT_HEIGHT}
+                            w="30%"
+                            borderRadius="full"
+                          />
+                        </Stack>
+                      </Flex>
                     </Flex>
                   </Flex>
-                </Flex>
-              ))}
+                ))}
             </Flex>
           </Flex>
         </Flex>

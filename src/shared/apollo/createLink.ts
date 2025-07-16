@@ -1,6 +1,6 @@
 import { from } from '@apollo/client'
 import { createErrorLink } from './createErrorLink'
-import { createHttpLink, CreateHttpProps } from './createHttpLink'
+import { type CreateHttpProps, createHttpLink } from './createHttpLink'
 import { removeTypeName } from './removeTypename'
 
 export type CreateLinkProps = CreateHttpProps

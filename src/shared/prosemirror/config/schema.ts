@@ -5,6 +5,7 @@ import {
   code,
   codeBlock,
   doc,
+  emoji,
   heading,
   horizontalRule,
   italic,
@@ -12,6 +13,7 @@ import {
   link,
   list,
   listItem,
+  mention,
   paragraph,
   strikethrough,
   subscript,
@@ -22,8 +24,6 @@ import {
   tableRow,
   text,
   underline,
-  mention,
-  emoji,
 } from '../schema'
 
 export const schema = new Schema({

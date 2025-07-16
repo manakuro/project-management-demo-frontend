@@ -1,4 +1,4 @@
-import { TeammateTaskSectionFragmentFragment } from 'src/graphql/types'
+import type { TeammateTaskSectionFragmentFragment } from 'src/graphql/types'
 
 export type TeammateTaskSectionResponse =
   NonNullable<TeammateTaskSectionFragmentFragment>

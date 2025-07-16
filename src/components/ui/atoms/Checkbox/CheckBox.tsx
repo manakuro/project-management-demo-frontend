@@ -1,8 +1,8 @@
 import {
   Checkbox as ChakraCheckBox,
-  CheckboxProps as ChakraCheckboxProps,
+  type CheckboxProps as ChakraCheckboxProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraCheckboxProps
 export type CheckboxProps = Props

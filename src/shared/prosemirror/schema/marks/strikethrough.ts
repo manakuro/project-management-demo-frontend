@@ -1,4 +1,4 @@
-import { MarkSpec } from 'prosemirror-model'
+import type { MarkSpec } from 'prosemirror-model'
 
 export const strikethrough: MarkSpec = {
   parseDOM: [

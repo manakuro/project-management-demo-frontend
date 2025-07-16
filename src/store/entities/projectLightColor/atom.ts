@@ -1,5 +1,5 @@
 import { createState } from 'src/store/util'
-import { ProjectLightColor } from './type'
+import type { ProjectLightColor } from './type'
 
 const key = (str: string) => `src/store/entities/projectLightColor/${str}`
 

@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { Flex } from 'src/components/ui/atoms'
 import { Editor, EditorContent } from 'src/components/ui/organisms/Editor'
 import { getDefaultDescription } from 'src/shared/prosemirror/getDefaultDescription'
@@ -8,22 +8,21 @@ import { Placeholder } from './Placeholder'
 import { Provider, useInputContext } from './Provider'
 import { ToolBar } from './ToolBar'
 
-type Props = {}
-
 const initialValue = JSON.stringify(getDefaultDescription())
 
-export const Input: React.FC<Props> = (props) => {
+export function Input() {
   return (
     <Provider>
-      <Component {...props} />
+      <Component />
     </Provider>
   )
 }
 
-const Component: React.FC<Props> = memo<Props>(() => {
+const Component: React.FC = memo(function Component() {
   const { onChangeDescription, taskFeed } = useInputContext()
   const [resetView, setResetView] = useState<number>(1)
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setResetView((s) => s + 1)
   }, [taskFeed.id])
@@ -45,4 +44,3 @@ const Component: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
-Component.displayName = 'Component'

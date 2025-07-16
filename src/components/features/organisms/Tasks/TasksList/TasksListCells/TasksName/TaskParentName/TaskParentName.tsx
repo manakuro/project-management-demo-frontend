@@ -1,12 +1,10 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { useTasksContext } from 'src/components/features/organisms/Tasks'
 import { Flex, Icon, Text } from 'src/components/ui/atoms'
 import { useTask } from 'src/store/entities/task'
 import { useTasksNameContext } from '../TasksNameProvider'
 
-type Props = {}
-
-export const TaskParentName: React.FC<Props> = memo<Props>(() => {
+export const TaskParentName = memo(function TaskParentName() {
   const { taskId } = useTasksNameContext()
   const { isSubtask, task } = useTask(taskId)
   const { task: taskParent } = useTask(task.taskParentId)
@@ -23,4 +21,3 @@ export const TaskParentName: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
-TaskParentName.displayName = 'TaskParentName'

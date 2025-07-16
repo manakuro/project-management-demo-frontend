@@ -1,4 +1,5 @@
-import React, { memo, useEffect } from 'react'
+import type React from 'react'
+import { memo, useEffect } from 'react'
 import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
 import { Flex } from 'src/components/ui/atoms'
 import { Form } from './Form'

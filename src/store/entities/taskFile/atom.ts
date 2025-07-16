@@ -1,7 +1,7 @@
 import { selectorFamily } from 'recoil'
 import { FileTypeCode } from 'src/store/entities/fileType'
 import { createState } from 'src/store/util'
-import { TaskFile } from './type'
+import type { TaskFile } from './type'
 
 const key = (str: string) => `src/store/entities/taskFiles/${str}`
 

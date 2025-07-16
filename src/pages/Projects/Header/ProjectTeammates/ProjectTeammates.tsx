@@ -1,7 +1,7 @@
-import React, { memo, useCallback } from 'react'
+import { memo, useCallback } from 'react'
 import { useShareProjectModal } from 'src/components/features/organisms/Modals/ShareProjectModal'
 import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
-import { Flex, AvatarGroup } from 'src/components/ui/atoms'
+import { AvatarGroup, Flex } from 'src/components/ui/atoms'
 import { Tooltip } from 'src/components/ui/molecules'
 import { useTooltip } from 'src/components/ui/molecules/Tooltip/useTooltip'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
@@ -9,9 +9,7 @@ import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { transitions } from 'src/styles'
 
-type Props = {}
-
-export const ProjectTeammates: React.FC<Props> = memo<Props>(() => {
+export const ProjectTeammates = memo(function ProjectTeammates() {
   const { projectId } = useProjectsProjectId()
   const { teammateIds } = useTeammateIdsByProjectId(projectId)
   const { isOpen, ref } = useTooltip()
@@ -53,4 +51,3 @@ export const ProjectTeammates: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
-ProjectTeammates.displayName = 'ProjectTeammates'

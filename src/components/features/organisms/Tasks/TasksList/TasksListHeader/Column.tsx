@@ -1,14 +1,15 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { useTasksTaskColumn } from 'src/components/features/organisms/Tasks/hooks'
 import { useTaskColumn } from 'src/store/entities/taskColumn'
 import { TaskColumnType } from 'src/store/entities/taskColumn'
 import {
+  Assignee,
+  DueDate,
+  Priority,
+  Projects,
   Tags,
   TaskName,
-  DueDate,
-  Projects,
-  Assignee,
-  Priority,
 } from './Columns'
 
 type Props = {

@@ -1,8 +1,8 @@
 import {
   Stack as ChakraStack,
-  StackProps as ChakraStackProps,
+  type StackProps as ChakraStackProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraStackProps
 export type StackProps = Props

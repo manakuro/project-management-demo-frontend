@@ -1,11 +1,11 @@
-import React from 'react'
+import type React from 'react'
 import { Portal, Stack, Text } from 'src/components/ui/atoms'
 import {
-  PopoverContent,
-  PopoverProps,
-  PopoverCloseButton,
-  PopoverHeader,
   PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  type PopoverProps,
 } from 'src/components/ui/organisms/Popover'
 import { useClickOutside } from 'src/hooks'
 import { AssignToMeButton } from './AssignToMeButton'

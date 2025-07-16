@@ -1,5 +1,6 @@
-import React, { memo } from 'react'
-import { Flex, FlexProps, Grid, Skeleton } from 'src/components/ui/atoms'
+import type React from 'react'
+import { memo } from 'react'
+import { Flex, type FlexProps, Grid, Skeleton } from 'src/components/ui/atoms'
 import { OverviewLeft } from './OverviewLeft'
 import { OverviewLeftContent } from './OverviewLeftContent'
 import { OverviewRight } from './OverviewRight'
@@ -35,12 +36,19 @@ export const SkeletonOverview: React.FC<Props> = memo<Props>((props) => {
               </OverviewSectionHeaderHeading>
             </OverviewSectionHeader>
             <Flex flexDirection="column">
-              {[...new Array(4)].map((_, i) => (
-                <Flex flex={1} py={3} alignItems="center" key={i}>
-                  <Skeleton w="32px" h="32px" borderRadius="full" />
-                  <Skeleton h={TEXT_HEIGHT} flex={1} ml={2} borderRadius="md" />
-                </Flex>
-              ))}
+              {[...new Array(4)]
+                .map((_, i) => i + 1)
+                .map((v) => (
+                  <Flex flex={1} py={3} alignItems="center" key={v}>
+                    <Skeleton w="32px" h="32px" borderRadius="full" />
+                    <Skeleton
+                      h={TEXT_HEIGHT}
+                      flex={1}
+                      ml={2}
+                      borderRadius="md"
+                    />
+                  </Flex>
+                ))}
             </Flex>
           </Flex>
         </OverviewLeftContent>
@@ -56,9 +64,11 @@ export const SkeletonOverview: React.FC<Props> = memo<Props>((props) => {
             <Flex flexDirection="column">
               <Flex py={4}>
                 <Grid templateColumns="repeat(4, auto)" gap={6} w="full">
-                  {[...new Array(4)].map((_, i) => (
-                    <Skeleton h="226px" borderRadius="md" key={i} />
-                  ))}
+                  {[...new Array(4)]
+                    .map((_, i) => i + 1)
+                    .map((v) => (
+                      <Skeleton h="226px" borderRadius="md" key={v} />
+                    ))}
                 </Grid>
               </Flex>
             </Flex>

@@ -1,5 +1,17 @@
-query WorkspaceTeammates($after: Cursor, $before: Cursor, $first: Int, $last: Int, $where: WorkspaceTeammateWhereInput) {
-  workspaceTeammates(after: $after, before: $before, first: $first, last: $last, where: $where) {
+query WorkspaceTeammates(
+  $after: Cursor
+  $before: Cursor
+  $first: Int
+  $last: Int
+  $where: WorkspaceTeammateWhereInput
+) {
+  workspaceTeammates(
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+    where: $where
+  ) {
     edges {
       node {
         ...WorkspaceTeammateFragment

@@ -1,13 +1,15 @@
-import React, { memo, useCallback, useEffect, useState } from 'react'
+import type React from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import { SearchMenuLoading } from 'src/components/features/organisms/Menus/SearchMenu'
 import { useDebounce } from 'src/hooks'
 import { MentionItem } from './MentionItem'
 import { Empty } from './MentionItem/Empty'
-import { useEditorMentionMenu, SetValueParam } from './useEditorMentionMenu'
+import {
+  type SetValueParam,
+  useEditorMentionMenu,
+} from './useEditorMentionMenu'
 
-type Props = {}
-
-export const MenuList: React.FC<Props> = memo<Props>(() => {
+export const MenuList: React.FC = memo(() => {
   const { mentions, setValue, refetch, query } = useEditorMentionMenu()
   const [hasChangedQuery, setHasChangedQuery] = useState<number>(0)
   const [searching, setSearching] = useState<boolean>(true)

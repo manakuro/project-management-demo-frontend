@@ -1,14 +1,14 @@
-import { GetRecoilValue } from 'recoil'
+import type { GetRecoilValue } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
 import { uniq } from 'src/shared/utils'
 import {
-  isTaskListSortStatusState,
   isTaskListCompletedStatusState,
+  isTaskListSortStatusState,
 } from 'src/store/app/myTasks/taskListStatus'
 import { projectTasksState } from 'src/store/entities/projectTask'
-import { Task } from 'src/store/entities/task'
+import type { Task } from 'src/store/entities/task'
 import { taskLikesByTaskIdState } from 'src/store/entities/taskLike'
-import { TeammateTaskSection } from 'src/store/entities/teammatesTaskSection'
+import type { TeammateTaskSection } from 'src/store/entities/teammatesTaskSection'
 
 type Params = {
   get: GetRecoilValue

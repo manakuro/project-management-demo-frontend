@@ -2,9 +2,9 @@ import { useRecoilCallback } from 'recoil'
 import { useUpdateTeammateTaskTabStatusMutation } from 'src/graphql/hooks'
 import { tabStatusState } from '../atom'
 import {
-  TeammateTaskTabStatus,
+  type TeammateTaskTabStatus,
   TeammateTaskTabStatusCode,
-  TeammateTaskTabStatusCodeKey,
+  type TeammateTaskTabStatusCodeKey,
 } from '../type'
 import { useUpsert } from './useUpsert'
 

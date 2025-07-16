@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Editor, EditorContent } from 'src/components/ui/organisms/Editor'
 import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
 import {
@@ -10,17 +10,15 @@ import { Container } from './Container'
 import { Placeholder } from './Placeholder'
 import { Provider } from './Provider'
 
-type Props = {}
-
-export const Description: React.FC<Props> = memo((props) => {
+export const Description = memo(function Description() {
   return (
     <Provider>
-      <DescriptionHandler {...props} />
+      <DescriptionHandler />
     </Provider>
   )
 })
 
-const DescriptionHandler: React.FC<Props> = memo<Props>(() => {
+const DescriptionHandler = memo(function DescriptionHandler() {
   const { workspace, hasDescriptionUpdated } = useWorkspace()
   const { setWorkspace } = useWorkspaceCommand()
   const initialValue = useMemo(
@@ -42,6 +40,7 @@ const DescriptionHandler: React.FC<Props> = memo<Props>(() => {
     [setWorkspace, workspace.description],
   )
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setResetView((s) => s + 1)
   }, [hasDescriptionUpdated])
@@ -60,7 +59,7 @@ type ComponentProps = {
   initialValue: string
   resetView: number
 }
-const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
+const Component = memo<ComponentProps>(function Component(props) {
   const { onChange, initialValue, resetView } = props
 
   const handleChange = useCallback(
@@ -83,6 +82,3 @@ const Component: React.FC<ComponentProps> = memo<ComponentProps>((props) => {
     </Container>
   )
 })
-DescriptionHandler.displayName = 'DescriptionHandler'
-Component.displayName = 'Component'
-Description.displayName = 'Description'

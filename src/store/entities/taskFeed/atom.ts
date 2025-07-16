@@ -1,7 +1,7 @@
 import { selectorFamily } from 'recoil'
 import { getDefaultDescription } from 'src/shared/prosemirror/getDefaultDescription'
 import { createState } from 'src/store/util'
-import { TaskFeed } from './type'
+import type { TaskFeed } from './type'
 
 const key = (str: string) => `src/store/entities/taskFeed/${str}`
 

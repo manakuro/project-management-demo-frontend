@@ -1,4 +1,4 @@
-import { TeammateTaskTabStatusQuery } from 'src/graphql/types'
+import type { TeammateTaskTabStatusQuery } from 'src/graphql/types'
 
 export type {
   TeammateTaskTabStatusQuery,

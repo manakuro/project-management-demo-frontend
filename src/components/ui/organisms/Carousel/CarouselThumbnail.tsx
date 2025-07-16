@@ -1,9 +1,7 @@
-import React from 'react'
+import React, { type PropsWithChildren } from 'react'
 import { Wrap } from 'src/components/ui/atoms'
 
-type Props = {}
-
-export const CarouselThumbnail: React.FCWithChildren<Props> = (props) => {
+export function CarouselThumbnail(props: PropsWithChildren) {
   const children = React.Children.map(props.children, (child, index) => {
     if (!React.isValidElement(child)) {
       console.warn('Provide React element under Carousel component')

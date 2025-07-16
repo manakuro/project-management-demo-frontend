@@ -1,12 +1,10 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { ModalBody, ModalContent } from 'src/components/ui/organisms/Modal'
 import { useMenuStyle } from 'src/hooks'
 import { MenuList } from './MenuList'
 import { useEditorMentionMenu } from './useEditorMentionMenu'
 
-type Props = {}
-
-export const MenuContent: React.FC<Props> = memo(() => {
+export const MenuContent = memo(function MenuContent() {
   const { x, y, containerRef } = useEditorMentionMenu()
   const menuStyles = useMenuStyle().list
 
@@ -28,4 +26,3 @@ export const MenuContent: React.FC<Props> = memo(() => {
     </ModalContent>
   )
 })
-MenuContent.displayName = 'MenuContent'

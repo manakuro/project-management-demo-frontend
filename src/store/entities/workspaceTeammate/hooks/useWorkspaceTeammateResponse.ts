@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { workspaceTeammateState } from '../atom'
-import { WorkspaceTeammateResponse } from '../type'
+import type { WorkspaceTeammateResponse } from '../type'
 
 export const useWorkspaceTeammateResponse = () => {
   const setWorkspaceTeammates = useRecoilCallback(

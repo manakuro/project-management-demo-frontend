@@ -1,13 +1,11 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { ModalBody, ModalContent } from 'src/components/ui/organisms/Modal'
 import { useMenuStyle } from 'src/hooks'
-import { BaseEmoji } from 'src/shared/emoji'
+import type { BaseEmoji } from 'src/shared/emoji'
 import { EmojiItem } from './EmojiItem'
 import { useEditorEmojiMenu } from './useEditorEmojiMenu'
 
-type Props = {}
-
-export const MenuList: React.FC<Props> = () => {
+export function MenuList() {
   const { emojis, x, y, setValue, containerRef } = useEditorEmojiMenu()
   const menuStyles = useMenuStyle()
 

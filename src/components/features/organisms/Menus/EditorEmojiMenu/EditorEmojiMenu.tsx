@@ -1,11 +1,8 @@
-import React from 'react'
 import { Modal } from 'src/components/ui/organisms/Modal'
 import { MenuList } from './MenuList'
 import { useEditorEmojiMenu } from './useEditorEmojiMenu'
 
-type Props = {}
-
-export const EditorEmojiMenu: React.FC<Props> = () => {
+export function EditorEmojiMenu() {
   const { isOpen, onClose } = useEditorEmojiMenu()
 
   return (

@@ -1,8 +1,8 @@
 import {
+  type ListProps as ChakraListProps,
   OrderedList as ChakraOrderedList,
-  ListProps as ChakraListProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraListProps & {
   start?: number

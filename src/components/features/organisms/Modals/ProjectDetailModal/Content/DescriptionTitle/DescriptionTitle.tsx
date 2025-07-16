@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { Flex } from 'src/components/ui/atoms'
 import { useDescriptionTitle } from 'src/hooks/pages/projects'
 import { Input } from './Input'

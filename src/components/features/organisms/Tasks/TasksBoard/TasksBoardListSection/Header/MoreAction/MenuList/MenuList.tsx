@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react'
+import { memo, useCallback } from 'react'
 import { useDeleteTaskSectionModal } from 'src/components/features/organisms/Modals'
 import {
   useHasTasksByTaskSectionId,
@@ -10,9 +10,7 @@ import {
 } from 'src/components/ui/organisms/Menu'
 import { useTasksBoardListSectionContext } from '../../../Provider'
 
-type Props = {}
-
-export const MenuList: React.FC<Props> = memo(() => {
+export const MenuList = memo(function MenuList() {
   const { setModalState, onOpen } = useDeleteTaskSectionModal()
   const { deleteTaskSection } = useTasksTaskSectionCommand()
   const { onFocusInput, taskSectionId } = useTasksBoardListSectionContext()
@@ -43,4 +41,3 @@ export const MenuList: React.FC<Props> = memo(() => {
     </AtomsMenuList>
   )
 })
-MenuList.displayName = 'MenuList'

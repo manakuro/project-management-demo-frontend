@@ -1,4 +1,4 @@
-import { MarkSpec } from 'prosemirror-model'
+import type { MarkSpec } from 'prosemirror-model'
 
 export const underline: MarkSpec = {
   parseDOM: [{ tag: 'u' }, { style: 'text-decoration=underline' }],

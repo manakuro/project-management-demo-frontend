@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 import { Checkbox, Flex, Text } from 'src/components/ui/atoms'
 
 type Props = {

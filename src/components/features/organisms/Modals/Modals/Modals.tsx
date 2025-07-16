@@ -1,16 +1,17 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import {
-  EditorMentionMenu,
   EditorEmojiMenu,
+  EditorMentionMenu,
 } from 'src/components/features/organisms/Menus'
 import {
-  InviteModal,
-  ShareWorkspaceModal,
-  ShareProjectModal,
-  FileViewerModal,
-  EditorLinkModal,
   DuplicateTaskModal,
+  EditorLinkModal,
+  FileViewerModal,
+  InviteModal,
   ProjectDetailModal,
+  ShareProjectModal,
+  ShareWorkspaceModal,
 } from 'src/components/features/organisms/Modals'
 import { Help } from 'src/components/features/organisms/Navigation'
 import { VideoPlayer } from 'src/components/ui/organisms/VideoPlayer'

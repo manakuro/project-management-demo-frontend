@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { activityState } from '../atom'
-import { ActivityResponse, Activity } from '../type'
+import type { Activity, ActivityResponse } from '../type'
 
 export const useActivitiesResponse = () => {
   const setActivities = useRecoilCallback(

@@ -1,8 +1,8 @@
 import {
+  type CloseButtonProps as ChakraCloseButtonProps,
   DrawerCloseButton as ChakraDrawerCloseButton,
-  CloseButtonProps as ChakraCloseButtonProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraCloseButtonProps
 export type DrawerCloseButtonProps = Props

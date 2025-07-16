@@ -1,5 +1,8 @@
 import { useCallback } from 'react'
-import { TaskListSortStatusCode, TaskListSortStatusCodeValue } from '../type'
+import {
+  TaskListSortStatusCode,
+  type TaskListSortStatusCodeValue,
+} from '../type'
 
 const isSortedBy = (
   status: TaskListSortStatusCodeValue,

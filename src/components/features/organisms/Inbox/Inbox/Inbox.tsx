@@ -1,7 +1,8 @@
-import React, { memo } from 'react'
-import { Flex, FlexProps } from 'src/components/ui/atoms'
+import type React from 'react'
+import { memo } from 'react'
+import { Flex, type FlexProps } from 'src/components/ui/atoms'
 import { forwardRef } from 'src/shared/chakra'
-import { InboxProviderProps, Provider } from './Provider'
+import { type InboxProviderProps, Provider } from './Provider'
 
 type Props = FlexProps & InboxProviderProps
 

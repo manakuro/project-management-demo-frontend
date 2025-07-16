@@ -1,9 +1,10 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider'
 import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks'
 import {
   CheckIcon,
-  FlexProps,
+  type FlexProps,
   Icon,
   Stack,
   Text,

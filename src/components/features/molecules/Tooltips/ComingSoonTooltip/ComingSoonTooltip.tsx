@@ -1,9 +1,7 @@
-import React from 'react'
+import type { PropsWithChildren } from 'react'
 import { Tooltip } from 'src/components/ui/molecules'
 
-type Props = {}
-
-export const ComingSoonTooltip: React.FCWithChildren<Props> = (props) => {
+export function ComingSoonTooltip(props: PropsWithChildren) {
   return (
     <Tooltip
       hasArrow
@@ -16,4 +14,3 @@ export const ComingSoonTooltip: React.FCWithChildren<Props> = (props) => {
     </Tooltip>
   )
 }
-ComingSoonTooltip.displayName = 'ComingSoonTooltip'

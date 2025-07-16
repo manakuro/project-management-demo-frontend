@@ -1,5 +1,17 @@
-query ProjectBaseColors($after: Cursor, $before: Cursor, $first: Int, $last: Int, $where: ProjectBaseColorWhereInput) {
-  projectBaseColors(after: $after, before: $before, first: $first, last: $last, where: $where) {
+query ProjectBaseColors(
+  $after: Cursor
+  $before: Cursor
+  $first: Int
+  $last: Int
+  $where: ProjectBaseColorWhereInput
+) {
+  projectBaseColors(
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+    where: $where
+  ) {
     edges {
       node {
         ...ProjectBaseColorFragment

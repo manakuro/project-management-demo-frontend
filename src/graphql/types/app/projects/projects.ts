@@ -1,4 +1,4 @@
-import { ProjectsPageQuery } from 'src/graphql/types'
+import type { ProjectsPageQuery } from 'src/graphql/types'
 
 export type ProjectsResponse = NonNullable<ProjectsPageQuery>
 export type ProjectsProjectTaskSectionResponse = NonNullable<

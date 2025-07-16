@@ -1,8 +1,8 @@
 import { useProjectIconsQuery as useQuery } from 'src/graphql/hooks'
-import { ProjectIconsQuery } from 'src/graphql/types/projectIcons'
+import type { ProjectIconsQuery } from 'src/graphql/types/projectIcons'
 import { getNodesFromEdges } from 'src/shared/apollo/util'
 import {
-  ProjectIconResponse,
+  type ProjectIconResponse,
   useProjectIconsResponse,
 } from 'src/store/entities/projectIcon'
 

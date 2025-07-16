@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks'
 import { Flex, Icon, Text } from 'src/components/ui/atoms'
 import { Tooltip } from 'src/components/ui/molecules'

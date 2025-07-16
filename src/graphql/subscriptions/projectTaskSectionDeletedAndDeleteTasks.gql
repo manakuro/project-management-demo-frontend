@@ -1,5 +1,11 @@
-subscription projectTaskSectionDeletedAndDeleteTasks($workspaceId: ID!, $requestId: String!) {
-  projectTaskSectionDeletedAndDeleteTasks(workspaceId: $workspaceId, requestId: $requestId) {
+subscription projectTaskSectionDeletedAndDeleteTasks(
+  $workspaceId: ID!
+  $requestId: String!
+) {
+  projectTaskSectionDeletedAndDeleteTasks(
+    workspaceId: $workspaceId
+    requestId: $requestId
+  ) {
     projectTaskSection {
       id
     }

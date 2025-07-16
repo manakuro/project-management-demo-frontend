@@ -3,10 +3,10 @@ import {
   useCreateTaskCollaboratorMutation,
   useDeleteTaskCollaboratorMutation,
 } from 'src/graphql/hooks'
-import { TaskCollaboratorResponse } from 'src/graphql/types/taskCollaborator'
+import type { TaskCollaboratorResponse } from 'src/graphql/types/taskCollaborator'
 import { uuid } from 'src/shared/uuid'
 import {
-  Teammate,
+  type Teammate,
   useResetTeammate,
   useTeammateResponse,
 } from 'src/store/entities/teammate'

@@ -1,5 +1,5 @@
 import { useRecoilCallback } from 'recoil'
-import { Me } from '../type'
+import type { Me } from '../type'
 import { useUpsert } from './useUpsert'
 
 export const useMeResponse = () => {

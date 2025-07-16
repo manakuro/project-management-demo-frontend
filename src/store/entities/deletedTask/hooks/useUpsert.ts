@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { deletedTaskState } from '../atom'
-import { DeletedTask } from '../type'
+import type { DeletedTask } from '../type'
 
 export const useUpsert = () => {
   const upsert = useRecoilCallback(

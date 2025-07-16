@@ -1,6 +1,11 @@
-import { Dispatch, SetStateAction, useCallback, useState } from 'react'
+import {
+  type Dispatch,
+  type SetStateAction,
+  useCallback,
+  useState,
+} from 'react'
 import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider'
-import { TasksListCellProps } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell'
+import type { TasksListCellProps } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell'
 
 export type UseInputFocus = {
   inputFocused: boolean

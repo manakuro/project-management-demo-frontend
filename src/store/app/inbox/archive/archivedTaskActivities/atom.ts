@@ -1,5 +1,5 @@
 import { createState } from 'src/store/util'
-import { ArchivedTaskActivity } from './type'
+import type { ArchivedTaskActivity } from './type'
 
 const key = (str: string) =>
   `src/store/app/inbox/archive/archivedTaskActivities/${str}`

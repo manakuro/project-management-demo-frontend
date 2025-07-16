@@ -1,20 +1,20 @@
 import { useRecoilCallback } from 'recoil'
-import { InboxArchivePageQuery } from 'src/graphql/types/app/inbox'
-import { ArchivedWorkspaceActivityResponse } from 'src/graphql/types/archivedWorkspaceActivity'
-import { ArchivedWorkspaceActivityTaskResponse } from 'src/graphql/types/archivedWorkspaceActivityTask'
+import type { InboxArchivePageQuery } from 'src/graphql/types/app/inbox'
+import type { ArchivedWorkspaceActivityResponse } from 'src/graphql/types/archivedWorkspaceActivity'
+import type { ArchivedWorkspaceActivityTaskResponse } from 'src/graphql/types/archivedWorkspaceActivityTask'
 import { getNodesFromEdges } from 'src/shared/apollo/util'
 import {
-  ArchivedTaskActivityResponse,
+  type ArchivedTaskActivityResponse,
   useArchivedTaskActivitiesResponse,
 } from '../archivedTaskActivities'
 import {
-  ArchivedTaskActivityTaskResponse,
+  type ArchivedTaskActivityTaskResponse,
   useArchivedTaskActivityTasksResponse,
 } from '../archivedTaskActivityTasks'
 import { useArchivedWorkspaceActivitiesResponse } from '../archivedWorkspaceActivities'
 import { useArchivedWorkspaceActivityTasksResponse } from '../archivedWorkspaceActivityTasks'
 import { useArchivesResponse } from '../archives'
-import { ArchiveResponse } from '../type'
+import type { ArchiveResponse } from '../type'
 
 export const useArchiveResponse = () => {
   const { setArchives } = useArchivesResponse()
@@ -39,7 +39,10 @@ export const useArchiveResponse = () => {
       >(data.archivedWorkspaceActivities)
 
       const archivedWorkspaceActivityTasks = archivedWorkspaceActivities.reduce(
-        (acc, w) => [...acc, ...w.archivedWorkspaceActivityTasks],
+        (acc, w) => {
+          acc.push(...w.archivedWorkspaceActivityTasks)
+          return acc
+        },
         [] as ArchivedWorkspaceActivityTaskResponse[],
       )
 
@@ -52,7 +55,10 @@ export const useArchiveResponse = () => {
       >(data.archivedTaskActivities)
 
       const archivedTaskActivityTasks = archivedTaskActivities.reduce(
-        (acc, w) => [...acc, ...w.archivedTaskActivityTasks],
+        (acc, w) => {
+          acc.push(...w.archivedTaskActivityTasks)
+          return acc
+        },
         [] as ArchivedTaskActivityTaskResponse[],
       )
 

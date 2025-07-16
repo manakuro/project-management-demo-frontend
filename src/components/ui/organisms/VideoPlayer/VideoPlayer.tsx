@@ -1,4 +1,5 @@
-import React, { useCallback, useRef, useState } from 'react'
+import type React from 'react'
+import { useCallback, useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
 import {
   AspectRatio,
@@ -66,7 +67,7 @@ export const VideoPlayer: React.FC = () => {
     (amount: number, type?: 'seconds' | 'fraction') => {
       ref.current?.seekTo(amount, type)
     },
-    [ref],
+    [],
   )
 
   return (

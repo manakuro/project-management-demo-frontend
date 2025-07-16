@@ -8,7 +8,7 @@ export const ROUTE_WORKSPACES = {
       ({
         pathname: '/workspaces/[workspaceId]',
         query: { workspaceId: id },
-      } as const),
+      }) as const,
   },
   query: {
     workspaceId: 'workspaceId',
@@ -24,7 +24,7 @@ export const ROUTE_WORKSPACES_OVERVIEW = {
       ({
         pathname: '/workspaces/[workspaceId]/overview',
         query: { workspaceId: id },
-      } as const),
+      }) as const,
   },
   query: 'workspaces',
 } as const
@@ -37,7 +37,7 @@ export const ROUTE_WORKSPACES_MESSAGES = {
       ({
         pathname: '/workspaces/[workspaceId]/messages',
         query: { workspaceId: id },
-      } as const),
+      }) as const,
   },
   query: 'workspaces',
 } as const
@@ -49,7 +49,7 @@ export const ROUTE_WORKSPACES_CALENDAR = {
       ({
         pathname: '/workspaces/[workspaceId]/calendar',
         query: { workspaceId: id },
-      } as const),
+      }) as const,
   },
   query: 'workspaces',
 } as const

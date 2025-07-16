@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import {
   Box,
   Flex,
@@ -11,18 +11,16 @@ import {
 import { Tooltip } from 'src/components/ui/molecules'
 import {
   Accordion,
+  AccordionButton,
   AccordionItem,
   AccordionPanel,
-  AccordionButton,
 } from 'src/components/ui/organisms/Accordion'
 import { useLinkStyle } from 'src/hooks'
 import { ROUTE_MY_TASKS_LIST } from 'src/router'
 import { useTasksDueSoonIds } from 'src/store/app/home/tasksDueSoon'
 import { ListItem } from './ListItem'
 
-type Props = {}
-
-export const TasksDueSoon: React.FC<Props> = memo<Props>(() => {
+export const TasksDueSoon = memo(function TasksDueSoon() {
   const { taskIds } = useTasksDueSoonIds()
   const { style } = useLinkStyle()
 
@@ -79,4 +77,3 @@ export const TasksDueSoon: React.FC<Props> = memo<Props>(() => {
     </Accordion>
   )
 })
-TasksDueSoon.displayName = 'TasksDueSoon'

@@ -1,6 +1,6 @@
-import React from 'react'
+import type React from 'react'
 import { NavListItem } from 'src/components/features/organisms/Navigation/NavListItem'
-import { NavListItem as TNavListItem } from 'src/components/features/organisms/Navigation/type'
+import type { NavListItem as TNavListItem } from 'src/components/features/organisms/Navigation/type'
 import { List } from 'src/components/ui/atoms'
 
 const items: TNavListItem[] = [
@@ -27,9 +27,9 @@ export const Detail: React.FC = () => {
   return (
     <>
       <List w="full">
-        {items.map((n, i) => (
+        {items.map((n) => (
           <NavListItem
-            key={i}
+            key={n.name}
             item={n}
             light
             linkStyle={{

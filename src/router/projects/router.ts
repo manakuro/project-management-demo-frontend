@@ -1,12 +1,12 @@
 import { useRouter as useRouterNext } from 'next/router'
 import { useCallback } from 'react'
-import { Options } from '../types'
+import type { Options } from '../types'
 import {
   ROUTE_PROJECTS,
-  ROUTE_PROJECTS_LIST,
-  ROUTE_PROJECTS_FILES,
-  ROUTE_PROJECTS_CALENDAR,
   ROUTE_PROJECTS_BOARD,
+  ROUTE_PROJECTS_CALENDAR,
+  ROUTE_PROJECTS_FILES,
+  ROUTE_PROJECTS_LIST,
   ROUTE_PROJECTS_OVERVIEW,
 } from './routes'
 

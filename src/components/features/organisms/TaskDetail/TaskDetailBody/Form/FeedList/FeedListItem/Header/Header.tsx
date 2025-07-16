@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
 import { Flex, Stack } from 'src/components/ui/atoms'
 import { useTaskFeedListItemContext } from '../Provider'
@@ -7,9 +7,7 @@ import { FeedOptionMenu } from './FeedOptionMenu'
 import { Like } from './Like'
 import { Title } from './Title'
 
-type Props = {}
-
-export const Header: React.FC<Props> = memo<Props>(() => {
+export const Header = memo(function Header() {
   const { teammate } = useTaskFeedListItemContext()
 
   return (
@@ -24,4 +22,3 @@ export const Header: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
-Header.displayName = 'Header'

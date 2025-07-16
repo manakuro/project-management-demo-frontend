@@ -1,4 +1,4 @@
-import {
+import type {
   InboxActivityPageQuery,
   InboxArchivePageQuery,
 } from 'src/graphql/types'

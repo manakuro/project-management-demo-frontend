@@ -1,5 +1,6 @@
-import React, { memo, useEffect } from 'react'
-import { Flex, FlexProps } from 'src/components/ui/atoms'
+import type React from 'react'
+import { memo, useEffect } from 'react'
+import { Flex, type FlexProps } from 'src/components/ui/atoms'
 import { dateFns } from 'src/shared/dateFns'
 import { isHTMLElement } from 'src/shared/isHTMLElement'
 import { useTasksCalendarContext } from '../Provider'

@@ -1,5 +1,6 @@
 import { DragDropContext, Droppable } from '@hello-pangea/dnd'
-import React, { memo, useEffect, useMemo } from 'react'
+import type React from 'react'
+import { memo, useEffect, useMemo } from 'react'
 import { Divider } from 'src/components/features/organisms/Navigation/Divider'
 import { useTasksTaskColumnCustomizable } from 'src/components/features/organisms/Tasks/hooks'
 import { Box, Flex, Heading, Icon, IconButton } from 'src/components/ui/atoms'

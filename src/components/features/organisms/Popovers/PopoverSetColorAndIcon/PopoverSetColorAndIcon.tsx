@@ -1,13 +1,13 @@
-import React from 'react'
+import type React from 'react'
 import { Divider, Link } from 'src/components/ui/atoms'
 import {
   Popover,
   PopoverBody,
   PopoverContent,
+  type PopoverProps,
   PopoverTrigger,
-  PopoverProps,
 } from 'src/components/ui/organisms/Popover'
-import { Project } from 'src/store/entities/project'
+import type { Project } from 'src/store/entities/project'
 import { ColorPicker } from './ColorPicker'
 import { IconPicker } from './IconPicker'
 import { Setting } from './Setting'

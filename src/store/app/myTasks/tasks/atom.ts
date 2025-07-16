@@ -1,4 +1,4 @@
-import { selectorFamily, selector } from 'recoil'
+import { selector, selectorFamily } from 'recoil'
 import {
   filterByNoProject,
   filterByProjectTasks,
@@ -8,8 +8,8 @@ import {
 import { isTaskListSortStatusState } from 'src/store/app/myTasks/taskListStatus'
 import { filterByDueDate } from 'src/store/entities/task'
 import {
-  tasksByTeammateTaskSectionIdState,
   tasksByTeammateIdState,
+  tasksByTeammateTaskSectionIdState,
 } from 'src/store/entities/teammateTask'
 import { isTabStatusState } from 'src/store/entities/teammateTaskTabStatus'
 

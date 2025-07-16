@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   MenuSelect,
   MenuSelectButton,
@@ -6,7 +5,7 @@ import {
 } from 'src/components/features/organisms/Menus'
 import { Button, Icon } from 'src/components/ui/atoms'
 import { MenuItemOption } from 'src/components/ui/organisms/Menu'
-import { TaskListSortStatusCodeValue } from 'src/store/entities/taskListSortStatus'
+import type { TaskListSortStatusCodeValue } from 'src/store/entities/taskListSortStatus'
 
 type Props<T extends TaskListSortStatusCodeValue> = {
   items: {
@@ -36,7 +35,10 @@ export const SortMenu = <T extends TaskListSortStatusCodeValue>(
       </MenuSelectButton>
       <MenuSelectList defaultValue={defaultValue}>
         {items.map((item, i) => (
-          <MenuItemOption value={item.value.toString()} key={i}>
+          <MenuItemOption
+            value={item.value.toString()}
+            key={item.value.toString()}
+          >
             {item.text}
           </MenuItemOption>
         ))}

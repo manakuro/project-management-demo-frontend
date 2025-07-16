@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useState } from 'react'
+import type React from 'react'
+import { memo, useCallback, useState } from 'react'
 import { TasksListItem } from 'src/components/features/organisms/Tasks/TasksList/TasksListItem'
 import { TasksListSectionProvider } from 'src/components/features/organisms/Tasks/TasksList/TasksListSection'
 import { Flex } from 'src/components/ui/atoms'

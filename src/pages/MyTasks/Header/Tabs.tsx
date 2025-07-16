@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import {
   Flex,
   Heading,
@@ -12,7 +13,7 @@ import {
   MenuItem,
   MenuList,
 } from 'src/components/ui/organisms/Menu'
-import { TabList, Tab } from 'src/components/ui/organisms/Tabs'
+import { Tab, TabList } from 'src/components/ui/organisms/Tabs'
 
 export const Tabs: React.FC = memo(() => {
   return (

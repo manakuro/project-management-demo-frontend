@@ -1,11 +1,11 @@
 import { useRecoilCallback } from 'recoil'
 import { uniqBy } from 'src/shared/utils'
 import {
-  TeammateTaskResponse,
+  type TeammateTaskResponse,
   useTeammateTaskResponse,
 } from 'src/store/entities/teammateTask'
 import { teammatesTaskSectionState } from '../atom'
-import { TeammateTaskSectionResponse } from '../type'
+import type { TeammateTaskSectionResponse } from '../type'
 
 export const useTeammatesTaskSectionResponse = () => {
   const { setTeammateTask } = useTeammateTaskResponse()
@@ -30,10 +30,11 @@ export const useTeammatesTaskSectionResponse = () => {
         if (!includeTeammateTask) return
 
         const teammateTasks = data.reduce<TeammateTaskResponse[]>((acc, p) => {
-          return uniqBy([...acc, ...p.teammateTasks], 'id')
+          acc.push(...p.teammateTasks)
+          return acc
         }, [])
 
-        setTeammateTask(teammateTasks, { includeTask })
+        setTeammateTask(uniqBy(teammateTasks, 'id'), { includeTask })
       },
     [setTeammateTask],
   )

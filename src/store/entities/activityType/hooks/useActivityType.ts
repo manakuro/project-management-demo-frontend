@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { ActivityTypeCodeValues, ActivityTypeCode } from '../types'
+import { ActivityTypeCode, type ActivityTypeCodeValues } from '../types'
 
 export const useActivityType = () => {
   const isTaskType = useCallback(

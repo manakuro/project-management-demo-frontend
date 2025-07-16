@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import type React from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { useTasksListSectionContext } from 'src/components/features/organisms/Tasks'
 import { useTasksTaskSection } from 'src/components/features/organisms/Tasks/hooks'
 import { Box } from 'src/components/ui/atoms'

@@ -1,5 +1,6 @@
-import React, { memo, useMemo } from 'react'
-import { Flex, FlexProps } from 'src/components/ui/atoms'
+import type React from 'react'
+import { memo, useMemo } from 'react'
+import { Flex, type FlexProps } from 'src/components/ui/atoms'
 import { forwardRef } from 'src/shared/chakra'
 import { useProject } from 'src/store/entities/project'
 import {

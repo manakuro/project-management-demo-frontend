@@ -4,12 +4,12 @@ import { useRecoilCallback } from 'recoil'
 import { useTeammateTaskSectionUndeletedAndKeepTasksSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import {
-  TeammateTaskResponse,
+  type TeammateTaskResponse,
   teammateTasksByIdsState,
   useTeammateTaskResponse,
 } from 'src/store/entities/teammateTask'
 import { useTeammatesTaskSectionResponse } from 'src/store/entities/teammatesTaskSection'
-import { TeammateTaskSectionUndeletedAndKeepTasksSubscriptionResponse as Response } from '../type'
+import type { TeammateTaskSectionUndeletedAndKeepTasksSubscriptionResponse as Response } from '../type'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any

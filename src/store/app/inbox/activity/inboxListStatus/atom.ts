@@ -1,5 +1,5 @@
 import { atom, selectorFamily } from 'recoil'
-import { InboxListStatus } from './type'
+import type { InboxListStatus } from './type'
 import {
   INBOX_LIST_FILTER_STATUS_TYPE_ALL,
   INBOX_LIST_FILTER_STATUS_TYPE_ASSIGNED_BY_ME,

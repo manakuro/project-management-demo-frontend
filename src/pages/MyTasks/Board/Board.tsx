@@ -1,15 +1,16 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { TaskDetailDrawer } from 'src/components/features/organisms/TaskDetails'
 import {
-  CustomizeMenu,
   CustomizeButton,
+  CustomizeMenu,
   IncompleteTasksMenu,
-  TasksHeader,
-  TasksHeaderRight,
   TasksBoardContent,
   TasksBoardList,
-  useTasksBoardDetail,
   TasksContainer,
+  TasksHeader,
+  TasksHeaderRight,
+  useTasksBoardDetail,
 } from 'src/components/features/organisms/Tasks'
 import { Flex } from 'src/components/ui/atoms'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'

@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import {
   SearchMenuLeftContainer,
   SearchMenuListItem,
@@ -6,8 +7,8 @@ import {
   SearchMenuRightContainer,
   useSearchMenu,
 } from 'src/components/features/organisms/Menus/SearchMenu'
-import { Icon, Divider, Text } from 'src/components/ui/atoms'
-import { Tag } from 'src/store/entities/tag'
+import { Divider, Icon, Text } from 'src/components/ui/atoms'
+import type { Tag } from 'src/store/entities/tag'
 import { TagItem } from './TagItem'
 import { useSearchTagsQuery } from './useSearchTagsQuery'
 

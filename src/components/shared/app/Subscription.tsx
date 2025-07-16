@@ -1,12 +1,13 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { useFavoriteProjectIdsUpdatedSubscription } from 'src/store/entities/favoriteProjectIds'
 import { useMe } from 'src/store/entities/me'
 import { useProjectUpdatedSubscription } from 'src/store/entities/project'
 import {
-  useProjectTaskCreatedSubscription,
-  useProjectTaskUpdatedSubscription,
   useProjectTaskCreatedByTaskIdSubscription,
+  useProjectTaskCreatedSubscription,
   useProjectTaskDeletedSubscription,
+  useProjectTaskUpdatedSubscription,
 } from 'src/store/entities/projectTask'
 import {
   useProjectTaskSectionCreatedSubscription,
@@ -18,11 +19,11 @@ import {
   useProjectTaskSectionUpdatedSubscription,
 } from 'src/store/entities/projectTaskSection'
 import {
+  useTaskAssignedSubscription,
   useTaskDeletedSubscription,
+  useTaskUnassignedSubscription,
   useTaskUndeletedSubscription,
   useTaskUpdatedSubscription,
-  useTaskAssignedSubscription,
-  useTaskUnassignedSubscription,
 } from 'src/store/entities/task'
 import {
   useTaskCollaboratorCreatedSubscription,

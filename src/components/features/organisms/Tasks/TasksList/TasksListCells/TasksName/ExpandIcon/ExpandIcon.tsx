@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { useTasksContext } from 'src/components/features/organisms/Tasks'
 import { Container } from './Container'
 import { Empty } from './Empty'

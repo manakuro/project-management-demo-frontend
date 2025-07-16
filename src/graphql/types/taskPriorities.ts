@@ -1,4 +1,4 @@
-import { TaskPrioritiesQuery } from 'src/graphql/types'
+import type { TaskPrioritiesQuery } from 'src/graphql/types'
 
 export type {
   TaskPrioritiesQuery,

@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { taskFileState } from '../atom'
-import { TaskFileResponse } from '../type'
+import type { TaskFileResponse } from '../type'
 
 export const useTaskFileResponse = () => {
   const setTaskFiles = useRecoilCallback(

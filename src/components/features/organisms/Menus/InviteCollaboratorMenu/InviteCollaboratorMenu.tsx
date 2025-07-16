@@ -1,14 +1,15 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import {
   ProjectTeammateMenu,
-  ProjectTeammateMenuTrigger,
   ProjectTeammateMenuContent,
+  ProjectTeammateMenuTrigger,
 } from 'src/components/features/organisms/Menus/ProjectTeammateMenu'
-import {
+import type {
   PopoverContentProps,
   PopoverProps,
 } from 'src/components/ui/organisms/Popover'
-import { Teammate } from 'src/store/entities/teammate'
+import type { Teammate } from 'src/store/entities/teammate'
 import { Content } from './Content'
 
 type Props = PopoverProps & {

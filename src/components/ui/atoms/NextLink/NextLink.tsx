@@ -1,10 +1,11 @@
-import Link, { LinkProps } from 'next/link'
-import React, { memo, PropsWithChildren, useMemo } from 'react'
+import Link, { type LinkProps } from 'next/link'
+import type React from 'react'
+import { type PropsWithChildren, memo, useMemo } from 'react'
 import {
-  StaticRoutes,
-  routes,
-  DynamicRoutes,
+  type DynamicRoutes,
+  type StaticRoutes,
   convertPathnameObjToPathname,
+  routes,
 } from 'src/router'
 
 type Props = PropsWithChildren<

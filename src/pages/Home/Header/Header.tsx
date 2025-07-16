@@ -1,11 +1,9 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { MainHeader } from 'src/components/features/organisms/MainHeader'
 import { Heading } from 'src/components/ui/atoms'
 import { useTasksListContentVerticalScroll } from '../Content'
 
-type Props = {}
-
-export const Header: React.FC<Props> = memo<Props>(() => {
+export const Header = memo(function Header() {
   const { isScrolling } = useTasksListContentVerticalScroll()
 
   return (
@@ -16,4 +14,3 @@ export const Header: React.FC<Props> = memo<Props>(() => {
     </MainHeader>
   )
 })
-Header.displayName = 'Header'

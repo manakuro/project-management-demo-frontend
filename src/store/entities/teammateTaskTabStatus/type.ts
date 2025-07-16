@@ -1,4 +1,4 @@
-import { TeammateTaskTabStatusCode } from 'src/graphql/enums'
+import type { TeammateTaskTabStatusCode } from 'src/graphql/enums'
 import type { TeammateTaskTabStatusResponse } from 'src/graphql/types/teammateTaskTabStatus'
 
 export type { TeammateTaskTabStatusResponse } from 'src/graphql/types/teammateTaskTabStatus'

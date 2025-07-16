@@ -1,8 +1,6 @@
-import React from 'react'
+import type { PropsWithChildren } from 'react'
 import { Accordion } from 'src/components/ui/organisms/Accordion'
 
-type Props = {}
-
-export const CustomNavListAccordion: React.FCWithChildren<Props> = (props) => {
+export function CustomNavListAccordion(props: PropsWithChildren) {
   return <Accordion allowToggle {...props} />
 }

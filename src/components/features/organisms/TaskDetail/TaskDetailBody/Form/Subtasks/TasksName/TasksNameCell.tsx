@@ -1,7 +1,8 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import {
   TasksListCell,
-  TasksListCellProps,
+  type TasksListCellProps,
 } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell'
 import { forwardRef } from 'src/shared/chakra'
 import { useSubtasksNameContext } from './Provider'

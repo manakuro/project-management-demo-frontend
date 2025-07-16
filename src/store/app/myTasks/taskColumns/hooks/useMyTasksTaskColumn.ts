@@ -2,9 +2,9 @@ import { useCallback } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useMe } from 'src/store/entities/me'
 import {
-  useTeammateTaskColumnCommand,
+  type TeammateTaskColumn,
   useTeammateTaskColumn,
-  TeammateTaskColumn,
+  useTeammateTaskColumnCommand,
 } from 'src/store/entities/teammateTaskColumn'
 import { taskColumnIdsState } from '../atom'
 

@@ -1,4 +1,6 @@
-mutation UpdateTeammateTaskTabStatus($input: UpdateTeammateTaskTabStatusInput!) {
+mutation UpdateTeammateTaskTabStatus(
+  $input: UpdateTeammateTaskTabStatusInput!
+) {
   updateTeammateTaskTabStatus(input: $input) {
     ...TeammateTaskTabStatusFragment
   }

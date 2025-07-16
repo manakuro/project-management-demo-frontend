@@ -1,16 +1,16 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import {
   TasksCalendarContent,
   TasksHeader,
   TasksHeaderLeft,
   TasksHeaderRight,
 } from 'src/components/features/organisms/Tasks'
-import { Flex, FlexProps, Skeleton, Stack } from 'src/components/ui/atoms'
+import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms'
 
 type Props = FlexProps
 
 const BUTTON_HEIGHT = '28px'
-export const SkeletonCalendar: React.FC<Props> = memo<Props>((props) => {
+export const SkeletonCalendar = memo<Props>(function SkeletonCalendar(props) {
   return (
     <Flex flex={1} flexDirection="column" {...props}>
       <TasksHeader
@@ -43,13 +43,14 @@ export const SkeletonCalendar: React.FC<Props> = memo<Props>((props) => {
         />
         <TasksCalendarContent bg="gray.50">
           <Stack spacing={4} direction="row" p={2}>
-            {[...new Array(3)].map((_, i) => (
-              <Skeleton h="185px" w="120px" key={i} />
-            ))}
+            {[...new Array(3)]
+              .map((_, i) => i + 1)
+              .map((v) => (
+                <Skeleton h="185px" w="120px" key={v} />
+              ))}
           </Stack>
         </TasksCalendarContent>
       </Flex>
     </Flex>
   )
 })
-SkeletonCalendar.displayName = 'SkeletonList'

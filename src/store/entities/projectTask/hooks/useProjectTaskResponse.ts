@@ -1,7 +1,7 @@
 import { useRecoilCallback } from 'recoil'
-import { TaskResponse, useTasksResponse } from 'src/store/entities/task'
+import { type TaskResponse, useTasksResponse } from 'src/store/entities/task'
 import { projectTaskState } from '../atom'
-import { ProjectTaskResponse } from '../type'
+import type { ProjectTaskResponse } from '../type'
 
 export const useProjectTaskResponse = () => {
   const { setTasksFromResponse } = useTasksResponse()

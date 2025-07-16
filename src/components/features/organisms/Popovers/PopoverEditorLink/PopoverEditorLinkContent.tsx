@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 import { Flex, Portal } from 'src/components/ui/atoms'
 import {
   PopoverBody,

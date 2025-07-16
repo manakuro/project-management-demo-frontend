@@ -1,8 +1,8 @@
 import {
   Th as ChakraTh,
-  TableColumnHeaderProps as ChakraThProps,
+  type TableColumnHeaderProps as ChakraThProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraThProps & {

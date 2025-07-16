@@ -1,11 +1,9 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Modal } from 'src/components/ui/organisms/Modal'
 import { MenuContent } from './MenuContent'
 import { useEditorMentionMenu } from './useEditorMentionMenu'
 
-type Props = {}
-
-export const EditorMentionMenu: React.FC<Props> = memo<Props>(() => {
+export const EditorMentionMenu = memo(function EditorMentionMenu() {
   const { isOpen, onClose } = useEditorMentionMenu()
 
   return (
@@ -21,4 +19,3 @@ export const EditorMentionMenu: React.FC<Props> = memo<Props>(() => {
     </Modal>
   )
 })
-EditorMentionMenu.displayName = 'EditorMentionMenu'

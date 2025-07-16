@@ -1,6 +1,7 @@
-import React, { memo, useMemo } from 'react'
+import type React from 'react'
+import { memo, useMemo } from 'react'
 import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
-import { Flex, FlexProps } from 'src/components/ui/atoms'
+import { Flex, type FlexProps } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 
 type Props = FlexProps & {

@@ -1,16 +1,16 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import {
   TasksHeader,
   TasksHeaderRight,
 } from 'src/components/features/organisms/Tasks'
-import { Flex, FlexProps, Skeleton, Stack } from 'src/components/ui/atoms'
+import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms'
 
 type Props = FlexProps
 
 const TEXT_HEIGHT = '16px'
 const BUTTON_HEIGHT = '28px'
 const CARD_HEIGHT = '97px'
-export const SkeletonOverview: React.FC<Props> = memo<Props>((props) => {
+export const SkeletonOverview = memo<Props>(function SkeletonList(props) {
   return (
     <Flex flex={1} flexDirection="column" {...props}>
       <TasksHeader
@@ -28,19 +28,20 @@ export const SkeletonOverview: React.FC<Props> = memo<Props>((props) => {
         </TasksHeaderRight>
       </TasksHeader>
       <Flex flex={1} p={2}>
-        {[...new Array(3)].map((_, i) => (
-          <Flex flexDirection="column" w="304px" px={3} py={2} key={i}>
-            <Flex h="36px" alignItems="center">
-              <Skeleton h={TEXT_HEIGHT} w="100px" borderRadius="full" />
+        {[...new Array(3)]
+          .map((_, i) => i + 1)
+          .map((v) => (
+            <Flex flexDirection="column" w="304px" px={3} py={2} key={v}>
+              <Flex h="36px" alignItems="center">
+                <Skeleton h={TEXT_HEIGHT} w="100px" borderRadius="full" />
+              </Flex>
+              <Stack spacing={2}>
+                <Skeleton h={CARD_HEIGHT} w="full" borderRadius="md" />
+                <Skeleton h={CARD_HEIGHT} w="full" borderRadius="md" />
+              </Stack>
             </Flex>
-            <Stack spacing={2}>
-              <Skeleton h={CARD_HEIGHT} w="full" borderRadius="md" />
-              <Skeleton h={CARD_HEIGHT} w="full" borderRadius="md" />
-            </Stack>
-          </Flex>
-        ))}
+          ))}
       </Flex>
     </Flex>
   )
 })
-SkeletonOverview.displayName = 'SkeletonList'

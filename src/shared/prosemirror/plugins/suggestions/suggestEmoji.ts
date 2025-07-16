@@ -1,12 +1,12 @@
-import { Suggester } from 'prosemirror-suggest'
+import type { Suggester } from 'prosemirror-suggest'
 import {
-  onEmojiOpen as onOpen,
-  onEmojiClose as onClose,
-  setEmojiQuery as setQuery,
   getEmoji,
   onEmojiArrowDown as onArrowDown,
   onEmojiArrowUp as onArrowUp,
+  onEmojiClose as onClose,
   onEmojiEnter as onEnter,
+  onEmojiOpen as onOpen,
+  setEmojiQuery as setQuery,
 } from 'src/components/features/organisms/Menus/EditorEmojiMenu'
 
 export const suggestEmoji: Suggester = {
@@ -40,7 +40,7 @@ export const suggestEmoji: Suggester = {
     return () => {
       if (!getEmoji()) return
 
-      const emoji = getEmoji()?.native + '  '
+      const emoji = `${getEmoji()?.native}  `
       const state = params.view.state
       const { from, end: to } = params.match.range
       const { tr } = state

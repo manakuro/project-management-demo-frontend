@@ -1,9 +1,7 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Flex, Skeleton, Stack } from 'src/components/ui/atoms'
 
-type Props = {}
-
-export const SkeletonDescription: React.FC<Props> = memo<Props>(() => {
+export const SkeletonDescription = memo(function SkeletonDescription() {
   return (
     <Flex
       position="absolute"
@@ -23,4 +21,3 @@ export const SkeletonDescription: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
-SkeletonDescription.displayName = 'SkeletonDescription'

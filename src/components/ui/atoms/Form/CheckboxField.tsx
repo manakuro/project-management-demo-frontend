@@ -1,5 +1,6 @@
-import { useField, FieldInputProps } from 'formik'
-import React, { memo, PropsWithChildren } from 'react'
+import { type FieldInputProps, useField } from 'formik'
+import type React from 'react'
+import { type PropsWithChildren, memo } from 'react'
 import { Checkbox } from 'src/components/ui/atoms'
 
 type Props = PropsWithChildren<{

@@ -1,8 +1,9 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import {
-  Flex,
-  FlexProps,
   Image as AtomsImage,
+  Flex,
+  type FlexProps,
   Link,
   Text,
 } from 'src/components/ui/atoms'

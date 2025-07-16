@@ -1,4 +1,5 @@
-import React, { useCallback } from 'react'
+import type React from 'react'
+import { useCallback } from 'react'
 import { useShareProjectModal } from 'src/components/features/organisms/Modals'
 import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
 import { Flex, Text } from 'src/components/ui/atoms'

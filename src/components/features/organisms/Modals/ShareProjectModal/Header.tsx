@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { ModalHeader } from 'src/components/ui/organisms/Modal'
 import { useProject } from 'src/store/entities/project'
 

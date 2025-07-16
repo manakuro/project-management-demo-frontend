@@ -3,8 +3,8 @@ import {
   useUpdateTeammateTaskColumnMutation,
   useUpdateTeammateTaskColumnOrderMutation,
 } from 'src/graphql/hooks'
-import { teammateTaskColumnsState, teammateTaskColumnState } from '../atom'
-import { TeammateTaskColumn } from '../type'
+import { teammateTaskColumnState, teammateTaskColumnsState } from '../atom'
+import type { TeammateTaskColumn } from '../type'
 import { useUpsert } from './useUpsert'
 
 export const useTeammateTaskColumnCommand = () => {

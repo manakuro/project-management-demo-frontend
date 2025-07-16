@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { Flex, Icon, Text } from 'src/components/ui/atoms'
 import { MenuItem } from 'src/components/ui/organisms/Menu'
 import { PopoverAddCoverImageActions } from './PopoverAddCoverImageActions'

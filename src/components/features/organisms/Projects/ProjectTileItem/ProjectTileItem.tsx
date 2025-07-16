@@ -1,15 +1,16 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { PopoverProjectMenu } from 'src/components/features/organisms/Popovers'
 import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
 import {
-  Flex,
-  Icon,
-  Fade,
   AvatarGroup,
+  Fade,
+  Flex,
+  type FlexProps,
+  Icon,
   IconButton,
-  FlexProps,
 } from 'src/components/ui/atoms'
-import { IconType } from 'src/shared/icons'
+import type { IconType } from 'src/shared/icons'
 import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 import { useProjectIcon } from 'src/store/entities/projectIcon'

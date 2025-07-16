@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useTeammateTaskSectionUpdatedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { TeammateTaskSectionUpdatedSubscriptionResponse as Response } from '../type'
+import type { TeammateTaskSectionUpdatedSubscriptionResponse as Response } from '../type'
 import { useTeammatesTaskSectionResponse } from './useTeammatesTaskSectionResponse'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.

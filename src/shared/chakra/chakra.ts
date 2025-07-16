@@ -1,11 +1,11 @@
 import {
-  chakra as ChakraUIChakra,
-  ChakraProps as ChakraUIChakraProps,
   forwardRef as ChakraForwardRef,
+  chakra as ChakraUIChakra,
+  type ChakraProps as ChakraUIChakraProps,
+  useBreakpointValue as ChakraUseBreakpointValue,
   useDisclosure as ChakraUseDisclosure,
   useStyleConfig as ChakraUseStyleConfig,
-  useBreakpointValue as ChakraUseBreakpointValue,
-  SystemProps,
+  type SystemProps,
 } from '@chakra-ui/react'
 
 export type ChakraProps = ChakraUIChakraProps

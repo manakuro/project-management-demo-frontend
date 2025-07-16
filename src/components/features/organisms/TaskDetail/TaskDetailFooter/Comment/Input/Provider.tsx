@@ -1,24 +1,25 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import type React from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import {
   useTaskDetail,
   useTaskDetailBody,
 } from 'src/components/features/organisms/TaskDetail'
-import { FileUploaderParams, UploadedFile } from 'src/components/ui/atoms'
+import type { FileUploaderParams, UploadedFile } from 'src/components/ui/atoms'
 import { useClickOutside, useToast } from 'src/hooks'
 import { getScrollBottom } from 'src/shared/getScrollBottom'
 import { parseDescription } from 'src/shared/prosemirror/convertDescription'
 import { createProvider } from 'src/shared/react/createProvider'
 import { useMe } from 'src/store/entities/me'
 import {
-  TaskFeed,
+  type TaskFeed,
   useTaskFeed,
   useTaskFeedCommand,
 } from 'src/store/entities/taskFeed'
 import {
-  TaskFile,
-  useTaskFileCommand,
+  type TaskFile,
   getTaskFileTypeFromFile,
   initialState,
+  useTaskFileCommand,
 } from 'src/store/entities/taskFile'
 
 type ContextProps = {
@@ -139,8 +140,8 @@ const useUploadingFile = (props: {
 
   const removeUploadingFile = useCallback((file: UploadedFile) => {
     setUploadingFiles((prev) => {
-      const uploadingFile = prev.find((p) => p.name === file.name)!
-      const index = prev.findIndex((prev) => prev.name === uploadingFile.name)
+      const uploadingFile = prev.find((p) => p.name === file.name)
+      const index = prev.findIndex((prev) => prev.name === uploadingFile?.name)
       return [...prev.slice(0, index), ...prev.slice(index + 1)]
     })
   }, [])

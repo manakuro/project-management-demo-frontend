@@ -1,4 +1,6 @@
-mutation DeleteTeammateTaskSectionAndKeepTasks($input: DeleteTeammateTaskSectionAndKeepTasksInput!) {
+mutation DeleteTeammateTaskSectionAndKeepTasks(
+  $input: DeleteTeammateTaskSectionAndKeepTasksInput!
+) {
   deleteTeammateTaskSectionAndKeepTasks(input: $input) {
     teammateTaskIds
     teammateTaskSection {

@@ -1,9 +1,10 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import {
   PopoverEditorLink,
-  PopoverEditorLinkTrigger,
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
+  PopoverEditorLinkTrigger,
 } from 'src/components/features/organisms/Popovers'
 import { Icon } from 'src/components/ui/atoms'
 import { useWorkspace } from 'src/store/entities/workspace'
@@ -14,7 +15,7 @@ export const Workspace: React.FC = memo(() => {
   return (
     <PopoverEditorLink>
       <PopoverEditorLinkTrigger>
-        {workspace.name + ' '}
+        {`${workspace.name} `}
       </PopoverEditorLinkTrigger>
       <PopoverEditorLinkContent>
         <Icon icon="group" color="text.muted" />

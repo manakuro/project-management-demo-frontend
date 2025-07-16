@@ -1,15 +1,16 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import type React from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers'
 import {
-  Button,
-  Icon,
   DueDate as AtomsDueDate,
   Box,
+  Button,
+  Icon,
 } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 import { useTask } from 'src/store/entities/task'
-import { Row, Label, Content } from '../Row'
+import { Content, Label, Row } from '../Row'
 
 type Props = {
   taskId: string

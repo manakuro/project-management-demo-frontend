@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useFavoriteProjectIdsUpdatedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { FavoriteProjectIdsUpdatedSubscriptionResponse as Response } from '../type'
+import type { FavoriteProjectIdsUpdatedSubscriptionResponse as Response } from '../type'
 import { useFavoriteProjectIdsResponse } from './useFavoriteProjectIdsResponse'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.

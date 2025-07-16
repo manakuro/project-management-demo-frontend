@@ -1,10 +1,11 @@
-import React, { memo, useCallback, useState } from 'react'
+import type React from 'react'
+import { memo, useCallback, useState } from 'react'
 import { AssignProjectOwnerMenu } from 'src/components/features/organisms/Menus'
 import { Input as AtomsInput } from 'src/components/ui/atoms'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import { useProjectTeammatesCommand } from 'src/store/entities/projectTeammate'
-import { Teammate } from 'src/store/entities/teammate'
+import type { Teammate } from 'src/store/entities/teammate'
 
 type Props = {
   projectId: string

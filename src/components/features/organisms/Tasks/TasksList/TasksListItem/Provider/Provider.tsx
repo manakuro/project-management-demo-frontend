@@ -1,4 +1,5 @@
-import React, { memo, PropsWithChildren } from 'react'
+import type React from 'react'
+import { type PropsWithChildren, memo } from 'react'
 import { Provider as SubtaskListProvider } from './SubtaskListProvider'
 import { Provider as TasksListRowProvider } from './TasksListRowProvider'
 

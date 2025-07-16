@@ -1,7 +1,8 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import {
   Badge,
-  BadgeProps,
+  type BadgeProps,
   Box,
   Button,
   ColorBox,

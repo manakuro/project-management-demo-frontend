@@ -1,15 +1,16 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import type React from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { TaskDetailModal } from 'src/components/features/organisms/TaskDetails'
 import {
+  TasksContainer,
   TasksFilesContent,
   TasksFilesList,
-  TasksContainer,
 } from 'src/components/features/organisms/Tasks'
 import { useTasksFilesDetail } from 'src/components/features/organisms/Tasks/TasksFiles/useTasksFilesDetail'
 import { Flex } from 'src/components/ui/atoms'
 import { useProjectsFilesPageQuery } from 'src/hooks/queries/app'
 import { useProjectsPageContext } from 'src/pages/Projects/Provider'
-import { useRouter, isProjectsDetailURL, getProjectsDetailId } from 'src/router'
+import { getProjectsDetailId, isProjectsDetailURL, useRouter } from 'src/router'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { SkeletonFiles } from './SkeletonFiles'
 

@@ -1,10 +1,6 @@
-import React from 'react'
+import type { PropsWithChildren } from 'react'
 import { List } from 'src/components/ui/atoms'
 
-type Props = {}
-
-export const CustomNavListAccordionPanelList: React.FCWithChildren<Props> = (
-  props,
-) => {
+export function CustomNavListAccordionPanelList(props: PropsWithChildren) {
   return <List mb={2} {...props} />
 }

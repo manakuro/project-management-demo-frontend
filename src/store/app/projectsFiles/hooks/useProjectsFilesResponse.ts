@@ -1,8 +1,8 @@
 import { useRecoilCallback } from 'recoil'
 import { asyncForEach } from 'src/shared/utils'
 import { useTaskCommand } from 'src/store/entities/task'
-import { TaskFile, taskFileState } from 'src/store/entities/taskFile'
-import { ProjectsFileResponse } from '../type'
+import { type TaskFile, taskFileState } from 'src/store/entities/taskFile'
+import type { ProjectsFileResponse } from '../type'
 
 export const useProjectsFilesResponse = () => {
   const { setAttachment, setTaskStatus } = useSetters()

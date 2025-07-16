@@ -1,6 +1,10 @@
-import React, { memo, useCallback, useMemo } from 'react'
-import { CheckIcon as AtomsCheckIcon, IconProps } from 'src/components/ui/atoms'
-import { ChakraProps } from 'src/shared/chakra'
+import type React from 'react'
+import { memo, useCallback, useMemo } from 'react'
+import {
+  CheckIcon as AtomsCheckIcon,
+  type IconProps,
+} from 'src/components/ui/atoms'
+import type { ChakraProps } from 'src/shared/chakra'
 import { useProject } from 'src/store/entities/project'
 import { useTask } from 'src/store/entities/task'
 

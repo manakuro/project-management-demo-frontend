@@ -1,21 +1,19 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import {
   PADDING_X,
   useNavigation,
 } from 'src/components/features/organisms/Navigation'
 import {
-  Logo,
-  Link,
-  NextLink,
-  Icon,
   Flex,
+  Icon,
   IconButton,
+  Link,
+  Logo,
+  NextLink,
 } from 'src/components/ui/atoms'
 import { ROUTE_HOME } from 'src/router'
 
-type Props = {}
-
-export const Header: React.FC<Props> = memo<Props>(() => {
+export const Header = memo(function Header() {
   const { isExpanded, toggleMenu } = useNavigation()
 
   return (
@@ -46,4 +44,3 @@ export const Header: React.FC<Props> = memo<Props>(() => {
     </Flex>
   )
 })
-Header.displayName = 'Header'

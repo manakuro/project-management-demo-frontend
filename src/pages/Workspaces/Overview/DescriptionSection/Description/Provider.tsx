@@ -1,7 +1,8 @@
-import React, { useCallback, useState } from 'react'
+import type React from 'react'
+import { useCallback, useState } from 'react'
 import {
+  type UseClickOutsideOptionsHasClickedOutside,
   useClickOutside,
-  UseClickOutsideOptionsHasClickedOutside,
 } from 'src/hooks'
 import { createProvider } from 'src/shared/react/createProvider'
 

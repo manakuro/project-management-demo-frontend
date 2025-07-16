@@ -1,10 +1,11 @@
 import {
   MenuButton as ChakraMenuButton,
-  MenuButtonProps as ChakraMenuButtonProps,
+  type MenuButtonProps as ChakraMenuButtonProps,
 } from '@chakra-ui/react'
-import React, { useMemo } from 'react'
+import type React from 'react'
+import { useMemo } from 'react'
 import { Box } from 'src/components/ui/atoms'
-import { ChakraProps } from 'src/shared/chakra'
+import type { ChakraProps } from 'src/shared/chakra'
 
 type Props = ChakraMenuButtonProps &
   React.ComponentProps<typeof ChakraMenuButton> & {

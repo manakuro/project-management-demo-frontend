@@ -1,7 +1,12 @@
-import React, { memo, useCallback, useState } from 'react'
+import type React from 'react'
+import { memo, useCallback, useState } from 'react'
 import { ProjectMenu } from 'src/components/features/organisms/Menus'
-import { Flex, Input as AtomsInput, InputProps } from 'src/components/ui/atoms'
-import { MenuListProps } from 'src/components/ui/organisms/Menu'
+import {
+  Input as AtomsInput,
+  Flex,
+  type InputProps,
+} from 'src/components/ui/atoms'
+import type { MenuListProps } from 'src/components/ui/organisms/Menu'
 import { useClickOutside } from 'src/hooks'
 import { useDisclosure } from 'src/shared/chakra'
 import { useProjectTaskCommand } from 'src/store/entities/projectTask'

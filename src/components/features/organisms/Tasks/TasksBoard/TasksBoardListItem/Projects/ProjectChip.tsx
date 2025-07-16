@@ -1,5 +1,6 @@
-import React, { memo } from 'react'
-import { FlexProps, Flex } from 'src/components/ui/atoms'
+import type React from 'react'
+import { memo } from 'react'
+import { Flex, type FlexProps } from 'src/components/ui/atoms'
 import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 

@@ -1,7 +1,6 @@
-import React from 'react'
-import { Menu, MenuProps } from 'src/components/ui/organisms/Menu'
-import { MaybeRenderProp, runIfFn } from 'src/shared/utils'
-import { UseMenuSelect, useMenuSelect } from './useMenuSelect'
+import { Menu, type MenuProps } from 'src/components/ui/organisms/Menu'
+import { type MaybeRenderProp, runIfFn } from 'src/shared/utils'
+import { type UseMenuSelect, useMenuSelect } from './useMenuSelect'
 import { Context } from './useMenuSelect'
 
 type Props<ListStatus> = {

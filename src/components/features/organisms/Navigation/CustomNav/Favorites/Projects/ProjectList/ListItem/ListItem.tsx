@@ -1,9 +1,10 @@
-import React, { memo, useMemo } from 'react'
+import type React from 'react'
+import { memo, useMemo } from 'react'
 import {
-  useNavigation,
   PADDING_X,
+  useNavigation,
 } from 'src/components/features/organisms/Navigation'
-import { Flex, Link, NextLink, Text, ColorBox } from 'src/components/ui/atoms'
+import { ColorBox, Flex, Link, NextLink, Text } from 'src/components/ui/atoms'
 import { useLinkHoverStyle } from 'src/hooks'
 import { ROUTE_PROJECTS_LIST, useRouter } from 'src/router'
 import { ROUTE_PROJECTS } from 'src/router/projects'

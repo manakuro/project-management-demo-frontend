@@ -1,9 +1,10 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import {
-  Flex,
   Icon as AtomsIcon,
+  Flex,
   Text,
-  TextProps,
+  type TextProps,
 } from 'src/components/ui/atoms'
 
 type Props = {

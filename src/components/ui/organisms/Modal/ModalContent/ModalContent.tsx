@@ -1,8 +1,8 @@
 import {
   ModalContent as ChakraModalContent,
-  ModalContentProps as ChakraModalContentProps,
+  type ModalContentProps as ChakraModalContentProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraModalContentProps & {

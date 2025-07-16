@@ -1,19 +1,17 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Flex, Stack } from 'src/components/ui/atoms'
 import { useTaskFeedListItemContext } from '../Provider'
 import { ContentAttachment } from './ContentAttachment'
 import { ContentText } from './ContentText'
 
-type Props = {}
-
-export const Content: React.FC<Props> = memo<Props>(() => {
+export const Content = memo(function Content() {
   return (
     <Flex mt={2} flexDirection="column">
       <Component />
     </Flex>
   )
 })
-const Component: React.FC<Props> = memo<Props>(() => {
+const Component = memo(function Component() {
   const { taskFileIds, hasText } = useTaskFeedListItemContext()
 
   return (
@@ -27,5 +25,3 @@ const Component: React.FC<Props> = memo<Props>(() => {
     </Stack>
   )
 })
-Component.displayName = 'Component'
-Content.displayName = 'Content'

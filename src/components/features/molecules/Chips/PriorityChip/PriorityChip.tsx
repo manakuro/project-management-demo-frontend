@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { Badge } from 'src/components/ui/atoms'
 import { useTaskPriority } from 'src/store/entities/taskPriority'
 

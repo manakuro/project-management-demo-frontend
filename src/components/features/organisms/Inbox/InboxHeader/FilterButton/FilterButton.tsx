@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import {
   MenuSelect,
   MenuSelectButton,
@@ -6,18 +6,16 @@ import {
 } from 'src/components/features/organisms/Menus'
 import { Button, Icon } from 'src/components/ui/atoms'
 import { MenuItemOption } from 'src/components/ui/organisms/Menu'
-import { ChakraProps } from 'src/shared/chakra'
+import type { ChakraProps } from 'src/shared/chakra'
 import {
-  InboxListFilterStatuses,
+  INBOX_LIST_FILTER_STATUS_TYPE_ALL,
+  INBOX_LIST_FILTER_STATUS_TYPE_ASSIGNED_BY_ME,
   INBOX_LIST_FILTER_STATUS_TYPE_ASSIGNED_TO_ME,
   INBOX_LIST_FILTER_STATUS_TYPE_MENTIONED,
-  INBOX_LIST_FILTER_STATUS_TYPE_ASSIGNED_BY_ME,
   INBOX_LIST_FILTER_STATUS_TYPE_UNREAD_ONLY,
-  INBOX_LIST_FILTER_STATUS_TYPE_ALL,
+  type InboxListFilterStatuses,
   useInboxListStatus,
 } from 'src/store/app/inbox/activity/inboxListStatus'
-
-type Props = {}
 
 const items: {
   value: InboxListFilterStatuses
@@ -45,7 +43,7 @@ const items: {
   },
 ]
 
-export const FilterButton: React.FC<Props> = memo<Props>(() => {
+export const FilterButton = memo(() => {
   const { onFilter, filterStatus, isFiltered } = useInboxListStatus()
 
   const handleChange = useCallback(
@@ -65,7 +63,7 @@ export const FilterButton: React.FC<Props> = memo<Props>(() => {
   const text = useMemo<string>(() => {
     if (isFiltered('all')) return ''
 
-    return `: ${items.find((i) => i.value === filterStatus)!.text}`
+    return `: ${items.find((i) => i.value === filterStatus)?.text}`
   }, [isFiltered, filterStatus])
 
   return (
@@ -85,7 +83,11 @@ export const FilterButton: React.FC<Props> = memo<Props>(() => {
       </MenuSelectButton>
       <MenuSelectList defaultValue={filterStatus.toString()}>
         {items.map((item, i) => (
-          <MenuItemOption value={item.value.toString()} key={i} isDisabled>
+          <MenuItemOption
+            value={item.value.toString()}
+            key={item.value.toString()}
+            isDisabled
+          >
             {item.text}
           </MenuItemOption>
         ))}

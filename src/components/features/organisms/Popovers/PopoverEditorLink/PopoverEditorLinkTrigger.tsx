@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 import { Link } from 'src/components/ui/atoms'
 import { PopoverTrigger } from 'src/components/ui/organisms/Popover'
 import { useLinkStyle } from 'src/hooks/styles'

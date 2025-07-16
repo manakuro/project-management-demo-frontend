@@ -1,19 +1,16 @@
-import React from 'react'
 import { useInviteModal } from 'src/components/features/organisms/Modals'
 import { Box, Button, Stack, Text, Textarea } from 'src/components/ui/atoms'
 import {
   Modal,
   ModalBody,
+  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  ModalCloseButton,
 } from 'src/components/ui/organisms/Modal'
 
-type Props = {}
-
-export const InviteModal: React.FC<Props> = () => {
+export function InviteModal() {
   const { isOpen, onClose } = useInviteModal()
 
   return (

@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { useTasksTaskListStatus } from 'src/components/features/organisms/Tasks/hooks'
 import { Icon } from 'src/components/ui/atoms'
 import { useTaskListSortStatus } from 'src/store/entities/taskListSortStatus'

@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from 'react'
+import type React from 'react'
+import { useCallback, useState } from 'react'
 import { createProvider } from 'src/shared/react/createProvider'
 
 type ContextProps = {
@@ -24,7 +25,7 @@ const useValue = (props: Props): ContextProps => {
       setCurrentIndex(index)
       props.onChange?.(index)
     },
-    [setCurrentIndex, props],
+    [props],
   )
 
   return {

@@ -1,5 +1,5 @@
 import NextHead from 'next/head'
-import React from 'react'
+import type React from 'react'
 
 const defaultDescription = ''
 const defaultOGURL = ''

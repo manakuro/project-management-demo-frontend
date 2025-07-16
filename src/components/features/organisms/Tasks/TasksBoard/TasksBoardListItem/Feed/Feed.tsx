@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import type React from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
 import { FEED_LIST_CONTAINER_ID } from 'src/components/features/organisms/TaskDetail/TaskDetailBody/Form/FeedList'
 import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks'

@@ -2,8 +2,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { useProjectTaskQuery as useQuery } from 'src/graphql/hooks'
 import { useMountedRef } from 'src/hooks'
 import {
+  type ProjectTaskResponse,
   useProjectTaskResponse,
-  ProjectTaskResponse,
 } from 'src/store/entities/projectTask'
 
 export const useProjectTaskQuery = (id: string) => {

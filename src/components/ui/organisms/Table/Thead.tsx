@@ -1,8 +1,8 @@
 import {
   Thead as ChakraThead,
-  TableHeadProps as ChakraTheadProps,
+  type TableHeadProps as ChakraTheadProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraTheadProps

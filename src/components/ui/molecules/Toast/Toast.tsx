@@ -1,6 +1,7 @@
-import { UseToastOptions as UseToastOptionsChakra } from '@chakra-ui/react'
-import { RenderProps } from '@chakra-ui/toast/dist'
-import React, { useCallback } from 'react'
+import type { UseToastOptions as UseToastOptionsChakra } from '@chakra-ui/react'
+import type { RenderProps } from '@chakra-ui/toast/dist'
+import type React from 'react'
+import { useCallback } from 'react'
 import { Button, Flex, Icon, IconButton } from 'src/components/ui/atoms'
 import { forwardRef } from 'src/shared/chakra'
 

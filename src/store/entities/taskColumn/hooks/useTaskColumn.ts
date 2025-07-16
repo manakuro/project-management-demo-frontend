@@ -1,6 +1,6 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { taskColumnState } from '../atom'
-import { TaskColumn } from '../type'
+import type { TaskColumn } from '../type'
 import { useUpsert } from './useUpsert'
 
 export const useTaskColumn = (taskColumnId?: string) => {

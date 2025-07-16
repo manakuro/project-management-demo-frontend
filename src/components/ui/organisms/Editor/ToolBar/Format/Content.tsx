@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 import { Portal, Stack } from 'src/components/ui/atoms'
 import {
   Bold,
@@ -12,10 +12,10 @@ import {
   Underline,
 } from 'src/components/ui/organisms/Editor/ToolBar'
 import {
-  PopoverContent,
-  PopoverProps,
-  PopoverBody,
   PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  type PopoverProps,
 } from 'src/components/ui/organisms/Popover'
 import { useClickOutside } from 'src/hooks'
 

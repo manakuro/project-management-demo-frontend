@@ -1,10 +1,10 @@
 import { selectorFamily } from 'recoil'
 import {
+  type TaskColumnTypeValue,
   taskColumnByTypeState,
-  TaskColumnTypeValue,
 } from 'src/store/entities/taskColumn'
 import { createState } from 'src/store/util'
-import { TeammateTaskColumn } from './type'
+import type { TeammateTaskColumn } from './type'
 
 const key = (str: string) => `src/store/entities/teammatesTaskColumn/${str}`
 

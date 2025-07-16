@@ -1,13 +1,11 @@
-import React from 'react'
-import { ConditionalRender, PortalManager, Flex } from 'src/components/ui/atoms'
+import type { PropsWithChildren } from 'react'
+import { ConditionalRender, Flex, PortalManager } from 'src/components/ui/atoms'
 import { Popover, PopoverTrigger } from 'src/components/ui/organisms/Popover'
 import { Content } from './Content'
 import { usePopoverEmojiContext } from './Provider'
 import { Provider } from './Provider'
 
-type Props = {}
-
-export const PopoverEmoji: React.FCWithChildren<Props> = (props) => {
+export function PopoverEmoji(props: PropsWithChildren) {
   return (
     <Provider>
       <Component {...props} />
@@ -15,7 +13,7 @@ export const PopoverEmoji: React.FCWithChildren<Props> = (props) => {
   )
 }
 
-const Component: React.FCWithChildren<Props> = (props) => {
+function Component(props: PropsWithChildren) {
   const { isOpen } = usePopoverEmojiContext()
 
   return (

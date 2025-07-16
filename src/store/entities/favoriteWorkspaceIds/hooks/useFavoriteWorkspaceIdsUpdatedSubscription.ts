@@ -2,7 +2,7 @@ import isEqual from 'lodash-es/isEqual'
 import { useRecoilCallback } from 'recoil'
 import { useFavoriteWorkspaceIdsUpdatedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { FavoriteWorkspaceIdsUpdatedSubscriptionResponse as Response } from '../type'
+import type { FavoriteWorkspaceIdsUpdatedSubscriptionResponse as Response } from '../type'
 import { useFavoriteWorkspaceIdsResponse } from './useFavoriteWorkspaceIdsResponse'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.

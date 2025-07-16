@@ -1,11 +1,9 @@
-import React, { memo, useCallback } from 'react'
+import { memo, useCallback } from 'react'
 import { Button, Divider, Icon } from 'src/components/ui/atoms'
 import { ModalFooter } from 'src/components/ui/organisms/Modal'
 import { useShareProjectModal } from '../useShareProjectModal'
 
-type Props = {}
-
-export const Members: React.FC<Props> = memo<Props>(() => {
+export const Members = memo(function Members() {
   const { onClose } = useShareProjectModal()
 
   const handleCopyProjectLink = useCallback(() => {
@@ -28,4 +26,3 @@ export const Members: React.FC<Props> = memo<Props>(() => {
     </>
   )
 })
-Members.displayName = 'Members'

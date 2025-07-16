@@ -1,5 +1,6 @@
-import { DraggableChildrenFn, DraggingStyle } from '@hello-pangea/dnd'
-import React, { useRef, useEffect } from 'react'
+import type { DraggableChildrenFn, DraggingStyle } from '@hello-pangea/dnd'
+import type React from 'react'
+import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 
 export const useDraggableInPortal = () => {
@@ -17,7 +18,7 @@ export const useDraggableInPortal = () => {
     return () => {
       document.body.removeChild(div)
     }
-  }, [self])
+  }, [])
 
   return (render: DraggableChildrenFn): DraggableChildrenFn =>
     (provided, ...args) => {

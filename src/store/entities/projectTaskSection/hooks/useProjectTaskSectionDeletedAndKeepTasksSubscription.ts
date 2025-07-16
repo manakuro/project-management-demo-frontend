@@ -2,13 +2,13 @@ import isEqual from 'lodash-es/isEqual'
 import { useMemo } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useProjectTaskSectionDeletedAndKeepTasksSubscription as useSubscription } from 'src/graphql/hooks'
-import { ProjectTaskResponse } from 'src/graphql/types/projectTask'
+import type { ProjectTaskResponse } from 'src/graphql/types/projectTask'
 import { uuid } from 'src/shared/uuid'
 import {
   projectTasksByProjectTaskSectionIdState,
   useProjectTaskResponse,
 } from 'src/store/entities/projectTask'
-import { ProjectTaskSectionDeletedAndKeepTasksSubscriptionResponse as Response } from '../type'
+import type { ProjectTaskSectionDeletedAndKeepTasksSubscriptionResponse as Response } from '../type'
 import { useResetProjectTaskSection } from './useResetProjectTaskSection'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.

@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { Icon, PortalManager } from 'src/components/ui/atoms'
 import { Menu, MenuButton } from 'src/components/ui/organisms/Menu'
 import { useClickableHoverStyle } from 'src/hooks'

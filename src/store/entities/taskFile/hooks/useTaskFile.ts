@@ -1,5 +1,5 @@
 import { useRecoilCallback, useRecoilValue } from 'recoil'
-import { TaskFile, taskFileState } from 'src/store/entities/taskFile'
+import { type TaskFile, taskFileState } from 'src/store/entities/taskFile'
 import { useUpsert } from './useUpsert'
 
 export const useTaskFile = (taskFileId?: string) => {

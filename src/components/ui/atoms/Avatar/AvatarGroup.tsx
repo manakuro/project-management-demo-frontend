@@ -1,8 +1,8 @@
 import {
   AvatarGroup as ChakraAvatarGroup,
-  AvatarGroupProps as ChakraAvatarGroupProps,
+  type AvatarGroupProps as ChakraAvatarGroupProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraAvatarGroupProps & {

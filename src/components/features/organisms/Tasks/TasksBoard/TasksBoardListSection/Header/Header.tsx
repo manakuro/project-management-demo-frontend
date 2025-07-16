@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { Flex, Stack } from 'src/components/ui/atoms'
 import { AddTaskButton } from './AddTaskButton'
 import { MoreAction } from './MoreAction'

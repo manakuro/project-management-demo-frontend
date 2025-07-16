@@ -1,6 +1,7 @@
-import React, { memo, useEffect, useMemo } from 'react'
+import type React from 'react'
+import { memo, useEffect, useMemo } from 'react'
 import { useAssigneeMenu } from 'src/components/features/organisms/Menus/AssigneeMenu/useAssigneeMenu'
-import { Flex, FlexProps } from 'src/components/ui/atoms'
+import { Flex, type FlexProps } from 'src/components/ui/atoms'
 import { useMenuStyle } from 'src/hooks'
 import { useHover } from 'src/hooks/useHover'
 
@@ -13,7 +14,7 @@ export const ListItem: React.FC<Props> = memo<Props>((props) => {
   const { ref, isHovering } = useHover()
   const { selectedIndex, setSelectedIndex } = useAssigneeMenu()
 
-  delete styles._hover
+  styles._hover = undefined
 
   useEffect(() => {
     if (isHovering) setSelectedIndex(props.index)

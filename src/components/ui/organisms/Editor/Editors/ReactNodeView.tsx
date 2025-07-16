@@ -1,7 +1,7 @@
-import { DOMSerializer, Node } from 'prosemirror-model'
-import { Decoration, EditorView, NodeView } from 'prosemirror-view'
+import { DOMSerializer, type Node } from 'prosemirror-model'
+import type { Decoration, EditorView, NodeView } from 'prosemirror-view'
 import React, { useContext, useEffect, useRef } from 'react'
-import { PortalHandlers } from 'src/components/ui/organisms/Editor/Editors/ReactNodeViewPortals'
+import type { PortalHandlers } from 'src/components/ui/organisms/Editor/Editors/ReactNodeViewPortals'
 import {
   entries,
   isDomNodeOutputSpec,
@@ -87,10 +87,9 @@ class ReactNodeView implements NodeView {
 
     const { contentDOM, dom } = DOMSerializer.renderSpec(document, domSpec)
 
-    let wrapper: HTMLElement
     if (!isElementDomNode(dom)) return
 
-    wrapper = dom
+    const wrapper = dom
     return { wrapper, contentDOM }
   }
 
@@ -105,7 +104,7 @@ class ReactNodeView implements NodeView {
             componentDOM.firstChild?.appendChild(this.contentDOM)
           }
         }
-      }, [componentRef])
+      }, [])
 
       const NodeView = this.component
       return (
@@ -131,8 +130,8 @@ class ReactNodeView implements NodeView {
     if (!isNodeOfType({ types: this.node.type, node })) return false
     if (this.node === node) return true
 
-    if (!this.node.sameMarkup(node)) {
-      this.setDomAttributes(node, this.dom!)
+    if (!this.node.sameMarkup(node) && this.dom) {
+      this.setDomAttributes(node, this.dom)
     }
 
     this.node = node

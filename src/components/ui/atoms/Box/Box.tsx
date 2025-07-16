@@ -1,6 +1,9 @@
-import { Box as ChakraBox, BoxProps as ChakraBoxProps } from '@chakra-ui/react'
-import { DraggableProvided } from '@hello-pangea/dnd'
-import React from 'react'
+import {
+  Box as ChakraBox,
+  type BoxProps as ChakraBoxProps,
+} from '@chakra-ui/react'
+import type { DraggableProvided } from '@hello-pangea/dnd'
+import type React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraBoxProps & {

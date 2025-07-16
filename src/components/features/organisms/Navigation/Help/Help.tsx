@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 import { Divider } from 'src/components/features/organisms/Navigation/Divider'
 import { Flex } from 'src/components/ui/atoms'
 import {

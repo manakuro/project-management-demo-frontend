@@ -1,11 +1,9 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 
 import { MenuItem } from 'src/components/ui/organisms/Menu'
 import { useTaskFeedListItemContext } from '../../Provider'
 
-type Props = {}
-
-export const Pin: React.FC<Props> = memo(() => {
+export const Pin = memo(function Pin() {
   const { onUnpin, onPin, taskFeed } = useTaskFeedListItemContext()
 
   if (taskFeed.isPinned)
@@ -13,4 +11,3 @@ export const Pin: React.FC<Props> = memo(() => {
 
   return <MenuItem onClick={onPin}>Pin to top</MenuItem>
 })
-Pin.displayName = 'Pin'

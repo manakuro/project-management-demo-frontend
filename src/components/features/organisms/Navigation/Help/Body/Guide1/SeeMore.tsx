@@ -1,6 +1,6 @@
-import React from 'react'
+import type React from 'react'
 import { Section } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem/ListItemDetail'
-import { Text, Stack, AspectRatio, Box, Link } from 'src/components/ui/atoms'
+import { AspectRatio, Box, Link, Stack, Text } from 'src/components/ui/atoms'
 import { guide1Item } from './item'
 
 export const SeeMore: React.FC = () => {

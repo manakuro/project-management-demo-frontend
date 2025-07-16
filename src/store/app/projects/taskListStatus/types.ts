@@ -1,5 +1,5 @@
-import { TaskListCompletedStatusCodeValue as CompletedStatusCodeValue } from 'src/store/entities/taskListCompletedStatus'
-import { TaskListSortStatusCodeValue as SortValue } from 'src/store/entities/taskListSortStatus'
+import type { TaskListCompletedStatusCodeValue as CompletedStatusCodeValue } from 'src/store/entities/taskListCompletedStatus'
+import type { TaskListSortStatusCodeValue as SortValue } from 'src/store/entities/taskListSortStatus'
 
 export type TaskListCompletedStatusCodeValue = CompletedStatusCodeValue
 

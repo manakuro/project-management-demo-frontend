@@ -1,25 +1,25 @@
 import React, { useCallback } from 'react'
 import {
   Button,
+  Divider,
   Flex,
-  Stack,
-  Text,
   Radio,
   RadioGroup,
-  Divider,
+  Stack,
+  Text,
 } from 'src/components/ui/atoms'
 import {
   Modal,
   ModalBody,
+  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  ModalCloseButton,
 } from 'src/components/ui/organisms/Modal'
 import { useDeleteTaskSectionModal } from './useDeleteTaskSectionModal'
 
-export const DeleteTaskSectionModal: React.FC<Props> = () => {
+export function DeleteTaskSectionModal() {
   const { isOpen } = useDeleteTaskSectionModal()
 
   if (!isOpen) return null
@@ -27,8 +27,7 @@ export const DeleteTaskSectionModal: React.FC<Props> = () => {
   return <Component />
 }
 
-type Props = {}
-export const Component: React.FC<Props> = () => {
+export function Component() {
   const {
     isOpen,
     onClose,

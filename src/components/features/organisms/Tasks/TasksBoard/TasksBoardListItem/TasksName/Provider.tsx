@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 import { useHover } from 'src/hooks/useHover'
 import { createProvider } from 'src/shared/react/createProvider'
 

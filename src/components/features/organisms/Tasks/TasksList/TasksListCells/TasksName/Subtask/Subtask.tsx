@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo } from 'react'
+import type React from 'react'
+import { useCallback, useMemo } from 'react'
 import { useTaskDetail } from 'src/components/features/organisms/TaskDetail'
 import { SUBTASK_LIST_CONTAINER_ID } from 'src/components/features/organisms/TaskDetail/TaskDetailBody/Form/Subtasks'
 import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks'
@@ -7,9 +8,7 @@ import { useSubtaskIds } from 'src/store/entities/task'
 import { useTasksNameContext } from '../TasksNameProvider'
 import { Icon } from './Icon'
 
-type Props = {}
-
-export const Subtask: React.FC<Props> = () => {
+export function Subtask() {
   const { taskId } = useTasksNameContext()
   const { taskIds } = useSubtaskIds(taskId)
   const size = useMemo(() => taskIds.length, [taskIds.length])

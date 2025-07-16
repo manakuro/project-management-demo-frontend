@@ -1,10 +1,6 @@
-import React from 'react'
+import type { PropsWithChildren } from 'react'
 import { AccordionPanel } from 'src/components/ui/organisms/Accordion'
 
-type Props = {}
-
-export const CustomNavListAccordionPanel: React.FCWithChildren<Props> = (
-  props,
-) => {
+export function CustomNavListAccordionPanel(props: PropsWithChildren) {
   return <AccordionPanel p={0} {...props} />
 }

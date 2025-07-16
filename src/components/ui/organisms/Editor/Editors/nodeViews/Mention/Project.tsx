@@ -1,13 +1,14 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import {
   PopoverEditorLink,
-  PopoverEditorLinkTrigger,
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
+  PopoverEditorLinkTrigger,
 } from 'src/components/features/organisms/Popovers'
 import { ColorBox } from 'src/components/ui/atoms'
 import { useReactNodeView } from 'src/components/ui/organisms/Editor/Editors/ReactNodeView'
-import { MentionAttrs } from 'src/shared/prosemirror/schema'
+import type { MentionAttrs } from 'src/shared/prosemirror/schema'
 import { useProject } from 'src/store/entities/project'
 import { useProjectBaseColor } from 'src/store/entities/projectBaseColor'
 
@@ -19,7 +20,7 @@ export const Project: React.FC = memo(() => {
 
   return (
     <PopoverEditorLink>
-      <PopoverEditorLinkTrigger>{project.name + ' '}</PopoverEditorLinkTrigger>
+      <PopoverEditorLinkTrigger>{`${project.name} `}</PopoverEditorLinkTrigger>
       <PopoverEditorLinkContent>
         <ColorBox size="sm" color={projectBaseColor.color.color} />
         <PopoverEditorLinkText>{project.name}</PopoverEditorLinkText>

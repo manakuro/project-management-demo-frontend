@@ -1,8 +1,8 @@
 import {
   Table as ChakraTable,
-  TableProps as ChakraTableProps,
+  type TableProps as ChakraTableProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraTableProps

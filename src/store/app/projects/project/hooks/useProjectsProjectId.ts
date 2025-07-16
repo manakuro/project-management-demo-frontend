@@ -1,4 +1,4 @@
-import { useResetRecoilState, useRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import { projectIdState } from '../atom'
 
 export const useProjectsProjectId = () => {

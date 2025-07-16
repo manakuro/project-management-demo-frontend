@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { Me } from './type'
+import type { Me } from './type'
 
 const key = (str: string) => `src/store/entities/me/${str}`
 

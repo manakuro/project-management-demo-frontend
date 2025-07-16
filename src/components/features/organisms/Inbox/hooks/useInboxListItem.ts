@@ -1,6 +1,9 @@
-import { Activity, useActivity } from 'src/store/app/inbox/activity/activities'
 import {
-  ArchiveActivity,
+  type Activity,
+  useActivity,
+} from 'src/store/app/inbox/activity/activities'
+import {
+  type ArchiveActivity,
   useArchive,
 } from 'src/store/app/inbox/archive/archives'
 import { useInboxContext } from '../Inbox'

@@ -1,6 +1,7 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { useInboxContext } from 'src/components/features/organisms/Inbox'
-import { IconButtonProps } from 'src/components/ui/atoms'
+import type { IconButtonProps } from 'src/components/ui/atoms'
 import { ArchiveButton } from './ArchiveButton'
 import { MoveToInboxButton } from './MoveToInboxButton'
 

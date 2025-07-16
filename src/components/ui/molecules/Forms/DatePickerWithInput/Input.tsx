@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useState } from 'react'
+import type React from 'react'
+import { memo, useCallback, useState } from 'react'
 import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers'
 import { Input as AtomsInput } from 'src/components/ui/atoms'
 import { useClickOutside } from 'src/hooks'

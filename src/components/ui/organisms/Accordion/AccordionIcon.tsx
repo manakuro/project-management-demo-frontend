@@ -1,8 +1,8 @@
 import {
   AccordionIcon as ChakraAccordionIcon,
-  IconProps as ChakraAccordionIconProps,
+  type IconProps as ChakraAccordionIconProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraAccordionIconProps
 export type AccordionIconProps = Props

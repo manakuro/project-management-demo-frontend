@@ -1,9 +1,10 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { useSearchMenuRef } from 'src/components/features/organisms/Menus/SearchMenu'
 import { Flex, Portal } from 'src/components/ui/atoms'
 import {
   PopoverContent,
-  PopoverContentProps,
+  type PopoverContentProps,
 } from 'src/components/ui/organisms/Popover'
 import { useClickOutside } from 'src/hooks'
 

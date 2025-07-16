@@ -1,5 +1,5 @@
 import { createState } from 'src/store/util'
-import { TaskPriority } from './type'
+import type { TaskPriority } from './type'
 import { TaskPriorityType } from './types'
 
 const key = (str: string) => `src/store/entities/taskPriority/${str}`

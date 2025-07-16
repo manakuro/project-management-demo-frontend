@@ -1,9 +1,6 @@
-import { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
+import type { Node as ProsemirrorNode, Schema } from 'prosemirror-model'
 
-export interface ProsemirrorTransformer<
-  T extends unknown = any,
-  S extends Schema = any,
-> {
+export interface ProsemirrorTransformer<T = any, S extends Schema = any> {
   parse: (input: T) => ProsemirrorNode<S>
   serialize: (doc: ProsemirrorNode) => T
 }

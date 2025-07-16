@@ -1,6 +1,6 @@
 import { useRouter as useRouterNext } from 'next/router'
 import { useCallback } from 'react'
-import { Options } from '../types'
+import type { Options } from '../types'
 import { ROUTE_WORKSPACES_OVERVIEW } from './routes'
 
 export const useRouterWorkspace = () => {

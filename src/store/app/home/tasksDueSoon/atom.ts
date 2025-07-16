@@ -1,7 +1,7 @@
 import { selector } from 'recoil'
 import {
-  sortByDueDate,
   filterByDueDateInFiveDays,
+  sortByDueDate,
 } from 'src/store/entities/task'
 import { tasksByTeammateIdState } from 'src/store/entities/teammateTask'
 

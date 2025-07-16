@@ -3,7 +3,7 @@ import { useRecoilCallback } from 'recoil'
 import { useTaskUnassignedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import {
-  TaskUnassignedSubscriptionResponse,
+  type TaskUnassignedSubscriptionResponse,
   useTaskCommand,
 } from 'src/store/entities/task'
 import { useResetTeammateTask } from 'src/store/entities/teammateTask'

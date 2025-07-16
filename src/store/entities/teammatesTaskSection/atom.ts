@@ -1,7 +1,7 @@
 import { selector, selectorFamily } from 'recoil'
 import { teammateTaskByTaskIdState } from 'src/store/entities/teammateTask'
 import { createState } from 'src/store/util'
-import { TeammateTaskSection } from './type'
+import type { TeammateTaskSection } from './type'
 
 const key = (str: string) => `src/store/entities/teammatesTaskSections/${str}`
 

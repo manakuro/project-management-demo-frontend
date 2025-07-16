@@ -3,7 +3,7 @@ import { useRecoilCallback } from 'recoil'
 import { useTaskFeedDeletedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import { taskFeedState } from 'src/store/entities/taskFeed'
-import { TaskFeedDeletedSubscriptionResponse } from '../type'
+import type { TaskFeedDeletedSubscriptionResponse } from '../type'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any

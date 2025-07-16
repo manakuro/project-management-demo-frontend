@@ -1,5 +1,8 @@
-import { Tab as ChakraTab, TabProps as ChakraTabProps } from '@chakra-ui/react'
-import React from 'react'
+import {
+  Tab as ChakraTab,
+  type TabProps as ChakraTabProps,
+} from '@chakra-ui/react'
+import type React from 'react'
 import { useClickableHoverStyle } from 'src/hooks'
 import { forwardRef } from 'src/shared/chakra'
 

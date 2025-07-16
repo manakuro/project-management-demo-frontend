@@ -1,6 +1,6 @@
-import React from 'react'
+import type React from 'react'
 import { ComingSoonTooltip } from 'src/components/features/molecules/Tooltips'
-import { Flex, FlexProps, Text } from 'src/components/ui/atoms'
+import { Flex, type FlexProps, Text } from 'src/components/ui/atoms'
 import { NewBox } from 'src/components/ui/molecules/NewBox'
 import { useClickableHoverStyle } from 'src/hooks'
 import { Container } from './Container'

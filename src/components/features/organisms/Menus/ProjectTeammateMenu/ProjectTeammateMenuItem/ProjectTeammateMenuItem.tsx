@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import {
   SearchMenuLeftContainer,
   SearchMenuListItem,
@@ -6,7 +7,7 @@ import {
 } from 'src/components/features/organisms/Menus/SearchMenu'
 import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
 import { Text } from 'src/components/ui/atoms'
-import { Teammate } from 'src/store/entities/teammate'
+import type { Teammate } from 'src/store/entities/teammate'
 
 type Props = {
   onClick: (teammate: Teammate) => void

@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 import { Tooltip } from 'src/components/ui/molecules'
 
 type Props = {

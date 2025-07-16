@@ -1,8 +1,8 @@
 import {
   MenuDivider as ChakraMenuDivider,
-  MenuDividerProps as ChakraMenuDividerProps,
+  type MenuDividerProps as ChakraMenuDividerProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraMenuDividerProps
 export type MenuDividerProps = Props

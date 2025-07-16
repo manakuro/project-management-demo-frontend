@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useEffect } from 'react'
+import type React from 'react'
+import { memo, useCallback, useEffect } from 'react'
 import { useSearchProjectsQuery } from 'src/components/features/organisms/Menus/ProjectMenu/useSearchProjectsQuery'
 import {
   SearchMenuLeftContainer,
@@ -7,9 +8,9 @@ import {
   SearchMenuRightContainer,
   useSearchMenu,
 } from 'src/components/features/organisms/Menus/SearchMenu'
-import { Icon, Divider, Text } from 'src/components/ui/atoms'
+import { Divider, Icon, Text } from 'src/components/ui/atoms'
 import { useFirstRender } from 'src/hooks'
-import { Project } from 'src/store/entities/project'
+import type { Project } from 'src/store/entities/project'
 import { ProjectItem } from './ProjectItem'
 
 type Props = {

@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { taskCollaboratorState } from '../atom'
-import { TaskCollaboratorResponse } from '../type'
+import type { TaskCollaboratorResponse } from '../type'
 
 export const useTaskCollaboratorResponse = () => {
   const setTaskCollaborators = useRecoilCallback(

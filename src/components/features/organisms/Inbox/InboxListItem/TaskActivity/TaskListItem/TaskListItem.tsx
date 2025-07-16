@@ -1,5 +1,6 @@
-import React, { memo, useCallback, useState } from 'react'
-import { Flex, FlexProps, Stack } from 'src/components/ui/atoms'
+import type React from 'react'
+import { memo, useCallback, useState } from 'react'
+import { Flex, type FlexProps, Stack } from 'src/components/ui/atoms'
 import { TaskDoneTransition } from 'src/components/ui/molecules'
 import { useHover } from 'src/hooks/useHover'
 import { useRouter } from 'src/router'

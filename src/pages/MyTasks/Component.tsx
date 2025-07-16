@@ -1,21 +1,21 @@
-import { NextRouter } from 'next/router'
+import type { NextRouter } from 'next/router'
 import React, { memo, useCallback, useEffect } from 'react'
 import { MainHeader } from 'src/components/features/organisms/MainHeader'
 import { Flex } from 'src/components/ui/atoms'
 import { Head } from 'src/components/ui/atoms/Head'
-import { Tabs, TabPanels, TabPanel } from 'src/components/ui/organisms/Tabs'
+import { TabPanel, TabPanels, Tabs } from 'src/components/ui/organisms/Tabs'
 import {
   isMyTasksBoardURL,
   isMyTasksCalendarURL,
+  isMyTasksDetailURL,
   isMyTasksFilesURL,
   isMyTasksListURL,
-  isMyTasksDetailURL,
   useRouter,
 } from 'src/router'
 import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus'
 import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
 import {
-  TeammateTaskTabStatus,
+  type TeammateTaskTabStatus,
   TeammateTaskTabStatusCode,
   useTeammateTaskTabStatus,
   useTeammateTaskTabStatusCommand,
@@ -42,7 +42,7 @@ type Index =
   | typeof CALENDAR_INDEX
   | typeof FILES_INDEX
 
-export const Component: React.FC<Props> = memo<Props>((props) => {
+export const Component = memo<Props>(function Component(props) {
   return (
     <Provider
       loading={props.loading}
@@ -79,7 +79,7 @@ const mapURLtoTabStatus = ({
   return TASKS_INDEX
 }
 
-const WrappedComponent: React.FC = memo(() => {
+const WrappedComponent = memo(function WrappedComponent() {
   const {
     navigateToMyTasksList,
     navigateToMyTasksBoard,
@@ -101,7 +101,7 @@ const WrappedComponent: React.FC = memo(() => {
     setTimeout(() => {
       endTabContentLoading()
     }, 200)
-  }, [])
+  }, [startTabContentLoading, endTabContentLoading])
 
   const handleTabsChange = useCallback(
     async (index: number) => {
@@ -149,6 +149,7 @@ const WrappedComponent: React.FC = memo(() => {
     ],
   )
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Force update tab status based on URL
   useEffect(() => {
     // When task detail opening
     if (isMyTasksDetailURL(router)) {
@@ -227,5 +228,3 @@ const WrappedComponent: React.FC = memo(() => {
     </Tabs>
   )
 })
-WrappedComponent.displayName = 'WrappedComponent'
-Component.displayName = 'Component'

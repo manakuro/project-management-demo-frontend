@@ -2,7 +2,7 @@ import isEqual from 'lodash-es/isEqual'
 import { useRecoilCallback } from 'recoil'
 import { useTaskFeedCreatedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { TaskFeedCreatedSubscriptionResponse } from '../type'
+import type { TaskFeedCreatedSubscriptionResponse } from '../type'
 import { useTaskFeedResponse } from './useTaskFeedResponse'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.

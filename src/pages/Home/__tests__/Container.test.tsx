@@ -1,8 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import React from 'react'
 import { removeAllListeners } from 'src/mocks/server'
-import { mockDate, Provider } from 'src/testUtils'
+import { Provider, mockDate } from 'src/testUtils'
 import {
   closeServer,
   resetHandlers,
@@ -10,11 +9,6 @@ import {
   startServer,
 } from 'src/testUtils/mock/setup'
 import { Container } from '../Container'
-
-type Props = {}
-const propsData = (options?: Partial<Props>): Props => ({
-  ...options,
-})
 
 describe('pages/Home', () => {
   startServer()
@@ -32,7 +26,7 @@ describe('pages/Home', () => {
     it('should render tasks due soon section', async () => {
       render(
         <Provider>
-          <Container {...propsData()} />
+          <Container />
         </Provider>,
       )
 
@@ -44,7 +38,7 @@ describe('pages/Home', () => {
     it('should render favorite projects', async () => {
       render(
         <Provider>
-          <Container {...propsData()} />
+          <Container />
         </Provider>,
       )
 
@@ -55,7 +49,7 @@ describe('pages/Home', () => {
     it('should add favorite item', async () => {
       render(
         <Provider>
-          <Container {...propsData()} />
+          <Container />
         </Provider>,
       )
 
@@ -70,7 +64,7 @@ describe('pages/Home', () => {
     it('should delete favorite item', async () => {
       render(
         <Provider>
-          <Container {...propsData()} />
+          <Container />
         </Provider>,
       )
 
@@ -89,7 +83,7 @@ describe('pages/Home', () => {
     it('should render recent projects', async () => {
       render(
         <Provider>
-          <Container {...propsData()} />
+          <Container />
         </Provider>,
       )
 

@@ -1,9 +1,10 @@
-import React, {
-  CSSProperties,
-  useEffect,
-  useRef,
+import type React from 'react'
+import {
+  type CSSProperties,
   memo,
+  useEffect,
   useLayoutEffect,
+  useRef,
 } from 'react'
 import { Box } from 'src/components/ui/atoms'
 import { useEditorViewContext } from 'src/components/ui/organisms/Editor/Editors/EdiorProvider'
@@ -19,6 +20,7 @@ export const EditorContent: React.FC<Props> = memo<Props>((props) => {
   const view = useEditorViewContext()
   const ref = useRef<HTMLDivElement | null>(null)
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useLayoutEffect(() => {
     const current = ref.current
     if (current && view) {

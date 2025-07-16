@@ -1,9 +1,10 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import type React from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { SortMenu as TasksHeaderSortMenu } from 'src/components/features/organisms/Tasks/TasksHeader'
 import { useMyTasksContext } from 'src/pages/MyTasks/Provider'
 import {
+  type TaskListSortStatusCodeValue,
   useMyTasksTaskListStatus,
-  TaskListSortStatusCodeValue,
 } from 'src/store/app/myTasks/taskListStatus'
 import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
 

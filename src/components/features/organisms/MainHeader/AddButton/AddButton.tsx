@@ -1,20 +1,21 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { useInviteModal } from 'src/components/features/organisms/Modals/InviteModal/useInviteModal'
 import {
+  Flex,
+  type FlexProps,
   Icon,
   IconButton,
   Portal,
-  Flex,
   Text,
-  FlexProps,
 } from 'src/components/ui/atoms'
 import {
   Menu,
   MenuButton,
-  MenuList,
   MenuItem,
+  MenuList,
 } from 'src/components/ui/organisms/Menu'
-import { IconType } from 'src/shared/icons'
+import type { IconType } from 'src/shared/icons'
 
 export const AddButton: React.FC = memo(() => {
   const inviteModal = useInviteModal()

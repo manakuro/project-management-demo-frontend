@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { useRecoilCallback } from 'recoil'
 import { useTaskLikeCreatedSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
-import { TaskLikeCreatedSubscriptionResponse as Response } from '../type'
+import type { TaskLikeCreatedSubscriptionResponse as Response } from '../type'
 import { useTaskLikeResponse } from './useTaskLikeResponse'
 
 export const TASK_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID = uuid()

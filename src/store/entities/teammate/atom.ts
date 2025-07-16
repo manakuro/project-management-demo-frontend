@@ -1,6 +1,6 @@
 import { selectorFamily } from 'recoil'
 import { createState } from 'src/store/util'
-import { Teammate } from './type'
+import type { Teammate } from './type'
 
 const key = (str: string) => `src/store/entities/teammate/${str}`
 

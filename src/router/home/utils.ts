@@ -1,4 +1,4 @@
-import { NextRouter } from 'next/router'
+import type { NextRouter } from 'next/router'
 import { ROUTE_HOME } from './routes'
 
 export const isHomeDetailURL = (router: NextRouter): boolean => {

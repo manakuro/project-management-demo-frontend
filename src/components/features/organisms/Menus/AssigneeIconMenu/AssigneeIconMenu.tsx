@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useState } from 'react'
+import type React from 'react'
+import { memo, useCallback, useState } from 'react'
 import { PopoverAssigneeInput } from 'src/components/features/organisms/Popovers'
 import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar'
 import { Icon } from 'src/components/ui/atoms'

@@ -4,7 +4,7 @@ import { useRecoilCallback } from 'recoil'
 import { useProjectTaskSectionUndeletedAndDeleteTasksSubscription as useSubscription } from 'src/graphql/hooks'
 import { uuid } from 'src/shared/uuid'
 import { useProjectTaskSectionResponse } from 'src/store/entities/projectTaskSection'
-import { ProjectTaskSectionUndeletedAndDeleteTasksSubscriptionResponse as Response } from '../type'
+import type { ProjectTaskSectionUndeletedAndDeleteTasksSubscriptionResponse as Response } from '../type'
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any

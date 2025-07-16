@@ -1,5 +1,6 @@
-import React, { useCallback } from 'react'
-import { Label, LabelProps } from 'src/components/ui/atoms'
+import type React from 'react'
+import { useCallback } from 'react'
+import { Label, type LabelProps } from 'src/components/ui/atoms'
 import { isInputFiles } from 'src/shared/isInputFile'
 
 export type UploadedFile = {

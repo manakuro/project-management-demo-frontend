@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useProjectTaskSectionsQuery as useQuery } from 'src/graphql/hooks'
-import { ProjectTaskSectionsQuery } from 'src/graphql/types'
-import { ProjectTaskSectionResponse } from 'src/graphql/types/projectTaskSections'
+import type { ProjectTaskSectionsQuery } from 'src/graphql/types'
+import type { ProjectTaskSectionResponse } from 'src/graphql/types/projectTaskSections'
 import { useMountedRef } from 'src/hooks'
 import { getNodesFromEdges } from 'src/shared/apollo/util'
 import { useProjectTaskSectionResponse } from 'src/store/entities/projectTaskSection'
@@ -24,6 +24,7 @@ export const useProjectTaskSectionsByProjectIdsQuery = (
   const [loading, setLoading] = useState(queryResult.loading)
   const { mountedRef } = useMountedRef()
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (!queryResult.data) return
     if (queryResult.loading) return

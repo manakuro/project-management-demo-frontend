@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { Flex, FlexProps, Portal } from 'src/components/ui/atoms'
+import type React from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Flex, type FlexProps, Portal } from 'src/components/ui/atoms'
 import { useHover } from 'src/hooks/useHover'
 
 type Props = Omit<FlexProps, 'onChange'> & {

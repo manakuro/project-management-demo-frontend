@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
 import { useProjectsPageQuery as useQuery } from 'src/graphql/hooks'
-import { ProjectsPageQueryVariables as Variables } from 'src/graphql/types/app/projects'
+import type { ProjectsPageQueryVariables as Variables } from 'src/graphql/types/app/projects'
 import { useMountedRef } from 'src/hooks'
 import { useProjectsResponse } from 'src/store/app/projects'
 

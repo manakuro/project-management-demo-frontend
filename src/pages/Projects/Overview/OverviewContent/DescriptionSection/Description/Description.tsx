@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
+import type React from 'react'
+import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { Flex } from 'src/components/ui/atoms'
 import { Editor, EditorContent } from 'src/components/ui/organisms/Editor'
 import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual'
@@ -49,6 +50,7 @@ const DescriptionHandler: React.FC<Props> = memo<Props>((props) => {
     [project.description, setProject, projectId],
   )
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setResetView((s) => s + 1)
   }, [hasDescriptionUpdated])

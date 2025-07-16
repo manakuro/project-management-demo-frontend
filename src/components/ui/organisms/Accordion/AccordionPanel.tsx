@@ -1,8 +1,8 @@
 import {
   AccordionPanel as ChakraAccordionPanel,
-  AccordionPanelProps as ChakraAccordionPanelProps,
+  type AccordionPanelProps as ChakraAccordionPanelProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraAccordionPanelProps
 export type AccordionPanelProps = Props

@@ -1,5 +1,6 @@
-import React, { memo } from 'react'
-import { Icon, IconProps } from 'src/components/ui/atoms'
+import type React from 'react'
+import { memo } from 'react'
+import { Icon, type IconProps } from 'src/components/ui/atoms'
 import { useSubtasksNameContext } from './Provider'
 
 type Props = Omit<IconProps, 'icon'>

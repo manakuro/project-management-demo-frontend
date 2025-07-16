@@ -2,9 +2,9 @@ import { useCallback } from 'react'
 import { useRecoilCallback, useRecoilValue } from 'recoil'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import {
-  useProjectTaskColumnCommand,
+  type ProjectTaskColumn,
   useProjectTaskColumn,
-  ProjectTaskColumn,
+  useProjectTaskColumnCommand,
 } from 'src/store/entities/projectTaskColumn'
 import { projectsTaskColumnIdsState } from '../atom'
 

@@ -15,7 +15,7 @@
     "start:local": "pnpm build && pnpm start",
     "cz": "git-cz",
     "lint": "biome check src",
-    "lint:fix": "biome check --write src",
+    "lint:fix": "biome check --write --unsafe src",
     "test": "jest",
     "test:ci": "jest --maxWorkers=1",
     "tsc": "tsc",

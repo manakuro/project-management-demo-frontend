@@ -1,8 +1,8 @@
 import {
   getAuth as getAuthFirebase,
-  signInAnonymously as signInAnonymouslyFirebase,
   onAuthStateChanged as onAuthStateChangedFirebase,
   onIdTokenChanged as onIdTokenChangedFirebase,
+  signInAnonymously as signInAnonymouslyFirebase,
 } from 'firebase/auth'
 import { firebaseApp } from './app'
 

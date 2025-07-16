@@ -1,8 +1,8 @@
 import {
   InputRightElement as ChakraInputRightElement,
-  InputElementProps as ChakraInputRightElementProps,
+  type InputElementProps as ChakraInputRightElementProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraInputRightElementProps
 export type InputRightElementProps = Props

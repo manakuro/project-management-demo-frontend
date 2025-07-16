@@ -1,10 +1,8 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { Favorites } from './Favorites'
 import { SavedSearches } from './SavedSearches'
 
-type Props = {}
-
-export const CustomNav: React.FC<Props> = memo(() => {
+export const CustomNav = memo(function CustomNav() {
   return (
     <>
       <Favorites />
@@ -12,4 +10,3 @@ export const CustomNav: React.FC<Props> = memo(() => {
     </>
   )
 })
-CustomNav.displayName = 'CustomNav'

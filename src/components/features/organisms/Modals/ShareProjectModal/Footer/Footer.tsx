@@ -1,12 +1,10 @@
-import React, { memo } from 'react'
-import { SHARE_INDEX, MEMBERS_INDEX } from '../types'
+import { memo } from 'react'
+import { MEMBERS_INDEX, SHARE_INDEX } from '../types'
 import { useShareProjectModal } from '../useShareProjectModal'
 import { Members } from './Members'
 import { Share } from './Share'
 
-type Props = {}
-
-export const Footer: React.FC<Props> = memo<Props>(() => {
+export const Footer = memo(function Footer() {
   const { tabIndex } = useShareProjectModal()
 
   switch (tabIndex) {
@@ -18,4 +16,3 @@ export const Footer: React.FC<Props> = memo<Props>(() => {
     }
   }
 })
-Footer.displayName = 'Footer'

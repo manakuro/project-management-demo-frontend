@@ -1,13 +1,11 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { SortMenu as TasksHeaderSortMenu } from 'src/components/features/organisms/Tasks/TasksHeader'
 import { useProjectsPageContext } from 'src/pages/Projects/Provider'
 import {
+  type TaskListSortStatusCodeValue,
   useProjectsTaskListStatus,
-  TaskListSortStatusCodeValue,
 } from 'src/store/app/projects/taskListStatus'
 import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus'
-
-type Props = {}
 
 const ITEMS: {
   value: TaskListSortStatusCodeValue
@@ -42,8 +40,7 @@ const ITEMS: {
     text: 'Priority',
   },
 ]
-
-export const SortMenu: React.FC<Props> = memo<Props>(() => {
+export const SortMenu = memo(function SortMenu() {
   const { sortBy, isSorted, taskListStatus } = useProjectsTaskListStatus()
   const { startContentLoading, endContentLoading } = useProjectsPageContext()
 
@@ -65,7 +62,7 @@ export const SortMenu: React.FC<Props> = memo<Props>(() => {
     return `: ${
       items.find(
         (i) => i.value === taskListStatus.taskListSortStatus.statusCode,
-      )!.text
+      )?.text
     }`
   }, [isSorted, items, taskListStatus.taskListSortStatus])
 
@@ -81,4 +78,3 @@ export const SortMenu: React.FC<Props> = memo<Props>(() => {
     />
   )
 })
-SortMenu.displayName = 'SortMenu'

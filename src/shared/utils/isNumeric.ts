@@ -5,5 +5,5 @@ export const isNumeric = (value: string | number) => {
     console.warn('【isNumeric】: Provide string or number', value)
   }
 
-  return isValid && !isNaN(Number(value))
+  return isValid && !Number.isNaN(Number(value))
 }

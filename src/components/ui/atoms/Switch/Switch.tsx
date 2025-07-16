@@ -1,8 +1,8 @@
 import {
   Switch as ChakraSwitch,
-  SwitchProps as ChakraSwitchProps,
+  type SwitchProps as ChakraSwitchProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraSwitchProps

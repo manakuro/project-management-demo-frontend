@@ -1,8 +1,8 @@
 import {
   DrawerHeader as ChakraDrawerHeader,
-  ModalHeaderProps as ChakraModalHeaderProps,
+  type ModalHeaderProps as ChakraModalHeaderProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraModalHeaderProps
 export type DrawerHeaderProps = Props

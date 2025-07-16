@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { deletedTaskState } from '../atom'
-import { DeletedTask } from '../type'
+import type { DeletedTask } from '../type'
 import { useUpsert } from './useUpsert'
 
 export const useDeletedTaskCommand = () => {

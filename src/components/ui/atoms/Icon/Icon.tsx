@@ -1,10 +1,10 @@
 import {
   Icon as ChakraIcon,
-  IconProps as ChakraIconProps,
+  type IconProps as ChakraIconProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 import { forwardRef } from 'src/shared/chakra'
-import { IconType, icons } from 'src/shared/icons'
+import { type IconType, icons } from 'src/shared/icons'
 
 type Props = ChakraIconProps & {
   icon: IconType

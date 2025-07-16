@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useMountedRef } from 'src/hooks/useMountedRef'
 
-export const useDebounce = <T extends any>(
+export const useDebounce = <T>(
   value: T,
   callback: (value: T) => void,
   delay: number,
@@ -21,5 +21,5 @@ export const useDebounce = <T extends any>(
 
       callback(value)
     }, delay)
-  }, [callback, delay, mountedRef, options?.skip, timer, value])
+  }, [callback, delay, mountedRef, options?.skip, value])
 }

@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { useTasksTaskSectionIds } from 'src/components/features/organisms/Tasks/hooks'
 import { Flex } from 'src/components/ui/atoms'
 import { TasksBoardListSection } from '../TasksBoardListSection'

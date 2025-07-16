@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import type React from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTaskDetailBody } from 'src/components/features/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody'
 import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks'
 import { isHTMLElement } from 'src/shared/isHTMLElement'

@@ -1,8 +1,8 @@
 import {
   FormControl as ChakraFormControl,
-  FormControlProps as ChakraFormControlProps,
+  type FormControlProps as ChakraFormControlProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraFormControlProps

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Flex, Grid } from 'src/components/ui/atoms'
 import { useProjectsProjectId } from 'src/store/app/projects/project'
 import { useProjectTeammateIdsByProjectIdSortedByOwner } from 'src/store/entities/projectTeammate'
@@ -6,9 +5,7 @@ import { OverviewContentHeading } from '../OverviewContentHeading'
 import { ProjectRoleAddMember } from './ProjectRoleAddMember'
 import { ProjectRoleListItem } from './ProjectRoleListItem'
 
-type Props = {}
-
-export const ProjectRolesSection: React.FC<Props> = () => {
+export function ProjectRolesSection() {
   const { projectId } = useProjectsProjectId()
   const { projectTeammateIds } =
     useProjectTeammateIdsByProjectIdSortedByOwner(projectId)
@@ -33,4 +30,3 @@ export const ProjectRolesSection: React.FC<Props> = () => {
     </Flex>
   )
 }
-ProjectRolesSection.displayName = 'ProjectRolesSection'

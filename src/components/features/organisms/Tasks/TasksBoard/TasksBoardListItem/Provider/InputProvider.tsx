@@ -1,11 +1,12 @@
-import React, {
-  Dispatch,
-  SetStateAction,
+import type React from 'react'
+import {
+  type Dispatch,
+  type SetStateAction,
   useCallback,
   useRef,
   useState,
 } from 'react'
-import { FlexProps } from 'src/components/ui/atoms'
+import type { FlexProps } from 'src/components/ui/atoms'
 import { isHTMLElement } from 'src/shared/isHTMLElement'
 import { createProvider } from 'src/shared/react/createProvider'
 
@@ -41,7 +42,7 @@ const useValue = (): ContextProps => {
     if (!isHTMLElement(ref.current)) return
     ref.current.focus()
     ref.current.select()
-  }, [ref])
+  }, [])
 
   return {
     ref,

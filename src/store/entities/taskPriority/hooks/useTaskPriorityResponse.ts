@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { taskPriorityState } from '../atom'
-import { TaskPriorityResponse } from '../type'
+import type { TaskPriorityResponse } from '../type'
 
 export const useTaskPriorityResponse = () => {
   const setTaskPriorities = useRecoilCallback(

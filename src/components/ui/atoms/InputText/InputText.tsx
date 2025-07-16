@@ -1,12 +1,13 @@
-import React, { memo, useMemo } from 'react'
+import type React from 'react'
+import { memo, useMemo } from 'react'
 import {
   Box,
   Flex,
-  FlexProps,
+  type FlexProps,
   Textarea,
-  TextareaProps,
+  type TextareaProps,
 } from 'src/components/ui/atoms'
-import { ChakraProps } from 'src/shared/chakra'
+import type { ChakraProps } from 'src/shared/chakra'
 
 type Props = {
   value: string

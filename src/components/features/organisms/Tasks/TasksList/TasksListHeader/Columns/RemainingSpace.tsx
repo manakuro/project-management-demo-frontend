@@ -1,10 +1,8 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell'
 import { useTasksListHeaderContext } from '../Provider'
 
-type Props = {}
-
-export const RemainingSpace: React.FC<Props> = memo<Props>(() => {
+export const RemainingSpace = memo(function RemainingSpace() {
   const { sortedStyle } = useTasksListHeaderContext()
 
   return (
@@ -15,4 +13,3 @@ export const RemainingSpace: React.FC<Props> = memo<Props>(() => {
     />
   )
 })
-RemainingSpace.displayName = 'RemainingSpace'

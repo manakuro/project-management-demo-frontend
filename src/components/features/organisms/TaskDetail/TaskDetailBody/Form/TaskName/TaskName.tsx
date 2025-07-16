@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { Flex } from 'src/components/ui/atoms'
 import { useTask } from 'src/store/entities/task'
 import { Input } from './Input'

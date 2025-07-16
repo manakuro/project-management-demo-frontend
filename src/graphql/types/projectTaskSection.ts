@@ -1,4 +1,4 @@
-import { ProjectTaskSectionFragmentFragment } from 'src/graphql/types'
+import type { ProjectTaskSectionFragmentFragment } from 'src/graphql/types'
 
 export type ProjectTaskSectionResponse =
   NonNullable<ProjectTaskSectionFragmentFragment>

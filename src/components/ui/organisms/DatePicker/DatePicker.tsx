@@ -1,8 +1,8 @@
 import { TextField } from '@material-ui/core'
 import StaticDatePicker, {
-  StaticDatePickerProps,
+  type StaticDatePickerProps,
 } from '@material-ui/lab/StaticDatePicker'
-import React from 'react'
+import type React from 'react'
 import { ConditionalRender } from 'src/components/ui/atoms'
 
 type Props = Omit<StaticDatePickerProps, 'renderInput' | 'openTo'>

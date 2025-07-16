@@ -1,7 +1,7 @@
 import { selector } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
 import { createState } from 'src/store/util'
-import { ArchiveActivity } from './type'
+import type { ArchiveActivity } from './type'
 
 const key = (str: string) => `src/store/app/inbox/archive/archives/${str}`
 

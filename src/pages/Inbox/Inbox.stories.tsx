@@ -1,5 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react'
-import React from 'react'
+import type { ComponentMeta, ComponentStory } from '@storybook/react'
 import { LayoutDefault } from 'src/components/ui/organisms/Layout'
 import { Container as Page } from './Container'
 

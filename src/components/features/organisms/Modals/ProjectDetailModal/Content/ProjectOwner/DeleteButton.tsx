@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { Icon } from 'src/components/ui/atoms'
 import { useClickableHoverStyle } from 'src/hooks'
 import { useProjectTeammatesCommand } from 'src/store/entities/projectTeammate'

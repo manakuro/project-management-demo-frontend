@@ -1,26 +1,27 @@
-import React, { memo, useState } from 'react'
+import type React from 'react'
+import { memo, useState } from 'react'
 import {
+  PROJECT_LIST_MENU_VIEW_AS_TILES,
   ProjectListItem,
   ProjectListItemNew,
+  ProjectListMenu,
+  type ProjectListStatus,
   ProjectTileItem,
   ProjectTileItemNew,
-  ProjectListMenu,
-  ProjectListStatus,
-  PROJECT_LIST_MENU_VIEW_AS_TILES,
 } from 'src/components/features/organisms/Projects'
 import {
   Box,
   Flex,
+  type FlexProps,
   Grid,
   Heading,
   Icon,
-  FlexProps,
 } from 'src/components/ui/atoms'
 import {
   Accordion,
+  AccordionButton,
   AccordionItem,
   AccordionPanel,
-  AccordionButton,
 } from 'src/components/ui/organisms/Accordion'
 
 type Props = {
@@ -66,33 +67,31 @@ export const ProjectsContainer: React.FC<Props> = memo<Props>((props) => {
               </Flex>
             </Flex>
             <AccordionPanel p={0}>
-              <>
-                {listStatus === PROJECT_LIST_MENU_VIEW_AS_TILES ? (
-                  <Box py={4}>
-                    <Grid templateColumns="repeat(4, 1fr)" gap={6}>
-                      {props.projectIds.map((id) => (
-                        <ProjectTileItem
-                          projectId={id}
-                          key={id}
-                          containerStyle={props.projectTileItemProps}
-                        />
-                      ))}
-                      {props.showNewOrder && <ProjectTileItemNew />}
-                    </Grid>
-                  </Box>
-                ) : (
-                  <>
+              {listStatus === PROJECT_LIST_MENU_VIEW_AS_TILES ? (
+                <Box py={4}>
+                  <Grid templateColumns="repeat(4, 1fr)" gap={6}>
                     {props.projectIds.map((id) => (
-                      <ProjectListItem
+                      <ProjectTileItem
                         projectId={id}
                         key={id}
-                        containerStyle={props.projectListItemProps}
+                        containerStyle={props.projectTileItemProps}
                       />
                     ))}
-                    {props.showNewOrder && <ProjectListItemNew />}
-                  </>
-                )}
-              </>
+                    {props.showNewOrder && <ProjectTileItemNew />}
+                  </Grid>
+                </Box>
+              ) : (
+                <>
+                  {props.projectIds.map((id) => (
+                    <ProjectListItem
+                      projectId={id}
+                      key={id}
+                      containerStyle={props.projectListItemProps}
+                    />
+                  ))}
+                  {props.showNewOrder && <ProjectListItemNew />}
+                </>
+              )}
             </AccordionPanel>
           </>
         )}

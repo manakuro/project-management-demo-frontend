@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react'
+import type React from 'react'
+import { memo, useCallback } from 'react'
 import { Input } from 'src/components/features/organisms/TaskDetail/TaskDetailBody/Form/Projects/Input'
 import { useTaskDetailProjectsInput } from 'src/components/features/organisms/TaskDetail/hooks'
 import { Flex } from 'src/components/ui/atoms'
@@ -9,7 +10,7 @@ import {
   useProjectTaskIdsByTaskId,
 } from 'src/store/entities/projectTask'
 import { useTask } from 'src/store/entities/task'
-import { Row, Label, Content } from '../Row'
+import { Content, Label, Row } from '../Row'
 import { Selected } from './Selected'
 import { UnSelected } from './UnSelected'
 

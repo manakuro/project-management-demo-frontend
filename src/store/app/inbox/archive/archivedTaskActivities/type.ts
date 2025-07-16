@@ -1,4 +1,4 @@
-import { ArchivedTaskActivityResponse } from 'src/graphql/types/archivedTaskActivity'
+import type { ArchivedTaskActivityResponse } from 'src/graphql/types/archivedTaskActivity'
 
 export type { ArchivedTaskActivityResponse } from 'src/graphql/types/archivedTaskActivity'
 

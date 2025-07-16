@@ -1,6 +1,6 @@
-import React from 'react'
+import type React from 'react'
 import { NavListItem } from 'src/components/features/organisms/Navigation/NavListItem'
-import { NavListItem as TNavListItem } from 'src/components/features/organisms/Navigation/type'
+import type { NavListItem as TNavListItem } from 'src/components/features/organisms/Navigation/type'
 import { List } from 'src/components/ui/atoms'
 
 const items: TNavListItem[] = [
@@ -39,8 +39,8 @@ const items: TNavListItem[] = [
 export const Footer: React.FC = () => {
   return (
     <List w="full" mb={3}>
-      {items.map((n, i) => (
-        <NavListItem key={i} item={n} />
+      {items.map((n) => (
+        <NavListItem key={n.name} item={n} />
       ))}
     </List>
   )

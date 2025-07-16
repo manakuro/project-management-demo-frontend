@@ -1,8 +1,8 @@
 import {
   TabList as ChakraTabList,
-  TabListProps as ChakraTabListProps,
+  type TabListProps as ChakraTabListProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 import { forwardRef } from 'src/shared/chakra'
 
 type Props = ChakraTabListProps

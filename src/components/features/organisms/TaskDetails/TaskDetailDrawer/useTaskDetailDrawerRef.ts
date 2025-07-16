@@ -15,6 +15,7 @@ export const useTaskDetailDrawerRef = (deps?: any) => {
   const ref = useRef<HTMLElement | null>(null)
   const [state, setState] = useRecoilState(refState)
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (ref.current) {
       setState(ref.current)

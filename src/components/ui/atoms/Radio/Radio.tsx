@@ -1,8 +1,8 @@
 import {
   Radio as ChakraRadio,
-  RadioProps as ChakraRadioProps,
+  type RadioProps as ChakraRadioProps,
 } from '@chakra-ui/react'
-import React from 'react'
+import type React from 'react'
 
 type Props = ChakraRadioProps
 export type RadioProps = Props

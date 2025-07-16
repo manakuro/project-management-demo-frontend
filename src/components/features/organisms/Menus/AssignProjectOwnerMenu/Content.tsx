@@ -1,10 +1,11 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import {
   ProjectTeammateMenuItem,
   useProjectTeammateMenu,
 } from 'src/components/features/organisms/Menus/ProjectTeammateMenu'
 import { SearchMenuLoading } from 'src/components/features/organisms/Menus/SearchMenu'
-import { Teammate } from 'src/store/entities/teammate'
+import type { Teammate } from 'src/store/entities/teammate'
 
 type Props = {
   onSelect: (val: Teammate) => void

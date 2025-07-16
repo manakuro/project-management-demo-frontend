@@ -1,11 +1,11 @@
-import { Command } from 'prosemirror-commands'
-import {
+import type { Command } from 'prosemirror-commands'
+import type {
   MarkType,
-  Node as ProsemirrorNode,
   NodeType,
+  Node as ProsemirrorNode,
   ResolvedPos,
 } from 'prosemirror-model'
-import { EditorState, NodeSelection, Selection } from 'prosemirror-state'
+import type { EditorState, NodeSelection, Selection } from 'prosemirror-state'
 import { findWrapping, liftTarget } from 'prosemirror-transform'
 
 export const insertNodeOfType =
@@ -112,7 +112,7 @@ export const parentInGroupPos = (
 
     const { group } = parent.type.spec
 
-    if (group && group.split(/\s+/).includes(nodeTypeGroup)) {
+    if (group?.split(/\s+/).includes(nodeTypeGroup)) {
       return $pos.before(depth)
     }
   }
@@ -198,20 +198,19 @@ export const toggleWrap =
       }
 
       return true
-    } else {
-      // wrap
-      const wrapping = findWrapping(range, nodeType, attrs)
-
-      if (!wrapping) {
-        return false
-      }
-
-      if (dispatch) {
-        dispatch(state.tr.wrap(range, wrapping).scrollIntoView())
-      }
-
-      return true
     }
+    // wrap
+    const wrapping = findWrapping(range, nodeType, attrs)
+
+    if (!wrapping) {
+      return false
+    }
+
+    if (dispatch) {
+      dispatch(state.tr.wrap(range, wrapping).scrollIntoView())
+    }
+
+    return true
   }
 
 export const setListTypeOrWrapInList =
@@ -249,26 +248,25 @@ export const setListTypeOrWrapInList =
       }
 
       return true
-    } else {
-      const wrapping = findWrapping(range, listType, attrs)
-
-      if (!wrapping) {
-        return false
-      }
-
-      if (dispatch) {
-        dispatch(state.tr.wrap(range, wrapping).scrollIntoView())
-      }
-
-      return true
     }
+    const wrapping = findWrapping(range, listType, attrs)
+
+    if (!wrapping) {
+      return false
+    }
+
+    if (dispatch) {
+      dispatch(state.tr.wrap(range, wrapping).scrollIntoView())
+    }
+
+    return true
   }
 
 export const promptForURL = (): string | null => {
-  let url = window && window.prompt('Enter the URL', 'https://')
+  let url = window?.prompt('Enter the URL', 'https://')
 
   if (url && !/^https?:\/\//i.test(url)) {
-    url = 'https://' + url
+    url = `https://${url}`
   }
 
   return url

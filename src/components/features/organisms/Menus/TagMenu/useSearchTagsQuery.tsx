@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
 import { useTagsLazyQuery } from 'src/graphql/hooks'
-import { TagResponse, TagsQuery } from 'src/graphql/types/tag'
+import type { TagResponse, TagsQuery } from 'src/graphql/types/tag'
 import { getNodesFromEdges } from 'src/shared/apollo/util'
 import { useWorkspace } from 'src/store/entities/workspace'
 

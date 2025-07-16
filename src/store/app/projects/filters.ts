@@ -1,7 +1,7 @@
-import { GetRecoilValue } from 'recoil'
+import type { GetRecoilValue } from 'recoil'
 import { dateFns } from 'src/shared/dateFns'
-import { ProjectTaskSection } from 'src/store/entities/projectTaskSection'
-import { Task } from 'src/store/entities/task'
+import type { ProjectTaskSection } from 'src/store/entities/projectTaskSection'
+import type { Task } from 'src/store/entities/task'
 import { taskLikesByTaskIdState } from 'src/store/entities/taskLike'
 import {
   TaskPriorityType,

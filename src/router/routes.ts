@@ -1,16 +1,16 @@
 import { ROUTE_HOME } from './home'
 import { ROUTE_INBOX } from './inbox'
 import {
-  ROUTE_MY_TASKS_FILES,
-  ROUTE_MY_TASKS_CALENDAR,
   ROUTE_MY_TASKS_BOARD,
+  ROUTE_MY_TASKS_CALENDAR,
+  ROUTE_MY_TASKS_FILES,
   ROUTE_MY_TASKS_LIST,
 } from './myTasks'
 import {
-  ROUTE_PROJECTS_LIST,
   ROUTE_PROJECTS_BOARD,
   ROUTE_PROJECTS_CALENDAR,
   ROUTE_PROJECTS_FILES,
+  ROUTE_PROJECTS_LIST,
 } from './projects'
 import { ROUTE_WORKSPACES_OVERVIEW } from './workspace'
 
@@ -71,9 +71,9 @@ const staticRoutes = [
 export const routes = [...staticRoutes, ...dynamicRoutes] as const
 
 export type StaticRoutes = ReturnType<
-  typeof staticRoutes[number]['href']['pathname']
+  (typeof staticRoutes)[number]['href']['pathname']
 >
 
 export type DynamicRoutes = ReturnType<
-  typeof dynamicRoutes[number]['href']['pathnameObj']
+  (typeof dynamicRoutes)[number]['href']['pathnameObj']
 >

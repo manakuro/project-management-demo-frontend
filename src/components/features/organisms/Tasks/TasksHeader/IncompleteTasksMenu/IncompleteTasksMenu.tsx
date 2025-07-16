@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import type React from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import {
   MenuSelect,
   MenuSelectButton,
@@ -10,7 +11,7 @@ import { MenuItemOption } from 'src/components/ui/organisms/Menu'
 import { useDisclosure } from 'src/shared/chakra'
 import {
   TaskListCompletedStatusCode,
-  TaskListCompletedStatusCodeValue,
+  type TaskListCompletedStatusCodeValue,
   useTaskListCompletedStatus,
 } from 'src/store/entities/taskListCompletedStatus'
 import { PopoverCompletedTasks } from './PopoverCompletedTasks'

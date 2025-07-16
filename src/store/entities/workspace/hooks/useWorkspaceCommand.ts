@@ -1,7 +1,7 @@
 import { useRecoilCallback } from 'recoil'
 import { useUpdateWorkspaceMutation } from 'src/graphql/hooks'
 import { workspaceState } from '../atom'
-import { Workspace } from '../type'
+import type { Workspace } from '../type'
 import { useUpsert } from './useUpsert'
 import { WORKSPACE_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useWorkspaceUpdatedSubscription'
 

@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useState } from 'react'
+import type React from 'react'
+import { memo, useCallback, useState } from 'react'
 import { Flex } from 'src/components/ui/atoms'
 import { ModalBody } from 'src/components/ui/organisms/Modal'
 import {
@@ -8,7 +9,7 @@ import {
   TabPanels,
   Tabs,
 } from 'src/components/ui/organisms/Tabs'
-import { Index, MEMBERS_INDEX, SHARE_INDEX } from '../types'
+import { type Index, MEMBERS_INDEX, SHARE_INDEX } from '../types'
 import { useShareProjectModal } from '../useShareProjectModal'
 import { Members } from './Members'
 import { Share } from './Share'
@@ -27,7 +28,7 @@ export const Body: React.FC<Props> = memo<Props>((props) => {
     setTimeout(() => {
       setLoadingTabContent(false)
     }, 200)
-  }, [setLoadingTabContent])
+  }, [])
 
   const handleTabsChange = useCallback(
     async (index: number) => {

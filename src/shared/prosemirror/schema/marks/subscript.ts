@@ -1,4 +1,4 @@
-import { MarkSpec } from 'prosemirror-model'
+import type { MarkSpec } from 'prosemirror-model'
 
 export const subscript: MarkSpec = {
   parseDOM: [{ tag: 'sub' }, { style: 'vertical-align=sub' }],

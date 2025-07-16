@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import type React from 'react'
+import { memo } from 'react'
 import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider'
 import { Flex, Icon, IconButton } from 'src/components/ui/atoms'
 import { TaskSectionName } from './TaskSectionName'

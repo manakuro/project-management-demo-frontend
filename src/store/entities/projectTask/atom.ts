@@ -1,7 +1,7 @@
 import { selectorFamily } from 'recoil'
-import { Task, tasksState, taskState } from 'src/store/entities/task'
+import { type Task, taskState, tasksState } from 'src/store/entities/task'
 import { createState } from 'src/store/util'
-import { ProjectTask } from './type'
+import type { ProjectTask } from './type'
 
 const key = (str: string) => `src/store/entities/projectTask/${str}`
 

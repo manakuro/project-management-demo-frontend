@@ -1,6 +1,6 @@
 import { useRecoilCallback } from 'recoil'
 import { workspaceActivityState } from '../atom'
-import { WorkspaceActivityResponse } from '../type'
+import type { WorkspaceActivityResponse } from '../type'
 
 export const useWorkspaceActivitiesResponse = () => {
   const setWorkspaceActivities = useRecoilCallback(

@@ -1,6 +1,6 @@
 import { selectorFamily } from 'recoil'
 import { createState } from 'src/store/util'
-import { ArchivedWorkspaceActivityTask } from './type'
+import type { ArchivedWorkspaceActivityTask } from './type'
 
 const key = (str: string) =>
   `src/store/app/inbox/activity/archivedWorkspaceActivityTasks/${str}`

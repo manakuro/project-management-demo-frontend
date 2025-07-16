@@ -1,21 +1,19 @@
-import React, { memo, useMemo } from 'react'
+import { memo, useMemo } from 'react'
 import {
-  useNavigation,
   PADDING_X,
+  useNavigation,
 } from 'src/components/features/organisms/Navigation'
-import { Flex, Link, NextLink, Text, Icon } from 'src/components/ui/atoms'
+import { Flex, Icon, Link, NextLink, Text } from 'src/components/ui/atoms'
 import { useLinkHoverStyle } from 'src/hooks'
 import {
+  ROUTE_WORKSPACES,
   ROUTE_WORKSPACES_OVERVIEW,
   useRouter,
-  ROUTE_WORKSPACES,
 } from 'src/router'
 import { useWorkspace } from 'src/store/entities/workspace'
 import { WorkspaceMenu } from './WorkspaceMenu'
 
-type Props = {}
-
-export const ListItem: React.FC<Props> = memo(() => {
+export const ListItem = memo(function ListItem() {
   const { isExpanded } = useNavigation()
   const { workspace } = useWorkspace()
   const { _hover, selectedStyle } = useLinkHoverStyle()
@@ -59,4 +57,3 @@ export const ListItem: React.FC<Props> = memo(() => {
     </NextLink>
   )
 })
-ListItem.displayName = 'ListItem'

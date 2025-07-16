@@ -1,13 +1,14 @@
-import React, { memo, useMemo } from 'react'
+import type React from 'react'
+import { memo, useMemo } from 'react'
 import { useTasksCalendarContext } from 'src/components/features/organisms/Tasks'
 import {
-  IconButton,
-  Icon,
   Flex,
-  FlexProps,
-  Text,
-  PortalManager,
+  type FlexProps,
+  Icon,
+  IconButton,
   Link,
+  PortalManager,
+  Text,
 } from 'src/components/ui/atoms'
 import { Popover, PopoverTrigger } from 'src/components/ui/organisms/Popover'
 import { useDisclosure } from 'src/shared/chakra'

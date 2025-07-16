@@ -1,0 +1,10 @@
+{
+  "name": "biome-config",
+  "license": "MIT",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {},
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4"
+  }
+}

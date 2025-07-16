@@ -1,6 +1,6 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.2/schema.json",
-  "vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
+  "extends": ["./node_modules/biome-config/biome.json"],
   "files": {
     "ignoreUnknown": false,
     "ignore": [
@@ -14,11 +14,6 @@
       "src/graphql/__schema__.graphql"
     ]
   },
-  "formatter": {
-    "enabled": true,
-    "indentStyle": "space"
-  },
-  "organizeImports": { "enabled": true },
   "linter": {
     "enabled": true,
     "rules": {
@@ -33,16 +28,6 @@
         "noExplicitAny": "off"
       }
     }
-  },
-  "javascript": {
-    "formatter": {
-      "trailingCommas": "all",
-      "quoteStyle": "single"
-    },
-    "parser": {
-      "unsafeParameterDecoratorsEnabled": true
-    },
-    "globals": ["React", "JSX"]
   },
   "overrides": [
     {

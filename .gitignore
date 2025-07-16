@@ -1,64 +1,27 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-
-# debug
+# Node.js
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.env.json
+# Logs
+logs
+*.log
+*.log.*
 
-# Editor
-.idea
+# Environment variables
+.env
 
-# yarn (using Zero-Installs)
-.yarn/*
-!.yarn/patches
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-.pnp.*
-
-# typescript
+# TypeScript
+dist/
 *.tsbuildinfo
 
-# codegen
-src/graphql/types/index.ts
-src/graphql/hooks/index.ts
-src/graphql/types/index.mock.ts
-src/graphql/enums/index.ts
-scripts/codegen/token.json
-__schema__.graphql
+# MacOS
+.DS_Store
 
-# scripts
-scripts/graphql/*.js
-scripts/util/*.js
+# IDEs and editors
+.idea/
+*.sublime-workspace
 
-## storybook
-src/stories
-build-storybook.log
-.vercel
-.env*.local
+# Turborepo
+.turbo

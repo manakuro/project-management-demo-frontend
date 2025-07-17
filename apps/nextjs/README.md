@@ -1,4 +1,4 @@
-# Next.js
+# Asana clone app for front-end
 An Asana clone application made with Next.js.
 
 - [View project](https://project-management-demo.manatoworks.me/)

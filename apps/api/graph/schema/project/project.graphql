@@ -1,0 +1,69 @@
+type Project implements Node {
+  id: ID!
+  workspaceId: ID!
+  projectBaseColorId: ID!
+  projectBaseColor: ProjectBaseColor!
+  projectLightColorId: ID!
+  projectLightColor: ProjectLightColor!
+  projectIconId: ID!
+  projectIcon: ProjectIcon!
+  createdBy: ID!
+  name: String!
+  projectTeammates: [ProjectTeammate!]!
+  teammateIds: [String!]!
+  description: Map!
+  descriptionTitle: String!
+  dueDate: String!
+  createdAt: String!
+  updatedAt: String!
+}
+type ProjectConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ProjectEdge]
+}
+type ProjectEdge {
+  node: Project
+  cursor: Cursor!
+}
+
+input CreateProjectInput {
+  workspaceId: ID!
+  projectBaseColorId: ID
+  projectLightColorId: ID
+  projectIconId: ID
+  createdBy: ID!
+  name: String!
+  description: Map
+  descriptionTitle: String
+  dueDate: Time
+  requestId: String!
+}
+input UpdateProjectInput {
+  id: ID!
+  projectBaseColorId: ID
+  projectLightColorId: ID
+  projectIconId: ID
+  createdBy: ID
+  name: String
+  description: Map
+  descriptionTitle: String
+  dueDate: Time
+  requestId: String!
+  workspaceId: ID!
+  clearDueDate: Boolean
+}
+
+extend type Query {
+  project(where: ProjectWhereInput): Project
+  projects(after: Cursor, first: Int, before: Cursor, last: Int, where: ProjectWhereInput): ProjectConnection
+}
+
+extend type Subscription {
+  projectUpdated(workspaceId: ID!, requestId: String!): Project!
+}
+
+extend type Mutation {
+  createProject(input: CreateProjectInput!): Project!
+  updateProject(input: UpdateProjectInput!): Project!
+}

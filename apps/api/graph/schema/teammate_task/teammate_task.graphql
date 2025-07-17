@@ -1,0 +1,64 @@
+type TeammateTask implements Node {
+  id: ID!
+  teammateId: ID!
+  teammate: Teammate!
+  taskId: ID!
+  task: Task!
+  teammateTaskSectionId: ID!
+  teammateTaskSection: TeammateTaskSection!
+  workspaceId: ID!
+  createdAt: String!
+  updatedAt: String!
+}
+type TeammateTaskConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TeammateTaskEdge]
+}
+type TeammateTaskEdge {
+  node: TeammateTask
+  cursor: Cursor!
+}
+
+input CreateTeammateTaskInput {
+  teammateId: ID!
+  teammateTaskSectionId: ID!
+  workspaceId: ID!
+  taskParentId: ID
+  requestId: String!
+}
+
+input DeleteTeammateTaskInput {
+  id: ID!
+  taskId: ID!
+  teammateId: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+
+input UpdateTeammateTaskInput {
+  id: ID!
+  taskId: ID
+  teammateId: ID
+  teammateTaskSectionId: ID
+  requestId: String!
+  workspaceId: ID!
+}
+
+extend type Subscription {
+  teammateTaskUpdated(teammateId: ID!, workspaceId: ID!, requestId: String!): TeammateTask!
+  teammateTaskCreated(teammateId: ID!, workspaceId: ID!, requestId: String!): TeammateTask!
+  teammateTaskDeleted(teammateId: ID!, workspaceId: ID!, requestId: String!): TeammateTask!
+}
+
+extend type Query {
+  teammateTask(where: TeammateTaskWhereInput): TeammateTask
+  teammateTasks(after: Cursor, first: Int, before: Cursor, last: Int, where: TeammateTaskWhereInput): TeammateTaskConnection
+  tasksDueSoon(workspaceId: ID!, teammateId: ID!): [TeammateTask!]!
+}
+
+extend type Mutation {
+  createTeammateTask(input: CreateTeammateTaskInput!): TeammateTask!
+  updateTeammateTask(input: UpdateTeammateTaskInput!): TeammateTask!
+  deleteTeammateTask(input: DeleteTeammateTaskInput!): TeammateTask!
+}

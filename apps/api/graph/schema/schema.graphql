@@ -1,0 +1,24 @@
+scalar Time
+scalar Cursor
+scalar Map
+scalar Any
+
+interface Node {
+    id: ID!
+}
+
+type PageInfo {
+    hasNextPage: Boolean!
+    hasPreviousPage: Boolean!
+    startCursor: Cursor
+    endCursor: Cursor
+}
+
+type Query {
+    node(id: ID!): Node
+    nodes(ids: [ID!]!): [Node]!
+}
+
+type Mutation
+
+type Subscription

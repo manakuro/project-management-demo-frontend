@@ -1,0 +1,46 @@
+enum TaskPriorityType {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+type TaskPriority implements Node {
+  id: ID!
+  name: String!
+  priorityType: TaskPriorityType!
+  colorId: ID!
+  color: Color!
+  createdAt: String!
+  updatedAt: String!
+}
+type TaskPriorityConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TaskPriorityEdge]
+}
+type TaskPriorityEdge {
+  node: TaskPriority
+  cursor: Cursor!
+}
+
+input CreateTaskPriorityInput {
+  name: String!
+  priorityType: TaskPriorityType!
+  colorId: ID!
+}
+
+input UpdateTaskPriorityInput {
+  id: ID!
+  priorityType: TaskPriorityType
+  colorId: ID
+}
+
+extend type Query {
+  taskPriority(where: TaskPriorityWhereInput): TaskPriority
+  taskPriorities(after: Cursor, first: Int, before: Cursor, last: Int, where: TaskPriorityWhereInput): TaskPriorityConnection
+}
+
+extend type Mutation {
+  createTaskPriority(input: CreateTaskPriorityInput!): TaskPriority!
+  updateTaskPriority(input: UpdateTaskPriorityInput!): TaskPriority!
+}

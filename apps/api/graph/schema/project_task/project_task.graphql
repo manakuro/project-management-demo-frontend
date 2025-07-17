@@ -1,0 +1,68 @@
+type ProjectTask implements Node {
+  id: ID!
+  projectId: ID!
+  project: Project!
+  taskId: ID!
+  task: Task!
+  projectTaskSectionId: ID!
+  projectTaskSection: ProjectTaskSection!
+  createdAt: String!
+  updatedAt: String!
+}
+type ProjectTaskConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ProjectTaskEdge]
+}
+type ProjectTaskEdge {
+  node: ProjectTask
+  cursor: Cursor!
+}
+
+input CreateProjectTaskInput {
+  projectId: ID!
+  projectTaskSectionId: ID!
+  createdBy: ID!
+  workspaceId: ID!
+  taskParentId: ID
+  requestId: String!
+}
+input CreateProjectTaskByTaskIDInput {
+  projectId: ID!
+  taskId: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+
+input UpdateProjectTaskInput {
+  id: ID!
+  workspaceId: ID!
+  taskId: ID
+  projectId: ID
+  projectTaskSectionId: ID
+  requestId: String!
+}
+input DeleteProjectTaskInput {
+  id: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+
+extend type Subscription {
+  projectTaskUpdated(workspaceId: ID!, requestId: String!): ProjectTask!
+  projectTaskCreated(workspaceId: ID!, requestId: String!): ProjectTask!
+  projectTaskCreatedByTaskId(workspaceId: ID!, requestId: String!): ProjectTask!
+  projectTaskDeleted(workspaceId: ID!, requestId: String!): ProjectTask!
+}
+
+extend type Query {
+  projectTask(where: ProjectTaskWhereInput): ProjectTask
+  projectTasks(after: Cursor, first: Int, before: Cursor, last: Int, where: ProjectTaskWhereInput): ProjectTaskConnection
+}
+
+extend type Mutation {
+  createProjectTask(input: CreateProjectTaskInput!): ProjectTask!
+  createProjectTaskByTaskId(input: CreateProjectTaskByTaskIDInput!): ProjectTask!
+  updateProjectTask(input: UpdateProjectTaskInput!): ProjectTask!
+  deleteProjectTask(input: DeleteProjectTaskInput!): ProjectTask!
+}

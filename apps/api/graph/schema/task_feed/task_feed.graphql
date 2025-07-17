@@ -1,0 +1,111 @@
+type TaskFeed implements Node {
+  id: ID!
+  teammateId: ID!
+  taskId: ID!
+  description: Map!
+  isFirst: Boolean!
+  isPinned: Boolean!
+  createdAt: String!
+  updatedAt: String!
+}
+type TaskFeedConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TaskFeedEdge]
+}
+type TaskFeedEdge {
+  node: TaskFeed
+  cursor: Cursor!
+}
+
+input CreateTaskFeedInput {
+  taskId: ID!
+  teammateId: ID!
+  description: Map!
+  requestId: String!
+  workspaceId: ID!
+}
+
+input UpdateTaskFeedInput {
+  id: ID!
+  taskId: ID
+  teammateId: ID
+  description: Map
+  isFirst: Boolean
+  isPinned: Boolean
+  requestId: String!
+  workspaceId: ID!
+}
+
+input DeleteTaskFeedInput {
+  id: ID!
+  requestId: String!
+  workspaceId: ID!
+}
+type DeleteTaskFeedInputPayload {
+  taskFeed: TaskFeed!
+  taskFeedLikes: [TaskFeedLike!]!
+  taskFiles: [TaskFile!]!
+}
+
+input UndeleteTaskFeedInput {
+  taskFeed: UndeleteTaskFeedTaskFeedInput!
+  taskFeedLikes: [UndeleteTaskFeedTaskFeedLikeInput!]!
+  taskFiles: [UndeleteTaskFeedTaskFileInput!]!
+  requestId: String!
+  workspaceId: ID!
+}
+input UndeleteTaskFeedTaskFeedInput {
+  id: ID!
+  taskId: ID!
+  teammateId: ID!
+  description: Map!
+  isFirst: Boolean!
+  isPinned: Boolean!
+  createdAt: Time!
+  updatedAt: Time!
+}
+input UndeleteTaskFeedTaskFeedLikeInput {
+  id: ID!
+  taskId: ID!
+  teammateId: ID!
+  taskFeedId: ID!
+  createdAt: Time!
+  updatedAt: Time!
+}
+input UndeleteTaskFeedTaskFileInput {
+  id: ID!
+  name: String!
+  src: String!
+  taskId: ID!
+  projectId: ID!
+  taskFeedId: ID!
+  fileTypeId: ID!
+  attached: Boolean!
+  createdAt: Time!
+  updatedAt: Time!
+}
+
+type UndeleteTaskFeedInputPayload {
+  taskFeed: TaskFeed!
+  taskFeedLikes: [TaskFeedLike!]!
+  taskFiles: [TaskFile!]!
+}
+
+extend type Subscription {
+  taskFeedUpdated(workspaceId: ID!, requestId: String!): TaskFeed!
+  taskFeedCreated(workspaceId: ID!, requestId: String!): TaskFeed!
+  taskFeedDeleted(workspaceId: ID!, requestId: String!): DeleteTaskFeedInputPayload!
+}
+
+extend type Query {
+  taskFeed(where: TaskFeedWhereInput): TaskFeed
+  taskFeeds(after: Cursor, first: Int, before: Cursor, last: Int, where: TaskFeedWhereInput): TaskFeedConnection
+}
+
+extend type Mutation {
+  createTaskFeed(input: CreateTaskFeedInput!): TaskFeed!
+  updateTaskFeed(input: UpdateTaskFeedInput!): TaskFeed!
+  deleteTaskFeed(input: DeleteTaskFeedInput!): DeleteTaskFeedInputPayload!
+  undeleteTaskFeed(input: UndeleteTaskFeedInput!): UndeleteTaskFeedInputPayload!
+}

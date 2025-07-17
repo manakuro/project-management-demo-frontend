@@ -1,0 +1,13 @@
+type Activity {
+  id: ID!
+  type: String!
+  updatedAt: String!
+}
+
+input ActivityWhereInput {
+  workspaceId: ID!
+}
+
+extend type Query {
+  activities(where: ActivityWhereInput!): [Activity!]!
+}

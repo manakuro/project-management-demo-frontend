@@ -1,0 +1,37 @@
+type ArchivedTaskActivityTask implements Node {
+  id: ID!
+  archivedTaskActivityId: ID!
+  task: Task!
+  taskId: ID!
+  createdAt: String!
+  updatedAt: String!
+}
+type ArchivedTaskActivityTaskConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ArchivedTaskActivityTaskEdge]
+}
+type ArchivedTaskActivityTaskEdge {
+  node: ArchivedTaskActivityTask
+  cursor: Cursor!
+}
+
+input CreateArchivedTaskActivityTaskInput {
+  archivedTaskActivityId: ID!
+  taskId: ID!
+}
+
+input UpdateArchivedTaskActivityTaskInput {
+  id: ID!
+  taskId: ID
+}
+
+extend type Query {
+  archivedTaskActivityTask(where: ArchivedTaskActivityTaskWhereInput): ArchivedTaskActivityTask
+  archivedTaskActivityTasks(after: Cursor, first: Int, before: Cursor, last: Int, where: ArchivedTaskActivityTaskWhereInput): ArchivedTaskActivityTaskConnection
+}
+
+extend type Mutation {
+  createArchivedTaskActivityTask(input: CreateArchivedTaskActivityTaskInput!): ArchivedTaskActivityTask!
+  updateArchivedTaskActivityTask(input: UpdateArchivedTaskActivityTaskInput!): ArchivedTaskActivityTask!
+}

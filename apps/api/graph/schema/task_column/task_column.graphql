@@ -1,0 +1,47 @@
+enum TaskColumnType {
+  TASK_NAME
+  ASSIGNEE
+  DUE_DATE
+  PROJECT
+  PROJECTS
+  PRIORITY
+  TAGS
+  CUSTOM
+}
+
+type TaskColumn implements Node {
+  id: ID!
+  name: String!
+  type: TaskColumnType
+  createdAt: String!
+  updatedAt: String!
+}
+type TaskColumnConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TaskColumnEdge]
+}
+type TaskColumnEdge {
+  node: TaskColumn
+  cursor: Cursor!
+}
+
+input CreateTaskColumnInput {
+  name: String!
+  type: TaskColumnType!
+}
+
+input UpdateTaskColumnInput {
+  id: ID!
+  type: TaskColumnType
+}
+
+extend type Query {
+  taskColumn(where: TaskColumnWhereInput): TaskColumn
+  taskColumns(after: Cursor, first: Int, before: Cursor, last: Int, where: TaskColumnWhereInput): TaskColumnConnection
+}
+
+extend type Mutation {
+  createTaskColumn(input: CreateTaskColumnInput!): TaskColumn!
+  updateTaskColumn(input: UpdateTaskColumnInput!): TaskColumn!
+}

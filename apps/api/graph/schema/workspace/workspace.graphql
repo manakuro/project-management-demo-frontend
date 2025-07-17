@@ -1,0 +1,47 @@
+type Workspace implements Node {
+  id: ID!
+  createdBy: ID!
+  name: String!
+  description: Map!
+  projects: [Project!]!
+  workspaceTeammates: [WorkspaceTeammate!]!
+  createdAt: String!
+  updatedAt: String!
+}
+type WorkspaceConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [WorkspaceEdge]
+}
+type WorkspaceEdge {
+  node: Workspace
+  cursor: Cursor!
+}
+
+input CreateWorkspaceInput {
+  name: String!
+  createdBy: ID!
+  description: Map
+  requestId: String!
+}
+input UpdateWorkspaceInput {
+  id: ID!
+  name: String
+  createdBy: ID
+  description: Map
+  requestId: String!
+}
+
+extend type Query {
+  workspace(where: WorkspaceWhereInput): Workspace
+  workspaces(after: Cursor, first: Int, before: Cursor, last: Int, where: WorkspaceWhereInput): WorkspaceConnection
+}
+
+extend type Subscription {
+  workspaceUpdated(id: ID!, requestId: String!): Workspace!
+}
+
+extend type Mutation {
+  createWorkspace(input: CreateWorkspaceInput!): Workspace!
+  updateWorkspace(input: UpdateWorkspaceInput!): Workspace!
+}

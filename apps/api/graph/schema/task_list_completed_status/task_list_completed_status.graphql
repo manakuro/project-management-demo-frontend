@@ -1,0 +1,47 @@
+enum TaskListCompletedStatusCode {
+  INCOMPLETE
+  COMPLETED
+  COMPLETED_TODAY
+  COMPLETED_YESTERDAY
+  COMPLETED_1_WEEK
+  COMPLETED_2_WEEKS
+  COMPLETED_3_WEEKS
+  ALL
+}
+
+type TaskListCompletedStatus implements Node {
+  id: ID!
+  name: String!
+  statusCode: TaskListCompletedStatusCode
+  createdAt: String!
+  updatedAt: String!
+}
+type TaskListCompletedStatusConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TaskListCompletedStatusEdge]
+}
+type TaskListCompletedStatusEdge {
+  node: TaskListCompletedStatus
+  cursor: Cursor!
+}
+
+input CreateTaskListCompletedStatusInput {
+  name: String!
+  statusCode: TaskListCompletedStatusCode!
+}
+
+input UpdateTaskListCompletedStatusInput {
+  id: ID!
+  statusCode: TaskListCompletedStatusCode
+}
+
+extend type Query {
+  taskListCompletedStatus(where: TaskListCompletedStatusWhereInput): TaskListCompletedStatus
+  taskListCompletedStatuses(after: Cursor, first: Int, before: Cursor, last: Int, where: TaskListCompletedStatusWhereInput): TaskListCompletedStatusConnection
+}
+
+extend type Mutation {
+  createTaskListCompletedStatus(input: CreateTaskListCompletedStatusInput!): TaskListCompletedStatus!
+  updateTaskListCompletedStatus(input: UpdateTaskListCompletedStatusInput!): TaskListCompletedStatus!
+}

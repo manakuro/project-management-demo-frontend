@@ -1,0 +1,38 @@
+type TaskActivity implements Node {
+  id: ID!
+  activityTypeId: ID!
+  activityType: ActivityType!
+  teammateId: ID!
+  taskActivityTasks: [TaskActivityTask!]!
+  createdAt: String!
+  updatedAt: String!
+}
+type TaskActivityConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TaskActivityEdge]
+}
+type TaskActivityEdge {
+  node: TaskActivity
+  cursor: Cursor!
+}
+
+input CreateTaskActivityInput {
+  activityTypeId: ID!
+  teammateId: ID!
+}
+
+input UpdateTaskActivityInput {
+  id: ID!
+  teammateId: ID
+}
+
+extend type Query {
+  taskActivity(where: TaskActivityWhereInput): TaskActivity
+  taskActivities(after: Cursor, first: Int, before: Cursor, last: Int, where: TaskActivityWhereInput): TaskActivityConnection
+}
+
+extend type Mutation {
+  createTaskActivity(input: CreateTaskActivityInput!): TaskActivity!
+  updateTaskActivity(input: UpdateTaskActivityInput!): TaskActivity!
+}

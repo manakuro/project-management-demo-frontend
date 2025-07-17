@@ -1,0 +1,47 @@
+enum TaskListSortStatusCode {
+  NONE
+  DUE_DATE
+  LIKES
+  ALPHABETICAL
+  PROJECT
+  ASSIGNEE
+  CREATION_TIME
+  PRIORITY
+}
+
+type TaskListSortStatus implements Node {
+  id: ID!
+  name: String!
+  statusCode: TaskListSortStatusCode
+  createdAt: String!
+  updatedAt: String!
+}
+type TaskListSortStatusConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TaskListSortStatusEdge]
+}
+type TaskListSortStatusEdge {
+  node: TaskListSortStatus
+  cursor: Cursor!
+}
+
+input CreateTaskListSortStatusInput {
+  name: String!
+  statusCode: TaskListSortStatusCode!
+}
+
+input UpdateTaskListSortStatusInput {
+  id: ID!
+  statusCode: TaskListSortStatusCode
+}
+
+extend type Query {
+  taskListSortStatus(where: TaskListSortStatusWhereInput): TaskListSortStatus
+  taskListSortStatuses(after: Cursor, first: Int, before: Cursor, last: Int, where: TaskListSortStatusWhereInput): TaskListSortStatusConnection
+}
+
+extend type Mutation {
+  createTaskListSortStatus(input: CreateTaskListSortStatusInput!): TaskListSortStatus!
+  updateTaskListSortStatus(input: UpdateTaskListSortStatusInput!): TaskListSortStatus!
+}

@@ -1,0 +1,209 @@
+version: 2.1
+
+orbs:
+  gcp-cli: circleci/gcp-cli@2.4.0
+  go: circleci/go@1.7.1
+
+executors:
+  default:
+    docker:
+      - image: google/cloud-sdk:alpine
+        environment:
+          GOROOT: /usr/local/go
+          GOPATH: /go
+          TZ: Asia/Tokyo
+    working_directory: ~/go/src/github.com/manakuro/project-management-demo-backend
+
+commands:
+  setup_deploy:
+    steps:
+      - run:
+          name: Set up deploy
+          command: |
+            apk add --update --no-cache gettext
+
+  setup_env_variables_deploy:
+    parameters:
+      app_env:
+        type: string
+    steps:
+      - run:
+          name: Set up environment variables for deploy
+          command: |
+            echo 'export APP_ENV=<< parameters.app_env >>' >> $BASH_ENV
+            source $BASH_ENV
+
+  create_database:
+    parameters:
+      config:
+        type: string
+    steps:
+      - run:
+          name: Create database
+          command: |
+            echo << parameters.config >> | base64 --decode > ./config/config.${APP_ENV}.yml
+            cat ./config/config.${APP_ENV}.yml
+            
+            go get golang.org/dl/go1.22.1
+            go1.22.1 download
+            go1.22.1 version 
+            
+            make migrate_schema
+            sleep 5
+            make seed
+
+  setup_env_variables_create_database:
+    parameters:
+      app_env:
+        type: string
+    steps:
+      - run:
+          name: Set up environment variables for create database
+          command: |
+            echo 'export GO111MODULE=on' >> $BASH_ENV
+            echo 'export APP_ENV=<< parameters.app_env >>' >> $BASH_ENV
+            echo 'export PATH=$PATH:$GOPATH/bin' >> $BASH_ENV
+            source $BASH_ENV
+
+  deploy:
+    parameters:
+      deploy_version:
+        type: string
+      deploy_options:
+        type: string
+      firebase_service_key:
+        type: string
+      config:
+        type: string
+    steps:
+      - run:
+          name: Deploy app
+          command: |
+            echo << parameters.config >> | base64 -d > ./config/config.${APP_ENV}.yml
+            
+            mkdir ./.keys
+            echo << parameters.firebase_service_key >> > ./.keys/firebase-service-key.json
+            cat ./.keys/firebase-service-key.json
+            
+            echo "<< parameters.deploy_version >>"
+            
+            envsubst < ./app.yaml.tpl > ./app.yaml
+
+            GO111MODULE=on gcloud -q app deploy --version << parameters.deploy_version >> << parameters.deploy_options >>
+
+jobs:
+  deploy:
+    executor:
+      name: default
+    parameters:
+      app_env:
+        type: string
+      deploy_version:
+        type: string
+      deploy_options:
+        type: string
+      firebase_service_key:
+        type: string
+      config:
+        type: string
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 18.06.0-ce
+      - setup_env_variables_deploy:
+          app_env: << parameters.app_env >>
+      - setup_deploy
+      - gcp-cli/initialize
+      - gcp-cli/install
+      - deploy:
+          deploy_version: << parameters.deploy_version >>
+          deploy_options: << parameters.deploy_options >>
+          firebase_service_key: << parameters.firebase_service_key >>
+          config: << parameters.config >>
+
+  create_database:
+    working_directory: ~/go/src/github.com/manakuro/project-management-demo-backend
+    parameters:
+      app_env:
+        type: string
+      config:
+        type: string
+    executor:
+      name: go/default
+      tag: '1.16.9'
+    steps:
+      - checkout
+      - setup_env_variables_create_database:
+          app_env: << parameters.app_env >>
+      - go/load-cache
+      - go/mod-download
+      - go/save-cache
+      - create_database:
+          config: << parameters.config >>
+
+
+workflows:
+  ####################################################
+  # staging
+  ####################################################
+  build_and_deploy_staging:
+    jobs:
+      - deploy:
+          name: deploy_staging
+
+          app_env: staging
+          #deploy_version: ${CIRCLE_BRANCH%%-*}
+          deploy_version: staging
+          deploy_options: --no-promote
+          firebase_service_key: $STG_FIREBASE_SERVICE_KEY
+          config: $STG_CONFIG
+
+          requires:
+            - request_deploy
+
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              ignore: /.*/
+
+      - request_deploy:
+          type: approval
+
+      - request_create_database:
+          type: approval
+
+      - create_database:
+          name: create_database
+
+          app_env: staging
+          config: $STG_CONFIG
+
+          requires:
+            - request_create_database
+
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              ignore: /.*/
+
+  ####################################################
+  # production
+  ####################################################
+  build_and_deploy_production:
+    jobs:
+      - deploy:
+          name: deploy_production
+
+          app_env: production
+          deploy_version: ${CIRCLE_TAG//./-}
+          deploy_options: ""
+          firebase_service_key: $PROD_FIREBASE_SERVICE_KEY
+          config: $PROD_CONFIG
+
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.+$/

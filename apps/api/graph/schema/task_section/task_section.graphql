@@ -1,0 +1,40 @@
+type TaskSection implements Node {
+  id: ID!
+  name: String!
+  createdAt: String!
+  updatedAt: String!
+}
+type TaskSectionConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TaskSectionEdge]
+}
+type TaskSectionEdge {
+  node: TaskSection
+  cursor: Cursor!
+}
+
+input CreateTaskSectionInput {
+  name: String!
+  requestId: String!
+}
+
+input UpdateTaskSectionInput {
+  id: ID!
+  name: String
+  requestId: String!
+}
+
+extend type Subscription {
+  taskSectionUpdated(id: ID!, requestId: String!): TaskSection!
+}
+
+extend type Query {
+  taskSection(where: TaskSectionWhereInput): TaskSection
+  taskSections(after: Cursor, first: Int, before: Cursor, last: Int, where: TaskSectionWhereInput): TaskSectionConnection
+}
+
+extend type Mutation {
+  createTaskSection(input: CreateTaskSectionInput!): TaskSection!
+  updateTaskSection(input: UpdateTaskSectionInput!): TaskSection!
+}

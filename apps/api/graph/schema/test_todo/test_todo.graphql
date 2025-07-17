@@ -1,0 +1,50 @@
+enum TestTodoStatus {
+  IN_PROGRESS
+  COMPLETED
+}
+
+type TestTodo {
+  id: ID!
+  name: String!
+  status: TestTodoStatus!
+  priority: Int!
+  testUserID: ID
+  parentToDoId: ID!
+  children: [TestTodo!]!
+  createdAt: String!
+  updatedAt: String!
+  dueDate: String!
+}
+type TestTodoConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TestTodoEdge]
+}
+type TestTodoEdge {
+  node: TestTodo
+  cursor: Cursor!
+}
+
+input CreateTestTodoInput {
+  name: String!
+  status: TestTodoStatus = IN_PROGRESS
+  priority: Int!
+  testUserID: ID!
+}
+input UpdateTestTodoInput {
+  id: ID!
+  name: String
+  status: TestTodoStatus
+  priority: Int
+  testUserID: ID
+}
+
+extend type Query {
+  testTodo(where: TestTodoWhereInput): TestTodo
+  testTodos(after: Cursor, first: Int, before: Cursor, last: Int, where: TestTodoWhereInput): TestTodoConnection
+}
+
+extend type Mutation {
+  createTestTodo(input: CreateTestTodoInput!): TestTodo!
+  updateTestTodo(input: UpdateTestTodoInput!): TestTodo!
+}

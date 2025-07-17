@@ -1,0 +1,45 @@
+type FavoriteWorkspace implements Node {
+  id: ID!
+  workspaceId: ID!
+  workspace: Workspace!
+  teammateId: ID!
+  teammate: Teammate!
+  createdAt: String!
+  updatedAt: String!
+}
+type FavoriteWorkspaceConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [FavoriteWorkspaceEdge]
+}
+type FavoriteWorkspaceEdge {
+  node: FavoriteWorkspace
+  cursor: Cursor!
+}
+
+input CreateFavoriteWorkspaceInput {
+  workspaceId: ID!
+  teammateId: ID!
+  requestId: String!
+}
+
+input DeleteFavoriteWorkspaceInput {
+  workspaceId: ID!
+  teammateId: ID!
+  requestId: String!
+}
+
+extend type Subscription {
+  favoriteWorkspaceIdsUpdated(teammateId: ID!, requestId: String!): [ID!]!
+}
+
+extend type Query {
+  favoriteWorkspace(where: FavoriteWorkspaceWhereInput): FavoriteWorkspace
+  favoriteWorkspaces(after: Cursor, first: Int, before: Cursor, last: Int, where: FavoriteWorkspaceWhereInput): FavoriteWorkspaceConnection
+  favoriteWorkspaceIds(teammateId: ID!, workspaceId: ID): [ID!]!
+}
+
+extend type Mutation {
+  createFavoriteWorkspace(input: CreateFavoriteWorkspaceInput!): FavoriteWorkspace!
+  deleteFavoriteWorkspace(input: DeleteFavoriteWorkspaceInput!): FavoriteWorkspace!
+}

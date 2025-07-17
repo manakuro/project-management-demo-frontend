@@ -1,0 +1,56 @@
+type TaskFeedLike implements Node {
+  id: ID!
+  teammateId: ID!
+  taskId: ID!
+  taskFeedId: ID!
+  createdAt: String!
+  updatedAt: String!
+}
+type TaskFeedLikeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TaskFeedLikeEdge]
+}
+type TaskFeedLikeEdge {
+  node: TaskFeedLike
+  cursor: Cursor!
+}
+
+input CreateTaskFeedLikeInput {
+  taskId: ID!
+  teammateId: ID!
+  taskFeedId: ID!
+  requestId: String!
+  workspaceId: ID!
+}
+
+input UpdateTaskFeedLikeInput {
+  id: ID!
+  taskId: ID
+  teammateId: ID
+  taskFeedId: ID
+  requestId: String!
+  workspaceId: ID!
+}
+
+input DeleteTaskFeedLikeInput {
+  id: ID!
+  requestId: String!
+  workspaceId: ID!
+}
+
+extend type Subscription {
+  taskFeedLikeCreated(workspaceId: ID!, requestId: String!): TaskFeedLike!
+  taskFeedLikeDeleted(workspaceId: ID!, requestId: String!): TaskFeedLike!
+}
+
+extend type Query {
+  taskFeedLike(where: TaskFeedLikeWhereInput): TaskFeedLike
+  taskFeedLikes(after: Cursor, first: Int, before: Cursor, last: Int, where: TaskFeedLikeWhereInput): TaskFeedLikeConnection
+}
+
+extend type Mutation {
+  createTaskFeedLike(input: CreateTaskFeedLikeInput!): TaskFeedLike!
+  updateTaskFeedLike(input: UpdateTaskFeedLikeInput!): TaskFeedLike!
+  deleteTaskFeedLike(input: DeleteTaskFeedLikeInput!): TaskFeedLike!
+}

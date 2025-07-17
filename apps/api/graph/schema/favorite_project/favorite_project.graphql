@@ -1,0 +1,46 @@
+type FavoriteProject implements Node {
+  id: ID!
+  projectId: ID!
+  project: Project!
+  teammateId: ID!
+  teammate: Teammate!
+  createdAt: String!
+  updatedAt: String!
+}
+type FavoriteProjectConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [FavoriteProjectEdge]
+}
+type FavoriteProjectEdge {
+  node: FavoriteProject
+  cursor: Cursor!
+}
+
+input CreateFavoriteProjectInput {
+  projectId: ID!
+  teammateId: ID!
+  requestId: String!
+}
+
+input DeleteFavoriteProjectInput {
+  projectId: ID!
+  teammateId: ID!
+  requestId: String!
+}
+
+extend type Subscription {
+  favoriteProjectCreated(teammateId: ID!, requestId: String!): FavoriteProject!
+  favoriteProjectIdsUpdated(teammateId: ID!, requestId: String!): [ID!]!
+}
+
+extend type Query {
+  favoriteProject(where: FavoriteProjectWhereInput): FavoriteProject
+  favoriteProjects(after: Cursor, first: Int, before: Cursor, last: Int, where: FavoriteProjectWhereInput): FavoriteProjectConnection
+  favoriteProjectIds(teammateId: ID!): [ID!]!
+}
+
+extend type Mutation {
+  createFavoriteProject(input: CreateFavoriteProjectInput!): FavoriteProject!
+  deleteFavoriteProject(input: DeleteFavoriteProjectInput!): FavoriteProject!
+}

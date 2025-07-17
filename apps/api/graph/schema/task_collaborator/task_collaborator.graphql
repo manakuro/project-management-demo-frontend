@@ -1,0 +1,56 @@
+type TaskCollaborator implements Node {
+  id: ID!
+  teammateId: ID!
+  taskId: ID!
+  teammate: Teammate!
+  createdAt: String!
+  updatedAt: String!
+}
+type TaskCollaboratorConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TaskCollaboratorEdge]
+}
+type TaskCollaboratorEdge {
+  node: TaskCollaborator
+  cursor: Cursor!
+}
+
+input CreateTaskCollaboratorInput {
+  taskId: ID!
+  teammateId: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+
+input UpdateTaskCollaboratorInput {
+  id: ID!
+  taskId: ID
+  teammateId: ID
+  workspaceId: ID!
+  requestId: String!
+}
+
+input DeleteTaskCollaboratorInput {
+  id: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+
+
+extend type Subscription {
+  taskCollaboratorUpdated(workspaceId: ID!, requestId: String!): TaskCollaborator!
+  taskCollaboratorCreated(workspaceId: ID!, requestId: String!): TaskCollaborator!
+  taskCollaboratorDeleted(workspaceId: ID!, requestId: String!): TaskCollaborator!
+}
+
+extend type Query {
+  taskCollaborator(where: TaskCollaboratorWhereInput): TaskCollaborator
+  taskCollaborators(after: Cursor, first: Int, before: Cursor, last: Int, where: TaskCollaboratorWhereInput): TaskCollaboratorConnection
+}
+
+extend type Mutation {
+  createTaskCollaborator(input: CreateTaskCollaboratorInput!): TaskCollaborator!
+  updateTaskCollaborator(input: UpdateTaskCollaboratorInput!): TaskCollaborator!
+  deleteTaskCollaborator(input: DeleteTaskCollaboratorInput!): TaskCollaborator!
+}

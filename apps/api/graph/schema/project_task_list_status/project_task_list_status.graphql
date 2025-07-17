@@ -1,0 +1,49 @@
+type ProjectTaskListStatus implements Node {
+  id: ID!
+  projectId: ID!
+  project: Project!
+  taskListCompletedStatusId: ID!
+  taskListCompletedStatus: TaskListCompletedStatus!
+  taskListSortStatusId: ID!
+  taskListSortStatus: TaskListSortStatus!
+  createdAt: String!
+  updatedAt: String!
+}
+type ProjectTaskListStatusConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ProjectTaskListStatusEdge]
+}
+type ProjectTaskListStatusEdge {
+  node: ProjectTaskListStatus
+  cursor: Cursor!
+}
+
+input CreateProjectTaskListStatusInput {
+  projectId: ID!
+  taskListCompletedStatusId: ID!
+  taskListSortStatusId: ID!
+  requestId: String!
+}
+
+input UpdateProjectTaskListStatusInput {
+  id: ID!
+  projectId: ID
+  taskListCompletedStatusId: ID
+  taskListSortStatusId: ID
+  requestId: String!
+}
+
+extend type Subscription {
+  projectTaskListStatusUpdated(id: ID!, requestId: String!): ProjectTaskListStatus!
+}
+
+extend type Query {
+  projectTaskListStatus(where: ProjectTaskListStatusWhereInput): ProjectTaskListStatus
+  projectTaskListStatuses(after: Cursor, first: Int, before: Cursor, last: Int, where: ProjectTaskListStatusWhereInput): ProjectTaskListStatusConnection
+}
+
+extend type Mutation {
+  createProjectTaskListStatus(input: CreateProjectTaskListStatusInput!): ProjectTaskListStatus!
+  updateProjectTaskListStatus(input: UpdateProjectTaskListStatusInput!): ProjectTaskListStatus!
+}

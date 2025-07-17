@@ -1,16 +1,18 @@
-export const getAuth = jest.fn(() => ({
+import { vi } from 'vitest';
+
+export const getAuth = vi.fn(() => ({
   currentUser: {
-    getIdToken: jest.fn(),
+    getIdToken: vi.fn(),
   },
-}))
-export const signInAnonymously = jest.fn()
-export const onAuthStateChanged = jest.fn((_, nextOrObserver) => {
-  nextOrObserver({})
-  return jest.fn()
-})
-export const onIdTokenChanged = jest.fn((_, nextOrObserver) => {
+}));
+export const signInAnonymously = vi.fn();
+export const onAuthStateChanged = vi.fn((_, nextOrObserver) => {
+  nextOrObserver({});
+  return vi.fn();
+});
+export const onIdTokenChanged = vi.fn((_, nextOrObserver) => {
   nextOrObserver({
-    getIdToken: jest.fn(() => Promise.resolve('id')),
-  })
-  return jest.fn()
-})
+    getIdToken: vi.fn(() => Promise.resolve('id')),
+  });
+  return vi.fn();
+});

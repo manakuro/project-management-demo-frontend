@@ -1,19 +1,21 @@
+import { vi } from 'vitest';
+
 export const useRouter = () => ({
   basePath: '/',
   pathname: '/',
   route: '/',
   query: {},
   asPath: '/',
-  push: jest.fn(() => Promise.resolve(true)),
-  replace: jest.fn(() => Promise.resolve(true)),
-  reload: jest.fn(() => Promise.resolve(true)),
-  prefetch: jest.fn(() => Promise.resolve()),
-  back: jest.fn(() => Promise.resolve(true)),
-  beforePopState: jest.fn(() => Promise.resolve(true)),
+  push: vi.fn(() => Promise.resolve(true)),
+  replace: vi.fn(() => Promise.resolve(true)),
+  reload: vi.fn(() => Promise.resolve(true)),
+  prefetch: vi.fn(() => Promise.resolve()),
+  back: vi.fn(() => Promise.resolve(true)),
+  beforePopState: vi.fn(() => Promise.resolve(true)),
   isFallback: false,
   events: {
-    on: jest.fn(),
-    off: jest.fn(),
-    emit: jest.fn(),
+    on: vi.fn(),
+    off: vi.fn(),
+    emit: vi.fn(),
   },
-})
+});

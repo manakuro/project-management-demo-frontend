@@ -1,7 +1,8 @@
 import { uniq } from 'src/shared/utils/uniq';
+import { describe, it } from 'vitest';
 
 describe('uniq', () => {
-  context('when number array', () => {
+  describe('when number array', () => {
     it('should be unique', () => {
       const arr1 = [1, 3];
       const arr2 = [1, 2, 3, 4, 5];

@@ -1,1 +1,3 @@
-export const initializeApp = jest.fn()
+import { vi } from 'vitest';
+
+export const initializeApp = vi.fn();

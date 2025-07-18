@@ -1,3 +1,5 @@
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/manakuro/asana-clone-app)
+
 # Asana clone app
 An Asana clone application for portfolio apps, built with real-time communication with WebSockets and seamless updates with Optimistic UI.
 
@@ -19,7 +21,7 @@ pnpm install
 
 Follow the setup documentation for both frontend and backend to configure this project:
 
-- [Front-end Setup](./apps/nextjs/README.md)
+- [Frontend Setup](./apps/nextjs/README.md)
 - [Backend Setup](./apps/api/README.md)
 
 

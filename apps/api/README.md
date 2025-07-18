@@ -1,9 +1,8 @@
-# Asana clone app for backend
-An Asana clone application for portfolio apps, built with real-time communication with WebSockets and seamless updates with Optimistic UI.
+# Asana clone app - Backend
+An Asana clone application for a backend built with Go.
 
-- [View project](https://project-management-demo.manatoworks.me/)
+- [Live Demo](https://project-management-demo.manatoworks.me/)
 - [GraphQL Playground](https://project-management-demo.ebad78r3fqm9m.ap-northeast-1.cs.amazonlightsail.com/playground)
-- [View front-end](https://github.com/manakuro/project-management-demo-frontend)
 
 ## Tech Stack
 - Go / 1.22.1
@@ -13,17 +12,21 @@ An Asana clone application for portfolio apps, built with real-time communicatio
 - WebSockets
 
 ## Pre-requisite
-Follow the provided documentation to configure the Firebase project.
+
+Configure your Firebase project by following the setup documentation:
 
 [docs/setup.md](docs/setup.md)
 
-## Install Go
+## Go Installation
 
-Install `go@1.22.1`
+Install Go version 1.22.1:
+
 ```
 go install golang.org/dl/go1.22.1@latest
 go1.22.1 download
 ```
+
+Verify the installation:
 
 ```
 go1.22.1 version
@@ -31,7 +34,7 @@ go1.22.1 version
 go version go1.22.1 darwin/arm64
 ```
 
-## Run Docker
+## Docker Setup
 
 ```
 cd docker
@@ -44,7 +47,7 @@ docker compose up
 make install
 ```
 
-## Set up a database
+## Database Setup
 
 ```
 make setup_db
@@ -58,7 +61,7 @@ make migrate_schema
 make seed
 ```
 
-## Start dev server
+## Development
 
 ```
 make start

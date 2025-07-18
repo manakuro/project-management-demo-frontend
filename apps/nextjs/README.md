@@ -1,9 +1,8 @@
-# Asana clone app for front-end
-An Asana clone application made with Next.js.
+# Asana clone app - Frontend
+An Asana clone application for a frontend built with Next.js.
 
-- [View project](https://project-management-demo.manatoworks.me/)
+- [Live Demo](https://project-management-demo.manatoworks.me/)
 - [Storybook](https://main--63894befbaf58840c037c246.chromatic.com)
-- [View backend](https://github.com/manakuro/project-management-demo-backend)
 
 ## Tech Stack
 - Next.js
@@ -14,7 +13,7 @@ An Asana clone application made with Next.js.
 - [Chromatic](https://www.chromatic.com/)
 
 ## Pre-requisite
-Follow the provided documentation to configure the Firebase project.
+Configure your Firebase project by following the setup documentation:
 
 [docs/setup.md](docs/setup.md)
 
@@ -24,13 +23,13 @@ Follow the provided documentation to configure the Firebase project.
 pnpm install
 ```
 
-## Start dev server
+## Development
 
 ```
 pnpm dev
 ```
 
-## Test
+## Testing
 
 ```
 pnpm test
@@ -41,7 +40,8 @@ pnpm test
 pnpm build
 ```
 
-## Start server
+## Production
+
 ```
 pnpm start
 ```

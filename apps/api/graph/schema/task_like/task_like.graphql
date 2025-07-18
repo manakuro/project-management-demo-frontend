@@ -1,0 +1,53 @@
+type TaskLike implements Node {
+  id: ID!
+  teammateId: ID!
+  workspaceId: ID!
+  taskId: ID!
+  createdAt: String!
+  updatedAt: String!
+}
+type TaskLikeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TaskLikeEdge]
+}
+type TaskLikeEdge {
+  node: TaskLike
+  cursor: Cursor!
+}
+
+input CreateTaskLikeInput {
+  taskId: ID!
+  teammateId: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+
+input UpdateTaskLikeInput {
+  id: ID!
+  taskId: ID
+  teammateId: ID
+  requestId: String!
+  workspaceId: ID!
+}
+input DeleteTaskLikeInput {
+  id: ID!
+  requestId: String!
+  workspaceId: ID!
+}
+
+extend type Subscription {
+  taskLikeCreated(workspaceId: ID!, requestId: String!): TaskLike!
+  taskLikeDeleted(workspaceId: ID!, requestId: String!): TaskLike!
+}
+
+extend type Query {
+  taskLike(where: TaskLikeWhereInput): TaskLike
+  taskLikes(after: Cursor, first: Int, before: Cursor, last: Int, where: TaskLikeWhereInput): TaskLikeConnection
+}
+
+extend type Mutation {
+  createTaskLike(input: CreateTaskLikeInput!): TaskLike!
+  updateTaskLike(input: UpdateTaskLikeInput!): TaskLike!
+  deleteTaskLike(input: DeleteTaskLikeInput!): TaskLike!
+}

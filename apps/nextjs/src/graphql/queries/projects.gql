@@ -1,0 +1,21 @@
+query Projects(
+  $after: Cursor
+  $before: Cursor
+  $first: Int
+  $last: Int
+  $where: ProjectWhereInput
+) {
+  projects(
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+    where: $where
+  ) {
+    edges {
+      node {
+        ...ProjectFragment
+      }
+    }
+  }
+}

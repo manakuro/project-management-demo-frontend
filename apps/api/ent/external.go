@@ -1,0 +1,49 @@
+package ent
+
+import (
+	"database/sql"
+	"log"
+
+	"entgo.io/ent/dialect"
+	entsql "entgo.io/ent/dialect/sql"
+)
+
+// DB provides sql.DB
+func (c *Client) DB() *sql.DB {
+	if c.debug {
+		return c.driver.(*dialect.DebugDriver).Driver.(*entsql.Driver).DB()
+	}
+	return c.driver.(*entsql.Driver).DB()
+}
+
+// EnableSQLSafeUpdates turns sql_safe_updates on
+func (c *Client) EnableSQLSafeUpdates() {
+	_, err := c.DB().Exec(`set session sql_safe_updates=1;`)
+	if err != nil {
+		log.Fatalf("EnableSQLSafeUpdates failed: %v", err)
+	}
+}
+
+// DisableSQLSafeUpdates turns sql_safe_updates off
+func (c *Client) DisableSQLSafeUpdates() {
+	_, err := c.DB().Exec(`set session sql_safe_updates=0;`)
+	if err != nil {
+		log.Fatalf("DisableSQLSafeUpdates failed: %v", err)
+	}
+}
+
+// EnableForeignKeyChecks turns foreign_key_checks on
+func (c *Client) EnableForeignKeyChecks() {
+	_, err := c.DB().Exec(`set session foreign_key_checks=1;`)
+	if err != nil {
+		log.Fatalf("EnableForeignKeyChecks failed: %v", err)
+	}
+}
+
+// DisableForeignKeyChecks turns foreign_key_checks on
+func (c *Client) DisableForeignKeyChecks() {
+	_, err := c.DB().Exec(`set session foreign_key_checks=0;`)
+	if err != nil {
+		log.Fatalf("DisableForeignKeyChecks failed: %v", err)
+	}
+}

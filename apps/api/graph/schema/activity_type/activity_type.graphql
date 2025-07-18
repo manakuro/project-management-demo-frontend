@@ -1,0 +1,41 @@
+enum ActivityTypeCode {
+  TASK
+  WORKSPACE
+}
+
+type ActivityType implements Node {
+  id: ID!
+  name: String!
+  typeCode: ActivityTypeCode!
+  createdAt: String!
+  updatedAt: String!
+}
+type ActivityTypeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ActivityTypeEdge]
+}
+type ActivityTypeEdge {
+  node: ActivityType
+  cursor: Cursor!
+}
+
+input CreateActivityTypeInput {
+  name: String!
+  typeCode: ActivityTypeCode!
+}
+
+input UpdateActivityTypeInput {
+  id: ID!
+  typeCode: ActivityTypeCode
+}
+
+extend type Query {
+  activityType(where: ActivityTypeWhereInput): ActivityType
+  activityTypes(after: Cursor, first: Int, before: Cursor, last: Int, where: ActivityTypeWhereInput): ActivityTypeConnection
+}
+
+extend type Mutation {
+  createActivityType(input: CreateActivityTypeInput!): ActivityType!
+  updateActivityType(input: UpdateActivityTypeInput!): ActivityType!
+}

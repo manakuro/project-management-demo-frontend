@@ -1,0 +1,13 @@
+subscription TeammateTaskSectionUpdated(
+  $teammateId: ID!
+  $workspaceId: ID!
+  $requestId: String!
+) {
+  teammateTaskSectionUpdated(
+    teammateId: $teammateId
+    workspaceId: $workspaceId
+    requestId: $requestId
+  ) {
+    ...TeammateTaskSectionFragment
+  }
+}

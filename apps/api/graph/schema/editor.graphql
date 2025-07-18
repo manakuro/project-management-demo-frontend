@@ -1,0 +1,35 @@
+type EditorDescription {
+    type: String
+    content: [EditorDescriptionContent]!
+}
+type EditorDescriptionContent {
+    type: String
+    content: [EditorDescriptionContentContent]
+}
+type EditorDescriptionContentContent {
+    type: String
+    text: String
+    attrs: EditorDescriptionContentContentAttrs
+}
+type EditorDescriptionContentContentAttrs {
+    mentionId: String
+    mentionType: String
+}
+
+input EditorDescriptionInput {
+    type: String
+    content: [EditorDescriptionContentInput]
+}
+input EditorDescriptionContentInput {
+    type: String
+    content: [EditorDescriptionContentContentInput]
+}
+input EditorDescriptionContentContentInput {
+    type: String
+    text: String
+    attrs: EditorDescriptionContentContentAttrsInput
+}
+input EditorDescriptionContentContentAttrsInput {
+    mentionId: String
+    mentionType: String
+}

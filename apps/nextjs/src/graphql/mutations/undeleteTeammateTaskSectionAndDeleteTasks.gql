@@ -1,0 +1,9 @@
+mutation UndeleteTeammateTaskSectionAndDeleteTasks(
+  $input: UndeleteTeammateTaskSectionAndDeleteTasksInput!
+) {
+  undeleteTeammateTaskSectionAndDeleteTasks(input: $input) {
+    teammateTaskSection {
+      ...TeammateTaskSectionFragment
+    }
+  }
+}

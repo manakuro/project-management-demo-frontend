@@ -1,0 +1,45 @@
+type Color implements Node {
+  id: ID!
+  name: String!
+  color: String!
+  hex: String!
+  createdAt: String!
+  updatedAt: String!
+}
+type ColorConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ColorEdge]
+}
+type ColorEdge {
+  node: Color
+  cursor: Cursor!
+}
+
+input CreateColorInput {
+  name: String!
+  color: String!
+  hex: String!
+  requestId: String!
+}
+input UpdateColorInput {
+  id: ID!
+  name: String
+  color: String
+  hex: String
+  requestId: String!
+}
+
+extend type Query {
+  color(id: ID!): Color
+  colors(after: Cursor, first: Int, before: Cursor, last: Int, where: ColorWhereInput): ColorConnection
+}
+
+extend type Subscription {
+  colorUpdated(id: ID!, requestId: String!): Color!
+}
+
+extend type Mutation {
+  createColor(input: CreateColorInput!): Color!
+  updateColor(input: UpdateColorInput!): Color!
+}

@@ -1,0 +1,21 @@
+type Mention {
+  id: ID!
+  projectId: ID!
+  type: Int!
+  text: String!
+  title: String!
+  subtitle: String!
+  href: String!
+  image: String!
+  completed: Boolean!
+}
+
+input MentionWhereInput {
+  workspaceId: ID!
+  query: String!
+  limit: Int
+}
+
+extend type Query {
+  mentions(where: MentionWhereInput!): [Mention!]!
+}

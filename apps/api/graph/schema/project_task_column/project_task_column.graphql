@@ -1,0 +1,55 @@
+type ProjectTaskColumn implements Node {
+  id: ID!
+  projectId: ID!
+  project: Project!
+  taskColumnId: ID!
+  taskColumn: TaskColumn!
+  width: String!
+  disabled: Boolean!
+  customizable: Boolean!
+  order: Int!
+  createdAt: String!
+  updatedAt: String!
+}
+type ProjectTaskColumnConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ProjectTaskColumnEdge]
+}
+type ProjectTaskColumnEdge {
+  node: ProjectTaskColumn
+  cursor: Cursor!
+}
+
+input CreateProjectTaskColumnInput {
+  taskColumnId: ID!
+  projectId: ID!
+  width: String!
+  disabled: Boolean!
+  customizable: Boolean!
+  order: Int!
+  requestId: String!
+}
+
+input UpdateProjectTaskColumnInput {
+  id: ID!
+  width: String
+  disabled: Boolean
+  customizable: Boolean
+  order: Int
+  requestId: String!
+}
+
+extend type Subscription {
+  projectTaskColumnUpdated(id: ID!, requestId: String!): ProjectTaskColumn!
+}
+
+extend type Query {
+  projectTaskColumn(where: ProjectTaskColumnWhereInput): ProjectTaskColumn
+  projectTaskColumns(after: Cursor, first: Int, before: Cursor, last: Int, where: ProjectTaskColumnWhereInput): ProjectTaskColumnConnection
+}
+
+extend type Mutation {
+  createProjectTaskColumn(input: CreateProjectTaskColumnInput!): ProjectTaskColumn!
+  updateProjectTaskColumn(input: UpdateProjectTaskColumnInput!): ProjectTaskColumn!
+}

@@ -1,0 +1,18 @@
+subscription ProjectTaskSectionUndeletedAndKeepTasks(
+  $workspaceId: ID!
+  $requestId: String!
+) {
+  projectTaskSectionUndeletedAndKeepTasks(
+    workspaceId: $workspaceId
+    requestId: $requestId
+  ) {
+    projectTaskSection {
+      id
+      name
+      projectId
+      createdAt
+      updatedAt
+    }
+    projectTaskIds
+  }
+}

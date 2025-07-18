@@ -1,0 +1,162 @@
+type Task implements Node {
+  id: ID!
+  name: String!
+  description: Map!
+  taskParentId: ID!
+  taskPriorityId: ID!
+  taskPriority: TaskPriority
+  assigneeId: ID!
+  createdBy: ID!
+  completed: Boolean!
+  completedAt: String!
+  isNew: Boolean!
+  dueDate: String!
+  dueTime: String!
+  subTasks: [Task!]!
+  parentTask: Task
+  taskFiles: [TaskFile!]!
+  taskFeeds: [TaskFeed!]!
+  taskFeedLikes: [TaskFeedLike!]!
+  taskLikes: [TaskLike!]!
+  taskCollaborators: [TaskCollaborator!]!
+  taskTags: [TaskTag!]!
+  projectTasks: [ProjectTask!]!
+  createdAt: String!
+  updatedAt: String!
+}
+type TaskConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TaskEdge]
+}
+type TaskEdge {
+  node: Task
+  cursor: Cursor!
+}
+
+input CreateTaskInput {
+  name: String
+  description: Map
+  isNew: Boolean
+  taskParentId: ID
+  createdBy: ID!
+  requestId: String!
+  workspaceId: ID!
+}
+
+input UpdateTaskInput {
+  id: ID!
+  name: String
+  description: Map
+  taskParentId: ID
+  taskPriorityId: ID
+  assigneeId: ID
+  createdBy: ID
+  completed: Boolean
+  completedAt: Time
+  isNew: Boolean
+  dueDate: Time
+  dueTime: Time
+  addSubTaskIDs: [ID!]
+  clearCompletedAt: Boolean
+  clearDueDate: Boolean
+  clearDueTime: Boolean
+  clearTaskPriority: Boolean
+  clearParentTask: Boolean
+  clearTeammate: Boolean
+  removeSubTaskIDs: [ID!]
+  addTeammateTaskIDs: [ID!]
+  removeTeammateTaskIDs: [ID!]
+  addProjectTaskIDs: [ID!]
+  removeProjectTaskIDs: [ID!]
+  addTaskLikeIDs: [ID!]
+  removeTaskLikeIDs: [ID!]
+  addTaskTagIDs: [ID!]
+  removeTaskTagIDs: [ID!]
+  addTaskCollaboratorIDs: [ID!]
+  removeTaskCollaboratorIDs: [ID!]
+  addTaskFeedIDs: [ID!]
+  removeTaskFeedIDs: [ID!]
+  addTaskFeedLikeIDs: [ID!]
+  removeTaskFeedLikeIDs: [ID!]
+  addTaskFileIDs: [ID!]
+  removeTaskFileIDs: [ID!]
+  requestId: String!
+  workspaceId: ID!
+}
+
+input DeleteTaskInput {
+  taskId: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+type DeleteTaskPayload {
+  teammateTask: TeammateTask!
+  projectTasks: [ProjectTask!]!
+  deletedTask: DeletedTask!
+}
+
+input UndeleteTaskInput {
+  taskId: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+type UndeleteTaskPayload {
+  teammateTask: TeammateTask
+  projectTasks: [ProjectTask!]!
+  deletedTask: DeletedTask!
+}
+
+input DeleteAllTaskInput {
+  taskIds: [ID!]!
+  workspaceId: ID!
+  requestId: String!
+}
+type DeleteAllTaskPayload {
+  teammateTasks: [TeammateTask!]!
+  projectTasks: [ProjectTask!]!
+  deletedTasks: [DeletedTask!]!
+}
+
+input AssignTaskInput {
+  id: ID!
+  assigneeId: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+type AssignTaskPayload {
+  task: Task!
+  teammateTask: TeammateTask!
+}
+input UnassignTaskInput {
+  id: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+type UnassignTaskPayload {
+  task: Task!
+  teammateTaskId: ID!
+}
+
+extend type Subscription {
+  taskUpdated(workspaceId: ID!, requestId: String!): Task!
+  taskDeleted(workspaceId: ID!, requestId: String!): DeleteTaskPayload!
+  taskUndeleted(workspaceId: ID!, requestId: String!): UndeleteTaskPayload!
+  taskAssigned(workspaceId: ID!, requestId: String!): AssignTaskPayload!
+  taskUnassigned(workspaceId: ID!, requestId: String!): UnassignTaskPayload!
+}
+
+extend type Query {
+  task(where: TaskWhereInput): Task
+  tasks(after: Cursor, first: Int, before: Cursor, last: Int, where: TaskWhereInput): TaskConnection
+}
+
+extend type Mutation {
+  createTask(input: CreateTaskInput!): Task!
+  updateTask(input: UpdateTaskInput!): Task!
+  deleteTask(input: DeleteTaskInput!): DeleteTaskPayload!
+  deleteAllTask(input: DeleteAllTaskInput!): DeleteAllTaskPayload!
+  undeleteTask(input: UndeleteTaskInput!): UndeleteTaskPayload!
+  assignTask(input: AssignTaskInput!): AssignTaskPayload!
+  unassignTask(input: UnassignTaskInput!): UnassignTaskPayload!
+}

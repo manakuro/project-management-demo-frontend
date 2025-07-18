@@ -1,0 +1,46 @@
+type Tag implements Node {
+  id: ID!
+  colorId: ID!
+  color: Color!
+  workspaceId: ID!
+  name: String!
+  createdAt: String!
+  updatedAt: String!
+}
+type TagConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TagEdge]
+}
+type TagEdge {
+  node: Tag
+  cursor: Cursor!
+}
+
+input CreateTagInput {
+  name: String!
+  workspaceId: ID!
+  colorId: ID
+  requestId: String!
+}
+
+input UpdateTagInput {
+  id: ID!
+  name: String
+  colorId: ID
+  requestId: String!
+}
+
+extend type Subscription {
+  tagUpdated(id: ID!, requestId: String!): Tag!
+}
+
+extend type Query {
+  tag(where: TagWhereInput): Tag
+  tags(after: Cursor, first: Int, before: Cursor, last: Int, where: TagWhereInput): TagConnection
+}
+
+extend type Mutation {
+  createTag(input: CreateTagInput!): Tag!
+  updateTag(input: UpdateTagInput!): Tag!
+}

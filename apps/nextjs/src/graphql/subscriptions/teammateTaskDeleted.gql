@@ -1,0 +1,13 @@
+subscription TeammateTaskDeleted(
+  $workspaceId: ID!
+  $teammateId: ID!
+  $requestId: String!
+) {
+  teammateTaskDeleted(
+    teammateId: $teammateId
+    workspaceId: $workspaceId
+    requestId: $requestId
+  ) {
+    id
+  }
+}

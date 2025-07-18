@@ -1,0 +1,55 @@
+type TeammateTaskListStatus implements Node {
+  id: ID!
+  workspaceId: ID!
+  workspace: Workspace!
+  teammateId: ID!
+  teammate: Teammate!
+  taskListCompletedStatusId: ID!
+  taskListCompletedStatus: TaskListCompletedStatus!
+  taskListSortStatusId: ID!
+  taskListSortStatus: TaskListSortStatus!
+  createdAt: String!
+  updatedAt: String!
+}
+type TeammateTaskListStatusConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TeammateTaskListStatusEdge]
+}
+type TeammateTaskListStatusEdge {
+  node: TeammateTaskListStatus
+  cursor: Cursor!
+}
+
+input CreateTeammateTaskListStatusInput {
+  workspaceId: ID!
+  teammateId: ID!
+  taskListCompletedStatusId: ID!
+  taskListSortStatusId: ID!
+  requestId: String!
+}
+
+input UpdateTeammateTaskListStatusInput {
+  id: ID!
+  teammateId: ID
+  taskListCompletedStatusId: ID
+  taskListSortStatusId: ID
+  taskListSortStatusCode: TaskListSortStatusCode
+  taskListCompletedStatusCode: TaskListCompletedStatusCode
+  workspaceId: ID!
+  requestId: String!
+}
+
+extend type Subscription {
+  teammateTaskListStatusUpdated(id: ID!, requestId: String!): TeammateTaskListStatus!
+}
+
+extend type Query {
+  teammateTaskListStatus(where: TeammateTaskListStatusWhereInput): TeammateTaskListStatus
+  teammateTaskListStatuses(after: Cursor, first: Int, before: Cursor, last: Int, where: TeammateTaskListStatusWhereInput): TeammateTaskListStatusConnection
+}
+
+extend type Mutation {
+  createTeammateTaskListStatus(input: CreateTeammateTaskListStatusInput!): TeammateTaskListStatus!
+  updateTeammateTaskListStatus(input: UpdateTeammateTaskListStatusInput!): TeammateTaskListStatus!
+}

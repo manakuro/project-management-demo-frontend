@@ -1,0 +1,7 @@
+mutation UpdateTeammateTaskColumnOrder(
+  $input: UpdateTeammateTaskColumnOrderInput!
+) {
+  updateTeammateTaskColumnOrder(input: $input) {
+    ...TeammateTaskColumnFragment
+  }
+}

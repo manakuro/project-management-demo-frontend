@@ -1,0 +1,37 @@
+type WorkspaceActivityTask implements Node {
+  id: ID!
+  workspaceActivityId: ID!
+  task: Task!
+  taskId: ID!
+  createdAt: String!
+  updatedAt: String!
+}
+type WorkspaceActivityTaskConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [WorkspaceActivityTaskEdge]
+}
+type WorkspaceActivityTaskEdge {
+  node: WorkspaceActivityTask
+  cursor: Cursor!
+}
+
+input CreateWorkspaceActivityTaskInput {
+  workspaceActivityId: ID!
+  taskId: ID!
+}
+
+input UpdateWorkspaceActivityTaskInput {
+  id: ID!
+  taskId: ID
+}
+
+extend type Query {
+  workspaceActivityTask(where: WorkspaceActivityTaskWhereInput): WorkspaceActivityTask
+  workspaceActivityTasks(after: Cursor, first: Int, before: Cursor, last: Int, where: WorkspaceActivityTaskWhereInput): WorkspaceActivityTaskConnection
+}
+
+extend type Mutation {
+  createWorkspaceActivityTask(input: CreateWorkspaceActivityTaskInput!): WorkspaceActivityTask!
+  updateWorkspaceActivityTask(input: UpdateWorkspaceActivityTaskInput!): WorkspaceActivityTask!
+}

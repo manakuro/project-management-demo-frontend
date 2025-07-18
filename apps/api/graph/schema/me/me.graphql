@@ -1,0 +1,27 @@
+type Me {
+  id: ID!
+  name: String!
+  image: String!
+  email: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+input UpdateMeInput {
+  id: ID!
+  name: String
+  image: String
+  email: String
+}
+
+extend type Query {
+  me: Me
+}
+
+extend type Subscription {
+  meUpdated(id: ID!): Me!
+}
+
+extend type Mutation {
+  updateMe(input: UpdateMeInput!): Me!
+}

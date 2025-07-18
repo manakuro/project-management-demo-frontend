@@ -1,0 +1,39 @@
+type ProjectBaseColor implements Node {
+  id: ID!
+  color: Color!
+  createdAt: String!
+  updatedAt: String!
+}
+type ProjectBaseColorConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ProjectBaseColorEdge]
+}
+type ProjectBaseColorEdge {
+  node: ProjectBaseColor
+  cursor: Cursor!
+}
+
+input CreateProjectBaseColorInput {
+  colorId: ID!
+  requestId: String!
+}
+input UpdateProjectBaseColorInput {
+  id: ID!
+  colorId: ID
+  requestId: String!
+}
+
+extend type Query {
+  projectBaseColor(where: ProjectBaseColorWhereInput): ProjectBaseColor
+  projectBaseColors(after: Cursor, first: Int, before: Cursor, last: Int, where: ProjectBaseColorWhereInput): ProjectBaseColorConnection
+}
+
+extend type Subscription {
+  projectBaseColorUpdated(id: ID!, requestId: String!): ProjectBaseColor!
+}
+
+extend type Mutation {
+  createProjectBaseColor(input: CreateProjectBaseColorInput!): ProjectBaseColor!
+  updateProjectBaseColor(input: UpdateProjectBaseColorInput!): ProjectBaseColor!
+}

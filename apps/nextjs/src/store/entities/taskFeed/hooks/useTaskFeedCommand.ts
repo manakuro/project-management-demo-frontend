@@ -1,0 +1,164 @@
+import { useRecoilCallback } from 'recoil';
+import {
+  useCreateTaskFeedMutation,
+  useDeleteTaskFeedMutation,
+  useUndeleteTaskFeedMutation,
+} from 'src/graphql/hooks';
+import { uuid } from 'src/shared/uuid';
+import { useTaskFeedLikeResponse } from 'src/store/entities/taskFeedLike';
+import { useTaskFileResponse } from 'src/store/entities/taskFile';
+import { useWorkspace } from 'src/store/entities/workspace';
+import { initialState, taskFeedState } from '../atom';
+import type { DeleteTaskFeedResponse, TaskFeed } from '../type';
+import { useResetTaskFeed } from './useResetTaskFeed';
+import { TASK_FEED_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskFeedCreatedSubscription';
+import { TASK_FEED_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskFeedDeletedSubscription';
+import { useTaskFeedResponse } from './useTaskFeedResponse';
+import { useUpsert } from './useUpsert';
+
+export const useTaskFeedCommand = () => {
+  const { upsert } = useUpsert();
+  const { workspace } = useWorkspace();
+  const [createTaskFeedMutation] = useCreateTaskFeedMutation();
+  const [deleteTaskFeedMutation] = useDeleteTaskFeedMutation();
+  const [undeleteTaskFeedMutation] = useUndeleteTaskFeedMutation();
+
+  const { resetTaskFeed } = useResetTaskFeed();
+  const { setTaskFeed } = useTaskFeedResponse();
+  const { setTaskFeedLikes } = useTaskFeedLikeResponse();
+  const { setTaskFiles } = useTaskFileResponse();
+
+  const addTaskFeed = useRecoilCallback(
+    () => (input: Pick<TaskFeed, 'taskId' | 'teammateId' | 'description'>) => {
+      const id = uuid();
+      upsert({
+        ...initialState(),
+        ...input,
+        id,
+      });
+
+      const restore = () => {
+        resetTaskFeed(id);
+      };
+
+      setTimeout(async () => {
+        try {
+          const res = await createTaskFeedMutation({
+            variables: {
+              input: {
+                taskId: input.taskId,
+                teammateId: input.teammateId,
+                description: input.description,
+                requestId: TASK_FEED_CREATED_SUBSCRIPTION_REQUEST_ID,
+                workspaceId: workspace.id,
+              },
+            },
+          });
+          if (res.errors) {
+            restore();
+            return;
+          }
+
+          const data = res.data?.createTaskFeed;
+          if (!data) return '';
+
+          resetTaskFeed(id);
+          setTaskFeed([data]);
+        } catch (e) {
+          restore();
+          throw e;
+        }
+      });
+
+      return id;
+    },
+    [upsert, createTaskFeedMutation, resetTaskFeed, setTaskFeed, workspace.id],
+  );
+
+  const deleteTaskFeed = useRecoilCallback(
+    ({ snapshot }) =>
+      async (input: { id: string }) => {
+        const prev = await snapshot.getPromise(taskFeedState(input.id));
+
+        resetTaskFeed(input.id);
+
+        const restore = () => {
+          setTaskFeed([prev]);
+        };
+
+        try {
+          const res = await deleteTaskFeedMutation({
+            variables: {
+              input: {
+                id: input.id,
+                requestId: TASK_FEED_DELETED_SUBSCRIPTION_REQUEST_ID,
+                workspaceId: workspace.id,
+              },
+            },
+          });
+          if (res.errors) {
+            setTaskFeed([prev]);
+            return;
+          }
+          return res.data?.deleteTaskFeed;
+        } catch (e) {
+          restore();
+          throw e;
+        }
+      },
+    [resetTaskFeed, deleteTaskFeedMutation, setTaskFeed, workspace.id],
+  );
+
+  const undeleteTaskFeed = useRecoilCallback(
+    () => async (input: DeleteTaskFeedResponse) => {
+      const id = uuid();
+      setTaskFeed([{ ...input.taskFeed, id }]);
+
+      const restore = () => {
+        resetTaskFeed(input.taskFeed.id);
+      };
+
+      try {
+        const res = await undeleteTaskFeedMutation({
+          variables: {
+            input: {
+              taskFeed: input.taskFeed,
+              taskFeedLikes: input.taskFeedLikes,
+              taskFiles: input.taskFiles,
+              requestId: '',
+              workspaceId: workspace.id,
+            },
+          },
+        });
+        if (res.errors) {
+          restore();
+          return;
+        }
+        const data = res.data?.undeleteTaskFeed;
+        if (!data) return;
+
+        resetTaskFeed(id);
+        setTaskFeed([data.taskFeed]);
+        setTaskFeedLikes(data.taskFeedLikes);
+        setTaskFiles(data.taskFiles);
+      } catch (e) {
+        restore();
+        throw e;
+      }
+    },
+    [
+      resetTaskFeed,
+      setTaskFeed,
+      setTaskFeedLikes,
+      setTaskFiles,
+      undeleteTaskFeedMutation,
+      workspace.id,
+    ],
+  );
+
+  return {
+    addTaskFeed,
+    deleteTaskFeed,
+    undeleteTaskFeed,
+  };
+};

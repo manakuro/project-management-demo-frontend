@@ -1,0 +1,60 @@
+type TaskFile implements Node {
+  id: ID!
+  name: String!
+  src: String!
+  taskId: ID!
+  task: Task!
+  projectId: ID!
+  taskFeedId: ID!
+  fileTypeId: ID!
+  fileType: FileType!
+  attached: Boolean!
+  createdAt: String!
+  updatedAt: String!
+}
+type TaskFileConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TaskFileEdge]
+}
+type TaskFileEdge {
+  node: TaskFile
+  cursor: Cursor!
+}
+
+input CreateTaskFileInput {
+  name: String!
+  src: String!
+  taskId: ID!
+  projectId: ID!
+  taskFeedId: ID!
+  fileTypeId: ID!
+  attached: Boolean!
+  requestId: String!
+}
+
+input UpdateTaskFileInput {
+  id: ID!
+  name: String
+  src: String
+  taskId: ID
+  projectId: ID
+  taskFeedId: ID
+  fileTypeId: ID
+  attached: Boolean
+  requestId: String!
+}
+
+extend type Subscription {
+  taskFileUpdated(id: ID!, requestId: String!): TaskFile!
+}
+
+extend type Query {
+  taskFile(where: TaskFileWhereInput): TaskFile
+  taskFiles(after: Cursor, first: Int, before: Cursor, last: Int, where: TaskFileWhereInput): TaskFileConnection
+}
+
+extend type Mutation {
+  createTaskFile(input: CreateTaskFileInput!): TaskFile!
+  updateTaskFile(input: UpdateTaskFileInput!): TaskFile!
+}

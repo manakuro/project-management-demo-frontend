@@ -1,0 +1,58 @@
+type ProjectTeammate implements Node {
+  id: ID!
+  projectId: ID!
+  project: Project!
+  teammateId: ID!
+  teammate: Teammate!
+  role: String!
+  isOwner: Boolean!
+  createdAt: String!
+  updatedAt: String!
+}
+type ProjectTeammateConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ProjectTeammateEdge]
+}
+type ProjectTeammateEdge {
+  node: ProjectTeammate
+  cursor: Cursor!
+}
+
+input CreateProjectTeammateInput {
+  projectId: ID!
+  teammateId: ID!
+  role: String!
+  isOwner: Boolean!
+  requestId: String!
+}
+input UpdateProjectTeammateInput {
+  id: ID!
+  projectId: ID
+  teammateId: ID
+  role: String
+  isOwner: Boolean
+  requestId: String!
+  workspaceId: ID!
+}
+input UpdateProjectTeammateOwnerInput {
+  teammateId: ID!
+  projectId: ID!
+  requestId: String!
+  workspaceId: ID!
+}
+
+extend type Query {
+  projectTeammate(where: ProjectTeammateWhereInput): ProjectTeammate
+  projectTeammates(after: Cursor, first: Int, before: Cursor, last: Int, where: ProjectTeammateWhereInput): ProjectTeammateConnection
+}
+
+extend type Subscription {
+  projectTeammateUpdated(id: ID!, requestId: String!): ProjectTeammate!
+}
+
+extend type Mutation {
+  createProjectTeammate(input: CreateProjectTeammateInput!): ProjectTeammate!
+  updateProjectTeammate(input: UpdateProjectTeammateInput!): ProjectTeammate!
+  updateProjectTeammateOwner(input: UpdateProjectTeammateOwnerInput!): ProjectTeammate!
+}

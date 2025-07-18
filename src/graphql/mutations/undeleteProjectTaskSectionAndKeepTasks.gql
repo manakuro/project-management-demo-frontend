@@ -1,8 +1,0 @@
-mutation UndeleteProjectTaskSectionAndKeepTasks($input: UndeleteProjectTaskSectionAndKeepTasksInput!) {
-  undeleteProjectTaskSectionAndKeepTasks(input: $input) {
-    projectTaskSection {
-      ...ProjectTaskSectionFragment
-    }
-    projectTaskIds
-  }
-}

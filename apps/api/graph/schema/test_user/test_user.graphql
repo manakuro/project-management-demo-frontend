@@ -1,0 +1,77 @@
+type TestUserProfile {
+  address: String
+  phone: String
+  body: TestUserProfileBody
+}
+type TestUserProfileBody {
+  weight: Int
+  height: Int
+  comment: TestUserProfileBodyComment
+}
+type TestUserProfileBodyComment {
+  type: String
+  text: String
+}
+
+input TestUserProfileInput {
+  address: String
+  phone: String
+  body: TestUserProfileBodyInput
+}
+input TestUserProfileBodyInput {
+  weight: Int
+  height: Int
+  comment: TestUserProfileBodyCommentInput
+}
+input TestUserProfileBodyCommentInput {
+  type: String
+  text: String
+}
+
+type TestUser implements Node {
+  id: ID!
+  name: String!
+  age: Int!
+  testTodos: [TestTodo!]!
+  profile: TestUserProfile!
+  description: Map
+  createdAt: String!
+  updatedAt: String!
+}
+type TestUserConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TestUserEdge]
+}
+type TestUserEdge {
+  node: TestUser
+  cursor: Cursor!
+}
+
+input CreateTestUserInput {
+  name: String!
+  age: Int!
+  profile: TestUserProfileInput!
+  description: Map
+}
+input UpdateTestUserInput {
+  id: ID!
+  name: String
+  age: Int
+  description: Map
+}
+
+extend type Query {
+  testUser(id: ID!, age: Int): TestUser
+  testUsers(after: Cursor, first: Int, before: Cursor, last: Int, where: TestUserWhereInput): TestUserConnection
+}
+
+extend type Subscription {
+  testUserUpdated(id: ID!): TestUser!
+}
+
+extend type Mutation {
+  createTestUser(input: CreateTestUserInput!): TestUser!
+  createTestUserAndTodo(input: CreateTestUserInput!): TestUser!
+  updateTestUser(input: UpdateTestUserInput!): TestUser!
+}

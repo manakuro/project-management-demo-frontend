@@ -1,0 +1,119 @@
+type TeammateTaskSection implements Node {
+  id: ID!
+  workspaceId: ID!
+  workspace: Workspace!
+  teammateId: ID!
+  teammate: Teammate!
+  name: String!
+  teammateTasks: [TeammateTask!]!
+  assigned: Boolean!
+  createdAt: String!
+  updatedAt: String!
+}
+type TeammateTaskSectionConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TeammateTaskSectionEdge]
+}
+type TeammateTaskSectionEdge {
+  node: TeammateTaskSection
+  cursor: Cursor!
+}
+
+input CreateTeammateTaskSectionInput {
+  workspaceId: ID!
+  teammateId: ID!
+  requestId: String!
+}
+
+input UpdateTeammateTaskSectionInput {
+  id: ID!
+  workspaceId: ID
+  teammateId: ID
+  name: String
+  requestId: String!
+}
+
+input DeleteTeammateTaskSectionInput {
+  id: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+
+input DeleteTeammateTaskSectionAndKeepTasksInput {
+  id: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+
+type DeleteTeammateTaskSectionAndKeepTasksPayload {
+  teammateTaskSection: TeammateTaskSection!
+  keptTeammateTaskSection: TeammateTaskSection!
+  teammateTaskIds: [ID!]!
+}
+
+input DeleteTeammateTaskSectionAndDeleteTasksInput {
+  id: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+type DeleteTeammateTaskSectionAndDeleteTasksPayload {
+  teammateTaskSection: TeammateTaskSection!
+  teammateTaskIds: [ID!]!
+  taskIds: [ID!]!
+}
+
+input UndeleteTeammateTaskSectionAndKeepTasksInput {
+  name: String!
+  createdAt: Time!
+  updatedAt: Time!
+  teammateId: ID!
+  keptTeammateTaskIds: [ID!]!
+  workspaceId: ID!
+  requestId: String!
+}
+
+type UndeleteTeammateTaskSectionAndKeepTasksPayload {
+  teammateTaskSection: TeammateTaskSection!
+  teammateTaskIds: [ID!]!
+}
+
+input UndeleteTeammateTaskSectionAndDeleteTasksInput {
+  name: String!
+  createdAt: Time!
+  updatedAt: Time!
+  teammateId: ID!
+  workspaceId: ID!
+  deletedTeammateTaskIds: [ID!]!
+  deletedTaskIds: [ID!]!
+  requestId: String!
+}
+type UndeleteTeammateTaskSectionAndDeleteTasksPayload {
+  teammateTaskSection: TeammateTaskSection!
+  teammateTasks: [TeammateTask!]!
+}
+
+extend type Subscription {
+  teammateTaskSectionUpdated(teammateId: ID!, workspaceId: ID!, requestId: String!): TeammateTaskSection!
+  teammateTaskSectionCreated(teammateId: ID!, workspaceId: ID!, requestId: String!): TeammateTaskSection!
+  teammateTaskSectionDeleted(teammateId: ID!, workspaceId: ID!, requestId: String!): TeammateTaskSection!
+  teammateTaskSectionDeletedAndKeepTasks(teammateId: ID!, workspaceId: ID!, requestId: String!): DeleteTeammateTaskSectionAndKeepTasksPayload!
+  teammateTaskSectionDeletedAndDeleteTasks(teammateId: ID!, workspaceId: ID!, requestId: String!): DeleteTeammateTaskSectionAndDeleteTasksPayload!
+  teammateTaskSectionUndeletedAndKeepTasks(teammateId: ID!, workspaceId: ID!, requestId: String!): UndeleteTeammateTaskSectionAndKeepTasksPayload!
+  teammateTaskSectionUndeletedAndDeleteTasks(teammateId: ID!, workspaceId: ID!, requestId: String!): UndeleteTeammateTaskSectionAndDeleteTasksPayload!
+}
+
+extend type Query {
+  teammateTaskSection(where: TeammateTaskSectionWhereInput): TeammateTaskSection
+  teammateTaskSections(after: Cursor, first: Int, before: Cursor, last: Int, where: TeammateTaskSectionWhereInput): TeammateTaskSectionConnection
+}
+
+extend type Mutation {
+  createTeammateTaskSection(input: CreateTeammateTaskSectionInput!): TeammateTaskSection!
+  updateTeammateTaskSection(input: UpdateTeammateTaskSectionInput!): TeammateTaskSection!
+  deleteTeammateTaskSection(input: DeleteTeammateTaskSectionInput!): TeammateTaskSection!
+  deleteTeammateTaskSectionAndKeepTasks(input: DeleteTeammateTaskSectionAndKeepTasksInput!): DeleteTeammateTaskSectionAndKeepTasksPayload!
+  deleteTeammateTaskSectionAndDeleteTasks(input: DeleteTeammateTaskSectionAndDeleteTasksInput!): DeleteTeammateTaskSectionAndDeleteTasksPayload!
+  undeleteTeammateTaskSectionAndKeepTasks(input: UndeleteTeammateTaskSectionAndKeepTasksInput!): UndeleteTeammateTaskSectionAndKeepTasksPayload!
+  undeleteTeammateTaskSectionAndDeleteTasks(input: UndeleteTeammateTaskSectionAndDeleteTasksInput!): UndeleteTeammateTaskSectionAndDeleteTasksPayload!
+}

@@ -1,0 +1,43 @@
+type ArchivedWorkspaceActivity implements Node {
+  id: ID!
+  activityTypeId: ID!
+  activityType: ActivityType!
+  workspaceId: ID!
+  workspace: Workspace!
+  projectId: ID!
+  project: Project!
+  teammateId: ID!
+  teammate: Teammate!
+  archivedWorkspaceActivityTasks: [ArchivedWorkspaceActivityTask!]!
+  createdAt: String!
+  updatedAt: String!
+}
+type ArchivedWorkspaceActivityConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ArchivedWorkspaceActivityEdge]
+}
+type ArchivedWorkspaceActivityEdge {
+  node: ArchivedWorkspaceActivity
+  cursor: Cursor!
+}
+
+input CreateArchivedWorkspaceActivityInput {
+  activityTypeId: ID!
+  teammateId: ID!
+}
+
+input UpdateArchivedWorkspaceActivityInput {
+  id: ID!
+  teammateId: ID
+}
+
+extend type Query {
+  archivedWorkspaceActivity(where: ArchivedWorkspaceActivityWhereInput): ArchivedWorkspaceActivity
+  archivedWorkspaceActivities(after: Cursor, first: Int, before: Cursor, last: Int, where: ArchivedWorkspaceActivityWhereInput): ArchivedWorkspaceActivityConnection
+}
+
+extend type Mutation {
+  createArchivedWorkspaceActivity(input: CreateArchivedWorkspaceActivityInput!): ArchivedWorkspaceActivity!
+  updateArchivedWorkspaceActivity(input: UpdateArchivedWorkspaceActivityInput!): ArchivedWorkspaceActivity!
+}

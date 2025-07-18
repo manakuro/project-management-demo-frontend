@@ -1,0 +1,21 @@
+query ProjectTeammates(
+  $after: Cursor
+  $before: Cursor
+  $first: Int
+  $last: Int
+  $where: ProjectTeammateWhereInput
+) {
+  projectTeammates(
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+    where: $where
+  ) {
+    edges {
+      node {
+        ...ProjectTeammateFragment
+      }
+    }
+  }
+}

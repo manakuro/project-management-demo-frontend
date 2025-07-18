@@ -1,0 +1,54 @@
+enum TeammateTaskTabStatusCode {
+  LIST
+  BOARD
+  CALENDAR
+  FILES
+}
+
+type TeammateTaskTabStatus implements Node {
+  id: ID!
+  workspaceId: ID!
+  workspace: Workspace!
+  teammateId: ID!
+  teammate: Teammate!
+  statusCode: TeammateTaskTabStatusCode
+  createdAt: String!
+  updatedAt: String!
+}
+type TeammateTaskTabStatusConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TeammateTaskTabStatusEdge]
+}
+type TeammateTaskTabStatusEdge {
+  node: TeammateTaskTabStatus
+  cursor: Cursor!
+}
+
+input CreateTeammateTaskTabStatusInput {
+  workspaceId: ID!
+  teammateId: ID!
+  requestId: String!
+}
+
+input UpdateTeammateTaskTabStatusInput {
+  id: ID!
+  workspaceId: ID
+  teammateId: ID
+  statusCode: TeammateTaskTabStatusCode
+  requestId: String!
+}
+
+extend type Subscription {
+  teammateTaskTabStatusUpdated(id: ID!, requestId: String!): TeammateTaskTabStatus!
+}
+
+extend type Query {
+  teammateTaskTabStatus(where: TeammateTaskTabStatusWhereInput): TeammateTaskTabStatus
+  teammateTaskTabStatuses(after: Cursor, first: Int, before: Cursor, last: Int, where: TeammateTaskTabStatusWhereInput): TeammateTaskTabStatusConnection
+}
+
+extend type Mutation {
+  createTeammateTaskTabStatus(input: CreateTeammateTaskTabStatusInput!): TeammateTaskTabStatus!
+  updateTeammateTaskTabStatus(input: UpdateTeammateTaskTabStatusInput!): TeammateTaskTabStatus!
+}

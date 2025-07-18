@@ -1,3 +1,0 @@
-subscription FavoriteWorkspaceIdsUpdated($teammateId: ID!, $requestId: String!) {
-  favoriteWorkspaceIdsUpdated(teammateId: $teammateId, requestId: $requestId)
-}

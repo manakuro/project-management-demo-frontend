@@ -1,0 +1,50 @@
+type WorkspaceTeammate implements Node {
+  id: ID!
+  workspaceId: ID!
+  workspace: Workspace!
+  teammateId: ID!
+  teammate: Teammate!
+  role: String!
+  isOwner: Boolean!
+  createdAt: String!
+  updatedAt: String!
+}
+type WorkspaceTeammateConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [WorkspaceTeammateEdge]
+}
+type WorkspaceTeammateEdge {
+  node: WorkspaceTeammate
+  cursor: Cursor!
+}
+
+input CreateWorkspaceTeammateInput {
+  workspaceId: ID!
+  teammateId: ID!
+  role: String!
+  isOwner: Boolean!
+  requestId: String!
+}
+input UpdateWorkspaceTeammateInput {
+  id: ID!
+  workspaceId: ID
+  teammateId: ID
+  role: String
+  isOwner: Boolean
+  requestId: String!
+}
+
+extend type Query {
+  workspaceTeammate(where: WorkspaceTeammateWhereInput): WorkspaceTeammate
+  workspaceTeammates(after: Cursor, first: Int, before: Cursor, last: Int, where: WorkspaceTeammateWhereInput): WorkspaceTeammateConnection
+}
+
+extend type Subscription {
+  workspaceTeammateUpdated(id: ID!, requestId: String!): WorkspaceTeammate!
+}
+
+extend type Mutation {
+  createWorkspaceTeammate(input: CreateWorkspaceTeammateInput!): WorkspaceTeammate!
+  updateWorkspaceTeammate(input: UpdateWorkspaceTeammateInput!): WorkspaceTeammate!
+}

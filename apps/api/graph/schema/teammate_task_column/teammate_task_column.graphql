@@ -1,0 +1,60 @@
+type TeammateTaskColumn implements Node {
+  id: ID!
+  teammateId: ID!
+  teammate: Teammate!
+  taskColumnId: ID!
+  taskColumn: TaskColumn!
+  width: String!
+  disabled: Boolean!
+  customizable: Boolean!
+  order: Int!
+  createdAt: String!
+  updatedAt: String!
+}
+type TeammateTaskColumnConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TeammateTaskColumnEdge]
+}
+type TeammateTaskColumnEdge {
+  node: TeammateTaskColumn
+  cursor: Cursor!
+}
+
+input CreateTeammateTaskColumnInput {
+  taskColumnId: ID!
+  teammateId: ID!
+  width: String!
+  disabled: Boolean!
+  customizable: Boolean!
+  order: Int!
+  requestId: String!
+}
+
+input UpdateTeammateTaskColumnInput {
+  id: ID!
+  width: String
+  disabled: Boolean
+  customizable: Boolean
+  order: Int
+  requestId: String!
+}
+
+input UpdateTeammateTaskColumnOrderInput {
+  ids: [ID!]!
+}
+
+extend type Subscription {
+  teammateTaskColumnUpdated(id: ID!, requestId: String!): TeammateTaskColumn!
+}
+
+extend type Query {
+  teammateTaskColumn(where: TeammateTaskColumnWhereInput): TeammateTaskColumn
+  teammateTaskColumns(after: Cursor, first: Int, before: Cursor, last: Int, where: TeammateTaskColumnWhereInput): TeammateTaskColumnConnection
+}
+
+extend type Mutation {
+  createTeammateTaskColumn(input: CreateTeammateTaskColumnInput!): TeammateTaskColumn!
+  updateTeammateTaskColumn(input: UpdateTeammateTaskColumnInput!): TeammateTaskColumn!
+  updateTeammateTaskColumnOrder(input: UpdateTeammateTaskColumnOrderInput!): [TeammateTaskColumn!]!
+}

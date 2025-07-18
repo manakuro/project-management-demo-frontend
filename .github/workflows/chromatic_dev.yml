@@ -1,3 +1,4 @@
+
 name: Chromatic development
 on:
   pull_request:
@@ -8,31 +9,35 @@ jobs:
     name: chromatic development
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v2
+      - run: npm i -g --force corepack && corepack enable
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20.12.2
+          node-version-file: '.node-version'
+          cache: 'pnpm'
+          cache-dependency-path: pnpm-lock.yaml
       - name: Cache node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         id: node_modules_cache_id
         with:
-          path: node_modules
-          key: v1-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          path: "**/node_modules"
+          key: v2-pnpm-${{ hashFiles(format('{0}{1}', github.workspace, '/pnpm-lock.yaml')) }}
           restore-keys: |
-            v1-yarn-
+            v2-pnpm-
       - name: Run install
         if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile --silent
+        run: pnpm install --frozen-lockfile
       - name: Run codegen
-        run: yarn codegen:ci
+        run: pnpm --filter nextjs codegen:ci
       - name: Publish to Chromatic
-        uses: chromaui/action@v1
+        uses: chromaui/action@latest
         id: chromatic
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: true
+          workingDir: apps/nextjs
       - name: Remove unnecessary path for Chromatic link
         id: storybook-url
         run: echo "::set-output name=value::${STORYBOOK_URL//\/iframe.html/}"

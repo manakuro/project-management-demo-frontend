@@ -1,0 +1,13 @@
+type ArchivedActivity {
+    id: ID!
+    type: String!
+    updatedAt: String!
+}
+
+input ArchivedActivityWhereInput {
+    workspaceId: ID!
+}
+
+extend type Query {
+    archivedActivities(where: ArchivedActivityWhereInput!): [ArchivedActivity!]!
+}

@@ -1,0 +1,45 @@
+type Teammate implements Node {
+  id: ID!
+  name: String!
+  image: String!
+  email: String!
+  createdAt: String!
+  updatedAt: String!
+}
+type TeammateConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TeammateEdge]
+}
+type TeammateEdge {
+  node: Teammate
+  cursor: Cursor!
+}
+
+input CreateTeammateInput {
+  name: String!
+  image: String!
+  email: String!
+  requestId: String!
+}
+input UpdateTeammateInput {
+  id: ID!
+  name: String
+  image: String
+  email: String
+  requestId: String!
+}
+
+extend type Query {
+  teammate(id: ID!): Teammate
+  teammates(after: Cursor, first: Int, before: Cursor, last: Int, where: TeammateWhereInput): TeammateConnection
+}
+
+extend type Subscription {
+  teammateUpdated(id: ID!, requestId: String!): Teammate!
+}
+
+extend type Mutation {
+  createTeammate(input: CreateTeammateInput!): Teammate!
+  updateTeammate(input: UpdateTeammateInput!): Teammate!
+}

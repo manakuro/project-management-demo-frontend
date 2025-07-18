@@ -1,0 +1,17 @@
+mutation DeleteProjectTaskSectionAndKeepTasks(
+  $input: DeleteProjectTaskSectionAndKeepTasksInput!
+) {
+  deleteProjectTaskSectionAndKeepTasks(input: $input) {
+    projectTaskIds
+    projectTaskSection {
+      id
+      name
+      projectId
+      createdAt
+      updatedAt
+    }
+    keptProjectTaskSection {
+      id
+    }
+  }
+}

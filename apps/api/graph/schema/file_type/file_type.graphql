@@ -1,0 +1,42 @@
+enum FileTypeCode {
+  IMAGE
+  PDF
+  TEXT
+}
+
+type FileType implements Node {
+  id: ID!
+  name: String!
+  typeCode: FileTypeCode!
+  createdAt: String!
+  updatedAt: String!
+}
+type FileTypeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [FileTypeEdge]
+}
+type FileTypeEdge {
+  node: FileType
+  cursor: Cursor!
+}
+
+input CreateFileTypeInput {
+  name: String!
+  typeCode: FileTypeCode!
+}
+
+input UpdateFileTypeInput {
+  id: ID!
+  typeCode: FileTypeCode
+}
+
+extend type Query {
+  fileType(where: FileTypeWhereInput): FileType
+  fileTypes(after: Cursor, first: Int, before: Cursor, last: Int, where: FileTypeWhereInput): FileTypeConnection
+}
+
+extend type Mutation {
+  createFileType(input: CreateFileTypeInput!): FileType!
+  updateFileType(input: UpdateFileTypeInput!): FileType!
+}

@@ -1,0 +1,116 @@
+type ProjectTaskSection implements Node {
+  id: ID!
+  projectId: ID!
+  project: Project!
+  name: String!
+  projectTasks: [ProjectTask!]!
+  createdAt: String!
+  updatedAt: String!
+}
+type ProjectTaskSectionConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ProjectTaskSectionEdge]
+}
+type ProjectTaskSectionEdge {
+  node: ProjectTaskSection
+  cursor: Cursor!
+}
+
+input CreateProjectTaskSectionInput {
+  projectId: ID!
+  requestId: String!
+  workspaceId: ID!
+}
+
+input UpdateProjectTaskSectionInput {
+  id: ID!
+  projectId: ID
+  name: String
+  requestId: String!
+  workspaceId: ID!
+}
+
+input DeleteProjectTaskSectionInput {
+  id: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+
+input DeleteProjectTaskSectionAndKeepTasksInput {
+  id: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+
+type DeleteProjectTaskSectionAndKeepTasksPayload {
+  projectTaskSection: ProjectTaskSection!
+  keptProjectTaskSection: ProjectTaskSection!
+  projectTaskIds: [ID!]!
+}
+
+input DeleteProjectTaskSectionAndDeleteTasksInput {
+  id: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+type DeleteProjectTaskSectionAndDeleteTasksPayload {
+  projectTaskSection: ProjectTaskSection!
+  projectTaskIds: [ID!]!
+  taskIds: [ID!]!
+}
+
+input UndeleteProjectTaskSectionAndKeepTasksInput {
+  name: String!
+  createdAt: Time!
+  updatedAt: Time!
+  projectId: ID!
+  keptProjectTaskIds: [ID!]!
+  workspaceId: ID!
+  requestId: String!
+}
+type UndeleteProjectTaskSectionAndKeepTasksPayload {
+  projectTaskSection: ProjectTaskSection!
+  projectTaskIds: [ID!]!
+}
+
+input UndeleteProjectTaskSectionAndDeleteTasksInput {
+  name: String!
+  createdAt: Time!
+  updatedAt: Time!
+  projectId: ID!
+  deletedProjectTaskIds: [ID!]!
+  deletedTaskIds: [ID!]!
+  workspaceId: ID!
+  requestId: String!
+}
+type UndeleteProjectTaskSectionAndDeleteTasksPayload {
+  projectTaskSection: ProjectTaskSection!
+  projectTasks: [ProjectTask!]!
+}
+
+extend type Subscription {
+  projectTaskSectionUpdated(workspaceId: ID!, requestId: String!): ProjectTaskSection!
+  projectTaskSectionCreated(workspaceId: ID!, requestId: String!): ProjectTaskSection!
+  projectTaskSectionDeleted(workspaceId: ID!, requestId: String!): ProjectTaskSection!
+  projectTaskSectionDeletedAndKeepTasks(workspaceId: ID!, requestId: String!): DeleteProjectTaskSectionAndKeepTasksPayload!
+  projectTaskSectionDeletedAndDeleteTasks(workspaceId: ID!, requestId: String!): DeleteProjectTaskSectionAndDeleteTasksPayload!
+  projectTaskSectionUndeletedAndKeepTasks(workspaceId: ID!, requestId: String!): UndeleteProjectTaskSectionAndKeepTasksPayload!
+  projectTaskSectionUndeletedAndDeleteTasks(workspaceId: ID!, requestId: String!): UndeleteProjectTaskSectionAndDeleteTasksPayload!
+}
+
+extend type Query {
+  projectTaskSection(where: ProjectTaskSectionWhereInput): ProjectTaskSection
+  projectTaskSections(after: Cursor, first: Int, before: Cursor, last: Int, where: ProjectTaskSectionWhereInput): ProjectTaskSectionConnection
+  projectTaskSectionsByTaskId(taskId: ID!, where: ProjectTaskSectionWhereInput): [ProjectTaskSection!]!
+}
+
+extend type Mutation {
+  createProjectTaskSection(input: CreateProjectTaskSectionInput!): ProjectTaskSection!
+  updateProjectTaskSection(input: UpdateProjectTaskSectionInput!): ProjectTaskSection!
+  deleteProjectTaskSection(input: DeleteProjectTaskSectionInput!): ProjectTaskSection!
+  deleteProjectTaskSectionAndKeepTasks(input: DeleteProjectTaskSectionAndKeepTasksInput!): DeleteProjectTaskSectionAndKeepTasksPayload!
+  deleteProjectTaskSectionAndDeleteTasks(input: DeleteProjectTaskSectionAndDeleteTasksInput!): DeleteProjectTaskSectionAndDeleteTasksPayload!
+  undeleteProjectTaskSectionAndKeepTasks(input: UndeleteProjectTaskSectionAndKeepTasksInput!): UndeleteProjectTaskSectionAndKeepTasksPayload!
+  undeleteProjectTaskSectionAndDeleteTasks(input: UndeleteProjectTaskSectionAndDeleteTasksInput!): UndeleteProjectTaskSectionAndDeleteTasksPayload!
+}

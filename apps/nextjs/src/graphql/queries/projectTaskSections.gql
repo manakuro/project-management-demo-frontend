@@ -1,0 +1,28 @@
+query ProjectTaskSections(
+  $after: Cursor
+  $before: Cursor
+  $first: Int
+  $last: Int
+  $where: ProjectTaskSectionWhereInput
+) {
+  projectTaskSections(
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+    where: $where
+  ) {
+    edges {
+      node {
+        id
+        name
+        projectId
+        project {
+          ...ProjectFragment
+        }
+        createdAt
+        updatedAt
+      }
+    }
+  }
+}

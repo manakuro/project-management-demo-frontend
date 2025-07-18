@@ -1,0 +1,42 @@
+type Icon implements Node {
+  id: ID!
+  name: String!
+  icon: String!
+  createdAt: String!
+  updatedAt: String!
+}
+type IconConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [IconEdge]
+}
+type IconEdge {
+  node: Icon
+  cursor: Cursor!
+}
+
+input CreateIconInput {
+  name: String!
+  icon: String!
+  requestId: String!
+}
+input UpdateIconInput {
+  id: ID!
+  name: String
+  icon: String
+  requestId: String!
+}
+
+extend type Query {
+  icon(id: ID!): Icon
+  icons(after: Cursor, first: Int, before: Cursor, last: Int, where: IconWhereInput): IconConnection
+}
+
+extend type Subscription {
+  iconUpdated(id: ID!, requestId: String!): Icon!
+}
+
+extend type Mutation {
+  createIcon(input: CreateIconInput!): Icon!
+  updateIcon(input: UpdateIconInput!): Icon!
+}

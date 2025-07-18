@@ -1,0 +1,50 @@
+type DeletedTask implements Node {
+  id: ID!
+  taskId: ID!
+  task: Task!
+  workspaceId: ID!
+  createdAt: String!
+  updatedAt: String!
+}
+type DeletedTaskConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [DeletedTaskEdge]
+}
+type DeletedTaskEdge {
+  node: DeletedTask
+  cursor: Cursor!
+}
+
+input CreateDeletedTaskInput {
+  taskId: ID!
+  workspaceId: ID!
+  requestId: String!
+}
+
+input UpdateDeletedTaskInput {
+  id: ID!
+  taskId: ID
+  workspaceId: ID
+  requestId: String!
+}
+input UndeleteDeletedTaskInput {
+  taskId: ID!
+  requestId: String!
+}
+
+extend type Subscription {
+  deletedTaskUpdated(id: ID!, requestId: String!): DeletedTask!
+  deletedTaskCreated(workspaceId: ID!, requestId: String!): DeletedTask!
+}
+
+extend type Query {
+  deletedTask(where: DeletedTaskWhereInput): DeletedTask
+  deletedTasks(after: Cursor, first: Int, before: Cursor, last: Int, where: DeletedTaskWhereInput): DeletedTaskConnection
+}
+
+extend type Mutation {
+  createDeletedTask(input: CreateDeletedTaskInput!): DeletedTask!
+  updateDeletedTask(input: UpdateDeletedTaskInput!): DeletedTask!
+  undeleteDeletedTask(input: UndeleteDeletedTaskInput!): [DeletedTask!]!
+}

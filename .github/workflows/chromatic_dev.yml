@@ -1,3 +1,4 @@
+
 name: Chromatic development
 on:
   pull_request:
@@ -31,7 +32,7 @@ jobs:
       - name: Run codegen
         run: pnpm --filter nextjs codegen:ci
       - name: Publish to Chromatic
-        uses: chromaui/action@v1
+        uses: chromaui/action@latest
         id: chromatic
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

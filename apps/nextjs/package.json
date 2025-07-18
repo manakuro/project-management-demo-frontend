@@ -133,7 +133,7 @@
     "@types/yargs": "^17",
     "babel-loader": "^8.3.0",
     "change-case": "^4.1.2",
-    "chromatic": "^6.11.4",
+    "chromatic": "^13.1.2",
     "commitizen": "^4.2.4",
     "consola": "^2.15.3",
     "cross-env": "^7.0.3",

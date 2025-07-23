@@ -25,3 +25,6 @@ dist/
 
 # Turborepo
 .turbo
+
+# Claude Code
+AI_INSTRUCTIONS.md

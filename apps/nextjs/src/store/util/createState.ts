@@ -35,7 +35,7 @@ export const createState = <T extends State>(props: Props<T>) => {
     set:
       (id) =>
       ({ get, set, reset }, newVal) => {
-        // Remove an item from the list when reset function will be called.
+        // Remove an item from the list when the reset function is called.
         if (newVal instanceof DefaultValue) {
           reset(atomState(id));
           set(listState, (prev) => {

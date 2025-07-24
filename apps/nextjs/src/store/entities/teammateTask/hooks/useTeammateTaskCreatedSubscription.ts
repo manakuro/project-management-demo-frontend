@@ -1,6 +1,6 @@
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useCallback } from 'react';
 import { useTeammateTaskCreatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import type { TeammateTaskCreatedSubscriptionResponse as Response } from '../type';
@@ -21,6 +21,26 @@ export const useTeammateTaskCreatedSubscription = (props: Props) => {
     () => !props.teammateId || !props.workspaceId,
     [props.teammateId, props.workspaceId],
   );
+
+  const setBySubscription = useCallback(
+    async (response: Response) => {
+      const created = response.teammateTaskCreated;
+
+      if (__DEV__) console.log('Teammate Task created!');
+
+      setTeammateTask([
+        {
+          ...created,
+          task: {
+            ...created.task,
+            isNew: false,
+          },
+        },
+      ]);
+    },
+    [setTeammateTask],
+  );
+
   const subscriptionResult = useSubscription({
     variables: {
       teammateId: props.teammateId,
@@ -42,25 +62,6 @@ export const useTeammateTaskCreatedSubscription = (props: Props) => {
     },
     skip: skipSubscription,
   });
-
-  const setBySubscription = useRecoilCallback(
-    () => async (response: Response) => {
-      const created = response.teammateTaskCreated;
-
-      if (__DEV__) console.log('Teammate Task created!');
-
-      setTeammateTask([
-        {
-          ...created,
-          task: {
-            ...created.task,
-            isNew: false,
-          },
-        },
-      ]);
-    },
-    [setTeammateTask],
-  );
 
   return {
     subscriptionResult,

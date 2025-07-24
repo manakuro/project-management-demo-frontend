@@ -1,4 +1,6 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { RESET } from 'jotai/utils';
+import { useCallback } from 'react';
 import {
   useCreateTeammateTaskMutation,
   useUpdateTeammateTaskMutation,
@@ -16,7 +18,6 @@ import type { TeammateTask } from '../type';
 import { TEAMMATE_TASK_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskCreatedSubscription';
 import { useTeammateTaskResponse } from './useTeammateTaskResponse';
 import { TEAMMATE_TASK_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskUpdatedSubscription';
-import { useUpsert } from './useUpsert';
 
 export const useTeammateTaskCommand = () => {
   const { me } = useMe();
@@ -25,18 +26,16 @@ export const useTeammateTaskCommand = () => {
   const [createTeammateTaskMutation] = useCreateTeammateTaskMutation();
   const [updateTeammateTaskMutation] = useUpdateTeammateTaskMutation();
   const { setTeammateTask } = useTeammateTaskResponse();
-  const { upsert } = useUpsert();
 
-  const setTeammateTaskByTaskId = useRecoilCallback(
-    ({ snapshot }) =>
-      async (taskId: string, input: Partial<TeammateTask>) => {
-        const prev = await snapshot.getPromise(
-          teammateTaskByTaskIdState(taskId),
-        );
-        upsert({ ...prev, ...input });
+  const setTeammateTaskByTaskId = useAtomCallback(
+    useCallback(
+      async (get, set, taskId: string, input: Partial<TeammateTask>) => {
+        const prev = get(teammateTaskByTaskIdState(taskId));
+        const updated = { ...prev, ...input };
+        set(teammateTaskState(prev.id), updated);
 
         const restore = () => {
-          upsert(prev);
+          set(teammateTaskState(prev.id), prev);
         };
 
         try {
@@ -51,19 +50,22 @@ export const useTeammateTaskCommand = () => {
             },
           });
           if (res.errors) {
-            upsert(prev);
+            set(teammateTaskState(prev.id), prev);
           }
         } catch (e) {
           restore();
           throw e;
         }
       },
-    [updateTeammateTaskMutation, upsert],
+      [updateTeammateTaskMutation],
+    ),
   );
 
-  const addTeammateTask = useRecoilCallback(
-    ({ reset }) =>
+  const addTeammateTask = useAtomCallback(
+    useCallback(
       async (
+        _,
+        set,
         input: Partial<TeammateTask> & {
           teammateTaskSectionId: string;
           taskParentId?: string;
@@ -81,11 +83,11 @@ export const useTeammateTaskCommand = () => {
           taskId: newTaskId,
           teammateId: me.id,
         };
-        upsert(newTeammateTask);
+        set(teammateTaskState(id), newTeammateTask);
 
         const restore = () => {
-          reset(teammateTaskState(id));
-          reset(taskState(newTaskId));
+          set(teammateTaskState(id), RESET);
+          set(taskState(newTaskId), RESET);
         };
 
         try {
@@ -108,8 +110,8 @@ export const useTeammateTaskCommand = () => {
           const data = res.data?.createTeammateTask;
           if (!data) return '';
 
-          reset(teammateTaskState(id));
-          reset(taskState(newTaskId));
+          set(teammateTaskState(id), RESET);
+          set(taskState(newTaskId), RESET);
           setTeammateTask([data]);
 
           return data.id;
@@ -118,14 +120,14 @@ export const useTeammateTaskCommand = () => {
           throw e;
         }
       },
-    [
-      addTask,
-      createTeammateTaskMutation,
-      me.id,
-      setTeammateTask,
-      upsert,
-      workspace.id,
-    ],
+      [
+        addTask,
+        createTeammateTaskMutation,
+        me.id,
+        setTeammateTask,
+        workspace.id,
+      ],
+    ),
   );
 
   return {

@@ -29,7 +29,7 @@ To provide instructions for Claude Code, document them in `AI_INSTRUCTIONS.md` a
 
 ### Example
 
-Create the `AI_INSTRUCTIONS.md` file in the root folder like so:
+Create the `AI_INSTRUCTIONS.md` file in the root folder and document the instructions like so:
 
 ```markdown
 ## Overview

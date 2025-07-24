@@ -85,6 +85,9 @@ importers:
       emotion-theming:
         specifier: ^11.0.0
         version: 11.0.0
+      fast-deep-equal:
+        specifier: ^3.1.3
+        version: 3.1.3
       firebase:
         specifier: ^9.7.0
         version: 9.7.0

@@ -16,17 +16,14 @@ export const useProjectResponse = () => {
   const { setTeammates: setTeammatesFromResponse } = useTeammateResponse();
 
   const setProjectTeammates = useAtomCallback(
-    useCallback(
-      (_, set, data: ProjectResponse[]) => {
-        const projectTeammates = data.reduce<ProjectTeammate[]>((acc, p) => {
-          acc.push(...p.projectTeammates);
-          return uniqBy(acc, 'id');
-        }, []);
+    useCallback((_, set, data: ProjectResponse[]) => {
+      const projectTeammates = data.reduce<ProjectTeammate[]>((acc, p) => {
+        acc.push(...p.projectTeammates);
+        return uniqBy(acc, 'id');
+      }, []);
 
-        projectTeammates.forEach((p) => set(projectTeammateState(p.id), p));
-      },
-      [],
-    ),
+      projectTeammates.forEach((p) => set(projectTeammateState(p.id), p));
+    }, []),
   );
 
   const setTeammates = useAtomCallback(
@@ -45,13 +42,13 @@ export const useProjectResponse = () => {
 
   const setProjects = useAtomCallback(
     useCallback(
-      (get, set, data: ProjectResponse[]) => {
+      (_get, set, data: ProjectResponse[]) => {
         data.forEach((p) => {
           set(projectState(p.id), p);
         });
 
-        setProjectTeammates(get, set, data);
-        setTeammates(get, set, data);
+        setProjectTeammates(data);
+        setTeammates(data);
       },
       [setProjectTeammates, setTeammates],
     ),

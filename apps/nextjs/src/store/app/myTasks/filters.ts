@@ -1,4 +1,4 @@
-import type { GetRecoilValue } from 'recoil';
+import type { Getter } from 'jotai';
 import { dateFns } from 'src/shared/dateFns';
 import { uniq } from 'src/shared/utils';
 import {
@@ -11,7 +11,7 @@ import { taskLikesByTaskIdState } from 'src/store/entities/taskLike';
 import type { TeammateTaskSection } from 'src/store/entities/teammatesTaskSection';
 
 type Params = {
-  get: GetRecoilValue;
+  get: Getter;
 };
 
 export const sortTeammateTaskSections =

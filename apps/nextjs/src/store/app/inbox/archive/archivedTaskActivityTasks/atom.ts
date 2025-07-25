@@ -1,9 +1,6 @@
-import { selectorFamily } from 'recoil';
+import { atom } from 'jotai';
 import { createState } from 'src/store/util';
 import type { ArchivedTaskActivityTask } from './type';
-
-const key = (str: string) =>
-  `src/store/app/inbox/activity/archivedMyTaskActivityTasks/${str}`;
 
 export const initialState = (): ArchivedTaskActivityTask => ({
   id: '',
@@ -12,23 +9,19 @@ export const initialState = (): ArchivedTaskActivityTask => ({
   createdAt: '',
   updatedAt: '',
 });
+
 export const {
   state: archivedTaskActivityTaskState,
   listState: archivedTaskActivityTasksState,
   idsState: archivedTaskActivityTaskIdsState,
-} = createState({ key, initialState });
+} = createState({ initialState });
 
-export const taskIdsByArchivedTaskActivityIdState = selectorFamily<
-  string[],
-  string
->({
-  key: key('taskIdsByArchivedTaskActivityIdState'),
-  get:
-    (archivedTaskActivityId: string) =>
-    ({ get }) => {
-      const archivedTaskActivityTasks = get(archivedTaskActivityTasksState);
-      return archivedTaskActivityTasks
-        .filter((w) => w.archivedTaskActivityId === archivedTaskActivityId)
-        .map((w) => w.taskId);
-    },
-});
+export const taskIdsByArchivedTaskActivityIdState = (
+  archivedTaskActivityId: string,
+) =>
+  atom<string[]>((get) => {
+    const archivedTaskActivityTasks = get(archivedTaskActivityTasksState);
+    return archivedTaskActivityTasks
+      .filter((w) => w.archivedTaskActivityId === archivedTaskActivityId)
+      .map((w) => w.taskId);
+  });

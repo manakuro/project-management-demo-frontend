@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useProjectTaskSectionCommand as useCommand } from 'src/store/entities/projectTaskSection';
 import { useProjectsProjectId } from '../../project';
 
@@ -13,11 +14,13 @@ export const useProjectsTaskSectionCommand = () => {
   } = useCommand();
   const { projectId } = useProjectsProjectId();
 
-  const addTaskSection = useRecoilCallback(
-    () => () => {
-      return addProjectsTaskSection({ projectId });
-    },
-    [addProjectsTaskSection, projectId],
+  const addTaskSection = useAtomCallback(
+    useCallback(
+      (_get, _set) => {
+        return addProjectsTaskSection({ projectId });
+      },
+      [addProjectsTaskSection, projectId],
+    ),
   );
 
   return {

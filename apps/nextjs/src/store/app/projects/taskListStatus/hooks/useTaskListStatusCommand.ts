@@ -1,34 +1,47 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import type { ProjectTaskListStatus } from 'src/store/app/projects/taskListStatus';
 import { taskListStatusState } from '../atom';
 
 export const useTaskListStatusCommand = () => {
-  const setTaskListCompletedStatus = useRecoilCallback(
-    ({ set }) =>
-      (input: Partial<ProjectTaskListStatus['taskListCompletedStatus']>) => {
-        set(taskListStatusState, (prev) => ({
+  const setTaskListCompletedStatus = useAtomCallback(
+    useCallback(
+      (
+        get,
+        set,
+        input: Partial<ProjectTaskListStatus['taskListCompletedStatus']>,
+      ) => {
+        const prev = get(taskListStatusState);
+        set(taskListStatusState, {
           ...prev,
           taskListCompletedStatus: {
             ...prev.taskListCompletedStatus,
             ...input,
           },
-        }));
+        });
       },
-    [],
+      [],
+    ),
   );
 
-  const setTaskListSortStatus = useRecoilCallback(
-    ({ set }) =>
-      (input: Partial<ProjectTaskListStatus['taskListSortStatus']>) => {
-        set(taskListStatusState, (prev) => ({
+  const setTaskListSortStatus = useAtomCallback(
+    useCallback(
+      (
+        get,
+        set,
+        input: Partial<ProjectTaskListStatus['taskListSortStatus']>,
+      ) => {
+        const prev = get(taskListStatusState);
+        set(taskListStatusState, {
           ...prev,
           taskListSortStatus: {
             ...prev.taskListSortStatus,
             ...input,
           },
-        }));
+        });
       },
-    [],
+      [],
+    ),
   );
 
   return {

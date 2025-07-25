@@ -1,18 +1,10 @@
-import { selectorFamily } from 'recoil';
+import { atom } from 'jotai';
 import { taskIdsByProjectIdState } from 'src/store/entities/projectTask';
 import { taskFilesState } from 'src/store/entities/taskFile';
 
-const key = (str: string) => `src/store/app/projectsFiles/${str}`;
-
-export const taskFileIdsState = selectorFamily<string[], string>({
-  key: key('taskFileIdsState'),
-  get:
-    (projectId: string) =>
-    ({ get }) => {
-      const taskFiles = get(taskFilesState);
-      const taskIds = get(taskIdsByProjectIdState(projectId));
-      return taskFiles
-        .filter((a) => taskIds.includes(a.taskId))
-        .map((a) => a.id);
-    },
-});
+export const taskFileIdsState = (projectId: string) =>
+  atom<string[]>((get) => {
+    const taskFiles = get(taskFilesState);
+    const taskIds = get(taskIdsByProjectIdState(projectId));
+    return taskFiles.filter((a) => taskIds.includes(a.taskId)).map((a) => a.id);
+  });

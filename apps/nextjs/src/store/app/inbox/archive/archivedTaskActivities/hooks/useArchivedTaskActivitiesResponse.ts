@@ -1,16 +1,15 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { archivedTaskActivityState } from '../atom';
 import type { ArchivedTaskActivityResponse } from '../type';
 
 export const useArchivedTaskActivitiesResponse = () => {
-  const setArchivedTaskActivities = useRecoilCallback(
-    ({ set }) =>
-      (data: ArchivedTaskActivityResponse[]) => {
-        data.forEach((d) => {
-          set(archivedTaskActivityState(d.id), d);
-        });
-      },
-    [],
+  const setArchivedTaskActivities = useAtomCallback(
+    useCallback((_get, set, data: ArchivedTaskActivityResponse[]) => {
+      data.forEach((d) => {
+        set(archivedTaskActivityState(d.id), d);
+      });
+    }, []),
   );
 
   return {

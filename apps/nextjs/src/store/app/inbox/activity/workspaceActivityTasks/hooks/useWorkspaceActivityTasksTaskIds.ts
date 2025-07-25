@@ -1,10 +1,10 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { taskIdsByWorkspaceActivityIdState } from '../atom';
 
 export const useWorkspaceActivityTasksTaskIds = (
   workspaceActivityId: string,
 ) => {
-  const taskIds = useRecoilValue(
+  const taskIds = useAtomValue(
     taskIdsByWorkspaceActivityIdState(workspaceActivityId),
   );
 

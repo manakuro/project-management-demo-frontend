@@ -1,11 +1,11 @@
+import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
-import { useRecoilValue } from 'recoil';
 import { taskIdsByTaskSectionIdState } from '../atom';
 
 export const useMyTasksTaskIdsByTaskSectionId = (
   teammateTaskSectionId: string,
 ) => {
-  const ids = useRecoilValue(
+  const ids = useAtomValue(
     taskIdsByTaskSectionIdState({ teammateTaskSectionId }),
   );
   const taskIds = useMemo(() => ids, [ids]);

@@ -1,9 +1,6 @@
-import { selectorFamily } from 'recoil';
+import { atom } from 'jotai';
 import { createState } from 'src/store/util';
 import type { ArchivedWorkspaceActivityTask } from './type';
-
-const key = (str: string) =>
-  `src/store/app/inbox/activity/archivedWorkspaceActivityTasks/${str}`;
 
 export const initialState = (): ArchivedWorkspaceActivityTask => ({
   id: '',
@@ -12,27 +9,23 @@ export const initialState = (): ArchivedWorkspaceActivityTask => ({
   createdAt: '',
   updatedAt: '',
 });
+
 export const {
   state: archivedWorkspaceActivityTaskState,
   listState: archivedWorkspaceActivityTasksState,
   idsState: archivedWorkspaceActivityTaskIdsState,
-} = createState({ key, initialState });
+} = createState({ initialState });
 
-export const taskIdsByArchivedWorkspaceActivityIdState = selectorFamily<
-  string[],
-  string
->({
-  key: key('taskIdsByArchivedWorkspaceActivityIdState'),
-  get:
-    (archivedWorkspaceActivityId: string) =>
-    ({ get }) => {
-      const archivedWorkspaceActivityTasks = get(
-        archivedWorkspaceActivityTasksState,
-      );
-      return archivedWorkspaceActivityTasks
-        .filter(
-          (w) => w.archivedWorkspaceActivityId === archivedWorkspaceActivityId,
-        )
-        .map((w) => w.taskId);
-    },
-});
+export const taskIdsByArchivedWorkspaceActivityIdState = (
+  archivedWorkspaceActivityId: string,
+) =>
+  atom<string[]>((get) => {
+    const archivedWorkspaceActivityTasks = get(
+      archivedWorkspaceActivityTasksState,
+    );
+    return archivedWorkspaceActivityTasks
+      .filter(
+        (w) => w.archivedWorkspaceActivityId === archivedWorkspaceActivityId,
+      )
+      .map((w) => w.taskId);
+  });

@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react';
 import { useTeammateTaskSectionDeletedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import type { TeammateTaskSectionDeletedSubscriptionResponse as Response } from '../type';
-import { useResetTeammateTaskSectionSection } from './useResetTeammateTaskSection';
+import { useResetTeammateTaskSection } from './useResetTeammateTaskSection';
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any;
@@ -14,7 +14,7 @@ type Props = {
 };
 export const TEAMMATE_TASK_SECTION_DELETED_SUBSCRIPTION_REQUEST_ID = uuid();
 export const useTeammateTaskSectionDeletedSubscription = (props: Props) => {
-  const { resetTeammateTaskSection } = useResetTeammateTaskSectionSection();
+  const { resetTeammateTaskSection } = useResetTeammateTaskSection();
 
   const skipSubscription = useMemo(
     () => !props.workspaceId,

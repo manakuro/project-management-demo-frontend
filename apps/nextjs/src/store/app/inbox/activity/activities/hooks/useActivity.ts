@@ -1,8 +1,8 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { activityState } from '../atom';
 
 export const useActivity = (activityId: string) => {
-  const activity = useRecoilValue(activityState(activityId));
+  const activity = useAtomValue(activityState(activityId));
 
   return {
     activity,

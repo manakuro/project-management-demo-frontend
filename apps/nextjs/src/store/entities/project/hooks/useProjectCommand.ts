@@ -22,7 +22,11 @@ export const useProjectCommand = () => {
 
   const setProject = useAtomCallback(
     useCallback(
-      async (get, _, input: { projectId: string } & Partial<Omit<Project, 'id'>>) => {
+      async (
+        get,
+        _,
+        input: { projectId: string } & Partial<Omit<Project, 'id'>>,
+      ) => {
         const prev = get(projectState(input.projectId));
 
         upsert({ ...prev, ...omit(input, 'projectId') });
@@ -55,8 +59,8 @@ export const useProjectCommand = () => {
   const setProjectDescription = useAtomCallback(
     useCallback(
       async (
-        get,
-        set,
+        _get,
+        _set,
         input: {
           projectId: string;
           description: Project['description'];
@@ -65,7 +69,7 @@ export const useProjectCommand = () => {
       ) => {
         const hasDescriptionUpdated = options?.hasDescriptionUpdated ?? false;
 
-        await setProject(get, set, {
+        await setProject({
           projectId: input.projectId,
           description: input.description,
         });
@@ -80,7 +84,7 @@ export const useProjectCommand = () => {
   const setProjectDueDate = useAtomCallback(
     useCallback(
       async (get, set, input: { projectId: string; dueDate: Date }) => {
-        await setProject(get, set, {
+        await setProject({
           projectId: input.projectId,
           dueDate: formatDueTimeToLocalTimezone(input.dueDate),
         });
@@ -91,8 +95,8 @@ export const useProjectCommand = () => {
 
   const resetProjectDueDate = useAtomCallback(
     useCallback(
-      async (get, set, input: { projectId: string }) => {
-        await setProject(get, set, {
+      async (_get, _set, input: { projectId: string }) => {
+        await setProject({
           projectId: input.projectId,
           dueDate: '',
         });

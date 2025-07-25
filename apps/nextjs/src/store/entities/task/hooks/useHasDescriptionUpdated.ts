@@ -1,9 +1,8 @@
-import { atom } from 'jotai';
-import { useAtomValue, useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
+import { atom, useAtomValue } from 'jotai';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback, useMemo } from 'react';
 
-const hasDescriptionUpdatedState = (taskId: string) =>
-  atom<number>(1);
+const hasDescriptionUpdatedState = (_taskId: string) => atom<number>(1);
 
 type Props = {
   taskId: string;
@@ -11,7 +10,7 @@ type Props = {
 
 export const useHasDescriptionUpdatedValue = (props: Props) => {
   const hasDescriptionUpdated = useAtomValue(
-    hasDescriptionUpdatedState(props.taskId),
+    useMemo(() => hasDescriptionUpdatedState(props.taskId), [props.taskId]),
   );
 
   return {

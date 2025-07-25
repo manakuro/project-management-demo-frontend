@@ -1,8 +1,8 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { archivedTaskActivityState } from '../atom';
 
 export const useArchivedTaskActivity = (archivedMyTaskActivityId: string) => {
-  const archivedTaskActivity = useRecoilValue(
+  const archivedTaskActivity = useAtomValue(
     archivedTaskActivityState(archivedMyTaskActivityId),
   );
 

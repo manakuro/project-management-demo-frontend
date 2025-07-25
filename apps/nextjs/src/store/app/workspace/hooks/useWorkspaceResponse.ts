@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useProjectResponse } from 'src/store/entities/project';
 import { useTeammateResponse } from 'src/store/entities/teammate';
 import { useWorkspaceResponse as useWorkspaceResponseEntity } from 'src/store/entities/workspace';
@@ -10,13 +11,15 @@ export const useWorkspaceResponse = () => {
   const { setProjects } = useProjectResponse();
   const { setWorkspaceTeammates } = useSetters();
 
-  const setWorkspace = useRecoilCallback(
-    () => (data: WorkspaceResponse) => {
-      workspaceResponseEntity.setWorkspace(data.workspace);
-      setProjects(data.workspace?.projects || []);
-      setWorkspaceTeammates(data);
-    },
-    [workspaceResponseEntity, setProjects, setWorkspaceTeammates],
+  const setWorkspace = useAtomCallback(
+    useCallback(
+      (_get, _set, data: WorkspaceResponse) => {
+        workspaceResponseEntity.setWorkspace(data.workspace);
+        setProjects(data.workspace?.projects || []);
+        setWorkspaceTeammates(data);
+      },
+      [workspaceResponseEntity, setProjects, setWorkspaceTeammates],
+    ),
   );
 
   return {
@@ -28,17 +31,19 @@ const useSetters = () => {
   const teammatesResponse = useTeammateResponse();
   const workspaceTeammatesResponse = useWorkspaceTeammateResponse();
 
-  const setWorkspaceTeammates = useRecoilCallback(
-    () => (data: WorkspaceResponse) => {
-      workspaceTeammatesResponse.setWorkspaceTeammates(
-        data.workspace?.workspaceTeammates || [],
-      );
+  const setWorkspaceTeammates = useAtomCallback(
+    useCallback(
+      (_get, _set, data: WorkspaceResponse) => {
+        workspaceTeammatesResponse.setWorkspaceTeammates(
+          data.workspace?.workspaceTeammates || [],
+        );
 
-      const teammates =
-        data.workspace?.workspaceTeammates.map((w) => w.teammate) || [];
-      teammatesResponse.setTeammates(teammates);
-    },
-    [teammatesResponse, workspaceTeammatesResponse],
+        const teammates =
+          data.workspace?.workspaceTeammates.map((w) => w.teammate) || [];
+        teammatesResponse.setTeammates(teammates);
+      },
+      [teammatesResponse, workspaceTeammatesResponse],
+    ),
   );
 
   return {

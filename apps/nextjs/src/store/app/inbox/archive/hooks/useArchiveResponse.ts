@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import type { InboxArchivePageQuery } from 'src/graphql/types/app/inbox';
 import type { ArchivedWorkspaceActivityResponse } from 'src/graphql/types/archivedWorkspaceActivity';
 import type { ArchivedWorkspaceActivityTaskResponse } from 'src/graphql/types/archivedWorkspaceActivityTask';
@@ -29,49 +30,49 @@ export const useArchiveResponse = () => {
   const { setArchivedTaskActivityTasks } =
     useArchivedTaskActivityTasksResponse();
 
-  const setArchive = useRecoilCallback(
-    () => (data: ArchiveResponse) => {
-      setArchives(data.archivedActivities);
+  const setArchive = useAtomCallback(
+    useCallback(
+      (_get, _set, data: ArchiveResponse) => {
+        setArchives(data.archivedActivities);
 
-      const archivedWorkspaceActivities = getNodesFromEdges<
-        ArchivedWorkspaceActivityResponse,
-        InboxArchivePageQuery['archivedWorkspaceActivities']
-      >(data.archivedWorkspaceActivities);
+        const archivedWorkspaceActivities = getNodesFromEdges<
+          ArchivedWorkspaceActivityResponse,
+          InboxArchivePageQuery['archivedWorkspaceActivities']
+        >(data.archivedWorkspaceActivities);
 
-      const archivedWorkspaceActivityTasks = archivedWorkspaceActivities.reduce(
-        (acc, w) => {
-          acc.push(...w.archivedWorkspaceActivityTasks);
-          return acc;
-        },
-        [] as ArchivedWorkspaceActivityTaskResponse[],
-      );
+        const archivedWorkspaceActivityTasks =
+          archivedWorkspaceActivities.reduce((acc, w) => {
+            acc.push(...w.archivedWorkspaceActivityTasks);
+            return acc;
+          }, [] as ArchivedWorkspaceActivityTaskResponse[]);
 
-      setArchivedWorkspaceActivities(archivedWorkspaceActivities);
-      setArchivedWorkspaceActivityTasks(archivedWorkspaceActivityTasks);
+        setArchivedWorkspaceActivities(archivedWorkspaceActivities);
+        setArchivedWorkspaceActivityTasks(archivedWorkspaceActivityTasks);
 
-      const archivedTaskActivities = getNodesFromEdges<
-        ArchivedTaskActivityResponse,
-        InboxArchivePageQuery['archivedTaskActivities']
-      >(data.archivedTaskActivities);
+        const archivedTaskActivities = getNodesFromEdges<
+          ArchivedTaskActivityResponse,
+          InboxArchivePageQuery['archivedTaskActivities']
+        >(data.archivedTaskActivities);
 
-      const archivedTaskActivityTasks = archivedTaskActivities.reduce(
-        (acc, w) => {
-          acc.push(...w.archivedTaskActivityTasks);
-          return acc;
-        },
-        [] as ArchivedTaskActivityTaskResponse[],
-      );
+        const archivedTaskActivityTasks = archivedTaskActivities.reduce(
+          (acc, w) => {
+            acc.push(...w.archivedTaskActivityTasks);
+            return acc;
+          },
+          [] as ArchivedTaskActivityTaskResponse[],
+        );
 
-      setArchivedTaskActivities(archivedTaskActivities);
-      setArchivedTaskActivityTasks(archivedTaskActivityTasks);
-    },
-    [
-      setArchives,
-      setArchivedWorkspaceActivities,
-      setArchivedWorkspaceActivityTasks,
-      setArchivedTaskActivities,
-      setArchivedTaskActivityTasks,
-    ],
+        setArchivedTaskActivities(archivedTaskActivities);
+        setArchivedTaskActivityTasks(archivedTaskActivityTasks);
+      },
+      [
+        setArchives,
+        setArchivedWorkspaceActivities,
+        setArchivedWorkspaceActivityTasks,
+        setArchivedTaskActivities,
+        setArchivedTaskActivityTasks,
+      ],
+    ),
   );
 
   return {

@@ -1,8 +1,3 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 
-const key = (str: string) => `src/store/app/projects/project/${str}`;
-
-export const projectIdState = atom<string>({
-  key: key('projectIdState'),
-  default: '',
-});
+export const projectIdState = atom<string>('');

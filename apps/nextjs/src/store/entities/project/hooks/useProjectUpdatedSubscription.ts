@@ -1,6 +1,6 @@
+import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useAtomCallback } from 'jotai/utils';
 import { useCallback } from 'react';
 import { useProjectUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
@@ -47,12 +47,12 @@ export const useProjectUpdatedSubscription = (props: Props) => {
 
   const setBySubscription = useAtomCallback(
     useCallback(
-      (get, set, response: Response) => {
+      (_get, _set, response: Response) => {
         const projectUpdated = response.projectUpdated;
 
         if (__DEV__) console.log('Project updated!: ');
 
-        setProjects(get, set, [projectUpdated]);
+        setProjects([projectUpdated]);
       },
       [setProjects],
     ),

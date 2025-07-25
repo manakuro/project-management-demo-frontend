@@ -1,9 +1,6 @@
 import { createState } from 'src/store/util';
 import type { ArchivedTaskActivity } from './type';
 
-const key = (str: string) =>
-  `src/store/app/inbox/archive/archivedTaskActivities/${str}`;
-
 export const initialState = (): ArchivedTaskActivity => ({
   id: '',
   activityTypeId: '',
@@ -16,4 +13,4 @@ export const {
   state: archivedTaskActivityState,
   listState: archivedTaskActivitiesState,
   idsState: archivedTaskActivityIdsState,
-} = createState({ key, initialState });
+} = createState({ initialState });

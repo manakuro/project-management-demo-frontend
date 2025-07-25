@@ -1,10 +1,10 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { tasksByTeammateTaskSectionIdState } from 'src/store/entities/teammateTask';
 
 export const useMyTasksTasksByTaskSectionId = (
   teammateTaskSectionId: string,
 ) => {
-  const tasks = useRecoilValue(
+  const tasks = useAtomValue(
     tasksByTeammateTaskSectionIdState(teammateTaskSectionId),
   );
 

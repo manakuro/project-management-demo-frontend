@@ -1,10 +1,8 @@
-import { atomFamily } from 'jotai/utils';
-import { useAtomValue, useAtomCallback } from 'jotai';
-import { useCallback } from 'react';
+import { atom, useAtomValue } from 'jotai';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback, useMemo } from 'react';
 
-const hasDescriptionUpdatedState = atomFamily<string, number>(
-  () => 1,
-);
+const hasDescriptionUpdatedState = (_projectId: string) => atom<number>(1);
 
 type Props = {
   projectId: string;
@@ -12,7 +10,10 @@ type Props = {
 
 export const useHasDescriptionUpdatedValue = (props: Props) => {
   const hasDescriptionUpdated = useAtomValue(
-    hasDescriptionUpdatedState(props.projectId),
+    useMemo(
+      () => hasDescriptionUpdatedState(props.projectId),
+      [props.projectId],
+    ),
   );
 
   return {
@@ -22,13 +23,10 @@ export const useHasDescriptionUpdatedValue = (props: Props) => {
 
 export const useSetHasDescriptionUpdated = () => {
   const setHasDescriptionUpdated = useAtomCallback(
-    useCallback(
-      async (get, set, projectId: string) => {
-        const prev = get(hasDescriptionUpdatedState(projectId));
-        set(hasDescriptionUpdatedState(projectId), prev + 1);
-      },
-      [],
-    ),
+    useCallback(async (get, set, projectId: string) => {
+      const prev = get(hasDescriptionUpdatedState(projectId));
+      set(hasDescriptionUpdatedState(projectId), prev + 1);
+    }, []),
   );
 
   return {

@@ -1,16 +1,10 @@
+import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { atom, useRecoilState } from 'recoil';
 
-const key = (str: string) =>
-  `src/components/organisms/TaskDetail/hooks/useTaskDetailProjectsInput/${str}`;
-
-const modalState = atom<boolean>({
-  key: key('modalState'),
-  default: false,
-});
+const isOpenAtom = atom<boolean>(false);
 
 export const useTaskDetailProjectsInput = () => {
-  const [isOpen, setIsOpen] = useRecoilState(modalState);
+  const [isOpen, setIsOpen] = useAtom(isOpenAtom);
 
   const onOpen = useCallback(() => {
     setIsOpen(true);

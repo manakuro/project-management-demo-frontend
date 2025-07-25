@@ -1,8 +1,6 @@
+import { useAtom } from 'jotai';
+import { atomWithReset, useResetAtom } from 'jotai/utils';
 import { useCallback } from 'react';
-import { atom, useRecoilState, useResetRecoilState } from 'recoil';
-
-const key = (str: string) =>
-  `src/components/organisms/Modals/EditorLinkModal/useEditorLinkModal/${str}`;
 
 type State = {
   isOpen: boolean;
@@ -14,22 +12,19 @@ type State = {
   callback: (input: State['input']) => void;
 };
 
-const modalState = atom<State>({
-  key: key('editorLinkModalState'),
-  default: {
-    isOpen: false,
-    x: 0,
-    y: 0,
-    input: {
-      url: '',
-    },
-    callback: () => {},
+const modalState = atomWithReset<State>({
+  isOpen: false,
+  x: 0,
+  y: 0,
+  input: {
+    url: '',
   },
+  callback: () => {},
 });
 
 export const useEditorLinkModal = () => {
-  const [state, setState] = useRecoilState(modalState);
-  const resetState = useResetRecoilState(modalState);
+  const [state, setState] = useAtom(modalState);
+  const resetState = useResetAtom(modalState);
 
   const onClose = useCallback(() => {
     setState((s) => ({ ...s, isOpen: false }));

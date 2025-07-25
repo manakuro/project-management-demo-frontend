@@ -1,22 +1,15 @@
-import { atom, useRecoilState } from 'recoil';
+import { atom, useAtom } from 'jotai';
 import { useResizeObserver } from 'src/hooks/useResizeObserver';
 import { useTasksListContent } from './useTasksListContent';
 
-const key = (str: string) =>
-  `src/components/organisms/Tasks/TasksList/TasksListContent/useTasksListContentSticky/${str}`;
-
-const stickyVerticalState = atom<boolean>({
-  key: key('stickyVerticalState'),
-  default: false,
-});
+const isStickyVerticalAtom = atom<boolean>(false);
 
 type Props = {
   listenOnEvent?: boolean;
 };
 export const useTasksListContentSticky = (props?: Props) => {
   const { dom } = useTasksListContent();
-  const [isStickyVertical, setIsStickyVertical] =
-    useRecoilState(stickyVerticalState);
+  const [isStickyVertical, setIsStickyVertical] = useAtom(isStickyVerticalAtom);
 
   useResizeObserver(
     (dom?.children?.[0] ?? null) as HTMLElement | null,

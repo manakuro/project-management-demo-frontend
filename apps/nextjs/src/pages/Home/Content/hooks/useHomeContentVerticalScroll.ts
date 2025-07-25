@@ -1,22 +1,16 @@
+import { atom, useAtom } from 'jotai';
 import { useCallback, useEffect } from 'react';
-import { atom, useRecoilState } from 'recoil';
 import { isHTMLElement } from 'src/shared/isHTMLElement';
 import { useHomeContentDom } from './useHomeContentDom';
 
-const key = (str: string) =>
-  `src/pages/Home/Content/hooks/useHomeContentVerticalScroll/${str}`;
-
-const state = atom<boolean>({
-  key: key('state'),
-  default: false,
-});
+const scrollAtom = atom<boolean>(false);
 
 type Props = {
   listenOnEvent?: boolean;
 };
 export const useTasksListContentVerticalScroll = (props?: Props) => {
   const { dom } = useHomeContentDom();
-  const [isScrolling, setIsScrolling] = useRecoilState(state);
+  const [isScrolling, setIsScrolling] = useAtom(scrollAtom);
 
   const handleScroll = useCallback(
     (event: Event) => {

@@ -1,30 +1,24 @@
+import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { atom, useRecoilState } from 'recoil';
 import { useProjectsLazyQuery } from 'src/graphql/hooks';
 import type { ProjectResponse, ProjectsQuery } from 'src/graphql/types/project';
 import { getNodesFromEdges } from 'src/shared/apollo/util';
 import type { Project } from 'src/store/entities/project';
 import { useWorkspace } from 'src/store/entities/workspace';
 
-const key = (str: string) =>
-  `src/components/organisms/Menus/ProjectMenu/useSearchProjectsQuery/${str}`;
-
-const searchProjectsQueryState = atom<{
+const searchProjectsQueryAtom = atom<{
   loading: boolean;
   projects: Project[];
 }>({
-  key: key('searchProjectsQueryState'),
-  default: {
-    loading: false,
-    projects: [],
-  },
+  loading: false,
+  projects: [],
 });
 
 type Props = {
   queryText: string;
 };
 export const useSearchProjectsQuery = () => {
-  const [state, setState] = useRecoilState(searchProjectsQueryState);
+  const [state, setState] = useAtom(searchProjectsQueryAtom);
   const [refetchQuery] = useProjectsLazyQuery();
   const { workspace } = useWorkspace();
 

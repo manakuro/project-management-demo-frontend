@@ -1,13 +1,11 @@
+import { useAtom } from 'jotai';
+import { atomWithReset, useResetAtom } from 'jotai/utils';
 import { useCallback, useEffect, useRef } from 'react';
-import { atom, useRecoilState, useResetRecoilState } from 'recoil';
 import { useMentionsQuery } from 'src/hooks/queries/entities';
 import { useResizeObserver } from 'src/hooks/useResizeObserver';
 import { calculateModalPosition } from 'src/shared/calculateModalPosition';
 import { getCaretPosition } from 'src/shared/getCaretPosition';
 import type { Mention, MentionTypeCode } from 'src/store/entities/mention';
-
-const key = (str: string) =>
-  `src/components/organisms/Menus/EditorMentionMenu/useEditorMentionMenu/${str}`;
 
 type Id = string | null;
 type State = {
@@ -20,17 +18,14 @@ type State = {
   containerRef: HTMLDivElement | null;
 };
 
-const modalState = atom<State>({
-  key: key('editorMentionModalState'),
-  default: {
-    isOpen: false,
-    x: 0,
-    y: 0,
-    query: '',
-    callback: () => {},
-    selectedIndex: 0,
-    containerRef: null,
-  },
+const modalState = atomWithReset<State>({
+  isOpen: false,
+  x: 0,
+  y: 0,
+  query: '',
+  callback: () => {},
+  selectedIndex: 0,
+  containerRef: null,
 });
 
 // NOTE: Export functions in order to execute inside prosemirror's plugins
@@ -69,8 +64,8 @@ export type SetValueParam = {
 };
 
 export const useEditorMentionMenu = () => {
-  const [state, setState] = useRecoilState(modalState);
-  const resetState = useResetRecoilState(modalState);
+  const [state, setState] = useAtom(modalState);
+  const resetState = useResetAtom(modalState);
   const { refetch, mentions, loading } = useMentionsQuery();
 
   const reset = useCallback(() => {
@@ -114,7 +109,7 @@ function useOnKeyBindings(props: {
   mentions: Mention[];
   setValue: (val: SetValueParam) => void;
 }) {
-  const [state, setState] = useRecoilState(modalState);
+  const [state, setState] = useAtom(modalState);
 
   const scrollTo = useCallback(
     (index: number) => {
@@ -164,7 +159,7 @@ function useOnKeyBindings(props: {
 }
 
 function useDisclosure(props: { reset: () => void }) {
-  const [state, setState] = useRecoilState(modalState);
+  const [state, setState] = useAtom(modalState);
 
   getCurrentCaretPosition = useCallback(() => {
     const position = getCaretPosition();
@@ -202,7 +197,7 @@ function useDisclosure(props: { reset: () => void }) {
 }
 
 function useQuery() {
-  const [state, setState] = useRecoilState(modalState);
+  const [state, setState] = useAtom(modalState);
 
   setQuery = useCallback(
     (query) => {
@@ -214,7 +209,7 @@ function useQuery() {
 }
 
 function useContainer() {
-  const [state, setState] = useRecoilState(modalState);
+  const [state, setState] = useAtom(modalState);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

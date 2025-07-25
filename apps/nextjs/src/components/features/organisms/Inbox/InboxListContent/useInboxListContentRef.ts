@@ -1,17 +1,11 @@
+import { atom, useAtom } from 'jotai';
 import { useEffect, useRef } from 'react';
-import { atom, useRecoilState } from 'recoil';
 
-const key = (str: string) =>
-  `src/components/organisms/Inbox/InboxListContent/useInboxListContentRef/${str}`;
-
-const refState = atom<HTMLElement | null>({
-  key: key('refState'),
-  default: null,
-});
+const refAtom = atom<HTMLElement | null>(null);
 
 export const useInboxListContentRef = () => {
   const ref = useRef<HTMLElement | null>(null);
-  const [state, setState] = useRecoilState(refState);
+  const [state, setState] = useAtom(refAtom);
 
   useEffect(() => {
     if (ref.current) {

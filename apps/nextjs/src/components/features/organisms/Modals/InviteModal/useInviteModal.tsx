@@ -1,16 +1,10 @@
+import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { atom, useRecoilState } from 'recoil';
 
-const key = (str: string) =>
-  `src/components/organisms/Modals/InviteModal/useInviteModal/${str}`;
-
-const openState = atom({
-  key: key('openState'),
-  default: false,
-});
+const openAtom = atom(false);
 
 export const useInviteModal = () => {
-  const [isOpen, setIsOpen] = useRecoilState(openState);
+  const [isOpen, setIsOpen] = useAtom(openAtom);
 
   const onClose = useCallback(() => {
     setIsOpen(false);

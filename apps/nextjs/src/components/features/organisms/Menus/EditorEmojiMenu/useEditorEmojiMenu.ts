@@ -1,5 +1,6 @@
+import { useAtom } from 'jotai';
+import { atomWithReset, useResetAtom } from 'jotai/utils';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
-import { atom, useRecoilState, useResetRecoilState } from 'recoil';
 import { useResizeObserver } from 'src/hooks/useResizeObserver';
 import { calculateModalPosition } from 'src/shared/calculateModalPosition';
 import {
@@ -49,17 +50,14 @@ type State = {
   containerRef: HTMLDivElement | null;
 };
 
-const modalState = atom<State>({
-  key: key('editorEmojiModalState'),
-  default: {
-    isOpen: false,
-    x: 0,
-    y: 0,
-    query: '',
-    callback: () => Promise.resolve(),
-    selectedIndex: 0,
-    containerRef: null,
-  },
+const modalState = atomWithReset<State>({
+  isOpen: false,
+  x: 0,
+  y: 0,
+  query: '',
+  callback: () => Promise.resolve(),
+  selectedIndex: 0,
+  containerRef: null,
 });
 
 // NOTE: Export functions in order to execute inside prosemirror's plugins
@@ -84,8 +82,8 @@ const setEmojiRef = (val: BaseEmoji | null) => {
 };
 
 export const useEditorEmojiMenu = () => {
-  const [state, setState] = useRecoilState(modalState);
-  const resetState = useResetRecoilState(modalState);
+  const [state, setState] = useAtom(modalState);
+  const resetState = useResetAtom(modalState);
 
   const setValue = useCallback((val: BaseEmoji) => {
     setEmojiRef(val);
@@ -133,7 +131,7 @@ function useOnKeyBindings(props: {
   emojis: BaseEmoji[];
   setValue: (emoji: BaseEmoji) => void;
 }) {
-  const [state, setState] = useRecoilState(modalState);
+  const [state, setState] = useAtom(modalState);
 
   const scrollTo = useCallback(
     (index: number) => {
@@ -182,7 +180,7 @@ function useOnKeyBindings(props: {
 }
 
 function useDisclosure(props: { reset: () => void }) {
-  const [state, setState] = useRecoilState(modalState);
+  const [state, setState] = useAtom(modalState);
 
   getCurrentCaretPosition = useCallback(() => {
     const position = getCaretPosition();
@@ -223,7 +221,7 @@ function useDisclosure(props: { reset: () => void }) {
 }
 
 function useQuery() {
-  const [state, setState] = useRecoilState(modalState);
+  const [state, setState] = useAtom(modalState);
 
   setQuery = useCallback(
     (query) => {
@@ -235,7 +233,7 @@ function useQuery() {
 }
 
 function useContainer() {
-  const [state, setState] = useRecoilState(modalState);
+  const [state, setState] = useAtom(modalState);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

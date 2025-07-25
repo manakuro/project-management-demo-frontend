@@ -1,30 +1,22 @@
+import { atom, useAtom } from 'jotai';
+import { atomWithReset, useResetAtom } from 'jotai/utils';
 import { useCallback } from 'react';
-import { atom, useRecoilState, useResetRecoilState } from 'recoil';
 
-const key = (str: string) =>
-  `src/components/organisms/Modals/FileViewerModal/useFileViewerModal/${str}`;
-
-const openState = atom({
-  key: key('fileViewerOpenState'),
-  default: false,
-});
+const openAtom = atom(false);
 
 type State = {
   currentTaskFileId: string;
   taskFileIds: string[];
 };
-const fileViewerState = atom<State>({
-  key: key('fileViewerState'),
-  default: {
-    currentTaskFileId: '',
-    taskFileIds: [],
-  },
+const fileViewerAtom = atomWithReset<State>({
+  currentTaskFileId: '',
+  taskFileIds: [],
 });
 
 export const useFileViewerModal = () => {
-  const [isOpen, setIsOpen] = useRecoilState(openState);
-  const [state, setState] = useRecoilState(fileViewerState);
-  const resetState = useResetRecoilState(fileViewerState);
+  const [isOpen, setIsOpen] = useAtom(openAtom);
+  const [state, setState] = useAtom(fileViewerAtom);
+  const resetState = useResetAtom(fileViewerAtom);
 
   const onClose = useCallback(() => {
     setIsOpen(false);

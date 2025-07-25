@@ -1,16 +1,10 @@
+import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { atom, useRecoilState } from 'recoil';
 
-const key = (str: string) =>
-  `src/components/organisms/Tasks/TasksHeader/CustomizeMenu/useCustomizeMenu/${str}`;
-
-const state = atom({
-  key: key('customizeMenuState'),
-  default: false,
-});
+const isOpenAtom = atom(false);
 
 export const useCustomizeMenu = () => {
-  const [isOpen, setIsOpen] = useRecoilState(state);
+  const [isOpen, setIsOpen] = useAtom(isOpenAtom);
 
   const onClose = useCallback(() => {
     setIsOpen(false);

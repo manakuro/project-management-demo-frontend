@@ -1,23 +1,15 @@
+import { atom, useAtom } from 'jotai';
+import { atomWithReset, useResetAtom } from 'jotai/utils';
 import { useCallback } from 'react';
-import { atom, useRecoilState, useResetRecoilState } from 'recoil';
 
-const key = (str: string) =>
-  `src/components/organisms/Modals/ProjectDetailModal/useProjectDetailModal/${str}`;
+const state = atom(false);
 
-const state = atom({
-  key: key('modalState'),
-  default: false,
-});
-
-const projectIdState = atom<string>({
-  key: key('projectIdState'),
-  default: '',
-});
+const projectIdState = atomWithReset<string>('');
 
 export const useProjectDetailModal = () => {
-  const [isOpen, setIsOpen] = useRecoilState(state);
-  const [projectId, setProjectId] = useRecoilState(projectIdState);
-  const resetProjectId = useResetRecoilState(projectIdState);
+  const [isOpen, setIsOpen] = useAtom(state);
+  const [projectId, setProjectId] = useAtom(projectIdState);
+  const resetProjectId = useResetAtom(projectIdState);
 
   const onClose = useCallback(() => {
     setIsOpen(false);

@@ -1,19 +1,13 @@
+import { atom, useAtom } from 'jotai';
 import { useEffect, useRef } from 'react';
-import { atom, useRecoilState } from 'recoil';
-
-const key = (str: string) =>
-  `src/components/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody/${str}`;
 
 type State = HTMLElement | null;
 
-const refState = atom<State>({
-  key: key('refState'),
-  default: null,
-});
+const refAtom = atom<State>(null);
 
 export const useTaskDetailBody = () => {
   const ref = useRef<HTMLElement | null>(null);
-  const [state, setState] = useRecoilState(refState);
+  const [state, setState] = useAtom(refAtom);
 
   useEffect(() => {
     if (ref.current) {

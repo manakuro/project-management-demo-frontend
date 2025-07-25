@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { taskFeedIdsByTaskIdState } from 'src/store/entities/taskFeed';
 
 export const useTaskFeedIdsByTaskId = (taskId: string) => {
-  const ids = useRecoilValue(taskFeedIdsByTaskIdState(taskId));
+  const ids = useAtomValue(taskFeedIdsByTaskIdState(taskId));
 
   const taskFeedIds = useMemo(() => {
     return ids;

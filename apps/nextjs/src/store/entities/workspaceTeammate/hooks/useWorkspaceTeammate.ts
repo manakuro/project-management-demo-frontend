@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { workspaceTeammateState } from '../atom';
 
 export const useWorkspaceTeammate = (workspaceTeammateId: string) => {
-  const workspaceTeammate = useRecoilValue(
+  const workspaceTeammate = useAtomValue(
     workspaceTeammateState(workspaceTeammateId),
   );
   const role = useMemo(() => {

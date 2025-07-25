@@ -1,6 +1,7 @@
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useTeammateTaskSectionUndeletedAndDeleteTasksSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import { useTeammatesTaskSectionResponse } from 'src/store/entities/teammatesTaskSection';
@@ -47,8 +48,9 @@ export const useTeammateTaskSectionUndeletedAndDeleteTasksSubscription = (
     skip: skipSubscription,
   });
 
-  const setBySubscription = useRecoilCallback(
-    () => async (response: Response) => {
+  const setBySubscription = useAtomCallback(
+    useCallback(
+      async (_get, _set, response: Response) => {
       const data = response.teammateTaskSectionUndeletedAndDeleteTasks;
 
       if (__DEV__) console.log('Teammate Task Section undeleted!');
@@ -56,8 +58,9 @@ export const useTeammateTaskSectionUndeletedAndDeleteTasksSubscription = (
       setTeammatesTaskSections([data.teammateTaskSection], {
         includeTask: false,
       });
-    },
-    [setTeammatesTaskSections],
+      },
+      [setTeammatesTaskSections],
+    ),
   );
 
   return {

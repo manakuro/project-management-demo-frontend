@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useUpdateWorkspaceMutation } from 'src/graphql/hooks';
 import { workspaceState } from '../atom';
 import type { Workspace } from '../type';
@@ -11,10 +12,10 @@ export const useWorkspaceCommand = () => {
 
   const { upsert } = useUpsert();
 
-  const setWorkspace = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: Partial<Workspace>) => {
-        const prev = await snapshot.getPromise(workspaceState);
+  const setWorkspace = useAtomCallback(
+    useCallback(
+      async (get, _set, input: Partial<Workspace>) => {
+        const prev = get(workspaceState);
         const params = {
           ...prev,
           ...input,
@@ -44,7 +45,8 @@ export const useWorkspaceCommand = () => {
           throw e;
         }
       },
-    [updateWorkspaceMutation, upsert],
+      [updateWorkspaceMutation, upsert],
+    ),
   );
 
   return {

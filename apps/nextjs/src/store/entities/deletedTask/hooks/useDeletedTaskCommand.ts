@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { deletedTaskState } from '../atom';
 import type { DeletedTask } from '../type';
 import { useUpsert } from './useUpsert';
@@ -6,16 +7,17 @@ import { useUpsert } from './useUpsert';
 export const useDeletedTaskCommand = () => {
   const { upsert } = useUpsert();
 
-  const setDeletedTaskById = useRecoilCallback(
-    ({ snapshot }) =>
-      async (taskId: string, input: Partial<DeletedTask>) => {
-        const prev = await snapshot.getPromise(deletedTaskState(taskId));
+  const setDeletedTaskById = useAtomCallback(
+    useCallback(
+      (get, _set, taskId: string, input: Partial<DeletedTask>) => {
+        const prev = get(deletedTaskState(taskId));
         upsert({
           ...prev,
           ...input,
         });
       },
-    [upsert],
+      [upsert],
+    ),
   );
 
   return {

@@ -1,5 +1,7 @@
+import { useAtomValue } from 'jotai';
+import { useAtomCallback } from 'jotai/utils';
 import { useMemo } from 'react';
-import { useRecoilCallback, useRecoilValue } from 'recoil';
+import { useCallback } from 'react';
 import { useUpdateTaskMutation } from 'src/graphql/hooks';
 import {
   formatDueTimeToLocalTimezone,
@@ -15,7 +17,7 @@ import { TASK_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useTaskUpdatedSubscripti
 import { useUpsert } from './useUpsert';
 
 export const useTask = (taskId: string) => {
-  const task = useRecoilValue(taskState(taskId));
+  const task = useAtomValue(taskState(taskId));
   const { workspace } = useWorkspace();
 
   const { upsert } = useUpsert();
@@ -24,10 +26,10 @@ export const useTask = (taskId: string) => {
     taskId,
   });
 
-  const setTask = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: Partial<Task>) => {
-        const prev = await snapshot.getPromise(taskState(taskId));
+  const setTask = useAtomCallback(
+    useCallback(
+      async (get, _, input: Partial<Task>) => {
+        const prev = get(taskState(taskId));
         if (!hasTaskBeenPersisted(prev)) return;
 
         upsert({ ...prev, ...input });
@@ -51,13 +53,14 @@ export const useTask = (taskId: string) => {
           throw e;
         }
       },
-    [taskId, updateTaskMutation, upsert, workspace.id],
+      [taskId, updateTaskMutation, upsert, workspace.id],
+    ),
   );
 
-  const setTaskName = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: string) => {
-        const prev = await snapshot.getPromise(taskState(taskId));
+  const setTaskName = useAtomCallback(
+    useCallback(
+      async (get, _set, input: string) => {
+        const prev = get(taskState(taskId));
         // Skip when touching input for the first time
         if (prev.isNew && !prev.name && !input) return;
         if (prev.name === input) return;
@@ -65,21 +68,25 @@ export const useTask = (taskId: string) => {
         const isNew = prev.isNew && !!input ? { isNew: false } : {};
         await setTask({ name: input, ...isNew });
       },
-    [setTask, taskId],
+      [setTask, taskId],
+    ),
   );
 
-  const setTaskDueDate = useRecoilCallback(
-    () => async (input: Date) => {
-      await setTask({ dueDate: formatDueTimeToLocalTimezone(input) });
-    },
-    [setTask],
+  const setTaskDueDate = useAtomCallback(
+    useCallback(
+      async (_get, _set, input: Date) => {
+        await setTask({
+          dueDate: formatDueTimeToLocalTimezone(input),
+        });
+      },
+      [setTask],
+    ),
   );
 
-  const resetTaskDueDate = useRecoilCallback(
-    () => async () => {
+  const resetTaskDueDate = useAtomCallback(
+    useCallback(async () => {
       await setTask({ dueDate: '' });
-    },
-    [setTask],
+    }, [setTask]),
   );
 
   const isSubtask = useMemo<boolean>(

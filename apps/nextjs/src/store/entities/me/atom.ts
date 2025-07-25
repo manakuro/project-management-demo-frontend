@@ -1,7 +1,5 @@
-import { atom } from 'recoil';
+import { atomWithReset } from 'jotai/utils';
 import type { Me } from './type';
-
-const key = (str: string) => `src/store/entities/me/${str}`;
 
 export const initialMeState = (): Me => ({
   id: '',
@@ -12,7 +10,4 @@ export const initialMeState = (): Me => ({
   updatedAt: '',
 });
 
-export const meState = atom<Me>({
-  key: key('meState'),
-  default: initialMeState(),
-});
+export const meState = atomWithReset<Me>(initialMeState());

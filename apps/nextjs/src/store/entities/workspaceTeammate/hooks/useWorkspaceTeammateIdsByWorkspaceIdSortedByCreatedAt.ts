@@ -1,10 +1,10 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { workspaceTeammateIdsByWorkspaceIdSortedByCreatedAtState } from '../atom';
 
 export const useWorkspaceTeammateIdsByWorkspaceIdSortedByCreatedAt = (
   workspaceId: string,
 ) => {
-  const workspaceTeammateIds = useRecoilValue(
+  const workspaceTeammateIds = useAtomValue(
     workspaceTeammateIdsByWorkspaceIdSortedByCreatedAtState(workspaceId),
   );
 

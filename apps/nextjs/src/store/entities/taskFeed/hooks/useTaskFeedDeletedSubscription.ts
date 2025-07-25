@@ -1,5 +1,6 @@
 import isEqual from 'lodash-es/isEqual';
-import { useRecoilCallback } from 'recoil';
+import { RESET, useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useTaskFeedDeletedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import { taskFeedState } from 'src/store/entities/taskFeed';
@@ -34,15 +35,16 @@ export const useTaskFeedDeletedSubscription = (props: Props) => {
     },
   });
 
-  const setTaskBySubscription = useRecoilCallback(
-    ({ reset }) =>
-      async (response: TaskFeedDeletedSubscriptionResponse) => {
+  const setTaskBySubscription = useAtomCallback(
+    useCallback(
+      async (_get, set, response: TaskFeedDeletedSubscriptionResponse) => {
         const data = response.taskFeedDeleted;
 
         console.log('subscription deleted! ');
 
-        reset(taskFeedState(data.taskFeed.id));
+        set(taskFeedState(data.taskFeed.id), RESET);
       },
-    [],
+      [],
+    ),
   );
 };

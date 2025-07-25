@@ -1,5 +1,5 @@
 import isEqual from 'lodash-es/isEqual';
-import { useRecoilCallback } from 'recoil';
+import { useCallback } from 'react';
 import { useTaskAssignedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import type { TaskAssignedSubscriptionResponse } from 'src/store/entities/task';
@@ -15,6 +15,17 @@ type Props = {
 export const TASK_ASSIGNED_SUBSCRIPTION_REQUEST_ID = uuid();
 export const useTaskAssignedSubscription = (props: Props) => {
   const { setTeammateTask } = useTeammateTaskResponse();
+
+  const setBySubscription = useCallback(
+    async (response: TaskAssignedSubscriptionResponse) => {
+      const data = response.taskAssigned;
+
+      if (__DEV__) console.log('task assigned!');
+
+      setTeammateTask([data.teammateTask]);
+    },
+    [setTeammateTask],
+  );
 
   useSubscription({
     variables: {
@@ -35,15 +46,4 @@ export const useTaskAssignedSubscription = (props: Props) => {
       previousData = data;
     },
   });
-
-  const setBySubscription = useRecoilCallback(
-    () => async (response: TaskAssignedSubscriptionResponse) => {
-      const data = response.taskAssigned;
-
-      if (__DEV__) console.log('task assigned!');
-
-      setTeammateTask([data.teammateTask]);
-    },
-    [setTeammateTask],
-  );
 };

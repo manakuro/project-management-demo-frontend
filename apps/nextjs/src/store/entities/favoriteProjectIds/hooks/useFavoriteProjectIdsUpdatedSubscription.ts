@@ -1,6 +1,5 @@
 import isEqual from 'lodash-es/isEqual';
-import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useCallback, useMemo } from 'react';
 import { useFavoriteProjectIdsUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import type { FavoriteProjectIdsUpdatedSubscriptionResponse as Response } from '../type';
@@ -19,6 +18,17 @@ export const useFavoriteProjectIdsUpdatedSubscription = (props: Props) => {
   const { setFavoriteProjectIds } = useFavoriteProjectIdsResponse();
 
   const skipSubscription = useMemo(() => !props.teammateId, [props.teammateId]);
+
+  const setBySubscription = useCallback(
+    (response: Response) => {
+      const favoriteProjectIdsUpdated = response.favoriteProjectIdsUpdated;
+
+      if (__DEV__) console.log('Favorite Project IDs Updated!: ');
+
+      setFavoriteProjectIds(favoriteProjectIdsUpdated);
+    },
+    [setFavoriteProjectIds],
+  );
 
   useSubscription({
     variables: {
@@ -40,15 +50,4 @@ export const useFavoriteProjectIdsUpdatedSubscription = (props: Props) => {
     },
     skip: skipSubscription,
   });
-
-  const setBySubscription = useRecoilCallback(
-    () => (response: Response) => {
-      const favoriteProjectIdsUpdated = response.favoriteProjectIdsUpdated;
-
-      if (__DEV__) console.log('Favorite Project IDs Updated!: ');
-
-      setFavoriteProjectIds(favoriteProjectIdsUpdated);
-    },
-    [setFavoriteProjectIds],
-  );
 };

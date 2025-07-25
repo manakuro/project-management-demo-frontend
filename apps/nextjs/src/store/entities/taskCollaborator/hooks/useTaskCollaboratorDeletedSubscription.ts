@@ -1,6 +1,6 @@
+import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
-import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useCallback, useMemo } from 'react';
 import { useTaskCollaboratorDeletedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import type { TaskCollaboratorDeletedSubscriptionResponse as Response } from '../type';
@@ -41,15 +41,17 @@ export const useTaskCollaboratorDeletedSubscription = (props: Props) => {
     skip: skipSubscription,
   });
 
-  const setBySubscription = useRecoilCallback(
-    () => (response: Response) => {
-      const taskCollaboratorDeleted = response.taskCollaboratorDeleted;
+  const setBySubscription = useAtomCallback(
+    useCallback(
+      (_get, _set, response: Response) => {
+        const taskCollaboratorDeleted = response.taskCollaboratorDeleted;
 
-      if (__DEV__) console.log('Task Collaborator Deleted!: ');
+        if (__DEV__) console.log('Task Collaborator Deleted!: ');
 
-      resetTaskCollaborator(taskCollaboratorDeleted.id);
-    },
-    [resetTaskCollaborator],
+        resetTaskCollaborator(taskCollaboratorDeleted.id);
+      },
+      [resetTaskCollaborator],
+    ),
   );
 
   return {

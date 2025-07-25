@@ -1,4 +1,4 @@
-import { selectorFamily } from 'recoil';
+import { atom } from 'jotai';
 import {
   type TaskColumnTypeValue,
   taskColumnByTypeState,
@@ -6,7 +6,6 @@ import {
 import { createState } from 'src/store/util';
 import type { TeammateTaskColumn } from './type';
 
-const key = (str: string) => `src/store/entities/teammatesTaskColumn/${str}`;
 
 export const initialState = (): TeammateTaskColumn => ({
   id: '',
@@ -23,36 +22,28 @@ export const {
   state: teammateTaskColumnState,
   listState: teammateTaskColumnsState,
   idsState: teammateTaskColumnIdsState,
-} = createState({ key, initialState });
+} = createState({ initialState });
 
-export const teammatesTaskColumnsByTeammateIdState = selectorFamily<
-  TeammateTaskColumn[],
-  string
->({
-  key: key('teammatesTaskColumnsByTeammateIdState'),
-  get:
-    (teammateId: string) =>
-    ({ get }) => {
-      const taskColumns = get(teammateTaskColumnsState);
-      return taskColumns.filter((t) => t.teammateId === teammateId);
-    },
-});
+export const teammatesTaskColumnsByTeammateIdState = (teammateId: string) =>
+  atom<TeammateTaskColumn[]>((get) => {
+    const taskColumns = get(teammateTaskColumnsState);
+    return taskColumns.filter((t) => t.teammateId === teammateId);
+  });
 
-export const teammatesTaskColumnByTypeState = selectorFamily<
-  TeammateTaskColumn,
-  { teammateId: string; type: TaskColumnTypeValue }
->({
-  key: key('teammatesTaskColumnByTypeState'),
-  get:
-    ({ teammateId, type }) =>
-    ({ get }) => {
-      const taskColumn = get(taskColumnByTypeState(type));
-      const taskColumns = get(teammateTaskColumnsState);
-      return (
-        taskColumns.find(
-          (t) =>
-            t.teammateId === teammateId && t.taskColumnId === taskColumn.id,
-        ) ?? initialState()
-      );
-    },
-});
+export const teammatesTaskColumnByTypeState = ({
+  teammateId,
+  type,
+}: {
+  teammateId: string;
+  type: TaskColumnTypeValue;
+}) =>
+  atom<TeammateTaskColumn>((get) => {
+    const taskColumn = get(taskColumnByTypeState(type));
+    const taskColumns = get(teammateTaskColumnsState);
+    return (
+      taskColumns.find(
+        (t) =>
+          t.teammateId === teammateId && t.taskColumnId === taskColumn.id,
+      ) ?? initialState()
+    );
+  });

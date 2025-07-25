@@ -1,8 +1,8 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { projectLightColorState } from '../atom';
 
 export const useProjectLightColor = (projectLightColorId?: string) => {
-  const projectLightColor = useRecoilValue(
+  const projectLightColor = useAtomValue(
     projectLightColorState(projectLightColorId || ''),
   );
 

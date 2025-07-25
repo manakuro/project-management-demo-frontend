@@ -1,23 +1,27 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
+import { RESET } from 'jotai/utils';
 import { projectLightColorState } from '../atom';
 
 export const useResetProjectLightColor = () => {
-  const resetProjectLightColor = useRecoilCallback(
-    ({ reset }) =>
-      (id: string) => {
-        reset(projectLightColorState(id));
+  const resetProjectLightColor = useAtomCallback(
+    useCallback(
+      (_, set, id: string) => {
+        set(projectLightColorState(id), RESET);
       },
-    [],
+      [],
+    ),
   );
 
-  const resetProjectLightColors = useRecoilCallback(
-    ({ reset }) =>
-      (projectLightColors: string[]) => {
+  const resetProjectLightColors = useAtomCallback(
+    useCallback(
+      (_, set, projectLightColors: string[]) => {
         projectLightColors.forEach((id) => {
-          reset(projectLightColorState(id));
+          set(projectLightColorState(id), RESET);
         });
       },
-    [],
+      [],
+    ),
   );
 
   return {

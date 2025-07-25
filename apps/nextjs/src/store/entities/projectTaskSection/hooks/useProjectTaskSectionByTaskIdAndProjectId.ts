@@ -1,11 +1,11 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { projectTaskSectionByTaskIdAndProjectIdState } from '../atom';
 
 export const useProjectTaskSectionByTaskIdAndProjectId = (props: {
   taskId: string;
   projectId: string;
 }) => {
-  const projectTaskSection = useRecoilValue(
+  const projectTaskSection = useAtomValue(
     projectTaskSectionByTaskIdAndProjectIdState(props),
   );
 

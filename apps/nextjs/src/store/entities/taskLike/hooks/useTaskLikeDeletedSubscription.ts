@@ -1,6 +1,8 @@
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { RESET } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useTaskLikeDeletedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import { taskLikeState } from 'src/store/entities/taskLike';
@@ -40,15 +42,13 @@ export const useTaskLikeDeletedSubscription = (props: Props) => {
     skip: skipSubscription,
   });
 
-  const setBySubscription = useRecoilCallback(
-    ({ reset }) =>
-      async (response: Response) => {
-        const taskLikeDeleted = response.taskLikeDeleted;
+  const setBySubscription = useAtomCallback(
+    useCallback((_get, set, response: Response) => {
+      const taskLikeDeleted = response.taskLikeDeleted;
 
-        if (__DEV__) console.log('TaskLike deleted!');
+      if (__DEV__) console.log('TaskLike deleted!');
 
-        reset(taskLikeState(taskLikeDeleted.id));
-      },
-    [],
+      set(taskLikeState(taskLikeDeleted.id), RESET);
+    }, []),
   );
 };

@@ -1,11 +1,10 @@
 import isEqual from 'lodash-es/isEqual';
-import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useCallback, useMemo } from 'react';
 import { useTaskDeletedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import { useDeletedTaskResponse } from 'src/store/entities/deletedTask';
 import { useResetProjectTask } from 'src/store/entities/projectTask';
-import { teammateTaskState } from 'src/store/entities/teammateTask';
+import { useResetTeammateTask } from 'src/store/entities/teammateTask';
 import type { TaskDeletedSubscriptionResponse as Response } from '../type';
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
@@ -22,6 +21,26 @@ export const useTaskDeletedSubscription = (props: Props) => {
     [props.workspaceId],
   );
   const { resetProjectTasks } = useResetProjectTask();
+  const { resetTeammateTask } = useResetTeammateTask();
+
+  const setBySubscription = useCallback(
+    async (response: Response) => {
+      const data = response.taskDeleted;
+
+      if (__DEV__) console.log('Task deleted!');
+
+      if (data.teammateTask.id) {
+        resetTeammateTask(data.teammateTask.id);
+      }
+      if (data.projectTasks?.length) {
+        resetProjectTasks(data.projectTasks.map((p) => p.id));
+      }
+      if (data.deletedTask) {
+        setDeletedTask([data.deletedTask], { includeTask: false });
+      }
+    },
+    [resetTeammateTask, resetProjectTasks, setDeletedTask],
+  );
 
   const subscriptionResult = useSubscription({
     variables: {
@@ -44,25 +63,6 @@ export const useTaskDeletedSubscription = (props: Props) => {
     skip: skipSubscription,
   });
 
-  const setBySubscription = useRecoilCallback(
-    ({ reset }) =>
-      async (response: Response) => {
-        const data = response.taskDeleted;
-
-        if (__DEV__) console.log('Task deleted!');
-
-        if (data.teammateTask.id) {
-          reset(teammateTaskState(data.teammateTask.id));
-        }
-        if (data.projectTasks?.length) {
-          resetProjectTasks(data.projectTasks.map((p) => p.id));
-        }
-        if (data.deletedTask) {
-          setDeletedTask([data.deletedTask], { includeTask: false });
-        }
-      },
-    [resetProjectTasks, setDeletedTask],
-  );
 
   return {
     subscriptionResult,

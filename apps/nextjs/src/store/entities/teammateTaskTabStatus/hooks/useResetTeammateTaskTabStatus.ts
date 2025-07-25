@@ -1,16 +1,16 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { RESET } from 'jotai/utils';
+import { useCallback } from 'react';
 import { tabStatusState } from '../atom';
 
-export const useResetTeammateTask = () => {
-  const resetTeammateTask = useRecoilCallback(
-    ({ reset }) =>
-      () => {
-        reset(tabStatusState);
-      },
-    [],
+export const useResetTeammateTaskTabStatus = () => {
+  const resetTeammateTaskTabStatus = useAtomCallback(
+    useCallback((_get, set) => {
+      set(tabStatusState, RESET);
+    }, []),
   );
 
   return {
-    resetTeammateTask,
+    resetTeammateTaskTabStatus,
   };
 };

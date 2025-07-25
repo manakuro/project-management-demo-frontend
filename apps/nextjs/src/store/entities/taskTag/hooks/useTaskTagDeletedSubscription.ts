@@ -1,6 +1,5 @@
 import isEqual from 'lodash-es/isEqual';
-import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useCallback, useMemo } from 'react';
 import { useTaskTagDeletedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import type { TaskTagDeletedSubscriptionResponse as Response } from '../type';
@@ -41,8 +40,8 @@ export const useTaskTagDeletedSubscription = (props: Props) => {
     skip: skipSubscription,
   });
 
-  const setBySubscription = useRecoilCallback(
-    () => async (response: Response) => {
+  const setBySubscription = useCallback(
+    async (response: Response) => {
       const data = response.taskTagDeleted;
 
       if (__DEV__) console.log('Teammate Task created!');

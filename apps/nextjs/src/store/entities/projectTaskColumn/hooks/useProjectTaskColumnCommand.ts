@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { projectTaskColumnState } from '../atom';
 import type { ProjectTaskColumn } from '../type';
 import { UseUpsert } from './useUpsert';
@@ -6,27 +7,28 @@ import { UseUpsert } from './useUpsert';
 export const useProjectTaskColumnCommand = () => {
   const { upsert } = UseUpsert();
 
-  const setProjectsTaskColumn = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: Partial<ProjectTaskColumn> & { id: string }) => {
-        const prev = await snapshot.getPromise(
-          projectTaskColumnState(input.id),
-        );
+  const setProjectsTaskColumn = useAtomCallback(
+    useCallback(
+      async (get, _set, input: Partial<ProjectTaskColumn> & { id: string }) => {
+        const prev = get(projectTaskColumnState(input.id));
         upsert({ ...prev, ...input });
       },
-    [upsert],
+      [upsert],
+    ),
   );
 
-  const setProjectTaskColumnOrder = useRecoilCallback(
-    () => (ids: string[]) => {
-      ids.forEach((id, index) => {
-        upsert({
-          id,
-          order: index,
+  const setProjectTaskColumnOrder = useAtomCallback(
+    useCallback(
+      (_, _set, ids: string[]) => {
+        ids.forEach((id, index) => {
+          upsert({
+            id,
+            order: index,
+          });
         });
-      });
-    },
-    [upsert],
+      },
+      [upsert],
+    ),
   );
 
   return {

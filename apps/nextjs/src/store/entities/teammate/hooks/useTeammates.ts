@@ -1,10 +1,10 @@
 import { useCallback } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { teammateIdsState, teammatesState } from '../atom';
 
 export const useTeammates = () => {
-  const teammateIds = useRecoilValue(teammateIdsState);
-  const teammates = useRecoilValue(teammatesState);
+  const teammateIds = useAtomValue(teammateIdsState);
+  const teammates = useAtomValue(teammatesState);
 
   const getTeammatesById = useCallback(
     (teammateIds: string[]) => {

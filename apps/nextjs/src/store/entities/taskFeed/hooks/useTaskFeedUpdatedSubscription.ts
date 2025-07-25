@@ -1,6 +1,6 @@
 import isEqual from 'lodash-es/isEqual';
-import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback, useMemo } from 'react';
 import { useTaskFeedUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { isULID } from 'src/shared/ulid';
 import { uuid } from 'src/shared/uuid';
@@ -44,14 +44,16 @@ export const useTaskFeedUpdatedSubscription = (props: Props) => {
     skip: skipSubscription,
   });
 
-  const setTaskBySubscription = useRecoilCallback(
-    () => async (response: TaskFeedUpdatedSubscriptionResponse) => {
-      const updated = response.taskFeedUpdated;
+  const setTaskBySubscription = useAtomCallback(
+    useCallback(
+      async (_get, _set, response: TaskFeedUpdatedSubscriptionResponse) => {
+        const updated = response.taskFeedUpdated;
 
-      console.log('subscription updated!: ');
+        console.log('subscription updated!: ');
 
-      setTaskFeed([updated]);
-    },
-    [setTaskFeed],
+        setTaskFeed([updated]);
+      },
+      [setTaskFeed],
+    ),
   );
 };

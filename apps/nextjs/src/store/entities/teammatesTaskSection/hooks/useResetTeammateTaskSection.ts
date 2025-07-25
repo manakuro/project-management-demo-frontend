@@ -1,24 +1,22 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { RESET } from 'jotai/utils';
+import { useCallback } from 'react';
 import { teammatesTaskSectionState } from '../atom';
 import type { TeammateTaskSection } from '../type';
 
-export const useResetTeammateTaskSectionSection = () => {
-  const resetTeammateTaskSection = useRecoilCallback(
-    ({ reset }) =>
-      (id: string) => {
-        reset(teammatesTaskSectionState(id));
-      },
-    [],
+export const useResetTeammateTaskSection = () => {
+  const resetTeammateTaskSection = useAtomCallback(
+    useCallback((_, set, id: string) => {
+      set(teammatesTaskSectionState(id), RESET);
+    }, []),
   );
 
-  const resetTeammateTaskSections = useRecoilCallback(
-    ({ reset }) =>
-      (teammateTaskSections: TeammateTaskSection[]) => {
-        teammateTaskSections.forEach((t) => {
-          reset(teammatesTaskSectionState(t.id));
-        });
-      },
-    [],
+  const resetTeammateTaskSections = useAtomCallback(
+    useCallback((_, set, teammateTaskSections: TeammateTaskSection[]) => {
+      teammateTaskSections.forEach((t) => {
+        set(teammatesTaskSectionState(t.id), RESET);
+      });
+    }, []),
   );
 
   return {

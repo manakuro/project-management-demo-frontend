@@ -1,8 +1,7 @@
-import { selectorFamily } from 'recoil';
+import { atom } from 'jotai';
 import { createState } from 'src/store/util';
 import type { TaskLike } from './type';
 
-const key = (str: string) => `src/store/entities/taskLike/${str}`;
 
 export const initialState = (): TaskLike => ({
   id: '',
@@ -16,14 +15,10 @@ export const {
   state: taskLikeState,
   listState: taskLikesState,
   idsState: taskLikeIdsState,
-} = createState({ key, initialState });
+} = createState({ initialState });
 
-export const taskLikesByTaskIdState = selectorFamily<TaskLike[], string>({
-  key: key('taskLikesByTaskIdState'),
-  get:
-    (taskId: string) =>
-    ({ get }) => {
-      const taskLikes = get(taskLikesState);
-      return taskLikes.filter((t) => t.taskId === taskId);
-    },
-});
+export const taskLikesByTaskIdState = (taskId: string) =>
+  atom<TaskLike[]>((get) => {
+    const taskLikes = get(taskLikesState);
+    return taskLikes.filter((t) => t.taskId === taskId);
+  });

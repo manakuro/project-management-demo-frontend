@@ -1,23 +1,21 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { RESET } from 'jotai/utils';
+import { useCallback } from 'react';
 import { projectState } from '../atom';
 
 export const useResetProject = () => {
-  const resetProject = useRecoilCallback(
-    ({ reset }) =>
-      (id: string) => {
-        reset(projectState(id));
-      },
-    [],
+  const resetProject = useAtomCallback(
+    useCallback((_, set, id: string) => {
+      set(projectState(id), RESET);
+    }, []),
   );
 
-  const resetProjects = useRecoilCallback(
-    ({ reset }) =>
-      (projects: string[]) => {
-        projects.forEach((id) => {
-          reset(projectState(id));
-        });
-      },
-    [],
+  const resetProjects = useAtomCallback(
+    useCallback((_, set, projects: string[]) => {
+      projects.forEach((id) => {
+        set(projectState(id), RESET);
+      });
+    }, []),
   );
 
   return {

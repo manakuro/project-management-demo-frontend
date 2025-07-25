@@ -1,19 +1,20 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { projectTaskColumnState } from '../atom';
 import type { ProjectTaskColumn } from '../type';
 
 export const UseUpsert = () => {
-  const upsert = useRecoilCallback(
-    ({ set }) =>
-      (taskColumn: Partial<ProjectTaskColumn> & { id: string }) => {
-        set(projectTaskColumnState(taskColumn.id), (prev) => {
-          return {
-            ...prev,
-            ...taskColumn,
-          };
+  const upsert = useAtomCallback(
+    useCallback(
+      (get, set, taskColumn: Partial<ProjectTaskColumn> & { id: string }) => {
+        const prev = get(projectTaskColumnState(taskColumn.id));
+        set(projectTaskColumnState(taskColumn.id), {
+          ...prev,
+          ...taskColumn,
         });
       },
-    [],
+      [],
+    ),
   );
 
   return {

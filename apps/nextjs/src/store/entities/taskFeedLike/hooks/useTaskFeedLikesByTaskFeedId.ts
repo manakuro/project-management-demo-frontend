@@ -1,5 +1,6 @@
-import { useMemo } from 'react';
-import { useRecoilCallback, useRecoilState } from 'recoil';
+import { useMemo, useCallback } from 'react';
+import { useAtom } from 'jotai';
+import { RESET, useAtomCallback } from 'jotai/utils';
 import {
   useCreateTaskFeedLikeMutation,
   useDeleteTaskFeedLikeMutation,
@@ -17,16 +18,16 @@ export const useTaskFeedLikesByTaskFeedId = (
   taskId: string,
 ) => {
   const { upsert } = useUpsert();
-  const [taskFeedLikesAll] = useRecoilState(taskFeedLikesState);
+  const [taskFeedLikesAll] = useAtom(taskFeedLikesState);
   const { workspace } = useWorkspace();
   const { setTaskFeedLikes } = useTaskFeedLikeResponse();
 
   const [createTaskFeedLikeMutation] = useCreateTaskFeedLikeMutation();
   const [deleteTaskFeedLikeMutation] = useDeleteTaskFeedLikeMutation();
 
-  const addTaskFeedLike = useRecoilCallback(
-    ({ reset }) =>
-      async (teammateId: string) => {
+  const addTaskFeedLike = useAtomCallback(
+    useCallback(
+      async (_get, set, teammateId: string) => {
         const id = uuid();
         upsert({
           ...initialState(),
@@ -37,7 +38,7 @@ export const useTaskFeedLikesByTaskFeedId = (
         });
 
         const restore = () => {
-          reset(taskFeedLikeState(id));
+          set(taskFeedLikeState(id), RESET);
         };
 
         setTimeout(async () => {
@@ -61,7 +62,7 @@ export const useTaskFeedLikesByTaskFeedId = (
             const data = res.data?.createTaskFeedLike;
             if (!data) return;
 
-            reset(taskFeedLikeState(id));
+            set(taskFeedLikeState(id), RESET);
             setTaskFeedLikes([data]);
           } catch (e) {
             restore();
@@ -71,26 +72,27 @@ export const useTaskFeedLikesByTaskFeedId = (
 
         return id;
       },
-    [
-      createTaskFeedLikeMutation,
-      setTaskFeedLikes,
-      taskFeedId,
-      taskId,
-      upsert,
-      workspace.id,
-    ],
+      [
+        createTaskFeedLikeMutation,
+        setTaskFeedLikes,
+        taskFeedId,
+        taskId,
+        upsert,
+        workspace.id,
+      ],
+    ),
   );
 
-  const deleteTaskFeedLike = useRecoilCallback(
-    ({ snapshot, reset }) =>
-      async (teammateId: string) => {
-        const prev = await snapshot.getPromise(taskFeedLikesState);
+  const deleteTaskFeedLike = useAtomCallback(
+    useCallback(
+      async (get, set, teammateId: string) => {
+        const prev = get(taskFeedLikesState);
         const taskFeedLike = prev.find(
           (f) => f.teammateId === teammateId && f.taskFeedId === taskFeedId,
         );
         if (!taskFeedLike) return;
 
-        reset(taskFeedLikeState(taskFeedLike.id));
+        set(taskFeedLikeState(taskFeedLike.id), RESET);
 
         const restore = () => {
           setTaskFeedLikes([taskFeedLike]);
@@ -116,7 +118,8 @@ export const useTaskFeedLikesByTaskFeedId = (
           }
         });
       },
-    [deleteTaskFeedLikeMutation, setTaskFeedLikes, taskFeedId, workspace.id],
+      [deleteTaskFeedLikeMutation, setTaskFeedLikes, taskFeedId, workspace.id],
+    ),
   );
 
   const taskFeedLikes = useMemo(

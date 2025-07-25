@@ -1,19 +1,17 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { teammateState } from '../atom';
 import type { Teammate } from '../type';
 
 export const useUpsert = () => {
-  const upsert = useRecoilCallback(
-    ({ set }) =>
-      (input: Teammate) => {
-        set(teammateState(input.id), (prev) => {
-          return {
-            ...prev,
-            ...input,
-          };
-        });
-      },
-    [],
+  const upsert = useAtomCallback(
+    useCallback((get, set, input: Teammate) => {
+      const prev = get(teammateState(input.id));
+      set(teammateState(input.id), {
+        ...prev,
+        ...input,
+      });
+    }, []),
   );
 
   return {

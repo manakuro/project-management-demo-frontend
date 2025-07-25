@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import {
   useUpdateProjectTeammateMutation,
   useUpdateProjectTeammateOwnerMutation,
@@ -23,10 +24,10 @@ export const useProjectTeammatesCommand = () => {
   const { workspace } = useWorkspace();
   const { setProjectsTeammates } = useProjectTeammateResponse();
 
-  const setProjectTeammateById = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: Partial<ProjectTeammate> & { id: string }) => {
-        const prev = await snapshot.getPromise(projectTeammateState(input.id));
+  const setProjectTeammateById = useAtomCallback(
+    useCallback(
+      async (get, _set, input: Partial<ProjectTeammate> & { id: string }) => {
+        const prev = get(projectTeammateState(input.id));
 
         const restore = () => {
           upsert(prev);
@@ -55,17 +56,20 @@ export const useProjectTeammatesCommand = () => {
           throw e;
         }
       },
-    [updateProjectTeammateMutation, upsert, workspace.id],
+      [updateProjectTeammateMutation, upsert, workspace.id],
+    ),
   );
 
-  const setProjectTeammateByProjectIdAndTeammateId = useRecoilCallback(
-    ({ snapshot }) =>
+  const setProjectTeammateByProjectIdAndTeammateId = useAtomCallback(
+    useCallback(
       async (
+        get,
+        _set,
         projectId: string,
         teammateId: string,
         input: Partial<ProjectTeammate>,
       ) => {
-        const prev = await snapshot.getPromise(
+        const prev = get(
           projectTeammateByProjectIdAndTeammateIdState({
             projectId,
             teammateId,
@@ -76,22 +80,21 @@ export const useProjectTeammatesCommand = () => {
           ...input,
         });
       },
-    [upsert],
+      [upsert],
+    ),
   );
 
-  const setOwnerByProjectIdAndTeammateId = useRecoilCallback(
-    ({ snapshot }) =>
-      async (projectId: string, teammateId: string) => {
-        const prev = await snapshot.getPromise(
-          ownerProjectTeammateByProjectIdState(projectId),
-        );
+  const setOwnerByProjectIdAndTeammateId = useAtomCallback(
+    useCallback(
+      async (get, _set, projectId: string, teammateId: string) => {
+        const prev = get(ownerProjectTeammateByProjectIdState(projectId));
         if (prev.id) upsert({ ...prev, isOwner: false });
 
         const restore = () => {
           if (prev.id) upsert({ ...prev, isOwner: true });
         };
 
-        const owner = await snapshot.getPromise(
+        const owner = get(
           projectTeammateByProjectIdAndTeammateIdState({
             projectId,
             teammateId,
@@ -123,12 +126,13 @@ export const useProjectTeammatesCommand = () => {
           throw e;
         }
       },
-    [
-      setProjectsTeammates,
-      updateProjectTeammateOwnerMutation,
-      upsert,
-      workspace.id,
-    ],
+      [
+        setProjectsTeammates,
+        updateProjectTeammateOwnerMutation,
+        upsert,
+        workspace.id,
+      ],
+    ),
   );
 
   return {

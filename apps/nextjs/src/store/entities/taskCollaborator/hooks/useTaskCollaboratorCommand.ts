@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import {
   useCreateTaskCollaboratorMutation,
   useDeleteTaskCollaboratorMutation,
@@ -29,10 +30,10 @@ export const useTaskCollaboratorCommand = () => {
   const [createTaskCollaboratorMutation] = useCreateTaskCollaboratorMutation();
   const [deleteTaskCollaboratorMutation] = useDeleteTaskCollaboratorMutation();
 
-  const addTaskCollaboratorByTeammate = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: { taskId: string; teammate: Teammate }) => {
-        const taskCollaborator = await snapshot.getPromise(
+  const addTaskCollaboratorByTeammate = useAtomCallback(
+    useCallback(
+      async (get, set, input: { taskId: string; teammate: Teammate }) => {
+        const taskCollaborator = get(
           taskCollaboratorByTaskIdAndTeammateId({
             teammateId: input.teammate.id,
             taskId: input.taskId,
@@ -81,21 +82,22 @@ export const useTaskCollaboratorCommand = () => {
           throw e;
         }
       },
-    [
-      createTaskCollaboratorMutation,
-      resetTaskCollaborator,
-      resetTeammate,
-      setTaskCollaborators,
-      setTeammates,
-      upsert,
-      workspace.id,
-    ],
+      [
+        createTaskCollaboratorMutation,
+        resetTaskCollaborator,
+        resetTeammate,
+        setTaskCollaborators,
+        setTeammates,
+        upsert,
+        workspace.id,
+      ],
+    ),
   );
 
-  const deleteTaskCollaboratorByTeammate = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: { taskId: string; teammateId: string }) => {
-        const taskCollaborator = await snapshot.getPromise(
+  const deleteTaskCollaboratorByTeammate = useAtomCallback(
+    useCallback(
+      async (get, set, input: { taskId: string; teammateId: string }) => {
+        const taskCollaborator = get(
           taskCollaboratorByTaskIdAndTeammateId({
             taskId: input.taskId,
             teammateId: input.teammateId,
@@ -126,12 +128,13 @@ export const useTaskCollaboratorCommand = () => {
           throw e;
         }
       },
-    [
-      deleteTaskCollaboratorMutation,
-      resetTaskCollaborator,
-      setTaskCollaborators,
-      workspace.id,
-    ],
+      [
+        deleteTaskCollaboratorMutation,
+        resetTaskCollaborator,
+        setTaskCollaborators,
+        workspace.id,
+      ],
+    ),
   );
 
   return {

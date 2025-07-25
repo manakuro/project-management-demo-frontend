@@ -1,5 +1,5 @@
 import isEqual from 'lodash-es/isEqual';
-import { useRecoilCallback } from 'recoil';
+import { useCallback } from 'react';
 import { useFavoriteWorkspaceIdsUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import type { FavoriteWorkspaceIdsUpdatedSubscriptionResponse as Response } from '../type';
@@ -15,6 +15,17 @@ type Props = {
 };
 export const useFavoriteWorkspaceIdsUpdatedSubscription = (props: Props) => {
   const { setFavoriteWorkspaceIds } = useFavoriteWorkspaceIdsResponse();
+
+  const setBySubscription = useCallback(
+    (response: Response) => {
+      const favoriteWorkspaceIdsUpdated = response.favoriteWorkspaceIdsUpdated;
+
+      if (__DEV__) console.log('Favorite Workspace IDs Created!: ');
+
+      setFavoriteWorkspaceIds(favoriteWorkspaceIdsUpdated);
+    },
+    [setFavoriteWorkspaceIds],
+  );
 
   useSubscription({
     variables: {
@@ -36,15 +47,4 @@ export const useFavoriteWorkspaceIdsUpdatedSubscription = (props: Props) => {
     },
     skip: !props.teammateId,
   });
-
-  const setBySubscription = useRecoilCallback(
-    () => (response: Response) => {
-      const favoriteWorkspaceIdsUpdated = response.favoriteWorkspaceIdsUpdated;
-
-      if (__DEV__) console.log('Favorite Workspace IDs Created!: ');
-
-      setFavoriteWorkspaceIds(favoriteWorkspaceIdsUpdated);
-    },
-    [setFavoriteWorkspaceIds],
-  );
 };

@@ -1,6 +1,7 @@
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useProjectUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import type { ProjectUpdatedSubscriptionResponse as Response } from '../type';
@@ -44,14 +45,16 @@ export const useProjectUpdatedSubscription = (props: Props) => {
     skip: skipSubscription,
   });
 
-  const setBySubscription = useRecoilCallback(
-    () => (response: Response) => {
-      const projectUpdated = response.projectUpdated;
+  const setBySubscription = useAtomCallback(
+    useCallback(
+      (get, set, response: Response) => {
+        const projectUpdated = response.projectUpdated;
 
-      if (__DEV__) console.log('Project updated!: ');
+        if (__DEV__) console.log('Project updated!: ');
 
-      setProjects([projectUpdated]);
-    },
-    [setProjects],
+        setProjects(get, set, [projectUpdated]);
+      },
+      [setProjects],
+    ),
   );
 };

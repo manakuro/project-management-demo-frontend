@@ -1,13 +1,16 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
+import { RESET } from 'jotai/utils';
 import { favoriteProjectIdsState } from '../atom';
 
 export const useResetFavoriteProjectIds = () => {
-  const resetFavoriteProjectIds = useRecoilCallback(
-    ({ reset }) =>
-      () => {
-        reset(favoriteProjectIdsState);
+  const resetFavoriteProjectIds = useAtomCallback(
+    useCallback(
+      (_get, set) => {
+        set(favoriteProjectIdsState, RESET);
       },
-    [],
+      [],
+    ),
   );
 
   return {

@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { uniqBy } from 'src/shared/utils';
 import {
   type TeammateTaskResponse,
@@ -10,9 +11,11 @@ import type { TeammateTaskSectionResponse } from '../type';
 export const useTeammatesTaskSectionResponse = () => {
   const { setTeammateTask } = useTeammateTaskResponse();
 
-  const setTeammatesTaskSections = useRecoilCallback(
-    ({ set }) =>
+  const setTeammatesTaskSections = useAtomCallback(
+    useCallback(
       (
+        get,
+        set,
         data: TeammateTaskSectionResponse[],
         options?: { includeTeammateTask?: boolean; includeTask?: boolean },
       ) => {
@@ -20,11 +23,10 @@ export const useTeammatesTaskSectionResponse = () => {
         const includeTask = options?.includeTask ?? true;
 
         data.forEach((d) => {
-          set(teammatesTaskSectionState(d.id), (prev) => {
-            return {
-              ...prev,
-              ...d,
-            };
+          const prev = get(teammatesTaskSectionState(d.id));
+          set(teammatesTaskSectionState(d.id), {
+            ...prev,
+            ...d,
           });
         });
         if (!includeTeammateTask) return;
@@ -36,7 +38,8 @@ export const useTeammatesTaskSectionResponse = () => {
 
         setTeammateTask(uniqBy(teammateTasks, 'id'), { includeTask });
       },
-    [setTeammateTask],
+      [setTeammateTask],
+    ),
   );
 
   return {

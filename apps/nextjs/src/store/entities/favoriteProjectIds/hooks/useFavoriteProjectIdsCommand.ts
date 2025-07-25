@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import {
   useCreateFavoriteProjectMutation,
   useDeleteFavoriteProjectMutation,
@@ -14,10 +15,10 @@ export const useFavoriteProjectIdsCommand = () => {
   const [deleteFavoriteProjectMutation] = useDeleteFavoriteProjectMutation();
   const { upsert } = useUpsert();
 
-  const deleteFavoriteProjectId = useRecoilCallback(
-    ({ snapshot }) =>
-      async (favoriteProjectId: string) => {
-        const prev = await snapshot.getPromise(favoriteProjectIdsState);
+  const deleteFavoriteProjectId = useAtomCallback(
+    useCallback(
+      async (get, _set, favoriteProjectId: string) => {
+        const prev = get(favoriteProjectIdsState);
 
         upsert(prev.filter((id) => id !== favoriteProjectId));
 
@@ -43,13 +44,14 @@ export const useFavoriteProjectIdsCommand = () => {
           throw e;
         }
       },
-    [deleteFavoriteProjectMutation, me.id, upsert],
+      [deleteFavoriteProjectMutation, me.id, upsert],
+    ),
   );
 
-  const addFavoriteProjectId = useRecoilCallback(
-    ({ snapshot }) =>
-      async (favoriteProjectId: string) => {
-        const prev = await snapshot.getPromise(favoriteProjectIdsState);
+  const addFavoriteProjectId = useAtomCallback(
+    useCallback(
+      async (get, _set, favoriteProjectId: string) => {
+        const prev = get(favoriteProjectIdsState);
 
         upsert([...prev, favoriteProjectId]);
 
@@ -75,15 +77,14 @@ export const useFavoriteProjectIdsCommand = () => {
           throw e;
         }
       },
-    [createFavoriteProjectMutation, me.id, upsert],
+      [createFavoriteProjectMutation, me.id, upsert],
+    ),
   );
 
-  const setFavoriteProjectId = useRecoilCallback(
-    ({ snapshot }) =>
-      async (favoriteProjectId: string) => {
-        const favoriteProjectIds = await snapshot.getPromise(
-          favoriteProjectIdsState,
-        );
+  const setFavoriteProjectId = useAtomCallback(
+    useCallback(
+      async (get, _set, favoriteProjectId: string) => {
+        const favoriteProjectIds = get(favoriteProjectIdsState);
 
         const isFavorite = favoriteProjectIds.some(
           (id) => id === favoriteProjectId,
@@ -95,7 +96,8 @@ export const useFavoriteProjectIdsCommand = () => {
 
         await addFavoriteProjectId(favoriteProjectId);
       },
-    [addFavoriteProjectId, deleteFavoriteProjectId],
+      [addFavoriteProjectId, deleteFavoriteProjectId],
+    ),
   );
 
   return {

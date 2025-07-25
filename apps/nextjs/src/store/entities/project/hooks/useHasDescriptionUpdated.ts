@@ -1,19 +1,17 @@
-import { atomFamily, useRecoilCallback, useRecoilValue } from 'recoil';
+import { atomFamily } from 'jotai/utils';
+import { useAtomValue, useAtomCallback } from 'jotai';
+import { useCallback } from 'react';
 
-const key = (str: string) =>
-  `src/store/entities/project/hooks/useHasDescriptionUpdated/${str}`;
-
-const hasDescriptionUpdatedState = atomFamily<number, string>({
-  key: key('hasDescriptionUpdatedState'),
-  default: 1,
-});
+const hasDescriptionUpdatedState = atomFamily<string, number>(
+  () => 1,
+);
 
 type Props = {
   projectId: string;
 };
 
 export const useHasDescriptionUpdatedValue = (props: Props) => {
-  const hasDescriptionUpdated = useRecoilValue(
+  const hasDescriptionUpdated = useAtomValue(
     hasDescriptionUpdatedState(props.projectId),
   );
 
@@ -23,12 +21,14 @@ export const useHasDescriptionUpdatedValue = (props: Props) => {
 };
 
 export const useSetHasDescriptionUpdated = () => {
-  const setHasDescriptionUpdated = useRecoilCallback(
-    ({ set }) =>
-      async (projectId: string) => {
-        set(hasDescriptionUpdatedState(projectId), (prev) => prev + 1);
+  const setHasDescriptionUpdated = useAtomCallback(
+    useCallback(
+      async (get, set, projectId: string) => {
+        const prev = get(hasDescriptionUpdatedState(projectId));
+        set(hasDescriptionUpdatedState(projectId), prev + 1);
       },
-    [],
+      [],
+    ),
   );
 
   return {

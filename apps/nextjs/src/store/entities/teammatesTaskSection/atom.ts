@@ -1,9 +1,8 @@
-import { selectorFamily } from 'recoil';
+import { atom } from 'jotai';
 import { teammateTaskByTaskIdState } from 'src/store/entities/teammateTask';
 import { createState } from 'src/store/util';
 import type { TeammateTaskSection } from './type';
 
-const key = (str: string) => `src/store/entities/teammatesTaskSections/${str}`;
 
 export const initialState = (): TeammateTaskSection => ({
   id: '',
@@ -17,35 +16,21 @@ export const initialState = (): TeammateTaskSection => ({
 export const {
   state: teammatesTaskSectionState,
   listState: teammatesTaskSectionsState,
-} = createState({ key, initialState });
+} = createState({ initialState });
 
-export const taskSectionsByTeammateIdState = selectorFamily<
-  TeammateTaskSection[],
-  string
->({
-  key: key('taskSectionsByTeammateIdState'),
-  get:
-    (teammateId) =>
-    ({ get }) => {
-      const teammatesTaskSections = get(teammatesTaskSectionsState);
-      return teammatesTaskSections.filter((t) => t.teammateId === teammateId);
-    },
-});
+export const taskSectionsByTeammateIdState = (teammateId: string) =>
+  atom<TeammateTaskSection[]>((get) => {
+    const teammatesTaskSections = get(teammatesTaskSectionsState);
+    return teammatesTaskSections.filter((t) => t.teammateId === teammateId);
+  });
 
-export const teammateTaskSectionByTaskIdState = selectorFamily<
-  TeammateTaskSection,
-  string
->({
-  key: key('teammateTaskSectionByTaskIdState'),
-  get:
-    (taskId) =>
-    ({ get }) => {
-      const teammateTask = get(teammateTaskByTaskIdState(taskId));
-      const teammatesTaskSections = get(teammatesTaskSectionsState);
-      return (
-        teammatesTaskSections.find(
-          (t) => t.id === teammateTask.teammateTaskSectionId,
-        ) || initialState()
-      );
-    },
-});
+export const teammateTaskSectionByTaskIdState = (taskId: string) =>
+  atom<TeammateTaskSection>((get) => {
+    const teammateTask = get(teammateTaskByTaskIdState(taskId));
+    const teammatesTaskSections = get(teammatesTaskSectionsState);
+    return (
+      teammatesTaskSections.find(
+        (t) => t.id === teammateTask.teammateTaskSectionId,
+      ) || initialState()
+    );
+  });

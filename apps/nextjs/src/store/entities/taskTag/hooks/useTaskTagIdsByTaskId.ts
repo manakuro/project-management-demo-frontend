@@ -1,8 +1,8 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { taskTagIdsByTaskIdState } from '../atom';
 
 export const useTaskTagIdsByTaskId = (taskId: string) => {
-  const taskTagIds = useRecoilValue(taskTagIdsByTaskIdState(taskId));
+  const taskTagIds = useAtomValue(taskTagIdsByTaskIdState(taskId));
   return {
     taskTagIds,
   };

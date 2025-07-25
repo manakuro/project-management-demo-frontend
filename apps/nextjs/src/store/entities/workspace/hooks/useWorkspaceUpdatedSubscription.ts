@@ -1,6 +1,7 @@
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useWorkspaceUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual';
 import { uuid } from 'src/shared/uuid';
@@ -46,10 +47,10 @@ export const useWorkspaceUpdatedSubscription = (props: Props) => {
     skip: skipSubscription,
   });
 
-  const setBySubscription = useRecoilCallback(
-    ({ snapshot }) =>
-      async (response: Response) => {
-        const prev = await snapshot.getPromise(workspaceState);
+  const setBySubscription = useAtomCallback(
+    useCallback(
+      async (get, _set, response: Response) => {
+        const prev = get(workspaceState);
         const workspaceUpdated = response.workspaceUpdated;
 
         if (__DEV__) console.log('Workspace updated!: ');
@@ -62,6 +63,7 @@ export const useWorkspaceUpdatedSubscription = (props: Props) => {
           setHasDescriptionUpdated((s) => s + 1);
         }
       },
-    [setHasDescriptionUpdated, setWorkspace],
+      [setHasDescriptionUpdated, setWorkspace],
+    ),
   );
 };

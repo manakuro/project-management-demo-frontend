@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { uniqBy } from 'src/shared/utils';
 import { type TaskResponse, useTasksResponse } from 'src/store/entities/task';
 import { deletedTaskState } from '../atom';
@@ -7,9 +8,9 @@ import type { DeletedTaskResponse } from '../type';
 export const useDeletedTaskResponse = () => {
   const { setTasksFromResponse } = useTasksResponse();
 
-  const setDeletedTask = useRecoilCallback(
-    ({ set }) =>
-      (data: DeletedTaskResponse[], options?: { includeTask: boolean }) => {
+  const setDeletedTask = useAtomCallback(
+    useCallback(
+      (get, set, data: DeletedTaskResponse[], options?: { includeTask: boolean }) => {
         const includeTask = options?.includeTask ?? true;
         data.forEach((d) => {
           set(deletedTaskState(d.id), d);
@@ -24,7 +25,8 @@ export const useDeletedTaskResponse = () => {
 
         setTasksFromResponse(uniqBy(tasks, 'id'));
       },
-    [setTasksFromResponse],
+      [setTasksFromResponse],
+    ),
   );
 
   return {

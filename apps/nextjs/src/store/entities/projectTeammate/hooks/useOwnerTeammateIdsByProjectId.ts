@@ -1,8 +1,8 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { ownerProjectTeammateByProjectIdState } from '../atom';
 
 export const useOwnerTeammateIdsByProjectId = (projectId: string) => {
-  const projectTeammate = useRecoilValue(
+  const projectTeammate = useAtomValue(
     ownerProjectTeammateByProjectIdState(projectId),
   );
 

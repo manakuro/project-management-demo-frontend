@@ -1,9 +1,9 @@
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 import { workspaceState } from '../atom';
 import { useHasDescriptionUpdated } from './useHasDescriptionUpdated';
 
 export const useWorkspace = () => {
-  const [workspace, setVal] = useRecoilState(workspaceState);
+  const [workspace, setVal] = useAtom(workspaceState);
 
   const { hasDescriptionUpdated } = useHasDescriptionUpdated();
 

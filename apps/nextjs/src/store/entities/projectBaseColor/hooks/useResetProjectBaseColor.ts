@@ -1,23 +1,21 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { RESET } from 'jotai/utils';
+import { useCallback } from 'react';
 import { projectBaseColorState } from '../atom';
 
 export const useResetProjectBaseColor = () => {
-  const resetProjectBaseColor = useRecoilCallback(
-    ({ reset }) =>
-      (id: string) => {
-        reset(projectBaseColorState(id));
-      },
-    [],
+  const resetProjectBaseColor = useAtomCallback(
+    useCallback((_, set, id: string) => {
+      set(projectBaseColorState(id), RESET);
+    }, []),
   );
 
-  const resetProjectBaseColors = useRecoilCallback(
-    ({ reset }) =>
-      (projectBaseColors: string[]) => {
-        projectBaseColors.forEach((id) => {
-          reset(projectBaseColorState(id));
-        });
-      },
-    [],
+  const resetProjectBaseColors = useAtomCallback(
+    useCallback((_, set, projectBaseColors: string[]) => {
+      projectBaseColors.forEach((id) => {
+        set(projectBaseColorState(id), RESET);
+      });
+    }, []),
   );
 
   return {

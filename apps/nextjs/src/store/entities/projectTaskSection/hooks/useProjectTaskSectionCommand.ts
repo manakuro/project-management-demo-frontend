@@ -1,4 +1,6 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
+import { RESET } from 'jotai/utils';
 import {
   useCreateProjectTaskSectionMutation,
   useDeleteProjectTaskSectionAndDeleteTasksMutation,
@@ -54,20 +56,19 @@ export const useProjectTaskSectionCommand = () => {
   const [undeleteProjectTaskSectionAndDeleteTasksMutation] =
     useUndeleteProjectTaskSectionAndDeleteTasksMutation();
 
-  const addProjectsTaskSection = useRecoilCallback(
-    ({ reset }) =>
-      async (input: { projectId: string }) => {
-        const id = uuid();
-        upsert({
-          ...initialState(),
-          ...input,
-          isNew: true,
-          id,
-        });
+  const addProjectsTaskSection = useAtomCallback(
+    useCallback(async (_, set, input: { projectId: string }) => {
+      const id = uuid();
+      upsert({
+        ...initialState(),
+        ...input,
+        isNew: true,
+        id,
+      });
 
-        const restore = () => {
-          reset(projectTaskSectionState(id));
-        };
+      const restore = () => {
+        set(projectTaskSectionState(id), RESET);
+      };
 
         try {
           const res = await createProjectTaskSectionMutation({
@@ -87,7 +88,7 @@ export const useProjectTaskSectionCommand = () => {
           const addedProjectTaskSection = res.data?.createProjectTaskSection;
           if (!addedProjectTaskSection) return '';
 
-          reset(projectTaskSectionState(id));
+          set(projectTaskSectionState(id), RESET);
           setProjectsTaskSections([
             {
               ...addedProjectTaskSection,
@@ -100,28 +101,26 @@ export const useProjectTaskSectionCommand = () => {
           restore();
           throw e;
         }
-      },
-    [
+    }, [
       upsert,
       createProjectTaskSectionMutation,
       workspace.id,
       setProjectsTaskSections,
-    ],
+    ]),
   );
 
-  const deleteTaskSectionAndKeepTasks = useRecoilCallback(
-    ({ reset, snapshot }) =>
-      async (id: string) => {
-        const projectTasks = await snapshot.getPromise(
-          projectTasksByProjectTaskSectionIdState(id),
-        );
+  const deleteTaskSectionAndKeepTasks = useAtomCallback(
+    useCallback(async (get, set, id: string) => {
+      const projectTasks = get(
+        projectTasksByProjectTaskSectionIdState(id),
+      );
 
-        reset(projectTaskSectionState(id));
+      set(projectTaskSectionState(id), RESET);
 
-        const restore = async () => {
-          const prev = await snapshot.getPromise(projectTaskSectionState(id));
-          setProjectsTaskSections([prev]);
-        };
+      const restore = () => {
+        const prev = get(projectTaskSectionState(id));
+        setProjectsTaskSections([prev]);
+      };
 
         try {
           const res = await deleteProjectTaskSectionAndKeepTasksMutation({
@@ -135,7 +134,7 @@ export const useProjectTaskSectionCommand = () => {
             },
           });
           if (res.errors) {
-            await restore();
+            restore();
             return null;
           }
 
@@ -154,33 +153,31 @@ export const useProjectTaskSectionCommand = () => {
 
           return res.data;
         } catch (e) {
-          await restore();
+          restore();
           throw e;
         }
-      },
-    [
+    }, [
       deleteProjectTaskSectionAndKeepTasksMutation,
       setProjectTask,
       setProjectsTaskSections,
       workspace.id,
-    ],
+    ]),
   );
 
-  const deleteTaskSectionAndDeleteTasks = useRecoilCallback(
-    ({ reset, snapshot }) =>
-      async (id: string) => {
-        const projectTasks = await snapshot.getPromise(
-          projectTasksByProjectTaskSectionIdState(id),
-        );
+  const deleteTaskSectionAndDeleteTasks = useAtomCallback(
+    useCallback(async (get, set, id: string) => {
+      const projectTasks = get(
+        projectTasksByProjectTaskSectionIdState(id),
+      );
 
-        reset(projectTaskSectionState(id));
-        resetProjectTasks(projectTasks.map((p) => p.id));
+      set(projectTaskSectionState(id), RESET);
+      resetProjectTasks(projectTasks.map((p) => p.id));
 
-        const restore = async () => {
-          const prev = await snapshot.getPromise(projectTaskSectionState(id));
-          setProjectsTaskSections([prev]);
-          setProjectTask(projectTasks as ProjectTaskResponse[]);
-        };
+      const restore = () => {
+        const prev = get(projectTaskSectionState(id));
+        setProjectsTaskSections([prev]);
+        setProjectTask(projectTasks as ProjectTaskResponse[]);
+      };
 
         try {
           const res = await deleteProjectTaskSectionAndDeleteTasksMutation({
@@ -194,34 +191,32 @@ export const useProjectTaskSectionCommand = () => {
             },
           });
           if (res.errors) {
-            await restore();
+            restore();
             return null;
           }
 
           return res.data;
         } catch (e) {
-          await restore();
+          restore();
           throw e;
         }
-      },
-    [
+    }, [
       deleteProjectTaskSectionAndDeleteTasksMutation,
       resetProjectTasks,
       setProjectTask,
       setProjectsTaskSections,
       workspace.id,
-    ],
+    ]),
   );
 
-  const deleteProjectTaskSection = useRecoilCallback(
-    ({ reset, snapshot }) =>
-      async (id: string) => {
-        reset(projectTaskSectionState(id));
+  const deleteProjectTaskSection = useAtomCallback(
+    useCallback(async (get, set, id: string) => {
+      set(projectTaskSectionState(id), RESET);
 
-        const restore = async () => {
-          const prev = await snapshot.getPromise(projectTaskSectionState(id));
-          setProjectsTaskSections([prev]);
-        };
+      const restore = () => {
+        const prev = get(projectTaskSectionState(id));
+        setProjectsTaskSections([prev]);
+      };
 
         try {
           const res = await deleteProjectTaskSectionMutation({
@@ -234,27 +229,23 @@ export const useProjectTaskSectionCommand = () => {
             },
           });
           if (res.errors) {
-            await restore();
+            restore();
           }
         } catch (e) {
-          await restore();
+          restore();
           throw e;
         }
-      },
-    [deleteProjectTaskSectionMutation, setProjectsTaskSections, workspace.id],
+    }, [deleteProjectTaskSectionMutation, setProjectsTaskSections, workspace.id]),
   );
 
-  const undeleteTaskSectionAndKeepTasks = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: DeleteProjectTaskSectionAndKeepTasksMutation) => {
-        const release = snapshot.retain();
+  const undeleteTaskSectionAndKeepTasks = useAtomCallback(
+    useCallback(async (get, set, input: DeleteProjectTaskSectionAndKeepTasksMutation) => {
+      const projectTaskSection =
+        input.deleteProjectTaskSectionAndKeepTasks.projectTaskSection;
+      const projectTaskIds =
+        input.deleteProjectTaskSectionAndKeepTasks.projectTaskIds;
 
-        const projectTaskSection =
-          input.deleteProjectTaskSectionAndKeepTasks.projectTaskSection;
-        const projectTaskIds =
-          input.deleteProjectTaskSectionAndKeepTasks.projectTaskIds;
-
-        try {
+      try {
           const res = await undeleteProjectTaskSectionAndKeepTasksMutation({
             variables: {
               input: {
@@ -280,7 +271,7 @@ export const useProjectTaskSectionCommand = () => {
             includeProjectTasks: false,
           });
 
-          const projectTasks = await snapshot.getPromise(
+          const projectTasks = get(
             projectTasksByIdsState(data.projectTaskIds),
           );
 
@@ -291,20 +282,19 @@ export const useProjectTaskSectionCommand = () => {
           setProjectTask(newProjectTasks as ProjectTaskResponse[], {
             includeTask: false,
           });
-        } finally {
-          release();
+        } catch (error) {
+          // Handle error silently
         }
-      },
-    [
+    }, [
       setProjectTask,
       setProjectsTaskSections,
       undeleteProjectTaskSectionAndKeepTasksMutation,
       workspace.id,
-    ],
+    ]),
   );
 
-  const undeleteTaskSectionAndDeleteTasks = useRecoilCallback(
-    () => async (input: DeleteProjectTaskSectionAndDeleteTasksMutation) => {
+  const undeleteTaskSectionAndDeleteTasks = useAtomCallback(
+    useCallback(async (_, set, input: DeleteProjectTaskSectionAndDeleteTasksMutation) => {
       const projectTaskSection =
         input.deleteProjectTaskSectionAndDeleteTasks.projectTaskSection;
       const projectTaskIds =
@@ -336,12 +326,11 @@ export const useProjectTaskSectionCommand = () => {
       setProjectsTaskSections([data.projectTaskSection], {
         includeTask: false,
       });
-    },
-    [
+    }, [
       setProjectsTaskSections,
       undeleteProjectTaskSectionAndDeleteTasksMutation,
       workspace.id,
-    ],
+    ]),
   );
 
   return {

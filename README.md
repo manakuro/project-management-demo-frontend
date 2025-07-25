@@ -33,7 +33,7 @@ Create the `AI_INSTRUCTIONS.md` file in the root folder and document the instruc
 
 ```markdown
 ## Overview
-Please migrate code from Recoil to Jotai.
+Migrate code from Recoil to Jotai.
 
 ## Implementation Details
 Use commit c491a94f as a reference for this work.

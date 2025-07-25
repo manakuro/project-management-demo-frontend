@@ -1,8 +1,7 @@
-import { selectorFamily } from 'recoil';
+import { atom } from 'jotai';
 import { createState } from 'src/store/util';
 import type { TaskCollaborator } from './type';
 
-const key = (str: string) => `src/store/entities/taskCollaborator/${str}`;
 
 export const initialState = (): TaskCollaborator => ({
   id: '',
@@ -14,33 +13,28 @@ export const initialState = (): TaskCollaborator => ({
 export const {
   state: taskCollaboratorState,
   listState: taskCollaboratorsState,
-} = createState({ key, initialState });
+} = createState({ initialState });
 
-export const teammateIdsByTaskIdState = selectorFamily<string[], string>({
-  key: key('teammateIdsByTaskIdState'),
-  get:
-    (taskId) =>
-    ({ get }) => {
-      const taskCollaborators = get(taskCollaboratorsState);
-      return taskCollaborators
-        .filter((t) => t.taskId === taskId)
-        .map((p) => p.teammateId);
-    },
-});
+export const teammateIdsByTaskIdState = (taskId: string) =>
+  atom<string[]>((get) => {
+    const taskCollaborators = get(taskCollaboratorsState);
+    return taskCollaborators
+      .filter((t) => t.taskId === taskId)
+      .map((p) => p.teammateId);
+  });
 
-export const taskCollaboratorByTaskIdAndTeammateId = selectorFamily<
-  TaskCollaborator,
-  { taskId: string; teammateId: string }
->({
-  key: key('taskCollaboratorByTaskIdAndTeammateId'),
-  get:
-    ({ taskId, teammateId }) =>
-    ({ get }) => {
-      const taskCollaborators = get(taskCollaboratorsState);
-      return (
-        taskCollaborators.find(
-          (t) => t.taskId === taskId && t.teammateId === teammateId,
-        ) || initialState()
-      );
-    },
-});
+export const taskCollaboratorByTaskIdAndTeammateId = ({
+  taskId,
+  teammateId,
+}: {
+  taskId: string;
+  teammateId: string;
+}) =>
+  atom<TaskCollaborator>((get) => {
+    const taskCollaborators = get(taskCollaboratorsState);
+    return (
+      taskCollaborators.find(
+        (t) => t.taskId === taskId && t.teammateId === teammateId,
+      ) || initialState()
+    );
+  });

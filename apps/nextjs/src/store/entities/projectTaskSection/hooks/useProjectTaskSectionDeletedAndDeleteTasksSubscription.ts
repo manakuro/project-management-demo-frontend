@@ -1,6 +1,7 @@
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useProjectTaskSectionDeletedAndDeleteTasksSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import type { ProjectTaskSectionDeletedAndDeleteTasksSubscriptionResponse as Response } from '../type';
@@ -46,8 +47,8 @@ export const useProjectTaskSectionDeletedAndDeleteTasksSubscription = (
     skip: skipSubscription,
   });
 
-  const setBySubscription = useRecoilCallback(
-    () => async (response: Response) => {
+  const setBySubscription = useAtomCallback(
+    useCallback(async (_, set, response: Response) => {
       if (__DEV__) console.log('Project Task Section deleted!');
 
       const projectTaskSection =
@@ -57,8 +58,7 @@ export const useProjectTaskSectionDeletedAndDeleteTasksSubscription = (
 
       resetProjectTaskSection(projectTaskSection.id);
       resetProjectTaskSections(projectTaskIds);
-    },
-    [resetProjectTaskSection, resetProjectTaskSections],
+    }, [resetProjectTaskSection, resetProjectTaskSections]),
   );
 
   return {

@@ -1,5 +1,6 @@
 import { useCallback, useRef } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { RESET } from 'jotai/utils';
 import {
   useAssignTaskMutation,
   useCreateTaskMutation,
@@ -57,94 +58,93 @@ export const useTaskCommand = () => {
   const { resetProjectTasks } = useResetProjectTask();
   const { resetDeletedTask } = useResetDeletedTask();
 
-  const setTaskById = useRecoilCallback(
-    ({ snapshot }) =>
-      async (taskId: string, input: Partial<Task>) => {
-        const prev = await snapshot.getPromise(taskState(taskId));
-        upsert({ ...prev, ...input });
-      },
-    [upsert],
+  const setTaskById = useAtomCallback(
+    useCallback(async (get, set, taskId: string, input: Partial<Task>) => {
+      const prev = get(taskState(taskId));
+      const updated = { ...prev, ...input };
+      const prevValue = get(taskState(taskId));
+      set(taskState(taskId), {
+        ...prevValue,
+        ...updated,
+      });
+    }, []),
   );
 
-  const unassignTask = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: { id: string }) => {
-        const prev = await snapshot.getPromise(taskState(input.id));
-        await setTaskById(input.id, { assigneeId: '' });
+  const unassignTask = useAtomCallback(
+    useCallback(async (get, set, input: { id: string }) => {
+      const prev = get(taskState(input.id));
+      setTaskById(input.id, { assigneeId: '' });
 
-        const restore = () => {
-          setTaskById(input.id, prev);
-        };
+      const restore = () => {
+        setTaskById(input.id, prev);
+      };
 
-        try {
-          const res = await unassignTaskMutation({
-            variables: {
-              input: {
-                id: input.id,
-                workspaceId: workspace.id,
-                requestId: TASK_UNASSIGNED_SUBSCRIPTION_REQUEST_ID,
-              },
+      try {
+        const res = await unassignTaskMutation({
+          variables: {
+            input: {
+              id: input.id,
+              workspaceId: workspace.id,
+              requestId: TASK_UNASSIGNED_SUBSCRIPTION_REQUEST_ID,
             },
-          });
-          if (res.errors) {
-            restore();
-            return;
-          }
-          const data = res.data?.unassignTask;
-          if (!data) return;
-
-          resetTeammateTask(data.teammateTaskId);
-        } catch (e) {
+          },
+        });
+        if (res.errors) {
           restore();
-          throw e;
-        }
-      },
-    [resetTeammateTask, setTaskById, unassignTaskMutation, workspace.id],
-  );
-
-  const assignTask = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: { id: string; assigneeId: string }) => {
-        const prev = await snapshot.getPromise(taskState(input.id));
-
-        if (
-          prev.assigneeId &&
-          input.assigneeId &&
-          prev.assigneeId === input.assigneeId
-        )
           return;
-
-        await setTaskById(input.id, { assigneeId: input.assigneeId });
-
-        const restore = () => {
-          setTaskById(input.id, prev);
-        };
-
-        try {
-          const res = await assignTaskMutation({
-            variables: {
-              input: {
-                id: input.id,
-                assigneeId: input.assigneeId,
-                workspaceId: workspace.id,
-                requestId: TASK_ASSIGNED_SUBSCRIPTION_REQUEST_ID,
-              },
-            },
-          });
-          if (res.errors) {
-            restore();
-            return;
-          }
-          const data = res.data?.assignTask;
-          if (!data) return;
-
-          setTeammateTask([data.teammateTask]);
-        } catch (e) {
-          restore();
-          throw e;
         }
-      },
-    [assignTaskMutation, setTaskById, setTeammateTask, workspace.id],
+        const data = res.data?.unassignTask;
+        if (!data) return;
+
+        resetTeammateTask(data.teammateTaskId);
+      } catch (e) {
+        restore();
+        throw e;
+      }
+    }, [resetTeammateTask, setTaskById, unassignTaskMutation, workspace.id]),
+  );
+
+  const assignTask = useAtomCallback(
+    useCallback(async (get, set, input: { id: string; assigneeId: string }) => {
+      const prev = get(taskState(input.id));
+
+      if (
+        prev.assigneeId &&
+        input.assigneeId &&
+        prev.assigneeId === input.assigneeId
+      )
+        return;
+
+      setTaskById(input.id, { assigneeId: input.assigneeId });
+
+      const restore = () => {
+        setTaskById(input.id, prev);
+      };
+
+      try {
+        const res = await assignTaskMutation({
+          variables: {
+            input: {
+              id: input.id,
+              assigneeId: input.assigneeId,
+              workspaceId: workspace.id,
+              requestId: TASK_ASSIGNED_SUBSCRIPTION_REQUEST_ID,
+            },
+          },
+        });
+        if (res.errors) {
+          restore();
+          return;
+        }
+        const data = res.data?.assignTask;
+        if (!data) return;
+
+        setTeammateTask([data.teammateTask]);
+      } catch (e) {
+        restore();
+        throw e;
+      }
+    }, [assignTaskMutation, setTaskById, setTeammateTask, workspace.id]),
   );
 
   const addTask = useCallback(
@@ -163,8 +163,8 @@ export const useTaskCommand = () => {
     [me.id, upsert],
   );
 
-  const addSubtask = useRecoilCallback(
-    () => async (input: { taskParentId: string }) => {
+  const addSubtask = useCallback(
+    async (input: { taskParentId: string }) => {
       const newTaskId = addTask({
         taskParentId: input.taskParentId,
       });
@@ -210,118 +210,108 @@ export const useTaskCommand = () => {
   );
 
   const isDeletingTask = useRef<boolean>(false);
-  const deleteTask = useRecoilCallback(
-    ({ snapshot, reset }) =>
-      async (input: { taskId: string }) => {
-        if (isDeletingTask.current) return;
+  const deleteTask = useAtomCallback(
+    useCallback(async (get, set, input: { taskId: string }) => {
+      if (isDeletingTask.current) return;
 
-        isDeletingTask.current = true;
+      isDeletingTask.current = true;
 
-        const teammateTask = await snapshot.getPromise(
-          teammateTaskByTaskIdState(input.taskId),
-        );
-        if (teammateTask.id) {
-          reset(teammateTaskState(teammateTask.id));
-        }
+      const teammateTask = get(teammateTaskByTaskIdState(input.taskId));
+      if (teammateTask.id) {
+        set(teammateTaskState(teammateTask.id), RESET);
+      }
 
-        const projectTasks = await snapshot.getPromise(
-          projectTasksByTaskIdState(input.taskId),
-        );
-        if (projectTasks.length) {
-          resetProjectTasks(projectTasks.map((p) => p.id));
-        }
+      const projectTasks = get(projectTasksByTaskIdState(input.taskId));
+      if (projectTasks.length) {
+        resetProjectTasks(projectTasks.map((p) => p.id));
+      }
 
-        const restore = () => {
-          if (teammateTask.id)
-            setTeammateTask([teammateTask as TeammateTaskResponse]);
-          if (projectTasks.length)
-            setProjectTask(projectTasks as ProjectTaskResponse[]);
-        };
+      const restore = () => {
+        if (teammateTask.id)
+          setTeammateTask([teammateTask as TeammateTaskResponse]);
+        if (projectTasks.length)
+          setProjectTask(projectTasks as ProjectTaskResponse[]);
+      };
 
-        try {
-          const res = await deleteTaskMutation({
-            variables: {
-              input: {
-                taskId: input.taskId,
-                workspaceId: workspace.id,
-                requestId: TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
-              },
+      try {
+        const res = await deleteTaskMutation({
+          variables: {
+            input: {
+              taskId: input.taskId,
+              workspaceId: workspace.id,
+              requestId: TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
             },
-          });
-          if (res.errors) {
-            restore();
-            return;
-          }
-
-          const data = res.data?.deleteTask?.deletedTask;
-          if (!data) return;
-
-          setDeletedTask([data], { includeTask: false });
-        } catch (e) {
+          },
+        });
+        if (res.errors) {
           restore();
-          throw e;
-        } finally {
-          isDeletingTask.current = false;
+          return;
         }
-      },
-    [
+
+        const data = res.data?.deleteTask?.deletedTask;
+        if (!data) return;
+
+        setDeletedTask([data], { includeTask: false });
+      } catch (e) {
+        restore();
+        throw e;
+      } finally {
+        isDeletingTask.current = false;
+      }
+    }, [
       deleteTaskMutation,
       resetProjectTasks,
       setDeletedTask,
       setProjectTask,
       setTeammateTask,
       workspace.id,
-    ],
+    ]),
   );
 
-  const undeleteTask = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: { taskId: string }) => {
-        const deletedTasks = await snapshot.getPromise(
-          deletedTasksByTaskIdState(input.taskId),
-        );
-        deletedTasks.forEach((d) => {
-          resetDeletedTask(d.id);
-        });
+  const undeleteTask = useAtomCallback(
+    useCallback(async (get, set, input: { taskId: string }) => {
+      const deletedTasks = get(deletedTasksByTaskIdState(input.taskId));
+      deletedTasks.forEach((d) => {
+        resetDeletedTask(d.id);
+      });
 
-        const restore = () => {
-          setDeletedTask(deletedTasks as DeletedTaskResponse[]);
-        };
+      const restore = () => {
+        setDeletedTask(deletedTasks as DeletedTaskResponse[]);
+      };
 
-        try {
-          const res = await undeleteTaskMutation({
-            variables: {
-              input: {
-                taskId: input.taskId,
-                workspaceId: workspace.id,
-                requestId: TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID,
-              },
+      try {
+        const res = await undeleteTaskMutation({
+          variables: {
+            input: {
+              taskId: input.taskId,
+              workspaceId: workspace.id,
+              requestId: TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID,
             },
-          });
-          if (res.errors) {
-            restore();
-            return;
-          }
-
-          const teammateTask = res.data?.undeleteTask?.teammateTask;
-          if (teammateTask) setTeammateTask([teammateTask]);
-
-          const projectTasks = res.data?.undeleteTask?.projectTasks;
-          if (projectTasks?.length)
-            setProjectTask(projectTasks, { includeTask: false });
-        } catch (e) {
+          },
+        });
+        if (res.errors) {
           restore();
-          throw e;
+          return;
         }
-      },
-    [
+
+        const teammateTask = res.data?.undeleteTask?.teammateTask;
+        if (teammateTask) setTeammateTask([teammateTask]);
+
+        const projectTasks = res.data?.undeleteTask?.projectTasks;
+        if (projectTasks?.length)
+          setProjectTask(projectTasks, { includeTask: false });
+      } catch (e) {
+        restore();
+        throw e;
+      }
+    }, [
       resetDeletedTask,
       setDeletedTask,
       setProjectTask,
       setTeammateTask,
       undeleteTaskMutation,
       workspace.id,
-    ],
+    ]),
   );
 
   return {

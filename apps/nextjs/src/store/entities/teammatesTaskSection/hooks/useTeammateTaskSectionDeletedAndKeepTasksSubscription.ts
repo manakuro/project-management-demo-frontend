@@ -1,6 +1,7 @@
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useTeammateTaskSectionDeletedAndKeepTasksSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import {
@@ -9,7 +10,7 @@ import {
   useTeammateTaskResponse,
 } from 'src/store/entities/teammateTask';
 import type { TeammateTaskSectionDeletedAndKeepTasksSubscriptionResponse as Response } from '../type';
-import { useResetTeammateTaskSectionSection } from './useResetTeammateTaskSection';
+import { useResetTeammateTaskSection } from './useResetTeammateTaskSection';
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any;
@@ -23,7 +24,7 @@ export const TEAMMATE_TASK_SECTION_DELETED_AND_KEEP_TASKS_SUBSCRIPTION_REQUEST_I
 export const useTeammateTaskSectionDeletedAndKeepTasksSubscription = (
   props: Props,
 ) => {
-  const { resetTeammateTaskSection } = useResetTeammateTaskSectionSection();
+  const { resetTeammateTaskSection } = useResetTeammateTaskSection();
   const { setTeammateTask } = useTeammateTaskResponse();
 
   const skipSubscription = useMemo(
@@ -53,9 +54,9 @@ export const useTeammateTaskSectionDeletedAndKeepTasksSubscription = (
     skip: skipSubscription,
   });
 
-  const setBySubscription = useRecoilCallback(
-    ({ snapshot }) =>
-      async (response: Response) => {
+  const setBySubscription = useAtomCallback(
+    useCallback(
+      async (get, _set, response: Response) => {
         const data = response.teammateTaskSectionDeletedAndKeepTasks;
 
         if (__DEV__) console.log('Teammate Task Section deleted!');
@@ -63,10 +64,10 @@ export const useTeammateTaskSectionDeletedAndKeepTasksSubscription = (
         const teammateTaskSectionId = data.teammateTaskSection.id;
         const newTeammateTaskSectionId = data.keptTeammateTaskSection.id;
 
-        const teammateTasks = await snapshot.getPromise(
+        const teammateTasks = get(
           teammateTaskByTeammateTaskSectionIdState(teammateTaskSectionId),
         );
-        const newTeammateTasks = teammateTasks.map((t) => ({
+        const newTeammateTasks = teammateTasks.map((t: any) => ({
           ...t,
           teammateTaskSectionId: newTeammateTaskSectionId,
         }));
@@ -76,7 +77,8 @@ export const useTeammateTaskSectionDeletedAndKeepTasksSubscription = (
 
         resetTeammateTaskSection(teammateTaskSectionId);
       },
-    [resetTeammateTaskSection, setTeammateTask],
+      [resetTeammateTaskSection, setTeammateTask],
+    ),
   );
 
   return {

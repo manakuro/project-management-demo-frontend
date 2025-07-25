@@ -1,8 +1,3 @@
-import { atom } from 'recoil';
+import { atomWithReset } from 'jotai/utils';
 
-const key = (str: string) => `src/store/entities/favoriteProjectIds/${str}`;
-
-export const favoriteProjectIdsState = atom<string[]>({
-  key: key('favoriteProjectIdsState'),
-  default: [],
-});
+export const favoriteProjectIdsState = atomWithReset<string[]>([]);

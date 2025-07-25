@@ -1,23 +1,21 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { RESET } from 'jotai/utils';
+import { useCallback } from 'react';
 import { taskTagState } from '../atom';
 
 export const useResetTaskTag = () => {
-  const resetTaskTag = useRecoilCallback(
-    ({ reset }) =>
-      (id: string) => {
-        reset(taskTagState(id));
-      },
-    [],
+  const resetTaskTag = useAtomCallback(
+    useCallback((_, set, id: string) => {
+      set(taskTagState(id), RESET);
+    }, []),
   );
 
-  const resetTaskTags = useRecoilCallback(
-    ({ reset }) =>
-      (taskTags: string[]) => {
-        taskTags.forEach((id) => {
-          reset(taskTagState(id));
-        });
-      },
-    [],
+  const resetTaskTags = useAtomCallback(
+    useCallback((_, set, taskTags: string[]) => {
+      taskTags.forEach((id) => {
+        set(taskTagState(id), RESET);
+      });
+    }, []),
   );
 
   return {

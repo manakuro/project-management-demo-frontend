@@ -1,4 +1,6 @@
-import { useRecoilCallback, useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useUpdateTeammateTaskSectionMutation } from 'src/graphql/hooks';
 import { omit } from 'src/shared/utils/omit';
 import { useWorkspace } from 'src/store/entities/workspace';
@@ -12,27 +14,26 @@ import {
   hasTeammateTaskSectionBeenPersisted,
 } from '../util';
 import { TEAMMATE_TASK_SECTION_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useTeammateTaskSectionUpdatedSubscription';
-import { useUpsert } from './useUpsert';
 
 export const useTeammateTaskSection = (teammateTaskSectionId: string) => {
-  const { upsert } = useUpsert();
   const { workspace } = useWorkspace();
 
-  const teammateTaskSection = useRecoilValue(
+  const teammateTaskSection = useAtomValue(
     teammatesTaskSectionState(teammateTaskSectionId),
   );
   const [updateTeammateTaskSectionMutation] =
     useUpdateTeammateTaskSectionMutation();
 
-  const setTeammateTaskSection = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: Partial<TeammateTaskSection>) => {
-        const prev = await snapshot.getPromise(
+  const setTeammateTaskSection = useAtomCallback(
+    useCallback(
+      async (get, set, input: Partial<TeammateTaskSection>) => {
+        const prev = get(
           teammatesTaskSectionState(teammateTaskSectionId),
         );
         if (!hasTeammateTaskSectionBeenPersisted(prev)) return;
 
-        upsert({ ...prev, ...input });
+        const updated = { ...prev, ...input };
+        set(teammatesTaskSectionState(teammateTaskSectionId), updated);
 
         const res = await updateTeammateTaskSectionMutation({
           variables: {
@@ -44,30 +45,32 @@ export const useTeammateTaskSection = (teammateTaskSectionId: string) => {
           },
         });
         if (res.errors) {
-          upsert(prev);
+          set(teammatesTaskSectionState(teammateTaskSectionId), prev);
         }
       },
-    [
-      teammateTaskSectionId,
-      updateTeammateTaskSectionMutation,
-      upsert,
-      workspace.id,
-    ],
+      [
+        teammateTaskSectionId,
+        updateTeammateTaskSectionMutation,
+        workspace.id,
+      ],
+    ),
   );
 
-  const setTeammateTaskSectionName = useRecoilCallback(
-    () => async (input: string) => {
-      if (
-        teammateTaskSection.name &&
-        input &&
-        teammateTaskSection.name === input
-      )
-        return;
-      const name = input || DEFAULT_TITLE_NAME;
+  const setTeammateTaskSectionName = useAtomCallback(
+    useCallback(
+      async (_get, _set, input: string) => {
+        if (
+          teammateTaskSection.name &&
+          input &&
+          teammateTaskSection.name === input
+        )
+          return;
+        const name = input || DEFAULT_TITLE_NAME;
 
-      await setTeammateTaskSection({ name, isNew: false });
-    },
-    [setTeammateTaskSection, teammateTaskSection.name],
+        await setTeammateTaskSection({ name, isNew: false });
+      },
+      [setTeammateTaskSection, teammateTaskSection.name],
+    ),
   );
 
   return {

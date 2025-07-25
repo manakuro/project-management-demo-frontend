@@ -1,16 +1,15 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { projectIconState } from '../atom';
 import type { ProjectIcon } from '../type';
 
 export const useProjectIconsResponse = () => {
-  const setProjectIcons = useRecoilCallback(
-    ({ set }) =>
-      (data: ProjectIcon[]) => {
-        data.forEach((p) => {
-          set(projectIconState(p.id), p);
-        });
-      },
-    [],
+  const setProjectIcons = useAtomCallback(
+    useCallback((_, set, data: ProjectIcon[]) => {
+      data.forEach((p) => {
+        set(projectIconState(p.id), p);
+      });
+    }, []),
   );
 
   return {

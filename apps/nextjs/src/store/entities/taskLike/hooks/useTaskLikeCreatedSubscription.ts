@@ -1,6 +1,7 @@
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useTaskLikeCreatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import type { TaskLikeCreatedSubscriptionResponse as Response } from '../type';
@@ -42,14 +43,13 @@ export const useTaskLikeCreatedSubscription = (props: Props) => {
     skip: skipSubscription,
   });
 
-  const setBySubscription = useRecoilCallback(
-    () => async (response: Response) => {
+  const setBySubscription = useAtomCallback(
+    useCallback((_get, _set, response: Response) => {
       const taskLikeCreated = response.taskLikeCreated;
 
       if (__DEV__) console.log('TaskLike created!: ');
 
       setTaskLikes([taskLikeCreated]);
-    },
-    [setTaskLikes],
+    }, [setTaskLikes]),
   );
 };

@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { favoriteProjectIdsState } from '../atom';
 
 export const useFavoriteProjectIds = () => {
-  const ids = useRecoilValue(favoriteProjectIdsState);
+  const ids = useAtomValue(favoriteProjectIdsState);
 
   const isFavorite = useCallback(
     (id: string) => ids.some((i) => i === id),

@@ -1,23 +1,21 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { RESET } from 'jotai/utils';
+import { useCallback } from 'react';
 import { workspaceTeammateState } from '../atom';
 
 export const useResetWorkspaceTeammate = () => {
-  const resetWorkspaceTeammate = useRecoilCallback(
-    ({ reset }) =>
-      (id: string) => {
-        reset(workspaceTeammateState(id));
-      },
-    [],
+  const resetWorkspaceTeammate = useAtomCallback(
+    useCallback((_get, set, id: string) => {
+      set(workspaceTeammateState(id), RESET);
+    }, []),
   );
 
-  const resetWorkspaceTeammates = useRecoilCallback(
-    ({ reset }) =>
-      (workspaceTeammates: string[]) => {
-        workspaceTeammates.forEach((id) => {
-          reset(workspaceTeammateState(id));
-        });
-      },
-    [],
+  const resetWorkspaceTeammates = useAtomCallback(
+    useCallback((_get, set, workspaceTeammates: string[]) => {
+      workspaceTeammates.forEach((id) => {
+        set(workspaceTeammateState(id), RESET);
+      });
+    }, []),
   );
 
   return {

@@ -1,6 +1,10 @@
 {
   "permissions": {
-    "allow": ["Bash(find:*)"],
+    "allow": [
+      "Bash(find:*)",
+      "Bash(npm view:*)",
+      "WebFetch(domain:nextjs.org)"
+    ],
     "deny": [
       "Bash(sudo:*)",
       "Bash(rm:*)",

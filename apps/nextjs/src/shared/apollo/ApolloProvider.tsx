@@ -1,11 +1,11 @@
 import { ApolloProvider as ApolloProviderLibs } from '@apollo/client';
-import type React from 'react';
+import type { PropsWithChildren } from 'react';
 import { useMemo } from 'react';
-import { useAuth } from 'src/hooks/useAuth';
+import { useAuthContext } from 'src/providers/AuthProvider';
 import { createApolloClient } from './client';
 
-export const ApolloProvider: React.FCWithChildren = (props) => {
-  const { idToken } = useAuth();
+export function ApolloProvider({ children }: PropsWithChildren) {
+  const { idToken } = useAuthContext();
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   const client = useMemo(
@@ -14,7 +14,5 @@ export const ApolloProvider: React.FCWithChildren = (props) => {
     [],
   );
 
-  return (
-    <ApolloProviderLibs client={client}>{props.children}</ApolloProviderLibs>
-  );
-};
+  return <ApolloProviderLibs client={client}>{children}</ApolloProviderLibs>;
+}

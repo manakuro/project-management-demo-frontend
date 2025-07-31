@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useProjectsProjectId } from 'src/store/app/projects/project';
 import {
   type ProjectTaskColumn,
@@ -11,7 +11,9 @@ import { projectsTaskColumnIdsState } from '../atom';
 
 export const useProjectsTaskColumns = (tasksTaskColumnId: string) => {
   const { projectId } = useProjectsProjectId();
-  const ids = useAtomValue(projectsTaskColumnIdsState(projectId));
+  const ids = useAtomValue(
+    useMemo(() => projectsTaskColumnIdsState(projectId), [projectId]),
+  );
   const { projectsTaskColumn } = useProjectTaskColumn(tasksTaskColumnId);
   const { setProjectsTaskColumn, setProjectTaskColumnOrder } =
     useProjectTaskColumnCommand();

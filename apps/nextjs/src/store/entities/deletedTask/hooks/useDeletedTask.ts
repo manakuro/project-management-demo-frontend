@@ -1,11 +1,13 @@
 import { useAtomValue } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { deletedTaskState } from '../atom';
 import type { DeletedTask } from '../type';
 
 export const useDeletedTask = (deletedTaskId: string) => {
-  const deletedTask = useAtomValue(deletedTaskState(deletedTaskId));
+  const deletedTask = useAtomValue(
+    useMemo(() => deletedTaskState(deletedTaskId), [deletedTaskId]),
+  );
 
   const setDeletedTask = useAtomCallback(
     useCallback(

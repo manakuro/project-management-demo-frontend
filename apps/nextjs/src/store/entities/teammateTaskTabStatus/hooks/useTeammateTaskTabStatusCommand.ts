@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useUpdateTeammateTaskTabStatusMutation } from 'src/graphql/hooks';
 import { tabStatusState } from '../atom';
 import {
@@ -13,10 +14,10 @@ export const useTeammateTaskTabStatusCommand = () => {
     useUpdateTeammateTaskTabStatusMutation();
   const { upsert } = useUpsert();
 
-  const setTabStatus = useRecoilCallback(
-    ({ snapshot }) =>
-      async (key: TeammateTaskTabStatusCodeKey) => {
-        const prev = await snapshot.getPromise(tabStatusState);
+  const setTabStatus = useAtomCallback(
+    useCallback(
+      async (get, _set, key: TeammateTaskTabStatusCodeKey) => {
+        const prev = get(tabStatusState);
         const input: Partial<TeammateTaskTabStatus> = {
           statusCode: TeammateTaskTabStatusCode[key],
         };
@@ -47,7 +48,8 @@ export const useTeammateTaskTabStatusCommand = () => {
           throw e;
         }
       },
-    [updateTeammateTaskTabStatusMutation, upsert],
+      [updateTeammateTaskTabStatusMutation, upsert],
+    ),
   );
 
   return {

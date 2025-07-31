@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useProjectsProjectId } from 'src/store/app/projects/project';
 import { useProjectTaskCommand } from 'src/store/entities/projectTask';
 
@@ -6,26 +7,30 @@ export const useProjectsTask = () => {
   const { addProjectTask, setProjectTaskByTaskId } = useProjectTaskCommand();
   const { projectId } = useProjectsProjectId();
 
-  const addTask = useRecoilCallback(
-    () => (input: { taskSectionId: string }) => {
-      return addProjectTask({
-        projectId,
-        projectTaskSectionId: input.taskSectionId,
-      });
-    },
-    [addProjectTask, projectId],
+  const addTask = useAtomCallback(
+    useCallback(
+      (_get, _set, input: { taskSectionId: string }) => {
+        return addProjectTask({
+          projectId,
+          projectTaskSectionId: input.taskSectionId,
+        });
+      },
+      [addProjectTask, projectId],
+    ),
   );
 
-  const setTaskSectionId = useRecoilCallback(
-    () => async (input: { taskSectionId: string; taskId: string }) => {
-      await setProjectTaskByTaskId(
-        { taskId: input.taskId, projectId },
-        {
-          projectTaskSectionId: input.taskSectionId,
-        },
-      );
-    },
-    [projectId, setProjectTaskByTaskId],
+  const setTaskSectionId = useAtomCallback(
+    useCallback(
+      async (_get, _set, input: { taskSectionId: string; taskId: string }) => {
+        await setProjectTaskByTaskId(
+          { taskId: input.taskId, projectId },
+          {
+            projectTaskSectionId: input.taskSectionId,
+          },
+        );
+      },
+      [projectId, setProjectTaskByTaskId],
+    ),
   );
 
   return {

@@ -1,5 +1,5 @@
 import isEqual from 'lodash-es/isEqual';
-import { useRecoilCallback } from 'recoil';
+import { useCallback } from 'react';
 import { useTaskUndeletedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import { useResetDeletedTask } from 'src/store/entities/deletedTask';
@@ -18,6 +18,25 @@ export const useTaskUndeletedSubscription = (props: Props) => {
   const { setTeammateTask } = useTeammateTaskResponse();
   const { setProjectTask } = useProjectTaskResponse();
   const { resetDeletedTask } = useResetDeletedTask();
+
+  const setBySubscription = useCallback(
+    async (response: Response) => {
+      const data = response.taskUndeleted;
+
+      if (__DEV__) console.log('Task undeleted!');
+
+      if (data.deletedTask) {
+        resetDeletedTask(data.deletedTask.id);
+      }
+      if (data.projectTasks.length) {
+        setProjectTask(data.projectTasks, { includeTask: false });
+      }
+      if (data.teammateTask) {
+        setTeammateTask([data.teammateTask]);
+      }
+    },
+    [resetDeletedTask, setProjectTask, setTeammateTask],
+  );
 
   const subscriptionResult = useSubscription({
     variables: {
@@ -38,25 +57,6 @@ export const useTaskUndeletedSubscription = (props: Props) => {
       previousData = data;
     },
   });
-
-  const setBySubscription = useRecoilCallback(
-    () => async (response: Response) => {
-      const data = response.taskUndeleted;
-
-      if (__DEV__) console.log('Task undeleted!');
-
-      if (data.deletedTask) {
-        resetDeletedTask(data.deletedTask.id);
-      }
-      if (data.projectTasks.length) {
-        setProjectTask(data.projectTasks, { includeTask: false });
-      }
-      if (data.teammateTask) {
-        setTeammateTask([data.teammateTask]);
-      }
-    },
-    [resetDeletedTask, setProjectTask, setTeammateTask],
-  );
 
   return {
     subscriptionResult,

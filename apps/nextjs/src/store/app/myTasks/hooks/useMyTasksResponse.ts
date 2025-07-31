@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { getNodesFromEdges } from 'src/shared/apollo/util';
 import {
   type TeammateTaskColumnResponse,
@@ -17,20 +18,22 @@ import type {
 export const useMyTasksResponse = () => {
   const { setTeammatesTaskSections } = useTeammatesTaskSectionResponse();
   const { setTaskColumns, setTaskStatus } = useSetters();
-  const setMyTasks = useRecoilCallback(
-    () => (data: MyTasksResponse) => {
-      const teammateTaskSections = getNodesFromEdges<
-        MyTasksTeammateTaskSectionResponse,
-        MyTasksResponse['teammateTaskSections']
-      >(data.teammateTaskSections);
+  const setMyTasks = useAtomCallback(
+    useCallback(
+      (_get, _set, data: MyTasksResponse) => {
+        const teammateTaskSections = getNodesFromEdges<
+          MyTasksTeammateTaskSectionResponse,
+          MyTasksResponse['teammateTaskSections']
+        >(data.teammateTaskSections);
 
-      setTeammatesTaskSections(
-        teammateTaskSections as TeammateTaskSectionResponse[],
-      );
-      setTaskColumns(data);
-      setTaskStatus(data);
-    },
-    [setTaskColumns, setTeammatesTaskSections, setTaskStatus],
+        setTeammatesTaskSections(
+          teammateTaskSections as TeammateTaskSectionResponse[],
+        );
+        setTaskColumns(data);
+        setTaskStatus(data);
+      },
+      [setTaskColumns, setTeammatesTaskSections, setTaskStatus],
+    ),
   );
 
   return {
@@ -41,26 +44,26 @@ export const useMyTasksResponse = () => {
 const useSetters = () => {
   const { setTeammatesTaskColumns } = useTeammateTaskColumnResponse();
 
-  const setTaskColumns = useRecoilCallback(
-    () => (data: MyTasksResponse) => {
-      const teammateTaskSections = getNodesFromEdges<
-        TeammateTaskColumnResponse,
-        MyTasksResponse['teammateTaskColumns']
-      >(data.teammateTaskColumns);
+  const setTaskColumns = useAtomCallback(
+    useCallback(
+      (_get, _set, data: MyTasksResponse) => {
+        const teammateTaskSections = getNodesFromEdges<
+          TeammateTaskColumnResponse,
+          MyTasksResponse['teammateTaskColumns']
+        >(data.teammateTaskColumns);
 
-      setTeammatesTaskColumns(teammateTaskSections);
-    },
-    [setTeammatesTaskColumns],
+        setTeammatesTaskColumns(teammateTaskSections);
+      },
+      [setTeammatesTaskColumns],
+    ),
   );
 
-  const setTaskStatus = useRecoilCallback(
-    ({ set }) =>
-      (data: MyTasksResponse) => {
-        if (data.teammateTaskListStatus) {
-          set(taskListStatusState, data.teammateTaskListStatus);
-        }
-      },
-    [],
+  const setTaskStatus = useAtomCallback(
+    useCallback((_get, set, data: MyTasksResponse) => {
+      if (data.teammateTaskListStatus) {
+        set(taskListStatusState, data.teammateTaskListStatus);
+      }
+    }, []),
   );
 
   return {

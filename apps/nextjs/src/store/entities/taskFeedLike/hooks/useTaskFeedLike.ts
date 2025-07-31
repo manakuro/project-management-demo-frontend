@@ -1,8 +1,11 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import { taskFeedLikeState } from '../atom';
 
 export const useTaskTaskFeedLike = (taskFeedLikeId: string) => {
-  const taskFeedLike = useRecoilValue(taskFeedLikeState(taskFeedLikeId));
+  const taskFeedLike = useAtomValue(
+    useMemo(() => taskFeedLikeState(taskFeedLikeId), [taskFeedLikeId]),
+  );
 
   return {
     taskFeedLike,

@@ -1,8 +1,8 @@
-import { useRecoilState } from 'recoil';
+import { useAtom } from 'jotai';
 import { meState } from '../atom';
 
 export const useMe = () => {
-  const [me, setMe] = useRecoilState(meState);
+  const [me, setMe] = useAtom(meState);
 
   return {
     me,

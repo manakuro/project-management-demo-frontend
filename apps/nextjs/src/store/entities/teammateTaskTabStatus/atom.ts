@@ -1,11 +1,10 @@
-import { atom, selectorFamily } from 'recoil';
+import { atom } from 'jotai';
+import { atomWithReset } from 'jotai/utils';
 import {
   type TeammateTaskTabStatus,
   TeammateTaskTabStatusCode,
   type TeammateTaskTabStatusCodeKey,
 } from './type';
-
-const key = (str: string) => `src/store/entities/teammateTaskTabStatus/${str}`;
 
 export const initialState = (): TeammateTaskTabStatus => ({
   id: '',
@@ -16,20 +15,12 @@ export const initialState = (): TeammateTaskTabStatus => ({
   updatedAt: '',
 });
 
-export const tabStatusState = atom<TeammateTaskTabStatus>({
-  key: key('tabStatusState'),
-  default: initialState(),
-});
+export const tabStatusState = atomWithReset<TeammateTaskTabStatus>(
+  initialState(),
+);
 
-export const isTabStatusState = selectorFamily<
-  boolean,
-  TeammateTaskTabStatusCodeKey
->({
-  key: key('isTabStatusState'),
-  get:
-    (key) =>
-    ({ get }) => {
-      const taskStatus = get(tabStatusState);
-      return TeammateTaskTabStatusCode[key] === taskStatus.statusCode;
-    },
-});
+export const isTabStatusState = (key: TeammateTaskTabStatusCodeKey) =>
+  atom<boolean>((get) => {
+    const taskStatus = get(tabStatusState);
+    return TeammateTaskTabStatusCode[key] === taskStatus.statusCode;
+  });

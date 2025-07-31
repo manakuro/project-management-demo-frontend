@@ -1,16 +1,10 @@
+import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { atom, useRecoilState } from 'recoil';
 
-const key = (str: string) =>
-  `src/components/organisms/Navigation/useNavigation/${str}`;
-
-const state = atom({
-  key: key('navigationState'),
-  default: true,
-});
+const isExpandedAtom = atom(true);
 
 export const useNavigation = () => {
-  const [isExpanded, setIsExpanded] = useRecoilState(state);
+  const [isExpanded, setIsExpanded] = useAtom(isExpandedAtom);
 
   const toggleMenu = useCallback(() => {
     setIsExpanded((prev) => !prev);

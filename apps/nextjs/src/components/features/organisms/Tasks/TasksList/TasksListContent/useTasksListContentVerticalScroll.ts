@@ -1,22 +1,16 @@
+import { atom, useAtom } from 'jotai';
 import { useCallback, useEffect } from 'react';
-import { atom, useRecoilState } from 'recoil';
 import { isHTMLElement } from 'src/shared/isHTMLElement';
 import { useTasksListContent } from './useTasksListContent';
 
-const key = (str: string) =>
-  `src/components/organisms/Tasks/TasksList/TasksListContent/useTasksListContentScroll/${str}`;
-
-const state = atom<boolean>({
-  key: key('state'),
-  default: false,
-});
+const isScrollingAtom = atom<boolean>(false);
 
 type Props = {
   listenOnEvent?: boolean;
 };
 export const useTasksListContentVerticalScroll = (props?: Props) => {
   const { dom } = useTasksListContent();
-  const [isScrolling, setIsScrolling] = useRecoilState(state);
+  const [isScrolling, setIsScrolling] = useAtom(isScrollingAtom);
 
   const handleScroll = useCallback(
     (event: Event) => {

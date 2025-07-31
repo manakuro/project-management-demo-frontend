@@ -1,7 +1,6 @@
-import { selectorFamily } from 'recoil';
+import { atom } from 'jotai';
 import { createState } from 'src/store/util';
 import type { DeletedTask } from './type';
-const key = (str: string) => `src/store/entities/deletedTask/${str}`;
 
 export const initialState = (): DeletedTask => ({
   id: '',
@@ -10,18 +9,15 @@ export const initialState = (): DeletedTask => ({
   createdAt: '',
   updatedAt: '',
 });
+
 export const {
   state: deletedTaskState,
   listState: deletedTasksState,
   idsState: deletedTaskIdsState,
-} = createState({ key, initialState });
+} = createState({ initialState });
 
-export const deletedTasksByTaskIdState = selectorFamily<DeletedTask[], string>({
-  key: key('deletedTasksByTaskIdState'),
-  get:
-    (taskId) =>
-    ({ get }) => {
-      const deletedTasks = get(deletedTasksState);
-      return deletedTasks.filter((t) => t.taskId === taskId);
-    },
-});
+export const deletedTasksByTaskIdState = (taskId: string) =>
+  atom<DeletedTask[]>((get) => {
+    const deletedTasks = get(deletedTasksState);
+    return deletedTasks.filter((t) => t.taskId === taskId);
+  });

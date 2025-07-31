@@ -1,23 +1,21 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { RESET } from 'jotai/utils';
+import { useCallback } from 'react';
 import { teammateTaskColumnState } from '../atom';
 
 export const useResetTeammateTaskColumn = () => {
-  const resetTeammateTaskColumn = useRecoilCallback(
-    ({ reset }) =>
-      (id: string) => {
-        reset(teammateTaskColumnState(id));
-      },
-    [],
+  const resetTeammateTaskColumn = useAtomCallback(
+    useCallback((_get, set, id: string) => {
+      set(teammateTaskColumnState(id), RESET);
+    }, []),
   );
 
-  const resetTeammateTaskColumns = useRecoilCallback(
-    ({ reset }) =>
-      (teammateTaskColumns: string[]) => {
-        teammateTaskColumns.forEach((id) => {
-          reset(teammateTaskColumnState(id));
-        });
-      },
-    [],
+  const resetTeammateTaskColumns = useAtomCallback(
+    useCallback((_get, set, teammateTaskColumns: string[]) => {
+      teammateTaskColumns.forEach((id) => {
+        set(teammateTaskColumnState(id), RESET);
+      });
+    }, []),
   );
 
   return {

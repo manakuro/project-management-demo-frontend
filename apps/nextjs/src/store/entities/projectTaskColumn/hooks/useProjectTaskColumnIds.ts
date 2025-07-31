@@ -1,8 +1,8 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { projectTaskColumnIdsState } from '../atom';
 
 export const useProjectTaskColumnIds = () => {
-  const ids = useRecoilValue(projectTaskColumnIdsState);
+  const ids = useAtomValue(projectTaskColumnIdsState);
 
   return {
     projectsTaskColumnIds: ids,

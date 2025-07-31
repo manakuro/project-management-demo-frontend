@@ -1,19 +1,17 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { taskCollaboratorState } from '../atom';
 import type { TaskCollaborator } from '../type';
 
 export const useUpsert = () => {
-  const upsert = useRecoilCallback(
-    ({ set }) =>
-      (input: TaskCollaborator) => {
-        set(taskCollaboratorState(input.id), (prev) => {
-          return {
-            ...prev,
-            ...input,
-          };
-        });
-      },
-    [],
+  const upsert = useAtomCallback(
+    useCallback((get, set, input: TaskCollaborator) => {
+      const prev = get(taskCollaboratorState(input.id));
+      set(taskCollaboratorState(input.id), {
+        ...prev,
+        ...input,
+      });
+    }, []),
   );
 
   return {

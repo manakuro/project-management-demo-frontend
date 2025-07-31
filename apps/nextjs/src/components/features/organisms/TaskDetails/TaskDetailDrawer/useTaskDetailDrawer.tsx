@@ -1,18 +1,12 @@
+import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { atom, useRecoilState } from 'recoil';
 import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
 
-const key = (str: string) =>
-  `src/components/organisms/TaskDetails/TaskDetailDrawer/useTaskDetailDrawer/${str}`;
-
-const openState = atom<boolean>({
-  key: key('openState'),
-  default: false,
-});
+const isOpenAtom = atom<boolean>(false);
 
 export const useTaskDetailDrawer = () => {
   const { resetScrollId, resetId, taskId } = useTaskDetail();
-  const [isOpen, setIsOpen] = useRecoilState(openState);
+  const [isOpen, setIsOpen] = useAtom(isOpenAtom);
 
   const onClose = useCallback(async () => {
     setIsOpen(false);

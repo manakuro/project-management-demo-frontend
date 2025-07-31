@@ -1,8 +1,6 @@
 import { createState } from 'src/store/util';
 import type { ProjectBaseColor } from './type';
 
-const key = (str: string) => `src/store/entities/projectBaseColor/${str}`;
-
 export const initialState = (): ProjectBaseColor => ({
   id: '',
   color: {
@@ -15,8 +13,9 @@ export const initialState = (): ProjectBaseColor => ({
   createdAt: '',
   updatedAt: '',
 });
+
 export const {
   state: projectBaseColorState,
   listState: projectBaseColorsState,
   idsState: projectBaseColorIdsState,
-} = createState({ key, initialState });
+} = createState({ initialState });

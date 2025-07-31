@@ -1,10 +1,13 @@
+import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
-import { useRecoilValue } from 'recoil';
 import { workspaceTeammateState } from '../atom';
 
 export const useWorkspaceTeammate = (workspaceTeammateId: string) => {
-  const workspaceTeammate = useRecoilValue(
-    workspaceTeammateState(workspaceTeammateId),
+  const workspaceTeammate = useAtomValue(
+    useMemo(
+      () => workspaceTeammateState(workspaceTeammateId),
+      [workspaceTeammateId],
+    ),
   );
   const role = useMemo(() => {
     if (workspaceTeammate.role) return workspaceTeammate.role;

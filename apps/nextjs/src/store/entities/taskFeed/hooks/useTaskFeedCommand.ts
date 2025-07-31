@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import {
   useCreateTaskFeedMutation,
   useDeleteTaskFeedMutation,
@@ -28,57 +29,69 @@ export const useTaskFeedCommand = () => {
   const { setTaskFeedLikes } = useTaskFeedLikeResponse();
   const { setTaskFiles } = useTaskFileResponse();
 
-  const addTaskFeed = useRecoilCallback(
-    () => (input: Pick<TaskFeed, 'taskId' | 'teammateId' | 'description'>) => {
-      const id = uuid();
-      upsert({
-        ...initialState(),
-        ...input,
-        id,
-      });
+  const addTaskFeed = useAtomCallback(
+    useCallback(
+      (
+        _get,
+        _set,
+        input: Pick<TaskFeed, 'taskId' | 'teammateId' | 'description'>,
+      ) => {
+        const id = uuid();
+        upsert({
+          ...initialState(),
+          ...input,
+          id,
+        });
 
-      const restore = () => {
-        resetTaskFeed(id);
-      };
-
-      setTimeout(async () => {
-        try {
-          const res = await createTaskFeedMutation({
-            variables: {
-              input: {
-                taskId: input.taskId,
-                teammateId: input.teammateId,
-                description: input.description,
-                requestId: TASK_FEED_CREATED_SUBSCRIPTION_REQUEST_ID,
-                workspaceId: workspace.id,
-              },
-            },
-          });
-          if (res.errors) {
-            restore();
-            return;
-          }
-
-          const data = res.data?.createTaskFeed;
-          if (!data) return '';
-
+        const restore = () => {
           resetTaskFeed(id);
-          setTaskFeed([data]);
-        } catch (e) {
-          restore();
-          throw e;
-        }
-      });
+        };
 
-      return id;
-    },
-    [upsert, createTaskFeedMutation, resetTaskFeed, setTaskFeed, workspace.id],
+        setTimeout(async () => {
+          try {
+            const res = await createTaskFeedMutation({
+              variables: {
+                input: {
+                  taskId: input.taskId,
+                  teammateId: input.teammateId,
+                  description: input.description,
+                  requestId: TASK_FEED_CREATED_SUBSCRIPTION_REQUEST_ID,
+                  workspaceId: workspace.id,
+                },
+              },
+            });
+            if (res.errors) {
+              restore();
+              return;
+            }
+
+            const data = res.data?.createTaskFeed;
+            if (!data) return '';
+
+            resetTaskFeed(id);
+            setTaskFeed([data]);
+          } catch (e) {
+            restore();
+            throw e;
+          }
+        });
+
+        return id;
+      },
+      [
+        upsert,
+        createTaskFeedMutation,
+        resetTaskFeed,
+        setTaskFeed,
+        workspace.id,
+      ],
+    ),
   );
 
-  const deleteTaskFeed = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: { id: string }) => {
-        const prev = await snapshot.getPromise(taskFeedState(input.id));
+  const deleteTaskFeed = useAtomCallback(
+    useCallback(
+      async (get, _set, input: { id: string }) => {
+        const prev = get(taskFeedState(input.id));
 
         resetTaskFeed(input.id);
 
@@ -106,54 +119,57 @@ export const useTaskFeedCommand = () => {
           throw e;
         }
       },
-    [resetTaskFeed, deleteTaskFeedMutation, setTaskFeed, workspace.id],
+      [resetTaskFeed, deleteTaskFeedMutation, setTaskFeed, workspace.id],
+    ),
   );
 
-  const undeleteTaskFeed = useRecoilCallback(
-    () => async (input: DeleteTaskFeedResponse) => {
-      const id = uuid();
-      setTaskFeed([{ ...input.taskFeed, id }]);
+  const undeleteTaskFeed = useAtomCallback(
+    useCallback(
+      async (_get, _set, input: DeleteTaskFeedResponse) => {
+        const id = uuid();
+        setTaskFeed([{ ...input.taskFeed, id }]);
 
-      const restore = () => {
-        resetTaskFeed(input.taskFeed.id);
-      };
+        const restore = () => {
+          resetTaskFeed(input.taskFeed.id);
+        };
 
-      try {
-        const res = await undeleteTaskFeedMutation({
-          variables: {
-            input: {
-              taskFeed: input.taskFeed,
-              taskFeedLikes: input.taskFeedLikes,
-              taskFiles: input.taskFiles,
-              requestId: '',
-              workspaceId: workspace.id,
+        try {
+          const res = await undeleteTaskFeedMutation({
+            variables: {
+              input: {
+                taskFeed: input.taskFeed,
+                taskFeedLikes: input.taskFeedLikes,
+                taskFiles: input.taskFiles,
+                requestId: '',
+                workspaceId: workspace.id,
+              },
             },
-          },
-        });
-        if (res.errors) {
-          restore();
-          return;
-        }
-        const data = res.data?.undeleteTaskFeed;
-        if (!data) return;
+          });
+          if (res.errors) {
+            restore();
+            return;
+          }
+          const data = res.data?.undeleteTaskFeed;
+          if (!data) return;
 
-        resetTaskFeed(id);
-        setTaskFeed([data.taskFeed]);
-        setTaskFeedLikes(data.taskFeedLikes);
-        setTaskFiles(data.taskFiles);
-      } catch (e) {
-        restore();
-        throw e;
-      }
-    },
-    [
-      resetTaskFeed,
-      setTaskFeed,
-      setTaskFeedLikes,
-      setTaskFiles,
-      undeleteTaskFeedMutation,
-      workspace.id,
-    ],
+          resetTaskFeed(id);
+          setTaskFeed([data.taskFeed]);
+          setTaskFeedLikes(data.taskFeedLikes);
+          setTaskFiles(data.taskFiles);
+        } catch (e) {
+          restore();
+          throw e;
+        }
+      },
+      [
+        resetTaskFeed,
+        setTaskFeed,
+        setTaskFeedLikes,
+        setTaskFiles,
+        undeleteTaskFeedMutation,
+        workspace.id,
+      ],
+    ),
   );
 
   return {

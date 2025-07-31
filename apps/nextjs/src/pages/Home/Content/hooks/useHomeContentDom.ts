@@ -1,17 +1,11 @@
+import { atom, useAtom } from 'jotai';
 import { useEffect, useRef } from 'react';
-import { atom, useRecoilState } from 'recoil';
 
-const key = (str: string) =>
-  `src/pages/Home/Content/hooks/useHomeContentDom/${str}`;
-
-const refState = atom<HTMLElement | null>({
-  key: key('refState'),
-  default: null,
-});
+const refAtom = atom<HTMLElement | null>(null);
 
 export const useHomeContentDom = () => {
   const ref = useRef<HTMLElement | null>(null);
-  const [dom, setDom] = useRecoilState(refState);
+  const [dom, setDom] = useAtom(refAtom);
 
   useEffect(() => {
     if (ref.current) {

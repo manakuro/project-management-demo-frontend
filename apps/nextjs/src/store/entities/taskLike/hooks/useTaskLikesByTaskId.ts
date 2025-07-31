@@ -1,5 +1,8 @@
+import { useAtom } from 'jotai';
+import { useAtomCallback } from 'jotai/utils';
+import { RESET } from 'jotai/utils';
 import { useMemo } from 'react';
-import { useRecoilCallback, useRecoilState } from 'recoil';
+import { useCallback } from 'react';
 import {
   useCreateTaskLikeMutation,
   useDeleteTaskLikeMutation,
@@ -14,16 +17,16 @@ import { useUpsert } from './useUpsert';
 
 export const useTaskLikesByTaskId = (taskId: string) => {
   const { upsert } = useUpsert();
-  const [taskLikesAll] = useRecoilState(taskLikesState);
+  const [taskLikesAll] = useAtom(taskLikesState);
   const { workspace } = useWorkspace();
   const { setTaskLikes } = useTaskLikeResponse();
 
   const [createTaskLikeMutation] = useCreateTaskLikeMutation();
   const [deleteTaskLikeMutation] = useDeleteTaskLikeMutation();
 
-  const addTaskLike = useRecoilCallback(
-    ({ reset }) =>
-      async (teammateId: string) => {
+  const addTaskLike = useAtomCallback(
+    useCallback(
+      (_get, set, teammateId: string) => {
         const id = uuid();
         upsert({
           ...initialState(),
@@ -34,7 +37,7 @@ export const useTaskLikesByTaskId = (taskId: string) => {
         });
 
         const restore = () => {
-          reset(taskLikeState(id));
+          set(taskLikeState(id), RESET);
         };
 
         setTimeout(async () => {
@@ -57,7 +60,7 @@ export const useTaskLikesByTaskId = (taskId: string) => {
             const data = res.data?.createTaskLike;
             if (!data) return '';
 
-            reset(taskLikeState(id));
+            set(taskLikeState(id), RESET);
             setTaskLikes([data]);
           } catch (e) {
             restore();
@@ -67,13 +70,14 @@ export const useTaskLikesByTaskId = (taskId: string) => {
 
         return id;
       },
-    [createTaskLikeMutation, setTaskLikes, taskId, upsert, workspace.id],
+      [createTaskLikeMutation, setTaskLikes, taskId, upsert, workspace.id],
+    ),
   );
 
-  const deleteTaskLike = useRecoilCallback(
-    ({ snapshot, reset }) =>
-      async (teammateId: string) => {
-        const prev = await snapshot.getPromise(taskLikesState);
+  const deleteTaskLike = useAtomCallback(
+    useCallback(
+      (get, set, teammateId: string) => {
+        const prev = get(taskLikesState);
         const taskLike = prev.find(
           (f) =>
             f.teammateId === teammateId &&
@@ -82,7 +86,7 @@ export const useTaskLikesByTaskId = (taskId: string) => {
         );
         if (!taskLike) return;
 
-        reset(taskLikeState(taskLike.id));
+        set(taskLikeState(taskLike.id), RESET);
 
         const restore = () => {
           setTaskLikes([taskLike]);
@@ -109,7 +113,8 @@ export const useTaskLikesByTaskId = (taskId: string) => {
           }
         });
       },
-    [deleteTaskLikeMutation, setTaskLikes, taskId, workspace.id],
+      [deleteTaskLikeMutation, setTaskLikes, taskId, workspace.id],
+    ),
   );
 
   const taskLikes = useMemo(

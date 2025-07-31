@@ -1,23 +1,21 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { RESET } from 'jotai/utils';
+import { useCallback } from 'react';
 import { taskFileState } from '../atom';
 
 export const useResetTaskFile = () => {
-  const resetTaskFile = useRecoilCallback(
-    ({ reset }) =>
-      (id: string) => {
-        reset(taskFileState(id));
-      },
-    [],
+  const resetTaskFile = useAtomCallback(
+    useCallback((_get, set, id: string) => {
+      set(taskFileState(id), RESET);
+    }, []),
   );
 
-  const resetTaskFiles = useRecoilCallback(
-    ({ reset }) =>
-      (taskFiles: string[]) => {
-        taskFiles.forEach((id) => {
-          reset(taskFileState(id));
-        });
-      },
-    [],
+  const resetTaskFiles = useAtomCallback(
+    useCallback((_get, set, taskFiles: string[]) => {
+      taskFiles.forEach((id) => {
+        set(taskFileState(id), RESET);
+      });
+    }, []),
   );
 
   return {

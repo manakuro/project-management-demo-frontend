@@ -1,23 +1,21 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { RESET } from 'jotai/utils';
+import { useCallback } from 'react';
 import { teammateTaskState } from '../atom';
 
 export const useResetTeammateTask = () => {
-  const resetTeammateTask = useRecoilCallback(
-    ({ reset }) =>
-      (id: string) => {
-        reset(teammateTaskState(id));
-      },
-    [],
+  const resetTeammateTask = useAtomCallback(
+    useCallback((_, set, id: string) => {
+      set(teammateTaskState(id), RESET);
+    }, []),
   );
 
-  const resetTeammateTasks = useRecoilCallback(
-    ({ reset }) =>
-      (teammateTasks: string[]) => {
-        teammateTasks.forEach((id) => {
-          reset(teammateTaskState(id));
-        });
-      },
-    [],
+  const resetTeammateTasks = useAtomCallback(
+    useCallback((_, set, teammateTasks: string[]) => {
+      teammateTasks.forEach((id) => {
+        set(teammateTaskState(id), RESET);
+      });
+    }, []),
   );
 
   return {

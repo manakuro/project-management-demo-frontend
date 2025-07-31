@@ -1,5 +1,5 @@
+import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { atom, useRecoilState } from 'recoil';
 import { useProjectTeammatesLazyQuery } from 'src/graphql/hooks';
 import type {
   ProjectTeammateResponse,
@@ -8,22 +8,16 @@ import type {
 import { getNodesFromEdges } from 'src/shared/apollo/util';
 import type { Teammate } from 'src/store/entities/teammate';
 
-const key = (str: string) =>
-  `src/components/organisms/Menus/ProjectTeammateMenu/useSearchProjectTeammatesQuery/${str}`;
-
-const queryState = atom<{ loading: boolean; teammates: Teammate[] }>({
-  key: key('queryState'),
-  default: {
-    loading: false,
-    teammates: [],
-  },
+const queryAtom = atom<{ loading: boolean; teammates: Teammate[] }>({
+  loading: false,
+  teammates: [],
 });
 
 type Props = {
   queryText: string;
 };
 export const useSearchProjectTeammatesQuery = () => {
-  const [state, setState] = useRecoilState(queryState);
+  const [state, setState] = useAtom(queryAtom);
   const [refetchQuery] = useProjectTeammatesLazyQuery();
 
   const refetch = useCallback(

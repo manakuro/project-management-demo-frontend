@@ -1,8 +1,11 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import { taskPriorityState } from '../atom';
 
 export const useTaskPriority = (taskPriorityId: string) => {
-  const taskPriority = useRecoilValue(taskPriorityState(taskPriorityId));
+  const taskPriority = useAtomValue(
+    useMemo(() => taskPriorityState(taskPriorityId), [taskPriorityId]),
+  );
 
   return {
     taskPriority,

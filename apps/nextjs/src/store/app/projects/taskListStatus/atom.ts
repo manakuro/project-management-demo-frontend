@@ -1,59 +1,42 @@
-import { atom, selectorFamily } from 'recoil';
+import { atom } from 'jotai';
 import { TaskListCompletedStatusCode } from 'src/store/entities/taskListCompletedStatus';
 import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus';
 import type { ProjectTaskListStatus } from './type';
 
-const key = (str: string) => `src/store/app/projects/taskListStatus/${str}`;
-
 export const taskListStatusState = atom<ProjectTaskListStatus>({
-  key: key('taskListStatusState'),
-  default: {
+  id: '',
+  taskListCompletedStatusId: '',
+  taskListSortStatusId: '',
+  taskListCompletedStatus: {
     id: '',
-    taskListCompletedStatusId: '',
-    taskListSortStatusId: '',
-    taskListCompletedStatus: {
-      id: '',
-      statusCode: TaskListCompletedStatusCode.Incomplete,
-    },
-    taskListSortStatus: {
-      id: '',
-      statusCode: TaskListSortStatusCode.None,
-    },
-    createdAt: '',
-    updatedAt: '',
+    statusCode: TaskListCompletedStatusCode.Incomplete,
   },
+  taskListSortStatus: {
+    id: '',
+    statusCode: TaskListSortStatusCode.None,
+  },
+  createdAt: '',
+  updatedAt: '',
 });
 
-export const isTaskListCompletedStatusState = selectorFamily<
-  boolean,
-  TaskListCompletedStatuses
->({
-  key: key('isTaskListCompletedStatusState'),
-  get:
-    (key) =>
-    ({ get }) => {
-      const taskStatus = get(taskListStatusState);
-      return (
-        taskStatus.taskListCompletedStatus.statusCode ===
-        taskListCompletedStatues[key]
-      );
-    },
-});
+export const isTaskListCompletedStatusState = (
+  key: TaskListCompletedStatuses,
+) =>
+  atom<boolean>((get) => {
+    const taskStatus = get(taskListStatusState);
+    return (
+      taskStatus.taskListCompletedStatus.statusCode ===
+      taskListCompletedStatues[key]
+    );
+  });
 
-export const isTaskListSortStatusState = selectorFamily<
-  boolean,
-  TaskListSortStatuses
->({
-  key: key('isTaskListSortStatusState'),
-  get:
-    (key) =>
-    ({ get }) => {
-      const taskStatus = get(taskListStatusState);
-      return (
-        taskStatus.taskListSortStatus.statusCode === taskListSortStatues[key]
-      );
-    },
-});
+export const isTaskListSortStatusState = (key: TaskListSortStatuses) =>
+  atom<boolean>((get) => {
+    const taskStatus = get(taskListStatusState);
+    return (
+      taskStatus.taskListSortStatus.statusCode === taskListSortStatues[key]
+    );
+  });
 
 export const taskListSortStatues = {
   none: TaskListSortStatusCode.None,

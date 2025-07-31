@@ -1,6 +1,7 @@
+import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useCallback } from 'react';
 import { useProjectTaskSectionUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import type { ProjectTaskSectionUpdatedSubscriptionResponse as Response } from '../type';
@@ -41,15 +42,17 @@ export const useProjectTaskSectionUpdatedSubscription = (props: Props) => {
     skip: skipSubscription,
   });
 
-  const setBySubscription = useRecoilCallback(
-    () => (response: Response) => {
-      const updated = response.projectTaskSectionUpdated;
+  const setBySubscription = useAtomCallback(
+    useCallback(
+      (_, set, response: Response) => {
+        const updated = response.projectTaskSectionUpdated;
 
-      if (__DEV__) console.log('Project Task Section updated!');
+        if (__DEV__) console.log('Project Task Section updated!');
 
-      setProjectsTaskSections([updated]);
-    },
-    [setProjectsTaskSections],
+        setProjectsTaskSections([updated]);
+      },
+      [setProjectsTaskSections],
+    ),
   );
 
   return {

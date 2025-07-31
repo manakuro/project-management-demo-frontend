@@ -1,8 +1,6 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 import { getDefaultDescription } from 'src/shared/prosemirror/getDefaultDescription';
 import type { Workspace } from './type';
-
-const key = (str: string) => `src/store/entities/workspace/${str}`;
 
 export const workspaceStateDefault = (): Workspace => ({
   id: '',
@@ -13,7 +11,4 @@ export const workspaceStateDefault = (): Workspace => ({
   updatedAt: '',
 });
 
-export const workspaceState = atom<Workspace>({
-  key: key('workspaceState'),
-  default: workspaceStateDefault(),
-});
+export const workspaceState = atom<Workspace>(workspaceStateDefault());

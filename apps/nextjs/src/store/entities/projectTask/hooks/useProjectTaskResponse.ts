@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { type TaskResponse, useTasksResponse } from 'src/store/entities/task';
 import { projectTaskState } from '../atom';
 import type { ProjectTaskResponse } from '../type';
@@ -6,9 +7,14 @@ import type { ProjectTaskResponse } from '../type';
 export const useProjectTaskResponse = () => {
   const { setTasksFromResponse } = useTasksResponse();
 
-  const setProjectTask = useRecoilCallback(
-    ({ set }) =>
-      (data: ProjectTaskResponse[], options?: { includeTask?: boolean }) => {
+  const setProjectTask = useAtomCallback(
+    useCallback(
+      (
+        _,
+        set,
+        data: ProjectTaskResponse[],
+        options?: { includeTask?: boolean },
+      ) => {
         const includeTask = options?.includeTask ?? true;
 
         data.forEach((d) => {
@@ -19,7 +25,8 @@ export const useProjectTaskResponse = () => {
         const tasks = data.map<TaskResponse>((d) => d.task);
         setTasksFromResponse(tasks);
       },
-    [setTasksFromResponse],
+      [setTasksFromResponse],
+    ),
   );
 
   return {

@@ -1,9 +1,10 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import { projectTaskSectionsByProjectIdState } from '../atom';
 
 export const useProjectsTaskSectionsByProjectId = (projectId: string) => {
-  const projectTaskSections = useRecoilValue(
-    projectTaskSectionsByProjectIdState(projectId),
+  const projectTaskSections = useAtomValue(
+    useMemo(() => projectTaskSectionsByProjectIdState(projectId), [projectId]),
   );
 
   return {

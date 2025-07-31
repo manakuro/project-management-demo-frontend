@@ -1,16 +1,15 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { taskPriorityState } from '../atom';
 import type { TaskPriorityResponse } from '../type';
 
 export const useTaskPriorityResponse = () => {
-  const setTaskPriorities = useRecoilCallback(
-    ({ set }) =>
-      (data: TaskPriorityResponse[]) => {
-        data.forEach((p) => {
-          set(taskPriorityState(p.id), p);
-        });
-      },
-    [],
+  const setTaskPriorities = useAtomCallback(
+    useCallback((_, set, data: TaskPriorityResponse[]) => {
+      data.forEach((p) => {
+        set(taskPriorityState(p.id), p);
+      });
+    }, []),
   );
 
   return {

@@ -1,29 +1,26 @@
-import { useRecoilCallback, useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback, useMemo } from 'react';
 import { teammateTaskState } from '../atom';
 import type { TeammateTask } from '../type';
 
 export const useTeammateTask = (teammateTaskId: string) => {
-  const teammateTask = useRecoilValue(teammateTaskState(teammateTaskId));
-
-  const upsert = useRecoilCallback(
-    ({ set }) =>
-      (teammateTask: TeammateTask) => {
-        set(teammateTaskState(teammateTask.id), teammateTask);
-      },
-    [],
+  const teammateTask = useAtomValue(
+    useMemo(() => teammateTaskState(teammateTaskId), [teammateTaskId]),
   );
-  const setTeammateTask = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: Partial<TeammateTask>) => {
-        const prev = await snapshot.getPromise(
-          teammateTaskState(teammateTask.id),
-        );
-        upsert({
+
+  const setTeammateTask = useAtomCallback(
+    useCallback(
+      (get, set, input: Partial<TeammateTask>) => {
+        const prev = get(teammateTaskState(teammateTask.id));
+        const updated = {
           ...prev,
           ...input,
-        });
+        };
+        set(teammateTaskState(teammateTask.id), updated);
       },
-    [teammateTask.id, upsert],
+      [teammateTask.id],
+    ),
   );
 
   return {

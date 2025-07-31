@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useUpdateProjectMutation } from 'src/graphql/hooks';
 import type { UpdateProjectInput } from 'src/graphql/types';
 import {
@@ -19,10 +20,14 @@ export const useProjectCommand = () => {
   const { workspace } = useWorkspace();
   const { upsert } = useUpsert();
 
-  const setProject = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: { projectId: string } & Partial<Omit<Project, 'id'>>) => {
-        const prev = await snapshot.getPromise(projectState(input.projectId));
+  const setProject = useAtomCallback(
+    useCallback(
+      async (
+        get,
+        _,
+        input: { projectId: string } & Partial<Omit<Project, 'id'>>,
+      ) => {
+        const prev = get(projectState(input.projectId));
 
         upsert({ ...prev, ...omit(input, 'projectId') });
 
@@ -47,12 +52,15 @@ export const useProjectCommand = () => {
           throw err;
         }
       },
-    [updateProjectMutation, upsert, workspace.id],
+      [updateProjectMutation, upsert, workspace.id],
+    ),
   );
 
-  const setProjectDescription = useRecoilCallback(
-    () =>
+  const setProjectDescription = useAtomCallback(
+    useCallback(
       async (
+        _get,
+        _set,
         input: {
           projectId: string;
           description: Project['description'];
@@ -69,27 +77,32 @@ export const useProjectCommand = () => {
           await setHasDescriptionUpdated(input.projectId);
         }
       },
-    [setHasDescriptionUpdated, setProject],
+      [setHasDescriptionUpdated, setProject],
+    ),
   );
 
-  const setProjectDueDate = useRecoilCallback(
-    () => async (input: { projectId: string; dueDate: Date }) => {
-      await setProject({
-        projectId: input.projectId,
-        dueDate: formatDueTimeToLocalTimezone(input.dueDate),
-      });
-    },
-    [setProject],
+  const setProjectDueDate = useAtomCallback(
+    useCallback(
+      async (get, set, input: { projectId: string; dueDate: Date }) => {
+        await setProject({
+          projectId: input.projectId,
+          dueDate: formatDueTimeToLocalTimezone(input.dueDate),
+        });
+      },
+      [setProject],
+    ),
   );
 
-  const resetProjectDueDate = useRecoilCallback(
-    () => async (input: { projectId: string }) => {
-      await setProject({
-        projectId: input.projectId,
-        dueDate: '',
-      });
-    },
-    [setProject],
+  const resetProjectDueDate = useAtomCallback(
+    useCallback(
+      async (_get, _set, input: { projectId: string }) => {
+        await setProject({
+          projectId: input.projectId,
+          dueDate: '',
+        });
+      },
+      [setProject],
+    ),
   );
 
   return {

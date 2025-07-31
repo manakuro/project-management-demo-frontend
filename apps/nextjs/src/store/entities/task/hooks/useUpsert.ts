@@ -1,19 +1,17 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import type { Task } from 'src/store/entities/task';
 import { taskState } from '../atom';
 
 export const useUpsert = () => {
-  const upsert = useRecoilCallback(
-    ({ set }) =>
-      (task: Task) => {
-        set(taskState(task.id), (prev) => {
-          return {
-            ...prev,
-            ...task,
-          };
-        });
-      },
-    [],
+  const upsert = useAtomCallback(
+    useCallback((get, set, task: Task) => {
+      const prev = get(taskState(task.id));
+      set(taskState(task.id), {
+        ...prev,
+        ...task,
+      });
+    }, []),
   );
 
   return {

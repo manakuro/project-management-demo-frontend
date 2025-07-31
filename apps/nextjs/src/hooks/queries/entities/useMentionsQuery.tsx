@@ -1,28 +1,19 @@
+import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { atom, useRecoilState } from 'recoil';
 import { useMentionLazyQuery as useQuery } from 'src/graphql/hooks';
 import type { Mention } from 'src/store/entities/mention';
 import { useWorkspace } from 'src/store/entities/workspace';
 
-const key = (str: string) =>
-  `src/hooks/queries/entities/useMentionsQuery/${str}`;
+const loadingAtom = atom<boolean>(false);
 
-const loadingState = atom<boolean>({
-  key: key('loadingState'),
-  default: false,
-});
-
-const mentionsState = atom<Mention[]>({
-  key: key('mentionsState'),
-  default: [],
-});
+const mentionsAtom = atom<Mention[]>([]);
 
 type Props = {
   queryText: string;
 };
 export const useMentionsQuery = () => {
-  const [loading, setLoading] = useRecoilState(loadingState);
-  const [mentions, setMentions] = useRecoilState(mentionsState);
+  const [loading, setLoading] = useAtom(loadingAtom);
+  const [mentions, setMentions] = useAtom(mentionsAtom);
   const [refetchQuery] = useQuery({
     fetchPolicy: 'no-cache',
     onCompleted: (data) => {

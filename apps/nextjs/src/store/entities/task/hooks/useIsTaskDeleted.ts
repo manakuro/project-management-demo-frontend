@@ -1,9 +1,11 @@
+import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
-import { useRecoilValue } from 'recoil';
 import { deletedTasksByTaskIdState } from 'src/store/entities/deletedTask';
 
 export const useIsTaskDeleted = (taskId: string) => {
-  const deletedTasks = useRecoilValue(deletedTasksByTaskIdState(taskId));
+  const deletedTasks = useAtomValue(
+    useMemo(() => deletedTasksByTaskIdState(taskId), [taskId]),
+  );
   const isTaskDeleted = useMemo(
     () => !!deletedTasks.length,
     [deletedTasks.length],

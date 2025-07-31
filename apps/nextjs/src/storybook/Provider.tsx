@@ -3,7 +3,6 @@ import { ChakraProvider } from '@chakra-ui/react';
 import enLocale from 'date-fns/locale/en-US';
 import type React from 'react';
 import { useMemo } from 'react';
-import { RecoilRoot } from 'recoil';
 import { Modals } from 'src/components/features/organisms/Modals';
 import {
   useFavoriteProjectIdsQuery,
@@ -28,25 +27,23 @@ import { theme } from 'src/styles';
 
 export const Provider: React.FCWithChildren = (props) => {
   return (
-    <RecoilRoot>
-      <MuiThemeProvider theme={muiTheme}>
-        <ChakraProvider theme={theme} resetCSS>
-          <LocalizationProvider
-            dateAdapter={AdapterDateFns as any}
-            locale={enLocale}
-          >
-            <ApolloProvider>
-              <GlobalQuery>
-                <>
-                  {props.children}
-                  <Modals />
-                </>
-              </GlobalQuery>
-            </ApolloProvider>
-          </LocalizationProvider>
-        </ChakraProvider>
-      </MuiThemeProvider>
-    </RecoilRoot>
+    <MuiThemeProvider theme={muiTheme}>
+      <ChakraProvider theme={theme} resetCSS>
+        <LocalizationProvider
+          dateAdapter={AdapterDateFns as any}
+          locale={enLocale}
+        >
+          <ApolloProvider>
+            <GlobalQuery>
+              <>
+                {props.children}
+                <Modals />
+              </>
+            </GlobalQuery>
+          </ApolloProvider>
+        </LocalizationProvider>
+      </ChakraProvider>
+    </MuiThemeProvider>
   );
 };
 

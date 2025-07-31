@@ -1,15 +1,13 @@
-import { atom, useRecoilState } from 'recoil';
+import { atom } from 'jotai';
+import { useAtom } from 'jotai';
 
 const key = (str: string) =>
   `src/store/entities/workspace/hooks/useHasDescriptionUpdated/${str}`;
 
-const hasDescriptionUpdatedState = atom<number>({
-  key: key('hasDescriptionUpdatedState'),
-  default: 1,
-});
+const hasDescriptionUpdatedState = atom<number>(1);
 
 export const useHasDescriptionUpdated = () => {
-  const [hasDescriptionUpdated, setHasDescriptionUpdated] = useRecoilState(
+  const [hasDescriptionUpdated, setHasDescriptionUpdated] = useAtom(
     hasDescriptionUpdatedState,
   );
 

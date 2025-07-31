@@ -1,30 +1,16 @@
+import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { atom, useRecoilState } from 'recoil';
 
-const key = (str: string) =>
-  `src/components/organisms/Menus/AssigneeMenu/useAssigneeMenu/${str}`;
+const assigneeOpenAtom = atom<boolean>(false);
 
-const assigneeOpenState = atom<boolean>({
-  key: key('popoverAssigneeOpenState'),
-  default: false,
-});
+const assigneeAtom = atom<any | null>(null);
 
-const assigneeState = atom<any | null>({
-  key: key('popoverAssigneeState'),
-  default: null,
-});
-
-const assigneeSelectedIndexState = atom<number>({
-  key: key('popoverAssigneeSelectedIndexState'),
-  default: 0,
-});
+const assigneeSelectedIndexAtom = atom<number>(0);
 
 export const useAssigneeMenu = () => {
-  const [isOpen, setIsOpen] = useRecoilState(assigneeOpenState);
-  const [assignee, setAssignee] = useRecoilState(assigneeState);
-  const [selectedIndex, setSelectedIndex] = useRecoilState(
-    assigneeSelectedIndexState,
-  );
+  const [isOpen, setIsOpen] = useAtom(assigneeOpenAtom);
+  const [assignee, setAssignee] = useAtom(assigneeAtom);
+  const [selectedIndex, setSelectedIndex] = useAtom(assigneeSelectedIndexAtom);
 
   const onClose = useCallback(() => {
     setIsOpen(false);

@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import {
   useCreateTaskTagMutation,
   useDeleteTaskTagMutation,
@@ -15,21 +16,18 @@ import { useResetTaskTag } from './useResetTaskTag';
 import { TASK_TAG_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskTagCreatedSubscription';
 import { TASK_TAG_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskTagDeletedSubscription';
 import { useTaskTagResponse } from './useTaskTagResponse';
-import { useUpsert } from './useUpsert';
 
 export const useTaskTagCommand = () => {
   const [createTaskTagMutation] = useCreateTaskTagMutation();
   const [deleteTaskTagMutation] = useDeleteTaskTagMutation();
   const { setTaskTag } = useTaskTagResponse();
-  const { upsert } = useUpsert();
   const { resetTaskTag } = useResetTaskTag();
   const { workspace } = useWorkspace();
 
-  const addTaskTag = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: { tag: Tag; taskId: string }) => {
-        const release = snapshot.retain();
-        const taskTag = await snapshot.getPromise(
+  const addTaskTag = useAtomCallback(
+    useCallback(
+      async (get, set, input: { tag: Tag; taskId: string }) => {
+        const taskTag = get(
           taskTagByTaskIdAndTagIdState({
             taskId: input.taskId,
             tagId: input.tag.id,
@@ -38,13 +36,14 @@ export const useTaskTagCommand = () => {
         if (taskTag.id) return;
 
         const id = uuid();
-        upsert({
+        const newTaskTag = {
           ...initialState(),
           id,
           tagId: input.tag.id,
           tag: input.tag,
           taskId: input.taskId,
-        });
+        };
+        set(taskTagState(id), newTaskTag);
 
         const restore = () => {
           resetTaskTag(id);
@@ -74,18 +73,16 @@ export const useTaskTagCommand = () => {
         } catch (e) {
           restore();
           throw e;
-        } finally {
-          release();
         }
       },
-    [createTaskTagMutation, resetTaskTag, setTaskTag, upsert, workspace.id],
+      [createTaskTagMutation, resetTaskTag, setTaskTag, workspace.id],
+    ),
   );
 
-  const deleteTaskTag = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: { id: string }) => {
-        const release = snapshot.retain();
-        const prev = await snapshot.getPromise(taskTagState(input.id));
+  const deleteTaskTag = useAtomCallback(
+    useCallback(
+      async (get, _set, input: { id: string }) => {
+        const prev = get(taskTagState(input.id));
 
         resetTaskTag(input.id);
 
@@ -110,11 +107,10 @@ export const useTaskTagCommand = () => {
         } catch (e) {
           restore();
           throw e;
-        } finally {
-          release();
         }
       },
-    [deleteTaskTagMutation, resetTaskTag, setTaskTag, workspace.id],
+      [deleteTaskTagMutation, resetTaskTag, setTaskTag, workspace.id],
+    ),
   );
 
   return {

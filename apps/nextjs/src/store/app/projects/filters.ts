@@ -1,4 +1,4 @@
-import type { GetRecoilValue } from 'recoil';
+import type { Getter } from 'jotai';
 import { dateFns } from 'src/shared/dateFns';
 import type { ProjectTaskSection } from 'src/store/entities/projectTaskSection';
 import type { Task } from 'src/store/entities/task';
@@ -14,7 +14,7 @@ import {
 } from './taskListStatus';
 
 type Params = {
-  get: GetRecoilValue;
+  get: Getter;
 };
 
 export const sortProjectTaskSections =

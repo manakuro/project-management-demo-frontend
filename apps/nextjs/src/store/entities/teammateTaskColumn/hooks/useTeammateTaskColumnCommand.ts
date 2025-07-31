@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import {
   useUpdateTeammateTaskColumnMutation,
   useUpdateTeammateTaskColumnOrderMutation,
@@ -14,12 +15,14 @@ export const useTeammateTaskColumnCommand = () => {
   const [updateTeammateTaskColumnOrderMutation] =
     useUpdateTeammateTaskColumnOrderMutation();
 
-  const setTeammateTaskColumn = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: Partial<TeammateTaskColumn> & { id: string }) => {
-        const prev = await snapshot.getPromise(
-          teammateTaskColumnState(input.id),
-        );
+  const setTeammateTaskColumn = useAtomCallback(
+    useCallback(
+      async (
+        get,
+        _set,
+        input: Partial<TeammateTaskColumn> & { id: string },
+      ) => {
+        const prev = get(teammateTaskColumnState(input.id));
         upsert({ ...prev, ...input });
 
         const restore = () => {
@@ -44,13 +47,14 @@ export const useTeammateTaskColumnCommand = () => {
           throw e;
         }
       },
-    [updateTeammateTaskColumnMutation, upsert],
+      [updateTeammateTaskColumnMutation, upsert],
+    ),
   );
 
-  const setTeammateTaskColumnOrder = useRecoilCallback(
-    ({ snapshot }) =>
-      async (ids: string[]) => {
-        const prev = await snapshot.getPromise(teammateTaskColumnsState);
+  const setTeammateTaskColumnOrder = useAtomCallback(
+    useCallback(
+      async (get, _set, ids: string[]) => {
+        const prev = get(teammateTaskColumnsState);
         const prevIds = prev.map((p) => p.id);
 
         if (JSON.stringify(prevIds) === JSON.stringify(ids)) return;
@@ -87,7 +91,8 @@ export const useTeammateTaskColumnCommand = () => {
           throw e;
         }
       },
-    [updateTeammateTaskColumnOrderMutation, upsert],
+      [updateTeammateTaskColumnOrderMutation, upsert],
+    ),
   );
 
   return {

@@ -1,8 +1,6 @@
-import { selectorFamily } from 'recoil';
+import { atom } from 'jotai';
 import { createState } from 'src/store/util';
 import type { Teammate } from './type';
-
-const key = (str: string) => `src/store/entities/teammate/${str}`;
 
 export const initialState = (): Teammate => ({
   id: '',
@@ -16,16 +14,12 @@ export const {
   state: teammateState,
   listState: teammatesState,
   idsState: teammateIdsState,
-} = createState({ key, initialState });
+} = createState({ initialState });
 
-export const namesByTeammateIdState = selectorFamily<string[], string[]>({
-  key: key('namesByTeammateIdState'),
-  get:
-    (teammateIds) =>
-    ({ get }) => {
-      const teammates = get(teammatesState);
-      return teammates
-        .filter((t) => teammateIds.includes(t.id))
-        .map((t) => t.name);
-    },
-});
+export const namesByTeammateIdState = (teammateIds: string[]) =>
+  atom<string[]>((get) => {
+    const teammates = get(teammatesState);
+    return teammates
+      .filter((t) => teammateIds.includes(t.id))
+      .map((t) => t.name);
+  });

@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import {
   useCreateFavoriteWorkspaceMutation,
   useDeleteFavoriteWorkspaceMutation,
@@ -23,10 +24,10 @@ export const useFavoriteWorkspaceIdsCommand = () => {
     teammateId: me.id,
   });
 
-  const deleteFavoriteWorkspaceId = useRecoilCallback(
-    ({ snapshot }) =>
-      async (favoriteWorkspaceId: string) => {
-        const prev = await snapshot.getPromise(favoriteWorkspaceIdsState);
+  const deleteFavoriteWorkspaceId = useAtomCallback(
+    useCallback(
+      async (get, _set, favoriteWorkspaceId: string) => {
+        const prev = get(favoriteWorkspaceIdsState);
 
         upsert(prev.filter((id) => id !== favoriteWorkspaceId));
 
@@ -54,13 +55,14 @@ export const useFavoriteWorkspaceIdsCommand = () => {
           throw e;
         }
       },
-    [deleteFavoriteWorkspaceMutation, me.id, upsert],
+      [deleteFavoriteWorkspaceMutation, me.id, upsert],
+    ),
   );
 
-  const addFavoriteWorkspaceId = useRecoilCallback(
-    ({ snapshot }) =>
-      async (favoriteWorkspaceId: string) => {
-        const prev = await snapshot.getPromise(favoriteWorkspaceIdsState);
+  const addFavoriteWorkspaceId = useAtomCallback(
+    useCallback(
+      async (get, _set, favoriteWorkspaceId: string) => {
+        const prev = get(favoriteWorkspaceIdsState);
 
         upsert([...prev, favoriteWorkspaceId]);
 
@@ -88,13 +90,14 @@ export const useFavoriteWorkspaceIdsCommand = () => {
           throw e;
         }
       },
-    [createFavoriteWorkspaceMutation, me.id, upsert],
+      [createFavoriteWorkspaceMutation, me.id, upsert],
+    ),
   );
 
-  const setFavoriteWorkspaceId = useRecoilCallback(
-    ({ snapshot }) =>
-      async (favoriteWorkspaceId: string) => {
-        const prev = await snapshot.getPromise(favoriteWorkspaceIdsState);
+  const setFavoriteWorkspaceId = useAtomCallback(
+    useCallback(
+      async (get, _set, favoriteWorkspaceId: string) => {
+        const prev = get(favoriteWorkspaceIdsState);
 
         const isFavorite = prev.some((id) => id === favoriteWorkspaceId);
         if (isFavorite) {
@@ -104,7 +107,8 @@ export const useFavoriteWorkspaceIdsCommand = () => {
 
         await addFavoriteWorkspaceId(favoriteWorkspaceId);
       },
-    [addFavoriteWorkspaceId, deleteFavoriteWorkspaceId],
+      [addFavoriteWorkspaceId, deleteFavoriteWorkspaceId],
+    ),
   );
 
   return {

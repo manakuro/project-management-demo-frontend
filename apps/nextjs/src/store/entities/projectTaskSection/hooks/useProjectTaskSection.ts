@@ -1,4 +1,6 @@
-import { useRecoilCallback, useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback, useMemo } from 'react';
 import { useUpdateProjectTaskSectionMutation } from 'src/graphql/hooks';
 import type { UpdateTeammateTaskSectionInput } from 'src/graphql/types';
 import { omit } from 'src/shared/utils/omit';
@@ -15,19 +17,20 @@ import { useUpsert } from './useUpsert';
 export const useProjectTaskSection = (projectTaskSectionId: string) => {
   const { upsert } = useUpsert();
   const { workspace } = useWorkspace();
-  const projectTaskSection = useRecoilValue(
-    projectTaskSectionState(projectTaskSectionId),
+  const projectTaskSection = useAtomValue(
+    useMemo(
+      () => projectTaskSectionState(projectTaskSectionId),
+      [projectTaskSectionId],
+    ),
   );
 
   const [updateProjectTaskSectionMutation] =
     useUpdateProjectTaskSectionMutation();
 
-  const setProjectTaskSection = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: Partial<ProjectTaskSection>) => {
-        const prev = await snapshot.getPromise(
-          projectTaskSectionState(projectTaskSectionId),
-        );
+  const setProjectTaskSection = useAtomCallback(
+    useCallback(
+      async (get, set, input: Partial<ProjectTaskSection>) => {
+        const prev = get(projectTaskSectionState(projectTaskSectionId));
         if (!hasProjectTaskSectionBeenPersisted(prev)) return;
 
         upsert({ ...prev, ...input });
@@ -45,23 +48,30 @@ export const useProjectTaskSection = (projectTaskSectionId: string) => {
           upsert(prev);
         }
       },
-    [
-      projectTaskSectionId,
-      updateProjectTaskSectionMutation,
-      upsert,
-      workspace.id,
-    ],
+      [
+        projectTaskSectionId,
+        updateProjectTaskSectionMutation,
+        upsert,
+        workspace.id,
+      ],
+    ),
   );
 
-  const setProjectTaskSectionName = useRecoilCallback(
-    () => async (input: string) => {
-      if (projectTaskSection.name && input && projectTaskSection.name === input)
-        return;
-      const name = input || DEFAULT_TITLE_NAME;
+  const setProjectTaskSectionName = useAtomCallback(
+    useCallback(
+      async (_, set, input: string) => {
+        if (
+          projectTaskSection.name &&
+          input &&
+          projectTaskSection.name === input
+        )
+          return;
+        const name = input || DEFAULT_TITLE_NAME;
 
-      await setProjectTaskSection({ name, isNew: false });
-    },
-    [setProjectTaskSection, projectTaskSection.name],
+        await setProjectTaskSection({ name, isNew: false });
+      },
+      [setProjectTaskSection, projectTaskSection.name],
+    ),
   );
 
   return {

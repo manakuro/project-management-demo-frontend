@@ -1,5 +1,5 @@
 import isEqual from 'lodash-es/isEqual';
-import { useRecoilCallback } from 'recoil';
+import { useCallback } from 'react';
 import { useTaskUnassignedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import {
@@ -20,6 +20,18 @@ export const useTaskUnassignedSubscription = (props: Props) => {
   const { resetTeammateTask } = useResetTeammateTask();
   const { setTaskById } = useTaskCommand();
 
+  const setBySubscription = useCallback(
+    async (response: TaskUnassignedSubscriptionResponse) => {
+      const data = response.taskUnassigned;
+
+      if (__DEV__) console.log('task unassigned!');
+
+      resetTeammateTask(data.teammateTaskId);
+      await setTaskById(data.task.id, { assigneeId: '' });
+    },
+    [resetTeammateTask, setTaskById],
+  );
+
   useSubscription({
     variables: {
       workspaceId: props.workspaceId,
@@ -39,16 +51,4 @@ export const useTaskUnassignedSubscription = (props: Props) => {
       previousData = data;
     },
   });
-
-  const setBySubscription = useRecoilCallback(
-    () => async (response: TaskUnassignedSubscriptionResponse) => {
-      const data = response.taskUnassigned;
-
-      if (__DEV__) console.log('task unassigned!');
-
-      resetTeammateTask(data.teammateTaskId);
-      await setTaskById(data.task.id, { assigneeId: '' });
-    },
-    [resetTeammateTask, setTaskById],
-  );
 };

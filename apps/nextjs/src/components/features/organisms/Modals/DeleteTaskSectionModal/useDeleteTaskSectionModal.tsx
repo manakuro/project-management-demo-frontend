@@ -1,5 +1,6 @@
+import { atom, useAtom } from 'jotai';
+import { atomWithReset, useResetAtom } from 'jotai/utils';
 import { useCallback } from 'react';
-import { atom, useRecoilState, useResetRecoilState } from 'recoil';
 import {
   useTasksCompletedTaskSizeByTaskSectionId,
   useTasksTaskSection,
@@ -7,28 +8,19 @@ import {
 } from 'src/components/features/organisms/Tasks/hooks';
 import { useToast } from 'src/hooks';
 
-const key = (str: string) =>
-  `src/components/organisms/Modals/DeleteTaskSectionModal/useDeleteTaskSectionModal/${str}`;
-
-const openState = atom({
-  key: key('openState'),
-  default: false,
-});
+const openAtom = atom(false);
 
 type ModalState = {
   taskSectionId: string;
 };
-const modalState = atom<ModalState>({
-  key: key('modalState'),
-  default: {
-    taskSectionId: '',
-  },
+const modalAtom = atomWithReset<ModalState>({
+  taskSectionId: '',
 });
 
 export const useDeleteTaskSectionModal = () => {
-  const [isOpen, setIsOpen] = useRecoilState(openState);
-  const [state, setState] = useRecoilState(modalState);
-  const resetState = useResetRecoilState(modalState);
+  const [isOpen, setIsOpen] = useAtom(openAtom);
+  const [state, setState] = useAtom(modalAtom);
+  const resetState = useResetAtom(modalAtom);
   const { toast } = useToast();
   const {
     deleteTaskSectionAndDeleteTasks,

@@ -1,5 +1,6 @@
+import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
-import { useRecoilCallback } from 'recoil';
+import { useCallback } from 'react';
 import { useTaskUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual';
 import { uuid } from 'src/shared/uuid';
@@ -22,6 +23,29 @@ export const useTaskUpdatedSubscription = (props: Props) => {
   const { upsert } = useUpsert();
   const { setHasDescriptionUpdated } = useSetHasDescriptionUpdated();
 
+  const setBySubscription = useAtomCallback(
+    useCallback(
+      async (get, _set, response: TaskUpdatedSubscriptionResponse) => {
+        const updatedTask = response.taskUpdated;
+        const prev = get(taskState(updatedTask.id));
+
+        console.log('task updated!');
+
+        upsert({
+          ...prev,
+          ...updatedTask,
+          // To prevent autofocus on input.
+          isNew: false,
+        });
+
+        if (!isDescriptionEqual(prev.description, updatedTask.description)) {
+          await setHasDescriptionUpdated(updatedTask.id);
+        }
+      },
+      [upsert, setHasDescriptionUpdated],
+    ),
+  );
+
   useSubscription({
     variables: {
       workspaceId: props.workspaceId,
@@ -41,26 +65,4 @@ export const useTaskUpdatedSubscription = (props: Props) => {
       previousData = data;
     },
   });
-
-  const setBySubscription = useRecoilCallback(
-    ({ snapshot }) =>
-      async (response: TaskUpdatedSubscriptionResponse) => {
-        const updatedTask = response.taskUpdated;
-        const prev = await snapshot.getPromise(taskState(updatedTask.id));
-
-        console.log('task updated!');
-
-        upsert({
-          ...prev,
-          ...updatedTask,
-          // To prevent autofocus on input.
-          isNew: false,
-        });
-
-        if (!isDescriptionEqual(prev.description, updatedTask.description)) {
-          await setHasDescriptionUpdated(updatedTask.id);
-        }
-      },
-    [upsert, setHasDescriptionUpdated],
-  );
 };

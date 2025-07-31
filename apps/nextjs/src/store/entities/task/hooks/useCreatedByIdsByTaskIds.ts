@@ -1,8 +1,11 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import { createdByIdsByTaskIdsState } from '../atom';
 
 export const useCreatedByIdsByTaskIds = (taskIds: string[]) => {
-  const createdByIds = useRecoilValue(createdByIdsByTaskIdsState(taskIds));
+  const createdByIds = useAtomValue(
+    useMemo(() => createdByIdsByTaskIdsState(taskIds), [taskIds]),
+  );
 
   return {
     createdByIds,

@@ -1,29 +1,18 @@
-import { atom, useRecoilState, useResetRecoilState } from 'recoil';
+import { atom, useAtom } from 'jotai';
+import { atomWithReset, useResetAtom } from 'jotai/utils';
 
-const key = (str: string) =>
-  `src/components/organisms/TaskDetail/useTaskDetail/${str}`;
+const loadingAtom = atom<boolean>(false);
 
-const loadingState = atom<boolean>({
-  key: key('loadingState'),
-  default: false,
-});
+const idAtom = atomWithReset<string>('');
 
-const idState = atom<string>({
-  key: key('idState'),
-  default: '',
-});
-
-const scrollIdState = atom<string>({
-  key: key('scrollIdState'),
-  default: '',
-});
+const scrollIdAtom = atomWithReset<string>('');
 
 export const useTaskDetail = () => {
-  const [id, setId] = useRecoilState(idState);
-  const [loading, setLoading] = useRecoilState(loadingState);
-  const [scrollId, setScrollId] = useRecoilState(scrollIdState);
-  const resetScrollId = useResetRecoilState(scrollIdState);
-  const resetId = useResetRecoilState(idState);
+  const [id, setId] = useAtom(idAtom);
+  const [loading, setLoading] = useAtom(loadingAtom);
+  const [scrollId, setScrollId] = useAtom(scrollIdAtom);
+  const resetScrollId = useResetAtom(scrollIdAtom);
+  const resetId = useResetAtom(idAtom);
 
   return {
     loading,

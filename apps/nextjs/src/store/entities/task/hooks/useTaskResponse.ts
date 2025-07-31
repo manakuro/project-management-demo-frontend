@@ -1,5 +1,5 @@
+import { useAtomCallback } from 'jotai/utils';
 import { useCallback } from 'react';
-import { useRecoilCallback } from 'recoil';
 import { uniqBy } from 'src/shared/utils';
 import { projectTaskState } from 'src/store/entities/projectTask';
 import { useTaskCollaboratorResponse } from 'src/store/entities/taskCollaborator';
@@ -24,8 +24,8 @@ export const useTasksResponse = () => {
     setTeammates,
   } = useSetters();
 
-  const setTasksFromResponse = useRecoilCallback(
-    () => (data: TaskResponse[]) => {
+  const setTasksFromResponse = useCallback(
+    (data: TaskResponse[]) => {
       setTasks(data);
       setAttachments(data);
       setTaskFeeds(data);
@@ -60,8 +60,8 @@ const useSetters = () => {
   const { setTaskCollaborators: setTaskCollaboratorsResponse } =
     useTaskCollaboratorResponse();
 
-  const setTaskLikes = useRecoilCallback(
-    () => (data: TaskResponse[]) => {
+  const setTaskLikes = useCallback(
+    (data: TaskResponse[]) => {
       const taskLikes = data.reduce<TaskResponse['taskLikes']>((acc, p) => {
         acc.push(...(p.taskLikes || []));
         return uniqBy(acc, 'id');
@@ -71,8 +71,8 @@ const useSetters = () => {
     [setTaskLikesResponse],
   );
 
-  const setTaskFeedLikes = useRecoilCallback(
-    () => (data: TaskResponse[]) => {
+  const setTaskFeedLikes = useCallback(
+    (data: TaskResponse[]) => {
       const taskFeedLikes = data.reduce<TaskResponse['taskFeedLikes']>(
         (acc, p) => {
           acc.push(...(p.taskFeedLikes || []));
@@ -85,17 +85,14 @@ const useSetters = () => {
     [setTaskFeedLikesResponse],
   );
 
-  const setTaskValue = useRecoilCallback(
-    ({ set }) =>
-      (data: TaskResponse) => {
-        set(taskState(data.id), (prev) => {
-          return {
-            ...prev,
-            ...data,
-          };
-        });
-      },
-    [],
+  const setTaskValue = useAtomCallback(
+    useCallback((get, set, data: TaskResponse) => {
+      const prev = get(taskState(data.id));
+      set(taskState(data.id), {
+        ...prev,
+        ...data,
+      });
+    }, []),
   );
   const setTask = useCallback(
     (data: TaskResponse) => {
@@ -123,46 +120,40 @@ const useSetters = () => {
     [setTask],
   );
 
-  const setAttachments = useRecoilCallback(
-    ({ set }) =>
-      (data: TaskResponse[]) => {
-        data
-          .reduce<TaskResponse['taskFiles']>((acc, p) => {
-            acc.push(...(p.taskFiles || []));
-            return uniqBy(acc, 'id');
-          }, [])
-          .forEach((t) =>
-            set(taskFileState(t.id), (prev) => {
-              return {
-                ...prev,
-                ...t,
-              };
-            }),
-          );
-      },
-    [],
+  const setAttachments = useAtomCallback(
+    useCallback((get, set, data: TaskResponse[]) => {
+      data
+        .reduce<TaskResponse['taskFiles']>((acc, p) => {
+          acc.push(...(p.taskFiles || []));
+          return uniqBy(acc, 'id');
+        }, [])
+        .forEach((t) => {
+          const prev = get(taskFileState(t.id));
+          set(taskFileState(t.id), {
+            ...prev,
+            ...t,
+          });
+        });
+    }, []),
   );
-  const setTaskFeeds = useRecoilCallback(
-    ({ set }) =>
-      (data: TaskResponse[]) => {
-        data
-          .reduce<TaskResponse['taskFeeds']>((acc, p) => {
-            acc.push(...(p.taskFeeds || []));
-            return uniqBy(acc, 'id');
-          }, [])
-          .forEach((t) =>
-            set(taskFeedState(t.id), (prev) => {
-              return {
-                ...prev,
-                ...t,
-              };
-            }),
-          );
-      },
-    [],
+  const setTaskFeeds = useAtomCallback(
+    useCallback((get, set, data: TaskResponse[]) => {
+      data
+        .reduce<TaskResponse['taskFeeds']>((acc, p) => {
+          acc.push(...(p.taskFeeds || []));
+          return uniqBy(acc, 'id');
+        }, [])
+        .forEach((t) => {
+          const prev = get(taskFeedState(t.id));
+          set(taskFeedState(t.id), {
+            ...prev,
+            ...t,
+          });
+        });
+    }, []),
   );
-  const setTeammates = useRecoilCallback(
-    () => (data: TaskResponse[]) => {
+  const setTeammates = useCallback(
+    (data: TaskResponse[]) => {
       const taskCollaborators = data.reduce<TaskResponse['taskCollaborators']>(
         (acc, d) => {
           acc.push(...(d.taskCollaborators || []));
@@ -177,41 +168,35 @@ const useSetters = () => {
     },
     [setTaskCollaboratorsResponse, setTeammatesResponse],
   );
-  const setTags = useRecoilCallback(
-    ({ set }) =>
-      (data: TaskResponse[]) => {
-        data
-          .reduce<TaskResponse['taskTags']>((acc, p) => {
-            acc.push(...(p.taskTags || []));
-            return uniqBy(acc, 'id');
-          }, [])
-          .forEach((t) =>
-            set(taskTagState(t.id), (prev) => {
-              return {
-                ...prev,
-                ...t,
-              };
-            }),
-          );
-      },
-    [],
+  const setTags = useAtomCallback(
+    useCallback((get, set, data: TaskResponse[]) => {
+      data
+        .reduce<TaskResponse['taskTags']>((acc, p) => {
+          acc.push(...(p.taskTags || []));
+          return uniqBy(acc, 'id');
+        }, [])
+        .forEach((t) => {
+          const prev = get(taskTagState(t.id));
+          set(taskTagState(t.id), {
+            ...prev,
+            ...t,
+          });
+        });
+    }, []),
   );
 
-  const setProjects = useRecoilCallback(
-    ({ set }) =>
-      (data: TaskResponse[]) => {
-        data
-          .reduce<TaskResponse['projectTasks']>((acc, p) => {
-            acc.push(...(p.projectTasks || []));
-            return uniqBy(acc, 'id');
-          }, [])
-          .forEach((p) =>
-            set(projectTaskState(p.id), (prev) => {
-              return { ...prev, ...p };
-            }),
-          );
-      },
-    [],
+  const setProjects = useAtomCallback(
+    useCallback((get, set, data: TaskResponse[]) => {
+      data
+        .reduce<TaskResponse['projectTasks']>((acc, p) => {
+          acc.push(...(p.projectTasks || []));
+          return uniqBy(acc, 'id');
+        }, [])
+        .forEach((p) => {
+          const prev = get(projectTaskState(p.id));
+          set(projectTaskState(p.id), { ...prev, ...p });
+        });
+    }, []),
   );
 
   return {

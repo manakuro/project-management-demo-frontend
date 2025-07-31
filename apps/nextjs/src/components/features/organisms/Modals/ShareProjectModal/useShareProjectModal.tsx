@@ -1,34 +1,23 @@
+import { atom, useAtom } from 'jotai';
+import { atomWithReset, useResetAtom } from 'jotai/utils';
 import { useCallback } from 'react';
-import { atom, useRecoilState, useResetRecoilState } from 'recoil';
 import { type Index, MEMBERS_INDEX, SHARE_INDEX } from './types';
 import { useShareProjectModalInvitedTeammates } from './useShareProjectModalInvitedTeammates';
 
-const key = (str: string) =>
-  `src/components/organisms/Modals/ShareProjectModal/useShareProjectModal/${str}`;
+const openAtom = atom(false);
 
-const openState = atom({
-  key: key('openState'),
-  default: false,
-});
+const projectIdAtom = atomWithReset<string>('');
 
-const projectIdState = atom<string>({
-  key: key('projectIdState'),
-  default: '',
-});
-
-const tabIndexState = atom<Index>({
-  key: key('tabIndexState'),
-  default: 0,
-});
+const tabIndexAtom = atomWithReset<Index>(0);
 
 export const useShareProjectModal = () => {
   const { resetInvitedTeammates } = useShareProjectModalInvitedTeammates();
-  const [isOpen, setIsOpen] = useRecoilState(openState);
-  const [projectId, setProjectId] = useRecoilState(projectIdState);
-  const resetProjectId = useResetRecoilState(projectIdState);
+  const [isOpen, setIsOpen] = useAtom(openAtom);
+  const [projectId, setProjectId] = useAtom(projectIdAtom);
+  const resetProjectId = useResetAtom(projectIdAtom);
 
-  const [tabIndex, setTabIndex] = useRecoilState(tabIndexState);
-  const resetTabIndex = useResetRecoilState(tabIndexState);
+  const [tabIndex, setTabIndex] = useAtom(tabIndexAtom);
+  const resetTabIndex = useResetAtom(tabIndexAtom);
 
   const onOpen = useCallback(() => {
     setIsOpen(true);

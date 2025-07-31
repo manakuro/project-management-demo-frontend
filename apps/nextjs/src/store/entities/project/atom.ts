@@ -2,9 +2,7 @@ import { getDefaultDescription } from 'src/shared/prosemirror/getDefaultDescript
 import { createState } from '../../util';
 import type { Project } from './type';
 
-const key = (str: string) => `src/store/entities/project/${str}`;
-
-const initialState = (): Project => ({
+export const initialState = (): Project => ({
   id: '',
   name: '',
   projectBaseColorId: '',
@@ -23,4 +21,4 @@ export const {
   state: projectState,
   listState: projectsState,
   idsState: projectIdsState,
-} = createState({ key, initialState });
+} = createState({ initialState });

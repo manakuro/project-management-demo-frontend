@@ -1,9 +1,7 @@
-import { selectorFamily } from 'recoil';
+import { atom } from 'jotai';
 import { FileTypeCode } from 'src/store/entities/fileType';
 import { createState } from 'src/store/util';
 import type { TaskFile } from './type';
-
-const key = (str: string) => `src/store/entities/taskFiles/${str}`;
 
 export const initialState = (): TaskFile => ({
   id: '',
@@ -28,26 +26,18 @@ export const {
   state: taskFileState,
   listState: taskFilesState,
   idsState: taskFileIdsState,
-} = createState({ key, initialState });
+} = createState({ initialState });
 
-export const taskFileIdsByTaskIdState = selectorFamily<string[], string>({
-  key: key('taskFileIdsByTaskIdState'),
-  get:
-    (taskId) =>
-    ({ get }) => {
-      const taskFiles = get(taskFilesState);
-      return taskFiles.filter((p) => p.taskId === taskId).map((p) => p.id);
-    },
-});
+export const taskFileIdsByTaskIdState = (taskId: string) =>
+  atom<string[]>((get) => {
+    const taskFiles = get(taskFilesState);
+    return taskFiles.filter((p) => p.taskId === taskId).map((p) => p.id);
+  });
 
-export const taskFileIdsByFeedIdState = selectorFamily<string[], string>({
-  key: key('taskFileIdsByFeedIdState'),
-  get:
-    (taskFeedId) =>
-    ({ get }) => {
-      const taskFiles = get(taskFilesState);
-      return taskFiles
-        .filter((p) => p.taskFeedId === taskFeedId)
-        .map((p) => p.id);
-    },
-});
+export const taskFileIdsByFeedIdState = (taskFeedId: string) =>
+  atom<string[]>((get) => {
+    const taskFiles = get(taskFilesState);
+    return taskFiles
+      .filter((p) => p.taskFeedId === taskFeedId)
+      .map((p) => p.id);
+  });

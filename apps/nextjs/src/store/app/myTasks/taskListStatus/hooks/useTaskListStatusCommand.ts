@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useUpdateTeammateTaskListStatusMutation } from 'src/graphql/hooks';
 import type { TaskListSortStatusCodeValue } from 'src/store/app/myTasks/taskListStatus';
 import type { TaskListCompletedStatusCodeValue } from 'src/store/entities/taskListCompletedStatus';
@@ -13,10 +14,14 @@ export const useTaskListStatusCommand = () => {
   const [updateTeammateTaskListStatusMutation] =
     useUpdateTeammateTaskListStatusMutation();
 
-  const setTaskListCompletedStatus = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: { statusCode: TaskListCompletedStatusCodeValue }) => {
-        const prev = await snapshot.getPromise(taskListStatusState);
+  const setTaskListCompletedStatus = useAtomCallback(
+    useCallback(
+      async (
+        get,
+        _set,
+        input: { statusCode: TaskListCompletedStatusCodeValue },
+      ) => {
+        const prev = get(taskListStatusState);
 
         upsert({
           taskListCompletedStatus: {
@@ -53,13 +58,14 @@ export const useTaskListStatusCommand = () => {
           throw e;
         }
       },
-    [updateTeammateTaskListStatusMutation, upsert, workspace.id],
+      [updateTeammateTaskListStatusMutation, upsert, workspace.id],
+    ),
   );
 
-  const setTaskListSortStatus = useRecoilCallback(
-    ({ snapshot }) =>
-      async (input: { statusCode: TaskListSortStatusCodeValue }) => {
-        const prev = await snapshot.getPromise(taskListStatusState);
+  const setTaskListSortStatus = useAtomCallback(
+    useCallback(
+      async (get, _set, input: { statusCode: TaskListSortStatusCodeValue }) => {
+        const prev = get(taskListStatusState);
 
         upsert({
           taskListSortStatus: {
@@ -96,7 +102,8 @@ export const useTaskListStatusCommand = () => {
           throw e;
         }
       },
-    [updateTeammateTaskListStatusMutation, upsert, workspace.id],
+      [updateTeammateTaskListStatusMutation, upsert, workspace.id],
+    ),
   );
 
   return {

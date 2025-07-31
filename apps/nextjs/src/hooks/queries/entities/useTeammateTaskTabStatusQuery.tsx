@@ -1,21 +1,15 @@
+import { atom, useAtom } from 'jotai';
 import { useEffect } from 'react';
-import { atom, useRecoilState } from 'recoil';
 import { useTeammateTaskTabStatusQuery as useQuery } from 'src/graphql/hooks';
 import { useMountedRef } from 'src/hooks';
 import { useTeammateTaskTabStatusResponse } from 'src/store/entities/teammateTaskTabStatus';
 
-const key = (str: string) =>
-  `src/hooks/queries/useTabStatusForMyTasksQuery/${str}`;
-
-const loadingState = atom<boolean>({
-  key: key('loadingState'),
-  default: true,
-});
+const loadingAtom = atom<boolean>(true);
 
 export const useTeammateTaskTabStatusQuery = () => {
   const queryResult = useQuery();
   const { setTeammateTaskTabStatus } = useTeammateTaskTabStatusResponse();
-  const [loading, setLoading] = useRecoilState(loadingState);
+  const [loading, setLoading] = useAtom(loadingAtom);
   const { mountedRef } = useMountedRef();
 
   useEffect(() => {

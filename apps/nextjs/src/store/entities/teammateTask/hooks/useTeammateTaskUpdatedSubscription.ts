@@ -1,6 +1,5 @@
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
 import { useTeammateTaskUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import type { TeammateTaskUpdatedSubscriptionResponse as Response } from '../type';
@@ -43,24 +42,21 @@ export const useTeammateTaskUpdatedSubscription = (props: Props) => {
     skip: skipSubscription,
   });
 
-  const setBySubscription = useRecoilCallback(
-    () => async (response: Response) => {
-      const created = response.teammateTaskUpdated;
+  const setBySubscription = (response: Response) => {
+    const created = response.teammateTaskUpdated;
 
-      if (__DEV__) console.log('Teammate Task updated!');
+    if (__DEV__) console.log('Teammate Task updated!');
 
-      setTeammateTask([
-        {
-          ...created,
-          task: {
-            ...created.task,
-            isNew: false,
-          },
+    setTeammateTask([
+      {
+        ...created,
+        task: {
+          ...created.task,
+          isNew: false,
         },
-      ]);
-    },
-    [setTeammateTask],
-  );
+      },
+    ]);
+  };
 
   return {
     subscriptionResult,

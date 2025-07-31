@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { asyncForEach } from 'src/shared/utils';
 import { useTaskCommand } from 'src/store/entities/task';
 import { type TaskFile, taskFileState } from 'src/store/entities/taskFile';
@@ -7,12 +8,14 @@ import type { ProjectsFileResponse } from '../type';
 export const useProjectsFilesResponse = () => {
   const { setAttachment, setTaskStatus } = useSetters();
 
-  const setProjectsAttachments = useRecoilCallback(
-    () => async (data: ProjectsFileResponse[]) => {
-      setAttachment(data);
-      await setTaskStatus(data);
-    },
-    [setAttachment, setTaskStatus],
+  const setProjectsAttachments = useAtomCallback(
+    useCallback(
+      async (_get, _set, data: ProjectsFileResponse[]) => {
+        setAttachment(data);
+        await setTaskStatus(data);
+      },
+      [setAttachment, setTaskStatus],
+    ),
   );
 
   return {
@@ -22,29 +25,29 @@ export const useProjectsFilesResponse = () => {
 
 const useSetters = () => {
   const { setTaskById } = useTaskCommand();
-  const setAttachment = useRecoilCallback(
-    ({ set }) =>
-      (data: ProjectsFileResponse[]) => {
-        const taskFiles: TaskFile[] = data.map(({ task, ...rest }) => rest);
+  const setAttachment = useAtomCallback(
+    useCallback((_get, set, data: ProjectsFileResponse[]) => {
+      const taskFiles: TaskFile[] = data.map(({ task, ...rest }) => rest);
 
-        taskFiles.forEach((a) => {
-          set(taskFileState(a.id), a);
-        });
-      },
-    [],
+      taskFiles.forEach((a) => {
+        set(taskFileState(a.id), a);
+      });
+    }, []),
   );
 
-  const setTaskStatus = useRecoilCallback(
-    () => async (data: ProjectsFileResponse[]) => {
-      const tasks: ProjectsFileResponse['task'][] = data.map(
-        ({ task }) => task,
-      );
+  const setTaskStatus = useAtomCallback(
+    useCallback(
+      async (_get, _set, data: ProjectsFileResponse[]) => {
+        const tasks: ProjectsFileResponse['task'][] = data.map(
+          ({ task }) => task,
+        );
 
-      await asyncForEach(tasks, async (t) => {
-        await setTaskById(t.id, t);
-      });
-    },
-    [setTaskById],
+        await asyncForEach(tasks, async (t) => {
+          await setTaskById(t.id, t);
+        });
+      },
+      [setTaskById],
+    ),
   );
 
   return {

@@ -1,6 +1,6 @@
+import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
-import { useMemo } from 'react';
-import { useRecoilCallback } from 'recoil';
+import { useCallback, useMemo } from 'react';
 import { useTaskCollaboratorCreatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import { useTeammateResponse } from 'src/store/entities/teammate';
@@ -43,16 +43,18 @@ export const useTaskCollaboratorCreatedSubscription = (props: Props) => {
     skip: skipSubscription,
   });
 
-  const setBySubscription = useRecoilCallback(
-    () => (response: Response) => {
-      const taskCollaboratorCreated = response.taskCollaboratorCreated;
+  const setBySubscription = useAtomCallback(
+    useCallback(
+      (_get, _set, response: Response) => {
+        const taskCollaboratorCreated = response.taskCollaboratorCreated;
 
-      if (__DEV__) console.log('Task Collaborator Created!: ');
+        if (__DEV__) console.log('Task Collaborator Created!: ');
 
-      setTaskCollaborators([taskCollaboratorCreated]);
-      setTeammates([taskCollaboratorCreated.teammate]);
-    },
-    [setTaskCollaborators, setTeammates],
+        setTaskCollaborators([taskCollaboratorCreated]);
+        setTeammates([taskCollaboratorCreated.teammate]);
+      },
+      [setTaskCollaborators, setTeammates],
+    ),
   );
 
   return {

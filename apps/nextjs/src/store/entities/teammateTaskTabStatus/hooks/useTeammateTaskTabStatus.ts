@@ -1,5 +1,5 @@
+import { useAtomValue } from 'jotai';
 import { useCallback } from 'react';
-import { useRecoilValue } from 'recoil';
 import { tabStatusState } from '../atom';
 import {
   TeammateTaskTabStatusCode,
@@ -7,7 +7,7 @@ import {
 } from '../type';
 
 export const useTeammateTaskTabStatus = () => {
-  const state = useRecoilValue(tabStatusState);
+  const state = useAtomValue(tabStatusState);
 
   const isTabStatus = useCallback(
     (key: TeammateTaskTabStatusCodeKey) =>

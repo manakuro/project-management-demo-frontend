@@ -1,17 +1,19 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
+import { taskTagState } from '../atom';
 import type { TaskTagResponse } from '../type';
-import { useUpsert } from './useUpsert';
 
 export const useTaskTagResponse = () => {
-  const { upsert } = useUpsert();
-
-  const setTaskTag = useRecoilCallback(
-    () => (data: TaskTagResponse[]) => {
+  const setTaskTag = useAtomCallback(
+    useCallback((get, set, data: TaskTagResponse[]) => {
       data.forEach((d) => {
-        upsert(d);
+        const prev = get(taskTagState(d.id));
+        set(taskTagState(d.id), {
+          ...prev,
+          ...d,
+        });
       });
-    },
-    [upsert],
+    }, []),
   );
 
   return {

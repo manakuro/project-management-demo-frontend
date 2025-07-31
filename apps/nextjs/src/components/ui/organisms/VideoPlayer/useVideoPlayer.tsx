@@ -1,23 +1,18 @@
+import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { atom, useRecoilState } from 'recoil';
 
 type State = {
   isOpen: boolean;
   src: string;
 };
 
-const key = (str: string) => `src/components/organisms/VideoPlayer/${str}`;
-
-const atomState = atom<State>({
-  key: key('videoPlayerState'),
-  default: {
-    isOpen: false,
-    src: '',
-  },
+const videoAtom = atom<State>({
+  isOpen: false,
+  src: '',
 });
 
 export const useVideoPlayer = () => {
-  const [state, setState] = useRecoilState(atomState);
+  const [state, setState] = useAtom(videoAtom);
 
   const onClose = useCallback(() => {
     setState((s) => ({ ...s, isOpen: false }));

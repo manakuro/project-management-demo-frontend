@@ -1,23 +1,20 @@
-import { useRecoilCallback } from 'recoil';
+import { RESET, useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { taskFeedState } from '../atom';
 
 export const useResetTaskFeed = () => {
-  const resetTaskFeed = useRecoilCallback(
-    ({ reset }) =>
-      (id: string) => {
-        reset(taskFeedState(id));
-      },
-    [],
+  const resetTaskFeed = useAtomCallback(
+    useCallback((_get, set, id: string) => {
+      set(taskFeedState(id), RESET);
+    }, []),
   );
 
-  const resetTaskFeeds = useRecoilCallback(
-    ({ reset }) =>
-      (teammateTasks: string[]) => {
-        teammateTasks.forEach((id) => {
-          reset(taskFeedState(id));
-        });
-      },
-    [],
+  const resetTaskFeeds = useAtomCallback(
+    useCallback((_get, set, teammateTasks: string[]) => {
+      teammateTasks.forEach((id) => {
+        set(taskFeedState(id), RESET);
+      });
+    }, []),
   );
 
   return {

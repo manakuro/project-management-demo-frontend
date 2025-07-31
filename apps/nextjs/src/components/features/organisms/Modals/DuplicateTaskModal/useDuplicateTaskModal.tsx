@@ -1,23 +1,15 @@
+import { atom, useAtom } from 'jotai';
+import { atomWithReset, useResetAtom } from 'jotai/utils';
 import { useCallback } from 'react';
-import { atom, useRecoilState, useResetRecoilState } from 'recoil';
 
-const key = (str: string) =>
-  `src/components/organisms/Modals/DuplicateTaskModal/useDuplicateTaskModal/${str}`;
+const state = atom(false);
 
-const state = atom({
-  key: key('modalState'),
-  default: false,
-});
-
-const taskIdState = atom<string>({
-  key: key('taskIdState'),
-  default: '',
-});
+const taskIdState = atomWithReset<string>('');
 
 export const useDuplicateTaskModal = () => {
-  const [isOpen, setIsOpen] = useRecoilState(state);
-  const [taskId, setTaskId] = useRecoilState(taskIdState);
-  const resetTaskId = useResetRecoilState(taskIdState);
+  const [isOpen, setIsOpen] = useAtom(state);
+  const [taskId, setTaskId] = useAtom(taskIdState);
+  const resetTaskId = useResetAtom(taskIdState);
 
   const onClose = useCallback(() => {
     setIsOpen(false);

@@ -1,23 +1,20 @@
-import { useRecoilCallback } from 'recoil';
+import { RESET, useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { taskFeedLikeState } from '../atom';
 
 export const useResetTaskFeedLike = () => {
-  const resetTaskFeedLike = useRecoilCallback(
-    ({ reset }) =>
-      (id: string) => {
-        reset(taskFeedLikeState(id));
-      },
-    [],
+  const resetTaskFeedLike = useAtomCallback(
+    useCallback((_get, set, id: string) => {
+      set(taskFeedLikeState(id), RESET);
+    }, []),
   );
 
-  const resetTaskFeedLikes = useRecoilCallback(
-    ({ reset }) =>
-      (taskFeedLikes: string[]) => {
-        taskFeedLikes.forEach((id) => {
-          reset(taskFeedLikeState(id));
-        });
-      },
-    [],
+  const resetTaskFeedLikes = useAtomCallback(
+    useCallback((_get, set, taskFeedLikes: string[]) => {
+      taskFeedLikes.forEach((id) => {
+        set(taskFeedLikeState(id), RESET);
+      });
+    }, []),
   );
 
   return {

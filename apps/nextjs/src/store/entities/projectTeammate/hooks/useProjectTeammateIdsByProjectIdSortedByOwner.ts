@@ -1,11 +1,15 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import { projectTeammateIdsByProjectIdSortedByOwnerState } from '../atom';
 
 export const useProjectTeammateIdsByProjectIdSortedByOwner = (
   projectId: string,
 ) => {
-  const projectTeammateIds = useRecoilValue(
-    projectTeammateIdsByProjectIdSortedByOwnerState(projectId),
+  const projectTeammateIds = useAtomValue(
+    useMemo(
+      () => projectTeammateIdsByProjectIdSortedByOwnerState(projectId),
+      [projectId],
+    ),
   );
 
   return {

@@ -1,5 +1,5 @@
+import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
-import { useRecoilValue } from 'recoil';
 import { projectIdsByTaskIdState } from '../atom';
 
 type Options = {
@@ -10,7 +10,9 @@ export const useProjectIdsByTaskId = (
   taskId: string,
   options: Options = {},
 ) => {
-  const ids = useRecoilValue(projectIdsByTaskIdState(taskId));
+  const ids = useAtomValue(
+    useMemo(() => projectIdsByTaskIdState(taskId), [taskId]),
+  );
   const projectIds = useMemo(() => {
     if (options?.excluded)
       return ids.filter((id) => !options.excluded?.includes(id));

@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import {
   ownerWorkspaceTeammateByWorkspaceIdState,
   workspaceTeammateByWorkspaceIdAndTeammateIdState,
@@ -10,31 +11,34 @@ import { useUpsert } from './useUpsert';
 export const useWorkspaceTeammateCommand = () => {
   const { upsert } = useUpsert();
 
-  const setWorkspaceTeammateById = useRecoilCallback(
-    ({ snapshot }) =>
+  const setWorkspaceTeammateById = useAtomCallback(
+    useCallback(
       async (
+        get,
+        _set,
         workspaceTeammateId: string,
         input: Partial<WorkspaceTeammate>,
       ) => {
-        const current = await snapshot.getPromise(
-          workspaceTeammateState(workspaceTeammateId),
-        );
+        const current = get(workspaceTeammateState(workspaceTeammateId));
         upsert({
           ...current,
           ...input,
         });
       },
-    [upsert],
+      [upsert],
+    ),
   );
 
-  const setWorkspaceTeammateByWorkspaceIdAndTeammateId = useRecoilCallback(
-    ({ snapshot }) =>
+  const setWorkspaceTeammateByWorkspaceIdAndTeammateId = useAtomCallback(
+    useCallback(
       async (
+        get,
+        _set,
         workspaceId: string,
         teammateId: string,
         input: Partial<WorkspaceTeammate>,
       ) => {
-        const current = await snapshot.getPromise(
+        const current = get(
           workspaceTeammateByWorkspaceIdAndTeammateIdState({
             workspaceId,
             teammateId,
@@ -45,13 +49,14 @@ export const useWorkspaceTeammateCommand = () => {
           ...input,
         });
       },
-    [upsert],
+      [upsert],
+    ),
   );
 
-  const setOwnerByWorkspaceIdAndTeammateId = useRecoilCallback(
-    ({ snapshot }) =>
-      async (workspaceId: string, teammateId: string) => {
-        const currentOwner = await snapshot.getPromise(
+  const setOwnerByWorkspaceIdAndTeammateId = useAtomCallback(
+    useCallback(
+      async (get, _set, workspaceId: string, teammateId: string) => {
+        const currentOwner = get(
           ownerWorkspaceTeammateByWorkspaceIdState(workspaceId),
         );
         upsert({
@@ -59,7 +64,7 @@ export const useWorkspaceTeammateCommand = () => {
           isOwner: false,
         });
 
-        const nextOwner = await snapshot.getPromise(
+        const nextOwner = get(
           workspaceTeammateByWorkspaceIdAndTeammateIdState({
             workspaceId,
             teammateId,
@@ -70,7 +75,8 @@ export const useWorkspaceTeammateCommand = () => {
           isOwner: true,
         });
       },
-    [upsert],
+      [upsert],
+    ),
   );
 
   return {

@@ -1,20 +1,15 @@
+import { useAtom } from 'jotai';
+import { atomWithReset, useResetAtom } from 'jotai/utils';
 import { useMemo } from 'react';
-import { atom, useRecoilState, useResetRecoilState } from 'recoil';
 import type { Teammate } from 'src/store/entities/teammate';
 
-const key = (str: string) =>
-  `src/components/organisms/Modals/ShareProjectModal/useShareProjectModalInvitedTeammates/${str}`;
-
-const invitedTeammatesState = atom<Teammate[]>({
-  key: key('invitedTeammatesState'),
-  default: [],
-});
+const invitedTeammatesState = atomWithReset<Teammate[]>([]);
 
 export const useShareProjectModalInvitedTeammates = () => {
-  const [invitedTeammates, setInvitedTeammates] = useRecoilState(
+  const [invitedTeammates, setInvitedTeammates] = useAtom(
     invitedTeammatesState,
   );
-  const resetInvitedTeammates = useResetRecoilState(invitedTeammatesState);
+  const resetInvitedTeammates = useResetAtom(invitedTeammatesState);
 
   const hasInvitedTeammates = useMemo(
     () => !!invitedTeammates.length,

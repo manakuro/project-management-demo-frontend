@@ -1,23 +1,28 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useTeammateTaskCommand } from 'src/store/entities/teammateTask';
 
 export const useMyTasksTask = () => {
   const { addTeammateTask, setTeammateTaskByTaskId } = useTeammateTaskCommand();
 
-  const addTask = useRecoilCallback(
-    () => (input: { taskSectionId: string }) => {
-      return addTeammateTask({ teammateTaskSectionId: input.taskSectionId });
-    },
-    [addTeammateTask],
+  const addTask = useAtomCallback(
+    useCallback(
+      (_get, _set, input: { taskSectionId: string }) => {
+        return addTeammateTask({ teammateTaskSectionId: input.taskSectionId });
+      },
+      [addTeammateTask],
+    ),
   );
 
-  const setTaskSectionId = useRecoilCallback(
-    () => async (input: { taskSectionId: string; taskId: string }) => {
-      await setTeammateTaskByTaskId(input.taskId, {
-        teammateTaskSectionId: input.taskSectionId,
-      });
-    },
-    [setTeammateTaskByTaskId],
+  const setTaskSectionId = useAtomCallback(
+    useCallback(
+      async (_get, _set, input: { taskSectionId: string; taskId: string }) => {
+        await setTeammateTaskByTaskId(input.taskId, {
+          teammateTaskSectionId: input.taskSectionId,
+        });
+      },
+      [setTeammateTaskByTaskId],
+    ),
   );
 
   return {

@@ -1,4 +1,5 @@
-import { useRecoilCallback } from 'recoil';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { useTaskColumnsResponse } from 'src/store/entities/taskColumn';
 import { teammateTaskColumnState } from '../atom';
 import type { TeammateTaskColumnResponse } from '../type';
@@ -6,9 +7,9 @@ import type { TeammateTaskColumnResponse } from '../type';
 export const useTeammateTaskColumnResponse = () => {
   const { setTaskColumns } = useTaskColumnsResponse();
 
-  const setTeammatesTaskColumns = useRecoilCallback(
-    ({ set }) =>
-      (data: TeammateTaskColumnResponse[]) => {
+  const setTeammatesTaskColumns = useAtomCallback(
+    useCallback(
+      (_get, set, data: TeammateTaskColumnResponse[]) => {
         data.forEach((p) => {
           set(teammateTaskColumnState(p.id), p);
         });
@@ -16,7 +17,8 @@ export const useTeammateTaskColumnResponse = () => {
         const taskColumns = data.map((d) => d.taskColumn);
         setTaskColumns(taskColumns);
       },
-    [setTaskColumns],
+      [setTaskColumns],
+    ),
   );
 
   return {

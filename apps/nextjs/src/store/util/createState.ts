@@ -1,8 +1,9 @@
-import { DefaultValue, atom, atomFamily, selectorFamily } from 'recoil';
+import deepEqual from 'fast-deep-equal';
+import { type PrimitiveAtom, atom } from 'jotai';
+import { RESET, atomFamily, atomWithReset } from 'jotai/utils';
 import { uniqBy } from 'src/shared/utils';
 
 type Props<T> = {
-  key: (str: string) => string;
   initialState: () => T;
   set?: (params: { newVal: T }) => void;
 };
@@ -10,57 +11,49 @@ type Props<T> = {
 type State = {
   id: string;
 };
+
 export const createState = <T extends State>(props: Props<T>) => {
-  const atomState = atomFamily<T, string>({
-    key: props.key('atomState'),
-    default: props.initialState(),
-  });
+  const itemFamily = atomFamily<string, PrimitiveAtom<T>>(
+    () => atomWithReset(props.initialState()),
+    deepEqual,
+  );
 
-  const listState = atom<T[]>({
-    key: props.key('listState'),
-    default: [],
-  });
+  const listAtom = atomWithReset<T[]>([]);
+  const idsAtom = atomWithReset<string[]>([]);
 
-  const idsState = atom<string[]>({
-    key: props.key('idsState'),
-    default: [],
-  });
+  const state = atomFamily((id: string) => {
+    const itemAtom = itemFamily(id);
 
-  const state = selectorFamily<T, string>({
-    key: props.key('state'),
-    get:
-      (id) =>
-      ({ get }) =>
-        get(atomState(id)),
-    set:
-      (id) =>
-      ({ get, set, reset }, newVal) => {
-        // Remove an item from the list when reset function will be called.
-        if (newVal instanceof DefaultValue) {
-          reset(atomState(id));
-          set(listState, (prev) => {
-            return prev.filter((p) => p.id !== id);
-          });
-          set(idsState, (prev) => prev.filter((prevId) => prevId !== id));
+    return atom(
+      (get) => get(itemAtom),
+      (get, set, newVal: T | typeof RESET) => {
+        if (newVal === RESET) {
+          set(itemAtom, newVal as unknown as T);
+          set(listAtom, (prev) => prev.filter((p) => p.id !== id));
+          set(idsAtom, (prev) => prev.filter((prevId) => prevId !== id));
+          itemFamily.remove(id);
           return;
         }
 
-        set(atomState(id), newVal);
-        set(listState, (prev) =>
+        set(itemAtom, newVal);
+        set(listAtom, (prev) =>
           uniqBy([...prev, newVal], 'id').map((p) =>
             p.id === newVal.id ? { ...p, ...newVal } : p,
           ),
         );
 
-        if (get(idsState).find((projectId) => projectId === newVal.id)) return;
-        set(idsState, (prev) => [...prev, newVal.id]);
+        if (!get(idsAtom).includes(newVal.id)) {
+          set(idsAtom, (prev) => [...prev, newVal.id]);
+        }
+
         props.set?.({ newVal });
       },
-  });
+    );
+  }, deepEqual);
 
   return {
     state,
-    listState,
-    idsState,
+    listState: listAtom,
+    idsState: idsAtom,
   };
 };

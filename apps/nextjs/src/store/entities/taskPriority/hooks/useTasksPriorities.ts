@@ -1,8 +1,8 @@
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import { taskPrioritiesState } from '../atom';
 
 export const useTasksPriorities = () => {
-  const taskPriorities = useRecoilValue(taskPrioritiesState);
+  const taskPriorities = useAtomValue(taskPrioritiesState);
 
   return {
     taskPriorities,

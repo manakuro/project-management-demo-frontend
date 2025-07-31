@@ -3,7 +3,6 @@ import { FileTypeCode } from 'src/store/entities/fileType';
 import { createState } from 'src/store/util';
 import type { TaskFile } from './type';
 
-
 export const initialState = (): TaskFile => ({
   id: '',
   projectId: '',

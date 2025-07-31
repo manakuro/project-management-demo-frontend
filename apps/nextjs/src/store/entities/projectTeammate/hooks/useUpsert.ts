@@ -5,12 +5,9 @@ import type { ProjectTeammate } from '../type';
 
 export const useUpsert = () => {
   const upsert = useAtomCallback(
-    useCallback(
-      (_, set, projectTeammate: ProjectTeammate) => {
-        set(projectTeammateState(projectTeammate.id), projectTeammate);
-      },
-      [],
-    ),
+    useCallback((_, set, projectTeammate: ProjectTeammate) => {
+      set(projectTeammateState(projectTeammate.id), projectTeammate);
+    }, []),
   );
 
   return {

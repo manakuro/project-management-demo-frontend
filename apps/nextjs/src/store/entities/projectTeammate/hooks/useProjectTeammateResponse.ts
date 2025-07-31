@@ -5,15 +5,12 @@ import type { ProjectTeammateResponse } from '../type';
 
 export const useProjectTeammateResponse = () => {
   const setProjectsTeammates = useAtomCallback(
-    useCallback(
-      (get, set, data: ProjectTeammateResponse[]) => {
-        data.forEach((d) => {
-          const prev = get(projectTeammateState(d.id));
-          set(projectTeammateState(d.id), { ...prev, ...d });
-        });
-      },
-      [],
-    ),
+    useCallback((get, set, data: ProjectTeammateResponse[]) => {
+      data.forEach((d) => {
+        const prev = get(projectTeammateState(d.id));
+        set(projectTeammateState(d.id), { ...prev, ...d });
+      });
+    }, []),
   );
 
   return {

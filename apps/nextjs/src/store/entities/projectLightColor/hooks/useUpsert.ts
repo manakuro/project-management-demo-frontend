@@ -5,12 +5,9 @@ import type { ProjectLightColor } from '../type';
 
 export const useUpsert = () => {
   const upsert = useAtomCallback(
-    useCallback(
-      (_, set, projectLightColor: ProjectLightColor) => {
-        set(projectLightColorState(projectLightColor.id), projectLightColor);
-      },
-      [],
-    ),
+    useCallback((_, set, projectLightColor: ProjectLightColor) => {
+      set(projectLightColorState(projectLightColor.id), projectLightColor);
+    }, []),
   );
 
   return {

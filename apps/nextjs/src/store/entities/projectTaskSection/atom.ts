@@ -3,7 +3,6 @@ import { projectTaskByTaskIdState } from 'src/store/entities/projectTask';
 import { createState } from 'src/store/util';
 import type { ProjectTaskSection } from './type';
 
-
 export const DEFAULT_TITLE_NAME = 'Untitled Section';
 
 export const initialState = (): ProjectTaskSection => ({

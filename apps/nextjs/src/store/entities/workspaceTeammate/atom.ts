@@ -2,7 +2,6 @@ import { atom } from 'jotai';
 import { createState } from 'src/store/util';
 import type { WorkspaceTeammate } from './type';
 
-
 export const initialState = (): WorkspaceTeammate => ({
   id: '',
   workspaceId: '',
@@ -34,7 +33,9 @@ export const workspaceTeammateIdsByWorkspaceIdState = (workspaceId: string) =>
       .map((p) => p.id);
   });
 
-export const workspaceTeammateIdsByWorkspaceIdSortedByOwnerState = (workspaceId: string) =>
+export const workspaceTeammateIdsByWorkspaceIdSortedByOwnerState = (
+  workspaceId: string,
+) =>
   atom<string[]>((get) => {
     const workspaces = get(workspaceTeammatesState);
     return workspaces
@@ -47,7 +48,9 @@ export const workspaceTeammateIdsByWorkspaceIdSortedByOwnerState = (workspaceId:
       .map((p) => p.id);
   });
 
-export const workspaceTeammateIdsByWorkspaceIdSortedByCreatedAtState = (workspaceId: string) =>
+export const workspaceTeammateIdsByWorkspaceIdSortedByCreatedAtState = (
+  workspaceId: string,
+) =>
   atom<string[]>((get) => {
     const workspaces = get(workspaceTeammatesState);
     return workspaces
@@ -62,9 +65,8 @@ export const ownerWorkspaceTeammateByWorkspaceIdState = (workspaceId: string) =>
   atom<WorkspaceTeammate>((get) => {
     const workspaces = get(workspaceTeammatesState);
     return (
-      workspaces.filter(
-        (t) => t.workspaceId === workspaceId && t.isOwner,
-      )[0] ?? initialState()
+      workspaces.filter((t) => t.workspaceId === workspaceId && t.isOwner)[0] ??
+      initialState()
     );
   });
 

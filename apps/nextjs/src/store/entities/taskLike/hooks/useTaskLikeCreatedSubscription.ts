@@ -1,6 +1,6 @@
+import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useAtomCallback } from 'jotai/utils';
 import { useCallback } from 'react';
 import { useTaskLikeCreatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
@@ -44,12 +44,15 @@ export const useTaskLikeCreatedSubscription = (props: Props) => {
   });
 
   const setBySubscription = useAtomCallback(
-    useCallback((_get, _set, response: Response) => {
-      const taskLikeCreated = response.taskLikeCreated;
+    useCallback(
+      (_get, _set, response: Response) => {
+        const taskLikeCreated = response.taskLikeCreated;
 
-      if (__DEV__) console.log('TaskLike created!: ');
+        if (__DEV__) console.log('TaskLike created!: ');
 
-      setTaskLikes([taskLikeCreated]);
-    }, [setTaskLikes]),
+        setTaskLikes([taskLikeCreated]);
+      },
+      [setTaskLikes],
+    ),
   );
 };

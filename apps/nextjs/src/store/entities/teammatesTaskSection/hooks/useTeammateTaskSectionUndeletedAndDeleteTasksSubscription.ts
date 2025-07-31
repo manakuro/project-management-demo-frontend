@@ -1,6 +1,6 @@
+import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useAtomCallback } from 'jotai/utils';
 import { useCallback } from 'react';
 import { useTeammateTaskSectionUndeletedAndDeleteTasksSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
@@ -51,13 +51,13 @@ export const useTeammateTaskSectionUndeletedAndDeleteTasksSubscription = (
   const setBySubscription = useAtomCallback(
     useCallback(
       async (_get, _set, response: Response) => {
-      const data = response.teammateTaskSectionUndeletedAndDeleteTasks;
+        const data = response.teammateTaskSectionUndeletedAndDeleteTasks;
 
-      if (__DEV__) console.log('Teammate Task Section undeleted!');
+        if (__DEV__) console.log('Teammate Task Section undeleted!');
 
-      setTeammatesTaskSections([data.teammateTaskSection], {
-        includeTask: false,
-      });
+        setTeammatesTaskSections([data.teammateTaskSection], {
+          includeTask: false,
+        });
       },
       [setTeammatesTaskSections],
     ),

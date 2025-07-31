@@ -1,6 +1,6 @@
+import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useAtomCallback } from 'jotai/utils';
 import { useCallback } from 'react';
 import { useProjectTaskSectionDeletedAndDeleteTasksSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
@@ -48,17 +48,20 @@ export const useProjectTaskSectionDeletedAndDeleteTasksSubscription = (
   });
 
   const setBySubscription = useAtomCallback(
-    useCallback(async (_, set, response: Response) => {
-      if (__DEV__) console.log('Project Task Section deleted!');
+    useCallback(
+      async (_, set, response: Response) => {
+        if (__DEV__) console.log('Project Task Section deleted!');
 
-      const projectTaskSection =
-        response.projectTaskSectionDeletedAndDeleteTasks.projectTaskSection;
-      const projectTaskIds =
-        response.projectTaskSectionDeletedAndDeleteTasks.projectTaskIds;
+        const projectTaskSection =
+          response.projectTaskSectionDeletedAndDeleteTasks.projectTaskSection;
+        const projectTaskIds =
+          response.projectTaskSectionDeletedAndDeleteTasks.projectTaskIds;
 
-      resetProjectTaskSection(projectTaskSection.id);
-      resetProjectTaskSections(projectTaskIds);
-    }, [resetProjectTaskSection, resetProjectTaskSections]),
+        resetProjectTaskSection(projectTaskSection.id);
+        resetProjectTaskSections(projectTaskIds);
+      },
+      [resetProjectTaskSection, resetProjectTaskSections],
+    ),
   );
 
   return {

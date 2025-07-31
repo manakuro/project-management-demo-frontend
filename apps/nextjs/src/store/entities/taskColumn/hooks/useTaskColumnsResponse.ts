@@ -5,14 +5,11 @@ import type { TaskColumnResponse } from '../type';
 
 export const useTaskColumnsResponse = () => {
   const setTaskColumns = useAtomCallback(
-    useCallback(
-      (_get, set, data: TaskColumnResponse[]) => {
-        data.forEach((d) => {
-          set(taskColumnState(d.id), d);
-        });
-      },
-      [],
-    ),
+    useCallback((_get, set, data: TaskColumnResponse[]) => {
+      data.forEach((d) => {
+        set(taskColumnState(d.id), d);
+      });
+    }, []),
   );
 
   return {

@@ -1,6 +1,6 @@
+import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useAtomCallback } from 'jotai/utils';
 import { useCallback } from 'react';
 import { useProjectTaskSectionUndeletedAndKeepTasksSubscription as useSubscription } from 'src/graphql/hooks';
 import type { ProjectTaskResponse } from 'src/graphql/types/projectTask';
@@ -53,30 +53,31 @@ export const useProjectTaskSectionUndeletedAndKeepTasksSubscription = (
   });
 
   const setBySubscription = useAtomCallback(
-    useCallback(async (get, set, response: Response) => {
-      if (__DEV__) console.log('Project Task Section deleted!');
+    useCallback(
+      async (get, set, response: Response) => {
+        if (__DEV__) console.log('Project Task Section deleted!');
 
-      const data = response.projectTaskSectionUndeletedAndKeepTasks;
+        const data = response.projectTaskSectionUndeletedAndKeepTasks;
 
-      setProjectsTaskSections(
-        [{ ...data.projectTaskSection, projectTasks: [] }],
-        {
-          includeProjectTasks: false,
-        },
-      );
+        setProjectsTaskSections(
+          [{ ...data.projectTaskSection, projectTasks: [] }],
+          {
+            includeProjectTasks: false,
+          },
+        );
 
-      const projectTasks = get(
-        projectTasksByIdsState(data.projectTaskIds),
-      );
+        const projectTasks = get(projectTasksByIdsState(data.projectTaskIds));
 
-      const newProjectTasks = projectTasks.map((t) => ({
-        ...t,
-        projectTaskSectionId: data.projectTaskSection.id,
-      }));
-      setProjectTask(newProjectTasks as ProjectTaskResponse[], {
-        includeTask: false,
-      });
-    }, [setProjectTask, setProjectsTaskSections]),
+        const newProjectTasks = projectTasks.map((t) => ({
+          ...t,
+          projectTaskSectionId: data.projectTaskSection.id,
+        }));
+        setProjectTask(newProjectTasks as ProjectTaskResponse[], {
+          includeTask: false,
+        });
+      },
+      [setProjectTask, setProjectsTaskSections],
+    ),
   );
 
   return {

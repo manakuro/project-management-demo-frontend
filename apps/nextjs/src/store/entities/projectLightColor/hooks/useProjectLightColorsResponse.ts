@@ -5,14 +5,11 @@ import type { ProjectLightColor } from '../type';
 
 export const useProjectLightColorsResponse = () => {
   const setProjectLightColors = useAtomCallback(
-    useCallback(
-      (_, set, data: ProjectLightColor[]) => {
-        data.forEach((p) => {
-          set(projectLightColorState(p.id), p);
-        });
-      },
-      [],
-    ),
+    useCallback((_, set, data: ProjectLightColor[]) => {
+      data.forEach((p) => {
+        set(projectLightColorState(p.id), p);
+      });
+    }, []),
   );
 
   return {

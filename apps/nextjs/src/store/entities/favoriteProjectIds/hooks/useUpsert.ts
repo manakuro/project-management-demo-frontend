@@ -5,12 +5,9 @@ import type { FavoriteProjectId } from '../type';
 
 export const useUpsert = () => {
   const upsert = useAtomCallback(
-    useCallback(
-      (_get, set, favoriteProjectId: FavoriteProjectId[]) => {
-        set(favoriteProjectIdsState, favoriteProjectId);
-      },
-      [],
-    ),
+    useCallback((_get, set, favoriteProjectId: FavoriteProjectId[]) => {
+      set(favoriteProjectIdsState, favoriteProjectId);
+    }, []),
   );
 
   return {

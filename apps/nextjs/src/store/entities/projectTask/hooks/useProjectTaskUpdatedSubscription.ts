@@ -1,6 +1,6 @@
+import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useAtomCallback } from 'jotai/utils';
 import { useCallback } from 'react';
 import { useProjectTaskUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
@@ -43,22 +43,25 @@ export const useProjectTaskUpdatedSubscription = (props: Props) => {
   });
 
   const setBySubscription = useAtomCallback(
-    useCallback((_, __, response: Response) => {
-      const projectTaskUpdated = response.projectTaskUpdated;
+    useCallback(
+      (_, __, response: Response) => {
+        const projectTaskUpdated = response.projectTaskUpdated;
 
-      if (__DEV__) console.log('Project Task Updated!: ');
+        if (__DEV__) console.log('Project Task Updated!: ');
 
-      setProjectTask([
-        {
-          ...projectTaskUpdated,
-          task: {
-            ...projectTaskUpdated.task,
-            // To prevent autofocus on input.
-            isNew: false,
+        setProjectTask([
+          {
+            ...projectTaskUpdated,
+            task: {
+              ...projectTaskUpdated.task,
+              // To prevent autofocus on input.
+              isNew: false,
+            },
           },
-        },
-      ]);
-    }, [setProjectTask]),
+        ]);
+      },
+      [setProjectTask],
+    ),
   );
 
   return {

@@ -3,7 +3,6 @@ import { teammateTaskByTaskIdState } from 'src/store/entities/teammateTask';
 import { createState } from 'src/store/util';
 import type { TeammateTaskSection } from './type';
 
-
 export const initialState = (): TeammateTaskSection => ({
   id: '',
   name: '',

@@ -63,7 +63,6 @@ export const useTaskDeletedSubscription = (props: Props) => {
     skip: skipSubscription,
   });
 
-
   return {
     subscriptionResult,
   };

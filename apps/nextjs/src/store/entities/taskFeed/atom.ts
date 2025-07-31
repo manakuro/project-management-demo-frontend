@@ -3,7 +3,6 @@ import { getDefaultDescription } from 'src/shared/prosemirror/getDefaultDescript
 import { createState } from 'src/store/util';
 import type { TaskFeed } from './type';
 
-
 export const initialState = (): TaskFeed => ({
   id: '',
   taskId: '',

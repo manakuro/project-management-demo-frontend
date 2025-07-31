@@ -51,5 +51,4 @@ export const useTaskUnassignedSubscription = (props: Props) => {
       previousData = data;
     },
   });
-
 };

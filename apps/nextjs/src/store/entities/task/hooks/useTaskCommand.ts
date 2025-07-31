@@ -1,6 +1,6 @@
-import { useCallback, useRef } from 'react';
 import { useAtomCallback } from 'jotai/utils';
 import { RESET } from 'jotai/utils';
+import { useCallback, useRef } from 'react';
 import {
   useAssignTaskMutation,
   useCreateTaskMutation,
@@ -71,80 +71,86 @@ export const useTaskCommand = () => {
   );
 
   const unassignTask = useAtomCallback(
-    useCallback(async (get, set, input: { id: string }) => {
-      const prev = get(taskState(input.id));
-      setTaskById(input.id, { assigneeId: '' });
+    useCallback(
+      async (get, set, input: { id: string }) => {
+        const prev = get(taskState(input.id));
+        setTaskById(input.id, { assigneeId: '' });
 
-      const restore = () => {
-        setTaskById(input.id, prev);
-      };
+        const restore = () => {
+          setTaskById(input.id, prev);
+        };
 
-      try {
-        const res = await unassignTaskMutation({
-          variables: {
-            input: {
-              id: input.id,
-              workspaceId: workspace.id,
-              requestId: TASK_UNASSIGNED_SUBSCRIPTION_REQUEST_ID,
+        try {
+          const res = await unassignTaskMutation({
+            variables: {
+              input: {
+                id: input.id,
+                workspaceId: workspace.id,
+                requestId: TASK_UNASSIGNED_SUBSCRIPTION_REQUEST_ID,
+              },
             },
-          },
-        });
-        if (res.errors) {
-          restore();
-          return;
-        }
-        const data = res.data?.unassignTask;
-        if (!data) return;
+          });
+          if (res.errors) {
+            restore();
+            return;
+          }
+          const data = res.data?.unassignTask;
+          if (!data) return;
 
-        resetTeammateTask(data.teammateTaskId);
-      } catch (e) {
-        restore();
-        throw e;
-      }
-    }, [resetTeammateTask, setTaskById, unassignTaskMutation, workspace.id]),
+          resetTeammateTask(data.teammateTaskId);
+        } catch (e) {
+          restore();
+          throw e;
+        }
+      },
+      [resetTeammateTask, setTaskById, unassignTaskMutation, workspace.id],
+    ),
   );
 
   const assignTask = useAtomCallback(
-    useCallback(async (get, set, input: { id: string; assigneeId: string }) => {
-      const prev = get(taskState(input.id));
+    useCallback(
+      async (get, set, input: { id: string; assigneeId: string }) => {
+        const prev = get(taskState(input.id));
 
-      if (
-        prev.assigneeId &&
-        input.assigneeId &&
-        prev.assigneeId === input.assigneeId
-      )
-        return;
-
-      setTaskById(input.id, { assigneeId: input.assigneeId });
-
-      const restore = () => {
-        setTaskById(input.id, prev);
-      };
-
-      try {
-        const res = await assignTaskMutation({
-          variables: {
-            input: {
-              id: input.id,
-              assigneeId: input.assigneeId,
-              workspaceId: workspace.id,
-              requestId: TASK_ASSIGNED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        });
-        if (res.errors) {
-          restore();
+        if (
+          prev.assigneeId &&
+          input.assigneeId &&
+          prev.assigneeId === input.assigneeId
+        )
           return;
-        }
-        const data = res.data?.assignTask;
-        if (!data) return;
 
-        setTeammateTask([data.teammateTask]);
-      } catch (e) {
-        restore();
-        throw e;
-      }
-    }, [assignTaskMutation, setTaskById, setTeammateTask, workspace.id]),
+        setTaskById(input.id, { assigneeId: input.assigneeId });
+
+        const restore = () => {
+          setTaskById(input.id, prev);
+        };
+
+        try {
+          const res = await assignTaskMutation({
+            variables: {
+              input: {
+                id: input.id,
+                assigneeId: input.assigneeId,
+                workspaceId: workspace.id,
+                requestId: TASK_ASSIGNED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          });
+          if (res.errors) {
+            restore();
+            return;
+          }
+          const data = res.data?.assignTask;
+          if (!data) return;
+
+          setTeammateTask([data.teammateTask]);
+        } catch (e) {
+          restore();
+          throw e;
+        }
+      },
+      [assignTaskMutation, setTaskById, setTeammateTask, workspace.id],
+    ),
   );
 
   const addTask = useCallback(
@@ -211,107 +217,113 @@ export const useTaskCommand = () => {
 
   const isDeletingTask = useRef<boolean>(false);
   const deleteTask = useAtomCallback(
-    useCallback(async (get, set, input: { taskId: string }) => {
-      if (isDeletingTask.current) return;
+    useCallback(
+      async (get, set, input: { taskId: string }) => {
+        if (isDeletingTask.current) return;
 
-      isDeletingTask.current = true;
+        isDeletingTask.current = true;
 
-      const teammateTask = get(teammateTaskByTaskIdState(input.taskId));
-      if (teammateTask.id) {
-        set(teammateTaskState(teammateTask.id), RESET);
-      }
-
-      const projectTasks = get(projectTasksByTaskIdState(input.taskId));
-      if (projectTasks.length) {
-        resetProjectTasks(projectTasks.map((p) => p.id));
-      }
-
-      const restore = () => {
-        if (teammateTask.id)
-          setTeammateTask([teammateTask as TeammateTaskResponse]);
-        if (projectTasks.length)
-          setProjectTask(projectTasks as ProjectTaskResponse[]);
-      };
-
-      try {
-        const res = await deleteTaskMutation({
-          variables: {
-            input: {
-              taskId: input.taskId,
-              workspaceId: workspace.id,
-              requestId: TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
-        });
-        if (res.errors) {
-          restore();
-          return;
+        const teammateTask = get(teammateTaskByTaskIdState(input.taskId));
+        if (teammateTask.id) {
+          set(teammateTaskState(teammateTask.id), RESET);
         }
 
-        const data = res.data?.deleteTask?.deletedTask;
-        if (!data) return;
+        const projectTasks = get(projectTasksByTaskIdState(input.taskId));
+        if (projectTasks.length) {
+          resetProjectTasks(projectTasks.map((p) => p.id));
+        }
 
-        setDeletedTask([data], { includeTask: false });
-      } catch (e) {
-        restore();
-        throw e;
-      } finally {
-        isDeletingTask.current = false;
-      }
-    }, [
-      deleteTaskMutation,
-      resetProjectTasks,
-      setDeletedTask,
-      setProjectTask,
-      setTeammateTask,
-      workspace.id,
-    ]),
+        const restore = () => {
+          if (teammateTask.id)
+            setTeammateTask([teammateTask as TeammateTaskResponse]);
+          if (projectTasks.length)
+            setProjectTask(projectTasks as ProjectTaskResponse[]);
+        };
+
+        try {
+          const res = await deleteTaskMutation({
+            variables: {
+              input: {
+                taskId: input.taskId,
+                workspaceId: workspace.id,
+                requestId: TASK_DELETED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          });
+          if (res.errors) {
+            restore();
+            return;
+          }
+
+          const data = res.data?.deleteTask?.deletedTask;
+          if (!data) return;
+
+          setDeletedTask([data], { includeTask: false });
+        } catch (e) {
+          restore();
+          throw e;
+        } finally {
+          isDeletingTask.current = false;
+        }
+      },
+      [
+        deleteTaskMutation,
+        resetProjectTasks,
+        setDeletedTask,
+        setProjectTask,
+        setTeammateTask,
+        workspace.id,
+      ],
+    ),
   );
 
   const undeleteTask = useAtomCallback(
-    useCallback(async (get, set, input: { taskId: string }) => {
-      const deletedTasks = get(deletedTasksByTaskIdState(input.taskId));
-      deletedTasks.forEach((d) => {
-        resetDeletedTask(d.id);
-      });
-
-      const restore = () => {
-        setDeletedTask(deletedTasks as DeletedTaskResponse[]);
-      };
-
-      try {
-        const res = await undeleteTaskMutation({
-          variables: {
-            input: {
-              taskId: input.taskId,
-              workspaceId: workspace.id,
-              requestId: TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID,
-            },
-          },
+    useCallback(
+      async (get, set, input: { taskId: string }) => {
+        const deletedTasks = get(deletedTasksByTaskIdState(input.taskId));
+        deletedTasks.forEach((d) => {
+          resetDeletedTask(d.id);
         });
-        if (res.errors) {
+
+        const restore = () => {
+          setDeletedTask(deletedTasks as DeletedTaskResponse[]);
+        };
+
+        try {
+          const res = await undeleteTaskMutation({
+            variables: {
+              input: {
+                taskId: input.taskId,
+                workspaceId: workspace.id,
+                requestId: TASK_UNDELETED_SUBSCRIPTION_REQUEST_ID,
+              },
+            },
+          });
+          if (res.errors) {
+            restore();
+            return;
+          }
+
+          const teammateTask = res.data?.undeleteTask?.teammateTask;
+          if (teammateTask) setTeammateTask([teammateTask]);
+
+          const projectTasks = res.data?.undeleteTask?.projectTasks;
+          if (projectTasks?.length)
+            setProjectTask(projectTasks, { includeTask: false });
+        } catch (e) {
           restore();
-          return;
+          throw e;
         }
-
-        const teammateTask = res.data?.undeleteTask?.teammateTask;
-        if (teammateTask) setTeammateTask([teammateTask]);
-
-        const projectTasks = res.data?.undeleteTask?.projectTasks;
-        if (projectTasks?.length)
-          setProjectTask(projectTasks, { includeTask: false });
-      } catch (e) {
-        restore();
-        throw e;
-      }
-    }, [
-      resetDeletedTask,
-      setDeletedTask,
-      setProjectTask,
-      setTeammateTask,
-      undeleteTaskMutation,
-      workspace.id,
-    ]),
+      },
+      [
+        resetDeletedTask,
+        setDeletedTask,
+        setProjectTask,
+        setTeammateTask,
+        undeleteTaskMutation,
+        workspace.id,
+      ],
+    ),
   );
 
   return {

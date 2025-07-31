@@ -58,7 +58,6 @@ export const useTaskUndeletedSubscription = (props: Props) => {
     },
   });
 
-
   return {
     subscriptionResult,
   };

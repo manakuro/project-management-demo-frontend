@@ -1,6 +1,6 @@
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
 import { RESET } from 'jotai/utils';
+import { useCallback } from 'react';
 import { projectTaskColumnState } from '../atom';
 
 export const useResetProjectTaskColumn = () => {

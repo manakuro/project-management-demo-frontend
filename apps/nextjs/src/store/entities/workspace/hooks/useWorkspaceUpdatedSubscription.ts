@@ -1,6 +1,6 @@
+import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
-import { useAtomCallback } from 'jotai/utils';
 import { useCallback } from 'react';
 import { useWorkspaceUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual';

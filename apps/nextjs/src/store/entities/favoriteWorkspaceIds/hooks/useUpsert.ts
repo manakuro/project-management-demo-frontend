@@ -5,12 +5,9 @@ import type { FavoriteWorkspaceId } from '../type';
 
 export const useUpsert = () => {
   const upsert = useAtomCallback(
-    useCallback(
-      (_get, set, favoriteWorkspaceId: FavoriteWorkspaceId[]) => {
-        set(favoriteWorkspaceIdsState, favoriteWorkspaceId);
-      },
-      [],
-    ),
+    useCallback((_get, set, favoriteWorkspaceId: FavoriteWorkspaceId[]) => {
+      set(favoriteWorkspaceIdsState, favoriteWorkspaceId);
+    }, []),
   );
 
   return {

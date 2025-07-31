@@ -1,7 +1,6 @@
 import { createState } from 'src/store/util';
 import type { TaskFeedLike } from './type';
 
-
 export const initialState = (): TaskFeedLike => ({
   id: '',
   taskId: '',

@@ -6,7 +6,6 @@ import {
 import { createState } from 'src/store/util';
 import type { TeammateTaskColumn } from './type';
 
-
 export const initialState = (): TeammateTaskColumn => ({
   id: '',
   taskColumnId: '',
@@ -42,8 +41,7 @@ export const teammatesTaskColumnByTypeState = ({
     const taskColumns = get(teammateTaskColumnsState);
     return (
       taskColumns.find(
-        (t) =>
-          t.teammateId === teammateId && t.taskColumnId === taskColumn.id,
+        (t) => t.teammateId === teammateId && t.taskColumnId === taskColumn.id,
       ) ?? initialState()
     );
   });

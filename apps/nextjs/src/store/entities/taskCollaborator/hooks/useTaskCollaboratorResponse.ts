@@ -5,18 +5,15 @@ import type { TaskCollaboratorResponse } from '../type';
 
 export const useTaskCollaboratorResponse = () => {
   const setTaskCollaborators = useAtomCallback(
-    useCallback(
-      (get, set, data: TaskCollaboratorResponse[]) => {
-        data.forEach((d) => {
-          const prev = get(taskCollaboratorState(d.id));
-          set(taskCollaboratorState(d.id), {
-            ...prev,
-            ...d,
-          });
+    useCallback((get, set, data: TaskCollaboratorResponse[]) => {
+      data.forEach((d) => {
+        const prev = get(taskCollaboratorState(d.id));
+        set(taskCollaboratorState(d.id), {
+          ...prev,
+          ...d,
         });
-      },
-      [],
-    ),
+      });
+    }, []),
   );
 
   return {

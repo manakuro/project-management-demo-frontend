@@ -17,10 +17,12 @@ export const useTeammateTaskColumnCommand = () => {
 
   const setTeammateTaskColumn = useAtomCallback(
     useCallback(
-      async (get, _set, input: Partial<TeammateTaskColumn> & { id: string }) => {
-        const prev = get(
-          teammateTaskColumnState(input.id),
-        );
+      async (
+        get,
+        _set,
+        input: Partial<TeammateTaskColumn> & { id: string },
+      ) => {
+        const prev = get(teammateTaskColumnState(input.id));
         upsert({ ...prev, ...input });
 
         const restore = () => {

@@ -10,7 +10,12 @@ export const useDeletedTaskResponse = () => {
 
   const setDeletedTask = useAtomCallback(
     useCallback(
-      (get, set, data: DeletedTaskResponse[], options?: { includeTask: boolean }) => {
+      (
+        get,
+        set,
+        data: DeletedTaskResponse[],
+        options?: { includeTask: boolean },
+      ) => {
         const includeTask = options?.includeTask ?? true;
         data.forEach((d) => {
           set(deletedTaskState(d.id), d);

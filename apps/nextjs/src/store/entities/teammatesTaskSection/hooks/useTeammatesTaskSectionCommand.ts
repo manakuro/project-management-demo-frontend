@@ -123,9 +123,7 @@ export const useTeammatesTaskSectionCommand = () => {
   const deleteTaskSectionAndKeepTasks = useAtomCallback(
     useCallback(
       async (get, _set, id: string) => {
-        const teammateTasks = get(
-          teammateTaskByTeammateTaskSectionIdState(id),
-        );
+        const teammateTasks = get(teammateTaskByTeammateTaskSectionIdState(id));
 
         resetTeammateTaskSection(id);
 
@@ -183,9 +181,7 @@ export const useTeammatesTaskSectionCommand = () => {
   const deleteTaskSectionAndDeleteTasks = useAtomCallback(
     useCallback(
       async (get, _set, id: string) => {
-        const teammateTasks = get(
-          teammateTaskByTeammateTaskSectionIdState(id),
-        );
+        const teammateTasks = get(teammateTaskByTeammateTaskSectionIdState(id));
         const teammateTaskIds = teammateTasks.map((t: any) => t.id);
 
         resetTeammateTaskSection(id);
@@ -270,8 +266,11 @@ export const useTeammatesTaskSectionCommand = () => {
 
   const undeleteTaskSectionAndKeepTasks = useAtomCallback(
     useCallback(
-      async (get, _set, input: DeleteTeammateTaskSectionAndKeepTasksMutation) => {
-
+      async (
+        get,
+        _set,
+        input: DeleteTeammateTaskSectionAndKeepTasksMutation,
+      ) => {
         const teammateTaskSection =
           input.deleteTeammateTaskSectionAndKeepTasks.teammateTaskSection;
         const teammateTaskIds =
@@ -336,36 +335,40 @@ export const useTeammatesTaskSectionCommand = () => {
 
   const undeleteTaskSectionAndDeleteTasks = useAtomCallback(
     useCallback(
-      async (_get, _set, input: DeleteTeammateTaskSectionAndDeleteTasksMutation) => {
-      const teammateTaskSection =
-        input.deleteTeammateTaskSectionAndDeleteTasks.teammateTaskSection;
-      const teammateTaskIds =
-        input.deleteTeammateTaskSectionAndDeleteTasks.teammateTaskIds;
-      const taskIds = input.deleteTeammateTaskSectionAndDeleteTasks.taskIds;
+      async (
+        _get,
+        _set,
+        input: DeleteTeammateTaskSectionAndDeleteTasksMutation,
+      ) => {
+        const teammateTaskSection =
+          input.deleteTeammateTaskSectionAndDeleteTasks.teammateTaskSection;
+        const teammateTaskIds =
+          input.deleteTeammateTaskSectionAndDeleteTasks.teammateTaskIds;
+        const taskIds = input.deleteTeammateTaskSectionAndDeleteTasks.taskIds;
 
-      const res = await undeleteTeammateTaskSectionAndDeleteTasksMutation({
-        variables: {
-          input: {
-            name: teammateTaskSection.name,
-            teammateId: teammateTaskSection.teammateId,
-            workspaceId: teammateTaskSection.workspaceId,
-            createdAt: teammateTaskSection.createdAt,
-            updatedAt: teammateTaskSection.updatedAt,
-            deletedTeammateTaskIds: teammateTaskIds,
-            deletedTaskIds: taskIds,
-            requestId:
-              TEAMMATE_TASK_SECTION_UNDELETED_AND_DELETE_TASKS_SUBSCRIPTION_REQUEST_ID,
+        const res = await undeleteTeammateTaskSectionAndDeleteTasksMutation({
+          variables: {
+            input: {
+              name: teammateTaskSection.name,
+              teammateId: teammateTaskSection.teammateId,
+              workspaceId: teammateTaskSection.workspaceId,
+              createdAt: teammateTaskSection.createdAt,
+              updatedAt: teammateTaskSection.updatedAt,
+              deletedTeammateTaskIds: teammateTaskIds,
+              deletedTaskIds: taskIds,
+              requestId:
+                TEAMMATE_TASK_SECTION_UNDELETED_AND_DELETE_TASKS_SUBSCRIPTION_REQUEST_ID,
+            },
           },
-        },
-      });
-      if (res.errors) return;
+        });
+        if (res.errors) return;
 
-      const data = res.data?.undeleteTeammateTaskSectionAndDeleteTasks;
-      if (!data) return;
+        const data = res.data?.undeleteTeammateTaskSectionAndDeleteTasks;
+        if (!data) return;
 
-      setTeammatesTaskSections([data.teammateTaskSection], {
-        includeTask: false,
-      });
+        setTeammatesTaskSections([data.teammateTaskSection], {
+          includeTask: false,
+        });
       },
       [
         setTeammatesTaskSections,

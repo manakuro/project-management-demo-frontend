@@ -19,9 +19,7 @@ export const useWorkspaceTeammateCommand = () => {
         workspaceTeammateId: string,
         input: Partial<WorkspaceTeammate>,
       ) => {
-        const current = get(
-          workspaceTeammateState(workspaceTeammateId),
-        );
+        const current = get(workspaceTeammateState(workspaceTeammateId));
         upsert({
           ...current,
           ...input,

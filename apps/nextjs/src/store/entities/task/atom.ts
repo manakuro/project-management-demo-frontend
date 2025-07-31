@@ -3,7 +3,6 @@ import { getDefaultDescription } from 'src/shared/prosemirror/getDefaultDescript
 import { createState } from 'src/store/util';
 import type { Task } from './type';
 
-
 export const initialState = (): Task => ({
   assigneeId: '',
   dueDate: '',
@@ -50,7 +49,5 @@ export const taskIdsByTaskParentIdState = (taskParentId: string) =>
 export const createdByIdsByTaskIdsState = (taskIds: string[]) =>
   atom<string[]>((get) => {
     const tasks = get(tasksState);
-    return tasks
-      .filter((t) => taskIds.includes(t.id))
-      .map((t) => t.createdBy);
+    return tasks.filter((t) => taskIds.includes(t.id)).map((t) => t.createdBy);
   });

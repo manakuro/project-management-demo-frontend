@@ -7,10 +7,7 @@ export const useProjectTaskSectionByTaskIdAndProjectId = (props: {
   projectId: string;
 }) => {
   const projectTaskSection = useAtomValue(
-    useMemo(
-      () => projectTaskSectionByTaskIdAndProjectIdState(props),
-      [props.taskId, props.projectId],
-    ),
+    useMemo(() => projectTaskSectionByTaskIdAndProjectIdState(props), [props]),
   );
 
   return {

@@ -2,7 +2,6 @@ import { atom } from 'jotai';
 import { createState } from 'src/store/util';
 import type { Teammate } from './type';
 
-
 export const initialState = (): Teammate => ({
   id: '',
   image: '',

@@ -31,7 +31,11 @@ export const useTaskFeedCommand = () => {
 
   const addTaskFeed = useAtomCallback(
     useCallback(
-      (_get, _set, input: Pick<TaskFeed, 'taskId' | 'teammateId' | 'description'>) => {
+      (
+        _get,
+        _set,
+        input: Pick<TaskFeed, 'taskId' | 'teammateId' | 'description'>,
+      ) => {
         const id = uuid();
         upsert({
           ...initialState(),
@@ -74,7 +78,13 @@ export const useTaskFeedCommand = () => {
 
         return id;
       },
-      [upsert, createTaskFeedMutation, resetTaskFeed, setTaskFeed, workspace.id],
+      [
+        upsert,
+        createTaskFeedMutation,
+        resetTaskFeed,
+        setTaskFeed,
+        workspace.id,
+      ],
     ),
   );
 

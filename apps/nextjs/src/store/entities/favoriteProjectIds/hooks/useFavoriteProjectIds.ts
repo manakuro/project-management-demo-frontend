@@ -1,5 +1,5 @@
-import { useCallback } from 'react';
 import { useAtomValue } from 'jotai';
+import { useCallback } from 'react';
 import { favoriteProjectIdsState } from '../atom';
 
 export const useFavoriteProjectIds = () => {

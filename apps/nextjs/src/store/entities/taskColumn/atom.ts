@@ -6,7 +6,6 @@ import {
   type TaskColumnTypeValue,
 } from './type';
 
-
 export const initialState = (): TaskColumn => ({
   id: '',
   name: '',

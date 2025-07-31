@@ -1,6 +1,6 @@
-import isEqual from 'lodash-es/isEqual';
-import { useMemo, useCallback } from 'react';
 import { RESET, useAtomCallback } from 'jotai/utils';
+import isEqual from 'lodash-es/isEqual';
+import { useCallback, useMemo } from 'react';
 import { useTaskFeedLikeDeletedSubscription as useSubscription } from 'src/graphql/hooks';
 import { uuid } from 'src/shared/uuid';
 import { taskFeedLikeState } from 'src/store/entities/taskFeedLike';
@@ -41,15 +41,12 @@ export const useTaskFeedLikeDeletedSubscription = (props: Props) => {
   });
 
   const setBySubscription = useAtomCallback(
-    useCallback(
-      async (_get, set, response: Response) => {
-        const taskFeedLikeDeleted = response.taskFeedLikeDeleted;
+    useCallback(async (_get, set, response: Response) => {
+      const taskFeedLikeDeleted = response.taskFeedLikeDeleted;
 
-        if (__DEV__) console.log('TaskFeedLike deleted!: ');
+      if (__DEV__) console.log('TaskFeedLike deleted!: ');
 
-        set(taskFeedLikeState(taskFeedLikeDeleted.id), RESET);
-      },
-      [],
-    ),
+      set(taskFeedLikeState(taskFeedLikeDeleted.id), RESET);
+    }, []),
   );
 };

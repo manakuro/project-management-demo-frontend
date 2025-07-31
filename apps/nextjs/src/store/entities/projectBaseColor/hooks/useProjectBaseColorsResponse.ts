@@ -5,14 +5,11 @@ import type { ProjectBaseColor } from '../type';
 
 export const useProjectBaseColorsResponse = () => {
   const setProjectBaseColors = useAtomCallback(
-    useCallback(
-      (_, set, projectBaseColors: ProjectBaseColor[]) => {
-        projectBaseColors.forEach((p) => {
-          set(projectBaseColorState(p.id), p);
-        });
-      },
-      [],
-    ),
+    useCallback((_, set, projectBaseColors: ProjectBaseColor[]) => {
+      projectBaseColors.forEach((p) => {
+        set(projectBaseColorState(p.id), p);
+      });
+    }, []),
   );
 
   return {

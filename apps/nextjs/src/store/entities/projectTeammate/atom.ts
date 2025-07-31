@@ -2,7 +2,6 @@ import { atom } from 'jotai';
 import { createState } from 'src/store/util';
 import type { ProjectTeammate } from './type';
 
-
 export const initialState = (): ProjectTeammate => ({
   id: '',
   projectId: '',
@@ -32,7 +31,9 @@ export const projectTeammateIdsByProjectIdState = (projectId: string) =>
     return projects.filter((t) => t.projectId === projectId).map((p) => p.id);
   });
 
-export const projectTeammateIdsByProjectIdSortedByOwnerState = (projectId: string) =>
+export const projectTeammateIdsByProjectIdSortedByOwnerState = (
+  projectId: string,
+) =>
   atom<string[]>((get) => {
     const projects = get(projectTeammatesState);
     return projects
@@ -45,7 +46,9 @@ export const projectTeammateIdsByProjectIdSortedByOwnerState = (projectId: strin
       .map((p) => p.id);
   });
 
-export const projectTeammateIdsByProjectIdSortedByCreatedAtState = (projectId: string) =>
+export const projectTeammateIdsByProjectIdSortedByCreatedAtState = (
+  projectId: string,
+) =>
   atom<string[]>((get) => {
     const projects = get(projectTeammatesState);
     return projects

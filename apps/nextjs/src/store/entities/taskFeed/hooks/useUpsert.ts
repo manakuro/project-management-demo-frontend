@@ -5,12 +5,9 @@ import type { TaskFeed } from '../type';
 
 export const useUpsert = () => {
   const upsert = useAtomCallback(
-    useCallback(
-      (_get, set, taskFeed: TaskFeed) => {
-        set(taskFeedState(taskFeed.id), taskFeed);
-      },
-      [],
-    ),
+    useCallback((_get, set, taskFeed: TaskFeed) => {
+      set(taskFeedState(taskFeed.id), taskFeed);
+    }, []),
   );
 
   return {

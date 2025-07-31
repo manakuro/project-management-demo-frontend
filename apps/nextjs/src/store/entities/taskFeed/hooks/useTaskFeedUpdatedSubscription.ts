@@ -1,5 +1,5 @@
-import isEqual from 'lodash-es/isEqual';
 import { useAtomCallback } from 'jotai/utils';
+import isEqual from 'lodash-es/isEqual';
 import { useCallback, useMemo } from 'react';
 import { useTaskFeedUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
 import { isULID } from 'src/shared/ulid';

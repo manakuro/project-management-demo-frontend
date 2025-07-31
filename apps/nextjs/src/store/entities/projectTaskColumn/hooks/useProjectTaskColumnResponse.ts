@@ -8,13 +8,16 @@ export const useProjectTaskColumnResponse = () => {
   const { setTaskColumns } = useTaskColumnsResponse();
 
   const setProjectsTaskColumns = useAtomCallback(
-    useCallback((_, set, data: ProjectTaskColumnResponse[]) => {
-      data.forEach((p) => {
-        set(projectTaskColumnState(p.id), p);
-      });
-      const taskColumns = data.map((d) => d.taskColumn);
-      setTaskColumns(taskColumns);
-    }, [setTaskColumns]),
+    useCallback(
+      (_, set, data: ProjectTaskColumnResponse[]) => {
+        data.forEach((p) => {
+          set(projectTaskColumnState(p.id), p);
+        });
+        const taskColumns = data.map((d) => d.taskColumn);
+        setTaskColumns(taskColumns);
+      },
+      [setTaskColumns],
+    ),
   );
 
   return {

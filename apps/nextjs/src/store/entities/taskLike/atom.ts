@@ -2,7 +2,6 @@ import { atom } from 'jotai';
 import { createState } from 'src/store/util';
 import type { TaskLike } from './type';
 
-
 export const initialState = (): TaskLike => ({
   id: '',
   taskId: '',

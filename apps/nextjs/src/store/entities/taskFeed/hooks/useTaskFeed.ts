@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useUpdateTaskFeedMutation } from 'src/graphql/hooks';
 import { useWorkspace } from 'src/store/entities/workspace';
 import { taskFeedState } from '../atom';
@@ -9,7 +9,9 @@ import { TASK_FEED_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useTaskFeedUpdatedS
 import { useUpsert } from './useUpsert';
 
 export const useTaskFeed = (taskFeedId: string) => {
-  const taskFeed = useAtomValue(taskFeedState(taskFeedId));
+  const taskFeed = useAtomValue(
+    useMemo(() => taskFeedState(taskFeedId), [taskFeedId]),
+  );
   const { upsert } = useUpsert();
   const { workspace } = useWorkspace();
   const [updateTaskFeedMutation] = useUpdateTaskFeedMutation();

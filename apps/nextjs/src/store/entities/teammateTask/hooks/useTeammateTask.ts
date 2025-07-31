@@ -1,11 +1,13 @@
 import { useAtomValue } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { teammateTaskState } from '../atom';
 import type { TeammateTask } from '../type';
 
 export const useTeammateTask = (teammateTaskId: string) => {
-  const teammateTask = useAtomValue(teammateTaskState(teammateTaskId));
+  const teammateTask = useAtomValue(
+    useMemo(() => teammateTaskState(teammateTaskId), [teammateTaskId]),
+  );
 
   const setTeammateTask = useAtomCallback(
     useCallback(

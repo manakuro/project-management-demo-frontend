@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useUpdateProjectTaskSectionMutation } from 'src/graphql/hooks';
 import type { UpdateTeammateTaskSectionInput } from 'src/graphql/types';
 import { omit } from 'src/shared/utils/omit';
@@ -18,49 +18,60 @@ export const useProjectTaskSection = (projectTaskSectionId: string) => {
   const { upsert } = useUpsert();
   const { workspace } = useWorkspace();
   const projectTaskSection = useAtomValue(
-    projectTaskSectionState(projectTaskSectionId),
+    useMemo(
+      () => projectTaskSectionState(projectTaskSectionId),
+      [projectTaskSectionId],
+    ),
   );
 
   const [updateProjectTaskSectionMutation] =
     useUpdateProjectTaskSectionMutation();
 
   const setProjectTaskSection = useAtomCallback(
-    useCallback(async (get, set, input: Partial<ProjectTaskSection>) => {
-      const prev = get(
-        projectTaskSectionState(projectTaskSectionId),
-      );
-      if (!hasProjectTaskSectionBeenPersisted(prev)) return;
+    useCallback(
+      async (get, set, input: Partial<ProjectTaskSection>) => {
+        const prev = get(projectTaskSectionState(projectTaskSectionId));
+        if (!hasProjectTaskSectionBeenPersisted(prev)) return;
 
-      upsert({ ...prev, ...input });
+        upsert({ ...prev, ...input });
 
-      const res = await updateProjectTaskSectionMutation({
-        variables: {
-          input: prepareUpdateTeammateTaskSectionInput(
-            projectTaskSectionId,
-            workspace.id,
-            input,
-          ),
-        },
-      });
-      if (res.errors) {
-        upsert(prev);
-      }
-    }, [
-      projectTaskSectionId,
-      updateProjectTaskSectionMutation,
-      upsert,
-      workspace.id,
-    ]),
+        const res = await updateProjectTaskSectionMutation({
+          variables: {
+            input: prepareUpdateTeammateTaskSectionInput(
+              projectTaskSectionId,
+              workspace.id,
+              input,
+            ),
+          },
+        });
+        if (res.errors) {
+          upsert(prev);
+        }
+      },
+      [
+        projectTaskSectionId,
+        updateProjectTaskSectionMutation,
+        upsert,
+        workspace.id,
+      ],
+    ),
   );
 
   const setProjectTaskSectionName = useAtomCallback(
-    useCallback(async (_, set, input: string) => {
-      if (projectTaskSection.name && input && projectTaskSection.name === input)
-        return;
-      const name = input || DEFAULT_TITLE_NAME;
+    useCallback(
+      async (_, set, input: string) => {
+        if (
+          projectTaskSection.name &&
+          input &&
+          projectTaskSection.name === input
+        )
+          return;
+        const name = input || DEFAULT_TITLE_NAME;
 
-      await setProjectTaskSection({ name, isNew: false });
-    }, [setProjectTaskSection, projectTaskSection.name]),
+        await setProjectTaskSection({ name, isNew: false });
+      },
+      [setProjectTaskSection, projectTaskSection.name],
+    ),
   );
 
   return {

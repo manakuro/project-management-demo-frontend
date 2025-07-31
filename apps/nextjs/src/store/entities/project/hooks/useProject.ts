@@ -1,11 +1,13 @@
 import { useAtomValue } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { projectState } from '../atom';
 import type { Project } from '../type';
 
 export const useProject = (projectId: string) => {
-  const project = useAtomValue(projectState(projectId));
+  const project = useAtomValue(
+    useMemo(() => projectState(projectId), [projectId]),
+  );
 
   const setProject = useAtomCallback(
     useCallback(

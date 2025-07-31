@@ -1,4 +1,5 @@
 import { useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import { projectTaskSectionByTaskIdAndProjectIdState } from '../atom';
 
 export const useProjectTaskSectionByTaskIdAndProjectId = (props: {
@@ -6,7 +7,10 @@ export const useProjectTaskSectionByTaskIdAndProjectId = (props: {
   projectId: string;
 }) => {
   const projectTaskSection = useAtomValue(
-    projectTaskSectionByTaskIdAndProjectIdState(props),
+    useMemo(
+      () => projectTaskSectionByTaskIdAndProjectIdState(props),
+      [props.taskId, props.projectId],
+    ),
   );
 
   return {

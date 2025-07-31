@@ -1,11 +1,13 @@
 import { useAtomValue } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { taskTagState } from '../atom';
 import type { TaskTag } from '../type';
 
 export const useTaskTag = (taskTagId?: string) => {
-  const taskTag = useAtomValue(taskTagState(taskTagId || ''));
+  const taskTag = useAtomValue(
+    useMemo(() => taskTagState(taskTagId || ''), [taskTagId]),
+  );
 
   const setTaskTag = useAtomCallback(
     useCallback(

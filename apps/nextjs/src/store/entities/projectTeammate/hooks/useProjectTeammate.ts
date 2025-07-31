@@ -1,10 +1,10 @@
-import { useMemo } from 'react';
 import { useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import { projectTeammateState } from '../atom';
 
 export const useProjectTeammate = (projectTeammateId: string) => {
   const projectTeammate = useAtomValue(
-    projectTeammateState(projectTeammateId),
+    useMemo(() => projectTeammateState(projectTeammateId), [projectTeammateId]),
   );
   const role = useMemo(() => {
     if (projectTeammate.role) return projectTeammate.role;

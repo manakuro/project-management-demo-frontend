@@ -1,4 +1,5 @@
 import { useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import type { TaskColumnTypeValue } from 'src/store/entities/taskColumn';
 import { projectsTaskColumnByTypeState } from '../atom';
 
@@ -10,7 +11,10 @@ export const useProjectTaskColumnByType = ({
   projectId: string;
 }) => {
   const projectsTaskColumn = useAtomValue(
-    projectsTaskColumnByTypeState({ projectId, type }),
+    useMemo(
+      () => projectsTaskColumnByTypeState({ projectId, type }),
+      [projectId, type],
+    ),
   );
 
   return {

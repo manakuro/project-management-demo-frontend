@@ -1,11 +1,13 @@
 import { useAtomValue } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { type TaskFile, taskFileState } from 'src/store/entities/taskFile';
 import { useUpsert } from './useUpsert';
 
 export const useTaskFile = (taskFileId?: string) => {
-  const taskFile = useAtomValue(taskFileState(taskFileId || ''));
+  const taskFile = useAtomValue(
+    useMemo(() => taskFileState(taskFileId || ''), [taskFileId]),
+  );
   const { upsert } = useUpsert();
 
   const setTaskFile = useAtomCallback(

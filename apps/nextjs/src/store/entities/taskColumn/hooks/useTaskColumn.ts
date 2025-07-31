@@ -1,12 +1,14 @@
 import { useAtomValue } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { taskColumnState } from '../atom';
 import type { TaskColumn } from '../type';
 import { useUpsert } from './useUpsert';
 
 export const useTaskColumn = (taskColumnId?: string) => {
-  const taskColumn = useAtomValue(taskColumnState(taskColumnId || ''));
+  const taskColumn = useAtomValue(
+    useMemo(() => taskColumnState(taskColumnId || ''), [taskColumnId]),
+  );
   const { upsert } = useUpsert();
 
   const setTaskColumn = useAtomCallback(

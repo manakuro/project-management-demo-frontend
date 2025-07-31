@@ -17,7 +17,7 @@ import { TASK_UPDATED_SUBSCRIPTION_REQUEST_ID } from './useTaskUpdatedSubscripti
 import { useUpsert } from './useUpsert';
 
 export const useTask = (taskId: string) => {
-  const task = useAtomValue(taskState(taskId));
+  const task = useAtomValue(useMemo(() => taskState(taskId), [taskId]));
   const { workspace } = useWorkspace();
 
   const { upsert } = useUpsert();

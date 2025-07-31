@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useUpdateTeammateTaskSectionMutation } from 'src/graphql/hooks';
 import { omit } from 'src/shared/utils/omit';
 import { useWorkspace } from 'src/store/entities/workspace';
@@ -19,7 +19,10 @@ export const useTeammateTaskSection = (teammateTaskSectionId: string) => {
   const { workspace } = useWorkspace();
 
   const teammateTaskSection = useAtomValue(
-    teammatesTaskSectionState(teammateTaskSectionId),
+    useMemo(
+      () => teammatesTaskSectionState(teammateTaskSectionId),
+      [teammateTaskSectionId],
+    ),
   );
   const [updateTeammateTaskSectionMutation] =
     useUpdateTeammateTaskSectionMutation();
@@ -27,9 +30,7 @@ export const useTeammateTaskSection = (teammateTaskSectionId: string) => {
   const setTeammateTaskSection = useAtomCallback(
     useCallback(
       async (get, set, input: Partial<TeammateTaskSection>) => {
-        const prev = get(
-          teammatesTaskSectionState(teammateTaskSectionId),
-        );
+        const prev = get(teammatesTaskSectionState(teammateTaskSectionId));
         if (!hasTeammateTaskSectionBeenPersisted(prev)) return;
 
         const updated = { ...prev, ...input };
@@ -48,11 +49,7 @@ export const useTeammateTaskSection = (teammateTaskSectionId: string) => {
           set(teammatesTaskSectionState(teammateTaskSectionId), prev);
         }
       },
-      [
-        teammateTaskSectionId,
-        updateTeammateTaskSectionMutation,
-        workspace.id,
-      ],
+      [teammateTaskSectionId, updateTeammateTaskSectionMutation, workspace.id],
     ),
   );
 

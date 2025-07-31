@@ -1,9 +1,10 @@
 import { useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import { ownerProjectTeammateByProjectIdState } from '../atom';
 
 export const useOwnerTeammateIdsByProjectId = (projectId: string) => {
   const projectTeammate = useAtomValue(
-    ownerProjectTeammateByProjectIdState(projectId),
+    useMemo(() => ownerProjectTeammateByProjectIdState(projectId), [projectId]),
   );
 
   return {

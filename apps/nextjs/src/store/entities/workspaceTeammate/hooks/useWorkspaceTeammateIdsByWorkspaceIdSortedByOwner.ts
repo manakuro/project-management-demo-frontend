@@ -1,11 +1,15 @@
 import { useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import { workspaceTeammateIdsByWorkspaceIdSortedByOwnerState } from '../atom';
 
 export const useWorkspaceTeammateIdsByWorkspaceIdSortedByOwner = (
   workspaceId: string,
 ) => {
   const workspaceTeammateIds = useAtomValue(
-    workspaceTeammateIdsByWorkspaceIdSortedByOwnerState(workspaceId),
+    useMemo(
+      () => workspaceTeammateIdsByWorkspaceIdSortedByOwnerState(workspaceId),
+      [workspaceId],
+    ),
   );
 
   return {

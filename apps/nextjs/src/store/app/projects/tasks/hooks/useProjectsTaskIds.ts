@@ -5,7 +5,7 @@ import { taskIdsState } from '../atom';
 
 export const useProjectsTaskIds = () => {
   const { projectId } = useProjectsProjectId();
-  const ids = useAtomValue(taskIdsState(projectId));
+  const ids = useAtomValue(useMemo(() => taskIdsState(projectId), [projectId]));
   const taskIds = useMemo(() => ids, [ids]);
 
   return {

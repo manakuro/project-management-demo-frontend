@@ -1,10 +1,10 @@
 import { useAtom } from 'jotai';
-import { useCallback } from 'react';
+import { useResetAtom } from 'jotai/utils';
 import { projectIdState } from '../atom';
 
 export const useProjectsProjectId = () => {
   const [projectId, setProjectId] = useAtom(projectIdState);
-  const resetProjectId = useCallback(() => setProjectId(''), [setProjectId]);
+  const resetProjectId = useResetAtom(projectIdState);
 
   return {
     projectId,

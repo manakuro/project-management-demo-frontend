@@ -1,9 +1,13 @@
 import { useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import { workspaceActivityState } from '../atom';
 
 export const useWorkspaceActivity = (workspaceActivityId: string) => {
   const workspaceActivity = useAtomValue(
-    workspaceActivityState(workspaceActivityId),
+    useMemo(
+      () => workspaceActivityState(workspaceActivityId),
+      [workspaceActivityId],
+    ),
   );
 
   return {

@@ -5,7 +5,7 @@ import { taskFileIdsState } from '../atom';
 
 export const useMyTasksFiles = () => {
   const { me } = useMe();
-  const ids = useAtomValue(taskFileIdsState(me.id));
+  const ids = useAtomValue(useMemo(() => taskFileIdsState(me.id), [me.id]));
   const taskFileIds = useMemo(() => ids, [ids]);
 
   return {

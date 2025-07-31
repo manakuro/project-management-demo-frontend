@@ -7,7 +7,12 @@ import { projectsTaskColumnIdsCustomizableState } from '../atom';
 
 export const useProjectsTaskColumnsCustomizable = () => {
   const { projectId } = useProjectsProjectId();
-  const ids = useAtomValue(projectsTaskColumnIdsCustomizableState(projectId));
+  const ids = useAtomValue(
+    useMemo(
+      () => projectsTaskColumnIdsCustomizableState(projectId),
+      [projectId],
+    ),
+  );
   const tasksTaskColumnIds = useMemo(() => ids, [ids]);
   const { setProjectTaskColumnOrder } = useProjectTaskColumnCommand();
 

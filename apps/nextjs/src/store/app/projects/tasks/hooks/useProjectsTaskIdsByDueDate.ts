@@ -5,7 +5,12 @@ import { taskIdsByDueDateState } from '../atom';
 
 export const useProjectsTaskIdsByDueDate = (dueDate: string) => {
   const { projectId } = useProjectsProjectId();
-  const ids = useAtomValue(taskIdsByDueDateState({ dueDate, projectId }));
+  const ids = useAtomValue(
+    useMemo(
+      () => taskIdsByDueDateState({ dueDate, projectId }),
+      [dueDate, projectId],
+    ),
+  );
   const taskIds = useMemo(() => ids, [ids]);
 
   return {

@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useMe } from 'src/store/entities/me';
 import {
   type TeammateTaskColumn,
@@ -14,7 +14,7 @@ export const useMyTasksTaskColumn = (tasksTaskColumnId: string) => {
   const { teammatesTaskColumn } = useTeammateTaskColumn(tasksTaskColumnId);
   const { setTeammateTaskColumn, setTeammateTaskColumnOrder } =
     useTeammateTaskColumnCommand();
-  const ids = useAtomValue(taskColumnIdsState(me.id));
+  const ids = useAtomValue(useMemo(() => taskColumnIdsState(me.id), [me.id]));
   const setTasksTaskColumn = useCallback(
     async (input: Partial<TeammateTaskColumn>) => {
       await setTeammateTaskColumn({ id: tasksTaskColumnId, ...input });

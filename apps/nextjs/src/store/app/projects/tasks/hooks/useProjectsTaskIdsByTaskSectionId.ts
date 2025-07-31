@@ -6,7 +6,10 @@ import { taskIdsByTaskSectionIdState } from '../atom';
 export const useProjectsTaskIdsByTaskSectionId = (taskSectionId: string) => {
   const { projectId } = useProjectsProjectId();
   const ids = useAtomValue(
-    taskIdsByTaskSectionIdState({ taskSectionId, projectId }),
+    useMemo(
+      () => taskIdsByTaskSectionIdState({ taskSectionId, projectId }),
+      [taskSectionId, projectId],
+    ),
   );
   const taskIds = useMemo(() => ids, [ids]);
 

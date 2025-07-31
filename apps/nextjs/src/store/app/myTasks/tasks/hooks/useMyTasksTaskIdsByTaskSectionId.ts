@@ -6,7 +6,10 @@ export const useMyTasksTaskIdsByTaskSectionId = (
   teammateTaskSectionId: string,
 ) => {
   const ids = useAtomValue(
-    taskIdsByTaskSectionIdState({ teammateTaskSectionId }),
+    useMemo(
+      () => taskIdsByTaskSectionIdState({ teammateTaskSectionId }),
+      [teammateTaskSectionId],
+    ),
   );
   const taskIds = useMemo(() => ids, [ids]);
 

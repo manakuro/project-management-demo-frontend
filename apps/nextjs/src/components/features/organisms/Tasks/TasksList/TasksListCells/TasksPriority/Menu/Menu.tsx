@@ -1,13 +1,13 @@
-import type React from 'react';
-import { type PropsWithChildren, memo, useCallback } from 'react';
 import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
-} from 'src/components/features/organisms/Menus';
-import { MenuItemOption } from 'src/components/ui/organisms/Menu';
-import { useTask } from 'src/store/entities/task';
-import { useTasksPriorities } from 'src/store/entities/taskPriority';
+} from '@/components/features/organisms/Menus';
+import { MenuItemOption } from '@/components/ui/organisms/Menu';
+import { useTask } from '@/store/entities/task';
+import { useTasksPriorities } from '@/store/entities/taskPriority';
+import type React from 'react';
+import { type PropsWithChildren, memo, useCallback } from 'react';
 
 type Props = PropsWithChildren<{
   taskId: string;

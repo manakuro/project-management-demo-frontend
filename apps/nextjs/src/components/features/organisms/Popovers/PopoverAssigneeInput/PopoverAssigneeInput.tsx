@@ -1,11 +1,11 @@
-import React, { useCallback } from 'react';
-import { Link, PortalManager } from 'src/components/ui/atoms';
+import { Link, PortalManager } from '@/components/ui/atoms';
 import {
   Popover,
   type PopoverProps,
   PopoverTrigger,
-} from 'src/components/ui/organisms/Popover';
-import { useDisclosure } from 'src/shared/chakra';
+} from '@/components/ui/organisms/Popover';
+import { useDisclosure } from '@/shared/chakra';
+import React, { useCallback } from 'react';
 import { Content } from './Content';
 
 type Props = {

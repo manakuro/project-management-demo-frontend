@@ -1,8 +1,8 @@
+import { Icon } from '@/components/ui/atoms';
+import { useClickableHoverStyle } from '@/hooks';
+import { useTaskCommand } from '@/store/entities/task';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { Icon } from 'src/components/ui/atoms';
-import { useClickableHoverStyle } from 'src/hooks';
-import { useTaskCommand } from 'src/store/entities/task';
 
 type Props = {
   taskId: string;

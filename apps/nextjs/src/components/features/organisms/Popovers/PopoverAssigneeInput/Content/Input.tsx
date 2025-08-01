@@ -1,18 +1,18 @@
-import type React from 'react';
-import { useCallback, useMemo, useState } from 'react';
-import { AssigneeMenu } from 'src/components/features/organisms/Menus';
+import { AssigneeMenu } from '@/components/features/organisms/Menus';
 import {
   Input as AtomsInput,
   Flex,
   Icon,
   InputGroup,
   InputRightElement,
-} from 'src/components/ui/atoms';
-import type { PopoverProps } from 'src/components/ui/organisms/Popover';
-import { useClickableHoverStyle } from 'src/hooks';
-import { useDisclosure } from 'src/shared/chakra';
-import { useTask, useTaskCommand } from 'src/store/entities/task';
-import { type Teammate, useTeammate } from 'src/store/entities/teammate';
+} from '@/components/ui/atoms';
+import type { PopoverProps } from '@/components/ui/organisms/Popover';
+import { useClickableHoverStyle } from '@/hooks';
+import { useDisclosure } from '@/shared/chakra';
+import { useTask, useTaskCommand } from '@/store/entities/task';
+import { type Teammate, useTeammate } from '@/store/entities/teammate';
+import type React from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 type Props = {
   taskId: string;

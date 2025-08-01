@@ -1,6 +1,6 @@
-import { Flex, Grid } from 'src/components/ui/atoms';
-import { useProjectsProjectId } from 'src/store/app/projects/project';
-import { useProjectTeammateIdsByProjectIdSortedByOwner } from 'src/store/entities/projectTeammate';
+import { Flex, Grid } from '@/components/ui/atoms';
+import { useProjectsProjectId } from '@/store/app/projects/project';
+import { useProjectTeammateIdsByProjectIdSortedByOwner } from '@/store/entities/projectTeammate';
 import { OverviewContentHeading } from '../OverviewContentHeading';
 import { ProjectRoleAddMember } from './ProjectRoleAddMember';
 import { ProjectRoleListItem } from './ProjectRoleListItem';

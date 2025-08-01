@@ -1,6 +1,3 @@
-import { useAtomCallback } from 'jotai/utils';
-import { RESET } from 'jotai/utils';
-import { useCallback } from 'react';
 import {
   useCreateProjectTaskSectionMutation,
   useDeleteProjectTaskSectionAndDeleteTasksMutation,
@@ -8,16 +5,19 @@ import {
   useDeleteProjectTaskSectionMutation,
   useUndeleteProjectTaskSectionAndDeleteTasksMutation,
   useUndeleteProjectTaskSectionAndKeepTasksMutation,
-} from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
+} from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
 import {
   type ProjectTaskResponse,
   projectTasksByIdsState,
   projectTasksByProjectTaskSectionIdState,
   useProjectTaskResponse,
   useResetProjectTask,
-} from 'src/store/entities/projectTask';
-import { useWorkspace } from 'src/store/entities/workspace';
+} from '@/store/entities/projectTask';
+import { useWorkspace } from '@/store/entities/workspace';
+import { useAtomCallback } from 'jotai/utils';
+import { RESET } from 'jotai/utils';
+import { useCallback } from 'react';
 import { initialState, projectTaskSectionState } from '../atom';
 import type {
   DeleteProjectTaskSectionAndDeleteTasksMutation,

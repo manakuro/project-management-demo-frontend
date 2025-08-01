@@ -1,5 +1,5 @@
-import { useMyTasksTaskSectionIds } from 'src/store/app/myTasks/taskSections';
-import { useProjectsTaskSectionIds } from 'src/store/app/projects/taskSections';
+import { useMyTasksTaskSectionIds } from '@/store/app/myTasks/taskSections';
+import { useProjectsTaskSectionIds } from '@/store/app/projects/taskSections';
 import { useTasksContext } from '../TasksProvider';
 
 type Result = {

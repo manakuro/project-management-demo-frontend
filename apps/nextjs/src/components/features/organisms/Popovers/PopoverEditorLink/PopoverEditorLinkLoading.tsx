@@ -1,5 +1,5 @@
+import { Flex, Spinner } from '@/components/ui/atoms';
 import { memo } from 'react';
-import { Flex, Spinner } from 'src/components/ui/atoms';
 
 export const PopoverEditorLinkLoading = memo(
   function PopoverEditorLinkLoading() {

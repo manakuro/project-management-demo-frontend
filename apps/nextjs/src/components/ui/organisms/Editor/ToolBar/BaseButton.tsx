@@ -1,12 +1,12 @@
-import type React from 'react';
-import { useCallback } from 'react';
-import { IconButton, type IconButtonProps } from 'src/components/ui/atoms';
-import { Tooltip, type TooltipProps } from 'src/components/ui/molecules';
+import { IconButton, type IconButtonProps } from '@/components/ui/atoms';
+import { Tooltip, type TooltipProps } from '@/components/ui/molecules';
 import {
   useEditorStateContext,
   useEditorViewContext,
-} from 'src/components/ui/organisms/Editor/Editors';
-import type { ToolbarItem } from 'src/shared/prosemirror/hooks';
+} from '@/components/ui/organisms/Editor/Editors';
+import type { ToolbarItem } from '@/shared/prosemirror/hooks';
+import type React from 'react';
+import { useCallback } from 'react';
 
 type Props = {
   isActive?: ToolbarItem['isActive'];

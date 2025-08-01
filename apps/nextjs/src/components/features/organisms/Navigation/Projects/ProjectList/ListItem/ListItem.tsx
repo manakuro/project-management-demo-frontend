@@ -1,8 +1,6 @@
-import type React from 'react';
-import { memo, useMemo } from 'react';
-import { useNavigation } from 'src/components/features/organisms/Navigation';
-import { PADDING_X } from 'src/components/features/organisms/Navigation/Navigation';
-import { PopoverProjectMenu } from 'src/components/features/organisms/Popovers';
+import { useNavigation } from '@/components/features/organisms/Navigation';
+import { PADDING_X } from '@/components/features/organisms/Navigation/Navigation';
+import { PopoverProjectMenu } from '@/components/features/organisms/Popovers';
 import {
   ColorBox,
   Flex,
@@ -10,12 +8,14 @@ import {
   Link,
   NextLink,
   Text,
-} from 'src/components/ui/atoms';
-import { useClickableHoverStyle, useLinkHoverStyle } from 'src/hooks';
-import { ROUTE_PROJECTS_LIST, useRouter } from 'src/router';
-import { ROUTE_PROJECTS } from 'src/router/projects';
-import { useProject } from 'src/store/entities/project';
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
+} from '@/components/ui/atoms';
+import { useClickableHoverStyle, useLinkHoverStyle } from '@/hooks';
+import { ROUTE_PROJECTS_LIST, useRouter } from '@/router';
+import { ROUTE_PROJECTS } from '@/router/projects';
+import { useProject } from '@/store/entities/project';
+import { useProjectBaseColor } from '@/store/entities/projectBaseColor';
+import type React from 'react';
+import { memo, useMemo } from 'react';
 
 type Props = {
   projectId: string;

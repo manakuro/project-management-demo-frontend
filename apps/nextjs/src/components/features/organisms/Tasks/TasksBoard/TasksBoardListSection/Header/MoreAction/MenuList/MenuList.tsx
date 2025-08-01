@@ -1,13 +1,13 @@
-import { memo, useCallback } from 'react';
-import { useDeleteTaskSectionModal } from 'src/components/features/organisms/Modals';
+import { useDeleteTaskSectionModal } from '@/components/features/organisms/Modals';
 import {
   useHasTasksByTaskSectionId,
   useTasksTaskSectionCommand,
-} from 'src/components/features/organisms/Tasks/hooks';
+} from '@/components/features/organisms/Tasks/hooks';
 import {
   MenuList as AtomsMenuList,
   MenuItem,
-} from 'src/components/ui/organisms/Menu';
+} from '@/components/ui/organisms/Menu';
+import { memo, useCallback } from 'react';
 import { useTasksBoardListSectionContext } from '../../../Provider';
 
 export const MenuList = memo(function MenuList() {

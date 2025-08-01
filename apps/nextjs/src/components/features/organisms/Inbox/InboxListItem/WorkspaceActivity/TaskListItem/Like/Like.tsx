@@ -1,7 +1,7 @@
+import { LikeTaskIconButton } from '@/components/features/molecules/LikeTaskIconButton';
+import { useTaskLikesByTaskId } from '@/store/entities/taskLike';
 import type React from 'react';
 import { memo, useMemo } from 'react';
-import { LikeTaskIconButton } from 'src/components/features/molecules/LikeTaskIconButton';
-import { useTaskLikesByTaskId } from 'src/store/entities/taskLike';
 
 type Props = {
   taskId: string;

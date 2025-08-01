@@ -1,9 +1,9 @@
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
+import { Flex, Text } from '@/components/ui/atoms';
+import { useTask, useTaskCommand } from '@/store/entities/task';
+import { type Teammate, useTeammate } from '@/store/entities/teammate';
 import type React from 'react';
 import { memo, useCallback, useMemo } from 'react';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
-import { Flex, Text } from 'src/components/ui/atoms';
-import { useTask, useTaskCommand } from 'src/store/entities/task';
-import { type Teammate, useTeammate } from 'src/store/entities/teammate';
 import { DeleteButton } from './DeleteButton';
 import { Input } from './Input';
 

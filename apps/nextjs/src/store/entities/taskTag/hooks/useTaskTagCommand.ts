@@ -1,16 +1,16 @@
-import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
 import {
   useCreateTaskTagMutation,
   useDeleteTaskTagMutation,
-} from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
-import type { Tag } from 'src/store/entities/tag';
+} from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
+import type { Tag } from '@/store/entities/tag';
 import {
   taskTagByTaskIdAndTagIdState,
   taskTagState,
-} from 'src/store/entities/taskTag';
-import { useWorkspace } from 'src/store/entities/workspace';
+} from '@/store/entities/taskTag';
+import { useWorkspace } from '@/store/entities/workspace';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { initialState } from '../atom';
 import { useResetTaskTag } from './useResetTaskTag';
 import { TASK_TAG_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskTagCreatedSubscription';

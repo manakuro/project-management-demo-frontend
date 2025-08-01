@@ -1,6 +1,6 @@
+import { Box, Flex } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { Box, Flex } from 'src/components/ui/atoms';
 import { CustomNav } from './CustomNav';
 import { Footer } from './Footer';
 import { Header } from './Header';

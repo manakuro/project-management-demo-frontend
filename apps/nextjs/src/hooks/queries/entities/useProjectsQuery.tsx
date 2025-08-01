@@ -1,10 +1,10 @@
-import { useProjectsQuery as useQuery } from 'src/graphql/hooks';
-import type { ProjectsQuery } from 'src/graphql/types/projects';
-import { getNodesFromEdges } from 'src/shared/apollo/util';
+import { useProjectsQuery as useQuery } from '@/graphql/hooks';
+import type { ProjectsQuery } from '@/graphql/types/projects';
+import { getNodesFromEdges } from '@/shared/apollo/util';
 import {
   type ProjectResponse,
   useProjectResponse,
-} from 'src/store/entities/project';
+} from '@/store/entities/project';
 
 export const useProjectsQuery = () => {
   const { setProjects } = useProjectResponse();

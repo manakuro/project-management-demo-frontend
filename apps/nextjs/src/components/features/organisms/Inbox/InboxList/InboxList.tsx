@@ -1,10 +1,10 @@
-import type React from 'react';
-import { memo, useMemo } from 'react';
 import {
   type UseInboxListItemIdsKeys,
   useInboxListItemIds,
-} from 'src/components/features/organisms/Inbox';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
+} from '@/components/features/organisms/Inbox';
+import { Flex, type FlexProps } from '@/components/ui/atoms';
+import type React from 'react';
+import { memo, useMemo } from 'react';
 import { InboxListSection } from '../InboxListSection';
 import { useInboxList } from './useInboxList';
 

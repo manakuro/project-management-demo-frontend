@@ -1,8 +1,8 @@
+import { MyAvatar } from '@/components/features/organisms/MyAvatar';
+import { Menu, MenuButton } from '@/components/ui/organisms/Menu';
+import { useDisclosure } from '@/shared/chakra';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { MyAvatar } from 'src/components/features/organisms/MyAvatar';
-import { Menu, MenuButton } from 'src/components/ui/organisms/Menu';
-import { useDisclosure } from 'src/shared/chakra';
 import { MenuList } from './MenuList';
 
 export const MyAccountAvatar: React.FC = memo(() => {

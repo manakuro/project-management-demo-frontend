@@ -1,15 +1,15 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
-import { Input } from 'src/components/features/organisms/TaskDetail/TaskDetailBody/Form/Projects/Input';
-import { useTaskDetailProjectsInput } from 'src/components/features/organisms/TaskDetail/hooks';
-import { Flex } from 'src/components/ui/atoms';
-import { useProjectTaskSectionsByProjectIdsQuery } from 'src/hooks/queries/entities';
+import { Input } from '@/components/features/organisms/TaskDetail/TaskDetailBody/Form/Projects/Input';
+import { useTaskDetailProjectsInput } from '@/components/features/organisms/TaskDetail/hooks';
+import { Flex } from '@/components/ui/atoms';
+import { useProjectTaskSectionsByProjectIdsQuery } from '@/hooks/queries/entities';
 import {
   useProjectIdsByTaskId,
   useProjectTaskCommand,
   useProjectTaskIdsByTaskId,
-} from 'src/store/entities/projectTask';
-import { useTask } from 'src/store/entities/task';
+} from '@/store/entities/projectTask';
+import { useTask } from '@/store/entities/task';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import { Content, Label, Row } from '../Row';
 import { Selected } from './Selected';
 import { UnSelected } from './UnSelected';

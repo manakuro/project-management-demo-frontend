@@ -1,18 +1,18 @@
-import type React from 'react';
-import { memo } from 'react';
 import {
   ProjectTeammateMenuItem,
   useProjectTeammateMenu,
-} from 'src/components/features/organisms/Menus/ProjectTeammateMenu';
+} from '@/components/features/organisms/Menus/ProjectTeammateMenu';
 import {
   SearchMenuLeftContainer,
   SearchMenuListItem,
   SearchMenuLoading,
   SearchMenuRightContainer,
-} from 'src/components/features/organisms/Menus/SearchMenu';
-import { Divider, Icon, Text } from 'src/components/ui/atoms';
-import type { PopoverProps } from 'src/components/ui/organisms/Popover';
-import type { Teammate } from 'src/store/entities/teammate';
+} from '@/components/features/organisms/Menus/SearchMenu';
+import { Divider, Icon, Text } from '@/components/ui/atoms';
+import type { PopoverProps } from '@/components/ui/organisms/Popover';
+import type { Teammate } from '@/store/entities/teammate';
+import type React from 'react';
+import { memo } from 'react';
 
 type Props = PopoverProps & {
   onSelect: (val: Teammate) => void;

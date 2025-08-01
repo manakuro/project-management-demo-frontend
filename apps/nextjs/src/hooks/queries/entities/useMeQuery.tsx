@@ -1,5 +1,5 @@
-import { useMeQuery as useMeQueryApollo } from 'src/graphql/hooks';
-import { initialMeState, useMeResponse } from 'src/store/entities/me';
+import { useMeQuery as useMeQueryApollo } from '@/graphql/hooks';
+import { initialMeState, useMeResponse } from '@/store/entities/me';
 
 export const useMeQuery = () => {
   const { setMe } = useMeResponse();

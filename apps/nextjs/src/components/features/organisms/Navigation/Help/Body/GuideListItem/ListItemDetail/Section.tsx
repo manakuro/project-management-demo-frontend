@@ -1,5 +1,5 @@
+import { Box, Divider, Heading } from '@/components/ui/atoms';
 import type React from 'react';
-import { Box, Divider, Heading } from 'src/components/ui/atoms';
 
 type Props = {
   title?: string;

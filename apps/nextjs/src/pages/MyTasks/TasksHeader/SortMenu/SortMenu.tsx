@@ -1,12 +1,12 @@
-import type React from 'react';
-import { memo, useCallback, useMemo } from 'react';
-import { SortMenu as TasksHeaderSortMenu } from 'src/components/features/organisms/Tasks/TasksHeader';
-import { useMyTasksContext } from 'src/pages/MyTasks/Provider';
+import { SortMenu as TasksHeaderSortMenu } from '@/components/features/organisms/Tasks/TasksHeader';
+import { useMyTasksContext } from '@/pages/MyTasks/Provider';
 import {
   type TaskListSortStatusCodeValue,
   useMyTasksTaskListStatus,
-} from 'src/store/app/myTasks/taskListStatus';
-import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus';
+} from '@/store/app/myTasks/taskListStatus';
+import { TaskListSortStatusCode } from '@/store/entities/taskListSortStatus';
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
 
 type Props = {
   projectSortable?: boolean;

@@ -1,7 +1,4 @@
-import { DOMSerializer, type Node } from 'prosemirror-model';
-import type { Decoration, EditorView, NodeView } from 'prosemirror-view';
-import React, { useContext, useEffect, useRef } from 'react';
-import type { PortalHandlers } from 'src/components/ui/organisms/Editor/Editors/ReactNodeViewPortals';
+import type { PortalHandlers } from '@/components/ui/organisms/Editor/Editors/ReactNodeViewPortals';
 import {
   entries,
   isDomNodeOutputSpec,
@@ -9,7 +6,10 @@ import {
   isNodeOfType,
   isPlainObject,
   isString,
-} from 'src/shared/prosemirror/utils';
+} from '@/shared/prosemirror/utils';
+import { DOMSerializer, type Node } from 'prosemirror-model';
+import type { Decoration, EditorView, NodeView } from 'prosemirror-view';
+import React, { useContext, useEffect, useRef } from 'react';
 
 type ReactNodeViewContextProps = {
   node: Node;

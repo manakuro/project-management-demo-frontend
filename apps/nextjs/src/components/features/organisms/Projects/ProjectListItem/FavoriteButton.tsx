@@ -1,11 +1,11 @@
-import type React from 'react';
-import { memo } from 'react';
-import { FavoriteIconButton } from 'src/components/ui/molecules';
-import { useClickableHoverStyle } from 'src/hooks';
+import { FavoriteIconButton } from '@/components/ui/molecules';
+import { useClickableHoverStyle } from '@/hooks';
 import {
   useFavoriteProjectIds,
   useFavoriteProjectIdsCommand,
-} from 'src/store/entities/favoriteProjectIds';
+} from '@/store/entities/favoriteProjectIds';
+import type React from 'react';
+import { memo } from 'react';
 
 type Props = {
   projectId: string;

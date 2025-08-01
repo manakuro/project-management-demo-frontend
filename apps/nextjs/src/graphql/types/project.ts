@@ -1,7 +1,7 @@
-import type { ProjectFragmentFragment } from 'src/graphql/types';
+import type { ProjectFragmentFragment } from '@/graphql/types';
 
 export type ProjectResponse = NonNullable<ProjectFragmentFragment>;
 export type {
   ProjectUpdatedSubscription as ProjectUpdatedSubscriptionResponse,
   ProjectsQuery,
-} from 'src/graphql/types';
+} from '@/graphql/types';

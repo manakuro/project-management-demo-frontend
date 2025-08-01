@@ -1,13 +1,13 @@
+import { Container } from '@/components/features/molecules/ThumbnailAttachment/Container';
+import { Menu } from '@/components/features/molecules/ThumbnailAttachment/Menu';
+import { MenuButton } from '@/components/features/molecules/ThumbnailAttachment/MenuButton';
+import { Overlay } from '@/components/features/molecules/ThumbnailAttachment/Overlay';
+import { useThumbnailAttachmentContext } from '@/components/features/molecules/ThumbnailAttachment/Provider';
+import { Tooltip } from '@/components/features/molecules/ThumbnailAttachment/Tooltip';
+import type { FlexProps } from '@/components/ui/atoms';
+import { Image as AtomsImage } from '@/components/ui/atoms';
+import { useTaskFile } from '@/store/entities/taskFile';
 import type React from 'react';
-import { Container } from 'src/components/features/molecules/ThumbnailAttachment/Container';
-import { Menu } from 'src/components/features/molecules/ThumbnailAttachment/Menu';
-import { MenuButton } from 'src/components/features/molecules/ThumbnailAttachment/MenuButton';
-import { Overlay } from 'src/components/features/molecules/ThumbnailAttachment/Overlay';
-import { useThumbnailAttachmentContext } from 'src/components/features/molecules/ThumbnailAttachment/Provider';
-import { Tooltip } from 'src/components/features/molecules/ThumbnailAttachment/Tooltip';
-import type { FlexProps } from 'src/components/ui/atoms';
-import { Image as AtomsImage } from 'src/components/ui/atoms';
-import { useTaskFile } from 'src/store/entities/taskFile';
 
 type Props = FlexProps & {
   taskFileId: string;

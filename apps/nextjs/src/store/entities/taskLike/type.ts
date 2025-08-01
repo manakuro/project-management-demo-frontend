@@ -1,9 +1,9 @@
-import type { TaskLikeResponse } from 'src/graphql/types/taskLike';
+import type { TaskLikeResponse } from '@/graphql/types/taskLike';
 
 export type {
   TaskLikeResponse,
   TaskLikeCreatedSubscriptionResponse,
   TaskLikeDeletedSubscriptionResponse,
-} from 'src/graphql/types/taskLike';
+} from '@/graphql/types/taskLike';
 
 export type TaskLike = TaskLikeResponse;

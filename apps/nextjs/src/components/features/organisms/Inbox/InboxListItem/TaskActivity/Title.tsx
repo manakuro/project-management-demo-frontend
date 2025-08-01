@@ -1,10 +1,10 @@
+import { useTaskActivityTaskIds } from '@/components/features/organisms/Inbox/hooks';
+import { Flex, type FlexProps, Icon, Link } from '@/components/ui/atoms';
+import { formatDueDate } from '@/shared/date';
+import { useTask } from '@/store/entities/task';
+import { transitions } from '@/styles';
 import type React from 'react';
 import { memo, useCallback, useMemo } from 'react';
-import { useTaskActivityTaskIds } from 'src/components/features/organisms/Inbox/hooks';
-import { Flex, type FlexProps, Icon, Link } from 'src/components/ui/atoms';
-import { formatDueDate } from 'src/shared/date';
-import { useTask } from 'src/store/entities/task';
-import { transitions } from 'src/styles';
 
 type Props = FlexProps & {
   taskActivityId: string;

@@ -1,7 +1,7 @@
+import { Text, type TextProps } from '@/components/ui/atoms';
+import { formatFeedCreatedAt } from '@/shared/date';
 import type React from 'react';
 import { memo } from 'react';
-import { Text, type TextProps } from 'src/components/ui/atoms';
-import { formatFeedCreatedAt } from 'src/shared/date';
 import { useTaskFeedListItemContext } from '../Provider';
 
 type Props = TextProps;

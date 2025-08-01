@@ -1,3 +1,3 @@
-import type { SubTaskFragmentFragment } from 'src/graphql/types';
+import type { SubTaskFragmentFragment } from '@/graphql/types';
 
 export type SubTaskResponse = NonNullable<SubTaskFragmentFragment>;

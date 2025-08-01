@@ -1,7 +1,5 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
-import { useFileViewerModal } from 'src/components/features/organisms/Modals';
-import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks';
+import { useFileViewerModal } from '@/components/features/organisms/Modals';
+import { useTasksRouter } from '@/components/features/organisms/Tasks/hooks';
 import {
   Divider,
   Flex,
@@ -10,16 +8,18 @@ import {
   Image,
   Link,
   Text,
-} from 'src/components/ui/atoms';
-import { useHover } from 'src/hooks/useHover';
-import { FileTypeCode } from 'src/store/entities/fileType';
-import { useTask } from 'src/store/entities/task';
+} from '@/components/ui/atoms';
+import { useHover } from '@/hooks/useHover';
+import { FileTypeCode } from '@/store/entities/fileType';
+import { useTask } from '@/store/entities/task';
 import {
   getTaskFileIcon,
   useTaskFile,
   useTaskFileIdsByTaskId,
-} from 'src/store/entities/taskFile';
-import { transitions } from 'src/styles';
+} from '@/store/entities/taskFile';
+import { transitions } from '@/styles';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 
 type Props = {
   taskFileId: string;

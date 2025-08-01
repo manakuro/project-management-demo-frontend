@@ -1,12 +1,12 @@
-import type React from 'react';
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { Editor, EditorContent } from 'src/components/ui/organisms/Editor';
-import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual';
+import { Editor, EditorContent } from '@/components/ui/organisms/Editor';
+import { isDescriptionEqual } from '@/shared/editor/isDescriptionEqual';
 import {
   parseDescription,
   stringifyDescription,
-} from 'src/shared/prosemirror/convertDescription';
-import { useTask } from 'src/store/entities/task';
+} from '@/shared/prosemirror/convertDescription';
+import { useTask } from '@/store/entities/task';
+import type React from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Content, Label, Row } from '../Row';
 import { Container } from './Container';
 import { Placeholder } from './Placeholder';

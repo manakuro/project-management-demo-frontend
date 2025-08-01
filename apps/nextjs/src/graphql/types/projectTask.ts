@@ -1,4 +1,4 @@
-import type { ProjectTaskFragmentFragment } from 'src/graphql/types';
+import type { ProjectTaskFragmentFragment } from '@/graphql/types';
 
 export type ProjectTaskResponse = NonNullable<ProjectTaskFragmentFragment>;
 export type {
@@ -6,4 +6,4 @@ export type {
   ProjectTaskUpdatedSubscription as ProjectTaskUpdatedSubscriptionResponse,
   ProjectTaskDeletedSubscription as ProjectTaskDeletedSubscriptionResponse,
   ProjectTaskCreatedByTaskIdSubscription as ProjectTaskCreatedByTaskIdSubscriptionResponse,
-} from 'src/graphql/types';
+} from '@/graphql/types';

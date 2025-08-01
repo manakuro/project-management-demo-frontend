@@ -1,6 +1,6 @@
-import type { TaskListSortStatusCode } from 'src/graphql/enums';
+import type { TaskListSortStatusCode } from '@/graphql/enums';
 
-export { TaskListSortStatusCode } from 'src/graphql/enums';
+export { TaskListSortStatusCode } from '@/graphql/enums';
 export type TaskListSortStatusCodeKey = keyof typeof TaskListSortStatusCode;
 
 export type TaskListSortStatusCodeValue = ValueOf<

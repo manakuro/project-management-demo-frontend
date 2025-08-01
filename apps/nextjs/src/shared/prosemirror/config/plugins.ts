@@ -5,7 +5,7 @@ import {
   listKeys,
   rules,
   suggestionPlugin,
-} from 'src/shared/prosemirror/plugins';
+} from '@/shared/prosemirror/plugins';
 
 export const plugins = () => [
   suggestionPlugin(),

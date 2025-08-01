@@ -1,6 +1,6 @@
+import { useHover } from '@/hooks/useHover';
+import { createProvider } from '@/shared/react/createProvider';
 import type React from 'react';
-import { useHover } from 'src/hooks/useHover';
-import { createProvider } from 'src/shared/react/createProvider';
 
 type ContextProps = {
   ref: React.MutableRefObject<HTMLElement | null>;
@@ -16,6 +16,6 @@ const useValue = (): ContextProps => {
   };
 };
 useValue.__PROVIDER__ =
-  'src/components/organisms/Inbox/InboxListItem/Provider.tsx';
+  '@/components/organisms/Inbox/InboxListItem/Provider.tsx';
 export const { Provider, useContext: useInboxListItemContext } =
   createProvider(useValue);

@@ -1,11 +1,11 @@
+import { AttachmentBox } from '@/components/features/molecules/AttachmentBox';
+import { Container } from '@/components/features/molecules/ThumbnailAttachment/Container';
+import { Menu } from '@/components/features/molecules/ThumbnailAttachment/Menu';
+import { MenuButton } from '@/components/features/molecules/ThumbnailAttachment/MenuButton';
+import { useThumbnailAttachmentContext } from '@/components/features/molecules/ThumbnailAttachment/Provider';
+import { Tooltip } from '@/components/features/molecules/ThumbnailAttachment/Tooltip';
+import type { FlexProps } from '@/components/ui/atoms';
 import type React from 'react';
-import { AttachmentBox } from 'src/components/features/molecules/AttachmentBox';
-import { Container } from 'src/components/features/molecules/ThumbnailAttachment/Container';
-import { Menu } from 'src/components/features/molecules/ThumbnailAttachment/Menu';
-import { MenuButton } from 'src/components/features/molecules/ThumbnailAttachment/MenuButton';
-import { useThumbnailAttachmentContext } from 'src/components/features/molecules/ThumbnailAttachment/Provider';
-import { Tooltip } from 'src/components/features/molecules/ThumbnailAttachment/Tooltip';
-import type { FlexProps } from 'src/components/ui/atoms';
 
 type Props = FlexProps & {
   taskFileId: string;

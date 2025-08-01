@@ -1,10 +1,10 @@
+import { useTaskUndeletedSubscription as useSubscription } from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
+import { useResetDeletedTask } from '@/store/entities/deletedTask';
+import { useProjectTaskResponse } from '@/store/entities/projectTask';
+import { useTeammateTaskResponse } from '@/store/entities/teammateTask';
 import isEqual from 'lodash-es/isEqual';
 import { useCallback } from 'react';
-import { useTaskUndeletedSubscription as useSubscription } from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
-import { useResetDeletedTask } from 'src/store/entities/deletedTask';
-import { useProjectTaskResponse } from 'src/store/entities/projectTask';
-import { useTeammateTaskResponse } from 'src/store/entities/teammateTask';
 import type { TaskUndeletedSubscriptionResponse as Response } from '../type';
 
 // NOTE: To prevent re-rendering via duplicated subscription response.

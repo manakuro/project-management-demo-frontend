@@ -1,5 +1,5 @@
+import { Modal, ModalOverlay } from '@/components/ui/organisms/Modal';
 import { memo } from 'react';
-import { Modal, ModalOverlay } from 'src/components/ui/organisms/Modal';
 import { Content } from './Content';
 import { useProjectDetailModal } from './useProjectDetailModal';
 

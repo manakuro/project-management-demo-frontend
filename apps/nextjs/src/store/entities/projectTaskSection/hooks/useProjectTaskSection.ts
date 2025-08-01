@@ -1,10 +1,10 @@
+import { useUpdateProjectTaskSectionMutation } from '@/graphql/hooks';
+import type { UpdateTeammateTaskSectionInput } from '@/graphql/types';
+import { omit } from '@/shared/utils/omit';
+import { useWorkspace } from '@/store/entities/workspace';
 import { useAtomValue } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import { useCallback, useMemo } from 'react';
-import { useUpdateProjectTaskSectionMutation } from 'src/graphql/hooks';
-import type { UpdateTeammateTaskSectionInput } from 'src/graphql/types';
-import { omit } from 'src/shared/utils/omit';
-import { useWorkspace } from 'src/store/entities/workspace';
 import { projectTaskSectionState } from '../atom';
 import type { ProjectTaskSection } from '../type';
 import {

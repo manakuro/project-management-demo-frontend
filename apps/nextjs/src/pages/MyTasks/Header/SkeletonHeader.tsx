@@ -1,6 +1,6 @@
+import { Flex, Skeleton, Stack } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { Flex, Skeleton, Stack } from 'src/components/ui/atoms';
 
 export const SkeletonHeader: React.FC = memo(() => {
   return (

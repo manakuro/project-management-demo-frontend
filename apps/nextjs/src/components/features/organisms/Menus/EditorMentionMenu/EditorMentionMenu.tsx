@@ -1,5 +1,5 @@
+import { Modal } from '@/components/ui/organisms/Modal';
 import { memo } from 'react';
-import { Modal } from 'src/components/ui/organisms/Modal';
 import { MenuContent } from './MenuContent';
 import { useEditorMentionMenu } from './useEditorMentionMenu';
 

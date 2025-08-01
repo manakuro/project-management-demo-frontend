@@ -1,10 +1,10 @@
-import type { TeammateTaskResponse } from 'src/graphql/types/teammateTask';
+import type { TeammateTaskResponse } from '@/graphql/types/teammateTask';
 
 export type {
   TeammateTaskResponse,
   TeammateTaskCreatedSubscriptionResponse,
   TeammateTaskDeletedSubscriptionResponse,
   TeammateTaskUpdatedSubscriptionResponse,
-} from 'src/graphql/types/teammateTask';
+} from '@/graphql/types/teammateTask';
 
 export type TeammateTask = Omit<TeammateTaskResponse, 'task'>;

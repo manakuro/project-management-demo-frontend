@@ -1,4 +1,4 @@
-import { ulidRegex } from 'src/shared/ulid';
+import { ulidRegex } from '@/shared/ulid';
 
 export const ROUTE_WORKSPACES = {
   regex: new RegExp(`^/workspaces/${ulidRegex}/?$`, 'iu'),

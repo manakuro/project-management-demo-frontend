@@ -1,4 +1,4 @@
-import { useBreakpointValue } from 'src/shared/chakra';
+import { useBreakpointValue } from '@/shared/chakra';
 
 export const useResponsive = () => {
   const isMobile = useBreakpointValue(

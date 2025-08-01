@@ -1,8 +1,8 @@
+import { Wrap } from '@/components/ui/atoms';
+import { useProjectCommand } from '@/store/entities/project';
+import { useProjectIconIds } from '@/store/entities/projectIcon';
 import type React from 'react';
 import { useCallback } from 'react';
-import { Wrap } from 'src/components/ui/atoms';
-import { useProjectCommand } from 'src/store/entities/project';
-import { useProjectIconIds } from 'src/store/entities/projectIcon';
 import { IconPickerItem } from './IconPickerItem';
 
 type Props = {

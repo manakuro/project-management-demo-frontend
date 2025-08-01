@@ -1,16 +1,16 @@
-import type React from 'react';
-import { memo } from 'react';
 import {
   TaskDetailBody,
   TaskDetailFooter,
   TaskDetailHeader,
-} from 'src/components/features/organisms/TaskDetail';
-import { Divider, Flex } from 'src/components/ui/atoms';
+} from '@/components/features/organisms/TaskDetail';
+import { Divider, Flex } from '@/components/ui/atoms';
 import {
   type UseClickOutsideOptionsHasClickedOutside,
   useClickOutside,
   useDrawerStyle,
-} from 'src/hooks';
+} from '@/hooks';
+import type React from 'react';
+import { memo } from 'react';
 
 const HEADER_HEIGHT = 71;
 const TOP = HEADER_HEIGHT;

@@ -1,13 +1,13 @@
+import { useShareProjectModal } from '@/components/features/organisms/Modals';
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
+import { Flex, Heading, Icon, Text } from '@/components/ui/atoms';
+import { useLinkStyle } from '@/hooks';
+import { formatCreatedAt } from '@/shared/date';
+import { useMe } from '@/store/entities/me';
+import { useProjectTeammate } from '@/store/entities/projectTeammate';
+import { useTeammate } from '@/store/entities/teammate';
 import type React from 'react';
 import { memo, useCallback, useMemo } from 'react';
-import { useShareProjectModal } from 'src/components/features/organisms/Modals';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
-import { Flex, Heading, Icon, Text } from 'src/components/ui/atoms';
-import { useLinkStyle } from 'src/hooks';
-import { formatCreatedAt } from 'src/shared/date';
-import { useMe } from 'src/store/entities/me';
-import { useProjectTeammate } from 'src/store/entities/projectTeammate';
-import { useTeammate } from 'src/store/entities/teammate';
 import { useTimelineStyle } from '../useTimelineStyle';
 
 type Props = {

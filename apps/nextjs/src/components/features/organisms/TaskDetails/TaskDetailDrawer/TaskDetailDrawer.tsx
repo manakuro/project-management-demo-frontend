@@ -1,8 +1,8 @@
+import { useTaskDetail } from '@/components/features/organisms/TaskDetail';
+import { Slide } from '@/components/ui/atoms';
+import type { UseClickOutsideOptionsHasClickedOutside } from '@/hooks/useClickOutside';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
-import { Slide } from 'src/components/ui/atoms';
-import type { UseClickOutsideOptionsHasClickedOutside } from 'src/hooks/useClickOutside';
 import { Content } from './Content';
 import { useTaskDetailDrawer } from './useTaskDetailDrawer';
 import { useTaskDetailDrawerRef } from './useTaskDetailDrawerRef';

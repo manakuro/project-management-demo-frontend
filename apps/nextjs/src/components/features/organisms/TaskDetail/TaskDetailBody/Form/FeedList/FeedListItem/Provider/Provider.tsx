@@ -1,12 +1,12 @@
+import { useTasksRouter } from '@/components/features/organisms/Tasks/hooks';
+import { useToast } from '@/hooks';
+import { parseDescription } from '@/shared/prosemirror/convertDescription';
+import { createProvider } from '@/shared/react/createProvider';
+import { useTaskFeed, useTaskFeedCommand } from '@/store/entities/taskFeed';
+import { useTaskFileIdsByTaskFeedId } from '@/store/entities/taskFile';
+import { useTeammate } from '@/store/entities/teammate';
 import type React from 'react';
 import { useCallback, useMemo, useState } from 'react';
-import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks';
-import { useToast } from 'src/hooks';
-import { parseDescription } from 'src/shared/prosemirror/convertDescription';
-import { createProvider } from 'src/shared/react/createProvider';
-import { useTaskFeed, useTaskFeedCommand } from 'src/store/entities/taskFeed';
-import { useTaskFileIdsByTaskFeedId } from 'src/store/entities/taskFile';
-import { useTeammate } from 'src/store/entities/teammate';
 import { Provider as ProviderContainer } from './ProviderContainer';
 
 type Props = {
@@ -72,7 +72,7 @@ const useValue = (props: Props) => {
   };
 };
 useValue.__PROVIDER__ =
-  'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider/Provider.tsx';
+  '@/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider/Provider.tsx';
 const { Provider: ProviderBase, useContext: useTaskFeedListItemContext } =
   createProvider(useValue);
 

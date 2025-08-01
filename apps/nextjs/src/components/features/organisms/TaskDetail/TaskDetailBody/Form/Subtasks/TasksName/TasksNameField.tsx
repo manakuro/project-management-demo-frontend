@@ -1,12 +1,12 @@
-import type React from 'react';
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { Box, Flex, Input, type InputProps } from 'src/components/ui/atoms';
+import { Box, Flex, Input, type InputProps } from '@/components/ui/atoms';
 import {
   type UseClickOutsideOptionsHasClickedOutside,
   useClickOutside,
   useDebounce,
   useMountedRef,
-} from 'src/hooks';
+} from '@/hooks';
+import type React from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useSubtasksNameContext } from './Provider';
 
 type Props = {

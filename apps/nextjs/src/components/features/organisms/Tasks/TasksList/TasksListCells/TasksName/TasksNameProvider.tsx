@@ -1,7 +1,7 @@
+import { useHover } from '@/hooks/useHover';
+import { createProvider } from '@/shared/react/createProvider';
 import type React from 'react';
 import { useCallback, useMemo, useState } from 'react';
-import { useHover } from 'src/hooks/useHover';
-import { createProvider } from 'src/shared/react/createProvider';
 import { type UseInputFocus, useInputFocus } from './useInputFocus';
 import { type UseMarkMenuFocus, useMarkMenuFocus } from './useMarkMenuFocus';
 
@@ -61,6 +61,6 @@ const useValue = (props: Props): ContextProps => {
   };
 };
 useValue.__PROVIDER__ =
-  'src/components/organisms/Tasks/TasksList/TasksListCells/TasksName/TasksNameProvider.tsx';
+  '@/components/organisms/Tasks/TasksList/TasksListCells/TasksName/TasksNameProvider.tsx';
 export const { Provider: TasksNameProvider, useContext: useTasksNameContext } =
   createProvider(useValue);

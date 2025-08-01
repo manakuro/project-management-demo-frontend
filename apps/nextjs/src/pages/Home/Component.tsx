@@ -1,10 +1,10 @@
+import { TaskDetailModal } from '@/components/features/organisms/TaskDetails';
+import { TasksProvider } from '@/components/features/organisms/Tasks';
+import { Flex, Stack } from '@/components/ui/atoms';
+import { Head } from '@/components/ui/atoms/Head';
+import { getHomeDetailId, isHomeDetailURL, useRouter } from '@/router';
 import type React from 'react';
 import { memo } from 'react';
-import { TaskDetailModal } from 'src/components/features/organisms/TaskDetails';
-import { TasksProvider } from 'src/components/features/organisms/Tasks';
-import { Flex, Stack } from 'src/components/ui/atoms';
-import { Head } from 'src/components/ui/atoms/Head';
-import { getHomeDetailId, isHomeDetailURL, useRouter } from 'src/router';
 import { Content } from './Content';
 import { FavoriteProjects } from './FavoriteProjects';
 import { Header } from './Header';

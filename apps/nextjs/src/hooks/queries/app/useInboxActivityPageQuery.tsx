@@ -1,8 +1,8 @@
+import { useInboxActivityPageQuery as useQuery } from '@/graphql/hooks';
+import { useMountedRef } from '@/hooks';
+import { useActivityResponse } from '@/store/app/inbox/activity';
+import { useWorkspace } from '@/store/entities/workspace';
 import { useCallback, useMemo, useState } from 'react';
-import { useInboxActivityPageQuery as useQuery } from 'src/graphql/hooks';
-import { useMountedRef } from 'src/hooks';
-import { useActivityResponse } from 'src/store/app/inbox/activity';
-import { useWorkspace } from 'src/store/entities/workspace';
 
 export const useInboxActivityPageQuery = () => {
   const { workspace } = useWorkspace();

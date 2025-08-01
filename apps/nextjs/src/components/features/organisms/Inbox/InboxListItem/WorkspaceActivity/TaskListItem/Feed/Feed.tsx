@@ -1,7 +1,7 @@
+import { Icon as AtomsIcon, Flex, Text } from '@/components/ui/atoms';
+import { useTaskFeedIdsWithoutFirstByTaskId } from '@/store/entities/taskFeed';
 import type React from 'react';
 import { useMemo } from 'react';
-import { Icon as AtomsIcon, Flex, Text } from 'src/components/ui/atoms';
-import { useTaskFeedIdsWithoutFirstByTaskId } from 'src/store/entities/taskFeed';
 
 type Props = {
   taskId: string;

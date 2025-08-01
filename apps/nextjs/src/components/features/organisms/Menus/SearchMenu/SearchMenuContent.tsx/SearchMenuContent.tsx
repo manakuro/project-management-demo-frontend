@@ -1,11 +1,11 @@
-import type React from 'react';
-import { memo } from 'react';
-import { Flex, Portal } from 'src/components/ui/atoms';
+import { Flex, Portal } from '@/components/ui/atoms';
 import {
   PopoverContent,
   type PopoverContentProps,
-} from 'src/components/ui/organisms/Popover';
-import { useClickOutside } from 'src/hooks';
+} from '@/components/ui/organisms/Popover';
+import { useClickOutside } from '@/hooks';
+import type React from 'react';
+import { memo } from 'react';
 import { useSearchMenuRef } from '../useSearchMenuRef';
 
 type Props = PopoverContentProps & {

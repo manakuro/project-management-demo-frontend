@@ -1,5 +1,5 @@
-import type { MeResponse } from 'src/graphql/types/me';
+import type { MeResponse } from '@/graphql/types/me';
 
-export type { MeResponse } from 'src/graphql/types/me';
+export type { MeResponse } from '@/graphql/types/me';
 
 export type Me = MeResponse;

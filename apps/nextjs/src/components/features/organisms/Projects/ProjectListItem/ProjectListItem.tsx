@@ -1,7 +1,5 @@
-import type React from 'react';
-import { memo } from 'react';
-import { PopoverProjectMenu } from 'src/components/features/organisms/Popovers';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
+import { PopoverProjectMenu } from '@/components/features/organisms/Popovers';
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
 import {
   AvatarGroup,
   Flex,
@@ -9,12 +7,14 @@ import {
   Icon,
   IconButton,
   Text,
-} from 'src/components/ui/atoms';
-import type { IconType } from 'src/shared/icons';
-import { useProject } from 'src/store/entities/project';
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
-import { useProjectIcon } from 'src/store/entities/projectIcon';
-import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate';
+} from '@/components/ui/atoms';
+import type { IconType } from '@/shared/icons';
+import { useProject } from '@/store/entities/project';
+import { useProjectBaseColor } from '@/store/entities/projectBaseColor';
+import { useProjectIcon } from '@/store/entities/projectIcon';
+import { useTeammateIdsByProjectId } from '@/store/entities/projectTeammate';
+import type React from 'react';
+import { memo } from 'react';
 import { Container } from './Container';
 import { FavoriteButton } from './FavoriteButton';
 

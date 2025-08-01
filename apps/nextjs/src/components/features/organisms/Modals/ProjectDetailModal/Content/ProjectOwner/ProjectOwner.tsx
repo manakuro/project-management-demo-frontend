@@ -1,16 +1,16 @@
-import type React from 'react';
-import { memo, useCallback, useMemo, useState } from 'react';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
 import {
   Box,
   Button,
   type ButtonProps,
   Text,
   type TextProps,
-} from 'src/components/ui/atoms';
-import { useHover } from 'src/hooks/useHover';
-import { useOwnerTeammateIdsByProjectId } from 'src/store/entities/projectTeammate';
-import { useTeammate } from 'src/store/entities/teammate';
+} from '@/components/ui/atoms';
+import { useHover } from '@/hooks/useHover';
+import { useOwnerTeammateIdsByProjectId } from '@/store/entities/projectTeammate';
+import { useTeammate } from '@/store/entities/teammate';
+import type React from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import { DeleteButton } from './DeleteButton';
 import { Input } from './Input';
 

@@ -1,7 +1,7 @@
+import { ModalHeader } from '@/components/ui/organisms/Modal';
+import { useProject } from '@/store/entities/project';
 import type React from 'react';
 import { memo } from 'react';
-import { ModalHeader } from 'src/components/ui/organisms/Modal';
-import { useProject } from 'src/store/entities/project';
 
 type Props = {
   projectId: string;

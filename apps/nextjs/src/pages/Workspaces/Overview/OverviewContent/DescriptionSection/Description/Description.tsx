@@ -1,13 +1,13 @@
-import isEqual from 'lodash-es/isEqual';
-import type React from 'react';
-import { memo, useCallback, useMemo } from 'react';
-import { Flex } from 'src/components/ui/atoms';
-import { Editor, EditorContent } from 'src/components/ui/organisms/Editor';
+import { Flex } from '@/components/ui/atoms';
+import { Editor, EditorContent } from '@/components/ui/organisms/Editor';
 import {
   parseDescription,
   stringifyDescription,
-} from 'src/shared/prosemirror/convertDescription';
-import { useProject, useProjectCommand } from 'src/store/entities/project';
+} from '@/shared/prosemirror/convertDescription';
+import { useProject, useProjectCommand } from '@/store/entities/project';
+import isEqual from 'lodash-es/isEqual';
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { Container } from './Container';
 import { Placeholder } from './Placeholder';
 import { Provider } from './Provider';

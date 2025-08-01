@@ -1,14 +1,14 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
 import {
   SearchMenuLeftContainer,
   SearchMenuListItem,
   SearchMenuLoading,
   SearchMenuRightContainer,
   useSearchMenu,
-} from 'src/components/features/organisms/Menus/SearchMenu';
-import { Divider, Icon, Text } from 'src/components/ui/atoms';
-import type { Tag } from 'src/store/entities/tag';
+} from '@/components/features/organisms/Menus/SearchMenu';
+import { Divider, Icon, Text } from '@/components/ui/atoms';
+import type { Tag } from '@/store/entities/tag';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import { TagItem } from './TagItem';
 import { useSearchTagsQuery } from './useSearchTagsQuery';
 

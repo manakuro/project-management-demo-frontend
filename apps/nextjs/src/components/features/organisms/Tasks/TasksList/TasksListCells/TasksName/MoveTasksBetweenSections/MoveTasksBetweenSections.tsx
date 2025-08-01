@@ -1,13 +1,13 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
 import {
   MenuSelect,
   MenuSelectButton,
-} from 'src/components/features/organisms/Menus';
-import { useTasksTask } from 'src/components/features/organisms/Tasks/hooks';
-import { Icon } from 'src/components/ui/atoms';
-import { Tooltip } from 'src/components/ui/molecules';
-import { useClickableHoverStyle } from 'src/hooks';
+} from '@/components/features/organisms/Menus';
+import { useTasksTask } from '@/components/features/organisms/Tasks/hooks';
+import { Icon } from '@/components/ui/atoms';
+import { Tooltip } from '@/components/ui/molecules';
+import { useClickableHoverStyle } from '@/hooks';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import { MenuList } from './MenuList';
 
 type Props = {

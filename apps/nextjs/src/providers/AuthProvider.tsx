@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
 import {
   onAuthStateChanged,
   onIdTokenChanged,
   signInAnonymously,
-} from 'src/shared/firebase/auth';
-import { createProvider } from 'src/shared/react/createProvider';
+} from '@/shared/firebase/auth';
+import { createProvider } from '@/shared/react/createProvider';
+import { useEffect, useState } from 'react';
 
 const useValue = () => {
   const [idToken, setIdToken] = useState('');

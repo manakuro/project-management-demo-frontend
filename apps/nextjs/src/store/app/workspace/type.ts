@@ -1,1 +1,1 @@
-export type { WorkspaceResponse } from 'src/graphql/types/app/workspace';
+export type { WorkspaceResponse } from '@/graphql/types/app/workspace';

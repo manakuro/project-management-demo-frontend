@@ -1,9 +1,9 @@
+import { forwardRef } from '@/shared/chakra';
 import {
   Collapse as ChakraCollapse,
   type CollapseProps as ChakraCollapseProps,
 } from '@chakra-ui/react';
 import type React from 'react';
-import { forwardRef } from 'src/shared/chakra';
 
 type Props = ChakraCollapseProps;
 export type CollapseProps = Props;

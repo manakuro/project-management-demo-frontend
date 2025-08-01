@@ -1,12 +1,12 @@
-import { useAtomValue } from 'jotai';
-import { useAtomCallback } from 'jotai/utils';
-import { useCallback, useMemo } from 'react';
-import { useProjectsProjectId } from 'src/store/app/projects/project';
+import { useProjectsProjectId } from '@/store/app/projects/project';
 import {
   type ProjectTaskColumn,
   useProjectTaskColumn,
   useProjectTaskColumnCommand,
-} from 'src/store/entities/projectTaskColumn';
+} from '@/store/entities/projectTaskColumn';
+import { useAtomValue } from 'jotai';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback, useMemo } from 'react';
 import { projectsTaskColumnIdsState } from '../atom';
 
 export const useProjectsTaskColumns = (tasksTaskColumnId: string) => {

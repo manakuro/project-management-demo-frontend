@@ -1,5 +1,3 @@
-import type React from 'react';
-import { useCallback } from 'react';
 import {
   Menu,
   MenuButton,
@@ -7,12 +5,14 @@ import {
   MenuList,
   MenuOptionGroup,
   type MenuProps,
-} from 'src/components/ui/organisms/Menu';
-import { chakra } from 'src/shared/chakra';
+} from '@/components/ui/organisms/Menu';
+import { chakra } from '@/shared/chakra';
 import {
   TaskListCompletedStatusCode,
   type TaskListCompletedStatusCodeValue,
-} from 'src/store/entities/taskListCompletedStatus';
+} from '@/store/entities/taskListCompletedStatus';
+import type React from 'react';
+import { useCallback } from 'react';
 
 type Props = {
   onClose: () => void;

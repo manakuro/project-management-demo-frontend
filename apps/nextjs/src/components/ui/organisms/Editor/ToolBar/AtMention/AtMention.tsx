@@ -1,6 +1,6 @@
+import { Icon } from '@/components/ui/atoms';
+import { useAtMention } from '@/shared/prosemirror/hooks';
 import { memo } from 'react';
-import { Icon } from 'src/components/ui/atoms';
-import { useAtMention } from 'src/shared/prosemirror/hooks';
 import { BaseButton } from '../BaseButton';
 
 export const AtMention = memo(function AtMention() {

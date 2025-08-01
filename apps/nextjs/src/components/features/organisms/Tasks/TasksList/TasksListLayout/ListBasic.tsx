@@ -1,7 +1,7 @@
+import { TasksListSection } from '@/components/features/organisms/Tasks';
+import { useTasksTaskSectionIds } from '@/components/features/organisms/Tasks/hooks';
 import type React from 'react';
 import { memo } from 'react';
-import { TasksListSection } from 'src/components/features/organisms/Tasks';
-import { useTasksTaskSectionIds } from 'src/components/features/organisms/Tasks/hooks';
 
 export const ListBasic: React.FC = memo(() => {
   const { taskSectionIds } = useTasksTaskSectionIds();

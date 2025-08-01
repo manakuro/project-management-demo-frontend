@@ -1,7 +1,7 @@
+import { useFavoriteProjectIdsUpdatedSubscription as useSubscription } from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
 import isEqual from 'lodash-es/isEqual';
 import { useCallback, useMemo } from 'react';
-import { useFavoriteProjectIdsUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
 import type { FavoriteProjectIdsUpdatedSubscriptionResponse as Response } from '../type';
 import { useFavoriteProjectIdsResponse } from './useFavoriteProjectIdsResponse';
 

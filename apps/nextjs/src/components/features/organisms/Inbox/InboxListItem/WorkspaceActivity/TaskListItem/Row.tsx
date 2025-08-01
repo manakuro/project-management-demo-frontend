@@ -1,8 +1,8 @@
+import { useTaskDetail } from '@/components/features/organisms/TaskDetail';
+import { Flex, type FlexProps } from '@/components/ui/atoms';
+import { useClickableHoverStyle } from '@/hooks';
 import type React from 'react';
 import { memo, useMemo } from 'react';
-import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
-import { useClickableHoverStyle } from 'src/hooks';
 
 type Props = FlexProps & {
   taskId: string;

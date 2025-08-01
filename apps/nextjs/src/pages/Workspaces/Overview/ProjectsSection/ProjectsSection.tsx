@@ -1,4 +1,3 @@
-import { memo, useState } from 'react';
 import {
   PROJECT_LIST_MENU_VIEW_AS_TILES,
   ProjectListItem,
@@ -7,10 +6,11 @@ import {
   type ProjectListStatus,
   ProjectTileItem,
   ProjectTileItemNew,
-} from 'src/components/features/organisms/Projects';
-import { Box, Flex, Grid, Link, NextLink } from 'src/components/ui/atoms';
-import { ROUTE_PROJECTS_LIST } from 'src/router';
-import { useProjectIds } from 'src/store/entities/project';
+} from '@/components/features/organisms/Projects';
+import { Box, Flex, Grid, Link, NextLink } from '@/components/ui/atoms';
+import { ROUTE_PROJECTS_LIST } from '@/router';
+import { useProjectIds } from '@/store/entities/project';
+import { memo, useState } from 'react';
 import {
   OverviewSectionHeader,
   OverviewSectionHeaderHeading,

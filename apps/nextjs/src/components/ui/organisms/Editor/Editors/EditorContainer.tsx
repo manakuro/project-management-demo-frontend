@@ -1,14 +1,14 @@
+import { ConditionalRender } from '@/components/ui/atoms';
+import { useDebounce, usePrevious } from '@/hooks';
+import {
+  type ProsemirrorTransformer,
+  createJSONTransformer,
+} from '@/shared/prosemirror/transformers';
 import type { Node as ProsemirrorNode, Schema } from 'prosemirror-model';
 import type { Plugin } from 'prosemirror-state';
 import type { EditorProps } from 'prosemirror-view';
 import type React from 'react';
 import { type PropsWithChildren, useMemo } from 'react';
-import { ConditionalRender } from 'src/components/ui/atoms';
-import { useDebounce, usePrevious } from 'src/hooks';
-import {
-  type ProsemirrorTransformer,
-  createJSONTransformer,
-} from 'src/shared/prosemirror/transformers';
 import { EditorProvider, useEditorStateContext } from './EdiorProvider';
 import { Portals } from './Portals';
 

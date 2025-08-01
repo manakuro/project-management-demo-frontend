@@ -1,17 +1,17 @@
-import type React from 'react';
-import { memo, useMemo } from 'react';
 import {
   ProjectTeammateMenuItem,
   useProjectTeammateMenu,
-} from 'src/components/features/organisms/Menus/ProjectTeammateMenu';
+} from '@/components/features/organisms/Menus/ProjectTeammateMenu';
 import {
   SearchMenuLeftContainer,
   SearchMenuListItem,
   SearchMenuLoading,
   SearchMenuRightContainer,
-} from 'src/components/features/organisms/Menus/SearchMenu';
-import { Divider, Icon, Text } from 'src/components/ui/atoms';
-import type { Teammate } from 'src/store/entities/teammate';
+} from '@/components/features/organisms/Menus/SearchMenu';
+import { Divider, Icon, Text } from '@/components/ui/atoms';
+import type { Teammate } from '@/store/entities/teammate';
+import type React from 'react';
+import { memo, useMemo } from 'react';
 
 type Props = {
   onSelect: (val: Teammate) => void;

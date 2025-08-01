@@ -1,7 +1,7 @@
+import { useWorkspacePageQuery as useQuery } from '@/graphql/hooks';
+import { useMountedRef } from '@/hooks';
+import { useWorkspaceResponse } from '@/store/app/workspace';
 import { useEffect, useState } from 'react';
-import { useWorkspacePageQuery as useQuery } from 'src/graphql/hooks';
-import { useMountedRef } from 'src/hooks';
-import { useWorkspaceResponse } from 'src/store/app/workspace';
 
 export const useWorkspacePageQuery = () => {
   const queryResult = useQuery();

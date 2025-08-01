@@ -1,11 +1,11 @@
+import { PopoverDueDatePicker } from '@/components/features/organisms/Popovers';
+import { TasksListCell } from '@/components/features/organisms/Tasks/TasksList/TasksListCell';
+import { DueDate, Flex, type FlexProps, Icon } from '@/components/ui/atoms';
+import { useClickableHoverStyle } from '@/hooks';
+import { useHover } from '@/hooks/useHover';
+import { useTask } from '@/store/entities/task';
 import type React from 'react';
 import { memo, useCallback, useMemo } from 'react';
-import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers';
-import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
-import { DueDate, Flex, type FlexProps, Icon } from 'src/components/ui/atoms';
-import { useClickableHoverStyle } from 'src/hooks';
-import { useHover } from 'src/hooks/useHover';
-import { useTask } from 'src/store/entities/task';
 
 type Props = FlexProps & {
   taskId: string;

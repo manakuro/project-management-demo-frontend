@@ -1,12 +1,12 @@
-import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
-import { getNodesFromEdges } from 'src/shared/apollo/util';
+import { getNodesFromEdges } from '@/shared/apollo/util';
 import {
   type ProjectTaskColumnResponse,
   useProjectTaskColumnResponse,
-} from 'src/store/entities/projectTaskColumn';
-import { useProjectTaskSectionResponse } from 'src/store/entities/projectTaskSection';
-import type { ProjectTaskSectionResponse } from 'src/store/entities/projectTaskSection/type';
+} from '@/store/entities/projectTaskColumn';
+import { useProjectTaskSectionResponse } from '@/store/entities/projectTaskSection';
+import type { ProjectTaskSectionResponse } from '@/store/entities/projectTaskSection/type';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { taskListStatusState } from '../taskListStatus';
 import type {
   ProjectsProjectTaskSectionResponse,

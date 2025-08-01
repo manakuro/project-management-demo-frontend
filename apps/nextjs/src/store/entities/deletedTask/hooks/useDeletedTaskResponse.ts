@@ -1,7 +1,7 @@
+import { uniqBy } from '@/shared/utils';
+import { type TaskResponse, useTasksResponse } from '@/store/entities/task';
 import { useAtomCallback } from 'jotai/utils';
 import { useCallback } from 'react';
-import { uniqBy } from 'src/shared/utils';
-import { type TaskResponse, useTasksResponse } from 'src/store/entities/task';
 import { deletedTaskState } from '../atom';
 import type { DeletedTaskResponse } from '../type';
 

@@ -1,7 +1,7 @@
+import { sortProjectTaskSections } from '@/store/app/projects/filters';
+import { tasksByProjectTaskSectionIdState } from '@/store/entities/projectTask';
+import { projectTaskSectionsByProjectIdState } from '@/store/entities/projectTaskSection';
 import { atom } from 'jotai';
-import { sortProjectTaskSections } from 'src/store/app/projects/filters';
-import { tasksByProjectTaskSectionIdState } from 'src/store/entities/projectTask';
-import { projectTaskSectionsByProjectIdState } from 'src/store/entities/projectTaskSection';
 import { isTaskListSortStatusState } from '../taskListStatus';
 
 export const projectsTaskSectionIdsState = (projectId: string) =>

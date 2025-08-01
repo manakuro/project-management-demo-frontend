@@ -1,13 +1,13 @@
-import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus';
-import { useProjectsTaskListStatus } from 'src/store/app/projects/taskListStatus';
+import { useMyTasksTaskListStatus } from '@/store/app/myTasks/taskListStatus';
+import { useProjectsTaskListStatus } from '@/store/app/projects/taskListStatus';
 import {
   TaskListCompletedStatusCode,
   type TaskListCompletedStatusCodeValue,
-} from 'src/store/entities/taskListCompletedStatus';
+} from '@/store/entities/taskListCompletedStatus';
 import {
   TaskListSortStatusCode,
   type TaskListSortStatusCodeValue,
-} from 'src/store/entities/taskListSortStatus';
+} from '@/store/entities/taskListSortStatus';
 import { useTasksContext } from '../TasksProvider';
 
 type Result = {

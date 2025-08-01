@@ -1,13 +1,13 @@
-import React, { memo, useCallback, useEffect } from 'react';
-import { Button, Divider, Flex, type FlexProps } from 'src/components/ui/atoms';
-import { DatePicker } from 'src/components/ui/organisms/DatePicker';
+import { Button, Divider, Flex, type FlexProps } from '@/components/ui/atoms';
+import { DatePicker } from '@/components/ui/organisms/DatePicker';
 import {
   PopoverBody,
   type PopoverProps,
-} from 'src/components/ui/organisms/Popover';
-import { useClickOutside } from 'src/hooks/useClickOutside';
-import { useDisclosure } from 'src/shared/chakra';
-import { dateFns } from 'src/shared/dateFns';
+} from '@/components/ui/organisms/Popover';
+import { useClickOutside } from '@/hooks/useClickOutside';
+import { useDisclosure } from '@/shared/chakra';
+import { dateFns } from '@/shared/dateFns';
+import React, { memo, useCallback, useEffect } from 'react';
 import { DueTime } from './DueTime';
 
 type Props = {

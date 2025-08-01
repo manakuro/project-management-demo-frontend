@@ -1,9 +1,9 @@
+import { forwardRef } from '@/shared/chakra';
 import {
   MenuItemOption as ChakraMenuItemOption,
   type MenuItemOptionProps as ChakraMenuItemOptionProps,
 } from '@chakra-ui/react';
 import type React from 'react';
-import { forwardRef } from 'src/shared/chakra';
 
 type Props = ChakraMenuItemOptionProps & {
   ref?: React.ForwardedRef<any>;

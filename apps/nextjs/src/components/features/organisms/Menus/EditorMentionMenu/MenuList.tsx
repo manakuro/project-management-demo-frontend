@@ -1,7 +1,7 @@
+import { SearchMenuLoading } from '@/components/features/organisms/Menus/SearchMenu';
+import { useDebounce } from '@/hooks';
 import type React from 'react';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { SearchMenuLoading } from 'src/components/features/organisms/Menus/SearchMenu';
-import { useDebounce } from 'src/hooks';
 import { MentionItem } from './MentionItem';
 import { Empty } from './MentionItem/Empty';
 import {

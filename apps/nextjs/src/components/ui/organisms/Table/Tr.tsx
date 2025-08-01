@@ -1,9 +1,9 @@
+import { forwardRef } from '@/shared/chakra';
 import {
   Tr as ChakraTr,
   type TableRowProps as ChakraTrProps,
 } from '@chakra-ui/react';
 import type React from 'react';
-import { forwardRef } from 'src/shared/chakra';
 
 type Props = ChakraTrProps;
 export type TrProps = Props;

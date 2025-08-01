@@ -1,6 +1,6 @@
+import { createProvider } from '@/shared/react/createProvider';
 import type React from 'react';
 import { type SetStateAction, useEffect, useState } from 'react';
-import { createProvider } from 'src/shared/react/createProvider';
 
 type ContextProps = {
   loadingQuery: boolean;
@@ -27,6 +27,6 @@ const useValue = (props: Props): ContextProps => {
     setLoadingTabContent,
   } as const;
 };
-useValue.__PROVIDER__ = 'src/pages/Workspaces/Provider.tsx';
+useValue.__PROVIDER__ = '@/pages/Workspaces/Provider.tsx';
 export const { Provider, useContext: useWorkspacesPageContext } =
   createProvider(useValue);

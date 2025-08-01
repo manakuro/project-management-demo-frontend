@@ -1,10 +1,10 @@
+import { useTasksRouter } from '@/components/features/organisms/Tasks/hooks';
+import { Flex, Icon, Text } from '@/components/ui/atoms';
+import { Tooltip } from '@/components/ui/molecules';
+import { useClickableHoverStyle } from '@/hooks';
+import { useTask } from '@/store/entities/task';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks';
-import { Flex, Icon, Text } from 'src/components/ui/atoms';
-import { Tooltip } from 'src/components/ui/molecules';
-import { useClickableHoverStyle } from 'src/hooks';
-import { useTask } from 'src/store/entities/task';
 
 type Props = {
   taskId: string;

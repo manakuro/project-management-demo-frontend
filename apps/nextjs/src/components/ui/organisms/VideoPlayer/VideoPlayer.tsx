@@ -1,21 +1,21 @@
-import type React from 'react';
-import { useCallback, useRef, useState } from 'react';
-import ReactPlayer from 'react-player';
 import {
   AspectRatio,
   Box,
   Flex,
   Icon,
   IconButton,
-} from 'src/components/ui/atoms';
+} from '@/components/ui/atoms';
 import {
   Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalOverlay,
-} from 'src/components/ui/organisms/Modal';
-import { DurationBar } from 'src/components/ui/organisms/VideoPlayer/DurationBar';
+} from '@/components/ui/organisms/Modal';
+import { DurationBar } from '@/components/ui/organisms/VideoPlayer/DurationBar';
+import type React from 'react';
+import { useCallback, useRef, useState } from 'react';
+import ReactPlayer from 'react-player';
 import { Duration } from './Duration';
 import { useVideoPlayer } from './useVideoPlayer';
 

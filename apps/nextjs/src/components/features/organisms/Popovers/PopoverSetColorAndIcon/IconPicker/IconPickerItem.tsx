@@ -1,16 +1,16 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
 import {
   Icon as AtomsIcon,
   type BoxProps,
   Center,
   WrapItem,
-} from 'src/components/ui/atoms';
-import { useLinkHoverStyle } from 'src/hooks';
-import type { IconType } from 'src/shared/icons';
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
-import { useProjectIcon } from 'src/store/entities/projectIcon';
-import { useProjectLightColor } from 'src/store/entities/projectLightColor';
+} from '@/components/ui/atoms';
+import { useLinkHoverStyle } from '@/hooks';
+import type { IconType } from '@/shared/icons';
+import { useProjectBaseColor } from '@/store/entities/projectBaseColor';
+import { useProjectIcon } from '@/store/entities/projectIcon';
+import { useProjectLightColor } from '@/store/entities/projectLightColor';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 
 type Props = {
   projectIconId: string;

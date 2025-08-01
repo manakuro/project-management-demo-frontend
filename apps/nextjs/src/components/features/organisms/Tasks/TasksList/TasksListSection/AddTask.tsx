@@ -1,9 +1,9 @@
+import { useTasksListContext } from '@/components/features/organisms/Tasks/TasksList/Provider';
+import { useTasksTask } from '@/components/features/organisms/Tasks/hooks';
+import { Flex } from '@/components/ui/atoms';
+import { useClickableHoverStyle } from '@/hooks';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider';
-import { useTasksTask } from 'src/components/features/organisms/Tasks/hooks';
-import { Flex } from 'src/components/ui/atoms';
-import { useClickableHoverStyle } from 'src/hooks';
 
 type Props = {
   taskSectionId: string;

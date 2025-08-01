@@ -1,7 +1,7 @@
+import { useTasksTask } from '@/components/features/organisms/Tasks/hooks';
+import { Button, type ButtonProps, Icon } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { useTasksTask } from 'src/components/features/organisms/Tasks/hooks';
-import { Button, type ButtonProps, Icon } from 'src/components/ui/atoms';
 
 type Props = {
   taskSectionId: string;

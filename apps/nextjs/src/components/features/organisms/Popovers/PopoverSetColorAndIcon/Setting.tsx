@@ -1,5 +1,5 @@
+import { Checkbox, Flex, Text } from '@/components/ui/atoms';
 import type React from 'react';
-import { Checkbox, Flex, Text } from 'src/components/ui/atoms';
 
 type Props = {
   isSetForEveryone: boolean;

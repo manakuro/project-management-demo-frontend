@@ -1,8 +1,8 @@
+import { useMentionLazyQuery as useQuery } from '@/graphql/hooks';
+import type { Mention } from '@/store/entities/mention';
+import { useWorkspace } from '@/store/entities/workspace';
 import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { useMentionLazyQuery as useQuery } from 'src/graphql/hooks';
-import type { Mention } from 'src/store/entities/mention';
-import { useWorkspace } from 'src/store/entities/workspace';
 
 const loadingAtom = atom<boolean>(false);
 

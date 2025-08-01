@@ -1,16 +1,16 @@
-import { DragDropContext, Droppable } from '@hello-pangea/dnd';
-import type React from 'react';
-import { memo, useEffect, useMemo } from 'react';
-import { Divider } from 'src/components/features/organisms/Navigation/Divider';
-import { useTasksTaskColumnCustomizable } from 'src/components/features/organisms/Tasks/hooks';
-import { Box, Flex, Heading, Icon, IconButton } from 'src/components/ui/atoms';
+import { Divider } from '@/components/features/organisms/Navigation/Divider';
+import { useTasksTaskColumnCustomizable } from '@/components/features/organisms/Tasks/hooks';
+import { Box, Flex, Heading, Icon, IconButton } from '@/components/ui/atoms';
 import {
   DrawerBody,
   DrawerContent,
   DrawerHeader,
-} from 'src/components/ui/organisms/Drawer';
-import { useDnd } from 'src/hooks/dnd/useDnd';
-import { isMyTasksBoardURL, useRouter } from 'src/router';
+} from '@/components/ui/organisms/Drawer';
+import { useDnd } from '@/hooks/dnd/useDnd';
+import { isMyTasksBoardURL, useRouter } from '@/router';
+import { DragDropContext, Droppable } from '@hello-pangea/dnd';
+import type React from 'react';
+import { memo, useEffect, useMemo } from 'react';
 import { useCustomizeMenu } from '../useCustomizeMenu';
 import { ListItem } from './ListItem';
 

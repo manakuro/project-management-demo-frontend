@@ -1,5 +1,5 @@
+import { useTaskDetail } from '@/components/features/organisms/TaskDetail';
 import { memo } from 'react';
-import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
 import { Content } from './Content';
 
 export const TaskDetailSide = memo(function TaskDetailSide() {

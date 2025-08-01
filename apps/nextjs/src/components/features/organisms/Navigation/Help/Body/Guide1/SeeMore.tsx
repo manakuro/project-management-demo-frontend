@@ -1,6 +1,6 @@
+import { Section } from '@/components/features/organisms/Navigation/Help/Body/GuideListItem/ListItemDetail';
+import { AspectRatio, Box, Link, Stack, Text } from '@/components/ui/atoms';
 import type React from 'react';
-import { Section } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem/ListItemDetail';
-import { AspectRatio, Box, Link, Stack, Text } from 'src/components/ui/atoms';
 import { guide1Item } from './item';
 
 export const SeeMore: React.FC = () => {

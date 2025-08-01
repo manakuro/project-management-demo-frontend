@@ -1,17 +1,17 @@
-import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
 import {
   useCreateTaskCollaboratorMutation,
   useDeleteTaskCollaboratorMutation,
-} from 'src/graphql/hooks';
-import type { TaskCollaboratorResponse } from 'src/graphql/types/taskCollaborator';
-import { uuid } from 'src/shared/uuid';
+} from '@/graphql/hooks';
+import type { TaskCollaboratorResponse } from '@/graphql/types/taskCollaborator';
+import { uuid } from '@/shared/uuid';
 import {
   type Teammate,
   useResetTeammate,
   useTeammateResponse,
-} from 'src/store/entities/teammate';
-import { useWorkspace } from 'src/store/entities/workspace';
+} from '@/store/entities/teammate';
+import { useWorkspace } from '@/store/entities/workspace';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { initialState, taskCollaboratorByTaskIdAndTeammateId } from '../atom';
 import { useResetTaskCollaborator } from './useResetTaskCollaborator';
 import { TASK_COLLABORATOR_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskCollaboratorCreatedSubscription';

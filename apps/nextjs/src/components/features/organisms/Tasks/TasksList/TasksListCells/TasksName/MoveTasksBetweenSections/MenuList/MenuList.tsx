@@ -1,12 +1,12 @@
-import type React from 'react';
-import { memo } from 'react';
-import { MenuSelectList } from 'src/components/features/organisms/Menus';
+import { MenuSelectList } from '@/components/features/organisms/Menus';
 import {
   type TaskSection,
   useTasksTaskSectionByTaskId,
   useTasksTaskSections,
-} from 'src/components/features/organisms/Tasks/hooks';
-import { MenuItemOption } from 'src/components/ui/organisms/Menu';
+} from '@/components/features/organisms/Tasks/hooks';
+import { MenuItemOption } from '@/components/ui/organisms/Menu';
+import type React from 'react';
+import { memo } from 'react';
 
 type Props = {
   taskId: string;

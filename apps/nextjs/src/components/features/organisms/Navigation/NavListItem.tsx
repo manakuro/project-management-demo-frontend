@@ -1,5 +1,3 @@
-import type React from 'react';
-import { memo, useMemo } from 'react';
 import {
   Icon,
   Link,
@@ -8,9 +6,11 @@ import {
   type ListItemProps,
   NextLink,
   Text,
-} from 'src/components/ui/atoms';
-import { useLinkHoverStyle } from 'src/hooks';
-import type { StaticRoutes } from 'src/router';
+} from '@/components/ui/atoms';
+import { useLinkHoverStyle } from '@/hooks';
+import type { StaticRoutes } from '@/router';
+import type React from 'react';
+import { memo, useMemo } from 'react';
 import { PADDING_X } from './Navigation';
 import type { NavListItem as TNavListItem } from './type';
 

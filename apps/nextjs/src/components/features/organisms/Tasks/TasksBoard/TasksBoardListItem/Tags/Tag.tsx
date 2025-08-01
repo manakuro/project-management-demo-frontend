@@ -1,9 +1,9 @@
+import { TagChip } from '@/components/features/molecules/Chips';
+import type { FlexProps } from '@/components/ui/atoms';
+import { Tooltip } from '@/components/ui/molecules/Tooltip';
+import { useTaskTag } from '@/store/entities/taskTag';
 import type React from 'react';
 import { memo } from 'react';
-import { TagChip } from 'src/components/features/molecules/Chips';
-import type { FlexProps } from 'src/components/ui/atoms';
-import { Tooltip } from 'src/components/ui/molecules/Tooltip';
-import { useTaskTag } from 'src/store/entities/taskTag';
 
 type Props = FlexProps & {
   taskTagId: string;

@@ -1,14 +1,14 @@
-import type React from 'react';
-import { memo, useMemo } from 'react';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
-import { forwardRef } from 'src/shared/chakra';
-import { useProject } from 'src/store/entities/project';
+import { Flex, type FlexProps } from '@/components/ui/atoms';
+import { forwardRef } from '@/shared/chakra';
+import { useProject } from '@/store/entities/project';
 import {
   useProjectBaseColor,
   useProjectBaseColorText,
-} from 'src/store/entities/projectBaseColor';
-import { useTask } from 'src/store/entities/task';
-import { transitions } from 'src/styles';
+} from '@/store/entities/projectBaseColor';
+import { useTask } from '@/store/entities/task';
+import { transitions } from '@/styles';
+import type React from 'react';
+import { memo, useMemo } from 'react';
 
 type Props = {
   taskId: string;

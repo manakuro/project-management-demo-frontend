@@ -1,13 +1,13 @@
-import type React from 'react';
-import { memo } from 'react';
 import {
   Image as AtomsImage,
   Flex,
   type FlexProps,
   Link,
   Text,
-} from 'src/components/ui/atoms';
-import { useTaskFile } from 'src/store/entities/taskFile';
+} from '@/components/ui/atoms';
+import { useTaskFile } from '@/store/entities/taskFile';
+import type React from 'react';
+import { memo } from 'react';
 
 type Props = FlexProps & {
   taskFileId: string;

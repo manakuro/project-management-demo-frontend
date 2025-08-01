@@ -1,5 +1,5 @@
+import { Stack, type StackProps } from '@/components/ui/atoms';
 import type React from 'react';
-import { Stack, type StackProps } from 'src/components/ui/atoms';
 
 type Props = StackProps;
 

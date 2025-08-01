@@ -1,7 +1,7 @@
+import { useTasksListContext } from '@/components/features/organisms/Tasks';
+import { useTasksTaskSectionCommand } from '@/components/features/organisms/Tasks/hooks';
+import { Button, Flex, Icon } from '@/components/ui/atoms';
 import { memo, useCallback } from 'react';
-import { useTasksListContext } from 'src/components/features/organisms/Tasks';
-import { useTasksTaskSectionCommand } from 'src/components/features/organisms/Tasks/hooks';
-import { Button, Flex, Icon } from 'src/components/ui/atoms';
 
 export const AddTaskSection = memo(function AddTaskSection() {
   const { addTaskSection } = useTasksTaskSectionCommand();

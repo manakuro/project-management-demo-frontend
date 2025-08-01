@@ -1,11 +1,8 @@
+import { useFileViewerModal } from '@/components/features/organisms/Modals';
+import { FileTypeCode } from '@/graphql/enums';
+import { useTaskFile, useTaskFileIdsByTaskId } from '@/store/entities/taskFile';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { useFileViewerModal } from 'src/components/features/organisms/Modals';
-import { FileTypeCode } from 'src/graphql/enums';
-import {
-  useTaskFile,
-  useTaskFileIdsByTaskId,
-} from 'src/store/entities/taskFile';
 import { useTaskFeedListItemContext } from '../../Provider';
 import { File } from './File';
 import { Image } from './Image';

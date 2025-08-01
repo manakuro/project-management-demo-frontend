@@ -1,7 +1,7 @@
+import { useMe } from '@/store/entities/me';
+import { useTeammatesTaskSectionCommand } from '@/store/entities/teammatesTaskSection';
 import { useAtomCallback } from 'jotai/utils';
 import { useCallback } from 'react';
-import { useMe } from 'src/store/entities/me';
-import { useTeammatesTaskSectionCommand } from 'src/store/entities/teammatesTaskSection';
 
 export const useMyTasksTaskSectionCommand = () => {
   const { me } = useMe();

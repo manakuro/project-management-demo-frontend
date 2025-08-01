@@ -1,9 +1,9 @@
+import { PopoverProfile } from '@/components/features/organisms/Popovers';
+import { useReactNodeView } from '@/components/ui/organisms/Editor/Editors/ReactNodeView';
+import type { MentionAttrs } from '@/shared/prosemirror/schema';
+import { useTeammate } from '@/store/entities/teammate';
 import type React from 'react';
 import { memo } from 'react';
-import { PopoverProfile } from 'src/components/features/organisms/Popovers';
-import { useReactNodeView } from 'src/components/ui/organisms/Editor/Editors/ReactNodeView';
-import type { MentionAttrs } from 'src/shared/prosemirror/schema';
-import { useTeammate } from 'src/store/entities/teammate';
 import { MentionText } from './MentionText';
 
 export const Teammate: React.FC = memo(() => {

@@ -1,12 +1,12 @@
-import type React from 'react';
 import {
   InboxHeader,
   InboxHeaderRight,
   InboxLeft,
   InboxListHeader,
   InboxRight,
-} from 'src/components/features/organisms/Inbox';
-import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms';
+} from '@/components/features/organisms/Inbox';
+import { Flex, type FlexProps, Skeleton, Stack } from '@/components/ui/atoms';
+import type React from 'react';
 
 type Props = FlexProps;
 

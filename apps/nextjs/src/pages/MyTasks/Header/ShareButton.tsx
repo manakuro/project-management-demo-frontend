@@ -1,9 +1,9 @@
+import { useShareWorkspaceModal } from '@/components/features/organisms/Modals/ShareWorkspaceModal';
+import { Button, Flex, Icon } from '@/components/ui/atoms';
+import { Tooltip } from '@/components/ui/molecules';
+import { useTooltip } from '@/components/ui/molecules/Tooltip/useTooltip';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { useShareWorkspaceModal } from 'src/components/features/organisms/Modals/ShareWorkspaceModal';
-import { Button, Flex, Icon } from 'src/components/ui/atoms';
-import { Tooltip } from 'src/components/ui/molecules';
-import { useTooltip } from 'src/components/ui/molecules/Tooltip/useTooltip';
 
 export const ShareButton: React.FC = memo(() => {
   const { setIsOpen } = useShareWorkspaceModal();

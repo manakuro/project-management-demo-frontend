@@ -1,5 +1,4 @@
-import { memo } from 'react';
-import { ComingSoonTooltip } from 'src/components/features/molecules/Tooltips';
+import { ComingSoonTooltip } from '@/components/features/molecules/Tooltips';
 import {
   Button,
   Divider,
@@ -9,9 +8,10 @@ import {
   Link,
   Stack,
   Text,
-} from 'src/components/ui/atoms';
-import { formatTaskFileCreatedAt } from 'src/shared/date';
-import { useTaskFile } from 'src/store/entities/taskFile';
+} from '@/components/ui/atoms';
+import { formatTaskFileCreatedAt } from '@/shared/date';
+import { useTaskFile } from '@/store/entities/taskFile';
+import { memo } from 'react';
 import { useFileViewerModal } from './useFileViewerModal';
 
 export const Header = memo(function Header() {

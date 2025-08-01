@@ -1,8 +1,7 @@
-import { memo } from 'react';
 import {
   PADDING_X,
   useNavigation,
-} from 'src/components/features/organisms/Navigation';
+} from '@/components/features/organisms/Navigation';
 import {
   Flex,
   Icon,
@@ -10,8 +9,9 @@ import {
   Link,
   Logo,
   NextLink,
-} from 'src/components/ui/atoms';
-import { ROUTE_HOME } from 'src/router';
+} from '@/components/ui/atoms';
+import { ROUTE_HOME } from '@/router';
+import { memo } from 'react';
 
 export const Header = memo(function Header() {
   const { isExpanded, toggleMenu } = useNavigation();

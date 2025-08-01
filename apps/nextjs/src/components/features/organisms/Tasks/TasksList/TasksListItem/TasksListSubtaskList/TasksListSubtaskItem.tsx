@@ -1,9 +1,9 @@
+import { TasksListCell } from '@/components/features/organisms/Tasks/TasksList/TasksListCell';
+import { TasksListRow } from '@/components/features/organisms/Tasks/TasksList/TasksListRow';
+import { useTasksTaskColumnIds } from '@/components/features/organisms/Tasks/hooks';
+import type { FlexProps } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
-import { TasksListRow } from 'src/components/features/organisms/Tasks/TasksList/TasksListRow';
-import { useTasksTaskColumnIds } from 'src/components/features/organisms/Tasks/hooks';
-import type { FlexProps } from 'src/components/ui/atoms';
 import { Cell } from '../Cell';
 import { useTasksListItemRowContext } from '../Provider';
 

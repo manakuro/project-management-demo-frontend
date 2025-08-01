@@ -1,7 +1,7 @@
+import { Portal } from '@/components/ui/atoms';
+import { MenuList as AtomsMenuList } from '@/components/ui/organisms/Menu';
+import { useClickOutside } from '@/hooks';
 import type React from 'react';
-import { Portal } from 'src/components/ui/atoms';
-import { MenuList as AtomsMenuList } from 'src/components/ui/organisms/Menu';
-import { useClickOutside } from 'src/hooks';
 import { RemoveFromFavorites } from './RemoveFromFavorites';
 
 type Props = {

@@ -1,5 +1,5 @@
+import { LayoutDefault } from '@/components/ui/organisms/Layout';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
-import { LayoutDefault } from 'src/components/ui/organisms/Layout';
 import { Container as Page } from './Container';
 
 export default {

@@ -1,9 +1,9 @@
+import { useTaskAssignedSubscription as useSubscription } from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
+import type { TaskAssignedSubscriptionResponse } from '@/store/entities/task';
+import { useTeammateTaskResponse } from '@/store/entities/teammateTask';
 import isEqual from 'lodash-es/isEqual';
 import { useCallback } from 'react';
-import { useTaskAssignedSubscription as useSubscription } from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
-import type { TaskAssignedSubscriptionResponse } from 'src/store/entities/task';
-import { useTeammateTaskResponse } from 'src/store/entities/teammateTask';
 
 // NOTE: To prevent re-rendering via duplicated subscription response.
 let previousData: any;

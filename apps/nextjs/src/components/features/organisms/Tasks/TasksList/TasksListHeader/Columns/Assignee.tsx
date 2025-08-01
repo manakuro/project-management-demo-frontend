@@ -1,8 +1,8 @@
+import { useTasksTaskListStatus } from '@/components/features/organisms/Tasks/hooks';
+import { Icon } from '@/components/ui/atoms';
+import { useTaskListSortStatus } from '@/store/entities/taskListSortStatus';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { useTasksTaskListStatus } from 'src/components/features/organisms/Tasks/hooks';
-import { Icon } from 'src/components/ui/atoms';
-import { useTaskListSortStatus } from 'src/store/entities/taskListSortStatus';
 import { Container } from './Container';
 
 type Props = {

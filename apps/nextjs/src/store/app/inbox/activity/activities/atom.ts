@@ -1,7 +1,7 @@
+import { dateFns } from '@/shared/dateFns';
+import { ActivityTypeCode } from '@/store/entities/activityType';
+import { createState } from '@/store/util';
 import { atom } from 'jotai';
-import { dateFns } from 'src/shared/dateFns';
-import { ActivityTypeCode } from 'src/store/entities/activityType';
-import { createState } from 'src/store/util';
 import type { Activity } from './type';
 
 export const initialState = (): Activity => ({

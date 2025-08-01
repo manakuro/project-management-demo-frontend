@@ -1,9 +1,9 @@
+import { config } from '@/config';
 import {
   type FirebaseApp,
   type FirebaseOptions,
   initializeApp,
 } from 'firebase/app';
-import { config } from 'src/config';
 
 const firebaseConfig: FirebaseOptions = {
   apiKey: config.FIREBASE_API_KEY,

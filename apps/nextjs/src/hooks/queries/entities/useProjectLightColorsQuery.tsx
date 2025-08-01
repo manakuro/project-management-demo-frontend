@@ -1,10 +1,10 @@
-import { useProjectLightColorsQuery as useQuery } from 'src/graphql/hooks';
-import type { ProjectLightColorsQuery } from 'src/graphql/types/projectLightColors';
-import { getNodesFromEdges } from 'src/shared/apollo/util';
+import { useProjectLightColorsQuery as useQuery } from '@/graphql/hooks';
+import type { ProjectLightColorsQuery } from '@/graphql/types/projectLightColors';
+import { getNodesFromEdges } from '@/shared/apollo/util';
 import {
   type ProjectLightColorResponse,
   useProjectLightColorsResponse,
-} from 'src/store/entities/projectLightColor';
+} from '@/store/entities/projectLightColor';
 
 export const useProjectLightColorsQuery = () => {
   const { setProjectLightColors } = useProjectLightColorsResponse();

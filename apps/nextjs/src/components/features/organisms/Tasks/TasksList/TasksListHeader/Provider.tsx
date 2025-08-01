@@ -1,9 +1,9 @@
+import { useTasksListContentVerticalScroll } from '@/components/features/organisms/Tasks';
+import { useTasksTaskListStatus } from '@/components/features/organisms/Tasks/hooks';
+import type { ChakraProps } from '@/shared/chakra';
+import { createProvider } from '@/shared/react/createProvider';
+import { useTaskListSortStatus } from '@/store/entities/taskListSortStatus';
 import { useMemo } from 'react';
-import { useTasksListContentVerticalScroll } from 'src/components/features/organisms/Tasks';
-import { useTasksTaskListStatus } from 'src/components/features/organisms/Tasks/hooks';
-import type { ChakraProps } from 'src/shared/chakra';
-import { createProvider } from 'src/shared/react/createProvider';
-import { useTaskListSortStatus } from 'src/store/entities/taskListSortStatus';
 
 type ContextProps = {
   sortedStyle: ChakraProps;

@@ -1,6 +1,6 @@
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
 import type React from 'react';
 import { memo } from 'react';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
 
 type Props = {
   teammateId: string;

@@ -1,5 +1,5 @@
+import { createProvider } from '@/shared/react/createProvider';
 import { useCallback, useState } from 'react';
-import { createProvider } from 'src/shared/react/createProvider';
 
 type ContextProps = {
   isSubtaskExpanded: boolean;
@@ -19,6 +19,6 @@ const useValue = (): ContextProps => {
   } as const;
 };
 useValue.__PROVIDER__ =
-  'src/components/organisms/Tasks/TasksList/TasksListItem/Provider/SubtaskListProvider.tsx';
+  '@/components/organisms/Tasks/TasksList/TasksListItem/Provider/SubtaskListProvider.tsx';
 export const { Provider, useContext: useSubtaskListContext } =
   createProvider(useValue);

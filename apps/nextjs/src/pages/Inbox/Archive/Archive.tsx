@@ -1,5 +1,3 @@
-import type React from 'react';
-import { memo, useMemo } from 'react';
 import {
   Inbox,
   InboxHeader,
@@ -8,13 +6,15 @@ import {
   InboxListContent,
   InboxRight,
   InboxSkeleton,
-} from 'src/components/features/organisms/Inbox';
-import { useInboxTaskDetail } from 'src/components/features/organisms/Inbox';
-import { TaskDetailSide } from 'src/components/features/organisms/TaskDetails';
-import { TasksProvider } from 'src/components/features/organisms/Tasks';
-import { Flex } from 'src/components/ui/atoms';
-import { useInboxArchivePageQuery } from 'src/hooks/queries/app';
-import { getInboxDetailId, isInboxDetailURL } from 'src/router';
+} from '@/components/features/organisms/Inbox';
+import { useInboxTaskDetail } from '@/components/features/organisms/Inbox';
+import { TaskDetailSide } from '@/components/features/organisms/TaskDetails';
+import { TasksProvider } from '@/components/features/organisms/Tasks';
+import { Flex } from '@/components/ui/atoms';
+import { useInboxArchivePageQuery } from '@/hooks/queries/app';
+import { getInboxDetailId, isInboxDetailURL } from '@/router';
+import type React from 'react';
+import { memo, useMemo } from 'react';
 import { useInboxPageContext } from '../Provider';
 
 export const Archive: React.FC = memo(() => {

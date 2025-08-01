@@ -1,13 +1,13 @@
-import { useRouter } from 'next/router';
-import { memo, useMemo } from 'react';
 import {
   ROUTE_MY_TASKS,
   ROUTE_MY_TASKS_BOARD,
   ROUTE_MY_TASKS_CALENDAR,
   ROUTE_MY_TASKS_FILES,
   ROUTE_MY_TASKS_LIST,
-} from 'src/router';
-import { useTeammateTaskTabStatus } from 'src/store/entities/teammateTaskTabStatus';
+} from '@/router';
+import { useTeammateTaskTabStatus } from '@/store/entities/teammateTaskTabStatus';
+import { useRouter } from 'next/router';
+import { memo, useMemo } from 'react';
 import { NavListItem } from '../../NavListItem';
 import type { NavListItem as TNavListItem } from '../../type';
 

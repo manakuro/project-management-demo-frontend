@@ -1,10 +1,10 @@
+import { useWorkspaceUpdatedSubscription as useSubscription } from '@/graphql/hooks';
+import { isDescriptionEqual } from '@/shared/editor/isDescriptionEqual';
+import { uuid } from '@/shared/uuid';
 import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
 import { useCallback } from 'react';
-import { useWorkspaceUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
-import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual';
-import { uuid } from 'src/shared/uuid';
 import { workspaceState } from '../atom';
 import type { WorkspaceUpdatedSubscriptionResponse as Response } from '../type';
 import { useHasDescriptionUpdated } from './useHasDescriptionUpdated';

@@ -1,10 +1,10 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
 import {
   IconButton,
   type IconButtonProps,
   type TextProps,
-} from 'src/components/ui/atoms';
+} from '@/components/ui/atoms';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import { Icon } from './Icon';
 
 type Props = {

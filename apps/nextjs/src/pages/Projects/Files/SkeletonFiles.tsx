@@ -1,6 +1,6 @@
+import { Flex, type FlexProps, Skeleton, Stack } from '@/components/ui/atoms';
+import { useBreakpointValue } from '@/shared/chakra';
 import { memo } from 'react';
-import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms';
-import { useBreakpointValue } from 'src/shared/chakra';
 
 type Props = FlexProps;
 

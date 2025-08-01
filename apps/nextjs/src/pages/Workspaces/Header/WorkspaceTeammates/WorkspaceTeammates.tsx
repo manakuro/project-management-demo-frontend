@@ -1,8 +1,8 @@
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
+import { AvatarGroup, Flex } from '@/components/ui/atoms';
+import { useWorkspace } from '@/store/entities/workspace';
+import { useTeammateIdsByWorkspaceId } from '@/store/entities/workspaceTeammate';
 import { memo } from 'react';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
-import { AvatarGroup, Flex } from 'src/components/ui/atoms';
-import { useWorkspace } from 'src/store/entities/workspace';
-import { useTeammateIdsByWorkspaceId } from 'src/store/entities/workspaceTeammate';
 
 export const WorkspaceTeammates = memo(function WorkspaceTeammates() {
   const { workspace } = useWorkspace();

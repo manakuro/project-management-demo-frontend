@@ -1,8 +1,8 @@
+import { useFavoriteWorkspaceIdsQuery as useQuery } from '@/graphql/hooks';
+import { useFavoriteWorkspaceIdsResponse } from '@/store/entities/favoriteWorkspaceIds';
+import { useMe } from '@/store/entities/me';
+import { useWorkspace } from '@/store/entities/workspace';
 import { useMemo } from 'react';
-import { useFavoriteWorkspaceIdsQuery as useQuery } from 'src/graphql/hooks';
-import { useFavoriteWorkspaceIdsResponse } from 'src/store/entities/favoriteWorkspaceIds';
-import { useMe } from 'src/store/entities/me';
-import { useWorkspace } from 'src/store/entities/workspace';
 
 export const useFavoriteWorkspaceIdsQuery = () => {
   const { me } = useMe();

@@ -1,20 +1,20 @@
-import type React from 'react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useTasksCalendarContext } from 'src/components/features/organisms/Tasks';
+import { useTasksCalendarContext } from '@/components/features/organisms/Tasks';
 import {
   Flex,
   type FlexProps,
   Icon,
   Portal,
   Text,
-} from 'src/components/ui/atoms';
+} from '@/components/ui/atoms';
 import {
   PopoverContent,
   PopoverHeader,
   type PopoverProps,
-} from 'src/components/ui/organisms/Popover';
-import { useClickOutside, useClickableHoverStyle } from 'src/hooks';
-import { dateFns } from 'src/shared/dateFns';
+} from '@/components/ui/organisms/Popover';
+import { useClickOutside, useClickableHoverStyle } from '@/hooks';
+import { dateFns } from '@/shared/dateFns';
+import type React from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 type Props = {
   onClose: () => void;

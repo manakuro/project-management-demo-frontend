@@ -1,11 +1,11 @@
-import { useDisclosure } from '@chakra-ui/react';
-import type React from 'react';
-import { useCallback } from 'react';
 import {
   type Item,
   PADDING_X,
-} from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem';
-import { Box, Button, Flex, MoreLink, Text } from 'src/components/ui/atoms';
+} from '@/components/features/organisms/Navigation/Help/Body/GuideListItem';
+import { Box, Button, Flex, MoreLink, Text } from '@/components/ui/atoms';
+import { useDisclosure } from '@chakra-ui/react';
+import type React from 'react';
+import { useCallback } from 'react';
 
 type Props = {
   item: Item;

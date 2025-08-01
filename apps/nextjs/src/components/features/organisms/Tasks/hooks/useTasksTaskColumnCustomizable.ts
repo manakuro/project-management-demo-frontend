@@ -1,5 +1,5 @@
-import { useMyTasksTaskColumnsCustomizable } from 'src/store/app/myTasks/taskColumns';
-import { useProjectsTaskColumnsCustomizable } from 'src/store/app/projects/taskColumns';
+import { useMyTasksTaskColumnsCustomizable } from '@/store/app/myTasks/taskColumns';
+import { useProjectsTaskColumnsCustomizable } from '@/store/app/projects/taskColumns';
 import { useTasksContext } from '../TasksProvider';
 
 type Result = {

@@ -1,5 +1,5 @@
-import { useInviteModal } from 'src/components/features/organisms/Modals';
-import { Box, Button, Stack, Text, Textarea } from 'src/components/ui/atoms';
+import { useInviteModal } from '@/components/features/organisms/Modals';
+import { Box, Button, Stack, Text, Textarea } from '@/components/ui/atoms';
 import {
   Modal,
   ModalBody,
@@ -8,7 +8,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from 'src/components/ui/organisms/Modal';
+} from '@/components/ui/organisms/Modal';
 
 export function InviteModal() {
   const { isOpen, onClose } = useInviteModal();

@@ -1,7 +1,7 @@
+import { Flex, Icon, Text } from '@/components/ui/atoms';
+import { MenuItem } from '@/components/ui/organisms/Menu';
 import type React from 'react';
 import { memo } from 'react';
-import { Flex, Icon, Text } from 'src/components/ui/atoms';
-import { MenuItem } from 'src/components/ui/organisms/Menu';
 import { PopoverExportAndPrintActions } from './PopoverExportAndPrintActions';
 
 type Props = {

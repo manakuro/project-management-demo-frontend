@@ -1,7 +1,7 @@
+import { useReactNodeView } from '@/components/ui/organisms/Editor/Editors';
+import type { MentionAttrs } from '@/shared/prosemirror/schema';
+import { MentionType, type MentionTypeCode } from '@/store/entities/mention';
 import type React from 'react';
-import { useReactNodeView } from 'src/components/ui/organisms/Editor/Editors';
-import type { MentionAttrs } from 'src/shared/prosemirror/schema';
-import { MentionType, type MentionTypeCode } from 'src/store/entities/mention';
 import { Project } from './Project';
 import { Task } from './Task';
 import { Teammate } from './Teammate';

@@ -1,7 +1,7 @@
+import { Flex, InputText } from '@/components/ui/atoms';
+import { useDebounce } from '@/hooks';
 import type React from 'react';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { Flex, InputText } from 'src/components/ui/atoms';
-import { useDebounce } from 'src/hooks';
 
 type Props = {
   value: string;

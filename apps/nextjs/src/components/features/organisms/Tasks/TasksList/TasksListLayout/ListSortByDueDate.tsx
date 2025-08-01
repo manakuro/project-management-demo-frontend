@@ -1,14 +1,14 @@
-import type React from 'react';
-import { memo, useCallback, useState } from 'react';
-import { TasksListSection } from 'src/components/features/organisms/Tasks';
-import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider';
-import { TasksListItem } from 'src/components/features/organisms/Tasks/TasksList/TasksListItem';
-import { TasksListSectionProvider } from 'src/components/features/organisms/Tasks/TasksList/TasksListSection';
+import { TasksListSection } from '@/components/features/organisms/Tasks';
+import { useTasksListContext } from '@/components/features/organisms/Tasks/TasksList/Provider';
+import { TasksListItem } from '@/components/features/organisms/Tasks/TasksList/TasksListItem';
+import { TasksListSectionProvider } from '@/components/features/organisms/Tasks/TasksList/TasksListSection';
 import {
   useTasksTaskIds,
   useTasksTaskSectionIds,
-} from 'src/components/features/organisms/Tasks/hooks';
-import { Box, Flex, Icon, IconButton } from 'src/components/ui/atoms';
+} from '@/components/features/organisms/Tasks/hooks';
+import { Box, Flex, Icon, IconButton } from '@/components/ui/atoms';
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
 
 export const ListSortByDueDate: React.FC = memo(() => {
   const { taskIds } = useTasksTaskIds();

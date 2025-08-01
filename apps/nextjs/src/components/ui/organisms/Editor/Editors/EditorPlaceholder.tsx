@@ -1,6 +1,6 @@
+import { Flex, type FlexProps, Text } from '@/components/ui/atoms';
+import { isContentEmpty } from '@/shared/prosemirror/utils';
 import React, { useMemo } from 'react';
-import { Flex, type FlexProps, Text } from 'src/components/ui/atoms';
-import { isContentEmpty } from 'src/shared/prosemirror/utils';
 import { useEditorViewContext } from './EdiorProvider';
 
 type Props = FlexProps;

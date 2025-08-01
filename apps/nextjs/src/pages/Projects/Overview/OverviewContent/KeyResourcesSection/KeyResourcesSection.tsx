@@ -1,4 +1,4 @@
-import { Flex } from 'src/components/ui/atoms';
+import { Flex } from '@/components/ui/atoms';
 import { OverviewContentHeading } from '../OverviewContentHeading';
 import { KeyResourcesEmpty } from './KeyResourcesEmpty';
 

@@ -1,6 +1,6 @@
+import { dateFns } from '@/shared/dateFns';
+import { createState } from '@/store/util';
 import { atom } from 'jotai';
-import { dateFns } from 'src/shared/dateFns';
-import { createState } from 'src/store/util';
 import type { ArchiveActivity } from './type';
 
 export const initialState = (): ArchiveActivity => ({

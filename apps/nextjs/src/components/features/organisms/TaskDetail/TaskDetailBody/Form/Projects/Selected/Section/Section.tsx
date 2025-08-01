@@ -1,17 +1,17 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
 import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
-} from 'src/components/features/organisms/Menus';
-import { Button, Icon } from 'src/components/ui/atoms';
-import { MenuItemOption } from 'src/components/ui/organisms/Menu';
-import { useProjectTask } from 'src/store/entities/projectTask';
+} from '@/components/features/organisms/Menus';
+import { Button, Icon } from '@/components/ui/atoms';
+import { MenuItemOption } from '@/components/ui/organisms/Menu';
+import { useProjectTask } from '@/store/entities/projectTask';
 import {
   useProjectTaskSection,
   useProjectsTaskSectionsByProjectId,
-} from 'src/store/entities/projectTaskSection';
+} from '@/store/entities/projectTaskSection';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 
 type Props = {
   taskId: string;

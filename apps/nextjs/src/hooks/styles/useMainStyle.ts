@@ -1,5 +1,5 @@
+import { useNavigation } from '@/components/features/organisms/Navigation';
 import { useEffect, useState } from 'react';
-import { useNavigation } from 'src/components/features/organisms/Navigation';
 
 export const useMainStyle = () => {
   const { isExpanded } = useNavigation();

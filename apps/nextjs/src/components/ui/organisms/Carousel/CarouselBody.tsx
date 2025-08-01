@@ -1,5 +1,5 @@
+import { Flex } from '@/components/ui/atoms';
 import React, { type PropsWithChildren, useEffect } from 'react';
-import { Flex } from 'src/components/ui/atoms';
 import { useCarouselContext } from './Provider';
 
 export function CarouselBody(props: PropsWithChildren) {

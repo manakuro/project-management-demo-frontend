@@ -11,7 +11,7 @@ import { undoInputRule } from 'prosemirror-inputrules';
 import { keymap } from 'prosemirror-keymap';
 import type { Plugin } from 'prosemirror-state';
 
-import { Escape } from 'src/shared/prosemirror/plugins/suggestions/keys';
+import { Escape } from '@/shared/prosemirror/plugins/suggestions/keys';
 import {
   insertNodeHorizontalRule,
   insertNodeLineBreak,

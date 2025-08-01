@@ -1,6 +1,6 @@
+import type { FlexProps } from '@/components/ui/atoms';
+import { createProvider } from '@/shared/react/createProvider';
 import { useCallback, useMemo, useState } from 'react';
-import type { FlexProps } from 'src/components/ui/atoms';
-import { createProvider } from 'src/shared/react/createProvider';
 
 type ContextProps = {
   focused: boolean;
@@ -42,7 +42,7 @@ const useValue = (props: Props): ContextProps => {
   } as const;
 };
 useValue.__PROVIDER__ =
-  'src/components/organisms/Tasks/TasksList/TasksListSection/Provider.tsx';
+  '@/components/organisms/Tasks/TasksList/TasksListSection/Provider.tsx';
 export const { Provider, useContext: useTasksListSectionContext } =
   createProvider(useValue);
 export const TasksListSectionProvider = Provider;

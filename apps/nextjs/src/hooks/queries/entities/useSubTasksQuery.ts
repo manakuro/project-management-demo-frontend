@@ -1,11 +1,11 @@
-import { useSubTasksQuery as useQuery } from 'src/graphql/hooks';
+import { useSubTasksQuery as useQuery } from '@/graphql/hooks';
 import type {
   SubTaskResponse,
   SubTasksQuery,
   SubTasksQueryVariables as Variables,
-} from 'src/graphql/types/subTasks';
-import { getNodesFromEdges } from 'src/shared/apollo/util';
-import { type TaskResponse, useTasksResponse } from 'src/store/entities/task';
+} from '@/graphql/types/subTasks';
+import { getNodesFromEdges } from '@/shared/apollo/util';
+import { type TaskResponse, useTasksResponse } from '@/store/entities/task';
 
 export const useSubTasksQuery = (variables: Variables) => {
   const { setTasksFromResponse } = useTasksResponse();

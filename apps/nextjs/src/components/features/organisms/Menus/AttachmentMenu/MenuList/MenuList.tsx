@@ -1,16 +1,16 @@
-import type React from 'react';
-import { memo } from 'react';
 import {
   FileUploader,
   type FileUploaderParams,
   Portal,
-} from 'src/components/ui/atoms';
+} from '@/components/ui/atoms';
 import {
   MenuGroup,
   MenuItem,
   MenuList as OrganismsMenuList,
-} from 'src/components/ui/organisms/Menu';
-import { useClickOutside, useMenuStyle } from 'src/hooks';
+} from '@/components/ui/organisms/Menu';
+import { useClickOutside, useMenuStyle } from '@/hooks';
+import type React from 'react';
+import { memo } from 'react';
 
 type Props = {
   onUpload?: (files: FileUploaderParams) => void;

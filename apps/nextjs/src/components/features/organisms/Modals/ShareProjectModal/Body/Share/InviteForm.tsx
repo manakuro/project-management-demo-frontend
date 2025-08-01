@@ -1,12 +1,12 @@
+import { InviteProjectTeammateMenu } from '@/components/features/organisms/Menus';
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
+import { AvatarGroup, Flex, Input, Text } from '@/components/ui/atoms';
+import { useLinkStyle } from '@/hooks';
+import { useDisclosure } from '@/shared/chakra';
+import { useTeammateIdsByProjectId } from '@/store/entities/projectTeammate';
+import { type Teammate, useTeammate } from '@/store/entities/teammate';
 import type React from 'react';
 import { memo, useCallback, useMemo, useState } from 'react';
-import { InviteProjectTeammateMenu } from 'src/components/features/organisms/Menus';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
-import { AvatarGroup, Flex, Input, Text } from 'src/components/ui/atoms';
-import { useLinkStyle } from 'src/hooks';
-import { useDisclosure } from 'src/shared/chakra';
-import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate';
-import { type Teammate, useTeammate } from 'src/store/entities/teammate';
 
 type Props = {
   projectId: string;

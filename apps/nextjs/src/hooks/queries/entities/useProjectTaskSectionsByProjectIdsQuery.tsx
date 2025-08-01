@@ -1,10 +1,10 @@
+import { useProjectTaskSectionsQuery as useQuery } from '@/graphql/hooks';
+import type { ProjectTaskSectionsQuery } from '@/graphql/types';
+import type { ProjectTaskSectionResponse } from '@/graphql/types/projectTaskSections';
+import { useMountedRef } from '@/hooks';
+import { getNodesFromEdges } from '@/shared/apollo/util';
+import { useProjectTaskSectionResponse } from '@/store/entities/projectTaskSection';
 import { useEffect, useMemo, useState } from 'react';
-import { useProjectTaskSectionsQuery as useQuery } from 'src/graphql/hooks';
-import type { ProjectTaskSectionsQuery } from 'src/graphql/types';
-import type { ProjectTaskSectionResponse } from 'src/graphql/types/projectTaskSections';
-import { useMountedRef } from 'src/hooks';
-import { getNodesFromEdges } from 'src/shared/apollo/util';
-import { useProjectTaskSectionResponse } from 'src/store/entities/projectTaskSection';
 
 export const useProjectTaskSectionsByProjectIdsQuery = (
   projectIds: string[],

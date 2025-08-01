@@ -1,9 +1,9 @@
+import { useAssigneeMenu } from '@/components/features/organisms/Menus/AssigneeMenu/useAssigneeMenu';
+import { Flex, type FlexProps } from '@/components/ui/atoms';
+import { useMenuStyle } from '@/hooks';
+import { useHover } from '@/hooks/useHover';
 import type React from 'react';
 import { memo, useEffect, useMemo } from 'react';
-import { useAssigneeMenu } from 'src/components/features/organisms/Menus/AssigneeMenu/useAssigneeMenu';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
-import { useMenuStyle } from 'src/hooks';
-import { useHover } from 'src/hooks/useHover';
 
 type Props = FlexProps & {
   index: number;

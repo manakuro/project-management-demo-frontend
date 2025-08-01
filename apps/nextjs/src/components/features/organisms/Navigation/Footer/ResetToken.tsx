@@ -1,9 +1,9 @@
+import { Divider } from '@/components/features/organisms/Navigation/Divider';
+import { Icon, ListItem, Text } from '@/components/ui/atoms';
+import { setErrorToken } from '@/shared/apollo/client';
+import { transitions } from '@/styles';
 import type React from 'react';
 import { useCallback } from 'react';
-import { Divider } from 'src/components/features/organisms/Navigation/Divider';
-import { Icon, ListItem, Text } from 'src/components/ui/atoms';
-import { setErrorToken } from 'src/shared/apollo/client';
-import { transitions } from 'src/styles';
 import { PADDING_X } from '../Navigation';
 
 export const ResetToken: React.FC = () => {

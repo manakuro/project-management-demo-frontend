@@ -1,11 +1,11 @@
-import type React from 'react';
-import { memo } from 'react';
 import {
   ProjectTeammateMenuItem,
   useProjectTeammateMenu,
-} from 'src/components/features/organisms/Menus/ProjectTeammateMenu';
-import { SearchMenuLoading } from 'src/components/features/organisms/Menus/SearchMenu';
-import type { Teammate } from 'src/store/entities/teammate';
+} from '@/components/features/organisms/Menus/ProjectTeammateMenu';
+import { SearchMenuLoading } from '@/components/features/organisms/Menus/SearchMenu';
+import type { Teammate } from '@/store/entities/teammate';
+import type React from 'react';
+import { memo } from 'react';
 
 type Props = {
   onSelect: (val: Teammate) => void;

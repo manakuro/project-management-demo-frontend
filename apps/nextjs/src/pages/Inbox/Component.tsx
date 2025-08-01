@@ -1,9 +1,9 @@
+import { MainHeader } from '@/components/features/organisms/MainHeader';
+import { Flex } from '@/components/ui/atoms';
+import { Head } from '@/components/ui/atoms/Head';
+import { TabPanel, TabPanels, Tabs } from '@/components/ui/organisms/Tabs';
+import { useRouter } from '@/router';
 import React, { memo, useCallback } from 'react';
-import { MainHeader } from 'src/components/features/organisms/MainHeader';
-import { Flex } from 'src/components/ui/atoms';
-import { Head } from 'src/components/ui/atoms/Head';
-import { TabPanel, TabPanels, Tabs } from 'src/components/ui/organisms/Tabs';
-import { useRouter } from 'src/router';
 import { Activity } from './Activity';
 import { Archive } from './Archive';
 import { Header } from './Header';

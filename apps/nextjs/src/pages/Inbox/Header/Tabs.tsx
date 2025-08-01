@@ -1,7 +1,7 @@
+import { Flex, Heading } from '@/components/ui/atoms';
+import { Tab, TabList } from '@/components/ui/organisms/Tabs';
 import type React from 'react';
 import { memo } from 'react';
-import { Flex, Heading } from 'src/components/ui/atoms';
-import { Tab, TabList } from 'src/components/ui/organisms/Tabs';
 
 export const Tabs: React.FC = memo(() => {
   return (

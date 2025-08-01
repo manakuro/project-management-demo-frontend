@@ -2,10 +2,10 @@ import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
-} from 'src/components/features/organisms/Menus';
-import { Button, Icon } from 'src/components/ui/atoms';
-import { MenuItemOption } from 'src/components/ui/organisms/Menu';
-import type { TaskListSortStatusCodeValue } from 'src/store/entities/taskListSortStatus';
+} from '@/components/features/organisms/Menus';
+import { Button, Icon } from '@/components/ui/atoms';
+import { MenuItemOption } from '@/components/ui/organisms/Menu';
+import type { TaskListSortStatusCodeValue } from '@/store/entities/taskListSortStatus';
 
 type Props<T extends TaskListSortStatusCodeValue> = {
   items: {

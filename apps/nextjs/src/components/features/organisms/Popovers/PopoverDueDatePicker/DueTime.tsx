@@ -1,4 +1,3 @@
-import type React from 'react';
 import {
   Flex,
   Icon,
@@ -6,11 +5,12 @@ import {
   Option,
   Select,
   Text,
-} from 'src/components/ui/atoms';
-import { Tooltip } from 'src/components/ui/molecules';
-import { useClickableHoverStyle } from 'src/hooks';
-import { formatDueTime } from 'src/shared/date';
-import { times } from 'src/shared/date/time';
+} from '@/components/ui/atoms';
+import { Tooltip } from '@/components/ui/molecules';
+import { useClickableHoverStyle } from '@/hooks';
+import { formatDueTime } from '@/shared/date';
+import { times } from '@/shared/date/time';
+import type React from 'react';
 
 type Props = {
   onClick: () => void;

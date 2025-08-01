@@ -1,13 +1,13 @@
-import type React from 'react';
-import { useCallback } from 'react';
-import type { IconButtonProps } from 'src/components/ui/atoms';
+import type { IconButtonProps } from '@/components/ui/atoms';
 import {
   Menu,
   MenuButton,
   type MenuButtonProps,
-} from 'src/components/ui/organisms/Menu';
-import { type ChakraProps, useDisclosure } from 'src/shared/chakra';
-import { useProject } from 'src/store/entities/project';
+} from '@/components/ui/organisms/Menu';
+import { type ChakraProps, useDisclosure } from '@/shared/chakra';
+import { useProject } from '@/store/entities/project';
+import type React from 'react';
+import { useCallback } from 'react';
 import { MenuList } from './MenuList';
 
 type Props = MenuButtonProps & {

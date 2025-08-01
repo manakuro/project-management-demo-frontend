@@ -1,11 +1,11 @@
+import { useTasksTaskListStatus } from '@/components/features/organisms/Tasks/hooks';
+import { useHover } from '@/hooks/useHover';
+import { ROUTE_MY_TASKS, useRouter } from '@/router';
+import { createProvider } from '@/shared/react/createProvider';
+import { useTask } from '@/store/entities/task';
+import { useTaskListCompletedStatus } from '@/store/entities/taskListCompletedStatus';
 import type React from 'react';
 import { useCallback, useEffect, useState } from 'react';
-import { useTasksTaskListStatus } from 'src/components/features/organisms/Tasks/hooks';
-import { useHover } from 'src/hooks/useHover';
-import { ROUTE_MY_TASKS, useRouter } from 'src/router';
-import { createProvider } from 'src/shared/react/createProvider';
-import { useTask } from 'src/store/entities/task';
-import { useTaskListCompletedStatus } from 'src/store/entities/taskListCompletedStatus';
 
 type ContextProps = {
   selected: boolean;
@@ -94,6 +94,6 @@ const useValue = (props: Props): ContextProps => {
   };
 };
 useValue.__PROVIDER__ =
-  'src/components/organisms/Tasks/TasksBoard/TasksBoardListItem/Provider/ListItemProvider.tsx';
+  '@/components/organisms/Tasks/TasksBoard/TasksBoardListItem/Provider/ListItemProvider.tsx';
 export const { Provider, useContext: useTasksBoardListItemContext } =
   createProvider(useValue);

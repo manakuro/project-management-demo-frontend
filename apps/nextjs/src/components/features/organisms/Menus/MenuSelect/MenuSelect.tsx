@@ -1,5 +1,5 @@
-import { Menu, type MenuProps } from 'src/components/ui/organisms/Menu';
-import { type MaybeRenderProp, runIfFn } from 'src/shared/utils';
+import { Menu, type MenuProps } from '@/components/ui/organisms/Menu';
+import { type MaybeRenderProp, runIfFn } from '@/shared/utils';
 import { type UseMenuSelect, useMenuSelect } from './useMenuSelect';
 import { Context } from './useMenuSelect';
 

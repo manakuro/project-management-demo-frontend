@@ -1,6 +1,6 @@
+import { useTaskDetail } from '@/components/features/organisms/TaskDetail';
 import { atom, useAtom } from 'jotai';
 import { useCallback } from 'react';
-import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
 
 const isOpenAtom = atom(false);
 

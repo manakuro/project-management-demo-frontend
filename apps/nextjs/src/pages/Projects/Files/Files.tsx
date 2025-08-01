@@ -1,21 +1,17 @@
-import type React from 'react';
-import { memo, useCallback, useMemo } from 'react';
-import { TaskDetailModal } from 'src/components/features/organisms/TaskDetails';
+import { TaskDetailModal } from '@/components/features/organisms/TaskDetails';
 import {
   TasksContainer,
   TasksFilesContent,
   TasksFilesList,
-} from 'src/components/features/organisms/Tasks';
-import { useTasksFilesDetail } from 'src/components/features/organisms/Tasks/TasksFiles/useTasksFilesDetail';
-import { Flex } from 'src/components/ui/atoms';
-import { useProjectsFilesPageQuery } from 'src/hooks/queries/app';
-import { useProjectsPageContext } from 'src/pages/Projects/Provider';
-import {
-  getProjectsDetailId,
-  isProjectsDetailURL,
-  useRouter,
-} from 'src/router';
-import { useProjectsProjectId } from 'src/store/app/projects/project';
+} from '@/components/features/organisms/Tasks';
+import { useTasksFilesDetail } from '@/components/features/organisms/Tasks/TasksFiles/useTasksFilesDetail';
+import { Flex } from '@/components/ui/atoms';
+import { useProjectsFilesPageQuery } from '@/hooks/queries/app';
+import { useProjectsPageContext } from '@/pages/Projects/Provider';
+import { getProjectsDetailId, isProjectsDetailURL, useRouter } from '@/router';
+import { useProjectsProjectId } from '@/store/app/projects/project';
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { SkeletonFiles } from './SkeletonFiles';
 
 export const Files: React.FC = memo(() => {

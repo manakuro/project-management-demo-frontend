@@ -1,9 +1,9 @@
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
+import { Flex, Text } from '@/components/ui/atoms';
+import { useClickableHoverStyle } from '@/hooks';
+import { useWorkspace } from '@/store/entities/workspace';
 import type React from 'react';
 import { memo } from 'react';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
-import { Flex, Text } from 'src/components/ui/atoms';
-import { useClickableHoverStyle } from 'src/hooks';
-import { useWorkspace } from 'src/store/entities/workspace';
 import { PermissionMenu } from '../../PermissionMenu';
 
 type Props = {

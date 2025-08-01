@@ -1,13 +1,13 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
-import { Icon, IconButton, Portal } from 'src/components/ui/atoms';
+import { Icon, IconButton, Portal } from '@/components/ui/atoms';
 import {
   Menu,
   MenuButton,
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
-} from 'src/components/ui/organisms/Menu';
+} from '@/components/ui/organisms/Menu';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 
 type Props = {
   listStatus: ProjectListStatus;

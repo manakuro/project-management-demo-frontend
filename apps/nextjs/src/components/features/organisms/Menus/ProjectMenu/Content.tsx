@@ -1,16 +1,16 @@
-import type React from 'react';
-import { memo, useCallback, useEffect } from 'react';
-import { useSearchProjectsQuery } from 'src/components/features/organisms/Menus/ProjectMenu/useSearchProjectsQuery';
+import { useSearchProjectsQuery } from '@/components/features/organisms/Menus/ProjectMenu/useSearchProjectsQuery';
 import {
   SearchMenuLeftContainer,
   SearchMenuListItem,
   SearchMenuLoading,
   SearchMenuRightContainer,
   useSearchMenu,
-} from 'src/components/features/organisms/Menus/SearchMenu';
-import { Divider, Icon, Text } from 'src/components/ui/atoms';
-import { useFirstRender } from 'src/hooks';
-import type { Project } from 'src/store/entities/project';
+} from '@/components/features/organisms/Menus/SearchMenu';
+import { Divider, Icon, Text } from '@/components/ui/atoms';
+import { useFirstRender } from '@/hooks';
+import type { Project } from '@/store/entities/project';
+import type React from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { ProjectItem } from './ProjectItem';
 
 type Props = {

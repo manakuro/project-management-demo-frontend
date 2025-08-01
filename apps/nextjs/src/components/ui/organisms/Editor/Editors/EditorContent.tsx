@@ -1,3 +1,5 @@
+import { Box } from '@/components/ui/atoms';
+import { useEditorViewContext } from '@/components/ui/organisms/Editor/Editors/EdiorProvider';
 import type React from 'react';
 import {
   type CSSProperties,
@@ -6,8 +8,6 @@ import {
   useLayoutEffect,
   useRef,
 } from 'react';
-import { Box } from 'src/components/ui/atoms';
-import { useEditorViewContext } from 'src/components/ui/organisms/Editor/Editors/EdiorProvider';
 import 'prosemirror-view/style/prosemirror.css';
 
 type Props = {

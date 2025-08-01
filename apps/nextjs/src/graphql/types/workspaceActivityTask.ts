@@ -1,4 +1,4 @@
-import type { WorkspaceActivityTaskFragmentFragment } from 'src/graphql/types';
+import type { WorkspaceActivityTaskFragmentFragment } from '@/graphql/types';
 
 export type WorkspaceActivityTaskResponse =
   NonNullable<WorkspaceActivityTaskFragmentFragment>;

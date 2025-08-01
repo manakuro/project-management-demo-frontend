@@ -1,14 +1,14 @@
-import type React from 'react';
-import { memo, useCallback, useState } from 'react';
-import { Flex } from 'src/components/ui/atoms';
-import { ModalBody } from 'src/components/ui/organisms/Modal';
+import { Flex } from '@/components/ui/atoms';
+import { ModalBody } from '@/components/ui/organisms/Modal';
 import {
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
-} from 'src/components/ui/organisms/Tabs';
+} from '@/components/ui/organisms/Tabs';
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
 import { type Index, MEMBERS_INDEX, SHARE_INDEX } from '../types';
 import { useShareProjectModal } from '../useShareProjectModal';
 import { Members } from './Members';

@@ -1,6 +1,3 @@
-import { Form, Formik, type FormikConfig } from 'formik';
-import type React from 'react';
-import { memo, useCallback, useMemo } from 'react';
 import {
   CheckboxField,
   Divider,
@@ -8,15 +5,18 @@ import {
   Stack,
   SubmitButton,
   TextField,
-} from 'src/components/ui/atoms';
+} from '@/components/ui/atoms';
 import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
-} from 'src/components/ui/organisms/Modal';
-import { useTask } from 'src/store/entities/task';
+} from '@/components/ui/organisms/Modal';
+import { useTask } from '@/store/entities/task';
+import { Form, Formik, type FormikConfig } from 'formik';
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { Label } from './Label';
 
 type Props = {

@@ -1,8 +1,8 @@
+import { Flex, Heading } from '@/components/ui/atoms';
+import { Tab, TabList } from '@/components/ui/organisms/Tabs';
+import { useWorkspace } from '@/store/entities/workspace';
 import type React from 'react';
 import { memo } from 'react';
-import { Flex, Heading } from 'src/components/ui/atoms';
-import { Tab, TabList } from 'src/components/ui/organisms/Tabs';
-import { useWorkspace } from 'src/store/entities/workspace';
 import { FavoriteButton } from './FavoriteButton';
 
 export const Tabs: React.FC = memo(() => {

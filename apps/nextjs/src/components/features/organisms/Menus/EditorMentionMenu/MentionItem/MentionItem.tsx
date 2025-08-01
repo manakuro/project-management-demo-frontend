@@ -1,9 +1,9 @@
+import type { SetValueParam } from '@/components/features/organisms/Menus/EditorMentionMenu';
+import type { FlexProps } from '@/components/ui/atoms';
+import type { Mention } from '@/store/entities/mention';
+import { MentionType } from '@/store/entities/mention';
 import type React from 'react';
 import { memo } from 'react';
-import type { SetValueParam } from 'src/components/features/organisms/Menus/EditorMentionMenu';
-import type { FlexProps } from 'src/components/ui/atoms';
-import type { Mention } from 'src/store/entities/mention';
-import { MentionType } from 'src/store/entities/mention';
 import { MentionItemBase } from './MentionItemBase';
 import { Project } from './Project';
 import { Task } from './Task';

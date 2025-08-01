@@ -1,9 +1,9 @@
+import { useTasksTaskColumn } from '@/components/features/organisms/Tasks/hooks';
+import type { FlexProps } from '@/components/ui/atoms';
+import { useTaskColumn } from '@/store/entities/taskColumn';
+import { TaskColumnType } from '@/store/entities/taskColumn/type';
 import type React from 'react';
 import { memo, useMemo } from 'react';
-import { useTasksTaskColumn } from 'src/components/features/organisms/Tasks/hooks';
-import type { FlexProps } from 'src/components/ui/atoms';
-import { useTaskColumn } from 'src/store/entities/taskColumn';
-import { TaskColumnType } from 'src/store/entities/taskColumn/type';
 import {
   TasksAssignee,
   TasksDueDate,

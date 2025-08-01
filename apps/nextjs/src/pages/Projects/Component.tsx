@@ -1,22 +1,22 @@
-import type { NextRouter } from 'next/router';
-import type React from 'react';
-import { memo, useCallback, useLayoutEffect, useMemo, useState } from 'react';
-import { MainHeader } from 'src/components/features/organisms/MainHeader';
-import { Flex } from 'src/components/ui/atoms';
-import { Head } from 'src/components/ui/atoms/Head';
-import { TabPanel, TabPanels, Tabs } from 'src/components/ui/organisms/Tabs';
-import { usePrevious } from 'src/hooks';
+import { MainHeader } from '@/components/features/organisms/MainHeader';
+import { Flex } from '@/components/ui/atoms';
+import { Head } from '@/components/ui/atoms/Head';
+import { TabPanel, TabPanels, Tabs } from '@/components/ui/organisms/Tabs';
+import { usePrevious } from '@/hooks';
 import {
   isProjectsBoardURL,
   isProjectsCalendarURL,
   isProjectsFilesURL,
   isProjectsListURL,
   useRouter,
-} from 'src/router';
-import { isProjectsOverviewURL } from 'src/router/projects';
-import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus';
-import { useProjectsProjectId } from 'src/store/app/projects/project';
-import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus';
+} from '@/router';
+import { isProjectsOverviewURL } from '@/router/projects';
+import { useMyTasksTaskListStatus } from '@/store/app/myTasks/taskListStatus';
+import { useProjectsProjectId } from '@/store/app/projects/project';
+import { TaskListSortStatusCode } from '@/store/entities/taskListSortStatus';
+import type { NextRouter } from 'next/router';
+import type React from 'react';
+import { memo, useCallback, useLayoutEffect, useMemo, useState } from 'react';
 import { Board } from './Board';
 import { Calendar } from './Calendar';
 import { Files } from './Files';

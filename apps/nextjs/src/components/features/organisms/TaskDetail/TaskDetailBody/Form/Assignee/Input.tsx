@@ -1,11 +1,11 @@
+import { AssigneeMenu } from '@/components/features/organisms/Menus';
+import { Input as AtomsInput } from '@/components/ui/atoms';
+import { useClickOutside } from '@/hooks';
+import { useDisclosure } from '@/shared/chakra';
+import { useTaskCommand } from '@/store/entities/task';
+import type { Teammate } from '@/store/entities/teammate';
 import type React from 'react';
 import { memo, useCallback, useState } from 'react';
-import { AssigneeMenu } from 'src/components/features/organisms/Menus';
-import { Input as AtomsInput } from 'src/components/ui/atoms';
-import { useClickOutside } from 'src/hooks';
-import { useDisclosure } from 'src/shared/chakra';
-import { useTaskCommand } from 'src/store/entities/task';
-import type { Teammate } from 'src/store/entities/teammate';
 
 type Props = {
   taskId: string;

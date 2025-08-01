@@ -1,8 +1,8 @@
+import { TasksListCell } from '@/components/features/organisms/Tasks/TasksList/TasksListCell';
+import { Flex, type FlexProps } from '@/components/ui/atoms';
+import { useHover } from '@/hooks/useHover';
 import type React from 'react';
 import { memo, useCallback, useState } from 'react';
-import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
-import { useHover } from 'src/hooks/useHover';
 import { Content } from './Content';
 
 type Props = FlexProps & {

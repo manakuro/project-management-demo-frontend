@@ -1,14 +1,14 @@
+import { uniqBy } from '@/shared/utils';
+import { projectTaskState } from '@/store/entities/projectTask';
+import { useTaskCollaboratorResponse } from '@/store/entities/taskCollaborator';
+import { taskFeedState } from '@/store/entities/taskFeed';
+import { useTaskFeedLikeResponse } from '@/store/entities/taskFeedLike';
+import { taskFileState } from '@/store/entities/taskFile';
+import { useTaskLikeResponse } from '@/store/entities/taskLike';
+import { taskTagState } from '@/store/entities/taskTag';
+import { useTeammateResponse } from '@/store/entities/teammate';
 import { useAtomCallback } from 'jotai/utils';
 import { useCallback } from 'react';
-import { uniqBy } from 'src/shared/utils';
-import { projectTaskState } from 'src/store/entities/projectTask';
-import { useTaskCollaboratorResponse } from 'src/store/entities/taskCollaborator';
-import { taskFeedState } from 'src/store/entities/taskFeed';
-import { useTaskFeedLikeResponse } from 'src/store/entities/taskFeedLike';
-import { taskFileState } from 'src/store/entities/taskFile';
-import { useTaskLikeResponse } from 'src/store/entities/taskLike';
-import { taskTagState } from 'src/store/entities/taskTag';
-import { useTeammateResponse } from 'src/store/entities/teammate';
 import { taskState } from '../atom';
 import type { TaskResponse } from '../type';
 

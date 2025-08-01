@@ -1,12 +1,12 @@
-import { useCallback, useState } from 'react';
-import { useProjectsTaskDetailPageLazyQuery as useQuery } from 'src/graphql/hooks';
-import type { ProjectsTaskDetailPageQueryVariables as Variables } from 'src/graphql/types/app/projects';
-import { useMountedRef } from 'src/hooks';
+import { useProjectsTaskDetailPageLazyQuery as useQuery } from '@/graphql/hooks';
+import type { ProjectsTaskDetailPageQueryVariables as Variables } from '@/graphql/types/app/projects';
+import { useMountedRef } from '@/hooks';
 import {
   type ProjectTaskResponse,
   useProjectTaskResponse,
-} from 'src/store/entities/projectTask';
-import { useTasksResponse } from 'src/store/entities/task';
+} from '@/store/entities/projectTask';
+import { useTasksResponse } from '@/store/entities/task';
+import { useCallback, useState } from 'react';
 
 export type UseProjectsTaskDetailPageQueryResult = {
   refetch: (variables: Variables) => Promise<void>;

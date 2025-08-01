@@ -1,10 +1,10 @@
-import { useProjectIconsQuery as useQuery } from 'src/graphql/hooks';
-import type { ProjectIconsQuery } from 'src/graphql/types/projectIcons';
-import { getNodesFromEdges } from 'src/shared/apollo/util';
+import { useProjectIconsQuery as useQuery } from '@/graphql/hooks';
+import type { ProjectIconsQuery } from '@/graphql/types/projectIcons';
+import { getNodesFromEdges } from '@/shared/apollo/util';
 import {
   type ProjectIconResponse,
   useProjectIconsResponse,
-} from 'src/store/entities/projectIcon';
+} from '@/store/entities/projectIcon';
 
 export const useProjectIconsQuery = () => {
   const { setProjectIcons } = useProjectIconsResponse();

@@ -1,9 +1,7 @@
-import type { NextRouter } from 'next/router';
-import React, { memo, useCallback, useEffect } from 'react';
-import { MainHeader } from 'src/components/features/organisms/MainHeader';
-import { Flex } from 'src/components/ui/atoms';
-import { Head } from 'src/components/ui/atoms/Head';
-import { TabPanel, TabPanels, Tabs } from 'src/components/ui/organisms/Tabs';
+import { MainHeader } from '@/components/features/organisms/MainHeader';
+import { Flex } from '@/components/ui/atoms';
+import { Head } from '@/components/ui/atoms/Head';
+import { TabPanel, TabPanels, Tabs } from '@/components/ui/organisms/Tabs';
 import {
   isMyTasksBoardURL,
   isMyTasksCalendarURL,
@@ -11,15 +9,17 @@ import {
   isMyTasksFilesURL,
   isMyTasksListURL,
   useRouter,
-} from 'src/router';
-import { useMyTasksTaskListStatus } from 'src/store/app/myTasks/taskListStatus';
-import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus';
+} from '@/router';
+import { useMyTasksTaskListStatus } from '@/store/app/myTasks/taskListStatus';
+import { TaskListSortStatusCode } from '@/store/entities/taskListSortStatus';
 import {
   type TeammateTaskTabStatus,
   TeammateTaskTabStatusCode,
   useTeammateTaskTabStatus,
   useTeammateTaskTabStatusCommand,
-} from 'src/store/entities/teammateTaskTabStatus';
+} from '@/store/entities/teammateTaskTabStatus';
+import type { NextRouter } from 'next/router';
+import React, { memo, useCallback, useEffect } from 'react';
 import { Board } from './Board';
 import { Calendar } from './Calendar';
 import { Files } from './Files';

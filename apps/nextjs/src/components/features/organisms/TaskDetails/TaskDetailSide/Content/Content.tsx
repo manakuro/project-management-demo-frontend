@@ -1,11 +1,11 @@
-import type React from 'react';
-import { memo } from 'react';
 import {
   TaskDetailBody,
   TaskDetailFooter,
   TaskDetailHeader,
-} from 'src/components/features/organisms/TaskDetail';
-import { Flex } from 'src/components/ui/atoms';
+} from '@/components/features/organisms/TaskDetail';
+import { Flex } from '@/components/ui/atoms';
+import type React from 'react';
+import { memo } from 'react';
 
 const HEADER_HEIGHT = 72;
 const TOP = HEADER_HEIGHT;

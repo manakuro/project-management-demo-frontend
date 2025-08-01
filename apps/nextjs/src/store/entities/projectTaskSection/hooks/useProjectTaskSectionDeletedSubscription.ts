@@ -1,9 +1,9 @@
+import { useProjectTaskSectionDeletedSubscription as useSubscription } from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
 import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
 import { useCallback } from 'react';
-import { useProjectTaskSectionDeletedSubscription as useSubscription } from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
 import type { ProjectTaskSectionDeletedSubscriptionResponse as Response } from '../type';
 import { useResetProjectTaskSection } from './useResetProjectTaskSection';
 

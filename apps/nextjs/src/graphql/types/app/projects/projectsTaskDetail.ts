@@ -1,5 +1,5 @@
-import type { ProjectsTaskDetailPageQuery } from 'src/graphql/types';
+import type { ProjectsTaskDetailPageQuery } from '@/graphql/types';
 
 export type ProjectsTaskDetailPageResponse =
   NonNullable<ProjectsTaskDetailPageQuery>;
-export type { ProjectsTaskDetailPageQueryVariables } from 'src/graphql/types';
+export type { ProjectsTaskDetailPageQueryVariables } from '@/graphql/types';

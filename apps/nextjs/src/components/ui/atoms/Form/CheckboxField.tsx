@@ -1,7 +1,7 @@
+import { Checkbox } from '@/components/ui/atoms';
 import { type FieldInputProps, useField } from 'formik';
 import type React from 'react';
 import { type PropsWithChildren, memo } from 'react';
-import { Checkbox } from 'src/components/ui/atoms';
 
 type Props = PropsWithChildren<{
   name: string;

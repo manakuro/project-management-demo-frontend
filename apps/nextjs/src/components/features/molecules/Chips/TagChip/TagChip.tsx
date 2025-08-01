@@ -1,14 +1,8 @@
+import { Box, Button, Icon, type IconProps, Text } from '@/components/ui/atoms';
+import { useClickableHoverStyle } from '@/hooks';
+import { useTaskTag } from '@/store/entities/taskTag';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import {
-  Box,
-  Button,
-  Icon,
-  type IconProps,
-  Text,
-} from 'src/components/ui/atoms';
-import { useClickableHoverStyle } from 'src/hooks';
-import { useTaskTag } from 'src/store/entities/taskTag';
 
 type Variant = 'button' | 'icon';
 

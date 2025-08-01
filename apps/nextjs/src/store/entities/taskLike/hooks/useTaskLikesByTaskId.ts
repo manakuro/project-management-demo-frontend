@@ -1,14 +1,14 @@
+import {
+  useCreateTaskLikeMutation,
+  useDeleteTaskLikeMutation,
+} from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
+import { useWorkspace } from '@/store/entities/workspace';
 import { useAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import { RESET } from 'jotai/utils';
 import { useMemo } from 'react';
 import { useCallback } from 'react';
-import {
-  useCreateTaskLikeMutation,
-  useDeleteTaskLikeMutation,
-} from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
-import { useWorkspace } from 'src/store/entities/workspace';
 import { initialState, taskLikeState, taskLikesState } from '../atom';
 import { TASK_LIKE_CREATED_SUBSCRIPTION_REQUEST_ID } from './useTaskLikeCreatedSubscription';
 import { TASK_LIKE_DELETED_SUBSCRIPTION_REQUEST_ID } from './useTaskLikeDeletedSubscription';

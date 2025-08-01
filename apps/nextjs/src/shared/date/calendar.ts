@@ -1,4 +1,4 @@
-import { dateFns } from 'src/shared/dateFns';
+import { dateFns } from '@/shared/dateFns';
 
 export const getCalendarMatrix = (start: Date, end: Date) => {
   const matrix = dateFns.eachWeekOfInterval(

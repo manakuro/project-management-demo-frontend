@@ -1,6 +1,6 @@
+import { createProvider } from '@/shared/react/createProvider';
 import type React from 'react';
 import { type SetStateAction, useState } from 'react';
-import { createProvider } from 'src/shared/react/createProvider';
 
 type ContextProps = {
   loadingTabContent: boolean;
@@ -15,6 +15,6 @@ const useValue = (): ContextProps => {
     setLoadingTabContent,
   };
 };
-useValue.__PROVIDER__ = 'src/pages/Inbox/Provider.tsx';
+useValue.__PROVIDER__ = '@/pages/Inbox/Provider.tsx';
 export const { Provider, useContext: useInboxPageContext } =
   createProvider(useValue);

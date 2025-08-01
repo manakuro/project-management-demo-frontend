@@ -1,9 +1,4 @@
-import { ApolloProvider as ApolloProviderLibs } from '@apollo/client';
-import { ChakraProvider } from '@chakra-ui/react';
-import enLocale from 'date-fns/locale/en-US';
-import type React from 'react';
-import { useMemo } from 'react';
-import { Modals } from 'src/components/features/organisms/Modals';
+import { Modals } from '@/components/features/organisms/Modals';
 import {
   useFavoriteProjectIdsQuery,
   useFavoriteWorkspaceIdsQuery,
@@ -15,15 +10,20 @@ import {
   useTaskPrioritiesQuery,
   useTeammateTaskTabStatusQuery,
   useWorkspaceQuery,
-} from 'src/hooks/queries/entities';
-import { createApolloClient } from 'src/shared/apollo/client';
+} from '@/hooks/queries/entities';
+import { createApolloClient } from '@/shared/apollo/client';
 import {
   AdapterDateFns,
   LocalizationProvider,
   MuiThemeProvider,
   muiTheme,
-} from 'src/shared/materialUI';
-import { theme } from 'src/styles';
+} from '@/shared/materialUI';
+import { theme } from '@/styles';
+import { ApolloProvider as ApolloProviderLibs } from '@apollo/client';
+import { ChakraProvider } from '@chakra-ui/react';
+import enLocale from 'date-fns/locale/en-US';
+import type React from 'react';
+import { useMemo } from 'react';
 
 export const Provider: React.FCWithChildren = (props) => {
   return (

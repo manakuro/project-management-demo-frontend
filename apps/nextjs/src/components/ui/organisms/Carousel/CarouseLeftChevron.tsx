@@ -1,5 +1,5 @@
+import { Flex, Icon, IconButton } from '@/components/ui/atoms';
 import { useCallback } from 'react';
-import { Flex, Icon, IconButton } from 'src/components/ui/atoms';
 import { useCarouselContext } from './Provider';
 
 export function CarouselLeftChevron() {

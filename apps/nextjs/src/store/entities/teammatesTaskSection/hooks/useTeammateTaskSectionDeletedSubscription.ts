@@ -1,7 +1,7 @@
+import { useTeammateTaskSectionDeletedSubscription as useSubscription } from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
 import isEqual from 'lodash-es/isEqual';
 import { useCallback, useMemo } from 'react';
-import { useTeammateTaskSectionDeletedSubscription as useSubscription } from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
 import type { TeammateTaskSectionDeletedSubscriptionResponse as Response } from '../type';
 import { useResetTeammateTaskSection } from './useResetTeammateTaskSection';
 

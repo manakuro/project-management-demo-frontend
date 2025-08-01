@@ -1,6 +1,6 @@
+import { List } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { List } from 'src/components/ui/atoms';
 import { MAX_WIDTH } from '../Navigation';
 import { Goals } from './Goals';
 import { Home } from './Home';

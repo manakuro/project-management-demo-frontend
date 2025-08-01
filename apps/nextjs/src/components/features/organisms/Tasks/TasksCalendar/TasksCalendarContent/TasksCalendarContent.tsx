@@ -1,7 +1,7 @@
+import { Flex, type FlexProps } from '@/components/ui/atoms';
+import { useMainStyle } from '@/hooks';
 import type React from 'react';
 import { memo } from 'react';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
-import { useMainStyle } from 'src/hooks';
 
 type Props = FlexProps;
 

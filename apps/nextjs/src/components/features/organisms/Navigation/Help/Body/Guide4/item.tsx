@@ -1,4 +1,4 @@
-import type { Item } from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem';
+import type { Item } from '@/components/features/organisms/Navigation/Help/Body/GuideListItem';
 import { Detail } from './Detail';
 
 export const guide4Item: Item = {

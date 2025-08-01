@@ -1,5 +1,5 @@
-import type { ActivityTypeCode } from 'src/graphql/enums';
-export { ActivityTypeCode } from 'src/graphql/enums';
+import type { ActivityTypeCode } from '@/graphql/enums';
+export { ActivityTypeCode } from '@/graphql/enums';
 
 export type ActivityTypeCodeValues = ValueOf<typeof ActivityTypeCode>;
 export type ActivityTypeCodeKeys = keyof typeof ActivityTypeCode;

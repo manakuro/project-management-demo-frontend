@@ -1,9 +1,9 @@
+import { Flex, Heading } from '@/components/ui/atoms';
+import { Tab, TabList } from '@/components/ui/organisms/Tabs';
+import { useProjectsProjectId } from '@/store/app/projects/project';
+import { useProject } from '@/store/entities/project';
 import type React from 'react';
 import { memo } from 'react';
-import { Flex, Heading } from 'src/components/ui/atoms';
-import { Tab, TabList } from 'src/components/ui/organisms/Tabs';
-import { useProjectsProjectId } from 'src/store/app/projects/project';
-import { useProject } from 'src/store/entities/project';
 import { FavoriteIconButton } from './FavoriteIconButton';
 import { MoreActionIconButton } from './MoreActionIconButton';
 import { ProjectDetailIconButton } from './ProjectDetailIconButton';

@@ -1,11 +1,11 @@
-import type React from 'react';
-import { memo, useCallback, useMemo } from 'react';
 import {
   useTasksTaskColumn,
   useTasksTaskColumnIds,
-} from 'src/components/features/organisms/Tasks/hooks';
-import { Box, Icon, IconButton, PortalManager } from 'src/components/ui/atoms';
-import { Menu, MenuButton } from 'src/components/ui/organisms/Menu';
+} from '@/components/features/organisms/Tasks/hooks';
+import { Box, Icon, IconButton, PortalManager } from '@/components/ui/atoms';
+import { Menu, MenuButton } from '@/components/ui/organisms/Menu';
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { MenuList } from './MenuList';
 
 type Props = {

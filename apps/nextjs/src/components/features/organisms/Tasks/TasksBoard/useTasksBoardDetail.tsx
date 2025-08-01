@@ -1,11 +1,11 @@
+import { useTaskDetail } from '@/components/features/organisms/TaskDetail';
+import { useTaskDetailDrawer } from '@/components/features/organisms/TaskDetails';
+import { useTasksBoardListItemElement } from '@/components/features/organisms/Tasks/TasksBoard/TasksBoardListItem';
+import type { UseClickOutsideOptionsHasClickedOutside } from '@/hooks';
+import { useRouter } from '@/router';
+import { isHTMLElement } from '@/shared/isHTMLElement';
 import type { NextRouter } from 'next/router';
 import { useCallback, useEffect } from 'react';
-import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
-import { useTaskDetailDrawer } from 'src/components/features/organisms/TaskDetails';
-import { useTasksBoardListItemElement } from 'src/components/features/organisms/Tasks/TasksBoard/TasksBoardListItem';
-import type { UseClickOutsideOptionsHasClickedOutside } from 'src/hooks';
-import { useRouter } from 'src/router';
-import { isHTMLElement } from 'src/shared/isHTMLElement';
 
 type Props = {
   isTaskDetailURL: (router: NextRouter) => boolean;

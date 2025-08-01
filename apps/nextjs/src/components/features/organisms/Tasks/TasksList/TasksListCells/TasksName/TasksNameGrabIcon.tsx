@@ -1,6 +1,6 @@
+import { Icon, type IconProps } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { Icon, type IconProps } from 'src/components/ui/atoms';
 import { useTasksNameContext } from './TasksNameProvider';
 
 type Props = Omit<IconProps, 'icon'>;

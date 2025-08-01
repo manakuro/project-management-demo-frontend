@@ -1,8 +1,8 @@
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
+import { Flex, Text } from '@/components/ui/atoms';
+import { useTeammate } from '@/store/entities/teammate';
 import type React from 'react';
 import { memo } from 'react';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
-import { Flex, Text } from 'src/components/ui/atoms';
-import { useTeammate } from 'src/store/entities/teammate';
 
 type Props = {
   teammateId: string;

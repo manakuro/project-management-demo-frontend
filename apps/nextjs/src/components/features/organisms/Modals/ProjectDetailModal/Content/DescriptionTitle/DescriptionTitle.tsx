@@ -1,7 +1,7 @@
+import { Flex } from '@/components/ui/atoms';
+import { useDescriptionTitle } from '@/hooks/pages/projects';
 import type React from 'react';
 import { memo } from 'react';
-import { Flex } from 'src/components/ui/atoms';
-import { useDescriptionTitle } from 'src/hooks/pages/projects';
 import { Input } from './Input';
 
 type Props = {

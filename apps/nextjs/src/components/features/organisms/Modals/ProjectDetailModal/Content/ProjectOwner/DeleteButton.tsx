@@ -1,8 +1,8 @@
+import { Icon } from '@/components/ui/atoms';
+import { useClickableHoverStyle } from '@/hooks';
+import { useProjectTeammatesCommand } from '@/store/entities/projectTeammate';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { Icon } from 'src/components/ui/atoms';
-import { useClickableHoverStyle } from 'src/hooks';
-import { useProjectTeammatesCommand } from 'src/store/entities/projectTeammate';
 
 type Props = {
   projectTeammateId: string;

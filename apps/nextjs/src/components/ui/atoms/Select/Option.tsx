@@ -1,6 +1,6 @@
+import { MenuItem } from '@/components/ui/organisms/Menu';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { MenuItem } from 'src/components/ui/organisms/Menu';
 
 type Props = {
   value: string;

@@ -1,15 +1,15 @@
-import type React from 'react';
-import { memo } from 'react';
-import { TaskDetailModal } from 'src/components/features/organisms/TaskDetails';
+import { TaskDetailModal } from '@/components/features/organisms/TaskDetails';
 import {
   TasksContainer,
   TasksFilesContent,
   TasksFilesList,
-} from 'src/components/features/organisms/Tasks';
-import { useTasksFilesDetail } from 'src/components/features/organisms/Tasks/TasksFiles/useTasksFilesDetail';
-import { Flex } from 'src/components/ui/atoms';
-import { useMyTasksContext } from 'src/pages/MyTasks/Provider';
-import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router';
+} from '@/components/features/organisms/Tasks';
+import { useTasksFilesDetail } from '@/components/features/organisms/Tasks/TasksFiles/useTasksFilesDetail';
+import { Flex } from '@/components/ui/atoms';
+import { useMyTasksContext } from '@/pages/MyTasks/Provider';
+import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from '@/router';
+import type React from 'react';
+import { memo } from 'react';
 import { SkeletonFiles } from './SkeletonFiles';
 
 export const Files: React.FC = memo(() => {

@@ -1,7 +1,7 @@
+import { useTasksTaskSectionIds } from '@/components/features/organisms/Tasks/hooks';
+import { Flex } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { useTasksTaskSectionIds } from 'src/components/features/organisms/Tasks/hooks';
-import { Flex } from 'src/components/ui/atoms';
 import { TasksBoardListSection } from '../TasksBoardListSection';
 
 export const TasksBoardList: React.FC = memo(() => {

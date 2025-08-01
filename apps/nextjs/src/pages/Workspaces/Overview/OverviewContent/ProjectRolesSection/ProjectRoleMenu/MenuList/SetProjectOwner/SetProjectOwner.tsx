@@ -1,10 +1,10 @@
-import type React from 'react';
-import { memo, useCallback, useMemo } from 'react';
-import { MenuItem } from 'src/components/ui/organisms/Menu';
+import { MenuItem } from '@/components/ui/organisms/Menu';
 import {
   useProjectTeammate,
   useProjectTeammatesCommand,
-} from 'src/store/entities/projectTeammate';
+} from '@/store/entities/projectTeammate';
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
 
 type Props = {
   projectId: string;

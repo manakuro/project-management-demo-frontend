@@ -1,9 +1,9 @@
+import { useTaskDetailDrawer } from '@/components/features/organisms/TaskDetails';
+import { useTasksRouter } from '@/components/features/organisms/Tasks/hooks';
+import { Icon } from '@/components/ui/atoms';
+import { MenuItem } from '@/components/ui/organisms/Menu';
 import type React from 'react';
 import { memo, useCallback, useMemo } from 'react';
-import { useTaskDetailDrawer } from 'src/components/features/organisms/TaskDetails';
-import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks';
-import { Icon } from 'src/components/ui/atoms';
-import { MenuItem } from 'src/components/ui/organisms/Menu';
 
 type Props = {
   onMouseEnter: () => void;

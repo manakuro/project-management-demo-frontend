@@ -1,10 +1,10 @@
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
+import { Flex, Icon, Text } from '@/components/ui/atoms';
+import { useHover } from '@/hooks/useHover';
+import { useProjectTeammate } from '@/store/entities/projectTeammate';
+import { useTeammate } from '@/store/entities/teammate';
 import type React from 'react';
 import { useMemo } from 'react';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
-import { Flex, Icon, Text } from 'src/components/ui/atoms';
-import { useHover } from 'src/hooks/useHover';
-import { useProjectTeammate } from 'src/store/entities/projectTeammate';
-import { useTeammate } from 'src/store/entities/teammate';
 import { ProjectRoleMenu } from '../ProjectRoleMenu';
 import { Button } from './Button';
 

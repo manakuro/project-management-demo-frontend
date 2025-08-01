@@ -1,8 +1,8 @@
+import { Flex, type FlexProps, Icon, Link } from '@/components/ui/atoms';
+import { useProject } from '@/store/entities/project';
+import { transitions } from '@/styles';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { Flex, type FlexProps, Icon, Link } from 'src/components/ui/atoms';
-import { useProject } from 'src/store/entities/project';
-import { transitions } from 'src/styles';
 
 type Props = FlexProps & {
   projectId: string;

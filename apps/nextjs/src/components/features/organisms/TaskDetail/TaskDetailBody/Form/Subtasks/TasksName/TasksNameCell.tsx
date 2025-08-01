@@ -1,10 +1,10 @@
-import type React from 'react';
-import { memo } from 'react';
 import {
   TasksListCell,
   type TasksListCellProps,
-} from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
-import { forwardRef } from 'src/shared/chakra';
+} from '@/components/features/organisms/Tasks/TasksList/TasksListCell';
+import { forwardRef } from '@/shared/chakra';
+import type React from 'react';
+import { memo } from 'react';
 import { useSubtasksNameContext } from './Provider';
 
 type Props = TasksListCellProps;

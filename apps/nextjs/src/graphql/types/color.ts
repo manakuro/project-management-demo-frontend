@@ -1,3 +1,3 @@
-import type { ColorFragmentFragment } from 'src/graphql/types';
+import type { ColorFragmentFragment } from '@/graphql/types';
 
 export type ColorResponse = NonNullable<ColorFragmentFragment>;

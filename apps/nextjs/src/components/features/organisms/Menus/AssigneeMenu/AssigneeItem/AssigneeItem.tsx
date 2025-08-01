@@ -1,8 +1,8 @@
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
+import { type FlexProps, Text } from '@/components/ui/atoms';
+import { useTeammate } from '@/store/entities/teammate';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
-import { type FlexProps, Text } from 'src/components/ui/atoms';
-import { useTeammate } from 'src/store/entities/teammate';
 import { LeftContainer, ListItem, RightContainer } from '../ListItem';
 
 type Props = Override<

@@ -1,7 +1,7 @@
+import type { InboxActivityPageQuery } from '@/graphql/types/app/inbox';
+import { getNodesFromEdges } from '@/shared/apollo/util';
 import { useAtomCallback } from 'jotai/utils';
 import { useCallback } from 'react';
-import type { InboxActivityPageQuery } from 'src/graphql/types/app/inbox';
-import { getNodesFromEdges } from 'src/shared/apollo/util';
 import { useActivitiesResponse } from '../activities';
 import { useInboxListStatusResponse } from '../inboxListStatus';
 import {

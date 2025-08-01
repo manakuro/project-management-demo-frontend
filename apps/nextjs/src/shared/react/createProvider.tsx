@@ -1,5 +1,5 @@
+import { forwardRef } from '@/shared/chakra';
 import React, { createContext, memo, type PropsWithChildren } from 'react';
-import { forwardRef } from 'src/shared/chakra';
 
 export function createProvider<
   ContextProps extends object,

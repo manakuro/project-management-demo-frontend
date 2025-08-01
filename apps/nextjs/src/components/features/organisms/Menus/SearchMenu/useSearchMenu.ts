@@ -1,6 +1,6 @@
+import { useSearchMenuOnKeyBindings } from '@/components/features/organisms/Menus/SearchMenu/index';
+import { useDebounce } from '@/hooks';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useSearchMenuOnKeyBindings } from 'src/components/features/organisms/Menus/SearchMenu/index';
-import { useDebounce } from 'src/hooks';
 
 type Props<T> = {
   items: T[];

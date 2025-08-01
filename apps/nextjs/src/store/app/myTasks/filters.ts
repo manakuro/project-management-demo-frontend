@@ -1,14 +1,14 @@
-import type { Getter } from 'jotai';
-import { dateFns } from 'src/shared/dateFns';
-import { uniq } from 'src/shared/utils';
+import { dateFns } from '@/shared/dateFns';
+import { uniq } from '@/shared/utils';
 import {
   isTaskListCompletedStatusState,
   isTaskListSortStatusState,
-} from 'src/store/app/myTasks/taskListStatus';
-import { projectTasksState } from 'src/store/entities/projectTask';
-import type { Task } from 'src/store/entities/task';
-import { taskLikesByTaskIdState } from 'src/store/entities/taskLike';
-import type { TeammateTaskSection } from 'src/store/entities/teammatesTaskSection';
+} from '@/store/app/myTasks/taskListStatus';
+import { projectTasksState } from '@/store/entities/projectTask';
+import type { Task } from '@/store/entities/task';
+import { taskLikesByTaskIdState } from '@/store/entities/taskLike';
+import type { TeammateTaskSection } from '@/store/entities/teammatesTaskSection';
+import type { Getter } from 'jotai';
 
 type Params = {
   get: Getter;

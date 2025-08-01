@@ -1,7 +1,7 @@
+import { Flex, type FlexProps } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo, useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
 
 type Props = {
   observeScrollUp?: boolean;

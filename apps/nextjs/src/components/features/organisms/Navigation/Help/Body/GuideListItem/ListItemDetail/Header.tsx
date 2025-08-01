@@ -1,10 +1,10 @@
-import type React from 'react';
-import { useCallback } from 'react';
 import {
   type Item,
   PADDING_X,
-} from 'src/components/features/organisms/Navigation/Help/Body/GuideListItem';
-import { Flex, Icon, Text } from 'src/components/ui/atoms';
+} from '@/components/features/organisms/Navigation/Help/Body/GuideListItem';
+import { Flex, Icon, Text } from '@/components/ui/atoms';
+import type React from 'react';
+import { useCallback } from 'react';
 
 type Props = {
   item: Item;

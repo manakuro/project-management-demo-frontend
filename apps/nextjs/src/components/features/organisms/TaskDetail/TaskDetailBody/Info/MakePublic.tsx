@@ -1,4 +1,4 @@
-import { Flex, Icon, Text } from 'src/components/ui/atoms';
+import { Flex, Icon, Text } from '@/components/ui/atoms';
 
 export function MakePublic() {
   return (

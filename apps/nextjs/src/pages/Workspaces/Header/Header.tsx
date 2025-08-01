@@ -1,6 +1,6 @@
+import { Divider, Flex } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { Divider, Flex } from 'src/components/ui/atoms';
 import { InviteButton } from './InviteButton';
 import { SkeletonHeader } from './SkeletonHeader';
 import { Tabs } from './Tabs';

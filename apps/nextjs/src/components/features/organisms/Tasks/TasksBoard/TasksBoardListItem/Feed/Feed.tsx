@@ -1,10 +1,10 @@
+import { useTaskDetail } from '@/components/features/organisms/TaskDetail';
+import { FEED_LIST_CONTAINER_ID } from '@/components/features/organisms/TaskDetail/TaskDetailBody/Form/FeedList';
+import { useTasksRouter } from '@/components/features/organisms/Tasks/hooks';
+import { IconButton } from '@/components/ui/atoms';
+import { useTaskFeedIdsWithoutFirstByTaskId } from '@/store/entities/taskFeed';
 import type React from 'react';
 import { memo, useCallback, useMemo } from 'react';
-import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
-import { FEED_LIST_CONTAINER_ID } from 'src/components/features/organisms/TaskDetail/TaskDetailBody/Form/FeedList';
-import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks';
-import { IconButton } from 'src/components/ui/atoms';
-import { useTaskFeedIdsWithoutFirstByTaskId } from 'src/store/entities/taskFeed';
 import { Icon } from './Icon';
 
 type Props = {

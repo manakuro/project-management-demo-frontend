@@ -1,6 +1,6 @@
+import { useIsTaskDeleted } from '@/store/entities/task';
 import type React from 'react';
 import { memo } from 'react';
-import { useIsTaskDeleted } from 'src/store/entities/task';
 import { DeletedTask } from './DeletedTask';
 import { MakePublic } from './MakePublic';
 

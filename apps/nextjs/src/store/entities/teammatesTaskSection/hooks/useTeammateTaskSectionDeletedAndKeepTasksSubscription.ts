@@ -1,14 +1,14 @@
-import { useAtomCallback } from 'jotai/utils';
-import isEqual from 'lodash-es/isEqual';
-import { useMemo } from 'react';
-import { useCallback } from 'react';
-import { useTeammateTaskSectionDeletedAndKeepTasksSubscription as useSubscription } from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
+import { useTeammateTaskSectionDeletedAndKeepTasksSubscription as useSubscription } from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
 import {
   type TeammateTaskResponse,
   teammateTaskByTeammateTaskSectionIdState,
   useTeammateTaskResponse,
-} from 'src/store/entities/teammateTask';
+} from '@/store/entities/teammateTask';
+import { useAtomCallback } from 'jotai/utils';
+import isEqual from 'lodash-es/isEqual';
+import { useMemo } from 'react';
+import { useCallback } from 'react';
 import type { TeammateTaskSectionDeletedAndKeepTasksSubscriptionResponse as Response } from '../type';
 import { useResetTeammateTaskSection } from './useResetTeammateTaskSection';
 

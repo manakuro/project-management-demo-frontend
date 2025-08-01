@@ -1,9 +1,9 @@
+import { asyncForEach } from '@/shared/utils';
+import type { MyTaskFileResponse } from '@/store/app/myTasksFiles/type';
+import { useTaskCommand } from '@/store/entities/task';
+import { type TaskFile, taskFileState } from '@/store/entities/taskFile';
 import { useAtomCallback } from 'jotai/utils';
 import { useCallback } from 'react';
-import { asyncForEach } from 'src/shared/utils';
-import type { MyTaskFileResponse } from 'src/store/app/myTasksFiles/type';
-import { useTaskCommand } from 'src/store/entities/task';
-import { type TaskFile, taskFileState } from 'src/store/entities/taskFile';
 
 export const useMyTasksFilesResponse = () => {
   const { setTaskFile, setTaskStatus } = useSetters();

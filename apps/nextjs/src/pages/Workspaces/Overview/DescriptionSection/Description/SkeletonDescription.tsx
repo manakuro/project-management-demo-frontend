@@ -1,5 +1,5 @@
+import { Flex, Skeleton, Stack } from '@/components/ui/atoms';
 import { memo } from 'react';
-import { Flex, Skeleton, Stack } from 'src/components/ui/atoms';
 
 export const SkeletonDescription = memo(function SkeletonDescription() {
   return (

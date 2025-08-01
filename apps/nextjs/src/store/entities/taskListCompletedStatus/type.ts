@@ -1,6 +1,6 @@
-import type { TaskListCompletedStatusCode } from 'src/graphql/enums';
+import type { TaskListCompletedStatusCode } from '@/graphql/enums';
 
-export { TaskListCompletedStatusCode } from 'src/graphql/enums';
+export { TaskListCompletedStatusCode } from '@/graphql/enums';
 export type TaskListCompletedStatusCodeKey =
   keyof typeof TaskListCompletedStatusCode;
 

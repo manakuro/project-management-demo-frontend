@@ -1,12 +1,12 @@
+import { useTaskDetailDrawer } from '@/components/features/organisms/TaskDetails';
+import { useTasksBoardListSectionElement } from '@/components/features/organisms/Tasks/TasksBoard/TasksBoardListSection';
+import { Flex, type FlexProps } from '@/components/ui/atoms';
+import { useMainStyle, usePrevious } from '@/hooks';
+import { useBreakpointValue } from '@/shared/chakra';
+import { isHTMLElement } from '@/shared/isHTMLElement';
+import { transitions } from '@/styles';
 import type React from 'react';
 import { memo, useEffect, useRef, useState } from 'react';
-import { useTaskDetailDrawer } from 'src/components/features/organisms/TaskDetails';
-import { useTasksBoardListSectionElement } from 'src/components/features/organisms/Tasks/TasksBoard/TasksBoardListSection';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
-import { useMainStyle, usePrevious } from 'src/hooks';
-import { useBreakpointValue } from 'src/shared/chakra';
-import { isHTMLElement } from 'src/shared/isHTMLElement';
-import { transitions } from 'src/styles';
 
 type Props = FlexProps;
 

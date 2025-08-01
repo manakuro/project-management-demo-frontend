@@ -1,12 +1,11 @@
-import { memo, useCallback, useMemo } from 'react';
 import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
-} from 'src/components/features/organisms/Menus';
-import { Button, Icon } from 'src/components/ui/atoms';
-import { MenuItemOption } from 'src/components/ui/organisms/Menu';
-import type { ChakraProps } from 'src/shared/chakra';
+} from '@/components/features/organisms/Menus';
+import { Button, Icon } from '@/components/ui/atoms';
+import { MenuItemOption } from '@/components/ui/organisms/Menu';
+import type { ChakraProps } from '@/shared/chakra';
 import {
   INBOX_LIST_FILTER_STATUS_TYPE_ALL,
   INBOX_LIST_FILTER_STATUS_TYPE_ASSIGNED_BY_ME,
@@ -15,7 +14,8 @@ import {
   INBOX_LIST_FILTER_STATUS_TYPE_UNREAD_ONLY,
   type InboxListFilterStatuses,
   useInboxListStatus,
-} from 'src/store/app/inbox/activity/inboxListStatus';
+} from '@/store/app/inbox/activity/inboxListStatus';
+import { memo, useCallback, useMemo } from 'react';
 
 const items: {
   value: InboxListFilterStatuses;

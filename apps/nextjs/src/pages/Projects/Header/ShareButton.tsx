@@ -1,11 +1,11 @@
+import { useShareProjectModal } from '@/components/features/organisms/Modals/ShareProjectModal';
+import { Button, Flex, type FlexProps, Icon } from '@/components/ui/atoms';
+import { Tooltip } from '@/components/ui/molecules';
+import { useTooltip } from '@/components/ui/molecules/Tooltip/useTooltip';
+import { useProjectsProjectId } from '@/store/app/projects/project';
+import { useWorkspace } from '@/store/entities/workspace';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { useShareProjectModal } from 'src/components/features/organisms/Modals/ShareProjectModal';
-import { Button, Flex, type FlexProps, Icon } from 'src/components/ui/atoms';
-import { Tooltip } from 'src/components/ui/molecules';
-import { useTooltip } from 'src/components/ui/molecules/Tooltip/useTooltip';
-import { useProjectsProjectId } from 'src/store/app/projects/project';
-import { useWorkspace } from 'src/store/entities/workspace';
 
 type Props = FlexProps;
 

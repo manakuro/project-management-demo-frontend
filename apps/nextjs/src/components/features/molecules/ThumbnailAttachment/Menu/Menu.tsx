@@ -1,14 +1,14 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
-import { useThumbnailAttachmentContext } from 'src/components/features/molecules/ThumbnailAttachment/Provider';
-import { Link, Portal } from 'src/components/ui/atoms';
+import { useThumbnailAttachmentContext } from '@/components/features/molecules/ThumbnailAttachment/Provider';
+import { Link, Portal } from '@/components/ui/atoms';
 import {
   MenuItem,
   MenuList,
   type MenuProps,
   Menu as OrganismsMenu,
-} from 'src/components/ui/organisms/Menu';
-import { useTaskFile } from 'src/store/entities/taskFile';
+} from '@/components/ui/organisms/Menu';
+import { useTaskFile } from '@/store/entities/taskFile';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 
 type Props = MenuProps & {
   taskFileId: string;

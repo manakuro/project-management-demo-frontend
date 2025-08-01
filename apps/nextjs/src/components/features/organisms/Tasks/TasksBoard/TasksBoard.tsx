@@ -1,6 +1,6 @@
+import { Flex, type FlexProps } from '@/components/ui/atoms';
+import { forwardRef } from '@/shared/chakra';
 import type React from 'react';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
-import { forwardRef } from 'src/shared/chakra';
 import { Provider } from './Provider';
 
 type Props = FlexProps;

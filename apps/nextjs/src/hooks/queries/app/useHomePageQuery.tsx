@@ -1,9 +1,9 @@
+import { useHomePageQuery as useQuery } from '@/graphql/hooks';
+import { useMountedRef } from '@/hooks';
+import { useHomeResponse } from '@/store/app/home';
+import { useMe } from '@/store/entities/me';
+import { useWorkspace } from '@/store/entities/workspace';
 import { useCallback, useMemo, useState } from 'react';
-import { useHomePageQuery as useQuery } from 'src/graphql/hooks';
-import { useMountedRef } from 'src/hooks';
-import { useHomeResponse } from 'src/store/app/home';
-import { useMe } from 'src/store/entities/me';
-import { useWorkspace } from 'src/store/entities/workspace';
 
 export const useHomePageQuery = () => {
   const { me } = useMe();

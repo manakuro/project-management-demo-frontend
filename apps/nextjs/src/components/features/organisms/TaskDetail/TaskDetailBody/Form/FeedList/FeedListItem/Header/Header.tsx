@@ -1,6 +1,6 @@
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
+import { Flex, Stack } from '@/components/ui/atoms';
 import { memo } from 'react';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
-import { Flex, Stack } from 'src/components/ui/atoms';
 import { useTaskFeedListItemContext } from '../Provider';
 import { CreateAt } from './CreateAt';
 import { FeedOptionMenu } from './FeedOptionMenu';

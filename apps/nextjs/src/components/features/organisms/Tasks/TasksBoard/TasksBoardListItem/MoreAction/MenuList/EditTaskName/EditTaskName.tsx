@@ -1,7 +1,7 @@
+import { Icon } from '@/components/ui/atoms';
+import { MenuItem } from '@/components/ui/organisms/Menu';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { Icon } from 'src/components/ui/atoms';
-import { MenuItem } from 'src/components/ui/organisms/Menu';
 import { useTasksBoardListItemInputContext } from '../../../Provider';
 
 type Props = {

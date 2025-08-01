@@ -1,19 +1,19 @@
-import type React from 'react';
-import { memo, useCallback, useState } from 'react';
-import { ProjectChip } from 'src/components/features/molecules/Chips';
-import { ProjectMenu } from 'src/components/features/organisms/Menus';
+import { ProjectChip } from '@/components/features/molecules/Chips';
+import { ProjectMenu } from '@/components/features/organisms/Menus';
 import {
   Input as AtomsInput,
   Flex,
   Wrap,
   WrapItem,
-} from 'src/components/ui/atoms';
-import { useClickOutside } from 'src/hooks';
-import { useDisclosure } from 'src/shared/chakra';
+} from '@/components/ui/atoms';
+import { useClickOutside } from '@/hooks';
+import { useDisclosure } from '@/shared/chakra';
 import {
   useProjectIdsByTaskId,
   useProjectTaskCommand,
-} from 'src/store/entities/projectTask';
+} from '@/store/entities/projectTask';
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
 
 type Props = {
   taskId: string;

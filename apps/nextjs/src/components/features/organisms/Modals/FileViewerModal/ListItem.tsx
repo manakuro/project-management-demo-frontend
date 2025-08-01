@@ -1,8 +1,8 @@
+import { Box, Flex, Image, Text } from '@/components/ui/atoms';
+import { PdfViewer } from '@/components/ui/organisms/PdfViewer';
+import { FileTypeCode } from '@/store/entities/fileType';
+import { useTaskFile } from '@/store/entities/taskFile';
 import type React from 'react';
-import { Box, Flex, Image, Text } from 'src/components/ui/atoms';
-import { PdfViewer } from 'src/components/ui/organisms/PdfViewer';
-import { FileTypeCode } from 'src/store/entities/fileType';
-import { useTaskFile } from 'src/store/entities/taskFile';
 
 type Props = {
   taskFileId: string;

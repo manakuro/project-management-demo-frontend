@@ -1,6 +1,6 @@
+import { MainHeader } from '@/components/features/organisms/MainHeader';
+import { Heading } from '@/components/ui/atoms';
 import { memo } from 'react';
-import { MainHeader } from 'src/components/features/organisms/MainHeader';
-import { Heading } from 'src/components/ui/atoms';
 import { useTasksListContentVerticalScroll } from '../Content';
 
 export const Header = memo(function Header() {

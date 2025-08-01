@@ -1,9 +1,9 @@
+import { config } from '@/config';
+import { websocketErrorHandler } from '@/shared/apollo/errorHandler';
+import { isClient } from '@/shared/environment';
 import { HttpLink, split } from '@apollo/client';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
-import { config } from 'src/config';
-import { websocketErrorHandler } from 'src/shared/apollo/errorHandler';
-import { isClient } from 'src/shared/environment';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 
 export type CreateHttpProps = {

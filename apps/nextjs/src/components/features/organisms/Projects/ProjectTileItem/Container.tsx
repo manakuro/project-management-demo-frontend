@@ -1,8 +1,8 @@
+import { Flex, type FlexProps, Text } from '@/components/ui/atoms';
+import { useHover } from '@/hooks/useHover';
+import { transitions } from '@/styles';
 import type React from 'react';
 import { type ReactElement, useCallback, useState } from 'react';
-import { Flex, type FlexProps, Text } from 'src/components/ui/atoms';
-import { useHover } from 'src/hooks/useHover';
-import { transitions } from 'src/styles';
 
 type Props = {
   name: string;

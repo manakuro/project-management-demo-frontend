@@ -1,7 +1,7 @@
+import { AspectRatio, Flex, Icon } from '@/components/ui/atoms';
+import { useVideoPlayer } from '@/components/ui/organisms/VideoPlayer';
 import type React from 'react';
 import { useCallback } from 'react';
-import { AspectRatio, Flex, Icon } from 'src/components/ui/atoms';
-import { useVideoPlayer } from 'src/components/ui/organisms/VideoPlayer';
 
 type Props = {
   src?: string;

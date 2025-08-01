@@ -1,10 +1,10 @@
+import { AssignTaskMenu } from '@/components/features/organisms/Menus';
+import { Input as AtomsInput } from '@/components/ui/atoms';
+import { useClickOutside } from '@/hooks';
+import { useDisclosure } from '@/shared/chakra';
+import type { Teammate } from '@/store/entities/teammate';
 import type React from 'react';
 import { memo, useCallback, useState } from 'react';
-import { AssignTaskMenu } from 'src/components/features/organisms/Menus';
-import { Input as AtomsInput } from 'src/components/ui/atoms';
-import { useClickOutside } from 'src/hooks';
-import { useDisclosure } from 'src/shared/chakra';
-import type { Teammate } from 'src/store/entities/teammate';
 
 type Props = {
   onSelect: (val: Teammate) => void;

@@ -1,8 +1,8 @@
+import { useTasksTaskFiles } from '@/components/features/organisms/Tasks/hooks';
+import { Flex, Stack } from '@/components/ui/atoms';
+import { useBreakpointValue } from '@/shared/chakra';
+import { splitByNumber } from '@/shared/utils';
 import { memo, useMemo } from 'react';
-import { useTasksTaskFiles } from 'src/components/features/organisms/Tasks/hooks';
-import { Flex, Stack } from 'src/components/ui/atoms';
-import { useBreakpointValue } from 'src/shared/chakra';
-import { splitByNumber } from 'src/shared/utils';
 import { TasksFilesListItem } from '../TasksFilesListItem';
 
 export const TasksFilesList = memo(function TasksFilesList() {

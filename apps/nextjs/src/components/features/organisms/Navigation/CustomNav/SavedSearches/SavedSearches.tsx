@@ -1,8 +1,8 @@
+import { useNavigation } from '@/components/features/organisms/Navigation';
+import { NavListItem } from '@/components/features/organisms/Navigation/NavListItem';
+import { AccordionIcon } from '@/components/ui/organisms/Accordion';
+import { useDisabledStyle } from '@/hooks';
 import { memo, useMemo } from 'react';
-import { useNavigation } from 'src/components/features/organisms/Navigation';
-import { NavListItem } from 'src/components/features/organisms/Navigation/NavListItem';
-import { AccordionIcon } from 'src/components/ui/organisms/Accordion';
-import { useDisabledStyle } from 'src/hooks';
 import { Divider } from '../../Divider';
 import {
   CustomNavList,

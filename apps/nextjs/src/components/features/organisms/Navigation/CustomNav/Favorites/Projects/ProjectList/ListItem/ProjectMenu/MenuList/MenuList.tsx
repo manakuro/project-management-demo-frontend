@@ -1,10 +1,10 @@
-import type React from 'react';
-import { Portal } from 'src/components/ui/atoms';
+import { Portal } from '@/components/ui/atoms';
 import {
   MenuList as AtomsMenuList,
   MenuItem,
-} from 'src/components/ui/organisms/Menu';
-import { useClickOutside } from 'src/hooks';
+} from '@/components/ui/organisms/Menu';
+import { useClickOutside } from '@/hooks';
+import type React from 'react';
 import { RemoveFromFavorites } from './RemoveFromFavorites';
 
 type Props = {

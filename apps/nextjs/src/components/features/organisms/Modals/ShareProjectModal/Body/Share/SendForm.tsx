@@ -1,16 +1,16 @@
-import type React from 'react';
-import { memo, useCallback, useState } from 'react';
-import { InvitedTeammateChip } from 'src/components/features/molecules/Chips';
-import { InviteProjectTeammateMenu } from 'src/components/features/organisms/Menus';
+import { InvitedTeammateChip } from '@/components/features/molecules/Chips';
+import { InviteProjectTeammateMenu } from '@/components/features/organisms/Menus';
 import {
   Input as AtomsInput,
   Flex,
   Textarea,
   Wrap,
   WrapItem,
-} from 'src/components/ui/atoms';
-import { useDisclosure } from 'src/shared/chakra';
-import type { Teammate } from 'src/store/entities/teammate';
+} from '@/components/ui/atoms';
+import { useDisclosure } from '@/shared/chakra';
+import type { Teammate } from '@/store/entities/teammate';
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
 import { PermissionMenu } from '../PermissionMenu';
 
 type Props = {

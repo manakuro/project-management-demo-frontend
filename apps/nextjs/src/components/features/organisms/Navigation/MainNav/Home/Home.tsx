@@ -1,7 +1,7 @@
+import { ROUTE_HOME } from '@/router';
 import { useRouter } from 'next/router';
 import type React from 'react';
 import { memo, useMemo } from 'react';
-import { ROUTE_HOME } from 'src/router';
 import { NavListItem } from '../../NavListItem';
 import type { NavListItem as TNavListItem } from '../../type';
 

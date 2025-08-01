@@ -1,17 +1,17 @@
-import { atom } from 'jotai';
 import {
   filterByNoProject,
   filterByProjectTasks,
   filterTasks,
   sortTasks,
-} from 'src/store/app/myTasks/filters';
-import { isTaskListSortStatusState } from 'src/store/app/myTasks/taskListStatus';
-import { filterByDueDate } from 'src/store/entities/task';
+} from '@/store/app/myTasks/filters';
+import { isTaskListSortStatusState } from '@/store/app/myTasks/taskListStatus';
+import { filterByDueDate } from '@/store/entities/task';
 import {
   tasksByTeammateIdState,
   tasksByTeammateTaskSectionIdState,
-} from 'src/store/entities/teammateTask';
-import { isTabStatusState } from 'src/store/entities/teammateTaskTabStatus';
+} from '@/store/entities/teammateTask';
+import { isTabStatusState } from '@/store/entities/teammateTaskTabStatus';
+import { atom } from 'jotai';
 
 export const taskIdsState = atom<string[]>((get) => {
   let tasks = get(tasksByTeammateIdState);

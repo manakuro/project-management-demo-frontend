@@ -1,3 +1,6 @@
+import type { FlexProps } from '@/components/ui/atoms';
+import { isHTMLElement } from '@/shared/isHTMLElement';
+import { createProvider } from '@/shared/react/createProvider';
 import type React from 'react';
 import {
   type Dispatch,
@@ -6,9 +9,6 @@ import {
   useRef,
   useState,
 } from 'react';
-import type { FlexProps } from 'src/components/ui/atoms';
-import { isHTMLElement } from 'src/shared/isHTMLElement';
-import { createProvider } from 'src/shared/react/createProvider';
 
 type ContextProps = {
   ref: React.MutableRefObject<HTMLElement | null>;
@@ -55,6 +55,6 @@ const useValue = (): ContextProps => {
   };
 };
 useValue.__PROVIDER__ =
-  'src/components/organisms/Tasks/TasksBoard/TasksBoardListItem/Provider/InputProvider.tsx';
+  '@/components/organisms/Tasks/TasksBoard/TasksBoardListItem/Provider/InputProvider.tsx';
 export const { Provider, useContext: useTasksBoardListItemInputContext } =
   createProvider(useValue);

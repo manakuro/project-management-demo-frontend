@@ -1,10 +1,10 @@
+import { useInviteModal } from '@/components/features/organisms/Modals';
+import { PADDING_X } from '@/components/features/organisms/Navigation/Navigation';
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
+import { Wrap, WrapItem } from '@/components/ui/atoms';
+import { useClickableHoverStyle } from '@/hooks';
+import { useTeammates } from '@/store/entities/teammate';
 import { memo, useCallback } from 'react';
-import { useInviteModal } from 'src/components/features/organisms/Modals';
-import { PADDING_X } from 'src/components/features/organisms/Navigation/Navigation';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
-import { Wrap, WrapItem } from 'src/components/ui/atoms';
-import { useClickableHoverStyle } from 'src/hooks';
-import { useTeammates } from 'src/store/entities/teammate';
 import { Teammate } from './Teammate';
 
 export const Teammates = memo(function Teammates() {

@@ -1,7 +1,7 @@
+import { useTeammateTaskSectionUpdatedSubscription as useSubscription } from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
 import isEqual from 'lodash-es/isEqual';
 import { useCallback, useMemo } from 'react';
-import { useTeammateTaskSectionUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
 import type { TeammateTaskSectionUpdatedSubscriptionResponse as Response } from '../type';
 import { useTeammatesTaskSectionResponse } from './useTeammatesTaskSectionResponse';
 

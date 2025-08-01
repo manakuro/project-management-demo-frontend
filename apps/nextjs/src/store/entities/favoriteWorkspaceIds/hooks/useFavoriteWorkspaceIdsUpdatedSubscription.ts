@@ -1,7 +1,7 @@
+import { useFavoriteWorkspaceIdsUpdatedSubscription as useSubscription } from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
 import isEqual from 'lodash-es/isEqual';
 import { useCallback } from 'react';
-import { useFavoriteWorkspaceIdsUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
 import type { FavoriteWorkspaceIdsUpdatedSubscriptionResponse as Response } from '../type';
 import { useFavoriteWorkspaceIdsResponse } from './useFavoriteWorkspaceIdsResponse';
 

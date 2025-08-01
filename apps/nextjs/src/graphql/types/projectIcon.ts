@@ -1,3 +1,3 @@
-import type { ProjectIconFragmentFragment } from 'src/graphql/types';
+import type { ProjectIconFragmentFragment } from '@/graphql/types';
 
 export type ProjectIconResponse = NonNullable<ProjectIconFragmentFragment>;

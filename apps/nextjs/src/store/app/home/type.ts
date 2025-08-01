@@ -1,1 +1,1 @@
-export type { HomeResponse } from 'src/graphql/types/app/home';
+export type { HomeResponse } from '@/graphql/types/app/home';

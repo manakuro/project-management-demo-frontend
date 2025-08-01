@@ -1,6 +1,6 @@
+import { Button, Divider, Icon } from '@/components/ui/atoms';
+import { ModalFooter } from '@/components/ui/organisms/Modal';
 import { memo, useCallback } from 'react';
-import { Button, Divider, Icon } from 'src/components/ui/atoms';
-import { ModalFooter } from 'src/components/ui/organisms/Modal';
 import { useShareProjectModal } from '../useShareProjectModal';
 
 export const Members = memo(function Members() {

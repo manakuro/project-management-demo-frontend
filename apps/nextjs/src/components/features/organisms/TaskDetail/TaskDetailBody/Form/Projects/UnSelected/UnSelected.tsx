@@ -1,6 +1,6 @@
+import { Box, Button, Flex } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { Box, Button, Flex } from 'src/components/ui/atoms';
 import { Input } from '../Input';
 
 type Props = {

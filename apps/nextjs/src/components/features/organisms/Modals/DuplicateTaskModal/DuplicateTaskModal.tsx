@@ -1,4 +1,4 @@
-import { Modal, ModalOverlay } from 'src/components/ui/organisms/Modal';
+import { Modal, ModalOverlay } from '@/components/ui/organisms/Modal';
 import { Content } from './Content';
 import { useDuplicateTaskModal } from './useDuplicateTaskModal';
 

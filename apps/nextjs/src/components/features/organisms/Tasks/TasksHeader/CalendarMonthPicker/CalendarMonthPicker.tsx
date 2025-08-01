@@ -1,6 +1,4 @@
-import type React from 'react';
-import { memo, useMemo } from 'react';
-import { useTasksCalendarContext } from 'src/components/features/organisms/Tasks';
+import { useTasksCalendarContext } from '@/components/features/organisms/Tasks';
 import {
   Flex,
   type FlexProps,
@@ -9,10 +7,12 @@ import {
   Link,
   PortalManager,
   Text,
-} from 'src/components/ui/atoms';
-import { Popover, PopoverTrigger } from 'src/components/ui/organisms/Popover';
-import { useDisclosure } from 'src/shared/chakra';
-import { dateFns } from 'src/shared/dateFns';
+} from '@/components/ui/atoms';
+import { Popover, PopoverTrigger } from '@/components/ui/organisms/Popover';
+import { useDisclosure } from '@/shared/chakra';
+import { dateFns } from '@/shared/dateFns';
+import type React from 'react';
+import { memo, useMemo } from 'react';
 import { Content } from './Content';
 
 type Props = FlexProps;

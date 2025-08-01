@@ -1,7 +1,7 @@
+import { CheckIcon, Flex, type FlexProps } from '@/components/ui/atoms';
+import { useTask, useTaskCommand } from '@/store/entities/task';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { CheckIcon, Flex, type FlexProps } from 'src/components/ui/atoms';
-import { useTask, useTaskCommand } from 'src/store/entities/task';
 import { useTasksBoardListItemContext } from '../Provider';
 import { TasksNameProvider } from './Provider';
 import { TasksNameField } from './TasksNameField';

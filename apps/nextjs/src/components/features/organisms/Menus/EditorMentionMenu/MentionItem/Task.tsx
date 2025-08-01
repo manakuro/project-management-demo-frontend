@@ -1,8 +1,8 @@
+import { CheckIcon, Flex, type FlexProps, Text } from '@/components/ui/atoms';
+import type { Mention } from '@/store/entities/mention';
+import { useProject } from '@/store/entities/project';
 import type React from 'react';
 import { memo } from 'react';
-import { CheckIcon, Flex, type FlexProps, Text } from 'src/components/ui/atoms';
-import type { Mention } from 'src/store/entities/mention';
-import { useProject } from 'src/store/entities/project';
 import { LeftContainer } from './LeftContainer';
 import { RightContainer } from './RightContainer';
 

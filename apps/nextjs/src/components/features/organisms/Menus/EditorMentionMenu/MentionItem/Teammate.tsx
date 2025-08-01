@@ -1,8 +1,8 @@
+import { Avatar, Flex, type FlexProps, Text } from '@/components/ui/atoms';
+import type { Mention } from '@/store/entities/mention';
+import { useTeammate } from '@/store/entities/teammate';
 import type React from 'react';
 import { memo } from 'react';
-import { Avatar, Flex, type FlexProps, Text } from 'src/components/ui/atoms';
-import type { Mention } from 'src/store/entities/mention';
-import { useTeammate } from 'src/store/entities/teammate';
 import { LeftContainer } from './LeftContainer';
 import { RightContainer } from './RightContainer';
 

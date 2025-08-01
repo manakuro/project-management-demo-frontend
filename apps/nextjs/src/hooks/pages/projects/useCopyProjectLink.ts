@@ -1,6 +1,6 @@
+import { useToast } from '@/hooks';
+import { getProjectsURL } from '@/router/projects';
 import { useCallback } from 'react';
-import { useToast } from 'src/hooks';
-import { getProjectsURL } from 'src/router/projects';
 
 type Props = {
   projectId: string;

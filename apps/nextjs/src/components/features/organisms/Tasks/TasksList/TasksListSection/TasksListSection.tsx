@@ -1,8 +1,8 @@
+import { TasksListItem } from '@/components/features/organisms/Tasks/TasksList/TasksListItem';
+import { useTasksTaskIdsByTaskSectionId } from '@/components/features/organisms/Tasks/hooks';
+import { Flex } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo, useCallback, useState } from 'react';
-import { TasksListItem } from 'src/components/features/organisms/Tasks/TasksList/TasksListItem';
-import { useTasksTaskIdsByTaskSectionId } from 'src/components/features/organisms/Tasks/hooks';
-import { Flex } from 'src/components/ui/atoms';
 import { AddTask } from './AddTask';
 import { AddTaskSection } from './AddTaskSection';
 import { Header } from './Header';

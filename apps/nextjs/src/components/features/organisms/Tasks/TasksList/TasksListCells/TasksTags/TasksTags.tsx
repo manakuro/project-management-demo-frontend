@@ -1,9 +1,9 @@
+import { TagChip } from '@/components/features/molecules/Chips';
+import { TasksListCell } from '@/components/features/organisms/Tasks/TasksList/TasksListCell';
+import { type FlexProps, Stack } from '@/components/ui/atoms';
+import { useTaskTagIdsByTaskId } from '@/store/entities/taskTag';
 import type React from 'react';
 import { memo, useCallback, useState } from 'react';
-import { TagChip } from 'src/components/features/molecules/Chips';
-import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
-import { type FlexProps, Stack } from 'src/components/ui/atoms';
-import { useTaskTagIdsByTaskId } from 'src/store/entities/taskTag';
 import { Input } from './Input';
 
 type Props = FlexProps & {

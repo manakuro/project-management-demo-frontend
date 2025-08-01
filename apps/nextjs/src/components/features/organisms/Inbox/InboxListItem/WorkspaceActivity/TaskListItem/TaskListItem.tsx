@@ -1,10 +1,10 @@
+import { DueDate, Flex, type FlexProps, Stack } from '@/components/ui/atoms';
+import { TaskDoneTransition } from '@/components/ui/molecules';
+import { useHover } from '@/hooks/useHover';
+import { useRouter } from '@/router';
+import { useTask } from '@/store/entities/task';
 import type React from 'react';
 import { memo, useCallback, useState } from 'react';
-import { DueDate, Flex, type FlexProps, Stack } from 'src/components/ui/atoms';
-import { TaskDoneTransition } from 'src/components/ui/molecules';
-import { useHover } from 'src/hooks/useHover';
-import { useRouter } from 'src/router';
-import { useTask } from 'src/store/entities/task';
 import { ActionButton } from './ActionButton';
 import { CheckIcon } from './CheckIcon';
 import { Feed } from './Feed';

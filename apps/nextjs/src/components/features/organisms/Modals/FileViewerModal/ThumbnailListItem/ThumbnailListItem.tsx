@@ -1,9 +1,9 @@
+import { Center, Icon, Image } from '@/components/ui/atoms';
+import { FileTypeCode } from '@/graphql/enums';
+import type { ChakraProps } from '@/shared/chakra';
+import { getTaskFileIcon, useTaskFile } from '@/store/entities/taskFile';
 import type React from 'react';
 import { useMemo } from 'react';
-import { Center, Icon, Image } from 'src/components/ui/atoms';
-import { FileTypeCode } from 'src/graphql/enums';
-import type { ChakraProps } from 'src/shared/chakra';
-import { getTaskFileIcon, useTaskFile } from 'src/store/entities/taskFile';
 import { Container } from './Container';
 
 type Props = {

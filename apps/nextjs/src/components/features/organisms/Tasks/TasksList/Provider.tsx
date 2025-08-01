@@ -1,7 +1,7 @@
+import { useTasksListContentSticky } from '@/components/features/organisms/Tasks';
+import type { ChakraProps } from '@/shared/chakra';
+import { createProvider } from '@/shared/react/createProvider';
 import { useMemo } from 'react';
-import { useTasksListContentSticky } from 'src/components/features/organisms/Tasks';
-import type { ChakraProps } from 'src/shared/chakra';
-import { createProvider } from 'src/shared/react/createProvider';
 
 type ContextProps = {
   stickyStyle: StickyStyle;
@@ -30,6 +30,6 @@ const useValue = (): ContextProps => {
     stickyStyle,
   } as const;
 };
-useValue.__PROVIDER__ = 'src/components/organisms/Tasks/TasksList/Provider.tsx';
+useValue.__PROVIDER__ = '@/components/organisms/Tasks/TasksList/Provider.tsx';
 export const { Provider, useContext: useTasksListContext } =
   createProvider(useValue);

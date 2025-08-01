@@ -1,7 +1,7 @@
+import { useTaskDetail } from '@/components/features/organisms/TaskDetail';
+import { Flex } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo, useEffect } from 'react';
-import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
-import { Flex } from 'src/components/ui/atoms';
 import { Form } from './Form';
 import { Info } from './Info';
 import { SkeletonTaskDetailBody } from './SkeletonTaskDetailBody';

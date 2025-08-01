@@ -1,8 +1,8 @@
+import { Flex, type FlexProps } from '@/components/ui/atoms';
+import { transitions } from '@/styles';
 import type React from 'react';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
-import { transitions } from 'src/styles';
 
 type Props = FlexProps;
 

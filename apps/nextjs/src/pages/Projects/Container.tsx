@@ -1,12 +1,12 @@
-import type React from 'react';
-import { memo, useCallback, useEffect } from 'react';
 import {
   useProjectsPageQuery,
   useProjectsTaskDetailPageQuery,
-} from 'src/hooks/queries/app';
-import { useRouter } from 'src/router';
-import { getProjectsIdFromURL } from 'src/router/projects';
-import { useProjectsProjectId } from 'src/store/app/projects/project';
+} from '@/hooks/queries/app';
+import { useRouter } from '@/router';
+import { getProjectsIdFromURL } from '@/router/projects';
+import { useProjectsProjectId } from '@/store/app/projects/project';
+import type React from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { Component } from './Component';
 
 export const Container: React.FC = memo(() => {

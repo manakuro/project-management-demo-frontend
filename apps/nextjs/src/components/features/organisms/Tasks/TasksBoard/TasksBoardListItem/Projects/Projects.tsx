@@ -1,6 +1,6 @@
+import { type FlexProps, Stack } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { type FlexProps, Stack } from 'src/components/ui/atoms';
 import { ProjectChip } from './ProjectChip';
 
 type Props = FlexProps & {

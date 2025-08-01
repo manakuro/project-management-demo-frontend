@@ -1,7 +1,7 @@
+import { Flex, type FlexProps, Stack } from '@/components/ui/atoms';
+import { useProjectIdsByTaskId } from '@/store/entities/projectTask';
 import type React from 'react';
 import { memo } from 'react';
-import { Flex, type FlexProps, Stack } from 'src/components/ui/atoms';
-import { useProjectIdsByTaskId } from 'src/store/entities/projectTask';
 import { Card } from './Card';
 import { DueDate } from './DueDate';
 import { Feed } from './Feed';

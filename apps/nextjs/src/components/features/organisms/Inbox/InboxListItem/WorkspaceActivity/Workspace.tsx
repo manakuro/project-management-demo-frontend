@@ -1,15 +1,15 @@
-import type React from 'react';
-import { memo, useMemo } from 'react';
-import { useInboxListItemContext } from 'src/components/features/organisms/Inbox/InboxListItem/Provider';
+import { useInboxListItemContext } from '@/components/features/organisms/Inbox/InboxListItem/Provider';
 import {
   Flex,
   type FlexProps,
   Icon,
   Text,
   type TextProps,
-} from 'src/components/ui/atoms';
-import { useWorkspace } from 'src/store/entities/workspace';
-import { transitions } from 'src/styles';
+} from '@/components/ui/atoms';
+import { useWorkspace } from '@/store/entities/workspace';
+import { transitions } from '@/styles';
+import type React from 'react';
+import { memo, useMemo } from 'react';
 
 type Props = FlexProps & {
   workspaceId: string;

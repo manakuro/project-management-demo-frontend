@@ -1,13 +1,13 @@
+import { ProjectChip } from '@/components/features/molecules/Chips';
+import { PopoverDueDatePicker } from '@/components/features/organisms/Popovers';
+import { CheckIcon, DueDate, Flex, Stack, Text } from '@/components/ui/atoms';
+import { useClickableHoverStyle } from '@/hooks';
+import { useRouter } from '@/router';
+import { formatDueTime } from '@/shared/date';
+import { useProjectIdsByTaskId } from '@/store/entities/projectTask';
+import { useTask } from '@/store/entities/task';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { ProjectChip } from 'src/components/features/molecules/Chips';
-import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers';
-import { CheckIcon, DueDate, Flex, Stack, Text } from 'src/components/ui/atoms';
-import { useClickableHoverStyle } from 'src/hooks';
-import { useRouter } from 'src/router';
-import { formatDueTime } from 'src/shared/date';
-import { useProjectIdsByTaskId } from 'src/store/entities/projectTask';
-import { useTask } from 'src/store/entities/task';
 
 type Props = {
   taskId: string;

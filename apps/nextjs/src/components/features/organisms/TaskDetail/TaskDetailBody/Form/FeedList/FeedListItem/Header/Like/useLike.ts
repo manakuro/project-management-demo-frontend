@@ -1,7 +1,7 @@
+import { useMe } from '@/store/entities/me';
+import { useTaskFeedLikesByTaskFeedId } from '@/store/entities/taskFeedLike';
+import { useTeammates } from '@/store/entities/teammate';
 import { useCallback, useMemo } from 'react';
-import { useMe } from 'src/store/entities/me';
-import { useTaskFeedLikesByTaskFeedId } from 'src/store/entities/taskFeedLike';
-import { useTeammates } from 'src/store/entities/teammate';
 import { useTaskFeedListItemContext } from '../../Provider';
 
 export const useLike = () => {

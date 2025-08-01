@@ -1,6 +1,6 @@
+import { Divider, Flex } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { Divider, Flex } from 'src/components/ui/atoms';
 import { ProjectIcon } from './ProjectIcon';
 import { ProjectTeammates } from './ProjectTeammates';
 import { ShareButton } from './ShareButton';

@@ -1,8 +1,8 @@
+import { PriorityChip } from '@/components/features/molecules/Chips';
+import type { FlexProps } from '@/components/ui/atoms';
+import { useTask } from '@/store/entities/task';
 import type React from 'react';
 import { memo } from 'react';
-import { PriorityChip } from 'src/components/features/molecules/Chips';
-import type { FlexProps } from 'src/components/ui/atoms';
-import { useTask } from 'src/store/entities/task';
 
 type Props = FlexProps & {
   taskId: string;

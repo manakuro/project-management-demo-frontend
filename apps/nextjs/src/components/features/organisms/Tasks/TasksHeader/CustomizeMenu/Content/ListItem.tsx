@@ -1,11 +1,11 @@
+import { useTasksTaskColumn } from '@/components/features/organisms/Tasks/hooks';
+import { Box } from '@/components/ui/atoms';
+import { CustomField } from '@/components/ui/molecules';
+import { useDraggableInPortal } from '@/hooks/useDraggableInPortal';
+import { useTaskColumn } from '@/store/entities/taskColumn';
 import { Draggable } from '@hello-pangea/dnd';
 import type React from 'react';
 import { memo, useCallback, useMemo } from 'react';
-import { useTasksTaskColumn } from 'src/components/features/organisms/Tasks/hooks';
-import { Box } from 'src/components/ui/atoms';
-import { CustomField } from 'src/components/ui/molecules';
-import { useDraggableInPortal } from 'src/hooks/useDraggableInPortal';
-import { useTaskColumn } from 'src/store/entities/taskColumn';
 
 type Props = {
   tasksTaskColumnId: string;

@@ -1,7 +1,7 @@
+import { Button, Flex, Icon, Text } from '@/components/ui/atoms';
+import { useTaskCommand } from '@/store/entities/task';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { Button, Flex, Icon, Text } from 'src/components/ui/atoms';
-import { useTaskCommand } from 'src/store/entities/task';
 
 type Props = {
   taskId: string;

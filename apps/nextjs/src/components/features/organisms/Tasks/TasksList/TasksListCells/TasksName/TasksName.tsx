@@ -1,16 +1,16 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
-import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider';
-import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks';
+import { useTasksListContext } from '@/components/features/organisms/Tasks/TasksList/Provider';
+import { useTasksRouter } from '@/components/features/organisms/Tasks/hooks';
 import {
   CheckIcon,
   type FlexProps,
   Icon,
   Stack,
   Text,
-} from 'src/components/ui/atoms';
-import { TaskDoneTransition } from 'src/components/ui/molecules';
-import { useTask, useTaskCommand } from 'src/store/entities/task';
+} from '@/components/ui/atoms';
+import { TaskDoneTransition } from '@/components/ui/molecules';
+import { useTask, useTaskCommand } from '@/store/entities/task';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import { ExpandIcon } from './ExpandIcon';
 import { Feed } from './Feed';
 import { Like } from './Like';

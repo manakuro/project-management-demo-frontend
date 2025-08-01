@@ -1,13 +1,13 @@
-import type React from 'react';
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { useTaskDetailDrawerRef } from 'src/components/features/organisms/TaskDetails';
-import { Box, Flex, Input, type InputProps } from 'src/components/ui/atoms';
+import { useTaskDetailDrawerRef } from '@/components/features/organisms/TaskDetails';
+import { Box, Flex, Input, type InputProps } from '@/components/ui/atoms';
 import {
   type UseClickOutsideOptionsHasClickedOutside,
   useClickOutside,
   useDebounce,
   useMountedRef,
-} from 'src/hooks';
+} from '@/hooks';
+import type React from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTasksNameContext } from './TasksNameProvider';
 
 type Props = {

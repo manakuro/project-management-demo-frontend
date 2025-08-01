@@ -1,11 +1,11 @@
 import {
   type Activity,
   useActivity,
-} from 'src/store/app/inbox/activity/activities';
+} from '@/store/app/inbox/activity/activities';
 import {
   type ArchiveActivity,
   useArchive,
-} from 'src/store/app/inbox/archive/archives';
+} from '@/store/app/inbox/archive/archives';
 import { useInboxContext } from '../Inbox';
 
 type Result = {

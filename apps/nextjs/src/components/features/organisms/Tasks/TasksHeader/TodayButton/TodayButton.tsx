@@ -1,5 +1,5 @@
+import { Button } from '@/components/ui/atoms';
 import { memo, useCallback } from 'react';
-import { Button } from 'src/components/ui/atoms';
 import { useTasksCalendarContext } from '../../TasksCalendar';
 
 export const TodayButton = memo(function TodayButton() {

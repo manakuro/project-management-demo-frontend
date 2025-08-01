@@ -1,12 +1,12 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
-import { Portal } from 'src/components/ui/atoms';
+import { Portal } from '@/components/ui/atoms';
 import {
   MenuList as AtomsMenuList,
   MenuDivider,
-} from 'src/components/ui/organisms/Menu';
-import { useClickOutside } from 'src/hooks/useClickOutside';
-import { useDisclosure } from 'src/shared/chakra';
+} from '@/components/ui/organisms/Menu';
+import { useClickOutside } from '@/hooks/useClickOutside';
+import { useDisclosure } from '@/shared/chakra';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import { AddCoverImage } from './AddCoverImage';
 import { CopyTask } from './CopyTask';
 import { DeleteTask } from './DeleteTask';

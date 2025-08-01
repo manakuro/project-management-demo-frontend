@@ -1,6 +1,6 @@
+import { useCustomizeMenu } from '@/components/features/organisms/Tasks/TasksHeader/CustomizeMenu/useCustomizeMenu';
+import { Button, Icon } from '@/components/ui/atoms';
 import { memo, useCallback } from 'react';
-import { useCustomizeMenu } from 'src/components/features/organisms/Tasks/TasksHeader/CustomizeMenu/useCustomizeMenu';
-import { Button, Icon } from 'src/components/ui/atoms';
 
 export const CustomizeButton = memo(function CustomizeButton() {
   const { setIsOpen } = useCustomizeMenu();

@@ -1,9 +1,9 @@
+import { useMyTasksPageQuery as useQuery } from '@/graphql/hooks';
+import { useMountedRef } from '@/hooks';
+import { useMyTasksResponse } from '@/store/app/myTasks';
+import { useMe } from '@/store/entities/me';
+import { useWorkspace } from '@/store/entities/workspace';
 import { useCallback, useMemo, useState } from 'react';
-import { useMyTasksPageQuery as useQuery } from 'src/graphql/hooks';
-import { useMountedRef } from 'src/hooks';
-import { useMyTasksResponse } from 'src/store/app/myTasks';
-import { useMe } from 'src/store/entities/me';
-import { useWorkspace } from 'src/store/entities/workspace';
 
 export const useMyTasksPageQuery = () => {
   const { me } = useMe();

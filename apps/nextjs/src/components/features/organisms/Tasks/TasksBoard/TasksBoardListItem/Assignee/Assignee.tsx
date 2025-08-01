@@ -1,7 +1,7 @@
+import { AssigneeIconMenu } from '@/components/features/organisms/Menus';
+import { useTask } from '@/store/entities/task';
 import type React from 'react';
 import { memo } from 'react';
-import { AssigneeIconMenu } from 'src/components/features/organisms/Menus';
-import { useTask } from 'src/store/entities/task';
 import { useAssignee } from './useAssignee';
 
 type Props = {

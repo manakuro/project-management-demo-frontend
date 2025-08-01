@@ -1,6 +1,6 @@
+import { MyAvatar } from '@/components/features/organisms/MyAvatar';
+import { Flex } from '@/components/ui/atoms';
 import { memo } from 'react';
-import { MyAvatar } from 'src/components/features/organisms/MyAvatar';
-import { Flex } from 'src/components/ui/atoms';
 import { Input } from './Input';
 
 export const Comment = memo(function Comment() {

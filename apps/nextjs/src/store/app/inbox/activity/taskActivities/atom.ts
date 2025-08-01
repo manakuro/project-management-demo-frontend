@@ -1,4 +1,4 @@
-import { createState } from 'src/store/util';
+import { createState } from '@/store/util';
 import type { TaskActivity } from './type';
 
 export const initialState = (): TaskActivity => ({

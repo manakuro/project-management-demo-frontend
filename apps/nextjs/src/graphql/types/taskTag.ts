@@ -1,8 +1,8 @@
-import type { TaskTagFragmentFragment } from 'src/graphql/types';
+import type { TaskTagFragmentFragment } from '@/graphql/types';
 
 export type TaskTagResponse = NonNullable<TaskTagFragmentFragment>;
 
 export type {
   TaskTagCreatedSubscription as TaskTagCreatedSubscriptionResponse,
   TaskTagDeletedSubscription as TaskTagDeletedSubscriptionResponse,
-} from 'src/graphql/types';
+} from '@/graphql/types';

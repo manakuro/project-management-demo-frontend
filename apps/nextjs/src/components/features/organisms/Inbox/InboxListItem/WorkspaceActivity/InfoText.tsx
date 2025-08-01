@@ -1,9 +1,9 @@
+import { useWorkspaceActivityTaskIds } from '@/components/features/organisms/Inbox/hooks';
+import { Flex, type FlexProps } from '@/components/ui/atoms';
+import { useCreatedByIdsByTaskIds } from '@/store/entities/task';
+import { useTeammateNamesByTeammateIds } from '@/store/entities/teammate';
 import type React from 'react';
 import { memo, useMemo } from 'react';
-import { useWorkspaceActivityTaskIds } from 'src/components/features/organisms/Inbox/hooks';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
-import { useCreatedByIdsByTaskIds } from 'src/store/entities/task';
-import { useTeammateNamesByTeammateIds } from 'src/store/entities/teammate';
 
 type Props = FlexProps & {
   workspaceActivityId: string;

@@ -1,25 +1,25 @@
-import type React from 'react';
-import { memo, useCallback, useState } from 'react';
-import { AssigneeChip } from 'src/components/features/molecules/Chips';
-import { InviteCollaboratorMenu } from 'src/components/features/organisms/Menus';
-import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
+import { AssigneeChip } from '@/components/features/molecules/Chips';
+import { InviteCollaboratorMenu } from '@/components/features/organisms/Menus';
+import { useTaskDetail } from '@/components/features/organisms/TaskDetail';
 import {
   Input as AtomsInput,
   Flex,
   Wrap,
   WrapItem,
-} from 'src/components/ui/atoms';
-import { useClickOutside } from 'src/hooks';
+} from '@/components/ui/atoms';
+import { useClickOutside } from '@/hooks';
 import {
   type ChakraProps,
   useDisclosure,
   useStyleConfig,
-} from 'src/shared/chakra';
+} from '@/shared/chakra';
 import {
   useTaskCollaboratorCommand,
   useTeammateIdsByTaskId,
-} from 'src/store/entities/taskCollaborator';
-import type { Teammate } from 'src/store/entities/teammate';
+} from '@/store/entities/taskCollaborator';
+import type { Teammate } from '@/store/entities/teammate';
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
 import { useCollaboratorsContext } from '../Provider';
 
 export const Input: React.FC = () => {

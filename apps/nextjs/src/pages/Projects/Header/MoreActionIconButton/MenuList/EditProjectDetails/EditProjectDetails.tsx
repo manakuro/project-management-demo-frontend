@@ -1,8 +1,8 @@
+import { useProjectDetailModal } from '@/components/features/organisms/Modals';
+import { Icon } from '@/components/ui/atoms';
+import { MenuItem } from '@/components/ui/organisms/Menu';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { useProjectDetailModal } from 'src/components/features/organisms/Modals';
-import { Icon } from 'src/components/ui/atoms';
-import { MenuItem } from 'src/components/ui/organisms/Menu';
 
 type Props = {
   onClose: () => void;

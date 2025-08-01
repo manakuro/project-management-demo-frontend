@@ -1,7 +1,7 @@
+import { MenuItem } from '@/components/ui/organisms/Menu';
+import { useFavoriteWorkspaceIdsCommand } from '@/store/entities/favoriteWorkspaceIds';
 import type React from 'react';
 import { useCallback } from 'react';
-import { MenuItem } from 'src/components/ui/organisms/Menu';
-import { useFavoriteWorkspaceIdsCommand } from 'src/store/entities/favoriteWorkspaceIds';
 
 type Props = {
   workspaceId: string;

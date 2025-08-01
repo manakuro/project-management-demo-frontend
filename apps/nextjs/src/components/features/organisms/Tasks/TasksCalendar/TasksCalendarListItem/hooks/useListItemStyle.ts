@@ -1,7 +1,7 @@
+import { useTasksContext } from '@/components/features/organisms/Tasks';
+import type { FlexProps, TextProps } from '@/components/ui/atoms';
+import { dateFns } from '@/shared/dateFns';
 import { useMemo } from 'react';
-import { useTasksContext } from 'src/components/features/organisms/Tasks';
-import type { FlexProps, TextProps } from 'src/components/ui/atoms';
-import { dateFns } from 'src/shared/dateFns';
 import { useProjectDueDate } from './useProjectDueDate';
 
 type Props = {

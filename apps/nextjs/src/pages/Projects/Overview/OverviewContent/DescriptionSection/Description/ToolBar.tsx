@@ -1,5 +1,4 @@
-import { memo } from 'react';
-import { Divider, Stack } from 'src/components/ui/atoms';
+import { Divider, Stack } from '@/components/ui/atoms';
 import {
   AtMention,
   Bold,
@@ -12,7 +11,8 @@ import {
   OrderedList,
   Strikethrough,
   Underline,
-} from 'src/components/ui/organisms/Editor/ToolBar';
+} from '@/components/ui/organisms/Editor/ToolBar';
+import { memo } from 'react';
 import { useDescriptionContext } from './Provider';
 
 export const ToolBar = memo(function ToolBar() {

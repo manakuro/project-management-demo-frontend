@@ -1,14 +1,14 @@
+import { useProjectTaskSectionDeletedAndKeepTasksSubscription as useSubscription } from '@/graphql/hooks';
+import type { ProjectTaskResponse } from '@/graphql/types/projectTask';
+import { uuid } from '@/shared/uuid';
+import {
+  projectTasksByProjectTaskSectionIdState,
+  useProjectTaskResponse,
+} from '@/store/entities/projectTask';
 import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
 import { useCallback } from 'react';
-import { useProjectTaskSectionDeletedAndKeepTasksSubscription as useSubscription } from 'src/graphql/hooks';
-import type { ProjectTaskResponse } from 'src/graphql/types/projectTask';
-import { uuid } from 'src/shared/uuid';
-import {
-  projectTasksByProjectTaskSectionIdState,
-  useProjectTaskResponse,
-} from 'src/store/entities/projectTask';
 import type { ProjectTaskSectionDeletedAndKeepTasksSubscriptionResponse as Response } from '../type';
 import { useResetProjectTaskSection } from './useResetProjectTaskSection';
 

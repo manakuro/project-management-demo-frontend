@@ -1,7 +1,7 @@
+import { useTasksContext } from '@/components/features/organisms/Tasks';
+import { Flex, Icon, Text } from '@/components/ui/atoms';
+import { useTask } from '@/store/entities/task';
 import { memo } from 'react';
-import { useTasksContext } from 'src/components/features/organisms/Tasks';
-import { Flex, Icon, Text } from 'src/components/ui/atoms';
-import { useTask } from 'src/store/entities/task';
 import { useTasksNameContext } from '../TasksNameProvider';
 
 export const TaskParentName = memo(function TaskParentName() {

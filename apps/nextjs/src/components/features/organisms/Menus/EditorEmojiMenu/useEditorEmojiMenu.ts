@@ -1,16 +1,16 @@
-import { useAtom } from 'jotai';
-import { atomWithReset, useResetAtom } from 'jotai/utils';
-import { useCallback, useEffect, useMemo, useRef } from 'react';
-import { useResizeObserver } from 'src/hooks/useResizeObserver';
-import { calculateModalPosition } from 'src/shared/calculateModalPosition';
+import { useResizeObserver } from '@/hooks/useResizeObserver';
+import { calculateModalPosition } from '@/shared/calculateModalPosition';
 import {
   type BaseEmoji,
   type EmojiData,
   type EmojiSkin,
   emojiData,
   frequently,
-} from 'src/shared/emoji';
-import { getCaretPosition } from 'src/shared/getCaretPosition';
+} from '@/shared/emoji';
+import { getCaretPosition } from '@/shared/getCaretPosition';
+import { useAtom } from 'jotai';
+import { atomWithReset, useResetAtom } from 'jotai/utils';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 const key = (str: string) =>
   `src/components/organisms/Menus/EditorEmojiMenu/useEditorEmojiMenu/${str}`;

@@ -1,4 +1,3 @@
-import type { Suggester } from 'prosemirror-suggest';
 import {
   getMentionId,
   getMentionType,
@@ -8,8 +7,9 @@ import {
   onMentionEnter as onEnter,
   onMentionOpen as onOpen,
   setMentionQuery as setQuery,
-} from 'src/components/features/organisms/Menus/EditorMentionMenu';
-import type { MentionAttrs } from 'src/shared/prosemirror/schema';
+} from '@/components/features/organisms/Menus/EditorMentionMenu';
+import type { MentionAttrs } from '@/shared/prosemirror/schema';
+import type { Suggester } from 'prosemirror-suggest';
 
 export const MENTION_CHAR = '@';
 export const suggestMention: Suggester = {

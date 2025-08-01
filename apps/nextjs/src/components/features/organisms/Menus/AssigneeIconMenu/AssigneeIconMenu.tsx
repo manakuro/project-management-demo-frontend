@@ -1,11 +1,11 @@
+import { PopoverAssigneeInput } from '@/components/features/organisms/Popovers';
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
+import { Icon } from '@/components/ui/atoms';
+import { Tooltip } from '@/components/ui/molecules';
+import { useClickableHoverStyle } from '@/hooks';
+import { useTeammate } from '@/store/entities/teammate';
 import type React from 'react';
 import { memo, useCallback, useState } from 'react';
-import { PopoverAssigneeInput } from 'src/components/features/organisms/Popovers';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
-import { Icon } from 'src/components/ui/atoms';
-import { Tooltip } from 'src/components/ui/molecules';
-import { useClickableHoverStyle } from 'src/hooks';
-import { useTeammate } from 'src/store/entities/teammate';
 
 type Props = {
   taskId: string;

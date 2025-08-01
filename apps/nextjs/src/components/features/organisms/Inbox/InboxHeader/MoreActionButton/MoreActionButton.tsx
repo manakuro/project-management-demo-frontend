@@ -1,6 +1,6 @@
+import { Icon, IconButton, PortalManager } from '@/components/ui/atoms';
+import { Menu, MenuButton } from '@/components/ui/organisms/Menu';
 import { memo } from 'react';
-import { Icon, IconButton, PortalManager } from 'src/components/ui/atoms';
-import { Menu, MenuButton } from 'src/components/ui/organisms/Menu';
 import { MenuList } from './MenuList';
 
 export const MoreActionButton = memo(function MoreActionButton() {

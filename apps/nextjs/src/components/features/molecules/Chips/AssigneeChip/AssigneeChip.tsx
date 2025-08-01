@@ -1,9 +1,9 @@
+import { PopoverProfile } from '@/components/features/organisms/Popovers';
+import { Avatar, Box, Button, Icon, Text } from '@/components/ui/atoms';
+import { useClickableHoverStyle } from '@/hooks';
+import { useTeammate } from '@/store/entities/teammate';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { PopoverProfile } from 'src/components/features/organisms/Popovers';
-import { Avatar, Box, Button, Icon, Text } from 'src/components/ui/atoms';
-import { useClickableHoverStyle } from 'src/hooks';
-import { useTeammate } from 'src/store/entities/teammate';
 
 type Props = {
   teammateId: string;

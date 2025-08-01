@@ -1,17 +1,17 @@
-import type React from 'react';
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { Flex } from 'src/components/ui/atoms';
-import { Editor, EditorContent } from 'src/components/ui/organisms/Editor';
-import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual';
+import { Flex } from '@/components/ui/atoms';
+import { Editor, EditorContent } from '@/components/ui/organisms/Editor';
+import { isDescriptionEqual } from '@/shared/editor/isDescriptionEqual';
 import {
   parseDescription,
   stringifyDescription,
-} from 'src/shared/prosemirror/convertDescription';
+} from '@/shared/prosemirror/convertDescription';
 import {
   useHasDescriptionUpdatedValue,
   useProject,
   useProjectCommand,
-} from 'src/store/entities/project';
+} from '@/store/entities/project';
+import type React from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Container } from './Container';
 import { Placeholder } from './Placeholder';
 import { Provider } from './Provider';

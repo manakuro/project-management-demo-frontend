@@ -1,6 +1,6 @@
+import { LayoutDefault } from '@/components/ui/organisms/Layout';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
-import { LayoutDefault } from 'src/components/ui/organisms/Layout';
 import { Container as Page } from './Container';
 
 export default {

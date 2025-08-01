@@ -1,8 +1,8 @@
-import { Portal } from 'src/components/ui/atoms';
+import { Portal } from '@/components/ui/atoms';
 import {
   MenuList as AtomsMenuList,
   MenuItem,
-} from 'src/components/ui/organisms/Menu';
+} from '@/components/ui/organisms/Menu';
 
 export function MenuList() {
   return (

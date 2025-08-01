@@ -1,5 +1,5 @@
-import { useActivityIdsSortByUpdatedAt } from 'src/store/app/inbox/activity/activities';
-import { useArchiveIdsSortByUpdatedAt } from 'src/store/app/inbox/archive/archives';
+import { useActivityIdsSortByUpdatedAt } from '@/store/app/inbox/activity/activities';
+import { useArchiveIdsSortByUpdatedAt } from '@/store/app/inbox/archive/archives';
 import { useInboxContext } from '../Inbox';
 
 type Result = {

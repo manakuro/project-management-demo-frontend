@@ -1,9 +1,9 @@
+import { useTaskFeedUpdatedSubscription as useSubscription } from '@/graphql/hooks';
+import { isULID } from '@/shared/ulid';
+import { uuid } from '@/shared/uuid';
 import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
 import { useCallback, useMemo } from 'react';
-import { useTaskFeedUpdatedSubscription as useSubscription } from 'src/graphql/hooks';
-import { isULID } from 'src/shared/ulid';
-import { uuid } from 'src/shared/uuid';
 import type { TaskFeedUpdatedSubscriptionResponse } from '../type';
 import { useTaskFeedResponse } from './useTaskFeedResponse';
 

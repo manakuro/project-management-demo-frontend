@@ -1,7 +1,7 @@
+import { useMountedRef } from '@/hooks';
+import { ROUTE_MY_TASKS, useRouter } from '@/router';
+import { createProvider } from '@/shared/react/createProvider';
 import { useEffect, useState } from 'react';
-import { useMountedRef } from 'src/hooks';
-import { ROUTE_MY_TASKS, useRouter } from 'src/router';
-import { createProvider } from 'src/shared/react/createProvider';
 
 type ContextProps = {
   selected: boolean;
@@ -31,6 +31,6 @@ const useValue = (props: Props): ContextProps => {
   };
 };
 useValue.__PROVIDER__ =
-  'src/components/organisms/Tasks/TasksList/TasksListItem/Provider/TasksListRowProvider.tsx';
+  '@/components/organisms/Tasks/TasksList/TasksListItem/Provider/TasksListRowProvider.tsx';
 export const { Provider, useContext: useTasksListItemRowContext } =
   createProvider(useValue);

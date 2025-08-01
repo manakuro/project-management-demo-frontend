@@ -1,4 +1,3 @@
-import React, { useCallback } from 'react';
 import {
   Button,
   Divider,
@@ -7,7 +6,7 @@ import {
   RadioGroup,
   Stack,
   Text,
-} from 'src/components/ui/atoms';
+} from '@/components/ui/atoms';
 import {
   Modal,
   ModalBody,
@@ -16,7 +15,8 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from 'src/components/ui/organisms/Modal';
+} from '@/components/ui/organisms/Modal';
+import React, { useCallback } from 'react';
 import { useDeleteTaskSectionModal } from './useDeleteTaskSectionModal';
 
 export function DeleteTaskSectionModal() {

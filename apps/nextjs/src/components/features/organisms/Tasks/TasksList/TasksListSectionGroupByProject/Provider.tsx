@@ -1,4 +1,4 @@
-import { createProvider } from 'src/shared/react/createProvider';
+import { createProvider } from '@/shared/react/createProvider';
 
 type ContextProps = {
   projectId: string;
@@ -14,7 +14,7 @@ const useValue = (props: Props): ContextProps => {
   } as const;
 };
 useValue.__PROVIDER__ =
-  'src/components/organisms/Tasks/TasksList/TasksListSectionGroupByProject/Provider.tsx';
+  '@/components/organisms/Tasks/TasksList/TasksListSectionGroupByProject/Provider.tsx';
 export const {
   Provider,
   useContext: useTasksListSectionGroupByProjectContext,

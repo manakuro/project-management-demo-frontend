@@ -1,4 +1,4 @@
-import { createState } from 'src/store/util';
+import { createState } from '@/store/util';
 import type { TaskPriority } from './type';
 import { TaskPriorityType } from './types';
 

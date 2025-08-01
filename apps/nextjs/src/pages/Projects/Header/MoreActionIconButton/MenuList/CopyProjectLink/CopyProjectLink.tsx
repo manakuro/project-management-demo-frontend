@@ -1,8 +1,8 @@
+import { Icon } from '@/components/ui/atoms';
+import { MenuItem } from '@/components/ui/organisms/Menu';
+import { useCopyProjectLink } from '@/hooks/pages/projects';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { Icon } from 'src/components/ui/atoms';
-import { MenuItem } from 'src/components/ui/organisms/Menu';
-import { useCopyProjectLink } from 'src/hooks/pages/projects';
 
 type Props = {
   onClose: () => void;

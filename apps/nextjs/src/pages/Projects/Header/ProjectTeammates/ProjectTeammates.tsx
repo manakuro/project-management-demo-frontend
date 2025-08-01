@@ -1,13 +1,13 @@
+import { useShareProjectModal } from '@/components/features/organisms/Modals/ShareProjectModal';
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
+import { AvatarGroup, Flex } from '@/components/ui/atoms';
+import { Tooltip } from '@/components/ui/molecules';
+import { useTooltip } from '@/components/ui/molecules/Tooltip/useTooltip';
+import { useProjectsProjectId } from '@/store/app/projects/project';
+import { useTeammateIdsByProjectId } from '@/store/entities/projectTeammate';
+import { useWorkspace } from '@/store/entities/workspace';
+import { transitions } from '@/styles';
 import { memo, useCallback } from 'react';
-import { useShareProjectModal } from 'src/components/features/organisms/Modals/ShareProjectModal';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
-import { AvatarGroup, Flex } from 'src/components/ui/atoms';
-import { Tooltip } from 'src/components/ui/molecules';
-import { useTooltip } from 'src/components/ui/molecules/Tooltip/useTooltip';
-import { useProjectsProjectId } from 'src/store/app/projects/project';
-import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate';
-import { useWorkspace } from 'src/store/entities/workspace';
-import { transitions } from 'src/styles';
 
 export const ProjectTeammates = memo(function ProjectTeammates() {
   const { projectId } = useProjectsProjectId();

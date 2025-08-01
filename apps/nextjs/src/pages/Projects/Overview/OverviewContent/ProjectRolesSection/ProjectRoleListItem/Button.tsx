@@ -1,6 +1,6 @@
-import { Button as AtomsButton } from 'src/components/ui/atoms';
-import { MenuButton } from 'src/components/ui/organisms/Menu';
-import { forwardRef } from 'src/shared/chakra';
+import { Button as AtomsButton } from '@/components/ui/atoms';
+import { MenuButton } from '@/components/ui/organisms/Menu';
+import { forwardRef } from '@/shared/chakra';
 
 export const Button = forwardRef(function Button(props, ref) {
   return (

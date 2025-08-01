@@ -1,13 +1,13 @@
-import type React from 'react';
-import { useCallback } from 'react';
-import { Flex, Icon, Link, Portal, Text } from 'src/components/ui/atoms';
+import { Flex, Icon, Link, Portal, Text } from '@/components/ui/atoms';
 import {
   MenuList as AtomsMenuList,
   MenuDivider,
   MenuItem,
-} from 'src/components/ui/organisms/Menu';
-import { useClickOutside } from 'src/hooks/useClickOutside';
-import { useDisclosure } from 'src/shared/chakra';
+} from '@/components/ui/organisms/Menu';
+import { useClickOutside } from '@/hooks/useClickOutside';
+import { useDisclosure } from '@/shared/chakra';
+import type React from 'react';
+import { useCallback } from 'react';
 import { PopoverMore } from './PopoverMore';
 
 type Props = {

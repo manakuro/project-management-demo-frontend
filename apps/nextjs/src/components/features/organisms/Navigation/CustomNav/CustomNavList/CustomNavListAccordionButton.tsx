@@ -1,8 +1,8 @@
-import type React from 'react';
 import {
   AccordionButton,
   type AccordionButtonProps,
-} from 'src/components/ui/organisms/Accordion';
+} from '@/components/ui/organisms/Accordion';
+import type React from 'react';
 import { PADDING_X } from '../../Navigation';
 
 type Props = AccordionButtonProps;

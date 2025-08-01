@@ -1,13 +1,13 @@
-import type { TeammateTaskTabStatusQuery } from 'src/graphql/types';
+import type { TeammateTaskTabStatusQuery } from '@/graphql/types';
 
 export type {
   TeammateTaskTabStatusQuery,
   TeammateTaskTabStatusQueryVariables,
-} from 'src/graphql/types';
+} from '@/graphql/types';
 export type {
   TeammateTaskTabStatusQueryHookResult,
   TeammateTaskTabStatusLazyQueryHookResult,
-} from 'src/graphql/hooks';
+} from '@/graphql/hooks';
 
 export type TeammateTaskTabStatusResponse = NonNullable<
   TeammateTaskTabStatusQuery['teammateTaskTabStatus']

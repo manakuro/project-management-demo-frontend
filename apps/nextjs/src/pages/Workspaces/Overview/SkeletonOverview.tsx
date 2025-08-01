@@ -1,6 +1,6 @@
+import { Flex, type FlexProps, Grid, Skeleton } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { Flex, type FlexProps, Grid, Skeleton } from 'src/components/ui/atoms';
 import { OverviewLeft } from './OverviewLeft';
 import { OverviewLeftContent } from './OverviewLeftContent';
 import { OverviewRight } from './OverviewRight';

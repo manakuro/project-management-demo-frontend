@@ -1,9 +1,9 @@
-import type React from 'react';
-import { memo } from 'react';
 import {
   MenuButton,
   type MenuButtonProps,
-} from 'src/components/ui/organisms/Menu';
+} from '@/components/ui/organisms/Menu';
+import type React from 'react';
+import { memo } from 'react';
 import { useMenuSelectContext } from './useMenuSelect';
 
 type Props = MenuButtonProps;

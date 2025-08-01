@@ -1,12 +1,12 @@
-import type React from 'react';
 import {
   Flex,
   type FlexProps,
   Icon,
   Progress,
   Text,
-} from 'src/components/ui/atoms';
-import { transitions } from 'src/styles';
+} from '@/components/ui/atoms';
+import { transitions } from '@/styles';
+import type React from 'react';
 
 type Props = FlexProps & {
   size: Sizes;

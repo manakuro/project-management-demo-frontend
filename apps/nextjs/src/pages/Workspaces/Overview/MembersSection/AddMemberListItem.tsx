@@ -1,8 +1,8 @@
+import { useInviteModal } from '@/components/features/organisms/Modals';
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
+import { Flex, Text } from '@/components/ui/atoms';
+import { useClickableHoverStyle } from '@/hooks';
 import { memo, useCallback } from 'react';
-import { useInviteModal } from 'src/components/features/organisms/Modals';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
-import { Flex, Text } from 'src/components/ui/atoms';
-import { useClickableHoverStyle } from 'src/hooks';
 
 export const AddMemberListItem = memo(function AddMemberListItem() {
   const { setIsOpen } = useInviteModal();

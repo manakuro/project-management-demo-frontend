@@ -1,9 +1,9 @@
+import { Button } from '@/components/ui/atoms';
+import type { PopoverProps } from '@/components/ui/organisms/Popover';
+import { useMe } from '@/store/entities/me';
+import { useTaskCommand } from '@/store/entities/task';
 import type React from 'react';
 import { useCallback } from 'react';
-import { Button } from 'src/components/ui/atoms';
-import type { PopoverProps } from 'src/components/ui/organisms/Popover';
-import { useMe } from 'src/store/entities/me';
-import { useTaskCommand } from 'src/store/entities/task';
 
 type Props = {
   taskId: string;

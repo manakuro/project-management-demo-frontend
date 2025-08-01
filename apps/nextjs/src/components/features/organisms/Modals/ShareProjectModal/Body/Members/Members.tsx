@@ -1,8 +1,8 @@
+import { Flex, Text } from '@/components/ui/atoms';
+import { useLinkStyle } from '@/hooks';
+import { useTeammateIdsByProjectId } from '@/store/entities/projectTeammate';
 import type React from 'react';
 import { memo, useMemo } from 'react';
-import { Flex, Text } from 'src/components/ui/atoms';
-import { useLinkStyle } from 'src/hooks';
-import { useTeammateIdsByProjectId } from 'src/store/entities/projectTeammate';
 import { BodyHeader } from '../BodyHeader';
 import { BodyStack } from '../BodyStack';
 import { MemberListItem } from './MemberListItem';

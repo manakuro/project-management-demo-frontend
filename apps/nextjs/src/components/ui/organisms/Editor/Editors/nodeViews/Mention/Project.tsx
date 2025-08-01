@@ -1,16 +1,16 @@
-import type React from 'react';
-import { memo } from 'react';
 import {
   PopoverEditorLink,
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
   PopoverEditorLinkTrigger,
-} from 'src/components/features/organisms/Popovers';
-import { ColorBox } from 'src/components/ui/atoms';
-import { useReactNodeView } from 'src/components/ui/organisms/Editor/Editors/ReactNodeView';
-import type { MentionAttrs } from 'src/shared/prosemirror/schema';
-import { useProject } from 'src/store/entities/project';
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
+} from '@/components/features/organisms/Popovers';
+import { ColorBox } from '@/components/ui/atoms';
+import { useReactNodeView } from '@/components/ui/organisms/Editor/Editors/ReactNodeView';
+import type { MentionAttrs } from '@/shared/prosemirror/schema';
+import { useProject } from '@/store/entities/project';
+import { useProjectBaseColor } from '@/store/entities/projectBaseColor';
+import type React from 'react';
+import { memo } from 'react';
 
 export const Project: React.FC = memo(() => {
   const context = useReactNodeView();

@@ -1,7 +1,7 @@
+import { Flex, InputText } from '@/components/ui/atoms';
+import { useDescriptionTitleInput } from '@/hooks/pages/projects';
 import type React from 'react';
 import { memo } from 'react';
-import { Flex, InputText } from 'src/components/ui/atoms';
-import { useDescriptionTitleInput } from 'src/hooks/pages/projects';
 
 type Props = {
   value: string;

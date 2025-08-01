@@ -1,4 +1,4 @@
-import { createProvider } from 'src/shared/react/createProvider';
+import { createProvider } from '@/shared/react/createProvider';
 
 type ContextProps = {
   isMyTasksPage: boolean;

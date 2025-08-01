@@ -1,5 +1,5 @@
+import { MenuItem } from '@/components/ui/organisms/Menu';
 import { memo } from 'react';
-import { MenuItem } from 'src/components/ui/organisms/Menu';
 import { useTaskFeedListItemContext } from '../../Provider';
 
 export const EditComment = memo(function EditComment() {

@@ -1,4 +1,4 @@
-import type { MentionResponse } from 'src/graphql/types/mention';
+import type { MentionResponse } from '@/graphql/types/mention';
 
 export const MentionType = {
   TEAMMATE: 1,

@@ -1,8 +1,7 @@
-import { memo, useCallback, useMemo } from 'react';
-import { Icon, IconButton, Link, PortalManager } from 'src/components/ui/atoms';
-import { useEditorStateContext } from 'src/components/ui/organisms/Editor/Editors';
-import { Popover, PopoverTrigger } from 'src/components/ui/organisms/Popover';
-import { useDisclosure } from 'src/shared/chakra';
+import { Icon, IconButton, Link, PortalManager } from '@/components/ui/atoms';
+import { useEditorStateContext } from '@/components/ui/organisms/Editor/Editors';
+import { Popover, PopoverTrigger } from '@/components/ui/organisms/Popover';
+import { useDisclosure } from '@/shared/chakra';
 import {
   useBold,
   useBulletList,
@@ -10,7 +9,8 @@ import {
   useOrderedList,
   useStrikethrough,
   useUnderline,
-} from 'src/shared/prosemirror/hooks';
+} from '@/shared/prosemirror/hooks';
+import { memo, useCallback, useMemo } from 'react';
 import { Content } from './Content';
 
 export const Format = memo(function Format() {

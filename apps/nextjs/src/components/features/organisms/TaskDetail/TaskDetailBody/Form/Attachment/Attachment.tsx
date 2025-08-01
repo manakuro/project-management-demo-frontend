@@ -1,13 +1,13 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
-import { ThumbnailAttachment } from 'src/components/features/molecules/ThumbnailAttachment';
-import { useFileViewerModal } from 'src/components/features/organisms/Modals';
-import { Wrap, WrapItem } from 'src/components/ui/atoms';
-import { useToast } from 'src/hooks';
+import { ThumbnailAttachment } from '@/components/features/molecules/ThumbnailAttachment';
+import { useFileViewerModal } from '@/components/features/organisms/Modals';
+import { Wrap, WrapItem } from '@/components/ui/atoms';
+import { useToast } from '@/hooks';
 import {
   type TaskFile,
   useTaskFileIdsByTaskId,
-} from 'src/store/entities/taskFile';
+} from '@/store/entities/taskFile';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import { NewButton } from './NewButton';
 
 type Props = {

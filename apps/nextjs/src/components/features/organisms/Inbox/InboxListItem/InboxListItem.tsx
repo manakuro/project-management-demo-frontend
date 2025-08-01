@@ -1,8 +1,8 @@
+import { useInboxListItem } from '@/components/features/organisms/Inbox';
+import type { FlexProps } from '@/components/ui/atoms';
+import { ActivityTypeCode } from '@/store/entities/activityType';
 import type React from 'react';
 import { memo } from 'react';
-import { useInboxListItem } from 'src/components/features/organisms/Inbox';
-import type { FlexProps } from 'src/components/ui/atoms';
-import { ActivityTypeCode } from 'src/store/entities/activityType';
 import { Provider } from './Provider';
 import { TaskActivity } from './TaskActivity';
 import { WorkspaceActivity } from './WorkspaceActivity';

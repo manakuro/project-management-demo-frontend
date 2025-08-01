@@ -1,19 +1,19 @@
-import type React from 'react';
-import { memo, useCallback, useMemo } from 'react';
 import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
-} from 'src/components/features/organisms/Menus';
-import { useTasksTaskListStatus } from 'src/components/features/organisms/Tasks/hooks';
-import { Button, Flex, Icon, Text } from 'src/components/ui/atoms';
-import { MenuItemOption } from 'src/components/ui/organisms/Menu';
-import { useDisclosure } from 'src/shared/chakra';
+} from '@/components/features/organisms/Menus';
+import { useTasksTaskListStatus } from '@/components/features/organisms/Tasks/hooks';
+import { Button, Flex, Icon, Text } from '@/components/ui/atoms';
+import { MenuItemOption } from '@/components/ui/organisms/Menu';
+import { useDisclosure } from '@/shared/chakra';
 import {
   TaskListCompletedStatusCode,
   type TaskListCompletedStatusCodeValue,
   useTaskListCompletedStatus,
-} from 'src/store/entities/taskListCompletedStatus';
+} from '@/store/entities/taskListCompletedStatus';
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { PopoverCompletedTasks } from './PopoverCompletedTasks';
 
 type Props = {

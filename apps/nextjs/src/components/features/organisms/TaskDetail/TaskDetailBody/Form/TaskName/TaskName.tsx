@@ -1,7 +1,7 @@
+import { Flex } from '@/components/ui/atoms';
+import { useTask } from '@/store/entities/task';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { Flex } from 'src/components/ui/atoms';
-import { useTask } from 'src/store/entities/task';
 import { Input } from './Input';
 
 type Props = {

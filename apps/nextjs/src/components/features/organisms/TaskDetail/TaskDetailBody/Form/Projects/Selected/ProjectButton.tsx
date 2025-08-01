@@ -1,7 +1,7 @@
+import { Box, Button, Flex, Text } from '@/components/ui/atoms';
+import { useProject } from '@/store/entities/project';
+import { useProjectBaseColor } from '@/store/entities/projectBaseColor';
 import type React from 'react';
-import { Box, Button, Flex, Text } from 'src/components/ui/atoms';
-import { useProject } from 'src/store/entities/project';
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
 
 type Props = {
   projectId: string;

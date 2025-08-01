@@ -1,8 +1,8 @@
+import { Flex, type FlexProps, Icon, Text } from '@/components/ui/atoms';
+import type { Mention } from '@/store/entities/mention';
+import { useWorkspace } from '@/store/entities/workspace';
 import type React from 'react';
 import { memo } from 'react';
-import { Flex, type FlexProps, Icon, Text } from 'src/components/ui/atoms';
-import type { Mention } from 'src/store/entities/mention';
-import { useWorkspace } from 'src/store/entities/workspace';
 import { LeftContainer } from './LeftContainer';
 import { RightContainer } from './RightContainer';
 

@@ -1,8 +1,8 @@
+import { useTeammateTaskCreatedSubscription as useSubscription } from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
 import { useCallback } from 'react';
-import { useTeammateTaskCreatedSubscription as useSubscription } from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
 import type { TeammateTaskCreatedSubscriptionResponse as Response } from '../type';
 import { useTeammateTaskResponse } from './useTeammateTaskResponse';
 

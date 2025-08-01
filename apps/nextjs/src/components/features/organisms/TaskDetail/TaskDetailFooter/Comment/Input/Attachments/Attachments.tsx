@@ -1,9 +1,9 @@
+import { AttachmentUploadingBox } from '@/components/features/molecules/AttachmentUploadingBox';
+import { ThumbnailAttachment } from '@/components/features/molecules/ThumbnailAttachment';
+import { useFileViewerModal } from '@/components/features/organisms/Modals';
+import { useInputContext } from '@/components/features/organisms/TaskDetail/TaskDetailFooter/Comment/Input/Provider';
+import { Wrap, WrapItem } from '@/components/ui/atoms';
 import { memo, useCallback } from 'react';
-import { AttachmentUploadingBox } from 'src/components/features/molecules/AttachmentUploadingBox';
-import { ThumbnailAttachment } from 'src/components/features/molecules/ThumbnailAttachment';
-import { useFileViewerModal } from 'src/components/features/organisms/Modals';
-import { useInputContext } from 'src/components/features/organisms/TaskDetail/TaskDetailFooter/Comment/Input/Provider';
-import { Wrap, WrapItem } from 'src/components/ui/atoms';
 
 export const Attachments = memo(function Attachments() {
   const { taskFileIds, uploadingFiles, onDeleteTaskFile } = useInputContext();

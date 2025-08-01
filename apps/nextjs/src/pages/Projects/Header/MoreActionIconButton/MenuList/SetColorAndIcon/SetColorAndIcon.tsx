@@ -1,10 +1,10 @@
+import { PopoverSetColorAndIcon } from '@/components/features/organisms/Popovers';
+import { ColorBox, Flex, Icon, Text } from '@/components/ui/atoms';
+import { MenuItem } from '@/components/ui/organisms/Menu';
+import { useProject } from '@/store/entities/project';
+import { useProjectBaseColor } from '@/store/entities/projectBaseColor';
 import type React from 'react';
 import { memo } from 'react';
-import { PopoverSetColorAndIcon } from 'src/components/features/organisms/Popovers';
-import { ColorBox, Flex, Icon, Text } from 'src/components/ui/atoms';
-import { MenuItem } from 'src/components/ui/organisms/Menu';
-import { useProject } from 'src/store/entities/project';
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
 
 type Props = {
   onClose: () => void;

@@ -1,11 +1,11 @@
-import { memo, useCallback, useMemo } from 'react';
-import { SortMenu as TasksHeaderSortMenu } from 'src/components/features/organisms/Tasks/TasksHeader';
-import { useProjectsPageContext } from 'src/pages/Projects/Provider';
+import { SortMenu as TasksHeaderSortMenu } from '@/components/features/organisms/Tasks/TasksHeader';
+import { useProjectsPageContext } from '@/pages/Projects/Provider';
 import {
   type TaskListSortStatusCodeValue,
   useProjectsTaskListStatus,
-} from 'src/store/app/projects/taskListStatus';
-import { TaskListSortStatusCode } from 'src/store/entities/taskListSortStatus';
+} from '@/store/app/projects/taskListStatus';
+import { TaskListSortStatusCode } from '@/store/entities/taskListSortStatus';
+import { memo, useCallback, useMemo } from 'react';
 
 const ITEMS: {
   value: TaskListSortStatusCodeValue;

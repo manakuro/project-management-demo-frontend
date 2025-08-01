@@ -1,7 +1,7 @@
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
+import { WrapItem } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
-import { WrapItem } from 'src/components/ui/atoms';
 
 type Props = {
   teammateId: string;

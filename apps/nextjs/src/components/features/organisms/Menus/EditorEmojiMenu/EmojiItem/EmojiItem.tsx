@@ -1,10 +1,10 @@
+import { useEditorEmojiMenu } from '@/components/features/organisms/Menus/EditorEmojiMenu';
+import { Flex, type FlexProps, Text } from '@/components/ui/atoms';
+import { useMenuStyle } from '@/hooks';
+import { useHover } from '@/hooks/useHover';
+import type { BaseEmoji } from '@/shared/emoji';
 import type React from 'react';
 import { memo, useCallback, useEffect, useMemo } from 'react';
-import { useEditorEmojiMenu } from 'src/components/features/organisms/Menus/EditorEmojiMenu';
-import { Flex, type FlexProps, Text } from 'src/components/ui/atoms';
-import { useMenuStyle } from 'src/hooks';
-import { useHover } from 'src/hooks/useHover';
-import type { BaseEmoji } from 'src/shared/emoji';
 
 type Props = Override<
   FlexProps,

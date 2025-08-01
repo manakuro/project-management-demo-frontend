@@ -1,13 +1,13 @@
-import type React from 'react';
-import { Divider } from 'src/components/features/organisms/Navigation/Divider';
-import { Flex } from 'src/components/ui/atoms';
+import { Divider } from '@/components/features/organisms/Navigation/Divider';
+import { Flex } from '@/components/ui/atoms';
 import {
   Drawer,
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
   DrawerHeader,
-} from 'src/components/ui/organisms/Drawer';
+} from '@/components/ui/organisms/Drawer';
+import type React from 'react';
 import { Body } from './Body';
 import { Footer } from './Footer';
 import { useHelp } from './useHelp';

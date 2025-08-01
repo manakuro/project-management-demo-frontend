@@ -1,12 +1,12 @@
-import { useEffect, useMemo } from 'react';
 import {
   useInboxListItem,
   useTaskActivityTaskIds,
   useWorkspaceActivityTaskIds,
-} from 'src/components/features/organisms/Inbox/hooks';
-import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
-import { isInboxDetailURL, useRouter } from 'src/router';
-import { useActivityType } from 'src/store/entities/activityType';
+} from '@/components/features/organisms/Inbox/hooks';
+import { useTaskDetail } from '@/components/features/organisms/TaskDetail';
+import { isInboxDetailURL, useRouter } from '@/router';
+import { useActivityType } from '@/store/entities/activityType';
+import { useEffect, useMemo } from 'react';
 
 type Props = {
   listItemId?: string;

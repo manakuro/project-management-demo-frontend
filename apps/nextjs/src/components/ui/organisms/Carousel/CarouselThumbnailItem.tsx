@@ -1,7 +1,7 @@
+import { AspectRatio, WrapItem } from '@/components/ui/atoms';
+import { useClickableHoverStyle } from '@/hooks';
 import type { PropsWithChildren } from 'react';
 import { useCallback, useMemo } from 'react';
-import { AspectRatio, WrapItem } from 'src/components/ui/atoms';
-import { useClickableHoverStyle } from 'src/hooks';
 import { useCarouselContext } from './Provider';
 
 type Props = {

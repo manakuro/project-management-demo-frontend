@@ -1,7 +1,7 @@
+import { useTaskActivityTaskIds } from '@/components/features/organisms/Inbox/hooks';
+import { Flex, type FlexProps } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { useTaskActivityTaskIds } from 'src/components/features/organisms/Inbox/hooks';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
 import { TaskListItem } from '../TaskListItem';
 
 type Props = FlexProps & {

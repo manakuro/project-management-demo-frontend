@@ -1,13 +1,13 @@
-import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
-import { useUpdateProjectMutation } from 'src/graphql/hooks';
-import type { UpdateProjectInput } from 'src/graphql/types';
+import { useUpdateProjectMutation } from '@/graphql/hooks';
+import type { UpdateProjectInput } from '@/graphql/types';
 import {
   formatDueTimeToLocalTimezone,
   formatDueTimeToServerTimezone,
-} from 'src/shared/date';
-import { omit } from 'src/shared/utils/omit';
-import { useWorkspace } from 'src/store/entities/workspace';
+} from '@/shared/date';
+import { omit } from '@/shared/utils/omit';
+import { useWorkspace } from '@/store/entities/workspace';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { projectState } from '../atom';
 import type { Project } from '../type';
 import { useSetHasDescriptionUpdated } from './useHasDescriptionUpdated';

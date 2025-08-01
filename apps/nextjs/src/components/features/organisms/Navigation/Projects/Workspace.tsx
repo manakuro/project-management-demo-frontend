@@ -1,9 +1,6 @@
-import { useRouter } from 'next/router';
-import type React from 'react';
-import { memo, useCallback, useMemo } from 'react';
-import { useInviteModal } from 'src/components/features/organisms/Modals/InviteModal/useInviteModal';
-import { useNavigation } from 'src/components/features/organisms/Navigation';
-import { PADDING_X } from 'src/components/features/organisms/Navigation/Navigation';
+import { useInviteModal } from '@/components/features/organisms/Modals/InviteModal/useInviteModal';
+import { useNavigation } from '@/components/features/organisms/Navigation';
+import { PADDING_X } from '@/components/features/organisms/Navigation/Navigation';
 import {
   Flex,
   Icon,
@@ -11,7 +8,7 @@ import {
   NextLink,
   Portal,
   Text,
-} from 'src/components/ui/atoms';
+} from '@/components/ui/atoms';
 import {
   MenuItem as AtomsMenuItem,
   Menu,
@@ -20,10 +17,13 @@ import {
   MenuGroup,
   type MenuItemProps,
   MenuList,
-} from 'src/components/ui/organisms/Menu';
-import { useClickableHoverStyle, useLinkHoverStyle } from 'src/hooks';
-import { ROUTE_WORKSPACES, ROUTE_WORKSPACES_OVERVIEW } from 'src/router';
-import { useWorkspace } from 'src/store/entities/workspace';
+} from '@/components/ui/organisms/Menu';
+import { useClickableHoverStyle, useLinkHoverStyle } from '@/hooks';
+import { ROUTE_WORKSPACES, ROUTE_WORKSPACES_OVERVIEW } from '@/router';
+import { useWorkspace } from '@/store/entities/workspace';
+import { useRouter } from 'next/router';
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
 
 export const Workspace = memo(function Workspace() {
   const router = useRouter();

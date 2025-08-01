@@ -1,7 +1,7 @@
+import { PopoverProfile } from '@/components/features/organisms/Popovers';
+import { Avatar, type AvatarProps } from '@/components/ui/atoms';
+import { useTeammate } from '@/store/entities/teammate';
 import type React from 'react';
-import { PopoverProfile } from 'src/components/features/organisms/Popovers';
-import { Avatar, type AvatarProps } from 'src/components/ui/atoms';
-import { useTeammate } from 'src/store/entities/teammate';
 
 type Props = {
   teammateId: string;

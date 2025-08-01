@@ -1,5 +1,5 @@
+import { TasksListCell } from '@/components/features/organisms/Tasks/TasksList/TasksListCell';
 import { memo } from 'react';
-import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
 import { useTasksListHeaderContext } from '../Provider';
 
 export const RemainingSpace = memo(function RemainingSpace() {

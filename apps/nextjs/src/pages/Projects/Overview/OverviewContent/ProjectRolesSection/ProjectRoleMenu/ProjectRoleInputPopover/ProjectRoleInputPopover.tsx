@@ -1,11 +1,11 @@
-import type React from 'react';
-import { useRef } from 'react';
-import { Flex, PortalManager } from 'src/components/ui/atoms';
+import { Flex, PortalManager } from '@/components/ui/atoms';
 import {
   Popover,
   type PopoverProps,
   PopoverTrigger,
-} from 'src/components/ui/organisms/Popover';
+} from '@/components/ui/organisms/Popover';
+import type React from 'react';
+import { useRef } from 'react';
 import { Content } from './Content';
 
 type Props = PopoverProps & {

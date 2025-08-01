@@ -1,8 +1,8 @@
+import { Flex, type FlexProps } from '@/components/ui/atoms';
+import { forwardRef } from '@/shared/chakra';
+import { pxToNum } from '@/shared/pxToNum';
 import type React from 'react';
 import { memo, useCallback, useMemo } from 'react';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
-import { forwardRef } from 'src/shared/chakra';
-import { pxToNum } from 'src/shared/pxToNum';
 import { ColumnResizer } from './ColumnResizer';
 
 type Props = {

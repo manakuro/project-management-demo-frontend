@@ -1,7 +1,7 @@
+import { useTaskTagCreatedSubscription as useSubscription } from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
 import isEqual from 'lodash-es/isEqual';
 import { useCallback, useMemo } from 'react';
-import { useTaskTagCreatedSubscription as useSubscription } from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
 import type { TaskTagCreatedSubscriptionResponse as Response } from '../type';
 import { useTaskTagResponse } from './useTaskTagResponse';
 

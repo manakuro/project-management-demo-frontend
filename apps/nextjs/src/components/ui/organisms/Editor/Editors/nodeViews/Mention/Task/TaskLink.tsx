@@ -1,14 +1,14 @@
-import type React from 'react';
-import { memo } from 'react';
 import {
   PopoverEditorLink,
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
   PopoverEditorLinkTrigger,
-} from 'src/components/features/organisms/Popovers';
-import { CheckIcon } from 'src/components/ui/atoms';
-import { useProjectTask } from 'src/store/entities/projectTask';
-import { useTask } from 'src/store/entities/task';
+} from '@/components/features/organisms/Popovers';
+import { CheckIcon } from '@/components/ui/atoms';
+import { useProjectTask } from '@/store/entities/projectTask';
+import { useTask } from '@/store/entities/task';
+import type React from 'react';
+import { memo } from 'react';
 
 type Props = {
   projectTaskId: string;

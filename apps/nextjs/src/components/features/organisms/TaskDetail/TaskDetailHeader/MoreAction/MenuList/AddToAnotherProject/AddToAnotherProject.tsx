@@ -1,8 +1,8 @@
+import { useTaskDetailProjectsInput } from '@/components/features/organisms/TaskDetail/hooks';
+import { Icon } from '@/components/ui/atoms';
+import { MenuItem } from '@/components/ui/organisms/Menu';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { useTaskDetailProjectsInput } from 'src/components/features/organisms/TaskDetail/hooks';
-import { Icon } from 'src/components/ui/atoms';
-import { MenuItem } from 'src/components/ui/organisms/Menu';
 
 type Props = {
   onMouseEnter: () => void;

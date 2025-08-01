@@ -1,13 +1,13 @@
-import type React from 'react';
-import { memo, useCallback, useEffect, useMemo } from 'react';
 import {
   type SetValueParam,
   useEditorMentionMenu,
-} from 'src/components/features/organisms/Menus/EditorMentionMenu';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
-import { useMenuStyle } from 'src/hooks';
-import { useHover } from 'src/hooks/useHover';
-import type { Mention } from 'src/store/entities/mention';
+} from '@/components/features/organisms/Menus/EditorMentionMenu';
+import { Flex, type FlexProps } from '@/components/ui/atoms';
+import { useMenuStyle } from '@/hooks';
+import { useHover } from '@/hooks/useHover';
+import type { Mention } from '@/store/entities/mention';
+import type React from 'react';
+import { memo, useCallback, useEffect, useMemo } from 'react';
 
 type Props = Override<
   FlexProps,

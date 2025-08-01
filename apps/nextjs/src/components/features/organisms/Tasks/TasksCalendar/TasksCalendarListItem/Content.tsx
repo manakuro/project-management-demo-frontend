@@ -1,7 +1,7 @@
+import { useTasksTaskIdsByDueDate } from '@/components/features/organisms/Tasks/hooks';
+import { Stack } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { useTasksTaskIdsByDueDate } from 'src/components/features/organisms/Tasks/hooks';
-import { Stack } from 'src/components/ui/atoms';
 import { ListItem } from './ListItem';
 
 type Props = {

@@ -1,4 +1,4 @@
-import type { ProjectTaskSectionFragmentFragment } from 'src/graphql/types';
+import type { ProjectTaskSectionFragmentFragment } from '@/graphql/types';
 
 export type ProjectTaskSectionResponse =
   NonNullable<ProjectTaskSectionFragmentFragment>;
@@ -14,4 +14,4 @@ export type {
   DeleteProjectTaskSectionAndKeepTasksMutation,
   DeleteProjectTaskSectionAndDeleteTasksMutation,
   UpdateTaskSectionInput,
-} from 'src/graphql/types';
+} from '@/graphql/types';

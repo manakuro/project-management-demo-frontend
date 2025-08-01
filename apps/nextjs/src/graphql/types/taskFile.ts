@@ -1,3 +1,3 @@
-import type { TaskFileFragmentFragment } from 'src/graphql/types';
+import type { TaskFileFragmentFragment } from '@/graphql/types';
 
 export type TaskFileResponse = NonNullable<TaskFileFragmentFragment>;

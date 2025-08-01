@@ -1,8 +1,8 @@
+import { getCalendarMatrix } from '@/shared/date';
+import { dateFns } from '@/shared/dateFns';
+import { isHTMLElement } from '@/shared/isHTMLElement';
+import { createProvider } from '@/shared/react/createProvider';
 import { useCallback, useMemo, useState } from 'react';
-import { getCalendarMatrix } from 'src/shared/date';
-import { dateFns } from 'src/shared/dateFns';
-import { isHTMLElement } from 'src/shared/isHTMLElement';
-import { createProvider } from 'src/shared/react/createProvider';
 import { useTasksCalendarId } from './useTasksCalendarId';
 
 type ContextProps = {
@@ -106,6 +106,6 @@ const useValue = (): ContextProps => {
   };
 };
 useValue.__PROVIDER__ =
-  'src/components/organisms/Tasks/TasksCalendar/Provider.tsx';
+  '@/components/organisms/Tasks/TasksCalendar/Provider.tsx';
 export const { Provider, useContext: useTasksCalendarContext } =
   createProvider(useValue);

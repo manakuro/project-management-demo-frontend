@@ -1,5 +1,5 @@
-import type { ProjectTeammateFragmentFragment } from 'src/graphql/types';
-export type { ProjectTeammatesQuery } from 'src/graphql/types';
+import type { ProjectTeammateFragmentFragment } from '@/graphql/types';
+export type { ProjectTeammatesQuery } from '@/graphql/types';
 
 export type ProjectTeammateResponse =
   NonNullable<ProjectTeammateFragmentFragment>;

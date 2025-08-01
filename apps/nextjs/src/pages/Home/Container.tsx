@@ -1,8 +1,8 @@
+import { useHomePageQuery } from '@/hooks/queries/app';
+import { useHomeTaskDetailPageQuery } from '@/hooks/queries/app';
+import { useMe } from '@/store/entities/me';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { useHomePageQuery } from 'src/hooks/queries/app';
-import { useHomeTaskDetailPageQuery } from 'src/hooks/queries/app';
-import { useMe } from 'src/store/entities/me';
 import { Component } from './Component';
 
 export const Container: React.FC = memo(() => {

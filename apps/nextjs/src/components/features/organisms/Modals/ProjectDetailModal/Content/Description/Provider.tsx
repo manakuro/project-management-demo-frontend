@@ -1,10 +1,10 @@
-import type React from 'react';
-import { useCallback, useState } from 'react';
 import {
   type UseClickOutsideOptionsHasClickedOutside,
   useClickOutside,
-} from 'src/hooks';
-import { createProvider } from 'src/shared/react/createProvider';
+} from '@/hooks';
+import { createProvider } from '@/shared/react/createProvider';
+import type React from 'react';
+import { useCallback, useState } from 'react';
 
 type ContextProps = {
   focused: boolean;
@@ -44,6 +44,6 @@ const useValue = (): ContextProps => {
   };
 };
 useValue.__PROVIDER__ =
-  'src/components/organisms/TaskDetail/TaskDetailBody/Form/Description/Provider.tsx';
+  '@/components/organisms/TaskDetail/TaskDetailBody/Form/Description/Provider.tsx';
 export const { Provider, useContext: useDescriptionContext } =
   createProvider(useValue);

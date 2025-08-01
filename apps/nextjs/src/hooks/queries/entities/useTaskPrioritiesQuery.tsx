@@ -1,10 +1,10 @@
-import { useTaskPrioritiesQuery as useQuery } from 'src/graphql/hooks';
-import type { TaskPrioritiesQuery } from 'src/graphql/types/taskPriorities';
-import { getNodesFromEdges } from 'src/shared/apollo/util';
+import { useTaskPrioritiesQuery as useQuery } from '@/graphql/hooks';
+import type { TaskPrioritiesQuery } from '@/graphql/types/taskPriorities';
+import { getNodesFromEdges } from '@/shared/apollo/util';
 import {
   type TaskPriority,
   useTaskPriorityResponse,
-} from 'src/store/entities/taskPriority';
+} from '@/store/entities/taskPriority';
 
 export const useTaskPrioritiesQuery = () => {
   const { setTaskPriorities } = useTaskPriorityResponse();

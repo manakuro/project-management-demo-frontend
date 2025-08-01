@@ -1,3 +1,3 @@
-import type { TeammateFragmentFragment } from 'src/graphql/types';
+import type { TeammateFragmentFragment } from '@/graphql/types';
 
 export type TeammateResponse = NonNullable<TeammateFragmentFragment>;

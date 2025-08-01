@@ -1,4 +1,4 @@
-import type { TaskFragmentFragment } from 'src/graphql/types';
+import type { TaskFragmentFragment } from '@/graphql/types';
 
 export type TaskResponse = NonNullable<TaskFragmentFragment>;
 export type {
@@ -10,4 +10,4 @@ export type {
   UpdateTaskMutationVariables,
   UndeleteTaskInput,
   UpdateTaskInput,
-} from 'src/graphql/types';
+} from '@/graphql/types';

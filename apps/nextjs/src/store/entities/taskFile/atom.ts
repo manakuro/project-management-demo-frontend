@@ -1,6 +1,6 @@
+import { FileTypeCode } from '@/store/entities/fileType';
+import { createState } from '@/store/util';
 import { atom } from 'jotai';
-import { FileTypeCode } from 'src/store/entities/fileType';
-import { createState } from 'src/store/util';
 import type { TaskFile } from './type';
 
 export const initialState = (): TaskFile => ({

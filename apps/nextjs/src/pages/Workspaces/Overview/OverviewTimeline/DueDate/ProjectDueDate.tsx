@@ -1,8 +1,8 @@
+import type { ButtonProps, IconProps } from '@/components/ui/atoms';
+import { DatePickerWithInput } from '@/components/ui/molecules';
+import { useProject, useProjectCommand } from '@/store/entities/project';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import type { ButtonProps, IconProps } from 'src/components/ui/atoms';
-import { DatePickerWithInput } from 'src/components/ui/molecules';
-import { useProject, useProjectCommand } from 'src/store/entities/project';
 
 type Props = {
   projectId: string;

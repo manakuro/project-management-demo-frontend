@@ -1,6 +1,6 @@
+import { useHover } from '@/hooks/useHover';
+import { createProvider } from '@/shared/react/createProvider';
 import type React from 'react';
-import { useHover } from 'src/hooks/useHover';
-import { createProvider } from 'src/shared/react/createProvider';
 
 type ContextProps = {
   ref: React.MutableRefObject<HTMLElement | null>;
@@ -21,6 +21,6 @@ const useValue = (props: Props): ContextProps => {
   };
 };
 useValue.__PROVIDER__ =
-  'src/components/organisms/Tasks/TasksBoard/TasksBoardListItem/TasksName/Provider.tsx';
+  '@/components/organisms/Tasks/TasksBoard/TasksBoardListItem/TasksName/Provider.tsx';
 export const { Provider: TasksNameProvider, useContext: useTasksNameContext } =
   createProvider(useValue);

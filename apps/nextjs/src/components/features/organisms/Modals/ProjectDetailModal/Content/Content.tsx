@@ -1,13 +1,13 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
-import { Divider, Flex, Stack } from 'src/components/ui/atoms';
+import { Divider, Flex, Stack } from '@/components/ui/atoms';
 import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalHeader,
-} from 'src/components/ui/organisms/Modal';
-import { useProject, useProjectCommand } from 'src/store/entities/project';
+} from '@/components/ui/organisms/Modal';
+import { useProject, useProjectCommand } from '@/store/entities/project';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import { Description } from './Description';
 import { DescriptionTitle } from './DescriptionTitle';
 import { Label } from './Label';

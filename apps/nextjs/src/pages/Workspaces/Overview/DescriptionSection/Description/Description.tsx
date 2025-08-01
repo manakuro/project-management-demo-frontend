@@ -1,14 +1,11 @@
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { Editor, EditorContent } from 'src/components/ui/organisms/Editor';
-import { isDescriptionEqual } from 'src/shared/editor/isDescriptionEqual';
+import { Editor, EditorContent } from '@/components/ui/organisms/Editor';
+import { isDescriptionEqual } from '@/shared/editor/isDescriptionEqual';
 import {
   parseDescription,
   stringifyDescription,
-} from 'src/shared/prosemirror/convertDescription';
-import {
-  useWorkspace,
-  useWorkspaceCommand,
-} from 'src/store/entities/workspace';
+} from '@/shared/prosemirror/convertDescription';
+import { useWorkspace, useWorkspaceCommand } from '@/store/entities/workspace';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Container } from './Container';
 import { Placeholder } from './Placeholder';
 import { Provider } from './Provider';

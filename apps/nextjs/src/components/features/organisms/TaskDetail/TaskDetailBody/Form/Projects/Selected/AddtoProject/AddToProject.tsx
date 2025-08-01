@@ -1,5 +1,5 @@
+import { Box, Button, Icon } from '@/components/ui/atoms';
 import { memo } from 'react';
-import { Box, Button, Icon } from 'src/components/ui/atoms';
 
 export const AddToProject = memo(function AddToProject() {
   return (

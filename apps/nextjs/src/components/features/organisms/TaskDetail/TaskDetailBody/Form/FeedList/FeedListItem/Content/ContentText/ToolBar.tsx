@@ -1,10 +1,10 @@
-import { memo } from 'react';
-import { Button, Flex, Stack } from 'src/components/ui/atoms';
+import { Button, Flex, Stack } from '@/components/ui/atoms';
 import {
   AtMention,
   Emoji,
   Format,
-} from 'src/components/ui/organisms/Editor/ToolBar';
+} from '@/components/ui/organisms/Editor/ToolBar';
+import { memo } from 'react';
 import { useTaskFeedListItemContext } from '../../Provider';
 
 export const ToolBar = memo(function ToolBar() {

@@ -1,7 +1,7 @@
+import { PopoverEmoji } from '@/components/features/organisms/Popovers';
+import { Icon } from '@/components/ui/atoms';
+import { useEmoji } from '@/shared/prosemirror/hooks';
 import { memo } from 'react';
-import { PopoverEmoji } from 'src/components/features/organisms/Popovers';
-import { Icon } from 'src/components/ui/atoms';
-import { useEmoji } from 'src/shared/prosemirror/hooks';
 import { BaseButton } from '../BaseButton';
 
 export function Emoji() {

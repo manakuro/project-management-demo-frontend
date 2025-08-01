@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useProjectTaskQuery as useQuery } from 'src/graphql/hooks';
-import { useMountedRef } from 'src/hooks';
+import { useProjectTaskQuery as useQuery } from '@/graphql/hooks';
+import { useMountedRef } from '@/hooks';
 import {
   type ProjectTaskResponse,
   useProjectTaskResponse,
-} from 'src/store/entities/projectTask';
+} from '@/store/entities/projectTask';
+import { useEffect, useMemo, useState } from 'react';
 
 export const useProjectTaskQuery = (id: string) => {
   const queryResult = useQuery({

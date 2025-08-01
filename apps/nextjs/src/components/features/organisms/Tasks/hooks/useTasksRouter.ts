@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import {
   getMyTasksDetailFeedId,
   getMyTasksDetailFeedURL,
@@ -7,9 +6,10 @@ import {
   isMyTasksDetailURLById,
   isProjectsDetailURLById,
   useRouter,
-} from 'src/router';
-import type { Options } from 'src/router/types';
-import { useProjectsProjectId } from 'src/store/app/projects/project';
+} from '@/router';
+import type { Options } from '@/router/types';
+import { useProjectsProjectId } from '@/store/app/projects/project';
+import { useCallback } from 'react';
 import { useTasksContext } from '../TasksProvider';
 
 type Result = {

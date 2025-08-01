@@ -1,5 +1,4 @@
-import type React from 'react';
-import { Portal, Stack } from 'src/components/ui/atoms';
+import { Portal, Stack } from '@/components/ui/atoms';
 import {
   Bold,
   BulletList,
@@ -10,14 +9,15 @@ import {
   OrderedList,
   Strikethrough,
   Underline,
-} from 'src/components/ui/organisms/Editor/ToolBar';
+} from '@/components/ui/organisms/Editor/ToolBar';
 import {
   PopoverArrow,
   PopoverBody,
   PopoverContent,
   type PopoverProps,
-} from 'src/components/ui/organisms/Popover';
-import { useClickOutside } from 'src/hooks';
+} from '@/components/ui/organisms/Popover';
+import { useClickOutside } from '@/hooks';
+import type React from 'react';
 
 type Props = {
   onClose?: () => void;

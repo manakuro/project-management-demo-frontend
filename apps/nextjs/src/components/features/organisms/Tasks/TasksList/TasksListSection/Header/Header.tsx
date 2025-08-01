@@ -1,9 +1,9 @@
+import { useTasksListContext } from '@/components/features/organisms/Tasks/TasksList/Provider';
+import { useTasksListSectionContext } from '@/components/features/organisms/Tasks/TasksList/TasksListSection/Provider';
+import { Flex, Icon, IconButton, Stack } from '@/components/ui/atoms';
+import { useHover } from '@/hooks/useHover';
 import type React from 'react';
 import { memo } from 'react';
-import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider';
-import { useTasksListSectionContext } from 'src/components/features/organisms/Tasks/TasksList/TasksListSection/Provider';
-import { Flex, Icon, IconButton, Stack } from 'src/components/ui/atoms';
-import { useHover } from 'src/hooks/useHover';
 import { AddTaskButton } from './AddTaskButton';
 import { MoreAction } from './MoreAction';
 import { TaskSectionName } from './TaskSectionName';

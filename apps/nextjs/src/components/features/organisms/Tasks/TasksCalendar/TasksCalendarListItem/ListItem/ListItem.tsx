@@ -1,7 +1,7 @@
+import { useTasksContext } from '@/components/features/organisms/Tasks';
+import type { FlexProps } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { useTasksContext } from 'src/components/features/organisms/Tasks';
-import type { FlexProps } from 'src/components/ui/atoms';
 import { ListItemForMyTasksPage } from './ListItemForMyTasksPage';
 import { ListItemForProjectsPage } from './ListItemForProjectsPage';
 

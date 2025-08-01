@@ -1,5 +1,3 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
 import {
   Badge,
   type BadgeProps,
@@ -8,10 +6,12 @@ import {
   ColorBox,
   Icon,
   Text,
-} from 'src/components/ui/atoms';
-import { useClickableHoverStyle } from 'src/hooks';
-import { useProject } from 'src/store/entities/project';
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
+} from '@/components/ui/atoms';
+import { useClickableHoverStyle } from '@/hooks';
+import { useProject } from '@/store/entities/project';
+import { useProjectBaseColor } from '@/store/entities/projectBaseColor';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 
 type Variant = 'badge' | 'button';
 

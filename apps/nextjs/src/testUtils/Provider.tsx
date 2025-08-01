@@ -1,18 +1,18 @@
-import { ChakraProvider } from '@chakra-ui/react';
-import enLocale from 'date-fns/locale/en-US';
-import type React from 'react';
-import { Suspense } from 'react';
-import { Modals } from 'src/components/features/organisms/Modals';
-import { GlobalQuery } from 'src/components/shared/app';
-import { PageLoader } from 'src/components/ui/molecules';
-import { ApolloProvider } from 'src/shared/apollo/ApolloProvider';
+import { Modals } from '@/components/features/organisms/Modals';
+import { GlobalQuery } from '@/components/shared/app';
+import { PageLoader } from '@/components/ui/molecules';
+import { ApolloProvider } from '@/shared/apollo/ApolloProvider';
 import {
   AdapterDateFns,
   LocalizationProvider,
   MuiThemeProvider,
   muiTheme,
-} from 'src/shared/materialUI';
-import { theme } from 'src/styles';
+} from '@/shared/materialUI';
+import { theme } from '@/styles';
+import { ChakraProvider } from '@chakra-ui/react';
+import enLocale from 'date-fns/locale/en-US';
+import type React from 'react';
+import { Suspense } from 'react';
 
 export const Provider: React.FCWithChildren = (props) => {
   return (

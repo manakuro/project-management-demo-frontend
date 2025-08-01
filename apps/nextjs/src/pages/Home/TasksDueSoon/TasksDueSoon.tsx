@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import {
   Box,
   Flex,
@@ -7,17 +6,18 @@ import {
   Link,
   NextLink,
   Stack,
-} from 'src/components/ui/atoms';
-import { Tooltip } from 'src/components/ui/molecules';
+} from '@/components/ui/atoms';
+import { Tooltip } from '@/components/ui/molecules';
 import {
   Accordion,
   AccordionButton,
   AccordionItem,
   AccordionPanel,
-} from 'src/components/ui/organisms/Accordion';
-import { useLinkStyle } from 'src/hooks';
-import { ROUTE_MY_TASKS_LIST } from 'src/router';
-import { useTasksDueSoonIds } from 'src/store/app/home/tasksDueSoon';
+} from '@/components/ui/organisms/Accordion';
+import { useLinkStyle } from '@/hooks';
+import { ROUTE_MY_TASKS_LIST } from '@/router';
+import { useTasksDueSoonIds } from '@/store/app/home/tasksDueSoon';
+import { memo } from 'react';
 import { ListItem } from './ListItem';
 
 export const TasksDueSoon = memo(function TasksDueSoon() {

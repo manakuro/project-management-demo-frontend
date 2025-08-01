@@ -1,13 +1,13 @@
-import type React from 'react';
-import { memo } from 'react';
 import {
   PopoverEditorLink,
   PopoverEditorLinkContent,
   PopoverEditorLinkText,
   PopoverEditorLinkTrigger,
-} from 'src/components/features/organisms/Popovers';
-import { Icon } from 'src/components/ui/atoms';
-import { useWorkspace } from 'src/store/entities/workspace';
+} from '@/components/features/organisms/Popovers';
+import { Icon } from '@/components/ui/atoms';
+import { useWorkspace } from '@/store/entities/workspace';
+import type React from 'react';
+import { memo } from 'react';
 
 export const Workspace: React.FC = memo(() => {
   const { workspace } = useWorkspace();

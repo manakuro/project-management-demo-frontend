@@ -1,8 +1,8 @@
+import { useInviteModal } from '@/components/features/organisms/Modals';
+import { Button, Flex, type FlexProps, Icon } from '@/components/ui/atoms';
+import { Tooltip } from '@/components/ui/molecules';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { useInviteModal } from 'src/components/features/organisms/Modals';
-import { Button, Flex, type FlexProps, Icon } from 'src/components/ui/atoms';
-import { Tooltip } from 'src/components/ui/molecules';
 
 type Props = FlexProps;
 

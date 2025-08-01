@@ -1,10 +1,10 @@
-import type React from 'react';
-import { memo, useMemo } from 'react';
-import { Flex } from 'src/components/ui/atoms';
+import { Flex } from '@/components/ui/atoms';
 import {
   useTaskFeedIdsByTaskId,
   useTaskFeedsPinnedIds,
-} from 'src/store/entities/taskFeed';
+} from '@/store/entities/taskFeed';
+import type React from 'react';
+import { memo, useMemo } from 'react';
 import { FeedListItem } from './FeedListItem';
 
 type Props = {

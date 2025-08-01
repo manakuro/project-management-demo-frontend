@@ -1,11 +1,11 @@
+import { useMentionsQuery } from '@/hooks/queries/entities';
+import { useResizeObserver } from '@/hooks/useResizeObserver';
+import { calculateModalPosition } from '@/shared/calculateModalPosition';
+import { getCaretPosition } from '@/shared/getCaretPosition';
+import type { Mention, MentionTypeCode } from '@/store/entities/mention';
 import { useAtom } from 'jotai';
 import { atomWithReset, useResetAtom } from 'jotai/utils';
 import { useCallback, useEffect, useRef } from 'react';
-import { useMentionsQuery } from 'src/hooks/queries/entities';
-import { useResizeObserver } from 'src/hooks/useResizeObserver';
-import { calculateModalPosition } from 'src/shared/calculateModalPosition';
-import { getCaretPosition } from 'src/shared/getCaretPosition';
-import type { Mention, MentionTypeCode } from 'src/store/entities/mention';
 
 type Id = string | null;
 type State = {

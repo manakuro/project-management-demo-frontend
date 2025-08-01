@@ -1,3 +1,3 @@
-import type { ActivityTypeFragmentFragment } from 'src/graphql/types';
+import type { ActivityTypeFragmentFragment } from '@/graphql/types';
 
 export type ActivityTypeResponse = NonNullable<ActivityTypeFragmentFragment>;

@@ -1,12 +1,12 @@
+import { TasksListCell } from '@/components/features/organisms/Tasks/TasksList/TasksListCell';
+import { useTasksListHeaderContext } from '@/components/features/organisms/Tasks/TasksList/TasksListHeader/Provider';
+import { useTasksTaskColumn } from '@/components/features/organisms/Tasks/hooks';
+import { Flex, type FlexProps } from '@/components/ui/atoms';
+import { useClickableHoverStyle } from '@/hooks';
+import { useHover } from '@/hooks/useHover';
+import { useTaskColumn } from '@/store/entities/taskColumn';
 import type React from 'react';
 import { memo, useCallback, useMemo, useState } from 'react';
-import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
-import { useTasksListHeaderContext } from 'src/components/features/organisms/Tasks/TasksList/TasksListHeader/Provider';
-import { useTasksTaskColumn } from 'src/components/features/organisms/Tasks/hooks';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
-import { useClickableHoverStyle } from 'src/hooks';
-import { useHover } from 'src/hooks/useHover';
-import { useTaskColumn } from 'src/store/entities/taskColumn';
 import { MoreAction } from './MoreAction';
 
 type Props = {

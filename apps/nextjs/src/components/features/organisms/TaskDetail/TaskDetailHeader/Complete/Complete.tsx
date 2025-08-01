@@ -1,7 +1,7 @@
+import { Button, CheckIcon } from '@/components/ui/atoms';
+import { useTask } from '@/store/entities/task';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { Button, CheckIcon } from 'src/components/ui/atoms';
-import { useTask } from 'src/store/entities/task';
 
 type Props = {
   taskId: string;

@@ -1,3 +1,3 @@
-import type { MeQuery } from 'src/graphql/types';
+import type { MeQuery } from '@/graphql/types';
 
 export type MeResponse = NonNullable<MeQuery['me']>;

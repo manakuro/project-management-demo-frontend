@@ -1,5 +1,5 @@
+import { Flex } from '@/components/ui/atoms';
 import { memo } from 'react';
-import { Flex } from 'src/components/ui/atoms';
 import { ProjectList } from './ProjectList';
 
 export const Projects = memo(function Projects() {

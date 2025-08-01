@@ -1,8 +1,8 @@
+import { Icon } from '@/components/ui/atoms';
+import { MenuItem } from '@/components/ui/organisms/Menu';
+import { useTask } from '@/store/entities/task';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { Icon } from 'src/components/ui/atoms';
-import { MenuItem } from 'src/components/ui/organisms/Menu';
-import { useTask } from 'src/store/entities/task';
 import { useTasksBoardListItemContext } from '../../../Provider';
 
 type Props = {

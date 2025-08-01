@@ -1,11 +1,11 @@
-import { memo } from 'react';
 import {
   TasksCalendarContent,
   TasksHeader,
   TasksHeaderLeft,
   TasksHeaderRight,
-} from 'src/components/features/organisms/Tasks';
-import { Flex, type FlexProps, Skeleton, Stack } from 'src/components/ui/atoms';
+} from '@/components/features/organisms/Tasks';
+import { Flex, type FlexProps, Skeleton, Stack } from '@/components/ui/atoms';
+import { memo } from 'react';
 
 type Props = FlexProps;
 

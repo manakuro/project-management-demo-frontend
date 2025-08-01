@@ -1,7 +1,7 @@
+import { Button, Flex, Icon } from '@/components/ui/atoms';
+import { Tooltip } from '@/components/ui/molecules';
 import type React from 'react';
 import { memo } from 'react';
-import { Button, Flex, Icon } from 'src/components/ui/atoms';
-import { Tooltip } from 'src/components/ui/molecules';
 import { useCollaboratorsContext } from './Provider';
 
 export const LeaveTask: React.FC = memo(() => {

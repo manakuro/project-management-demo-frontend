@@ -1,10 +1,8 @@
-import type React from 'react';
-import { memo, useCallback, useMemo } from 'react';
 import {
   useTasksTask,
   useTasksTaskSectionCommand,
   useTasksTaskSectionIds,
-} from 'src/components/features/organisms/Tasks/hooks';
+} from '@/components/features/organisms/Tasks/hooks';
 import {
   Button,
   ButtonGroup,
@@ -13,14 +11,16 @@ import {
   Icon,
   IconButton,
   Portal,
-} from 'src/components/ui/atoms';
+} from '@/components/ui/atoms';
 import {
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-} from 'src/components/ui/organisms/Menu';
-import type { ChakraProps } from 'src/shared/chakra';
+} from '@/components/ui/organisms/Menu';
+import type { ChakraProps } from '@/shared/chakra';
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
 
 type Props = ButtonGroupProps & {
   solid?: boolean;

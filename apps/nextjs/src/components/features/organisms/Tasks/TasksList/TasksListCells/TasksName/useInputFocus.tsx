@@ -1,11 +1,11 @@
+import { useTasksListContext } from '@/components/features/organisms/Tasks/TasksList/Provider';
+import type { TasksListCellProps } from '@/components/features/organisms/Tasks/TasksList/TasksListCell';
 import {
   type Dispatch,
   type SetStateAction,
   useCallback,
   useState,
 } from 'react';
-import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider';
-import type { TasksListCellProps } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
 
 export type UseInputFocus = {
   inputFocused: boolean;

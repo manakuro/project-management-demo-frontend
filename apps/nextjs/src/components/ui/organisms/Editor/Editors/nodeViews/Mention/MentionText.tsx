@@ -1,6 +1,6 @@
+import { Text, type TextProps } from '@/components/ui/atoms';
+import { useLinkStyle } from '@/hooks/styles';
 import type React from 'react';
-import { Text, type TextProps } from 'src/components/ui/atoms';
-import { useLinkStyle } from 'src/hooks/styles';
 
 type Props = TextProps;
 export type MentionTextProps = Props;

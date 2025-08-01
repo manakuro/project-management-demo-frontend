@@ -1,4 +1,4 @@
-import { uniq } from 'src/shared/utils/uniq';
+import { uniq } from '@/shared/utils/uniq';
 import { describe, it } from 'vitest';
 
 describe('uniq', () => {

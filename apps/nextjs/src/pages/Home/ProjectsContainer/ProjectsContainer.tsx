@@ -1,5 +1,3 @@
-import type React from 'react';
-import { memo, useState } from 'react';
 import {
   PROJECT_LIST_MENU_VIEW_AS_TILES,
   ProjectListItem,
@@ -8,7 +6,7 @@ import {
   type ProjectListStatus,
   ProjectTileItem,
   ProjectTileItemNew,
-} from 'src/components/features/organisms/Projects';
+} from '@/components/features/organisms/Projects';
 import {
   Box,
   Flex,
@@ -16,13 +14,15 @@ import {
   Grid,
   Heading,
   Icon,
-} from 'src/components/ui/atoms';
+} from '@/components/ui/atoms';
 import {
   Accordion,
   AccordionButton,
   AccordionItem,
   AccordionPanel,
-} from 'src/components/ui/organisms/Accordion';
+} from '@/components/ui/organisms/Accordion';
+import type React from 'react';
+import { memo, useState } from 'react';
 
 type Props = {
   projectIds: string[];

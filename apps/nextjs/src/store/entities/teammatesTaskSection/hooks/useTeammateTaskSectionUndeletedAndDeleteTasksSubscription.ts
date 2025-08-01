@@ -1,10 +1,10 @@
+import { useTeammateTaskSectionUndeletedAndDeleteTasksSubscription as useSubscription } from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
+import { useTeammatesTaskSectionResponse } from '@/store/entities/teammatesTaskSection';
 import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
 import { useMemo } from 'react';
 import { useCallback } from 'react';
-import { useTeammateTaskSectionUndeletedAndDeleteTasksSubscription as useSubscription } from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
-import { useTeammatesTaskSectionResponse } from 'src/store/entities/teammatesTaskSection';
 import type { TeammateTaskSectionUndeletedAndDeleteTasksSubscriptionResponse as Response } from '../type';
 
 // NOTE: To prevent re-rendering via duplicated subscription response.

@@ -1,18 +1,18 @@
-import type React from 'react';
 import {
   Box,
   FileUploader,
   type FileUploaderParams,
-} from 'src/components/ui/atoms';
+} from '@/components/ui/atoms';
 import {
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   type MenuProps,
-} from 'src/components/ui/organisms/Menu';
-import { useMenuStyle } from 'src/hooks';
-import { chakra } from 'src/shared/chakra';
+} from '@/components/ui/organisms/Menu';
+import { useMenuStyle } from '@/hooks';
+import { chakra } from '@/shared/chakra';
+import type React from 'react';
 
 type Props = {
   onUpload?: (files: FileUploaderParams) => void;

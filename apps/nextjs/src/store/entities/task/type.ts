@@ -1,4 +1,4 @@
-import type { TaskResponse as Response } from 'src/graphql/types/task';
+import type { TaskResponse as Response } from '@/graphql/types/task';
 
 export type {
   TaskUpdatedSubscriptionResponse,
@@ -8,7 +8,7 @@ export type {
   TaskUnassignedSubscriptionResponse,
   UpdateTaskMutationVariables,
   UpdateTaskInput,
-} from 'src/graphql/types/task';
+} from '@/graphql/types/task';
 
 export type TaskResponse = Response;
 

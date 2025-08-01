@@ -1,7 +1,7 @@
+import { Flex } from '@/components/ui/atoms';
+import { Editor, EditorContent } from '@/components/ui/organisms/Editor';
+import { getDefaultDescription } from '@/shared/prosemirror/getDefaultDescription';
 import { memo, useEffect, useState } from 'react';
-import { Flex } from 'src/components/ui/atoms';
-import { Editor, EditorContent } from 'src/components/ui/organisms/Editor';
-import { getDefaultDescription } from 'src/shared/prosemirror/getDefaultDescription';
 import { Attachments } from './Attachments';
 import { Container } from './Container';
 import { Placeholder } from './Placeholder';

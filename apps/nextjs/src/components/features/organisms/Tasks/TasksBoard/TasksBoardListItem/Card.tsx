@@ -1,9 +1,9 @@
+import { useTasksRouter } from '@/components/features/organisms/Tasks/hooks';
+import { Collapse, Flex, type FlexProps } from '@/components/ui/atoms';
+import { useTask } from '@/store/entities/task';
+import { transitions } from '@/styles';
 import type React from 'react';
 import { memo, useCallback, useMemo } from 'react';
-import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks';
-import { Collapse, Flex, type FlexProps } from 'src/components/ui/atoms';
-import { useTask } from 'src/store/entities/task';
-import { transitions } from 'src/styles';
 import { useTasksBoardListItemContext } from './Provider';
 
 type Props = FlexProps & {

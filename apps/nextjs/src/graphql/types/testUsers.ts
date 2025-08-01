@@ -1,13 +1,13 @@
-import type { TestUsersQuery } from 'src/graphql/types';
+import type { TestUsersQuery } from '@/graphql/types';
 
 export type {
   TestUsersQuery,
   TestUsersQueryVariables,
-} from 'src/graphql/types';
+} from '@/graphql/types';
 export type {
   TestUsersQueryHookResult,
   TestUsersLazyQueryHookResult,
-} from 'src/graphql/hooks';
+} from '@/graphql/hooks';
 
 export type TestUser = NonNullable<EdgesNode<TestUsersQuery['testUsers']>>;
 export type TestUsersPageInfo = PageInfo<TestUsersQuery['testUsers']>;

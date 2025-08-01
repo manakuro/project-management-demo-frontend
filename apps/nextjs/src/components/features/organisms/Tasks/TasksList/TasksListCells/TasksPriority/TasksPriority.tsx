@@ -1,10 +1,10 @@
+import { PriorityChip } from '@/components/features/molecules/Chips';
+import { TasksListCell } from '@/components/features/organisms/Tasks/TasksList/TasksListCell';
+import { Flex, type FlexProps, Icon } from '@/components/ui/atoms';
+import { useHover } from '@/hooks/useHover';
+import { useTask } from '@/store/entities/task';
 import type React from 'react';
 import { memo, useCallback, useMemo, useState } from 'react';
-import { PriorityChip } from 'src/components/features/molecules/Chips';
-import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
-import { Flex, type FlexProps, Icon } from 'src/components/ui/atoms';
-import { useHover } from 'src/hooks/useHover';
-import { useTask } from 'src/store/entities/task';
 import { Menu } from './Menu';
 
 type Props = FlexProps & {

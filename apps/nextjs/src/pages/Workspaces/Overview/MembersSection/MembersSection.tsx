@@ -1,7 +1,7 @@
+import { Flex } from '@/components/ui/atoms';
+import { useWorkspace } from '@/store/entities/workspace';
+import { useTeammateIdsByWorkspaceId } from '@/store/entities/workspaceTeammate';
 import { memo } from 'react';
-import { Flex } from 'src/components/ui/atoms';
-import { useWorkspace } from 'src/store/entities/workspace';
-import { useTeammateIdsByWorkspaceId } from 'src/store/entities/workspaceTeammate';
 import {
   OverviewSectionHeader,
   OverviewSectionHeaderHeading,

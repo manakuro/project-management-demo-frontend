@@ -4,7 +4,7 @@ import {
 } from '@chakra-ui/react';
 import type React from 'react';
 
-import { forwardRef } from 'src/shared/chakra';
+import { forwardRef } from '@/shared/chakra';
 
 type Props = ChakraPopoverContentProps & {
   ref?: React.MutableRefObject<any>;

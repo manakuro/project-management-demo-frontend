@@ -1,9 +1,9 @@
+import { forwardRef } from '@/shared/chakra';
 import {
   AvatarGroup as ChakraAvatarGroup,
   type AvatarGroupProps as ChakraAvatarGroupProps,
 } from '@chakra-ui/react';
 import type React from 'react';
-import { forwardRef } from 'src/shared/chakra';
 
 type Props = ChakraAvatarGroupProps & {
   ref?: React.MutableRefObject<any>;

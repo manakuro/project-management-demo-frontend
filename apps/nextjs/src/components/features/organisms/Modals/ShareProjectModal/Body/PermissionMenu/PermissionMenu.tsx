@@ -1,13 +1,13 @@
-import type React from 'react';
-import { memo, useCallback, useMemo } from 'react';
 import {
   MenuSelect,
   MenuSelectButton,
   MenuSelectList,
-} from 'src/components/features/organisms/Menus';
-import { Button, Flex, Icon } from 'src/components/ui/atoms';
-import { MenuItemOption } from 'src/components/ui/organisms/Menu';
-import { useClickableHoverStyle } from 'src/hooks';
+} from '@/components/features/organisms/Menus';
+import { Button, Flex, Icon } from '@/components/ui/atoms';
+import { MenuItemOption } from '@/components/ui/organisms/Menu';
+import { useClickableHoverStyle } from '@/hooks';
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import {
   PROJECT_PERMISSION_CAN_COMMENT,
   PROJECT_PERMISSION_CAN_EDIT,

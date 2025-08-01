@@ -1,14 +1,14 @@
-import type React from 'react';
-import { useCallback, useEffect, useState } from 'react';
-import type { GetLayout } from 'src/@types/next';
-import { PageLoader } from 'src/components/ui/molecules';
-import { LayoutDefault } from 'src/components/ui/organisms/Layout';
+import type { GetLayout } from '@/@types/next';
+import { PageLoader } from '@/components/ui/molecules';
+import { LayoutDefault } from '@/components/ui/organisms/Layout';
 import {
   useMyTasksDetailPageQuery,
   useMyTasksPageQuery,
-} from 'src/hooks/queries/app';
-import { useTeammateTaskTabStatusQuery } from 'src/hooks/queries/entities';
-import { useMe } from 'src/store/entities/me';
+} from '@/hooks/queries/app';
+import { useTeammateTaskTabStatusQuery } from '@/hooks/queries/entities';
+import { useMe } from '@/store/entities/me';
+import type React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Component } from './Component';
 
 export const Container: React.FC & GetLayout = () => {

@@ -1,16 +1,16 @@
-import { memo, useCallback, useMemo } from 'react';
-import { useDeleteTaskSectionModal } from 'src/components/features/organisms/Modals';
-import { useTasksListSectionContext } from 'src/components/features/organisms/Tasks/TasksList/TasksListSection/Provider';
+import { useDeleteTaskSectionModal } from '@/components/features/organisms/Modals';
+import { useTasksListSectionContext } from '@/components/features/organisms/Tasks/TasksList/TasksListSection/Provider';
 import {
   useHasTasksByTaskSectionId,
   useTasksCanDeleteTaskSection,
   useTasksTaskSectionCommand,
-} from 'src/components/features/organisms/Tasks/hooks';
-import { Tooltip } from 'src/components/ui/molecules';
+} from '@/components/features/organisms/Tasks/hooks';
+import { Tooltip } from '@/components/ui/molecules';
 import {
   MenuList as AtomsMenuList,
   MenuItem,
-} from 'src/components/ui/organisms/Menu';
+} from '@/components/ui/organisms/Menu';
+import { memo, useCallback, useMemo } from 'react';
 
 export const MenuList = memo(function MenuList() {
   const { setModalState, onOpen } = useDeleteTaskSectionModal();

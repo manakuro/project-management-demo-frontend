@@ -1,13 +1,13 @@
-import type React from 'react';
-import { useCallback } from 'react';
 import {
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   type MenuProps,
-} from 'src/components/ui/organisms/Menu';
-import { chakra } from 'src/shared/chakra';
+} from '@/components/ui/organisms/Menu';
+import { chakra } from '@/shared/chakra';
+import type React from 'react';
+import { useCallback } from 'react';
 
 type Props = {
   onClose: () => void;

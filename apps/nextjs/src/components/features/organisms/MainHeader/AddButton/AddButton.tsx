@@ -1,6 +1,4 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
-import { useInviteModal } from 'src/components/features/organisms/Modals/InviteModal/useInviteModal';
+import { useInviteModal } from '@/components/features/organisms/Modals/InviteModal/useInviteModal';
 import {
   Flex,
   type FlexProps,
@@ -8,14 +6,16 @@ import {
   IconButton,
   Portal,
   Text,
-} from 'src/components/ui/atoms';
+} from '@/components/ui/atoms';
 import {
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-} from 'src/components/ui/organisms/Menu';
-import type { IconType } from 'src/shared/icons';
+} from '@/components/ui/organisms/Menu';
+import type { IconType } from '@/shared/icons';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 
 export const AddButton: React.FC = memo(() => {
   const inviteModal = useInviteModal();

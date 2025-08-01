@@ -1,7 +1,7 @@
+import { useReactNodeView } from '@/components/ui/organisms/Editor/Editors';
+import type { EmojiAttrs } from '@/shared/prosemirror/schema';
 import type React from 'react';
 import { memo } from 'react';
-import { useReactNodeView } from 'src/components/ui/organisms/Editor/Editors';
-import type { EmojiAttrs } from 'src/shared/prosemirror/schema';
 
 export const Emoji: React.FC = memo(() => {
   const context = useReactNodeView();

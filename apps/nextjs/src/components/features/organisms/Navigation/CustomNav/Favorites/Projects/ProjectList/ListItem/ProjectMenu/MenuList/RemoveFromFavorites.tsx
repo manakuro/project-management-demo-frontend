@@ -1,7 +1,7 @@
+import { MenuItem } from '@/components/ui/organisms/Menu';
+import { useFavoriteProjectIdsCommand } from '@/store/entities/favoriteProjectIds';
 import type React from 'react';
 import { useCallback } from 'react';
-import { MenuItem } from 'src/components/ui/organisms/Menu';
-import { useFavoriteProjectIdsCommand } from 'src/store/entities/favoriteProjectIds';
 
 type Props = {
   projectId: string;

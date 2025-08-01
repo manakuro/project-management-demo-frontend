@@ -1,5 +1,3 @@
-import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
 import {
   useCreateTeammateTaskSectionMutation,
   useDeleteTeammateTaskSectionAndDeleteTasksMutation,
@@ -7,17 +5,19 @@ import {
   useDeleteTeammateTaskSectionMutation,
   useUndeleteTeammateTaskSectionAndDeleteTasksMutation,
   useUndeleteTeammateTaskSectionAndKeepTasksMutation,
-} from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
-import { useMe } from 'src/store/entities/me';
+} from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
+import { useMe } from '@/store/entities/me';
 import {
   type TeammateTaskResponse,
   teammateTaskByTeammateTaskSectionIdState,
   teammateTasksByIdsState,
   useResetTeammateTask,
   useTeammateTaskResponse,
-} from 'src/store/entities/teammateTask';
-import { useWorkspace } from 'src/store/entities/workspace';
+} from '@/store/entities/teammateTask';
+import { useWorkspace } from '@/store/entities/workspace';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { initialState, teammatesTaskSectionState } from '../atom';
 import type {
   DeleteTeammateTaskSectionAndDeleteTasksMutation,

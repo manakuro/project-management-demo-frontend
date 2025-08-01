@@ -1,8 +1,8 @@
+import { useMyTasksDetailPageLazyQuery as useQuery } from '@/graphql/hooks';
+import type { MyTasksDetailPageQueryVariables as Variables } from '@/graphql/types/app/myTasks';
+import { useMountedRef } from '@/hooks';
+import { useTeammateTaskResponse } from '@/store/entities/teammateTask';
 import { useCallback, useState } from 'react';
-import { useMyTasksDetailPageLazyQuery as useQuery } from 'src/graphql/hooks';
-import type { MyTasksDetailPageQueryVariables as Variables } from 'src/graphql/types/app/myTasks';
-import { useMountedRef } from 'src/hooks';
-import { useTeammateTaskResponse } from 'src/store/entities/teammateTask';
 
 export type UseMyTasksDetailPageQueryResult = {
   refetch: (variables: Variables) => Promise<void>;

@@ -1,8 +1,8 @@
+import { useMe } from '@/store/entities/me';
+import { useTeammateTaskColumnCommand } from '@/store/entities/teammateTaskColumn';
 import { useAtomValue } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import { useCallback, useMemo } from 'react';
-import { useMe } from 'src/store/entities/me';
-import { useTeammateTaskColumnCommand } from 'src/store/entities/teammateTaskColumn';
 import { taskColumnIdsCustomizableState } from '../atom';
 
 export const useMyTasksTaskColumnsCustomizable = () => {

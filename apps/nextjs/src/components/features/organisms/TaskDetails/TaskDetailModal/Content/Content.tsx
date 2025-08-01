@@ -1,17 +1,17 @@
-import type React from 'react';
-import { memo } from 'react';
 import {
   TaskDetailBody,
   TaskDetailFooter,
   TaskDetailHeader,
-} from 'src/components/features/organisms/TaskDetail';
-import { Divider } from 'src/components/ui/atoms';
+} from '@/components/features/organisms/TaskDetail';
+import { Divider } from '@/components/ui/atoms';
 import {
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
-} from 'src/components/ui/organisms/Modal';
+} from '@/components/ui/organisms/Modal';
+import type React from 'react';
+import { memo } from 'react';
 
 type Props = {
   loading: boolean;

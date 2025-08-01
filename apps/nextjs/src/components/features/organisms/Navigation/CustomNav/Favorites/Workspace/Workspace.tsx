@@ -1,5 +1,5 @@
+import { Flex } from '@/components/ui/atoms';
 import { memo } from 'react';
-import { Flex } from 'src/components/ui/atoms';
 import { WorkspaceList } from './WorkspaceList';
 
 export const Workspace = memo(function Workspace() {

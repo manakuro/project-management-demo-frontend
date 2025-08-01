@@ -1,6 +1,4 @@
-import type React from 'react';
-import { memo, useMemo } from 'react';
-import { useTaskDetail } from 'src/components/features/organisms/TaskDetail';
+import { useTaskDetail } from '@/components/features/organisms/TaskDetail';
 import {
   Flex,
   type FlexProps,
@@ -8,8 +6,10 @@ import {
   IconButton,
   Skeleton,
   Stack,
-} from 'src/components/ui/atoms';
-import type { IconType } from 'src/shared/icons';
+} from '@/components/ui/atoms';
+import type { IconType } from '@/shared/icons';
+import type React from 'react';
+import { memo, useMemo } from 'react';
 import { Attachment } from './Attachment';
 import { Complete } from './Complete';
 import { Copy } from './Copy';

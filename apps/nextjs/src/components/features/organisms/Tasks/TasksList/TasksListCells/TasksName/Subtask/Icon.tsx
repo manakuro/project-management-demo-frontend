@@ -1,11 +1,11 @@
-import type React from 'react';
-import { memo } from 'react';
 import {
   Icon as AtomsIcon,
   Flex,
   Text,
   type TextProps,
-} from 'src/components/ui/atoms';
+} from '@/components/ui/atoms';
+import type React from 'react';
+import { memo } from 'react';
 
 type Props = {
   size: number;

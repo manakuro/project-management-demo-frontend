@@ -1,14 +1,12 @@
-import type React from 'react';
-import { memo } from 'react';
-import { useFavoriteProjectIdsUpdatedSubscription } from 'src/store/entities/favoriteProjectIds';
-import { useMe } from 'src/store/entities/me';
-import { useProjectUpdatedSubscription } from 'src/store/entities/project';
+import { useFavoriteProjectIdsUpdatedSubscription } from '@/store/entities/favoriteProjectIds';
+import { useMe } from '@/store/entities/me';
+import { useProjectUpdatedSubscription } from '@/store/entities/project';
 import {
   useProjectTaskCreatedByTaskIdSubscription,
   useProjectTaskCreatedSubscription,
   useProjectTaskDeletedSubscription,
   useProjectTaskUpdatedSubscription,
-} from 'src/store/entities/projectTask';
+} from '@/store/entities/projectTask';
 import {
   useProjectTaskSectionCreatedSubscription,
   useProjectTaskSectionDeletedAndDeleteTasksSubscription,
@@ -17,39 +15,39 @@ import {
   useProjectTaskSectionUndeletedAndDeleteTasksSubscription,
   useProjectTaskSectionUndeletedAndKeepTasksSubscription,
   useProjectTaskSectionUpdatedSubscription,
-} from 'src/store/entities/projectTaskSection';
+} from '@/store/entities/projectTaskSection';
 import {
   useTaskAssignedSubscription,
   useTaskDeletedSubscription,
   useTaskUnassignedSubscription,
   useTaskUndeletedSubscription,
   useTaskUpdatedSubscription,
-} from 'src/store/entities/task';
+} from '@/store/entities/task';
 import {
   useTaskCollaboratorCreatedSubscription,
   useTaskCollaboratorDeletedSubscription,
-} from 'src/store/entities/taskCollaborator';
+} from '@/store/entities/taskCollaborator';
 import {
   useTaskFeedCreatedSubscription,
   useTaskFeedDeletedSubscription,
   useTaskFeedUpdatedSubscription,
-} from 'src/store/entities/taskFeed';
+} from '@/store/entities/taskFeed';
 import {
   useTaskFeedLikeCreatedSubscription,
   useTaskFeedLikeDeletedSubscription,
-} from 'src/store/entities/taskFeedLike';
+} from '@/store/entities/taskFeedLike';
 import {
   useTaskLikeCreatedSubscription,
   useTaskLikeDeletedSubscription,
-} from 'src/store/entities/taskLike';
+} from '@/store/entities/taskLike';
 import {
   useTaskTagCreatedSubscription,
   useTaskTagDeletedSubscription,
-} from 'src/store/entities/taskTag';
+} from '@/store/entities/taskTag';
 import {
   useTeammateTaskCreatedSubscription,
   useTeammateTaskUpdatedSubscription,
-} from 'src/store/entities/teammateTask';
+} from '@/store/entities/teammateTask';
 import {
   useTeammateTaskSectionCreatedSubscription,
   useTeammateTaskSectionDeletedAndDeleteTasksSubscription,
@@ -58,11 +56,13 @@ import {
   useTeammateTaskSectionUndeletedAndDeleteTasksSubscription,
   useTeammateTaskSectionUndeletedAndKeepTasksSubscription,
   useTeammateTaskSectionUpdatedSubscription,
-} from 'src/store/entities/teammatesTaskSection';
+} from '@/store/entities/teammatesTaskSection';
 import {
   useWorkspace,
   useWorkspaceUpdatedSubscription,
-} from 'src/store/entities/workspace';
+} from '@/store/entities/workspace';
+import type React from 'react';
+import { memo } from 'react';
 
 export const Subscription: React.FCWithChildren = memo((props) => {
   const { workspace } = useWorkspace();

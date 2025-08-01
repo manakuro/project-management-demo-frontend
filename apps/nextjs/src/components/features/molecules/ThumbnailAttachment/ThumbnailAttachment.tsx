@@ -1,8 +1,8 @@
+import type { FlexProps } from '@/components/ui/atoms';
+import { FileTypeCode } from '@/store/entities/fileType';
+import { type TaskFile, useTaskFile } from '@/store/entities/taskFile';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import type { FlexProps } from 'src/components/ui/atoms';
-import { FileTypeCode } from 'src/store/entities/fileType';
-import { type TaskFile, useTaskFile } from 'src/store/entities/taskFile';
 import { File } from './File';
 import { Image } from './Image';
 import { Provider } from './Provider';

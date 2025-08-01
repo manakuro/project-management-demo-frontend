@@ -1,16 +1,16 @@
-import type React from 'react';
-import { memo } from 'react';
-import type { IconButtonProps } from 'src/components/ui/atoms';
+import type { IconButtonProps } from '@/components/ui/atoms';
 import {
   FavoriteIconButton as MoleculesFavoriteIconButton,
   Tooltip,
-} from 'src/components/ui/molecules';
+} from '@/components/ui/molecules';
 import {
   useFavoriteProjectIds,
   useFavoriteProjectIdsCommand,
-} from 'src/store/entities/favoriteProjectIds';
-import { useProject } from 'src/store/entities/project';
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
+} from '@/store/entities/favoriteProjectIds';
+import { useProject } from '@/store/entities/project';
+import { useProjectBaseColor } from '@/store/entities/projectBaseColor';
+import type React from 'react';
+import { memo } from 'react';
 
 type Props = {
   projectId: string;

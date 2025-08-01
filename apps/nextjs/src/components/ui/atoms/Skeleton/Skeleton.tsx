@@ -1,9 +1,9 @@
+import { forwardRef } from '@/shared/chakra';
 import {
   Skeleton as ChakraSkeleton,
   type SkeletonProps as ChakraSkeletonProps,
 } from '@chakra-ui/react';
 import type React from 'react';
-import { forwardRef } from 'src/shared/chakra';
 
 type Props = ChakraSkeletonProps & {
   ref?: React.ForwardedRef<any>;

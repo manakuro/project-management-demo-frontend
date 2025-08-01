@@ -1,16 +1,16 @@
-import { memo, useMemo } from 'react';
 import {
   PADDING_X,
   useNavigation,
-} from 'src/components/features/organisms/Navigation';
-import { Flex, Icon, Link, NextLink, Text } from 'src/components/ui/atoms';
-import { useLinkHoverStyle } from 'src/hooks';
+} from '@/components/features/organisms/Navigation';
+import { Flex, Icon, Link, NextLink, Text } from '@/components/ui/atoms';
+import { useLinkHoverStyle } from '@/hooks';
 import {
   ROUTE_WORKSPACES,
   ROUTE_WORKSPACES_OVERVIEW,
   useRouter,
-} from 'src/router';
-import { useWorkspace } from 'src/store/entities/workspace';
+} from '@/router';
+import { useWorkspace } from '@/store/entities/workspace';
+import { memo, useMemo } from 'react';
 import { WorkspaceMenu } from './WorkspaceMenu';
 
 export const ListItem = memo(function ListItem() {

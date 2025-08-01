@@ -1,11 +1,11 @@
-import type React from 'react';
-import { memo } from 'react';
 import {
   SearchMenu,
   SearchMenuContent,
   SearchMenuTrigger,
-} from 'src/components/features/organisms/Menus/SearchMenu';
-import type { PopoverProps } from 'src/components/ui/organisms/Popover';
+} from '@/components/features/organisms/Menus/SearchMenu';
+import type { PopoverProps } from '@/components/ui/organisms/Popover';
+import type React from 'react';
+import { memo } from 'react';
 import { Content } from './Content';
 
 type Props = PopoverProps & {

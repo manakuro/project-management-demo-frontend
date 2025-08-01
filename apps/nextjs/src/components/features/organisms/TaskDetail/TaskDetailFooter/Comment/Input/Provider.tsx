@@ -1,26 +1,26 @@
-import type React from 'react';
-import { useCallback, useMemo, useState } from 'react';
 import {
   useTaskDetail,
   useTaskDetailBody,
-} from 'src/components/features/organisms/TaskDetail';
-import type { FileUploaderParams, UploadedFile } from 'src/components/ui/atoms';
-import { useClickOutside, useToast } from 'src/hooks';
-import { getScrollBottom } from 'src/shared/getScrollBottom';
-import { parseDescription } from 'src/shared/prosemirror/convertDescription';
-import { createProvider } from 'src/shared/react/createProvider';
-import { useMe } from 'src/store/entities/me';
+} from '@/components/features/organisms/TaskDetail';
+import type { FileUploaderParams, UploadedFile } from '@/components/ui/atoms';
+import { useClickOutside, useToast } from '@/hooks';
+import { getScrollBottom } from '@/shared/getScrollBottom';
+import { parseDescription } from '@/shared/prosemirror/convertDescription';
+import { createProvider } from '@/shared/react/createProvider';
+import { useMe } from '@/store/entities/me';
 import {
   type TaskFeed,
   useTaskFeed,
   useTaskFeedCommand,
-} from 'src/store/entities/taskFeed';
+} from '@/store/entities/taskFeed';
 import {
   type TaskFile,
   getTaskFileTypeFromFile,
   initialState,
   useTaskFileCommand,
-} from 'src/store/entities/taskFile';
+} from '@/store/entities/taskFile';
+import type React from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 type ContextProps = {
   taskFeed: TaskFeed;

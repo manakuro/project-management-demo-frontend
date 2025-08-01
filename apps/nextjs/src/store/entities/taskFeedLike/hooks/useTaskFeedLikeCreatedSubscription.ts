@@ -1,8 +1,8 @@
+import { useTaskFeedLikeCreatedSubscription as useSubscription } from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
 import { useAtomCallback } from 'jotai/utils';
 import isEqual from 'lodash-es/isEqual';
 import { useCallback, useMemo } from 'react';
-import { useTaskFeedLikeCreatedSubscription as useSubscription } from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
 import type { TaskFeedLikeCreatedSubscriptionResponse as Response } from '../type';
 import { useTaskFeedLikeResponse } from './useTaskFeedLikeResponse';
 

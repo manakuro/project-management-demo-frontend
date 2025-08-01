@@ -1,6 +1,4 @@
-import type React from 'react';
-import { memo } from 'react';
-import { TaskDetailDrawer } from 'src/components/features/organisms/TaskDetails';
+import { TaskDetailDrawer } from '@/components/features/organisms/TaskDetails';
 import {
   CustomizeButton,
   CustomizeMenu,
@@ -11,10 +9,12 @@ import {
   TasksHeader,
   TasksHeaderRight,
   useTasksBoardDetail,
-} from 'src/components/features/organisms/Tasks';
-import { Flex } from 'src/components/ui/atoms';
-import { useMyTasksContext } from 'src/pages/MyTasks/Provider';
-import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router';
+} from '@/components/features/organisms/Tasks';
+import { Flex } from '@/components/ui/atoms';
+import { useMyTasksContext } from '@/pages/MyTasks/Provider';
+import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from '@/router';
+import type React from 'react';
+import { memo } from 'react';
 import { SortMenu } from '../TasksHeader';
 import { SkeletonBoardContent, SkeletonBoardHeader } from './SkeletonBoard';
 

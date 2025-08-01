@@ -1,6 +1,6 @@
+import { useProjectDetailModal } from '@/components/features/organisms/Modals';
 import type React from 'react';
 import { useCallback } from 'react';
-import { useProjectDetailModal } from 'src/components/features/organisms/Modals';
 import { MenuItem } from './MenuItem';
 
 type Props = {

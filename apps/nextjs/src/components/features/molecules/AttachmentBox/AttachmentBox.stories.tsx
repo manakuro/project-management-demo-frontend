@@ -1,6 +1,6 @@
+import { Container } from '@/storybook/decorators/Container';
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import type React from 'react';
-import { Container } from 'src/storybook/decorators/Container';
 import { Component } from './Component';
 
 type Props = React.ComponentProps<typeof Component>;

@@ -1,5 +1,5 @@
+import { Spinner } from '@/components/ui/atoms';
 import { memo } from 'react';
-import { Spinner } from 'src/components/ui/atoms';
 import { SearchMenuListItem } from '../SearchMenuListItem';
 
 export const SearchMenuLoading = memo(function SearchMenuLoading() {

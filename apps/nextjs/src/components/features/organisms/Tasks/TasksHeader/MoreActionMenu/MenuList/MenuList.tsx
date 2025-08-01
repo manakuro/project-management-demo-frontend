@@ -1,8 +1,8 @@
-import { memo } from 'react';
 import {
   MenuList as AtomsMenuList,
   MenuItem,
-} from 'src/components/ui/organisms/Menu';
+} from '@/components/ui/organisms/Menu';
+import { memo } from 'react';
 
 export const MenuList = memo(function MenuList() {
   return (

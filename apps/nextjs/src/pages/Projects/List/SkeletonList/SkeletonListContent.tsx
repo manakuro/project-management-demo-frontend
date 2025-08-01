@@ -1,7 +1,7 @@
+import { TasksListRow } from '@/components/features/organisms/Tasks';
+import { TasksListCell } from '@/components/features/organisms/Tasks/TasksList/TasksListCell';
+import { Flex, Skeleton } from '@/components/ui/atoms';
 import { memo } from 'react';
-import { TasksListRow } from 'src/components/features/organisms/Tasks';
-import { TasksListCell } from 'src/components/features/organisms/Tasks/TasksList/TasksListCell';
-import { Flex, Skeleton } from 'src/components/ui/atoms';
 
 const TEXT_HEIGHT = '16px';
 export const SkeletonListContent = memo(function SkeletonListContent() {

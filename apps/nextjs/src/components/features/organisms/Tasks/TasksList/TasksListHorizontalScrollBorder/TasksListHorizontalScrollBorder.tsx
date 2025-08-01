@@ -1,15 +1,15 @@
-import type React from 'react';
-import { memo, useEffect, useMemo, useState } from 'react';
-import { useNavigation } from 'src/components/features/organisms/Navigation';
+import { useNavigation } from '@/components/features/organisms/Navigation';
 import {
   useTasksListContentHorizontalScroll,
   useTasksListContentSticky,
-} from 'src/components/features/organisms/Tasks';
-import { useTasksTaskColumnByType } from 'src/components/features/organisms/Tasks/hooks';
-import { Flex, type FlexProps } from 'src/components/ui/atoms';
-import { useMountedRef } from 'src/hooks';
-import type { ChakraProps } from 'src/shared/chakra';
-import { TaskColumnType } from 'src/store/entities/taskColumn';
+} from '@/components/features/organisms/Tasks';
+import { useTasksTaskColumnByType } from '@/components/features/organisms/Tasks/hooks';
+import { Flex, type FlexProps } from '@/components/ui/atoms';
+import { useMountedRef } from '@/hooks';
+import type { ChakraProps } from '@/shared/chakra';
+import { TaskColumnType } from '@/store/entities/taskColumn';
+import type React from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 
 type Props = FlexProps;
 

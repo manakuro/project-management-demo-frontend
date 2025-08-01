@@ -1,5 +1,5 @@
+import { Flex } from '@/components/ui/atoms';
 import type React from 'react';
-import { Flex } from 'src/components/ui/atoms';
 import { Provider } from './Provider';
 
 type Props = {

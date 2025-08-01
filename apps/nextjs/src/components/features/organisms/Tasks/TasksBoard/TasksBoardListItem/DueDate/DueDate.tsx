@@ -1,15 +1,15 @@
-import type React from 'react';
-import { memo, useCallback, useMemo } from 'react';
-import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers';
+import { PopoverDueDatePicker } from '@/components/features/organisms/Popovers';
 import {
   DueDate as AtomsDueDate,
   Button,
   Flex,
   type FlexProps,
   Icon,
-} from 'src/components/ui/atoms';
-import { useClickableHoverStyle } from 'src/hooks';
-import { useTask } from 'src/store/entities/task';
+} from '@/components/ui/atoms';
+import { useClickableHoverStyle } from '@/hooks';
+import { useTask } from '@/store/entities/task';
+import type React from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useTasksBoardListItemContext } from '../Provider';
 
 type Props = FlexProps & {

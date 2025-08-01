@@ -1,10 +1,10 @@
+import { useLinkHoverStyle } from '@/hooks';
+import { forwardRef } from '@/shared/chakra';
 import {
   Button as ChakraButton,
   type ButtonProps as ChakraButtonProps,
 } from '@chakra-ui/react';
 import type React from 'react';
-import { useLinkHoverStyle } from 'src/hooks';
-import { forwardRef } from 'src/shared/chakra';
 
 type Props = ChakraButtonProps & {
   ref?: React.ForwardedRef<any>;

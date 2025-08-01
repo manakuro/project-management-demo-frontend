@@ -1,20 +1,20 @@
-import type React from 'react';
-import { memo, useCallback, useMemo, useRef, useState } from 'react';
-import { TagChip } from 'src/components/features/molecules/Chips';
-import { TagMenu } from 'src/components/features/organisms/Menus';
+import { TagChip } from '@/components/features/molecules/Chips';
+import { TagMenu } from '@/components/features/organisms/Menus';
 import {
   Input as AtomsInput,
   Flex,
   Wrap,
   WrapItem,
-} from 'src/components/ui/atoms';
-import { useClickOutside } from 'src/hooks';
-import { useDisclosure } from 'src/shared/chakra';
-import type { Tag } from 'src/store/entities/tag';
+} from '@/components/ui/atoms';
+import { useClickOutside } from '@/hooks';
+import { useDisclosure } from '@/shared/chakra';
+import type { Tag } from '@/store/entities/tag';
 import {
   useTaskTagCommand,
   useTaskTagIdsByTaskId,
-} from 'src/store/entities/taskTag';
+} from '@/store/entities/taskTag';
+import type React from 'react';
+import { memo, useCallback, useMemo, useRef, useState } from 'react';
 
 type Props = {
   taskId: string;

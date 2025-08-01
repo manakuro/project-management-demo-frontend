@@ -1,15 +1,15 @@
-import type React from 'react';
-import { memo, useCallback, useState } from 'react';
-import { ProjectMenu } from 'src/components/features/organisms/Menus';
+import { ProjectMenu } from '@/components/features/organisms/Menus';
 import {
   Input as AtomsInput,
   Flex,
   type InputProps,
-} from 'src/components/ui/atoms';
-import type { MenuListProps } from 'src/components/ui/organisms/Menu';
-import { useClickOutside } from 'src/hooks';
-import { useDisclosure } from 'src/shared/chakra';
-import { useProjectTaskCommand } from 'src/store/entities/projectTask';
+} from '@/components/ui/atoms';
+import type { MenuListProps } from '@/components/ui/organisms/Menu';
+import { useClickOutside } from '@/hooks';
+import { useDisclosure } from '@/shared/chakra';
+import { useProjectTaskCommand } from '@/store/entities/projectTask';
+import type React from 'react';
+import { memo, useCallback, useState } from 'react';
 
 type Props = {
   onClose: () => void;

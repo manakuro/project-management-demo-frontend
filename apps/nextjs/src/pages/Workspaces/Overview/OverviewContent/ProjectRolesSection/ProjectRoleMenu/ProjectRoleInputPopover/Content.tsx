@@ -1,16 +1,13 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
-import { Label, Portal } from 'src/components/ui/atoms';
-import {
-  PopoverBody,
-  PopoverContent,
-} from 'src/components/ui/organisms/Popover';
-import { useClickOutside } from 'src/hooks';
+import { Label, Portal } from '@/components/ui/atoms';
+import { PopoverBody, PopoverContent } from '@/components/ui/organisms/Popover';
+import { useClickOutside } from '@/hooks';
 import {
   useProjectTeammate,
   useProjectTeammatesCommand,
-} from 'src/store/entities/projectTeammate';
-import { useTeammate } from 'src/store/entities/teammate';
+} from '@/store/entities/projectTeammate';
+import { useTeammate } from '@/store/entities/teammate';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import { Form } from './Form';
 
 type Props = {

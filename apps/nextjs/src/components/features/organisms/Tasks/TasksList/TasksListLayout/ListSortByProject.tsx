@@ -1,12 +1,12 @@
+import { TasksListSectionGroupByProject } from '@/components/features/organisms/Tasks';
+import { useTasksListContext } from '@/components/features/organisms/Tasks/TasksList/Provider';
+import { TasksListItem } from '@/components/features/organisms/Tasks/TasksList/TasksListItem';
+import { TasksListSectionProvider } from '@/components/features/organisms/Tasks/TasksList/TasksListSection';
+import { Box, Flex, Icon, IconButton } from '@/components/ui/atoms';
+import { useMyTasksProjectIds } from '@/store/app/myTasks/projects';
+import { useMyTasksTaskIdsWithNoProject } from '@/store/app/myTasks/tasks';
 import type React from 'react';
 import { memo, useCallback, useState } from 'react';
-import { TasksListSectionGroupByProject } from 'src/components/features/organisms/Tasks';
-import { useTasksListContext } from 'src/components/features/organisms/Tasks/TasksList/Provider';
-import { TasksListItem } from 'src/components/features/organisms/Tasks/TasksList/TasksListItem';
-import { TasksListSectionProvider } from 'src/components/features/organisms/Tasks/TasksList/TasksListSection';
-import { Box, Flex, Icon, IconButton } from 'src/components/ui/atoms';
-import { useMyTasksProjectIds } from 'src/store/app/myTasks/projects';
-import { useMyTasksTaskIdsWithNoProject } from 'src/store/app/myTasks/tasks';
 
 export const ListSortByProject: React.FC = memo(() => {
   const { projectIds } = useMyTasksProjectIds();

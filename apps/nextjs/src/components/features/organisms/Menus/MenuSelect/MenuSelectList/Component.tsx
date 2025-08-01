@@ -1,13 +1,13 @@
-import type React from 'react';
-import { useCallback } from 'react';
-import { Portal } from 'src/components/ui/atoms';
+import { Portal } from '@/components/ui/atoms';
 import {
   MenuList as AtomsMenuList,
   type MenuListProps,
   MenuOptionGroup,
   type MenuOptionGroupProps,
-} from 'src/components/ui/organisms/Menu';
-import { useClickOutside } from 'src/hooks/useClickOutside';
+} from '@/components/ui/organisms/Menu';
+import { useClickOutside } from '@/hooks/useClickOutside';
+import type React from 'react';
+import { useCallback } from 'react';
 import { useMenuSelectContext } from '../useMenuSelect';
 
 type Props = MenuOptionGroupProps & {

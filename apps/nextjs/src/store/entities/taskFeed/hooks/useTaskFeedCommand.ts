@@ -1,14 +1,14 @@
-import { useAtomCallback } from 'jotai/utils';
-import { useCallback } from 'react';
 import {
   useCreateTaskFeedMutation,
   useDeleteTaskFeedMutation,
   useUndeleteTaskFeedMutation,
-} from 'src/graphql/hooks';
-import { uuid } from 'src/shared/uuid';
-import { useTaskFeedLikeResponse } from 'src/store/entities/taskFeedLike';
-import { useTaskFileResponse } from 'src/store/entities/taskFile';
-import { useWorkspace } from 'src/store/entities/workspace';
+} from '@/graphql/hooks';
+import { uuid } from '@/shared/uuid';
+import { useTaskFeedLikeResponse } from '@/store/entities/taskFeedLike';
+import { useTaskFileResponse } from '@/store/entities/taskFile';
+import { useWorkspace } from '@/store/entities/workspace';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { initialState, taskFeedState } from '../atom';
 import type { DeleteTaskFeedResponse, TaskFeed } from '../type';
 import { useResetTaskFeed } from './useResetTaskFeed';

@@ -1,3 +1,3 @@
-import type { TaskColumnFragmentFragment } from 'src/graphql/types';
+import type { TaskColumnFragmentFragment } from '@/graphql/types';
 
 export type TaskColumnResponse = NonNullable<TaskColumnFragmentFragment>;

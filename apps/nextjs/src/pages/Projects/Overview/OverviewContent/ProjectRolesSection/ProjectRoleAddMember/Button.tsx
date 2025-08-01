@@ -1,9 +1,6 @@
+import { Button as AtomsButton, type ButtonProps } from '@/components/ui/atoms';
+import { forwardRef } from '@/shared/chakra';
 import type React from 'react';
-import {
-  Button as AtomsButton,
-  type ButtonProps,
-} from 'src/components/ui/atoms';
-import { forwardRef } from 'src/shared/chakra';
 
 type Props = ButtonProps;
 

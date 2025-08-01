@@ -1,5 +1,4 @@
-import type React from 'react';
-import { PageLoader } from 'src/components/ui/molecules';
+import { PageLoader } from '@/components/ui/molecules';
 import {
   useFavoriteProjectIdsQuery,
   useFavoriteWorkspaceIdsQuery,
@@ -11,8 +10,9 @@ import {
   useTaskPrioritiesQuery,
   useTeammateTaskTabStatusQuery,
   useWorkspaceQuery,
-} from 'src/hooks/queries/entities';
-import { useMe } from 'src/store/entities/me';
+} from '@/hooks/queries/entities';
+import { useMe } from '@/store/entities/me';
+import type React from 'react';
 
 export const GlobalQuery: React.FCWithChildren = (props) => {
   useTaskPrioritiesQuery();

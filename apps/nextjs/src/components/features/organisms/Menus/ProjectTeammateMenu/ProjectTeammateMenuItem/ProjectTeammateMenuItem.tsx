@@ -1,13 +1,13 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
 import {
   SearchMenuLeftContainer,
   SearchMenuListItem,
   SearchMenuRightContainer,
-} from 'src/components/features/organisms/Menus/SearchMenu';
-import { TeammateAvatar } from 'src/components/features/organisms/TeammateAvatar';
-import { Text } from 'src/components/ui/atoms';
-import type { Teammate } from 'src/store/entities/teammate';
+} from '@/components/features/organisms/Menus/SearchMenu';
+import { TeammateAvatar } from '@/components/features/organisms/TeammateAvatar';
+import { Text } from '@/components/ui/atoms';
+import type { Teammate } from '@/store/entities/teammate';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 
 type Props = {
   onClick: (teammate: Teammate) => void;

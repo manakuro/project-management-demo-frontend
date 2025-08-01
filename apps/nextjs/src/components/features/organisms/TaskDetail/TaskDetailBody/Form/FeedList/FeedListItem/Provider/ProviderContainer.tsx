@@ -1,10 +1,10 @@
+import { useTaskDetailBody } from '@/components/features/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody';
+import { useTasksRouter } from '@/components/features/organisms/Tasks/hooks';
+import { isHTMLElement } from '@/shared/isHTMLElement';
+import { createProvider } from '@/shared/react/createProvider';
+import { useTaskFeed } from '@/store/entities/taskFeed';
 import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useTaskDetailBody } from 'src/components/features/organisms/TaskDetail/TaskDetailBody/useTaskDetailBody';
-import { useTasksRouter } from 'src/components/features/organisms/Tasks/hooks';
-import { isHTMLElement } from 'src/shared/isHTMLElement';
-import { createProvider } from 'src/shared/react/createProvider';
-import { useTaskFeed } from 'src/store/entities/taskFeed';
 
 type ContextProps = {
   containerRef: React.MutableRefObject<HTMLElement | null>;
@@ -56,6 +56,6 @@ const useValue = (props: Props): ContextProps => {
   };
 };
 useValue.__PROVIDER__ =
-  'src/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider/ProviderContainer.tsx';
+  '@/components/organisms/TaskDetail/TaskDetailBody/Form/FeedList/FeedListItem/Provider/ProviderContainer.tsx';
 export const { Provider, useContext: useFeedListItemContainerContext } =
   createProvider(useValue);

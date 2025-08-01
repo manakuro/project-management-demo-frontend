@@ -1,7 +1,7 @@
+import { ColorBox, Icon, WrapItem } from '@/components/ui/atoms';
+import { useProjectBaseColor } from '@/store/entities/projectBaseColor';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { ColorBox, Icon, WrapItem } from 'src/components/ui/atoms';
-import { useProjectBaseColor } from 'src/store/entities/projectBaseColor';
 
 type Props = {
   projectBaseColorId: string;

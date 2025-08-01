@@ -1,11 +1,11 @@
+import { Button, Flex, Icon, IconButton } from '@/components/ui/atoms';
+import { forwardRef } from '@/shared/chakra';
 import type {
   RenderProps,
   UseToastOptions as UseToastOptionsChakra,
 } from '@chakra-ui/react';
 import type React from 'react';
 import { useCallback } from 'react';
-import { Button, Flex, Icon, IconButton } from 'src/components/ui/atoms';
-import { forwardRef } from 'src/shared/chakra';
 
 export type ToastProps = UseToastOptionsChakra & {
   undo?: (() => void) | (() => Promise<void>);

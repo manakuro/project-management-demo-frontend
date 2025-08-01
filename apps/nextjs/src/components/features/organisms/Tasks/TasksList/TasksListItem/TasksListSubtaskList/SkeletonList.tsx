@@ -1,7 +1,7 @@
+import { TasksListRow } from '@/components/features/organisms/Tasks';
+import { Flex, Skeleton } from '@/components/ui/atoms';
 import type React from 'react';
 import { memo } from 'react';
-import { TasksListRow } from 'src/components/features/organisms/Tasks';
-import { Flex, Skeleton } from 'src/components/ui/atoms';
 
 const TEXT_HEIGHT = '16px';
 

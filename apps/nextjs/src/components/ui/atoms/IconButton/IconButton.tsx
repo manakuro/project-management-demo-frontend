@@ -1,11 +1,11 @@
+import { useDisabledStyle, useLinkHoverStyle } from '@/hooks';
+import { type ChakraProps, forwardRef } from '@/shared/chakra';
 import {
   IconButton as ChakraIconButton,
   type IconButtonProps as ChakraIconButtonProps,
 } from '@chakra-ui/react';
 import type React from 'react';
 import { useMemo } from 'react';
-import { useDisabledStyle, useLinkHoverStyle } from 'src/hooks';
-import { type ChakraProps, forwardRef } from 'src/shared/chakra';
 
 type Props = ChakraIconButtonProps & {
   light?: boolean;

@@ -1,3 +1,3 @@
-import type { WorkspacePageQuery } from 'src/graphql/types';
+import type { WorkspacePageQuery } from '@/graphql/types';
 
 export type WorkspaceResponse = NonNullable<WorkspacePageQuery>;

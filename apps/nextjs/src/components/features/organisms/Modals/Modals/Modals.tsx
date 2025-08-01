@@ -1,9 +1,7 @@
-import type React from 'react';
-import { memo } from 'react';
 import {
   EditorEmojiMenu,
   EditorMentionMenu,
-} from 'src/components/features/organisms/Menus';
+} from '@/components/features/organisms/Menus';
 import {
   DuplicateTaskModal,
   EditorLinkModal,
@@ -12,9 +10,11 @@ import {
   ProjectDetailModal,
   ShareProjectModal,
   ShareWorkspaceModal,
-} from 'src/components/features/organisms/Modals';
-import { Help } from 'src/components/features/organisms/Navigation';
-import { VideoPlayer } from 'src/components/ui/organisms/VideoPlayer';
+} from '@/components/features/organisms/Modals';
+import { Help } from '@/components/features/organisms/Navigation';
+import { VideoPlayer } from '@/components/ui/organisms/VideoPlayer';
+import type React from 'react';
+import { memo } from 'react';
 
 export const Modals: React.FC = memo(() => {
   return (

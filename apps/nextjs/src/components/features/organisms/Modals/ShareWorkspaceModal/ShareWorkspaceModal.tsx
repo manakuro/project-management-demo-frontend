@@ -6,7 +6,7 @@ import {
   Input,
   Link,
   MoreLink,
-} from 'src/components/ui/atoms';
+} from '@/components/ui/atoms';
 import {
   Modal,
   ModalBody,
@@ -14,7 +14,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-} from 'src/components/ui/organisms/Modal';
+} from '@/components/ui/organisms/Modal';
 import { useShareWorkspaceModal } from './useShareWorkspaceModal';
 
 export function ShareWorkspaceModal() {

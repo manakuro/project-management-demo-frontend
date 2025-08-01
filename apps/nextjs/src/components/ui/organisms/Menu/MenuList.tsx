@@ -1,9 +1,9 @@
+import { forwardRef } from '@/shared/chakra';
 import {
   MenuList as ChakraMenuList,
   type MenuListProps as ChakraMenuListProps,
 } from '@chakra-ui/react';
 import type React from 'react';
-import { forwardRef } from 'src/shared/chakra';
 
 type Props = ChakraMenuListProps & {
   ref?: React.MutableRefObject<any>;

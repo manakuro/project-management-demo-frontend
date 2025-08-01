@@ -1,10 +1,10 @@
+import { forwardRef } from '@/shared/chakra';
 import {
   Link as ChakraLink,
   type LinkProps as ChakraLinkProps,
 } from '@chakra-ui/react';
 import type React from 'react';
 import { useMemo } from 'react';
-import { forwardRef } from 'src/shared/chakra';
 
 type Props = ChakraLinkProps & {
   hover?: boolean;

@@ -1,1 +1,1 @@
-export { TaskPriorityType } from 'src/graphql/enums';
+export { TaskPriorityType } from '@/graphql/enums';

@@ -1,8 +1,8 @@
+import { useHover } from '@/hooks/useHover';
+import { createProvider } from '@/shared/react/createProvider';
+import { type TaskFile, useTaskFile } from '@/store/entities/taskFile';
 import type React from 'react';
 import { useCallback, useState } from 'react';
-import { useHover } from 'src/hooks/useHover';
-import { createProvider } from 'src/shared/react/createProvider';
-import { type TaskFile, useTaskFile } from 'src/store/entities/taskFile';
 
 type ContextProps = {
   ref: React.MutableRefObject<HTMLElement | null>;
@@ -40,6 +40,6 @@ const useValue = (props: Props): ContextProps => {
   };
 };
 useValue.__PROVIDER__ =
-  'src/components/molecules/ThumbnailAttachment/Provider.tsx';
+  '@/components/molecules/ThumbnailAttachment/Provider.tsx';
 export const { Provider, useContext: useThumbnailAttachmentContext } =
   createProvider(useValue);

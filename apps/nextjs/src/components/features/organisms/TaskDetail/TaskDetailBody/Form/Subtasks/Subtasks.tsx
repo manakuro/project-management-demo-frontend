@@ -1,6 +1,6 @@
+import { useSubtaskIds, useTaskCommand } from '@/store/entities/task';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { useSubtaskIds, useTaskCommand } from 'src/store/entities/task';
 import { Label, Row } from '../Row';
 import { AddSubtaskButton } from './AddSubtaskButton';
 import { TasksName } from './TasksName';

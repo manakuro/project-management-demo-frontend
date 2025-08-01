@@ -1,6 +1,6 @@
+import { Editor, EditorContent } from '@/components/ui/organisms/Editor';
+import { stringifyDescription } from '@/shared/prosemirror/convertDescription';
 import { memo, useEffect, useMemo, useState } from 'react';
-import { Editor, EditorContent } from 'src/components/ui/organisms/Editor';
-import { stringifyDescription } from 'src/shared/prosemirror/convertDescription';
 import { useTaskFeedListItemContext } from '../../Provider';
 import { Container } from './Container';
 import { ToolBar } from './ToolBar';

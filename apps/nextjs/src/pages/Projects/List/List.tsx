@@ -1,6 +1,4 @@
-import type React from 'react';
-import { memo, useCallback } from 'react';
-import { TaskDetailDrawer } from 'src/components/features/organisms/TaskDetails';
+import { TaskDetailDrawer } from '@/components/features/organisms/TaskDetails';
 import {
   AddTaskButton,
   CustomizeButton,
@@ -18,14 +16,12 @@ import {
   TasksListHorizontalScrollBorder,
   TasksListLayout,
   useTasksListDetail,
-} from 'src/components/features/organisms/Tasks';
-import { Flex } from 'src/components/ui/atoms';
-import {
-  getProjectsDetailId,
-  isProjectsDetailURL,
-  useRouter,
-} from 'src/router';
-import { useProjectsProjectId } from 'src/store/app/projects/project';
+} from '@/components/features/organisms/Tasks';
+import { Flex } from '@/components/ui/atoms';
+import { getProjectsDetailId, isProjectsDetailURL, useRouter } from '@/router';
+import { useProjectsProjectId } from '@/store/app/projects/project';
+import type React from 'react';
+import { memo, useCallback } from 'react';
 import { useProjectsPageContext } from '../Provider';
 import { SortMenu } from '../TasksHeader';
 import { SkeletonListContent, SkeletonListHeader } from './SkeletonList';

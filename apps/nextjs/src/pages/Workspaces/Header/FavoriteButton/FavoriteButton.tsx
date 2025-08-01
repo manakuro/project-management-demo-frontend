@@ -1,12 +1,12 @@
-import type React from 'react';
-import { memo } from 'react';
-import type { IconButtonProps } from 'src/components/ui/atoms';
-import { FavoriteIconButton, Tooltip } from 'src/components/ui/molecules';
+import type { IconButtonProps } from '@/components/ui/atoms';
+import { FavoriteIconButton, Tooltip } from '@/components/ui/molecules';
 import {
   useFavoriteWorkspaceIds,
   useFavoriteWorkspaceIdsCommand,
-} from 'src/store/entities/favoriteWorkspaceIds';
-import { useWorkspace } from 'src/store/entities/workspace';
+} from '@/store/entities/favoriteWorkspaceIds';
+import { useWorkspace } from '@/store/entities/workspace';
+import type React from 'react';
+import { memo } from 'react';
 
 type Props = Omit<IconButtonProps, 'aria-label' | 'icon' | 'textStyle'>;
 

@@ -1,11 +1,11 @@
+import { PopoverDueDatePicker } from '@/components/features/organisms/Popovers';
+import { DueDate as AtomsDueDate, Icon } from '@/components/ui/atoms';
+import { Tooltip } from '@/components/ui/molecules';
+import { useClickableHoverStyle } from '@/hooks';
+import { getDifferenceInDays } from '@/shared/date';
+import { useTask } from '@/store/entities/task';
 import type React from 'react';
 import { memo, useCallback } from 'react';
-import { PopoverDueDatePicker } from 'src/components/features/organisms/Popovers';
-import { DueDate as AtomsDueDate, Icon } from 'src/components/ui/atoms';
-import { Tooltip } from 'src/components/ui/molecules';
-import { useClickableHoverStyle } from 'src/hooks';
-import { getDifferenceInDays } from 'src/shared/date';
-import { useTask } from 'src/store/entities/task';
 import { useDueDate } from './useDueDate';
 
 type Props = {

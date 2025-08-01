@@ -1,6 +1,4 @@
-import type React from 'react';
-import { memo } from 'react';
-import { TaskDetailModal } from 'src/components/features/organisms/TaskDetails';
+import { TaskDetailModal } from '@/components/features/organisms/TaskDetails';
 import {
   TasksCalendar,
   TasksCalendarContent,
@@ -8,16 +6,18 @@ import {
   TasksCalendarListHeader,
   TasksContainer,
   useTasksCalendarDetail,
-} from 'src/components/features/organisms/Tasks';
+} from '@/components/features/organisms/Tasks';
 import {
   CalendarMonthPicker,
   TasksHeader,
   TasksHeaderLeft,
   TasksHeaderRight,
   TodayButton,
-} from 'src/components/features/organisms/Tasks/TasksHeader';
-import { useMyTasksContext } from 'src/pages/MyTasks/Provider';
-import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from 'src/router';
+} from '@/components/features/organisms/Tasks/TasksHeader';
+import { useMyTasksContext } from '@/pages/MyTasks/Provider';
+import { getMyTasksDetailId, isMyTasksDetailURL, useRouter } from '@/router';
+import type React from 'react';
+import { memo } from 'react';
 import { SkeletonCalendar } from './SkeletonCalendar';
 
 export const Calendar: React.FC = memo(() => {

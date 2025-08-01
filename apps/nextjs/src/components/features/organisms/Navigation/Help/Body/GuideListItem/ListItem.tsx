@@ -1,7 +1,7 @@
+import { Flex, Icon, Text } from '@/components/ui/atoms';
+import { transitions } from '@/styles';
 import type React from 'react';
 import { useCallback } from 'react';
-import { Flex, Icon, Text } from 'src/components/ui/atoms';
-import { transitions } from 'src/styles';
 import { type Item, PADDING_X } from './GuideListItem';
 
 type Props = {

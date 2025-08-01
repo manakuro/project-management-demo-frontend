@@ -1,8 +1,8 @@
+import { Flex, type FlexProps, Stack } from '@/components/ui/atoms';
+import { useMainStyle } from '@/hooks';
+import type { ChakraProps } from '@/shared/chakra';
 import type React from 'react';
 import { type PropsWithChildren, memo, useMemo } from 'react';
-import { Flex, type FlexProps, Stack } from 'src/components/ui/atoms';
-import { useMainStyle } from 'src/hooks';
-import type { ChakraProps } from 'src/shared/chakra';
 import { AddButton } from './AddButton';
 import { MyAccountAvatar } from './MyAccountAvatar';
 import { SearchInput } from './SearchInput';
